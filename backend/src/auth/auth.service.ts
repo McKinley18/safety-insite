@@ -49,11 +49,17 @@ export class AuthService {
       Number(process.env.BCRYPT_ROUNDS || 12),
     );
 
+    const planCode =
+      finalType === 'company' ? 'company' :
+      finalType === 'pro' || finalType === 'plus' ? 'plus' :
+      'basic';
+
     const user = this.userRepo.create({
       email,
       name: name || email.split('@')[0],
       password: hashedPassword,
-      type: finalType,
+      type: finalType || 'individual',
+      planCode,
       role,
       organizationId,
     });
@@ -105,6 +111,16 @@ export class AuthService {
     return {
       message: 'Login successful',
       token,
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        type: user.type,
+        role: user.role,
+        subscriptionStatus: user.subscriptionStatus,
+        planCode: user.planCode || 'basic',
+        organizationId: user.organizationId,
+      },
       metadata,
     };
   }
