@@ -121,18 +121,24 @@ export default function SettingsPage() {
         setAutoLockMinutes(window.localStorage.getItem("sentinel_auto_lock_minutes") || "off");
         setFacilityList(getFacilities());
 
-        const [loadedMembers, loadedInvites] = await Promise.all([
+        const [membersResult, invitesResult] = await Promise.allSettled([
           getOrganizationMembers(),
           getOrganizationInvites(),
         ]);
 
-        setMembers(loadedMembers);
-        setInvites(loadedInvites);
-        setStatus("");
-        setStatusType("idle");
+        setMembers(membersResult.status === "fulfilled" ? membersResult.value : []);
+        setInvites(invitesResult.status === "fulfilled" ? invitesResult.value : []);
+
+        if (membersResult.status === "rejected" || invitesResult.status === "rejected") {
+          setStatusType("error");
+          setStatus("Workspace settings loaded, but member/invite details could not be loaded.");
+        } else {
+          setStatus("");
+          setStatusType("idle");
+        }
       } catch {
         setStatusType("error");
-        setStatus("Unable to load workspace settings. Please sign in again.");
+        setStatus("Workspace settings have not been configured yet. Defaults are being used.");
       }
     }
 
