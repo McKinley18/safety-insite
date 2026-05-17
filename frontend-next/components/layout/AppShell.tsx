@@ -230,7 +230,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-8" : "pb-36 lg:pb-10"}`}>
+      <main className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-2" : "pb-36 lg:pb-10"}`}>
         {children}
       </main>
 
@@ -238,21 +238,21 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       {isPublicPage && (
       <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A] ">
-          <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-4 px-5 py-6">
+          <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/about" className="text-sm font-black text-[#E5E7EB] hover:text-white">
+              <Link href="/about" style={{ color: "#FFFFFF" }} className="text-sm font-black hover:opacity-80">
                 About
               </Link>
 
               <span className="h-4 w-px bg-[#6F7782]" />
 
-              <Link href="/legal" className="text-sm font-black text-[#E5E7EB] hover:text-white">
+              <Link href="/legal" style={{ color: "#FFFFFF" }} className="text-sm font-black hover:opacity-80">
                 Legal
               </Link>
 
               <span className="h-4 w-px bg-[#6F7782]" />
 
-              <Link href="/safescope" className="text-sm font-black text-[#E5E7EB] hover:text-white">
+              <Link href="/safescope" style={{ color: "#FFFFFF" }} className="text-sm font-black hover:opacity-80">
                 SafeScope<span className="ml-[1px] align-super text-[9px]">TM</span>
               </Link>
             </div>
