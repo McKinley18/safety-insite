@@ -184,6 +184,13 @@ export default function SettingsPage() {
 
   async function saveSettings() {
     try {
+      if (!hasPlanEntitlement("cloudReports", planCode) && storageMode === "cloud") {
+        setStorageMode("local");
+        setStatusType("error");
+        setStatus("Cloud workspace sync requires the Company plan. Reports will stay on this device.");
+        return;
+      }
+
       setStatusType("idle");
       setStatus("Saving settings...");
 
@@ -485,22 +492,36 @@ export default function SettingsPage() {
         </p>
 
         <div className="mt-4 space-y-2">
-          {storageModes.map(([id, label, description]) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setStorageMode(id)}
-              className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left ${
-                storageMode === id ? "border-[#1D72B8] bg-[#E8F4FF]" : "border-slate-200 bg-white"
-              }`}
-            >
-              <span>
-                <span className="block text-sm font-black text-slate-900">{label}</span>
-                <span className="block text-xs font-semibold text-slate-500">{description}</span>
-              </span>
-              <span className="text-sm font-black text-[#1D72B8]">{storageMode === id ? "Selected" : ""}</span>
-            </button>
-          ))}
+          {storageModes.map(([id, label, description]) => {
+            const cloudLocked = id === "cloud" && !hasPlanEntitlement("cloudReports", planCode);
+
+            return (
+              <button
+                key={id}
+                type="button"
+                disabled={cloudLocked}
+                onClick={() => {
+                  if (cloudLocked) return;
+                  setStorageMode(id);
+                }}
+                className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left ${
+                  storageMode === id ? "border-[#1D72B8] bg-[#E8F4FF]" : "border-slate-200 bg-white"
+                } ${cloudLocked ? "cursor-not-allowed opacity-55" : ""}`}
+              >
+                <span>
+                  <span className="block text-sm font-black text-slate-900">
+                    {label}{cloudLocked ? " — Company only" : ""}
+                  </span>
+                  <span className="block text-xs font-semibold text-slate-500">
+                    {cloudLocked ? "Upgrade to Company to save reports to a shared workspace database." : description}
+                  </span>
+                </span>
+                <span className="text-sm font-black text-[#1D72B8]">
+                  {storageMode === id ? "Selected" : ""}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </section>
 
