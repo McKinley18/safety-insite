@@ -1,9 +1,57 @@
 import { apiFetch } from "./apiFetch";
+import { getStoredPlanCode, hasPlanEntitlement } from "./planEntitlements";
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:4000";
+
+function runBasicSafeScopeFallback(text: string, payload: any) {
+  const lower = text.toLowerCase();
+
+  const classification =
+    lower.includes("electrical") || lower.includes("wire") || lower.includes("energized")
+      ? "Electrical"
+      : lower.includes("guard") || lower.includes("conveyor") || lower.includes("pulley") || lower.includes("shaft")
+        ? "Machine Guarding"
+        : lower.includes("catwalk") || lower.includes("walkway") || lower.includes("housekeeping") || lower.includes("material")
+          ? "Housekeeping / Walking-Working Surface"
+          : lower.includes("fall") || lower.includes("ladder")
+            ? "Fall / Access"
+            : payload.hazardCategory || "Review Required";
+
+  return {
+    classification,
+    confidence: 0.45,
+    confidenceBand: "basic_review",
+    requiresHumanReview: true,
+    basicPlanMode: true,
+    upgradeRequiredForFullSafeScope: true,
+    explanation:
+      "Basic SafeScope provides limited hazard assistance. Upgrade to Plus or Company for full SafeScope reasoning, standards matching, evidence quality review, exposure-path intelligence, and corrective action recommendations.",
+    ambiguityWarnings: [
+      "Full SafeScope intelligence is not available on the Basic plan.",
+      "Review classification, risk, standards, and corrective actions manually.",
+    ],
+    evidenceTokens: [],
+    commonConsequences: [],
+    requiredControls: [],
+    suggestedStandards: [],
+    excludedStandards: [],
+    generatedActions: [],
+    additionalHazards: [],
+    risk: null,
+    confidenceIntelligence: {
+      overallConfidence: 0.45,
+      confidenceBand: "basic_review",
+      strengths: ["Basic hazard category assistance was provided."],
+      missingCriticalInformation: ["Full SafeScope intelligence requires Plus or Company."],
+      conflictingSignals: [],
+      recommendedFollowup: ["Upgrade for full standards and corrective action support.", "Manually verify this finding."],
+    },
+  };
+}
+
 
 export async function runSafeScopeV2Classify(payload: {
   text?: string;
@@ -27,6 +75,12 @@ export async function runSafeScopeV2Classify(payload: {
   ]
     .filter(Boolean)
     .join("\n");
+
+  const planCode = getStoredPlanCode();
+
+  if (!hasPlanEntitlement("fullSafeScope", planCode)) {
+    return runBasicSafeScopeFallback(text, payload);
+  }
 
   const response = await apiFetch(`${API_BASE_URL}/safescope-v2/classify`, {
     method: "POST",
