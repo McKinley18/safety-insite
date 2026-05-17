@@ -18,6 +18,9 @@ export class User {
   @Column()
   type: string; // 'individual', 'pro', 'company'
 
+  @Column({ default: 'basic' })
+  planCode: string; // 'basic', 'plus', 'company'
+
   @Column({ default: 'Auditor' })
   role: string; // 'Owner', 'Auditor', 'Viewer'
 

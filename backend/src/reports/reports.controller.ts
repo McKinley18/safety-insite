@@ -24,8 +24,9 @@ import { JwtGuard } from '../auth/guards/jwt.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { SubscriptionGuard } from '../auth/guards/subscription.guard';
 import { RecommendationsService } from '../recommendations/recommendations.service';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 
-@UseGuards(JwtGuard, SubscriptionGuard, RolesGuard)
+@UseGuards(JwtGuard, SubscriptionGuard, RolesGuard, EntitlementGuard)
 @Controller('reports')
 export class ReportsController {
   constructor(
@@ -34,6 +35,7 @@ export class ReportsController {
   ) {}
 
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR')
+  @RequireEntitlement('cloudReports')
   @Post()
   create(@Body() body: CreateReportDto, @Req() req: Request & { user?: any }) {
     return this.reportsService.create(body, req.user);

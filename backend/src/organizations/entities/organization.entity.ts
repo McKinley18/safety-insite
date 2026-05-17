@@ -15,6 +15,9 @@ export class Organization {
   @Column({ default: 'standard_5x5' })
   riskProfileId: string;
 
+  @Column({ default: 'basic' })
+  planCode: string; // 'basic', 'plus', 'company'
+
   @OneToMany(() => Site, site => site.organization)
   sites: Site[];
 

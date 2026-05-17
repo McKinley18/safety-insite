@@ -1,14 +1,18 @@
 import { Roles } from '../auth/decorators/roles.decorator';
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 import { Request } from 'express';
 import { SafescopeV2Service } from './safescope-v2.service';
 import { ClassifyDto } from './dto/classify.dto';
+import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
   constructor(private readonly service: SafescopeV2Service) {}
 
+  @UseGuards(JwtGuard, EntitlementGuard)
+  @RequireEntitlement('fullSafeScope')
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Throttle({ default: { limit: 30, ttl: 60000 } })
   @Post('classify')

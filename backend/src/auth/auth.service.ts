@@ -97,6 +97,7 @@ export class AuthService {
       type: user.type,
       role: user.role,
       subscriptionStatus: user.subscriptionStatus,
+      planCode: user.planCode || 'basic',
       deletedAt: user.deletedAt,
       organizationId: user.organizationId
     });
