@@ -1,6 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/ui/PageHeader";
+import { getStoredPlanCode, hasPlanEntitlement } from "@/lib/planEntitlements";
 import { Facility, getFacilities, setFacilities } from "@/lib/facilityStorage";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -99,6 +100,7 @@ export default function SettingsPage() {
   const [invites, setInvites] = useState<any[]>([]);
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState("Auditor");
+  const [planCode, setPlanCode] = useState("basic");
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState<"idle" | "success" | "error">("idle");
 
@@ -108,6 +110,8 @@ export default function SettingsPage() {
 
   useEffect(() => {
     async function loadSettings() {
+      setPlanCode(getStoredPlanCode());
+
       try {
         setStatus("Loading settings...");
         const settings = await getOrganizationSettings();

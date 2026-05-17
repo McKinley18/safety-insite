@@ -41,6 +41,10 @@ export default function LoginPage() {
       if (data.token) {
         window.localStorage.setItem("sentinel_auth_token", data.token);
         window.localStorage.setItem("token", data.token);
+
+        if (data.user) {
+          window.localStorage.setItem("sentinel_auth_user", JSON.stringify(data.user));
+        }
       }
 
       if (data.user) {
