@@ -1,0 +1,33 @@
+services:
+  offline-db:
+    image: postgres:16-alpine
+    container_name: sentinel_offline_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sentinel_offline
+      POSTGRES_USER: sentinel
+      POSTGRES_PASSWORD: sentinel_offline_password
+    ports:
+      - "55432:5432"
+    volumes:
+      - sentinel_offline_pgdata:/var/lib/postgresql/data
+
+  offline-backend:
+    build:
+      context: ./backend
+    container_name: sentinel_offline_backend
+    restart: unless-stopped
+    depends_on:
+      - offline-db
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+      DATABASE_URL: postgres://sentinel:sentinel_offline_password@offline-db:5432/sentinel_offline
+      TYPEORM_SYNCHRONIZE: "true"
+      JWT_SECRET: offline-dev-secret-change-before-real-use
+      FRONTEND_URL: http://localhost:3000
+    ports:
+      - "4000:4000"
+
+volumes:
+  sentinel_offline_pgdata:
