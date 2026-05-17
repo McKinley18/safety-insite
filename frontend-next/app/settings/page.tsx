@@ -313,65 +313,76 @@ export default function SettingsPage() {
           Add employees to the workspace and assign the right access level.
         </p>
 
-        <div className="mt-4 space-y-3">
-          {members.map((member) => (
-            <div key={member.id} className="flex items-center justify-between border-b border-slate-200 pb-3">
-              <div>
-                <p className="font-black text-slate-900">{member.name}</p>
-                <p className="text-sm font-semibold text-slate-500">{member.email}</p>
-              </div>
-              <span className="text-xs font-black uppercase tracking-wide text-[#F97316]">{member.role}</span>
+        {hasPlanEntitlement("teamMembers", planCode) ? (
+          <>
+            <div className="mt-4 space-y-3">
+              {members.map((member) => (
+                <div key={member.id} className="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <div>
+                    <p className="font-black text-slate-900">{member.name}</p>
+                    <p className="text-sm font-semibold text-slate-500">{member.email}</p>
+                  </div>
+                  <span className="text-xs font-black uppercase tracking-wide text-[#F97316]">{member.role}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="mt-5 grid gap-3 md:grid-cols-[1fr_160px_auto]">
-          <input
-            value={inviteEmail}
-            onChange={(event) => setInviteEmail(event.target.value)}
-            placeholder="employee@example.com"
-            className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-          />
+            <div className="mt-5 grid gap-3 md:grid-cols-[1fr_160px_auto]">
+              <input
+                value={inviteEmail}
+                onChange={(event) => setInviteEmail(event.target.value)}
+                placeholder="employee@example.com"
+                className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+              />
 
-          <select
-            value={inviteRole}
-            onChange={(event) => setInviteRole(event.target.value)}
-            className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-          >
-            <option value="Auditor">Auditor</option>
-            <option value="Viewer">Viewer</option>
-            <option value="Owner">Owner</option>
-          </select>
+              <select
+                value={inviteRole}
+                onChange={(event) => setInviteRole(event.target.value)}
+                className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+              >
+                <option value="Auditor">Auditor</option>
+                <option value="Viewer">Viewer</option>
+                <option value="Owner">Owner</option>
+              </select>
 
-          <button
-            type="button"
-            onClick={sendInvite}
-            className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white"
-          >
-            Add Employee
-          </button>
-        </div>
-
-        <div className="mt-5 grid gap-3 md:grid-cols-3">
-          {roleDefinitions.map(([role, description]) => (
-            <div key={role} className="border-l-4 border-[#F97316] bg-white p-3">
-              <p className="text-sm font-black text-slate-900">{role}</p>
-              <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">{description}</p>
+              <button
+                type="button"
+                onClick={sendInvite}
+                className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white"
+              >
+                Add Employee
+              </button>
             </div>
-          ))}
-        </div>
 
-        {!!invites.length && (
-          <div className="mt-5 space-y-2">
-            <h3 className="text-sm font-black text-slate-900">Pending Invites</h3>
-            {invites.map((invite) => (
-              <div key={invite.id} className="border-b border-slate-200 py-2">
-                <p className="text-sm font-black text-slate-900">{invite.email}</p>
-                <p className="break-all text-xs font-semibold text-slate-500">
-                  {invite.role} • Token: {invite.token}
-                </p>
+            <div className="mt-5 grid gap-3 md:grid-cols-3">
+              {roleDefinitions.map(([role, description]) => (
+                <div key={role} className="border-l-4 border-[#F97316] bg-white p-3">
+                  <p className="text-sm font-black text-slate-900">{role}</p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">{description}</p>
+                </div>
+              ))}
+            </div>
+
+            {!!invites.length && (
+              <div className="mt-5 space-y-2">
+                <h3 className="text-sm font-black text-slate-900">Pending Invites</h3>
+                {invites.map((invite) => (
+                  <div key={invite.id} className="border-b border-slate-200 py-2">
+                    <p className="text-sm font-black text-slate-900">{invite.email}</p>
+                    <p className="break-all text-xs font-semibold text-slate-500">
+                      {invite.role} • Token: {invite.token}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
+          </>
+        ) : (
+          <div className="mt-4 rounded-xl border border-dashed border-slate-300 bg-white/70 p-4">
+            <p className="text-sm font-black text-slate-900">Company plan required</p>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+              Employee invitations, shared roles, and team workspace access are available on the Company plan.
+            </p>
           </div>
         )}
       </section>
