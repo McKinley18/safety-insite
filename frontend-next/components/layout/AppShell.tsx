@@ -240,19 +240,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A] ">
           <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-4 px-5 py-6">
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/about" className="text-sm font-semibold text-[#C0C6CF] hover:text-[#D6DAE0]">
+              <Link href="/about" className="text-sm font-black text-[#E5E7EB] hover:text-white">
                 About
               </Link>
 
               <span className="h-4 w-px bg-[#6F7782]" />
 
-              <Link href="/legal" className="text-sm font-semibold text-[#C0C6CF] hover:text-[#D6DAE0]">
+              <Link href="/legal" className="text-sm font-black text-[#E5E7EB] hover:text-white">
                 Legal
               </Link>
 
               <span className="h-4 w-px bg-[#6F7782]" />
 
-              <Link href="/safescope" className="text-sm font-semibold text-[#C0C6CF] hover:text-[#D6DAE0]">
+              <Link href="/safescope" className="text-sm font-black text-[#E5E7EB] hover:text-white">
                 SafeScope<span className="ml-[1px] align-super text-[9px]">TM</span>
               </Link>
             </div>
