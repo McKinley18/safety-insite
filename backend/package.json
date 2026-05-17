@@ -14,7 +14,8 @@
     "test:safescope-standards": "ts-node src/safescope-v2/tests/golden-standards-tests.ts",
     "test:safescope-operational": "ts-node src/safescope-v2/tests/golden-operational-reasoning-tests.ts",
     "test:safescope-domains": "ts-node src/safescope-v2/tests/golden-domain-intelligence-tests.ts",
-    "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts"
+    "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
+    "migration:run": "typeorm-ts-node-commonjs -d src/database/data-source.ts migration:run"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
