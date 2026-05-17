@@ -17,9 +17,14 @@ export class OrganizationsService {
     private userRepo: Repository<User>,
   ) {}
 
-  async create(data: { name: string; logoPath?: string }): Promise<Organization> {
+  async create(data: { name: string; logoPath?: string; planCode?: string }): Promise<Organization> {
     const org = new Organization();
     org.name = data.name;
+    org.planCode =
+      data.planCode === 'company' ? 'company' :
+      data.planCode === 'plus' ? 'plus' :
+      'basic';
+
     if (data.logoPath) {
       org.logoPath = data.logoPath;
     }

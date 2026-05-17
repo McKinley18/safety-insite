@@ -36,9 +36,15 @@ export class AuthService {
       finalType = 'company'; // Locked to company tier
     }
 
+    const planCode =
+      finalType === 'company' ? 'company' :
+      finalType === 'pro' || finalType === 'plus' ? 'plus' :
+      'basic';
+
     if (!organizationId) {
       const org = await this.orgService.create({
         name: `${name || email.split('@')[0]}'s Organization`,
+        planCode,
       } as any);
 
       organizationId = org.id;
@@ -48,11 +54,6 @@ export class AuthService {
       password,
       Number(process.env.BCRYPT_ROUNDS || 12),
     );
-
-    const planCode =
-      finalType === 'company' ? 'company' :
-      finalType === 'pro' || finalType === 'plus' ? 'plus' :
-      'basic';
 
     const user = this.userRepo.create({
       email,
