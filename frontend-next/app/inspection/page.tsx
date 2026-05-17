@@ -1182,6 +1182,22 @@ export default function InspectionPage() {
                   </span>
                 </div>
 
+                {(safeScopeResult.basicPlanMode || safeScopeResult.upgradeRequiredForFullSafeScope) && (
+                  <div className="mb-4 rounded-2xl border border-blue-100 bg-[#E8F4FF] p-4">
+                    <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+                      Plus unlocks full SafeScope
+                    </p>
+                    <h4 className="mt-1 text-base font-black text-slate-900">
+                      You are seeing limited Basic hazard assistance.
+                    </h4>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                      Upgrade to Plus or Company for standards matching, evidence quality review,
+                      exposure-path reasoning, corrective action recommendations, confidence calibration,
+                      and full SafeScope traceability.
+                    </p>
+                  </div>
+                )}
+
                 {safeScopeResult.reasoningSnapshotId && (
                   <div className="mb-4 rounded-xl border border-slate-200 bg-white px-3 py-3">
                     <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
