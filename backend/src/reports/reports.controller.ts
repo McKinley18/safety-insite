@@ -54,6 +54,7 @@ export class ReportsController {
 
 
 
+  @RequireEntitlement('cloudReports')
   @Post(':id/attachments/upload')
   @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
@@ -104,6 +105,7 @@ export class ReportsController {
     return attachment;
   }
 
+  @RequireEntitlement('cloudReports')
   @Post(':id/attachments')
   async addAttachment(
     @Param('id') id: string,
