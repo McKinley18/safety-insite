@@ -23,7 +23,13 @@ export class EntitlementGuard implements CanActivate {
     const req = context.switchToHttp().getRequest();
     const user = req.user;
 
-    if (hasEntitlement(user?.planCode, entitlement)) return true;
+    const effectivePlanCode =
+      user?.organizationPlanCode ||
+      user?.planCode ||
+      user?.type ||
+      'basic';
+
+    if (hasEntitlement(effectivePlanCode, entitlement)) return true;
 
     throw new ForbiddenException(`Your current plan does not include ${entitlement}.`);
   }

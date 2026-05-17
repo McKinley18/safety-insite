@@ -98,13 +98,20 @@ export class AuthService {
       throw new BadRequestException('Invalid credentials');
     }
 
+    const organization = user.organizationId
+      ? await this.orgService.findOne(user.organizationId).catch(() => null)
+      : null;
+
+    const effectivePlanCode = organization?.planCode || user.planCode || 'basic';
+
     const token = this.jwtService.sign({
       userId: user.id,
       email: user.email,
       type: user.type,
       role: user.role,
       subscriptionStatus: user.subscriptionStatus,
-      planCode: user.planCode || 'basic',
+      planCode: effectivePlanCode,
+      organizationPlanCode: organization?.planCode || null,
       deletedAt: user.deletedAt,
       organizationId: user.organizationId
     });
@@ -119,7 +126,8 @@ export class AuthService {
         type: user.type,
         role: user.role,
         subscriptionStatus: user.subscriptionStatus,
-        planCode: user.planCode || 'basic',
+        planCode: effectivePlanCode,
+        organizationPlanCode: organization?.planCode || null,
         organizationId: user.organizationId,
       },
       metadata,
