@@ -126,12 +126,30 @@ export default function InspectionPage() {
   const [safeScopeCompactDetailsOpen, setSafeScopeCompactDetailsOpen] = useState(false);
   const [safeScopeAdvancedOpen, setSafeScopeAdvancedOpen] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
+  const [inspectionContext, setInspectionContext] = useState<any>(null);
 
   const [inspectionMode, setInspectionMode] = useState<"quick" | "advanced">("quick");
 
   const isAdvancedMode = inspectionMode === "advanced";
 
   const riskScore = severity && likelihood ? severity * likelihood : null;
+
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem("sentinel_selected_inspection_context");
+      if (!raw) return;
+
+      const context = JSON.parse(raw);
+      setInspectionContext(context);
+
+      if (context.workflowDepth === "intelligent") setInspectionMode("advanced");
+      if (context.workflowDepth === "standard") setInspectionMode("advanced");
+      if (context.workflowDepth === "quick") setInspectionMode("quick");
+
+      if (context.agency === "MSHA") setAgencyMode("msha");
+      if (context.agency === "OSHA") setAgencyMode("osha_general");
+    } catch {}
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -817,10 +835,12 @@ export default function InspectionPage() {
         <div className="mb-3 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-black leading-tight text-slate-900 sm:text-3xl">
-              {steps[currentStep - 1].title.replace(/^Step \d+: /, "")}
+              {inspectionContext?.inspectionTitle || steps[currentStep - 1].title.replace(/^Step \d+: /, "")}
             </h1>
             <p className="mt-1 text-sm font-semibold text-slate-600">
-              {steps[currentStep - 1].desc}
+              {inspectionContext?.inspectionTitle
+                ? `${steps[currentStep - 1].title.replace(/^Step \d+: /, "")} — ${steps[currentStep - 1].desc}`
+                : steps[currentStep - 1].desc}
             </p>
           </div>
 
@@ -892,7 +912,15 @@ export default function InspectionPage() {
         {currentStep === 1 && (
           <>
             <p className="mb-4 text-sm font-semibold leading-6 text-slate-500">
-              Fast capture is the priority. Add the category, location, and a short description now. Risk scoring, standards, and SafeScope intelligence can be added after the finding is saved.
+              {inspectionContext?.inspectionType === "quick_hazard_capture"
+                ? "Capture the hazard quickly. Add only what is needed now; deeper review can happen later."
+                : inspectionContext?.inspectionType === "msha_workplace_exam"
+                  ? "Document all observed workplace conditions clearly. MSHA mode is selected for standards support when advanced review is used."
+                  : inspectionContext?.inspectionType === "osha_review"
+                    ? "Capture the observed condition first. OSHA-focused standards support is available in advanced review."
+                    : inspectionContext?.inspectionType === "incident_review"
+                      ? "Capture the event condition, location, and evidence quickly. Add timeline and deeper investigation notes during advanced review."
+                      : "Fast capture is the priority. Add the category, location, and a short description now. Risk scoring, standards, and SafeScope intelligence can be added after the finding is saved."}
             </p>
 
             <div className="mb-4 flex flex-wrap items-center gap-2">
