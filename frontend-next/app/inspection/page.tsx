@@ -29,6 +29,7 @@ import {
   buildFinding,
   generateInspectionReportId,
 } from "@/lib/inspection/findingBuilder";
+import { validateInspectionReport } from "@/lib/inspection/reportValidation";
 
 
 
@@ -624,31 +625,7 @@ export default function InspectionPage() {
       finalizedFindings.push(buildCurrentFinding());
     }
 
-    if (!finalizedFindings.length) {
-      return "Add at least one finding before generating the report.";
-    }
-
-    for (let index = 0; index < finalizedFindings.length; index++) {
-      const finding = finalizedFindings[index];
-      const label = `Finding ${index + 1}`;
-
-      if (!finding.description?.trim()) {
-        return `${label}: Add a hazard description.`;
-      }
-
-      // Risk scoring is optional for Quick Capture findings.
-
-      // Standards are optional. Reports can be generated before final standard selection.
-
-      const correctiveActions = finding.correctiveActions || [
-        ...(finding.selectedGeneratedActions || []),
-        ...(finding.manualActions || []),
-      ];
-
-      // Corrective actions are recommended, but optional for fast capture.
-    }
-
-    return "";
+    return validateInspectionReport(finalizedFindings);
   }
 
   async function generateReport() {
