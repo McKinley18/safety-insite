@@ -131,6 +131,9 @@ export default function InspectionPage() {
   const [inspectionMode, setInspectionMode] = useState<"quick" | "advanced">("quick");
 
   const isAdvancedMode = inspectionMode === "advanced";
+  const isQuickHazardCapture =
+    inspectionContext?.inspectionType === "quick_hazard_capture" &&
+    inspectionContext?.workflowDepth === "quick";
 
   const riskScore = severity && likelihood ? severity * likelihood : null;
 
@@ -877,11 +880,24 @@ export default function InspectionPage() {
                   generateReport();
                   return;
                 }
+
+                if (isQuickHazardCapture && currentStep === 1) {
+                  saveFinding();
+                  goToInspectionStep(5);
+                  return;
+                }
+
                 goToInspectionStep(currentStep + 1);
               }}
               className="flex min-h-7 items-center rounded-xl bg-[#102A43] px-4 py-1 text-[11px] font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
             >
-              {currentStep === 6 ? "Generate Report" : currentStep === 1 ? "Save & Continue →" : "Next →"}
+              {currentStep === 6
+                ? "Generate Report"
+                : isQuickHazardCapture && currentStep === 1
+                  ? "Save Finding →"
+                  : currentStep === 1
+                    ? "Save & Continue →"
+                    : "Next →"}
             </button>
           </div>
         </div>
