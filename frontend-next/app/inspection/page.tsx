@@ -1035,6 +1035,47 @@ export default function InspectionPage() {
             {isQuickHazardCapture && (
               <div className="mt-4 border-t border-slate-200 pt-4">
                 <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+                  Photo Evidence
+                </p>
+                <p className="mt-1 text-sm font-semibold text-slate-500">
+                  Add a photo now if available. You can still attach more evidence later.
+                </p>
+
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <label className="cursor-pointer rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]">
+                    Take Photo
+                    <input
+                      type="file"
+                      accept="image/*"
+                      capture="environment"
+                      className="hidden"
+                      onChange={handlePhotoUpload}
+                    />
+                  </label>
+
+                  <label className="cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50">
+                    Upload
+                    <input
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      className="hidden"
+                      onChange={handlePhotoUpload}
+                    />
+                  </label>
+                </div>
+
+                {!!photos.length && (
+                  <p className="mt-3 text-xs font-black text-slate-500">
+                    {photos.length} photo(s) attached.
+                  </p>
+                )}
+              </div>
+            )}
+
+            {isQuickHazardCapture && (
+              <div className="mt-4 border-t border-slate-200 pt-4">
+                <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
                   Quick Action
                 </p>
                 <p className="mt-1 text-sm font-semibold text-slate-500">
