@@ -868,8 +868,11 @@ export default function InspectionPage() {
       </div>
 
       <div className="mb-4 hidden gap-2 sm:flex">
-        {steps.map((_, index) => {
-          const stepNumber = index + 1;
+        {steps
+          .filter((_, index) => isAdvancedMode || ![2, 3].includes(index))
+          .map((_, visibleIndex) => {
+          const visibleSteps = isAdvancedMode ? [1, 2, 3, 4, 5, 6] : [1, 2, 5, 6];
+          const stepNumber = visibleSteps[visibleIndex];
           const active = currentStep === stepNumber;
           const complete = currentStep > stepNumber;
 
