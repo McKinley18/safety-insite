@@ -859,7 +859,7 @@ export default function InspectionPage() {
                 }
                 goToInspectionStep(currentStep + 1);
               }}
-              className="flex min-h-7 items-center rounded-xl bg-[#F97316] px-4 py-1 text-[11px] font-black text-white shadow-sm transition hover:bg-orange-500"
+              className="flex min-h-7 items-center rounded-xl bg-[#102A43] px-4 py-1 text-[11px] font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
             >
               {currentStep === 6 ? "Generate Report" : currentStep === 1 ? "Save & Continue →" : "Next →"}
             </button>
@@ -1002,7 +1002,7 @@ export default function InspectionPage() {
               </p>
 
               <div className="flex flex-wrap gap-2">
-                <label className="cursor-pointer rounded-xl bg-[#1D72B8] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#155A93]">
+                <label className="cursor-pointer rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]">
                   Take Photo
                   <input
                     type="file"
@@ -1041,7 +1041,7 @@ export default function InspectionPage() {
                             setAnnotatingPhotoIndex(index);
                             setAnnotationExpanded(false);
                           }}
-                          className="rounded-lg bg-[#E8F4FF] px-3 py-2 text-xs font-black text-[#1D72B8]"
+                          className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
                         >
                           Annotate
                         </button>
@@ -1058,7 +1058,7 @@ export default function InspectionPage() {
                         <div className="mt-3">
                           <button
                             onClick={() => setAnnotationExpanded(true)}
-                            className="mb-2 float-right rounded-full bg-[#E0F2FE] px-3 py-2 text-xs font-black text-[#0369A1]"
+                            className="mb-2 float-right rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
                           >
                             Expand
                           </button>
@@ -1194,7 +1194,7 @@ export default function InspectionPage() {
 
             <button
               onClick={handleRunSafeScope}
-              className="mb-3 rounded-2xl bg-[#102A43] px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#0B1F33] active:scale-[0.98]"
+              className="mb-3 rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98]"
             >
               Run SafeScope Match
             </button>
@@ -2851,7 +2851,7 @@ export default function InspectionPage() {
             <div className="mt-4 flex flex-wrap gap-3">
               <button
                 onClick={saveFinding}
-                className="rounded-xl bg-[#1D72B8] px-5 py-3 text-sm font-black text-white transition active:scale-[0.98] active:bg-[#155A93]"
+                className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8] active:scale-[0.98]"
               >
                 {editingFindingIndex !== null
                   ? "Update Finding"
@@ -2925,7 +2925,7 @@ export default function InspectionPage() {
                 <div className="mt-3 flex gap-2">
                   <button
                     onClick={() => editFinding(index)}
-                    className="rounded-lg bg-[#E8F4FF] px-3 py-2 text-xs font-black text-[#1D72B8]"
+                    className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
                   >
                     Edit
                   </button>
