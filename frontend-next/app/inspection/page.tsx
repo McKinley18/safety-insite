@@ -127,6 +127,10 @@ export default function InspectionPage() {
   const [safeScopeAdvancedOpen, setSafeScopeAdvancedOpen] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
 
+  const [inspectionMode, setInspectionMode] = useState<"quick" | "advanced">("quick");
+
+  const isAdvancedMode = inspectionMode === "advanced";
+
   const riskScore = severity && likelihood ? severity * likelihood : null;
 
   useEffect(() => {
@@ -883,6 +887,38 @@ export default function InspectionPage() {
               Fast capture is the priority. Add the category, location, and a short description now. Risk scoring, standards, and SafeScope intelligence can be added after the finding is saved.
             </p>
 
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setInspectionMode("quick")}
+                className={`rounded-full px-4 py-2 text-xs font-black transition ${
+                  inspectionMode === "quick"
+                    ? "bg-[#1D72B8] text-white"
+                    : "bg-slate-100 text-slate-700"
+                }`}
+              >
+                Quick Capture
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setInspectionMode("advanced")}
+                className={`rounded-full px-4 py-2 text-xs font-black transition ${
+                  inspectionMode === "advanced"
+                    ? "bg-[#102A43] text-white"
+                    : "bg-slate-100 text-slate-700"
+                }`}
+              >
+                Advanced Review
+              </button>
+
+              <span className="text-xs font-bold text-slate-500">
+                {inspectionMode === "quick"
+                  ? "Fastest workflow for field inspections."
+                  : "Expanded intelligence and defensibility workflow."}
+              </span>
+            </div>
+
             <div className="grid gap-3 md:grid-cols-2">
               <div>
                 <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
@@ -1087,7 +1123,7 @@ export default function InspectionPage() {
           </>
         )}
 
-        {currentStep === 3 && (
+        {currentStep === 3 && isAdvancedMode && (
           <>
             <p className="mb-4 text-sm font-semibold leading-6 text-slate-500">
               SafeScope uses the hazard category, description, location, evidence notes, and agency mode to suggest likely standards. Suggestions must be reviewed by a qualified safety professional.
@@ -2481,7 +2517,7 @@ export default function InspectionPage() {
           </>
         )}
 
-        {currentStep === 4 && (
+        {currentStep === 4 && isAdvancedMode && (
           <>
             {(() => {
               const activeRiskScale = getActiveRiskScale();
