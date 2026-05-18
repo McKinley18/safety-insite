@@ -2,7 +2,9 @@
 
 import { secureStorage } from "@/lib/secureStorage";
 import PageHeader from "@/components/ui/PageHeader";
-import Link from "next/link";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import EmptyState from "@/components/ui/EmptyState";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
@@ -255,9 +257,10 @@ export default function ReportsPage() {
       </section>
 
       {sortedReports.length === 0 ? (
-        <div className="border-y border-slate-200 py-6">
-          <p className="font-semibold text-slate-600">No reports available.</p>
-        </div>
+        <EmptyState
+          title="No reports available."
+          description="Completed inspection reports will appear here."
+        />
       ) : (
         <div className="border-y border-slate-200">
           {sortedReports.map((report) => {
@@ -389,39 +392,27 @@ export default function ReportsPage() {
                   <div className="flex flex-wrap gap-2 md:justify-end">
                     {editingReportId === report.id ? (
                       <>
-                        <button
-                          onClick={() => saveEdit(report.id)}
-                          className="rounded-lg bg-[#1D72B8] px-3 py-2 text-xs font-black text-white"
-                        >
+                        <PrimaryButton onClick={() => saveEdit(report.id)}>
                           Save
-                        </button>
+                        </PrimaryButton>
 
-                        <button
-                          onClick={() => setEditingReportId(null)}
-                          className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-black text-slate-700"
-                        >
+                        <SecondaryButton onClick={() => setEditingReportId(null)}>
                           Cancel
-                        </button>
+                        </SecondaryButton>
                       </>
                     ) : (
                       <>
-                        <button
-                          onClick={() => startEdit(report)}
-                          className="rounded-lg bg-[#E8F4FF] px-3 py-2 text-xs font-black text-[#1D72B8]"
-                        >
+                        <PrimaryButton onClick={() => startEdit(report)}>
                           Edit
-                        </button>
+                        </PrimaryButton>
 
-                        <button
-                          onClick={() => exportReport(report)}
-                          className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-black text-slate-700"
-                        >
+                        <SecondaryButton onClick={() => exportReport(report)}>
                           Export PDF
-                        </button>
+                        </SecondaryButton>
 
                         <button
                           onClick={() => deleteReport(report.id)}
-                          className="rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
+                          className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
                         >
                           Delete
                         </button>
