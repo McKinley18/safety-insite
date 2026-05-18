@@ -486,12 +486,24 @@ export default function SettingsPage() {
       </section>
 
       <section className="border-t border-slate-300 pt-6">
-        <h2 className="text-xl font-black text-slate-900">Data & Privacy</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          Sentinel Safety is local-first. Inspection reports stay private on the device unless workspace sync is selected.
+        <h2 className="text-xl font-black text-slate-900">Storage & Confidentiality</h2>
+        <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+          Sentinel Safety is local-first by design. Inspection data stays on this device unless you choose to sync, export, or back it up.
         </p>
 
-        <div className="mt-4 space-y-2">
+        <div className="mt-4 rounded-2xl border border-[#1D72B8]/20 bg-[#E8F4FF] p-4">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Confidential by default
+          </p>
+          <p className="mt-2 text-sm font-bold leading-6 text-slate-700">
+            You control where records live: private device storage, Sentinel company workspace sync, or external export destinations such as Google Drive.
+          </p>
+          <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
+            Google Drive backup/export is planned as a user-controlled destination. It should be treated as export/backup first, not automatic two-way sync.
+          </p>
+        </div>
+
+        <div className="mt-4 grid gap-3">
           {storageModes.map(([id, label, description]) => {
             const cloudLocked = id === "cloud" && !hasPlanEntitlement("cloudReports", planCode);
 
@@ -504,7 +516,7 @@ export default function SettingsPage() {
                   if (cloudLocked) return;
                   setStorageMode(id);
                 }}
-                className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left ${
+                className={`flex w-full items-start justify-between gap-4 rounded-xl border px-4 py-4 text-left ${
                   storageMode === id ? "border-[#1D72B8] bg-[#E8F4FF]" : "border-slate-200 bg-white"
                 } ${cloudLocked ? "cursor-not-allowed opacity-55" : ""}`}
               >
@@ -512,16 +524,49 @@ export default function SettingsPage() {
                   <span className="block text-sm font-black text-slate-900">
                     {label}{cloudLocked ? " — Company only" : ""}
                   </span>
-                  <span className="block text-xs font-semibold text-slate-500">
-                    {cloudLocked ? "Upgrade to Company to save reports to a shared workspace database." : description}
+                  <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+                    {cloudLocked ? "Company Workspace Sync is available on the Company plan for shared reports, analytics, assignments, and audit visibility." : description}
                   </span>
+                  {id === "local" && (
+                    <span className="mt-2 block text-xs font-black uppercase tracking-wide text-emerald-700">
+                      Data leaves device only when you export or sync.
+                    </span>
+                  )}
                 </span>
-                <span className="text-sm font-black text-[#1D72B8]">
+                <span className="shrink-0 text-sm font-black text-[#1D72B8]">
                   {storageMode === id ? "Selected" : ""}
                 </span>
               </button>
             );
           })}
+
+          <div className="rounded-xl border border-dashed border-slate-300 bg-white/70 px-4 py-4">
+            <div className="flex items-start justify-between gap-4">
+              <span>
+                <span className="block text-sm font-black text-slate-900">
+                  Google Drive Backup / External Export — Planned
+                </span>
+                <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+                  Export reports, JSON records, and evidence packages to a Google Drive folder or external archive controlled by the user or organization.
+                </span>
+              </span>
+              <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-500">
+                Planned
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 grid gap-2 text-xs font-black text-slate-600 sm:grid-cols-3">
+          <div className="rounded-xl bg-white px-3 py-3">
+            Encrypted local storage: Enabled
+          </div>
+          <div className="rounded-xl bg-white px-3 py-3">
+            Cloud sync: {storageMode === "cloud" ? "On" : "Off unless selected"}
+          </div>
+          <div className="rounded-xl bg-white px-3 py-3">
+            Data control: User selected
+          </div>
         </div>
       </section>
 
