@@ -187,7 +187,10 @@ export default function InspectionsPage() {
             </p>
 
             <div className="mt-4 flex flex-col gap-2">
-              <PrimaryButton href="/inspection-cover" onClick={startInspection}>
+              <PrimaryButton
+                href={selectedType.id === "quick_hazard_capture" ? "/inspection" : "/inspection-cover"}
+                onClick={startInspection}
+              >
                 Start Inspection
               </PrimaryButton>
 
