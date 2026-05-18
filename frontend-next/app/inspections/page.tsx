@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
 import PageHeader from "@/components/ui/PageHeader";
+import {
+  InspectionProgramRecord,
+  getInspectionProgram,
+  seedInspectionProgramIfEmpty,
+} from "@/lib/inspectionProgramStorage";
 
 const programStats = [
   ["2", "Scheduled"],
@@ -93,6 +99,13 @@ function statusClass(status: string) {
 }
 
 export default function InspectionsPage() {
+  const [inspectionPrograms, setInspectionPrograms] = useState<InspectionProgramRecord[]>([]);
+
+  useEffect(() => {
+    const seeded = seedInspectionProgramIfEmpty();
+    setInspectionPrograms(seeded.length ? seeded : getInspectionProgram());
+  }, []);
+
   return (
     <section className="space-y-7">
       <PageHeader
