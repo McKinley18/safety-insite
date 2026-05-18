@@ -6,6 +6,11 @@ import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
 import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 import { getActivityEvents, type ActivityEvent } from "@/lib/activityStorage";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import MetricBlock from "@/components/ui/MetricBlock";
+import SectionHeader from "@/components/ui/SectionHeader";
+import EmptyState from "@/components/ui/EmptyState";
 import { getStoredPlanCode } from "@/lib/planEntitlements";
 
 type DashboardReport = {
@@ -308,9 +313,9 @@ export default function DashboardPage() {
                 </div>
               ))
             ) : (
-              <p className="py-5 text-sm font-semibold text-slate-500">
-                No active priority work available yet.
-              </p>
+              <EmptyState
+                title="No active priority work available yet."
+              />
             )}
           </div>
         </div>
@@ -335,9 +340,9 @@ export default function DashboardPage() {
                   </div>
                 ))
               ) : (
-                <p className="py-5 text-sm font-semibold text-slate-500">
-                  No recent workspace activity available yet.
-                </p>
+                <EmptyState
+                  title="No recent workspace activity available yet."
+                />
               )}
             </div>
           </section>
