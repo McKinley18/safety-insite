@@ -6,8 +6,6 @@ import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
 import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 import { getActivityEvents, type ActivityEvent } from "@/lib/activityStorage";
-import { getPendingOfflineQueueCount } from "@/lib/offlineQueue";
-import { getLocalVaultStatus, type LocalVaultStatus } from "@/lib/localVault";
 
 type DashboardReport = {
   id?: string;
@@ -19,23 +17,16 @@ export default function DashboardPage() {
   const [reports, setReports] = useState<DashboardReport[]>([]);
   const [storedActions, setStoredActions] = useState<StoredAction[]>([]);
   const [activityEvents, setActivityEvents] = useState<ActivityEvent[]>([]);
-  const [pendingSyncItems, setPendingSyncItems] = useState(0);
-  const [vaultStatus, setVaultStatus] = useState<LocalVaultStatus | null>(null);
 
   useEffect(() => {
     async function loadDashboardReports() {
       const savedReports = await getReports<DashboardReport>();
       const savedActions = await getStoredActions();
       const savedActivity = await getActivityEvents();
-      const localVault = await getLocalVaultStatus();
-
-      const pending = await getPendingOfflineQueueCount();
 
       setReports(Array.isArray(savedReports) ? savedReports : []);
       setStoredActions(Array.isArray(savedActions) ? savedActions : []);
       setActivityEvents(Array.isArray(savedActivity) ? savedActivity : []);
-      setPendingSyncItems(pending);
-      setVaultStatus(localVault);
     }
 
     loadDashboardReports();
@@ -165,101 +156,6 @@ export default function DashboardPage() {
             </p>
           </div>
         ))}
-      </section>
-
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Local Vault
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              Confidential records remain available offline.
-            </h2>
-            <p className="mt-1 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
-              Sentinel Safety stores inspection records locally by default. Data leaves this device only when sync, export, or backup is selected.
-            </p>
-          </div>
-
-          <Link href="/settings" className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs font-black text-slate-700 hover:bg-white">
-            Storage Settings
-          </Link>
-        </div>
-
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {[
-            [vaultStatus?.encryptedStorageEnabled ? "Enabled" : "Unavailable", "Encrypted Storage"],
-            [String(vaultStatus?.localReportCount ?? reports.length), "Local Reports"],
-            [String(vaultStatus?.pendingSyncCount ?? 0), "Pending Sync"],
-            [String(vaultStatus?.failedSyncCount ?? 0), "Failed Sync"],
-            [vaultStatus?.storageMode === "cloud" ? "Cloud" : vaultStatus?.storageMode === "ask" ? "Ask" : "Local", "Storage Mode"],
-          ].map(([value, label]) => (
-            <div key={label} className="rounded-xl bg-slate-50 px-3 py-3">
-              <p className="text-base font-black text-slate-900">{value}</p>
-              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">{label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Workspace Security
-            </p>
-
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              Local Vault & confidentiality controls
-            </h2>
-
-            <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-slate-500">
-              Sentinel Safety uses a local-first architecture designed to support operational confidentiality, offline field usage, and controlled synchronization workflows.
-            </p>
-          </div>
-
-          <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-emerald-700">
-            Secure Workspace
-          </span>
-        </div>
-
-        <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Local Vault
-            </p>
-            <p className="mt-2 text-sm font-black text-slate-900">
-              Active
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Encryption
-            </p>
-            <p className="mt-2 text-sm font-black text-slate-900">
-              AES-GCM Enabled
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Offline Queue
-            </p>
-            <p className="mt-2 text-sm font-black text-slate-900">
-              {pendingSyncItems} Pending Sync Item(s)
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Sync Model
-            </p>
-            <p className="mt-2 text-sm font-black text-slate-900">
-              Local-First
-            </p>
-          </div>
-        </div>
       </section>
 
       <section className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr]">
