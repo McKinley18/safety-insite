@@ -1,9 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
 import PageHeader from "@/components/ui/PageHeader";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import SectionHeader from "@/components/ui/SectionHeader";
+import MetricBlock from "@/components/ui/MetricBlock";
+import EmptyState from "@/components/ui/EmptyState";
 import {
   InspectionProgramRecord,
   getInspectionProgram,
@@ -126,20 +130,16 @@ export default function InspectionsPage() {
           </p>
 
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link
+            <PrimaryButton
               href="/inspection-cover"
               onClick={() => clearActiveInspectionDraft()}
-              className="rounded-xl bg-[#F97316] px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-950/20 transition hover:bg-orange-500"
             >
               Start Inspection
-            </Link>
+            </PrimaryButton>
 
-            <Link
-              href="/reports"
-              className="rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-black text-white transition hover:bg-white/15"
-            >
+            <SecondaryButton href="/reports">
               View Reports
-            </Link>
+            </SecondaryButton>
           </div>
         </div>
 
@@ -149,33 +149,18 @@ export default function InspectionsPage() {
           </p>
           <div className="mt-4 grid grid-cols-2 gap-3">
             {programStats.map(([value, label]) => (
-              <div key={label} className="rounded-xl bg-slate-50 px-3 py-3 text-center">
-                <p className="text-2xl font-black text-slate-900">{value}</p>
-                <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
-                  {label}
-                </p>
-              </div>
+              <MetricBlock key={label} value={value} label={label} />
             ))}
           </div>
         </div>
       </section>
 
       <section className="border-t border-slate-200 py-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Workflow Depth
-            </p>
-
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              Scale inspection complexity to the operation
-            </h2>
-
-            <p className="mt-1 text-sm font-semibold text-slate-500">
-              Sentinel Safety adapts from quick field capture to advanced operational intelligence workflows.
-            </p>
-          </div>
-        </div>
+        <SectionHeader
+          eyebrow="Workflow Depth"
+          title="Scale inspection complexity to the operation"
+          description="Sentinel Safety adapts from quick field capture to advanced operational intelligence workflows."
+        />
 
         <div className="mt-5 grid gap-4 lg:grid-cols-3">
           {workflowDepths.map((workflow) => (
@@ -213,21 +198,11 @@ export default function InspectionsPage() {
       </section>
 
       <section className="border-t border-slate-200 py-5">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Inspection Workflows
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">Start from an operational template</h2>
-            <p className="mt-1 text-sm font-semibold text-slate-500">
-              Templates help standardize inspection quality while keeping field entry fast.
-            </p>
-          </div>
-
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600">
-            Templates
-          </span>
-        </div>
+        <SectionHeader
+          eyebrow="Inspection Workflows"
+          title="Start from an operational template"
+          description="Templates help standardize inspection quality while keeping field entry fast."
+        />
 
         <div className="mt-5 grid gap-4">
           {inspectionProgram.map((inspection) => (
@@ -251,13 +226,12 @@ export default function InspectionsPage() {
                   </p>
                 </div>
 
-                <Link
+                <PrimaryButton
                   href="/inspection-cover"
                   onClick={() => clearActiveInspectionDraft()}
-                  className="rounded-xl bg-[#102A43] px-4 py-2.5 text-center text-sm font-black text-white transition hover:bg-[#1D72B8]"
                 >
                   Start
-                </Link>
+                </PrimaryButton>
               </div>
 
               <div className="mt-4 grid gap-3 text-sm sm:grid-cols-4">
@@ -280,14 +254,15 @@ export default function InspectionsPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-dashed border-slate-300 bg-white/70 p-5">
-        <h2 className="text-xl font-black text-slate-900">Saved Drafts</h2>
-        <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
-          Draft inspections will appear here when an inspection is started but not finalized.
-        </p>
-        <p className="mt-4 rounded-xl bg-slate-50 p-4 text-sm font-bold text-slate-500">
-          No unfinished inspections yet.
-        </p>
+      <section className="border-t border-slate-200 py-5">
+        <SectionHeader
+          title="Saved Drafts"
+          description="Draft inspections will appear here when an inspection is started but not finalized."
+        />
+
+        <div className="mt-4">
+          <EmptyState title="No unfinished inspections yet." />
+        </div>
       </section>
     </section>
   );
