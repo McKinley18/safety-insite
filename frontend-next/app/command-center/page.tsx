@@ -6,6 +6,7 @@ import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
 import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 import { getActivityEvents, type ActivityEvent } from "@/lib/activityStorage";
+import { getStoredPlanCode } from "@/lib/planEntitlements";
 
 type DashboardReport = {
   id?: string;
@@ -17,6 +18,7 @@ export default function DashboardPage() {
   const [reports, setReports] = useState<DashboardReport[]>([]);
   const [storedActions, setStoredActions] = useState<StoredAction[]>([]);
   const [activityEvents, setActivityEvents] = useState<ActivityEvent[]>([]);
+  const [planCode, setPlanCode] = useState("basic");
 
   useEffect(() => {
     async function loadDashboardReports() {
@@ -24,6 +26,7 @@ export default function DashboardPage() {
       const savedActions = await getStoredActions();
       const savedActivity = await getActivityEvents();
 
+      setPlanCode(getStoredPlanCode());
       setReports(Array.isArray(savedReports) ? savedReports : []);
       setStoredActions(Array.isArray(savedActions) ? savedActions : []);
       setActivityEvents(Array.isArray(savedActivity) ? savedActivity : []);
@@ -100,11 +103,60 @@ export default function DashboardPage() {
       ? Math.round((confidenceValues.reduce((sum, value) => sum + value, 0) / confidenceValues.length) * 100)
       : null;
 
+    const standardsReviewed = findings.filter((finding) =>
+      Boolean(
+        finding.standards?.length ||
+        finding.safeScopeResult?.suggestedStandards?.length ||
+        finding.safeScopeResult?.standards?.length
+      )
+    ).length;
+
+    const correctiveActionsGenerated = findings.reduce((count, finding) => {
+      return count + (
+        finding.correctiveActions?.length ||
+        finding.safeScopeResult?.generatedActions?.length ||
+        0
+      );
+    }, 0);
+
+    const reviewRecommended = findings.filter((finding) =>
+      Boolean(
+        finding.safeScopeResult?.requiresHumanReview ||
+        finding.safeScopeResult?.confidenceIntelligence?.supervisorReviewRecommended
+      )
+    ).length;
+
+    const locations = new Set(
+      findings
+        .map((finding) => finding.location)
+        .filter(Boolean)
+    ).size;
+
+    const repeatHazardSignals = Object.values(
+      findings.reduce((acc: Record<string, number>, finding) => {
+        const key = String(
+          finding.hazardCategory ||
+          finding.category ||
+          finding.safeScopeResult?.classification ||
+          "uncategorized"
+        ).toLowerCase();
+
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {})
+    ).filter((count) => Number(count) > 1).length;
+
     return {
+      inspections: reports.length,
       openFindings,
       criticalFindings,
       overdueActions,
       averageConfidence,
+      standardsReviewed,
+      correctiveActionsGenerated,
+      reviewRecommended,
+      locations,
+      repeatHazardSignals,
     };
   }, [reports, storedActions]);
 
@@ -144,10 +196,10 @@ export default function DashboardPage() {
 
       <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {[
+          [String(dashboardMetrics.inspections), "Inspections", "bg-slate-50 text-slate-700 border-slate-200"],
           [String(dashboardMetrics.openFindings), "Open Findings", "bg-blue-50 text-blue-700 border-blue-100"],
-          [String(dashboardMetrics.criticalFindings), "Critical", "bg-red-50 text-red-700 border-red-100"],
-          [String(dashboardMetrics.overdueActions), "Overdue", "bg-orange-50 text-orange-700 border-orange-100"],
-          [dashboardMetrics.averageConfidence === null ? "—" : `${dashboardMetrics.averageConfidence}%`, "SafeScope Confidence", "bg-emerald-50 text-emerald-700 border-emerald-100"],
+          [String(dashboardMetrics.criticalFindings), "Critical Findings", "bg-red-50 text-red-700 border-red-100"],
+          [String(dashboardMetrics.overdueActions), "Overdue Actions", "bg-orange-50 text-orange-700 border-orange-100"],
         ].map(([value, label, tone]) => (
           <div key={label} className={`rounded-xl border px-3 py-3 text-center ${tone}`}>
             <p className="text-2xl font-black tracking-tight">{value}</p>
@@ -156,6 +208,58 @@ export default function DashboardPage() {
             </p>
           </div>
         ))}
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Insight Level
+            </p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">
+              {planCode === "company" ? "Company operational intelligence" : planCode === "plus" ? "Professional SafeScope insights" : "Basic inspection overview"}
+            </h2>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+              {planCode === "company"
+                ? "Workspace-level visibility for locations, repeat signals, team actions, and operational trends."
+                : planCode === "plus"
+                  ? "Advanced SafeScope confidence, standards review, and corrective action insight."
+                  : "Core inspection counts and finding status for free local use."}
+            </p>
+          </div>
+
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600">
+            {planCode}
+          </span>
+        </div>
+
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {(planCode === "basic"
+            ? [
+                [String(dashboardMetrics.inspections), "Reports saved"],
+                [String(dashboardMetrics.openFindings), "Findings captured"],
+                [String(dashboardMetrics.criticalFindings), "Critical signals"],
+              ]
+            : planCode === "plus"
+              ? [
+                  [dashboardMetrics.averageConfidence === null ? "—" : `${dashboardMetrics.averageConfidence}%`, "Avg. SafeScope confidence"],
+                  [String(dashboardMetrics.standardsReviewed), "Findings with standards"],
+                  [String(dashboardMetrics.correctiveActionsGenerated), "Actions generated"],
+                ]
+              : [
+                  [String(dashboardMetrics.locations), "Locations represented"],
+                  [String(dashboardMetrics.repeatHazardSignals), "Repeat hazard signals"],
+                  [String(dashboardMetrics.reviewRecommended), "Reviews recommended"],
+                ]
+          ).map(([value, label]) => (
+            <div key={label} className="rounded-xl bg-slate-50 px-3 py-3">
+              <p className="text-xl font-black text-slate-900">{value}</p>
+              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="grid gap-7 lg:grid-cols-[1.2fr_0.8fr]">
