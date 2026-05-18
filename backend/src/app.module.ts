@@ -17,6 +17,7 @@ import { GovernanceModule } from './governance/governance.module';
 import { OutcomesModule } from './outcomes/outcomes.module';
 import { TransparencyModule } from './transparency/transparency.module';
 import { PdfModule } from './pdf/pdf.module';
+import { BillingModule } from './billing/billing.module';
 
 @Module({
   imports: [SafescopeV2Module, 
@@ -68,6 +69,7 @@ import { PdfModule } from './pdf/pdf.module';
     OutcomesModule,
     TransparencyModule,
     PdfModule,
+    BillingModule,
   ],
 })
 export class AppModule {}
