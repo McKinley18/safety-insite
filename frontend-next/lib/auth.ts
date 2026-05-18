@@ -170,3 +170,18 @@ export async function uploadReportAttachment(reportId: string, file: File) {
 
   return response.json();
 }
+
+export async function createCheckoutSession(planCode: "plus" | "company") {
+  const response = await fetch(`${API_BASE_URL}/billing/checkout`, {
+    method: "POST",
+    headers: authHeaders(),
+    body: JSON.stringify({ planCode }),
+  });
+
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(message || "Billing checkout could not be started.");
+  }
+
+  return response.json();
+}
