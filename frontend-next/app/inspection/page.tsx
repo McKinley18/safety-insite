@@ -908,6 +908,20 @@ export default function InspectionPage() {
         })}
       </div>
 
+      {inspectionContext && (
+        <div className="mb-4 border-y border-slate-200 py-3">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Inspection Context
+          </p>
+          <p className="mt-1 text-sm font-black text-slate-900">
+            {inspectionContext.inspectionTitle}
+          </p>
+          <p className="mt-1 text-xs font-semibold text-slate-500">
+            {inspectionContext.agency} • {inspectionContext.workflowDepth?.replaceAll("_", " ")}
+          </p>
+        </div>
+      )}
+
       <div className="px-1 py-2 sm:px-2">
         {currentStep === 1 && (
           <>
