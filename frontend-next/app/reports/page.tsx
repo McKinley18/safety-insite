@@ -42,6 +42,36 @@ function riskClasses(risk: string) {
   }
 }
 
+function getStorageLabel(source?: Report["storageSource"]) {
+  if (source === "cloud") return "Workspace Sync";
+  if (source === "seed") return "Sample Record";
+  return "Local Vault";
+}
+
+function getStorageClass(source?: Report["storageSource"]) {
+  if (source === "cloud") return "bg-blue-50 text-blue-700 border-blue-100";
+  if (source === "seed") return "bg-slate-100 text-slate-600 border-slate-200";
+  return "bg-emerald-50 text-emerald-700 border-emerald-100";
+}
+
+function getReportIntegrity(report: Report) {
+  const findings = report.findings || [];
+  const evidenceCount = findings.flatMap((finding: any) => finding.photos || []).length;
+  const safeScopeCount = findings.filter((finding: any) => finding.safeScopeResult).length;
+  const actionCount = findings.flatMap((finding: any) =>
+    finding.correctiveActions || finding.safeScopeResult?.generatedActions || []
+  ).length;
+
+  return {
+    evidenceCount,
+    safeScopeCount,
+    actionCount,
+    hasEvidence: evidenceCount > 0,
+    hasSafeScope: safeScopeCount > 0,
+    hasActions: actionCount > 0,
+  };
+}
+
 export default function ReportsPage() {
   const router = useRouter();
   const [reports, setReports] = useState<Report[]>([]);
@@ -197,9 +227,32 @@ export default function ReportsPage() {
     <section className="space-y-5">
       <PageHeader
         title="Reports"
-        description="Inspection reports, findings, evidence, and operational risk summaries."
+        description="Defensible inspection records, evidence packages, SafeScope reasoning, and export-ready operational reports."
       />
 
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+          Report Integrity
+        </p>
+        <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+          Reports are stored in the Local Vault unless workspace sync is selected. Exported records remain portable for audits, investigations, client delivery, or internal retention.
+        </p>
+
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-xl bg-slate-50 px-3 py-3">
+            <p className="text-sm font-black text-slate-900">Local-first</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">Data stays on device unless exported or synced.</p>
+          </div>
+          <div className="rounded-xl bg-slate-50 px-3 py-3">
+            <p className="text-sm font-black text-slate-900">Evidence-centered</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">Photos, notes, findings, and actions stay tied to the record.</p>
+          </div>
+          <div className="rounded-xl bg-slate-50 px-3 py-3">
+            <p className="text-sm font-black text-slate-900">Export-ready</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">PDF exports support retention and review workflows.</p>
+          </div>
+        </div>
+      </section>
 
       {sortedReports.length === 0 ? (
         <div className="border-y border-slate-200 py-6">
@@ -210,6 +263,7 @@ export default function ReportsPage() {
           {sortedReports.map((report) => {
             const risk = getRiskLabel(report);
             const firstPhoto = report.findings?.flatMap((f) => f.photos || [])?.[0];
+            const integrity = getReportIntegrity(report);
 
             return (
               <div key={report.id} className="border-b border-slate-200 py-4 last:border-b-0">
@@ -256,21 +310,40 @@ export default function ReportsPage() {
                               {risk}
                             </span>
 
-                            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600">
-                              {report.storageSource === "cloud"
-                                ? "Workspace Database"
-                                : report.storageSource === "seed"
-                                  ? "Sample"
-                                  : "Local"}
+                            <span className={`rounded-full border px-3 py-1 text-xs font-black ${getStorageClass(report.storageSource)}`}>
+                              {getStorageLabel(report.storageSource)}
                             </span>
+
+                            {report.storageSource !== "cloud" && (
+                              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
+                                Confidential Local Copy
+                              </span>
+                            )}
                           </div>
 
                           <div className="mt-2 flex flex-wrap gap-3 text-xs font-black text-slate-500">
-                            <span>{report.id}</span>
                             <span>{report.location || "Field Inspection"}</span>
                             <span>{report.findings?.length || 0} Findings</span>
+                            <span>{integrity.evidenceCount} Evidence Item(s)</span>
+                            <span>{integrity.actionCount} Action(s)</span>
                             <span>{new Date(report.createdAt).toLocaleDateString()}</span>
                           </div>
+
+                          <div className="mt-3 grid gap-2 text-[10px] font-black uppercase tracking-wide text-slate-500 sm:grid-cols-3">
+                            <span className={`rounded-lg px-2.5 py-2 ${integrity.hasEvidence ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-500"}`}>
+                              Evidence {integrity.hasEvidence ? "Attached" : "Pending"}
+                            </span>
+                            <span className={`rounded-lg px-2.5 py-2 ${integrity.hasSafeScope ? "bg-blue-50 text-blue-700" : "bg-slate-100 text-slate-500"}`}>
+                              SafeScope {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
+                            </span>
+                            <span className={`rounded-lg px-2.5 py-2 ${integrity.hasActions ? "bg-orange-50 text-orange-700" : "bg-slate-100 text-slate-500"}`}>
+                              Corrective Actions {integrity.hasActions ? "Linked" : "Pending"}
+                            </span>
+                          </div>
+
+                          <p className="mt-2 break-all text-[10px] font-semibold text-slate-400">
+                            Record ID: {report.id}
+                          </p>
                         </>
                       )}
                     </div>
@@ -306,7 +379,7 @@ export default function ReportsPage() {
                           onClick={() => exportReport(report)}
                           className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-black text-slate-700"
                         >
-                          Export
+                          Export PDF
                         </button>
 
                         <button
