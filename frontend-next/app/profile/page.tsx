@@ -1,55 +1,173 @@
 "use client";
 
 import PageHeader from "@/components/ui/PageHeader";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+type UserProfile = {
+  email?: string;
+  role?: string;
+  type?: string;
+  organizationId?: number;
+};
+
 export default function ProfilePage() {
+  const router = useRouter();
+
+  const [user, setUser] = useState<UserProfile>({});
+  const [fullName, setFullName] = useState("");
+  const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    try {
+      const raw =
+        window.localStorage.getItem("sentinel_auth_user");
+
+      if (raw) {
+        const parsed = JSON.parse(raw);
+
+        setUser(parsed);
+
+        if (parsed.name) {
+          setFullName(parsed.name);
+        }
+      }
+    } catch {}
+  }, []);
+
+  function saveProfile() {
+    const updated = {
+      ...user,
+      name: fullName,
+    };
+
+    window.localStorage.setItem(
+      "sentinel_auth_user",
+      JSON.stringify(updated)
+    );
+
+    setUser(updated);
+
+    setStatus("Profile updated locally.");
+  }
+
+  function signOut() {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("sentinel_auth_token");
+    window.localStorage.removeItem("sentinel_auth_user");
+
+    router.push("/login");
+  }
+
   return (
-    <section className="space-y-5">
+    <section className="space-y-6">
       <PageHeader
-        eyebrow="Account"
-        title="User Profile"
-        description="Manage your Sentinel Safety profile and workspace identity."
+        eyebrow="Personal Account"
+        title="Profile & Preferences"
+        description="Manage your Sentinel Safety identity, access, and account preferences."
       />
 
-      <div className="rounded-2xl bg-white p-5 shadow-sm">
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="space-y-2">
-            <span className="text-sm font-black text-slate-700">Name</span>
-            <input
-              defaultValue="Christopher McKinley"
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-            />
-          </label>
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Account Identity
+            </p>
 
-          <label className="space-y-2">
-            <span className="text-sm font-black text-slate-700">Email</span>
-            <input
-              defaultValue="mckinley.christopherd@gmail.com"
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-            />
-          </label>
+            <h2 className="mt-1 text-2xl font-black text-slate-900">
+              {fullName || "Sentinel User"}
+            </h2>
+
+            <p className="mt-2 text-sm font-semibold text-slate-500">
+              {user.email || "No email available"}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full bg-[#E8F4FF] px-3 py-1 text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+              {user.type || "basic"}
+            </span>
+
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-700">
+              {user.role || "user"}
+            </span>
+          </div>
         </div>
+      </section>
 
-        <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-sm font-black text-slate-900">
-                Password Reset
-              </h2>
+      <section className="grid gap-5 lg:grid-cols-2">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Personal Details
+          </p>
 
-              <p className="mt-1 text-xs font-medium text-slate-500">
-                Update your Sentinel Safety account password.
-              </p>
-            </div>
+          <div className="mt-4 space-y-4">
+            <label className="space-y-2 block">
+              <span className="text-sm font-black text-slate-700">
+                Full Name
+              </span>
 
-            <button className="rounded-xl bg-[#0B1320] px-4 py-2 text-sm font-black text-white transition hover:bg-[#1D72B8]">
-              Reset Password
-            </button>
+              <input
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+              />
+            </label>
+
+            <label className="space-y-2 block">
+              <span className="text-sm font-black text-slate-700">
+                Email Address
+              </span>
+
+              <input
+                value={user.email || ""}
+                disabled
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-500"
+              />
+            </label>
           </div>
         </div>
 
-        <button className="mt-5 rounded-xl bg-gradient-to-r from-[#0B1320] to-[#1D72B8] px-5 py-3 text-sm font-black text-white shadow-lg shadow-blue-900/20">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Security & Access
+          </p>
+
+          <div className="mt-4 space-y-4">
+            <div className="rounded-xl bg-slate-50 p-4">
+              <h3 className="text-sm font-black text-slate-900">
+                Account Security
+              </h3>
+
+              <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+                Password reset, MFA, and advanced account security controls
+                will be available in a future release.
+              </p>
+            </div>
+
+            <button
+              onClick={signOut}
+              className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white transition hover:bg-[#1D72B8]"
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          onClick={saveProfile}
+          className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white transition hover:bg-[#1D72B8]"
+        >
           Save Profile
         </button>
+
+        {status && (
+          <p className="text-sm font-bold text-emerald-600">
+            {status}
+          </p>
+        )}
       </div>
     </section>
   );
