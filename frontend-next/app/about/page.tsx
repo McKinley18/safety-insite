@@ -35,9 +35,9 @@ const tiers = [
   ],
   [
     "Company",
-    "$149/mo",
+    "$149/mo • includes 5 users",
     "Teams and operations",
-    "Shared workspace, company branding, assigned actions, analytics, supervisor validation, audit trail, and team roles.",
+    "Shared workspace, company branding, assigned actions, analytics, supervisor validation, audit trail, and team roles. Additional users: $12/user/month.",
     "company",
   ],
 ] as const;
