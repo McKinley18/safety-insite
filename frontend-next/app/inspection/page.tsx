@@ -20,6 +20,12 @@ import {
   severityScale,
 } from "@/lib/inspection/inspectionConstants";
 
+import {
+  determineInspectionMode,
+  isQuickHazardCapture,
+  loadInspectionContext,
+} from "@/lib/inspection/inspectionContext";
+
 
 
 
@@ -98,7 +104,7 @@ export default function InspectionPage() {
   const [inspectionMode, setInspectionMode] = useState<"quick" | "advanced">("quick");
 
   const isAdvancedMode = inspectionMode === "advanced";
-  const isQuickHazardCapture =
+  const quickCapture =
     inspectionContext?.inspectionType === "quick_hazard_capture" &&
     inspectionContext?.workflowDepth === "quick";
 
@@ -848,7 +854,7 @@ export default function InspectionPage() {
                   return;
                 }
 
-                if (isQuickHazardCapture && currentStep === 1) {
+                if (quickCapture && currentStep === 1) {
                   saveFinding();
                   goToInspectionStep(5);
                   return;
@@ -860,7 +866,7 @@ export default function InspectionPage() {
             >
               {currentStep === 6
                 ? "Generate Report"
-                : isQuickHazardCapture && currentStep === 1
+                : quickCapture && currentStep === 1
                   ? "Save Finding →"
                   : currentStep === 1
                     ? "Save & Continue →"
@@ -999,7 +1005,7 @@ export default function InspectionPage() {
               />
             </div>
 
-            {isQuickHazardCapture && (
+            {quickCapture && (
               <div className="mt-4 border-t border-slate-200 pt-4">
                 <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
                   Photo Evidence
@@ -1040,7 +1046,7 @@ export default function InspectionPage() {
               </div>
             )}
 
-            {isQuickHazardCapture && (
+            {quickCapture && (
               <div className="mt-4 border-t border-slate-200 pt-4">
                 <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
                   Quick Action
