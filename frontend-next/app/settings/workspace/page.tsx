@@ -2,6 +2,10 @@
 
 import PageHeader from "@/components/ui/PageHeader";
 import Link from "next/link";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import SecondaryButton from "@/components/ui/SecondaryButton";
+import SectionHeader from "@/components/ui/SectionHeader";
+import EmptyState from "@/components/ui/EmptyState";
 import { useEffect, useMemo, useState } from "react";
 import { getStoredPlanCode, hasPlanEntitlement } from "@/lib/planEntitlements";
 import { Facility, getFacilities, setFacilities } from "@/lib/facilityStorage";
@@ -244,8 +248,10 @@ export default function SettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black text-slate-900">Organization</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">Company information used on reports and cover pages.</p>
+        <SectionHeader
+          title="Organization"
+          description="Company information used on reports and cover pages."
+        />
 
         <div className="mt-4 grid gap-5 md:grid-cols-[1fr_220px]">
           <label className="block">
@@ -270,7 +276,7 @@ export default function SettingsPage() {
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
-          <label className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white">
+          <label className="inline-flex cursor-pointer items-center justify-center rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8]">
             Choose Logo
             <input
               type="file"
@@ -284,7 +290,7 @@ export default function SettingsPage() {
             <button
               type="button"
               onClick={() => setCompanyLogo("")}
-              className="rounded-xl border border-red-200 bg-red-50 px-5 py-3 text-sm font-black text-red-700"
+              className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
             >
               Remove Logo
             </button>
@@ -307,10 +313,10 @@ export default function SettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black text-slate-900">Team</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          Company plan includes {companySeats} users. Current seats: {usedSeats}/{companySeats}.
-        </p>
+        <SectionHeader
+          title="Team"
+          description={`Company plan includes ${companySeats} users. Current seats: ${usedSeats}/${companySeats}.`}
+        />
 
         {hasPlanEntitlement("teamMembers", planCode) ? (
           <>
@@ -347,7 +353,7 @@ export default function SettingsPage() {
               <button
                 type="button"
                 onClick={sendInvite}
-                className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white"
+                className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8]"
               >
                 Add Employee
               </button>
@@ -374,8 +380,10 @@ export default function SettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black text-slate-900">Locations</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">Save common facilities, sites, or work areas for faster inspections.</p>
+        <SectionHeader
+          title="Locations"
+          description="Save common facilities, sites, or work areas for faster inspections."
+        />
 
         <div className="mt-4 grid gap-3 md:grid-cols-[1fr_180px_auto]">
           <input
@@ -426,8 +434,10 @@ export default function SettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black text-slate-900">Storage</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">Choose where inspection reports are saved.</p>
+        <SectionHeader
+          title="Storage"
+          description="Choose where inspection reports are saved."
+        />
 
         <div className="mt-4 space-y-2">
           {storageModes.map(([id, label, description]) => {
@@ -467,8 +477,10 @@ export default function SettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black text-slate-900">Risk Matrix</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">Set the default severity and likelihood scale for new inspections.</p>
+        <SectionHeader
+          title="Risk Matrix"
+          description="Set the default severity and likelihood scale for new inspections."
+        />
 
         <div className="mt-4 grid gap-5 md:grid-cols-[1fr_220px]">
           <div className="space-y-2">
@@ -498,8 +510,10 @@ export default function SettingsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black text-slate-900">Security</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">Choose local unlock and auto-lock preferences.</p>
+        <SectionHeader
+          title="Security"
+          description="Choose local unlock and auto-lock preferences."
+        />
 
         <button
           type="button"
@@ -534,7 +548,7 @@ export default function SettingsPage() {
         <button
           type="button"
           onClick={saveSettings}
-          className="w-full rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white sm:w-auto"
+          className="w-full rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8] sm:w-auto"
         >
           Save Settings
         </button>
