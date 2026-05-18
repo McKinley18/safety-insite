@@ -18,44 +18,14 @@ const inspectionTypes = [
   {
     id: "quick_hazard_capture",
     title: "Quick Hazard Capture",
-    description: "Fast photo, hazard category, description, and action capture.",
+    description: "Fast photo, hazard category, short description, location, and action capture.",
     defaultDepth: "quick",
-    agency: "General",
   },
   {
     id: "general_safety",
     title: "General Safety Inspection",
-    description: "Routine inspection for hazards, housekeeping, PPE, access, and controls.",
+    description: "A more complete inspection workflow for multiple findings, evidence, risk review, and reporting.",
     defaultDepth: "standard",
-    agency: "General",
-  },
-  {
-    id: "msha_workplace_exam",
-    title: "MSHA Workplace Exam",
-    description: "Mining-focused workplace exam with field hazard documentation.",
-    defaultDepth: "standard",
-    agency: "MSHA",
-  },
-  {
-    id: "osha_review",
-    title: "OSHA Compliance Review",
-    description: "OSHA-focused review for facility, construction, or general industry exposure.",
-    defaultDepth: "intelligent",
-    agency: "OSHA",
-  },
-  {
-    id: "contractor_audit",
-    title: "Contractor Audit",
-    description: "Review contractor work areas, accountability, and corrective actions.",
-    defaultDepth: "standard",
-    agency: "Contractor",
-  },
-  {
-    id: "incident_review",
-    title: "Incident / Near Miss Review",
-    description: "Capture event details, evidence, contributing factors, and follow-up actions.",
-    defaultDepth: "intelligent",
-    agency: "Investigation",
   },
 ];
 
@@ -76,6 +46,7 @@ export default function InspectionsPage() {
   const [inspectionPrograms, setInspectionPrograms] = useState<InspectionProgramRecord[]>([]);
   const [selectedType, setSelectedType] = useState(inspectionTypes[0]);
   const [selectedDepth, setSelectedDepth] = useState<"quick" | "standard" | "intelligent">("quick");
+  const [regulatoryFocus, setRegulatoryFocus] = useState<"general" | "msha" | "osha">("general");
 
   useEffect(() => {
     const seeded = seedInspectionProgramIfEmpty();
@@ -90,7 +61,7 @@ export default function InspectionsPage() {
       JSON.stringify({
         inspectionType: selectedType.id,
         inspectionTitle: selectedType.title,
-        agency: selectedType.agency,
+        agency: regulatoryFocus === "msha" ? "MSHA" : regulatoryFocus === "osha" ? "OSHA" : "General",
         workflowDepth: selectedDepth,
       })
     );
@@ -141,7 +112,6 @@ export default function InspectionsPage() {
                     </div>
 
                     <div className="flex shrink-0 gap-3 text-xs font-black uppercase tracking-wide text-slate-400">
-                      <span>{type.agency}</span>
                       {selected && <span className="text-[#1D72B8]">Selected</span>}
                     </div>
                   </div>
@@ -180,13 +150,40 @@ export default function InspectionsPage() {
 
           <div className="mt-5 border-t border-slate-200 pt-4">
             <p className="text-xs font-black uppercase tracking-wide text-slate-400">
+              Regulatory Focus
+            </p>
+
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {[
+                ["general", "General"],
+                ["msha", "MSHA"],
+                ["osha", "OSHA"],
+              ].map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setRegulatoryFocus(id as "general" | "msha" | "osha")}
+                  className={`rounded-xl border px-3 py-2 text-xs font-black ${
+                    regulatoryFocus === id
+                      ? "border-[#1D72B8] bg-[#F8FBFF] text-[#1D72B8]"
+                      : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 border-t border-slate-200 pt-4">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-400">
               Selected
             </p>
             <p className="mt-1 text-sm font-black text-slate-900">
               {selectedType.title}
             </p>
             <p className="mt-1 text-sm font-semibold text-slate-500">
-              {selectedDepth.charAt(0).toUpperCase() + selectedDepth.slice(1)} workflow
+              {regulatoryFocus.toUpperCase()} • {selectedDepth.charAt(0).toUpperCase() + selectedDepth.slice(1)} workflow
             </p>
 
             <div className="mt-4 flex flex-col gap-2">
