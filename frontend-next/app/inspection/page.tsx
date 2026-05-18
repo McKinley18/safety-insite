@@ -593,7 +593,12 @@ export default function InspectionPage() {
   }
 
   function goToInspectionStep(nextStep: number) {
-    setCurrentStep(Math.max(1, Math.min(steps.length, nextStep)));
+    let targetStep = Math.max(1, Math.min(steps.length, nextStep));
+
+    if (!isAdvancedMode && targetStep === 3) targetStep = 5;
+    if (!isAdvancedMode && currentStep === 5 && nextStep < currentStep) targetStep = 2;
+
+    setCurrentStep(targetStep);
 
     window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, behavior: "smooth" });
