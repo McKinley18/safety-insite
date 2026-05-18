@@ -2,6 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import PageHeader from "@/components/ui/PageHeader";
+import PrimaryButton from "@/components/ui/PrimaryButton";
+import SectionHeader from "@/components/ui/SectionHeader";
+import EmptyState from "@/components/ui/EmptyState";
+import OperationalRow from "@/components/ui/OperationalRow";
 import { getReports } from "@/lib/reportStorage";
 import { createActionId, getStoredActions, saveStoredActions } from "@/lib/actionStorage";
 import { addActivityEvent } from "@/lib/activityStorage";
@@ -124,9 +128,11 @@ export default function ActionsPage() {
       />
 
       <section className="border-y border-slate-200 py-4">
-        <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-          Add Action
-        </p>
+        <SectionHeader
+          eyebrow="Add Action"
+          title="Create a corrective action"
+          description="Add work that needs to be tracked outside of a finalized report."
+        />
 
         <div className="grid gap-3">
           <input
@@ -155,13 +161,13 @@ export default function ActionsPage() {
               className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
             />
 
-            <button
+            <PrimaryButton
               type="button"
               onClick={addAction}
-              className="rounded-xl bg-[#1D72B8] px-5 py-3 text-sm font-black text-white"
+              className="py-3 text-sm"
             >
               Add Action
-            </button>
+            </PrimaryButton>
           </div>
         </div>
       </section>
@@ -173,59 +179,43 @@ export default function ActionsPage() {
             const isComplete = String(action.status).toLowerCase() === "completed";
 
             return (
-              <div key={`${action.title}-${index}`} className="border-b border-slate-200 py-4 last:border-b-0">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h2 className={`font-black ${isComplete ? "text-slate-400 line-through" : "text-slate-900"}`}>
-                        {action.title}
-                      </h2>
-                      <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-black uppercase text-slate-600">
-                        {action.source}
-                      </span>
-                    </div>
-
-                    <p className="mt-1 text-sm font-semibold text-slate-500">
-                      {action.location || "Workspace"} • Due: {action.due || "Not set"} • Status: {action.status}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-                    <span className={`rounded-full px-3 py-1 text-xs font-black ${
-                      String(action.priority).toLowerCase() === "critical"
-                        ? "bg-red-100 text-red-700"
-                        : String(action.priority).toLowerCase() === "high"
-                          ? "bg-orange-100 text-orange-700"
-                          : "bg-slate-100 text-slate-700"
-                    }`}>
-                      {action.priority}
+              <OperationalRow
+                key={`${action.title}-${index}`}
+                title={action.title}
+                subtitle={action.findingTitle || action.location || "Workspace action"}
+                metadata={[
+                  action.location || "Workspace",
+                  `Due: ${action.due || "Not set"}`,
+                  `Status: ${action.status}`,
+                  `Source: ${action.source}`,
+                  `Priority: ${action.priority}`,
+                ]}
+                actions={
+                  isManualAction ? (
+                    <select
+                      value={action.status}
+                      onChange={(event) => updateManualActionStatus(index, event.target.value)}
+                      className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 outline-none focus:border-[#1D72B8]"
+                    >
+                      <option>Open</option>
+                      <option>In Progress</option>
+                      <option>Blocked</option>
+                      <option>Completed</option>
+                    </select>
+                  ) : (
+                    <span className="text-xs font-black uppercase tracking-wide text-slate-400">
+                      Report-linked
                     </span>
-
-                    {isManualAction ? (
-                      <select
-                        value={action.status}
-                        onChange={(event) => updateManualActionStatus(index, event.target.value)}
-                        className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-black text-slate-700 outline-none focus:border-[#1D72B8]"
-                      >
-                        <option>Open</option>
-                        <option>In Progress</option>
-                        <option>Blocked</option>
-                        <option>Completed</option>
-                      </select>
-                    ) : (
-                      <span className="rounded-full bg-slate-50 px-3 py-1 text-xs font-black text-slate-500">
-                        Report-linked
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
+                  )
+                }
+              />
             );
           })
         ) : (
-          <p className="py-5 text-sm font-semibold text-slate-500">
-            No corrective actions available yet.
-          </p>
+          <EmptyState
+            title="No corrective actions available yet."
+            description="Actions created manually or generated from reports will appear here."
+          />
         )}
       </section>
     </section>
