@@ -1,12 +1,40 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import { createCheckoutSession, getAuthToken } from "@/lib/auth";
 
 const tiers = [
-  ["Basic", "Free", "Local inspections, basic reports, evidence notes, limited SafeScope assistance, local-only storage."],
-  ["Plus", "Individual Pro", "Full SafeScope intelligence, standards suggestions, corrective actions, inspection history, offline save queue."],
-  ["Company", "Team Workspace", "Shared reports, company branding, assigned actions, analytics, supervisor validation, audit trail, team roles."],
-];
+  ["Basic", "Free", "Local inspections, basic reports, evidence notes, limited SafeScope assistance, local-only storage.", null],
+  ["Plus", "Individual Pro", "Full SafeScope intelligence, standards suggestions, corrective actions, inspection history, offline save queue.", "plus"],
+  ["Company", "Team Workspace", "Shared reports, company branding, assigned actions, analytics, supervisor validation, audit trail, team roles.", "company"],
+] as const;
 
 export default function AboutPage() {
+  const [billingStatus, setBillingStatus] = useState("");
+
+  async function startCheckout(planCode: "plus" | "company") {
+    try {
+      setBillingStatus("");
+
+      if (!getAuthToken()) {
+        window.location.href = "/login";
+        return;
+      }
+
+      const session = await createCheckoutSession(planCode);
+
+      if (session?.url) {
+        window.location.href = session.url;
+        return;
+      }
+
+      setBillingStatus("Billing checkout could not be started.");
+    } catch {
+      setBillingStatus("Billing is not configured yet. Please check back soon.");
+    }
+  }
+
   return (
     <section className="mx-auto max-w-5xl space-y-8">
       <header className="border-b border-slate-200 pb-6">
@@ -37,6 +65,12 @@ export default function AboutPage() {
             to help users slow the decision down just enough to see the risk clearly.
           </p>
         </div>
+
+        {billingStatus && (
+          <p className="mt-3 rounded-xl bg-amber-50 p-3 text-sm font-bold text-amber-800">
+            {billingStatus}
+          </p>
+        )}
       </section>
 
       <section className="grid gap-6 border-b border-slate-200 pb-7 md:grid-cols-[0.8fr_1.2fr]">
@@ -96,17 +130,33 @@ export default function AboutPage() {
         </div>
 
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white">
-          <div className="grid grid-cols-[0.7fr_0.8fr_1.5fr] border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-black uppercase tracking-wide text-slate-500">
+          <div className="grid grid-cols-[0.7fr_0.8fr_1.5fr_0.8fr] border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-black uppercase tracking-wide text-slate-500">
             <div>Tier</div>
             <div>Access</div>
             <div>Designed For</div>
+            <div>Action</div>
           </div>
 
-          {tiers.map(([name, price, description]) => (
-            <div key={name} className="grid grid-cols-[0.7fr_0.8fr_1.5fr] gap-3 border-b border-slate-100 px-4 py-3 text-sm last:border-b-0">
+          {tiers.map(([name, price, description, planCode]) => (
+            <div key={name} className="grid grid-cols-[0.7fr_0.8fr_1.5fr_0.8fr] gap-3 border-b border-slate-100 px-4 py-3 text-sm last:border-b-0">
               <div className="font-black text-slate-950">{name}</div>
               <div className="font-bold text-[#1D72B8]">{price}</div>
               <div className="font-semibold leading-6 text-slate-600">{description}</div>
+              <div>
+                {planCode ? (
+                  <button
+                    type="button"
+                    onClick={() => startCheckout(planCode)}
+                    className="rounded-xl bg-[#1D72B8] px-3 py-2 text-xs font-black text-white hover:bg-[#155A93]"
+                  >
+                    Upgrade
+                  </button>
+                ) : (
+                  <Link href="/register" className="text-xs font-black text-[#1D72B8] hover:underline">
+                    Start Free
+                  </Link>
+                )}
+              </div>
             </div>
           ))}
         </div>
