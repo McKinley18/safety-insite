@@ -15,11 +15,11 @@ import { deleteEncryptedPhoto, loadEncryptedPhoto, saveEncryptedPhoto } from "@/
 import { enqueueOfflineItem } from "@/lib/offlineQueue";
 
 const steps = [
-  { title: "Step 1: Identify Hazards", desc: "Document the hazard observed." },
-  { title: "Step 2: Take Photos", desc: "Capture or attach evidence." },
-  { title: "Step 3: Regulation", desc: "Review likely standards." },
-  { title: "Step 4: Risk Assessment", desc: "Rate severity and likelihood." },
-  { title: "Step 5: Corrective Actions", desc: "Define the fix." },
+  { title: "Step 1: Quick Capture", desc: "Capture the finding quickly. Intelligence can be added after the finding is saved." },
+  { title: "Step 2: Evidence", desc: "Add photos, annotations, and notes when available." },
+  { title: "Step 3: SafeScope Intelligence", desc: "Optional standards, reasoning, and confidence support." },
+  { title: "Step 4: Risk Review", desc: "Optional severity and likelihood scoring for deeper inspections." },
+  { title: "Step 5: Actions", desc: "Assign corrective work or accept generated actions." },
   { title: "Step 6: Finalize", desc: "Review and generate the report." },
 ];
 
@@ -647,9 +647,7 @@ export default function InspectionPage() {
         return `${label}: Add a hazard description.`;
       }
 
-      if (!finding.severity || !finding.likelihood) {
-        return `${label}: Confirm severity and likelihood in Risk Assessment.`;
-      }
+      // Risk scoring is optional for Quick Capture findings.
 
       // Standards are optional. Reports can be generated before final standard selection.
 
@@ -658,9 +656,7 @@ export default function InspectionPage() {
         ...(finding.manualActions || []),
       ];
 
-      if (!correctiveActions.length) {
-        return `${label}: Select or add at least one corrective action.`;
-      }
+      // Corrective actions are recommended, but optional for fast capture.
     }
 
     return "";
@@ -856,7 +852,7 @@ export default function InspectionPage() {
               }}
               className="flex min-h-7 items-center rounded-xl bg-[#F97316] px-4 py-1 text-[11px] font-black text-white shadow-sm transition hover:bg-orange-500"
             >
-              {currentStep === 6 ? "Generate Report" : "Next →"}
+              {currentStep === 6 ? "Generate Report" : currentStep === 1 ? "Save & Continue →" : "Next →"}
             </button>
           </div>
         </div>
@@ -884,7 +880,7 @@ export default function InspectionPage() {
         {currentStep === 1 && (
           <>
             <p className="mb-4 text-sm font-semibold leading-6 text-slate-500">
-              Capture the hazard, location, and exposure condition. Keep it concise now; SafeScope can expand the context later.
+              Fast capture is the priority. Add the category, location, and a short description now. Risk scoring, standards, and SafeScope intelligence can be added after the finding is saved.
             </p>
 
             <div className="grid gap-3 md:grid-cols-2">
