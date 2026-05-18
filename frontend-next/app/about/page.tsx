@@ -5,12 +5,10 @@ import { useState } from "react";
 import { createCheckoutSession, getAuthToken } from "@/lib/auth";
 
 const valuePillars = [
-  "Faster field inspections",
-  "Stronger audit records",
-  "Corrective action accountability",
-  "MSHA & OSHA support",
-  "Offline-capable workflows",
-  "Human-verified intelligence",
+  ["Field speed", "Capture findings faster"],
+  ["Defensible records", "Evidence-first documentation"],
+  ["Accountability", "Actions tied to ownership"],
+  ["Standards support", "MSHA & OSHA workflows"],
 ];
 
 const companyDrivers = [
@@ -70,9 +68,9 @@ export default function AboutPage() {
   }
 
   return (
-    <section className="mx-auto max-w-6xl space-y-8">
-      <header className="overflow-hidden rounded-[2rem] bg-[#0B1320] text-white shadow-xl">
-        <div className="bg-[radial-gradient(circle_at_top_right,rgba(29,114,184,0.45),transparent_38%),linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-6 py-10 sm:px-8 sm:py-12">
+    <section className="mx-auto max-w-6xl space-y-10">
+      <header className="overflow-hidden rounded-[2.25rem] border border-slate-800 bg-[#0B1320] text-white shadow-2xl shadow-slate-900/20">
+        <div className="bg-[radial-gradient(circle_at_top_right,rgba(29,114,184,0.42),transparent_36%),linear-gradient(135deg,#0B1320_0%,#102A43_48%,#0B1320_100%)] px-6 py-10 sm:px-9 sm:py-14">
           <p className="text-xs font-black uppercase tracking-[0.3em] text-[#C0C6CF]">
             Sentinel Safety
           </p>
@@ -87,11 +85,16 @@ export default function AboutPage() {
             citation, shutdown, or repeat failure.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {valuePillars.map((pillar) => (
-              <span key={pillar} className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black text-slate-100">
-                {pillar}
-              </span>
+          <div className="mt-8 grid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] sm:grid-cols-4">
+            {valuePillars.map(([label, detail]) => (
+              <div key={label} className="border-b border-white/10 px-4 py-4 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
+                <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#C0C6CF]">
+                  {label}
+                </p>
+                <p className="mt-1 text-sm font-bold leading-5 text-white">
+                  {detail}
+                </p>
+              </div>
             ))}
           </div>
 
