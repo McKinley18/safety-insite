@@ -5,6 +5,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import EmptyState from "@/components/ui/EmptyState";
+import OperationalRow from "@/components/ui/OperationalRow";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
@@ -269,158 +270,102 @@ export default function ReportsPage() {
             const integrity = getReportIntegrity(report);
 
             return (
-              <div key={report.id} className="border-b border-slate-200 py-4 last:border-b-0">
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div className="flex min-w-0 flex-1 gap-4">
-                    {firstPhoto && (
-                      <div className="hidden w-24 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 sm:block">
+              <OperationalRow
+                key={report.id}
+                title={editingReportId === report.id ? "Editing Report" : report.title || "Inspection Report"}
+                subtitle={editingReportId === report.id ? "Update report title and location." : report.location || "Field Inspection"}
+                metadata={[
+                  `${report.findings?.length || 0} Findings`,
+                  `${integrity.evidenceCount} Evidence Item(s)`,
+                  `${integrity.actionCount} Action(s)`,
+                  new Date(report.createdAt).toLocaleDateString(),
+                  getStorageLabel(report.storageSource),
+                  `Risk: ${risk}`,
+                ]}
+                actions={
+                  editingReportId === report.id ? (
+                    <>
+                      <PrimaryButton onClick={() => saveEdit(report.id)}>
+                        Save
+                      </PrimaryButton>
+
+                      <SecondaryButton onClick={() => setEditingReportId(null)}>
+                        Cancel
+                      </SecondaryButton>
+                    </>
+                  ) : (
+                    <>
+                      <PrimaryButton onClick={() => startEdit(report)}>
+                        Edit
+                      </PrimaryButton>
+
+                      <SecondaryButton onClick={() => exportReport(report)}>
+                        Export PDF
+                      </SecondaryButton>
+
+                      <button
+                        onClick={() => deleteReport(report.id)}
+                        className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
+                      >
+                        Delete
+                      </button>
+                    </>
+                  )
+                }
+              >
+                {editingReportId === report.id ? (
+                  <div className="grid gap-3 md:grid-cols-2">
+                    <input
+                      value={editTitle}
+                      onChange={(e) => setEditTitle(e.target.value)}
+                      className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+                      placeholder="Report title"
+                    />
+
+                    <input
+                      value={editLocation}
+                      onChange={(e) => setEditLocation(e.target.value)}
+                      className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+                      placeholder="Location"
+                    />
+                  </div>
+                ) : (
+                  <div className="grid gap-3 md:grid-cols-[96px_1fr]">
+                    {firstPhoto ? (
+                      <div className="hidden w-24 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 md:block">
                         <AnnotationPreview
                           photoUrl={firstPhoto.url}
                           annotations={firstPhoto.annotations || []}
                         />
                       </div>
+                    ) : (
+                      <div className="hidden w-24 rounded-xl border border-dashed border-slate-300 bg-slate-50 md:block" />
                     )}
 
-                    <div className="min-w-0 flex-1">
-                      {editingReportId === report.id ? (
-                        <div className="space-y-3">
-                          <input
-                            value={editTitle}
-                            onChange={(e) => setEditTitle(e.target.value)}
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-                            placeholder="Report title"
-                          />
+                    <div>
+                      <div className="grid gap-2 text-[10px] font-black uppercase tracking-wide text-slate-500 sm:grid-cols-3">
+                        <span>
+                          Evidence {integrity.hasEvidence ? "Attached" : "Pending"}
+                        </span>
+                        <span>
+                          SafeScope {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
+                        </span>
+                        <span>
+                          Actions {integrity.hasActions ? "Linked" : "Pending"}
+                        </span>
+                      </div>
 
-                          <input
-                            value={editLocation}
-                            onChange={(e) => setEditLocation(e.target.value)}
-                            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-                            placeholder="Location"
-                          />
-                        </div>
-                      ) : (
-                        <>
-                          <div className="flex flex-wrap items-center gap-3">
-                            <h2 className="text-lg font-black text-slate-900">
-                              {report.title || "Inspection Report"}
-                            </h2>
+                      <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">
+                        Evidence, findings, timestamps, and corrective actions remain connected to this inspection record for export and review workflows.
+                      </p>
 
-                            <span
-                              className={`rounded-full px-3 py-1 text-xs font-black ${riskClasses(
-                                risk
-                              )}`}
-                            >
-                              {risk}
-                            </span>
-
-                            <span className={`rounded-full border px-3 py-1 text-xs font-black ${getStorageClass(report.storageSource)}`}>
-                              {getStorageLabel(report.storageSource)}
-                            </span>
-
-                            {report.storageSource !== "cloud" && (
-                              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700">
-                                Confidential Local Copy
-                              </span>
-                            )}
-                          </div>
-
-                          <div className="mt-2 flex flex-wrap gap-3 text-xs font-black text-slate-500">
-                            <span>{report.location || "Field Inspection"}</span>
-                            <span>{report.findings?.length || 0} Findings</span>
-                            <span>{integrity.evidenceCount} Evidence Item(s)</span>
-                            <span>{integrity.actionCount} Action(s)</span>
-                            <span>{new Date(report.createdAt).toLocaleDateString()}</span>
-                          </div>
-
-                          <div className="mt-3 grid gap-2 text-[10px] font-black uppercase tracking-wide text-slate-500 sm:grid-cols-3">
-                            <span className={`rounded-lg px-2.5 py-2 ${integrity.hasEvidence ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-slate-500"}`}>
-                              Evidence {integrity.hasEvidence ? "Attached" : "Pending"}
-                            </span>
-                            <span className={`rounded-lg px-2.5 py-2 ${integrity.hasSafeScope ? "bg-blue-50 text-blue-700" : "bg-slate-100 text-slate-500"}`}>
-                              SafeScope {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
-                            </span>
-                            <span className={`rounded-lg px-2.5 py-2 ${integrity.hasActions ? "bg-orange-50 text-orange-700" : "bg-slate-100 text-slate-500"}`}>
-                              Corrective Actions {integrity.hasActions ? "Linked" : "Pending"}
-                            </span>
-                          </div>
-
-                          <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
-                            <div className="flex flex-wrap items-center justify-between gap-2">
-                              <div>
-                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
-                                  Report Defensibility
-                                </p>
-                                <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
-                                  Evidence, findings, timestamps, and corrective actions remain connected to the inspection record for export and review workflows.
-                                </p>
-                              </div>
-
-                              <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-700 border border-slate-200">
-                                Audit Ready
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-wide">
-                            <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
-                              Timestamped Record
-                            </span>
-
-                            <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
-                              Evidence Linked
-                            </span>
-
-                            <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
-                              Local Vault Encryption
-                            </span>
-
-                            {report.storageSource === "cloud" && (
-                              <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">
-                                Workspace Synced
-                              </span>
-                            )}
-                          </div>
-
-                          <p className="mt-3 break-all text-[10px] font-semibold text-slate-400">
-                            Record ID: {report.id}
-                          </p>
-                        </>
-                      )}
+                      <p className="mt-2 break-all text-[10px] font-semibold text-slate-400">
+                        Record ID: {report.id}
+                      </p>
                     </div>
                   </div>
-
-                  <div className="flex flex-wrap gap-2 md:justify-end">
-                    {editingReportId === report.id ? (
-                      <>
-                        <PrimaryButton onClick={() => saveEdit(report.id)}>
-                          Save
-                        </PrimaryButton>
-
-                        <SecondaryButton onClick={() => setEditingReportId(null)}>
-                          Cancel
-                        </SecondaryButton>
-                      </>
-                    ) : (
-                      <>
-                        <PrimaryButton onClick={() => startEdit(report)}>
-                          Edit
-                        </PrimaryButton>
-
-                        <SecondaryButton onClick={() => exportReport(report)}>
-                          Export PDF
-                        </SecondaryButton>
-
-                        <button
-                          onClick={() => deleteReport(report.id)}
-                          className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
+                )}
+              </OperationalRow>
             );
           })}
         </div>
