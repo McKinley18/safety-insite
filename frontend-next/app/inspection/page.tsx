@@ -25,6 +25,10 @@ import {
   isQuickHazardCapture,
   loadInspectionContext,
 } from "@/lib/inspection/inspectionContext";
+import {
+  buildFinding,
+  generateInspectionReportId,
+} from "@/lib/inspection/findingBuilder";
 
 
 
@@ -376,24 +380,12 @@ export default function InspectionPage() {
   }
 
   function buildCurrentFinding() {
-    const findingId =
-      editingFindingIndex !== null
-        ? findings[editingFindingIndex]?.id
-        : currentSavedFindingId || Date.now();
-
-    const correctiveActions = [...selectedGeneratedActions, ...manualActions].map((action, index) => ({
-      ...action,
-      id: action.id || `ACT-${findingId}-${index}`,
-      title: action.title || action.description || "Corrective action",
-      priority: action.priority || "Medium",
-      status: action.status || "Open",
-      due: action.due || action.dueDate || "",
-      source: action.source || (index < selectedGeneratedActions.length ? "SafeScope" : "User"),
-      createdAt: action.createdAt || new Date().toISOString(),
-    }));
-
-    return {
-      id: findingId,
+    return buildFinding({
+      existingId:
+        editingFindingIndex !== null
+          ? findings[editingFindingIndex]?.id
+          : null,
+      fallbackId: currentSavedFindingId,
       hazardCategory,
       description,
       location,
@@ -403,12 +395,10 @@ export default function InspectionPage() {
       selectedStandards,
       selectedGeneratedActions,
       manualActions,
-      correctiveActions,
-      correctiveActionIds: correctiveActions.map((action) => action.id),
       severity,
       likelihood,
       riskScore,
-    };
+    });
   }
 
   async function persistFindingActions(finding: any) {
@@ -624,11 +614,7 @@ export default function InspectionPage() {
 
 
 
-  function generateReportId() {
-    const year = new Date().getFullYear();
-    const shortId = String(Date.now()).slice(-6);
-    return `SSR-${year}-${shortId}`;
-  }
+
 
 
   function validateReportBeforeGenerate() {
@@ -687,7 +673,7 @@ export default function InspectionPage() {
     const coverPage = await getCoverPage<any>() || {};
 
     const report = {
-      id: generateReportId(),
+      id: generateInspectionReportId(),
       createdAt: new Date().toISOString(),
       title: coverPage.organizationName
         ? `${coverPage.organizationName} Inspection Report`
