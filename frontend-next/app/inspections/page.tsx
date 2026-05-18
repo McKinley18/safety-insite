@@ -11,6 +11,48 @@ const programStats = [
   ["0", "Action Required"],
 ];
 
+const workflowDepths = [
+  {
+    level: "Level 1",
+    title: "Quick Capture",
+    description:
+      "Fast field documentation with photo capture, hazard category selection, and action assignment.",
+    features: [
+      "Photo capture",
+      "Hazard category",
+      "Short description",
+      "Assign action",
+    ],
+    tone: "bg-slate-50 border-slate-200",
+  },
+  {
+    level: "Level 2",
+    title: "Standard Inspection",
+    description:
+      "Structured inspections with risk scoring, findings management, and corrective actions.",
+    features: [
+      "Severity scoring",
+      "Likelihood scoring",
+      "Corrective actions",
+      "Professional reporting",
+    ],
+    tone: "bg-blue-50 border-blue-100",
+  },
+  {
+    level: "Level 3",
+    title: "Intelligent Inspection",
+    description:
+      "SafeScope-assisted operational intelligence with standards reasoning and defensibility insight.",
+    features: [
+      "SafeScope intelligence",
+      "Confidence scoring",
+      "Standards reasoning",
+      "Escalation detection",
+    ],
+    tone: "bg-emerald-50 border-emerald-100",
+  },
+];
+
 const inspectionProgram = [
   {
     title: "Workplace Exam",
@@ -102,6 +144,58 @@ export default function InspectionsPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Workflow Depth
+            </p>
+
+            <h2 className="mt-1 text-xl font-black text-slate-900">
+              Scale inspection complexity to the operation
+            </h2>
+
+            <p className="mt-1 text-sm font-semibold text-slate-500">
+              Sentinel Safety adapts from quick field capture to advanced operational intelligence workflows.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          {workflowDepths.map((workflow) => (
+            <div
+              key={workflow.title}
+              className={`rounded-2xl border p-4 ${workflow.tone}`}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-700">
+                  {workflow.level}
+                </span>
+              </div>
+
+              <h3 className="mt-3 text-lg font-black text-slate-900">
+                {workflow.title}
+              </h3>
+
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                {workflow.description}
+              </p>
+
+              <div className="mt-4 space-y-2">
+                {workflow.features.map((feature) => (
+                  <div
+                    key={feature}
+                    className="rounded-xl bg-white px-3 py-2 text-sm font-black text-slate-700"
+                  >
+                    {feature}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
