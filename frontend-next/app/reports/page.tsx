@@ -341,7 +341,44 @@ export default function ReportsPage() {
                             </span>
                           </div>
 
-                          <p className="mt-2 break-all text-[10px] font-semibold text-slate-400">
+                          <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                            <div className="flex flex-wrap items-center justify-between gap-2">
+                              <div>
+                                <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+                                  Report Defensibility
+                                </p>
+                                <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                                  Evidence, findings, timestamps, and corrective actions remain connected to the inspection record for export and review workflows.
+                                </p>
+                              </div>
+
+                              <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-700 border border-slate-200">
+                                Audit Ready
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-wide">
+                            <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                              Timestamped Record
+                            </span>
+
+                            <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                              Evidence Linked
+                            </span>
+
+                            <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                              Local Vault Encryption
+                            </span>
+
+                            {report.storageSource === "cloud" && (
+                              <span className="rounded-full bg-blue-50 px-3 py-1 text-blue-700">
+                                Workspace Synced
+                              </span>
+                            )}
+                          </div>
+
+                          <p className="mt-3 break-all text-[10px] font-semibold text-slate-400">
                             Record ID: {report.id}
                           </p>
                         </>
