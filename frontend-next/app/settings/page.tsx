@@ -1,9 +1,10 @@
 "use client";
 
 import PageHeader from "@/components/ui/PageHeader";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import { getStoredPlanCode, hasPlanEntitlement } from "@/lib/planEntitlements";
 import { Facility, getFacilities, setFacilities } from "@/lib/facilityStorage";
-import { useEffect, useMemo, useState } from "react";
 import {
   getOrganizationInvites,
   getOrganizationMembers,
@@ -22,15 +23,9 @@ const riskProfiles = [
 ] as const;
 
 const storageModes = [
-  ["local", "Private Device Storage", "Recommended. Reports stay on this device unless exported or synced."],
-  ["cloud", "Encrypted Workspace Sync", "Optional. Reports save to the company workspace database."],
-  ["ask", "Ask Every Report", "Choose private device storage or workspace sync when finalizing."],
-] as const;
-
-const roleDefinitions = [
-  ["Owner", "Manage settings, users, reports, and workspace controls."],
-  ["Auditor", "Create inspections, review SafeScope results, and manage findings."],
-  ["Viewer", "View reports and actions without changing workspace settings."],
+  ["local", "Private Local Vault", "Reports stay encrypted on this device unless exported or synced."],
+  ["cloud", "Company Cloud Workspace", "Reports sync to the shared company workspace."],
+  ["ask", "Ask Every Report", "Choose local or cloud storage when finalizing each report."],
 ] as const;
 
 function getMatrixSize(profile: RiskProfileId) {
@@ -41,7 +36,6 @@ function getMatrixSize(profile: RiskProfileId) {
 
 function getRiskColor(score: number, maxScore: number) {
   const ratio = score / (maxScore * maxScore);
-
   if (ratio >= 0.72) return "bg-red-500";
   if (ratio >= 0.45) return "bg-orange-400";
   if (ratio >= 0.25) return "bg-yellow-300";
@@ -74,13 +68,6 @@ function RiskMatrixPreview({ riskProfileId }: { riskProfileId: RiskProfileId }) 
           </div>
         ))}
       </div>
-
-      <div className="mt-3 grid grid-cols-4 gap-1 text-center text-[10px] font-black text-slate-600">
-        <span className="rounded bg-emerald-100 py-1">Low</span>
-        <span className="rounded bg-yellow-100 py-1">Moderate</span>
-        <span className="rounded bg-orange-100 py-1">High</span>
-        <span className="rounded bg-red-100 py-1">Critical</span>
-      </div>
     </div>
   );
 }
@@ -93,13 +80,16 @@ export default function SettingsPage() {
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
   const [requirePinUnlock, setRequirePinUnlock] = useState(false);
   const [autoLockMinutes, setAutoLockMinutes] = useState("off");
+
   const [facilities, setFacilityList] = useState<Facility[]>([]);
   const [facilityName, setFacilityName] = useState("");
   const [facilityType, setFacilityType] = useState("");
+
   const [members, setMembers] = useState<any[]>([]);
   const [invites, setInvites] = useState<any[]>([]);
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState("Auditor");
+
   const [planCode, setPlanCode] = useState("basic");
   const [status, setStatus] = useState("");
   const [statusType, setStatusType] = useState<"idle" | "success" | "error">("idle");
@@ -108,22 +98,25 @@ export default function SettingsPage() {
     return riskProfiles.find(([id]) => id === riskProfileId)?.[1] || "Standard 5x5";
   }, [riskProfileId]);
 
+  const companySeats = 5;
+  const usedSeats = Math.max(members.length, 1);
+
   useEffect(() => {
     async function loadSettings() {
       setPlanCode(getStoredPlanCode());
 
-      try {
-        setStatus("Loading settings...");
-        const settings = await getOrganizationSettings();
+      setCompanyLogo(window.localStorage.getItem("sentinel_company_logo") || "");
+      setIncludeLogoOnCover(window.localStorage.getItem("sentinel_include_logo_on_cover") !== "false");
+      setStorageMode((window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) || "local");
+      setRequirePinUnlock(window.localStorage.getItem("sentinel_require_pin_unlock") === "true");
+      setAutoLockMinutes(window.localStorage.getItem("sentinel_auto_lock_minutes") || "off");
+      setFacilityList(getFacilities());
 
+      try {
+        const settings = await getOrganizationSettings();
         setOrganizationName(settings.name || "");
         setCompanyLogo(settings.logoPath || window.localStorage.getItem("sentinel_company_logo") || "");
-        setIncludeLogoOnCover(window.localStorage.getItem("sentinel_include_logo_on_cover") !== "false");
         setRiskProfileId((settings.riskProfileId || "standard_5x5") as RiskProfileId);
-        setStorageMode((window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) || "local");
-        setRequirePinUnlock(window.localStorage.getItem("sentinel_require_pin_unlock") === "true");
-        setAutoLockMinutes(window.localStorage.getItem("sentinel_auto_lock_minutes") || "off");
-        setFacilityList(getFacilities());
 
         const [membersResult, invitesResult] = await Promise.allSettled([
           getOrganizationMembers(),
@@ -132,17 +125,9 @@ export default function SettingsPage() {
 
         setMembers(membersResult.status === "fulfilled" ? membersResult.value : []);
         setInvites(invitesResult.status === "fulfilled" ? invitesResult.value : []);
-
-        if (membersResult.status === "rejected" || invitesResult.status === "rejected") {
-          setStatusType("error");
-          setStatus("Workspace settings loaded, but member/invite details could not be loaded.");
-        } else {
-          setStatus("");
-          setStatusType("idle");
-        }
       } catch {
-        setStatusType("error");
-        setStatus("Workspace settings have not been configured yet. Defaults are being used.");
+        setStatusType("idle");
+        setStatus("");
       }
     }
 
@@ -151,12 +136,10 @@ export default function SettingsPage() {
 
   function handleLogoUpload(file?: File) {
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = () => setCompanyLogo(String(reader.result || ""));
     reader.readAsDataURL(file);
   }
-
 
   function addFacility() {
     if (!facilityName.trim()) return;
@@ -177,9 +160,32 @@ export default function SettingsPage() {
   }
 
   function removeFacility(id: string) {
-    const nextFacilities = facilities.filter((facility) => facility.id !== id);
-    setFacilityList(nextFacilities);
-    setFacilities(nextFacilities);
+    const next = facilities.filter((facility) => facility.id !== id);
+    setFacilityList(next);
+    setFacilities(next);
+  }
+
+  async function sendInvite() {
+    try {
+      if (!inviteEmail.trim()) {
+        setStatusType("error");
+        setStatus("Enter an email address before sending an invite.");
+        return;
+      }
+
+      const invite = await inviteOrganizationMember({
+        email: inviteEmail.trim(),
+        role: inviteRole,
+      });
+
+      setInvites((current) => [invite, ...current]);
+      setInviteEmail("");
+      setStatusType("success");
+      setStatus(`Invitation created for ${invite.email}.`);
+    } catch {
+      setStatusType("error");
+      setStatus("Invitation could not be created. Company plan and sign-in may be required.");
+    }
   }
 
   async function saveSettings() {
@@ -215,45 +221,31 @@ export default function SettingsPage() {
     }
   }
 
-  async function sendInvite() {
-    try {
-      if (!inviteEmail.trim()) {
-        setStatusType("error");
-        setStatus("Enter an email address before sending an invite.");
-        return;
-      }
-
-      setStatusType("idle");
-      setStatus("Creating invitation...");
-
-      const invite = await inviteOrganizationMember({
-        email: inviteEmail.trim(),
-        role: inviteRole,
-      });
-
-      setInvites((current) => [invite, ...current]);
-      setInviteEmail("");
-      setStatusType("success");
-      setStatus(`Invitation created for ${invite.email}.`);
-    } catch {
-      setStatusType("error");
-      setStatus("Invitation could not be created. Please make sure you are signed in.");
-    }
-  }
-
   return (
     <section className="space-y-8">
       <PageHeader
         eyebrow="Workspace"
         title="Settings"
-        description="Manage your organization profile, employees, risk matrix, and report storage preferences."
+        description="Adjust organization, team, locations, storage, risk matrix, security, and profile settings."
       />
 
-      <section>
-        <h2 className="text-xl font-black text-slate-900">Workspace Profile</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          Company information used across inspection reports and cover pages.
-        </p>
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">Personal Profile</p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">Your account settings</h2>
+            <p className="mt-1 text-sm font-semibold text-slate-500">Manage your name, email, password, and personal account details.</p>
+          </div>
+
+          <Link href="/profile" className="rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black text-white">
+            Manage Profile
+          </Link>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <h2 className="text-xl font-black text-slate-900">Organization</h2>
+        <p className="mt-1 text-sm font-semibold text-slate-500">Company information used on reports and cover pages.</p>
 
         <div className="mt-4 grid gap-5 md:grid-cols-[1fr_220px]">
           <label className="block">
@@ -267,7 +259,7 @@ export default function SettingsPage() {
 
           <div>
             <p className="text-sm font-black text-slate-700">Logo</p>
-            <div className="mt-2 flex min-h-24 items-center justify-center rounded-xl border border-slate-200 bg-white p-3">
+            <div className="mt-2 flex min-h-24 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 p-3">
               {companyLogo ? (
                 <img src={companyLogo} alt="Company logo preview" className="max-h-20 max-w-full object-contain" />
               ) : (
@@ -292,7 +284,7 @@ export default function SettingsPage() {
             <button
               type="button"
               onClick={() => setCompanyLogo("")}
-              className="rounded-xl border border-red-200 bg-red-50 px-5 py-3 text-sm font-black text-red-700 transition-all duration-150 hover:bg-red-100"
+              className="rounded-xl border border-red-200 bg-red-50 px-5 py-3 text-sm font-black text-red-700"
             >
               Remove Logo
             </button>
@@ -302,7 +294,7 @@ export default function SettingsPage() {
         <button
           type="button"
           onClick={() => setIncludeLogoOnCover(!includeLogoOnCover)}
-          className="mt-4 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left"
+          className="mt-4 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-left"
         >
           <span className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${includeLogoOnCover ? "bg-[#1D72B8]" : "bg-white"}`}>
             {includeLogoOnCover ? "✓" : ""}
@@ -314,10 +306,10 @@ export default function SettingsPage() {
         </button>
       </section>
 
-      <section className="border-t border-slate-300 pt-6">
-        <h2 className="text-xl font-black text-slate-900">Employees & Roles</h2>
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <h2 className="text-xl font-black text-slate-900">Team</h2>
         <p className="mt-1 text-sm font-semibold text-slate-500">
-          Add employees to the workspace and assign the right access level.
+          Company plan includes {companySeats} users. Current seats: {usedSeats}/{companySeats}.
         </p>
 
         {hasPlanEntitlement("teamMembers", planCode) ? (
@@ -326,7 +318,7 @@ export default function SettingsPage() {
               {members.map((member) => (
                 <div key={member.id} className="flex items-center justify-between border-b border-slate-200 pb-3">
                   <div>
-                    <p className="font-black text-slate-900">{member.name}</p>
+                    <p className="font-black text-slate-900">{member.name || "User"}</p>
                     <p className="text-sm font-semibold text-slate-500">{member.email}</p>
                   </div>
                   <span className="text-xs font-black uppercase tracking-wide text-[#F97316]">{member.role}</span>
@@ -361,44 +353,29 @@ export default function SettingsPage() {
               </button>
             </div>
 
-            <div className="mt-5 grid gap-3 md:grid-cols-3">
-              {roleDefinitions.map(([role, description]) => (
-                <div key={role} className="border-l-4 border-[#F97316] bg-white p-3">
-                  <p className="text-sm font-black text-slate-900">{role}</p>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">{description}</p>
-                </div>
-              ))}
-            </div>
-
             {!!invites.length && (
               <div className="mt-5 space-y-2">
                 <h3 className="text-sm font-black text-slate-900">Pending Invites</h3>
                 {invites.map((invite) => (
                   <div key={invite.id} className="border-b border-slate-200 py-2">
                     <p className="text-sm font-black text-slate-900">{invite.email}</p>
-                    <p className="break-all text-xs font-semibold text-slate-500">
-                      {invite.role} • Token: {invite.token}
-                    </p>
+                    <p className="break-all text-xs font-semibold text-slate-500">{invite.role} • Token: {invite.token}</p>
                   </div>
                 ))}
               </div>
             )}
           </>
         ) : (
-          <div className="mt-4 rounded-xl border border-dashed border-slate-300 bg-white/70 p-4">
+          <div className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
             <p className="text-sm font-black text-slate-900">Company plan required</p>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-              Employee invitations, shared roles, and team workspace access are available on the Company plan.
-            </p>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">Employee invitations, shared roles, and team workspace access are available on the Company plan.</p>
           </div>
         )}
       </section>
 
-      <section className="border-t border-slate-300 pt-6">
-        <h2 className="text-xl font-black text-slate-900">Facilities</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          Company accounts can save common facilities so inspectors can select locations quickly during inspections.
-        </p>
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <h2 className="text-xl font-black text-slate-900">Locations</h2>
+        <p className="mt-1 text-sm font-semibold text-slate-500">Save common facilities, sites, or work areas for faster inspections.</p>
 
         <div className="mt-4 grid gap-3 md:grid-cols-[1fr_180px_auto]">
           <input
@@ -420,7 +397,7 @@ export default function SettingsPage() {
             onClick={addFacility}
             className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white"
           >
-            Add Facility
+            Add Location
           </button>
         </div>
 
@@ -430,9 +407,7 @@ export default function SettingsPage() {
               <div key={facility.id} className="flex items-center justify-between gap-3 py-3">
                 <div>
                   <p className="font-black text-slate-900">{facility.name}</p>
-                  {facility.siteType && (
-                    <p className="text-sm font-semibold text-slate-500">{facility.siteType}</p>
-                  )}
+                  {facility.siteType && <p className="text-sm font-semibold text-slate-500">{facility.siteType}</p>}
                 </div>
 
                 <button
@@ -446,17 +421,54 @@ export default function SettingsPage() {
             ))}
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-white/60 p-4 text-sm font-bold text-slate-500">
-            No facilities saved yet.
-          </p>
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-bold text-slate-500">No locations saved yet.</p>
         )}
       </section>
 
-      <section className="border-t border-slate-300 pt-6">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <h2 className="text-xl font-black text-slate-900">Storage</h2>
+        <p className="mt-1 text-sm font-semibold text-slate-500">Choose where inspection reports are saved.</p>
+
+        <div className="mt-4 space-y-2">
+          {storageModes.map(([id, label, description]) => {
+            const cloudLocked = id === "cloud" && !hasPlanEntitlement("cloudReports", planCode);
+
+            return (
+              <button
+                key={id}
+                type="button"
+                disabled={cloudLocked}
+                onClick={() => {
+                  if (cloudLocked) return;
+                  setStorageMode(id);
+                }}
+                className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left ${
+                  storageMode === id ? "border-[#1D72B8] bg-[#E8F4FF]" : "border-slate-200 bg-white"
+                } ${cloudLocked ? "cursor-not-allowed opacity-55" : ""}`}
+              >
+                <span>
+                  <span className="block text-sm font-black text-slate-900">
+                    {label}{cloudLocked ? " — Company only" : ""}
+                  </span>
+                  <span className="block text-xs font-semibold text-slate-500">
+                    {cloudLocked ? "Upgrade to Company to sync reports to a shared workspace." : description}
+                  </span>
+                </span>
+                <span className="text-sm font-black text-[#1D72B8]">{storageMode === id ? "Selected" : ""}</span>
+              </button>
+            );
+          })}
+
+          <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-3">
+            <p className="text-sm font-black text-slate-900">Google Drive Backup — Planned</p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">Future option for user-controlled report and evidence backup.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <h2 className="text-xl font-black text-slate-900">Risk Matrix</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          Sets the default severity and likelihood scale for new inspections.
-        </p>
+        <p className="mt-1 text-sm font-semibold text-slate-500">Set the default severity and likelihood scale for new inspections.</p>
 
         <div className="mt-4 grid gap-5 md:grid-cols-[1fr_220px]">
           <div className="space-y-2">
@@ -485,110 +497,21 @@ export default function SettingsPage() {
         </div>
       </section>
 
-      <section className="border-t border-slate-300 pt-6">
-        <h2 className="text-xl font-black text-slate-900">Storage & Confidentiality</h2>
-        <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-          Sentinel Safety is local-first by design. Inspection data stays on this device unless you choose to sync, export, or back it up.
-        </p>
-
-        <div className="mt-4 rounded-2xl border border-[#1D72B8]/20 bg-[#E8F4FF] p-4">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Confidential by default
-          </p>
-          <p className="mt-2 text-sm font-bold leading-6 text-slate-700">
-            You control where records live: private device storage, Sentinel company workspace sync, or external export destinations such as Google Drive.
-          </p>
-          <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
-            Google Drive backup/export is planned as a user-controlled destination. It should be treated as export/backup first, not automatic two-way sync.
-          </p>
-        </div>
-
-        <div className="mt-4 grid gap-3">
-          {storageModes.map(([id, label, description]) => {
-            const cloudLocked = id === "cloud" && !hasPlanEntitlement("cloudReports", planCode);
-
-            return (
-              <button
-                key={id}
-                type="button"
-                disabled={cloudLocked}
-                onClick={() => {
-                  if (cloudLocked) return;
-                  setStorageMode(id);
-                }}
-                className={`flex w-full items-start justify-between gap-4 rounded-xl border px-4 py-4 text-left ${
-                  storageMode === id ? "border-[#1D72B8] bg-[#E8F4FF]" : "border-slate-200 bg-white"
-                } ${cloudLocked ? "cursor-not-allowed opacity-55" : ""}`}
-              >
-                <span>
-                  <span className="block text-sm font-black text-slate-900">
-                    {label}{cloudLocked ? " — Company only" : ""}
-                  </span>
-                  <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
-                    {cloudLocked ? "Company Workspace Sync is available on the Company plan for shared reports, analytics, assignments, and audit visibility." : description}
-                  </span>
-                  {id === "local" && (
-                    <span className="mt-2 block text-xs font-black uppercase tracking-wide text-emerald-700">
-                      Data leaves device only when you export or sync.
-                    </span>
-                  )}
-                </span>
-                <span className="shrink-0 text-sm font-black text-[#1D72B8]">
-                  {storageMode === id ? "Selected" : ""}
-                </span>
-              </button>
-            );
-          })}
-
-          <div className="rounded-xl border border-dashed border-slate-300 bg-white/70 px-4 py-4">
-            <div className="flex items-start justify-between gap-4">
-              <span>
-                <span className="block text-sm font-black text-slate-900">
-                  Google Drive Backup / External Export — Planned
-                </span>
-                <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
-                  Export reports, JSON records, and evidence packages to a Google Drive folder or external archive controlled by the user or organization.
-                </span>
-              </span>
-              <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-500">
-                Planned
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-4 grid gap-2 text-xs font-black text-slate-600 sm:grid-cols-3">
-          <div className="rounded-xl bg-white px-3 py-3">
-            Encrypted local storage: Enabled
-          </div>
-          <div className="rounded-xl bg-white px-3 py-3">
-            Cloud sync: {storageMode === "cloud" ? "On" : "Off unless selected"}
-          </div>
-          <div className="rounded-xl bg-white px-3 py-3">
-            Data control: User selected
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-slate-300 pt-6">
-        <h2 className="text-xl font-black text-slate-900">Local Security</h2>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          Choose whether encrypted local reports open immediately or require an additional unlock step.
-        </p>
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <h2 className="text-xl font-black text-slate-900">Security</h2>
+        <p className="mt-1 text-sm font-semibold text-slate-500">Choose local unlock and auto-lock preferences.</p>
 
         <button
           type="button"
           onClick={() => setRequirePinUnlock(!requirePinUnlock)}
-          className="mt-4 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left"
+          className="mt-4 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-left"
         >
           <span className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${requirePinUnlock ? "bg-[#1D72B8]" : "bg-white"}`}>
             {requirePinUnlock ? "✓" : ""}
           </span>
           <span>
             <span className="block text-sm font-black text-slate-900">Require PIN to open local reports</span>
-            <span className="block text-xs font-semibold text-slate-500">
-              Standard Mode keeps access fast. Protected Mode adds another unlock step for sensitive work.
-            </span>
+            <span className="block text-xs font-semibold text-slate-500">Adds another unlock step for sensitive work.</span>
           </span>
         </button>
 
