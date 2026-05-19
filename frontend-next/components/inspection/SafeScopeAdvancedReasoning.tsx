@@ -9,6 +9,7 @@ import SafeScopeCriticalAlerts from "@/components/inspection/SafeScopeCriticalAl
 import SafeScopeCrossDomainSection from "@/components/inspection/SafeScopeCrossDomainSection";
 import SafeScopeDecisionExplainabilitySection from "@/components/inspection/SafeScopeDecisionExplainabilitySection";
 import SafeScopeEnergyTransferSection from "@/components/inspection/SafeScopeEnergyTransferSection";
+import SafeScopeEvidenceQuality from "@/components/inspection/SafeScopeEvidenceQuality";
 import SafeScopeReliabilitySection from "@/components/inspection/SafeScopeReliabilitySection";
 import SafeScopeTrendIntelligence from "@/components/inspection/SafeScopeTrendIntelligence";
 
@@ -25,26 +26,7 @@ export default function SafeScopeAdvancedReasoning({
 
       <SafeScopeTrendIntelligence safeScopeResult={safeScopeResult} />
 
-      {safeScopeResult.evidenceQuality && (
-        <SafeScopeDrawer
-          title="Evidence Quality"
-          summary={`Defensibility score: ${safeScopeResult.evidenceQuality.evidenceQualityScore}/100`}
-        >
-          <p className="text-sm font-semibold leading-6 text-slate-600">
-            {safeScopeResult.evidenceQuality.defensibilityStatement}
-          </p>
-
-          {!!safeScopeResult.evidenceQuality.gaps?.length && (
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">
-              {safeScopeResult.evidenceQuality.gaps
-                .slice(0, 4)
-                .map((gap: string) => (
-                  <li key={gap}>{gap}</li>
-                ))}
-            </ul>
-          )}
-        </SafeScopeDrawer>
-      )}
+      <SafeScopeEvidenceQuality safeScopeResult={safeScopeResult} />
 
       {safeScopeResult.standardsReasoning?.topDefensible?.length && (
         <div className="mt-4 border-t border-slate-200 pt-3">
