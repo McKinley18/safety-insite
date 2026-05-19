@@ -29,6 +29,7 @@ import SafeScopeDecisionExplainabilitySection from "@/components/inspection/Safe
 import SafeScopeEnergyTransferSection from "@/components/inspection/SafeScopeEnergyTransferSection";
 import SafeScopeBarrierSection from "@/components/inspection/SafeScopeBarrierSection";
 import SafeScopeActionEffectivenessSection from "@/components/inspection/SafeScopeActionEffectivenessSection";
+import SafeScopeControlIntelligenceSection from "@/components/inspection/SafeScopeControlIntelligenceSection";
 import {
   hazardCategoryOptions,
   inspectionSteps as steps,
@@ -1382,55 +1383,9 @@ export default function InspectionPage() {
                   safeScopeResult={safeScopeResult}
                 />
 
-                {safeScopeResult.controlIntelligence && (
-                  <div className="mt-4 border-t border-slate-200 pt-3">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-                          Control Intelligence
-                        </p>
-                        <h4 className="mt-1 text-sm font-black text-slate-900">
-                          Strongest control: {safeScopeResult.controlIntelligence.strongestControl?.replaceAll("_", " ") || "general"}
-                        </h4>
-                      </div>
-
-                      {safeScopeResult.controlIntelligence.verificationNeeded && (
-                        <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-black text-amber-700">
-                          Verify
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-                      {safeScopeResult.controlIntelligence.hierarchyAssessment}
-                    </p>
-
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {(safeScopeResult.controlIntelligence.controlTypes || []).map((type: string) => (
-                        <span
-                          key={type}
-                          className="rounded-full bg-[#E8F4FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]"
-                        >
-                          {type.replaceAll("_", " ")}
-                        </span>
-                      ))}
-                    </div>
-
-                    {!!safeScopeResult.controlIntelligence.controlGaps?.length && (
-                      <ul className="mt-3 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">
-                        {safeScopeResult.controlIntelligence.controlGaps
-                          .slice(0, 3)
-                          .map((gap: string) => (
-                            <li key={gap}>{gap}</li>
-                          ))}
-                      </ul>
-                    )}
-
-                    <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
-                      {safeScopeResult.controlIntelligence.verificationRecommendation}
-                    </p>
-                  </div>
-                )}
+                <SafeScopeControlIntelligenceSection
+                  safeScopeResult={safeScopeResult}
+                />
 
                 {safeScopeResult.operationalReasoning && (
                   <div className="mt-4 border-t border-slate-200 pt-3">
