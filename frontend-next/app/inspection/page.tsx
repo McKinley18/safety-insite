@@ -25,10 +25,8 @@ import {
   isQuickHazardCapture,
   loadInspectionContext,
 } from "@/lib/inspection/inspectionContext";
-import {
-  buildFinding,
-  generateInspectionReportId,
-} from "@/lib/inspection/findingBuilder";
+import { buildFinding } from "@/lib/inspection/findingBuilder";
+import { buildInspectionReport } from "@/lib/inspection/reportBuilder";
 import { validateInspectionReport } from "@/lib/inspection/reportValidation";
 
 
@@ -649,24 +647,14 @@ export default function InspectionPage() {
 
     const coverPage = await getCoverPage<any>() || {};
 
-    const report = {
-      id: generateInspectionReportId(),
-      createdAt: new Date().toISOString(),
-      title: coverPage.organizationName
-        ? `${coverPage.organizationName} Inspection Report`
-        : "Inspection Report",
-      organizationName: coverPage.organizationName || "",
-      siteLocation: coverPage.siteLocation || "",
-      inspectionDate: coverPage.inspectionDate || "",
-      leadInspector: coverPage.leadInspector || "",
-      additionalInspectors: coverPage.additionalInspectors || [],
-      isConfidential: !!coverPage.isConfidential,
+    const report = buildInspectionReport({
+      coverPage,
+      findings: finalizedFindings,
       includeStandardsInReport,
       includeActionsInReport,
       includePhotosInReport,
       includeSafeScopeNotesInReport,
-      findings: finalizedFindings,
-    };
+    });
 
     const storageMode =
       (window.localStorage.getItem("sentinel_report_storage_mode") as
