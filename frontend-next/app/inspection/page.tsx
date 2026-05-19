@@ -1066,8 +1066,6 @@ export default function InspectionPage() {
 
                 {safeScopeCompactDetailsOpen && (
                   <div className="mt-3">
-                {safeScopeCompactDetailsOpen && (
-                  <div className="mt-3">
                 {!!safeScopeResult.confidenceIntelligence?.missingCriticalInformation?.length && (
                   <div className="mt-4 border-t border-slate-200 pt-3">
                     <p className="text-xs font-black uppercase tracking-wide text-amber-700">
@@ -1856,10 +1854,6 @@ export default function InspectionPage() {
 
                   </>
                 )}
-
-                  </div>
-                )}
-
                   </div>
                 )}
 
