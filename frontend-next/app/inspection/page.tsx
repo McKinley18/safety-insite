@@ -27,6 +27,7 @@ import SafeScopeCrossDomainSection from "@/components/inspection/SafeScopeCrossD
 import SafeScopeReliabilitySection from "@/components/inspection/SafeScopeReliabilitySection";
 import SafeScopeDecisionExplainabilitySection from "@/components/inspection/SafeScopeDecisionExplainabilitySection";
 import SafeScopeEnergyTransferSection from "@/components/inspection/SafeScopeEnergyTransferSection";
+import SafeScopeBarrierSection from "@/components/inspection/SafeScopeBarrierSection";
 import {
   hazardCategoryOptions,
   inspectionSteps as steps,
@@ -1374,45 +1375,7 @@ export default function InspectionPage() {
 
                 <SafeScopeEnergyTransferSection safeScopeResult={safeScopeResult} />
 
-                {safeScopeResult.barrierIntelligence && (
-                  <SafeScopeDrawer
-                    title="Barrier Intelligence"
-                    summary={`Barrier adequacy: ${safeScopeResult.barrierIntelligence.barrierAdequacy?.replaceAll("_", " ") || "unknown"}`}
-                  >
-                    <p className="text-sm font-semibold leading-6 text-slate-600">
-                      {safeScopeResult.barrierIntelligence.barrierReasoning}
-                    </p>
-
-                    {!!safeScopeResult.barrierIntelligence.barrierTypes?.length && (
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {safeScopeResult.barrierIntelligence.barrierTypes.map((barrier: string) => (
-                          <span
-                            key={barrier}
-                            className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600"
-                          >
-                            {barrier}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {!!safeScopeResult.barrierIntelligence.failedOrMissingBarriers?.length && (
-                      <ul className="mt-3 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">
-                        {safeScopeResult.barrierIntelligence.failedOrMissingBarriers
-                          .slice(0, 4)
-                          .map((barrier: string) => (
-                            <li key={barrier}>{barrier}</li>
-                          ))}
-                      </ul>
-                    )}
-
-                    {!!safeScopeResult.barrierIntelligence.verificationNeeds?.length && (
-                      <p className="mt-3 rounded-xl bg-slate-50 px-3 py-2 text-sm font-semibold leading-6 text-slate-600">
-                        {safeScopeResult.barrierIntelligence.verificationNeeds[0]}
-                      </p>
-                    )}
-                  </SafeScopeDrawer>
-                )}
+                <SafeScopeBarrierSection safeScopeResult={safeScopeResult} />
 
                 {safeScopeResult.actionEffectiveness && (
                   <div className="mt-4 border-t border-slate-200 pt-3">
