@@ -15,7 +15,8 @@ export default function SafeScopeCompactReasoning({
 }: SafeScopeCompactReasoningProps) {
   return (
     <>
-          {!!safeScopeResult.confidenceIntelligence?.missingCriticalInformation?.length && (
+      {!!safeScopeResult.confidenceIntelligence?.missingCriticalInformation
+        ?.length && (
         <div className="mt-4 border-t border-slate-200 pt-3">
           <p className="text-xs font-black uppercase tracking-wide text-amber-700">
             Missing information
@@ -27,7 +28,7 @@ export default function SafeScopeCompactReasoning({
           </p>
         </div>
       )}
-      
+
       {!!safeScopeResult.confidenceIntelligence?.reviewTriggers?.length && (
         <div className="mt-4 border-t border-slate-200 pt-3">
           <p className="text-xs font-black uppercase tracking-wide text-red-700">
@@ -42,20 +43,22 @@ export default function SafeScopeCompactReasoning({
           </ul>
         </div>
       )}
-      
+
       <div className="mt-4 border-t border-slate-200 pt-3">
         <button
           type="button"
           onClick={() => setSafeScopeAdvancedOpen((open) => !open)}
           className="text-sm font-black text-[#1D72B8] hover:underline"
         >
-          {safeScopeAdvancedOpen ? "Hide detailed SafeScope reasoning" : "Show detailed SafeScope reasoning"}
+          {safeScopeAdvancedOpen
+            ? "Hide detailed SafeScope reasoning"
+            : "Show detailed SafeScope reasoning"}
         </button>
         <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-          Expand for domain intelligence, traceability, evidence quality, reasoning layers, and reliability checks.
+          Expand for domain intelligence, traceability, evidence quality,
+          reasoning layers, and reliability checks.
         </p>
       </div>
-      
     </>
   );
 }
