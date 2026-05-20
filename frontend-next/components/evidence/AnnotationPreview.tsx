@@ -10,7 +10,6 @@ export type AnnotationShape = {
   color: string;
 };
 
-
 function getArrowHeadPoints(x1: number, y1: number, x2: number, y2: number) {
   const angle = Math.atan2(y2 - y1, x2 - x1);
   const size = 0.045;
@@ -33,9 +32,17 @@ export default function AnnotationPreview({
 }) {
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-200">
-      <img src={photoUrl} alt="Evidence" className="h-full w-full object-contain" />
+      <img
+        src={photoUrl}
+        alt="Evidence"
+        className="h-full w-full object-cover"
+      />
 
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1 1" preserveAspectRatio="none">
+      <svg
+        className="absolute inset-0 h-full w-full"
+        viewBox="0 0 1 1"
+        preserveAspectRatio="none"
+      >
         {annotations.map((shape, index) => {
           const color = shape.color || "#DC2626";
 
@@ -88,7 +95,15 @@ export default function AnnotationPreview({
 
           return (
             <g key={index}>
-              <line x1={shape.x} y1={shape.y} x2={x2} y2={y2} stroke={color} strokeWidth="0.012" strokeLinecap="round" />
+              <line
+                x1={shape.x}
+                y1={shape.y}
+                x2={x2}
+                y2={y2}
+                stroke={color}
+                strokeWidth="0.012"
+                strokeLinecap="round"
+              />
               <polygon
                 points={getArrowHeadPoints(shape.x, shape.y, x2, y2)}
                 fill={color}

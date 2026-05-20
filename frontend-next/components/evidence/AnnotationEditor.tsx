@@ -14,8 +14,7 @@ const COLORS = [
   "#000000",
 ];
 
-const clamp = (v: number, min = 0, max = 1) =>
-  Math.max(min, Math.min(max, v));
+const clamp = (v: number, min = 0, max = 1) => Math.max(min, Math.min(max, v));
 
 function getArrowHeadPoints(x1: number, y1: number, x2: number, y2: number) {
   const angle = Math.atan2(y2 - y1, x2 - x1);
@@ -29,7 +28,6 @@ function getArrowHeadPoints(x1: number, y1: number, x2: number, y2: number) {
 
   return `${x2},${y2} ${leftX},${leftY} ${rightX},${rightY}`;
 }
-
 
 type DrawShape = AnnotationShape & {
   points?: { x: number; y: number }[];
@@ -50,11 +48,14 @@ export default function AnnotationEditor({
   onCancel: () => void;
   expanded?: boolean;
 }) {
-  const [localAnnotations, setLocalAnnotations] = useState<DrawShape[]>(annotations || []);
+  const [localAnnotations, setLocalAnnotations] = useState<DrawShape[]>(
+    annotations || [],
+  );
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedColor, setSelectedColor] = useState("#DC2626");
   const [colorOpen, setColorOpen] = useState(false);
   const [drawMode, setDrawMode] = useState(false);
+  const [zoom, setZoom] = useState(1);
 
   const dragRef = useRef<{
     mode: DragMode;
@@ -64,9 +65,12 @@ export default function AnnotationEditor({
     original: DrawShape | null;
   }>({ mode: null, index: null, startX: 0, startY: 0, original: null });
 
-  function updateShape(index: number, updater: (shape: DrawShape) => DrawShape) {
+  function updateShape(
+    index: number,
+    updater: (shape: DrawShape) => DrawShape,
+  ) {
     setLocalAnnotations((current) =>
-      current.map((shape, i) => (i === index ? updater(shape) : shape))
+      current.map((shape, i) => (i === index ? updater(shape) : shape)),
     );
   }
 
@@ -83,10 +87,30 @@ export default function AnnotationEditor({
 
     const next: DrawShape =
       type === "rect"
-        ? { type, x: 0.18 + offset, y: 0.18 + offset, width: 0.36, height: 0.22, color: selectedColor }
+        ? {
+            type,
+            x: 0.18 + offset,
+            y: 0.18 + offset,
+            width: 0.36,
+            height: 0.22,
+            color: selectedColor,
+          }
         : type === "circle"
-        ? { type, x: 0.42 + offset, y: 0.36 + offset, radius: 0.12, color: selectedColor }
-        : { type, x: 0.2 + offset, y: 0.35 + offset, x2: 0.68 + offset, y2: 0.35 + offset, color: selectedColor };
+          ? {
+              type,
+              x: 0.42 + offset,
+              y: 0.36 + offset,
+              radius: 0.12,
+              color: selectedColor,
+            }
+          : {
+              type,
+              x: 0.2 + offset,
+              y: 0.35 + offset,
+              x2: 0.68 + offset,
+              y2: 0.35 + offset,
+              color: selectedColor,
+            };
 
     setDrawMode(false);
     setLocalAnnotations((current) => [...current, next]);
@@ -199,7 +223,13 @@ export default function AnnotationEditor({
   }
 
   function stopDrag() {
-    dragRef.current = { mode: null, index: null, startX: 0, startY: 0, original: null };
+    dragRef.current = {
+      mode: null,
+      index: null,
+      startX: 0,
+      startY: 0,
+      original: null,
+    };
   }
 
   function undoLast() {
@@ -207,16 +237,42 @@ export default function AnnotationEditor({
     setSelectedIndex(null);
   }
 
+  function zoomOut() {
+    setZoom((current) => Math.max(1, Number((current - 0.25).toFixed(2))));
+  }
+
+  function zoomIn() {
+    setZoom((current) => Math.min(3, Number((current + 0.25).toFixed(2))));
+  }
+
+  function resetZoom() {
+    setZoom(1);
+  }
+
   return (
-    <div className={`rounded-2xl border-2 border-[#1D72B8] bg-white p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}>
+    <div
+      className={`rounded-2xl border-2 border-[#1D72B8] bg-white p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}
+    >
       <div className="mb-3 flex flex-wrap items-center gap-2">
-        <button onClick={() => addShape("rect")} className="flex h-8 w-8 items-center justify-center text-slate-700" aria-label="Add square">
+        <button
+          onClick={() => addShape("rect")}
+          className="flex h-8 w-8 items-center justify-center text-slate-700"
+          aria-label="Add square"
+        >
           <span className="block h-4 w-4 border-2 border-current" />
         </button>
-        <button onClick={() => addShape("circle")} className="flex h-8 w-8 items-center justify-center text-slate-700" aria-label="Add circle">
+        <button
+          onClick={() => addShape("circle")}
+          className="flex h-8 w-8 items-center justify-center text-slate-700"
+          aria-label="Add circle"
+        >
           <span className="block h-4 w-4 rounded-full border-2 border-current" />
         </button>
-        <button onClick={() => addShape("arrow")} className="flex h-8 w-8 items-center justify-center text-slate-700" aria-label="Add arrow">
+        <button
+          onClick={() => addShape("arrow")}
+          className="flex h-8 w-8 items-center justify-center text-slate-700"
+          aria-label="Add arrow"
+        >
           <span className="text-xl leading-none">↗</span>
         </button>
         <button
@@ -260,92 +316,206 @@ export default function AnnotationEditor({
           )}
         </div>
 
-        <button onClick={undoLast} className="ml-auto flex h-9 items-center justify-center rounded-xl bg-red-50 px-3 text-xs font-black text-red-700">
+        <div className="ml-auto flex items-center gap-1 rounded-xl bg-slate-100 p-1">
+          <button
+            type="button"
+            onClick={zoomOut}
+            className="rounded-lg px-2 py-1 text-xs font-black text-slate-700 disabled:opacity-40"
+            disabled={zoom <= 1}
+          >
+            −
+          </button>
+          <button
+            type="button"
+            onClick={resetZoom}
+            className="rounded-lg bg-white px-2 py-1 text-[11px] font-black text-slate-700 shadow-sm"
+          >
+            {Math.round(zoom * 100)}%
+          </button>
+          <button
+            type="button"
+            onClick={zoomIn}
+            className="rounded-lg px-2 py-1 text-xs font-black text-slate-700 disabled:opacity-40"
+            disabled={zoom >= 3}
+          >
+            +
+          </button>
+        </div>
+
+        <button
+          type="button"
+          onClick={undoLast}
+          className="flex h-9 items-center justify-center rounded-xl bg-red-50 px-3 text-xs font-black text-red-700"
+        >
           Undo
         </button>
       </div>
 
       <div className={expanded ? "mx-auto max-w-5xl" : ""}>
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-200">
-          <img src={photoUrl} alt="Evidence" className="h-full w-full object-contain" />
-
-          <svg
-            className="absolute inset-0 h-full w-full touch-none"
-            viewBox="0 0 1 1"
-            preserveAspectRatio="none"
-            onPointerDown={beginDraw}
-            onPointerMove={handlePointerMove}
-            onPointerUp={stopDrag}
-            onPointerLeave={stopDrag}
+        <div className="overflow-auto rounded-xl bg-slate-200">
+          <div
+            className="relative aspect-[4/3] bg-slate-200"
+            style={{
+              width: `${zoom * 100}%`,
+              minWidth: "100%",
+            }}
           >
-            {localAnnotations.map((shape, index) => {
-              const selected = selectedIndex === index;
-              const color = shape.color || "#DC2626";
+            <img
+              src={photoUrl}
+              alt="Evidence"
+              className="h-full w-full object-contain"
+            />
 
-              if (shape.type === "draw") {
-                return (
-                  <polyline
-                    key={index}
-                    points={(shape.points || []).map((p) => `${p.x},${p.y}`).join(" ")}
-                    fill="none"
-                    stroke={color}
-                    strokeWidth="0.01"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                );
-              }
+            <svg
+              className="absolute inset-0 h-full w-full touch-none"
+              viewBox="0 0 1 1"
+              preserveAspectRatio="none"
+              onPointerDown={beginDraw}
+              onPointerMove={handlePointerMove}
+              onPointerUp={stopDrag}
+              onPointerLeave={stopDrag}
+            >
+              {localAnnotations.map((shape, index) => {
+                const selected = selectedIndex === index;
+                const color = shape.color || "#DC2626";
 
-              if (shape.type === "rect") {
-                const width = shape.width || 0.32;
-                const height = shape.height || 0.24;
+                if (shape.type === "draw") {
+                  return (
+                    <polyline
+                      key={index}
+                      points={(shape.points || [])
+                        .map((p) => `${p.x},${p.y}`)
+                        .join(" ")}
+                      fill="none"
+                      stroke={color}
+                      strokeWidth="0.01"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  );
+                }
+
+                if (shape.type === "rect") {
+                  const width = shape.width || 0.32;
+                  const height = shape.height || 0.24;
+
+                  return (
+                    <g key={index}>
+                      <rect
+                        x={shape.x}
+                        y={shape.y}
+                        width={width}
+                        height={height}
+                        stroke={color}
+                        strokeWidth="0.012"
+                        fill="transparent"
+                        onPointerDown={(e) => startDrag(index, "move", e)}
+                      />
+                      {selected && (
+                        <circle
+                          cx={shape.x + width}
+                          cy={shape.y + height}
+                          r="0.025"
+                          fill={color}
+                          onPointerDown={(e) => startDrag(index, "resize", e)}
+                        />
+                      )}
+                    </g>
+                  );
+                }
+
+                if (shape.type === "circle") {
+                  const radius = shape.radius || 0.12;
+
+                  return (
+                    <g key={index}>
+                      <circle
+                        cx={shape.x}
+                        cy={shape.y}
+                        r={radius}
+                        stroke={color}
+                        strokeWidth="0.012"
+                        fill="transparent"
+                        onPointerDown={(e) => startDrag(index, "move", e)}
+                      />
+                      {selected && (
+                        <circle
+                          cx={shape.x + radius}
+                          cy={shape.y}
+                          r="0.025"
+                          fill={color}
+                          onPointerDown={(e) => startDrag(index, "resize", e)}
+                        />
+                      )}
+                    </g>
+                  );
+                }
+
+                const x2 = shape.x2 ?? shape.x + 0.34;
+                const y2 = shape.y2 ?? shape.y;
 
                 return (
                   <g key={index}>
-                    <rect x={shape.x} y={shape.y} width={width} height={height} stroke={color} strokeWidth="0.012" fill="transparent" onPointerDown={(e) => startDrag(index, "move", e)} />
-                    {selected && <circle cx={shape.x + width} cy={shape.y + height} r="0.025" fill={color} onPointerDown={(e) => startDrag(index, "resize", e)} />}
+                    <line
+                      x1={shape.x}
+                      y1={shape.y}
+                      x2={x2}
+                      y2={y2}
+                      stroke={color}
+                      strokeWidth="0.012"
+                      strokeLinecap="round"
+                      onPointerDown={(e) => startDrag(index, "move", e)}
+                    />
+                    <polygon
+                      points={getArrowHeadPoints(shape.x, shape.y, x2, y2)}
+                      fill={color}
+                      onPointerDown={(e) => startDrag(index, "arrowEnd", e)}
+                    />
+                    {selected && (
+                      <>
+                        <circle
+                          cx={shape.x}
+                          cy={shape.y}
+                          r="0.025"
+                          fill={color}
+                          onPointerDown={(e) =>
+                            startDrag(index, "arrowStart", e)
+                          }
+                        />
+                        <circle
+                          cx={x2}
+                          cy={y2}
+                          r="0.025"
+                          fill={color}
+                          onPointerDown={(e) => startDrag(index, "arrowEnd", e)}
+                        />
+                      </>
+                    )}
                   </g>
                 );
-              }
-
-              if (shape.type === "circle") {
-                const radius = shape.radius || 0.12;
-
-                return (
-                  <g key={index}>
-                    <circle cx={shape.x} cy={shape.y} r={radius} stroke={color} strokeWidth="0.012" fill="transparent" onPointerDown={(e) => startDrag(index, "move", e)} />
-                    {selected && <circle cx={shape.x + radius} cy={shape.y} r="0.025" fill={color} onPointerDown={(e) => startDrag(index, "resize", e)} />}
-                  </g>
-                );
-              }
-
-              const x2 = shape.x2 ?? shape.x + 0.34;
-              const y2 = shape.y2 ?? shape.y;
-
-              return (
-                <g key={index}>
-                  <line x1={shape.x} y1={shape.y} x2={x2} y2={y2} stroke={color} strokeWidth="0.012" strokeLinecap="round" onPointerDown={(e) => startDrag(index, "move", e)} />
-                  <polygon points={getArrowHeadPoints(shape.x, shape.y, x2, y2)} fill={color} onPointerDown={(e) => startDrag(index, "arrowEnd", e)} />
-                  {selected && (
-                    <>
-                      <circle cx={shape.x} cy={shape.y} r="0.025" fill={color} onPointerDown={(e) => startDrag(index, "arrowStart", e)} />
-                      <circle cx={x2} cy={y2} r="0.025" fill={color} onPointerDown={(e) => startDrag(index, "arrowEnd", e)} />
-                    </>
-                  )}
-                </g>
-              );
-            })}
-          </svg>
+              })}
+            </svg>
+          </div>
         </div>
       </div>
 
       <p className="mt-2 text-xs font-bold text-slate-500">
-        Select a shape to move, resize, or recolor. Use Draw for freehand marking.
+        Select a shape to move, resize, or recolor. Zoom in for precise marking.
       </p>
 
       <div className="mt-3 flex justify-end gap-2">
-        <button onClick={onCancel} className="rounded-full bg-slate-200 px-4 py-2 text-xs font-black text-slate-700">Cancel</button>
-        <button onClick={() => onSave(localAnnotations)} className="rounded-full bg-[#1D72B8] px-4 py-2 text-xs font-black text-white">Save</button>
+        <button
+          onClick={onCancel}
+          className="rounded-full bg-slate-200 px-4 py-2 text-xs font-black text-slate-700"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={() => onSave(localAnnotations)}
+          className="rounded-full bg-[#1D72B8] px-4 py-2 text-xs font-black text-white"
+        >
+          Save
+        </button>
       </div>
     </div>
   );
