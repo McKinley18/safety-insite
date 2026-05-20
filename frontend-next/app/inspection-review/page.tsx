@@ -94,6 +94,7 @@ export default function InspectionReviewPage() {
         reportPackageMode: report.reportPackageMode || "local_first",
         reportId: report.id || "",
         findingCount: report.findings?.length || findings.length,
+        additionalInspectors: report.additionalInspectors || [],
       },
       findings,
     });

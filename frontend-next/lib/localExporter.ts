@@ -147,9 +147,16 @@ export const localExporter = {
       align: "center",
     });
 
+    const inspectorLines = [
+      adminInfo?.inspector || "N/A",
+      ...(Array.isArray(adminInfo?.additionalInspectors)
+        ? adminInfo.additionalInspectors.filter(Boolean)
+        : []),
+    ];
+
     const reportDetailLines = [
       adminInfo?.date || "N/A",
-      adminInfo?.inspector || "N/A",
+      ...inspectorLines,
       adminInfo?.reportId || "N/A",
       `${adminInfo?.findingCount || findings.length || 0} finding(s)`,
     ];
