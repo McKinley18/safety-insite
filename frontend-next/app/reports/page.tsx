@@ -21,7 +21,6 @@ type Report = {
   storageSource?: "local" | "cloud" | "seed";
 };
 
-
 function getRiskLabel(report: Report) {
   const scores = report.findings?.map((f) => Number(f.riskScore || 0)) || [];
   const max = Math.max(0, ...scores);
@@ -59,10 +58,17 @@ function getStorageClass(source?: Report["storageSource"]) {
 
 function getReportIntegrity(report: Report) {
   const findings = report.findings || [];
-  const evidenceCount = findings.flatMap((finding: any) => finding.photos || []).length;
-  const safeScopeCount = findings.filter((finding: any) => finding.safeScopeResult).length;
-  const actionCount = findings.flatMap((finding: any) =>
-    finding.correctiveActions || finding.safeScopeResult?.generatedActions || []
+  const evidenceCount = findings.flatMap(
+    (finding: any) => finding.photos || [],
+  ).length;
+  const safeScopeCount = findings.filter(
+    (finding: any) => finding.safeScopeResult,
+  ).length;
+  const actionCount = findings.flatMap(
+    (finding: any) =>
+      finding.correctiveActions ||
+      finding.safeScopeResult?.generatedActions ||
+      [],
   ).length;
 
   return {
@@ -101,7 +107,10 @@ export default function ReportsPage() {
 
       const merged: Report[] = [...localReports];
 
-      if (latestReport && !merged.some((report) => report.id === latestReport.id)) {
+      if (
+        latestReport &&
+        !merged.some((report) => report.id === latestReport.id)
+      ) {
         merged.unshift({
           ...latestReport,
           storageSource: latestReport.storageSource || "local",
@@ -122,7 +131,7 @@ export default function ReportsPage() {
   const sortedReports = useMemo(() => {
     return [...reports].sort(
       (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
   }, [reports]);
 
@@ -144,7 +153,7 @@ export default function ReportsPage() {
             title: editTitle.trim() || "Inspection Report",
             location: editLocation.trim() || "Field Inspection",
           }
-        : report
+        : report,
     );
 
     persist(nextReports);
@@ -154,7 +163,9 @@ export default function ReportsPage() {
   }
 
   function deleteReport(reportId: string) {
-    const confirmed = window.confirm("Delete this report? This cannot be undone.");
+    const confirmed = window.confirm(
+      "Delete this report? This cannot be undone.",
+    );
     if (!confirmed) return;
 
     const nextReports = reports.filter((report) => report.id !== reportId);
@@ -219,8 +230,9 @@ export default function ReportsPage() {
         date:
           coverPage.inspectionDate ||
           new Date(report.createdAt).toLocaleDateString(),
-        isConfidential:
-          Boolean(coverPage.isConfidential || (report as any).confidential),
+        isConfidential: Boolean(
+          coverPage.isConfidential || (report as any).confidential,
+        ),
       },
       findings: normalizedFindings,
     });
@@ -233,29 +245,11 @@ export default function ReportsPage() {
         description="Defensible inspection records, evidence packages, SafeScope reasoning, and export-ready operational reports."
       />
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-          Report Integrity
-        </p>
-        <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
-          Reports are stored in the Local Vault unless workspace sync is selected. Exported records remain portable for audits, investigations, client delivery, or internal retention.
-        </p>
-
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          <div className="rounded-xl bg-slate-50 px-3 py-3">
-            <p className="text-sm font-black text-slate-900">Local-first</p>
-            <p className="mt-1 text-xs font-semibold text-slate-500">Data stays on device unless exported or synced.</p>
-          </div>
-          <div className="rounded-xl bg-slate-50 px-3 py-3">
-            <p className="text-sm font-black text-slate-900">Evidence-centered</p>
-            <p className="mt-1 text-xs font-semibold text-slate-500">Photos, notes, findings, and actions stay tied to the record.</p>
-          </div>
-          <div className="rounded-xl bg-slate-50 px-3 py-3">
-            <p className="text-sm font-black text-slate-900">Export-ready</p>
-            <p className="mt-1 text-xs font-semibold text-slate-500">PDF exports support retention and review workflows.</p>
-          </div>
-        </div>
-      </section>
+      <p className="-mt-2 text-xs font-semibold italic leading-5 text-slate-500">
+        * Reports follow your selected workspace storage and export settings.
+        Evidence, findings, standards, and corrective actions remain tied to the
+        inspection record.
+      </p>
 
       {sortedReports.length === 0 ? (
         <EmptyState
@@ -266,14 +260,24 @@ export default function ReportsPage() {
         <div className="border-y border-slate-200">
           {sortedReports.map((report) => {
             const risk = getRiskLabel(report);
-            const firstPhoto = report.findings?.flatMap((f) => f.photos || [])?.[0];
+            const firstPhoto = report.findings?.flatMap(
+              (f) => f.photos || [],
+            )?.[0];
             const integrity = getReportIntegrity(report);
 
             return (
               <OperationalRow
                 key={report.id}
-                title={editingReportId === report.id ? "Editing Report" : report.title || "Inspection Report"}
-                subtitle={editingReportId === report.id ? "Update report title and location." : report.location || "Field Inspection"}
+                title={
+                  editingReportId === report.id
+                    ? "Editing Report"
+                    : report.title || "Inspection Report"
+                }
+                subtitle={
+                  editingReportId === report.id
+                    ? "Update report title and location."
+                    : report.location || "Field Inspection"
+                }
                 metadata={[
                   `${report.findings?.length || 0} Findings`,
                   `${integrity.evidenceCount} Evidence Item(s)`,
@@ -345,10 +349,12 @@ export default function ReportsPage() {
                     <div>
                       <div className="grid gap-2 text-[10px] font-black uppercase tracking-wide text-slate-500 sm:grid-cols-3">
                         <span>
-                          Evidence {integrity.hasEvidence ? "Attached" : "Pending"}
+                          Evidence{" "}
+                          {integrity.hasEvidence ? "Attached" : "Pending"}
                         </span>
                         <span>
-                          SafeScope {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
+                          SafeScope{" "}
+                          {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
                         </span>
                         <span>
                           Actions {integrity.hasActions ? "Linked" : "Pending"}
@@ -356,7 +362,9 @@ export default function ReportsPage() {
                       </div>
 
                       <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">
-                        Evidence, findings, timestamps, and corrective actions remain connected to this inspection record for export and review workflows.
+                        Evidence, findings, timestamps, and corrective actions
+                        remain connected to this inspection record for export
+                        and review workflows.
                       </p>
 
                       <p className="mt-2 break-all text-[10px] font-semibold text-slate-400">
