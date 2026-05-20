@@ -115,7 +115,7 @@ export const localExporter = {
       }
     }
 
-    const titleY = adminInfo?.companyLogo ? 105 : 82;
+    const titleY = 105;
 
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(30);
@@ -147,26 +147,21 @@ export const localExporter = {
       align: "center",
     });
 
-    autoTable(doc, {
-      startY: titleY + 67,
-      margin: { left: 42, right: 42 },
-      theme: "plain",
-      styles: {
-        font: "helvetica",
-        fontSize: 10,
-        cellPadding: 2.5,
-        textColor: [51, 65, 85],
-      },
-      columnStyles: {
-        0: { fontStyle: "bold", textColor: [15, 23, 42], cellWidth: 42 },
-        1: { cellWidth: 80 },
-      },
-      body: [
-        ["Inspection Date", adminInfo?.date || "N/A"],
-        ["Lead Inspector", adminInfo?.inspector || "N/A"],
-        ["Report ID", adminInfo?.reportId || "N/A"],
-        ["Findings", String(adminInfo?.findingCount || findings.length || 0)],
-      ],
+    const reportDetailLines = [
+      adminInfo?.date || "N/A",
+      adminInfo?.inspector || "N/A",
+      adminInfo?.reportId || "N/A",
+      `${adminInfo?.findingCount || findings.length || 0} finding(s)`,
+    ];
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.setTextColor(71, 85, 105);
+
+    reportDetailLines.forEach((line, index) => {
+      doc.text(line, centerX, titleY + 70 + index * 8, {
+        align: "center",
+      });
     });
 
     const packageLabel =
