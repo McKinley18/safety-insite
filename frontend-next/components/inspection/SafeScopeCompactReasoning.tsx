@@ -17,7 +17,7 @@ export default function SafeScopeCompactReasoning({
     <>
       {!!safeScopeResult.confidenceIntelligence?.missingCriticalInformation
         ?.length && (
-        <div className="mt-4 border-t border-slate-200 pt-3">
+        <div className="mt-3 border-t border-slate-200 pt-3">
           <p className="text-xs font-black uppercase tracking-wide text-amber-700">
             Missing information
           </p>
@@ -30,7 +30,7 @@ export default function SafeScopeCompactReasoning({
       )}
 
       {!!safeScopeResult.confidenceIntelligence?.reviewTriggers?.length && (
-        <div className="mt-4 border-t border-slate-200 pt-3">
+        <div className="mt-3 border-t border-slate-200 pt-3">
           <p className="text-xs font-black uppercase tracking-wide text-red-700">
             Supervisor review triggers
           </p>
@@ -44,7 +44,7 @@ export default function SafeScopeCompactReasoning({
         </div>
       )}
 
-      <div className="mt-4 border-t border-slate-200 pt-3">
+      <div className="mt-3 border-t border-slate-200 pt-3">
         <button
           type="button"
           onClick={() => setSafeScopeAdvancedOpen((open) => !open)}
@@ -55,8 +55,7 @@ export default function SafeScopeCompactReasoning({
             : "Show detailed SafeScope reasoning"}
         </button>
         <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-          Expand for domain intelligence, traceability, evidence quality,
-          reasoning layers, and reliability checks.
+          Optional technical details for deeper review.
         </p>
       </div>
     </>

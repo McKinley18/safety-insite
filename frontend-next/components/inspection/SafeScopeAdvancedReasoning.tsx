@@ -27,7 +27,7 @@ export default function SafeScopeAdvancedReasoning({
   safeScopeResult,
 }: SafeScopeAdvancedReasoningProps) {
   return (
-    <>
+    <div className="mt-3 space-y-3 border-t border-slate-200 pt-3">
       <SafeScopeConfidenceReasonCodes safeScopeResult={safeScopeResult} />
 
       <SafeScopeTrendIntelligence safeScopeResult={safeScopeResult} />
@@ -65,6 +65,6 @@ export default function SafeScopeAdvancedReasoning({
       <SafeScopeOperationalReasoning safeScopeResult={safeScopeResult} />
 
       <SafeScopeCriticalAlerts safeScopeResult={safeScopeResult} />
-    </>
+    </div>
   );
 }
