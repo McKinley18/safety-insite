@@ -213,85 +213,126 @@ export const localExporter = {
 
     // 2. EXECUTIVE SUMMARY PAGE
     doc.addPage();
-    doc.setTextColor(15, 23, 42);
-    doc.setFontSize(22);
-    doc.setFont("helvetica", "bold");
-    doc.text("EXECUTIVE SUMMARY", 20, 35);
 
-    const highRisk = findings.filter(
-      (f) => f.likelihood * f.severity >= 15,
-    ).length;
+    const riskScore = (f: any) =>
+      Number(f.likelihood || 1) * Number(f.severity || 1);
+
+    const highRisk = findings.filter((f) => riskScore(f) >= 15).length;
     const medRisk = findings.filter(
-      (f) => f.likelihood * f.severity >= 5 && f.likelihood * f.severity < 15,
+      (f) => riskScore(f) >= 5 && riskScore(f) < 15,
     ).length;
-    const lowRisk = findings.filter(
-      (f) => f.likelihood * f.severity < 5,
-    ).length;
+    const lowRisk = findings.filter((f) => riskScore(f) < 5).length;
+    const actionCount = findings.reduce(
+      (total, f) => total + (f.correctiveActions?.length || 0),
+      0,
+    );
+    const evidenceCount = findings.reduce(
+      (total, f) => total + (f.photos?.length || 0),
+      0,
+    );
+    const standardsCount = findings.reduce(
+      (total, f) => total + (f.standards?.length || 0),
+      0,
+    );
     const avgRisk =
       findings.length > 0
         ? (
-            findings.reduce((acc, f) => acc + f.likelihood * f.severity, 0) /
-            findings.length
+            findings.reduce((acc, f) => acc + riskScore(f), 0) / findings.length
           ).toFixed(1)
-        : 0;
+        : "0.0";
+
+    doc.setFillColor(15, 23, 42);
+    doc.rect(0, 0, pageWidth, 28, "F");
+
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(255, 255, 255);
+    doc.text("SENTINEL SAFETY", 20, 17);
+
+    doc.setDrawColor(249, 115, 22);
+    doc.setLineWidth(1);
+    doc.line(20, 36, pageWidth - 20, 36);
+
+    doc.setTextColor(15, 23, 42);
+    doc.setFontSize(22);
+    doc.setFont("helvetica", "bold");
+    doc.text("Executive Summary", 20, 52);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(71, 85, 105);
+    doc.text(
+      "A concise overview of findings, evidence, risk, and corrective action readiness.",
+      20,
+      60,
+    );
 
     autoTable(doc, {
-      startY: 45,
-      head: [["Metric", "Value", "Assessment"]],
+      startY: 74,
+      margin: { left: 20, right: 20 },
+      theme: "plain",
+      styles: {
+        font: "helvetica",
+        fontSize: 10,
+        cellPadding: 3,
+        textColor: [51, 65, 85],
+      },
       body: [
-        ["Total Findings Logged", findings.length, "Comprehensive"],
-        [
-          "Critical Risks (RPN 15+)",
-          highRisk,
-          highRisk > 0 ? "URGENT ACTION" : "STABLE",
-        ],
-        ["Moderate Risks (RPN 5-14)", medRisk, "MONITORING"],
-        ["Low Risks (RPN 1-4)", lowRisk, "CONTROLLED"],
-        [
-          "Avg. Risk Priority Number",
-          avgRisk,
-          parseFloat(avgRisk as string) > 12 ? "CRITICAL" : "OPTIMAL",
-        ],
+        ["Total Findings", String(findings.length)],
+        ["High / Critical Findings", String(highRisk)],
+        ["Corrective Actions", String(actionCount)],
+        ["Evidence Items", String(evidenceCount)],
+        ["Selected Standards", String(standardsCount)],
+        ["Average Risk Score", String(avgRisk)],
       ],
-      headStyles: { fillColor: [15, 23, 42] },
-      theme: "striped",
+      columnStyles: {
+        0: { fontStyle: "bold", textColor: [15, 23, 42], cellWidth: 72 },
+        1: { halign: "right", fontStyle: "bold", cellWidth: 72 },
+      },
     });
 
-    const chartY = (doc as any).lastAutoTable.finalY + 20;
-    doc.setFontSize(12);
-    doc.text("RISK DISTRIBUTION ANALYSIS", 20, chartY);
-    const maxVal = Math.max(highRisk, medRisk, lowRisk, 1);
-    const barWidth = 100;
-    doc.setFillColor(34, 197, 94);
-    doc.rect(20, chartY + 10, (lowRisk / maxVal) * barWidth, 8, "F");
-    doc.setTextColor(100);
-    doc.setFontSize(8);
-    doc.text(
-      `LOW: ${lowRisk}`,
-      25 + (lowRisk / maxVal) * barWidth,
-      chartY + 16,
-    );
-    doc.setFillColor(234, 179, 8);
-    doc.rect(20, chartY + 22, (medRisk / maxVal) * barWidth, 8, "F");
-    doc.text(
-      `MED: ${medRisk}`,
-      25 + (medRisk / maxVal) * barWidth,
-      chartY + 28,
-    );
-    doc.setFillColor(239, 68, 68);
-    doc.rect(20, chartY + 34, (highRisk / maxVal) * barWidth, 8, "F");
-    doc.text(
-      `HIGH: ${highRisk}`,
-      25 + (highRisk / maxVal) * barWidth,
-      chartY + 40,
-    );
+    const snapshotY = (doc as any).lastAutoTable.finalY + 18;
 
-    const summaryY = chartY + 60;
+    doc.setTextColor(15, 23, 42);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("Risk Snapshot", 20, snapshotY);
+
+    const maxVal = Math.max(highRisk, medRisk, lowRisk, 1);
+    const barWidth = pageWidth - 70;
+    const barX = 36;
+
+    const drawRiskRow = (
+      label: string,
+      count: number,
+      y: number,
+      color: [number, number, number],
+    ) => {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(9);
+      doc.setTextColor(71, 85, 105);
+      doc.text(label, 20, y + 5);
+
+      doc.setFillColor(241, 245, 249);
+      doc.rect(barX, y, barWidth, 7, "F");
+
+      doc.setFillColor(color[0], color[1], color[2]);
+      doc.rect(barX, y, (count / maxVal) * barWidth, 7, "F");
+
+      doc.setTextColor(15, 23, 42);
+      doc.text(String(count), pageWidth - 24, y + 5, { align: "right" });
+    };
+
+    drawRiskRow("High", highRisk, snapshotY + 13, [239, 68, 68]);
+    drawRiskRow("Mod", medRisk, snapshotY + 26, [249, 115, 22]);
+    drawRiskRow("Low", lowRisk, snapshotY + 39, [34, 197, 94]);
+
+    const summaryY = snapshotY + 66;
 
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
-    doc.text("OPERATIONAL RISK SUMMARY", 20, summaryY);
+    doc.text("Inspection Summary", 20, summaryY);
 
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
@@ -299,20 +340,18 @@ export const localExporter = {
 
     const dominantRisk =
       highRisk > 0
-        ? "Critical-risk conditions are present and should receive immediate leadership attention."
+        ? "High or critical findings are present and should be prioritized for review, ownership, and timely closure."
         : medRisk > 0
-          ? "Moderate-risk conditions are present and should be scheduled for timely corrective action."
-          : "Current findings are primarily low-risk based on available scoring.";
+          ? "Moderate findings are present and should be assigned for corrective action and verification."
+          : "Findings are currently low-risk based on available scoring and should still be tracked through closure.";
 
     const summaryText = [
-      `This inspection identified ${findings.length} total finding(s) across the assessed operation.`,
+      `This report documents ${findings.length} field finding(s), ${evidenceCount} evidence item(s), and ${actionCount} corrective action(s).`,
       dominantRisk,
-      `Average Risk Priority Number: ${avgRisk}.`,
       "",
-      "Recommended leadership actions:",
-      "• Assign owners and due dates for each corrective action.",
-      "• Correct critical and high-risk findings before normal exposure continues.",
-      "• Verify completion with photo evidence or supervisor sign-off.",
+      "Recommended follow-up:",
+      "• Assign owners and due dates for open corrective actions.",
+      "• Verify closure using the required evidence type for each action.",
       "• Review recurring categories for training, maintenance, or procedural weaknesses.",
       "• Preserve this report as supporting documentation for internal safety governance.",
     ].join("\n");
