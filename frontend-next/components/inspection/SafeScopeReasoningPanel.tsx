@@ -25,11 +25,9 @@ export default function SafeScopeReasoningPanel({
       <button
         type="button"
         onClick={() => setSafeScopeCompactDetailsOpen((open) => !open)}
-        className="mt-4 text-sm font-black text-[#1D72B8] hover:underline"
+        className="text-xs font-black uppercase tracking-wide text-[#1D72B8] hover:underline"
       >
-        {safeScopeCompactDetailsOpen
-          ? "Hide detailed reasoning"
-          : "Show detailed reasoning"}
+        {safeScopeCompactDetailsOpen ? "Hide reasoning" : "Show reasoning"}
       </button>
 
       {safeScopeCompactDetailsOpen && (
