@@ -55,36 +55,33 @@ export default function SafeScopeControlsSection({
         )}
       </div>
 
-      <div className="mb-4">
-        <div className="mb-2 flex items-center justify-between gap-3">
-          <label className="text-xs font-black uppercase tracking-wide text-slate-500">
+      <div className="mb-4 grid gap-3 sm:grid-cols-2">
+        <label className="block">
+          <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
             Regulatory Scope
-          </label>
-          <span className="text-[11px] font-bold text-slate-400">
-            {riskMatrixLabel}
           </span>
-        </div>
+          <select
+            value={agencyMode}
+            onChange={(event) => setAgencyMode(event.target.value)}
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+          >
+            <option value="all">All / Let SafeScope evaluate</option>
+            <option value="msha">MSHA</option>
+            <option value="osha_general">OSHA General Industry</option>
+            <option value="osha_construction">OSHA Construction</option>
+          </select>
+        </label>
 
-        <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-          {[
-            ["all", "All"],
-            ["msha", "MSHA"],
-            ["osha_general", "OSHA GI"],
-            ["osha_construction", "OSHA Construction"],
-          ].map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              onClick={() => setAgencyMode(value)}
-              className={`rounded-xl px-3 py-2 text-xs font-black transition ${
-                agencyMode === value
-                  ? "bg-[#1D72B8] text-white shadow-sm"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
+        <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+            Risk Matrix
+          </p>
+          <p className="mt-1 text-sm font-black text-slate-900">
+            {riskMatrixLabel}
+          </p>
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+            Used to score severity × likelihood when risk review is included.
+          </p>
         </div>
       </div>
 
