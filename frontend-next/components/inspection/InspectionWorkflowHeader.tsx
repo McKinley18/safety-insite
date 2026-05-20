@@ -32,7 +32,7 @@ export default function InspectionWorkflowHeader({
 }: InspectionWorkflowHeaderProps) {
   const currentStepMeta = steps[currentStep - 1];
   const currentStepTitle = currentStepMeta.title.replace(/^Step \d+: /, "");
-  const visibleSteps = isAdvancedMode ? [1, 2, 3, 4, 5, 6] : [1, 2, 5, 6];
+  const visibleSteps = isAdvancedMode ? [1, 2, 3, 4, 5, 6] : [1, 2, 3, 5, 6];
   const visibleStepIndex = Math.max(1, visibleSteps.indexOf(currentStep) + 1);
   const progressPercent = Math.round(
     (visibleStepIndex / visibleSteps.length) * 100,
@@ -54,8 +54,7 @@ export default function InspectionWorkflowHeader({
       return;
     }
 
-    if (quickCapture && currentStep === 1) {
-      saveFinding();
+    if (!isAdvancedMode && currentStep === 3) {
       goToInspectionStep(5);
       return;
     }

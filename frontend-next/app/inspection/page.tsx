@@ -671,9 +671,9 @@ export default function InspectionPage() {
   function goToInspectionStep(nextStep: number) {
     let targetStep = Math.max(1, Math.min(steps.length, nextStep));
 
-    if (!isAdvancedMode && targetStep === 3) targetStep = 5;
+    if (!isAdvancedMode && targetStep === 4) targetStep = 5;
     if (!isAdvancedMode && currentStep === 5 && nextStep < currentStep)
-      targetStep = 2;
+      targetStep = 3;
 
     setCurrentStep(targetStep);
 
