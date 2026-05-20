@@ -114,29 +114,55 @@ export default function QuickCaptureSection({
         />
       </div>
 
-      <details className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-3">
-        <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-600">
-          Hazard category, if known
-        </summary>
+      <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50/60 px-4 py-3">
+        <div className="flex flex-wrap items-start justify-between gap-2">
+          <div>
+            <label className="block text-xs font-black uppercase tracking-wide text-amber-800">
+              Hazard Category
+            </label>
+            <p className="mt-1 text-xs font-semibold leading-5 text-amber-900">
+              Optional. Select a common category if you know it, type your own,
+              or leave it blank and let SafeScope classify the finding.
+            </p>
+          </div>
 
-        <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
-          Optional. Leave this blank if you want SafeScope to classify the
-          finding after capture.
-        </p>
+          <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-amber-700">
+            Optional
+          </span>
+        </div>
 
-        <input
-          list="hazard-category-options"
-          className="mt-3 w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
-          placeholder="Optional: choose or type"
-          value={hazardCategory}
-          onChange={(event) => setHazardCategory(event.target.value)}
-        />
-        <datalist id="hazard-category-options">
-          {hazardCategoryOptions.map((category) => (
-            <option key={category} value={category} />
-          ))}
-        </datalist>
-      </details>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <label className="block">
+            <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+              Select common category
+            </span>
+            <select
+              className="w-full rounded-xl border border-amber-200 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              value={hazardCategory}
+              onChange={(event) => setHazardCategory(event.target.value)}
+            >
+              <option value="">Let SafeScope classify</option>
+              {hazardCategoryOptions.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="block">
+            <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+              Or type custom category
+            </span>
+            <input
+              className="w-full rounded-xl border border-amber-200 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              placeholder="Example: Unsafe access, conveyor hazard"
+              value={hazardCategory}
+              onChange={(event) => setHazardCategory(event.target.value)}
+            />
+          </label>
+        </div>
+      </div>
 
       {quickCapture && (
         <div className="mt-4 border-t border-slate-200 pt-4">
