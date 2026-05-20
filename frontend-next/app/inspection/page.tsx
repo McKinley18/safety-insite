@@ -36,6 +36,7 @@ import {
 import { enqueueOfflineItem } from "@/lib/offlineQueue";
 import FinalizeInspectionSection from "@/components/inspection/FinalizeInspectionSection";
 import InspectionStepRenderer from "@/components/inspection/InspectionStepRenderer";
+import CurrentHazardCard from "@/components/inspection/CurrentHazardCard";
 import InspectionWorkflowHeader from "@/components/inspection/InspectionWorkflowHeader";
 import {
   hazardCategoryOptions,
@@ -876,6 +877,19 @@ export default function InspectionPage() {
         saveFinding={saveFinding}
         generateReport={generateReport}
         goToCoverPage={() => router.push("/inspection-cover")}
+      />
+
+      <CurrentHazardCard
+        currentStep={currentStep}
+        description={description}
+        hazardCategory={hazardCategory}
+        location={location}
+        photos={photos}
+        safeScopeResult={safeScopeResult}
+        selectedStandards={selectedStandards}
+        selectedGeneratedActions={selectedGeneratedActions}
+        manualActions={manualActions}
+        currentFindingSaved={currentFindingSaved}
       />
 
       <InspectionStepRenderer

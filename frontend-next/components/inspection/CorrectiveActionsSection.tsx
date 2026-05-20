@@ -53,8 +53,7 @@ export default function CorrectiveActionsSection({
           Corrective Actions
         </p>
         <p className="mt-1 text-sm font-semibold text-slate-500">
-          Select a SafeScope recommendation or enter the action your team will
-          assign.
+          Build the action plan for the current hazard.
         </p>
       </div>
 
@@ -147,14 +146,13 @@ export default function CorrectiveActionsSection({
           </div>
         ) : (
           <p className="rounded-xl bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-            Run SafeScope Review in Step 3 to generate recommended corrective
-            actions.
+            Run SafeScope Review in Step 3 to generate recommended actions.
           </p>
         )}
       </section>
 
       <section className="border-b border-slate-200 py-4">
-        <h3 className="text-base font-black text-slate-900">Manual Action</h3>
+        <h3 className="text-base font-black text-slate-900">Add Action</h3>
 
         <div className="mt-3 grid gap-3">
           <input
