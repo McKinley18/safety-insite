@@ -11,6 +11,7 @@ export default function InspectionCoverPage() {
   const [inspectionDate, setInspectionDate] = useState("");
   const [leadInspector, setLeadInspector] = useState("");
   const [additionalInspectors, setAdditionalInspectors] = useState([""]);
+  const [includeCoverPage, setIncludeCoverPage] = useState(true);
   const [isConfidential, setIsConfidential] = useState(false);
   const [companyLogo, setCompanyLogo] = useState("");
   const [includeLogoOnCover, setIncludeLogoOnCover] = useState(true);
@@ -18,20 +19,34 @@ export default function InspectionCoverPage() {
   useEffect(() => {
     async function loadCoverPage() {
       const savedLogo = localStorage.getItem("sentinel_company_logo") || "";
-      const savedIncludeLogo = localStorage.getItem("sentinel_include_logo_on_cover") !== "false";
+      const savedIncludeLogo =
+        localStorage.getItem("sentinel_include_logo_on_cover") !== "false";
+      const defaultCoverPage =
+        localStorage.getItem("sentinel_default_include_cover_page") !== "false";
+      const defaultConfidential =
+        localStorage.getItem("sentinel_default_confidential_marker") === "true";
 
       setCompanyLogo(savedLogo);
       setIncludeLogoOnCover(savedIncludeLogo);
+      setIncludeCoverPage(defaultCoverPage);
+      setIsConfidential(defaultConfidential);
 
       const parsed = await getCoverPage<any>();
       if (!parsed) return;
 
       setOrganizationName(parsed.organizationName || "");
       setSiteLocation(parsed.siteLocation || "");
-      setInspectionDate(parsed.inspectionDate || "");
+      setInspectionDate(
+        parsed.inspectionDate || new Date().toISOString().slice(0, 10),
+      );
       setLeadInspector(parsed.leadInspector || "");
-      setAdditionalInspectors(parsed.additionalInspectors?.length ? parsed.additionalInspectors : [""]);
-      setIsConfidential(!!parsed.isConfidential);
+      setAdditionalInspectors(
+        parsed.additionalInspectors?.length
+          ? parsed.additionalInspectors
+          : [""],
+      );
+      setIncludeCoverPage(parsed.includeCoverPage ?? defaultCoverPage);
+      setIsConfidential(parsed.isConfidential ?? defaultConfidential);
       setCompanyLogo(parsed.companyLogo || savedLogo);
       setIncludeLogoOnCover(parsed.includeLogoOnCover ?? savedIncludeLogo);
     }
@@ -43,9 +58,10 @@ export default function InspectionCoverPage() {
     await setCoverPage({
       organizationName,
       siteLocation,
-      inspectionDate,
+      inspectionDate: inspectionDate || new Date().toISOString().slice(0, 10),
       leadInspector,
       additionalInspectors: additionalInspectors.filter(Boolean),
+      includeCoverPage,
       isConfidential,
       companyLogo,
       includeLogoOnCover,
@@ -54,53 +70,27 @@ export default function InspectionCoverPage() {
 
   return (
     <section>
-      {includeLogoOnCover && companyLogo && (
-        <div className="mb-5 rounded-2xl bg-white p-5 shadow-sm">
-          <img src={companyLogo} alt="Company logo" className="max-h-28 max-w-full object-contain" />
-        </div>
-      )}
-
       <PageHeader
-        title="Inspection Cover Page"
-        description="Enter the administrative information that will appear on the final inspection report cover page."
+        eyebrow="Inspection Start"
+        title="Start Field Inspection"
+        description="Capture the problem first. Report details can come from workspace settings and be reviewed before final output."
       />
 
-      <div className="mb-4">
-        <h2 className="mb-2.5 text-xl font-black text-slate-900">
-          Administrative Information
-        </h2>
+      <div className="rounded-2xl border border-blue-100 bg-[#F4F9FF] px-4 py-4">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+          Field-first workflow
+        </p>
+        <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+          Start with inspector names and report options. The inspection itself
+          begins with photo capture and observed condition — SafeScope can help
+          classify the hazard after capture.
+        </p>
+      </div>
 
-        <label className="mb-1.5 mt-3 block text-sm font-extrabold text-slate-700">
-          Organization Name
-        </label>
-        <input
-          value={organizationName}
-          onChange={(e) => setOrganizationName(e.target.value)}
-          placeholder="Company / organization"
-          className="h-[50px] w-full rounded-[14px] border border-slate-200 bg-slate-50 px-3.5 text-slate-900 outline-none focus:border-[#1D72B8]"
-        />
+      <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <h2 className="text-lg font-black text-slate-900">Inspection Team</h2>
 
-        <label className="mb-1.5 mt-3 block text-sm font-extrabold text-slate-700">
-          Site Location
-        </label>
-        <input
-          value={siteLocation}
-          onChange={(e) => setSiteLocation(e.target.value)}
-          placeholder="Warehouse North, Plant East, etc."
-          className="h-[50px] w-full rounded-[14px] border border-slate-200 bg-slate-50 px-3.5 text-slate-900 outline-none focus:border-[#1D72B8]"
-        />
-
-        <label className="mb-1.5 mt-3 block text-sm font-extrabold text-slate-700">
-          Inspection Date
-        </label>
-        <input
-          type="date"
-          value={inspectionDate}
-          onChange={(e) => setInspectionDate(e.target.value)}
-          className="h-[50px] w-full rounded-[14px] border border-slate-200 bg-slate-50 px-3.5 text-slate-900 outline-none focus:border-[#1D72B8]"
-        />
-
-        <label className="mb-1.5 mt-3 block text-sm font-extrabold text-slate-700">
+        <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700">
           Lead Inspector
         </label>
         <input
@@ -110,12 +100,12 @@ export default function InspectionCoverPage() {
           className="h-[50px] w-full rounded-[14px] border border-slate-200 bg-slate-50 px-3.5 text-slate-900 outline-none focus:border-[#1D72B8]"
         />
 
-        <label className="mb-1.5 mt-3 block text-sm font-extrabold text-slate-700">
+        <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700">
           Additional Inspectors
         </label>
 
         {additionalInspectors.map((inspector, index) => (
-          <div key={index} className="mb-3 space-y-2">
+          <div key={index} className="mb-3 flex gap-2">
             <input
               value={inspector}
               onChange={(e) => {
@@ -124,87 +114,91 @@ export default function InspectionCoverPage() {
                 setAdditionalInspectors(next);
               }}
               placeholder={`Additional inspector ${index + 1}`}
-              className="h-[50px] w-full rounded-[14px] border border-slate-200 bg-slate-50 px-3.5 text-slate-900 outline-none focus:border-[#1D72B8]"
+              className="h-[50px] min-w-0 flex-1 rounded-[14px] border border-slate-200 bg-slate-50 px-3.5 text-slate-900 outline-none focus:border-[#1D72B8]"
             />
 
             <button
               type="button"
               onClick={() =>
                 setAdditionalInspectors(
-                  additionalInspectors.filter((_, i) => i !== index)
+                  additionalInspectors.filter((_, i) => i !== index),
                 )
               }
-              className="rounded-full bg-red-100 px-3.5 py-2 text-xs font-black text-red-800"
+              className="rounded-xl border border-red-200 bg-white px-3 text-xs font-black text-red-700"
             >
               Remove
             </button>
           </div>
         ))}
 
-        <div className="flex justify-center">
-          <button
-            type="button"
-            onClick={() => setAdditionalInspectors([...additionalInspectors, ""])}
-            className="mt-3 rounded-full bg-slate-200 px-4 py-2.5 text-[13px] font-black text-slate-900"
-          >
-            + Add Inspector
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setAdditionalInspectors([...additionalInspectors, ""])}
+          className="rounded-xl bg-slate-100 px-4 py-2 text-xs font-black text-slate-800"
+        >
+          + Add Inspector
+        </button>
       </div>
 
-      <button
-        type="button"
-        onClick={() => setIncludeLogoOnCover(!includeLogoOnCover)}
-        className="mb-3.5 flex w-full gap-2.5 rounded-[14px] border border-slate-300 bg-slate-50 px-3.5 py-3 text-left"
-      >
-        <span
-          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border-2 border-[#1D72B8] text-[13px] font-black text-white ${
-            includeLogoOnCover ? "bg-[#1D72B8]" : "bg-white"
-          }`}
+      <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <h2 className="text-lg font-black text-slate-900">Report Options</h2>
+
+        <button
+          type="button"
+          onClick={() => setIncludeCoverPage(!includeCoverPage)}
+          className="mt-4 flex w-full gap-2.5 rounded-[14px] border border-slate-300 bg-slate-50 px-3.5 py-3 text-left"
         >
-          {includeLogoOnCover ? "✓" : ""}
-        </span>
-
-        <span className="flex-1">
-          <span className="block text-sm font-black text-slate-800">
-            Include Company Logo on Cover Page
+          <span
+            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border-2 border-[#1D72B8] text-[13px] font-black text-white ${
+              includeCoverPage ? "bg-[#1D72B8]" : "bg-white"
+            }`}
+          >
+            {includeCoverPage ? "✓" : ""}
           </span>
-          <span className="mt-1 block text-xs leading-[17px] text-slate-600">
-            Controlled by workspace settings. You can toggle it for this report.
-          </span>
-        </span>
-      </button>
 
-      <button
-        type="button"
-        onClick={() => setIsConfidential(!isConfidential)}
-        className="mb-3.5 flex w-full gap-2.5 rounded-[14px] border border-red-300 bg-red-50 px-3.5 py-3 text-left"
-      >
-        <span
-          className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border-2 border-red-600 text-[13px] font-black text-white ${
-            isConfidential ? "bg-red-600" : "bg-white"
-          }`}
+          <span className="flex-1">
+            <span className="block text-sm font-black text-slate-800">
+              Include cover page
+            </span>
+            <span className="mt-1 block text-xs leading-[17px] text-slate-600">
+              Organization, site, logo, and report branding will use workspace
+              defaults when available.
+            </span>
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setIsConfidential(!isConfidential)}
+          className="mt-3 flex w-full gap-2.5 rounded-[14px] border border-red-300 bg-red-50 px-3.5 py-3 text-left"
         >
-          {isConfidential ? "✓" : ""}
-        </span>
-
-        <span className="flex-1">
-          <span className="block text-sm font-black text-red-800">
-            Privileged & Confidential
+          <span
+            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-[5px] border-2 border-red-600 text-[13px] font-black text-white ${
+              isConfidential ? "bg-red-600" : "bg-white"
+            }`}
+          >
+            {isConfidential ? "✓" : ""}
           </span>
-          <span className="mt-1 block text-xs leading-[17px] text-red-900">
-            Select this option to add a privileged and confidential marking to the generated report.
-          </span>
-        </span>
-      </button>
 
-      <div className="flex justify-center">
+          <span className="flex-1">
+            <span className="block text-sm font-black text-red-800">
+              Include confidentiality marker
+            </span>
+            <span className="mt-1 block text-xs leading-[17px] text-red-900">
+              Adds the selected confidentiality marking to the report when
+              appropriate for your organization&apos;s review process.
+            </span>
+          </span>
+        </button>
+      </div>
+
+      <div className="mt-5 flex justify-center">
         <Link
           href="/inspection"
           onClick={saveCoverPage}
           className="rounded-full bg-[#1D72B8] px-[18px] py-[13px] text-sm font-black text-white"
         >
-          Continue to Inspection
+          Start Inspection
         </Link>
       </div>
     </section>
