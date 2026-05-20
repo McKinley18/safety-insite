@@ -21,7 +21,12 @@ export function buildInspectionReport(input: {
     inspectionDate: coverPage.inspectionDate || "",
     leadInspector: coverPage.leadInspector || "",
     additionalInspectors: coverPage.additionalInspectors || [],
+    includeCoverPage: coverPage.includeCoverPage ?? true,
     isConfidential: !!coverPage.isConfidential,
+    confidentialityMarkerText:
+      coverPage.confidentialityMarkerText || "Privileged & Confidential",
+    companyLogo: coverPage.companyLogo || "",
+    includeLogoOnCover: coverPage.includeLogoOnCover ?? true,
     includeStandardsInReport: input.includeStandardsInReport,
     includeActionsInReport: input.includeActionsInReport,
     includePhotosInReport: input.includePhotosInReport,
