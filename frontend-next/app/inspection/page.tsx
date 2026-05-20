@@ -34,12 +34,8 @@ import {
   saveEncryptedPhoto,
 } from "@/lib/evidenceStorage";
 import { enqueueOfflineItem } from "@/lib/offlineQueue";
-import QuickCaptureSection from "@/components/inspection/QuickCaptureSection";
-import EvidenceCaptureSection from "@/components/inspection/EvidenceCaptureSection";
-import RiskReviewSection from "@/components/inspection/RiskReviewSection";
-import CorrectiveActionsSection from "@/components/inspection/CorrectiveActionsSection";
 import FinalizeInspectionSection from "@/components/inspection/FinalizeInspectionSection";
-import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
+import InspectionStepRenderer from "@/components/inspection/InspectionStepRenderer";
 import {
   hazardCategoryOptions,
   inspectionSteps as steps,
@@ -978,100 +974,67 @@ export default function InspectionPage() {
         </div>
       )}
 
-      <div className="px-1 py-2 sm:px-2">
-        {currentStep === 1 && (
-          <QuickCaptureSection
-            inspectionContext={inspectionContext}
-            inspectionMode={inspectionMode}
-            setInspectionMode={setInspectionMode}
-            quickCapture={quickCapture}
-            hazardCategory={hazardCategory}
-            setHazardCategory={setHazardCategory}
-            location={location}
-            setLocation={setLocation}
-            description={description}
-            setDescription={setDescription}
-            photos={photos}
-            handlePhotoUpload={handlePhotoUpload}
-            manualActionTitle={manualActionTitle}
-            setManualActionTitle={setManualActionTitle}
-            manualActionPriority={manualActionPriority}
-            setManualActionPriority={setManualActionPriority}
-            manualActionDue={manualActionDue}
-            setManualActionDue={setManualActionDue}
-            manualActions={manualActions}
-            addManualAction={addManualAction}
-            removeManualAction={removeManualAction}
-          />
-        )}
-        {currentStep === 2 && (
-          <EvidenceCaptureSection
-            photos={photos}
-            setPhotos={setPhotos}
-            evidenceNotes={evidenceNotes}
-            setEvidenceNotes={setEvidenceNotes}
-            annotatingPhotoIndex={annotatingPhotoIndex}
-            setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
-            annotationExpanded={annotationExpanded}
-            setAnnotationExpanded={setAnnotationExpanded}
-            handlePhotoUpload={handlePhotoUpload}
-            removePhoto={removePhoto}
-          />
-        )}
-
-        {currentStep === 3 && isAdvancedMode && (
-          <SafeScopeInspectionStep
-            safeScopeHelpOpen={safeScopeHelpOpen}
-            setSafeScopeHelpOpen={setSafeScopeHelpOpen}
-            agencyMode={agencyMode}
-            setAgencyMode={setAgencyMode}
-            riskProfileId={riskProfileId}
-            handleRunSafeScope={handleRunSafeScope}
-            safeScopeStatus={safeScopeStatus}
-            safeScopeResult={safeScopeResult}
-            submitSafeScopeValidation={submitSafeScopeValidation}
-            safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
-            setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}
-            safeScopeAdvancedOpen={safeScopeAdvancedOpen}
-            setSafeScopeAdvancedOpen={setSafeScopeAdvancedOpen}
-            feedbackNotes={feedbackNotes}
-            setFeedbackNotes={setFeedbackNotes}
-            selectedStandards={selectedStandards}
-            getStandardKey={getStandardKey}
-            toggleSelectedStandard={toggleSelectedStandard}
-            handleFeedback={handleFeedback}
-            safeScopeDetailsOpen={safeScopeDetailsOpen}
-            setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
-          />
-        )}
-
-        {currentStep === 4 && isAdvancedMode && (
-          <RiskReviewSection
-            activeRiskScale={getActiveRiskScale()}
-            safeScopeResult={safeScopeResult}
-            severity={severity}
-            setSeverity={setSeverity}
-            likelihood={likelihood}
-            setLikelihood={setLikelihood}
-          />
-        )}
-        {currentStep === 5 && (
-          <CorrectiveActionsSection
-            safeScopeResult={safeScopeResult}
-            selectedGeneratedActions={selectedGeneratedActions}
-            toggleGeneratedAction={toggleGeneratedAction}
-            manualActionTitle={manualActionTitle}
-            setManualActionTitle={setManualActionTitle}
-            manualActionPriority={manualActionPriority}
-            setManualActionPriority={setManualActionPriority}
-            manualActionDue={manualActionDue}
-            setManualActionDue={setManualActionDue}
-            manualActions={manualActions}
-            addManualAction={addManualAction}
-            removeManualAction={removeManualAction}
-          />
-        )}
-      </div>
+      <InspectionStepRenderer
+        currentStep={currentStep}
+        isAdvancedMode={isAdvancedMode}
+        inspectionContext={inspectionContext}
+        inspectionMode={inspectionMode}
+        setInspectionMode={setInspectionMode}
+        quickCapture={quickCapture}
+        hazardCategory={hazardCategory}
+        setHazardCategory={setHazardCategory}
+        location={location}
+        setLocation={setLocation}
+        description={description}
+        setDescription={setDescription}
+        photos={photos}
+        setPhotos={setPhotos}
+        evidenceNotes={evidenceNotes}
+        setEvidenceNotes={setEvidenceNotes}
+        annotatingPhotoIndex={annotatingPhotoIndex}
+        setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
+        annotationExpanded={annotationExpanded}
+        setAnnotationExpanded={setAnnotationExpanded}
+        handlePhotoUpload={handlePhotoUpload}
+        removePhoto={removePhoto}
+        safeScopeHelpOpen={safeScopeHelpOpen}
+        setSafeScopeHelpOpen={setSafeScopeHelpOpen}
+        agencyMode={agencyMode}
+        setAgencyMode={setAgencyMode}
+        riskProfileId={riskProfileId}
+        handleRunSafeScope={handleRunSafeScope}
+        safeScopeStatus={safeScopeStatus}
+        safeScopeResult={safeScopeResult}
+        submitSafeScopeValidation={submitSafeScopeValidation}
+        safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
+        setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}
+        safeScopeAdvancedOpen={safeScopeAdvancedOpen}
+        setSafeScopeAdvancedOpen={setSafeScopeAdvancedOpen}
+        feedbackNotes={feedbackNotes}
+        setFeedbackNotes={setFeedbackNotes}
+        selectedStandards={selectedStandards}
+        getStandardKey={getStandardKey}
+        toggleSelectedStandard={toggleSelectedStandard}
+        handleFeedback={handleFeedback}
+        safeScopeDetailsOpen={safeScopeDetailsOpen}
+        setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
+        activeRiskScale={getActiveRiskScale()}
+        severity={severity}
+        setSeverity={setSeverity}
+        likelihood={likelihood}
+        setLikelihood={setLikelihood}
+        selectedGeneratedActions={selectedGeneratedActions}
+        toggleGeneratedAction={toggleGeneratedAction}
+        manualActionTitle={manualActionTitle}
+        setManualActionTitle={setManualActionTitle}
+        manualActionPriority={manualActionPriority}
+        setManualActionPriority={setManualActionPriority}
+        manualActionDue={manualActionDue}
+        setManualActionDue={setManualActionDue}
+        manualActions={manualActions}
+        addManualAction={addManualAction}
+        removeManualAction={removeManualAction}
+      />
 
       <FinalizeInspectionSection
         currentStep={currentStep}
