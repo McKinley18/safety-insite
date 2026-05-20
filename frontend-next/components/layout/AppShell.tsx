@@ -29,11 +29,42 @@ const publicRoutes = [
 ];
 
 const navItems = [
-  { href: "/command-center", label: "Home", icon: "🏠", activeRoots: ["/command-center", "/dashboard"] },
-  { href: "/inspections", label: "Inspect", icon: "📋", activeRoots: ["/inspections", "/inspection", "/inspection-cover", "/inspection-walkthrough"] },
+  {
+    href: "/command-center",
+    label: "Home",
+    icon: "🏠",
+    activeRoots: ["/command-center", "/dashboard"],
+  },
+  {
+    href: "/inspections",
+    label: "Inspect",
+    icon: "📋",
+    activeRoots: [
+      "/inspections",
+      "/inspection",
+      "/inspection-cover",
+      "/inspection-walkthrough",
+    ],
+  },
   { href: "/reports", label: "Reports", icon: "🗂", activeRoots: ["/reports"] },
-  { href: "/analytics", label: "Insights", icon: "📈", activeRoots: ["/analytics"] },
-  { href: "/settings", label: "Settings", icon: "⚙️", activeRoots: ["/settings"] },
+  {
+    href: "/analytics",
+    label: "Insights",
+    icon: "📈",
+    activeRoots: ["/analytics"],
+  },
+  {
+    href: "/safescope-knowledge",
+    label: "Knowledge",
+    icon: "🧠",
+    activeRoots: ["/safescope-knowledge"],
+  },
+  {
+    href: "/settings",
+    label: "Settings",
+    icon: "⚙️",
+    activeRoots: ["/settings"],
+  },
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
@@ -46,9 +77,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [securityLabel, setSecurityLabel] = useState("Standard Mode");
 
   const isPublicPage = publicRoutes.some(
-    (route) => pathname === route || pathname.startsWith(route + "/")
+    (route) => pathname === route || pathname.startsWith(route + "/"),
   );
-
 
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
@@ -107,15 +137,20 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     const resetTimer = () => {
       if (timer) window.clearTimeout(timer);
 
-      timer = window.setTimeout(() => {
-        lockSession();
-        setSecurityLabel(getProtectedModeLabel());
-        router.push("/unlock");
-      }, autoLockMinutes * 60 * 1000);
+      timer = window.setTimeout(
+        () => {
+          lockSession();
+          setSecurityLabel(getProtectedModeLabel());
+          router.push("/unlock");
+        },
+        autoLockMinutes * 60 * 1000,
+      );
     };
 
     const events = ["mousemove", "keydown", "touchstart", "scroll"];
-    events.forEach((event) => window.addEventListener(event, resetTimer, { passive: true }));
+    events.forEach((event) =>
+      window.addEventListener(event, resetTimer, { passive: true }),
+    );
 
     resetTimer();
 
@@ -129,7 +164,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen flex-col bg-transparent text-slate-900">
       <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320]/95 px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
-          <Link href={isPublicPage ? "/" : "/command-center"} className="flex min-w-0 items-center gap-3">
+          <Link
+            href={isPublicPage ? "/" : "/command-center"}
+            className="flex min-w-0 items-center gap-3"
+          >
             <img
               src="/logo.png"
               alt="Sentinel Safety"
@@ -142,7 +180,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <nav className="hidden items-center gap-2 lg:flex">
                 {navItems.map((item) => {
                   const active = item.activeRoots.some(
-                    (root) => pathname === root || pathname.startsWith(root + "/")
+                    (root) =>
+                      pathname === root || pathname.startsWith(root + "/"),
                   );
 
                   return (
@@ -165,64 +204,69 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <div className="flex shrink-0 items-center gap-2">
                 <div className="relative">
                   <button
-                  type="button"
-                  onClick={() => setProfileOpen((open) => !open)}
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#1D72B8] ring-1 ring-blue-100 transition hover:bg-white"
-                  aria-label="Open profile menu"
-                >
-                  CM
-                </button>
+                    type="button"
+                    onClick={() => setProfileOpen((open) => !open)}
+                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#1D72B8] ring-1 ring-blue-100 transition hover:bg-white"
+                    aria-label="Open profile menu"
+                  >
+                    CM
+                  </button>
 
-                {profileOpen && (
-                  <div ref={profileMenuRef} className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
-                    <div className="border-b border-slate-100 px-4 py-3">
-                    <p className="text-xs font-black text-[#AEB6C2]">{securityLabel}</p>
-                  </div>
-
-                  {isPinRequired() && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        lockSession();
-                        setProfileOpen(false);
-                        router.push("/unlock");
-                      }}
-                      className="block w-full px-4 py-3 text-left text-sm font-black text-slate-700 hover:bg-slate-50"
+                  {profileOpen && (
+                    <div
+                      ref={profileMenuRef}
+                      className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl"
                     >
-                      Lock App
-                    </button>
+                      <div className="border-b border-slate-100 px-4 py-3">
+                        <p className="text-xs font-black text-[#AEB6C2]">
+                          {securityLabel}
+                        </p>
+                      </div>
+
+                      {isPinRequired() && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            lockSession();
+                            setProfileOpen(false);
+                            router.push("/unlock");
+                          }}
+                          className="block w-full px-4 py-3 text-left text-sm font-black text-slate-700 hover:bg-slate-50"
+                        >
+                          Lock App
+                        </button>
+                      )}
+
+                      <Link
+                        href="/profile"
+                        onClick={() => setProfileOpen(false)}
+                        className="block px-4 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
+                      >
+                        User Profile
+                      </Link>
+
+                      <Link
+                        href="/settings"
+                        onClick={() => setProfileOpen(false)}
+                        className="block px-4 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
+                      >
+                        Settings
+                      </Link>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          window.localStorage.removeItem("token");
+                          window.localStorage.removeItem("sentinel_auth_token");
+                          window.localStorage.removeItem("sentinel_auth_user");
+                          window.location.href = "/login";
+                        }}
+                        className="block w-full px-4 py-4 text-left text-sm font-black text-red-700 hover:bg-red-50"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
                   )}
-
-                  <Link
-                      href="/profile"
-                      onClick={() => setProfileOpen(false)}
-                      className="block px-4 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
-                    >
-                      User Profile
-                    </Link>
-
-                    <Link
-                      href="/settings"
-                      onClick={() => setProfileOpen(false)}
-                      className="block px-4 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
-                    >
-                      Settings
-                    </Link>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        window.localStorage.removeItem("token");
-                        window.localStorage.removeItem("sentinel_auth_token");
-                        window.localStorage.removeItem("sentinel_auth_user");
-                        window.location.href = "/login";
-                      }}
-                      className="block w-full px-4 py-4 text-left text-sm font-black text-red-700 hover:bg-red-50"
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                )}
                 </div>
               </div>
             </>
@@ -230,30 +274,45 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-2" : "pb-36 lg:pb-10"}`}>
+      <main
+        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-2" : "pb-36 lg:pb-10"}`}
+      >
         {children}
       </main>
 
       {!isPublicPage && <MobileTabBar />}
 
       {isPublicPage && (
-      <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A] ">
+        <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A] ">
           <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/about" style={{ color: "#FFFFFF" }} className="text-sm font-black hover:opacity-80">
+              <Link
+                href="/about"
+                style={{ color: "#FFFFFF" }}
+                className="text-sm font-black hover:opacity-80"
+              >
                 About
               </Link>
 
               <span className="h-4 w-px bg-[#6F7782]" />
 
-              <Link href="/legal" style={{ color: "#FFFFFF" }} className="text-sm font-black hover:opacity-80">
+              <Link
+                href="/legal"
+                style={{ color: "#FFFFFF" }}
+                className="text-sm font-black hover:opacity-80"
+              >
                 Legal
               </Link>
 
               <span className="h-4 w-px bg-[#6F7782]" />
 
-              <Link href="/safescope" style={{ color: "#FFFFFF" }} className="text-sm font-black hover:opacity-80">
-                SafeScope<span className="ml-[1px] align-super text-[9px]">TM</span>
+              <Link
+                href="/safescope"
+                style={{ color: "#FFFFFF" }}
+                className="text-sm font-black hover:opacity-80"
+              >
+                SafeScope
+                <span className="ml-[1px] align-super text-[9px]">TM</span>
               </Link>
             </div>
 
