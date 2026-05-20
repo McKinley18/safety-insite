@@ -106,7 +106,7 @@ export default function InspectionWorkflowHeader({
             <button
               type="button"
               onClick={handleNext}
-              className="min-h-9 min-w-[112px] rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+              className="min-h-8 min-w-[96px] rounded-xl bg-[#102A43] px-3 py-1.5 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
             >
               {nextButtonLabel} →
             </button>
