@@ -3,26 +3,43 @@
 import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { runSafeScopeV2Classify, sendSafeScopeFeedback, submitSupervisorValidation } from "@/lib/safescope";
-import { addReportAttachment, getOrganizationSettings, saveWorkspaceReport, uploadReportAttachment } from "@/lib/auth";
-import { getCoverPage, getReports, setLatestReport, setReports } from "@/lib/reportStorage";
-import { getStoredActions, saveStoredActions, type StoredAction } from "@/lib/actionStorage";
+import {
+  runSafeScopeV2Classify,
+  sendSafeScopeFeedback,
+  submitSupervisorValidation,
+} from "@/lib/safescope";
+import {
+  addReportAttachment,
+  getOrganizationSettings,
+  saveWorkspaceReport,
+  uploadReportAttachment,
+} from "@/lib/auth";
+import {
+  getCoverPage,
+  getReports,
+  setLatestReport,
+  setReports,
+} from "@/lib/reportStorage";
+import {
+  getStoredActions,
+  saveStoredActions,
+  type StoredAction,
+} from "@/lib/actionStorage";
 import { addActivityEvent } from "@/lib/activityStorage";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
-import { deleteEncryptedPhoto, loadEncryptedPhoto, saveEncryptedPhoto } from "@/lib/evidenceStorage";
+import {
+  deleteEncryptedPhoto,
+  loadEncryptedPhoto,
+  saveEncryptedPhoto,
+} from "@/lib/evidenceStorage";
 import { enqueueOfflineItem } from "@/lib/offlineQueue";
 import QuickCaptureSection from "@/components/inspection/QuickCaptureSection";
 import EvidenceCaptureSection from "@/components/inspection/EvidenceCaptureSection";
 import RiskReviewSection from "@/components/inspection/RiskReviewSection";
 import CorrectiveActionsSection from "@/components/inspection/CorrectiveActionsSection";
 import FinalizeInspectionSection from "@/components/inspection/FinalizeInspectionSection";
-import SafeScopeControlsSection from "@/components/inspection/SafeScopeControlsSection";
-import SafeScopeResultHeaderSection from "@/components/inspection/SafeScopeResultHeaderSection";
-import SafeScopePrimaryDecisionSection from "@/components/inspection/SafeScopePrimaryDecisionSection";
-import SafeScopeReasoningPanel from "@/components/inspection/SafeScopeReasoningPanel";
-import SafeScopeStandardsSection from "@/components/inspection/SafeScopeStandardsSection";
-import SafeScopeSupportingIntelligenceSection from "@/components/inspection/SafeScopeSupportingIntelligenceSection";
+import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
 import {
   hazardCategoryOptions,
   inspectionSteps as steps,
@@ -39,10 +56,6 @@ import { buildFinding } from "@/lib/inspection/findingBuilder";
 import { buildInspectionReport } from "@/lib/inspection/reportBuilder";
 import { validateInspectionReport } from "@/lib/inspection/reportValidation";
 
-
-
-
-
 export default function InspectionPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
@@ -51,10 +64,14 @@ export default function InspectionPage() {
   const [location, setLocation] = useState("");
   const [evidenceNotes, setEvidenceNotes] = useState("");
   const [photos, setPhotos] = useState<any[]>([]);
-  const [annotatingPhotoIndex, setAnnotatingPhotoIndex] = useState<number | null>(null);
+  const [annotatingPhotoIndex, setAnnotatingPhotoIndex] = useState<
+    number | null
+  >(null);
   const [annotationExpanded, setAnnotationExpanded] = useState(false);
   const [agencyMode, setAgencyMode] = useState("all");
-  const [riskProfileId, setRiskProfileId] = useState<"simple_4x4" | "standard_5x5" | "advanced_6x6">("standard_5x5");
+  const [riskProfileId, setRiskProfileId] = useState<
+    "simple_4x4" | "standard_5x5" | "advanced_6x6"
+  >("standard_5x5");
 
   useEffect(() => {
     async function loadCompanyRiskProfile() {
@@ -68,18 +85,19 @@ export default function InspectionPage() {
 
         if (backendRiskProfile) {
           setRiskProfileId(backendRiskProfile);
-          window.localStorage.setItem("sentinel_company_risk_profile", backendRiskProfile);
+          window.localStorage.setItem(
+            "sentinel_company_risk_profile",
+            backendRiskProfile,
+          );
           return;
         }
       } catch {
         // Fall back to local workspace setting when offline or signed out.
       }
 
-      const savedRiskProfile = window.localStorage.getItem("sentinel_company_risk_profile") as
-        | "simple_4x4"
-        | "standard_5x5"
-        | "advanced_6x6"
-        | null;
+      const savedRiskProfile = window.localStorage.getItem(
+        "sentinel_company_risk_profile",
+      ) as "simple_4x4" | "standard_5x5" | "advanced_6x6" | null;
 
       if (savedRiskProfile) setRiskProfileId(savedRiskProfile);
     }
@@ -93,28 +111,39 @@ export default function InspectionPage() {
   const [severity, setSeverity] = useState<number | null>(null);
   const [likelihood, setLikelihood] = useState<number | null>(null);
   const [findings, setFindings] = useState<any[]>([]);
-  const [editingFindingIndex, setEditingFindingIndex] = useState<number | null>(null);
+  const [editingFindingIndex, setEditingFindingIndex] = useState<number | null>(
+    null,
+  );
   const [currentFindingSaved, setCurrentFindingSaved] = useState(false);
-  const [currentSavedFindingId, setCurrentSavedFindingId] = useState<string | number | null>(null);
+  const [currentSavedFindingId, setCurrentSavedFindingId] = useState<
+    string | number | null
+  >(null);
   const [findingSaveMessage, setFindingSaveMessage] = useState("");
   const [manualActions, setManualActions] = useState<any[]>([]);
-  const [selectedGeneratedActions, setSelectedGeneratedActions] = useState<any[]>([]);
+  const [selectedGeneratedActions, setSelectedGeneratedActions] = useState<
+    any[]
+  >([]);
   const [manualActionTitle, setManualActionTitle] = useState("");
   const [manualActionPriority, setManualActionPriority] = useState("Medium");
   const [manualActionDue, setManualActionDue] = useState("");
   const [reportValidationMessage, setReportValidationMessage] = useState("");
-  const [includeStandardsInReport, setIncludeStandardsInReport] = useState(true);
+  const [includeStandardsInReport, setIncludeStandardsInReport] =
+    useState(true);
   const [includeActionsInReport, setIncludeActionsInReport] = useState(true);
   const [includePhotosInReport, setIncludePhotosInReport] = useState(true);
-  const [includeSafeScopeNotesInReport, setIncludeSafeScopeNotesInReport] = useState(false);
+  const [includeSafeScopeNotesInReport, setIncludeSafeScopeNotesInReport] =
+    useState(false);
   const [safeScopeHelpOpen, setSafeScopeHelpOpen] = useState(false);
   const [safeScopeDetailsOpen, setSafeScopeDetailsOpen] = useState(false);
-  const [safeScopeCompactDetailsOpen, setSafeScopeCompactDetailsOpen] = useState(false);
+  const [safeScopeCompactDetailsOpen, setSafeScopeCompactDetailsOpen] =
+    useState(false);
   const [safeScopeAdvancedOpen, setSafeScopeAdvancedOpen] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [inspectionContext, setInspectionContext] = useState<any>(null);
 
-  const [inspectionMode, setInspectionMode] = useState<"quick" | "advanced">("quick");
+  const [inspectionMode, setInspectionMode] = useState<"quick" | "advanced">(
+    "quick",
+  );
 
   const isAdvancedMode = inspectionMode === "advanced";
   const quickCapture =
@@ -125,13 +154,16 @@ export default function InspectionPage() {
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem("sentinel_selected_inspection_context");
+      const raw = window.localStorage.getItem(
+        "sentinel_selected_inspection_context",
+      );
       if (!raw) return;
 
       const context = JSON.parse(raw);
       setInspectionContext(context);
 
-      if (context.workflowDepth === "intelligent") setInspectionMode("advanced");
+      if (context.workflowDepth === "intelligent")
+        setInspectionMode("advanced");
       if (context.workflowDepth === "standard") setInspectionMode("advanced");
       if (context.workflowDepth === "quick") setInspectionMode("quick");
 
@@ -159,14 +191,14 @@ export default function InspectionPage() {
           manualActions,
           selectedGeneratedActions,
           updatedAt: new Date().toISOString(),
-        })
+        }),
       );
 
       setLastSavedAt(
         new Date().toLocaleTimeString([], {
           hour: "numeric",
           minute: "2-digit",
-        })
+        }),
       );
     }, 600);
 
@@ -185,7 +217,6 @@ export default function InspectionPage() {
     selectedGeneratedActions,
   ]);
 
-
   useEffect(() => {
     const existing = secureStorage.get("edit_report", null as any);
     if (!existing) return;
@@ -197,7 +228,10 @@ export default function InspectionPage() {
         setFindings(report.findings);
       }
 
-      window.localStorage.setItem("sentinel_editing_report_id", report.id || "");
+      window.localStorage.setItem(
+        "sentinel_editing_report_id",
+        report.id || "",
+      );
       secureStorage.remove("edit_report");
     } catch {
       secureStorage.remove("edit_report");
@@ -221,7 +255,10 @@ export default function InspectionPage() {
           evidenceNotes,
           location,
           photos.length ? `${photos.length} evidence photo(s) attached` : "",
-          ...photos.map((photo, index) => `Photo ${index + 1}: ${photo.name || "evidence photo"}`),
+          ...photos.map(
+            (photo, index) =>
+              `Photo ${index + 1}: ${photo.name || "evidence photo"}`,
+          ),
         ].filter(Boolean),
         priorFindings: findings.map((finding) => ({
           id: finding.id,
@@ -239,9 +276,13 @@ export default function InspectionPage() {
       setSafeScopeCompactDetailsOpen(false);
       setSafeScopeAdvancedOpen(false);
       setSelectedStandards([]);
-      setSafeScopeStatus(`SafeScope v2: ${result.classification} (${result.confidenceBand} confidence)`);
+      setSafeScopeStatus(
+        `SafeScope v2: ${result.classification} (${result.confidenceBand} confidence)`,
+      );
     } catch (error) {
-      setSafeScopeStatus(error instanceof Error ? error.message : "SafeScope request failed.");
+      setSafeScopeStatus(
+        error instanceof Error ? error.message : "SafeScope request failed.",
+      );
     }
   }
 
@@ -256,14 +297,21 @@ export default function InspectionPage() {
   }
 
   function getStandardKey(standard: any) {
-    return standard.citation || standard.id || standard.title || JSON.stringify(standard);
+    return (
+      standard.citation ||
+      standard.id ||
+      standard.title ||
+      JSON.stringify(standard)
+    );
   }
 
   function toggleSelectedStandard(standard: any) {
     const standardKey = getStandardKey(standard);
 
     setSelectedStandards((current) => {
-      const selected = current.some((item) => getStandardKey(item) === standardKey);
+      const selected = current.some(
+        (item) => getStandardKey(item) === standardKey,
+      );
 
       if (selected) {
         return current.filter((item) => getStandardKey(item) !== standardKey);
@@ -282,48 +330,64 @@ export default function InspectionPage() {
 
   async function handleFeedback(
     standard: any,
-    action: "accepted" | "rejected" | "flagged"
+    action: "accepted" | "rejected" | "flagged",
   ) {
     try {
       setSafeScopeStatus(`Submitting ${action} feedback...`);
 
       await sendSafeScopeFeedback({
         text: buildSafeScopeText(),
-        category: safeScopeResult?.classification || hazardCategory || "General",
+        category:
+          safeScopeResult?.classification || hazardCategory || "General",
         mode: agencyMode,
         citation: standard.citation,
         action,
         notes: feedbackNotes,
-        confidenceBefore: safeScopeResult?.confidenceIntelligence?.overallConfidence ?? safeScopeResult?.confidence,
+        confidenceBefore:
+          safeScopeResult?.confidenceIntelligence?.overallConfidence ??
+          safeScopeResult?.confidence,
         riskProfileId,
       });
 
       if (action === "accepted") {
         setSelectedStandards((current) => {
-          const exists = current.some((item) => item.citation === standard.citation);
+          const exists = current.some(
+            (item) => item.citation === standard.citation,
+          );
           return exists ? current : [...current, standard];
         });
       }
 
       if (action === "rejected" || action === "flagged") {
         setSelectedStandards((current) =>
-          current.filter((item) => item.citation !== standard.citation)
+          current.filter((item) => item.citation !== standard.citation),
         );
       }
 
       setSafeScopeStatus(
         action === "accepted"
           ? `Standard selected: ${standard.citation}`
-          : `Feedback saved: ${action} ${standard.citation}`
+          : `Feedback saved: ${action} ${standard.citation}`,
       );
     } catch (error) {
-      setSafeScopeStatus("Feedback could not be saved. Please make sure you are signed in and the backend is running.");
+      setSafeScopeStatus(
+        "Feedback could not be saved. Please make sure you are signed in and the backend is running.",
+      );
     }
   }
 
-  async function submitSafeScopeValidation(decision: "accepted" | "modified" | "rejected" | "escalated" | "insufficient_evidence") {
+  async function submitSafeScopeValidation(
+    decision:
+      | "accepted"
+      | "modified"
+      | "rejected"
+      | "escalated"
+      | "insufficient_evidence",
+  ) {
     if (!safeScopeResult?.reasoningSnapshotId) {
-      setSafeScopeStatus("No SafeScope reasoning snapshot is available to validate.");
+      setSafeScopeStatus(
+        "No SafeScope reasoning snapshot is available to validate.",
+      );
       return;
     }
 
@@ -336,23 +400,34 @@ export default function InspectionPage() {
         reviewerNotes: feedbackNotes,
       });
 
-      setSafeScopeStatus(`Supervisor validation saved: ${decision.replaceAll("_", " ")}`);
+      setSafeScopeStatus(
+        `Supervisor validation saved: ${decision.replaceAll("_", " ")}`,
+      );
     } catch {
-      setSafeScopeStatus("Supervisor validation could not be saved. Please confirm the backend is running.");
+      setSafeScopeStatus(
+        "Supervisor validation could not be saved. Please confirm the backend is running.",
+      );
     }
   }
 
   function toggleGeneratedAction(action: any) {
-    const actionKey = action.title || action.description || JSON.stringify(action);
+    const actionKey =
+      action.title || action.description || JSON.stringify(action);
 
     setSelectedGeneratedActions((current) => {
       const alreadySelected = current.some(
-        (selected) => (selected.title || selected.description || JSON.stringify(selected)) === actionKey
+        (selected) =>
+          (selected.title ||
+            selected.description ||
+            JSON.stringify(selected)) === actionKey,
       );
 
       if (alreadySelected) {
         return current.filter(
-          (selected) => (selected.title || selected.description || JSON.stringify(selected)) !== actionKey
+          (selected) =>
+            (selected.title ||
+              selected.description ||
+              JSON.stringify(selected)) !== actionKey,
         );
       }
 
@@ -385,15 +460,15 @@ export default function InspectionPage() {
   }
 
   function removeManualAction(indexToRemove: number) {
-    setManualActions((current) => current.filter((_, index) => index !== indexToRemove));
+    setManualActions((current) =>
+      current.filter((_, index) => index !== indexToRemove),
+    );
   }
 
   function buildCurrentFinding() {
     return buildFinding({
       existingId:
-        editingFindingIndex !== null
-          ? findings[editingFindingIndex]?.id
-          : null,
+        editingFindingIndex !== null ? findings[editingFindingIndex]?.id : null,
       fallbackId: currentSavedFindingId,
       hazardCategory,
       description,
@@ -417,27 +492,29 @@ export default function InspectionPage() {
 
     const storedActions = await getStoredActions();
 
-    const normalizedActions: StoredAction[] = correctiveActions.map((action: any, index: number) => ({
-      id: action.id || `ACT-${finding.id}-${index}`,
-      title: action.title || action.description || "Corrective action",
-      priority: action.priority || "Medium",
-      status: action.status || "Open",
-      due: action.due || action.dueDate || "",
-      source: action.source || "Inspection",
-      location: finding.location || "Field Inspection",
-      findingTitle:
-        finding.hazardCategory ||
-        finding.safeScopeResult?.classification ||
-        finding.description ||
-        "Inspection Finding",
-      createdAt: action.createdAt || new Date().toISOString(),
-    }));
+    const normalizedActions: StoredAction[] = correctiveActions.map(
+      (action: any, index: number) => ({
+        id: action.id || `ACT-${finding.id}-${index}`,
+        title: action.title || action.description || "Corrective action",
+        priority: action.priority || "Medium",
+        status: action.status || "Open",
+        due: action.due || action.dueDate || "",
+        source: action.source || "Inspection",
+        location: finding.location || "Field Inspection",
+        findingTitle:
+          finding.hazardCategory ||
+          finding.safeScopeResult?.classification ||
+          finding.description ||
+          "Inspection Finding",
+        createdAt: action.createdAt || new Date().toISOString(),
+      }),
+    );
 
     const merged = [
       ...normalizedActions,
       ...storedActions.filter(
         (storedAction) =>
-          !normalizedActions.some((action) => action.id === storedAction.id)
+          !normalizedActions.some((action) => action.id === storedAction.id),
       ),
     ];
 
@@ -494,22 +571,27 @@ export default function InspectionPage() {
     await persistFindingActions(current);
     await addActivityEvent({
       type: "Finding",
-      title: current.hazardCategory || current.safeScopeResult?.classification || "Finding saved",
+      title:
+        current.hazardCategory ||
+        current.safeScopeResult?.classification ||
+        "Finding saved",
       detail: current.location || "Inspection finding updated",
     });
 
     setFindings((prev) => {
       if (editingFindingIndex !== null) {
         return prev.map((finding, index) =>
-          index === editingFindingIndex ? current : finding
+          index === editingFindingIndex ? current : finding,
         );
       }
 
-      const existingIndex = prev.findIndex((finding) => finding.id === current.id);
+      const existingIndex = prev.findIndex(
+        (finding) => finding.id === current.id,
+      );
 
       if (existingIndex >= 0) {
         return prev.map((finding) =>
-          finding.id === current.id ? current : finding
+          finding.id === current.id ? current : finding,
         );
       }
 
@@ -521,7 +603,7 @@ export default function InspectionPage() {
     setFindingSaveMessage(
       editingFindingIndex !== null || currentFindingSaved
         ? "Saved finding updated."
-        : "Finding saved."
+        : "Finding saved.",
     );
   }
 
@@ -531,7 +613,10 @@ export default function InspectionPage() {
       await persistFindingActions(current);
       await addActivityEvent({
         type: "Finding",
-        title: current.hazardCategory || current.safeScopeResult?.classification || "Finding saved",
+        title:
+          current.hazardCategory ||
+          current.safeScopeResult?.classification ||
+          "Finding saved",
         detail: current.location || "Inspection finding added",
       });
       setFindings((prev) => [...prev, current]);
@@ -548,7 +633,9 @@ export default function InspectionPage() {
     setDescription(finding.description || "");
     setLocation(finding.location || "");
     setEvidenceNotes(finding.evidenceNotes || "");
-    Promise.all((finding.photos || []).map((photo: any) => loadEncryptedPhoto(photo))).then(setPhotos);
+    Promise.all(
+      (finding.photos || []).map((photo: any) => loadEncryptedPhoto(photo)),
+    ).then(setPhotos);
     setSafeScopeResult(finding.safeScopeResult || null);
     setSelectedStandards(finding.selectedStandards || []);
     setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
@@ -561,8 +648,6 @@ export default function InspectionPage() {
     setCurrentFindingSaved(true);
     setCurrentStep(1);
   }
-
-
 
   function getActiveRiskScale() {
     const maxScore =
@@ -589,7 +674,8 @@ export default function InspectionPage() {
     let targetStep = Math.max(1, Math.min(steps.length, nextStep));
 
     if (!isAdvancedMode && targetStep === 3) targetStep = 5;
-    if (!isAdvancedMode && currentStep === 5 && nextStep < currentStep) targetStep = 2;
+    if (!isAdvancedMode && currentStep === 5 && nextStep < currentStep)
+      targetStep = 2;
 
     setCurrentStep(targetStep);
 
@@ -609,7 +695,7 @@ export default function InspectionPage() {
     const files = Array.from(event.target.files || []);
 
     const nextPhotos = await Promise.all(
-      files.map((file) => saveEncryptedPhoto(file))
+      files.map((file) => saveEncryptedPhoto(file)),
     );
 
     setPhotos((prev) => [...prev, ...nextPhotos]);
@@ -620,11 +706,6 @@ export default function InspectionPage() {
     deleteEncryptedPhoto(id);
     setPhotos((prev) => prev.filter((photo) => photo.id !== id));
   }
-
-
-
-
-
 
   function validateReportBeforeGenerate() {
     const finalizedFindings = [...findings];
@@ -642,7 +723,10 @@ export default function InspectionPage() {
     if (validationMessage) {
       setReportValidationMessage(validationMessage);
       window.requestAnimationFrame(() => {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
       });
       return;
     }
@@ -655,7 +739,7 @@ export default function InspectionPage() {
       finalizedFindings.push(buildCurrentFinding());
     }
 
-    const coverPage = await getCoverPage<any>() || {};
+    const coverPage = (await getCoverPage<any>()) || {};
 
     const report = buildInspectionReport({
       coverPage,
@@ -677,13 +761,15 @@ export default function InspectionPage() {
 
     if (storageMode === "ask") {
       shouldSaveLocal = window.confirm(
-        "Save this report locally in this browser?\n\nSelect Cancel for cloud-only storage."
+        "Save this report locally in this browser?\n\nSelect Cancel for cloud-only storage.",
       );
     }
 
     if (shouldSaveLocal) {
       const existingReportsRaw = await getReports<any>();
-      const existingReports = Array.isArray(existingReportsRaw) ? existingReportsRaw : [];
+      const existingReports = Array.isArray(existingReportsRaw)
+        ? existingReportsRaw
+        : [];
 
       const nextReports = [
         report,
@@ -703,33 +789,37 @@ export default function InspectionPage() {
             imageUri: photo.url || photo.imageUri || photo.id,
             mimeType: photo.mimeType || photo.type || "image/jpeg",
             fileName: photo.name || "evidence-photo",
-          }))
+          })),
         );
 
         const uploadedPhotoFiles = finalizedFindings.flatMap((finding: any) =>
-          (finding.photos || []).filter((photo: any) => photo.file)
+          (finding.photos || []).filter((photo: any) => photo.file),
         );
 
         await Promise.allSettled(
           uploadedPhotoFiles.map((photo: any) =>
-            uploadReportAttachment(savedCloudReport.id, photo.file)
-          )
+            uploadReportAttachment(savedCloudReport.id, photo.file),
+          ),
         );
 
         const metadataOnlyAttachments = attachmentPayloads.filter(
-          (attachment: any) => !String(attachment.imageUri || "").startsWith("data:")
+          (attachment: any) =>
+            !String(attachment.imageUri || "").startsWith("data:"),
         );
 
         await Promise.allSettled(
           metadataOnlyAttachments.map((attachment: any) =>
-            addReportAttachment(savedCloudReport.id, attachment)
-          )
+            addReportAttachment(savedCloudReport.id, attachment),
+          ),
         );
 
-        window.localStorage.setItem("sentinel_latest_cloud_report_id", savedCloudReport.id);
+        window.localStorage.setItem(
+          "sentinel_latest_cloud_report_id",
+          savedCloudReport.id,
+        );
         window.localStorage.setItem(
           "sentinel_latest_report",
-          JSON.stringify(savedCloudReport.frontendReportJson || report)
+          JSON.stringify(savedCloudReport.frontendReportJson || report),
         );
       } catch (error) {
         await enqueueOfflineItem({
@@ -739,17 +829,26 @@ export default function InspectionPage() {
             storageMode,
             reason: "workspace_cloud_save_failed",
           },
-          lastError: error instanceof Error ? error.message : "Unknown cloud save failure",
+          lastError:
+            error instanceof Error
+              ? error.message
+              : "Unknown cloud save failure",
         });
 
-        alert("Report could not be saved to the workspace database. It was saved locally and queued for retry.");
+        alert(
+          "Report could not be saved to the workspace database. It was saved locally and queued for retry.",
+        );
 
         const existingReportsRaw = await getReports<any>();
-        const existingReports = Array.isArray(existingReportsRaw) ? existingReportsRaw : [];
+        const existingReports = Array.isArray(existingReportsRaw)
+          ? existingReportsRaw
+          : [];
 
         const nextReports = [
           report,
-          ...existingReports.filter((existing: any) => existing.id !== report.id),
+          ...existingReports.filter(
+            (existing: any) => existing.id !== report.id,
+          ),
         ];
 
         await setLatestReport(report);
@@ -772,7 +871,8 @@ export default function InspectionPage() {
         <div className="mb-3 flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-black leading-tight text-slate-900 sm:text-3xl">
-              {inspectionContext?.inspectionTitle || steps[currentStep - 1].title.replace(/^Step \d+: /, "")}
+              {inspectionContext?.inspectionTitle ||
+                steps[currentStep - 1].title.replace(/^Step \d+: /, "")}
             </h1>
             <p className="mt-1 text-sm font-semibold text-slate-600">
               {inspectionContext?.inspectionTitle
@@ -841,21 +941,26 @@ export default function InspectionPage() {
         {steps
           .filter((_, index) => isAdvancedMode || ![2, 3].includes(index))
           .map((_, visibleIndex) => {
-          const visibleSteps = isAdvancedMode ? [1, 2, 3, 4, 5, 6] : [1, 2, 5, 6];
-          const stepNumber = visibleSteps[visibleIndex];
-          const active = currentStep === stepNumber;
-          const complete = currentStep > stepNumber;
+            const visibleSteps = isAdvancedMode
+              ? [1, 2, 3, 4, 5, 6]
+              : [1, 2, 5, 6];
+            const stepNumber = visibleSteps[visibleIndex];
+            const active = currentStep === stepNumber;
+            const complete = currentStep > stepNumber;
 
-          return (
-            <div key={stepNumber} className="h-2 flex-1 rounded-full bg-slate-200">
+            return (
               <div
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  active || complete ? "bg-[#1D72B8]" : "bg-slate-200"
-                }`}
-              />
-            </div>
-          );
-        })}
+                key={stepNumber}
+                className="h-2 flex-1 rounded-full bg-slate-200"
+              >
+                <div
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    active || complete ? "bg-[#1D72B8]" : "bg-slate-200"
+                  }`}
+                />
+              </div>
+            );
+          })}
       </div>
 
       {inspectionContext && (
@@ -867,7 +972,8 @@ export default function InspectionPage() {
             {inspectionContext.inspectionTitle}
           </p>
           <p className="mt-1 text-xs font-semibold text-slate-500">
-            {inspectionContext.agency} • {inspectionContext.workflowDepth?.replaceAll("_", " ")}
+            {inspectionContext.agency} •{" "}
+            {inspectionContext.workflowDepth?.replaceAll("_", " ")}
           </p>
         </div>
       )}
@@ -914,52 +1020,29 @@ export default function InspectionPage() {
         )}
 
         {currentStep === 3 && isAdvancedMode && (
-          <>
-            <SafeScopeControlsSection
-              safeScopeHelpOpen={safeScopeHelpOpen}
-              setSafeScopeHelpOpen={setSafeScopeHelpOpen}
-              agencyMode={agencyMode}
-              setAgencyMode={setAgencyMode}
-              riskProfileId={riskProfileId}
-              handleRunSafeScope={handleRunSafeScope}
-              safeScopeStatus={safeScopeStatus}
-            />
-
-            {safeScopeResult && (
-              <div className="mb-4 border-y border-slate-200 py-4">
-                <SafeScopeResultHeaderSection
-                  safeScopeResult={safeScopeResult}
-                  submitSafeScopeValidation={submitSafeScopeValidation}
-                />
-
-                <SafeScopePrimaryDecisionSection safeScopeResult={safeScopeResult} />
-
-                <SafeScopeReasoningPanel
-                  safeScopeResult={safeScopeResult}
-                  safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
-                  setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}
-                  safeScopeAdvancedOpen={safeScopeAdvancedOpen}
-                  setSafeScopeAdvancedOpen={setSafeScopeAdvancedOpen}
-                />
-              </div>
-            )}
-
-            <SafeScopeStandardsSection
-              safeScopeResult={safeScopeResult}
-              feedbackNotes={feedbackNotes}
-              setFeedbackNotes={setFeedbackNotes}
-              selectedStandards={selectedStandards}
-              getStandardKey={getStandardKey}
-              toggleSelectedStandard={toggleSelectedStandard}
-              handleFeedback={handleFeedback}
-            />
-
-            <SafeScopeSupportingIntelligenceSection
-              safeScopeResult={safeScopeResult}
-              safeScopeDetailsOpen={safeScopeDetailsOpen}
-              setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
-            />
-          </>
+          <SafeScopeInspectionStep
+            safeScopeHelpOpen={safeScopeHelpOpen}
+            setSafeScopeHelpOpen={setSafeScopeHelpOpen}
+            agencyMode={agencyMode}
+            setAgencyMode={setAgencyMode}
+            riskProfileId={riskProfileId}
+            handleRunSafeScope={handleRunSafeScope}
+            safeScopeStatus={safeScopeStatus}
+            safeScopeResult={safeScopeResult}
+            submitSafeScopeValidation={submitSafeScopeValidation}
+            safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
+            setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}
+            safeScopeAdvancedOpen={safeScopeAdvancedOpen}
+            setSafeScopeAdvancedOpen={setSafeScopeAdvancedOpen}
+            feedbackNotes={feedbackNotes}
+            setFeedbackNotes={setFeedbackNotes}
+            selectedStandards={selectedStandards}
+            getStandardKey={getStandardKey}
+            toggleSelectedStandard={toggleSelectedStandard}
+            handleFeedback={handleFeedback}
+            safeScopeDetailsOpen={safeScopeDetailsOpen}
+            setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
+          />
         )}
 
         {currentStep === 4 && isAdvancedMode && (
@@ -1022,7 +1105,6 @@ export default function InspectionPage() {
           {reportValidationMessage}
         </div>
       )}
-
     </>
   );
 }
