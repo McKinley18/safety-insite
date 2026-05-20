@@ -42,7 +42,7 @@ export const localExporter = {
     URL.revokeObjectURL(url);
   },
 
-  // 🔷 GENERATE C-SUITE PDF LOCALLY
+  // 🔷 GENERATE SENTINEL SAFETY PDF LOCALLY
   generatePDF: async (
     data: InspectionData,
     options: ExportOptions = { findingsPerPage: "single" },
