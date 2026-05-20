@@ -90,22 +90,9 @@ export const localExporter = {
     };
 
     // 1. COVER PAGE
-    doc.setFillColor(15, 23, 42);
-    doc.rect(0, 0, pageWidth, 34, "F");
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(10);
-    doc.setTextColor(255, 255, 255);
-    doc.text("SENTINEL SAFETY", 20, 18);
-
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(8);
-    doc.setTextColor(203, 213, 225);
-    doc.text("See Risk. Prevent Harm.", 20, 25);
-
     doc.setDrawColor(249, 115, 22);
     doc.setLineWidth(1.2);
-    doc.line(20, 42, pageWidth - 20, 42);
+    doc.line(50, 42, pageWidth - 50, 42);
 
     if (adminInfo?.companyLogo) {
       try {
