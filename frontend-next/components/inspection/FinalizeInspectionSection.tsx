@@ -6,6 +6,7 @@ type Props = {
   currentFindingSaved: boolean;
   saveFinding: () => void;
   addNewFinding: () => void;
+  generateReport: () => void;
 
   includeStandardsInReport: boolean;
   setIncludeStandardsInReport: (value: boolean) => void;
@@ -54,6 +55,7 @@ export default function FinalizeInspectionSection({
   currentFindingSaved,
   saveFinding,
   addNewFinding,
+  generateReport,
   includeStandardsInReport,
   setIncludeStandardsInReport,
   includeActionsInReport,
@@ -394,6 +396,34 @@ export default function FinalizeInspectionSection({
                 </span>
               </button>
             ))}
+          </section>
+
+          <section className="mt-4 rounded-2xl border border-[#1D72B8]/20 bg-[#F4F9FF] p-4 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+              Generate Report
+            </p>
+            <h3 className="mt-1 text-lg font-black text-slate-900">
+              Create the final inspection package
+            </h3>
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              Generate the report after the current finding is saved and the
+              saved hazard cards look correct.
+            </p>
+
+            <button
+              type="button"
+              onClick={generateReport}
+              className="mt-4 rounded-xl bg-[#F97316] px-5 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
+            >
+              Generate Report
+            </button>
+
+            {findings.length === 0 && (
+              <p className="mt-3 text-xs font-bold leading-5 text-amber-700">
+                No saved findings yet. Save the current finding before
+                generating the report.
+              </p>
+            )}
           </section>
         </div>
       )}
