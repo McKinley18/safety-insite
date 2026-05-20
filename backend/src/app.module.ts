@@ -18,9 +18,11 @@ import { OutcomesModule } from './outcomes/outcomes.module';
 import { TransparencyModule } from './transparency/transparency.module';
 import { PdfModule } from './pdf/pdf.module';
 import { BillingModule } from './billing/billing.module';
+import { SafeScopeKnowledgeModule } from './safescope-knowledge/safescope-knowledge.module';
 
 @Module({
-  imports: [SafescopeV2Module, 
+  imports: [SafescopeV2Module,
+    SafeScopeKnowledgeModule, 
     // 🔷 ENVIRONMENT CONFIGURATION: IT standard for secret management
     ConfigModule.forRoot({
       isGlobal: true,
