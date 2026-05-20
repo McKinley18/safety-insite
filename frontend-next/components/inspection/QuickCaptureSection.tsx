@@ -12,7 +12,6 @@ type Props = {
   description: string;
   setDescription: (value: string) => void;
   photos: any[];
-  handlePhotoUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
   manualActionTitle: string;
   setManualActionTitle: (value: string) => void;
   manualActionPriority: string;
@@ -36,7 +35,6 @@ export default function QuickCaptureSection({
   description,
   setDescription,
   photos,
-  handlePhotoUpload,
   manualActionTitle,
   setManualActionTitle,
   manualActionPriority,
@@ -51,12 +49,12 @@ export default function QuickCaptureSection({
     <>
       <div className="mb-4 rounded-2xl border border-blue-100 bg-[#F4F9FF] px-4 py-3">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-          Capture Finding
+          Describe Finding
         </p>
         <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
-          Start with what you see. Add a photo, describe the observed condition,
-          and identify the location. SafeScope can help classify the hazard
-          later.
+          Describe what the evidence shows, where the condition is located, and
+          whether immediate action was taken. SafeScope can classify the hazard
+          after the finding is described.
         </p>
       </div>
 
@@ -91,48 +89,6 @@ export default function QuickCaptureSection({
             : "Expanded SafeScope, evidence, standards, and risk review."}
         </span>
       </div>
-
-      {quickCapture && (
-        <div className="mb-4 border-t border-slate-200 pt-4">
-          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-            Photo Evidence
-          </p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-            Capture the condition as it exists now. Photos help SafeScope and
-            make the final report more defensible.
-          </p>
-
-          <div className="mt-3 flex flex-wrap gap-2">
-            <label className="cursor-pointer rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]">
-              Take Photo
-              <input
-                type="file"
-                accept="image/*"
-                capture="environment"
-                className="hidden"
-                onChange={handlePhotoUpload}
-              />
-            </label>
-
-            <label className="cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50">
-              Upload
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                className="hidden"
-                onChange={handlePhotoUpload}
-              />
-            </label>
-          </div>
-
-          {!!photos.length && (
-            <p className="mt-3 text-xs font-black text-slate-500">
-              {photos.length} photo(s) attached.
-            </p>
-          )}
-        </div>
-      )}
 
       <div className="mt-4">
         <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">

@@ -149,6 +149,21 @@ export default function InspectionStepRenderer({
   return (
     <div className="px-1 py-2 sm:px-2">
       {currentStep === 1 && (
+        <EvidenceCaptureSection
+          photos={photos}
+          setPhotos={setPhotos}
+          evidenceNotes={evidenceNotes}
+          setEvidenceNotes={setEvidenceNotes}
+          annotatingPhotoIndex={annotatingPhotoIndex}
+          setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
+          annotationExpanded={annotationExpanded}
+          setAnnotationExpanded={setAnnotationExpanded}
+          handlePhotoUpload={handlePhotoUpload}
+          removePhoto={removePhoto}
+        />
+      )}
+
+      {currentStep === 2 && (
         <QuickCaptureSection
           inspectionContext={inspectionContext}
           inspectionMode={inspectionMode}
@@ -161,7 +176,6 @@ export default function InspectionStepRenderer({
           description={description}
           setDescription={setDescription}
           photos={photos}
-          handlePhotoUpload={handlePhotoUpload}
           manualActionTitle={manualActionTitle}
           setManualActionTitle={setManualActionTitle}
           manualActionPriority={manualActionPriority}
@@ -171,21 +185,6 @@ export default function InspectionStepRenderer({
           manualActions={manualActions}
           addManualAction={addManualAction}
           removeManualAction={removeManualAction}
-        />
-      )}
-
-      {currentStep === 2 && (
-        <EvidenceCaptureSection
-          photos={photos}
-          setPhotos={setPhotos}
-          evidenceNotes={evidenceNotes}
-          setEvidenceNotes={setEvidenceNotes}
-          annotatingPhotoIndex={annotatingPhotoIndex}
-          setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
-          annotationExpanded={annotationExpanded}
-          setAnnotationExpanded={setAnnotationExpanded}
-          handlePhotoUpload={handlePhotoUpload}
-          removePhoto={removePhoto}
         />
       )}
 
