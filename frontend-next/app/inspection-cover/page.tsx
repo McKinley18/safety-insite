@@ -13,6 +13,9 @@ export default function InspectionCoverPage() {
   const [additionalInspectors, setAdditionalInspectors] = useState([""]);
   const [includeCoverPage, setIncludeCoverPage] = useState(true);
   const [isConfidential, setIsConfidential] = useState(false);
+  const [confidentialityMarkerText, setConfidentialityMarkerText] = useState(
+    "Privileged & Confidential",
+  );
   const [companyLogo, setCompanyLogo] = useState("");
   const [includeLogoOnCover, setIncludeLogoOnCover] = useState(true);
 
@@ -25,7 +28,11 @@ export default function InspectionCoverPage() {
         localStorage.getItem("sentinel_default_include_cover_page") !== "false";
       const defaultConfidential =
         localStorage.getItem("sentinel_default_confidential_marker") === "true";
+      const savedConfidentialityMarkerText =
+        localStorage.getItem("sentinel_confidential_marker_text") ||
+        "Privileged & Confidential";
 
+      setConfidentialityMarkerText(savedConfidentialityMarkerText);
       setCompanyLogo(savedLogo);
       setIncludeLogoOnCover(savedIncludeLogo);
       setIncludeCoverPage(defaultCoverPage);
@@ -47,6 +54,9 @@ export default function InspectionCoverPage() {
       );
       setIncludeCoverPage(parsed.includeCoverPage ?? defaultCoverPage);
       setIsConfidential(parsed.isConfidential ?? defaultConfidential);
+      setConfidentialityMarkerText(
+        parsed.confidentialityMarkerText || savedConfidentialityMarkerText,
+      );
       setCompanyLogo(parsed.companyLogo || savedLogo);
       setIncludeLogoOnCover(parsed.includeLogoOnCover ?? savedIncludeLogo);
     }
@@ -63,6 +73,7 @@ export default function InspectionCoverPage() {
       additionalInspectors: additionalInspectors.filter(Boolean),
       includeCoverPage,
       isConfidential,
+      confidentialityMarkerText,
       companyLogo,
       includeLogoOnCover,
     });
@@ -183,6 +194,9 @@ export default function InspectionCoverPage() {
           <span className="flex-1">
             <span className="block text-sm font-black text-red-800">
               Include confidentiality marker
+            </span>
+            <span className="mt-1 block text-xs font-black text-red-800">
+              {confidentialityMarkerText}
             </span>
             <span className="mt-1 block text-xs leading-[17px] text-red-900">
               Adds the selected confidentiality marking to the report when

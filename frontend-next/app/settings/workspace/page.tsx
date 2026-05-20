@@ -27,9 +27,29 @@ const riskProfiles = [
 ] as const;
 
 const storageModes = [
-  ["local", "Private Local Vault", "Reports stay encrypted on this device unless exported or synced."],
-  ["cloud", "Company Cloud Workspace", "Reports sync to the shared company workspace."],
-  ["ask", "Ask Every Report", "Choose local or cloud storage when finalizing each report."],
+  [
+    "local",
+    "Private Local Vault",
+    "Reports stay encrypted on this device unless exported or synced.",
+  ],
+  [
+    "cloud",
+    "Company Cloud Workspace",
+    "Reports sync to the shared company workspace.",
+  ],
+  [
+    "ask",
+    "Ask Every Report",
+    "Choose local or cloud storage when finalizing each report.",
+  ],
+] as const;
+
+const confidentialityMarkerOptions = [
+  "Privileged & Confidential",
+  "Confidential Safety Review",
+  "Internal Safety Use Only",
+  "Draft — Subject to Review",
+  "None",
 ] as const;
 
 function getMatrixSize(profile: RiskProfileId) {
@@ -46,7 +66,11 @@ function getRiskColor(score: number, maxScore: number) {
   return "bg-emerald-400";
 }
 
-function RiskMatrixPreview({ riskProfileId }: { riskProfileId: RiskProfileId }) {
+function RiskMatrixPreview({
+  riskProfileId,
+}: {
+  riskProfileId: RiskProfileId;
+}) {
   const size = getMatrixSize(riskProfileId);
   const cells = [];
 
@@ -80,7 +104,14 @@ export default function SettingsPage() {
   const [organizationName, setOrganizationName] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
   const [includeLogoOnCover, setIncludeLogoOnCover] = useState(true);
-  const [riskProfileId, setRiskProfileId] = useState<RiskProfileId>("standard_5x5");
+  const [defaultIncludeCoverPage, setDefaultIncludeCoverPage] = useState(true);
+  const [defaultConfidentialMarker, setDefaultConfidentialMarker] =
+    useState(false);
+  const [confidentialityMarkerText, setConfidentialityMarkerText] = useState(
+    "Privileged & Confidential",
+  );
+  const [riskProfileId, setRiskProfileId] =
+    useState<RiskProfileId>("standard_5x5");
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
   const [requirePinUnlock, setRequirePinUnlock] = useState(false);
   const [autoLockMinutes, setAutoLockMinutes] = useState("off");
@@ -96,10 +127,14 @@ export default function SettingsPage() {
 
   const [planCode, setPlanCode] = useState("basic");
   const [status, setStatus] = useState("");
-  const [statusType, setStatusType] = useState<"idle" | "success" | "error">("idle");
+  const [statusType, setStatusType] = useState<"idle" | "success" | "error">(
+    "idle",
+  );
 
   const selectedMatrixLabel = useMemo(() => {
-    return riskProfiles.find(([id]) => id === riskProfileId)?.[1] || "Standard 5x5";
+    return (
+      riskProfiles.find(([id]) => id === riskProfileId)?.[1] || "Standard 5x5"
+    );
   }, [riskProfileId]);
 
   const companySeats = 5;
@@ -109,26 +144,61 @@ export default function SettingsPage() {
     async function loadSettings() {
       setPlanCode(getStoredPlanCode());
 
-      setCompanyLogo(window.localStorage.getItem("sentinel_company_logo") || "");
-      setIncludeLogoOnCover(window.localStorage.getItem("sentinel_include_logo_on_cover") !== "false");
-      setStorageMode((window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) || "local");
-      setRequirePinUnlock(window.localStorage.getItem("sentinel_require_pin_unlock") === "true");
-      setAutoLockMinutes(window.localStorage.getItem("sentinel_auto_lock_minutes") || "off");
+      setCompanyLogo(
+        window.localStorage.getItem("sentinel_company_logo") || "",
+      );
+      setIncludeLogoOnCover(
+        window.localStorage.getItem("sentinel_include_logo_on_cover") !==
+          "false",
+      );
+      setDefaultIncludeCoverPage(
+        window.localStorage.getItem("sentinel_default_include_cover_page") !==
+          "false",
+      );
+      setDefaultConfidentialMarker(
+        window.localStorage.getItem("sentinel_default_confidential_marker") ===
+          "true",
+      );
+      setConfidentialityMarkerText(
+        window.localStorage.getItem("sentinel_confidential_marker_text") ||
+          "Privileged & Confidential",
+      );
+      setStorageMode(
+        (window.localStorage.getItem(
+          "sentinel_report_storage_mode",
+        ) as StorageMode | null) || "local",
+      );
+      setRequirePinUnlock(
+        window.localStorage.getItem("sentinel_require_pin_unlock") === "true",
+      );
+      setAutoLockMinutes(
+        window.localStorage.getItem("sentinel_auto_lock_minutes") || "off",
+      );
       setFacilityList(getFacilities());
 
       try {
         const settings = await getOrganizationSettings();
         setOrganizationName(settings.name || "");
-        setCompanyLogo(settings.logoPath || window.localStorage.getItem("sentinel_company_logo") || "");
-        setRiskProfileId((settings.riskProfileId || "standard_5x5") as RiskProfileId);
+        setCompanyLogo(
+          settings.logoPath ||
+            window.localStorage.getItem("sentinel_company_logo") ||
+            "",
+        );
+        setRiskProfileId(
+          (settings.riskProfileId || "standard_5x5") as RiskProfileId,
+        );
 
         const [membersResult, invitesResult] = await Promise.allSettled([
           getOrganizationMembers(),
           getOrganizationInvites(),
         ]);
 
-        setMembers(membersResult.status === "fulfilled" ? membersResult.value : []);
-        setInvites(invitesResult.status === "fulfilled" ? invitesResult.value : []);
+        setMembers(
+          membersResult.status === "fulfilled" ? membersResult.value : [],
+        );
+        setInvites(
+          invitesResult.status === "fulfilled" ? invitesResult.value : [],
+        );
       } catch {
         setStatusType("idle");
         setStatus("");
@@ -188,16 +258,23 @@ export default function SettingsPage() {
       setStatus(`Invitation created for ${invite.email}.`);
     } catch {
       setStatusType("error");
-      setStatus("Invitation could not be created. Company plan and sign-in may be required.");
+      setStatus(
+        "Invitation could not be created. Company plan and sign-in may be required.",
+      );
     }
   }
 
   async function saveSettings() {
     try {
-      if (!hasPlanEntitlement("cloudReports", planCode) && storageMode === "cloud") {
+      if (
+        !hasPlanEntitlement("cloudReports", planCode) &&
+        storageMode === "cloud"
+      ) {
         setStorageMode("local");
         setStatusType("error");
-        setStatus("Cloud workspace sync requires the Company plan. Reports will stay on this device.");
+        setStatus(
+          "Cloud workspace sync requires the Company plan. Reports will stay on this device.",
+        );
         return;
       }
 
@@ -210,18 +287,47 @@ export default function SettingsPage() {
         logoPath: companyLogo,
       });
 
-      window.localStorage.setItem("sentinel_company_risk_profile", saved.riskProfileId || riskProfileId);
-      window.localStorage.setItem("sentinel_company_logo", saved.logoPath || companyLogo || "");
-      window.localStorage.setItem("sentinel_include_logo_on_cover", String(includeLogoOnCover));
+      window.localStorage.setItem(
+        "sentinel_company_risk_profile",
+        saved.riskProfileId || riskProfileId,
+      );
+      window.localStorage.setItem(
+        "sentinel_company_logo",
+        saved.logoPath || companyLogo || "",
+      );
+      window.localStorage.setItem(
+        "sentinel_include_logo_on_cover",
+        String(includeLogoOnCover),
+      );
+      window.localStorage.setItem(
+        "sentinel_default_include_cover_page",
+        String(defaultIncludeCoverPage),
+      );
+      window.localStorage.setItem(
+        "sentinel_default_confidential_marker",
+        String(defaultConfidentialMarker),
+      );
+      window.localStorage.setItem(
+        "sentinel_confidential_marker_text",
+        confidentialityMarkerText,
+      );
       window.localStorage.setItem("sentinel_report_storage_mode", storageMode);
-      window.localStorage.setItem("sentinel_require_pin_unlock", String(requirePinUnlock));
-      window.localStorage.setItem("sentinel_auto_lock_minutes", autoLockMinutes);
+      window.localStorage.setItem(
+        "sentinel_require_pin_unlock",
+        String(requirePinUnlock),
+      );
+      window.localStorage.setItem(
+        "sentinel_auto_lock_minutes",
+        autoLockMinutes,
+      );
 
       setStatusType("success");
       setStatus("Settings saved.");
     } catch {
       setStatusType("error");
-      setStatus("Settings could not be saved. Please make sure you are signed in.");
+      setStatus(
+        "Settings could not be saved. Please make sure you are signed in.",
+      );
     }
   }
 
@@ -236,12 +342,21 @@ export default function SettingsPage() {
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">Personal Profile</p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">Your account settings</h2>
-            <p className="mt-1 text-sm font-semibold text-slate-500">Manage your name, email, password, and personal account details.</p>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Personal Profile
+            </p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">
+              Your account settings
+            </h2>
+            <p className="mt-1 text-sm font-semibold text-slate-500">
+              Manage your name, email, password, and personal account details.
+            </p>
           </div>
 
-          <Link href="/profile" className="rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]">
+          <Link
+            href="/profile"
+            className="rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+          >
             Manage Profile
           </Link>
         </div>
@@ -255,7 +370,9 @@ export default function SettingsPage() {
 
         <div className="mt-4 grid gap-5 md:grid-cols-[1fr_220px]">
           <label className="block">
-            <span className="text-sm font-black text-slate-700">Organization Name</span>
+            <span className="text-sm font-black text-slate-700">
+              Organization Name
+            </span>
             <input
               value={organizationName}
               onChange={(event) => setOrganizationName(event.target.value)}
@@ -267,9 +384,15 @@ export default function SettingsPage() {
             <p className="text-sm font-black text-slate-700">Logo</p>
             <div className="mt-2 flex min-h-24 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 p-3">
               {companyLogo ? (
-                <img src={companyLogo} alt="Company logo preview" className="max-h-20 max-w-full object-contain" />
+                <img
+                  src={companyLogo}
+                  alt="Company logo preview"
+                  className="max-h-20 max-w-full object-contain"
+                />
               ) : (
-                <span className="text-xs font-bold text-slate-400">No logo uploaded</span>
+                <span className="text-xs font-bold text-slate-400">
+                  No logo uploaded
+                </span>
               )}
             </div>
           </div>
@@ -302,14 +425,92 @@ export default function SettingsPage() {
           onClick={() => setIncludeLogoOnCover(!includeLogoOnCover)}
           className="mt-4 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-left"
         >
-          <span className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${includeLogoOnCover ? "bg-[#1D72B8]" : "bg-white"}`}>
+          <span
+            className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${includeLogoOnCover ? "bg-[#1D72B8]" : "bg-white"}`}
+          >
             {includeLogoOnCover ? "✓" : ""}
           </span>
           <span>
-            <span className="block text-sm font-black text-slate-900">Include logo on inspection cover pages</span>
-            <span className="block text-xs font-semibold text-slate-500">This can still be changed for individual reports.</span>
+            <span className="block text-sm font-black text-slate-900">
+              Include logo on inspection cover pages
+            </span>
+            <span className="block text-xs font-semibold text-slate-500">
+              This can still be changed for individual reports.
+            </span>
           </span>
         </button>
+
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Inspection Report Defaults
+          </p>
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+            These defaults simplify the inspection start screen. Users can still
+            override them for individual reports.
+          </p>
+
+          <button
+            type="button"
+            onClick={() => setDefaultIncludeCoverPage(!defaultIncludeCoverPage)}
+            className="mt-4 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left"
+          >
+            <span
+              className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${defaultIncludeCoverPage ? "bg-[#1D72B8]" : "bg-white"}`}
+            >
+              {defaultIncludeCoverPage ? "✓" : ""}
+            </span>
+            <span>
+              <span className="block text-sm font-black text-slate-900">
+                Include cover page by default
+              </span>
+              <span className="block text-xs font-semibold text-slate-500">
+                New inspections will start with the cover page option enabled.
+              </span>
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() =>
+              setDefaultConfidentialMarker(!defaultConfidentialMarker)
+            }
+            className="mt-3 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left"
+          >
+            <span
+              className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${defaultConfidentialMarker ? "bg-[#1D72B8]" : "bg-white"}`}
+            >
+              {defaultConfidentialMarker ? "✓" : ""}
+            </span>
+            <span>
+              <span className="block text-sm font-black text-slate-900">
+                Include confidentiality marker by default
+              </span>
+              <span className="block text-xs font-semibold text-slate-500">
+                Use only when appropriate for your organization’s legal or
+                internal review process.
+              </span>
+            </span>
+          </button>
+
+          <label className="mt-4 block">
+            <span className="text-sm font-black text-slate-700">
+              Default confidentiality marker text
+            </span>
+            <select
+              value={confidentialityMarkerText}
+              onChange={(event) =>
+                setConfidentialityMarkerText(event.target.value)
+              }
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+            >
+              {confidentialityMarkerOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -322,12 +523,21 @@ export default function SettingsPage() {
           <>
             <div className="mt-4 space-y-3">
               {members.map((member) => (
-                <div key={member.id} className="flex items-center justify-between border-b border-slate-200 pb-3">
+                <div
+                  key={member.id}
+                  className="flex items-center justify-between border-b border-slate-200 pb-3"
+                >
                   <div>
-                    <p className="font-black text-slate-900">{member.name || "User"}</p>
-                    <p className="text-sm font-semibold text-slate-500">{member.email}</p>
+                    <p className="font-black text-slate-900">
+                      {member.name || "User"}
+                    </p>
+                    <p className="text-sm font-semibold text-slate-500">
+                      {member.email}
+                    </p>
                   </div>
-                  <span className="text-xs font-black uppercase tracking-wide text-[#F97316]">{member.role}</span>
+                  <span className="text-xs font-black uppercase tracking-wide text-[#F97316]">
+                    {member.role}
+                  </span>
                 </div>
               ))}
             </div>
@@ -361,11 +571,20 @@ export default function SettingsPage() {
 
             {!!invites.length && (
               <div className="mt-5 space-y-2">
-                <h3 className="text-sm font-black text-slate-900">Pending Invites</h3>
+                <h3 className="text-sm font-black text-slate-900">
+                  Pending Invites
+                </h3>
                 {invites.map((invite) => (
-                  <div key={invite.id} className="border-b border-slate-200 py-2">
-                    <p className="text-sm font-black text-slate-900">{invite.email}</p>
-                    <p className="break-all text-xs font-semibold text-slate-500">{invite.role} • Token: {invite.token}</p>
+                  <div
+                    key={invite.id}
+                    className="border-b border-slate-200 py-2"
+                  >
+                    <p className="text-sm font-black text-slate-900">
+                      {invite.email}
+                    </p>
+                    <p className="break-all text-xs font-semibold text-slate-500">
+                      {invite.role} • Token: {invite.token}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -373,8 +592,13 @@ export default function SettingsPage() {
           </>
         ) : (
           <div className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
-            <p className="text-sm font-black text-slate-900">Company plan required</p>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">Employee invitations, shared roles, and team workspace access are available on the Company plan.</p>
+            <p className="text-sm font-black text-slate-900">
+              Company plan required
+            </p>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+              Employee invitations, shared roles, and team workspace access are
+              available on the Company plan.
+            </p>
           </div>
         )}
       </section>
@@ -412,10 +636,17 @@ export default function SettingsPage() {
         {facilities.length ? (
           <div className="mt-4 divide-y divide-slate-200 border-t border-slate-200">
             {facilities.map((facility) => (
-              <div key={facility.id} className="flex items-center justify-between gap-3 py-3">
+              <div
+                key={facility.id}
+                className="flex items-center justify-between gap-3 py-3"
+              >
                 <div>
                   <p className="font-black text-slate-900">{facility.name}</p>
-                  {facility.siteType && <p className="text-sm font-semibold text-slate-500">{facility.siteType}</p>}
+                  {facility.siteType && (
+                    <p className="text-sm font-semibold text-slate-500">
+                      {facility.siteType}
+                    </p>
+                  )}
                 </div>
 
                 <button
@@ -429,7 +660,9 @@ export default function SettingsPage() {
             ))}
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-bold text-slate-500">No locations saved yet.</p>
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-bold text-slate-500">
+            No locations saved yet.
+          </p>
         )}
       </section>
 
@@ -441,7 +674,8 @@ export default function SettingsPage() {
 
         <div className="mt-4 space-y-2">
           {storageModes.map(([id, label, description]) => {
-            const cloudLocked = id === "cloud" && !hasPlanEntitlement("cloudReports", planCode);
+            const cloudLocked =
+              id === "cloud" && !hasPlanEntitlement("cloudReports", planCode);
 
             return (
               <button
@@ -453,25 +687,36 @@ export default function SettingsPage() {
                   setStorageMode(id);
                 }}
                 className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left ${
-                  storageMode === id ? "border-[#1D72B8] bg-[#E8F4FF]" : "border-slate-200 bg-white"
+                  storageMode === id
+                    ? "border-[#1D72B8] bg-[#E8F4FF]"
+                    : "border-slate-200 bg-white"
                 } ${cloudLocked ? "cursor-not-allowed opacity-55" : ""}`}
               >
                 <span>
                   <span className="block text-sm font-black text-slate-900">
-                    {label}{cloudLocked ? " — Company only" : ""}
+                    {label}
+                    {cloudLocked ? " — Company only" : ""}
                   </span>
                   <span className="block text-xs font-semibold text-slate-500">
-                    {cloudLocked ? "Upgrade to Company to sync reports to a shared workspace." : description}
+                    {cloudLocked
+                      ? "Upgrade to Company to sync reports to a shared workspace."
+                      : description}
                   </span>
                 </span>
-                <span className="text-sm font-black text-[#1D72B8]">{storageMode === id ? "Selected" : ""}</span>
+                <span className="text-sm font-black text-[#1D72B8]">
+                  {storageMode === id ? "Selected" : ""}
+                </span>
               </button>
             );
           })}
 
           <div className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-3">
-            <p className="text-sm font-black text-slate-900">Google Drive Backup — Planned</p>
-            <p className="mt-1 text-xs font-semibold text-slate-500">Future option for user-controlled report and evidence backup.</p>
+            <p className="text-sm font-black text-slate-900">
+              Google Drive Backup — Planned
+            </p>
+            <p className="mt-1 text-xs font-semibold text-slate-500">
+              Future option for user-controlled report and evidence backup.
+            </p>
           </div>
         </div>
       </section>
@@ -490,20 +735,30 @@ export default function SettingsPage() {
                 type="button"
                 onClick={() => setRiskProfileId(id)}
                 className={`flex w-full items-center justify-between rounded-xl border px-4 py-3 text-left ${
-                  riskProfileId === id ? "border-[#1D72B8] bg-[#E8F4FF]" : "border-slate-200 bg-white"
+                  riskProfileId === id
+                    ? "border-[#1D72B8] bg-[#E8F4FF]"
+                    : "border-slate-200 bg-white"
                 }`}
               >
                 <span>
-                  <span className="block text-sm font-black text-slate-900">{label}</span>
-                  <span className="block text-xs font-semibold text-slate-500">{description}</span>
+                  <span className="block text-sm font-black text-slate-900">
+                    {label}
+                  </span>
+                  <span className="block text-xs font-semibold text-slate-500">
+                    {description}
+                  </span>
                 </span>
-                <span className="text-sm font-black text-[#1D72B8]">{riskProfileId === id ? "Selected" : ""}</span>
+                <span className="text-sm font-black text-[#1D72B8]">
+                  {riskProfileId === id ? "Selected" : ""}
+                </span>
               </button>
             ))}
           </div>
 
           <div>
-            <p className="mb-2 text-sm font-black text-slate-700">{selectedMatrixLabel}</p>
+            <p className="mb-2 text-sm font-black text-slate-700">
+              {selectedMatrixLabel}
+            </p>
             <RiskMatrixPreview riskProfileId={riskProfileId} />
           </div>
         </div>
@@ -520,12 +775,18 @@ export default function SettingsPage() {
           onClick={() => setRequirePinUnlock(!requirePinUnlock)}
           className="mt-4 flex w-full items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-left"
         >
-          <span className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${requirePinUnlock ? "bg-[#1D72B8]" : "bg-white"}`}>
+          <span
+            className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${requirePinUnlock ? "bg-[#1D72B8]" : "bg-white"}`}
+          >
             {requirePinUnlock ? "✓" : ""}
           </span>
           <span>
-            <span className="block text-sm font-black text-slate-900">Require PIN to open local reports</span>
-            <span className="block text-xs font-semibold text-slate-500">Adds another unlock step for sensitive work.</span>
+            <span className="block text-sm font-black text-slate-900">
+              Require PIN to open local reports
+            </span>
+            <span className="block text-xs font-semibold text-slate-500">
+              Adds another unlock step for sensitive work.
+            </span>
           </span>
         </button>
 
