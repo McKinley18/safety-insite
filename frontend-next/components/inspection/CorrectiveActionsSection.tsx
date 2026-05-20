@@ -182,13 +182,15 @@ export default function CorrectiveActionsSection({
             />
           </div>
 
-          <button
-            type="button"
-            onClick={addManualAction}
-            className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white"
-          >
-            Add Corrective Action
-          </button>
+          <div className="flex justify-center sm:justify-start">
+            <button
+              type="button"
+              onClick={addManualAction}
+              className="rounded-xl bg-[#F97316] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
+            >
+              Add Corrective Action
+            </button>
+          </div>
         </div>
       </section>
 
