@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 type Props = {
   currentStep: number;
 
@@ -87,6 +91,25 @@ export default function FinalizeInspectionSection({
     `Standards ${selectedStandards.length}`,
     `Risk ${safeScopeResult?.risk?.riskBand || riskScore || "not rated"}`,
   ]);
+
+  const [reportPackageMode, setReportPackageMode] = useState("local_first");
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("sentinel_report_package_mode");
+    if (saved) setReportPackageMode(saved);
+  }, []);
+
+  function updateReportPackageMode(value: string) {
+    setReportPackageMode(value);
+    window.localStorage.setItem("sentinel_report_package_mode", value);
+  }
+
+  const reportPackageDescriptions: Record<string, string> = {
+    local_first: "Private local vault unless workspace sync is selected.",
+    evidence_centered: "Prioritizes photos, evidence notes, findings, and corrective actions.",
+    export_ready: "Optimized for final PDF export, audit review, and retention.",
+    ask_every_report: "Prompts for storage/export preference on each report.",
+  };
 
   const reportOptions = [
     {
@@ -290,6 +313,25 @@ export default function FinalizeInspectionSection({
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Report Options
         </p>
+
+        <label className="mt-3 block">
+          <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+            Report Package
+          </span>
+          <select
+            value={reportPackageMode}
+            onChange={(event) => updateReportPackageMode(event.target.value)}
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+          >
+            <option value="local_first">Local-first private vault</option>
+            <option value="evidence_centered">Evidence-centered package</option>
+            <option value="export_ready">Export-ready package</option>
+            <option value="ask_every_report">Ask every report</option>
+          </select>
+          <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+            {reportPackageDescriptions[reportPackageMode]}
+          </span>
+        </label>
 
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {reportOptions.map((option) => (
