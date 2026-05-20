@@ -18,7 +18,7 @@ const clamp = (v: number, min = 0, max = 1) => Math.max(min, Math.min(max, v));
 
 function getArrowHeadPoints(x1: number, y1: number, x2: number, y2: number) {
   const angle = Math.atan2(y2 - y1, x2 - x1);
-  const size = 0.045;
+  const size = 0.135;
   const spread = Math.PI / 7;
 
   const leftX = x2 - size * Math.cos(angle - spread);
@@ -54,13 +54,13 @@ export default function AnnotationEditor({
   const [redoStack, setRedoStack] = useState<DrawShape[][]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedColor, setSelectedColor] = useState("#DC2626");
+  const [selectedFontSize, setSelectedFontSize] = useState(0.045);
   const [colorOpen, setColorOpen] = useState(false);
   const [textColorOpen, setTextColorOpen] = useState(false);
   const [shapeMenuOpen, setShapeMenuOpen] = useState(false);
   const [drawMode, setDrawMode] = useState(false);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
-
   const toolbarRef = useRef<HTMLDivElement | null>(null);
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const panRef = useRef<{
@@ -181,6 +181,9 @@ export default function AnnotationEditor({
 
     setDrawMode(false);
     setSelectedIndex(index);
+    if (localAnnotations[index]?.type === "text") {
+      setSelectedFontSize(localAnnotations[index].fontSize || 0.045);
+    }
 
     dragRef.current = {
       mode,
@@ -290,6 +293,16 @@ export default function AnnotationEditor({
       startY: 0,
       original: null,
     };
+  }
+
+  function updateSelectedFontSize(value: number) {
+    setSelectedFontSize(value);
+
+    if (selectedIndex !== null) {
+      updateShape(selectedIndex, (shape) =>
+        shape.type === "text" ? { ...shape, fontSize: value } : shape,
+      );
+    }
   }
 
   function undoLast() {
@@ -422,7 +435,7 @@ export default function AnnotationEditor({
 
               <svg
                 className="absolute inset-0 h-full w-full touch-none"
-                viewBox="0 0 1 1"
+                viewBox="0 0 4 3"
                 preserveAspectRatio="none"
                 onPointerDown={beginDraw}
                 onPointerMove={handlePointerMove}
@@ -438,11 +451,11 @@ export default function AnnotationEditor({
                       <polyline
                         key={index}
                         points={(shape.points || [])
-                          .map((p) => `${p.x},${p.y}`)
+                          .map((p) => `${p.x * 4},${p.y * 3}`)
                           .join(" ")}
                         fill="none"
                         stroke={color}
-                        strokeWidth="0.01"
+                        strokeWidth="0.03"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
@@ -453,13 +466,13 @@ export default function AnnotationEditor({
                     return (
                       <text
                         key={index}
-                        x={shape.x}
-                        y={shape.y}
+                        x={shape.x * 4}
+                        y={shape.y * 3}
                         fill={color}
-                        fontSize="0.045"
+                        fontSize={(shape.fontSize || selectedFontSize) * 3}
                         fontWeight="800"
                         stroke="white"
-                        strokeWidth="0.006"
+                        strokeWidth="0.018"
                         paintOrder="stroke"
                         className="cursor-move"
                         onPointerDown={(e) => startDrag(index, "move", e)}
@@ -489,21 +502,21 @@ export default function AnnotationEditor({
                       <g key={index}>
                         <rect
                           data-annotation-shape="true"
-                          x={shape.x}
-                          y={shape.y}
-                          width={width}
-                          height={height}
+                          x={shape.x * 4}
+                          y={shape.y * 3}
+                          width={width * 4}
+                          height={height * 3}
                           stroke={color}
-                          strokeWidth="0.012"
+                          strokeWidth="0.036"
                           fill="transparent"
                           onPointerDown={(e) => startDrag(index, "move", e)}
                         />
                         {selected && (
                           <circle
                             data-annotation-shape="true"
-                            cx={shape.x + width}
-                            cy={shape.y + height}
-                            r="0.025"
+                            cx={(shape.x + width) * 4}
+                            cy={(shape.y + height) * 3}
+                            r="0.075"
                             fill={color}
                             onPointerDown={(e) => startDrag(index, "resize", e)}
                           />
@@ -519,20 +532,20 @@ export default function AnnotationEditor({
                       <g key={index}>
                         <circle
                           data-annotation-shape="true"
-                          cx={shape.x}
-                          cy={shape.y}
-                          r={radius}
+                          cx={shape.x * 4}
+                          cy={shape.y * 3}
+                          r={radius * 3}
                           stroke={color}
-                          strokeWidth="0.012"
+                          strokeWidth="0.036"
                           fill="transparent"
                           onPointerDown={(e) => startDrag(index, "move", e)}
                         />
                         {selected && (
                           <circle
                             data-annotation-shape="true"
-                            cx={shape.x + radius}
-                            cy={shape.y}
-                            r="0.025"
+                            cx={(shape.x + radius) * 4}
+                            cy={shape.y * 3}
+                            r="0.075"
                             fill={color}
                             onPointerDown={(e) => startDrag(index, "resize", e)}
                           />
@@ -548,18 +561,23 @@ export default function AnnotationEditor({
                     <g key={index}>
                       <line
                         data-annotation-shape="true"
-                        x1={shape.x}
-                        y1={shape.y}
-                        x2={x2}
-                        y2={y2}
+                        x1={shape.x * 4}
+                        y1={shape.y * 3}
+                        x2={x2 * 4}
+                        y2={y2 * 3}
                         stroke={color}
-                        strokeWidth="0.012"
+                        strokeWidth="0.036"
                         strokeLinecap="round"
                         onPointerDown={(e) => startDrag(index, "move", e)}
                       />
                       <polygon
                         data-annotation-shape="true"
-                        points={getArrowHeadPoints(shape.x, shape.y, x2, y2)}
+                        points={getArrowHeadPoints(
+                          shape.x * 4,
+                          shape.y * 3,
+                          x2 * 4,
+                          y2 * 3,
+                        )}
                         fill={color}
                         onPointerDown={(e) => startDrag(index, "arrowEnd", e)}
                       />
@@ -567,9 +585,9 @@ export default function AnnotationEditor({
                         <>
                           <circle
                             data-annotation-shape="true"
-                            cx={shape.x}
-                            cy={shape.y}
-                            r="0.025"
+                            cx={shape.x * 4}
+                            cy={shape.y * 3}
+                            r="0.075"
                             fill={color}
                             onPointerDown={(e) =>
                               startDrag(index, "arrowStart", e)
@@ -577,9 +595,9 @@ export default function AnnotationEditor({
                           />
                           <circle
                             data-annotation-shape="true"
-                            cx={x2}
-                            cy={y2}
-                            r="0.025"
+                            cx={x2 * 4}
+                            cy={y2 * 3}
+                            r="0.075"
                             fill={color}
                             onPointerDown={(e) =>
                               startDrag(index, "arrowEnd", e)
@@ -763,6 +781,42 @@ export default function AnnotationEditor({
               )}
             </div>
 
+            <div className="flex h-11 shrink-0 items-center border-r border-slate-200">
+              <button
+                type="button"
+                onClick={() =>
+                  updateSelectedFontSize(
+                    Math.max(
+                      0.025,
+                      Number((selectedFontSize - 0.005).toFixed(3)),
+                    ),
+                  )
+                }
+                className="flex h-11 w-10 items-center justify-center border-r border-slate-200 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                aria-label="Decrease text size"
+                title="Decrease text size"
+              >
+                A↓
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  updateSelectedFontSize(
+                    Math.min(
+                      0.09,
+                      Number((selectedFontSize + 0.005).toFixed(3)),
+                    ),
+                  )
+                }
+                className="flex h-11 w-10 items-center justify-center text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                aria-label="Increase text size"
+                title="Increase text size"
+              >
+                A↑
+              </button>
+            </div>
+
             <div className="flex h-11 w-24 shrink-0 items-center gap-1 border-r border-slate-200 px-2">
               <input
                 type="range"
@@ -783,8 +837,8 @@ export default function AnnotationEditor({
       </div>
 
       <p className="mt-2 text-xs font-bold text-slate-500">
-        Zoom in to inspect details. Drag the photo background or use a trackpad
-        to pan; drag annotations to move or resize them.
+        Use Shape &gt; Text to add labels. Double-click text to edit words. Use
+        A↓ and A↑ to adjust selected text size.
       </p>
 
       <div className="mt-3 flex justify-end gap-2">

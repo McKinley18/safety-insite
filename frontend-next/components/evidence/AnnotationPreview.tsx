@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 export type AnnotationShape = {
   type: "rect" | "circle" | "arrow" | "draw" | "text";
   x: number;
@@ -9,11 +13,12 @@ export type AnnotationShape = {
   y2?: number;
   color: string;
   text?: string;
+  fontSize?: number;
 };
 
 function getArrowHeadPoints(x1: number, y1: number, x2: number, y2: number) {
   const angle = Math.atan2(y2 - y1, x2 - x1);
-  const size = 0.045;
+  const size = 0.135;
   const spread = Math.PI / 7;
 
   const leftX = x2 - size * Math.cos(angle - spread);
@@ -41,7 +46,7 @@ export default function AnnotationPreview({
 
       <svg
         className="absolute inset-0 h-full w-full"
-        viewBox="0 0 1 1"
+        viewBox="0 0 4 3"
         preserveAspectRatio="none"
       >
         {annotations.map((shape, index) => {
@@ -52,10 +57,12 @@ export default function AnnotationPreview({
             return (
               <polyline
                 key={index}
-                points={points.map((p: any) => `${p.x},${p.y}`).join(" ")}
+                points={points
+                  .map((p: any) => `${p.x * 4},${p.y * 3}`)
+                  .join(" ")}
                 fill="none"
                 stroke={color}
-                strokeWidth="0.01"
+                strokeWidth="0.03"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -66,13 +73,13 @@ export default function AnnotationPreview({
             return (
               <text
                 key={index}
-                x={shape.x}
-                y={shape.y}
+                x={shape.x * 4}
+                y={shape.y * 3}
                 fill={color}
-                fontSize="0.045"
+                fontSize={(shape.fontSize || 0.045) * 3}
                 fontWeight="800"
                 stroke="white"
-                strokeWidth="0.006"
+                strokeWidth="0.018"
                 paintOrder="stroke"
               >
                 {shape.text || "Text"}
@@ -84,26 +91,28 @@ export default function AnnotationPreview({
             return (
               <rect
                 key={index}
-                x={shape.x}
-                y={shape.y}
-                width={shape.width || 0.32}
-                height={shape.height || 0.24}
+                x={shape.x * 4}
+                y={shape.y * 3}
+                width={(shape.width || 0.32) * 4}
+                height={(shape.height || 0.24) * 3}
                 stroke={color}
-                strokeWidth="0.012"
+                strokeWidth="0.036"
                 fill="transparent"
               />
             );
           }
 
           if (shape.type === "circle") {
+            const radius = shape.radius || 0.12;
+
             return (
               <circle
                 key={index}
-                cx={shape.x}
-                cy={shape.y}
-                r={shape.radius || 0.12}
+                cx={shape.x * 4}
+                cy={shape.y * 3}
+                r={radius * 3}
                 stroke={color}
-                strokeWidth="0.012"
+                strokeWidth="0.036"
                 fill="transparent"
               />
             );
@@ -115,16 +124,21 @@ export default function AnnotationPreview({
           return (
             <g key={index}>
               <line
-                x1={shape.x}
-                y1={shape.y}
-                x2={x2}
-                y2={y2}
+                x1={shape.x * 4}
+                y1={shape.y * 3}
+                x2={x2 * 4}
+                y2={y2 * 3}
                 stroke={color}
-                strokeWidth="0.012"
+                strokeWidth="0.036"
                 strokeLinecap="round"
               />
               <polygon
-                points={getArrowHeadPoints(shape.x, shape.y, x2, y2)}
+                points={getArrowHeadPoints(
+                  shape.x * 4,
+                  shape.y * 3,
+                  x2 * 4,
+                  y2 * 3,
+                )}
                 fill={color}
               />
             </g>
