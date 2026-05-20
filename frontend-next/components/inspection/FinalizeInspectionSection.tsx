@@ -65,8 +65,6 @@ export default function FinalizeInspectionSection({
   editFinding,
   deleteFinding,
 }: Props) {
-  if (currentStep !== 6) return null;
-
   const hasCurrentEntry = Boolean(
     description ||
     hazardCategory ||
@@ -126,6 +124,8 @@ export default function FinalizeInspectionSection({
       "Optimized for final PDF export, audit review, and retention.",
     ask_every_report: "Prompts for storage/export preference on each report.",
   };
+
+  if (currentStep !== 6) return null;
 
   const reportOptions = [
     {
