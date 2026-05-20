@@ -41,6 +41,8 @@ type SafeScopeInspectionStepProps = {
   ) => Promise<void>;
   safeScopeDetailsOpen: boolean;
   setSafeScopeDetailsOpen: ToggleSetter;
+  safeScopeStandardsOpen: boolean;
+  setSafeScopeStandardsOpen: ToggleSetter;
 };
 
 export default function SafeScopeInspectionStep({
@@ -65,6 +67,8 @@ export default function SafeScopeInspectionStep({
   handleFeedback,
   safeScopeDetailsOpen,
   setSafeScopeDetailsOpen,
+  safeScopeStandardsOpen,
+  setSafeScopeStandardsOpen,
 }: SafeScopeInspectionStepProps) {
   return (
     <>
@@ -105,6 +109,8 @@ export default function SafeScopeInspectionStep({
         getStandardKey={getStandardKey}
         toggleSelectedStandard={toggleSelectedStandard}
         handleFeedback={handleFeedback}
+        safeScopeStandardsOpen={safeScopeStandardsOpen}
+        setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
       />
 
       <SafeScopeSupportingIntelligenceSection

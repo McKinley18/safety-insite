@@ -65,6 +65,8 @@ type InspectionStepRendererProps = {
   ) => Promise<void>;
   safeScopeDetailsOpen: boolean;
   setSafeScopeDetailsOpen: ToggleSetter;
+  safeScopeStandardsOpen: boolean;
+  setSafeScopeStandardsOpen: ToggleSetter;
 
   activeRiskScale: any;
   severity: number | null;
@@ -129,6 +131,8 @@ export default function InspectionStepRenderer({
   handleFeedback,
   safeScopeDetailsOpen,
   setSafeScopeDetailsOpen,
+  safeScopeStandardsOpen,
+  setSafeScopeStandardsOpen,
   activeRiskScale,
   severity,
   setSeverity,
@@ -188,7 +192,7 @@ export default function InspectionStepRenderer({
         />
       )}
 
-      {currentStep === 3 && isAdvancedMode && (
+      {currentStep === 3 && (
         <SafeScopeInspectionStep
           safeScopeHelpOpen={safeScopeHelpOpen}
           setSafeScopeHelpOpen={setSafeScopeHelpOpen}
@@ -211,6 +215,8 @@ export default function InspectionStepRenderer({
           handleFeedback={handleFeedback}
           safeScopeDetailsOpen={safeScopeDetailsOpen}
           setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
+          safeScopeStandardsOpen={safeScopeStandardsOpen}
+          setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
         />
       )}
 

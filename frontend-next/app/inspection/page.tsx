@@ -132,6 +132,7 @@ export default function InspectionPage() {
     useState(false);
   const [safeScopeHelpOpen, setSafeScopeHelpOpen] = useState(false);
   const [safeScopeDetailsOpen, setSafeScopeDetailsOpen] = useState(false);
+  const [safeScopeStandardsOpen, setSafeScopeStandardsOpen] = useState(false);
   const [safeScopeCompactDetailsOpen, setSafeScopeCompactDetailsOpen] =
     useState(false);
   const [safeScopeAdvancedOpen, setSafeScopeAdvancedOpen] = useState(false);
@@ -921,6 +922,8 @@ export default function InspectionPage() {
         handleFeedback={handleFeedback}
         safeScopeDetailsOpen={safeScopeDetailsOpen}
         setSafeScopeDetailsOpen={setSafeScopeDetailsOpen}
+        safeScopeStandardsOpen={safeScopeStandardsOpen}
+        setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
         activeRiskScale={getActiveRiskScale()}
         severity={severity}
         setSeverity={setSeverity}
