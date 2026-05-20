@@ -7,9 +7,11 @@ import { getLatestReport, setEditReport } from "@/lib/reportStorage";
 import { localExporter } from "@/lib/localExporter";
 
 function getFindingRisk(finding: any) {
-  if (finding.safeScopeResult?.risk?.riskBand) return finding.safeScopeResult.risk.riskBand;
+  if (finding.safeScopeResult?.risk?.riskBand)
+    return finding.safeScopeResult.risk.riskBand;
   if (finding.riskScore) return String(finding.riskScore);
-  if (finding.severity && finding.likelihood) return String(finding.severity * finding.likelihood);
+  if (finding.severity && finding.likelihood)
+    return String(finding.severity * finding.likelihood);
   return "Not rated";
 }
 
@@ -39,26 +41,34 @@ export default function InspectionReviewPage() {
     if (!report) return;
 
     const findings = (report.findings || []).map((finding: any) => ({
-      category: finding.hazardCategory || finding.safeScopeResult?.classification || "Uncategorized",
+      category:
+        finding.hazardCategory ||
+        finding.safeScopeResult?.classification ||
+        "Uncategorized",
       description: finding.description || "No description provided.",
       location: finding.location || report.siteLocation || "Field Inspection",
       severity: Number(finding.severity || 1),
       likelihood: Number(finding.likelihood || 1),
-      standards: report.includeStandardsInReport === false
-        ? []
-        : finding.selectedStandards ||
-          finding.standards ||
-          finding.safeScopeResult?.suggestedStandards ||
-          [],
-      correctiveActions: report.includeActionsInReport === false
-        ? []
-        : finding.correctiveActions ||
-          [
-            ...(finding.selectedGeneratedActions || []),
-            ...(finding.manualActions || []),
-          ],
-      photos: report.includePhotosInReport === false ? [] : finding.photos || [],
-      safeScopeResult: report.includeSafeScopeNotesInReport === false ? null : finding.safeScopeResult || null,
+      standards:
+        report.includeStandardsInReport === false
+          ? []
+          : finding.selectedStandards ||
+            finding.standards ||
+            finding.safeScopeResult?.suggestedStandards ||
+            [],
+      correctiveActions:
+        report.includeActionsInReport === false
+          ? []
+          : finding.correctiveActions || [
+              ...(finding.selectedGeneratedActions || []),
+              ...(finding.manualActions || []),
+            ],
+      photos:
+        report.includePhotosInReport === false ? [] : finding.photos || [],
+      safeScopeResult:
+        report.includeSafeScopeNotesInReport === false
+          ? null
+          : finding.safeScopeResult || null,
     }));
 
     await localExporter.generatePDF({
@@ -66,8 +76,12 @@ export default function InspectionReviewPage() {
         company: report.organizationName || "Organization Name",
         site: report.siteLocation || "Field Inspection",
         inspector: report.leadInspector || "Inspector",
-        date: report.inspectionDate || new Date(report.createdAt).toLocaleDateString(),
+        date:
+          report.inspectionDate ||
+          new Date(report.createdAt).toLocaleDateString(),
         isConfidential: Boolean(report.isConfidential),
+        confidentialityMarkerText:
+          report.confidentialityMarkerText || "Privileged & Confidential",
       },
       findings,
     });
@@ -100,7 +114,9 @@ export default function InspectionReviewPage() {
               {report.title || "Inspection Report"}
             </h2>
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-              {report.organizationName || "Organization"} • {report.siteLocation || "Field Inspection"} • {report.findings?.length || 0} finding(s)
+              {report.organizationName || "Organization"} •{" "}
+              {report.siteLocation || "Field Inspection"} •{" "}
+              {report.findings?.length || 0} finding(s)
             </p>
           </section>
 
@@ -108,11 +124,24 @@ export default function InspectionReviewPage() {
             {[
               ["Date", report.inspectionDate || "Not entered"],
               ["Lead Inspector", report.leadInspector || "Not entered"],
-              ["Confidential", report.isConfidential ? "Yes" : "No"],
-              ["Additional Inspectors", report.additionalInspectors?.length ? report.additionalInspectors.join(", ") : "None"],
+              [
+                "Confidentiality",
+                report.isConfidential
+                  ? report.confidentialityMarkerText ||
+                    "Privileged & Confidential"
+                  : "No",
+              ],
+              [
+                "Additional Inspectors",
+                report.additionalInspectors?.length
+                  ? report.additionalInspectors.join(", ")
+                  : "None",
+              ],
             ].map(([label, value]) => (
               <div key={label} className="border-b border-slate-200 pb-3">
-                <p className="text-xs font-black uppercase tracking-wide text-[#F97316]">{label}</p>
+                <p className="text-xs font-black uppercase tracking-wide text-[#F97316]">
+                  {label}
+                </p>
                 <p className="mt-1 text-sm font-bold text-slate-700">{value}</p>
               </div>
             ))}
@@ -123,25 +152,30 @@ export default function InspectionReviewPage() {
 
             <div className="mt-3 divide-y divide-slate-200">
               {(report.findings || []).map((finding: any, index: number) => {
-                const standards = report.includeStandardsInReport === false
-                  ? []
-                  : finding.selectedStandards || finding.standards || [];
-                const actions = report.includeActionsInReport === false
-                  ? []
-                  : finding.correctiveActions ||
-                    [
-                      ...(finding.selectedGeneratedActions || []),
-                      ...(finding.manualActions || []),
-                    ];
+                const standards =
+                  report.includeStandardsInReport === false
+                    ? []
+                    : finding.selectedStandards || finding.standards || [];
+                const actions =
+                  report.includeActionsInReport === false
+                    ? []
+                    : finding.correctiveActions || [
+                        ...(finding.selectedGeneratedActions || []),
+                        ...(finding.manualActions || []),
+                      ];
 
-                const photos = report.includePhotosInReport === false ? [] : finding.photos || [];
+                const photos =
+                  report.includePhotosInReport === false
+                    ? []
+                    : finding.photos || [];
 
                 return (
                   <div key={finding.id || index} className="py-5">
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <h3 className="font-black text-slate-900">
-                          Finding {index + 1}: {finding.hazardCategory || "Uncategorized"}
+                          Finding {index + 1}:{" "}
+                          {finding.hazardCategory || "Uncategorized"}
                         </h3>
                         <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
                           {finding.description || "No description provided."}
@@ -160,7 +194,12 @@ export default function InspectionReviewPage() {
                         </p>
                         <p className="mt-1 text-sm font-semibold text-slate-600">
                           {standards.length
-                            ? standards.map((standard: any) => standard.citation || standard).join(", ")
+                            ? standards
+                                .map(
+                                  (standard: any) =>
+                                    standard.citation || standard,
+                                )
+                                .join(", ")
                             : "None selected"}
                         </p>
                       </div>
@@ -188,7 +227,9 @@ export default function InspectionReviewPage() {
                       <ul className="mt-3 list-disc space-y-1 pl-5 text-sm font-semibold text-slate-600">
                         {actions.map((action: any, actionIndex: number) => (
                           <li key={actionIndex}>
-                            {action.title || action.description || "Corrective action"}
+                            {action.title ||
+                              action.description ||
+                              "Corrective action"}
                           </li>
                         ))}
                       </ul>

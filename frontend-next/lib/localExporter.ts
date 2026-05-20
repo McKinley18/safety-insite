@@ -1,5 +1,5 @@
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 interface InspectionData {
   adminInfo: any;
@@ -7,12 +7,12 @@ interface InspectionData {
 }
 
 interface ExportOptions {
-  findingsPerPage: 'single' | 'multiple';
+  findingsPerPage: "single" | "multiple";
 }
 
 // 🔷 HELPER: CONVERT BLOB URL TO BASE64 (Required for jsPDF)
 const blobToBase64 = async (blobUrl: string): Promise<string> => {
-  if (!blobUrl || blobUrl.startsWith('mock')) return ''; // Skip mock data in lab
+  if (!blobUrl || blobUrl.startsWith("mock")) return ""; // Skip mock data in lab
   try {
     const response = await fetch(blobUrl);
     const blob = await response.blob();
@@ -23,33 +23,43 @@ const blobToBase64 = async (blobUrl: string): Promise<string> => {
       reader.readAsDataURL(blob);
     });
   } catch (e) {
-    console.error('Photo conversion error:', e);
-    return '';
+    console.error("Photo conversion error:", e);
+    return "";
   }
 };
 
 export const localExporter = {
   // 🔷 EXPORT RAW DATA (ENCRYPTED JSON)
   exportDataFile: (data: InspectionData) => {
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const blob = new Blob([JSON.stringify(data, null, 2)], {
+      type: "application/json",
+    });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = `sentinel-inspection-${data.adminInfo?.site || 'export'}-${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `sentinel-inspection-${data.adminInfo?.site || "export"}-${new Date().toISOString().split("T")[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   },
 
   // 🔷 GENERATE C-SUITE PDF LOCALLY
-  generatePDF: async (data: InspectionData, options: ExportOptions = { findingsPerPage: 'single' }) => {
+  generatePDF: async (
+    data: InspectionData,
+    options: ExportOptions = { findingsPerPage: "single" },
+  ) => {
     const doc = await localExporter._buildDoc(data, options);
-    doc.save(`SENTINEL-REPORT-${data.adminInfo?.site || 'EXPORT'}-${new Date().getTime()}.pdf`);
+    doc.save(
+      `SENTINEL-REPORT-${data.adminInfo?.site || "EXPORT"}-${new Date().getTime()}.pdf`,
+    );
   },
 
   // 🔷 PREVIEW PDF IN NEW TAB
-  previewPDF: async (data: InspectionData, options: ExportOptions = { findingsPerPage: 'single' }) => {
+  previewPDF: async (
+    data: InspectionData,
+    options: ExportOptions = { findingsPerPage: "single" },
+  ) => {
     const doc = await localExporter._buildDoc(data, options);
-    const blobUrl = doc.output('bloburl');
+    const blobUrl = doc.output("bloburl");
     window.open(blobUrl);
   },
 
@@ -66,19 +76,23 @@ export const localExporter = {
       for (let i = 1; i <= pageCount; i++) {
         d.setPage(i);
         d.setFontSize(8);
-        d.setTextColor(148, 163, 184); 
-        d.text('SENTINEL SAFETY INTELLIGENCE REPORT', 20, 10);
-        d.text(`SITE: ${adminInfo?.site || 'N/A'}`, pageWidth - 20, 10, { align: 'right' });
+        d.setTextColor(148, 163, 184);
+        d.text("SENTINEL SAFETY INTELLIGENCE REPORT", 20, 10);
+        d.text(`SITE: ${adminInfo?.site || "N/A"}`, pageWidth - 20, 10, {
+          align: "right",
+        });
         d.setDrawColor(226, 232, 240);
         d.line(20, 12, pageWidth - 20, 12);
-        d.text(`Page ${i} of ${pageCount}`, pageWidth / 2, pageHeight - 10, { align: 'center' });
+        d.text(`Page ${i} of ${pageCount}`, pageWidth / 2, pageHeight - 10, {
+          align: "center",
+        });
       }
     };
 
     // 1. COVER PAGE
     if (adminInfo?.companyLogo) {
       try {
-        doc.addImage(adminInfo.companyLogo, 'PNG', centerX - 30, 45, 60, 35);
+        doc.addImage(adminInfo.companyLogo, "PNG", centerX - 30, 45, 60, 35);
       } catch {
         // Ignore logo rendering errors so export does not fail.
       }
@@ -86,108 +100,149 @@ export const localExporter = {
 
     doc.setTextColor(15, 23, 42); // Navy
     doc.setFontSize(32);
-    doc.setFont('helvetica', 'bold');
-    doc.text('SAFETY INSPECTION', centerX, adminInfo?.companyLogo ? 105 : 120, { align: 'center' });
+    doc.setFont("helvetica", "bold");
+    doc.text("SAFETY INSPECTION", centerX, adminInfo?.companyLogo ? 105 : 120, {
+      align: "center",
+    });
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'normal');
+    doc.setFont("helvetica", "normal");
     doc.setTextColor(100, 116, 139);
-    doc.text('SYSTEM-GENERATED COMPLIANCE AUDIT', centerX, 136, { align: 'center' });
+    doc.text("SYSTEM-GENERATED COMPLIANCE AUDIT", centerX, 136, {
+      align: "center",
+    });
     doc.setDrawColor(249, 115, 22);
     doc.line(60, 155, pageWidth - 60, 155);
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(18);
-    doc.setFont('helvetica', 'bold');
-    doc.text(adminInfo?.company || 'Organization Name', centerX, 165, { align: 'center' });
+    doc.setFont("helvetica", "bold");
+    doc.text(adminInfo?.company || "Organization Name", centerX, 165, {
+      align: "center",
+    });
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'normal');
-    doc.text(adminInfo?.site || 'N/A', centerX, 177, { align: 'center' });
+    doc.setFont("helvetica", "normal");
+    doc.text(adminInfo?.site || "N/A", centerX, 177, { align: "center" });
     doc.setFontSize(12);
     doc.setTextColor(100, 116, 139);
-    doc.text(adminInfo?.inspector || 'N/A', centerX, 187, { align: 'center' });
-    doc.text(adminInfo?.date || 'N/A', centerX, 195, { align: 'center' });
+    doc.text(adminInfo?.inspector || "N/A", centerX, 187, { align: "center" });
+    doc.text(adminInfo?.date || "N/A", centerX, 195, { align: "center" });
 
     if (adminInfo?.isConfidential) {
       doc.setTextColor(185, 28, 28);
       doc.setFontSize(12);
-      doc.setFont('helvetica', 'bold');
-      doc.text('PRIVILEGED & CONFIDENTIAL - INTERNAL USE ONLY', pageWidth / 2, pageHeight - 30, { align: 'center' });
+      doc.setFont("helvetica", "bold");
+      doc.text(
+        "PRIVILEGED & CONFIDENTIAL - INTERNAL USE ONLY",
+        pageWidth / 2,
+        pageHeight - 30,
+        { align: "center" },
+      );
     }
 
     // 2. EXECUTIVE SUMMARY PAGE
     doc.addPage();
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(22);
-    doc.setFont('helvetica', 'bold');
-    doc.text('EXECUTIVE SUMMARY', 20, 35);
-    
-    const highRisk = findings.filter(f => (f.likelihood * f.severity) >= 15).length;
-    const medRisk = findings.filter(f => (f.likelihood * f.severity) >= 5 && (f.likelihood * f.severity) < 15).length;
-    const lowRisk = findings.filter(f => (f.likelihood * f.severity) < 5).length;
-    const avgRisk = findings.length > 0 
-      ? (findings.reduce((acc, f) => acc + (f.likelihood * f.severity), 0) / findings.length).toFixed(1)
-      : 0;
+    doc.setFont("helvetica", "bold");
+    doc.text("EXECUTIVE SUMMARY", 20, 35);
+
+    const highRisk = findings.filter(
+      (f) => f.likelihood * f.severity >= 15,
+    ).length;
+    const medRisk = findings.filter(
+      (f) => f.likelihood * f.severity >= 5 && f.likelihood * f.severity < 15,
+    ).length;
+    const lowRisk = findings.filter(
+      (f) => f.likelihood * f.severity < 5,
+    ).length;
+    const avgRisk =
+      findings.length > 0
+        ? (
+            findings.reduce((acc, f) => acc + f.likelihood * f.severity, 0) /
+            findings.length
+          ).toFixed(1)
+        : 0;
 
     autoTable(doc, {
       startY: 45,
-      head: [['Metric', 'Value', 'Assessment']],
+      head: [["Metric", "Value", "Assessment"]],
       body: [
-        ['Total Findings Logged', findings.length, 'Comprehensive'],
-        ['Critical Risks (RPN 15+)', highRisk, highRisk > 0 ? 'URGENT ACTION' : 'STABLE'],
-        ['Moderate Risks (RPN 5-14)', medRisk, 'MONITORING'],
-        ['Low Risks (RPN 1-4)', lowRisk, 'CONTROLLED'],
-        ['Avg. Risk Priority Number', avgRisk, parseFloat(avgRisk as string) > 12 ? 'CRITICAL' : 'OPTIMAL'],
+        ["Total Findings Logged", findings.length, "Comprehensive"],
+        [
+          "Critical Risks (RPN 15+)",
+          highRisk,
+          highRisk > 0 ? "URGENT ACTION" : "STABLE",
+        ],
+        ["Moderate Risks (RPN 5-14)", medRisk, "MONITORING"],
+        ["Low Risks (RPN 1-4)", lowRisk, "CONTROLLED"],
+        [
+          "Avg. Risk Priority Number",
+          avgRisk,
+          parseFloat(avgRisk as string) > 12 ? "CRITICAL" : "OPTIMAL",
+        ],
       ],
       headStyles: { fillColor: [15, 23, 42] },
-      theme: 'striped'
+      theme: "striped",
     });
 
     const chartY = (doc as any).lastAutoTable.finalY + 20;
     doc.setFontSize(12);
-    doc.text('RISK DISTRIBUTION ANALYSIS', 20, chartY);
+    doc.text("RISK DISTRIBUTION ANALYSIS", 20, chartY);
     const maxVal = Math.max(highRisk, medRisk, lowRisk, 1);
     const barWidth = 100;
     doc.setFillColor(34, 197, 94);
-    doc.rect(20, chartY + 10, (lowRisk / maxVal) * barWidth, 8, 'F');
+    doc.rect(20, chartY + 10, (lowRisk / maxVal) * barWidth, 8, "F");
     doc.setTextColor(100);
     doc.setFontSize(8);
-    doc.text(`LOW: ${lowRisk}`, 25 + (lowRisk / maxVal) * barWidth, chartY + 16);
+    doc.text(
+      `LOW: ${lowRisk}`,
+      25 + (lowRisk / maxVal) * barWidth,
+      chartY + 16,
+    );
     doc.setFillColor(234, 179, 8);
-    doc.rect(20, chartY + 22, (medRisk / maxVal) * barWidth, 8, 'F');
-    doc.text(`MED: ${medRisk}`, 25 + (medRisk / maxVal) * barWidth, chartY + 28);
+    doc.rect(20, chartY + 22, (medRisk / maxVal) * barWidth, 8, "F");
+    doc.text(
+      `MED: ${medRisk}`,
+      25 + (medRisk / maxVal) * barWidth,
+      chartY + 28,
+    );
     doc.setFillColor(239, 68, 68);
-    doc.rect(20, chartY + 34, (highRisk / maxVal) * barWidth, 8, 'F');
-    doc.text(`HIGH: ${highRisk}`, 25 + (highRisk / maxVal) * barWidth, chartY + 40);
+    doc.rect(20, chartY + 34, (highRisk / maxVal) * barWidth, 8, "F");
+    doc.text(
+      `HIGH: ${highRisk}`,
+      25 + (highRisk / maxVal) * barWidth,
+      chartY + 40,
+    );
 
     const summaryY = chartY + 60;
 
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.text('OPERATIONAL RISK SUMMARY', 20, summaryY);
+    doc.setFont("helvetica", "bold");
+    doc.text("OPERATIONAL RISK SUMMARY", 20, summaryY);
 
     doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
+    doc.setFont("helvetica", "normal");
     doc.setTextColor(71, 85, 105);
 
     const dominantRisk =
       highRisk > 0
-        ? 'Critical-risk conditions are present and should receive immediate leadership attention.'
+        ? "Critical-risk conditions are present and should receive immediate leadership attention."
         : medRisk > 0
-          ? 'Moderate-risk conditions are present and should be scheduled for timely corrective action.'
-          : 'Current findings are primarily low-risk based on available scoring.';
+          ? "Moderate-risk conditions are present and should be scheduled for timely corrective action."
+          : "Current findings are primarily low-risk based on available scoring.";
 
     const summaryText = [
       `This inspection identified ${findings.length} total finding(s) across the assessed operation.`,
       dominantRisk,
       `Average Risk Priority Number: ${avgRisk}.`,
-      '',
-      'Recommended leadership actions:',
-      '• Assign owners and due dates for each corrective action.',
-      '• Correct critical and high-risk findings before normal exposure continues.',
-      '• Verify completion with photo evidence or supervisor sign-off.',
-      '• Review recurring categories for training, maintenance, or procedural weaknesses.',
-      '• Preserve this report as supporting documentation for internal safety governance.'
-    ].join('\n');
+      "",
+      "Recommended leadership actions:",
+      "• Assign owners and due dates for each corrective action.",
+      "• Correct critical and high-risk findings before normal exposure continues.",
+      "• Verify completion with photo evidence or supervisor sign-off.",
+      "• Review recurring categories for training, maintenance, or procedural weaknesses.",
+      "• Preserve this report as supporting documentation for internal safety governance.",
+    ].join("\n");
 
     const wrappedSummary = doc.splitTextToSize(summaryText, pageWidth - 40);
     doc.text(wrappedSummary, 20, summaryY + 10);
@@ -196,42 +251,42 @@ export const localExporter = {
     doc.addPage();
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(22);
-    doc.setFont('helvetica', 'bold');
-    doc.text('QUICK REFERENCE LIST', 20, 35);
+    doc.setFont("helvetica", "bold");
+    doc.text("QUICK REFERENCE LIST", 20, 35);
     doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
+    doc.setFont("helvetica", "normal");
     doc.setTextColor(100);
-    doc.text('A concise summary of all identified hazards and their locations.', 20, 42);
+    doc.text(
+      "A concise summary of all identified hazards and their locations.",
+      20,
+      42,
+    );
 
     autoTable(doc, {
       startY: 50,
-      head: [['ID', 'Hazard Category', 'Explanation']],
-      body: findings.map((f, i) => [
-        i + 1,
-        f.category,
-        f.description
-      ]),
+      head: [["ID", "Hazard Category", "Explanation"]],
+      body: findings.map((f, i) => [i + 1, f.category, f.description]),
       headStyles: { fillColor: [15, 23, 42] },
       columnStyles: {
         0: { cellWidth: 15 },
-        1: { cellWidth: 50, fontStyle: 'bold' },
-        2: { cellWidth: 'auto' }
+        1: { cellWidth: 50, fontStyle: "bold" },
+        2: { cellWidth: "auto" },
       },
-      theme: 'grid'
+      theme: "grid",
     });
 
     // 4. DETAILED FINDINGS
     let currentY = 30;
-    
+
     for (let i = 0; i < findings.length; i++) {
       const f = findings[i];
       const rpn = f.likelihood * f.severity;
-      let rpnColor: [number, number, number] = [34, 197, 94]; 
-      if (rpn >= 5) rpnColor = [234, 179, 8]; 
-      if (rpn >= 15) rpnColor = [249, 115, 22]; 
-      if (rpn >= 21) rpnColor = [239, 68, 68]; 
+      let rpnColor: [number, number, number] = [34, 197, 94];
+      if (rpn >= 5) rpnColor = [234, 179, 8];
+      if (rpn >= 15) rpnColor = [249, 115, 22];
+      if (rpn >= 21) rpnColor = [239, 68, 68];
 
-      if (options.findingsPerPage === 'single' || i === 0) {
+      if (options.findingsPerPage === "single" || i === 0) {
         doc.addPage();
         currentY = 30;
       } else if (currentY > pageHeight - 100) {
@@ -242,88 +297,107 @@ export const localExporter = {
       // Title & Badge Row
       doc.setTextColor(15, 23, 42);
       doc.setFontSize(16);
-      doc.setFont('helvetica', 'bold');
+      doc.setFont("helvetica", "bold");
       doc.text(`FINDING #${i + 1}: ${f.category}`, 20, currentY);
-      
+
       doc.setFillColor(rpnColor[0], rpnColor[1], rpnColor[2]);
-      doc.roundedRect(pageWidth - 50, currentY - 8, 30, 10, 1, 1, 'F');
+      doc.roundedRect(pageWidth - 50, currentY - 8, 30, 10, 1, 1, "F");
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(9);
-      doc.text(`RPN: ${rpn}`, pageWidth - 35, currentY - 1, { align: 'center' });
-      
+      doc.text(`RPN: ${rpn}`, pageWidth - 35, currentY - 1, {
+        align: "center",
+      });
+
       currentY += 12;
 
       // Description
       const descLines = doc.splitTextToSize(f.description, pageWidth - 40);
       doc.setTextColor(71, 85, 105);
       doc.setFontSize(9);
-      doc.setFont('helvetica', 'bold');
-      doc.text('DESCRIPTION', 20, currentY);
-      doc.setFont('helvetica', 'normal');
+      doc.setFont("helvetica", "bold");
+      doc.text("DESCRIPTION", 20, currentY);
+      doc.setFont("helvetica", "normal");
       doc.text(descLines, 20, currentY + 6);
-      currentY += (descLines.length * 5) + 12;
+      currentY += descLines.length * 5 + 12;
 
       // Standards
       const standards = Array.isArray(f.standards) ? f.standards : [];
       const standardText = standards.length
         ? standards
-            .map((standard: any) => standard.citation || standard.label || standard.title || String(standard))
-            .join('\n')
-        : 'No standard selected.';
+            .map(
+              (standard: any) =>
+                standard.citation ||
+                standard.label ||
+                standard.title ||
+                String(standard),
+            )
+            .join("\n")
+        : "No standard selected.";
 
-      doc.setFont('helvetica', 'bold');
-      doc.text('SELECTED REGULATORY STANDARD(S)', 20, currentY);
+      doc.setFont("helvetica", "bold");
+      doc.text("SELECTED REGULATORY STANDARD(S)", 20, currentY);
       doc.setTextColor(3, 105, 161);
-      doc.setFont('helvetica', 'normal');
+      doc.setFont("helvetica", "normal");
       const standardLines = doc.splitTextToSize(standardText, pageWidth - 40);
       doc.text(standardLines, 20, currentY + 6);
-      currentY += (standardLines.length * 5) + 15;
+      currentY += standardLines.length * 5 + 15;
 
       // Corrective Actions
-      const correctiveActions = Array.isArray(f.correctiveActions) ? f.correctiveActions : [];
+      const correctiveActions = Array.isArray(f.correctiveActions)
+        ? f.correctiveActions
+        : [];
       const actionText = correctiveActions.length
         ? correctiveActions
             .map((action: any, actionIndex: number) => {
-              const title = action.title || action.description || `Corrective action ${actionIndex + 1}`;
-              const priority = action.priority ? `Priority: ${action.priority}` : '';
-              const due = action.due ? `Due: ${action.due}` : '';
-              const meta = [priority, due].filter(Boolean).join(' • ');
-              return `${actionIndex + 1}. ${title}${meta ? ` (${meta})` : ''}`;
+              const title =
+                action.title ||
+                action.description ||
+                `Corrective action ${actionIndex + 1}`;
+              const priority = action.priority
+                ? `Priority: ${action.priority}`
+                : "";
+              const due = action.due ? `Due: ${action.due}` : "";
+              const meta = [priority, due].filter(Boolean).join(" • ");
+              return `${actionIndex + 1}. ${title}${meta ? ` (${meta})` : ""}`;
             })
-            .join('\n')
-        : (f.action || 'No action specified.');
+            .join("\n")
+        : f.action || "No action specified.";
 
       const actionLines = doc.splitTextToSize(actionText, pageWidth - 40);
       doc.setTextColor(71, 85, 105);
-      doc.setFont('helvetica', 'bold');
-      doc.text('CORRECTIVE ACTION(S)', 20, currentY);
-      doc.setFont('helvetica', 'normal');
+      doc.setFont("helvetica", "bold");
+      doc.text("CORRECTIVE ACTION(S)", 20, currentY);
+      doc.setFont("helvetica", "normal");
       doc.text(actionLines, 20, currentY + 6);
-      currentY += (actionLines.length * 5) + 15;
+      currentY += actionLines.length * 5 + 15;
 
       // 🔷 5. NEW: PHOTO EVIDENCE INCLUSION
       if (f.photos && f.photos.length > 0) {
-        doc.setFont('helvetica', 'bold');
-        doc.text('EVIDENCE PHOTOS', 20, currentY);
+        doc.setFont("helvetica", "bold");
+        doc.text("EVIDENCE PHOTOS", 20, currentY);
         currentY += 6;
-        
+
         let photoX = 20;
         for (const photo of f.photos.slice(0, 2)) {
-          const photoUrl = typeof photo === 'string' ? photo : photo?.url;
+          const photoUrl = typeof photo === "string" ? photo : photo?.url;
           const base64 = await blobToBase64(photoUrl);
           if (base64) {
             try {
-              doc.addImage(base64, 'JPEG', photoX, currentY, 80, 60);
+              doc.addImage(base64, "JPEG", photoX, currentY, 80, 60);
             } catch (e) {
               doc.setDrawColor(226, 232, 240);
               doc.rect(photoX, currentY, 80, 60);
-              doc.text('IMAGE LOAD ERROR', photoX + 40, currentY + 30, { align: 'center' });
+              doc.text("IMAGE LOAD ERROR", photoX + 40, currentY + 30, {
+                align: "center",
+              });
             }
           } else {
             doc.setDrawColor(226, 232, 240);
             doc.rect(photoX, currentY, 80, 60);
             doc.setFontSize(7);
-            doc.text('PHOTO EVIDENCE (MOCK)', photoX + 40, currentY + 30, { align: 'center' });
+            doc.text("PHOTO EVIDENCE (MOCK)", photoX + 40, currentY + 30, {
+              align: "center",
+            });
           }
           photoX += 85;
         }
@@ -331,7 +405,7 @@ export const localExporter = {
       }
 
       // Separator Line (only for multiple)
-      if (options.findingsPerPage === 'multiple' && i < findings.length - 1) {
+      if (options.findingsPerPage === "multiple" && i < findings.length - 1) {
         doc.setDrawColor(241, 245, 249);
         doc.line(20, currentY - 5, pageWidth - 20, currentY - 5);
         currentY += 10;
@@ -340,5 +414,5 @@ export const localExporter = {
 
     addHeaderFooter(doc);
     return doc;
-  }
+  },
 };
