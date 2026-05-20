@@ -89,6 +89,11 @@ export default function InspectionReviewPage() {
         isConfidential: Boolean(report.isConfidential),
         confidentialityMarkerText:
           report.confidentialityMarkerText || "Privileged & Confidential",
+        companyLogo:
+          report.includeLogoOnCover === false ? "" : report.companyLogo || "",
+        reportPackageMode: report.reportPackageMode || "local_first",
+        reportId: report.id || "",
+        findingCount: report.findings?.length || findings.length,
       },
       findings,
     });
