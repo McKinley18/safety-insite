@@ -237,15 +237,25 @@ export default function InspectionReviewPage() {
                     </div>
 
                     {!!actions.length && (
-                      <ul className="mt-3 list-disc space-y-1 pl-5 text-sm font-semibold text-slate-600">
+                      <div className="mt-3 space-y-2">
                         {actions.map((action: any, actionIndex: number) => (
-                          <li key={actionIndex}>
-                            {action.title ||
-                              action.description ||
-                              "Corrective action"}
-                          </li>
+                          <div
+                            key={actionIndex}
+                            className="rounded-xl bg-slate-50 px-3 py-2"
+                          >
+                            <p className="text-sm font-black text-slate-800">
+                              {action.title ||
+                                action.description ||
+                                "Corrective action"}
+                            </p>
+                            <p className="mt-1 text-xs font-bold leading-5 text-slate-500">
+                              Priority: {action.priority || "Medium"} · Due:{" "}
+                              {action.due || "Not set"} · Closure Evidence:{" "}
+                              {action.closureEvidence || "Photo"}
+                            </p>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     )}
                   </div>
                 );

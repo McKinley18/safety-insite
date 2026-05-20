@@ -456,7 +456,12 @@ export const localExporter = {
                 ? `Priority: ${action.priority}`
                 : "";
               const due = action.due ? `Due: ${action.due}` : "";
-              const meta = [priority, due].filter(Boolean).join(" • ");
+              const closureEvidence = `Closure Evidence: ${
+                action.closureEvidence || "Photo"
+              }`;
+              const meta = [priority, due, closureEvidence]
+                .filter(Boolean)
+                .join(" • ");
               return `${actionIndex + 1}. ${title}${meta ? ` (${meta})` : ""}`;
             })
             .join("\n")
