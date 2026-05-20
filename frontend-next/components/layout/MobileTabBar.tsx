@@ -24,10 +24,10 @@ const navItems = [
   },
   { href: "/reports", label: "Reports", icon: "🗂", activeRoots: ["/reports"] },
   {
-    href: "/safescope-knowledge",
-    label: "Brain",
-    icon: "🧠",
-    activeRoots: ["/safescope-knowledge"],
+    href: "/analytics",
+    label: "Insights",
+    icon: "📈",
+    activeRoots: ["/analytics"],
   },
   {
     href: "/settings",

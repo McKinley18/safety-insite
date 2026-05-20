@@ -54,12 +54,6 @@ const navItems = [
     activeRoots: ["/analytics"],
   },
   {
-    href: "/safescope-knowledge",
-    label: "Knowledge",
-    icon: "🧠",
-    activeRoots: ["/safescope-knowledge"],
-  },
-  {
     href: "/settings",
     label: "Settings",
     icon: "⚙️",
