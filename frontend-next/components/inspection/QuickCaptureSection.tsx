@@ -24,7 +24,6 @@ type Props = {
 };
 
 export default function QuickCaptureSection({
-  inspectionContext,
   inspectionMode,
   setInspectionMode,
   quickCapture,
@@ -47,56 +46,50 @@ export default function QuickCaptureSection({
 }: Props) {
   return (
     <>
-      <div className="mb-4 rounded-2xl border border-blue-100 bg-[#F4F9FF] px-4 py-3">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-          Describe Finding
-        </p>
-        <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
-          Describe what the evidence shows, where the condition is located, and
-          whether immediate action was taken. SafeScope can classify the hazard
-          after the finding is described.
-        </p>
+      <div className="mb-4 flex items-start justify-between gap-3 border-b border-slate-200 pb-3">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            Describe Finding
+          </p>
+          <p className="mt-1 text-sm font-semibold text-slate-500">
+            Explain what the evidence shows.
+          </p>
+        </div>
+
+        <div className="flex shrink-0 rounded-xl bg-slate-100 p-1">
+          <button
+            type="button"
+            onClick={() => setInspectionMode("quick")}
+            className={`rounded-lg px-3 py-1.5 text-[11px] font-black ${
+              inspectionMode === "quick"
+                ? "bg-white text-[#1D72B8] shadow-sm"
+                : "text-slate-500"
+            }`}
+          >
+            Quick
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setInspectionMode("advanced")}
+            className={`rounded-lg px-3 py-1.5 text-[11px] font-black ${
+              inspectionMode === "advanced"
+                ? "bg-white text-[#102A43] shadow-sm"
+                : "text-slate-500"
+            }`}
+          >
+            Advanced
+          </button>
+        </div>
       </div>
 
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        <button
-          type="button"
-          onClick={() => setInspectionMode("quick")}
-          className={`rounded-full px-4 py-2 text-xs font-black transition ${
-            inspectionMode === "quick"
-              ? "bg-[#1D72B8] text-white"
-              : "bg-slate-100 text-slate-700"
-          }`}
-        >
-          Quick Capture
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setInspectionMode("advanced")}
-          className={`rounded-full px-4 py-2 text-xs font-black transition ${
-            inspectionMode === "advanced"
-              ? "bg-[#102A43] text-white"
-              : "bg-slate-100 text-slate-700"
-          }`}
-        >
-          Advanced Review
-        </button>
-
-        <span className="text-xs font-bold text-slate-500">
-          {inspectionMode === "quick"
-            ? "Fastest workflow for field observations."
-            : "Expanded SafeScope, evidence, standards, and risk review."}
-        </span>
-      </div>
-
-      <div className="mt-4">
+      <div>
         <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
           Observed Condition
         </label>
         <textarea
-          className="min-h-28 w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-semibold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
-          placeholder="Example: Loose railing on elevated platform near crusher. Area is accessible to workers."
+          className="min-h-28 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-semibold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+          placeholder="Example: Loose railing on elevated platform near crusher."
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
@@ -107,85 +100,67 @@ export default function QuickCaptureSection({
           Location
         </label>
         <input
-          className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
+          className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
           placeholder="Example: Crusher deck, west platform"
           value={location}
           onChange={(event) => setLocation(event.target.value)}
         />
       </div>
 
-      <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50/60 px-4 py-3">
-        <div className="flex flex-wrap items-start justify-between gap-2">
-          <div>
-            <label className="block text-xs font-black uppercase tracking-wide text-amber-800">
-              Hazard Category
-            </label>
-            <p className="mt-1 text-xs font-semibold leading-5 text-amber-900">
-              Optional. Select a common category if you know it, type your own,
-              or leave it blank and let SafeScope classify the finding.
-            </p>
-          </div>
-
-          <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-amber-700">
-            Optional
-          </span>
+      <div className="mt-4 border-t border-slate-200 pt-4">
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <label className="text-xs font-black uppercase tracking-wide text-slate-500">
+            Hazard Category
+          </label>
+          <span className="text-[11px] font-bold text-slate-400">Optional</span>
         </div>
 
-        <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          <label className="block">
-            <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
-              Select common category
-            </span>
-            <select
-              className="w-full rounded-xl border border-amber-200 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
-              value={hazardCategory}
-              onChange={(event) => setHazardCategory(event.target.value)}
-            >
-              <option value="">Let SafeScope classify</option>
-              {hazardCategoryOptions.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </label>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <select
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+            value={hazardCategory}
+            onChange={(event) => setHazardCategory(event.target.value)}
+          >
+            <option value="">Let SafeScope classify</option>
+            {hazardCategoryOptions.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
 
-          <label className="block">
-            <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
-              Or type custom category
-            </span>
-            <input
-              className="w-full rounded-xl border border-amber-200 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
-              placeholder="Example: Unsafe access, conveyor hazard"
-              value={hazardCategory}
-              onChange={(event) => setHazardCategory(event.target.value)}
-            />
-          </label>
+          <input
+            className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+            placeholder="Or type custom category"
+            value={hazardCategory}
+            onChange={(event) => setHazardCategory(event.target.value)}
+          />
         </div>
       </div>
 
       {quickCapture && (
         <div className="mt-4 border-t border-slate-200 pt-4">
-          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-            Immediate Action / Corrective Work
-          </p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-            Add an immediate control or corrective action if one is already
-            known. You can also add this later.
-          </p>
+          <div className="mb-2 flex items-center justify-between gap-3">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+              Immediate Action
+            </p>
+            <span className="text-[11px] font-bold text-slate-400">
+              Optional
+            </span>
+          </div>
 
-          <div className="mt-3 grid gap-3 md:grid-cols-[1fr_160px_160px]">
+          <div className="grid gap-3 md:grid-cols-[1fr_150px_150px]">
             <input
               value={manualActionTitle}
               onChange={(event) => setManualActionTitle(event.target.value)}
-              placeholder="Example: Barricade area until railing is repaired"
-              className="rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
+              placeholder="Example: Barricade area until repaired"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
             />
 
             <select
               value={manualActionPriority}
               onChange={(event) => setManualActionPriority(event.target.value)}
-              className="rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
             >
               <option>Low</option>
               <option>Medium</option>
@@ -197,7 +172,7 @@ export default function QuickCaptureSection({
               type="date"
               value={manualActionDue}
               onChange={(event) => setManualActionDue(event.target.value)}
-              className="rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
             />
           </div>
 
@@ -210,11 +185,11 @@ export default function QuickCaptureSection({
           </button>
 
           {!!manualActions.length && (
-            <div className="mt-3 border-y border-slate-200">
+            <div className="mt-3 divide-y divide-slate-200 border-t border-slate-200">
               {manualActions.map((action, index) => (
                 <div
                   key={`${action.title}-${index}`}
-                  className="flex items-center justify-between gap-3 border-b border-slate-200 py-2 last:border-b-0"
+                  className="flex items-center justify-between gap-3 py-2"
                 >
                   <div>
                     <p className="text-sm font-black text-slate-900">
@@ -228,7 +203,7 @@ export default function QuickCaptureSection({
                   <button
                     type="button"
                     onClick={() => removeManualAction(index)}
-                    className="rounded-xl border border-red-200 bg-white px-3 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
+                    className="rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
                   >
                     Remove
                   </button>
@@ -239,27 +214,11 @@ export default function QuickCaptureSection({
         </div>
       )}
 
-      <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
-        {!!photos.length && (
-          <span className="rounded-full bg-[#E8F4FF] px-3 py-1 text-[#1D72B8]">
-            {photos.length} photo(s)
-          </span>
-        )}
-        {description && (
-          <span className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-700">
-            Condition described
-          </span>
-        )}
-        {location && (
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-700">
-            {location}
-          </span>
-        )}
-        {hazardCategory && (
-          <span className="rounded-full bg-amber-50 px-3 py-1 text-amber-700">
-            Category: {hazardCategory}
-          </span>
-        )}
+      <div className="mt-4 border-t border-slate-200 pt-3 text-xs font-black text-slate-500">
+        Photos {photos.length} ·{" "}
+        {description ? "Condition described" : "No description"} ·{" "}
+        {location ? "Location added" : "No location"} ·{" "}
+        {hazardCategory ? `Category: ${hazardCategory}` : "Category: SafeScope"}
       </div>
     </>
   );
