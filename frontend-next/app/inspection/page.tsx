@@ -16,7 +16,9 @@ import {
 } from "@/lib/auth";
 import {
   getCoverPage,
+  getEditReport,
   getReports,
+  removeEditReport,
   setLatestReport,
   setReports,
 } from "@/lib/reportStorage";
@@ -171,6 +173,158 @@ export default function InspectionPage() {
       if (context.agency === "MSHA") setAgencyMode("msha");
       if (context.agency === "OSHA") setAgencyMode("osha_general");
     } catch {}
+  }, []);
+
+  useEffect(() => {
+    async function loadEditReport() {
+      const editReport = await getEditReport<any>();
+      if (!editReport) return;
+
+      const reportFindings = Array.isArray(editReport.findings)
+        ? editReport.findings
+        : [];
+
+      setFindings(reportFindings);
+      setIncludeStandardsInReport(
+        editReport.includeStandardsInReport !== false,
+      );
+      setIncludeActionsInReport(editReport.includeActionsInReport !== false);
+      setIncludePhotosInReport(editReport.includePhotosInReport !== false);
+      setIncludeSafeScopeNotesInReport(
+        Boolean(editReport.includeSafeScopeNotesInReport),
+      );
+
+      if (editReport.reportPackageMode) {
+        window.localStorage.setItem(
+          "sentinel_report_package_mode",
+          editReport.reportPackageMode,
+        );
+      }
+
+      const editMode = editReport.__editMode;
+      const editIndex =
+        typeof editReport.__editFindingIndex === "number"
+          ? editReport.__editFindingIndex
+          : null;
+
+      if (editMode === "edit_finding" && editIndex !== null) {
+        const finding = reportFindings[editIndex];
+
+        if (finding) {
+          setHazardCategory(finding.hazardCategory || "");
+          setDescription(finding.description || "");
+          setLocation(finding.location || "");
+          setEvidenceNotes(finding.evidenceNotes || "");
+          Promise.all(
+            (finding.photos || []).map((photo: any) =>
+              loadEncryptedPhoto(photo),
+            ),
+          ).then(setPhotos);
+          setSafeScopeResult(finding.safeScopeResult || null);
+          setSelectedStandards(finding.selectedStandards || []);
+          setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
+          setManualActions(finding.manualActions || []);
+          setSeverity(finding.severity || null);
+          setLikelihood(finding.likelihood || null);
+          setEditingFindingIndex(editIndex);
+          setCurrentSavedFindingId(finding.id || null);
+          setCurrentFindingSaved(true);
+          setFindingSaveMessage("Editing saved finding.");
+          setCurrentStep(1);
+        }
+      } else if (editMode === "add_finding") {
+        resetCurrentFinding();
+        setFindings(reportFindings);
+        setFindingSaveMessage("Add a new finding to the existing report.");
+        setCurrentStep(1);
+      } else {
+        resetCurrentFinding();
+        setFindings(reportFindings);
+        setCurrentFindingSaved(true);
+        setFindingSaveMessage("Report loaded for editing.");
+        setCurrentStep(6);
+      }
+
+      await removeEditReport();
+    }
+
+    loadEditReport();
+  }, []);
+
+  useEffect(() => {
+    async function loadEditReport() {
+      const editReport = await getEditReport<any>();
+      if (!editReport) return;
+
+      const reportFindings = Array.isArray(editReport.findings)
+        ? editReport.findings
+        : [];
+
+      setFindings(reportFindings);
+      setIncludeStandardsInReport(
+        editReport.includeStandardsInReport !== false,
+      );
+      setIncludeActionsInReport(editReport.includeActionsInReport !== false);
+      setIncludePhotosInReport(editReport.includePhotosInReport !== false);
+      setIncludeSafeScopeNotesInReport(
+        Boolean(editReport.includeSafeScopeNotesInReport),
+      );
+
+      if (editReport.reportPackageMode) {
+        window.localStorage.setItem(
+          "sentinel_report_package_mode",
+          editReport.reportPackageMode,
+        );
+      }
+
+      const editMode = editReport.__editMode;
+      const editIndex =
+        typeof editReport.__editFindingIndex === "number"
+          ? editReport.__editFindingIndex
+          : null;
+
+      if (editMode === "edit_finding" && editIndex !== null) {
+        const finding = reportFindings[editIndex];
+
+        if (finding) {
+          setHazardCategory(finding.hazardCategory || "");
+          setDescription(finding.description || "");
+          setLocation(finding.location || "");
+          setEvidenceNotes(finding.evidenceNotes || "");
+          Promise.all(
+            (finding.photos || []).map((photo: any) =>
+              loadEncryptedPhoto(photo),
+            ),
+          ).then(setPhotos);
+          setSafeScopeResult(finding.safeScopeResult || null);
+          setSelectedStandards(finding.selectedStandards || []);
+          setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
+          setManualActions(finding.manualActions || []);
+          setSeverity(finding.severity || null);
+          setLikelihood(finding.likelihood || null);
+          setEditingFindingIndex(editIndex);
+          setCurrentSavedFindingId(finding.id || null);
+          setCurrentFindingSaved(true);
+          setFindingSaveMessage("Editing saved finding.");
+          setCurrentStep(1);
+        }
+      } else if (editMode === "add_finding") {
+        resetCurrentFinding();
+        setFindings(reportFindings);
+        setFindingSaveMessage("Add a new finding to the existing report.");
+        setCurrentStep(1);
+      } else {
+        resetCurrentFinding();
+        setFindings(reportFindings);
+        setCurrentFindingSaved(true);
+        setFindingSaveMessage("Report loaded for editing.");
+        setCurrentStep(6);
+      }
+
+      await removeEditReport();
+    }
+
+    loadEditReport();
   }, []);
 
   useEffect(() => {
