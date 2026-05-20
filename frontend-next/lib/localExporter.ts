@@ -346,17 +346,17 @@ export const localExporter = {
     const wrappedSummary = doc.splitTextToSize(summaryText, pageWidth - 40);
     doc.text(wrappedSummary, 20, summaryY + 10);
 
-    // 🔷 3. NEW: QUICK REFERENCE LIST (TABLE OF CONTENTS)
+    // 3. FINDINGS REFERENCE
     doc.addPage();
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(22);
     doc.setFont("helvetica", "bold");
-    doc.text("QUICK REFERENCE LIST", 20, 35);
+    doc.text("FINDINGS REFERENCE", 20, 35);
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
     doc.setTextColor(100);
     doc.text(
-      "A concise summary of all identified hazards and their locations.",
+      "A concise reference of identified findings and locations.",
       20,
       42,
     );
@@ -475,7 +475,7 @@ export const localExporter = {
       doc.text(actionLines, 20, currentY + 6);
       currentY += actionLines.length * 5 + 15;
 
-      // 🔷 5. NEW: PHOTO EVIDENCE INCLUSION
+      // 5. PHOTO EVIDENCE
       if (f.photos && f.photos.length > 0) {
         doc.setFont("helvetica", "bold");
         doc.text("EVIDENCE PHOTOS", 20, currentY);
@@ -499,7 +499,7 @@ export const localExporter = {
             doc.setDrawColor(226, 232, 240);
             doc.rect(photoX, currentY, 80, 60);
             doc.setFontSize(7);
-            doc.text("PHOTO EVIDENCE (MOCK)", photoX + 40, currentY + 30, {
+            doc.text("PHOTO EVIDENCE", photoX + 40, currentY + 30, {
               align: "center",
             });
           }
