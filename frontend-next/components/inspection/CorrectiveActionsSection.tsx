@@ -14,6 +14,10 @@ type Props = {
   removeManualAction: (index: number) => void;
 };
 
+function getActionKey(action: any) {
+  return action.title || action.description || JSON.stringify(action);
+}
+
 export default function CorrectiveActionsSection({
   safeScopeResult,
   selectedGeneratedActions,
@@ -44,121 +48,115 @@ export default function CorrectiveActionsSection({
 
   return (
     <>
-      <p className="mb-4 text-sm font-semibold leading-6 text-slate-500">
-        Select recommended actions when useful, then add the actual action your
-        team will assign and verify.
-      </p>
+      <div className="mb-4 border-b border-slate-200 pb-3">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+          Corrective Actions
+        </p>
+        <p className="mt-1 text-sm font-semibold text-slate-500">
+          Select a SafeScope recommendation or enter the action your team will
+          assign.
+        </p>
+      </div>
 
-      {safeScopeResult?.generatedActions?.length ? (
-        <div className="space-y-3">
+      <section className="border-b border-slate-200 pb-4">
+        <div className="mb-3 flex items-center justify-between gap-3">
           <div>
-            <h3 className="font-black text-slate-900">
-              SafeScope Recommended Actions
+            <h3 className="text-base font-black text-slate-900">
+              SafeScope Recommendations
             </h3>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
-              Select any SafeScope action you want included in the final
-              finding.
+            <p className="mt-1 text-xs font-semibold text-slate-500">
+              {safeScopeResult?.generatedActions?.length
+                ? `${safeScopeResult.generatedActions.length} suggested action(s)`
+                : "No recommendations yet"}
             </p>
           </div>
+        </div>
 
-          {safeScopeResult.generatedActions.map(
-            (action: any, index: number) => {
-              const actionKey =
-                action.title || action.description || JSON.stringify(action);
-              const selected = selectedGeneratedActions.some(
-                (selectedAction) =>
-                  (selectedAction.title ||
-                    selectedAction.description ||
-                    JSON.stringify(selectedAction)) === actionKey,
-              );
+        {safeScopeResult?.generatedActions?.length ? (
+          <div className="divide-y divide-slate-200 border-y border-slate-200">
+            {safeScopeResult.generatedActions.map(
+              (action: any, index: number) => {
+                const actionKey = getActionKey(action);
+                const selected = selectedGeneratedActions.some(
+                  (selectedAction) =>
+                    getActionKey(selectedAction) === actionKey,
+                );
 
-              return (
-                <div
-                  key={index}
-                  className={`w-full rounded-2xl border border-slate-200 border-l-4 px-3 py-4 transition ${
-                    selected
-                      ? "border-l-[#1D72B8] bg-[#E8F4FF]"
-                      : "border-l-slate-200 bg-white"
-                  }`}
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <button
-                      type="button"
-                      onClick={() => toggleGeneratedAction(action)}
-                      className="flex min-w-0 flex-1 gap-3 text-left"
-                    >
-                      <span
-                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${
-                          selected ? "bg-[#1D72B8]" : "bg-white"
+                return (
+                  <div key={index} className="py-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-sm font-black text-slate-900">
+                          {action.title || "SafeScope corrective action"}
+                        </p>
+
+                        {!!action.suggestedFixes?.length && (
+                          <p className="mt-1 line-clamp-2 text-sm font-semibold leading-6 text-slate-600">
+                            {action.suggestedFixes.slice(0, 2).join(" ")}
+                          </p>
+                        )}
+
+                        <p className="mt-1 text-xs font-bold text-slate-500">
+                          {action.priority
+                            ? `Priority: ${action.priority}`
+                            : "Priority not set"}
+                        </p>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={() => toggleGeneratedAction(action)}
+                        className={`shrink-0 rounded-lg px-3 py-2 text-xs font-black transition ${
+                          selected
+                            ? "bg-[#1D72B8] text-white"
+                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                         }`}
                       >
-                        {selected ? "✓" : ""}
-                      </span>
+                        {selected ? "Included" : "Include"}
+                      </button>
+                    </div>
 
-                      <span className="min-w-0">
-                        <span className="block font-black text-slate-900">
-                          {action.title || "SafeScope corrective action"}
-                        </span>
-                        <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
-                          Tap the checkbox to include this SafeScope
-                          recommendation in the final finding.
-                        </span>
-                      </span>
-                    </button>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => useGeneratedAction(action)}
+                        className="rounded-lg bg-[#102A43] px-3 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
+                      >
+                        Use as Manual Action
+                      </button>
 
-                    {action.priority && (
-                      <span className="shrink-0 rounded-full bg-red-100 px-3 py-1 text-xs font-black text-red-700">
-                        {action.priority}
-                      </span>
-                    )}
+                      {!!action.suggestedFixes?.length && (
+                        <details className="rounded-lg bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
+                          <summary className="cursor-pointer font-black text-slate-700">
+                            Details
+                          </summary>
+                          <ul className="mt-2 list-disc space-y-1 pl-4">
+                            {action.suggestedFixes.map(
+                              (fix: string, i: number) => (
+                                <li key={i}>{fix}</li>
+                              ),
+                            )}
+                          </ul>
+                        </details>
+                      )}
+                    </div>
                   </div>
+                );
+              },
+            )}
+          </div>
+        ) : (
+          <p className="rounded-xl bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+            Run SafeScope Review in Step 3 to generate recommended corrective
+            actions.
+          </p>
+        )}
+      </section>
 
-                  {!!action.suggestedFixes?.length && (
-                    <ul className="mt-3 list-disc space-y-1 pl-8 text-sm text-slate-700">
-                      {action.suggestedFixes.map((fix: string, i: number) => (
-                        <li key={i}>{fix}</li>
-                      ))}
-                    </ul>
-                  )}
+      <section className="border-b border-slate-200 py-4">
+        <h3 className="text-base font-black text-slate-900">Manual Action</h3>
 
-                  <div className="mt-3 flex flex-wrap gap-2 pl-8">
-                    <button
-                      type="button"
-                      onClick={() => useGeneratedAction(action)}
-                      className="rounded-xl bg-[#102A43] px-3 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
-                    >
-                      Use as manual action
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => toggleGeneratedAction(action)}
-                      className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
-                    >
-                      {selected ? "Remove from report" : "Include in report"}
-                    </button>
-                  </div>
-                </div>
-              );
-            },
-          )}
-        </div>
-      ) : (
-        <p className="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600">
-          Run SafeScope in Step 3 to generate recommended corrective actions.
-        </p>
-      )}
-
-      <div className="mt-7 border-t border-slate-200 pt-6">
-        <h3 className="font-black text-slate-900">
-          User-Entered Corrective Action
-        </h3>
-        <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
-          Add the actual corrective action your team will assign, track, and
-          verify.
-        </p>
-
-        <div className="mt-4 grid gap-3">
+        <div className="mt-3 grid gap-3">
           <input
             value={manualActionTitle}
             onChange={(event) => setManualActionTitle(event.target.value)}
@@ -194,33 +192,48 @@ export default function CorrectiveActionsSection({
             Add Corrective Action
           </button>
         </div>
+      </section>
 
-        {!!manualActions.length && (
-          <div className="mt-4 divide-y divide-slate-200 border-t border-slate-200">
+      <section className="pt-4">
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <h3 className="text-base font-black text-slate-900">Added Actions</h3>
+          <span className="text-xs font-black text-slate-400">
+            {manualActions.length}
+          </span>
+        </div>
+
+        {!!manualActions.length ? (
+          <div className="divide-y divide-slate-200 border-y border-slate-200">
             {manualActions.map((action, index) => (
               <div
                 key={`${action.title}-${index}`}
                 className="flex items-start justify-between gap-3 py-3"
               >
-                <div>
-                  <p className="font-black text-slate-900">{action.title}</p>
+                <div className="min-w-0">
+                  <p className="text-sm font-black text-slate-900">
+                    {action.title}
+                  </p>
                   <p className="mt-1 text-xs font-bold text-slate-500">
-                    Priority: {action.priority} • Due: {action.due}
+                    {action.priority} · Due: {action.due || "Not set"}
                   </p>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => removeManualAction(index)}
-                  className="rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
+                  className="shrink-0 rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
                 >
                   Remove
                 </button>
               </div>
             ))}
           </div>
+        ) : (
+          <p className="rounded-xl bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+            No manual corrective actions added yet.
+          </p>
         )}
-      </div>
+      </section>
     </>
   );
 }
