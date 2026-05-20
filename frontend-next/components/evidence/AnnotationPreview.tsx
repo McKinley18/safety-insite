@@ -1,5 +1,5 @@
 export type AnnotationShape = {
-  type: "rect" | "circle" | "arrow" | "draw";
+  type: "rect" | "circle" | "arrow" | "draw" | "text";
   x: number;
   y: number;
   width?: number;
@@ -8,6 +8,7 @@ export type AnnotationShape = {
   x2?: number;
   y2?: number;
   color: string;
+  text?: string;
 };
 
 function getArrowHeadPoints(x1: number, y1: number, x2: number, y2: number) {
@@ -35,7 +36,7 @@ export default function AnnotationPreview({
       <img
         src={photoUrl}
         alt="Evidence"
-        className="h-full w-full object-cover"
+        className="h-full w-full object-contain"
       />
 
       <svg
@@ -58,6 +59,24 @@ export default function AnnotationPreview({
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
+            );
+          }
+
+          if (shape.type === "text") {
+            return (
+              <text
+                key={index}
+                x={shape.x}
+                y={shape.y}
+                fill={color}
+                fontSize="0.045"
+                fontWeight="800"
+                stroke="white"
+                strokeWidth="0.006"
+                paintOrder="stroke"
+              >
+                {shape.text || "Text"}
+              </text>
             );
           }
 

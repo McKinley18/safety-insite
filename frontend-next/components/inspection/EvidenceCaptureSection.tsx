@@ -67,55 +67,8 @@ export default function EvidenceCaptureSection({
         <div className="mb-4 divide-y divide-slate-200 border-y border-slate-200">
           {photos.map((photo, index) => (
             <div key={photo.id} className="py-3">
-              <div className="grid gap-3 sm:grid-cols-[160px_1fr]">
-                <AnnotationPreview
-                  photoUrl={photo.url}
-                  annotations={photo.annotations || []}
-                />
-
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-black text-slate-900">
-                    {photo.name || `Evidence photo ${index + 1}`}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-500">
-                    {(photo.annotations || []).length} annotation(s)
-                  </p>
-
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setAnnotatingPhotoIndex(index);
-                        setAnnotationExpanded(false);
-                      }}
-                      className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
-                    >
-                      Annotate
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => removePhoto(photo.id)}
-                      className="rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {annotatingPhotoIndex === index && !annotationExpanded && (
-                <div className="mt-3">
-                  <div className="mb-2 flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => setAnnotationExpanded(true)}
-                      className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
-                    >
-                      Expand
-                    </button>
-                  </div>
-
+              {annotatingPhotoIndex === index && !annotationExpanded ? (
+                <div>
                   <AnnotationEditor
                     photoUrl={photo.url}
                     annotations={photo.annotations || []}
@@ -131,6 +84,57 @@ export default function EvidenceCaptureSection({
                       setAnnotationExpanded(false);
                     }}
                   />
+
+                  <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                    <p className="truncate text-xs font-black text-slate-600">
+                      {photo.name || `Evidence photo ${index + 1}`}
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={() => setAnnotationExpanded(true)}
+                      className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                    >
+                      Expand
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="grid gap-3 sm:grid-cols-[160px_1fr]">
+                  <AnnotationPreview
+                    photoUrl={photo.url}
+                    annotations={photo.annotations || []}
+                  />
+
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-black text-slate-900">
+                      {photo.name || `Evidence photo ${index + 1}`}
+                    </p>
+                    <p className="mt-1 text-xs font-semibold text-slate-500">
+                      {(photo.annotations || []).length} annotation(s)
+                    </p>
+
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setAnnotatingPhotoIndex(index);
+                          setAnnotationExpanded(false);
+                        }}
+                        className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
+                      >
+                        Annotate
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => removePhoto(photo.id)}
+                        className="rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
 
