@@ -740,6 +740,10 @@ export default function InspectionPage() {
 
     const coverPage = (await getCoverPage<any>()) || {};
 
+    const reportPackageMode =
+      window.localStorage.getItem("sentinel_report_package_mode") ||
+      "local_first";
+
     const report = buildInspectionReport({
       coverPage,
       findings: finalizedFindings,
@@ -747,6 +751,7 @@ export default function InspectionPage() {
       includeActionsInReport,
       includePhotosInReport,
       includeSafeScopeNotesInReport,
+      reportPackageMode,
     });
 
     const storageMode =

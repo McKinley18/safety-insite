@@ -7,6 +7,7 @@ export function buildInspectionReport(input: {
   includeActionsInReport: boolean;
   includePhotosInReport: boolean;
   includeSafeScopeNotesInReport: boolean;
+  reportPackageMode?: string;
 }) {
   const coverPage = input.coverPage || {};
 
@@ -31,6 +32,7 @@ export function buildInspectionReport(input: {
     includeActionsInReport: input.includeActionsInReport,
     includePhotosInReport: input.includePhotosInReport,
     includeSafeScopeNotesInReport: input.includeSafeScopeNotesInReport,
+    reportPackageMode: input.reportPackageMode || "local_first",
     findings: input.findings,
   };
 }

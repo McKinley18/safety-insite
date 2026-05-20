@@ -6,6 +6,13 @@ import { useEffect, useState } from "react";
 import { getLatestReport, setEditReport } from "@/lib/reportStorage";
 import { localExporter } from "@/lib/localExporter";
 
+function getReportPackageLabel(mode?: string) {
+  if (mode === "evidence_centered") return "Evidence-centered package";
+  if (mode === "export_ready") return "Export-ready package";
+  if (mode === "ask_every_report") return "Ask every report";
+  return "Local-first private vault";
+}
+
 function getFindingRisk(finding: any) {
   if (finding.safeScopeResult?.risk?.riskBand)
     return finding.safeScopeResult.risk.riskBand;
