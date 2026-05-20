@@ -102,12 +102,28 @@ export default function FinalizeInspectionSection({
   function updateReportPackageMode(value: string) {
     setReportPackageMode(value);
     window.localStorage.setItem("sentinel_report_package_mode", value);
+
+    if (value === "evidence_centered") {
+      setIncludePhotosInReport(true);
+      setIncludeActionsInReport(true);
+      setIncludeStandardsInReport(true);
+      setIncludeSafeScopeNotesInReport(false);
+    }
+
+    if (value === "export_ready") {
+      setIncludePhotosInReport(true);
+      setIncludeActionsInReport(true);
+      setIncludeStandardsInReport(true);
+      setIncludeSafeScopeNotesInReport(true);
+    }
   }
 
   const reportPackageDescriptions: Record<string, string> = {
     local_first: "Private local vault unless workspace sync is selected.",
-    evidence_centered: "Prioritizes photos, evidence notes, findings, and corrective actions.",
-    export_ready: "Optimized for final PDF export, audit review, and retention.",
+    evidence_centered:
+      "Prioritizes photos, evidence notes, findings, and corrective actions.",
+    export_ready:
+      "Optimized for final PDF export, audit review, and retention.",
     ask_every_report: "Prompts for storage/export preference on each report.",
   };
 
