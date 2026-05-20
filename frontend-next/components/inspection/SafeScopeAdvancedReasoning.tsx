@@ -1,6 +1,5 @@
 "use client";
 
-import SafeScopeDrawer from "@/components/safescope/SafeScopeDrawer";
 import SafeScopeActionEffectivenessSection from "@/components/inspection/SafeScopeActionEffectivenessSection";
 import SafeScopeConfidenceReasonCodes from "@/components/inspection/SafeScopeConfidenceReasonCodes";
 import SafeScopeBarrierSection from "@/components/inspection/SafeScopeBarrierSection";
