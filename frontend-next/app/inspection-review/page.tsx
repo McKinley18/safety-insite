@@ -3,7 +3,13 @@
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { useEffect, useState } from "react";
-import { getLatestReport, setEditReport } from "@/lib/reportStorage";
+import {
+  getLatestReport,
+  getReports,
+  setEditReport,
+  setLatestReport,
+  setReports,
+} from "@/lib/reportStorage";
 import { localExporter } from "@/lib/localExporter";
 
 function getReportPackageLabel(mode?: string) {
@@ -100,10 +106,63 @@ export default function InspectionReviewPage() {
     });
   }
 
+  async function persistReviewedReport(nextReport: any) {
+    setReport(nextReport);
+    await setLatestReport(nextReport);
+
+    const storedReports = await getReports<any>();
+    const reports = Array.isArray(storedReports) ? storedReports : [];
+
+    await setReports([
+      nextReport,
+      ...reports.filter((existing: any) => existing.id !== nextReport.id),
+    ]);
+  }
+
   async function editReport() {
     if (!report) return;
     await setEditReport(report);
     window.location.href = "/inspection";
+  }
+
+  async function addFindingToReport() {
+    if (!report) return;
+    await setEditReport({
+      ...report,
+      __editMode: "add_finding",
+    });
+    window.location.href = "/inspection";
+  }
+
+  async function editFindingFromReview(index: number) {
+    if (!report) return;
+    await setEditReport({
+      ...report,
+      __editMode: "edit_finding",
+      __editFindingIndex: index,
+    });
+    window.location.href = "/inspection";
+  }
+
+  async function deleteFindingFromReview(index: number) {
+    if (!report) return;
+
+    const confirmed = window.confirm(
+      "Remove this finding from the report? This cannot be undone.",
+    );
+    if (!confirmed) return;
+
+    const nextFindings = (report.findings || []).filter(
+      (_finding: any, findingIndex: number) => findingIndex !== index,
+    );
+
+    const nextReport = {
+      ...report,
+      findings: nextFindings,
+      updatedAt: new Date().toISOString(),
+    };
+
+    await persistReviewedReport(nextReport);
   }
 
   return (
@@ -120,17 +179,39 @@ export default function InspectionReviewPage() {
       ) : (
         <>
           <section className="rounded-[24px] bg-[#0B1320] p-5">
-            <p className="mb-2 text-[11px] font-black uppercase tracking-[1px] text-[#F97316]">
-              Final Report
-            </p>
-            <h2 className="text-2xl font-black text-white">
-              {report.title || "Inspection Report"}
-            </h2>
-            <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
-              {report.organizationName || "Organization"} •{" "}
-              {report.siteLocation || "Field Inspection"} •{" "}
-              {report.findings?.length || 0} finding(s)
-            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="mb-2 text-[11px] font-black uppercase tracking-[1px] text-[#F97316]">
+                  Final Report
+                </p>
+                <h2 className="text-2xl font-black text-white">
+                  {report.title || "Inspection Report"}
+                </h2>
+                <p className="mt-2 text-sm font-semibold leading-6 text-slate-300">
+                  {report.organizationName || "Organization"} •{" "}
+                  {report.siteLocation || "Field Inspection"} •{" "}
+                  {report.findings?.length || 0} finding(s)
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={addFindingToReport}
+                  className="rounded-xl bg-[#F97316] px-4 py-2 text-xs font-black text-white"
+                >
+                  Add Finding
+                </button>
+
+                <button
+                  type="button"
+                  onClick={editReport}
+                  className="rounded-xl bg-white/10 px-4 py-2 text-xs font-black text-white ring-1 ring-white/20"
+                >
+                  Edit Report
+                </button>
+              </div>
+            </div>
           </section>
 
           <section className="grid gap-3 sm:grid-cols-2">
@@ -195,9 +276,29 @@ export default function InspectionReviewPage() {
                         </p>
                       </div>
 
-                      <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700">
-                        {getFindingRisk(finding)}
-                      </span>
+                      <div className="flex shrink-0 flex-col items-end gap-2">
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700">
+                          {getFindingRisk(finding)}
+                        </span>
+
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => editFindingFromReview(index)}
+                            className="rounded-lg bg-[#102A43] px-3 py-2 text-xs font-black text-white"
+                          >
+                            Edit
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => deleteFindingFromReview(index)}
+                            className="rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
                     </div>
 
                     <div className="mt-4 grid gap-4 md:grid-cols-3">
