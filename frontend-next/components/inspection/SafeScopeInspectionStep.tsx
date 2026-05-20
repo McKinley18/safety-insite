@@ -6,6 +6,7 @@ import SafeScopeResultHeaderSection from "@/components/inspection/SafeScopeResul
 import SafeScopePrimaryDecisionSection from "@/components/inspection/SafeScopePrimaryDecisionSection";
 import SafeScopeStandardsSection from "@/components/inspection/SafeScopeStandardsSection";
 import SafeScopeSupportingIntelligenceSection from "@/components/inspection/SafeScopeSupportingIntelligenceSection";
+import SafeScopeKnowledgeBrainSection from "@/components/inspection/SafeScopeKnowledgeBrainSection";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -98,6 +99,8 @@ export default function SafeScopeInspectionStep({
             safeScopeAdvancedOpen={safeScopeAdvancedOpen}
             setSafeScopeAdvancedOpen={setSafeScopeAdvancedOpen}
           />
+
+          <SafeScopeKnowledgeBrainSection safeScopeResult={safeScopeResult} />
         </div>
       )}
 
