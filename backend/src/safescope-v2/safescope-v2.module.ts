@@ -15,11 +15,13 @@ import { ReasoningSnapshotController } from './snapshots/reasoning-snapshot.cont
 import { SafeScopeSupervisorValidation } from './validation/supervisor-validation.entity';
 import { SupervisorValidationService } from './validation/supervisor-validation.service';
 import { SupervisorValidationController } from './validation/supervisor-validation.controller';
+import { SafeScopeKnowledgeModule } from '../safescope-knowledge/safescope-knowledge.module';
 
 @Module({
   imports: [
     ActionEngineModule,
     ApplicableStandardsModule,
+    SafeScopeKnowledgeModule,
     TypeOrmModule.forFeature([
       SafeScopeFeedback,
       SafeScopeReasoningSnapshot,

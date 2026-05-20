@@ -9,6 +9,7 @@ import { ApplicableStandardsService } from '../applicable-standards/applicable-s
 import { SafeScopeFeedbackService } from './feedback/safescope-feedback.service';
 import { ReasoningSnapshotService } from './snapshots/reasoning-snapshot.service';
 import { SafeScopeIntelligenceOrchestrator } from './orchestration/intelligence-orchestrator.service';
+import { SafeScopeKnowledgeService } from '../safescope-knowledge/safescope-knowledge.service';
 
 @Injectable()
 export class SafescopeV2Service {
@@ -23,6 +24,7 @@ export class SafescopeV2Service {
     private readonly applicableStandards: ApplicableStandardsService,
     private readonly feedbackService: SafeScopeFeedbackService,
     private readonly reasoningSnapshotService: ReasoningSnapshotService,
+    private readonly safeScopeKnowledge: SafeScopeKnowledgeService,
   ) {}
 
 
@@ -165,6 +167,38 @@ export class SafescopeV2Service {
     }));
   }
 
+  private formatKnowledgeBrain(result: any) {
+    return {
+      confidence: result?.confidence || 0,
+      matches: (result?.matches || []).map((match: any) => ({
+        chunkId: match.chunkId,
+        documentId: match.documentId,
+        title: match.title,
+        agency: match.agency,
+        sourceType: match.sourceType,
+        authorityTier: match.authorityTier,
+        citation: match.citation,
+        sourceUrl: match.sourceUrl,
+        sectionHeading: match.sectionHeading,
+        excerpt: match.excerpt,
+        tags: match.tags,
+        score: match.score,
+        reason: match.reason,
+      })),
+      supportingReferences: (result?.matches || []).map((match: any) => ({
+        title: match.title,
+        citation: match.citation,
+        authorityTier: match.authorityTier,
+        sourceType: match.sourceType,
+        reason: match.reason,
+      })),
+      evidenceGaps: result?.reasoning?.evidenceGaps || [],
+      caution:
+        result?.reasoning?.caution ||
+        'SafeScope references supporting knowledge and likely applicability. Final compliance decisions require qualified review.',
+    };
+  }
+
   async classify(text: string, scopes?: string[], evidenceTexts?: string[], riskProfileId?: 'simple_4x4' | 'standard_5x5' | 'advanced_6x6', workspaceId?: string, priorFindings?: any[]) {
     const evidenceFusion = this.evidenceFusion.synthesize([
       text,
@@ -242,6 +276,22 @@ export class SafescopeV2Service {
       scopes,
       workspaceId,
     );
+
+    const knowledgeBrainResult = await this.safeScopeKnowledge.retrieveForHazard({
+      fusedText,
+      agencyMode: scopes?.includes('msha')
+        ? 'msha'
+        : scopes?.includes('osha_construction')
+          ? 'osha_construction'
+          : scopes?.includes('osha_general')
+            ? 'osha_general'
+            : undefined,
+      classification: promotedPrimary.classification,
+      location: (expandedContext as any)?.location || (expandedContext as any)?.area,
+      workspaceId,
+    });
+
+    const knowledgeBrain = this.formatKnowledgeBrain(knowledgeBrainResult);
 
     const generatedActions = await this.buildActionPreview(
       promotedPrimary.classification,
@@ -346,6 +396,7 @@ export class SafescopeV2Service {
       ...intelligence,
       reasoningSnapshotId,
       generatedActions,
+      knowledgeBrain,
       additionalHazards,
     };
   }
