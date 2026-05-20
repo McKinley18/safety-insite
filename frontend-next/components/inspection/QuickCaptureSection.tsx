@@ -18,6 +18,8 @@ type Props = {
   setManualActionPriority: (value: string) => void;
   manualActionDue: string;
   setManualActionDue: (value: string) => void;
+  manualActionClosureEvidence: string;
+  setManualActionClosureEvidence: (value: string) => void;
   manualActions: any[];
   addManualAction: () => void;
   removeManualAction: (index: number) => void;
@@ -40,6 +42,8 @@ export default function QuickCaptureSection({
   setManualActionPriority,
   manualActionDue,
   setManualActionDue,
+  manualActionClosureEvidence,
+  setManualActionClosureEvidence,
   manualActions,
   addManualAction,
   removeManualAction,
@@ -149,7 +153,7 @@ export default function QuickCaptureSection({
             </span>
           </div>
 
-          <div className="grid gap-3 md:grid-cols-[1fr_150px_150px]">
+          <div className="grid gap-3 md:grid-cols-[1fr_140px_140px_180px]">
             <input
               value={manualActionTitle}
               onChange={(event) => setManualActionTitle(event.target.value)}
@@ -174,6 +178,20 @@ export default function QuickCaptureSection({
               onChange={(event) => setManualActionDue(event.target.value)}
               className="rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
             />
+
+            <select
+              value={manualActionClosureEvidence}
+              onChange={(event) =>
+                setManualActionClosureEvidence(event.target.value)
+              }
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+            >
+              <option>Photo</option>
+              <option>Work order</option>
+              <option>Supervisor verification</option>
+              <option>Training record</option>
+              <option>Other</option>
+            </select>
           </div>
 
           <button
@@ -196,7 +214,8 @@ export default function QuickCaptureSection({
                       {action.title}
                     </p>
                     <p className="text-xs font-semibold text-slate-500">
-                      {action.priority} • Due: {action.due || "Not set"}
+                      {action.priority} • Due: {action.due || "Not set"} •
+                      Closure: {action.closureEvidence || "Photo"}
                     </p>
                   </div>
 

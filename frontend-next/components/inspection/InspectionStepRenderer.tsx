@@ -82,6 +82,8 @@ type InspectionStepRendererProps = {
   setManualActionPriority: (value: string) => void;
   manualActionDue: string;
   setManualActionDue: (value: string) => void;
+  manualActionClosureEvidence: string;
+  setManualActionClosureEvidence: (value: string) => void;
   manualActions: any[];
   addManualAction: () => void;
   removeManualAction: (index: number) => void;
@@ -146,6 +148,8 @@ export default function InspectionStepRenderer({
   setManualActionPriority,
   manualActionDue,
   setManualActionDue,
+  manualActionClosureEvidence,
+  setManualActionClosureEvidence,
   manualActions,
   addManualAction,
   removeManualAction,
@@ -186,6 +190,8 @@ export default function InspectionStepRenderer({
           setManualActionPriority={setManualActionPriority}
           manualActionDue={manualActionDue}
           setManualActionDue={setManualActionDue}
+          manualActionClosureEvidence={manualActionClosureEvidence}
+          setManualActionClosureEvidence={setManualActionClosureEvidence}
           manualActions={manualActions}
           addManualAction={addManualAction}
           removeManualAction={removeManualAction}
@@ -242,6 +248,8 @@ export default function InspectionStepRenderer({
           setManualActionPriority={setManualActionPriority}
           manualActionDue={manualActionDue}
           setManualActionDue={setManualActionDue}
+          manualActionClosureEvidence={manualActionClosureEvidence}
+          setManualActionClosureEvidence={setManualActionClosureEvidence}
           manualActions={manualActions}
           addManualAction={addManualAction}
           removeManualAction={removeManualAction}

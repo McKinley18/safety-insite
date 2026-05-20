@@ -124,6 +124,8 @@ export default function InspectionPage() {
   const [manualActionTitle, setManualActionTitle] = useState("");
   const [manualActionPriority, setManualActionPriority] = useState("Medium");
   const [manualActionDue, setManualActionDue] = useState("");
+  const [manualActionClosureEvidence, setManualActionClosureEvidence] =
+    useState("Photo");
   const [reportValidationMessage, setReportValidationMessage] = useState("");
   const [includeStandardsInReport, setIncludeStandardsInReport] =
     useState(true);
@@ -956,6 +958,8 @@ export default function InspectionPage() {
         setManualActionPriority={setManualActionPriority}
         manualActionDue={manualActionDue}
         setManualActionDue={setManualActionDue}
+        manualActionClosureEvidence={manualActionClosureEvidence}
+        setManualActionClosureEvidence={setManualActionClosureEvidence}
         manualActions={manualActions}
         addManualAction={addManualAction}
         removeManualAction={removeManualAction}

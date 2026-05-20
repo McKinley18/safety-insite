@@ -9,6 +9,8 @@ type Props = {
   setManualActionPriority: (value: string) => void;
   manualActionDue: string;
   setManualActionDue: (value: string) => void;
+  manualActionClosureEvidence: string;
+  setManualActionClosureEvidence: (value: string) => void;
   manualActions: any[];
   addManualAction: () => void;
   removeManualAction: (index: number) => void;
@@ -28,6 +30,8 @@ export default function CorrectiveActionsSection({
   setManualActionPriority,
   manualActionDue,
   setManualActionDue,
+  manualActionClosureEvidence,
+  setManualActionClosureEvidence,
   manualActions,
   addManualAction,
   removeManualAction,
@@ -162,7 +166,7 @@ export default function CorrectiveActionsSection({
             className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
           />
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-3">
             <select
               value={manualActionPriority}
               onChange={(event) => setManualActionPriority(event.target.value)}
@@ -180,6 +184,20 @@ export default function CorrectiveActionsSection({
               onChange={(event) => setManualActionDue(event.target.value)}
               className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
             />
+
+            <select
+              value={manualActionClosureEvidence}
+              onChange={(event) =>
+                setManualActionClosureEvidence(event.target.value)
+              }
+              className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+            >
+              <option>Photo</option>
+              <option>Work order</option>
+              <option>Supervisor verification</option>
+              <option>Training record</option>
+              <option>Other</option>
+            </select>
           </div>
 
           <div className="flex justify-center sm:justify-start">
@@ -214,7 +232,8 @@ export default function CorrectiveActionsSection({
                     {action.title}
                   </p>
                   <p className="mt-1 text-xs font-bold text-slate-500">
-                    {action.priority} · Due: {action.due || "Not set"}
+                    {action.priority} · Due: {action.due || "Not set"} ·
+                    Closure: {action.closureEvidence || "Photo"}
                   </p>
                 </div>
 
