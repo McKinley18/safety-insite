@@ -6,6 +6,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SafeScopeKnowledgeDocument } from '../entities/safescope-knowledge-document.entity';
 import { SafeScopeKnowledgeChunk } from '../entities/safescope-knowledge-chunk.entity';
 import { SafeScopeKnowledgeRetrievalLog } from '../entities/safescope-knowledge-retrieval-log.entity';
+import { SafeScopeKnowledgeSource } from '../entities/safescope-knowledge-source.entity';
+import { SafeScopeKnowledgeIngestionRun } from '../entities/safescope-knowledge-ingestion-run.entity';
 
 async function bootstrap() {
   ConfigModule.forRoot({
@@ -30,6 +32,8 @@ async function bootstrap() {
       SafeScopeKnowledgeDocument,
       SafeScopeKnowledgeChunk,
       SafeScopeKnowledgeRetrievalLog,
+      SafeScopeKnowledgeSource,
+      SafeScopeKnowledgeIngestionRun,
     ],
   });
 

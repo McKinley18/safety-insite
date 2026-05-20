@@ -17,7 +17,8 @@
     "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
     "migration:run": "typeorm-ts-node-commonjs -d src/database/data-source.ts migration:run",
     "seed:safescope-knowledge": "ts-node src/safescope-knowledge/seed/safescope-knowledge.seed.ts",
-    "export:safescope-knowledge": "ts-node src/safescope-knowledge/export/export-knowledge-bundle.ts"
+    "export:safescope-knowledge": "ts-node src/safescope-knowledge/export/export-knowledge-bundle.ts",
+    "seed:safescope-sources": "ts-node src/safescope-knowledge/ingestion/seed-knowledge-sources.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

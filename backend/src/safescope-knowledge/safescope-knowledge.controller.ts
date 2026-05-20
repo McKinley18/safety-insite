@@ -15,6 +15,36 @@ export class SafeScopeKnowledgeController {
     return this.safeScopeKnowledgeService.listDocuments();
   }
 
+  @Get('sources')
+  listSources() {
+    return this.safeScopeKnowledgeService.listSources();
+  }
+
+  @Post('sources')
+  upsertSource(@Body() body: any) {
+    return this.safeScopeKnowledgeService.upsertSource(body);
+  }
+
+  @Get('ingestion-runs')
+  listIngestionRuns() {
+    return this.safeScopeKnowledgeService.listIngestionRuns();
+  }
+
+  @Post('ingestion-runs')
+  createIngestionRun(@Body() body: any) {
+    return this.safeScopeKnowledgeService.createIngestionRun(body);
+  }
+
+  @Post('ingestion-runs/:id/running')
+  markIngestionRunRunning(@Param('id') id: string) {
+    return this.safeScopeKnowledgeService.markIngestionRunRunning(id);
+  }
+
+  @Post('ingestion-runs/:id/complete')
+  completeIngestionRun(@Param('id') id: string, @Body() body: any) {
+    return this.safeScopeKnowledgeService.completeIngestionRun(id, body);
+  }
+
   @Get('documents/:id')
   findDocument(@Param('id') id: string) {
     return this.safeScopeKnowledgeService.findDocument(id);

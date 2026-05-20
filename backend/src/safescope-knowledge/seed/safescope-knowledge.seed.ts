@@ -4,6 +4,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SafeScopeKnowledgeDocument } from '../entities/safescope-knowledge-document.entity';
 import { SafeScopeKnowledgeChunk } from '../entities/safescope-knowledge-chunk.entity';
 import { SafeScopeKnowledgeRetrievalLog } from '../entities/safescope-knowledge-retrieval-log.entity';
+import { SafeScopeKnowledgeSource } from '../entities/safescope-knowledge-source.entity';
+import { SafeScopeKnowledgeIngestionRun } from '../entities/safescope-knowledge-ingestion-run.entity';
 import { starterKnowledge } from './starter-knowledge';
 
 function chunkText(rawText: string) {
@@ -69,6 +71,8 @@ async function bootstrap() {
       SafeScopeKnowledgeDocument,
       SafeScopeKnowledgeChunk,
       SafeScopeKnowledgeRetrievalLog,
+      SafeScopeKnowledgeSource,
+      SafeScopeKnowledgeIngestionRun,
     ],
   });
 

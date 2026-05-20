@@ -8,6 +8,8 @@ import {
   SafeScopeKnowledgeSourceType,
 } from './entities/safescope-knowledge-document.entity';
 import { SafeScopeKnowledgeRetrievalLog } from './entities/safescope-knowledge-retrieval-log.entity';
+import { SafeScopeKnowledgeSource } from './entities/safescope-knowledge-source.entity';
+import { SafeScopeKnowledgeIngestionRun } from './entities/safescope-knowledge-ingestion-run.entity';
 
 type CreateSafeScopeKnowledgeDocumentDto = {
   title: string;
@@ -48,6 +50,10 @@ export class SafeScopeKnowledgeService {
     private readonly chunkRepo: Repository<SafeScopeKnowledgeChunk>,
     @InjectRepository(SafeScopeKnowledgeRetrievalLog)
     private readonly retrievalLogRepo: Repository<SafeScopeKnowledgeRetrievalLog>,
+    @InjectRepository(SafeScopeKnowledgeSource)
+    private readonly sourceRepo: Repository<SafeScopeKnowledgeSource>,
+    @InjectRepository(SafeScopeKnowledgeIngestionRun)
+    private readonly ingestionRunRepo: Repository<SafeScopeKnowledgeIngestionRun>,
   ) {}
 
   async createDocument(dto: CreateSafeScopeKnowledgeDocumentDto) {
@@ -81,6 +87,117 @@ export class SafeScopeKnowledgeService {
       order: { updatedAt: 'DESC' },
       take: 100,
     });
+  }
+
+  async listSources() {
+    return this.sourceRepo.find({
+      order: { agency: 'ASC', name: 'ASC' },
+      take: 100,
+    });
+  }
+
+  async upsertSource(dto: {
+    name: string;
+    agency: string;
+    sourceType: string;
+    trustLevel?: string;
+    defaultAuthorityTier?: number;
+    baseUrl: string;
+    description?: string;
+    status?: string;
+    metadataJson?: Record<string, any>;
+  }) {
+    const existing = await this.sourceRepo.findOne({
+      where: { name: dto.name },
+    });
+
+    const source = existing || new SafeScopeKnowledgeSource();
+
+    Object.assign(source, {
+      name: dto.name,
+      agency: dto.agency,
+      sourceType: dto.sourceType,
+      trustLevel: dto.trustLevel || 'official',
+      defaultAuthorityTier: dto.defaultAuthorityTier || 3,
+      baseUrl: dto.baseUrl,
+      description: dto.description || null,
+      status: dto.status || 'active',
+      metadataJson: dto.metadataJson || {},
+    });
+
+    return this.sourceRepo.save(source);
+  }
+
+  async listIngestionRuns() {
+    return this.ingestionRunRepo.find({
+      order: { createdAt: 'DESC' },
+      take: 100,
+    });
+  }
+
+  async createIngestionRun(dto: {
+    sourceId?: string;
+    sourceName: string;
+    agency: string;
+    sourceType: string;
+    metadataJson?: Record<string, any>;
+  }) {
+    return this.ingestionRunRepo.save(
+      this.ingestionRunRepo.create({
+        sourceId: dto.sourceId || null,
+        sourceName: dto.sourceName,
+        agency: dto.agency,
+        sourceType: dto.sourceType,
+        status: 'queued',
+        metadataJson: dto.metadataJson || {},
+      }),
+    );
+  }
+
+  async markIngestionRunRunning(id: string) {
+    const run = await this.ingestionRunRepo.findOne({ where: { id } });
+    if (!run) throw new NotFoundException('SafeScope ingestion run not found');
+
+    run.status = 'running';
+    run.startedAt = new Date();
+
+    return this.ingestionRunRepo.save(run);
+  }
+
+  async completeIngestionRun(
+    id: string,
+    result: {
+      discoveredCount?: number;
+      ingestedCount?: number;
+      pendingReviewCount?: number;
+      approvedCount?: number;
+      skippedCount?: number;
+      warnings?: string[];
+      status?: 'completed' | 'completed_with_warnings' | 'failed';
+      errorMessage?: string;
+      metadataJson?: Record<string, any>;
+    },
+  ) {
+    const run = await this.ingestionRunRepo.findOne({ where: { id } });
+    if (!run) throw new NotFoundException('SafeScope ingestion run not found');
+
+    run.status =
+      result.status ||
+      ((result.warnings || []).length ? 'completed_with_warnings' : 'completed');
+    run.discoveredCount = result.discoveredCount ?? run.discoveredCount;
+    run.ingestedCount = result.ingestedCount ?? run.ingestedCount;
+    run.pendingReviewCount = result.pendingReviewCount ?? run.pendingReviewCount;
+    run.approvedCount = result.approvedCount ?? run.approvedCount;
+    run.skippedCount = result.skippedCount ?? run.skippedCount;
+    run.warnings = result.warnings || [];
+    run.errorMessage = result.errorMessage || null;
+    run.metadataJson = {
+      ...(run.metadataJson || {}),
+      ...(result.metadataJson || {}),
+    };
+    run.completedAt = new Date();
+
+    return this.ingestionRunRepo.save(run);
   }
 
   async findDocument(id: string) {
