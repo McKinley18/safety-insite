@@ -4,11 +4,37 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/command-center", label: "Home", icon: "🏠", activeRoots: ["/command-center", "/dashboard"] },
-  { href: "/inspections", label: "Inspect", icon: "📋", activeRoots: ["/inspections", "/inspection", "/inspection-cover", "/inspection-review", "/inspection-walkthrough"] },
+  {
+    href: "/command-center",
+    label: "Home",
+    icon: "🏠",
+    activeRoots: ["/command-center", "/dashboard"],
+  },
+  {
+    href: "/inspections",
+    label: "Inspect",
+    icon: "📋",
+    activeRoots: [
+      "/inspections",
+      "/inspection",
+      "/inspection-cover",
+      "/inspection-review",
+      "/inspection-walkthrough",
+    ],
+  },
   { href: "/reports", label: "Reports", icon: "🗂", activeRoots: ["/reports"] },
-  { href: "/analytics", label: "Insights", icon: "📈", activeRoots: ["/analytics"] },
-  { href: "/settings", label: "Settings", icon: "⚙️", activeRoots: ["/settings"] },
+  {
+    href: "/safescope-knowledge",
+    label: "Brain",
+    icon: "🧠",
+    activeRoots: ["/safescope-knowledge"],
+  },
+  {
+    href: "/settings",
+    label: "Settings",
+    icon: "⚙️",
+    activeRoots: ["/settings"],
+  },
 ];
 
 export default function MobileTabBar() {
@@ -20,7 +46,7 @@ export default function MobileTabBar() {
         <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
           {navItems.map((item) => {
             const active = item.activeRoots.some(
-              (root) => pathname === root || pathname.startsWith(root + "/")
+              (root) => pathname === root || pathname.startsWith(root + "/"),
             );
 
             return (
