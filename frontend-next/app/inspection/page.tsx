@@ -949,6 +949,7 @@ export default function InspectionPage() {
         currentFindingSaved={currentFindingSaved}
         saveFinding={saveFinding}
         addNewFinding={addNewFinding}
+        generateReport={generateReport}
         includeStandardsInReport={includeStandardsInReport}
         setIncludeStandardsInReport={setIncludeStandardsInReport}
         includeActionsInReport={includeActionsInReport}

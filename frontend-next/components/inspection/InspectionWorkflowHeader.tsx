@@ -55,11 +55,6 @@ export default function InspectionWorkflowHeader({
   }
 
   function handleNext() {
-    if (currentStep === 6) {
-      generateReport();
-      return;
-    }
-
     if (!isAdvancedMode && currentStep === 3) {
       goToInspectionStep(5);
       return;
@@ -69,13 +64,11 @@ export default function InspectionWorkflowHeader({
   }
 
   const nextButtonLabel =
-    currentStep === 6
-      ? "Generate"
-      : quickCapture && currentStep === 1
-        ? "Save"
-        : currentStep === 1
-          ? "Save & Continue"
-          : "Next";
+    quickCapture && currentStep === 1
+      ? "Save"
+      : currentStep === 1
+        ? "Save & Continue"
+        : "Next";
 
   return (
     <>
@@ -109,13 +102,15 @@ export default function InspectionWorkflowHeader({
             ← Back
           </button>
 
-          <button
-            type="button"
-            onClick={handleNext}
-            className="min-h-9 min-w-[112px] rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
-          >
-            {nextButtonLabel} →
-          </button>
+          {currentStep !== 6 && (
+            <button
+              type="button"
+              onClick={handleNext}
+              className="min-h-9 min-w-[112px] rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+            >
+              {nextButtonLabel} →
+            </button>
+          )}
         </div>
 
         <div className="mt-3 h-1.5 rounded-full bg-slate-200">

@@ -410,13 +410,15 @@ export default function FinalizeInspectionSection({
               saved hazard cards look correct.
             </p>
 
-            <button
-              type="button"
-              onClick={generateReport}
-              className="mt-4 rounded-xl bg-[#F97316] px-5 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
-            >
-              Generate Report
-            </button>
+            <div className="mt-4 flex justify-center">
+              <button
+                type="button"
+                onClick={generateReport}
+                className="rounded-xl bg-[#F97316] px-5 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
+              >
+                Generate Report
+              </button>
+            </div>
 
             {findings.length === 0 && (
               <p className="mt-3 text-xs font-bold leading-5 text-amber-700">
