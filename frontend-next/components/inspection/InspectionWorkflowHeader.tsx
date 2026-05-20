@@ -38,6 +38,12 @@ export default function InspectionWorkflowHeader({
     (visibleStepIndex / visibleSteps.length) * 100,
   );
   const workflowLabel = isAdvancedMode ? "Advanced" : "Quick";
+  const visibleStepTitle =
+    !isAdvancedMode && currentStep === 5
+      ? "Corrective Actions"
+      : !isAdvancedMode && currentStep === 6
+        ? "Finalize"
+        : currentStepTitle;
 
   function handleBack() {
     if (currentStep === 1) {
@@ -80,7 +86,7 @@ export default function InspectionWorkflowHeader({
               {workflowLabel} · Step {visibleStepIndex} of {visibleSteps.length}
             </p>
             <h1 className="mt-0.5 truncate text-lg font-black leading-tight text-slate-900 sm:text-xl">
-              {currentStepTitle}
+              {visibleStepTitle}
             </h1>
           </div>
 
