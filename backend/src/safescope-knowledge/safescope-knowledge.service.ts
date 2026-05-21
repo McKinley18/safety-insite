@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
+import { buildSourceSynthesis } from "./sources/source-synthesis-helper";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ILike, Repository } from "typeorm";
 import { SafeScopeKnowledgeChunk } from "./entities/safescope-knowledge-chunk.entity";
@@ -410,6 +411,7 @@ export class SafeScopeKnowledgeService {
       : 0;
 
     const evidenceGaps = this.evidenceGaps(query, matches);
+    const sourceSynthesis = buildSourceSynthesis(matches);
 
     await this.retrievalLogRepo.save(
       this.retrievalLogRepo.create({
@@ -436,6 +438,7 @@ export class SafeScopeKnowledgeService {
       query,
       confidence,
       matches,
+      sourceSynthesis,
       reasoning: {
         evidenceGaps,
         caution:

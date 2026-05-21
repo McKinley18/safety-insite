@@ -31,7 +31,8 @@
     "ensure:standards-master": "ts-node src/standards/maintenance/ensure-standards-master-table.ts",
     "enrich:standards-master": "ts-node src/standards/maintenance/enrich-standards-master.ts",
     "ingest:standards:ecfr": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
-    "verify:safescope-source-roles": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-source-roles.ts"
+    "verify:safescope-source-roles": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-source-roles.ts",
+    "verify:safescope-source-synthesis": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-source-synthesis.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
