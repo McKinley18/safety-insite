@@ -55,6 +55,20 @@ export class SafeScopeKnowledgeController {
     return this.safeScopeKnowledgeService.rebuildChunks(id);
   }
 
+  @Post('documents/:id/approval-status')
+  updateDocumentApprovalStatus(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      status: 'draft' | 'pending_review' | 'approved' | 'rejected' | 'archived';
+    },
+  ) {
+    return this.safeScopeKnowledgeService.updateDocumentApprovalStatus(
+      id,
+      body.status,
+    );
+  }
+
   @Post('documents/:id/approve')
   approveDocument(@Param('id') id: string) {
     return this.safeScopeKnowledgeService.approveDocument(id);

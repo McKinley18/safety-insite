@@ -213,17 +213,51 @@ export class SafeScopeKnowledgeService {
   }
 
   async approveDocument(id: string) {
-    const document = await this.findDocument(id);
-    document.approvalStatus = 'approved';
-    document.reviewedAt = new Date().toISOString().slice(0, 10);
-    return this.documentRepo.save(document);
+    return this.updateDocumentApprovalStatus(id, 'approved');
   }
 
   async rejectDocument(id: string) {
-    const document = await this.findDocument(id);
-    document.approvalStatus = 'rejected';
-    document.reviewedAt = new Date().toISOString().slice(0, 10);
-    return this.documentRepo.save(document);
+    return this.updateDocumentApprovalStatus(id, 'rejected');
+  }
+
+  async updateDocumentApprovalStatus(
+    id: string,
+    status: 'draft' | 'pending_review' | 'approved' | 'rejected' | 'archived',
+  ) {
+    const document = await this.documentRepo.findOne({
+      where: { id },
+      relations: { chunks: true },
+    });
+
+    if (!document) {
+      throw new NotFoundException('SafeScope knowledge document not found');
+    }
+
+    document.approvalStatus = status;
+
+    if (status === 'approved') {
+      document.reviewedAt = new Date().toISOString();
+    }
+
+    const saved = await this.documentRepo.save(document);
+
+    if (document.chunks?.length) {
+      await this.chunkRepo.save(
+        document.chunks.map((chunk) => {
+          chunk.authorityTier = saved.authorityTier;
+          chunk.confidenceWeight = this.authorityWeight(saved.authorityTier);
+          return chunk;
+        }),
+      );
+    }
+
+    return saved;
+  }
+
+
+
+  async submitDocumentForReview(id: string) {
+    return this.updateDocumentApprovalStatus(id, 'pending_review');
   }
 
   async rebuildChunks(documentId: string) {
