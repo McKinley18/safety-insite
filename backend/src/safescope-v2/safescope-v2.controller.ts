@@ -26,6 +26,7 @@ export class SafescopeV2Controller {
         body.evidenceTexts,
         body.riskProfileId,
         workspaceId,
+        body.priorFindings,
       );
     } catch (error) {
       console.error('SafeScope v2 classify failed:', error);

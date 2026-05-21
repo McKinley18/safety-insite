@@ -12,9 +12,6 @@ async function bootstrap() {
   app.use(cookieParser());
   const configService = app.get(ConfigService);
 
-  app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
-  app.use('/offline', express.static(join(process.cwd(), 'dist', 'offline')));
-
   // 🔷 SECURITY HEADERS
   app.use(helmet());
 
@@ -31,6 +28,9 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
+
+  app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
+  app.use('/offline', express.static(join(process.cwd(), 'dist', 'offline')));
 
   const PORT = configService.get<number>('PORT') || 4000; 
 

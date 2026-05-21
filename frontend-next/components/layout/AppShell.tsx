@@ -12,6 +12,7 @@ import {
   isSessionUnlocked,
   lockSession,
 } from "@/lib/pinSecurity";
+import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
 
 const publicRoutes = [
   "/",
@@ -121,6 +122,18 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (isPublicPage || pathname === "/unlock") return;
+
+    const alreadyAttempted = window.sessionStorage.getItem(
+      "sentinel_brain_sync_attempted",
+    );
+
+    if (!alreadyAttempted && navigator.onLine) {
+      window.sessionStorage.setItem("sentinel_brain_sync_attempted", "true");
+      downloadSafeScopeBrainBundle().catch(() => {
+        // App startup should never be blocked by brain bundle refresh.
+      });
+    }
+
     if (!isPinRequired()) return;
 
     const autoLockMinutes = getAutoLockMinutes();
