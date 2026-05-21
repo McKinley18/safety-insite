@@ -24,6 +24,7 @@
     "verify:standards-intelligence": "ts-node src/safescope-v2/standards-intelligence/verify-standards-intelligence.ts",
     "verify:safescope-ingestion-sources": "ts-node src/safescope-knowledge/ingestion/verify-safescope-ingestion-sources.ts",
     "verify:safescope-source-registry": "ts-node src/safescope-knowledge/sources/verify-source-registry.ts",
+    "verify:safescope-knowledge-review": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-review-workflow.ts",
     "verify:standards-source-metadata": "ts-node src/safescope-v2/standards-intelligence/verify-standards-source-metadata.ts",
     "ensure:standards-master": "ts-node src/standards/maintenance/ensure-standards-master-table.ts",
     "enrich:standards-master": "ts-node src/standards/maintenance/enrich-standards-master.ts",

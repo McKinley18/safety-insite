@@ -1,15 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, Repository } from 'typeorm';
-import { SafeScopeKnowledgeChunk } from './entities/safescope-knowledge-chunk.entity';
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { ILike, Repository } from "typeorm";
+import { SafeScopeKnowledgeChunk } from "./entities/safescope-knowledge-chunk.entity";
 import {
   SafeScopeKnowledgeApprovalStatus,
   SafeScopeKnowledgeDocument,
   SafeScopeKnowledgeSourceType,
-} from './entities/safescope-knowledge-document.entity';
-import { SafeScopeKnowledgeRetrievalLog } from './entities/safescope-knowledge-retrieval-log.entity';
-import { SafeScopeKnowledgeSource } from './entities/safescope-knowledge-source.entity';
-import { SafeScopeKnowledgeIngestionRun } from './entities/safescope-knowledge-ingestion-run.entity';
+} from "./entities/safescope-knowledge-document.entity";
+import { SafeScopeKnowledgeRetrievalLog } from "./entities/safescope-knowledge-retrieval-log.entity";
+import { SafeScopeKnowledgeSource } from "./entities/safescope-knowledge-source.entity";
+import { SafeScopeKnowledgeIngestionRun } from "./entities/safescope-knowledge-ingestion-run.entity";
 
 type CreateSafeScopeKnowledgeDocumentDto = {
   title: string;
@@ -59,14 +59,15 @@ export class SafeScopeKnowledgeService {
   async createDocument(dto: CreateSafeScopeKnowledgeDocumentDto) {
     const document = this.documentRepo.create({
       title: dto.title,
-      agency: (dto.agency as any) || 'Other',
-      sourceType: dto.sourceType || 'other',
-      authorityTier: dto.authorityTier ?? this.defaultAuthorityTier(dto.sourceType),
+      agency: (dto.agency as any) || "Other",
+      sourceType: dto.sourceType || "other",
+      authorityTier:
+        dto.authorityTier ?? this.defaultAuthorityTier(dto.sourceType),
       citation: dto.citation || null,
       sourceUrl: dto.sourceUrl || null,
       publishedAt: dto.publishedAt || null,
       reviewedAt: dto.reviewedAt || null,
-      approvalStatus: dto.approvalStatus || 'draft',
+      approvalStatus: dto.approvalStatus || "draft",
       summary: dto.summary || null,
       rawText: dto.rawText,
       hazardTags: this.normalizeTags(dto.hazardTags),
@@ -82,16 +83,35 @@ export class SafeScopeKnowledgeService {
     return this.findDocument(saved.id);
   }
 
-  async listDocuments() {
+  async listPendingDocuments() {
     return this.documentRepo.find({
-      order: { updatedAt: 'DESC' },
-      take: 100,
+      where: { approvalStatus: "pending_review" },
+      order: { createdAt: "DESC" },
+      take: 50,
     });
+  }
+
+  async approveDocument(id: string) {
+    return this.updateDocumentApprovalStatus(id, "approved");
+  }
+
+  async rejectDocument(id: string) {
+    return this.updateDocumentApprovalStatus(id, "rejected");
+  }
+
+  async getStatusCounts() {
+    const statuses = ["pending_review", "approved", "rejected"];
+    const results = await Promise.all(
+      statuses.map((status) =>
+        this.documentRepo.count({ where: { approvalStatus: status as any } }),
+      ),
+    );
+    return Object.fromEntries(statuses.map((s, i) => [s, results[i]]));
   }
 
   async listSources() {
     return this.sourceRepo.find({
-      order: { agency: 'ASC', name: 'ASC' },
+      order: { agency: "ASC", name: "ASC" },
       take: 100,
     });
   }
@@ -117,11 +137,11 @@ export class SafeScopeKnowledgeService {
       name: dto.name,
       agency: dto.agency,
       sourceType: dto.sourceType,
-      trustLevel: dto.trustLevel || 'official',
+      trustLevel: dto.trustLevel || "official",
       defaultAuthorityTier: dto.defaultAuthorityTier || 3,
       baseUrl: dto.baseUrl,
       description: dto.description || null,
-      status: dto.status || 'active',
+      status: dto.status || "active",
       metadataJson: dto.metadataJson || {},
     });
 
@@ -130,7 +150,7 @@ export class SafeScopeKnowledgeService {
 
   async listIngestionRuns() {
     return this.ingestionRunRepo.find({
-      order: { createdAt: 'DESC' },
+      order: { createdAt: "DESC" },
       take: 100,
     });
   }
@@ -148,7 +168,7 @@ export class SafeScopeKnowledgeService {
         sourceName: dto.sourceName,
         agency: dto.agency,
         sourceType: dto.sourceType,
-        status: 'queued',
+        status: "queued",
         metadataJson: dto.metadataJson || {},
       }),
     );
@@ -156,9 +176,9 @@ export class SafeScopeKnowledgeService {
 
   async markIngestionRunRunning(id: string) {
     const run = await this.ingestionRunRepo.findOne({ where: { id } });
-    if (!run) throw new NotFoundException('SafeScope ingestion run not found');
+    if (!run) throw new NotFoundException("SafeScope ingestion run not found");
 
-    run.status = 'running';
+    run.status = "running";
     run.startedAt = new Date();
 
     return this.ingestionRunRepo.save(run);
@@ -173,20 +193,23 @@ export class SafeScopeKnowledgeService {
       approvedCount?: number;
       skippedCount?: number;
       warnings?: string[];
-      status?: 'completed' | 'completed_with_warnings' | 'failed';
+      status?: "completed" | "completed_with_warnings" | "failed";
       errorMessage?: string;
       metadataJson?: Record<string, any>;
     },
   ) {
     const run = await this.ingestionRunRepo.findOne({ where: { id } });
-    if (!run) throw new NotFoundException('SafeScope ingestion run not found');
+    if (!run) throw new NotFoundException("SafeScope ingestion run not found");
 
     run.status =
       result.status ||
-      ((result.warnings || []).length ? 'completed_with_warnings' : 'completed');
+      ((result.warnings || []).length
+        ? "completed_with_warnings"
+        : "completed");
     run.discoveredCount = result.discoveredCount ?? run.discoveredCount;
     run.ingestedCount = result.ingestedCount ?? run.ingestedCount;
-    run.pendingReviewCount = result.pendingReviewCount ?? run.pendingReviewCount;
+    run.pendingReviewCount =
+      result.pendingReviewCount ?? run.pendingReviewCount;
     run.approvedCount = result.approvedCount ?? run.approvedCount;
     run.skippedCount = result.skippedCount ?? run.skippedCount;
     run.warnings = result.warnings || [];
@@ -204,25 +227,18 @@ export class SafeScopeKnowledgeService {
     const document = await this.documentRepo.findOne({
       where: { id },
       relations: { chunks: true },
-      order: { chunks: { chunkIndex: 'ASC' } as any },
+      order: { chunks: { chunkIndex: "ASC" } as any },
     });
 
-    if (!document) throw new NotFoundException('SafeScope knowledge document not found');
+    if (!document)
+      throw new NotFoundException("SafeScope knowledge document not found");
 
     return document;
   }
 
-  async approveDocument(id: string) {
-    return this.updateDocumentApprovalStatus(id, 'approved');
-  }
-
-  async rejectDocument(id: string) {
-    return this.updateDocumentApprovalStatus(id, 'rejected');
-  }
-
   async updateDocumentApprovalStatus(
     id: string,
-    status: 'draft' | 'pending_review' | 'approved' | 'rejected' | 'archived',
+    status: "draft" | "pending_review" | "approved" | "rejected" | "archived",
   ) {
     const document = await this.documentRepo.findOne({
       where: { id },
@@ -230,12 +246,12 @@ export class SafeScopeKnowledgeService {
     });
 
     if (!document) {
-      throw new NotFoundException('SafeScope knowledge document not found');
+      throw new NotFoundException("SafeScope knowledge document not found");
     }
 
     document.approvalStatus = status;
 
-    if (status === 'approved') {
+    if (status === "approved") {
       document.reviewedAt = new Date().toISOString();
     }
 
@@ -254,15 +270,12 @@ export class SafeScopeKnowledgeService {
     return saved;
   }
 
-
-
-  async submitDocumentForReview(id: string) {
-    return this.updateDocumentApprovalStatus(id, 'pending_review');
-  }
-
   async rebuildChunks(documentId: string) {
-    const document = await this.documentRepo.findOne({ where: { id: documentId } });
-    if (!document) throw new NotFoundException('SafeScope knowledge document not found');
+    const document = await this.documentRepo.findOne({
+      where: { id: documentId },
+    });
+    if (!document)
+      throw new NotFoundException("SafeScope knowledge document not found");
 
     await this.chunkRepo.delete({ documentId });
 
@@ -290,7 +303,7 @@ export class SafeScopeKnowledgeService {
 
   async search(dto: SearchSafeScopeKnowledgeDto) {
     const limit = Math.min(Math.max(dto.limit || 8, 1), 25);
-    const query = (dto.query || '').trim();
+    const query = (dto.query || "").trim();
 
     if (!query) {
       return {
@@ -298,9 +311,9 @@ export class SafeScopeKnowledgeService {
         confidence: 0,
         matches: [],
         reasoning: {
-          evidenceGaps: ['Enter a hazard description or search phrase.'],
+          evidenceGaps: ["Enter a hazard description or search phrase."],
           caution:
-            'SafeScope Knowledge Brain requires an observation before it can retrieve supporting references.',
+            "SafeScope Knowledge Brain requires an observation before it can retrieve supporting references.",
         },
       };
     }
@@ -318,15 +331,25 @@ export class SafeScopeKnowledgeService {
     });
 
     const filtered = chunks.filter((chunk) => {
-      if (dto.approvedOnly !== false && chunk.document?.approvalStatus !== 'approved') {
+      if (
+        dto.approvedOnly !== false &&
+        chunk.document?.approvalStatus !== "approved"
+      ) {
         return false;
       }
 
-      if (dto.agency && dto.agency !== 'all' && chunk.document?.agency !== dto.agency) {
+      if (
+        dto.agency &&
+        dto.agency !== "all" &&
+        chunk.document?.agency !== dto.agency
+      ) {
         return false;
       }
 
-      if (dto.sourceTypes?.length && !dto.sourceTypes.includes(chunk.document?.sourceType)) {
+      if (
+        dto.sourceTypes?.length &&
+        !dto.sourceTypes.includes(chunk.document?.sourceType)
+      ) {
         return false;
       }
 
@@ -383,7 +406,7 @@ export class SafeScopeKnowledgeService {
           evidenceGaps,
           topAuthorityTier: matches[0]?.authorityTier || null,
           sourceMix: matches.reduce((acc: Record<string, number>, match) => {
-            const key = match.sourceType || 'unknown';
+            const key = match.sourceType || "unknown";
             acc[key] = (acc[key] || 0) + 1;
             return acc;
           }, {}),
@@ -398,7 +421,7 @@ export class SafeScopeKnowledgeService {
       reasoning: {
         evidenceGaps,
         caution:
-          'SafeScope references supporting knowledge and likely applicability. Final compliance decisions require qualified review.',
+          "SafeScope references supporting knowledge and likely applicability. Final compliance decisions require qualified review.",
       },
     };
   }
@@ -415,16 +438,16 @@ export class SafeScopeKnowledgeService {
     const query = [
       input.classification,
       input.fusedText,
-      input.location ? `location ${input.location}` : '',
+      input.location ? `location ${input.location}` : "",
     ]
       .filter(Boolean)
-      .join(' ');
+      .join(" ");
 
     const agency =
-      input.agencyMode === 'msha'
-        ? 'MSHA'
-        : input.agencyMode?.startsWith('osha')
-          ? 'OSHA'
+      input.agencyMode === "msha"
+        ? "MSHA"
+        : input.agencyMode?.startsWith("osha")
+          ? "OSHA"
           : undefined;
 
     return this.search({
@@ -439,15 +462,20 @@ export class SafeScopeKnowledgeService {
   }
 
   private chunkText(rawText: string) {
-    const clean = String(rawText || '').replace(/\r/g, '').trim();
+    const clean = String(rawText || "")
+      .replace(/\r/g, "")
+      .trim();
     if (!clean) return [];
 
-    const paragraphs = clean.split(/\n{2,}/).map((part) => part.trim()).filter(Boolean);
+    const paragraphs = clean
+      .split(/\n{2,}/)
+      .map((part) => part.trim())
+      .filter(Boolean);
     const chunks: string[] = [];
-    let current = '';
+    let current = "";
 
     for (const paragraph of paragraphs) {
-      if ((current + '\n\n' + paragraph).length > 1800 && current) {
+      if ((current + "\n\n" + paragraph).length > 1800 && current) {
         chunks.push(current.trim());
         current = paragraph;
       } else {
@@ -461,7 +489,7 @@ export class SafeScopeKnowledgeService {
   }
 
   private extractHeading(text: string) {
-    const firstLine = text.split('\n').find(Boolean)?.trim();
+    const firstLine = text.split("\n").find(Boolean)?.trim();
     if (!firstLine) return null;
     return firstLine.length <= 160 ? firstLine : null;
   }
@@ -476,7 +504,7 @@ export class SafeScopeKnowledgeService {
       new Set(
         query
           .toLowerCase()
-          .replace(/[^a-z0-9\s/-]/g, ' ')
+          .replace(/[^a-z0-9\s/-]/g, " ")
           .split(/\s+/)
           .filter((term) => term.length >= 4)
           .slice(0, 14),
@@ -484,7 +512,11 @@ export class SafeScopeKnowledgeService {
     );
   }
 
-  private scoreChunk(query: string, terms: string[], chunk: SafeScopeKnowledgeChunk) {
+  private scoreChunk(
+    query: string,
+    terms: string[],
+    chunk: SafeScopeKnowledgeChunk,
+  ) {
     const haystack = [
       chunk.chunkText,
       chunk.chunkSummary,
@@ -499,10 +531,13 @@ export class SafeScopeKnowledgeService {
       chunk.document?.agency,
     ]
       .filter(Boolean)
-      .join(' ')
+      .join(" ")
       .toLowerCase();
 
-    const termScore = terms.reduce((score, term) => score + (haystack.includes(term) ? 10 : 0), 0);
+    const termScore = terms.reduce(
+      (score, term) => score + (haystack.includes(term) ? 10 : 0),
+      0,
+    );
     const phraseScore = haystack.includes(query.toLowerCase()) ? 25 : 0;
     const authorityScore = Math.max(0, 35 - chunk.authorityTier * 5);
     const tagScore =
@@ -511,7 +546,8 @@ export class SafeScopeKnowledgeService {
         ...(chunk.equipmentTags || []),
         ...(chunk.taskTags || []),
         ...(chunk.lessonTags || []),
-      ].filter((tag) => query.toLowerCase().includes(String(tag).toLowerCase())).length * 8;
+      ].filter((tag) => query.toLowerCase().includes(String(tag).toLowerCase()))
+        .length * 8;
 
     return termScore + phraseScore + authorityScore + tagScore;
   }
@@ -521,11 +557,12 @@ export class SafeScopeKnowledgeService {
     const matchedTerms = terms.filter((term) => text.includes(term));
 
     const reasons = [];
-    if (matchedTerms.length) reasons.push(`Matched terms: ${matchedTerms.join(', ')}`);
+    if (matchedTerms.length)
+      reasons.push(`Matched terms: ${matchedTerms.join(", ")}`);
     reasons.push(`Authority tier ${chunk.authorityTier}`);
     if (chunk.citation) reasons.push(`Reference: ${chunk.citation}`);
 
-    return reasons.join(' · ');
+    return reasons.join(" · ");
   }
 
   private evidenceGaps(query: string, matches: any[]) {
@@ -533,29 +570,43 @@ export class SafeScopeKnowledgeService {
     const lower = query.toLowerCase();
 
     if (!/(photo|image|visible|observed|see|shown)/.test(lower)) {
-      gaps.push('Confirm visible evidence or attach a supporting photo.');
+      gaps.push("Confirm visible evidence or attach a supporting photo.");
     }
 
-    if (!/(energized|locked|deenergized|maintenance|operating|running|shutdown)/.test(lower)) {
-      gaps.push('Confirm operating/energy state and whether maintenance is involved.');
+    if (
+      !/(energized|locked|deenergized|maintenance|operating|running|shutdown)/.test(
+        lower,
+      )
+    ) {
+      gaps.push(
+        "Confirm operating/energy state and whether maintenance is involved.",
+      );
     }
 
-    if (!/(exposed|guard|missing|damaged|unguarded|blocked|leaking|open|failed)/.test(lower)) {
-      gaps.push('Clarify the exact exposure or failed control.');
+    if (
+      !/(exposed|guard|missing|damaged|unguarded|blocked|leaking|open|failed)/.test(
+        lower,
+      )
+    ) {
+      gaps.push("Clarify the exact exposure or failed control.");
     }
 
     if (!matches.length) {
-      gaps.push('No approved knowledge match found yet; add or approve reference material.');
+      gaps.push(
+        "No approved knowledge match found yet; add or approve reference material.",
+      );
     }
 
     return gaps;
   }
 
   private defaultAuthorityTier(sourceType?: SafeScopeKnowledgeSourceType) {
-    if (sourceType === 'regulation') return 1;
-    if (['policy', 'interpretation', 'directive'].includes(String(sourceType))) return 2;
-    if (['accident_report', 'fatality_report'].includes(String(sourceType))) return 3;
-    if (['journal', 'case_study'].includes(String(sourceType))) return 4;
+    if (sourceType === "regulation") return 1;
+    if (["policy", "interpretation", "directive"].includes(String(sourceType)))
+      return 2;
+    if (["accident_report", "fatality_report"].includes(String(sourceType)))
+      return 3;
+    if (["journal", "case_study"].includes(String(sourceType))) return 4;
     return 5;
   }
 
@@ -565,7 +616,9 @@ export class SafeScopeKnowledgeService {
 
   private normalizeTags(tags?: string[]) {
     return Array.isArray(tags)
-      ? Array.from(new Set(tags.map((tag) => String(tag).trim()).filter(Boolean)))
+      ? Array.from(
+          new Set(tags.map((tag) => String(tag).trim()).filter(Boolean)),
+        )
       : [];
   }
 }

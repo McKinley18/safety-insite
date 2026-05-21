@@ -1,5 +1,5 @@
-import { DataSource } from 'typeorm';
-import { config } from 'dotenv';
+import { DataSource } from "typeorm";
+import { config } from "dotenv";
 
 config();
 
@@ -7,14 +7,23 @@ async function main() {
   const databaseUrl = process.env.DATABASE_URL;
 
   const dataSource = new DataSource({
-    type: 'postgres',
+    type: "postgres",
     url: databaseUrl || undefined,
     host: databaseUrl ? undefined : process.env.DB_HOST,
     port: databaseUrl ? undefined : Number(process.env.DB_PORT || 5432),
-    username: databaseUrl ? undefined : process.env.DB_USERNAME,
+    username: databaseUrl
+      ? undefined
+      : process.env.DB_USERNAME || process.env.DB_USER,
     password: databaseUrl ? undefined : process.env.DB_PASSWORD,
-    database: databaseUrl ? undefined : process.env.DB_NAME,
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+    database: databaseUrl
+      ? undefined
+      : process.env.DB_DATABASE ||
+        process.env.DB_NAME ||
+        process.env.POSTGRES_DB,
+    ssl:
+      process.env.NODE_ENV === "production"
+        ? { rejectUnauthorized: false }
+        : false,
   });
 
   await dataSource.initialize();
@@ -136,7 +145,7 @@ async function main() {
       ON safescope_knowledge_documents ("approvalStatus");
   `);
 
-  console.log('SafeScope knowledge tables verified/created.');
+  console.log("SafeScope knowledge tables verified/created.");
 
   await dataSource.destroy();
 }
