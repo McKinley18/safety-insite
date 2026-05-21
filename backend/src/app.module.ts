@@ -46,9 +46,7 @@ import { SafeScopeKnowledgeModule } from './safescope-knowledge/safescope-knowle
           database: databaseUrl ? undefined : configService.get<string>('DB_NAME'),
           ssl: isProduction ? { rejectUnauthorized: false } : false,
           autoLoadEntities: true,
-          synchronize:
-            configService.get<string>('TYPEORM_SYNCHRONIZE') === 'true' ||
-            (!isProduction && configService.get<string>('NODE_ENV') === 'development'),
+          synchronize: configService.get<string>('TYPEORM_SYNCHRONIZE') === 'true',
         };
       },
     }),
