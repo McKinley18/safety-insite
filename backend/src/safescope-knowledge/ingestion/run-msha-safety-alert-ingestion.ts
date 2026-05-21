@@ -56,6 +56,11 @@ async function run() {
     doc.sourceUrl = item.sourceUrl;
     doc.summary = item.summary;
     doc.rawText = item.rawText;
+    doc.hazardTags = item.metadata?.hazardTags || [];
+    doc.equipmentTags = item.metadata?.equipmentTags || [];
+    doc.taskTags = item.metadata?.taskTags || [];
+    doc.standardTags = item.metadata?.standardTags || [];
+    doc.lessonTags = item.metadata?.lessonTags || [];
     if (!existing) {
       doc.approvalStatus = MSHA_METADATA.requiresApproval
         ? "pending_review"
@@ -81,6 +86,11 @@ async function run() {
         chunkSummary: item.summary,
         citation: saved.citation,
         authorityTier: saved.authorityTier,
+        hazardTags: saved.hazardTags || [],
+        equipmentTags: saved.equipmentTags || [],
+        taskTags: saved.taskTags || [],
+        standardTags: saved.standardTags || [],
+        lessonTags: saved.lessonTags || [],
         confidenceWeight: authorityWeight(saved.authorityTier),
       }),
     );

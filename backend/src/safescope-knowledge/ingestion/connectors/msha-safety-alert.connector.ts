@@ -103,6 +103,9 @@ export class MshaSafetyAlertConnector {
             ...MSHA_METADATA,
             standardTags: item.standardTags || [],
             hazardTags: item.hazardTags || [],
+            equipmentTags: item.equipmentTags || [],
+            taskTags: item.taskTags || [],
+            lessonTags: item.lessonTags || [],
           },
         });
       } catch (e) {
