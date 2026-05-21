@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import { config } from "dotenv";
 import { SafeScopeKnowledgeDocument } from "../entities/safescope-knowledge-document.entity";
+import { SafeScopeKnowledgeChunk } from "../entities/safescope-knowledge-chunk.entity";
 import { getSourceRole, ROLE_LABELS } from "../sources/source-role-helper";
 
 config();
@@ -11,7 +12,7 @@ async function run() {
     url:
       process.env.DATABASE_URL ||
       "postgres://mckinley@localhost:5432/sentinel_safety",
-    entities: [SafeScopeKnowledgeDocument],
+    entities: [SafeScopeKnowledgeDocument, SafeScopeKnowledgeChunk],
     synchronize: false,
   });
 
