@@ -58,8 +58,14 @@ async function run() {
     doc.sourceUrl = item.sourceUrl;
     doc.summary = item.summary;
     doc.rawText = item.rawText;
-    doc.approvalStatus = "pending_review";
-    doc.reviewedAt = null;
+    if (!existing) {
+      doc.approvalStatus = OSHA_METADATA.requiresApproval
+        ? "pending_review"
+        : "approved";
+    } else {
+      doc.approvalStatus = existing.approvalStatus;
+      doc.reviewedAt = existing.reviewedAt;
+    }
 
     const saved = await documentRepo.save(doc);
     if (existing) updated++;

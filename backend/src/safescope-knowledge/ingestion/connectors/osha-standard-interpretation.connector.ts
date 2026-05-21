@@ -26,10 +26,37 @@ export type OshaDiscoveryItem = {
 };
 
 function stripHtml(html: string) {
-  return html
-    .replace(/<[^>]*>?/gm, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+  // Remove non-content tags
+  let cleaned = html.replace(
+    /<(script|style|noscript|nav|footer|header|svg|form)[^>]*>[\s\S]*?<\/\1>/gi,
+    " ",
+  );
+  // Remove boilerplate blocks
+  cleaned = cleaned.replace(/<div id="goog-gt-tt"[^>]*>[\s\S]*?<\/div>/gi, " ");
+  cleaned = cleaned.replace(
+    /<select[^>]*id="[^"]*language[^"]*"[^>]*>[\s\S]*?<\/select>/gi,
+    " ",
+  );
+  // Remove all other tags
+  cleaned = cleaned.replace(/<[^>]*>?/gm, " ");
+  // Clean whitespace
+  return cleaned.replace(/\s+/g, " ").trim();
+}
+
+function extractInterpretationBody(text: string) {
+  const preferredStarts = [
+    /Questions?:/i,
+    /Responses?:/i,
+    /Dear\s+/i,
+    /Standard Number:/i,
+  ];
+
+  for (const pattern of preferredStarts) {
+    const index = text.search(pattern);
+    if (index !== -1) return text.substring(index).trim();
+  }
+
+  return text.trim();
 }
 
 function slugFromUrl(url: string) {
@@ -55,20 +82,15 @@ export class OshaStandardInterpretationConnector {
 
   private validateItem(item: any): OshaUrlItem | null {
     const url = typeof item === "string" ? item : item?.url;
-
     if (typeof url !== "string" || !url.startsWith("https://www.osha.gov")) {
       console.warn(`Skipping invalid OSHA interpretation URL: ${String(url)}`);
       return null;
     }
-
     if (!url.includes("/laws-regs/standardinterpretations/")) {
       console.warn(`Skipping non-interpretation OSHA URL: ${url}`);
       return null;
     }
-
-    if (typeof item === "string") return { url };
-
-    return { ...item, url };
+    return typeof item === "string" ? { url } : { ...item, url };
   }
 
   private loadUrls(): OshaUrlItem[] {
@@ -86,9 +108,8 @@ export class OshaStandardInterpretationConnector {
     }
 
     if (!Array.isArray(parsed.urls)) return [];
-
     return parsed.urls
-      .map((item: any) => this.validateItem(item))
+      .map((i: any) => this.validateItem(i))
       .filter(Boolean) as OshaUrlItem[];
   }
 
@@ -101,7 +122,8 @@ export class OshaStandardInterpretationConnector {
         const response = await fetch(item.url);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const html = await response.text();
-        const text = stripHtml(html);
+        const rawStripped = stripHtml(html);
+        const text = extractInterpretationBody(rawStripped);
 
         results.push({
           externalId: `osha-int-${slugFromUrl(item.url)}`,
