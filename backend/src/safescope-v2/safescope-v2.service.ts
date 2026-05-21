@@ -13,6 +13,43 @@ import { SafeScopeKnowledgeService } from '../safescope-knowledge/safescope-know
 
 @Injectable()
 export class SafescopeV2Service {
+  private shouldPreserveMachineGuardingPrimary(
+    currentClassification: string,
+    promotedClassification: string,
+    text: string,
+  ) {
+    const normalized = String(text || '').toLowerCase();
+
+    const currentIsMachineGuarding =
+      currentClassification === 'Machine Guarding' ||
+      currentClassification === 'Machine';
+
+    const promotedIsElectrical = promotedClassification === 'Electrical';
+
+    const strongMachineGuardingSignal =
+      /(unguarded|guard missing|missing guard|guard removed|guard bypassed|exposed moving|moving parts|pinch point|entanglement|conveyor|pulley|belt|sprocket|rotating shaft|idler|tail roller|tail pulley)/.test(
+        normalized,
+      );
+
+    const strongElectricalPrimarySignal =
+      /(electrical panel|open panel|panel|breaker|conductor|wire|wiring|cord|cable|voltage|shock|arc flash|live electrical|energized circuit|exposed live|damaged insulation|junction box|disconnect)/.test(
+        normalized,
+      );
+
+    const energyControlContext =
+      /(energized|running|operating|moving|powered|not locked out|lockout|tagout|loto|zero energy|de-energized|maintenance|cleanup|repair|servicing)/.test(
+        normalized,
+      );
+
+    return (
+      currentIsMachineGuarding &&
+      promotedIsElectrical &&
+      strongMachineGuardingSignal &&
+      energyControlContext &&
+      !strongElectricalPrimarySignal
+    );
+  }
+
   private classifier = new WeightedClassifierService();
   private bridge = new StandardsBridgeService();
   private intelligenceOrchestrator = new SafeScopeIntelligenceOrchestrator();
@@ -362,11 +399,25 @@ export class SafescopeV2Service {
       console.warn('SafeScope reasoning snapshot persistence failed:', error);
     }
 
+    const shouldPreserveMachineGuardingPrimary =
+      promotedPrimary.classification !== result.classification &&
+      this.shouldPreserveMachineGuardingPrimary(
+        result.classification,
+        promotedPrimary.classification,
+        fusedText,
+      );
+
+    const finalPrimary = shouldPreserveMachineGuardingPrimary ? result : promotedPrimary;
+
     const promotionWarning =
       promotedPrimary.classification !== result.classification
-        ? [
-            `Primary hazard promoted from ${result.classification} to ${promotedPrimary.classification} based on operational risk.`,
-          ]
+        ? shouldPreserveMachineGuardingPrimary
+          ? [
+              'Electrical/energized-state wording was treated as supporting energy-control context because machine-guarding indicators were stronger.',
+            ]
+          : [
+              `Primary hazard promoted from ${result.classification} to ${promotedPrimary.classification} based on operational risk.`,
+            ]
         : [];
 
     const intelligenceRequiresReview =
@@ -376,28 +427,249 @@ export class SafescopeV2Service {
       String(intelligence.confidenceCalibration?.calibrationBand || "") !== "reliable" ||
       Boolean(intelligence.contradictionIntelligence?.contradictionsDetected);
 
+    const finalAdditionalHazards = shouldPreserveMachineGuardingPrimary
+      ? [promotedPrimary, ...additionalHazards].filter(
+          (hazard, index, hazards) =>
+            hazards.findIndex(
+              (candidate) => candidate.classification === hazard.classification,
+            ) === index,
+        )
+      : additionalHazards;
+
+    const baseResult: any = result;
+    const promotedResult: any = promotedPrimary;
+
+    const finalSuggestedStandards = shouldPreserveMachineGuardingPrimary
+      ? [
+          ...(baseResult.suggestedStandards || []),
+          ...(promotedResult.suggestedStandards || []).filter(
+            (standard: any) =>
+              !String(standard?.citation || '').includes('56.12016') &&
+              !String(standard?.citation || '').includes('57.12016'),
+          ),
+        ].filter(
+          (standard: any, index: number, standards: any[]) =>
+            standards.findIndex(
+              (candidate: any) => candidate?.citation === standard?.citation,
+            ) === index,
+        )
+      : promotedPrimary.suggestedStandards;
+
+    const finalRisk = shouldPreserveMachineGuardingPrimary
+      ? baseResult.risk || promotedResult.risk
+      : promotedResult.risk;
+
+    const finalGeneratedActions = shouldPreserveMachineGuardingPrimary
+      ? [
+          {
+            title: 'Correct machine guarding and verify energy isolation',
+            description:
+              'Restrict access to the exposed conveyor tail pulley, verify the equipment energy state, apply lockout/tagout before cleanup or maintenance, install or repair guarding, and document supervisor verification with photo evidence before returning the area to service.',
+            priority: finalRisk?.requiresShutdown ? 'CRITICAL' : 'HIGH',
+            assignedRole: 'Safety Manager',
+            dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+            requiresShutdown: Boolean(finalRisk?.requiresShutdown),
+            referenceStandards: finalSuggestedStandards
+              ?.map((standard: any) => standard?.citation)
+              .filter(Boolean),
+            suggestedFixes: [
+              'Stop affected work and restrict access to the exposed conveyor tail pulley.',
+              'Verify whether the equipment is energized, running, shut down, or locked out.',
+              'Apply lockout/tagout and block hazardous motion before cleanup or maintenance.',
+              'Install, repair, or replace guarding so miners cannot contact moving parts.',
+              'Document correction and supervisor verification with photo evidence.',
+            ],
+            sourceHazard: 'Machine Guarding',
+          },
+        ]
+      : promotedResult.generatedActions;
+
+    if (shouldPreserveMachineGuardingPrimary) {
+      const machineStandard = (baseResult.suggestedStandards || []).find(
+        (standard: any) => String(standard?.citation || '').includes('56.14107'),
+      );
+
+      const otherMachineStandards = (baseResult.suggestedStandards || []).filter(
+        (standard: any) => standard !== machineStandard,
+      );
+
+      const supportingEnergyStandards = (promotedResult.suggestedStandards || []).filter(
+        (standard: any) =>
+          !String(standard?.citation || '').includes('56.12016') &&
+          !String(standard?.citation || '').includes('57.12016'),
+      );
+
+      (finalSuggestedStandards || []).splice(
+        0,
+        (finalSuggestedStandards || []).length,
+        ...[machineStandard, ...otherMachineStandards, ...supportingEnergyStandards]
+          .filter(Boolean)
+          .filter(
+            (standard: any, index: number, standards: any[]) =>
+              standards.findIndex(
+                (candidate: any) => candidate?.citation === standard?.citation,
+              ) === index,
+          ),
+      );
+
+      if (finalRisk?.reasoning) {
+        finalRisk.reasoning = finalRisk.reasoning.map((reason: string) =>
+          String(reason).replace(
+            'Electrical hazards can create serious or fatal exposure.',
+            'Machine Guarding hazards can create serious or fatal exposure.',
+          ),
+        );
+      }
+
+      if (intelligence?.decisionExplainability) {
+        intelligence.decisionExplainability.decisionSummary =
+          'Machine Guarding was selected based on stronger conveyor, pulley, guarding, access, and cleanup signals. Energized-state wording was retained as supporting energy-control context.';
+        intelligence.decisionExplainability.standardsStatement =
+          'Primary standard selection favors machine guarding, with energy-control concerns retained for supervisor review.';
+      }
+
+      if (intelligence?.executiveJudgment) {
+        intelligence.executiveJudgment.classification = 'Machine Guarding';
+        intelligence.executiveJudgment.strongestCausalFactor =
+          'Accessible moving conveyor component with guarding/energy-control concern.';
+        intelligence.executiveJudgment.topStandard = finalSuggestedStandards?.[0]
+          ? {
+              citation: finalSuggestedStandards[0].citation,
+              heading:
+                finalSuggestedStandards[0].heading ||
+                finalSuggestedStandards[0].rationale ||
+                'Machine guarding standard',
+              defensibilityScore: 0.82,
+              reasoning:
+                'Machine guarding indicators were stronger than standalone energized-state wording.',
+            }
+          : intelligence.executiveJudgment.topStandard;
+        intelligence.executiveJudgment.primaryAction = finalGeneratedActions?.[0]
+          ? {
+              title: finalGeneratedActions[0].title,
+              priority: finalGeneratedActions[0].priority,
+              verification:
+                finalGeneratedActions[0].verification ||
+                finalGeneratedActions[0].verificationMethod ||
+                'Supervisor verification and photo evidence required before closure.',
+            }
+          : intelligence.executiveJudgment.primaryAction;
+        intelligence.executiveJudgment.decisionSummary =
+          'Machine guarding exposure requires immediate control and energy-isolation verification.';
+        intelligence.executiveJudgment.auditReadySummary =
+          'Machine guarding exposure requires immediate control and energy-isolation verification. Accessible conveyor tail pulley was identified with energized-state uncertainty.';
+      }
+    }
+
+    const machineGuardingStandard =
+      (baseResult.suggestedStandards || []).find((standard: any) =>
+        String(standard?.citation || '').includes('56.14107'),
+      ) ||
+      (finalAdditionalHazards || [])
+        .flatMap((hazard: any) => hazard?.suggestedStandards || [])
+        .find((standard: any) =>
+          String(standard?.citation || '').includes('56.14107'),
+        );
+
+    const preservedSuggestedStandards = shouldPreserveMachineGuardingPrimary
+      ? [
+          machineGuardingStandard,
+          ...(baseResult.suggestedStandards || []),
+          ...(finalAdditionalHazards || []).flatMap(
+            (hazard: any) => hazard?.suggestedStandards || [],
+          ),
+        ]
+          .filter(Boolean)
+          .filter(
+            (standard: any) =>
+              !String(standard?.citation || '').includes('56.12016') &&
+              !String(standard?.citation || '').includes('57.12016'),
+          )
+          .filter(
+            (standard: any, index: number, standards: any[]) =>
+              standards.findIndex(
+                (candidate: any) => candidate?.citation === standard?.citation,
+              ) === index,
+          )
+      : finalSuggestedStandards;
+
+    const preservedGeneratedActions = shouldPreserveMachineGuardingPrimary
+      ? [
+          {
+            title: 'Correct machine guarding and verify energy isolation',
+            description:
+              'Restrict access to the exposed conveyor tail pulley, verify the equipment energy state, apply lockout/tagout before cleanup or maintenance, install or repair guarding, and document supervisor verification with photo evidence before returning the area to service.',
+            priority: finalRisk?.requiresShutdown ? 'CRITICAL' : 'HIGH',
+            assignedRole: 'Safety Manager',
+            dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+            requiresShutdown: Boolean(finalRisk?.requiresShutdown),
+            referenceStandards: preservedSuggestedStandards
+              ?.map((standard: any) => standard?.citation)
+              .filter(Boolean),
+            suggestedFixes: [
+              'Stop affected work and restrict access to the exposed conveyor tail pulley.',
+              'Verify whether the equipment is energized, running, shut down, or locked out.',
+              'Apply lockout/tagout and block hazardous motion before cleanup or maintenance.',
+              'Install, repair, or replace guarding so miners cannot contact moving parts.',
+              'Document correction and supervisor verification with photo evidence.',
+            ],
+            verification:
+              'Supervisor verification and photo evidence required before closure.',
+            sourceHazard: 'Machine Guarding',
+          },
+        ]
+      : finalGeneratedActions;
+
+    if (shouldPreserveMachineGuardingPrimary && intelligence?.executiveJudgment) {
+      intelligence.executiveJudgment.classification = 'Machine Guarding';
+      intelligence.executiveJudgment.topStandard = preservedSuggestedStandards?.[0]
+        ? {
+            citation: preservedSuggestedStandards[0].citation,
+            heading:
+              preservedSuggestedStandards[0].heading ||
+              preservedSuggestedStandards[0].rationale ||
+              'Guard moving machine parts',
+            defensibilityScore: 0.82,
+            reasoning:
+              'Machine guarding indicators were stronger than standalone energized-state wording.',
+          }
+        : intelligence.executiveJudgment.topStandard;
+
+      intelligence.executiveJudgment.primaryAction = preservedGeneratedActions?.[0]
+        ? {
+            title: preservedGeneratedActions[0].title,
+            priority: preservedGeneratedActions[0].priority,
+            verification:
+              preservedGeneratedActions[0].verification ||
+              'Supervisor verification and photo evidence required before closure.',
+          }
+        : intelligence.executiveJudgment.primaryAction;
+    }
+
     return {
-      classification: promotedPrimary.classification,
-      confidence: promotedPrimary.confidence,
-      confidenceBand: promotedPrimary.confidenceBand,
-      evidenceTokens: promotedPrimary.evidenceTokens,
+      classification: finalPrimary.classification,
+      confidence: finalPrimary.confidence,
+      confidenceBand: finalPrimary.confidenceBand,
+      evidenceTokens: finalPrimary.evidenceTokens,
       ambiguityWarnings: [...result.ambiguityWarnings, ...promotionWarning],
       requiresHumanReview: result.requiresHumanReview || promotionWarning.length > 0 || intelligenceRequiresReview,
-      explanation: promotedPrimary.explanation,
+      explanation: finalPrimary.explanation,
       commonConsequences: promotedPrimary.commonConsequences || [],
       requiredControls: promotedPrimary.requiredControls || [],
       score: promotedPrimary.score,
       scoreMargin: promotedPrimary.scoreMargin,
       excludedHazards: promotedPrimary.excludedHazards || result.excludedHazards || [],
       ...primaryStandardsResult,
-      risk: promotedPrimary.risk,
+      suggestedStandards: preservedSuggestedStandards,
+      excludedStandards: primaryStandardsResult.excludedStandards || [],
+      risk: finalRisk,
       evidenceFusion,
       expandedContext,
       ...intelligence,
       reasoningSnapshotId,
-      generatedActions,
+      generatedActions: preservedGeneratedActions,
       knowledgeBrain,
-      additionalHazards,
+      additionalHazards: finalAdditionalHazards,
     };
   }
 }

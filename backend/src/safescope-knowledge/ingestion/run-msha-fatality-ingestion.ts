@@ -71,53 +71,58 @@ async function main() {
       where: { citation },
     });
 
-    if (existing) {
-      skippedCount += 1;
-      continue;
+    const document = existing || documentRepo.create();
+
+    document.title = item.title;
+    document.agency = 'MSHA';
+    document.sourceType = 'case_study';
+    document.authorityTier = 3;
+    document.citation = citation;
+    document.sourceUrl = item.sourceUrl;
+    document.publishedAt = item.publishedAt || null;
+    document.summary = item.summary;
+    document.rawText = item.rawText;
+    document.hazardTags = item.hazardTags;
+    document.equipmentTags = item.equipmentTags;
+    document.taskTags = item.taskTags;
+    document.standardTags = ['machine guarding', 'workplace examination', 'lockout tagout'];
+    document.lessonTags = item.lessonTags;
+
+    if (!existing) {
+      document.reviewedAt = null;
+      document.approvalStatus = 'pending_review';
     }
 
-    const document = await documentRepo.save(
-      documentRepo.create({
-        title: item.title,
-        agency: 'MSHA',
-        sourceType: 'case_study',
-        authorityTier: 3,
-        citation,
-        sourceUrl: item.sourceUrl,
-        publishedAt: item.publishedAt || null,
-        reviewedAt: null,
-        approvalStatus: 'pending_review',
-        summary: item.summary,
-        rawText: item.rawText,
-        hazardTags: item.hazardTags,
-        equipmentTags: item.equipmentTags,
-        taskTags: item.taskTags,
-        standardTags: ['machine guarding', 'workplace examination', 'lockout tagout'],
-        lessonTags: item.lessonTags,
-      }),
-    );
+    const savedDocument = await documentRepo.save(document);
+
+    await chunkRepo.delete({ documentId: savedDocument.id });
 
     await chunkRepo.save(
       chunkRepo.create({
-        documentId: document.id,
-        document,
+        documentId: savedDocument.id,
+        document: savedDocument,
         chunkIndex: 0,
         sectionHeading: 'Fatality learning pattern',
         chunkText: item.rawText,
         chunkSummary: chunkSummary(item.rawText),
-        citation: document.citation,
-        authorityTier: document.authorityTier,
-        hazardTags: document.hazardTags,
-        equipmentTags: document.equipmentTags,
-        taskTags: document.taskTags,
-        standardTags: document.standardTags,
-        lessonTags: document.lessonTags,
-        confidenceWeight: authorityWeight(document.authorityTier),
+        citation: savedDocument.citation,
+        authorityTier: savedDocument.authorityTier,
+        hazardTags: savedDocument.hazardTags,
+        equipmentTags: savedDocument.equipmentTags,
+        taskTags: savedDocument.taskTags,
+        standardTags: savedDocument.standardTags,
+        lessonTags: savedDocument.lessonTags,
+        confidenceWeight: authorityWeight(savedDocument.authorityTier),
       }),
     );
 
-    ingestedCount += 1;
-    console.log(`Created pending review document: ${document.title}`);
+    if (existing) {
+      skippedCount += 1;
+      console.log(`Updated existing document: ${savedDocument.title}`);
+    } else {
+      ingestedCount += 1;
+      console.log(`Created pending review document: ${savedDocument.title}`);
+    }
   }
 
   run.status = 'completed';

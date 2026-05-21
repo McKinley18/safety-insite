@@ -20,11 +20,10 @@ export default function SafeScopeResultHeaderSection({
   safeScopeResult,
   submitSafeScopeValidation,
 }: Props) {
-  const confidence = Math.round(
-    ((safeScopeResult.confidenceIntelligence?.overallConfidence ??
+  const confidence = normalizePercent(
+    safeScopeResult.confidenceIntelligence?.overallConfidence ??
       safeScopeResult.confidence ??
-      0) ||
-      0) * 100,
+      0,
   );
 
   return (

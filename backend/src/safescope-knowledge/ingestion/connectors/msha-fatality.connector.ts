@@ -156,6 +156,58 @@ function inferLessonTags(text: string, supplied: string[] = []) {
   return Array.from(tags);
 }
 
+function trimMshaFatalityText(text: string) {
+  const preferredStartMarkers = [
+    'METAL/NONMETAL MINE FATALITY',
+    'COAL MINE FATALITY',
+    'MINE FATALITY',
+    'Accident Report:',
+    'Fatality Reference',
+    'PDF Version',
+  ];
+
+  const fallbackStartMarkers = [
+    'Breadcrumb Home Data and Reports Fatality Reports',
+    'Home Data and Reports Fatality Reports',
+  ];
+
+  const endMarkers = [
+    'Scroll to Top',
+    'Forms Fatality Database',
+    'U.S. Department of Labor Mine Safety and Health Administration',
+    'Freedom of Information Act',
+    'Important Website Notices',
+  ];
+
+  let trimmed = text;
+
+  const preferredStartIndexes = preferredStartMarkers
+    .map((marker) => trimmed.indexOf(marker))
+    .filter((index) => index >= 0);
+
+  if (preferredStartIndexes.length) {
+    trimmed = trimmed.slice(Math.min(...preferredStartIndexes));
+  } else {
+    const fallbackStartIndexes = fallbackStartMarkers
+      .map((marker) => trimmed.indexOf(marker))
+      .filter((index) => index >= 0);
+
+    if (fallbackStartIndexes.length) {
+      trimmed = trimmed.slice(Math.min(...fallbackStartIndexes));
+    }
+  }
+
+  const endIndexes = endMarkers
+    .map((marker) => trimmed.indexOf(marker))
+    .filter((index) => index > 0);
+
+  if (endIndexes.length) {
+    trimmed = trimmed.slice(0, Math.min(...endIndexes));
+  }
+
+  return normalizeWhitespace(trimmed);
+}
+
 function makeSummary(text: string) {
   const sentences = text
     .split(/[.!?]/)
@@ -220,7 +272,8 @@ export class MshaFatalityConnector {
       }
 
       const html = await response.text();
-      const text = stripHtml(html);
+      const pageText = stripHtml(html);
+      const text = trimMshaFatalityText(pageText);
 
       if (text.length < 300) {
         console.warn(`Skipped ${item.url}: extracted text too short`);
