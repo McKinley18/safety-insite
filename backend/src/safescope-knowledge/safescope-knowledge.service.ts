@@ -10,6 +10,11 @@ import {
 import { SafeScopeKnowledgeRetrievalLog } from "./entities/safescope-knowledge-retrieval-log.entity";
 import { SafeScopeKnowledgeSource } from "./entities/safescope-knowledge-source.entity";
 import { SafeScopeKnowledgeIngestionRun } from "./entities/safescope-knowledge-ingestion-run.entity";
+import {
+  getSourceRole,
+  ROLE_LABELS,
+  ROLE_GUIDANCE,
+} from "./sources/source-role-helper";
 
 type CreateSafeScopeKnowledgeDocumentDto = {
   title: string;
@@ -365,27 +370,40 @@ export class SafeScopeKnowledgeService {
       .sort((a, b) => b.score - a.score)
       .slice(0, limit);
 
-    const matches = scored.map(({ chunk, score }) => ({
-      chunkId: chunk.id,
-      documentId: chunk.documentId,
-      title: chunk.document?.title,
-      agency: chunk.document?.agency,
-      sourceType: chunk.document?.sourceType,
-      authorityTier: chunk.authorityTier,
-      citation: chunk.citation,
-      sourceUrl: chunk.document?.sourceUrl,
-      sectionHeading: chunk.sectionHeading,
-      excerpt: chunk.chunkText.slice(0, 900),
-      tags: {
-        hazards: chunk.hazardTags,
-        equipment: chunk.equipmentTags,
-        tasks: chunk.taskTags,
-        standards: chunk.standardTags,
-        lessons: chunk.lessonTags,
-      },
-      score,
-      reason: this.explainMatch(terms, chunk),
-    }));
+    const matches = scored.map(({ chunk, score }) => {
+      const role = getSourceRole(
+        chunk.document?.sourceType || "",
+        chunk.authorityTier,
+      );
+      return {
+        chunkId: chunk.id,
+        documentId: chunk.documentId,
+        title: chunk.document?.title,
+        agency: chunk.document?.agency,
+        sourceType: chunk.document?.sourceType,
+        sourceRole: role,
+        sourceRoleLabel: ROLE_LABELS[role],
+        usageGuidance: ROLE_GUIDANCE[role],
+        isPrimaryAuthority:
+          chunk.authorityTier === 1 &&
+          chunk.document?.sourceType === "regulation",
+        isSupportiveAuthority: chunk.authorityTier > 1,
+        authorityTier: chunk.authorityTier,
+        citation: chunk.citation,
+        sourceUrl: chunk.document?.sourceUrl,
+        sectionHeading: chunk.sectionHeading,
+        excerpt: chunk.chunkText.slice(0, 900),
+        tags: {
+          hazards: chunk.hazardTags,
+          equipment: chunk.equipmentTags,
+          tasks: chunk.taskTags,
+          standards: chunk.standardTags,
+          lessons: chunk.lessonTags,
+        },
+        score,
+        reason: this.explainMatch(terms, chunk),
+      };
+    });
 
     const confidence = matches.length
       ? Number(Math.min(0.95, matches[0].score / 100).toFixed(2))
