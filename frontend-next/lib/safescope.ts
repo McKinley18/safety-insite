@@ -1,4 +1,6 @@
 import { apiFetch } from "./apiFetch";
+import { searchOfflineKnowledgeBrain } from "./offlineKnowledgeSearch";
+import { downloadSafeScopeBrainBundle } from "./safescopeBrainBundle";
 import { getStoredPlanCode, hasPlanEntitlement } from "./planEntitlements";
 
 export const API_BASE_URL =
@@ -10,11 +12,19 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
   const lower = text.toLowerCase();
 
   const classification =
-    lower.includes("electrical") || lower.includes("wire") || lower.includes("energized")
+    lower.includes("electrical") ||
+    lower.includes("wire") ||
+    lower.includes("energized")
       ? "Electrical"
-      : lower.includes("guard") || lower.includes("conveyor") || lower.includes("pulley") || lower.includes("shaft")
+      : lower.includes("guard") ||
+          lower.includes("conveyor") ||
+          lower.includes("pulley") ||
+          lower.includes("shaft")
         ? "Machine Guarding"
-        : lower.includes("catwalk") || lower.includes("walkway") || lower.includes("housekeeping") || lower.includes("material")
+        : lower.includes("catwalk") ||
+            lower.includes("walkway") ||
+            lower.includes("housekeeping") ||
+            lower.includes("material")
           ? "Housekeeping / Walking-Working Surface"
           : lower.includes("fall") || lower.includes("ladder")
             ? "Fall / Access"
@@ -45,61 +55,167 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
       overallConfidence: 0.45,
       confidenceBand: "basic_review",
       strengths: ["Basic hazard category assistance was provided."],
-      missingCriticalInformation: ["Full SafeScope intelligence requires Plus or Company."],
+      missingCriticalInformation: [
+        "Full SafeScope intelligence requires Plus or Company.",
+      ],
       conflictingSignals: [],
-      recommendedFollowup: ["Upgrade for full standards and corrective action support.", "Manually verify this finding."],
+      recommendedFollowup: [
+        "Upgrade for full standards and corrective action support.",
+        "Manually verify this finding.",
+      ],
     },
   };
 }
 
+function agencyFromScopes(scopes?: string[]) {
+  if (!scopes || scopes.includes("all")) return "all";
+  if (scopes.includes("msha")) return "MSHA";
+  if (scopes.includes("osha_construction")) return "OSHA";
+  if (scopes.includes("osha_general")) return "OSHA";
+  return "all";
+}
 
-export async function runSafeScopeV2Classify(payload: {
-  text?: string;
-  hazardCategory?: string;
-  description?: string;
-  location?: string;
-  evidenceNotes?: string;
-  agencyMode?: string;
-  riskProfileId?: string;
+function buildOfflineSafeScopeFallback(input: {
+  text: string;
   scopes?: string[];
   evidenceTexts?: string[];
-  priorFindings?: any[];
+  errorMessage?: string;
 }) {
-  const text = payload.text || [
-    payload.hazardCategory ? `Hazard Category: ${payload.hazardCategory}` : "",
-    payload.description ? `Description: ${payload.description}` : "",
-    payload.location ? `Location: ${payload.location}` : "",
-    payload.evidenceNotes ? `Evidence Notes: ${payload.evidenceNotes}` : "",
-    payload.agencyMode ? `Agency Mode: ${payload.agencyMode}` : "",
-    payload.riskProfileId ? `Risk Profile: ${payload.riskProfileId}` : "",
-  ]
+  const query = [input.text, ...(input.evidenceTexts || [])]
     .filter(Boolean)
-    .join("\n");
+    .join(" ");
 
-  const planCode = getStoredPlanCode();
-
-  if (!hasPlanEntitlement("fullSafeScope", planCode)) {
-    return runBasicSafeScopeFallback(text, payload);
-  }
-
-  const response = await apiFetch(`${API_BASE_URL}/safescope-v2/classify`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      text,
-      scopes: payload.scopes,
-      evidenceTexts: payload.evidenceTexts,
-      riskProfileId: payload.riskProfileId,
-      priorFindings: payload.priorFindings,
-    }),
+  const offlineSearch = searchOfflineKnowledgeBrain({
+    query,
+    agency: agencyFromScopes(input.scopes),
+    limit: 8,
   });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(errorText || "SafeScope classification failed.");
-  }
+  const topMatch = offlineSearch.matches?.[0];
 
-  return response.json();
+  return {
+    classification: topMatch?.tags?.hazards?.[0] || "Review Required",
+    confidence: offlineSearch.confidence || 0.45,
+    confidenceBand: offlineSearch.matches?.length
+      ? "offline_reference"
+      : "review_required",
+    evidenceTokens: [],
+    ambiguityWarnings: [
+      "SafeScope is using the approved offline Knowledge Brain because the online engine was unavailable.",
+      input.errorMessage || "Online SafeScope request failed.",
+    ],
+    requiresHumanReview: true,
+    explanation: topMatch
+      ? `Offline SafeScope found supporting approved reference intelligence for: ${topMatch.title}.`
+      : "Offline SafeScope could not find a strong approved reference match. Manual review is required.",
+    commonConsequences: [],
+    requiredControls: [],
+    score: topMatch?.score || 0,
+    scoreMargin: 0,
+    excludedHazards: [],
+    suggestedStandards: [],
+    excludedStandards: [],
+    risk: {
+      riskBand: "REVIEW_REQUIRED",
+      riskScore: null,
+      requiresShutdown: false,
+      imminentDanger: false,
+      fatalityPotential: false,
+      reasoning: [
+        "Offline fallback does not replace the full SafeScope risk engine.",
+        "Use qualified review before final classification, standards selection, or corrective action decisions.",
+      ],
+    },
+    evidenceFusion: {
+      combinedNarrative: query,
+      inferredThemes: [],
+      signalDensity: 0,
+      reasoning: [
+        "Offline fallback combined available text and evidence notes.",
+      ],
+    },
+    expandedContext: null,
+    confidenceIntelligence: {
+      overallConfidence: Math.round((offlineSearch.confidence || 0) * 100),
+      confidenceBand: offlineSearch.matches?.length
+        ? "offline_reference"
+        : "review_required",
+      strengths: offlineSearch.matches?.length
+        ? [
+            "Approved offline reference material matched the observed condition.",
+          ]
+        : [],
+      missingCriticalInformation: offlineSearch.reasoning?.evidenceGaps || [
+        "Online SafeScope intelligence unavailable.",
+      ],
+      conflictingSignals: [],
+      recommendedFollowup: [
+        "Reconnect and rerun full SafeScope review when available.",
+        "Supervisor review required before final report use.",
+      ],
+      reviewTriggers: ["Offline fallback mode"],
+    },
+    knowledgeBrain: {
+      offline: true,
+      available: offlineSearch.available,
+      confidence: offlineSearch.confidence || 0,
+      bundleVersion: offlineSearch.bundleVersion,
+      generatedAt: offlineSearch.generatedAt,
+      matches: offlineSearch.matches || [],
+      supportingReferences: (offlineSearch.matches || []).map((match: any) => ({
+        title: match.title,
+        citation: match.citation,
+        authorityTier: match.authorityTier,
+        sourceType: match.sourceType,
+        reason: match.reason,
+      })),
+      evidenceGaps: offlineSearch.reasoning?.evidenceGaps || [],
+      caution: offlineSearch.reasoning?.caution,
+    },
+    generatedActions: [],
+    additionalHazards: [],
+    fallbackMode: true,
+    offlineFallback: true,
+  };
+}
+
+export async function runSafeScopeV2Classify(input: {
+  text: string;
+  scopes?: string[];
+  evidenceTexts?: string[];
+  riskProfileId?: "simple_4x4" | "standard_5x5" | "advanced_6x6";
+  priorFindings?: any[];
+}) {
+  try {
+    if (typeof navigator !== "undefined" && navigator.onLine) {
+      try {
+        await downloadSafeScopeBrainBundle();
+      } catch {
+        // Bundle refresh should never block live SafeScope review.
+      }
+    }
+
+    const response = await apiFetch(`${API_BASE_URL}/safescope-v2/classify`, {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+
+      throw new Error(errorText || "SafeScope request failed.");
+    }
+
+    return response.json();
+  } catch (error) {
+    return buildOfflineSafeScopeFallback({
+      text: input.text,
+      scopes: input.scopes,
+      evidenceTexts: input.evidenceTexts,
+      errorMessage:
+        error instanceof Error ? error.message : "SafeScope request failed.",
+    });
+  }
 }
 
 export async function sendSafeScopeFeedback(payload: any) {
@@ -116,9 +232,10 @@ export async function sendSafeScopeFeedback(payload: any) {
   return response.json();
 }
 
-
 export async function getSafeScopeReasoningSnapshot(snapshotId: string) {
-  const response = await apiFetch(`${API_BASE_URL}/safescope-v2/reasoning-snapshots/${snapshotId}`);
+  const response = await apiFetch(
+    `${API_BASE_URL}/safescope-v2/reasoning-snapshots/${snapshotId}`,
+  );
 
   if (!response.ok) {
     throw new Error("SafeScope reasoning snapshot could not be loaded.");
@@ -126,7 +243,6 @@ export async function getSafeScopeReasoningSnapshot(snapshotId: string) {
 
   return response.json();
 }
-
 
 export async function submitSupervisorValidation(payload: {
   reasoningSnapshotId: string;
@@ -152,7 +268,7 @@ export async function submitSupervisorValidation(payload: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
-    }
+    },
   );
 
   if (!response.ok) {
@@ -163,10 +279,10 @@ export async function submitSupervisorValidation(payload: {
 }
 
 export async function getSupervisorValidationHistory(
-  reasoningSnapshotId: string
+  reasoningSnapshotId: string,
 ) {
   const response = await apiFetch(
-    `${API_BASE_URL}/safescope-v2/supervisor-validations/${reasoningSnapshotId}`
+    `${API_BASE_URL}/safescope-v2/supervisor-validations/${reasoningSnapshotId}`,
   );
 
   if (!response.ok) {
