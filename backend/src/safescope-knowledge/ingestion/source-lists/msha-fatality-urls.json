@@ -2,15 +2,30 @@
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2024/july-25-2024-fatality",
     "titleHint": "MSHA Fatality: Stacker Belt Conveyor Engulfment",
-    "hazardTags": ["conveyor", "material engulfment", "powered haulage", "machine guarding"],
+    "hazardTags": [
+      "conveyor",
+      "material engulfment",
+      "powered haulage",
+      "machine guarding"
+    ],
     "equipmentTags": ["stacker belt conveyor", "conveyor", "belt"],
     "taskTags": ["cleanup", "inspection", "maintenance"],
-    "lessonTags": ["engulfment", "conveyor exposure", "access control", "fatality prevention"]
+    "lessonTags": [
+      "engulfment",
+      "conveyor exposure",
+      "access control",
+      "fatality prevention"
+    ]
   },
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2023/may-2-2023-fatality/fatality-alert",
     "titleHint": "MSHA Fatality Alert: Mobile Radial Stacker Conveyor",
-    "hazardTags": ["conveyor", "struck by", "powered haulage", "mobile equipment"],
+    "hazardTags": [
+      "conveyor",
+      "struck by",
+      "powered haulage",
+      "mobile equipment"
+    ],
     "equipmentTags": ["mobile radial stacker conveyor", "conveyor", "stacker"],
     "taskTags": ["travel", "operation", "inspection"],
     "lessonTags": ["line of fire", "equipment movement", "fatality prevention"]
@@ -21,23 +36,47 @@
     "hazardTags": ["conveyor", "machine guarding", "entanglement", "caught in"],
     "equipmentTags": ["conveyor", "belt"],
     "taskTags": ["travel", "crossing", "inspection"],
-    "lessonTags": ["never cross moving belt", "guarding", "safe access", "fatality prevention"]
+    "lessonTags": [
+      "never cross moving belt",
+      "guarding",
+      "safe access",
+      "fatality prevention"
+    ]
   },
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2014/fatality-1-february-01-2014/fatality-alert",
     "titleHint": "MSHA Fatality Alert: Conveyor Return Idler Entanglement",
-    "hazardTags": ["conveyor", "entanglement", "pinch point", "unguarded moving parts"],
+    "hazardTags": [
+      "conveyor",
+      "entanglement",
+      "pinch point",
+      "unguarded moving parts"
+    ],
     "equipmentTags": ["conveyor", "return idler", "belt"],
     "taskTags": ["maintenance", "cleanup", "inspection"],
-    "lessonTags": ["entanglement", "guarding verification", "hazardous energy control"]
+    "lessonTags": [
+      "entanglement",
+      "guarding verification",
+      "hazardous energy control"
+    ]
   },
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2026/january-8-2026-fatality/fatality-alert",
     "titleHint": "MSHA Fatality Alert: Truck Dump Bed Pinning",
-    "hazardTags": ["powered haulage", "mobile equipment", "caught between", "pinch point"],
+    "hazardTags": [
+      "powered haulage",
+      "mobile equipment",
+      "caught between",
+      "pinch point"
+    ],
     "equipmentTags": ["truck", "dump bed", "frame"],
     "taskTags": ["maintenance", "inspection", "truck operation"],
-    "lessonTags": ["blocking", "stored energy", "pinch point", "fatality prevention"]
+    "lessonTags": [
+      "blocking",
+      "stored energy",
+      "pinch point",
+      "fatality prevention"
+    ]
   },
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2026/april-3-2026-fatality/fatality-alert",
@@ -53,7 +92,11 @@
     "hazardTags": ["fall hazard", "fall protection", "unprotected edge"],
     "equipmentTags": ["fall arrest system", "anchorage"],
     "taskTags": ["elevated work", "maintenance", "inspection"],
-    "lessonTags": ["fall arrest connection", "anchorage verification", "fatality prevention"]
+    "lessonTags": [
+      "fall arrest connection",
+      "anchorage verification",
+      "fatality prevention"
+    ]
   },
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2024/september-20-2024-fatality/fatality-alert",
@@ -61,7 +104,11 @@
     "hazardTags": ["fall hazard", "slip", "trip", "walking working surface"],
     "equipmentTags": ["walkway", "platform", "access way"],
     "taskTags": ["travel", "inspection", "work access"],
-    "lessonTags": ["walking surface condition", "fall prevention", "fatality prevention"]
+    "lessonTags": [
+      "walking surface condition",
+      "fall prevention",
+      "fatality prevention"
+    ]
   },
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2025/march-5-2025-fatality/fatality-alert",
@@ -74,9 +121,18 @@
   {
     "url": "https://www.msha.gov/data-reports/fatality-reports/2025/february-12-2025-fatality/fatality-alert",
     "titleHint": "MSHA Fatality Alert: Drill Rig Highwall Failure",
-    "hazardTags": ["ground control", "highwall", "equipment rollover", "fall of ground"],
+    "hazardTags": [
+      "ground control",
+      "highwall",
+      "equipment rollover",
+      "fall of ground"
+    ],
     "equipmentTags": ["drill rig", "highwall"],
     "taskTags": ["drilling", "inspection", "operation"],
-    "lessonTags": ["ground stability", "work positioning", "equipment stability"]
+    "lessonTags": [
+      "ground stability",
+      "work positioning",
+      "equipment stability"
+    ]
   }
 ]
