@@ -482,7 +482,7 @@ export class SafescopeV2Service {
             sourceHazard: 'Machine Guarding',
           },
         ]
-      : promotedResult.generatedActions;
+      : promotedResult.generatedActions || generatedActions || [];
 
     if (shouldPreserveMachineGuardingPrimary) {
       const machineStandard = (baseResult.suggestedStandards || []).find(
@@ -561,6 +561,43 @@ export class SafescopeV2Service {
       }
     }
 
+    const defaultElectricalStandards =
+      finalPrimary.classification === 'Electrical'
+        ? [
+            {
+              citation: '30 CFR 56.12016',
+              agency: 'MSHA',
+              scope: 'msha',
+              rationale:
+                'Electrical work or energized electrical exposure requires de-energization and safe electrical controls.',
+              source: ['curated_fallback'],
+              score: 90,
+              matchingReasons: [
+                'Electrical classification selected',
+                'Energized or live electrical exposure indicated',
+              ],
+            },
+          ]
+        : [];
+
+    const defaultMachineGuardingStandards =
+      finalPrimary.classification === 'Machine Guarding'
+        ? [
+            {
+              citation: '30 CFR 56.14107(a)',
+              agency: 'MSHA',
+              scope: 'mining',
+              rationale: 'Guard moving machine parts that could contact employees.',
+              source: ['curated_fallback'],
+              score: 90,
+              matchingReasons: [
+                'Machine Guarding classification selected',
+                'Conveyor, pulley, guarding, or moving-parts exposure indicated',
+              ],
+            },
+          ]
+        : [];
+
     const machineGuardingStandard =
       (baseResult.suggestedStandards || []).find((standard: any) =>
         String(standard?.citation || '').includes('56.14107'),
@@ -591,7 +628,9 @@ export class SafescopeV2Service {
                 (candidate: any) => candidate?.citation === standard?.citation,
               ) === index,
           )
-      : finalSuggestedStandards;
+      : (finalSuggestedStandards && finalSuggestedStandards.length
+          ? finalSuggestedStandards
+          : [...defaultElectricalStandards, ...defaultMachineGuardingStandards]);
 
     const preservedGeneratedActions = shouldPreserveMachineGuardingPrimary
       ? [
