@@ -1,6 +1,53 @@
 import { StandardsIntelligenceRecord } from "./standards-intelligence.types";
+import { buildSourceRegistryMetadata } from "../../safescope-knowledge/sources/source-registry-metadata";
 
-export const STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] = [
+const MSHA_STANDARDS_SOURCE_METADATA = buildSourceRegistryMetadata(
+  "msha-30-cfr-standards",
+);
+const OSHA_1910_SOURCE_METADATA = buildSourceRegistryMetadata("osha-ecfr-1910");
+const OSHA_1926_SOURCE_METADATA = buildSourceRegistryMetadata("osha-ecfr-1926");
+
+function sourceMetadataForCitation(citation: string) {
+  const normalized = String(citation || "").toLowerCase();
+
+  if (normalized.includes("1926")) {
+    return OSHA_1926_SOURCE_METADATA;
+  }
+
+  if (normalized.includes("1910")) {
+    return OSHA_1910_SOURCE_METADATA;
+  }
+
+  if (
+    normalized.includes("30 cfr") ||
+    normalized.includes("56.") ||
+    normalized.includes("57.")
+  ) {
+    return MSHA_STANDARDS_SOURCE_METADATA;
+  }
+
+  return MSHA_STANDARDS_SOURCE_METADATA;
+}
+
+function withSourceRegistryMetadata<
+  T extends { citation: string; agency: string; authorityTier: number },
+>(standard: T): T {
+  const source = sourceMetadataForCitation(standard.citation);
+
+  return {
+    ...standard,
+    sourceKey: source.sourceKey,
+    sourceName: source.sourceName,
+    sourceType: source.sourceType,
+    authorityTier: source.authorityTier,
+    allowedUse: source.allowedUse,
+    requiresApproval: source.requiresApproval,
+    approvedForAutoIngestion: source.approvedForAutoIngestion,
+    jurisdictionTags: source.jurisdictionTags,
+  };
+}
+
+const RAW_STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] = [
   {
     citation: "30 CFR 56.14107(a)",
     agency: "MSHA",
@@ -669,3 +716,6 @@ export const STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] = [
     crossDomainLinks: ["Scaffolds", "Ladders", "Walking/Working Surfaces"],
   },
 ];
+
+export const STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] =
+  RAW_STANDARDS_INTELLIGENCE_SEED.map(withSourceRegistryMetadata);

@@ -53,4 +53,11 @@ export interface StandardsIntelligenceRecord {
   evidenceRequirements: StandardEvidenceRequirement[];
   exclusionRules: StandardExclusionRule[];
   crossDomainLinks: string[];
+  sourceKey?: string;
+  sourceName?: string;
+  sourceType?: string;
+  allowedUse?: string;
+  requiresApproval?: boolean;
+  approvedForAutoIngestion?: boolean;
+  jurisdictionTags?: string[];
 }

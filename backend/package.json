@@ -21,7 +21,8 @@
     "seed:safescope-sources": "ts-node src/safescope-knowledge/ingestion/seed-knowledge-sources.ts",
     "ingest:safescope:msha-fatalities": "ts-node src/safescope-knowledge/ingestion/run-msha-fatality-ingestion.ts",
     "verify:standards-intelligence": "ts-node src/safescope-v2/standards-intelligence/verify-standards-intelligence.ts",
-    "verify:safescope-source-registry": "ts-node src/safescope-knowledge/sources/verify-source-registry.ts"
+    "verify:safescope-source-registry": "ts-node src/safescope-knowledge/sources/verify-source-registry.ts",
+    "verify:standards-source-metadata": "ts-node src/safescope-v2/standards-intelligence/verify-standards-source-metadata.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
