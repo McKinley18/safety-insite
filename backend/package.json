@@ -19,7 +19,8 @@
     "seed:safescope-knowledge": "ts-node src/safescope-knowledge/seed/safescope-knowledge.seed.ts",
     "export:safescope-knowledge": "ts-node src/safescope-knowledge/export/export-knowledge-bundle.ts",
     "seed:safescope-sources": "ts-node src/safescope-knowledge/ingestion/seed-knowledge-sources.ts",
-    "ingest:safescope:msha-fatalities": "ts-node src/safescope-knowledge/ingestion/run-msha-fatality-ingestion.ts"
+    "ingest:safescope:msha-fatalities": "ts-node src/safescope-knowledge/ingestion/run-msha-fatality-ingestion.ts",
+    "verify:standards-intelligence": "ts-node src/safescope-v2/standards-intelligence/verify-standards-intelligence.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
