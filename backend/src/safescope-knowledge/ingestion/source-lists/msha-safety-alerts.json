@@ -1,5 +1,31 @@
 {
   "sourceKey": "msha-safety-alerts",
   "agency": "MSHA",
-  "urls": []
+  "urls": [
+    {
+      "url": "https://www.msha.gov/news-and-updates/alerts-hazards/filter/msha-winter-safety-alert",
+      "titleHint": "MSHA Winter - Safety Alert",
+      "hazardTags": [
+        "winter weather",
+        "slip trip fall",
+        "mobile equipment",
+        "visibility"
+      ],
+      "equipmentTags": [
+        "truck",
+        "mobile equipment",
+        "windshield",
+        "heater",
+        "defroster"
+      ],
+      "taskTags": ["travel", "equipment operation", "pre-shift inspection"],
+      "standardTags": [],
+      "lessonTags": [
+        "weather preparedness",
+        "visibility",
+        "safe access",
+        "seasonal hazard prevention"
+      ]
+    }
+  ]
 }
