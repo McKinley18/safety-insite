@@ -12,6 +12,7 @@ import { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-
 import { SafeScopeKnowledgeService } from "../safescope-knowledge/safescope-knowledge.service";
 import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
 import { buildSourceSynthesis } from "../safescope-knowledge/sources/source-synthesis-helper";
+import { getEvidenceGapIntelligence } from "./intelligence/evidence-gap-intelligence";
 
 @Injectable()
 export class SafescopeV2Service {
@@ -390,6 +391,11 @@ export class SafescopeV2Service {
       correctiveReasoning =
         "Safety alerts and best-practice guidance should inform preventive controls and closure evidence. " +
         correctiveReasoning;
+
+    const evidenceGapIntelligence = getEvidenceGapIntelligence(
+      fusedText,
+      promotedPrimary.classification,
+    );
 
     let confidenceNote =
       "No approved supporting knowledge sources were retrieved for this finding.";
@@ -811,6 +817,7 @@ export class SafescopeV2Service {
           "SafeScope separates enforceable standards from guidance, incident learning, and best-practice references. Final compliance determinations require qualified safety review.",
         confidenceNote,
       },
+      evidenceGapIntelligence,
       additionalHazards: finalAdditionalHazards,
     };
   }
