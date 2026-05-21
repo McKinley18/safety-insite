@@ -24,6 +24,7 @@
     "verify:safescope-source-registry": "ts-node src/safescope-knowledge/sources/verify-source-registry.ts",
     "verify:standards-source-metadata": "ts-node src/safescope-v2/standards-intelligence/verify-standards-source-metadata.ts",
     "ensure:standards-master": "ts-node src/standards/maintenance/ensure-standards-master-table.ts",
+    "enrich:standards-master": "ts-node src/standards/maintenance/enrich-standards-master.ts",
     "ingest:standards:ecfr": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts"
   },
   "dependencies": {

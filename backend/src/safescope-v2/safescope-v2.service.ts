@@ -14,8 +14,6 @@ import { StandardsIntelligenceService } from "./standards-intelligence/standards
 
 @Injectable()
 export class SafescopeV2Service {
-  private readonly standardsIntelligenceService =
-    new StandardsIntelligenceService();
   private shouldPreserveMachineGuardingPrimary(
     currentClassification: string,
     promotedClassification: string,
@@ -65,6 +63,7 @@ export class SafescopeV2Service {
     private readonly feedbackService: SafeScopeFeedbackService,
     private readonly reasoningSnapshotService: ReasoningSnapshotService,
     private readonly safeScopeKnowledge: SafeScopeKnowledgeService,
+    private readonly standardsIntelligenceService: StandardsIntelligenceService,
   ) {}
 
   private scopeToSource(scopes?: string[]) {
