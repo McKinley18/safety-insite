@@ -19,6 +19,12 @@ function authorityLabel(tier: any) {
   return "Tier 5 · Internal / supporting reference";
 }
 
+function normalizePercent(value: any) {
+  const numeric = Number(value || 0);
+  if (!Number.isFinite(numeric)) return 0;
+  return numeric <= 1 ? Math.round(numeric * 100) : Math.round(numeric);
+}
+
 export default function SafeScopeKnowledgeBrainSection({
   safeScopeResult,
 }: SafeScopeKnowledgeBrainSectionProps) {

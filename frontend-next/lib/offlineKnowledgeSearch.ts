@@ -31,6 +31,22 @@ const STOP_WORDS = new Set([
   "it",
   "as",
   "into",
+
+  "hazard",
+  "condition",
+  "conditions",
+  "evidence",
+  "scope",
+  "all",
+  "review",
+  "safe",
+  "safety",
+  "safescope",
+  "photo",
+  "attached",
+  "area",
+  "work",
+  "working",
 ]);
 
 function tokenize(value: string) {
@@ -215,7 +231,7 @@ export function searchOfflineKnowledgeBrain(input: {
       if (!agencyMatches) return null;
 
       const score = scoreChunk(query, terms, chunk);
-      if (score <= 0) return null;
+      if (score < 18) return null;
 
       return {
         chunk,
