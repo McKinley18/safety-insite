@@ -8,7 +8,9 @@ import { SafeScopeKnowledgeRetrievalLog } from "../entities/safescope-knowledge-
 import { OshaStandardInterpretationConnector } from "./connectors/osha-standard-interpretation.connector";
 import { buildSourceRegistryMetadata } from "../sources/source-registry-metadata";
 
-const OSHA_METADATA = buildSourceRegistryMetadata("osha-standard-interpretations");
+const OSHA_METADATA = buildSourceRegistryMetadata(
+  "osha-standard-interpretations",
+);
 
 config();
 
@@ -19,7 +21,9 @@ function authorityWeight(authorityTier: number) {
 async function run() {
   const dataSource = new DataSource({
     type: "postgres",
-    url: process.env.DATABASE_URL || "postgres://mckinley@localhost:5432/sentinel_safety",
+    url:
+      process.env.DATABASE_URL ||
+      "postgres://mckinley@localhost:5432/sentinel_safety",
     entities: [
       SafeScopeKnowledgeDocument,
       SafeScopeKnowledgeChunk,
@@ -37,7 +41,9 @@ async function run() {
   const connector = new OshaStandardInterpretationConnector();
   const discovered = await connector.discover();
 
-  let created = 0, updated = 0, pending = 0;
+  let created = 0,
+    updated = 0,
+    pending = 0;
 
   for (const item of discovered) {
     const citation = item.externalId.toUpperCase();
@@ -57,18 +63,23 @@ async function run() {
 
     const saved = await documentRepo.save(doc);
     if (existing) updated++;
-    else { created++; pending++; }
+    else {
+      created++;
+      pending++;
+    }
 
     await chunkRepo.delete({ documentId: saved.id });
-    await chunkRepo.save(chunkRepo.create({
-      documentId: saved.id,
-      chunkIndex: 0,
-      chunkText: item.rawText,
-      chunkSummary: item.summary,
-      citation: saved.citation,
-      authorityTier: saved.authorityTier,
-      confidenceWeight: authorityWeight(saved.authorityTier),
-    }));
+    await chunkRepo.save(
+      chunkRepo.create({
+        documentId: saved.id,
+        chunkIndex: 0,
+        chunkText: item.rawText,
+        chunkSummary: item.summary,
+        citation: saved.citation,
+        authorityTier: saved.authorityTier,
+        confidenceWeight: authorityWeight(saved.authorityTier),
+      }),
+    );
   }
 
   console.log(`Discovered: ${discovered.length}`);
@@ -81,4 +92,3 @@ async function run() {
 }
 
 run().catch(console.error);
-
