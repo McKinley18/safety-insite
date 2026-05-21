@@ -432,7 +432,15 @@ export default function InspectionPage() {
       setSafeScopeAdvancedOpen(false);
       setSelectedStandards([]);
       setSafeScopeStatus(
-        `SafeScope v2: ${result.classification} (${result.confidenceBand} confidence)`,
+        `SafeScope v2: ${result.classification} (${
+          result.confidenceBand === "high"
+            ? "high classification match"
+            : result.confidenceBand === "medium"
+              ? "supervisor review recommended"
+              : result.confidenceBand === "low"
+                ? "supervisor review required"
+                : `${result.confidenceBand} confidence`
+        })`,
       );
     } catch (error) {
       setSafeScopeStatus(
