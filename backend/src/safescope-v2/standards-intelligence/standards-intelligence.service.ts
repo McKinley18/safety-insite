@@ -18,6 +18,13 @@ function normalize(value: string) {
   return String(value || "").toLowerCase();
 }
 
+function normalizeCitation(citation: string) {
+  return normalize(citation)
+    .replace(/^(\d+)\s+cfr\s+/, "")
+    .replace(/\s+/g, "")
+    .replace(/\.+$/, "");
+}
+
 const STOP_WORDS = new Set([
   "worker",
   "employee",
@@ -373,9 +380,9 @@ export class StandardsIntelligenceService {
 
     const map = new Map<string, StandardsIntelligenceMatch>();
     [...dbResults, ...seedResults].forEach((m) => {
-      const existing = map.get(m.standard.citation);
-      if (!existing || m.score > existing.score)
-        map.set(m.standard.citation, m);
+      const canonicalKey = normalizeCitation(m.standard.citation);
+      const existing = map.get(canonicalKey);
+      if (!existing || m.score > existing.score) map.set(canonicalKey, m);
     });
 
     return this.finalizeMatchBands(
