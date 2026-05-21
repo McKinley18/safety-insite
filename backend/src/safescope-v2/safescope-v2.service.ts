@@ -11,6 +11,7 @@ import { ReasoningSnapshotService } from "./snapshots/reasoning-snapshot.service
 import { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
 import { SafeScopeKnowledgeService } from "../safescope-knowledge/safescope-knowledge.service";
 import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
+import { buildSourceSynthesis } from "../safescope-knowledge/sources/source-synthesis-helper";
 
 @Injectable()
 export class SafescopeV2Service {
@@ -368,6 +369,42 @@ export class SafescopeV2Service {
       primaryStandardsResult.suggestedStandards,
       expandedContext,
     );
+
+    const sourceAwareAnalysis = buildSourceSynthesis(knowledgeBrain.matches);
+
+    let correctiveReasoning =
+      "Controls should be verified with evidence before closure.";
+    if (sourceAwareAnalysis.primaryRegulatoryBasis.length)
+      correctiveReasoning =
+        "Corrective action should first address the enforceable regulatory basis identified by SafeScope. " +
+        correctiveReasoning;
+    else if (sourceAwareAnalysis.officialGuidance.length)
+      correctiveReasoning =
+        "Official guidance should be used to clarify applicability, but not as a standalone citation. " +
+        correctiveReasoning;
+    else if (sourceAwareAnalysis.incidentLearning.length)
+      correctiveReasoning =
+        "Incident learning should inform hazard recognition, severity, and prevention controls. " +
+        correctiveReasoning;
+    else if (sourceAwareAnalysis.bestPracticeGuidance.length)
+      correctiveReasoning =
+        "Safety alerts and best-practice guidance should inform preventive controls and closure evidence. " +
+        correctiveReasoning;
+
+    let confidenceNote =
+      "No approved supporting knowledge sources were retrieved for this finding.";
+    if (sourceAwareAnalysis.primaryRegulatoryBasis.length)
+      confidenceNote =
+        "Higher confidence because primary regulatory sources were retrieved.";
+    else if (
+      sourceAwareAnalysis.officialGuidance.length ||
+      sourceAwareAnalysis.incidentLearning.length ||
+      sourceAwareAnalysis.bestPracticeGuidance.length ||
+      sourceAwareAnalysis.internalContext.length ||
+      sourceAwareAnalysis.supportingReferences.length
+    )
+      confidenceNote =
+        "Supportive references were retrieved, but no primary regulatory basis was identified in this knowledge synthesis.";
 
     const additionalHazards = await Promise.all(
       allCandidates
@@ -767,6 +804,13 @@ export class SafescopeV2Service {
       reasoningSnapshotId,
       generatedActions: preservedGeneratedActions,
       knowledgeBrain,
+      sourceAwareAnalysis: {
+        ...sourceAwareAnalysis,
+        correctiveReasoning,
+        complianceCaution:
+          "SafeScope separates enforceable standards from guidance, incident learning, and best-practice references. Final compliance determinations require qualified safety review.",
+        confidenceNote,
+      },
       additionalHazards: finalAdditionalHazards,
     };
   }
