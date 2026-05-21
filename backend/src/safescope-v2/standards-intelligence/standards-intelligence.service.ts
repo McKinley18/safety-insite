@@ -1,24 +1,29 @@
-import { STANDARDS_INTELLIGENCE_SEED } from './standards-intelligence.seed';
-import { StandardsIntelligenceRecord } from './standards-intelligence.types';
+import { STANDARDS_INTELLIGENCE_SEED } from "./standards-intelligence.seed";
+import { StandardsIntelligenceRecord } from "./standards-intelligence.types";
 
 export interface StandardsIntelligenceMatch {
   standard: StandardsIntelligenceRecord;
   score: number;
-  band: 'primary' | 'supporting' | 'contextual';
+  band: "primary" | "supporting" | "contextual";
   reasons: string[];
   missingEvidence: string[];
   exclusionWarnings: string[];
 }
 
 function normalize(value: string) {
-  return String(value || '').toLowerCase();
+  return String(value || "").toLowerCase();
 }
 
 function includesAny(text: string, terms: string[]) {
   return terms.some((term) => text.includes(normalize(term)));
 }
 
-function scoreTerms(text: string, terms: string[], points: number, label: string) {
+function scoreTerms(
+  text: string,
+  terms: string[],
+  points: number,
+  label: string,
+) {
   const matched = terms.filter((term) => text.includes(normalize(term)));
   return {
     score: matched.length * points,
@@ -35,7 +40,7 @@ export class StandardsIntelligenceService {
     scopes?: string[];
     limit?: number;
   }): StandardsIntelligenceMatch[] {
-    const text = normalize(`${input.classification || ''} ${input.text || ''}`);
+    const text = normalize(`${input.classification || ""} ${input.text || ""}`);
     const selectedScopes = (input.scopes || []).map(normalize);
     const limit = input.limit || 8;
 
@@ -63,32 +68,41 @@ export class StandardsIntelligenceService {
 
     const allScopeSelected =
       selectedScopes.length === 0 ||
-      selectedScopes.includes('all') ||
-      selectedScopes.includes('let safescope evaluate');
+      selectedScopes.includes("all") ||
+      selectedScopes.includes("let safescope evaluate");
 
     if (allScopeSelected) {
       score += 5;
-      reasons.push('Scope: SafeScope evaluate');
+      reasons.push("Scope: SafeScope evaluate");
     } else if (
       selectedScopes.includes(scope) ||
       selectedScopes.includes(agency) ||
-      (agency === 'msha' && selectedScopes.includes('mining'))
+      (agency === "msha" && selectedScopes.includes("mining"))
     ) {
       score += 20;
       reasons.push(`Scope match: ${standard.scope}`);
     } else {
       score -= 25;
-      exclusionWarnings.push(`Selected scope does not strongly match ${standard.scope}.`);
+      exclusionWarnings.push(
+        `Selected scope does not strongly match ${standard.scope}.`,
+      );
     }
 
-    const hazard = scoreTerms(text, standard.hazardFamilies, 12, 'hazard');
-    const equipment = scoreTerms(text, standard.equipmentTags, 10, 'equipment');
-    const task = scoreTerms(text, standard.taskTags, 7, 'task');
-    const exposure = scoreTerms(text, standard.exposureTags, 8, 'exposure');
-    const controls = scoreTerms(text, standard.controlTags, 5, 'control');
-    const boosts = scoreTerms(text, standard.searchBoostTerms, 12, 'boost');
+    const hazard = scoreTerms(text, standard.hazardFamilies, 12, "hazard");
+    const equipment = scoreTerms(text, standard.equipmentTags, 10, "equipment");
+    const task = scoreTerms(text, standard.taskTags, 7, "task");
+    const exposure = scoreTerms(text, standard.exposureTags, 8, "exposure");
+    const controls = scoreTerms(text, standard.controlTags, 5, "control");
+    const boosts = scoreTerms(text, standard.searchBoostTerms, 12, "boost");
 
-    for (const bucket of [hazard, equipment, task, exposure, controls, boosts]) {
+    for (const bucket of [
+      hazard,
+      equipment,
+      task,
+      exposure,
+      controls,
+      boosts,
+    ]) {
       score += bucket.score;
       reasons.push(...bucket.reasons);
     }
@@ -108,12 +122,12 @@ export class StandardsIntelligenceService {
 
       if (requirement.requiredForPrimary && !likelyCovered) {
         missingEvidence.push(requirement.question);
-        score -= requirement.missingEvidenceImpact === 'high' ? 12 : 6;
+        score -= requirement.missingEvidenceImpact === "high" ? 12 : 6;
       } else if (!requirement.requiredForPrimary && !likelyCovered) {
         missingEvidence.push(requirement.question);
       }
 
-      if (questionText.includes('scope') && selectedScopes.length === 0) {
+      if (questionText.includes("scope") && selectedScopes.length === 0) {
         missingEvidence.push(requirement.question);
       }
     }
@@ -124,19 +138,27 @@ export class StandardsIntelligenceService {
         exclusionWarnings.push(rule.reason);
       }
 
-      if (rule.keywordsAll?.length && rule.keywordsAll.every((term) => text.includes(normalize(term)))) {
+      if (
+        rule.keywordsAll?.length &&
+        rule.keywordsAll.every((term) => text.includes(normalize(term)))
+      ) {
         score -= 20;
         exclusionWarnings.push(rule.reason);
       }
 
-      if (rule.excludeWhenMissingAny?.length && !includesAny(text, rule.excludeWhenMissingAny)) {
+      if (
+        rule.excludeWhenMissingAny?.length &&
+        !includesAny(text, rule.excludeWhenMissingAny)
+      ) {
         score -= 15;
         exclusionWarnings.push(rule.reason);
       }
 
       if (
         rule.excludeWhenMissingAll?.length &&
-        !rule.excludeWhenMissingAll.every((term) => text.includes(normalize(term)))
+        !rule.excludeWhenMissingAll.every((term) =>
+          text.includes(normalize(term)),
+        )
       ) {
         score -= 15;
         exclusionWarnings.push(rule.reason);
@@ -144,7 +166,7 @@ export class StandardsIntelligenceService {
     }
 
     const band =
-      score >= 70 ? 'primary' : score >= 35 ? 'supporting' : 'contextual';
+      score >= 70 ? "primary" : score >= 35 ? "supporting" : "contextual";
 
     return {
       standard,
