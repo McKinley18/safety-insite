@@ -13,6 +13,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
+  app.use('/offline', express.static(join(process.cwd(), 'dist', 'offline')));
 
   // 🔷 SECURITY HEADERS
   app.use(helmet());

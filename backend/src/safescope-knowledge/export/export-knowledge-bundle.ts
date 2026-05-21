@@ -77,6 +77,9 @@ async function bootstrap() {
     version: new Date().toISOString().slice(0, 10),
     generatedAt: new Date().toISOString(),
     source: 'SafeScope Knowledge Brain',
+    approvedOnly: true,
+    safetyGate:
+      'Only documents with approvalStatus=approved are included in this offline bundle.',
     documents: documents.map((document) => ({
       id: document.id,
       title: document.title,
@@ -87,6 +90,7 @@ async function bootstrap() {
       sourceUrl: document.sourceUrl,
       publishedAt: document.publishedAt,
       reviewedAt: document.reviewedAt,
+      approvalStatus: document.approvalStatus,
       summary: document.summary,
       hazardTags: document.hazardTags,
       equipmentTags: document.equipmentTags,
