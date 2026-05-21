@@ -18,7 +18,8 @@
     "migration:run": "typeorm-ts-node-commonjs -d src/database/data-source.ts migration:run",
     "seed:safescope-knowledge": "ts-node src/safescope-knowledge/seed/safescope-knowledge.seed.ts",
     "export:safescope-knowledge": "ts-node src/safescope-knowledge/export/export-knowledge-bundle.ts",
-    "seed:safescope-sources": "ts-node src/safescope-knowledge/ingestion/seed-knowledge-sources.ts"
+    "seed:safescope-sources": "ts-node src/safescope-knowledge/ingestion/seed-knowledge-sources.ts",
+    "ingest:safescope:msha-fatalities": "ts-node src/safescope-knowledge/ingestion/run-msha-fatality-ingestion.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
