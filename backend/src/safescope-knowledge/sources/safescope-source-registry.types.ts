@@ -5,7 +5,11 @@ export type SafeScopeSourceAgency =
   | "CDC"
   | "CSB"
   | "ANSI"
+  | "ASSP"
   | "NFPA"
+  | "ASTM"
+  | "ISO"
+  | "ACGIH"
   | "MANUFACTURER"
   | "INTERNAL";
 
@@ -17,10 +21,22 @@ export type SafeScopeSourceType =
   | "fatal_accident_report"
   | "incident_database"
   | "research_publication"
+  | "niosh_publication"
+  | "niosh_mining_publication"
+  | "health_hazard_evaluation"
+  | "niosh_alert"
+  | "criteria_document"
+  | "consensus_standard"
+  | "consensus_standard_metadata"
   | "best_practice_guidance"
   | "training_material"
   | "manufacturer_guidance"
-  | "internal_learning";
+  | "internal_learning"
+  | "internal_site_memory"
+  | "internal_corrective_action_history"
+  | "internal_repeat_finding"
+  | "internal_training_record"
+  | "internal_near_miss";
 
 export type SafeScopeAuthorityTier = 1 | 2 | 3 | 4 | 5;
 

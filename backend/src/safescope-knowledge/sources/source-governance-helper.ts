@@ -110,6 +110,8 @@ export function getSourceGovernance(
   switch (sourceType) {
     case "fatality_report":
     case "fatality_alert":
+    case "fatal_accident_report":
+    case "incident_database":
       return {
         authorityRole: "fatality_case_learning",
         reasoningUse: "incident_prevention_learning",
@@ -141,6 +143,7 @@ export function getSourceGovernance(
         governanceNote:
           "This source supports preventive controls, not a primary citation.",
       };
+    case "niosh_alert":
     case "safety_alert":
       return {
         authorityRole: "safety_alert",
@@ -177,6 +180,7 @@ export function getSourceGovernance(
           "This source supports scientific or health-risk reasoning and should be reviewed by a qualified professional.",
       };
     case "consensus_standard":
+    case "consensus_standard_metadata":
       return {
         authorityRole: "consensus_standard",
         reasoningUse: "technical_design_support",
@@ -193,6 +197,11 @@ export function getSourceGovernance(
           "This source supports technical design decisions and may require license review before use.",
       };
     case "internal_learning":
+    case "internal_site_memory":
+    case "internal_corrective_action_history":
+    case "internal_repeat_finding":
+    case "internal_training_record":
+    case "internal_near_miss":
     case "internal_site_memory":
       return {
         authorityRole: "internal_site_memory",
