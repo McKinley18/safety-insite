@@ -6,11 +6,11 @@ const MSHA_METADATA = buildSourceRegistryMetadata("msha-30-cfr-standards");
 
 export type Msha30CfrUrlItem = {
   url: string;
+  fetchUrl: string;
+  part: string;
+  subpart: string;
   titleHint?: string;
   hazardTags?: string[];
-  equipmentTags?: string[];
-  taskTags?: string[];
-  lessonTags?: string[];
   standardTags?: string[];
 };
 
@@ -23,8 +23,8 @@ export type Msha30CfrDiscoveryItem = {
   metadata: any;
 };
 
-function stripHtml(html: string) {
-  let cleaned = html.replace(
+function stripHtml(xml: string) {
+  let cleaned = xml.replace(
     /<(script|style|noscript|nav|footer|header|svg|form)[^>]*>[\s\S]*?<\/\1>/gi,
     " ",
   );
@@ -41,6 +41,58 @@ function slugFromUrl(url: string) {
     .slice(0, 120);
 }
 
+function extractXmlBlock(
+  xml: string,
+  startRegex: RegExp,
+  nextRegex: RegExp,
+): string | null {
+  const startMatch = startRegex.exec(xml);
+  if (!startMatch || startMatch.index < 0) return null;
+
+  const start = startMatch.index;
+  const remainder = xml.slice(start + startMatch[0].length);
+  const nextMatch = nextRegex.exec(remainder);
+
+  if (!nextMatch || nextMatch.index < 0) return xml.slice(start);
+
+  return xml.slice(start, start + startMatch[0].length + nextMatch.index);
+}
+
+function extractSubpartXml(
+  xml: string,
+  part: string,
+  subpart: string,
+): string | null {
+  const partBlock = extractXmlBlock(
+    xml,
+    new RegExp(`<DIV5\\s+N="${part}"[^>]*TYPE="PART"[^>]*>`, "i"),
+    /<DIV5\s+N="[^"]+"[^>]*TYPE="PART"[^>]*>/i,
+  );
+
+  if (!partBlock) return null;
+
+  return extractXmlBlock(
+    partBlock,
+    new RegExp(`<DIV6\\s+N="${subpart}"[^>]*TYPE="SUBPART"[^>]*>`, "i"),
+    /<DIV6\s+N="[^"]+"[^>]*TYPE="SUBPART"[^>]*>/i,
+  );
+}
+
+function validateContent(text: string, part: string, subpart: string): boolean {
+  const blocked = [
+    "request access",
+    "automated scraping",
+    "captcha",
+    "please complete the captcha",
+    "federal register :: request access",
+  ];
+  if (blocked.some((b) => text.toLowerCase().includes(b))) return false;
+  // Look for § marker followed by part number
+  const hasCfrMarker = text.includes(`§ ${part}.`) || text.includes(`${part}.`);
+  const hasSubpart = text.includes(`Subpart ${subpart}`);
+  return text.length > 500 && hasCfrMarker && hasSubpart;
+}
+
 export class Msha30CfrConnector {
   constructor(
     private readonly sourceListPath = join(
@@ -53,22 +105,10 @@ export class Msha30CfrConnector {
     ),
   ) {}
 
-  private validateItem(item: any): Msha30CfrUrlItem | null {
-    const url = typeof item === "string" ? item : item?.url;
-    if (typeof url !== "string" || !url.startsWith("https://www.ecfr.gov")) {
-      console.warn(`Skipping invalid MSHA CFR URL: ${String(url)}`);
-      return null;
-    }
-    return typeof item === "string" ? { url } : { ...item, url };
-  }
-
   private loadUrls(): Msha30CfrUrlItem[] {
     const raw = readFileSync(this.sourceListPath, "utf8");
     const parsed = JSON.parse(raw);
-    if (!Array.isArray(parsed.urls)) return [];
-    return parsed.urls
-      .map((i: any) => this.validateItem(i))
-      .filter(Boolean) as Msha30CfrUrlItem[];
+    return Array.isArray(parsed.urls) ? parsed.urls : [];
   }
 
   async discover(): Promise<Msha30CfrDiscoveryItem[]> {
@@ -77,17 +117,33 @@ export class Msha30CfrConnector {
 
     for (const item of items) {
       try {
-        const response = await fetch(item.url);
+        const response = await fetch(item.fetchUrl);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const html = await response.text();
-        const text = stripHtml(html);
+        const xml = await response.text();
+
+        const subpartXml = extractSubpartXml(xml, item.part, item.subpart);
+
+        if (!subpartXml) {
+          console.warn(
+            `Could not locate Part ${item.part} Subpart ${item.subpart} for: ${item.url}`,
+          );
+          continue;
+        }
+
+        const extracted = stripHtml(subpartXml);
+
+        // Ensure markers exist
+        if (!validateContent(extracted, item.part, item.subpart)) {
+          console.warn(`Content invalid or blocked for: ${item.url}`);
+          continue;
+        }
 
         results.push({
           externalId: `msha-30-cfr-${slugFromUrl(item.url)}`,
           title: item.titleHint || "MSHA 30 CFR Standard",
           sourceUrl: item.url,
-          summary: text.slice(0, 300) + "...",
-          rawText: text,
+          summary: extracted.slice(0, 300) + "...",
+          rawText: extracted,
           metadata: {
             ...MSHA_METADATA,
             standardTags: item.standardTags || [],
@@ -95,7 +151,7 @@ export class Msha30CfrConnector {
           },
         });
       } catch (e) {
-        console.error(`Error fetching ${item.url}:`, e);
+        console.warn(`Warning fetching ${item.fetchUrl}: ${e}`);
       }
     }
     return results;

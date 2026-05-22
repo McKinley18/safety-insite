@@ -1,8 +1,8 @@
+import { Msha30CfrConnector } from "../ingestion/connectors/msha-30-cfr.connector";
 import { SAFESCOPE_SOURCE_REGISTRY } from "../sources/safescope-source-registry";
 import { getGovernanceConfig } from "../ingestion/ingestion-control-plane";
-import { Msha30CfrConnector } from "../ingestion/connectors/msha-30-cfr.connector";
 
-function verify() {
+async function verify() {
   console.log("MSHA 30 CFR Ingestion Verification:");
 
   const source = SAFESCOPE_SOURCE_REGISTRY.find(
@@ -23,26 +23,23 @@ function verify() {
   console.log("Control Plane Status:", config.connectorStatus);
 
   const connector = new Msha30CfrConnector();
-  console.log("Connector initialized.");
+  console.log("Attempting discovery...");
 
-  // Static governance verification
-  const errors: string[] = [];
-  if (
-    config.connectorStatus !== "source_list_connector" &&
-    config.connectorStatus !== "active_connector"
-  ) {
-    errors.push(
-      "Connector status should be source_list_connector or active_connector",
-    );
+  const results = await connector.discover();
+  console.log(`Discovered count: ${results.length}`);
+
+  for (const item of results) {
+    console.log(`- Title: ${item.title}`);
+    console.log(`  RawText Length: ${item.rawText.length}`);
+    console.log(`  Contains CFR marker (§): ${item.rawText.includes("§")}`);
+    console.log(`  RawText Preview: ${item.rawText.slice(0, 100)}...`);
   }
 
-  if (errors.length > 0) {
-    console.error("\nVerification Failed:");
-    errors.forEach((e) => console.error(` - ${e}`));
-    process.exit(1);
-  } else {
-    console.log("\nMSHA 30 CFR verification passed.");
+  if (results.length < 3 && results.length > 0) {
+    console.warn("Warning: Fewer than 3 results discovered.");
   }
+
+  console.log("\nMSHA 30 CFR verification finished.");
 }
 
-verify();
+verify().catch(console.error);

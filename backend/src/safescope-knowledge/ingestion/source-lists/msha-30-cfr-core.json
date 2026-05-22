@@ -4,21 +4,63 @@
   "urls": [
     {
       "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-M",
-      "titleHint": "30 CFR Part 56 Subpart M - Guarding",
-      "hazardTags": ["Machine Guarding"],
-      "standardTags": ["30 CFR 56.14107"]
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "M",
+      "citation": "30 CFR Part 56 Subpart M",
+      "titleHint": "30 CFR Part 56 Subpart M - Machinery and Equipment",
+      "hazardTags": ["machine guarding", "mobile equipment", "machinery"],
+      "equipmentTags": ["conveyor", "machinery", "mobile equipment"],
+      "taskTags": ["operation", "maintenance", "inspection"],
+      "standardTags": [
+        "30 CFR Part 56",
+        "30 CFR Part 56 Subpart M",
+        "machine guarding"
+      ],
+      "lessonTags": [
+        "primary authority",
+        "regulatory standard",
+        "guarding",
+        "machinery"
+      ]
     },
     {
-      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-L",
-      "titleHint": "30 CFR Part 56 Subpart L - Electrical",
-      "hazardTags": ["Electrical"],
-      "standardTags": ["30 CFR 56.12016"]
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-K",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "K",
+      "citation": "30 CFR Part 56 Subpart K",
+      "titleHint": "30 CFR Part 56 Subpart K - Electricity",
+      "hazardTags": ["electrical", "energized equipment", "shock", "arc flash"],
+      "equipmentTags": ["electrical equipment", "panel", "conductor", "cable"],
+      "taskTags": ["inspection", "maintenance", "repair"],
+      "standardTags": [
+        "30 CFR Part 56",
+        "30 CFR Part 56 Subpart K",
+        "electrical"
+      ],
+      "lessonTags": ["primary authority", "regulatory standard", "electricity"]
     },
     {
-      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-75/subpart-S",
-      "titleHint": "30 CFR Part 75 Subpart S - Underground Electrical",
-      "hazardTags": ["Electrical"],
-      "standardTags": ["30 CFR 75.500"]
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-75/subpart-F",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "75",
+      "subpart": "F",
+      "citation": "30 CFR Part 75 Subpart F",
+      "titleHint": "30 CFR Part 75 Subpart F - Electrical Equipment General",
+      "hazardTags": ["electrical", "underground coal", "energized equipment"],
+      "equipmentTags": ["electrical equipment", "cable", "power circuit"],
+      "taskTags": ["inspection", "maintenance", "repair"],
+      "standardTags": [
+        "30 CFR Part 75",
+        "30 CFR Part 75 Subpart F",
+        "electrical"
+      ],
+      "lessonTags": [
+        "primary authority",
+        "regulatory standard",
+        "underground electrical"
+      ]
     }
   ]
 }
