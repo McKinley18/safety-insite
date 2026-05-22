@@ -1,0 +1,24 @@
+{
+  "sourceKey": "msha-30-cfr-standards",
+  "agency": "MSHA",
+  "urls": [
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-M",
+      "titleHint": "30 CFR Part 56 Subpart M - Guarding",
+      "hazardTags": ["Machine Guarding"],
+      "standardTags": ["30 CFR 56.14107"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-L",
+      "titleHint": "30 CFR Part 56 Subpart L - Electrical",
+      "hazardTags": ["Electrical"],
+      "standardTags": ["30 CFR 56.12016"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-75/subpart-S",
+      "titleHint": "30 CFR Part 75 Subpart S - Underground Electrical",
+      "hazardTags": ["Electrical"],
+      "standardTags": ["30 CFR 75.500"]
+    }
+  ]
+}

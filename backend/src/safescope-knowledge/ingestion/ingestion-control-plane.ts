@@ -47,8 +47,13 @@ export function getGovernanceConfig(
     "msha-fatality-reports",
     "osha-standard-interpretations",
     "msha-safety-alerts",
+    "msha-30-cfr-standards",
   ];
-  const listKeys = ["osha-standard-interpretations", "msha-safety-alerts"];
+  const listKeys = [
+    "osha-standard-interpretations",
+    "msha-safety-alerts",
+    "msha-30-cfr-standards",
+  ];
   const internalKeys = [
     "internal-supervisor-feedback",
     "internal-repeat-findings",
