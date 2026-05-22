@@ -30,9 +30,13 @@ async function verify() {
 
   for (const item of results) {
     console.log(`- Title: ${item.title}`);
+    console.log(`  Sections count: ${item.sections.length}`);
+    item.sections.slice(0, 5).forEach((sec) => {
+      console.log(
+        `    - Citation: ${sec.citation}, Heading: ${sec.sectionHeading}`,
+      );
+    });
     console.log(`  RawText Length: ${item.rawText.length}`);
-    console.log(`  Contains CFR marker (§): ${item.rawText.includes("§")}`);
-    console.log(`  RawText Preview: ${item.rawText.slice(0, 100)}...`);
   }
 
   if (results.length < 3 && results.length > 0) {

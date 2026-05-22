@@ -565,7 +565,8 @@ export class SafeScopeKnowledgeService {
       (score, term) => score + (haystack.includes(term) ? 10 : 0),
       0,
     );
-    const phraseScore = haystack.includes(query.toLowerCase()) ? 25 : 0;
+    const normalizedQuery = query.toLowerCase();
+    const phraseScore = haystack.includes(normalizedQuery) ? 25 : 0;
     const authorityScore = Math.max(0, 35 - chunk.authorityTier * 5);
     const tagScore =
       [
@@ -573,10 +574,22 @@ export class SafeScopeKnowledgeService {
         ...(chunk.equipmentTags || []),
         ...(chunk.taskTags || []),
         ...(chunk.lessonTags || []),
-      ].filter((tag) => query.toLowerCase().includes(String(tag).toLowerCase()))
+      ].filter((tag) => normalizedQuery.includes(String(tag).toLowerCase()))
         .length * 8;
 
-    return termScore + phraseScore + authorityScore + tagScore;
+    const normalizedCitation = String(chunk.citation || "").toLowerCase();
+    const compactCitation = normalizedCitation.replace(/^30 cfr\s+/, "");
+
+    const exactCitationScore =
+      normalizedCitation && normalizedQuery.includes(normalizedCitation)
+        ? 120
+        : compactCitation && normalizedQuery.includes(compactCitation)
+          ? 100
+          : 0;
+
+    return (
+      termScore + phraseScore + authorityScore + tagScore + exactCitationScore
+    );
   }
 
   private explainMatch(terms: string[], chunk: SafeScopeKnowledgeChunk) {

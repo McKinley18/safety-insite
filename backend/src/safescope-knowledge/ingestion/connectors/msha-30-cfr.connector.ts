@@ -21,6 +21,12 @@ export type Msha30CfrDiscoveryItem = {
   summary: string;
   rawText: string;
   metadata: any;
+  sections: Array<{
+    citation: string;
+    sectionNumber: string;
+    sectionHeading: string;
+    sectionText: string;
+  }>;
 };
 
 function stripHtml(xml: string) {
@@ -48,14 +54,12 @@ function extractXmlBlock(
 ): string | null {
   const startMatch = startRegex.exec(xml);
   if (!startMatch || startMatch.index < 0) return null;
-
   const start = startMatch.index;
   const remainder = xml.slice(start + startMatch[0].length);
   const nextMatch = nextRegex.exec(remainder);
-
-  if (!nextMatch || nextMatch.index < 0) return xml.slice(start);
-
-  return xml.slice(start, start + startMatch[0].length + nextMatch.index);
+  return nextMatch
+    ? xml.slice(start, start + startMatch[0].length + nextMatch.index)
+    : xml.slice(start);
 }
 
 function extractSubpartXml(
@@ -68,9 +72,7 @@ function extractSubpartXml(
     new RegExp(`<DIV5\\s+N="${part}"[^>]*TYPE="PART"[^>]*>`, "i"),
     /<DIV5\s+N="[^"]+"[^>]*TYPE="PART"[^>]*>/i,
   );
-
   if (!partBlock) return null;
-
   return extractXmlBlock(
     partBlock,
     new RegExp(`<DIV6\\s+N="${subpart}"[^>]*TYPE="SUBPART"[^>]*>`, "i"),
@@ -86,10 +88,16 @@ function validateContent(text: string, part: string, subpart: string): boolean {
     "please complete the captcha",
     "federal register :: request access",
   ];
-  if (blocked.some((b) => text.toLowerCase().includes(b))) return false;
-  // Look for § marker followed by part number
-  const hasCfrMarker = text.includes(`§ ${part}.`) || text.includes(`${part}.`);
-  const hasSubpart = text.includes(`Subpart ${subpart}`);
+
+  const normalized = text.toLowerCase();
+  if (blocked.some((b) => normalized.includes(b))) return false;
+
+  const hasCfrMarker =
+    normalized.includes(`§ ${part}.`) || normalized.includes(`${part}.`);
+  const hasSubpart =
+    normalized.includes(`subpart ${subpart.toLowerCase()}`) ||
+    normalized.includes(`subpart ${subpart.toLowerCase()}—`) ||
+    normalized.includes(`subpart ${subpart.toLowerCase()}-`);
   return text.length > 500 && hasCfrMarker && hasSubpart;
 }
 
@@ -122,7 +130,6 @@ export class Msha30CfrConnector {
         const xml = await response.text();
 
         const subpartXml = extractSubpartXml(xml, item.part, item.subpart);
-
         if (!subpartXml) {
           console.warn(
             `Could not locate Part ${item.part} Subpart ${item.subpart} for: ${item.url}`,
@@ -130,25 +137,51 @@ export class Msha30CfrConnector {
           continue;
         }
 
-        const extracted = stripHtml(subpartXml);
-
-        // Ensure markers exist
-        if (!validateContent(extracted, item.part, item.subpart)) {
+        const rawStripped = stripHtml(subpartXml);
+        if (!validateContent(rawStripped, item.part, item.subpart)) {
           console.warn(`Content invalid or blocked for: ${item.url}`);
           continue;
+        }
+
+        // Section Extraction: <DIV8 TYPE="SECTION"> ... </DIV8>
+        const sectionRegex =
+          /<DIV8[^>]*TYPE="SECTION"[^>]*>([\s\S]*?)<\/DIV8>/gi;
+        const sections: any[] = [];
+        let sectionMatch;
+        while ((sectionMatch = sectionRegex.exec(subpartXml)) !== null) {
+          const sectionHtml = sectionMatch[1];
+          const headingMatch = sectionHtml.match(/<HEAD>([\s\S]*?)<\/HEAD>/i);
+          const headingText = headingMatch ? stripHtml(headingMatch[1]) : "";
+          const sectionNumberMatch = headingText.match(
+            /§\s*(\d+\.\d+(?:-\d+)?)/,
+          );
+          const sectionNumber = sectionNumberMatch?.[1] || "";
+
+          if (!sectionNumber) {
+            continue;
+          }
+
+          sections.push({
+            citation: `30 CFR ${sectionNumber}`,
+            sectionNumber,
+            sectionHeading: headingText || `§ ${sectionNumber}`,
+            sectionText: stripHtml(sectionHtml),
+            sourceUrl: `${item.url}#${sectionNumber}`,
+          });
         }
 
         results.push({
           externalId: `msha-30-cfr-${slugFromUrl(item.url)}`,
           title: item.titleHint || "MSHA 30 CFR Standard",
           sourceUrl: item.url,
-          summary: extracted.slice(0, 300) + "...",
-          rawText: extracted,
+          summary: rawStripped.slice(0, 300) + "...",
+          rawText: rawStripped,
           metadata: {
             ...MSHA_METADATA,
             standardTags: item.standardTags || [],
             hazardTags: item.hazardTags || [],
           },
+          sections,
         });
       } catch (e) {
         console.warn(`Warning fetching ${item.fetchUrl}: ${e}`);

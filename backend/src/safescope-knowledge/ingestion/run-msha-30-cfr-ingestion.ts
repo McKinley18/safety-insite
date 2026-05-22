@@ -82,19 +82,47 @@ async function run() {
     const saved = await documentRepo.save(doc);
 
     await chunkRepo.delete({ documentId: saved.id });
-    await chunkRepo.save(
-      chunkRepo.create({
-        documentId: saved.id,
-        chunkIndex: 0,
-        chunkText: item.rawText,
-        chunkSummary: item.summary,
-        citation: saved.citation,
-        authorityTier: saved.authorityTier,
-        confidenceWeight: authorityWeight(saved.authorityTier),
-        hazardTags: saved.hazardTags,
-        standardTags: saved.standardTags,
-      }),
-    );
+
+    const sectionChunks = Array.isArray((item as any).sections)
+      ? (item as any).sections
+      : [];
+
+    const chunksToSave = sectionChunks.length
+      ? sectionChunks.map((section: any, index: number) =>
+          chunkRepo.create({
+            documentId: saved.id,
+            chunkIndex: index,
+            sectionHeading: section.sectionHeading || null,
+            chunkText: section.sectionText || item.rawText,
+            chunkSummary:
+              section.sectionHeading || section.citation || item.summary,
+            citation: section.citation || saved.citation,
+            authorityTier: saved.authorityTier,
+            confidenceWeight: authorityWeight(saved.authorityTier),
+            hazardTags: saved.hazardTags,
+            standardTags: Array.from(
+              new Set([
+                ...(saved.standardTags || []),
+                ...(section.citation ? [section.citation] : []),
+              ]),
+            ),
+          }),
+        )
+      : [
+          chunkRepo.create({
+            documentId: saved.id,
+            chunkIndex: 0,
+            chunkText: item.rawText,
+            chunkSummary: item.summary,
+            citation: saved.citation,
+            authorityTier: saved.authorityTier,
+            confidenceWeight: authorityWeight(saved.authorityTier),
+            hazardTags: saved.hazardTags,
+            standardTags: saved.standardTags,
+          }),
+        ];
+
+    await chunkRepo.save(chunksToSave);
   }
 
   console.log(`Discovered: ${discovered.length}`);
