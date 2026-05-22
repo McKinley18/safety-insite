@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
+import { getSourceGovernance } from "./sources/source-governance-helper";
 import { buildSourceSynthesis } from "./sources/source-synthesis-helper";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ILike, Repository } from "typeorm";
@@ -376,6 +377,10 @@ export class SafeScopeKnowledgeService {
         chunk.document?.sourceType || "",
         chunk.authorityTier,
       );
+      const governance = getSourceGovernance(
+        chunk.document?.sourceType || "",
+        chunk.authorityTier,
+      );
       return {
         chunkId: chunk.id,
         documentId: chunk.documentId,
@@ -385,6 +390,7 @@ export class SafeScopeKnowledgeService {
         sourceRole: role,
         sourceRoleLabel: ROLE_LABELS[role],
         usageGuidance: ROLE_GUIDANCE[role],
+        sourceGovernance: governance,
         isPrimaryAuthority:
           chunk.authorityTier === 1 &&
           chunk.document?.sourceType === "regulation",

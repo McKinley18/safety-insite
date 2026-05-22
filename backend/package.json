@@ -33,7 +33,8 @@
     "ingest:standards:ecfr": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
     "verify:safescope-source-roles": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-source-roles.ts",
     "verify:safescope-source-synthesis": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-source-synthesis.ts",
-    "verify:safescope-corrective-actions": "ts-node src/safescope-v2/maintenance/verify-corrective-action-intelligence.ts"
+    "verify:safescope-corrective-actions": "ts-node src/safescope-v2/maintenance/verify-corrective-action-intelligence.ts",
+    "verify:safescope-source-governance": "ts-node src/safescope-knowledge/maintenance/verify-source-governance.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
