@@ -578,7 +578,7 @@ export class SafeScopeKnowledgeService {
         .length * 8;
 
     const normalizedCitation = String(chunk.citation || "").toLowerCase();
-    const compactCitation = normalizedCitation.replace(/^30 cfr\s+/, "");
+    const compactCitation = normalizedCitation.replace(/^(29|30) cfr\s+/, "");
 
     const exactCitationScore =
       normalizedCitation && normalizedQuery.includes(normalizedCitation)

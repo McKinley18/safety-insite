@@ -3,13 +3,40 @@
   "agency": "OSHA",
   "urls": [
     {
-      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-O",
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-J",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
       "part": "1910",
-      "subpart": "O",
-      "titleHint": "29 CFR 1910 Subpart O - Machinery and Machine Guarding",
-      "hazardTags": ["Machine Guarding"],
-      "standardTags": ["29 CFR 1910.212", "29 CFR 1910.219"]
+      "subpart": "J",
+      "titleHint": "29 CFR 1910 Subpart J - General Environmental Controls",
+      "hazardTags": ["Confined Space", "Lockout / Stored Energy"],
+      "standardTags": ["29 CFR 1910.146", "29 CFR 1910.147"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-D",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "D",
+      "titleHint": "29 CFR 1910 Subpart D - Walking-Working Surfaces",
+      "hazardTags": ["Housekeeping"],
+      "standardTags": ["29 CFR 1910.28"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-I",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "I",
+      "titleHint": "29 CFR 1910 Subpart I - Personal Protective Equipment",
+      "hazardTags": ["PPE"],
+      "standardTags": ["29 CFR 1910.132"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-S",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "S",
+      "titleHint": "29 CFR 1910 Subpart S - Electrical",
+      "hazardTags": ["Electrical"],
+      "standardTags": ["29 CFR 1910.303", "29 CFR 1910.305"]
     }
   ]
 }

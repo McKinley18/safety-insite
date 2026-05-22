@@ -3,13 +3,40 @@
   "agency": "OSHA",
   "urls": [
     {
-      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-M",
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-P",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
       "part": "1926",
-      "subpart": "M",
-      "titleHint": "29 CFR 1926 Subpart M - Fall Protection",
+      "subpart": "P",
+      "titleHint": "29 CFR 1926 Subpart P - Excavations",
+      "hazardTags": ["Trenching / Excavation"],
+      "standardTags": ["29 CFR 1926.651", "29 CFR 1926.652"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-K",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "K",
+      "titleHint": "29 CFR 1926 Subpart K - Electrical",
+      "hazardTags": ["Electrical"],
+      "standardTags": ["29 CFR 1926.404"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-L",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "L",
+      "titleHint": "29 CFR 1926 Subpart L - Scaffolds",
       "hazardTags": ["Fall Protection"],
-      "standardTags": ["29 CFR 1926.501"]
+      "standardTags": ["29 CFR 1926.451"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-X",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "X",
+      "titleHint": "29 CFR 1926 Subpart X - Stairways and Ladders",
+      "hazardTags": ["Fall Protection"],
+      "standardTags": ["29 CFR 1926.1053"]
     }
   ]
 }

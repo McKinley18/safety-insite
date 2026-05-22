@@ -150,12 +150,15 @@ export class OshaEcfConnector {
           const sectionHtml = sectionMatch[0];
           const headingMatch = sectionHtml.match(/<HEAD>([\s\S]*?)<\/HEAD>/i);
           const headingText = headingMatch ? stripHtml(headingMatch[1]) : "";
+          const isReservedRange =
+            headingText.includes("§§") || /\[Reserved\]/i.test(headingText);
+
           const sectionNumberMatch = headingText.match(
             /§\s*(\d+\.\d+(?:-\d+)?)/,
           );
           const sectionNumber = sectionNumberMatch?.[1] || "";
 
-          if (!sectionNumber) {
+          if (!sectionNumber || isReservedRange) {
             continue;
           }
 
