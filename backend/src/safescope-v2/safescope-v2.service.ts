@@ -13,6 +13,7 @@ import { SafeScopeKnowledgeService } from "../safescope-knowledge/safescope-know
 import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
 import { buildSourceSynthesis } from "../safescope-knowledge/sources/source-synthesis-helper";
 import { getEvidenceGapIntelligence } from "./intelligence/evidence-gap-intelligence";
+import { getCorrectiveActionIntelligence } from "./intelligence/corrective-action-intelligence";
 
 @Injectable()
 export class SafescopeV2Service {
@@ -411,6 +412,13 @@ export class SafescopeV2Service {
     )
       confidenceNote =
         "Supportive references were retrieved, but no primary regulatory basis was identified in this knowledge synthesis.";
+
+    const correctiveActionIntelligence = getCorrectiveActionIntelligence(
+      promotedPrimary.classification,
+      promotedPrimary.risk,
+      sourceAwareAnalysis,
+      evidenceGapIntelligence,
+    );
 
     const additionalHazards = await Promise.all(
       allCandidates
@@ -818,6 +826,7 @@ export class SafescopeV2Service {
         confidenceNote,
       },
       evidenceGapIntelligence,
+      correctiveActionIntelligence,
       additionalHazards: finalAdditionalHazards,
     };
   }
