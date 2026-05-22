@@ -1,3 +1,11 @@
+import {
+  getSourceRole,
+  ROLE_LABELS,
+  ROLE_GUIDANCE,
+  SourceRole,
+} from "./source-role-helper";
+import { getSourceGovernance } from "./source-governance-helper";
+
 type KnowledgeMatchForSynthesis = {
   title: string;
   citation?: string | null;
@@ -20,17 +28,25 @@ function preview(value?: string | null) {
 }
 
 function toItem(match: KnowledgeMatchForSynthesis) {
+  const role = (match.sourceRole ||
+    getSourceRole(
+      match.sourceType || "",
+      match.authorityTier || 5,
+    )) as SourceRole;
+  const governance = getSourceGovernance(
+    match.sourceType || "",
+    match.authorityTier || 5,
+  );
   return {
     title: match.title,
     citation: match.citation || null,
-    sourceType: match.sourceType || null,
-    sourceRole: match.sourceRole || null,
-    sourceRoleLabel: match.sourceRoleLabel || null,
+    sourceRoleLabel: match.sourceRoleLabel || ROLE_LABELS[role],
     authorityTier: match.authorityTier || null,
-    usageGuidance: match.usageGuidance || null,
+    usageGuidance: match.usageGuidance || ROLE_GUIDANCE[role],
     sourceUrl: match.sourceUrl || null,
     score: match.score || 0,
     excerpt: preview(match.excerpt),
+    sourceGovernance: governance,
   };
 }
 
@@ -52,36 +68,35 @@ export function buildSourceSynthesis(matches: KnowledgeMatchForSynthesis[]) {
     },
     finalReasoningSummary: "",
     complianceCaution:
-      "SafeScope separates enforceable standards from guidance, incident learning, and best-practice references. Final compliance determinations require qualified review.",
+      "SafeScope separates enforceable standards from guidance, incident learning, and best-practice references. Final compliance determinations require qualified safety review.",
   };
 
   for (const match of matches || []) {
     const item = toItem(match);
-    const role = match.sourceRole || "";
+    const role = (match.sourceRole ||
+      getSourceRole(
+        match.sourceType || "",
+        match.authorityTier || 5,
+      )) as SourceRole;
+    const gov = item.sourceGovernance;
 
-    if (match.isPrimaryAuthority || role === "regulatory_citation") {
-      synthesis.primaryRegulatoryBasis.push(item);
-    } else if (
-      role === "official_interpretation" ||
-      role === "enforcement_policy"
-    ) {
+    const isPrimary =
+      match.isPrimaryAuthority ||
+      role === "regulatory_citation" ||
+      gov.reasoningUse === "primary_compliance_basis" ||
+      gov.trustLimits.canCiteAsStandard ||
+      (match.sourceType === "regulation" && match.authorityTier === 1);
+
+    if (isPrimary) synthesis.primaryRegulatoryBasis.push(item);
+    else if (["official_interpretation", "enforcement_policy"].includes(role))
       synthesis.officialGuidance.push(item);
-    } else if (
-      role === "fatality_learning" ||
-      role === "incident_investigation"
-    ) {
+    else if (["fatality_learning", "incident_investigation"].includes(role))
       synthesis.incidentLearning.push(item);
-    } else if (
-      role === "safety_alert" ||
-      role === "best_practice_guidance" ||
-      role === "safety_alert_or_best_practice"
-    ) {
+    else if (["safety_alert_or_best_practice"].includes(role))
       synthesis.bestPracticeGuidance.push(item);
-    } else if (role === "internal_site_memory") {
+    else if (role === "internal_site_memory")
       synthesis.internalContext.push(item);
-    } else {
-      synthesis.supportingReferences.push(item);
-    }
+    else synthesis.supportingReferences.push(item);
   }
 
   synthesis.counts = {
@@ -94,46 +109,33 @@ export function buildSourceSynthesis(matches: KnowledgeMatchForSynthesis[]) {
   };
 
   const summaryParts: string[] = [];
-
-  if (synthesis.primaryRegulatoryBasis.length) {
+  if (synthesis.primaryRegulatoryBasis.length)
     summaryParts.push(
       "Primary regulatory sources were found and should be treated as the strongest compliance basis.",
     );
-  }
-
-  if (synthesis.officialGuidance.length) {
+  if (synthesis.officialGuidance.length)
     summaryParts.push(
       "Official interpretation/guidance supports how the requirement may apply, but does not replace the regulation.",
     );
-  }
-
-  if (synthesis.incidentLearning.length) {
+  if (synthesis.incidentLearning.length)
     summaryParts.push(
-      "Incident learning supports hazard recognition and prevention lessons, not a standalone citation.",
+      "Incident learning supports hazard recognition and prevention lessons.",
     );
-  }
-
-  if (synthesis.bestPracticeGuidance.length) {
+  if (synthesis.bestPracticeGuidance.length)
     summaryParts.push(
       "Safety alerts and best-practice guidance support preventive controls and corrective action planning.",
     );
-  }
-
-  if (synthesis.internalContext.length) {
+  if (synthesis.internalContext.length)
     summaryParts.push(
       "Internal site memory supports local context and requires qualified review.",
     );
-  }
-
-  if (!summaryParts.length && synthesis.supportingReferences.length) {
+  if (!summaryParts.length && synthesis.supportingReferences.length)
     summaryParts.push(
-      "Supporting references were found, but no primary regulatory basis was identified in this retrieval.",
+      "Supporting references were found, but no primary regulatory basis was identified.",
     );
-  }
 
   synthesis.finalReasoningSummary =
     summaryParts.join(" ") ||
     "No supporting sources were found for this retrieval.";
-
   return synthesis;
 }
