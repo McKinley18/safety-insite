@@ -1,0 +1,15 @@
+{
+  "sourceKey": "osha-ecfr-1910",
+  "agency": "OSHA",
+  "urls": [
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-O",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "O",
+      "titleHint": "29 CFR 1910 Subpart O - Machinery and Machine Guarding",
+      "hazardTags": ["Machine Guarding"],
+      "standardTags": ["29 CFR 1910.212", "29 CFR 1910.219"]
+    }
+  ]
+}

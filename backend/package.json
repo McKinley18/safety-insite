@@ -22,11 +22,11 @@
     "ingest:safescope:msha-fatalities": "ts-node src/safescope-knowledge/ingestion/run-msha-fatality-ingestion.ts",
     "verify:safescope-msha-30-cfr-ingestion": "ts-node src/safescope-knowledge/maintenance/verify-msha-30-cfr-ingestion.ts",
     "ingest:safescope:msha-30-cfr": "ts-node src/safescope-knowledge/ingestion/run-msha-30-cfr-ingestion.ts",
-    "ingest:safescope:msha-fatalities": "ts-node src/safescope-knowledge/ingestion/run-msha-fatality-ingestion.ts",
+    "ingest:safescope:osha-1910": "ts-node src/safescope-knowledge/ingestion/run-osha-ecfr-ingestion.ts osha-ecfr-1910 osha-ecfr-1910.json",
+    "ingest:safescope:osha-1926": "ts-node src/safescope-knowledge/ingestion/run-osha-ecfr-ingestion.ts osha-ecfr-1926 osha-ecfr-1926.json",
     "verify:standards-intelligence": "ts-node src/safescope-v2/standards-intelligence/verify-standards-intelligence.ts",
     "verify:safescope-ingestion-sources": "ts-node src/safescope-knowledge/ingestion/verify-safescope-ingestion-sources.ts",
     "verify:safescope-source-registry": "ts-node src/safescope-knowledge/sources/verify-source-registry.ts",
-    "verify:safescope-knowledge-review": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-review-workflow.ts",
     "verify:safescope-knowledge-review": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-review-workflow.ts",
     "verify:safescope-connector-priorities": "ts-node src/safescope-knowledge/maintenance/verify-connector-priority-planner.ts",
     "verify:safescope-ingestion-control-plane": "ts-node src/safescope-knowledge/maintenance/verify-ingestion-control-plane.ts",
@@ -38,7 +38,8 @@
     "verify:safescope-source-synthesis": "ts-node src/safescope-knowledge/maintenance/verify-knowledge-source-synthesis.ts",
     "verify:safescope-corrective-actions": "ts-node src/safescope-v2/maintenance/verify-corrective-action-intelligence.ts",
     "verify:safescope-source-governance": "ts-node src/safescope-knowledge/maintenance/verify-source-governance.ts",
-    "verify:safescope-source-expansion": "ts-node src/safescope-knowledge/maintenance/verify-source-expansion-registry.ts"
+    "verify:safescope-source-expansion": "ts-node src/safescope-knowledge/maintenance/verify-source-expansion-registry.ts",
+    "verify:safescope-osha-ecfr-ingestion": "ts-node src/safescope-knowledge/maintenance/verify-osha-ecfr-ingestion.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

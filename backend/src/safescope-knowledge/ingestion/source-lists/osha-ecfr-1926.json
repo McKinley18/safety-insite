@@ -1,0 +1,15 @@
+{
+  "sourceKey": "osha-ecfr-1926",
+  "agency": "OSHA",
+  "urls": [
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-M",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "M",
+      "titleHint": "29 CFR 1926 Subpart M - Fall Protection",
+      "hazardTags": ["Fall Protection"],
+      "standardTags": ["29 CFR 1926.501"]
+    }
+  ]
+}
