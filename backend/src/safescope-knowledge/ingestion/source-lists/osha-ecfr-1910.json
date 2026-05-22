@@ -3,13 +3,25 @@
   "agency": "OSHA",
   "urls": [
     {
-      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-J",
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-A",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
       "part": "1910",
-      "subpart": "J",
-      "titleHint": "29 CFR 1910 Subpart J - General Environmental Controls",
-      "hazardTags": ["Confined Space", "Lockout / Stored Energy"],
-      "standardTags": ["29 CFR 1910.146", "29 CFR 1910.147"]
+      "subpart": "A",
+      "titleHint": "29 CFR 1910 Subpart A - General"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-B",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "B",
+      "titleHint": "29 CFR 1910 Subpart B - Adoption and Extension of Established Federal Standards"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-C",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "C",
+      "titleHint": "29 CFR 1910 Subpart C - General Safety and Health Provisions"
     },
     {
       "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-D",
@@ -21,6 +33,34 @@
       "standardTags": ["29 CFR 1910.28"]
     },
     {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-E",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "E",
+      "titleHint": "29 CFR 1910 Subpart E - Exit Routes and Emergency Planning"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-F",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "F",
+      "titleHint": "29 CFR 1910 Subpart F - Powered Platforms, Manlifts, and Vehicle-Mounted Work Platforms"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-G",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "G",
+      "titleHint": "29 CFR 1910 Subpart G - Occupational Health and Environmental Control"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-H",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "H",
+      "titleHint": "29 CFR 1910 Subpart H - Hazardous Materials"
+    },
+    {
       "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-I",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
       "part": "1910",
@@ -30,13 +70,101 @@
       "standardTags": ["29 CFR 1910.132"]
     },
     {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-J",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "J",
+      "titleHint": "29 CFR 1910 Subpart J - General Environmental Controls",
+      "hazardTags": ["Confined Space", "Lockout / Stored Energy"],
+      "standardTags": ["29 CFR 1910.146", "29 CFR 1910.147"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-K",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "K",
+      "titleHint": "29 CFR 1910 Subpart K - Medical and First Aid"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-L",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "L",
+      "titleHint": "29 CFR 1910 Subpart L - Fire Protection"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-M",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "M",
+      "titleHint": "29 CFR 1910 Subpart M - Compressed Gas and Compressed Air Equipment"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-N",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "N",
+      "titleHint": "29 CFR 1910 Subpart N - Materials Handling and Storage"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-O",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "O",
+      "titleHint": "29 CFR 1910 Subpart O - Machinery and Machine Guarding",
+      "hazardTags": ["Machine Guarding"],
+      "standardTags": ["29 CFR 1910.212"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-P",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "P",
+      "titleHint": "29 CFR 1910 Subpart P - Hand and Portable Powered Tools"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-Q",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "Q",
+      "titleHint": "29 CFR 1910 Subpart Q - Welding, Cutting, and Brazing"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-R",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "R",
+      "titleHint": "29 CFR 1910 Subpart R - Special Industries"
+    },
+    {
       "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-S",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
       "part": "1910",
       "subpart": "S",
       "titleHint": "29 CFR 1910 Subpart S - Electrical",
       "hazardTags": ["Electrical"],
-      "standardTags": ["29 CFR 1910.303", "29 CFR 1910.305"]
+      "standardTags": ["29 CFR 1910.303"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-T",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "T",
+      "titleHint": "29 CFR 1910 Subpart T - Commercial Diving Operations"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-U",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "U",
+      "titleHint": "29 CFR 1910 Subpart U - Concrete and Masonry Construction"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1910/subpart-Z",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1910",
+      "subpart": "Z",
+      "titleHint": "29 CFR 1910 Subpart Z - Toxic and Hazardous Substances"
     }
   ]
 }
