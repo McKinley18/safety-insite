@@ -100,7 +100,7 @@ async function run() {
     const saved = await documentRepo.save(doc);
 
     // Keep existing chunks that are approved, else update/re-ingest
-    for (const sec of item.sections) {
+    for (const [index, sec] of item.sections.entries()) {
       const existingChunk = await chunkRepo.findOne({
         where: { documentId: saved.id, citation: sec.citation },
       });
@@ -118,6 +118,7 @@ async function run() {
         await chunkRepo.save(
           chunkRepo.create({
             documentId: saved.id,
+            chunkIndex: index,
             sectionHeading: sec.sectionHeading,
             chunkText: sec.sectionText,
             chunkSummary: sec.sectionText.slice(0, 200) + "...",
