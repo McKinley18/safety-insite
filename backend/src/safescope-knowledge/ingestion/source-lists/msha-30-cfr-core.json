@@ -3,11 +3,67 @@
   "agency": "MSHA",
   "urls": [
     {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-A",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "A",
+      "titleHint": "30 CFR Part 56 Subpart A - General"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-B",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "B",
+      "titleHint": "30 CFR Part 56 Subpart B - Ground Control"
+    },
+    {
       "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-C",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
       "part": "56",
       "subpart": "C",
       "titleHint": "30 CFR Part 56 Subpart C - Fire Prevention and Control"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-D",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "D",
+      "titleHint": "30 CFR Part 56 Subpart D - Air Quality and Physical Agents"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-E",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "E",
+      "titleHint": "30 CFR Part 56 Subpart E - Explosives"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-F",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "F",
+      "titleHint": "30 CFR Part 56 Subpart F - Drilling and Rotary Jet Piercing"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-H",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "H",
+      "titleHint": "30 CFR Part 56 Subpart H - Loading, Hauling, and Dumping"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-I",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "I",
+      "titleHint": "30 CFR Part 56 Subpart I - Aerial Tramways"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-J",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "J",
+      "titleHint": "30 CFR Part 56 Subpart J - Travelways"
     },
     {
       "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-K",
@@ -21,7 +77,7 @@
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
       "part": "56",
       "subpart": "L",
-      "titleHint": "30 CFR Part 56 Subpart L - Equipment"
+      "titleHint": "30 CFR Part 56 Subpart L - Compressed Gas and Boilers"
     },
     {
       "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-M",
@@ -29,6 +85,41 @@
       "part": "56",
       "subpart": "M",
       "titleHint": "30 CFR Part 56 Subpart M - Guarding"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-N",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "N",
+      "titleHint": "30 CFR Part 56 Subpart N - Personal Protection"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-O",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "O",
+      "titleHint": "30 CFR Part 56 Subpart O - Materials Storage and Handling"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-Q",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "Q",
+      "titleHint": "30 CFR Part 56 Subpart Q - Safety Programs"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-R",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "R",
+      "titleHint": "30 CFR Part 56 Subpart R - Personnel Hoisting"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-S",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "56",
+      "subpart": "S",
+      "titleHint": "30 CFR Part 56 Subpart S - Miscellaneous"
     },
     {
       "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-75/subpart-F",
