@@ -150,13 +150,6 @@
       "titleHint": "30 CFR Part 57 Subpart O - Materials Storage and Handling"
     },
     {
-      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-57/subpart-P",
-      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
-      "part": "57",
-      "subpart": "P",
-      "titleHint": "30 CFR Part 57 Subpart P - Illumination"
-    },
-    {
       "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-57/subpart-Q",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
       "part": "57",
@@ -178,18 +171,18 @@
       "titleHint": "30 CFR Part 57 Subpart S - Miscellaneous"
     },
     {
-      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-57/subpart-P",
-      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
-      "part": "57",
-      "subpart": "P",
-      "titleHint": "30 CFR Part 57 Subpart P - Travelways and Escapeways"
-    },
-    {
       "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-57/subpart-T",
       "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
       "part": "57",
       "subpart": "T",
       "titleHint": "30 CFR Part 57 Subpart T - Safety Standards for Methane in Metal and Nonmetal Mines"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-N/part-57/subpart-U",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-30/ECFR-title30.xml",
+      "part": "57",
+      "subpart": "U",
+      "titleHint": "30 CFR Part 57 Subpart U - Safety Programs for Surface Mobile Equipment"
     }
   ]
 }
