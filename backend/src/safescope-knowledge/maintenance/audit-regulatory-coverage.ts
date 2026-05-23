@@ -2,7 +2,6 @@ import { DataSource, ILike } from "typeorm";
 import { config } from "dotenv";
 import { SafeScopeKnowledgeDocument } from "../entities/safescope-knowledge-document.entity";
 import { SafeScopeKnowledgeChunk } from "../entities/safescope-knowledge-chunk.entity";
-import { fetch } from "undici";
 
 config();
 
