@@ -51,12 +51,25 @@ export class ApplicableStandardsService {
 
     const observation = (description || "").toLowerCase();
 
-    const all = await this.standardRepo.find({
-      where: siteType
-        ? { scopeCode: siteType as any, isActive: true }
-        : { isActive: true },
-      take: 5000,
-    });
+    let all: Standard[] = [];
+
+    try {
+      all = await this.standardRepo.find({
+        where: siteType
+          ? { scopeCode: siteType as any, isActive: true }
+          : { isActive: true },
+        take: 5000,
+      });
+    } catch (error: any) {
+      console.error("Applicable standards repository query failed:", {
+        message: error?.message,
+        name: error?.name,
+        code: error?.code,
+        detail: error?.detail,
+        stack: error?.stack,
+      });
+      all = [];
+    }
 
     const fallbackStandards =
       this.isHousekeepingAccessScenario(observation) && siteType === "mining"
