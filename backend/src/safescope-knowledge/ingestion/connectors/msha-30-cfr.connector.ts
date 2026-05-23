@@ -98,7 +98,7 @@ function validateContent(text: string, part: string, subpart: string): boolean {
     normalized.includes(`subpart ${subpart.toLowerCase()}`) ||
     normalized.includes(`subpart ${subpart.toLowerCase()}—`) ||
     normalized.includes(`subpart ${subpart.toLowerCase()}-`);
-  return text.length > 500 && hasCfrMarker && hasSubpart;
+  return text.length > 100 && hasCfrMarker && hasSubpart;
 }
 
 export class Msha30CfrConnector {
@@ -153,7 +153,7 @@ export class Msha30CfrConnector {
           const headingMatch = sectionHtml.match(/<HEAD>([\s\S]*?)<\/HEAD>/i);
           const headingText = headingMatch ? stripHtml(headingMatch[1]) : "";
           const sectionNumberMatch = headingText.match(
-            /§\s*(\d+\.\d+(?:-\d+)?)/,
+            /§\s*(\d+\.\d+(?:-\d+)?[A-Z]?)/,
           );
           const sectionNumber = sectionNumberMatch?.[1] || "";
 
