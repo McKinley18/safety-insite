@@ -60,23 +60,49 @@ function extractXmlBlock(
     : xml.slice(start);
 }
 
+function extractPartXmlBlocks(xml: string, part: string): string[] {
+  const partRegex = new RegExp(
+    `<DIV5\\s+N="${part}"[^>]*TYPE="PART"[^>]*>`,
+    "gi",
+  );
+  const blocks: string[] = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = partRegex.exec(xml)) !== null) {
+    const start = match.index;
+    const remainder = xml.slice(start + match[0].length);
+    const nextPart = /<DIV5\s+N="[^"]+"[^>]*TYPE="PART"[^>]*>/i.exec(remainder);
+
+    blocks.push(
+      nextPart
+        ? xml.slice(start, start + match[0].length + nextPart.index)
+        : xml.slice(start),
+    );
+  }
+
+  return blocks;
+}
+
 function extractSubpartXml(
   xml: string,
   part: string,
   subpart: string,
 ): string | null {
-  // eCFR Title 29 structure: DIV5 TYPE="PART" N="1910"
-  const partBlock = extractXmlBlock(
-    xml,
-    new RegExp(`<DIV5\\s+N="${part}"[^>]*TYPE="PART"[^>]*>`, "i"),
-    /<DIV5\s+N="[^"]+"[^>]*TYPE="PART"[^>]*>/i,
-  );
-  if (!partBlock) return null;
-  return extractXmlBlock(
-    partBlock,
-    new RegExp(`<DIV6\\s+N="${subpart}"[^>]*TYPE="SUBPART"[^>]*>`, "i"),
-    /<DIV6\s+N="[^"]+"[^>]*TYPE="SUBPART"[^>]*>/i,
-  );
+  // eCFR Title 29 can split a single part across multiple volume blocks.
+  // Example: Part 1910 Subpart Z appears in a later ECFRBRWS volume block.
+  const partBlocks = extractPartXmlBlocks(xml, part);
+
+  for (const partBlock of partBlocks) {
+    const subpartBlock = extractXmlBlock(
+      partBlock,
+      new RegExp(`<DIV6\\s+N="${subpart}"[^>]*TYPE="SUBPART"[^>]*>`, "i"),
+      /<DIV6\s+N="[^"]+"[^>]*TYPE="SUBPART"[^>]*>/i,
+    );
+
+    if (subpartBlock) return subpartBlock;
+  }
+
+  return null;
 }
 
 function validateContent(text: string, part: string, subpart: string): boolean {

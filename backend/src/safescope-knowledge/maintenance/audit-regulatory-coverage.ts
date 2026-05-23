@@ -6,27 +6,54 @@ import { fetch } from "undici";
 
 config();
 
+function stripXml(xml: string) {
+  return xml
+    .replace(/<[^>]*>?/gm, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 async function getGovInfoSections(title: string) {
   const url = `https://www.govinfo.gov/bulkdata/ECFR/title-${title}/ECFR-title${title}.xml`;
   const response = await fetch(url);
   const xml = await response.text();
 
   const sectionRegex =
-    /<(?:DIV8|SECTION)[^>]*N="([^"]+)"[^>]*>([\s\S]*?)<\/(?:DIV8|SECTION)>/gi;
+    /<(?:DIV8|SECTION)[^>]*TYPE="SECTION"[^>]*>([\s\S]*?)<\/(?:DIV8|SECTION)>/gi;
   const sections: { citation: string; part: string; chapter?: string }[] = [];
 
-  // Need to find which Chapter these parts belong to for MSHA auditing
-  // The XML structure usually nests parts within chapters.
-  // For simplicity here, we assume Part-based mapping for Title 30 Chapter I.
   let match;
   while ((match = sectionRegex.exec(xml)) !== null) {
-    const partMatch = match[1].split(".")[0].replace(/[^0-9]/g, "");
+    const sectionXml = match[1];
+    const headingMatch = sectionXml.match(/<HEAD>([\s\S]*?)<\/HEAD>/i);
+    const headingText = headingMatch ? stripXml(headingMatch[1]) : "";
+
+    const isNonCurrentContext =
+      !headingText ||
+      headingText.includes("§§") ||
+      /\[Reserved\]/i.test(headingText);
+
+    if (isNonCurrentContext) continue;
+
+    const sectionNumberMatch = headingText.match(
+      /§\s*(\d+\.\d+(?:-\d+)?[A-Z]?)/,
+    );
+    const sectionNumber = sectionNumberMatch?.[1];
+
+    if (!sectionNumber) continue;
+
+    const partMatch = sectionNumber.split(".")[0].replace(/[^0-9]/g, "");
     sections.push({
-      citation: `${title} CFR ${match[1]}`,
+      citation: `${title} CFR ${sectionNumber}`,
       part: partMatch,
     });
   }
-  return sections;
+
+  return Array.from(
+    new Map(
+      sections.map((section) => [normalize(section.citation), section]),
+    ).values(),
+  );
 }
 
 function normalize(citation: string) {
