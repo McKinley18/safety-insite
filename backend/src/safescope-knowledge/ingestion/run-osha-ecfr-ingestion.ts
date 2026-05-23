@@ -21,11 +21,26 @@ function isNonCitableContextSection(sectionHeading = "") {
   );
 }
 
+function isNonCitableRegulatorySection(sectionHeading?: string) {
+  const heading = sectionHeading || "";
+  return (
+    /table of contents/i.test(heading) ||
+    /\[reserved\]/i.test(heading) ||
+    /\breserved\b/i.test(heading) ||
+    /\bscope\b/i.test(heading) ||
+    /\bdefinitions?\b/i.test(heading)
+  );
+}
+
 function sectionStandardTags(
   documentTags: string[] = [],
   citation?: string,
   sectionHeading = "",
 ) {
+  if (isNonCitableRegulatorySection(sectionHeading)) {
+    return [];
+  }
+
   if (isNonCitableContextSection(sectionHeading)) return [];
 
   return Array.from(
