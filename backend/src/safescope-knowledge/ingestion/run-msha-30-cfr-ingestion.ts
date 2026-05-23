@@ -21,6 +21,12 @@ function isNonCitableContextSection(sectionHeading = "") {
   );
 }
 
+function truncateForColumn(value = "", maxLength = 220) {
+  return value.length > maxLength
+    ? value.slice(0, maxLength - 3) + "..."
+    : value;
+}
+
 function sectionStandardTags(
   documentTags: string[] = [],
   citation?: string,
@@ -107,7 +113,7 @@ async function run() {
       if (existingChunk) {
         existingChunk.chunkText = sec.sectionText;
         existingChunk.chunkSummary = sec.sectionText.slice(0, 200) + "...";
-        existingChunk.sectionHeading = sec.sectionHeading;
+        existingChunk.sectionHeading = truncateForColumn(sec.sectionHeading);
         existingChunk.standardTags = sectionStandardTags(
           saved.standardTags || [],
           sec.citation,
@@ -119,7 +125,7 @@ async function run() {
           chunkRepo.create({
             documentId: saved.id,
             chunkIndex: index,
-            sectionHeading: sec.sectionHeading,
+            sectionHeading: truncateForColumn(sec.sectionHeading),
             chunkText: sec.sectionText,
             chunkSummary: sec.sectionText.slice(0, 200) + "...",
             citation: sec.citation,
