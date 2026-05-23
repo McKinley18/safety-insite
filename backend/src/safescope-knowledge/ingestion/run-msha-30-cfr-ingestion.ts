@@ -8,15 +8,33 @@ import { SafeScopeKnowledgeRetrievalLog } from "../entities/safescope-knowledge-
 import { Msha30CfrConnector } from "./connectors/msha-30-cfr.connector";
 import { buildSourceRegistryMetadata } from "../sources/source-registry-metadata";
 
-const MSHA_METADATA = buildSourceRegistryMetadata("msha-30-cfr-standards");
-
 config();
 
 function authorityWeight(authorityTier: number) {
   return Number(Math.max(0.1, 1 - (authorityTier - 1) * 0.15).toFixed(2));
 }
 
+function isNonCitableContextSection(sectionHeading = "") {
+  const normalized = sectionHeading.toLowerCase();
+  return (
+    normalized.includes("reserved") || normalized.includes("table of contents")
+  );
+}
+
+function sectionStandardTags(
+  documentTags: string[] = [],
+  citation?: string,
+  sectionHeading = "",
+) {
+  if (isNonCitableContextSection(sectionHeading)) return [];
+
+  return Array.from(
+    new Set([...documentTags, ...(citation ? [citation] : [])]),
+  );
+}
+
 async function run() {
+  const metadata = buildSourceRegistryMetadata("msha-30-cfr-standards");
   const dataSource = new DataSource({
     type: "postgres",
     url:
@@ -48,7 +66,7 @@ async function run() {
     const citation = item.externalId.toUpperCase();
     const existing = await documentRepo.findOne({ where: { citation } });
 
-    let approvalStatus: any = MSHA_METADATA.requiresApproval
+    let approvalStatus: any = metadata.requiresApproval
       ? "pending_review"
       : "approved";
     let reviewedAt: string | null = null;
@@ -68,9 +86,9 @@ async function run() {
     const doc = existing || documentRepo.create();
     doc.citation = citation;
     doc.title = item.title;
-    doc.agency = MSHA_METADATA.agency as any;
-    doc.sourceType = MSHA_METADATA.sourceType as any;
-    doc.authorityTier = MSHA_METADATA.authorityTier;
+    doc.agency = metadata.agency as any;
+    doc.sourceType = metadata.sourceType as any;
+    doc.authorityTier = metadata.authorityTier;
     doc.sourceUrl = item.sourceUrl;
     doc.summary = item.summary;
     doc.rawText = item.rawText;
@@ -81,54 +99,46 @@ async function run() {
 
     const saved = await documentRepo.save(doc);
 
-    await chunkRepo.delete({ documentId: saved.id });
-
-    const sectionChunks = Array.isArray((item as any).sections)
-      ? (item as any).sections
-      : [];
-
-    const chunksToSave = sectionChunks.length
-      ? sectionChunks.map((section: any, index: number) =>
+    // Keep existing chunks that are approved, else update/re-ingest
+    for (const sec of item.sections) {
+      const existingChunk = await chunkRepo.findOne({
+        where: { documentId: saved.id, citation: sec.citation },
+      });
+      if (existingChunk) {
+        existingChunk.chunkText = sec.sectionText;
+        existingChunk.chunkSummary = sec.sectionText.slice(0, 200) + "...";
+        existingChunk.sectionHeading = sec.sectionHeading;
+        existingChunk.standardTags = sectionStandardTags(
+          saved.standardTags || [],
+          sec.citation,
+          sec.sectionHeading,
+        );
+        await chunkRepo.save(existingChunk);
+      } else {
+        await chunkRepo.save(
           chunkRepo.create({
             documentId: saved.id,
-            chunkIndex: index,
-            sectionHeading: section.sectionHeading || null,
-            chunkText: section.sectionText || item.rawText,
-            chunkSummary:
-              section.sectionHeading || section.citation || item.summary,
-            citation: section.citation || saved.citation,
+            sectionHeading: sec.sectionHeading,
+            chunkText: sec.sectionText,
+            chunkSummary: sec.sectionText.slice(0, 200) + "...",
+            citation: sec.citation,
             authorityTier: saved.authorityTier,
             confidenceWeight: authorityWeight(saved.authorityTier),
             hazardTags: saved.hazardTags,
-            standardTags: Array.from(
-              new Set([
-                ...(saved.standardTags || []),
-                ...(section.citation ? [section.citation] : []),
-              ]),
+            standardTags: sectionStandardTags(
+              saved.standardTags || [],
+              sec.citation,
+              sec.sectionHeading,
             ),
           }),
-        )
-      : [
-          chunkRepo.create({
-            documentId: saved.id,
-            chunkIndex: 0,
-            chunkText: item.rawText,
-            chunkSummary: item.summary,
-            citation: saved.citation,
-            authorityTier: saved.authorityTier,
-            confidenceWeight: authorityWeight(saved.authorityTier),
-            hazardTags: saved.hazardTags,
-            standardTags: saved.standardTags,
-          }),
-        ];
-
-    await chunkRepo.save(chunksToSave);
+        );
+      }
+    }
   }
 
   console.log(`Discovered: ${discovered.length}`);
   console.log(`Created: ${created}`);
   console.log(`Updated: ${updated}`);
-  console.log(`Skipped: 0`);
   console.log(`PendingReview: ${pending}`);
   console.log(`ApprovedPreserved: ${approvedPreserved}`);
 

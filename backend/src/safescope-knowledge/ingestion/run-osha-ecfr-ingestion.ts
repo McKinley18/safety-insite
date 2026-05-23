@@ -14,6 +14,25 @@ function authorityWeight(authorityTier: number) {
   return Number(Math.max(0.1, 1 - (authorityTier - 1) * 0.15).toFixed(2));
 }
 
+function isNonCitableContextSection(sectionHeading = "") {
+  const normalized = sectionHeading.toLowerCase();
+  return (
+    normalized.includes("reserved") || normalized.includes("table of contents")
+  );
+}
+
+function sectionStandardTags(
+  documentTags: string[] = [],
+  citation?: string,
+  sectionHeading = "",
+) {
+  if (isNonCitableContextSection(sectionHeading)) return [];
+
+  return Array.from(
+    new Set([...documentTags, ...(citation ? [citation] : [])]),
+  );
+}
+
 async function run(sourceKey: string, listFilename: string) {
   const metadata = buildSourceRegistryMetadata(sourceKey);
   const dataSource = new DataSource({
@@ -93,11 +112,10 @@ async function run(sourceKey: string, listFilename: string) {
           authorityTier: saved.authorityTier,
           confidenceWeight: authorityWeight(saved.authorityTier),
           hazardTags: saved.hazardTags,
-          standardTags: Array.from(
-            new Set([
-              ...(saved.standardTags || []),
-              ...(sec.citation ? [sec.citation] : []),
-            ]),
+          standardTags: sectionStandardTags(
+            saved.standardTags || [],
+            sec.citation,
+            sec.sectionHeading,
           ),
         }),
       );
