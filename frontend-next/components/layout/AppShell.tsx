@@ -1,5 +1,7 @@
 "use client";
 
+const DISABLE_AUTH_FOR_LOCAL_DEV = process.env.NEXT_PUBLIC_DISABLE_AUTH === "true";
+
 import Link from "next/link";
 import MobileTabBar from "@/components/layout/MobileTabBar";
 import { usePathname, useRouter } from "next/navigation";
@@ -103,7 +105,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
     setSecurityLabel(getProtectedModeLabel());
 
-    if (isPublicPage || pathname === "/unlock") return;
+    if (DISABLE_AUTH_FOR_LOCAL_DEV || isPublicPage || pathname === "/unlock") return;
 
     const token =
       window.localStorage.getItem("sentinel_auth_token") ||
@@ -121,7 +123,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (isPublicPage || pathname === "/unlock") return;
+    if (DISABLE_AUTH_FOR_LOCAL_DEV || isPublicPage || pathname === "/unlock") return;
 
     const alreadyAttempted = window.sessionStorage.getItem(
       "sentinel_brain_sync_attempted",
