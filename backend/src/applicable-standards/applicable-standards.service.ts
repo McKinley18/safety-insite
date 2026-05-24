@@ -1,7 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Optional } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Standard } from "../standards/entities/standard.entity";
+import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
 
 @Injectable()
 export class ApplicableStandardsService {
@@ -29,9 +30,147 @@ export class ApplicableStandardsService {
     );
   }
 
+  private scoreKnowledgeChunk(
+    chunk: SafeScopeKnowledgeChunk,
+    observation: string,
+    siteType?: string,
+  ) {
+    const citation = chunk.citation || "";
+    const heading = chunk.sectionHeading || "";
+    const text =
+      `${citation} ${heading} ${chunk.chunkSummary || ""} ${chunk.chunkText || ""}`.toLowerCase();
+
+    let score = 0;
+    const matchingReasons: string[] = [];
+
+    const document = chunk.document;
+    const agency = document?.agency;
+    const title = document?.title || "";
+
+    if (siteType === "mining" && agency === "MSHA") {
+      score += 15;
+      matchingReasons.push("scope: mining");
+    }
+
+    if (
+      siteType === "construction" &&
+      agency === "OSHA" &&
+      /1926/.test(citation || title)
+    ) {
+      score += 15;
+      matchingReasons.push("scope: construction");
+    }
+
+    if (
+      siteType === "general_industry" &&
+      agency === "OSHA" &&
+      /1910/.test(citation || title)
+    ) {
+      score += 15;
+      matchingReasons.push("scope: general_industry");
+    }
+
+    const importantTerms = [
+      "unguarded",
+      "guard",
+      "guarded",
+      "moving",
+      "machine",
+      "conveyor",
+      "tail",
+      "pulley",
+      "pinch",
+      "nip",
+      "scaffold",
+      "platform",
+      "guardrail",
+      "fall protection",
+      "fall",
+    ];
+
+    for (const term of importantTerms) {
+      if (observation.includes(term) && text.includes(term)) {
+        score += 8;
+        matchingReasons.push(`term: ${term}`);
+      }
+    }
+
+    if (this.isMovingMachineScenario(observation)) {
+      if (citation === "30 CFR 56.14107" || citation === "30 CFR 77.400") {
+        score += 90;
+        matchingReasons.push(
+          "scenario: unguarded conveyor pulley / exposed nip point",
+        );
+      }
+    }
+
+    if (this.isScaffoldFallProtectionScenario(observation)) {
+      if (citation === "29 CFR 1926.451" || citation === "1926.451") {
+        score += 110;
+        matchingReasons.push(
+          "scenario: scaffold platform missing guardrails or fall protection",
+        );
+      }
+
+      if (citation === "29 CFR 1926.501" || citation === "1926.501") {
+        score += 80;
+        matchingReasons.push("scenario: construction fall protection duty");
+      }
+
+      if (citation === "29 CFR 1926.502" || citation === "1926.502") {
+        score += 65;
+        matchingReasons.push("scenario: fall protection system criteria");
+      }
+
+      if (citation === "29 CFR 1926.454" || citation === "1926.454") {
+        score += 30;
+        matchingReasons.push(
+          "scenario: scaffold-specific training support standard",
+        );
+      }
+    }
+
+    if (this.isHousekeepingAccessScenario(observation)) {
+      if (
+        citation === "30 CFR 56.20003" ||
+        citation === "30 CFR 57.20003" ||
+        citation === "29 CFR 1910.22" ||
+        citation === "1910.22"
+      ) {
+        score += 75;
+        matchingReasons.push(
+          "scenario: housekeeping / walking-working surface",
+        );
+      }
+
+      if (citation === "30 CFR 56.11001" || citation === "30 CFR 57.11001") {
+        score += 55;
+        matchingReasons.push(
+          "scenario: safe access affected by material buildup",
+        );
+      }
+    }
+
+    return {
+      id: chunk.id,
+      citation,
+      heading: heading || title,
+      summary: chunk.chunkSummary || chunk.chunkText?.slice(0, 500) || "",
+      agencyCode: agency,
+      scopeCode: siteType,
+      score,
+      confidence: Math.min(99, Math.round(score)),
+      matchingReasons,
+      source: ["safescope_knowledge_chunks"],
+    };
+  }
+
   constructor(
     @InjectRepository(Standard)
     private readonly standardRepo: Repository<Standard>,
+    @Optional()
+    @InjectRepository(SafeScopeKnowledgeChunk)
+    private readonly knowledgeChunkRepo?: Repository<SafeScopeKnowledgeChunk>,
   ) {}
 
   async suggest(
@@ -69,6 +208,36 @@ export class ApplicableStandardsService {
         stack: error?.stack,
       });
       all = [];
+    }
+
+    let knowledgeMatches: any[] = [];
+
+    if (this.knowledgeChunkRepo) {
+      try {
+        const chunks = await this.knowledgeChunkRepo.find({
+          relations: ["document"],
+          where: {
+            document: {
+              sourceType: "regulation" as any,
+            },
+          } as any,
+          take: 5000,
+        });
+
+        knowledgeMatches = chunks
+          .map((chunk) =>
+            this.scoreKnowledgeChunk(chunk, observation, siteType),
+          )
+          .filter((item) => item.score > 0);
+      } catch (error: any) {
+        console.error("Applicable standards knowledge query failed:", {
+          message: error?.message,
+          name: error?.name,
+          code: error?.code,
+          detail: error?.detail,
+          stack: error?.stack,
+        });
+      }
     }
 
     const fallbackStandards =
