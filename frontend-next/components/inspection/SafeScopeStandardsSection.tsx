@@ -125,7 +125,10 @@ export default function SafeScopeStandardsSection({
                 </div>
 
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-                  {standard.rationale}
+                  {standard.rationale ||
+                    standard.summary ||
+                    standard.heading ||
+                    "No summary available."}
                 </p>
 
                 {!!standard.matchingReasons?.length && (
