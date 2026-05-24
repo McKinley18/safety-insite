@@ -32,7 +32,7 @@ export function buildInspectionReport(input: {
     includeActionsInReport: input.includeActionsInReport,
     includePhotosInReport: input.includePhotosInReport,
     includeSafeScopeNotesInReport: input.includeSafeScopeNotesInReport,
-    reportPackageMode: input.reportPackageMode || "local_first",
+    reportPackageMode: input.reportPackageMode || "professional_compliance",
     findings: input.findings,
   };
 }

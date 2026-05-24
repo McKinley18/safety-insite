@@ -30,20 +30,12 @@ export default function InspectionWorkflowHeader({
   generateReport,
   goToCoverPage,
 }: InspectionWorkflowHeaderProps) {
-  const currentStepMeta = steps[currentStep - 1];
+  const currentStepMeta = steps[currentStep - 1] || steps[0];
   const currentStepTitle = currentStepMeta.title.replace(/^Step \d+: /, "");
-  const visibleSteps = isAdvancedMode ? [1, 2, 3, 4, 5, 6] : [1, 2, 3, 5, 6];
-  const visibleStepIndex = Math.max(1, visibleSteps.indexOf(currentStep) + 1);
-  const progressPercent = Math.round(
-    (visibleStepIndex / visibleSteps.length) * 100,
-  );
+  const visibleStepIndex = Math.min(Math.max(currentStep, 1), steps.length);
+  const progressPercent = Math.round((visibleStepIndex / steps.length) * 100);
   const workflowLabel = isAdvancedMode ? "Advanced" : "Quick";
-  const visibleStepTitle =
-    !isAdvancedMode && currentStep === 5
-      ? "Corrective Actions"
-      : !isAdvancedMode && currentStep === 6
-        ? "Finalize"
-        : currentStepTitle;
+  const visibleStepTitle = currentStepTitle;
 
   function handleBack() {
     if (currentStep === 1) {
@@ -55,11 +47,6 @@ export default function InspectionWorkflowHeader({
   }
 
   function handleNext() {
-    if (!isAdvancedMode && currentStep === 3) {
-      goToInspectionStep(5);
-      return;
-    }
-
     goToInspectionStep(currentStep + 1);
   }
 
@@ -76,7 +63,7 @@ export default function InspectionWorkflowHeader({
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
-              {workflowLabel} · Step {visibleStepIndex} of {visibleSteps.length}
+              {workflowLabel} · Step {visibleStepIndex} of {steps.length}
             </p>
             <h1 className="mt-0.5 truncate text-lg font-black leading-tight text-slate-900 sm:text-xl">
               {visibleStepTitle}
@@ -102,7 +89,7 @@ export default function InspectionWorkflowHeader({
             ← Back
           </button>
 
-          {currentStep !== 6 && (
+          {currentStep < steps.length && (
             <button
               type="button"
               onClick={handleNext}

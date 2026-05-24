@@ -91,7 +91,7 @@ export default function FinalizeInspectionSection({
     `Risk ${safeScopeResult?.risk?.riskBand || riskScore || "not rated"}`,
   ]);
 
-  const [reportPackageMode, setReportPackageMode] = useState("local_first");
+  const [reportPackageMode, setReportPackageMode] = useState("professional_compliance");
 
   useEffect(() => {
     const saved = window.localStorage.getItem("sentinel_report_package_mode");
@@ -102,14 +102,21 @@ export default function FinalizeInspectionSection({
     setReportPackageMode(value);
     window.localStorage.setItem("sentinel_report_package_mode", value);
 
-    if (value === "evidence_centered") {
+    if (value === "field_summary") {
       setIncludePhotosInReport(true);
       setIncludeActionsInReport(true);
       setIncludeStandardsInReport(true);
       setIncludeSafeScopeNotesInReport(false);
     }
 
-    if (value === "export_ready") {
+    if (value === "professional_compliance") {
+      setIncludePhotosInReport(true);
+      setIncludeActionsInReport(true);
+      setIncludeStandardsInReport(true);
+      setIncludeSafeScopeNotesInReport(false);
+    }
+
+    if (value === "validation_appendix") {
       setIncludePhotosInReport(true);
       setIncludeActionsInReport(true);
       setIncludeStandardsInReport(true);
@@ -118,15 +125,15 @@ export default function FinalizeInspectionSection({
   }
 
   const reportPackageDescriptions: Record<string, string> = {
-    local_first: "Private local vault unless workspace sync is selected.",
-    evidence_centered:
-      "Prioritizes photos, evidence notes, findings, and corrective actions.",
-    export_ready:
-      "Optimized for final PDF export, audit review, and retention.",
-    ask_every_report: "Prompts for storage/export preference on each report.",
+    field_summary:
+      "Fast internal summary with findings, photos, standards, and corrective actions.",
+    professional_compliance:
+      "Recommended. Formal inspection report with findings, evidence, standards, risk, and corrective actions.",
+    validation_appendix:
+      "Full defensibility package with SafeScope validation reasoning, confidence notes, and traceability.",
   };
 
-  if (currentStep !== 6) return null;
+  if (currentStep !== 4) return null;
 
   const reportOptions = [
     {
@@ -149,7 +156,7 @@ export default function FinalizeInspectionSection({
     },
     {
       label: "SafeScope Notes",
-      desc: "Internal review details",
+      desc: "Validation appendix",
       checked: includeSafeScopeNotesInReport,
       toggle: () =>
         setIncludeSafeScopeNotesInReport(!includeSafeScopeNotesInReport),
@@ -163,7 +170,7 @@ export default function FinalizeInspectionSection({
           Finalize Inspection
         </p>
         <p className="mt-1 text-sm font-semibold text-slate-500">
-          Save findings, review hazard cards, then generate the report.
+          Save findings, choose report detail level, then generate the report.
         </p>
       </div>
 
@@ -341,10 +348,9 @@ export default function FinalizeInspectionSection({
             onChange={(event) => updateReportPackageMode(event.target.value)}
             className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
           >
-            <option value="local_first">Local-first private vault</option>
-            <option value="evidence_centered">Evidence-centered package</option>
-            <option value="export_ready">Export-ready package</option>
-            <option value="ask_every_report">Ask every report</option>
+            <option value="professional_compliance">Professional Compliance Report</option>
+            <option value="field_summary">Field Summary</option>
+            <option value="validation_appendix">Full Validation Appendix</option>
           </select>
           <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
             {reportPackageDescriptions[reportPackageMode]}

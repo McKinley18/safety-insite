@@ -51,23 +51,18 @@ export const likelihoodScale = [
 export const inspectionSteps = [
   {
     title: "Step 1: Capture Finding",
-    desc: "Capture what you observed first. SafeScope can classify the hazard after the finding is described.",
+    desc: "Add photo evidence, location, and a short observed-condition description.",
   },
   {
-    title: "Step 2: Evidence",
-    desc: "Add photos, annotations, and notes when available.",
+    title: "Step 2: Run SafeScope",
+    desc: "Classify the finding, match likely standards, assess risk, and generate recommended actions.",
   },
   {
-    title: "Step 3: SafeScope Intelligence",
-    desc: "Optional standards, reasoning, and confidence support.",
+    title: "Step 3: Review & Validate",
+    desc: "Review SafeScope reasoning, risk logic, standard matches, and corrective actions before saving.",
   },
   {
-    title: "Step 4: Risk Review",
-    desc: "Optional severity and likelihood scoring for deeper inspections.",
+    title: "Step 4: Save & Generate",
+    desc: "Save findings, choose report detail level, and generate the final report.",
   },
-  {
-    title: "Step 5: Actions",
-    desc: "Assign corrective work or accept generated actions.",
-  },
-  { title: "Step 6: Finalize", desc: "Review and generate the report." },
 ];

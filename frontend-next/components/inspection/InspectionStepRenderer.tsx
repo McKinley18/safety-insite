@@ -157,48 +157,48 @@ export default function InspectionStepRenderer({
   return (
     <div className="px-1 py-2 sm:px-2">
       {currentStep === 1 && (
-        <EvidenceCaptureSection
-          photos={photos}
-          setPhotos={setPhotos}
-          evidenceNotes={evidenceNotes}
-          setEvidenceNotes={setEvidenceNotes}
-          annotatingPhotoIndex={annotatingPhotoIndex}
-          setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
-          annotationExpanded={annotationExpanded}
-          setAnnotationExpanded={setAnnotationExpanded}
-          handlePhotoUpload={handlePhotoUpload}
-          removePhoto={removePhoto}
-        />
+        <div className="space-y-4">
+          <EvidenceCaptureSection
+            photos={photos}
+            setPhotos={setPhotos}
+            evidenceNotes={evidenceNotes}
+            setEvidenceNotes={setEvidenceNotes}
+            annotatingPhotoIndex={annotatingPhotoIndex}
+            setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
+            annotationExpanded={annotationExpanded}
+            setAnnotationExpanded={setAnnotationExpanded}
+            handlePhotoUpload={handlePhotoUpload}
+            removePhoto={removePhoto}
+          />
+
+          <QuickCaptureSection
+            inspectionContext={inspectionContext}
+            inspectionMode={inspectionMode}
+            setInspectionMode={setInspectionMode}
+            quickCapture={quickCapture}
+            hazardCategory={hazardCategory}
+            setHazardCategory={setHazardCategory}
+            location={location}
+            setLocation={setLocation}
+            description={description}
+            setDescription={setDescription}
+            photos={photos}
+            manualActionTitle={manualActionTitle}
+            setManualActionTitle={setManualActionTitle}
+            manualActionPriority={manualActionPriority}
+            setManualActionPriority={setManualActionPriority}
+            manualActionDue={manualActionDue}
+            setManualActionDue={setManualActionDue}
+            manualActionClosureEvidence={manualActionClosureEvidence}
+            setManualActionClosureEvidence={setManualActionClosureEvidence}
+            manualActions={manualActions}
+            addManualAction={addManualAction}
+            removeManualAction={removeManualAction}
+          />
+        </div>
       )}
 
       {currentStep === 2 && (
-        <QuickCaptureSection
-          inspectionContext={inspectionContext}
-          inspectionMode={inspectionMode}
-          setInspectionMode={setInspectionMode}
-          quickCapture={quickCapture}
-          hazardCategory={hazardCategory}
-          setHazardCategory={setHazardCategory}
-          location={location}
-          setLocation={setLocation}
-          description={description}
-          setDescription={setDescription}
-          photos={photos}
-          manualActionTitle={manualActionTitle}
-          setManualActionTitle={setManualActionTitle}
-          manualActionPriority={manualActionPriority}
-          setManualActionPriority={setManualActionPriority}
-          manualActionDue={manualActionDue}
-          setManualActionDue={setManualActionDue}
-          manualActionClosureEvidence={manualActionClosureEvidence}
-          setManualActionClosureEvidence={setManualActionClosureEvidence}
-          manualActions={manualActions}
-          addManualAction={addManualAction}
-          removeManualAction={removeManualAction}
-        />
-      )}
-
-      {currentStep === 3 && (
         <SafeScopeInspectionStep
           safeScopeHelpOpen={safeScopeHelpOpen}
           setSafeScopeHelpOpen={setSafeScopeHelpOpen}
@@ -226,34 +226,48 @@ export default function InspectionStepRenderer({
         />
       )}
 
-      {currentStep === 4 && isAdvancedMode && (
-        <RiskReviewSection
-          activeRiskScale={activeRiskScale}
-          safeScopeResult={safeScopeResult}
-          severity={severity}
-          setSeverity={setSeverity}
-          likelihood={likelihood}
-          setLikelihood={setLikelihood}
-        />
-      )}
+      {currentStep === 3 && (
+        <div className="space-y-4">
+          <div className="rounded-xl border border-slate-200 bg-white p-4">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+              Review & Validate
+            </p>
+            <h2 className="mt-1 text-lg font-black text-slate-900">
+              Confirm risk and corrective action direction
+            </h2>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+              SafeScope recommendations stay available for speed. Expand the reasoning panels when validation or report appendix detail is needed.
+            </p>
+          </div>
 
-      {currentStep === 5 && (
-        <CorrectiveActionsSection
-          safeScopeResult={safeScopeResult}
-          selectedGeneratedActions={selectedGeneratedActions}
-          toggleGeneratedAction={toggleGeneratedAction}
-          manualActionTitle={manualActionTitle}
-          setManualActionTitle={setManualActionTitle}
-          manualActionPriority={manualActionPriority}
-          setManualActionPriority={setManualActionPriority}
-          manualActionDue={manualActionDue}
-          setManualActionDue={setManualActionDue}
-          manualActionClosureEvidence={manualActionClosureEvidence}
-          setManualActionClosureEvidence={setManualActionClosureEvidence}
-          manualActions={manualActions}
-          addManualAction={addManualAction}
-          removeManualAction={removeManualAction}
-        />
+          {isAdvancedMode && (
+            <RiskReviewSection
+              activeRiskScale={activeRiskScale}
+              safeScopeResult={safeScopeResult}
+              severity={severity}
+              setSeverity={setSeverity}
+              likelihood={likelihood}
+              setLikelihood={setLikelihood}
+            />
+          )}
+
+          <CorrectiveActionsSection
+            safeScopeResult={safeScopeResult}
+            selectedGeneratedActions={selectedGeneratedActions}
+            toggleGeneratedAction={toggleGeneratedAction}
+            manualActionTitle={manualActionTitle}
+            setManualActionTitle={setManualActionTitle}
+            manualActionPriority={manualActionPriority}
+            setManualActionPriority={setManualActionPriority}
+            manualActionDue={manualActionDue}
+            setManualActionDue={setManualActionDue}
+            manualActionClosureEvidence={manualActionClosureEvidence}
+            setManualActionClosureEvidence={setManualActionClosureEvidence}
+            manualActions={manualActions}
+            addManualAction={addManualAction}
+            removeManualAction={removeManualAction}
+          />
+        </div>
       )}
     </div>
   );

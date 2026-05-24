@@ -44,7 +44,7 @@ export default function CurrentHazardCard({
     manualActions.length,
   );
 
-  if (!hasData || currentStep === 6) return null;
+  if (!hasData || currentStep === 4) return null;
 
   const title =
     hazardCategory || safeScopeResult?.classification || "Current hazard";

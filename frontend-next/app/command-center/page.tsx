@@ -327,8 +327,8 @@ export default function DashboardPage() {
             </p>
             <div className="mt-3 border-y border-slate-200">
               {activityItems.length ? (
-                activityItems.map((item) => (
-                  <div key={`${item.title}-${item.time}`} className="border-b border-slate-200 py-3 last:border-b-0">
+                activityItems.map((item, index) => (
+                  <div key={`${item.type}-${item.title}-${item.time}-${index}`} className="border-b border-slate-200 py-3 last:border-b-0">
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="text-xs font-black uppercase tracking-wide text-slate-400">{item.type}</p>
