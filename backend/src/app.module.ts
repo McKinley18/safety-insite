@@ -19,8 +19,10 @@ import { TransparencyModule } from './transparency/transparency.module';
 import { PdfModule } from './pdf/pdf.module';
 import { BillingModule } from './billing/billing.module';
 import { SafeScopeKnowledgeModule } from './safescope-knowledge/safescope-knowledge.module';
+import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
 
 @Module({
+  controllers: [MaintenanceSeedController],
   imports: [SafescopeV2Module,
     SafeScopeKnowledgeModule, 
     // 🔷 ENVIRONMENT CONFIGURATION: IT standard for secret management
