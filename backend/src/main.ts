@@ -22,10 +22,37 @@ async function bootstrap() {
     transform: true,
   }));
 
-  // 🔷 CORS: Dynamic origin based on environment
+  // 🔷 CORS: Allow local dev and deployed Sentinel Safety frontend origins.
+  const configuredFrontendUrl = configService.get<string>('FRONTEND_URL');
+
+  const allowedOrigins = [
+    configuredFrontendUrl,
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:8081',
+    'https://sentinelsafety.vercel.app',
+    'https://sentinelsafety-mckinley18s-projects.vercel.app',
+  ].filter(Boolean);
+
   app.enableCors({
-    origin: configService.get<string>('FRONTEND_URL') || true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      if (
+        origin.endsWith('.vercel.app') &&
+        origin.includes('sentinelsafety')
+      ) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error(`CORS blocked origin: ${origin}`), false);
+    },
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
 
