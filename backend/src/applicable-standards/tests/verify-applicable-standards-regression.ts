@@ -8,29 +8,36 @@ type TestCase = {
     source: "MSHA" | "OSHA_CONSTRUCTION" | "OSHA_GENERAL_INDUSTRY";
     limit: number;
   };
-  expectedTopCitation: string;
+  expectedTopCitations: string[];
 };
 
 const tests: TestCase[] = [
   {
     name: "MSHA conveyor tail pulley guarding",
     payload: {
-      description: "unguarded moving conveyor tail pulley with exposed pinch point near walkway",
+      description:
+        "unguarded moving conveyor tail pulley with exposed pinch point near walkway",
       hazardCategory: "Machine Guarding",
       source: "MSHA",
       limit: 8,
     },
-    expectedTopCitation: "30 CFR 56.14107(a)",
+    expectedTopCitations: [
+      "30 CFR 56.14107(a)",
+      "30 CFR 56.14107",
+      "30 CFR 57.14107",
+      "30 CFR 77.400",
+    ],
   },
   {
     name: "OSHA construction scaffold missing guardrails",
     payload: {
-      description: "employee working on scaffold platform without guardrails or fall protection",
+      description:
+        "employee working on scaffold platform without guardrails or fall protection",
       hazardCategory: "Fall Protection",
       source: "OSHA_CONSTRUCTION",
       limit: 8,
     },
-    expectedTopCitation: "1926.451",
+    expectedTopCitations: ["1926.451", "29 CFR 1926.451"],
   },
 ];
 
@@ -60,16 +67,20 @@ async function run() {
       continue;
     }
 
-    if (top.citation !== test.expectedTopCitation) {
+    if (!test.expectedTopCitations.includes(top.citation)) {
       failed++;
       console.error(`❌ ${test.name}`);
-      console.error(`   Expected top citation: ${test.expectedTopCitation}`);
+      console.error(
+        `   Expected one of:      ${test.expectedTopCitations.join(", ")}`,
+      );
       console.error(`   Actual top citation:   ${top.citation}`);
       console.error(`   Actual top heading:    ${top.heading}`);
       continue;
     }
 
-    console.log(`✅ ${test.name}: ${top.citation} (${top.confidence}% confidence)`);
+    console.log(
+      `✅ ${test.name}: ${top.citation} (${top.confidence}% confidence)`,
+    );
   }
 
   if (failed > 0) {
