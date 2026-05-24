@@ -192,24 +192,6 @@ export class ApplicableStandardsService {
 
     let all: Standard[] = [];
 
-    try {
-      all = await this.standardRepo.find({
-        where: siteType
-          ? { scopeCode: siteType as any, isActive: true }
-          : { isActive: true },
-        take: 5000,
-      });
-    } catch (error: any) {
-      console.error("Applicable standards repository query failed:", {
-        message: error?.message,
-        name: error?.name,
-        code: error?.code,
-        detail: error?.detail,
-        stack: error?.stack,
-      });
-      all = [];
-    }
-
     let knowledgeMatches: any[] = [];
 
     if (this.knowledgeChunkRepo) {
@@ -237,6 +219,26 @@ export class ApplicableStandardsService {
           detail: error?.detail,
           stack: error?.stack,
         });
+      }
+    }
+
+    if (knowledgeMatches.length === 0) {
+      try {
+        all = await this.standardRepo.find({
+          where: siteType
+            ? { scopeCode: siteType as any, isActive: true }
+            : { isActive: true },
+          take: 5000,
+        });
+      } catch (error: any) {
+        console.error("Applicable standards repository query failed:", {
+          message: error?.message,
+          name: error?.name,
+          code: error?.code,
+          detail: error?.detail,
+          stack: error?.stack,
+        });
+        all = [];
       }
     }
 
