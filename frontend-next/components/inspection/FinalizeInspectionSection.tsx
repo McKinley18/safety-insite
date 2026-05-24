@@ -86,7 +86,8 @@ export default function FinalizeInspectionSection({
     safeScopeResult?.classification
       ? "SafeScope reviewed"
       : "SafeScope not run",
-    `Standards ${selectedStandards.length}`,
+    `Suggested ${safeScopeResult?.suggestedStandards?.length || 0}`,
+    `Selected ${selectedStandards.length}`,
     `Risk ${safeScopeResult?.risk?.riskBand || riskScore || "not rated"}`,
   ]);
 
@@ -254,7 +255,8 @@ export default function FinalizeInspectionSection({
                 finding.safeScopeResult?.classification
                   ? "SafeScope reviewed"
                   : "SafeScope not run",
-                `Standards ${finding.selectedStandards?.length || 0}`,
+                `Suggested ${finding.safeScopeResult?.suggestedStandards?.length || 0}`,
+                `Selected ${finding.selectedStandards?.length || 0}`,
                 `Risk ${
                   finding.safeScopeResult?.risk?.riskBand ||
                   finding.riskScore ||

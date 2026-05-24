@@ -55,13 +55,16 @@ export default function CurrentHazardCard({
   );
 
   const actionCount = selectedGeneratedActions.length + manualActions.length;
+  const suggestedStandardsCount =
+    safeScopeResult?.suggestedStandards?.length || 0;
 
   const status = [
     `${photos.length} photo(s)`,
     safeScopeResult?.classification
       ? "SafeScope reviewed"
       : "SafeScope pending",
-    `Standards ${selectedStandards.length}`,
+    `Suggested ${suggestedStandardsCount}`,
+    `Selected ${selectedStandards.length}`,
     `Actions ${actionCount}`,
   ].join(" · ");
 
@@ -113,7 +116,8 @@ export default function CurrentHazardCard({
             <p>Category: {hazardCategory || "SafeScope / not selected"}</p>
             <p>Photos: {photos.length}</p>
             <p>Actions: {actionCount}</p>
-            <p>Standards: {selectedStandards.length}</p>
+            <p>Suggested standards: {suggestedStandardsCount}</p>
+            <p>Selected standards: {selectedStandards.length}</p>
             <p>
               Risk:{" "}
               {safeScopeResult?.risk?.riskBand ||
