@@ -210,26 +210,74 @@ export async function runSafeScopeV2Classify(input: {
       }
     }
 
-    const response = await apiFetch(`${API_BASE_URL}/safescope-v2/classify`, {
+    const requestUrl = `${API_BASE_URL}/safescope-v2/classify`;
+    const headers = getSafeScopeAuthHeaders();
+
+    if (typeof window !== "undefined") {
+      console.info("[SafeScope] classify request", {
+        requestUrl,
+        hasAuthHeader: Boolean((headers as any).Authorization),
+        textLength: input.text?.length || 0,
+        scopes: input.scopes,
+        evidenceCount: input.evidenceTexts?.length || 0,
+        riskProfileId: input.riskProfileId,
+      });
+    }
+
+    const response = await apiFetch(requestUrl, {
       method: "POST",
-      headers: getSafeScopeAuthHeaders(),
+      headers,
       body: JSON.stringify(input),
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
+    const responseText = await response.text();
 
-      throw new Error(errorText || "SafeScope request failed.");
+    if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        throw new Error(
+          `SafeScope authentication failed (${response.status}). Sign out, sign back in, and try again.`,
+        );
+      }
+
+      throw new Error(
+        `SafeScope backend error ${response.status}: ${
+          responseText || "No response body returned."
+        }`,
+      );
     }
 
-    return response.json();
+    const result = responseText ? JSON.parse(responseText) : null;
+
+    if (typeof window !== "undefined") {
+      console.info("[SafeScope] classify response", {
+        classification: result?.classification,
+        confidence: result?.confidence,
+        suggestedStandards: result?.suggestedStandards?.length || 0,
+        generatedActions: result?.generatedActions?.length || 0,
+      });
+    }
+
+    return result;
   } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "SafeScope request failed.";
+
+    if (
+      message.includes("SafeScope authentication failed") ||
+      message.includes("SafeScope backend error")
+    ) {
+      throw error;
+    }
+
+    if (typeof navigator !== "undefined" && navigator.onLine) {
+      throw new Error(`SafeScope live request failed: ${message}`);
+    }
+
     return buildOfflineSafeScopeFallback({
       text: input.text,
       scopes: input.scopes,
       evidenceTexts: input.evidenceTexts,
-      errorMessage:
-        error instanceof Error ? error.message : "SafeScope request failed.",
+      errorMessage: message,
     });
   }
 }
