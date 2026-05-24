@@ -791,6 +791,10 @@ export class SafescopeV2Service {
           : intelligence.executiveJudgment.primaryAction;
     }
 
+    const uiSuggestedStandards = preservedSuggestedStandards?.length
+      ? preservedSuggestedStandards
+      : primaryStandardsResult.suggestedStandards || [];
+
     return {
       classification: finalPrimary.classification,
       confidence: finalPrimary.confidence,
@@ -809,12 +813,18 @@ export class SafescopeV2Service {
       excludedHazards:
         promotedPrimary.excludedHazards || result.excludedHazards || [],
       ...primaryStandardsResult,
-      suggestedStandards: preservedSuggestedStandards,
       excludedStandards: primaryStandardsResult.excludedStandards || [],
       risk: finalRisk,
       evidenceFusion,
       expandedContext,
       ...intelligence,
+      suggestedStandards: uiSuggestedStandards,
+      standardsReasoning: {
+        ...(intelligence.standardsReasoning || {}),
+        topDefensible: intelligence.standardsReasoning?.topDefensible?.length
+          ? intelligence.standardsReasoning.topDefensible
+          : uiSuggestedStandards.slice(0, 3),
+      },
       reasoningSnapshotId,
       generatedActions: preservedGeneratedActions,
       knowledgeBrain,
