@@ -193,53 +193,62 @@ export class ApplicableStandardsService {
     let all: Standard[] = [];
 
     let knowledgeMatches: any[] = [];
-
     if (this.knowledgeChunkRepo) {
       try {
-        const chunks = await this.knowledgeChunkRepo.find({
-          relations: ["document"],
-          where: {
-            document: {
-              sourceType: "regulation" as any,
-            },
-          } as any,
-          take: 5000,
-        });
+        const queryBuilder = this.knowledgeChunkRepo
+          .createQueryBuilder("c")
+          .innerJoinAndSelect("c.document", "d")
+          .where("d.sourceType = :sourceType", { sourceType: "regulation" });
+
+        // Add agency filter if provided
+        if (source === "MSHA") {
+          queryBuilder.andWhere("d.agency = :agency", { agency: "MSHA" });
+        } else if (
+          source === "OSHA_CONSTRUCTION" ||
+          source === "OSHA_GENERAL_INDUSTRY"
+        ) {
+          queryBuilder.andWhere("d.agency = :agency", { agency: "OSHA" });
+        }
+
+        const chunks = await queryBuilder.take(5000).getMany();
+        console.log(
+          `Diagnostic: Retrieved ${chunks.length} chunks from SafeScopeKnowledgeChunk`,
+        );
 
         knowledgeMatches = chunks
           .map((chunk) =>
             this.scoreKnowledgeChunk(chunk, observation, siteType),
           )
-          .filter((item) => item.score > 0);
+          .filter((item) => item.score > 0)
+          .sort((a, b) => b.score - a.score);
+
+        console.log(`Diagnostic: Found ${knowledgeMatches.length} matches > 0`);
+        knowledgeMatches
+          .slice(0, 5)
+          .forEach((m) =>
+            console.log(
+              `   - Citation: ${m.citation}, Score: ${m.score}, Reasons: ${m.matchingReasons.join(", ")}`,
+            ),
+          );
       } catch (error: any) {
-        console.error("Applicable standards knowledge query failed:", {
-          message: error?.message,
-          name: error?.name,
-          code: error?.code,
-          detail: error?.detail,
-          stack: error?.stack,
-        });
+        console.error("Applicable standards knowledge query failed:", error);
       }
     }
 
-    if (knowledgeMatches.length === 0) {
-      try {
-        all = await this.standardRepo.find({
-          where: siteType
-            ? { scopeCode: siteType as any, isActive: true }
-            : { isActive: true },
-          take: 5000,
-        });
-      } catch (error: any) {
-        console.error("Applicable standards repository query failed:", {
-          message: error?.message,
-          name: error?.name,
-          code: error?.code,
-          detail: error?.detail,
-          stack: error?.stack,
-        });
-        all = [];
-      }
+    if (knowledgeMatches.length > 0) {
+      return knowledgeMatches.slice(0, limit);
+    }
+
+    try {
+      all = await this.standardRepo.find({
+        where: siteType
+          ? { scopeCode: siteType as any, isActive: true }
+          : { isActive: true },
+        take: 5000,
+      });
+    } catch (error: any) {
+      console.error("Applicable standards repository query failed:", error);
+      all = [];
     }
 
     const fallbackStandards =
