@@ -34,7 +34,10 @@ export function buildFinding(input: {
 
   return {
     id: findingId,
-    hazardCategory: input.hazardCategory,
+    hazardCategory:
+      input.hazardCategory ||
+      input.safeScopeResult?.classification ||
+      "Uncategorized",
     description: input.description,
     location: input.location,
     evidenceNotes: input.evidenceNotes,
