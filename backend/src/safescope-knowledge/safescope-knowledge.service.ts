@@ -527,16 +527,56 @@ export class SafeScopeKnowledgeService {
   }
 
   private extractTerms(query: string) {
-    return Array.from(
-      new Set(
-        query
-          .toLowerCase()
-          .replace(/[^a-z0-9\s/-]/g, " ")
-          .split(/\s+/)
-          .filter((term) => term.length >= 4)
-          .slice(0, 14),
-      ),
-    );
+    const stopTerms = new Set([
+      "condition",
+      "hazard",
+      "hazards",
+      "observed",
+      "exposed",
+      "during",
+      "operation",
+      "location",
+      "photo",
+      "shows",
+      "shown",
+      "near",
+      "area",
+      "deck",
+      "miners",
+      "workers",
+      "employees",
+      "safety",
+      "review",
+      "current",
+    ]);
+
+    const normalized = query
+      .toLowerCase()
+      .replace(/[^a-z0-9\s/-]/g, " ");
+
+    const meaningfulPhrases = [
+      "machine guarding",
+      "moving parts",
+      "rotating parts",
+      "conveyor pulley",
+      "drive pulley",
+      "pinch point",
+      "unguarded moving parts",
+      "mobile equipment",
+      "haul truck",
+      "forklift",
+      "fall protection",
+      "lockout tagout",
+      "confined space",
+      "electrical panel",
+    ].filter((phrase) => normalized.includes(phrase));
+
+    const tokens = normalized
+      .split(/\s+/)
+      .filter((term) => term.length >= 4 && !stopTerms.has(term))
+      .slice(0, 20);
+
+    return Array.from(new Set([...meaningfulPhrases, ...tokens]));
   }
 
   private scoreChunk(
@@ -587,8 +627,69 @@ export class SafeScopeKnowledgeService {
           ? 100
           : 0;
 
+    const machineGuardingQuery =
+      /(machine guarding|unguarded|guard|guarding|moving parts|rotating parts|conveyor|pulley|pinch point|nip point|drive|shaft|sprocket|chain|belt)/.test(
+        normalizedQuery,
+      );
+
+    const mobileEquipmentQuery =
+      /(mobile equipment|haul truck|loader|forklift|traffic|pedestrian|backing|spotter|berm|blind spot|vehicle|truck)/.test(
+        normalizedQuery,
+      );
+
+    const lotoQuery =
+      /(lockout|tagout|loto|deenergized|zero energy|maintenance|servicing|repair|jam clearing|troubleshooting)/.test(
+        normalizedQuery,
+      );
+
+    const fallQuery =
+      /(fall protection|fall hazard|unprotected edge|ladder|scaffold|platform|roof|guardrail|opening|elevated work)/.test(
+        normalizedQuery,
+      );
+
+    let domainScore = 0;
+
+    if (machineGuardingQuery) {
+      if (
+        /(machine guarding|unguarded moving parts|moving machine parts|pinch point|entanglement|conveyor|pulley|rotating shaft|guarding)/.test(
+          haystack,
+        )
+      ) {
+        domainScore += 80;
+      }
+
+      if (/mobile equipment|haul truck|loader|forklift|pedestrian|traffic|backing|spotter|berm|blind spot/.test(haystack) && !mobileEquipmentQuery) {
+        domainScore -= 60;
+      }
+
+      if (/fall hazard|fall protection|guardrail|ladder|scaffold|roof|unprotected edge/.test(haystack) && !fallQuery) {
+        domainScore -= 45;
+      }
+
+      if (/lockout tagout|hazardous energy|zero energy|unexpected startup/.test(haystack) && !lotoQuery) {
+        domainScore -= 35;
+      }
+    }
+
+    if (mobileEquipmentQuery && /mobile equipment|haul truck|loader|forklift|pedestrian|traffic|backing|spotter|berm|blind spot/.test(haystack)) {
+      domainScore += 70;
+    }
+
+    if (lotoQuery && /lockout tagout|hazardous energy|zero energy|unexpected startup|stored energy/.test(haystack)) {
+      domainScore += 70;
+    }
+
+    if (fallQuery && /fall hazard|fall protection|guardrail|ladder|scaffold|roof|unprotected edge/.test(haystack)) {
+      domainScore += 70;
+    }
+
     return (
-      termScore + phraseScore + authorityScore + tagScore + exactCitationScore
+      termScore +
+      phraseScore +
+      authorityScore +
+      tagScore +
+      exactCitationScore +
+      domainScore
     );
   }
 
