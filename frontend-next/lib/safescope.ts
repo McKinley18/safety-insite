@@ -8,6 +8,21 @@ export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:4000";
 
+function getSafeScopeAuthHeaders() {
+  if (typeof window === "undefined") {
+    return { "Content-Type": "application/json" };
+  }
+
+  const token =
+    window.localStorage.getItem("sentinel_auth_token") ||
+    window.localStorage.getItem("token");
+
+  return {
+    "Content-Type": "application/json",
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+}
+
 function runBasicSafeScopeFallback(text: string, payload: any) {
   const lower = text.toLowerCase();
 
@@ -197,6 +212,7 @@ export async function runSafeScopeV2Classify(input: {
 
     const response = await apiFetch(`${API_BASE_URL}/safescope-v2/classify`, {
       method: "POST",
+      headers: getSafeScopeAuthHeaders(),
       body: JSON.stringify(input),
     });
 
