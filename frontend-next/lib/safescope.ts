@@ -201,33 +201,35 @@ export async function runSafeScopeV2Classify(input: {
   riskProfileId?: "simple_4x4" | "standard_5x5" | "advanced_6x6";
   priorFindings?: any[];
 }) {
+  const requestUrl = `${API_BASE_URL}/safescope-v2/classify`;
+
+  const safePayload = {
+    text: String(input.text || "").trim(),
+    scopes: Array.isArray(input.scopes) ? input.scopes : ["msha"],
+    riskProfileId: input.riskProfileId || "standard_5x5",
+    evidenceTexts: Array.isArray(input.evidenceTexts)
+      ? input.evidenceTexts.map((item) => String(item || "").trim()).filter(Boolean)
+      : [],
+  };
+
+  const headers = getSafeScopeAuthHeaders();
+
+  if (typeof window !== "undefined") {
+    console.info("[SafeScope] direct classify request", {
+      requestUrl,
+      hasAuthHeader: Boolean((headers as any).Authorization),
+      textLength: safePayload.text.length,
+      scopes: safePayload.scopes,
+      evidenceCount: safePayload.evidenceTexts.length,
+      riskProfileId: safePayload.riskProfileId,
+    });
+  }
+
   try {
-    if (typeof navigator !== "undefined" && navigator.onLine) {
-      try {
-        await downloadSafeScopeBrainBundle();
-      } catch {
-        // Bundle refresh should never block live SafeScope review.
-      }
-    }
-
-    const requestUrl = `${API_BASE_URL}/safescope-v2/classify`;
-    const headers = getSafeScopeAuthHeaders();
-
-    if (typeof window !== "undefined") {
-      console.info("[SafeScope] classify request", {
-        requestUrl,
-        hasAuthHeader: Boolean((headers as any).Authorization),
-        textLength: input.text?.length || 0,
-        scopes: input.scopes,
-        evidenceCount: input.evidenceTexts?.length || 0,
-        riskProfileId: input.riskProfileId,
-      });
-    }
-
-    const response = await apiFetch(requestUrl, {
+    const response = await fetch(requestUrl, {
       method: "POST",
       headers,
-      body: JSON.stringify(input),
+      body: JSON.stringify(safePayload),
     });
 
     const responseText = await response.text();
@@ -249,9 +251,10 @@ export async function runSafeScopeV2Classify(input: {
     const result = responseText ? JSON.parse(responseText) : null;
 
     if (typeof window !== "undefined") {
-      console.info("[SafeScope] classify response", {
+      console.info("[SafeScope] direct classify response", {
         classification: result?.classification,
         confidence: result?.confidence,
+        confidenceBand: result?.confidenceBand,
         suggestedStandards: result?.suggestedStandards?.length || 0,
         generatedActions: result?.generatedActions?.length || 0,
       });
@@ -262,23 +265,16 @@ export async function runSafeScopeV2Classify(input: {
     const message =
       error instanceof Error ? error.message : "SafeScope request failed.";
 
-    if (
-      message.includes("SafeScope authentication failed") ||
-      message.includes("SafeScope backend error")
-    ) {
-      throw error;
+    if (typeof navigator !== "undefined" && !navigator.onLine) {
+      return buildOfflineSafeScopeFallback({
+        text: safePayload.text,
+        scopes: safePayload.scopes,
+        evidenceTexts: safePayload.evidenceTexts,
+        errorMessage: message,
+      });
     }
 
-    if (typeof navigator !== "undefined" && navigator.onLine) {
-      throw new Error(`SafeScope live request failed: ${message}`);
-    }
-
-    return buildOfflineSafeScopeFallback({
-      text: input.text,
-      scopes: input.scopes,
-      evidenceTexts: input.evidenceTexts,
-      errorMessage: message,
-    });
+    throw new Error(`SafeScope live request failed: ${message}`);
   }
 }
 
