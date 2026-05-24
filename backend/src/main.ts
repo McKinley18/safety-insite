@@ -12,9 +12,6 @@ async function bootstrap() {
   app.use(cookieParser());
   const configService = app.get(ConfigService);
 
-  // 🔷 SECURITY HEADERS
-  app.use(helmet());
-
   // 🔷 GLOBAL VALIDATION
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
@@ -52,9 +49,12 @@ async function bootstrap() {
       callback(new Error(`CORS blocked origin: ${origin}`), false);
     },
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
+    optionsSuccessStatus: 204,
   });
+
+  // 🔷 SECURITY HEADERS
+  app.use(helmet());
 
   app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
   app.use('/offline', express.static(join(process.cwd(), 'dist', 'offline')));
