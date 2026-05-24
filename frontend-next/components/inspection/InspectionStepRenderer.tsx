@@ -2,7 +2,6 @@
 
 import CorrectiveActionsSection from "@/components/inspection/CorrectiveActionsSection";
 import EvidenceCaptureSection from "@/components/inspection/EvidenceCaptureSection";
-import QuickCaptureSection from "@/components/inspection/QuickCaptureSection";
 import RiskReviewSection from "@/components/inspection/RiskReviewSection";
 import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
 
@@ -161,6 +160,12 @@ export default function InspectionStepRenderer({
           <EvidenceCaptureSection
             photos={photos}
             setPhotos={setPhotos}
+            description={description}
+            setDescription={setDescription}
+            location={location}
+            setLocation={setLocation}
+            hazardCategory={hazardCategory}
+            setHazardCategory={setHazardCategory}
             evidenceNotes={evidenceNotes}
             setEvidenceNotes={setEvidenceNotes}
             annotatingPhotoIndex={annotatingPhotoIndex}
@@ -171,30 +176,6 @@ export default function InspectionStepRenderer({
             removePhoto={removePhoto}
           />
 
-          <QuickCaptureSection
-            inspectionContext={inspectionContext}
-            inspectionMode={inspectionMode}
-            setInspectionMode={setInspectionMode}
-            quickCapture={quickCapture}
-            hazardCategory={hazardCategory}
-            setHazardCategory={setHazardCategory}
-            location={location}
-            setLocation={setLocation}
-            description={description}
-            setDescription={setDescription}
-            photos={photos}
-            manualActionTitle={manualActionTitle}
-            setManualActionTitle={setManualActionTitle}
-            manualActionPriority={manualActionPriority}
-            setManualActionPriority={setManualActionPriority}
-            manualActionDue={manualActionDue}
-            setManualActionDue={setManualActionDue}
-            manualActionClosureEvidence={manualActionClosureEvidence}
-            setManualActionClosureEvidence={setManualActionClosureEvidence}
-            manualActions={manualActions}
-            addManualAction={addManualAction}
-            removeManualAction={removeManualAction}
-          />
         </div>
       )}
 
@@ -228,28 +209,23 @@ export default function InspectionStepRenderer({
 
       {currentStep === 3 && (
         <div className="space-y-4">
-          <div className="rounded-xl border border-slate-200 bg-white p-4">
+          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Review & Validate
             </p>
-            <h2 className="mt-1 text-lg font-black text-slate-900">
-              Confirm risk and corrective action direction
-            </h2>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-              SafeScope recommendations stay available for speed. Expand the reasoning panels when validation or report appendix detail is needed.
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+              Confirm the risk, standards, and corrective actions before saving.
             </p>
           </div>
 
-          {isAdvancedMode && (
-            <RiskReviewSection
-              activeRiskScale={activeRiskScale}
-              safeScopeResult={safeScopeResult}
-              severity={severity}
-              setSeverity={setSeverity}
-              likelihood={likelihood}
-              setLikelihood={setLikelihood}
-            />
-          )}
+          <RiskReviewSection
+            activeRiskScale={activeRiskScale}
+            safeScopeResult={safeScopeResult}
+            severity={severity}
+            setSeverity={setSeverity}
+            likelihood={likelihood}
+            setLikelihood={setLikelihood}
+          />
 
           <CorrectiveActionsSection
             safeScopeResult={safeScopeResult}
@@ -269,6 +245,7 @@ export default function InspectionStepRenderer({
           />
         </div>
       )}
+
     </div>
   );
 }

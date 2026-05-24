@@ -1,8 +1,15 @@
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
+import { hazardCategoryOptions } from "@/lib/inspection/inspectionConstants";
 
 type Props = {
   photos: any[];
   setPhotos: (photos: any[]) => void;
+  description: string;
+  setDescription: (value: string) => void;
+  location: string;
+  setLocation: (value: string) => void;
+  hazardCategory: string;
+  setHazardCategory: (value: string) => void;
   evidenceNotes: string;
   setEvidenceNotes: (value: string) => void;
   annotatingPhotoIndex: number | null;
@@ -16,6 +23,12 @@ type Props = {
 export default function EvidenceCaptureSection({
   photos,
   setPhotos,
+  description,
+  setDescription,
+  location,
+  setLocation,
+  hazardCategory,
+  setHazardCategory,
   evidenceNotes,
   setEvidenceNotes,
   annotatingPhotoIndex,
@@ -33,7 +46,7 @@ export default function EvidenceCaptureSection({
             Capture Evidence
           </p>
           <p className="mt-1 text-sm font-semibold text-slate-500">
-            Take or upload photos before describing the finding.
+            Add evidence, describe the condition, and note where it was found.
           </p>
         </div>
 
@@ -153,6 +166,68 @@ export default function EvidenceCaptureSection({
           No photos attached yet.
         </p>
       )}
+
+      <section className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="mb-3">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            Observed Condition
+          </p>
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+            Keep it short. SafeScope will organize the details.
+          </p>
+        </div>
+
+        <textarea
+          className="min-h-32 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-base font-semibold leading-6 text-slate-900 outline-none transition focus:border-[#1D72B8]"
+          placeholder="Example: Missing guard on rotating shaft near crusher drive."
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+
+        <div className="mt-3">
+          <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+            Location
+          </label>
+          <input
+            className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+            placeholder="Example: Crusher deck, west platform"
+            value={location}
+            onChange={(event) => setLocation(event.target.value)}
+          />
+        </div>
+
+        <details className="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-600">
+            Optional: choose hazard category
+          </summary>
+
+          <div className="mt-3 grid gap-3">
+            <select
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              value={hazardCategory}
+              onChange={(event) => setHazardCategory(event.target.value)}
+            >
+              <option value="">Let SafeScope classify</option>
+              {hazardCategoryOptions.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+
+            <input
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              placeholder="Or type custom category"
+              value={hazardCategory}
+              onChange={(event) => setHazardCategory(event.target.value)}
+            />
+          </div>
+        </details>
+      </section>
+
+      <div className="rounded-2xl bg-slate-50 px-3 py-3 text-xs font-black text-slate-500">
+        Photos {photos.length} · {description ? "Condition described" : "No description"} · {location ? "Location added" : "No location"} · {hazardCategory ? `Category: ${hazardCategory}` : "Category: SafeScope"}
+      </div>
     </>
   );
 }
