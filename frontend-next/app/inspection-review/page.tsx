@@ -264,100 +264,354 @@ export default function InspectionReviewPage() {
                     : finding.photos || [];
 
                 return (
-                  <div key={finding.id || index} className="py-5">
-                    <div className="flex items-start justify-between gap-3">
+                  <div
+                    key={finding.id || index}
+                    className="py-6 border-b border-slate-200 last:border-b-0"
+                  >
+                    {/* Header: Finding Category, Risk Badge, and Actions */}
+                    <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
-                        <h3 className="font-black text-slate-900">
-                          Finding {index + 1}:{" "}
+                        <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                          Finding {index + 1}
+                        </span>
+                        <h3 className="text-lg font-black text-[#102A43] leading-tight">
                           {finding.hazardCategory || "Uncategorized"}
                         </h3>
-                        <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
-                          {finding.description || "No description provided."}
-                        </p>
                       </div>
 
-                      <div className="flex shrink-0 flex-col items-end gap-2">
+                      <div className="flex shrink-0 items-center gap-2">
                         <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700">
                           {getFindingRisk(finding)}
                         </span>
 
-                        <div className="flex gap-2">
-                          <button
-                            type="button"
-                            onClick={() => editFindingFromReview(index)}
-                            className="rounded-lg bg-[#102A43] px-3 py-2 text-xs font-black text-white"
-                          >
-                            Edit
-                          </button>
+                        <button
+                          type="button"
+                          onClick={() => editFindingFromReview(index)}
+                          className="rounded-lg bg-[#102A43] px-3 py-1.5 text-xs font-black text-white hover:bg-[#1D72B8] transition"
+                        >
+                          Edit
+                        </button>
 
-                          <button
-                            type="button"
-                            onClick={() => deleteFindingFromReview(index)}
-                            className="rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
-                          >
-                            Remove
-                          </button>
-                        </div>
+                        <button
+                          type="button"
+                          onClick={() => deleteFindingFromReview(index)}
+                          className="rounded-lg bg-red-50 px-3 py-1.5 text-xs font-black text-red-700 hover:bg-red-100 transition"
+                        >
+                          Remove
+                        </button>
                       </div>
                     </div>
 
-                    <div className="mt-4 grid gap-4 md:grid-cols-3">
+                    {/* 1. Field Report Summary (Always visible) */}
+                    <div className="mt-3">
+                      <p className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                        Observed Condition
+                      </p>
+                      <p className="mt-0.5 text-sm font-semibold leading-relaxed text-slate-700">
+                        {finding.description || "No description provided."}
+                      </p>
+                    </div>
+
+                    <div className="mt-4 grid gap-4 sm:grid-cols-3 rounded-xl border border-slate-100 bg-slate-50/50 p-4">
                       <div>
-                        <p className="text-xs font-black uppercase tracking-wide text-[#F97316]">
-                          Standards
+                        <p className="text-[10px] font-black uppercase tracking-wider text-[#F97316]">
+                          Primary Standard
                         </p>
-                        <p className="mt-1 text-sm font-semibold text-slate-600">
-                          {standards.length
-                            ? standards
-                                .map(
-                                  (standard: any) =>
-                                    standard.citation || standard,
-                                )
-                                .join(", ")
+                        <p className="mt-1 text-sm font-bold text-slate-800">
+                          {standards[0]
+                            ? standards[0].citation || standards[0]
                             : "None selected"}
                         </p>
                       </div>
 
                       <div>
-                        <p className="text-xs font-black uppercase tracking-wide text-[#F97316]">
-                          Corrective Actions
+                        <p className="text-[10px] font-black uppercase tracking-wider text-[#F97316]">
+                          Primary Corrective Action
                         </p>
-                        <p className="mt-1 text-sm font-semibold text-slate-600">
-                          {actions.length} selected
+                        <p className="mt-1 text-sm font-bold text-slate-800 leading-tight">
+                          {actions[0]
+                            ? actions[0].title ||
+                              actions[0].description ||
+                              "Corrective action"
+                            : "None assigned"}
                         </p>
                       </div>
 
                       <div>
-                        <p className="text-xs font-black uppercase tracking-wide text-[#F97316]">
-                          Evidence
+                        <p className="text-[10px] font-black uppercase tracking-wider text-[#F97316]">
+                          Closure Evidence
                         </p>
-                        <p className="mt-1 text-sm font-semibold text-slate-600">
-                          {photos.length} photo(s)
+                        <p className="mt-1 text-sm font-bold text-slate-800">
+                          {actions[0]
+                            ? actions[0].closureEvidence ||
+                              "Photo of completed action"
+                            : "Not specified"}
                         </p>
                       </div>
                     </div>
 
-                    {!!actions.length && (
-                      <div className="mt-3 space-y-2">
-                        {actions.map((action: any, actionIndex: number) => (
-                          <div
-                            key={actionIndex}
-                            className="rounded-xl bg-slate-50 px-3 py-2"
-                          >
-                            <p className="text-sm font-black text-slate-800">
-                              {action.title ||
-                                action.description ||
-                                "Corrective action"}
-                            </p>
-                            <p className="mt-1 text-xs font-bold leading-5 text-slate-500">
-                              Priority: {action.priority || "Medium"} · Due:{" "}
-                              {action.due || "Not set"} · Closure Evidence:{" "}
-                              {action.closureEvidence || "Photo"}
+                    {/* 2. Detailed Safety Review (Collapsed details) */}
+                    <details className="mt-4 group border border-slate-200 rounded-xl overflow-hidden bg-white">
+                      <summary className="flex items-center justify-between cursor-pointer bg-slate-50 px-4 py-2.5 text-xs font-black uppercase tracking-wide text-slate-700 select-none group-open:border-b group-open:border-slate-200">
+                        <span>Detailed Safety Review</span>
+                        <span className="text-slate-400 group-open:rotate-180 transition-transform">
+                          ▼
+                        </span>
+                      </summary>
+
+                      <div className="p-4 space-y-4 text-slate-700">
+                        {/* Evidence count, SafeScope confidence, supervisor triggers */}
+                        <div className="grid gap-4 sm:grid-cols-3 border-b border-slate-100 pb-3">
+                          <div>
+                            <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                              Evidence Count
+                            </span>
+                            <p className="mt-0.5 text-sm font-bold text-slate-800">
+                              {photos.length} photo(s)
                             </p>
                           </div>
-                        ))}
+                          {finding.safeScopeResult?.confidence !==
+                            undefined && (
+                            <div>
+                              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                SafeScope Confidence
+                              </span>
+                              <p className="mt-0.5 text-sm font-bold text-slate-800">
+                                {finding.safeScopeResult.confidence}%
+                              </p>
+                            </div>
+                          )}
+                          {!!finding.safeScopeResult?.confidenceIntelligence
+                            ?.reviewTriggers?.length && (
+                            <div>
+                              <span className="text-[10px] font-black uppercase tracking-wider text-red-500">
+                                Supervisor Review
+                              </span>
+                              <p className="mt-0.5 text-xs font-black text-red-700">
+                                ⚠️ Triggered (
+                                {
+                                  finding.safeScopeResult.confidenceIntelligence
+                                    .reviewTriggers.length
+                                }
+                                )
+                              </p>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Matching Reasons */}
+                        {(() => {
+                          const allSuggested =
+                            finding.safeScopeResult?.suggestedStandards || [];
+                          const reasons = standards.flatMap((selected: any) => {
+                            const cit = selected.citation || selected;
+                            const sug = allSuggested.find(
+                              (s: any) => s.citation === cit,
+                            );
+                            return (
+                              sug?.matchingReasons ||
+                              selected.matchingReasons ||
+                              []
+                            );
+                          });
+
+                          if (reasons.length === 0) return null;
+                          return (
+                            <div className="border-b border-slate-100 pb-3">
+                              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                Matching Reasons
+                              </span>
+                              <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-600">
+                                {Array.from(new Set(reasons))
+                                  .slice(0, 6)
+                                  .join(" • ")}
+                              </p>
+                            </div>
+                          );
+                        })()}
+
+                        {/* Additional Selected Standards */}
+                        {(() => {
+                          const additionalStandards = standards.slice(1);
+                          return (
+                            <div className="border-b border-slate-100 pb-3">
+                              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                Additional Selected Standards
+                              </span>
+                              <p className="mt-0.5 text-sm font-semibold text-slate-600">
+                                {additionalStandards.length
+                                  ? additionalStandards
+                                      .map((s: any) => s.citation || s)
+                                      .join(", ")
+                                  : "None"}
+                              </p>
+                            </div>
+                          );
+                        })()}
+
+                        {/* Additional Corrective Actions */}
+                        {(() => {
+                          const additionalActions = actions.slice(1);
+                          return (
+                            <div>
+                              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                Additional Corrective Actions
+                              </span>
+                              {additionalActions.length ? (
+                                <div className="mt-2 space-y-2">
+                                  {additionalActions.map(
+                                    (action: any, actionIndex: number) => (
+                                      <div
+                                        key={actionIndex}
+                                        className="rounded-xl border border-slate-200 bg-slate-50/50 px-3 py-2"
+                                      >
+                                        <p className="text-sm font-black text-slate-800">
+                                          {action.title ||
+                                            action.description ||
+                                            "Corrective action"}
+                                        </p>
+                                        <p className="mt-1 text-xs font-bold leading-5 text-slate-500">
+                                          Priority:{" "}
+                                          {action.priority || "Medium"} · Due:{" "}
+                                          {action.due || "Not set"} · Evidence:{" "}
+                                          {action.closureEvidence || "Photo"}
+                                        </p>
+                                      </div>
+                                    ),
+                                  )}
+                                </div>
+                              ) : (
+                                <p className="mt-0.5 text-sm font-semibold text-slate-500">
+                                  None
+                                </p>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </div>
-                    )}
+                    </details>
+
+                    {/* 3. Audit Appendix / Traceability (Collapsed details) */}
+                    {(() => {
+                      const hasSnapshot =
+                        !!finding.safeScopeResult?.reasoningSnapshotId;
+                      const matches =
+                        finding.safeScopeResult?.knowledgeBrain?.matches || [];
+                      const evidenceGaps =
+                        finding.safeScopeResult?.knowledgeBrain?.evidenceGaps ||
+                        finding.safeScopeResult?.confidenceIntelligence
+                          ?.missingCriticalInformation ||
+                        [];
+                      const caution =
+                        finding.safeScopeResult?.knowledgeBrain?.caution ||
+                        finding.safeScopeResult?.confidenceIntelligence
+                          ?.caution;
+
+                      if (
+                        !hasSnapshot &&
+                        matches.length === 0 &&
+                        evidenceGaps.length === 0 &&
+                        !caution
+                      )
+                        return null;
+
+                      return (
+                        <details className="mt-3 group border border-slate-200 rounded-xl overflow-hidden bg-white">
+                          <summary className="flex items-center justify-between cursor-pointer bg-slate-50 px-4 py-2.5 text-xs font-black uppercase tracking-wide text-slate-700 select-none group-open:border-b group-open:border-slate-200">
+                            <span>Audit Appendix & Traceability</span>
+                            <span className="text-slate-400 group-open:rotate-180 transition-transform">
+                              ▼
+                            </span>
+                          </summary>
+
+                          <div className="p-4 space-y-4 text-slate-700">
+                            {/* Snapshot ID */}
+                            {finding.safeScopeResult?.reasoningSnapshotId && (
+                              <div className="border-b border-slate-100 pb-3">
+                                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                  SafeScope Snapshot ID
+                                </span>
+                                <div className="mt-1">
+                                  <span className="text-xs font-mono font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block">
+                                    {
+                                      finding.safeScopeResult
+                                        .reasoningSnapshotId
+                                    }
+                                  </span>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Knowledge Brain matches count */}
+                            {finding.safeScopeResult?.knowledgeBrain && (
+                              <div className="border-b border-slate-100 pb-3">
+                                <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                                  Knowledge Brain Reference
+                                </span>
+                                <p className="mt-0.5 text-sm font-bold text-slate-800">
+                                  {matches.length} source(s) retrieved with{" "}
+                                  {Math.round(
+                                    (finding.safeScopeResult.knowledgeBrain
+                                      .confidence || 0) * 100,
+                                  )}
+                                  % base confidence.
+                                </p>
+                                {!!matches.length && (
+                                  <div className="mt-2 space-y-2">
+                                    {matches
+                                      .slice(0, 3)
+                                      .map((match: any, matchIdx: number) => (
+                                        <div
+                                          key={matchIdx}
+                                          className="rounded-lg border border-slate-100 bg-slate-50/50 p-2.5 text-xs"
+                                        >
+                                          <p className="font-black text-slate-800">
+                                            {match.title ||
+                                              "Knowledge Reference"}
+                                          </p>
+                                          <p className="mt-0.5 font-bold text-slate-500">
+                                            {match.agency} · Tier{" "}
+                                            {match.authorityTier} ·{" "}
+                                            {match.citation}
+                                          </p>
+                                          {match.reason && (
+                                            <p className="mt-1 font-semibold text-slate-600">
+                                              Why matched: {match.reason}
+                                            </p>
+                                          )}
+                                        </div>
+                                      ))}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Evidence Gaps info */}
+                            {!!evidenceGaps.length && (
+                              <div className="rounded-xl border border-amber-200 bg-amber-50/30 p-3">
+                                <span className="text-[10px] font-black uppercase tracking-wider text-amber-800">
+                                  Evidence Gaps Identified
+                                </span>
+                                <ul className="mt-1.5 list-disc space-y-1 pl-4 text-xs font-bold leading-relaxed text-amber-900">
+                                  {evidenceGaps
+                                    .slice(0, 4)
+                                    .map((gap: string, gapIdx: number) => (
+                                      <li key={gapIdx}>{gap}</li>
+                                    ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {/* Source-aware caution/confidence note */}
+                            {caution && (
+                              <p className="text-[10px] font-bold leading-relaxed text-slate-500 italic border-t border-slate-100 pt-2">
+                                ⚠️ {caution}
+                              </p>
+                            )}
+                          </div>
+                        </details>
+                      );
+                    })()}
                   </div>
                 );
               })}
