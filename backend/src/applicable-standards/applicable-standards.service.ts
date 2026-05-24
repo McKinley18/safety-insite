@@ -198,7 +198,17 @@ export class ApplicableStandardsService {
         const queryBuilder = this.knowledgeChunkRepo
           .createQueryBuilder("c")
           .innerJoinAndSelect("c.document", "d")
-          .where("d.sourceType = :sourceType", { sourceType: "regulation" });
+          .where("d.sourceType = :sourceType", { sourceType: "regulation" })
+          .andWhere("c.citation IS NOT NULL")
+          .andWhere("c.citation ~ :cfrCitationPattern", {
+            cfrCitationPattern: "^(29|30) CFR ",
+          })
+          .andWhere("c.citation NOT ILIKE :testCitation", {
+            testCitation: "TEST-%",
+          })
+          .andWhere("c.citation NOT ILIKE :starterCitation", {
+            starterCitation: "SAFE-SCOPE-%",
+          });
 
         // Add agency filter if provided
         if (source === "MSHA") {
