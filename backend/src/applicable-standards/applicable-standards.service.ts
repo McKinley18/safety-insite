@@ -231,8 +231,6 @@ export class ApplicableStandardsService {
           )
           .filter((item) => item.score > 0)
           .sort((a, b) => b.score - a.score);
-
-        console.log(`Diagnostic: Found ${knowledgeMatches.length} matches > 0`);
         knowledgeMatches
           .slice(0, 5)
           .forEach((m) =>
