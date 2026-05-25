@@ -210,6 +210,7 @@ export async function runSafeScopeV2Classify(input: {
     evidenceTexts: Array.isArray(input.evidenceTexts)
       ? input.evidenceTexts.map((item) => String(item || "").trim()).filter(Boolean)
       : [],
+    priorFindings: Array.isArray(input.priorFindings) ? input.priorFindings : [],
   };
 
   const headers = getSafeScopeAuthHeaders();
@@ -221,6 +222,7 @@ export async function runSafeScopeV2Classify(input: {
       textLength: safePayload.text.length,
       scopes: safePayload.scopes,
       evidenceCount: safePayload.evidenceTexts.length,
+      priorFindingsCount: safePayload.priorFindings.length,
       riskProfileId: safePayload.riskProfileId,
     });
   }
