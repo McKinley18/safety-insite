@@ -249,7 +249,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="mx-auto mt-5 grid max-w-4xl grid-cols-2 justify-center gap-3 lg:grid-cols-4">
           {[
             [String(dashboardMetrics.inspections), "Inspections"],
             [String(dashboardMetrics.openFindings), "Open Findings"],
