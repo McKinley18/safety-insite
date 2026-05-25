@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
+import { getStoredPlanCode, hasPlanEntitlement, type PlanCode } from "@/lib/planEntitlements";
 
 type AnalyticsReport = {
   id?: string;
@@ -173,6 +174,7 @@ function MetricCard({
 export default function AnalyticsPage() {
   const [reports, setReports] = useState<AnalyticsReport[]>([]);
   const [actions, setActions] = useState<StoredAction[]>([]);
+  const [planCode, setPlanCode] = useState<PlanCode>("basic");
 
   useEffect(() => {
     async function loadAnalyticsData() {
@@ -181,6 +183,7 @@ export default function AnalyticsPage() {
 
       setReports(Array.isArray(savedReports) ? savedReports : []);
       setActions(Array.isArray(savedActions) ? savedActions : []);
+      setPlanCode(getStoredPlanCode());
     }
 
     loadAnalyticsData();
@@ -332,6 +335,10 @@ export default function AnalyticsPage() {
     analytics.totalReports || analytics.totalFindings || actions.length,
   );
 
+  const canViewProInsights = hasPlanEntitlement("analytics", planCode);
+  const canViewCompanyInsights = hasPlanEntitlement("companyAnalytics", planCode);
+  const canUseWorkspaceFilters = hasPlanEntitlement("workspaceFiltering", planCode);
+
   const programHealthNotes = [
     analytics.highRiskRate !== null && analytics.highRiskRate >= 30
       ? "High-risk finding rate is elevated. Consider targeted leadership review and verification of controls."
@@ -366,6 +373,10 @@ export default function AnalyticsPage() {
               corrective action performance, and SafeScope confidence.
             </p>
           </div>
+
+          <span className="mx-auto rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-white">
+            {planCode === "company" ? "Company Insights" : planCode === "plus" ? "Pro Insights" : "Basic Snapshot"}
+          </span>
         </div>
 
         <div className="mx-auto mt-5 grid max-w-4xl grid-cols-2 justify-center gap-3 lg:grid-cols-4">
@@ -410,6 +421,67 @@ export default function AnalyticsPage() {
         </section>
       )}
 
+      {!canViewProInsights && hasData && (
+        <section className="rounded-2xl border border-amber-200 bg-amber-50 p-4 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-amber-800">
+            Pro Insights Locked
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Unlock safety-program trends.
+          </h2>
+          <p className="mt-1 text-sm font-semibold leading-6 text-amber-900">
+            Your Basic snapshot shows activity counts. Upgrade to Pro for risk
+            rates, standards coverage, evidence quality, corrective action health,
+            SafeScope confidence, and repeat hazard themes.
+          </p>
+          <a
+            href="/pricing"
+            className="mt-3 inline-flex rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-black shadow-sm transition hover:bg-[#EA580C]"
+          >
+            Unlock Pro Insights
+          </a>
+        </section>
+      )}
+
+      {canViewCompanyInsights && (
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+                Company Filters
+              </p>
+              <h2 className="mt-1 text-xl font-black text-slate-900">
+                Workspace analytics view
+              </h2>
+              <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+                Company plan insights can be filtered by facility, user,
+                inspection status, risk, date, agency, and corrective action status.
+              </p>
+            </div>
+
+            <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-emerald-700">
+              Company
+            </span>
+          </div>
+
+          {canUseWorkspaceFilters ? (
+            <div className="mt-4 grid gap-2 md:grid-cols-4">
+              {["Facility", "Assigned User", "Risk", "Action Status"].map((label) => (
+                <select
+                  key={label}
+                  className="rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-700 outline-none focus:border-[#1D72B8] focus:bg-white"
+                  defaultValue=""
+                >
+                  <option value="">{label}: All</option>
+                </select>
+              ))}
+            </div>
+          ) : null}
+        </section>
+      )}
+
+      {canViewProInsights && (
+        <>
       <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         <MetricCard
           value={
@@ -740,6 +812,8 @@ export default function AnalyticsPage() {
           </div>
         </div>
       </section>
+        </>
+      )}
     </section>
   );
 }
