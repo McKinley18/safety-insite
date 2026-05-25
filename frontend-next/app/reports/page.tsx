@@ -362,7 +362,7 @@ export default function ReportsPage() {
           </button>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="mx-auto mt-5 grid max-w-4xl grid-cols-2 justify-center gap-3 lg:grid-cols-4">
           {[
             [String(reportTotals.reports), "Reports"],
             [String(reportTotals.findings), "Findings"],
@@ -371,7 +371,7 @@ export default function ReportsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3"
+              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center"
             >
               <p className="text-2xl font-black tracking-tight text-white">
                 {value}
