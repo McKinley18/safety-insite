@@ -228,7 +228,10 @@ export default function DashboardPage() {
               [String(dashboard.criticalFindings), "Critical Findings"],
               [String(dashboard.safeScopeReviewed), "SafeScope Reviewed"],
             ].map(([value, label]) => (
-              <div key={label} className="rounded-xl bg-slate-50 px-3 py-3">
+              <div
+                key={label}
+                className="rounded-xl bg-slate-50 px-3 py-3 text-center"
+              >
                 <p className="text-xl font-black text-slate-900">{value}</p>
                 <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
                   {label}
