@@ -143,21 +143,21 @@ export default function InspectionsPage() {
   return (
     <section className="space-y-5">
       <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col items-center gap-5 text-center lg:text-left">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Inspections
             </p>
-            <h1 className="mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+            <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
               Start field work.
             </h1>
-            <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+            <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
               Choose the right inspection depth for the work: quick capture,
               guided inspection, or advanced audit-ready review.
             </p>
           </div>
 
-          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-white">
+          <span className="mx-auto rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-white">
             {planLabel(planCode)} Plan
           </span>
         </div>
