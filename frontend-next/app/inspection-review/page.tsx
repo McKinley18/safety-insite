@@ -321,35 +321,56 @@ export default function InspectionReviewPage() {
         </div>
       </section>
 
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        {[
-          ["Date", formatReviewDate(report.inspectionDate || report.createdAt)],
-          ["Lead Inspector", report.leadInspector || "Not entered"],
-          [
-            "Confidentiality",
-            report.isConfidential
-              ? report.confidentialityMarkerText || "Privileged & Confidential"
-              : "No",
-          ],
-          [
-            "Additional Inspectors",
-            report.additionalInspectors?.length
-              ? report.additionalInspectors.join(", ")
-              : "None",
-          ],
-        ].map(([label, value]) => (
-          <div
-            key={label}
-            className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm"
-          >
-            <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
-              {label}
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Report Details
             </p>
-            <p className="mt-1 text-sm font-black leading-5 text-slate-800">
-              {value}
-            </p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">
+              Inspection information
+            </h2>
           </div>
-        ))}
+
+          <button
+            type="button"
+            onClick={editReport}
+            className="mx-auto flex w-36 justify-center rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8] sm:mx-0"
+          >
+            Edit Details
+          </button>
+        </div>
+
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ["Date", formatReviewDate(report.inspectionDate || report.createdAt)],
+            ["Lead Inspector", report.leadInspector || "Not entered"],
+            [
+              "Confidentiality",
+              report.isConfidential
+                ? report.confidentialityMarkerText || "Privileged & Confidential"
+                : "No",
+            ],
+            [
+              "Additional Inspectors",
+              report.additionalInspectors?.length
+                ? report.additionalInspectors.join(", ")
+                : "None",
+            ],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="rounded-xl bg-slate-50 px-3 py-3 text-center"
+            >
+              <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+                {label}
+              </p>
+              <p className="mt-1 text-sm font-black leading-5 text-slate-800">
+                {value}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <SafeScopeDisclaimer compact tone="warning" />
@@ -692,7 +713,7 @@ export default function InspectionReviewPage() {
         <button
           type="button"
           onClick={exportReport}
-          className="w-full rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
+          className="mx-auto mt-4 flex w-40 justify-center rounded-xl bg-[#102A43] px-3 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8]"
         >
           Export Final PDF
         </button>
