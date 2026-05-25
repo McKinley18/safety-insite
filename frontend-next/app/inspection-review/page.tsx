@@ -1,6 +1,5 @@
 "use client";
 
-import PageHeader from "@/components/ui/PageHeader";
 import { useEffect, useState } from "react";
 import {
   getLatestReport,
@@ -208,10 +207,6 @@ export default function InspectionReviewPage() {
   if (!report) {
     return (
       <section className="space-y-5">
-        <PageHeader
-          title="Inspection Review"
-          description="Confirm report details, findings, standards, risk, and corrective actions before export."
-        />
 
         <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-5 text-sm font-semibold text-slate-500">
           No finalized report found.
@@ -231,10 +226,6 @@ export default function InspectionReviewPage() {
 
   return (
     <section className="space-y-5">
-      <PageHeader
-        title="Inspection Review"
-        description="Confirm the final report package before export."
-      />
 
       <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">

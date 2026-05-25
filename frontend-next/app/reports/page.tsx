@@ -1,7 +1,6 @@
 "use client";
 
 import { secureStorage } from "@/lib/secureStorage";
-import PageHeader from "@/components/ui/PageHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -338,19 +337,15 @@ export default function ReportsPage() {
 
   return (
     <section className="space-y-5">
-      <PageHeader
-        title="Reports"
-        description="Defensible inspection records, evidence packages, SafeScope reasoning, and export-ready operational reports."
-      />
 
       <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-              Report Library
+              Records
             </p>
             <h2 className="mt-2 text-3xl font-black tracking-tight">
-              Inspection records.
+              Safety records.
             </h2>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
               Review saved reports, export PDF packages, and return to records

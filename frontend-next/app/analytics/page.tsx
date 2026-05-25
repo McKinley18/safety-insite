@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import PageHeader from "@/components/ui/PageHeader";
 import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 
@@ -103,10 +102,17 @@ export default function AnalyticsPage() {
 
   return (
     <section className="space-y-6">
-      <PageHeader
-        title="Insights"
-        description="Workspace analytics generated from saved reports, findings, and corrective actions."
-      />
+      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          Insights
+        </p>
+        <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">
+          Safety intelligence trends.
+        </h1>
+        <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Review inspection patterns, corrective action signals, risk concentration, and SafeScope activity.
+        </p>
+      </section>
 
       <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {[
