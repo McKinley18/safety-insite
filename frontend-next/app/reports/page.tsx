@@ -9,6 +9,7 @@ import { useEffect, useMemo, useState } from "react";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import { localExporter } from "@/lib/localExporter";
 import { getReports } from "@/lib/reportStorage";
+import { getReportPackageForPlan } from "@/lib/reportPackages";
 
 type Report = {
   id: string;
@@ -382,6 +383,20 @@ export default function ReportsPage() {
       </section>
 
       <SafeScopeDisclaimer compact tone="notice" />
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+          Current Report Package
+        </p>
+        <h2 className="mt-1 text-xl font-black text-slate-900">
+          {getReportPackageForPlan().label}
+        </h2>
+        <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+          Report depth is based on plan tier. Basic keeps reports field-ready;
+          Pro adds SafeScope rationale; Company adds operational accountability
+          and traceability.
+        </p>
+      </section>
 
       <p className="-mt-2 text-xs font-semibold italic leading-5 text-slate-500">
         Reports follow your selected workspace storage and export settings.

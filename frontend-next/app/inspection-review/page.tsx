@@ -10,6 +10,7 @@ import {
 } from "@/lib/reportStorage";
 import { localExporter } from "@/lib/localExporter";
 import SafeScopeDisclaimer from "@/components/compliance/SafeScopeDisclaimer";
+import { getReportPackageForPlan } from "@/lib/reportPackages";
 
 function getFindingRisk(finding: any) {
   if (finding.safeScopeResult?.risk?.riskBand) {
@@ -87,6 +88,8 @@ export default function InspectionReviewPage() {
     loadReport();
   }, []);
 
+  const reportPackage = getReportPackageForPlan(report?.planCode || report?.plan || report?.type);
+
   async function exportReport() {
     if (!report) return;
 
@@ -128,6 +131,7 @@ export default function InspectionReviewPage() {
         report.includeSafeScopeNotesInReport === false
           ? null
           : finding.safeScopeResult || null,
+      reportPackageCode: reportPackage.code,
     }));
 
     await localExporter.generatePDF({
@@ -336,6 +340,26 @@ export default function InspectionReviewPage() {
       </section>
 
       <SafeScopeDisclaimer compact tone="warning" />
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Report Package
+            </p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">
+              {reportPackage.label}
+            </h2>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+              {reportPackage.description}
+            </p>
+          </div>
+
+          <span className="mx-auto rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600 sm:mx-0">
+            {reportPackage.shortLabel}
+          </span>
+        </div>
+      </section>
 
       <section className="rounded-xl border border-slate-200 bg-white px-3 py-3">
         <button
@@ -556,12 +580,16 @@ export default function InspectionReviewPage() {
 
                         <div>
                           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
-                            Confidence
+                            {reportPackage.includesConfidence ? "Confidence" : "Review"}
                           </p>
                           <p className="mt-1 text-sm font-semibold leading-5 text-slate-600">
-                            {confidence !== undefined && confidence !== null
-                              ? `${confidence}%`
-                              : "Not available"}
+                            {reportPackage.includesConfidence
+                              ? confidence !== undefined && confidence !== null
+                                ? `${confidence}%`
+                                : "Not available"
+                              : finding.safeScopeResult
+                                ? "Human review required"
+                                : "Manual"}
                           </p>
                         </div>
                       </div>
@@ -588,7 +616,11 @@ export default function InspectionReviewPage() {
                     </div>
                   </details>
 
-                  {traceabilityAvailable && (
+                  {traceabilityAvailable &&
+                    (reportPackage.includesSafeScopeTraceability ||
+                      reportPackage.includesEvidenceGaps ||
+                      reportPackage.includesConfidence ||
+                      reportPackage.includesRepeatIntelligence) && (
                     <details className="mt-3 rounded-xl border border-slate-200 bg-white">
                       <summary className="cursor-pointer px-3 py-2.5 text-xs font-black uppercase tracking-wide text-slate-600">
                         SafeScope traceability appendix
@@ -614,7 +646,8 @@ export default function InspectionReviewPage() {
                           </p>
                         )}
 
-                        {(finding.safeScopeResult?.trendIntelligence ||
+                        {reportPackage.includesRepeatIntelligence &&
+                          (finding.safeScopeResult?.trendIntelligence ||
                           finding.safeScopeResult?.siteMemory ||
                           finding.safeScopeResult?.workspaceLearning ||
                           finding.safeScopeResult?.correlationIntelligence ||

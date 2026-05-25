@@ -1,5 +1,11 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+function getReportPackageExportNote(input: any) {
+  const reportPackage = input?.reportPackage;
+  if (!reportPackage?.label) return "";
+  return `${reportPackage.label}: ${reportPackage.description || ""}`.trim();
+}
+
 
 const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Sentinel Safety / SafeScope. SafeScope outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
 
