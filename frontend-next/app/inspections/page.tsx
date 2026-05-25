@@ -328,33 +328,29 @@ export default function InspectionsPage() {
           })}
         </div>
 
-        <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Regulatory Agency
-          </p>
-          <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
-            SafeScope uses the default regulatory agency selected in Workspace Settings.
-          </p>
-          <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm font-black text-slate-900">
-              Current default: {
-                regulatoryScope === "msha"
-                  ? "MSHA"
-                  : regulatoryScope === "osha_general"
-                    ? "OSHA General Industry"
-                    : regulatoryScope === "osha_construction"
-                      ? "OSHA Construction"
-                      : "All / Let SafeScope evaluate"
-              }
-            </p>
-            <Link
-              href="/settings/workspace"
-              className="rounded-xl border border-[#1D72B8] bg-white px-3 py-2 text-center text-xs font-black text-[#102A43] transition hover:bg-[#E8F4FF]"
-            >
-              Change in Settings
-            </Link>
-          </div>
-        </div>
+
+        <p className="mt-4 text-center text-xs font-semibold leading-5 text-slate-500">
+          SafeScope uses the default regulatory agency from{" "}
+          <Link
+            href="/settings/workspace"
+            className="font-black text-[#1D72B8] hover:text-[#155A93]"
+            style={{ textDecoration: "underline", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}
+          >
+            Workspace Settings
+          </Link>
+          . Current default:{" "}
+          <span className="font-black text-slate-700">
+            {regulatoryScope === "msha"
+              ? "MSHA"
+              : regulatoryScope === "osha_general"
+                ? "OSHA General Industry"
+                : regulatoryScope === "osha_construction"
+                  ? "OSHA Construction"
+                  : "All / Let SafeScope evaluate"}
+          </span>
+          .
+        </p>
+
 
       </section>
 
