@@ -1029,18 +1029,18 @@ export default function SettingsPage() {
         </section>
       </div>
 
-      <section className="sticky bottom-20 z-30 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:bottom-4">
+      <section className="sticky bottom-20 z-30 mx-auto flex w-fit justify-center rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-[0_12px_30px_rgba(15,23,42,0.14)] backdrop-blur lg:bottom-4">
         <button
           type="button"
           onClick={saveSettings}
-          className="w-full rounded-xl bg-[#102A43] px-4 py-3 text-sm font-black !text-white transition hover:bg-[#1D72B8] sm:w-auto"
+          className="inline-flex rounded-xl bg-[#F97316] px-5 py-2 text-sm font-black text-black transition hover:bg-[#EA580C]"
         >
           Save Settings
         </button>
 
         {status && (
           <p
-            className={`mt-3 rounded-xl p-3 text-sm font-bold ${
+            className={`mt-2 max-w-xs rounded-lg px-2 py-1.5 text-xs font-bold ${
               statusType === "error"
                 ? "bg-red-50 text-red-700"
                 : statusType === "success"

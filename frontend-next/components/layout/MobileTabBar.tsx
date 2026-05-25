@@ -42,7 +42,7 @@ export default function MobileTabBar() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-[999999] lg:hidden">
-      <nav className="border-t border-slate-800 bg-[#0B1320] px-3 pb-[calc(env(safe-area-inset-bottom)+12px)] pt-2 shadow-[0_-12px_30px_rgba(15,23,42,0.35)]">
+      <nav className="border-t border-slate-800 bg-[#0B1320] px-3 pt-2">
         <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
           {navItems.map((item) => {
             const active = item.activeRoots.some(
@@ -65,6 +65,26 @@ export default function MobileTabBar() {
           })}
         </div>
       </nav>
+
+      <div className="bg-[#0F172A] px-3 pb-[calc(env(safe-area-inset-bottom)+10px)] pt-2 text-center">
+        <div className="mb-1 flex flex-wrap items-center justify-center gap-3">
+          <Link href="/about" className="text-[11px] font-black !text-white">
+            About
+          </Link>
+          <span className="h-3 w-px bg-[#6F7782]" />
+          <Link href="/legal" className="text-[11px] font-black !text-white">
+            Legal
+          </Link>
+          <span className="h-3 w-px bg-[#6F7782]" />
+          <Link href="/safescope" className="text-[11px] font-black !text-white">
+            SafeScope<span className="ml-[1px] align-super text-[8px]">TM</span>
+          </Link>
+        </div>
+
+        <p className="text-[10px] font-semibold text-white/70">
+          © {new Date().getFullYear()} Sentinel Safety. All rights reserved.
+        </p>
+      </div>
     </div>
   );
 }

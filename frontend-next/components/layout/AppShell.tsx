@@ -290,53 +290,51 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main
-        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-2" : "pb-36 lg:pb-10"}`}
+        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-2" : "pb-44 lg:pb-10"}`}
       >
         {children}
       </main>
 
-      {!isPublicPage && <MobileTabBar />}
+      <footer className="mt-auto hidden w-full border-t border-slate-800 bg-[#0F172A] lg:block">
+        <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/about"
+              style={{ color: "#FFFFFF" }}
+              className="text-sm font-black !text-white hover:opacity-80"
+            >
+              About
+            </Link>
 
-      {isPublicPage && (
-        <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A] ">
-          <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href="/about"
-                style={{ color: "#FFFFFF" }}
-                className="text-sm font-black !text-white hover:opacity-80"
-              >
-                About
-              </Link>
+            <span className="h-4 w-px bg-[#6F7782]" />
 
-              <span className="h-4 w-px bg-[#6F7782]" />
+            <Link
+              href="/legal"
+              style={{ color: "#FFFFFF" }}
+              className="text-sm font-black !text-white hover:opacity-80"
+            >
+              Legal
+            </Link>
 
-              <Link
-                href="/legal"
-                style={{ color: "#FFFFFF" }}
-                className="text-sm font-black !text-white hover:opacity-80"
-              >
-                Legal
-              </Link>
+            <span className="h-4 w-px bg-[#6F7782]" />
 
-              <span className="h-4 w-px bg-[#6F7782]" />
-
-              <Link
-                href="/safescope"
-                style={{ color: "#FFFFFF" }}
-                className="text-sm font-black !text-white hover:opacity-80"
-              >
-                SafeScope
-                <span className="ml-[1px] align-super text-[9px]">TM</span>
-              </Link>
-            </div>
-
-            <p className="m-0 text-center text-[13px] !text-white/80">
-              © {new Date().getFullYear()} Sentinel Safety. All rights reserved.
-            </p>
+            <Link
+              href="/safescope"
+              style={{ color: "#FFFFFF" }}
+              className="text-sm font-black !text-white hover:opacity-80"
+            >
+              SafeScope
+              <span className="ml-[1px] align-super text-[9px]">TM</span>
+            </Link>
           </div>
-        </footer>
-      )}
+
+          <p className="m-0 text-center text-[13px] !text-white/80">
+            © {new Date().getFullYear()} Sentinel Safety. All rights reserved.
+          </p>
+        </div>
+      </footer>
+
+      {!isPublicPage && <MobileTabBar />}
     </div>
   );
 }
