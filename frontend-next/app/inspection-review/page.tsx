@@ -383,7 +383,12 @@ export default function InspectionReviewPage() {
                   finding.safeScopeResult?.confidenceIntelligence
                     ?.missingCriticalInformation?.length ||
                   finding.safeScopeResult?.confidenceIntelligence?.reviewTriggers
-                    ?.length,
+                    ?.length ||
+                  finding.safeScopeResult?.trendIntelligence ||
+                  finding.safeScopeResult?.siteMemory ||
+                  finding.safeScopeResult?.workspaceLearning ||
+                  finding.safeScopeResult?.correlationIntelligence ||
+                  finding.safeScopeResult?.reasoningDrift,
               );
 
               return (
@@ -562,6 +567,90 @@ export default function InspectionReviewPage() {
                             }{" "}
                             item(s)
                           </p>
+                        )}
+
+                        {(finding.safeScopeResult?.trendIntelligence ||
+                          finding.safeScopeResult?.siteMemory ||
+                          finding.safeScopeResult?.workspaceLearning ||
+                          finding.safeScopeResult?.correlationIntelligence ||
+                          finding.safeScopeResult?.reasoningDrift) && (
+                          <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
+                            <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+                              SafeScope Intelligence
+                            </p>
+
+                            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                              {finding.safeScopeResult?.trendIntelligence && (
+                                <div className="rounded-lg bg-white px-3 py-2">
+                                  <p className="text-xs font-black text-slate-900">
+                                    Trend / Recurrence
+                                  </p>
+                                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                                    Risk:{" "}
+                                    {finding.safeScopeResult.trendIntelligence
+                                      .recurrenceRisk || "Not flagged"}
+                                    {finding.safeScopeResult.trendIntelligence
+                                      .escalationRecommended
+                                      ? " · Escalation recommended"
+                                      : ""}
+                                  </p>
+                                </div>
+                              )}
+
+                              {finding.safeScopeResult?.siteMemory && (
+                                <div className="rounded-lg bg-white px-3 py-2">
+                                  <p className="text-xs font-black text-slate-900">
+                                    Site Memory
+                                  </p>
+                                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                                    {finding.safeScopeResult.siteMemory
+                                      .siteMemorySummary ||
+                                      "Site pattern intelligence available."}
+                                  </p>
+                                </div>
+                              )}
+
+                              {finding.safeScopeResult?.workspaceLearning && (
+                                <div className="rounded-lg bg-white px-3 py-2">
+                                  <p className="text-xs font-black text-slate-900">
+                                    Workspace Learning
+                                  </p>
+                                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                                    Similar findings:{" "}
+                                    {finding.safeScopeResult.workspaceLearning
+                                      .repeatedSimilarFindingCount ?? 0}
+                                  </p>
+                                </div>
+                              )}
+
+                              {finding.safeScopeResult?.correlationIntelligence && (
+                                <div className="rounded-lg bg-white px-3 py-2">
+                                  <p className="text-xs font-black text-slate-900">
+                                    Correlation
+                                  </p>
+                                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                                    {finding.safeScopeResult.correlationIntelligence
+                                      .cascadePotential
+                                      ? "Cascade potential detected."
+                                      : "No major cascade signal detected."}
+                                  </p>
+                                </div>
+                              )}
+
+                              {finding.safeScopeResult?.reasoningDrift && (
+                                <div className="rounded-lg bg-white px-3 py-2">
+                                  <p className="text-xs font-black text-slate-900">
+                                    Reasoning Drift
+                                  </p>
+                                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                                    Band:{" "}
+                                    {finding.safeScopeResult.reasoningDrift
+                                      .driftBand || "Not detected"}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         )}
 
                         {!!finding.safeScopeResult?.knowledgeBrain?.evidenceGaps
