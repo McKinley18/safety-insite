@@ -309,16 +309,16 @@ export default function InspectionsPage() {
                           setSelectedWorkflow(workflow);
                           startInspection(workflow);
                         }}
-                        className="mt-3 flex w-full items-center justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
+                        className="mt-3 flex w-full items-center justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-black shadow-sm transition hover:bg-[#EA580C]"
                       >
                         Start {workflow.title}
                       </Link>
                     ) : (
                       <Link
                         href="/pricing"
-                        className="mt-3 flex w-full items-center justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+                        className="mt-3 flex w-full items-center justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-black shadow-sm transition hover:bg-[#EA580C]"
                       >
-                        View Upgrade Options
+                        Unlock This Workflow
                       </Link>
                     )}
                   </div>
