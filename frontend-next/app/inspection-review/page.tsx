@@ -308,7 +308,7 @@ export default function InspectionReviewPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3"
+              className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center"
             >
               <p className="text-lg font-black tracking-tight text-white">
                 {value}
