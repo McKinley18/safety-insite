@@ -9,6 +9,7 @@ import {
   setReports,
 } from "@/lib/reportStorage";
 import { localExporter } from "@/lib/localExporter";
+import SafeScopeDisclaimer from "@/components/compliance/SafeScopeDisclaimer";
 
 function getFindingRisk(finding: any) {
   if (finding.safeScopeResult?.risk?.riskBand) {
@@ -74,6 +75,8 @@ function getReportPackageLabel(mode?: string) {
 
 export default function InspectionReviewPage() {
   const [report, setReport] = useState<any>(null);
+  const [humanReviewConfirmed, setHumanReviewConfirmed] = useState(false);
+  const [exportWarning, setExportWarning] = useState("");
 
   useEffect(() => {
     async function loadReport() {
@@ -86,6 +89,15 @@ export default function InspectionReviewPage() {
 
   async function exportReport() {
     if (!report) return;
+
+    if (!humanReviewConfirmed) {
+      setExportWarning(
+        "Confirm qualified-person review before exporting this report.",
+      );
+      return;
+    }
+
+    setExportWarning("");
 
     const findings = (report.findings || []).map((finding: any) => ({
       category:
@@ -321,6 +333,39 @@ export default function InspectionReviewPage() {
             </p>
           </div>
         ))}
+      </section>
+
+      <SafeScopeDisclaimer compact tone="warning" />
+
+      <section className="rounded-xl border border-slate-200 bg-white px-3 py-3">
+        <button
+          type="button"
+          onClick={() => setHumanReviewConfirmed(!humanReviewConfirmed)}
+          className="flex w-full items-start gap-3 text-left"
+        >
+          <span
+            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${
+              humanReviewConfirmed ? "bg-[#1D72B8]" : "bg-white"
+            }`}
+          >
+            {humanReviewConfirmed ? "✓" : ""}
+          </span>
+          <span>
+            <span className="block text-sm font-black text-slate-900">
+              I confirm this report has been reviewed by a qualified person.
+            </span>
+            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+              SafeScope outputs, standards, risk ratings, corrective actions,
+              and report language have been independently reviewed before export.
+            </span>
+          </span>
+        </button>
+
+        {exportWarning && (
+          <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-black text-amber-800">
+            {exportWarning}
+          </p>
+        )}
       </section>
 
       <section className="space-y-3">

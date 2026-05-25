@@ -1,4 +1,5 @@
 "use client";
+import SafeScopeDisclaimer from "@/components/compliance/SafeScopeDisclaimer";
 
 import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
@@ -960,6 +961,8 @@ export default function InspectionPage() {
 
   return (
     <div className="pb-16">
+      <SafeScopeDisclaimer compact tone="warning" />
+
       <InspectionWorkflowHeader
         currentStep={currentStep}
         steps={steps}

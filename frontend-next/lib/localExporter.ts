@@ -1,6 +1,8 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
+const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Sentinel Safety / SafeScope. SafeScope outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
+
 interface InspectionData {
   adminInfo: any;
   findings: any[];
@@ -499,6 +501,8 @@ export const localExporter = {
             doc.setDrawColor(226, 232, 240);
             doc.rect(photoX, currentY, 80, 60);
             doc.setFontSize(7);
+  // Report defensibility notice
+
             doc.text("PHOTO EVIDENCE", photoX + 40, currentY + 30, {
               align: "center",
             });

@@ -1,4 +1,5 @@
 "use client";
+import SafeScopeDisclaimer from "@/components/compliance/SafeScopeDisclaimer";
 
 import { secureStorage } from "@/lib/secureStorage";
 import PageHeader from "@/components/ui/PageHeader";
@@ -379,6 +380,8 @@ export default function ReportsPage() {
           ))}
         </div>
       </section>
+
+      <SafeScopeDisclaimer compact />
 
       <p className="-mt-2 text-xs font-semibold italic leading-5 text-slate-500">
         Reports follow your selected workspace storage and export settings.
