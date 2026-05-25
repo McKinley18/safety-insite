@@ -298,7 +298,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <Link
                 href="/about"
                 style={{ color: "#FFFFFF" }}
-                className="text-sm font-black hover:opacity-80"
+                className="text-sm font-black !text-white hover:opacity-80"
               >
                 About
               </Link>
@@ -308,7 +308,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <Link
                 href="/legal"
                 style={{ color: "#FFFFFF" }}
-                className="text-sm font-black hover:opacity-80"
+                className="text-sm font-black !text-white hover:opacity-80"
               >
                 Legal
               </Link>
@@ -318,14 +318,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <Link
                 href="/safescope"
                 style={{ color: "#FFFFFF" }}
-                className="text-sm font-black hover:opacity-80"
+                className="text-sm font-black !text-white hover:opacity-80"
               >
                 SafeScope
                 <span className="ml-[1px] align-super text-[9px]">TM</span>
               </Link>
             </div>
 
-            <p className="m-0 text-center text-[13px] text-[#C0C6CF]">
+            <p className="m-0 text-center text-[13px] !text-white/80">
               © {new Date().getFullYear()} Sentinel Safety. All rights reserved.
             </p>
           </div>
