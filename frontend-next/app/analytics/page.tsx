@@ -6,9 +6,108 @@ import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 
 type AnalyticsReport = {
   id?: string;
+  title?: string;
   createdAt?: string;
+  inspectionDate?: string;
+  siteLocation?: string;
+  location?: string;
   findings?: any[];
 };
+
+type RiskBand = "Critical" | "High" | "Moderate" | "Low" | "Unrated";
+
+function formatDate(value?: string) {
+  if (!value) return "Not dated";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Not dated";
+  return date.toLocaleDateString();
+}
+
+function percent(numerator: number, denominator: number) {
+  if (!denominator) return null;
+  return Math.round((numerator / denominator) * 100);
+}
+
+function getRiskScore(finding: any) {
+  return Number(
+    finding.riskScore ||
+      finding.safeScopeResult?.risk?.riskScore ||
+      finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
+      0,
+  );
+}
+
+function getRiskBand(finding: any): RiskBand {
+  const rawBand = String(
+    finding.safeScopeResult?.risk?.riskBand ||
+      finding.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
+      "",
+  ).toLowerCase();
+
+  const score = getRiskScore(finding);
+
+  if (rawBand.includes("critical") || score >= 20) return "Critical";
+  if (rawBand.includes("high") || score >= 12) return "High";
+  if (rawBand.includes("medium") || rawBand.includes("moderate") || score >= 6) {
+    return "Moderate";
+  }
+  if (score > 0) return "Low";
+
+  return "Unrated";
+}
+
+function getConfidence(finding: any) {
+  const raw =
+    finding.safeScopeResult?.confidenceIntelligence?.overallConfidence ??
+    finding.safeScopeResult?.confidence ??
+    NaN;
+
+  const value = Number(raw);
+
+  if (!Number.isFinite(value)) return null;
+
+  return value > 1 ? value / 100 : value;
+}
+
+function getFindingStandards(finding: any) {
+  return (
+    finding.selectedStandards ||
+    finding.standards ||
+    finding.safeScopeResult?.suggestedStandards ||
+    finding.safeScopeResult?.standards ||
+    []
+  );
+}
+
+function getFindingActions(finding: any) {
+  return (
+    finding.correctiveActions || [
+      ...(finding.selectedGeneratedActions || []),
+      ...(finding.manualActions || []),
+      ...(finding.safeScopeResult?.generatedActions || []),
+    ]
+  );
+}
+
+function getFindingCategory(finding: any) {
+  return (
+    finding.hazardCategory ||
+    finding.category ||
+    finding.safeScopeResult?.classification ||
+    "Uncategorized"
+  );
+}
+
+function getFindingLocation(finding: any) {
+  return finding.location || "Unspecified Location";
+}
+
+function trendEntries(map: Record<string, number>, minCount = 1) {
+  return Object.entries(map)
+    .filter(([, value]) => value >= minCount)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 6);
+}
 
 function InsightBar({
   label,
@@ -19,7 +118,8 @@ function InsightBar({
   value: number;
   maxValue: number;
 }) {
-  const width = maxValue > 0 ? Math.max(8, Math.min(100, (value / maxValue) * 100)) : 0;
+  const width =
+    maxValue > 0 ? Math.max(8, Math.min(100, (value / maxValue) * 100)) : 0;
 
   return (
     <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
@@ -37,26 +137,37 @@ function InsightBar({
   );
 }
 
-function getRiskScore(finding: any) {
-  return Number(
-    finding.riskScore ||
-      finding.safeScopeResult?.risk?.riskScore ||
-      finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
-      0,
+function MetricCard({
+  value,
+  label,
+  description,
+  tone = "default",
+}: {
+  value: string;
+  label: string;
+  description: string;
+  tone?: "default" | "good" | "warning" | "danger";
+}) {
+  const toneClass =
+    tone === "danger"
+      ? "border-red-100 bg-red-50"
+      : tone === "warning"
+        ? "border-amber-100 bg-amber-50"
+        : tone === "good"
+          ? "border-emerald-100 bg-emerald-50"
+          : "border-slate-200 bg-white";
+
+  return (
+    <div className={`rounded-2xl border p-4 shadow-sm ${toneClass}`}>
+      <p className="text-2xl font-black text-slate-900">{value}</p>
+      <p className="mt-1 text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+        {label}
+      </p>
+      <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
+        {description}
+      </p>
+    </div>
   );
-}
-
-function getConfidence(finding: any) {
-  const raw =
-    finding.safeScopeResult?.confidenceIntelligence?.overallConfidence ??
-    finding.safeScopeResult?.confidence ??
-    NaN;
-
-  const value = Number(raw);
-
-  if (!Number.isFinite(value)) return null;
-
-  return value > 1 ? value / 100 : value;
 }
 
 export default function AnalyticsPage() {
@@ -77,36 +188,67 @@ export default function AnalyticsPage() {
 
   const analytics = useMemo(() => {
     const findings = reports.flatMap((report) => report.findings || []);
+
     const completedActions = actions.filter(
-      (action) => String(action.status).toLowerCase() === "completed",
+      (action) => String(action.status || "").toLowerCase() === "completed",
     );
+
     const openActions = actions.filter(
-      (action) => String(action.status).toLowerCase() !== "completed",
+      (action) => String(action.status || "").toLowerCase() !== "completed",
     );
 
-    const criticalFindings = findings.filter((finding) => {
-      const riskScore = getRiskScore(finding);
-      const riskBand = String(
-        finding.safeScopeResult?.risk?.riskBand ||
-          finding.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
-          "",
-      ).toLowerCase();
-
-      return riskScore >= 20 || riskBand.includes("critical");
+    const overdueActions = openActions.filter((action) => {
+      if (!action.due) return false;
+      const dueDate = new Date(action.due);
+      if (Number.isNaN(dueDate.getTime())) return false;
+      return dueDate.getTime() < Date.now();
     });
 
-    const closureRate = actions.length
-      ? Math.round((completedActions.length / actions.length) * 100)
-      : null;
-
-    const locationThemes = findings.reduce<Record<string, number>>(
+    const riskBands = findings.reduce<Record<RiskBand, number>>(
       (acc, finding) => {
-        const key = finding.location || "Unspecified Location";
-        acc[key] = (acc[key] || 0) + 1;
+        const band = getRiskBand(finding);
+        acc[band] = (acc[band] || 0) + 1;
         return acc;
       },
-      {},
+      {
+        Critical: 0,
+        High: 0,
+        Moderate: 0,
+        Low: 0,
+        Unrated: 0,
+      },
     );
+
+    const riskScores = findings.map(getRiskScore).filter((score) => score > 0);
+
+    const averageRiskScore = riskScores.length
+      ? Math.round(
+          riskScores.reduce((sum, score) => sum + score, 0) / riskScores.length,
+        )
+      : null;
+
+    const criticalOrHigh = riskBands.Critical + riskBands.High;
+    const criticalRate = percent(riskBands.Critical, findings.length);
+    const highRiskRate = percent(criticalOrHigh, findings.length);
+
+    const closureRate = percent(completedActions.length, actions.length);
+    const overdueRate = percent(overdueActions.length, openActions.length);
+
+    const findingsWithEvidence = findings.filter(
+      (finding) => (finding.photos || []).length > 0,
+    ).length;
+
+    const findingsWithStandards = findings.filter(
+      (finding) => getFindingStandards(finding).length > 0,
+    ).length;
+
+    const findingsWithActions = findings.filter(
+      (finding) => getFindingActions(finding).length > 0,
+    ).length;
+
+    const safeScopeReviewed = findings.filter(
+      (finding) => finding.safeScopeResult,
+    ).length;
 
     const confidenceValues = findings
       .map((finding) => getConfidence(finding))
@@ -124,54 +266,89 @@ export default function AnalyticsPage() {
       (confidence) => confidence < 0.7,
     ).length;
 
-    const riskThemes = findings.reduce<Record<string, number>>((acc, finding) => {
-      const key =
-        finding.hazardCategory ||
-        finding.safeScopeResult?.classification ||
-        "Uncategorized";
-
+    const categoryMap = findings.reduce<Record<string, number>>((acc, finding) => {
+      const key = getFindingCategory(finding);
       acc[key] = (acc[key] || 0) + 1;
       return acc;
     }, {});
 
-    const riskScores = findings.map(getRiskScore).filter((score) => score > 0);
-    const averageRiskScore = riskScores.length
-      ? Math.round(
-          riskScores.reduce((sum, score) => sum + score, 0) / riskScores.length,
-        )
-      : null;
+    const locationMap = findings.reduce<Record<string, number>>((acc, finding) => {
+      const key = getFindingLocation(finding);
+      acc[key] = (acc[key] || 0) + 1;
+      return acc;
+    }, {});
 
-    const sortedRiskThemes = Object.entries(riskThemes)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 6);
+    const repeatHazardThemes = trendEntries(categoryMap, 2);
+    const repeatLocations = trendEntries(locationMap, 2);
 
-    const sortedLocationThemes = Object.entries(locationThemes)
-      .filter(([, value]) => value > 1)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 6);
+    const allHazardThemes = trendEntries(categoryMap, 1);
+    const allLocations = trendEntries(locationMap, 1);
+
+    const recentReports = [...reports]
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt || b.inspectionDate || 0).getTime() -
+          new Date(a.createdAt || a.inspectionDate || 0).getTime(),
+      )
+      .slice(0, 5);
 
     return {
       totalReports: reports.length,
       totalFindings: findings.length,
-      criticalFindings: criticalFindings.length,
+      findingsPerInspection: reports.length
+        ? Math.round((findings.length / reports.length) * 10) / 10
+        : null,
+
+      riskBands,
+      averageRiskScore,
+      criticalRate,
+      highRiskRate,
+
+      totalActions: actions.length,
       openActions: openActions.length,
+      completedActions: completedActions.length,
+      overdueActions: overdueActions.length,
       closureRate,
+      overdueRate,
+
+      evidenceCoverage: percent(findingsWithEvidence, findings.length),
+      standardsCoverage: percent(findingsWithStandards, findings.length),
+      actionCoverage: percent(findingsWithActions, findings.length),
+      safeScopeCoverage: percent(safeScopeReviewed, findings.length),
       averageConfidence,
       lowConfidenceFindings,
-      averageRiskScore,
-      locationThemes: sortedLocationThemes,
-      riskThemes: sortedRiskThemes,
-      maxRiskThemeCount: Math.max(0, ...sortedRiskThemes.map(([, value]) => value)),
-      maxLocationThemeCount: Math.max(
-        0,
-        ...sortedLocationThemes.map(([, value]) => value),
-      ),
+
+      repeatHazardThemes,
+      repeatLocations,
+      allHazardThemes,
+      allLocations,
+      maxHazardThemeCount: Math.max(0, ...allHazardThemes.map(([, value]) => value)),
+      maxLocationCount: Math.max(0, ...allLocations.map(([, value]) => value)),
+      recentReports,
     };
   }, [reports, actions]);
 
   const hasData = Boolean(
     analytics.totalReports || analytics.totalFindings || actions.length,
   );
+
+  const programHealthNotes = [
+    analytics.highRiskRate !== null && analytics.highRiskRate >= 30
+      ? "High-risk finding rate is elevated. Consider targeted leadership review and verification of controls."
+      : null,
+    analytics.overdueRate !== null && analytics.overdueRate >= 25
+      ? "Overdue corrective action burden is elevated. Review ownership and due-date follow-through."
+      : null,
+    analytics.standardsCoverage !== null && analytics.standardsCoverage < 70
+      ? "Standards coverage is below target. Strengthen standards selection before finalizing reports."
+      : null,
+    analytics.evidenceCoverage !== null && analytics.evidenceCoverage < 70
+      ? "Evidence coverage is below target. Encourage photo/document capture during inspections."
+      : null,
+    analytics.lowConfidenceFindings > 0
+      ? "Some SafeScope results have lower confidence. These findings may need more evidence or supervisor review."
+      : null,
+  ].filter(Boolean);
 
   return (
     <section className="space-y-5">
@@ -185,8 +362,8 @@ export default function AnalyticsPage() {
               Safety intelligence trends.
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-              Review inspection patterns, corrective action signals, risk
-              concentration, and SafeScope activity.
+              Track inspection output, finding quality, risk concentration,
+              corrective action performance, and SafeScope confidence.
             </p>
           </div>
         </div>
@@ -195,7 +372,12 @@ export default function AnalyticsPage() {
           {[
             [String(analytics.totalReports), "Reports"],
             [String(analytics.totalFindings), "Findings"],
-            [String(analytics.criticalFindings), "Critical Findings"],
+            [
+              analytics.findingsPerInspection === null
+                ? "—"
+                : String(analytics.findingsPerInspection),
+              "Findings / Inspection",
+            ],
             [
               analytics.closureRate === null ? "—" : `${analytics.closureRate}%`,
               "Closure Rate",
@@ -223,111 +405,141 @@ export default function AnalyticsPage() {
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
             Complete inspections, generate reports, and track corrective actions
-            to build trend intelligence.
+            to build safety-program intelligence.
           </p>
         </section>
       )}
 
-      <section className="grid gap-3 md:grid-cols-3">
-        {[
-          [
-            analytics.averageConfidence === null
+      <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <MetricCard
+          value={
+            analytics.highRiskRate === null ? "—" : `${analytics.highRiskRate}%`
+          }
+          label="High-Risk Finding Rate"
+          description="Percentage of findings rated High or Critical."
+          tone={
+            analytics.highRiskRate !== null && analytics.highRiskRate >= 30
+              ? "danger"
+              : analytics.highRiskRate !== null && analytics.highRiskRate >= 15
+                ? "warning"
+                : "default"
+          }
+        />
+
+        <MetricCard
+          value={
+            analytics.overdueRate === null ? "—" : `${analytics.overdueRate}%`
+          }
+          label="Overdue Action Rate"
+          description="Percentage of open actions past the due date."
+          tone={
+            analytics.overdueRate !== null && analytics.overdueRate >= 25
+              ? "danger"
+              : analytics.overdueRate !== null && analytics.overdueRate > 0
+                ? "warning"
+                : "good"
+          }
+        />
+
+        <MetricCard
+          value={
+            analytics.standardsCoverage === null
               ? "—"
-              : `${analytics.averageConfidence}%`,
-            "Avg. SafeScope Confidence",
-            "Measures how complete and reliable SafeScope classification support is across findings.",
-          ],
-          [
-            String(analytics.lowConfidenceFindings),
-            "Low Confidence Reviews",
-            "Flags findings that may need clearer evidence, stronger descriptions, or supervisor review.",
-          ],
-          [
-            analytics.averageRiskScore === null
+              : `${analytics.standardsCoverage}%`
+          }
+          label="Standards Coverage"
+          description="Findings with at least one selected or suggested standard."
+          tone={
+            analytics.standardsCoverage !== null &&
+            analytics.standardsCoverage >= 80
+              ? "good"
+              : "default"
+          }
+        />
+
+        <MetricCard
+          value={
+            analytics.evidenceCoverage === null
               ? "—"
-              : String(analytics.averageRiskScore),
-            "Avg. Risk Score",
-            "Shows the average severity × likelihood signal across saved findings.",
-          ],
-        ].map(([value, label, description]) => (
-          <div
-            key={label}
-            className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
-          >
-            <p className="text-2xl font-black text-slate-900">{value}</p>
-            <p className="mt-1 text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-              {label}
-            </p>
-            <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
-              {description}
-            </p>
-          </div>
-        ))}
+              : `${analytics.evidenceCoverage}%`
+          }
+          label="Evidence Coverage"
+          description="Findings supported by at least one photo or evidence item."
+          tone={
+            analytics.evidenceCoverage !== null && analytics.evidenceCoverage >= 80
+              ? "good"
+              : "default"
+          }
+        />
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-2">
+      <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Risk Themes
+            Program Health
           </p>
           <h2 className="mt-1 text-xl font-black text-slate-900">
-            Finding concentration
+            Efficacy signals
           </h2>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-            Repeated finding categories can reveal control weakness, training
-            gaps, or supervision drift.
+            These indicators help show whether inspections are producing useful,
+            traceable, and closed-loop safety work.
           </p>
 
-          <div className="mt-4 space-y-2">
-            {analytics.riskThemes.length ? (
-              analytics.riskThemes.map(([label, value]) => (
-                <InsightBar
-                  key={label}
-                  label={label}
-                  value={value}
-                  maxValue={analytics.maxRiskThemeCount}
-                />
-              ))
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            {[
+              [
+                analytics.averageRiskScore === null
+                  ? "—"
+                  : String(analytics.averageRiskScore),
+                "Avg. Risk Score",
+              ],
+              [
+                analytics.actionCoverage === null
+                  ? "—"
+                  : `${analytics.actionCoverage}%`,
+                "Findings With Actions",
+              ],
+              [
+                analytics.safeScopeCoverage === null
+                  ? "—"
+                  : `${analytics.safeScopeCoverage}%`,
+                "SafeScope Reviewed",
+              ],
+              [
+                analytics.averageConfidence === null
+                  ? "—"
+                  : `${analytics.averageConfidence}%`,
+                "Avg. SafeScope Confidence",
+              ],
+            ].map(([value, label]) => (
+              <div key={label} className="rounded-xl bg-slate-50 px-3 py-3">
+                <p className="text-xl font-black text-slate-900">{value}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+              Interpretation
+            </p>
+            {programHealthNotes.length ? (
+              <ul className="mt-2 space-y-1 text-sm font-semibold leading-6 text-slate-600">
+                {programHealthNotes.map((note) => (
+                  <li key={note}>• {note}</li>
+                ))}
+              </ul>
             ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-                No finding themes available yet.
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                No major concern signals detected from the currently saved data.
               </p>
             )}
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Recurring Locations
-          </p>
-          <h2 className="mt-1 text-xl font-black text-slate-900">
-            Repeat exposure areas
-          </h2>
-          <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-            Locations with repeated findings may need focused inspection,
-            engineering controls, or accountability review.
-          </p>
-
-          <div className="mt-4 space-y-2">
-            {analytics.locationThemes.length ? (
-              analytics.locationThemes.map(([label, value]) => (
-                <InsightBar
-                  key={label}
-                  label={label}
-                  value={value}
-                  maxValue={analytics.maxLocationThemeCount}
-                />
-              ))
-            ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-                No recurring locations detected yet.
-              </p>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
             Corrective Action Health
@@ -337,21 +549,134 @@ export default function AnalyticsPage() {
           </h2>
 
           <div className="mt-4 grid gap-2">
-            <div className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-3">
-              <p className="text-sm font-black text-slate-900">Open Actions</p>
-              <p className="text-sm font-black text-slate-700">
-                {analytics.openActions}
-              </p>
-            </div>
+            {[
+              [String(analytics.totalActions), "Total Actions"],
+              [String(analytics.openActions), "Open Actions"],
+              [String(analytics.completedActions), "Completed Actions"],
+              [String(analytics.overdueActions), "Overdue Actions"],
+            ].map(([value, label]) => (
+              <div
+                key={label}
+                className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-3"
+              >
+                <p className="text-sm font-black text-slate-900">{label}</p>
+                <p className="text-sm font-black text-slate-700">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-3">
-              <p className="text-sm font-black text-slate-900">Closure Rate</p>
-              <p className="text-sm font-black text-slate-700">
-                {analytics.closureRate === null
-                  ? "No actions yet"
-                  : `${analytics.closureRate}%`}
+      <section className="grid gap-4 lg:grid-cols-2">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Repeat Hazard Themes
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Control weakness indicators
+          </h2>
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+            Repeated finding categories may point to training gaps, failed
+            controls, or supervision drift.
+          </p>
+
+          <div className="mt-4 space-y-2">
+            {analytics.allHazardThemes.length ? (
+              analytics.allHazardThemes.map(([label, value]) => (
+                <InsightBar
+                  key={label}
+                  label={label}
+                  value={value}
+                  maxValue={analytics.maxHazardThemeCount}
+                />
+              ))
+            ) : (
+              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+                No hazard themes available yet.
               </p>
-            </div>
+            )}
+          </div>
+
+          {!!analytics.repeatHazardThemes.length && (
+            <p className="mt-3 text-xs font-bold leading-5 text-orange-700">
+              Repeat signal: {analytics.repeatHazardThemes.length} hazard
+              theme(s) appeared more than once.
+            </p>
+          )}
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Repeat Locations
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Exposure concentration
+          </h2>
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+            Locations with repeated findings may need focused inspections,
+            engineering controls, or accountability review.
+          </p>
+
+          <div className="mt-4 space-y-2">
+            {analytics.allLocations.length ? (
+              analytics.allLocations.map(([label, value]) => (
+                <InsightBar
+                  key={label}
+                  label={label}
+                  value={value}
+                  maxValue={analytics.maxLocationCount}
+                />
+              ))
+            ) : (
+              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+                No location trends available yet.
+              </p>
+            )}
+          </div>
+
+          {!!analytics.repeatLocations.length && (
+            <p className="mt-3 text-xs font-bold leading-5 text-orange-700">
+              Repeat signal: {analytics.repeatLocations.length} location(s)
+              appeared more than once.
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Recent Inspection Output
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Latest records
+          </h2>
+
+          <div className="mt-4 space-y-2">
+            {analytics.recentReports.length ? (
+              analytics.recentReports.map((report) => (
+                <div
+                  key={report.id || `${report.title}-${report.createdAt}`}
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
+                >
+                  <p className="text-sm font-black text-slate-900">
+                    {report.title || "Inspection Report"}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                    {report.siteLocation ||
+                      report.location ||
+                      report.findings?.[0]?.location ||
+                      "Field Inspection"}{" "}
+                    · {report.findings?.length || 0} finding(s) ·{" "}
+                    {formatDate(report.createdAt || report.inspectionDate)}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+                No recent inspection records available yet.
+              </p>
+            )}
           </div>
         </div>
 
@@ -360,30 +685,35 @@ export default function AnalyticsPage() {
             Calculations & Why It Matters
           </p>
           <h2 className="mt-1 text-xl font-black text-slate-900">
-            How Sentinel interprets workspace risk
+            How Sentinel interprets program performance
           </h2>
 
           <div className="mt-4 space-y-2">
             {[
               [
-                "Critical Findings",
-                "Findings with a risk score of 20 or greater, or a SafeScope critical risk band.",
-                "Highlights exposures that may require immediate control, leadership review, or verification before restart.",
+                "High-Risk Finding Rate",
+                "High and Critical findings divided by total findings.",
+                "Shows whether inspections are revealing serious exposure patterns.",
               ],
               [
-                "Closure Rate",
-                "Completed corrective actions divided by total corrective actions.",
-                "Shows whether identified hazards are being converted into verified controls.",
+                "Overdue Action Rate",
+                "Overdue open actions divided by total open actions.",
+                "Shows whether corrective actions are being completed on time.",
               ],
               [
-                "Low Confidence",
-                "SafeScope results below 70% confidence.",
-                "Identifies findings that need stronger evidence, clearer descriptions, or supervisor review.",
+                "Standards Coverage",
+                "Findings with standards divided by total findings.",
+                "Supports defensibility and helps verify regulatory alignment.",
               ],
               [
-                "Recurring Themes",
-                "Repeated hazard categories or repeated locations across saved findings.",
-                "Flags possible control weakness, training gaps, or supervision drift.",
+                "Evidence Coverage",
+                "Findings with photos or evidence divided by total findings.",
+                "Shows whether inspection records have enough proof for review and closure.",
+              ],
+              [
+                "SafeScope Confidence",
+                "Average confidence from findings reviewed by SafeScope.",
+                "Flags whether the system has enough information to support reliable review.",
               ],
             ].map(([label, calc, why]) => (
               <details
