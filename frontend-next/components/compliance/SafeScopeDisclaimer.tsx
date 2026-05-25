@@ -19,15 +19,6 @@ export default function SafeScopeDisclaimer({
   return (
     <section className={`rounded-xl border px-3 py-2 ${toneClass}`}>
       <div className="flex items-start gap-2">
-        <span
-          className={`mt-0.5 rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-wide ${
-            tone === "notice"
-              ? "bg-slate-100 text-slate-600"
-              : "bg-[#F97316] text-black"
-          }`}
-        >
-          {tone === "notice" ? "Review Notice" : "Human Review Required"}
-        </span>
 
         <div>
           <p
