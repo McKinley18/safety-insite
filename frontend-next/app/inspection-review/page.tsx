@@ -272,31 +272,6 @@ export default function InspectionReviewPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={addFindingToReport}
-              className="rounded-xl bg-[#F97316] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#EA580C]"
-            >
-              Add Finding
-            </button>
-
-            <button
-              type="button"
-              onClick={editReport}
-              className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-xs font-black text-white transition hover:bg-white/20"
-            >
-              Edit Report
-            </button>
-
-            <button
-              type="button"
-              onClick={exportReport}
-              className="rounded-xl bg-[#1D72B8] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#5DB7FF]"
-            >
-              Export PDF
-            </button>
-          </div>
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
