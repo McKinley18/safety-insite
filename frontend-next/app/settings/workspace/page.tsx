@@ -1,10 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import PrimaryButton from "@/components/ui/PrimaryButton";
-import SecondaryButton from "@/components/ui/SecondaryButton";
 import SectionHeader from "@/components/ui/SectionHeader";
-import EmptyState from "@/components/ui/EmptyState";
 import { useEffect, useMemo, useState } from "react";
 import { getStoredPlanCode, hasPlanEntitlement } from "@/lib/planEntitlements";
 import { Facility, getFacilities, setFacilities } from "@/lib/facilityStorage";
@@ -351,7 +347,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-5">
       <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Workspace Settings
@@ -362,11 +358,39 @@ export default function SettingsPage() {
         <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
           Adjust organization, team, locations, storage, risk matrix, security, and report defaults.
         </p>
+
+        <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {[
+            [
+              regulatoryScopes.find(([id]) => id === regulatoryScope)?.[1] ||
+                "All / Let SafeScope evaluate",
+              "Regulatory Scope",
+            ],
+            [selectedMatrixLabel, "Risk Matrix"],
+            [
+              storageModes.find(([id]) => id === storageMode)?.[1] ||
+                "Private Local Vault",
+              "Storage",
+            ],
+            [`${usedSeats}/${companySeats}`, "Seats"],
+          ].map(([value, label]) => (
+            <div
+              key={label}
+              className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3"
+            >
+              <p className="truncate text-sm font-black text-white">{value}</p>
+              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <SectionHeader
-          eyebrow="SafeScope Defaults"
+      <div className="grid gap-5 xl:grid-cols-[1fr_1fr]">
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <SectionHeader
+            eyebrow="SafeScope Defaults"
           title="Default Regulatory Scope"
           description="SafeScope uses this as the default agency context during inspection review. Users can still override hazard category during review."
         />
@@ -390,9 +414,9 @@ export default function SettingsPage() {
             </button>
           ))}
         </div>
-      </section>
+        </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <SectionHeader
           title="Organization"
           description="Company information used on reports and cover pages."
@@ -541,9 +565,9 @@ export default function SettingsPage() {
             </select>
           </label>
         </div>
-      </section>
+        </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <SectionHeader
           title="Team"
           description={`Company plan includes ${companySeats} users. Current seats: ${usedSeats}/${companySeats}.`}
@@ -631,9 +655,9 @@ export default function SettingsPage() {
             </p>
           </div>
         )}
-      </section>
+        </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <SectionHeader
           title="Locations"
           description="Save common facilities, sites, or work areas for faster inspections."
@@ -694,9 +718,9 @@ export default function SettingsPage() {
             No locations saved yet.
           </p>
         )}
-      </section>
+        </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <SectionHeader
           title="Storage"
           description="Choose where inspection reports are saved."
@@ -749,9 +773,9 @@ export default function SettingsPage() {
             </p>
           </div>
         </div>
-      </section>
+        </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <SectionHeader
           title="Risk Matrix"
           description="Set the default severity and likelihood scale for new inspections."
@@ -792,9 +816,9 @@ export default function SettingsPage() {
             <RiskMatrixPreview riskProfileId={riskProfileId} />
           </div>
         </div>
-      </section>
+        </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <SectionHeader
           title="Security"
           description="Choose local unlock and auto-lock preferences."
@@ -833,13 +857,14 @@ export default function SettingsPage() {
             <option value="30">After 30 minutes</option>
           </select>
         </label>
-      </section>
+        </section>
+      </div>
 
-      <section className="border-t border-slate-300 pt-6">
+      <section className="sticky bottom-20 z-30 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:bottom-4">
         <button
           type="button"
           onClick={saveSettings}
-          className="w-full rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8] sm:w-auto"
+          className="w-full rounded-xl bg-[#102A43] px-4 py-3 text-sm font-black !text-white transition hover:bg-[#1D72B8] sm:w-auto"
         >
           Save Settings
         </button>
