@@ -381,7 +381,7 @@ export default function ReportsPage() {
         </div>
       </section>
 
-      <SafeScopeDisclaimer compact />
+      <SafeScopeDisclaimer compact tone="notice" />
 
       <p className="-mt-2 text-xs font-semibold italic leading-5 text-slate-500">
         Reports follow your selected workspace storage and export settings.

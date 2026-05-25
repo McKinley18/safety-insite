@@ -1,6 +1,6 @@
 type SafeScopeDisclaimerProps = {
   compact?: boolean;
-  tone?: "default" | "warning" | "dark";
+  tone?: "default" | "warning" | "dark" | "notice";
 };
 
 export default function SafeScopeDisclaimer({
@@ -12,13 +12,21 @@ export default function SafeScopeDisclaimer({
       ? "border-amber-200 bg-amber-50 text-amber-950"
       : tone === "dark"
         ? "border-white/15 bg-white/10 text-white"
-        : "border-slate-200 bg-slate-50 text-slate-700";
+        : tone === "notice"
+          ? "border-slate-200 bg-white text-slate-700"
+          : "border-slate-200 bg-slate-50 text-slate-700";
 
   return (
     <section className={`rounded-xl border px-3 py-2 ${toneClass}`}>
       <div className="flex items-start gap-2">
-        <span className="mt-0.5 rounded-full bg-[#F97316] px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-black">
-          Human Review Required
+        <span
+          className={`mt-0.5 rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-wide ${
+            tone === "notice"
+              ? "bg-slate-100 text-slate-600"
+              : "bg-[#F97316] text-black"
+          }`}
+        >
+          {tone === "notice" ? "Review Notice" : "Human Review Required"}
         </span>
 
         <div>
