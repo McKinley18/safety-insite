@@ -9,6 +9,17 @@ function getReportPackageExportNote(input: any) {
 
 const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Sentinel Safety / SafeScope. SafeScope outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
 
+function formatPdfDate(value?: string) {
+  if (!value) return new Date().toLocaleDateString("en-US");
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
+}
+
 interface InspectionData {
   adminInfo: any;
   findings: any[];
@@ -98,9 +109,7 @@ export const localExporter = {
     };
 
     // 1. COVER PAGE
-    doc.setDrawColor(249, 115, 22);
-    doc.setLineWidth(1.2);
-    doc.line(50, 42, pageWidth - 50, 42);
+    doc.setLineWidth(0.4);
 
     if (adminInfo?.companyLogo) {
       try {
@@ -119,7 +128,7 @@ export const localExporter = {
 
     doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
-    doc.setTextColor(249, 115, 22);
+    doc.setTextColor(100, 116, 139);
     doc.text("FIELD SAFETY REVIEW", centerX, titleY + 10, {
       align: "center",
     });
@@ -150,7 +159,7 @@ export const localExporter = {
     ];
 
     const reportDetailLines = [
-      adminInfo?.date || "N/A",
+      formatPdfDate(adminInfo?.date),
       ...inspectorLines,
       adminInfo?.reportId || "N/A",
       `${adminInfo?.findingCount || findings.length || 0} finding(s)`,
@@ -166,22 +175,6 @@ export const localExporter = {
       });
     });
 
-    const packageLabel =
-      adminInfo?.reportPackageMode === "evidence_centered"
-        ? "Evidence-centered package"
-        : adminInfo?.reportPackageMode === "export_ready"
-          ? "Export-ready package"
-          : adminInfo?.reportPackageMode === "ask_every_report"
-            ? "Ask every report"
-            : "Local-first private vault";
-
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(9);
-    doc.setTextColor(100, 116, 139);
-    doc.text(packageLabel.toUpperCase(), centerX, pageHeight - 52, {
-      align: "center",
-    });
-
     if (adminInfo?.isConfidential) {
       doc.setTextColor(185, 28, 28);
       doc.setFontSize(11);
@@ -191,7 +184,7 @@ export const localExporter = {
           adminInfo.confidentialityMarkerText || "Privileged & Confidential",
         ).toUpperCase(),
         pageWidth / 2,
-        pageHeight - 36,
+        pageHeight - 52,
         { align: "center" },
       );
     }
@@ -236,16 +229,13 @@ export const localExporter = {
           ).toFixed(1)
         : "0.0";
 
-    doc.setFillColor(15, 23, 42);
-    doc.rect(0, 0, pageWidth, 28, "F");
-
     doc.setFont("helvetica", "bold");
     doc.setFontSize(9);
-    doc.setTextColor(255, 255, 255);
+    doc.setTextColor(148, 163, 184);
     doc.text("SENTINEL SAFETY", 20, 17);
 
-    doc.setDrawColor(249, 115, 22);
-    doc.setLineWidth(1);
+    doc.setDrawColor(226, 232, 240);
+    doc.setLineWidth(0.4);
     doc.line(20, 36, pageWidth - 20, 36);
 
     doc.setTextColor(15, 23, 42);
@@ -373,7 +363,7 @@ export const localExporter = {
       startY: 50,
       head: [["ID", "Hazard Category", "Explanation"]],
       body: findings.map((f, i) => [i + 1, f.category, f.description]),
-      headStyles: { fillColor: [15, 23, 42] },
+      headStyles: { fillColor: [226, 232, 240], textColor: [15, 23, 42] },
       columnStyles: {
         0: { cellWidth: 15 },
         1: { cellWidth: 50, fontStyle: "bold" },
@@ -387,12 +377,6 @@ export const localExporter = {
 
     for (let i = 0; i < findings.length; i++) {
       const f = findings[i];
-      const rpn = f.likelihood * f.severity;
-      let rpnColor: [number, number, number] = [34, 197, 94];
-      if (rpn >= 5) rpnColor = [234, 179, 8];
-      if (rpn >= 15) rpnColor = [249, 115, 22];
-      if (rpn >= 21) rpnColor = [239, 68, 68];
-
       if (options.findingsPerPage === "single" || i === 0) {
         doc.addPage();
         currentY = 30;
@@ -406,16 +390,11 @@ export const localExporter = {
       doc.setFontSize(16);
       doc.setFont("helvetica", "bold");
       doc.text(`FINDING #${i + 1}: ${f.category}`, 20, currentY);
+      doc.setDrawColor(226, 232, 240);
+      doc.setLineWidth(0.4);
+      doc.line(20, currentY + 5, pageWidth - 20, currentY + 5);
 
-      doc.setFillColor(rpnColor[0], rpnColor[1], rpnColor[2]);
-      doc.roundedRect(pageWidth - 50, currentY - 8, 30, 10, 1, 1, "F");
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(9);
-      doc.text(`RPN: ${rpn}`, pageWidth - 35, currentY - 1, {
-        align: "center",
-      });
-
-      currentY += 12;
+      currentY += 14;
 
       // Description
       const descLines = doc.splitTextToSize(f.description, pageWidth - 40);
