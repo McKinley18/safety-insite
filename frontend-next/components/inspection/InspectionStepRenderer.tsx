@@ -1,8 +1,7 @@
 "use client";
 
-import CorrectiveActionsSection from "@/components/inspection/CorrectiveActionsSection";
 import EvidenceCaptureSection from "@/components/inspection/EvidenceCaptureSection";
-import RiskReviewSection from "@/components/inspection/RiskReviewSection";
+import FindingReviewEditor from "@/components/inspection/FindingReviewEditor";
 import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
@@ -17,6 +16,7 @@ type InspectionStepRendererProps = {
 
   hazardCategory: string;
   setHazardCategory: (value: string) => void;
+
   location: string;
   setLocation: (value: string) => void;
   description: string;
@@ -36,7 +36,6 @@ type InspectionStepRendererProps = {
   safeScopeHelpOpen: boolean;
   setSafeScopeHelpOpen: ToggleSetter;
   agencyMode: string;
-  setAgencyMode: (value: string) => void;
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
   handleRunSafeScope: () => void;
   safeScopeStatus: string;
@@ -114,7 +113,6 @@ export default function InspectionStepRenderer({
   safeScopeHelpOpen,
   setSafeScopeHelpOpen,
   agencyMode,
-  setAgencyMode,
   riskProfileId,
   handleRunSafeScope,
   safeScopeStatus,
@@ -154,9 +152,9 @@ export default function InspectionStepRenderer({
   removeManualAction,
 }: InspectionStepRendererProps) {
   return (
-    <div className="px-1 py-2 sm:px-2">
+    <div className="px-1 py-1 sm:px-2">
       {currentStep === 1 && (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <EvidenceCaptureSection
             photos={photos}
             setPhotos={setPhotos}
@@ -164,8 +162,6 @@ export default function InspectionStepRenderer({
             setDescription={setDescription}
             location={location}
             setLocation={setLocation}
-            hazardCategory={hazardCategory}
-            setHazardCategory={setHazardCategory}
             evidenceNotes={evidenceNotes}
             setEvidenceNotes={setEvidenceNotes}
             annotatingPhotoIndex={annotatingPhotoIndex}
@@ -181,10 +177,11 @@ export default function InspectionStepRenderer({
 
       {currentStep === 2 && (
         <SafeScopeInspectionStep
+          hazardCategory={hazardCategory}
+          setHazardCategory={setHazardCategory}
           safeScopeHelpOpen={safeScopeHelpOpen}
           setSafeScopeHelpOpen={setSafeScopeHelpOpen}
           agencyMode={agencyMode}
-          setAgencyMode={setAgencyMode}
           riskProfileId={riskProfileId}
           handleRunSafeScope={handleRunSafeScope}
           safeScopeStatus={safeScopeStatus}
@@ -206,44 +203,40 @@ export default function InspectionStepRenderer({
           setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
         />
       )}
-
       {currentStep === 3 && (
-        <div className="space-y-4">
-          <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-              Review & Validate
-            </p>
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
-              Confirm the risk, standards, and corrective actions before saving.
-            </p>
-          </div>
-
-          <RiskReviewSection
-            activeRiskScale={activeRiskScale}
-            safeScopeResult={safeScopeResult}
-            severity={severity}
-            setSeverity={setSeverity}
-            likelihood={likelihood}
-            setLikelihood={setLikelihood}
-          />
-
-          <CorrectiveActionsSection
-            safeScopeResult={safeScopeResult}
-            selectedGeneratedActions={selectedGeneratedActions}
-            toggleGeneratedAction={toggleGeneratedAction}
-            manualActionTitle={manualActionTitle}
-            setManualActionTitle={setManualActionTitle}
-            manualActionPriority={manualActionPriority}
-            setManualActionPriority={setManualActionPriority}
-            manualActionDue={manualActionDue}
-            setManualActionDue={setManualActionDue}
-            manualActionClosureEvidence={manualActionClosureEvidence}
-            setManualActionClosureEvidence={setManualActionClosureEvidence}
-            manualActions={manualActions}
-            addManualAction={addManualAction}
-            removeManualAction={removeManualAction}
-          />
-        </div>
+        <FindingReviewEditor
+          description={description}
+          setDescription={setDescription}
+          location={location}
+          setLocation={setLocation}
+          evidenceNotes={evidenceNotes}
+          setEvidenceNotes={setEvidenceNotes}
+          hazardCategory={hazardCategory}
+          setHazardCategory={setHazardCategory}
+          photos={photos}
+          safeScopeResult={safeScopeResult}
+          selectedStandards={selectedStandards}
+          getStandardKey={getStandardKey}
+          toggleSelectedStandard={toggleSelectedStandard}
+          activeRiskScale={activeRiskScale}
+          severity={severity}
+          setSeverity={setSeverity}
+          likelihood={likelihood}
+          setLikelihood={setLikelihood}
+          selectedGeneratedActions={selectedGeneratedActions}
+          toggleGeneratedAction={toggleGeneratedAction}
+          manualActionTitle={manualActionTitle}
+          setManualActionTitle={setManualActionTitle}
+          manualActionPriority={manualActionPriority}
+          setManualActionPriority={setManualActionPriority}
+          manualActionDue={manualActionDue}
+          setManualActionDue={setManualActionDue}
+          manualActionClosureEvidence={manualActionClosureEvidence}
+          setManualActionClosureEvidence={setManualActionClosureEvidence}
+          manualActions={manualActions}
+          addManualAction={addManualAction}
+          removeManualAction={removeManualAction}
+        />
       )}
 
     </div>

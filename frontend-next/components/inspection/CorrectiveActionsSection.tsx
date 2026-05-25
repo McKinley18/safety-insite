@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 type Props = {
   safeScopeResult: any;
   selectedGeneratedActions: any[];
@@ -17,7 +21,7 @@ type Props = {
 };
 
 function getActionKey(action: any) {
-  return action.title || action.description || JSON.stringify(action);
+  return action.id || action.title || action.description || JSON.stringify(action);
 }
 
 export default function CorrectiveActionsSection({
@@ -36,223 +40,208 @@ export default function CorrectiveActionsSection({
   addManualAction,
   removeManualAction,
 }: Props) {
-  function useGeneratedAction(action: any) {
-    const title =
-      action.title ||
-      action.description ||
-      action.suggestedFixes?.[0] ||
-      "Corrective action from SafeScope";
-
-    setManualActionTitle(title);
-
-    if (action.priority) {
-      setManualActionPriority(action.priority);
-    }
-  }
+  const [addActionOpen, setAddActionOpen] = useState(false);
+  const generatedActions = safeScopeResult?.generatedActions || [];
 
   return (
-    <>
-      <div className="mb-4 border-b border-slate-200 pb-3">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-          Corrective Actions
-        </p>
-        <p className="mt-1 text-sm font-semibold text-slate-500">
-          Build the action plan for the current hazard.
-        </p>
+    <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            Corrective Actions
+          </p>
+          <h3 className="mt-1 text-lg font-black text-slate-900">
+            Actions for this finding
+          </h3>
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+            Include generated actions or add your own.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setAddActionOpen((open) => !open)}
+          className="shrink-0 rounded-xl bg-[#102A43] px-3 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+        >
+          {addActionOpen ? "Close" : "+ Add Action"}
+        </button>
       </div>
 
-      <section className="border-b border-slate-200 pb-4">
-        <div className="mb-3 flex items-center justify-between gap-3">
-          <div>
-            <h3 className="text-base font-black text-slate-900">
-              SafeScope Recommendations
-            </h3>
-            <p className="mt-1 text-xs font-semibold text-slate-500">
-              {safeScopeResult?.generatedActions?.length
-                ? `${safeScopeResult.generatedActions.length} suggested action(s)`
-                : "No recommendations yet"}
-            </p>
-          </div>
-        </div>
+      {!!generatedActions.length && (
+        <div className="mt-4 space-y-2">
+          {generatedActions.map((action: any, index: number) => {
+            const actionKey = getActionKey(action);
+            const selected = selectedGeneratedActions.some(
+              (selectedAction) => getActionKey(selectedAction) === actionKey,
+            );
 
-        {safeScopeResult?.generatedActions?.length ? (
-          <div className="divide-y divide-slate-200 border-y border-slate-200">
-            {safeScopeResult.generatedActions.map(
-              (action: any, index: number) => {
-                const actionKey = getActionKey(action);
-                const selected = selectedGeneratedActions.some(
-                  (selectedAction) =>
-                    getActionKey(selectedAction) === actionKey,
-                );
-
-                return (
-                  <div key={index} className="py-3">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-sm font-black text-slate-900">
-                          {action.title || "SafeScope corrective action"}
-                        </p>
-
-                        {!!action.suggestedFixes?.length && (
-                          <p className="mt-1 line-clamp-2 text-sm font-semibold leading-6 text-slate-600">
-                            {action.suggestedFixes.slice(0, 2).join(" ")}
-                          </p>
-                        )}
-
-                        <p className="mt-1 text-xs font-bold text-slate-500">
-                          {action.priority
-                            ? `Priority: ${action.priority}`
-                            : "Priority not set"}
-                        </p>
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={() => toggleGeneratedAction(action)}
-                        className={`shrink-0 rounded-lg px-3 py-2 text-xs font-black transition ${
-                          selected
-                            ? "bg-[#1D72B8] text-white"
-                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                        }`}
-                      >
-                        {selected ? "Included" : "Include"}
-                      </button>
-                    </div>
-
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() => useGeneratedAction(action)}
-                        className="rounded-lg bg-[#102A43] px-3 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
-                      >
-                        Use as Manual Action
-                      </button>
-
-                      {!!action.suggestedFixes?.length && (
-                        <details className="rounded-lg bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
-                          <summary className="cursor-pointer font-black text-slate-700">
-                            Details
-                          </summary>
-                          <ul className="mt-2 list-disc space-y-1 pl-4">
-                            {action.suggestedFixes.map(
-                              (fix: string, i: number) => (
-                                <li key={i}>{fix}</li>
-                              ),
-                            )}
-                          </ul>
-                        </details>
-                      )}
-                    </div>
-                  </div>
-                );
-              },
-            )}
-          </div>
-        ) : (
-          <p className="rounded-xl bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-            Run SafeScope Review in Step 3 to generate recommended actions.
-          </p>
-        )}
-      </section>
-
-      <section className="border-b border-slate-200 py-4">
-        <h3 className="text-base font-black text-slate-900">Add Action</h3>
-
-        <div className="mt-3 grid gap-3">
-          <input
-            value={manualActionTitle}
-            onChange={(event) => setManualActionTitle(event.target.value)}
-            placeholder="Example: Install fixed guard and verify before restart"
-            className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-          />
-
-          <div className="grid gap-3 sm:grid-cols-3">
-            <select
-              value={manualActionPriority}
-              onChange={(event) => setManualActionPriority(event.target.value)}
-              className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-            >
-              <option>Low</option>
-              <option>Medium</option>
-              <option>High</option>
-              <option>Critical</option>
-            </select>
-
-            <input
-              type="date"
-              value={manualActionDue}
-              onChange={(event) => setManualActionDue(event.target.value)}
-              className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-            />
-
-            <select
-              value={manualActionClosureEvidence}
-              onChange={(event) =>
-                setManualActionClosureEvidence(event.target.value)
-              }
-              className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-            >
-              <option>Photo</option>
-              <option>Work order</option>
-              <option>Supervisor verification</option>
-              <option>Training record</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div className="flex justify-center sm:justify-start">
-            <button
-              type="button"
-              onClick={addManualAction}
-              className="rounded-xl bg-[#F97316] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
-            >
-              Add Corrective Action
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className="pt-4">
-        <div className="mb-2 flex items-center justify-between gap-3">
-          <h3 className="text-base font-black text-slate-900">Added Actions</h3>
-          <span className="text-xs font-black text-slate-400">
-            {manualActions.length}
-          </span>
-        </div>
-
-        {!!manualActions.length ? (
-          <div className="divide-y divide-slate-200 border-y border-slate-200">
-            {manualActions.map((action, index) => (
-              <div
-                key={`${action.title}-${index}`}
-                className="flex items-start justify-between gap-3 py-3"
+            return (
+              <button
+                key={actionKey || index}
+                type="button"
+                onClick={() => toggleGeneratedAction(action)}
+                className={`w-full rounded-xl border px-3 py-3 text-left transition ${
+                  selected
+                    ? "border-[#1D72B8] bg-[#E8F4FF]"
+                    : "border-slate-200 bg-slate-50 hover:bg-white"
+                }`}
               >
-                <div className="min-w-0">
-                  <p className="text-sm font-black text-slate-900">
-                    {action.title}
-                  </p>
-                  <p className="mt-1 text-xs font-bold text-slate-500">
-                    {action.priority} · Due: {action.due || "Not set"} ·
-                    Closure: {action.closureEvidence || "Photo"}
-                  </p>
-                </div>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-sm font-black text-slate-900">
+                      {action.title ||
+                        action.description ||
+                        action.suggestedFixes?.[0] ||
+                        "Corrective action"}
+                    </p>
 
-                <button
-                  type="button"
-                  onClick={() => removeManualAction(index)}
-                  className="shrink-0 rounded-lg bg-red-50 px-3 py-2 text-xs font-black text-red-700"
-                >
-                  Remove
-                </button>
+                    {!!action.suggestedFixes?.length && (
+                      <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600">
+                        {action.suggestedFixes.slice(0, 2).join(" • ")}
+                      </p>
+                    )}
+
+                    {(action.priority || action.assignedRole || action.dueDate) && (
+                      <p className="mt-1 text-[11px] font-bold leading-5 text-slate-500">
+                        {[
+                          action.priority ? `Priority: ${action.priority}` : "",
+                          action.assignedRole ? `Owner: ${action.assignedRole}` : "",
+                          action.dueDate ? `Due: ${action.dueDate}` : "",
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </p>
+                    )}
+                  </div>
+
+                  <span
+                    className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide ${
+                      selected
+                        ? "bg-[#1D72B8] text-white"
+                        : "bg-white text-slate-500"
+                    }`}
+                  >
+                    {selected ? "Included" : "Add"}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {!generatedActions.length && (
+        <p className="mt-4 rounded-xl bg-slate-50 px-3 py-3 text-sm font-semibold leading-5 text-slate-500">
+          No generated actions are available yet. Run SafeScope or add a custom
+          action.
+        </p>
+      )}
+
+      {!!manualActions.length && (
+        <div className="mt-4 border-t border-slate-200 pt-3">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+            Added Actions
+          </p>
+
+          <div className="mt-2 space-y-2">
+            {manualActions.map((action: any, index: number) => (
+              <div
+                key={`${action.title || "manual-action"}-${index}`}
+                className="rounded-xl border border-slate-200 bg-white px-3 py-3"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-sm font-black text-slate-900">
+                      {action.title || action.description || "Manual action"}
+                    </p>
+                    <p className="mt-1 text-[11px] font-bold text-slate-500">
+                      {[
+                        action.priority ? `Priority: ${action.priority}` : "",
+                        action.due ? `Due: ${action.due}` : "",
+                        action.closureEvidence
+                          ? `Verify: ${action.closureEvidence}`
+                          : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => removeManualAction(index)}
+                    className="shrink-0 rounded-full bg-red-50 px-2.5 py-1 text-[10px] font-black text-red-700"
+                  >
+                    Remove
+                  </button>
+                </div>
               </div>
             ))}
           </div>
-        ) : (
-          <p className="rounded-xl bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-            No manual corrective actions added yet.
+        </div>
+      )}
+
+      {addActionOpen && (
+        <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+            Add Custom Action
           </p>
-        )}
-      </section>
-    </>
+
+          <div className="mt-3 space-y-3">
+            <input
+              value={manualActionTitle}
+              onChange={(event) => setManualActionTitle(event.target.value)}
+              placeholder="Example: Install fixed guard and verify before restart"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+            />
+
+            <div className="grid gap-2 sm:grid-cols-3">
+              <select
+                value={manualActionPriority}
+                onChange={(event) => setManualActionPriority(event.target.value)}
+                className="rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              >
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Critical</option>
+              </select>
+
+              <input
+                type="date"
+                value={manualActionDue}
+                onChange={(event) => setManualActionDue(event.target.value)}
+                className="rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              />
+
+              <select
+                value={manualActionClosureEvidence}
+                onChange={(event) =>
+                  setManualActionClosureEvidence(event.target.value)
+                }
+                className="rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              >
+                <option>Photo</option>
+                <option>Work order</option>
+                <option>Supervisor verification</option>
+                <option>Training record</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                addManualAction();
+                setAddActionOpen(false);
+              }}
+              className="w-full rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
+            >
+              Add Action
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }

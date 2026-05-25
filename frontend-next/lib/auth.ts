@@ -28,6 +28,7 @@ export async function getOrganizationSettings() {
       name: "",
       logoPath: "",
       riskProfileId: "standard_5x5",
+      regulatoryScope: "all",
     };
   }
 
@@ -40,6 +41,7 @@ export async function getOrganizationSettings() {
       name: "",
       logoPath: "",
       riskProfileId: "standard_5x5",
+      regulatoryScope: "all",
     };
   }
 
@@ -48,6 +50,7 @@ export async function getOrganizationSettings() {
 
 export async function updateOrganizationSettings(payload: {
   riskProfileId?: string;
+  regulatoryScope?: string;
   name?: string;
   logoPath?: string;
 }) {

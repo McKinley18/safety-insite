@@ -58,7 +58,7 @@ export default function MarketingPage() {
           <Link href="/register" className="rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black text-white">
             Create an Account
           </Link>
-          <Link href="/login" className="rounded-full bg-white px-6 py-3 text-sm font-black !text-[#0B1320]">
+          <Link href="/login" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black !text-[#0B1320]">
             Sign In
           </Link>
         </div>
@@ -74,7 +74,7 @@ export default function MarketingPage() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {capabilities.map((feature) => (
-            <div key={feature.title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div key={feature.title} className="rounded-2xl border border-slate-200 border border-slate-300 bg-white p-5 shadow-sm">
               <h3 className="text-lg font-black text-slate-900">{feature.title}</h3>
               <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{feature.text}</p>
             </div>
@@ -82,7 +82,7 @@ export default function MarketingPage() {
         </div>
       </div>
 
-      <div className="rounded-[28px] bg-white p-6 shadow-sm">
+      <div className="rounded-[28px] border border-slate-300 bg-white p-6 shadow-sm">
         <p className="mb-2 text-xs font-black uppercase tracking-[1px] text-[#1D72B8]">
           SafeScope Domain Intelligence
         </p>
@@ -102,7 +102,7 @@ export default function MarketingPage() {
         </div>
       </div>
 
-      <div className="rounded-[28px] bg-white p-6 shadow-sm">
+      <div className="rounded-[28px] border border-slate-300 bg-white p-6 shadow-sm">
         <p className="mb-2 text-xs font-black uppercase tracking-[1px] text-[#1D72B8]">
           Trust Layer
         </p>
@@ -130,7 +130,7 @@ export default function MarketingPage() {
           <Link href="/register" className="rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black text-white">
             Create an Account
           </Link>
-          <Link href="/login" className="rounded-full bg-white px-6 py-3 text-sm font-black !text-[#0B1320]">
+          <Link href="/login" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black !text-[#0B1320]">
             Already have an account?
           </Link>
         </div>

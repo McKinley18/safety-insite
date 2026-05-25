@@ -215,7 +215,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   <button
                     type="button"
                     onClick={() => setProfileOpen((open) => !open)}
-                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#1D72B8] ring-1 ring-blue-100 transition hover:bg-white"
+                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#102A43] ring-1 ring-blue-100 transition hover:bg-white"
                     aria-label="Open profile menu"
                   >
                     CM
@@ -240,7 +240,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                             setProfileOpen(false);
                             router.push("/unlock");
                           }}
-                          className="block w-full px-4 py-3 text-left text-sm font-black text-slate-700 hover:bg-slate-50"
+                          className="block w-full px-4 py-3 text-left text-sm font-black text-[#102A43] hover:bg-slate-50"
                         >
                           Lock App
                         </button>
@@ -249,7 +249,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/profile"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
+                        className="block px-4 py-4 text-sm font-black text-[#102A43] hover:bg-slate-50"
                       >
                         User Profile
                       </Link>
@@ -257,7 +257,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/settings"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 text-sm font-black text-slate-700 hover:bg-slate-50"
+                        className="block px-4 py-4 text-sm font-black text-[#102A43] hover:bg-slate-50"
                       >
                         Settings
                       </Link>

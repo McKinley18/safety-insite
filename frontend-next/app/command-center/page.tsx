@@ -191,7 +191,7 @@ export default function DashboardPage() {
             </Link>
             <Link
               href="/reports"
-              className="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+              className="rounded-xl border border-[#1D72B8] bg-[#E8F4FF] px-4 py-2.5 text-xs font-black text-[#102A43] transition hover:bg-blue-100"
             >
               Reports
             </Link>

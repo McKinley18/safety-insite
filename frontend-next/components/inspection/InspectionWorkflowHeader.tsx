@@ -35,7 +35,6 @@ export default function InspectionWorkflowHeader({
   const visibleStepIndex = Math.min(Math.max(currentStep, 1), steps.length);
   const progressPercent = Math.round((visibleStepIndex / steps.length) * 100);
   const workflowLabel = isAdvancedMode ? "Advanced" : "Quick";
-  const visibleStepTitle = currentStepTitle;
 
   function handleBack() {
     if (currentStep === 1) {
@@ -47,62 +46,62 @@ export default function InspectionWorkflowHeader({
   }
 
   function handleNext() {
-    goToInspectionStep(currentStep + 1);
+    if (currentStep < steps.length) {
+      goToInspectionStep(currentStep + 1);
+      return;
+    }
+
+    generateReport();
   }
 
   const nextButtonLabel =
-    quickCapture && currentStep === 1
-      ? "Save"
-      : currentStep === 1
-        ? "Save & Continue"
-        : "Next";
+    currentStep >= steps.length
+      ? "Finalize"
+      : quickCapture && currentStep === 1
+        ? "Next"
+        : currentStep === 2
+          ? "Review"
+          : "Next";
 
   return (
     <>
-      <div className="sticky top-[73px] z-30 -mx-4 -mt-5 mb-3 border-b border-blue-100 bg-white/95 px-4 py-3 shadow-[0_8px_18px_rgba(15,23,42,0.10)] backdrop-blur sm:-mx-6 sm:px-6">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+      <div className="sticky top-[73px] z-30 -mx-4 -mt-5 mb-3 border-b border-blue-100 bg-white/95 px-4 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.08)] backdrop-blur sm:-mx-6 sm:px-6">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex w-20 shrink-0 justify-start">
+            <button
+              type="button"
+              onClick={handleBack}
+              className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-black text-slate-700 shadow-sm transition hover:bg-slate-50"
+            >
+              ← Back
+            </button>
+          </div>
+
+          <div className="min-w-0 flex-1 text-center">
+            <p className="truncate text-[9px] font-black uppercase tracking-[0.16em] text-[#1D72B8]">
               {workflowLabel} · Step {visibleStepIndex} of {steps.length}
             </p>
-            <h1 className="mt-0.5 truncate text-lg font-black leading-tight text-slate-900 sm:text-xl">
-              {visibleStepTitle}
+            <h1 className="mt-0.5 truncate text-base font-black leading-tight text-slate-900 sm:text-lg">
+              {currentStepTitle}
             </h1>
           </div>
 
-          <div className="shrink-0 text-right">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
-              {lastSavedAt ? "Saved" : "Autosave"}
-            </p>
-            <p className="text-[11px] font-black text-slate-600">
-              {lastSavedAt || "Ready"}
-            </p>
+          <div className="flex w-20 shrink-0 justify-end">
+            {currentStep < steps.length && (
+              <button
+                type="button"
+                onClick={handleNext}
+                className="rounded-full bg-[#102A43] px-3.5 py-1.5 text-[11px] font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+              >
+                {nextButtonLabel} →
+              </button>
+            )}
           </div>
         </div>
 
-        <div className="mt-3 flex items-center gap-2">
-          <button
-            type="button"
-            onClick={handleBack}
-            className="min-h-9 min-w-[112px] rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 shadow-sm transition hover:bg-slate-50"
-          >
-            ← Back
-          </button>
-
-          {currentStep < steps.length && (
-            <button
-              type="button"
-              onClick={handleNext}
-              className="min-h-8 min-w-[96px] rounded-xl bg-[#102A43] px-3 py-1.5 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
-            >
-              {nextButtonLabel} →
-            </button>
-          )}
-        </div>
-
-        <div className="mt-3 h-1.5 rounded-full bg-slate-200">
+        <div className="mt-2 h-1 rounded-full bg-slate-200">
           <div
-            className="h-1.5 rounded-full bg-[#1D72B8] transition-all duration-300"
+            className="h-1 rounded-full bg-[#1D72B8] transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
           />
         </div>

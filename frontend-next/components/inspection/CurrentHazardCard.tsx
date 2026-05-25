@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type CurrentHazardCardProps = {
   currentStep: number;
@@ -32,101 +32,161 @@ export default function CurrentHazardCard({
   currentFindingSaved,
 }: CurrentHazardCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const cardRef = useRef<HTMLElement | null>(null);
 
   const hasData = Boolean(
     description ||
+      hazardCategory ||
+      location ||
+      photos.length ||
+      safeScopeResult ||
+      selectedStandards.length ||
+      selectedGeneratedActions.length ||
+      manualActions.length,
+  );
+
+  useEffect(() => {
+    if (!expanded) return;
+
+    function handlePointerDown(event: MouseEvent | TouchEvent) {
+      const target = event.target as Node | null;
+      if (!target || !cardRef.current) return;
+
+      if (!cardRef.current.contains(target)) {
+        setExpanded(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [expanded]);
+
+  void hasData;
+
+  const category =
     hazardCategory ||
-    location ||
-    photos.length ||
-    safeScopeResult ||
-    selectedStandards.length ||
-    selectedGeneratedActions.length ||
-    manualActions.length,
-  );
+    safeScopeResult?.classification ||
+    (photos.length || location || description
+      ? "Unclassified finding"
+      : "Finding in progress");
 
-  if (!hasData || currentStep === 4) return null;
-
-  const title =
-    hazardCategory || safeScopeResult?.classification || "Current hazard";
-
-  const summary = compactText(
-    description,
-    "Finding details will build as you progress.",
-  );
+  const categorySource = hazardCategory
+    ? "User selected"
+    : safeScopeResult?.classification
+      ? "SafeScope suggested"
+      : "Not classified";
 
   const actionCount = selectedGeneratedActions.length + manualActions.length;
-  const suggestedStandardsCount =
-    safeScopeResult?.suggestedStandards?.length || 0;
+  const suggestedStandardsCount = safeScopeResult?.suggestedStandards?.length || 0;
+  const selectedCount = selectedStandards.length;
 
-  const status = [
-    `${photos.length} photo(s)`,
-    safeScopeResult?.classification
-      ? "SafeScope reviewed"
-      : "SafeScope pending",
-    `Suggested ${suggestedStandardsCount}`,
-    `Selected ${selectedStandards.length}`,
-    `Actions ${actionCount}`,
-  ].join(" · ");
+  const riskLabel =
+    safeScopeResult?.risk?.riskBand ||
+    safeScopeResult?.risk?.operationalRisk?.matrixBand ||
+    "Not rated";
+
+  const primaryLine = location || "Location not added";
+  const secondaryLine = compactText(
+    description,
+    "Add photos, location, and notes to build this finding.",
+  );
 
   return (
-    <section className="mb-3 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+    <section
+      ref={cardRef}
+      className="fixed inset-x-0 bottom-24 z-40 mx-auto w-[calc(100%-1rem)] max-w-3xl rounded-[1.05rem] border border-slate-200 bg-white/95 shadow-[0_10px_24px_rgba(15,23,42,0.18)] backdrop-blur sm:bottom-8"
+    >
       <button
         type="button"
         onClick={() => setExpanded((open) => !open)}
-        className="flex w-full items-center justify-between gap-3 text-left"
+        className="block w-full px-3 py-2 text-left"
       >
-        <div className="min-w-0">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-            Current Hazard
-          </p>
-          <div className="mt-0.5 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
-            <h2 className="truncate text-sm font-black text-slate-900">
-              {title}
-            </h2>
-            <span className="text-xs font-bold text-slate-400">•</span>
-            <p className="text-xs font-bold text-slate-500">{status}</p>
+        <div className="flex min-w-0 items-center gap-2">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#E8F4FF] text-xs font-black text-[#1D72B8]">
+            {currentStep}
           </div>
-        </div>
 
-        <div className="flex shrink-0 items-center gap-2">
-          <span
-            className={`rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wide ${
-              currentFindingSaved
-                ? "bg-emerald-50 text-emerald-700"
-                : "bg-amber-50 text-amber-700"
-            }`}
-          >
-            {currentFindingSaved ? "Saved" : "Draft"}
-          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5">
+              <p className="truncate text-[9px] font-black uppercase tracking-[0.16em] text-[#1D72B8]">
+                Finding Builder
+              </p>
 
-          <span className="text-xs font-black text-slate-400">
-            {expanded ? "Hide" : "Show"}
-          </span>
-        </div>
-      </button>
+              <span
+                className={`shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide ${
+                  currentFindingSaved
+                    ? "bg-emerald-50 text-emerald-700"
+                    : "bg-amber-50 text-amber-700"
+                }`}
+              >
+                {currentFindingSaved ? "Saved" : "Draft"}
+              </span>
+            </div>
 
-      {expanded && (
-        <div className="mt-2 border-t border-slate-200 pt-2">
-          <p className="line-clamp-3 text-sm font-semibold leading-6 text-slate-600">
-            {summary}
-          </p>
+            <h2 className="mt-0.5 truncate text-[13px] font-black leading-4 text-slate-900">
+              {category}
+            </h2>
 
-          <div className="mt-2 grid gap-2 text-xs font-bold text-slate-500 sm:grid-cols-2">
-            <p>Location: {location || "Not added"}</p>
-            <p>Category: {hazardCategory || "SafeScope / not selected"}</p>
-            <p>Photos: {photos.length}</p>
-            <p>Actions: {actionCount}</p>
-            <p>Suggested standards: {suggestedStandardsCount}</p>
-            <p>Selected standards: {selectedStandards.length}</p>
-            <p>
-              Risk:{" "}
-              {safeScopeResult?.risk?.riskBand ||
-                safeScopeResult?.risk?.operationalRisk?.matrixBand ||
-                "Not rated"}
+            <p className="truncate text-[10px] font-bold leading-4 text-slate-500">
+              {primaryLine} · {categorySource}
+            </p>
+          </div>
+
+          <div className="shrink-0 text-right">
+            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
+              {expanded ? "Collapse" : "Expand"}
+            </p>
+            <p className="text-sm font-black leading-none text-slate-500">
+              {expanded ? "⌄" : "⌃"}
             </p>
           </div>
         </div>
-      )}
+
+        {expanded && (
+          <div className="mt-2 border-t border-slate-200 pt-2">
+            <p className="line-clamp-2 text-xs font-semibold leading-5 text-slate-700">
+              {secondaryLine}
+            </p>
+
+            <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-600">
+              <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+                <p className="text-[8px] uppercase tracking-wide text-slate-400">
+                  Photos
+                </p>
+                <p className="text-slate-900">{photos.length}</p>
+              </div>
+
+              <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+                <p className="text-[8px] uppercase tracking-wide text-slate-400">
+                  Risk
+                </p>
+                <p className="truncate text-slate-900">{riskLabel}</p>
+              </div>
+
+              <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+                <p className="text-[8px] uppercase tracking-wide text-slate-400">
+                  Std.
+                </p>
+                <p className="text-slate-900">
+                  {selectedCount}/{suggestedStandardsCount}
+                </p>
+              </div>
+
+              <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+                <p className="text-[8px] uppercase tracking-wide text-slate-400">
+                  Actions
+                </p>
+                <p className="text-slate-900">{actionCount}</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </button>
     </section>
   );
 }

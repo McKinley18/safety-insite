@@ -100,6 +100,9 @@ export default function InspectionPage() {
       ) as "simple_4x4" | "standard_5x5" | "advanced_6x6" | null;
 
       if (savedRiskProfile) setRiskProfileId(savedRiskProfile);
+
+      const savedRegulatoryScope = window.localStorage.getItem("sentinel_regulatory_scope");
+      if (savedRegulatoryScope) setAgencyMode(savedRegulatoryScope);
     }
 
     loadCompanyRiskProfile();
@@ -956,7 +959,7 @@ export default function InspectionPage() {
   }
 
   return (
-    <>
+    <div className="pb-16">
       <InspectionWorkflowHeader
         currentStep={currentStep}
         steps={steps}
@@ -968,19 +971,6 @@ export default function InspectionPage() {
         saveFinding={saveFinding}
         generateReport={generateReport}
         goToCoverPage={() => router.push("/inspection-cover")}
-      />
-
-      <CurrentHazardCard
-        currentStep={currentStep}
-        description={description}
-        hazardCategory={hazardCategory}
-        location={location}
-        photos={photos}
-        safeScopeResult={safeScopeResult}
-        selectedStandards={selectedStandards}
-        selectedGeneratedActions={selectedGeneratedActions}
-        manualActions={manualActions}
-        currentFindingSaved={currentFindingSaved}
       />
 
       <InspectionStepRenderer
@@ -1009,7 +999,6 @@ export default function InspectionPage() {
         safeScopeHelpOpen={safeScopeHelpOpen}
         setSafeScopeHelpOpen={setSafeScopeHelpOpen}
         agencyMode={agencyMode}
-        setAgencyMode={setAgencyMode}
         riskProfileId={riskProfileId}
         handleRunSafeScope={handleRunSafeScope}
         safeScopeStatus={safeScopeStatus}
@@ -1077,11 +1066,26 @@ export default function InspectionPage() {
         deleteFinding={deleteFinding}
       />
 
+      {currentStep < 4 && (
+        <CurrentHazardCard
+          currentStep={currentStep}
+          description={description}
+          hazardCategory={hazardCategory}
+          location={location}
+          photos={photos}
+          safeScopeResult={safeScopeResult}
+          selectedStandards={selectedStandards}
+          selectedGeneratedActions={selectedGeneratedActions}
+          manualActions={manualActions}
+          currentFindingSaved={currentFindingSaved}
+        />
+      )}
+
       {reportValidationMessage && (
         <div className="mt-5 rounded-xl bg-red-50 p-4 text-sm font-black text-red-700">
           {reportValidationMessage}
         </div>
       )}
-    </>
+    </div>
   );
 }

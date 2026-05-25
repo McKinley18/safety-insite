@@ -67,21 +67,21 @@ export default function RiskReviewSection({
         </div>
 
         <div
-          className="grid gap-1"
+          className="mx-auto grid w-fit gap-1.5"
           style={{
-            gridTemplateColumns: `44px repeat(${activeRiskScale.maxScore}, minmax(0, 1fr))`,
+            gridTemplateColumns: `26px repeat(${activeRiskScale.maxScore}, 34px)`,
           }}
         >
           <div />
           {severityValues.map((s) => (
-            <div key={`s-${s.score}`} className="text-center text-[11px] font-black text-slate-500">
+            <div key={`s-${s.score}`} className="text-center text-[9px] font-black text-slate-500">
               S{s.score}
             </div>
           ))}
 
           {likelihoodValues.map((l) => (
             <div key={`likelihood-row-${l.score}`} className="contents">
-              <div key={`l-label-${l.score}`} className="flex items-center justify-center text-[11px] font-black text-slate-500">
+              <div key={`l-label-${l.score}`} className="flex items-center justify-center text-[9px] font-black text-slate-500">
                 L{l.score}
               </div>
 
@@ -98,7 +98,7 @@ export default function RiskReviewSection({
                       setSeverity(s.score);
                       setLikelihood(l.score);
                     }}
-                    className={`min-h-12 rounded-xl border px-2 py-2 text-center text-xs font-black transition ${band.cls} ${
+                    className={`min-h-8 rounded-lg border px-1 py-1 text-center text-[10px] font-black transition ${band.cls} ${
                       selected ? "ring-2 ring-[#1D72B8] ring-offset-2" : "hover:scale-[1.02]"
                     }`}
                   >
@@ -108,22 +108,6 @@ export default function RiskReviewSection({
               })}
             </div>
           ))}
-        </div>
-
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-400">Selected Severity</p>
-            <p className="mt-1 text-sm font-black text-slate-800">
-              {severity ? `S${severity}` : "Not selected"}
-            </p>
-          </div>
-
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-400">Selected Likelihood</p>
-            <p className="mt-1 text-sm font-black text-slate-800">
-              {likelihood ? `L${likelihood}` : "Not selected"}
-            </p>
-          </div>
         </div>
       </div>
 

@@ -1,5 +1,4 @@
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
-import { hazardCategoryOptions } from "@/lib/inspection/inspectionConstants";
 
 type Props = {
   photos: any[];
@@ -8,8 +7,6 @@ type Props = {
   setDescription: (value: string) => void;
   location: string;
   setLocation: (value: string) => void;
-  hazardCategory: string;
-  setHazardCategory: (value: string) => void;
   evidenceNotes: string;
   setEvidenceNotes: (value: string) => void;
   annotatingPhotoIndex: number | null;
@@ -27,8 +24,6 @@ export default function EvidenceCaptureSection({
   setDescription,
   location,
   setLocation,
-  hazardCategory,
-  setHazardCategory,
   evidenceNotes,
   setEvidenceNotes,
   annotatingPhotoIndex,
@@ -196,38 +191,8 @@ export default function EvidenceCaptureSection({
           />
         </div>
 
-        <details className="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
-          <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-600">
-            Optional: choose hazard category
-          </summary>
-
-          <div className="mt-3 grid gap-3">
-            <select
-              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
-              value={hazardCategory}
-              onChange={(event) => setHazardCategory(event.target.value)}
-            >
-              <option value="">Let SafeScope classify</option>
-              {hazardCategoryOptions.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-
-            <input
-              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
-              placeholder="Or type custom category"
-              value={hazardCategory}
-              onChange={(event) => setHazardCategory(event.target.value)}
-            />
-          </div>
-        </details>
+        
       </section>
-
-      <div className="rounded-2xl bg-slate-50 px-3 py-3 text-xs font-black text-slate-500">
-        Photos {photos.length} · {description ? "Condition described" : "No description"} · {location ? "Location added" : "No location"} · {hazardCategory ? `Category: ${hazardCategory}` : "Category: SafeScope"}
-      </div>
     </>
   );
 }

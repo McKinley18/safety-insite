@@ -19,11 +19,19 @@ import {
 
 type RiskProfileId = "simple_4x4" | "standard_5x5" | "advanced_6x6";
 type StorageMode = "local" | "cloud" | "ask";
+type RegulatoryScope = "all" | "msha" | "osha_general" | "osha_construction";
 
 const riskProfiles = [
   ["simple_4x4", "Simple 4x4", "Smaller teams or simpler programs."],
   ["standard_5x5", "Standard 5x5", "Recommended default for most operations."],
   ["advanced_6x6", "Advanced 6x6", "More detail for mature programs."],
+] as const;
+
+const regulatoryScopes = [
+  ["all", "All / Let SafeScope evaluate", "Use when the app should decide the likely applicable agency."],
+  ["msha", "MSHA", "Mining operations and 30 CFR matching."],
+  ["osha_general", "OSHA General Industry", "General industry and 29 CFR 1910 matching."],
+  ["osha_construction", "OSHA Construction", "Construction and 29 CFR 1926 matching."],
 ] as const;
 
 const storageModes = [
@@ -113,6 +121,7 @@ export default function SettingsPage() {
   const [riskProfileId, setRiskProfileId] =
     useState<RiskProfileId>("standard_5x5");
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
+  const [regulatoryScope, setRegulatoryScope] = useState<RegulatoryScope>("all");
   const [requirePinUnlock, setRequirePinUnlock] = useState(false);
   const [autoLockMinutes, setAutoLockMinutes] = useState("off");
 
@@ -168,6 +177,9 @@ export default function SettingsPage() {
           "sentinel_report_storage_mode",
         ) as StorageMode | null) || "local",
       );
+      setRegulatoryScope(
+        (window.localStorage.getItem("sentinel_regulatory_scope") as RegulatoryScope | null) || "all",
+      );
       setRequirePinUnlock(
         window.localStorage.getItem("sentinel_require_pin_unlock") === "true",
       );
@@ -186,6 +198,9 @@ export default function SettingsPage() {
         );
         setRiskProfileId(
           (settings.riskProfileId || "standard_5x5") as RiskProfileId,
+        );
+        setRegulatoryScope(
+          (settings.regulatoryScope || window.localStorage.getItem("sentinel_regulatory_scope") || "all") as RegulatoryScope,
         );
 
         const [membersResult, invitesResult] = await Promise.allSettled([
@@ -284,12 +299,17 @@ export default function SettingsPage() {
       const saved = await updateOrganizationSettings({
         name: organizationName,
         riskProfileId,
+        regulatoryScope,
         logoPath: companyLogo,
       });
 
       window.localStorage.setItem(
         "sentinel_company_risk_profile",
         saved.riskProfileId || riskProfileId,
+      );
+      window.localStorage.setItem(
+        "sentinel_regulatory_scope",
+        saved.regulatoryScope || regulatoryScope,
       );
       window.localStorage.setItem(
         "sentinel_company_logo",
@@ -340,25 +360,30 @@ export default function SettingsPage() {
       />
 
       <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Personal Profile
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              Your account settings
-            </h2>
-            <p className="mt-1 text-sm font-semibold text-slate-500">
-              Manage your name, email, password, and personal account details.
-            </p>
-          </div>
+        <SectionHeader
+          eyebrow="SafeScope Defaults"
+          title="Default Regulatory Scope"
+          description="SafeScope uses this as the default agency context during inspection review. Users can still override hazard category during review."
+        />
 
-          <Link
-            href="/profile"
-            className="rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
-          >
-            Manage Profile
-          </Link>
+        <div className="mt-4 grid gap-3">
+          {regulatoryScopes.map(([id, label, description]) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => setRegulatoryScope(id)}
+              className={`rounded-2xl border px-4 py-3 text-left transition ${
+                regulatoryScope === id
+                  ? "border-[#1D72B8] bg-[#E8F4FF]"
+                  : "border-slate-200 bg-white hover:bg-slate-50"
+              }`}
+            >
+              <p className="text-sm font-black text-slate-900">{label}</p>
+              <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                {description}
+              </p>
+            </button>
+          ))}
         </div>
       </section>
 
