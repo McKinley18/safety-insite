@@ -2,32 +2,67 @@
 
 import { secureStorage } from "@/lib/secureStorage";
 import PageHeader from "@/components/ui/PageHeader";
-import PrimaryButton from "@/components/ui/PrimaryButton";
-import SecondaryButton from "@/components/ui/SecondaryButton";
 import EmptyState from "@/components/ui/EmptyState";
-import OperationalRow from "@/components/ui/OperationalRow";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import { localExporter } from "@/lib/localExporter";
-import { getReports, setReports as persistReports } from "@/lib/reportStorage";
+import { getReports } from "@/lib/reportStorage";
 
 type Report = {
   id: string;
   createdAt: string;
   title?: string;
   location?: string;
+  siteLocation?: string;
+  organizationName?: string;
   findings?: any[];
   storageSource?: "local" | "cloud" | "seed";
 };
 
+function formatDate(value?: string) {
+  if (!value) return "Saved";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "Saved";
+  return date.toLocaleDateString();
+}
+
 function getRiskLabel(report: Report) {
-  const scores = report.findings?.map((f) => Number(f.riskScore || 0)) || [];
+  const scores = report.findings?.map((finding: any) => {
+    const matrixScore =
+      finding.riskScore ||
+      finding.safeScopeResult?.risk?.riskScore ||
+      finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
+      0;
+
+    return Number(matrixScore);
+  }) || [];
+
+  const bands = report.findings?.map((finding: any) =>
+    String(
+      finding.safeScopeResult?.risk?.riskBand ||
+        finding.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
+        "",
+    ).toLowerCase(),
+  ) || [];
+
   const max = Math.max(0, ...scores);
 
-  if (max >= 20) return "Critical";
-  if (max >= 12) return "High";
-  if (max >= 6) return "Moderate";
+  if (bands.some((band) => band.includes("critical")) || max >= 20) {
+    return "Critical";
+  }
+
+  if (bands.some((band) => band.includes("high")) || max >= 12) {
+    return "High";
+  }
+
+  if (
+    bands.some((band) => band.includes("medium") || band.includes("moderate")) ||
+    max >= 6
+  ) {
+    return "Moderate";
+  }
+
   return "Low";
 }
 
@@ -38,9 +73,9 @@ function riskClasses(risk: string) {
     case "High":
       return "bg-orange-100 text-orange-700";
     case "Moderate":
-      return "bg-yellow-100 text-yellow-700";
+      return "bg-amber-100 text-amber-700";
     default:
-      return "bg-slate-100 text-slate-700";
+      return "bg-emerald-50 text-emerald-700";
   }
 }
 
@@ -61,13 +96,25 @@ function getReportIntegrity(report: Report) {
   const evidenceCount = findings.flatMap(
     (finding: any) => finding.photos || [],
   ).length;
+
   const safeScopeCount = findings.filter(
     (finding: any) => finding.safeScopeResult,
   ).length;
+
   const actionCount = findings.flatMap(
     (finding: any) =>
-      finding.correctiveActions ||
-      finding.safeScopeResult?.generatedActions ||
+      finding.correctiveActions || [
+        ...(finding.selectedGeneratedActions || []),
+        ...(finding.manualActions || []),
+        ...(finding.safeScopeResult?.generatedActions || []),
+      ],
+  ).length;
+
+  const standardsCount = findings.flatMap(
+    (finding: any) =>
+      finding.selectedStandards ||
+      finding.standards ||
+      finding.safeScopeResult?.suggestedStandards ||
       [],
   ).length;
 
@@ -75,10 +122,24 @@ function getReportIntegrity(report: Report) {
     evidenceCount,
     safeScopeCount,
     actionCount,
+    standardsCount,
     hasEvidence: evidenceCount > 0,
     hasSafeScope: safeScopeCount > 0,
     hasActions: actionCount > 0,
   };
+}
+
+function getReportTitle(report: Report) {
+  return report.title || "Inspection Report";
+}
+
+function getReportLocation(report: Report) {
+  return (
+    report.location ||
+    report.siteLocation ||
+    report.findings?.[0]?.location ||
+    "Field Inspection"
+  );
 }
 
 export default function ReportsPage() {
@@ -103,13 +164,17 @@ export default function ReportsPage() {
       }));
 
       const latest = secureStorage.get("latest_report", null as any);
-      const latestReport: Report | null = latest ? JSON.parse(latest) : null;
+      let latestReport: Report | null = null;
+
+      if (latest) {
+        latestReport = typeof latest === "string" ? JSON.parse(latest) : latest;
+      }
 
       const merged: Report[] = [...localReports];
 
       if (
         latestReport &&
-        !merged.some((report) => report.id === latestReport.id)
+        !merged.some((report) => report.id === latestReport?.id)
       ) {
         merged.unshift({
           ...latestReport,
@@ -135,6 +200,28 @@ export default function ReportsPage() {
     );
   }, [reports]);
 
+  const reportTotals = useMemo(() => {
+    const findings = reports.flatMap((report) => report.findings || []);
+    const evidenceCount = findings.flatMap(
+      (finding: any) => finding.photos || [],
+    ).length;
+    const actionCount = findings.flatMap(
+      (finding: any) =>
+        finding.correctiveActions || [
+          ...(finding.selectedGeneratedActions || []),
+          ...(finding.manualActions || []),
+          ...(finding.safeScopeResult?.generatedActions || []),
+        ],
+    ).length;
+
+    return {
+      reports: reports.length,
+      findings: findings.length,
+      evidenceCount,
+      actionCount,
+    };
+  }, [reports]);
+
   function persist(nextReports: Report[]) {
     setReports(nextReports);
     secureStorage.set("reports", JSON.stringify(nextReports));
@@ -143,6 +230,12 @@ export default function ReportsPage() {
   function startEdit(report: Report) {
     secureStorage.set("edit_report", JSON.stringify(report));
     router.push("/inspection-review");
+  }
+
+  function beginInlineEdit(report: Report) {
+    setEditingReportId(report.id);
+    setEditTitle(getReportTitle(report));
+    setEditLocation(getReportLocation(report));
   }
 
   function saveEdit(reportId: string) {
@@ -166,17 +259,18 @@ export default function ReportsPage() {
     const confirmed = window.confirm(
       "Delete this report? This cannot be undone.",
     );
+
     if (!confirmed) return;
 
     const nextReports = reports.filter((report) => report.id !== reportId);
     persist(nextReports);
 
     const latest = secureStorage.get("latest_report", null as any);
-    if (latest) {
-      const latestReport = latest;
-      if (latestReport.id === reportId) {
-        secureStorage.remove("latest_report");
-      }
+    const latestReport =
+      typeof latest === "string" ? JSON.parse(latest || "null") : latest;
+
+    if (latestReport?.id === reportId) {
+      secureStorage.remove("latest_report");
     }
   }
 
@@ -194,18 +288,21 @@ export default function ReportsPage() {
         finding.hazard ||
         finding.observedCondition ||
         "No description provided.",
-      location: finding.location || report.location || "Field Inspection",
+      location: finding.location || getReportLocation(report),
       severity: Number(finding.severity || finding.severityScore || 1),
       likelihood: Number(finding.likelihood || finding.likelihoodScore || 1),
       standards:
+        finding.selectedStandards ||
         finding.standards ||
         finding.safeScopeResult?.suggestedStandards ||
         finding.safeScopeResult?.standards ||
         [],
       correctiveActions:
-        finding.correctiveActions ||
-        finding.safeScopeResult?.generatedActions ||
-        [],
+        finding.correctiveActions || [
+          ...(finding.selectedGeneratedActions || []),
+          ...(finding.manualActions || []),
+          ...(finding.safeScopeResult?.generatedActions || []),
+        ],
       photos: finding.photos || [],
       safeScopeResult: finding.safeScopeResult || null,
     }));
@@ -215,21 +312,22 @@ export default function ReportsPage() {
         company:
           coverPage.organizationName ||
           coverPage.company ||
+          (report as any).organizationName ||
           (report as any).company ||
           "Organization Name",
         site:
           coverPage.siteLocation ||
           coverPage.site ||
-          report.location ||
-          "Field Inspection",
+          getReportLocation(report),
         inspector:
           coverPage.leadInspector ||
           coverPage.inspector ||
+          (report as any).leadInspector ||
           (report as any).inspector ||
           "Inspector",
         date:
           coverPage.inspectionDate ||
-          new Date(report.createdAt).toLocaleDateString(),
+          formatDate(report.createdAt),
         isConfidential: Boolean(
           coverPage.isConfidential || (report as any).confidential,
         ),
@@ -245,8 +343,54 @@ export default function ReportsPage() {
         description="Defensible inspection records, evidence packages, SafeScope reasoning, and export-ready operational reports."
       />
 
+      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+              Report Library
+            </p>
+            <h2 className="mt-2 text-3xl font-black tracking-tight">
+              Inspection records.
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+              Review saved reports, export PDF packages, and return to records
+              for editing or follow-up.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => router.push("/inspection-cover")}
+            className="rounded-xl bg-[#1D72B8] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#5DB7FF]"
+          >
+            Start Inspection
+          </button>
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {[
+            [String(reportTotals.reports), "Reports"],
+            [String(reportTotals.findings), "Findings"],
+            [String(reportTotals.evidenceCount), "Evidence Items"],
+            [String(reportTotals.actionCount), "Actions"],
+          ].map(([value, label]) => (
+            <div
+              key={label}
+              className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3"
+            >
+              <p className="text-2xl font-black tracking-tight text-white">
+                {value}
+              </p>
+              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <p className="-mt-2 text-xs font-semibold italic leading-5 text-slate-500">
-        * Reports follow your selected workspace storage and export settings.
+        Reports follow your selected workspace storage and export settings.
         Evidence, findings, standards, and corrective actions remain tied to the
         inspection record.
       </p>
@@ -257,114 +401,192 @@ export default function ReportsPage() {
           description="Completed inspection reports will appear here."
         />
       ) : (
-        <div className="border-y border-slate-200">
+        <div className="space-y-3">
           {sortedReports.map((report) => {
             const risk = getRiskLabel(report);
             const firstPhoto = report.findings?.flatMap(
-              (f) => f.photos || [],
+              (finding: any) => finding.photos || [],
             )?.[0];
             const integrity = getReportIntegrity(report);
+            const editing = editingReportId === report.id;
 
             return (
-              <OperationalRow
+              <article
                 key={report.id}
-                title={
-                  editingReportId === report.id
-                    ? "Editing Report"
-                    : report.title || "Inspection Report"
-                }
-                subtitle={
-                  editingReportId === report.id
-                    ? "Update report title and location."
-                    : report.location || "Field Inspection"
-                }
-                metadata={[
-                  `${report.findings?.length || 0} Findings`,
-                  `${integrity.evidenceCount} Evidence Item(s)`,
-                  `${integrity.actionCount} Action(s)`,
-                  new Date(report.createdAt).toLocaleDateString(),
-                  getStorageLabel(report.storageSource),
-                  `Risk: ${risk}`,
-                ]}
-                actions={
-                  editingReportId === report.id ? (
-                    <>
-                      <PrimaryButton onClick={() => saveEdit(report.id)}>
-                        Save
-                      </PrimaryButton>
-
-                      <SecondaryButton onClick={() => setEditingReportId(null)}>
-                        Cancel
-                      </SecondaryButton>
-                    </>
-                  ) : (
-                    <>
-                      <PrimaryButton onClick={() => startEdit(report)}>
-                        Edit
-                      </PrimaryButton>
-
-                      <SecondaryButton onClick={() => exportReport(report)}>
-                        Export PDF
-                      </SecondaryButton>
-
-                      <button
-                        onClick={() => deleteReport(report.id)}
-                        className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
-                      >
-                        Delete
-                      </button>
-                    </>
-                  )
-                }
+                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
               >
-                {editingReportId === report.id ? (
-                  <div className="grid gap-3 md:grid-cols-2">
+                <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wide ${riskClasses(
+                          risk,
+                        )}`}
+                      >
+                        {risk} Risk
+                      </span>
+
+                      <span
+                        className={`rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-wide ${getStorageClass(
+                          report.storageSource,
+                        )}`}
+                      >
+                        {getStorageLabel(report.storageSource)}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-2 text-lg font-black text-slate-900">
+                      {editing ? "Editing Report" : getReportTitle(report)}
+                    </h3>
+                    <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+                      {editing
+                        ? "Update report title and location."
+                        : getReportLocation(report)}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {editing ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => saveEdit(report.id)}
+                          className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
+                        >
+                          Save
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => setEditingReportId(null)}
+                          className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => startEdit(report)}
+                          className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
+                        >
+                          Review
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => beginInlineEdit(report)}
+                          className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                        >
+                          Rename
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => exportReport(report)}
+                          className="rounded-xl bg-[#F97316] px-4 py-2 text-xs font-black text-white transition hover:bg-[#EA580C]"
+                        >
+                          Export PDF
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => deleteReport(report.id)}
+                          className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
+                        >
+                          Delete
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {editing ? (
+                  <div className="mt-4 grid gap-3 md:grid-cols-2">
                     <input
                       value={editTitle}
-                      onChange={(e) => setEditTitle(e.target.value)}
+                      onChange={(event) => setEditTitle(event.target.value)}
                       className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
                       placeholder="Report title"
                     />
 
                     <input
                       value={editLocation}
-                      onChange={(e) => setEditLocation(e.target.value)}
+                      onChange={(event) => setEditLocation(event.target.value)}
                       className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
                       placeholder="Location"
                     />
                   </div>
                 ) : (
-                  <div className="grid gap-3 md:grid-cols-[96px_1fr]">
+                  <div className="mt-4 grid gap-3 md:grid-cols-[96px_1fr]">
                     {firstPhoto ? (
-                      <div className="hidden w-24 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 md:block">
+                      <div className="hidden h-24 w-24 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 md:block">
                         <AnnotationPreview
                           photoUrl={firstPhoto.url}
                           annotations={firstPhoto.annotations || []}
                         />
                       </div>
                     ) : (
-                      <div className="hidden w-24 rounded-xl border border-dashed border-slate-300 bg-slate-50 md:block" />
+                      <div className="hidden h-24 w-24 rounded-xl border border-dashed border-slate-300 bg-slate-50 md:block" />
                     )}
 
-                    <div>
-                      <div className="grid gap-2 text-[10px] font-black uppercase tracking-wide text-slate-500 sm:grid-cols-3">
-                        <span>
-                          Evidence{" "}
-                          {integrity.hasEvidence ? "Attached" : "Pending"}
+                    <div className="min-w-0">
+                      <div className="grid gap-2 sm:grid-cols-4">
+                        {[
+                          [`${report.findings?.length || 0}`, "Findings"],
+                          [`${integrity.evidenceCount}`, "Evidence"],
+                          [`${integrity.standardsCount}`, "Standards"],
+                          [`${integrity.actionCount}`, "Actions"],
+                        ].map(([value, label]) => (
+                          <div
+                            key={label}
+                            className="rounded-xl bg-slate-50 px-3 py-2"
+                          >
+                            <p className="text-sm font-black text-slate-900">
+                              {value}
+                            </p>
+                            <p className="mt-0.5 text-[10px] font-black uppercase tracking-wide text-slate-400">
+                              {label}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-wide">
+                        <span
+                          className={
+                            integrity.hasEvidence
+                              ? "text-emerald-700"
+                              : "text-slate-400"
+                          }
+                        >
+                          Evidence {integrity.hasEvidence ? "Attached" : "Pending"}
                         </span>
-                        <span>
-                          SafeScope{" "}
-                          {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
+                        <span
+                          className={
+                            integrity.hasSafeScope
+                              ? "text-blue-700"
+                              : "text-slate-400"
+                          }
+                        >
+                          SafeScope {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
                         </span>
-                        <span>
+                        <span
+                          className={
+                            integrity.hasActions
+                              ? "text-orange-700"
+                              : "text-slate-400"
+                          }
+                        >
                           Actions {integrity.hasActions ? "Linked" : "Pending"}
                         </span>
                       </div>
 
                       <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">
-                        Evidence, findings, timestamps, and corrective actions
-                        remain connected to this inspection record for export
-                        and review workflows.
+                        Created {formatDate(report.createdAt)}. Evidence,
+                        findings, standards, and corrective actions remain
+                        connected to this inspection record.
                       </p>
 
                       <p className="mt-2 break-all text-[10px] font-semibold text-slate-400">
@@ -373,7 +595,7 @@ export default function ReportsPage() {
                     </div>
                   </div>
                 )}
-              </OperationalRow>
+              </article>
             );
           })}
         </div>
