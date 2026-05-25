@@ -82,12 +82,14 @@ export default function SettingsHubPage() {
             </p>
           </div>
 
-          <Link
-            href="/profile"
-            className="rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
-          >
-            Manage Profile
-          </Link>
+          <div className="flex justify-center sm:justify-end">
+            <Link
+              href="/profile"
+              className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+            >
+              Manage Profile
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -115,12 +117,14 @@ export default function SettingsHubPage() {
             </div>
           </div>
 
-          <Link
-            href="/settings/workspace"
-            className="mt-5 inline-flex rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
-          >
-            Manage Organization
-          </Link>
+          <div className="mt-5 flex justify-center">
+            <Link
+              href="/settings/workspace"
+              className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+            >
+              Manage Organization
+            </Link>
+          </div>
         </div>
 
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -148,36 +152,17 @@ export default function SettingsHubPage() {
             </div>
           </div>
 
-          <Link
-            href="/settings/workspace"
-            className="mt-5 inline-flex rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
-          >
-            Change Storage
-          </Link>
+          <div className="mt-5 flex justify-center">
+            <Link
+              href="/settings/workspace"
+              className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+            >
+              Change Storage
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-          Quick Setup Checklist
-        </p>
-
-        <div className="mt-4 grid gap-3 md:grid-cols-4">
-          {[
-            ["Profile", profileEmail ? "Ready" : "Review"],
-            ["Organization", organizationName ? "Ready" : "Review"],
-            ["Locations", facilityCount ? `${facilityCount} saved` : "Add locations"],
-            ["Storage", storageLabel],
-          ].map(([label, value]) => (
-            <div key={label} className="rounded-xl bg-white px-3 py-3">
-              <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
-                {label}
-              </p>
-              <p className="mt-1 text-sm font-black text-slate-900">{value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </section>
   );
 }
