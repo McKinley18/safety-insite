@@ -16,7 +16,6 @@ import {
 } from "@/lib/planEntitlements";
 
 type WorkflowId = "quick" | "guided" | "advanced";
-type RegulatoryFocus = "general" | "msha" | "osha";
 
 const workflowOptions: {
   id: WorkflowId;
@@ -70,11 +69,6 @@ const workflowOptions: {
   },
 ];
 
-const regulatoryFocusOptions = [
-  ["general", "General", "Let SafeScope evaluate the likely scope."],
-  ["msha", "MSHA", "Mining operations and 30 CFR context."],
-  ["osha", "OSHA", "General Industry or Construction context."],
-] as const;
 
 function getProgramStatus(programs: InspectionProgramRecord[]) {
   return {
@@ -102,14 +96,15 @@ export default function InspectionsPage() {
     InspectionProgramRecord[]
   >([]);
   const [selectedWorkflow, setSelectedWorkflow] = useState(workflowOptions[0]);
-  const [regulatoryFocus, setRegulatoryFocus] =
-    useState<RegulatoryFocus>("general");
+  const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>("quick");
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
+  const [regulatoryScope, setRegulatoryScope] = useState("all");
 
   useEffect(() => {
     const seeded = seedInspectionProgramIfEmpty();
     setInspectionPrograms(seeded.length ? seeded : getInspectionProgram());
     setPlanCode(getStoredPlanCode());
+    setRegulatoryScope(window.localStorage.getItem("sentinel_regulatory_scope") || "all");
   }, []);
 
   const programStatus = useMemo(
@@ -122,23 +117,25 @@ export default function InspectionsPage() {
     planCode,
   );
 
-  function startInspection() {
-    if (!selectedAllowed) return;
+  function startInspection(workflow = selectedWorkflow) {
+    if (!hasPlanEntitlement(workflow.entitlement, planCode)) return;
 
     clearActiveInspectionDraft();
 
     window.localStorage.setItem(
       "sentinel_selected_inspection_context",
       JSON.stringify({
-        inspectionType: selectedWorkflow.inspectionType,
-        inspectionTitle: selectedWorkflow.title,
+        inspectionType: workflow.inspectionType,
+        inspectionTitle: workflow.title,
         agency:
-          regulatoryFocus === "msha"
+          regulatoryScope === "msha"
             ? "MSHA"
-            : regulatoryFocus === "osha"
-              ? "OSHA"
-              : "General",
-        workflowDepth: selectedWorkflow.id,
+            : regulatoryScope === "osha_general"
+              ? "OSHA General Industry"
+              : regulatoryScope === "osha_construction"
+                ? "OSHA Construction"
+                : "General",
+        workflowDepth: workflow.id,
       }),
     );
   }
@@ -201,119 +198,164 @@ export default function InspectionsPage() {
           </p>
         </div>
 
-        <div className="mt-4 grid gap-3 lg:grid-cols-3">
+        <div className="mt-4 space-y-2">
           {workflowOptions.map((workflow) => {
             const selected = selectedWorkflow.id === workflow.id;
+            const expanded = expandedWorkflowId === workflow.id;
             const allowed = hasPlanEntitlement(workflow.entitlement, planCode);
 
+            const featureRows =
+              workflow.id === "quick"
+                ? [
+                    "Photo + location + condition",
+                    "SafeScope quick preview",
+                    "Risk signal",
+                    "One suggested action",
+                  ]
+                : workflow.id === "guided"
+                  ? [
+                      "Evidence workflow",
+                      "Full SafeScope review",
+                      "Standards suggestions",
+                      "Report options",
+                    ]
+                  : [
+                      "Audit validation",
+                      "Traceability appendix",
+                      "Review triggers",
+                      "Team accountability",
+                    ];
+
             return (
-              <button
+              <article
                 key={workflow.id}
-                type="button"
-                onClick={() => setSelectedWorkflow(workflow)}
-                className={`rounded-2xl border p-4 text-left transition ${
+                className={`overflow-hidden rounded-2xl border shadow-sm transition ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
-                    : "border-slate-200 bg-white hover:bg-slate-50"
+                    : "border-slate-200 bg-white hover:border-slate-300"
                 }`}
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-                      {workflow.eyebrow}
-                    </p>
-                    <h3 className="mt-1 text-base font-black text-slate-900">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedWorkflow(workflow);
+                    setExpandedWorkflowId(expanded ? null : workflow.id);
+                  }}
+                  className="flex w-full items-center justify-between gap-3 px-3 py-3 text-left sm:px-4"
+                >
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+                        {workflow.eyebrow}
+                      </p>
+
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide ${
+                          allowed
+                            ? selected
+                              ? "bg-[#1D72B8] text-white"
+                              : "bg-emerald-50 text-emerald-700"
+                            : "bg-slate-100 text-slate-500"
+                        }`}
+                      >
+                        {allowed
+                          ? selected
+                            ? "Selected"
+                            : workflow.tierLabel
+                          : workflow.tierLabel}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900">
                       {workflow.title}
                     </h3>
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">
+                      {workflow.description}
+                    </p>
                   </div>
 
-                  <span
-                    className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wide ${
-                      allowed
-                        ? selected
-                          ? "bg-[#1D72B8] text-white"
-                          : "bg-emerald-50 text-emerald-700"
-                        : "bg-slate-100 text-slate-500"
-                    }`}
-                  >
-                    {allowed ? (selected ? "Selected" : workflow.tierLabel) : workflow.tierLabel}
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-lg font-black text-[#102A43] shadow-sm transition">
+                    {expanded ? "−" : "+"}
                   </span>
-                </div>
+                </button>
 
-                <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
-                  {workflow.description}
-                </p>
-                <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
-                  {workflow.details}
-                </p>
-              </button>
+                {expanded && (
+                  <div className="border-t border-slate-200 bg-white px-3 py-3 sm:px-4">
+                    <p className="text-xs font-semibold leading-5 text-slate-600">
+                      {workflow.details}
+                    </p>
+
+                    <div className="mt-3 grid grid-cols-2 gap-2">
+                      {featureRows.map((feature) => (
+                        <div
+                          key={feature}
+                          className="rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-2 text-[11px] font-black leading-4 text-slate-600"
+                        >
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+
+                    {!allowed && (
+                      <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-xs font-black leading-5 text-amber-800">
+                        {workflow.title} requires the {workflow.tierLabel} plan.
+                      </p>
+                    )}
+
+                    {allowed ? (
+                      <Link
+                        href={workflow.route}
+                        onClick={() => {
+                          setSelectedWorkflow(workflow);
+                          startInspection(workflow);
+                        }}
+                        className="mt-3 flex w-full items-center justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
+                      >
+                        Start {workflow.title}
+                      </Link>
+                    ) : (
+                      <Link
+                        href="/pricing"
+                        className="mt-3 flex w-full items-center justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+                      >
+                        View Upgrade Options
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </article>
             );
           })}
         </div>
 
         <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Regulatory Focus
+            Regulatory Agency
           </p>
-
-          <div className="mt-3 grid gap-2 md:grid-cols-3">
-            {regulatoryFocusOptions.map(([id, label, description]) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => setRegulatoryFocus(id as RegulatoryFocus)}
-                className={`rounded-xl border px-3 py-3 text-left transition ${
-                  regulatoryFocus === id
-                    ? "border-[#1D72B8] bg-white"
-                    : "border-slate-200 bg-white/70 hover:bg-white"
-                }`}
-              >
-                <p className="text-sm font-black text-slate-900">{label}</p>
-                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                  {description}
-                </p>
-              </button>
-            ))}
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+            SafeScope uses the default regulatory agency selected in Workspace Settings.
+          </p>
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm font-black text-slate-900">
+              Current default: {
+                regulatoryScope === "msha"
+                  ? "MSHA"
+                  : regulatoryScope === "osha_general"
+                    ? "OSHA General Industry"
+                    : regulatoryScope === "osha_construction"
+                      ? "OSHA Construction"
+                      : "All / Let SafeScope evaluate"
+              }
+            </p>
+            <Link
+              href="/settings/workspace"
+              className="rounded-xl border border-[#1D72B8] bg-white px-3 py-2 text-center text-xs font-black text-[#102A43] transition hover:bg-[#E8F4FF]"
+            >
+              Change in Settings
+            </Link>
           </div>
         </div>
 
-        <div className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-3">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Selected Setup
-          </p>
-          <p className="mt-1 text-sm font-black leading-6 text-slate-800">
-            {selectedWorkflow.title} ·{" "}
-            {
-              regulatoryFocusOptions.find(([id]) => id === regulatoryFocus)?.[1]
-            }
-          </p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-            {selectedWorkflow.details}
-          </p>
-
-          {!selectedAllowed && (
-            <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-xs font-black leading-5 text-amber-800">
-              {selectedWorkflow.title} requires the {selectedWorkflow.tierLabel} plan.
-            </p>
-          )}
-        </div>
-
-        {selectedAllowed ? (
-          <Link
-            href={selectedWorkflow.route}
-            onClick={startInspection}
-            className="mt-4 flex w-full items-center justify-center rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
-          >
-            Begin {selectedWorkflow.title}
-          </Link>
-        ) : (
-          <Link
-            href="/pricing"
-            className="mt-4 flex w-full items-center justify-center rounded-xl bg-[#102A43] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
-          >
-            View Upgrade Options
-          </Link>
-        )}
       </section>
 
       {hasPlanEntitlement("inspectionAssignments", planCode) && (
@@ -355,7 +397,7 @@ export default function InspectionsPage() {
 
                     <Link
                       href="/inspection-cover"
-                      onClick={startInspection}
+                      onClick={() => startInspection(selectedWorkflow)}
                       className="shrink-0 rounded-lg bg-[#102A43] px-3 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
                     >
                       Start
