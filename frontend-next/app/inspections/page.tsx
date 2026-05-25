@@ -162,7 +162,7 @@ export default function InspectionsPage() {
           </span>
         </div>
 
-        <div className="mx-auto mt-5 grid max-w-4xl grid-cols-2 justify-center gap-3 lg:grid-cols-4">
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
           {[
             [String(programStatus.scheduled), "Scheduled"],
             [String(programStatus.inProgress), "In Progress"],
@@ -171,12 +171,12 @@ export default function InspectionsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
             >
-              <p className="text-2xl font-black tracking-tight text-white">
+              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
                 {value}
               </p>
-              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
+              <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
                 {label}
               </p>
             </div>
@@ -346,7 +346,7 @@ export default function InspectionsPage() {
                 ? "OSHA General Industry"
                 : regulatoryScope === "osha_construction"
                   ? "OSHA Construction"
-                  : "All / Let SafeScope evaluate"}
+                  : "Let SafeScope evaluate"}
           </span>
           .
         </p>

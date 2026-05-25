@@ -1,6 +1,7 @@
 "use client";
 
 import { secureStorage } from "@/lib/secureStorage";
+import PageHeader from "@/components/ui/PageHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -11,6 +12,7 @@ import { getReports } from "@/lib/reportStorage";
 type Report = {
   id: string;
   createdAt: string;
+  inspectionDate?: string;
   title?: string;
   location?: string;
   siteLocation?: string;
@@ -20,30 +22,32 @@ type Report = {
 };
 
 function formatDate(value?: string) {
-  if (!value) return "Saved";
+  if (!value) return "Not dated";
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "Saved";
+  if (Number.isNaN(date.getTime())) return "Not dated";
   return date.toLocaleDateString();
 }
 
 function getRiskLabel(report: Report) {
-  const scores = report.findings?.map((finding: any) => {
-    const matrixScore =
-      finding.riskScore ||
-      finding.safeScopeResult?.risk?.riskScore ||
-      finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
-      0;
+  const scores =
+    report.findings?.map((finding: any) => {
+      const matrixScore =
+        finding.riskScore ||
+        finding.safeScopeResult?.risk?.riskScore ||
+        finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
+        0;
 
-    return Number(matrixScore);
-  }) || [];
+      return Number(matrixScore);
+    }) || [];
 
-  const bands = report.findings?.map((finding: any) =>
-    String(
-      finding.safeScopeResult?.risk?.riskBand ||
-        finding.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
-        "",
-    ).toLowerCase(),
-  ) || [];
+  const bands =
+    report.findings?.map((finding: any) =>
+      String(
+        finding.safeScopeResult?.risk?.riskBand ||
+          finding.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
+          "",
+      ).toLowerCase(),
+    ) || [];
 
   const max = Math.max(0, ...scores);
 
@@ -141,10 +145,15 @@ function getReportLocation(report: Report) {
   );
 }
 
+function getReportDate(report: Report) {
+  return formatDate(report.inspectionDate || report.createdAt);
+}
+
 export default function ReportsPage() {
   const router = useRouter();
   const [reports, setReports] = useState<Report[]>([]);
   const [editingReportId, setEditingReportId] = useState<string | null>(null);
+  const [expandedReportId, setExpandedReportId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState("");
   const [editLocation, setEditLocation] = useState("");
 
@@ -187,6 +196,7 @@ export default function ReportsPage() {
       }
 
       setReports(merged);
+      if (merged[0]?.id) setExpandedReportId(merged[0].id);
     }
 
     loadReports();
@@ -226,13 +236,14 @@ export default function ReportsPage() {
     secureStorage.set("reports", JSON.stringify(nextReports));
   }
 
-  function startEdit(report: Report) {
+  function startReview(report: Report) {
     secureStorage.set("edit_report", JSON.stringify(report));
     router.push("/inspection-review");
   }
 
   function beginInlineEdit(report: Report) {
     setEditingReportId(report.id);
+    setExpandedReportId(report.id);
     setEditTitle(getReportTitle(report));
     setEditLocation(getReportLocation(report));
   }
@@ -324,9 +335,7 @@ export default function ReportsPage() {
           (report as any).leadInspector ||
           (report as any).inspector ||
           "Inspector",
-        date:
-          coverPage.inspectionDate ||
-          formatDate(report.createdAt),
+        date: coverPage.inspectionDate || getReportDate(report),
         isConfidential: Boolean(
           coverPage.isConfidential || (report as any).confidential,
         ),
@@ -337,32 +346,19 @@ export default function ReportsPage() {
 
   return (
     <section className="space-y-5">
+      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-center text-white shadow-sm sm:p-6">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          Records
+        </p>
+        <h2 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          Safety records.
+        </h2>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Review saved inspection records, expand report details, and export PDF
+          packages.
+        </p>
 
-      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-              Records
-            </p>
-            <h2 className="mt-2 text-3xl font-black tracking-tight">
-              Safety records.
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-              Review saved reports, export PDF packages, and return to records
-              for editing or follow-up.
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={() => router.push("/inspection-cover")}
-            className="rounded-xl bg-[#1D72B8] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#5DB7FF]"
-          >
-            Start Inspection
-          </button>
-        </div>
-
-        <div className="mx-auto mt-5 grid max-w-4xl grid-cols-2 justify-center gap-3 lg:grid-cols-4">
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
           {[
             [String(reportTotals.reports), "Reports"],
             [String(reportTotals.findings), "Findings"],
@@ -371,12 +367,12 @@ export default function ReportsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
             >
-              <p className="text-2xl font-black tracking-tight text-white">
+              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
                 {value}
               </p>
-              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
+              <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
                 {label}
               </p>
             </div>
@@ -404,13 +400,20 @@ export default function ReportsPage() {
             )?.[0];
             const integrity = getReportIntegrity(report);
             const editing = editingReportId === report.id;
+            const expanded = expandedReportId === report.id;
 
             return (
               <article
                 key={report.id}
-                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
               >
-                <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setExpandedReportId(expanded ? null : report.id)
+                  }
+                  className="flex w-full items-start justify-between gap-3 px-4 py-4 text-left"
+                >
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <span
@@ -430,164 +433,171 @@ export default function ReportsPage() {
                       </span>
                     </div>
 
-                    <h3 className="mt-2 text-lg font-black text-slate-900">
-                      {editing ? "Editing Report" : getReportTitle(report)}
+                    <h3 className="mt-2 text-lg font-black leading-tight text-slate-900">
+                      {getReportTitle(report)}
                     </h3>
+
                     <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
-                      {editing
-                        ? "Update report title and location."
-                        : getReportLocation(report)}
+                      {getReportDate(report)} · {getReportLocation(report)}
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-lg font-black text-[#102A43] shadow-sm">
+                    {expanded ? "−" : "+"}
+                  </span>
+                </button>
+
+                {expanded && (
+                  <div className="border-t border-slate-200 px-4 py-4">
                     {editing ? (
-                      <>
-                        <button
-                          type="button"
-                          onClick={() => saveEdit(report.id)}
-                          className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
-                        >
-                          Save
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => setEditingReportId(null)}
-                          className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
-                        >
-                          Cancel
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        <button
-                          type="button"
-                          onClick={() => startEdit(report)}
-                          className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
-                        >
-                          Review
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => beginInlineEdit(report)}
-                          className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
-                        >
-                          Rename
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => exportReport(report)}
-                          className="rounded-xl bg-[#F97316] px-4 py-2 text-xs font-black text-white transition hover:bg-[#EA580C]"
-                        >
-                          Export PDF
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => deleteReport(report.id)}
-                          className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
-                        >
-                          Delete
-                        </button>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {editing ? (
-                  <div className="mt-4 grid gap-3 md:grid-cols-2">
-                    <input
-                      value={editTitle}
-                      onChange={(event) => setEditTitle(event.target.value)}
-                      className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-                      placeholder="Report title"
-                    />
-
-                    <input
-                      value={editLocation}
-                      onChange={(event) => setEditLocation(event.target.value)}
-                      className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-                      placeholder="Location"
-                    />
-                  </div>
-                ) : (
-                  <div className="mt-4 grid gap-3 md:grid-cols-[96px_1fr]">
-                    {firstPhoto ? (
-                      <div className="hidden h-24 w-24 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 md:block">
-                        <AnnotationPreview
-                          photoUrl={firstPhoto.url}
-                          annotations={firstPhoto.annotations || []}
+                      <div className="grid gap-3 md:grid-cols-2">
+                        <input
+                          value={editTitle}
+                          onChange={(event) => setEditTitle(event.target.value)}
+                          className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+                          placeholder="Report title"
                         />
+
+                        <input
+                          value={editLocation}
+                          onChange={(event) =>
+                            setEditLocation(event.target.value)
+                          }
+                          className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+                          placeholder="Location"
+                        />
+
+                        <div className="flex flex-wrap gap-2 md:col-span-2">
+                          <button
+                            type="button"
+                            onClick={() => saveEdit(report.id)}
+                            className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
+                          >
+                            Save
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => setEditingReportId(null)}
+                            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                          >
+                            Cancel
+                          </button>
+                        </div>
                       </div>
                     ) : (
-                      <div className="hidden h-24 w-24 rounded-xl border border-dashed border-slate-300 bg-slate-50 md:block" />
-                    )}
-
-                    <div className="min-w-0">
-                      <div className="grid gap-2 sm:grid-cols-4">
-                        {[
-                          [`${report.findings?.length || 0}`, "Findings"],
-                          [`${integrity.evidenceCount}`, "Evidence"],
-                          [`${integrity.standardsCount}`, "Standards"],
-                          [`${integrity.actionCount}`, "Actions"],
-                        ].map(([value, label]) => (
-                          <div
-                            key={label}
-                            className="rounded-xl bg-slate-50 px-3 py-2"
-                          >
-                            <p className="text-sm font-black text-slate-900">
-                              {value}
-                            </p>
-                            <p className="mt-0.5 text-[10px] font-black uppercase tracking-wide text-slate-400">
-                              {label}
-                            </p>
+                      <div className="grid gap-4 md:grid-cols-[96px_1fr]">
+                        {firstPhoto ? (
+                          <div className="hidden h-24 w-24 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 md:block">
+                            <AnnotationPreview
+                              photoUrl={firstPhoto.url}
+                              annotations={firstPhoto.annotations || []}
+                            />
                           </div>
-                        ))}
+                        ) : (
+                          <div className="hidden h-24 w-24 rounded-xl border border-dashed border-slate-300 bg-slate-50 md:block" />
+                        )}
+
+                        <div className="min-w-0">
+                          <div className="grid gap-2 sm:grid-cols-4">
+                            {[
+                              [`${report.findings?.length || 0}`, "Findings"],
+                              [`${integrity.evidenceCount}`, "Evidence"],
+                              [`${integrity.standardsCount}`, "Standards"],
+                              [`${integrity.actionCount}`, "Actions"],
+                            ].map(([value, label]) => (
+                              <div
+                                key={label}
+                                className="rounded-xl bg-slate-50 px-3 py-2"
+                              >
+                                <p className="text-sm font-black text-slate-900">
+                                  {value}
+                                </p>
+                                <p className="mt-0.5 text-[10px] font-black uppercase tracking-wide text-slate-400">
+                                  {label}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-wide">
+                            <span
+                              className={
+                                integrity.hasEvidence
+                                  ? "text-emerald-700"
+                                  : "text-slate-400"
+                              }
+                            >
+                              Evidence{" "}
+                              {integrity.hasEvidence ? "Attached" : "Pending"}
+                            </span>
+                            <span
+                              className={
+                                integrity.hasSafeScope
+                                  ? "text-blue-700"
+                                  : "text-slate-400"
+                              }
+                            >
+                              SafeScope{" "}
+                              {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
+                            </span>
+                            <span
+                              className={
+                                integrity.hasActions
+                                  ? "text-orange-700"
+                                  : "text-slate-400"
+                              }
+                            >
+                              Actions {integrity.hasActions ? "Linked" : "Pending"}
+                            </span>
+                          </div>
+
+                          <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">
+                            Created {formatDate(report.createdAt)}. Evidence,
+                            findings, standards, and corrective actions remain
+                            connected to this inspection record.
+                          </p>
+
+                          <p className="mt-2 break-all text-[10px] font-semibold text-slate-400">
+                            Record ID: {report.id}
+                          </p>
+
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            <button
+                              type="button"
+                              onClick={() => startReview(report)}
+                              className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
+                            >
+                              Review
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => beginInlineEdit(report)}
+                              className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                            >
+                              Rename
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => exportReport(report)}
+                              className="rounded-xl bg-[#F97316] px-4 py-2 text-xs font-black text-black transition hover:bg-[#EA580C]"
+                            >
+                              Export PDF
+                            </button>
+
+                            <button
+                              type="button"
+                              onClick={() => deleteReport(report.id)}
+                              className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-black text-red-700 transition hover:bg-red-50"
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
                       </div>
-
-                      <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-black uppercase tracking-wide">
-                        <span
-                          className={
-                            integrity.hasEvidence
-                              ? "text-emerald-700"
-                              : "text-slate-400"
-                          }
-                        >
-                          Evidence {integrity.hasEvidence ? "Attached" : "Pending"}
-                        </span>
-                        <span
-                          className={
-                            integrity.hasSafeScope
-                              ? "text-blue-700"
-                              : "text-slate-400"
-                          }
-                        >
-                          SafeScope {integrity.hasSafeScope ? "Reviewed" : "Not Run"}
-                        </span>
-                        <span
-                          className={
-                            integrity.hasActions
-                              ? "text-orange-700"
-                              : "text-slate-400"
-                          }
-                        >
-                          Actions {integrity.hasActions ? "Linked" : "Pending"}
-                        </span>
-                      </div>
-
-                      <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">
-                        Created {formatDate(report.createdAt)}. Evidence,
-                        findings, standards, and corrective actions remain
-                        connected to this inspection record.
-                      </p>
-
-                      <p className="mt-2 break-all text-[10px] font-semibold text-slate-400">
-                        Record ID: {report.id}
-                      </p>
-                    </div>
+                    )}
                   </div>
                 )}
               </article>

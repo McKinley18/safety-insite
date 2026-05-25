@@ -57,6 +57,12 @@ const navItems = [
     activeRoots: ["/analytics"],
   },
   {
+    href: "/company",
+    label: "Company",
+    icon: "🏢",
+    activeRoots: ["/company"],
+  },
+  {
     href: "/settings",
     label: "Settings",
     icon: "⚙️",

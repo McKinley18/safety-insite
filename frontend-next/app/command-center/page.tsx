@@ -6,30 +6,39 @@ import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
 import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 import { getActivityEvents, type ActivityEvent } from "@/lib/activityStorage";
-import EmptyState from "@/components/ui/EmptyState";
 import { getStoredPlanCode } from "@/lib/planEntitlements";
 
 type DashboardReport = {
   id?: string;
+  title?: string;
   createdAt?: string;
+  location?: string;
+  siteLocation?: string;
   findings?: any[];
 };
+
+function getRiskScore(finding: any) {
+  return Number(
+    finding.riskScore ||
+      finding.safeScopeResult?.risk?.riskScore ||
+      finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
+      0,
+  );
+}
+
+function getRiskBand(finding: any) {
+  return String(
+    finding.safeScopeResult?.risk?.riskBand ||
+      finding.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
+      "",
+  ).toLowerCase();
+}
 
 function formatDate(value?: string) {
   if (!value) return "Saved";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "Saved";
   return date.toLocaleDateString();
-}
-
-function priorityTone(priority: any) {
-  const value = String(priority || "").toLowerCase();
-
-  if (value === "critical") return "bg-red-100 text-red-700 border-red-200";
-  if (value === "high") return "bg-orange-100 text-orange-700 border-orange-200";
-  if (value === "medium") return "bg-amber-100 text-amber-700 border-amber-200";
-
-  return "bg-slate-100 text-slate-700 border-slate-200";
 }
 
 export default function DashboardPage() {
@@ -53,217 +62,134 @@ export default function DashboardPage() {
     loadDashboardReports();
   }, []);
 
-  const priorityActions = useMemo(() => {
-    const priorityRank: Record<string, number> = {
-      critical: 4,
-      high: 3,
-      medium: 2,
-      low: 1,
-    };
+  const dashboard = useMemo(() => {
+    const findings = reports.flatMap((report) =>
+      (report.findings || []).map((finding: any) => ({
+        ...finding,
+        reportTitle: report.title || "Inspection Report",
+        reportDate: report.createdAt,
+        reportLocation: report.location || report.siteLocation,
+      })),
+    );
 
-    return storedActions
-      .filter(
-        (action) => String(action.status || "").toLowerCase() !== "completed",
-      )
+    const openActions = storedActions.filter(
+      (action) => String(action.status || "").toLowerCase() !== "completed",
+    );
+
+    const overdueActions = openActions.filter((action) => {
+      if (!action.due) return false;
+      const dueDate = new Date(action.due);
+      if (Number.isNaN(dueDate.getTime())) return false;
+      return dueDate.getTime() < Date.now();
+    });
+
+    const criticalFindings = findings.filter((finding) => {
+      const riskScore = getRiskScore(finding);
+      const riskBand = getRiskBand(finding);
+      return riskScore >= 20 || riskBand.includes("critical");
+    });
+
+    const highPriorityActions = openActions
+      .sort((a, b) => {
+        const priorityRank: Record<string, number> = {
+          critical: 4,
+          high: 3,
+          medium: 2,
+          low: 1,
+        };
+
+        return (
+          (priorityRank[String(b.priority || "").toLowerCase()] || 0) -
+          (priorityRank[String(a.priority || "").toLowerCase()] || 0)
+        );
+      })
+      .slice(0, 3);
+
+    const latestReports = [...reports]
       .sort(
         (a, b) =>
-          (priorityRank[String(b.priority || "").toLowerCase()] || 0) -
-          (priorityRank[String(a.priority || "").toLowerCase()] || 0),
+          new Date(b.createdAt || 0).getTime() -
+          new Date(a.createdAt || 0).getTime(),
       )
-      .slice(0, 5);
-  }, [storedActions]);
+      .slice(0, 3);
 
-  const activityItems = useMemo(() => {
-    if (activityEvents.length) {
-      return activityEvents.slice(0, 5).map((event) => ({
-        type: event.type,
-        title: event.title,
-        detail: event.detail || "",
-        time: formatDate(event.createdAt),
-      }));
-    }
+    const recentActivity = activityEvents.slice(0, 3);
 
-    return reports
-      .map((report) => ({
-        type: "Report",
-        title: report.id ? `Inspection report ${report.id}` : "Inspection report saved",
-        detail: `${report.findings?.length || 0} finding(s)`,
-        time: formatDate(report.createdAt),
-      }))
-      .slice(0, 5);
-  }, [activityEvents, reports]);
-
-  const dashboardMetrics = useMemo(() => {
-    const findings = reports.flatMap((report) => report.findings || []);
-
-    const openFindings = findings.length;
-    const criticalFindings = findings.filter((finding) => {
-      const riskScore = Number(
-        finding.riskScore || finding.safeScopeResult?.risk?.riskScore || 0,
-      );
-      const riskBand = String(
-        finding.safeScopeResult?.risk?.riskBand || "",
-      ).toLowerCase();
-
-      return riskScore >= 20 || riskBand === "critical";
-    }).length;
-
-    const overdueActions = storedActions.filter((action) => {
-      if (!action?.due) return false;
-      return (
-        new Date(action.due).getTime() < Date.now() &&
-        String(action.status || "").toLowerCase() !== "completed"
-      );
-    }).length;
-
-    const confidenceValues = findings
-      .map((finding) =>
-        Number(
-          finding.safeScopeResult?.confidenceIntelligence?.overallConfidence ??
-            finding.safeScopeResult?.confidence ??
-            NaN,
-        ),
-      )
-      .filter((value) => Number.isFinite(value));
-
-    const averageConfidence = confidenceValues.length
-      ? Math.round(
-          (confidenceValues.reduce((sum, value) => sum + value, 0) /
-            confidenceValues.length) *
-            100,
-        )
-      : null;
-
-    const standardsReviewed = findings.filter((finding) =>
-      Boolean(
-        finding.standards?.length ||
-          finding.safeScopeResult?.suggestedStandards?.length ||
-          finding.safeScopeResult?.standards?.length,
-      ),
+    const safeScopeReviewed = findings.filter((finding) =>
+      Boolean(finding.safeScopeResult),
     ).length;
-
-    const correctiveActionsGenerated = findings.reduce((count, finding) => {
-      return (
-        count +
-        (finding.correctiveActions?.length ||
-          finding.safeScopeResult?.generatedActions?.length ||
-          0)
-      );
-    }, 0);
-
-    const reviewRecommended = findings.filter((finding) =>
-      Boolean(
-        finding.safeScopeResult?.requiresHumanReview ||
-          finding.safeScopeResult?.confidenceIntelligence
-            ?.supervisorReviewRecommended,
-      ),
-    ).length;
-
-    const locations = new Set(
-      findings.map((finding) => finding.location).filter(Boolean),
-    ).size;
-
-    const repeatHazardSignals = Object.values(
-      findings.reduce((acc: Record<string, number>, finding) => {
-        const key = String(
-          finding.hazardCategory ||
-            finding.category ||
-            finding.safeScopeResult?.classification ||
-            "uncategorized",
-        ).toLowerCase();
-
-        acc[key] = (acc[key] || 0) + 1;
-        return acc;
-      }, {}),
-    ).filter((count) => Number(count) > 1).length;
 
     return {
-      inspections: reports.length,
-      openFindings,
-      criticalFindings,
-      overdueActions,
-      averageConfidence,
-      standardsReviewed,
-      correctiveActionsGenerated,
-      reviewRecommended,
-      locations,
-      repeatHazardSignals,
+      reportCount: reports.length,
+      findingCount: findings.length,
+      openActions: openActions.length,
+      overdueActions: overdueActions.length,
+      criticalFindings: criticalFindings.length,
+      safeScopeReviewed,
+      highPriorityActions,
+      latestReports,
+      recentActivity,
     };
-  }, [reports, storedActions]);
+  }, [activityEvents, reports, storedActions]);
 
-  const insightMetrics =
-    planCode === "basic"
-      ? [
-          [String(dashboardMetrics.inspections), "Reports saved"],
-          [String(dashboardMetrics.openFindings), "Findings captured"],
-          [String(dashboardMetrics.criticalFindings), "Critical signals"],
-        ]
-      : planCode === "plus"
-        ? [
-            [
-              dashboardMetrics.averageConfidence === null
-                ? "—"
-                : `${dashboardMetrics.averageConfidence}%`,
-              "Avg. SafeScope confidence",
-            ],
-            [String(dashboardMetrics.standardsReviewed), "Findings with standards"],
-            [String(dashboardMetrics.correctiveActionsGenerated), "Actions generated"],
-          ]
-        : [
-            [String(dashboardMetrics.locations), "Locations represented"],
-            [String(dashboardMetrics.repeatHazardSignals), "Repeat hazard signals"],
-            [String(dashboardMetrics.reviewRecommended), "Reviews recommended"],
-          ];
+  const attentionItems = [
+    dashboard.criticalFindings
+      ? `${dashboard.criticalFindings} critical finding(s) need review`
+      : null,
+    dashboard.overdueActions
+      ? `${dashboard.overdueActions} overdue corrective action(s)`
+      : null,
+    dashboard.openActions
+      ? `${dashboard.openActions} open corrective action(s)`
+      : null,
+  ].filter(Boolean);
 
   return (
     <section className="space-y-5">
-      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-white shadow-sm sm:p-6">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-              Sentinel Command Center
-            </p>
-            <h1 className="mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
-              Operational risk intelligence.
-            </h1>
-            <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-              Active inspections, risk signals, corrective work, and SafeScope
-              activity in one workspace.
-            </p>
-          </div>
+      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-center text-white shadow-sm sm:p-6">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          Sentinel Command Center
+        </p>
+        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          Safety work snapshot.
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          A quick view of inspections, findings, corrective actions, and items
+          that need attention.
+        </p>
 
-          <div className="flex flex-wrap gap-2">
-            <Link
-              href="/inspection-cover"
-              onClick={() => clearActiveInspectionDraft()}
-              className="rounded-xl bg-[#1D72B8] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#5DB7FF]"
-            >
-              Start Inspection
-            </Link>
-            <Link
-              href="/reports"
-              className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-xs font-black text-white transition hover:bg-white/20"
-            >
-              Reports
-            </Link>
-          </div>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+          <Link
+            href="/inspection-cover"
+            onClick={() => clearActiveInspectionDraft()}
+            className="rounded-xl bg-[#1D72B8] px-4 py-2.5 text-xs font-black text-white transition hover:bg-[#155A93]"
+          >
+            Start Inspection
+          </Link>
+
+          <Link
+            href="/reports"
+            className="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-xs font-black text-white transition hover:bg-white/20"
+          >
+            Records
+          </Link>
         </div>
 
-        <div className="mx-auto mt-5 grid max-w-4xl grid-cols-2 justify-center gap-3 lg:grid-cols-4">
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
           {[
-            [String(dashboardMetrics.inspections), "Inspections"],
-            [String(dashboardMetrics.openFindings), "Open Findings"],
-            [String(dashboardMetrics.criticalFindings), "Critical Findings"],
-            [String(dashboardMetrics.overdueActions), "Overdue Actions"],
+            [String(dashboard.reportCount), "Reports"],
+            [String(dashboard.findingCount), "Findings"],
+            [String(dashboard.openActions), "Open Actions"],
+            [String(dashboard.overdueActions), "Overdue"],
           ].map(([value, label]) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
             >
-              <p className="text-2xl font-black tracking-tight text-white">
+              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
                 {value}
               </p>
-              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
+              <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
                 {label}
               </p>
             </div>
@@ -271,136 +197,181 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Insight Level
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              {planCode === "company"
-                ? "Company operational intelligence"
-                : planCode === "plus"
-                  ? "Professional SafeScope insights"
-                  : "Basic inspection overview"}
-            </h2>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-              {planCode === "company"
-                ? "Workspace-level visibility for locations, repeat signals, team actions, and operational trends."
-                : planCode === "plus"
-                  ? "Advanced SafeScope confidence, standards review, and corrective action insight."
-                  : "Core inspection counts and finding status for free local use."}
-            </p>
-          </div>
+      <section className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Needs Attention
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Today’s priority
+          </h2>
 
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600">
-            {planCode}
-          </span>
-        </div>
-
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
-          {insightMetrics.map(([value, label]) => (
-            <div key={label} className="rounded-xl bg-slate-50 px-3 py-3">
-              <p className="text-xl font-black text-slate-900">{value}</p>
-              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
-                {label}
-              </p>
+          {attentionItems.length ? (
+            <div className="mt-4 space-y-2">
+              {attentionItems.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-xl border border-orange-100 bg-orange-50 px-3 py-3 text-sm font-black text-orange-800"
+                >
+                  {item}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          ) : (
+            <p className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-3 text-sm font-black text-emerald-700">
+              No urgent signals in the current local workspace.
+            </p>
+          )}
 
-      <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-                Priority Work
-              </p>
-              <h2 className="mt-1 text-xl font-black text-slate-900">
-                Needs attention
-              </h2>
-            </div>
-            <Link href="/actions" className="text-sm font-black text-[#1D72B8]">
-              View All
-            </Link>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {[
+              [String(dashboard.criticalFindings), "Critical Findings"],
+              [String(dashboard.safeScopeReviewed), "SafeScope Reviewed"],
+            ].map(([value, label]) => (
+              <div key={label} className="rounded-xl bg-slate-50 px-3 py-3">
+                <p className="text-xl font-black text-slate-900">{value}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
+                  {label}
+                </p>
+              </div>
+            ))}
           </div>
+        </section>
 
-          {priorityActions.length ? (
-            <div className="space-y-2">
-              {priorityActions.map((action, index) => (
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Action Snapshot
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Corrective work
+          </h2>
+
+          {dashboard.highPriorityActions.length ? (
+            <div className="mt-4 space-y-2">
+              {dashboard.highPriorityActions.map((action, index) => (
                 <div
                   key={`${action.id || action.title || index}`}
                   className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={`rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-wide ${priorityTone(
-                            action.priority,
-                          )}`}
-                        >
-                          {action.priority || "Priority"}
-                        </span>
-                        <span className="text-xs font-black uppercase tracking-wide text-slate-400">
-                          {action.location || "No location"}
-                        </span>
-                      </div>
-
-                      <p className="mt-2 text-sm font-black text-slate-900">
+                    <div>
+                      <p className="text-sm font-black text-slate-900">
                         {action.title || action.findingTitle || "Corrective action"}
                       </p>
                       <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                        {action.findingTitle || "Corrective action"}
+                        {action.location || "No location"} · Due:{" "}
+                        {action.due || "Not set"}
                       </p>
                     </div>
+                    <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
+                      {action.priority || "Priority"}
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <EmptyState title="No active priority work available yet." />
+            <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+              No open high-priority actions yet.
+            </p>
           )}
-        </div>
 
-        <aside className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <Link
+            href="/actions"
+            className="mt-4 inline-flex rounded-xl border border-[#1D72B8] bg-white px-3 py-2 text-xs font-black text-[#102A43] transition hover:bg-[#E8F4FF]"
+          >
+            View Actions
+          </Link>
+        </section>
+      </section>
+
+      <section className="grid gap-4 lg:grid-cols-2">
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Activity
+            Recent Records
           </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Latest inspection output
+          </h2>
 
-          <div className="mt-3">
-            {activityItems.length ? (
-              <div className="space-y-2">
-                {activityItems.map((item, index) => (
-                  <div
-                    key={`${item.type}-${item.title}-${item.time}-${index}`}
-                    className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <p className="text-xs font-black uppercase tracking-wide text-slate-400">
-                          {item.type}
-                        </p>
-                        <p className="mt-1 text-sm font-black text-slate-900">
-                          {item.title}
-                        </p>
-                        <p className="mt-1 text-xs font-semibold text-slate-500">
-                          {item.detail}
-                        </p>
-                      </div>
-                      <span className="shrink-0 text-xs font-bold text-slate-400">
-                        {item.time}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <EmptyState title="No recent workspace activity available yet." />
-            )}
+          {dashboard.latestReports.length ? (
+            <div className="mt-4 space-y-2">
+              {dashboard.latestReports.map((report) => (
+                <div
+                  key={report.id || `${report.title}-${report.createdAt}`}
+                  className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
+                >
+                  <p className="text-sm font-black text-slate-900">
+                    {report.title || "Inspection Report"}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                    {report.location ||
+                      report.siteLocation ||
+                      report.findings?.[0]?.location ||
+                      "Field Inspection"}{" "}
+                    · {report.findings?.length || 0} finding(s) ·{" "}
+                    {formatDate(report.createdAt)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+              No reports saved yet.
+            </p>
+          )}
+        </section>
+
+        <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+                Workspace Mode
+              </p>
+              <h2 className="mt-1 text-xl font-black text-slate-900">
+                {planCode === "company"
+                  ? "Company workspace"
+                  : planCode === "plus"
+                    ? "Pro workspace"
+                    : "Basic workspace"}
+              </h2>
+              <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+                {planCode === "company"
+                  ? "Team assignments, shared records, and company filters are available."
+                  : planCode === "plus"
+                    ? "Guided inspections, full SafeScope, and individual analytics are available."
+                    : "Quick Capture and local records are available. Upgrade to unlock guided inspections and deeper SafeScope intelligence."}
+              </p>
+            </div>
+
+            <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600">
+              {planCode}
+            </span>
           </div>
-        </aside>
+
+          {dashboard.recentActivity.length ? (
+            <div className="mt-4 space-y-2">
+              {dashboard.recentActivity.map((item, index) => (
+                <div
+                  key={`${item.type}-${item.title}-${index}`}
+                  className="rounded-xl bg-slate-50 px-3 py-3"
+                >
+                  <p className="text-xs font-black uppercase tracking-wide text-slate-400">
+                    {item.type}
+                  </p>
+                  <p className="mt-1 text-sm font-black text-slate-900">
+                    {item.title}
+                  </p>
+                  {item.detail && (
+                    <p className="mt-1 text-xs font-semibold text-slate-500">
+                      {item.detail}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : null}
+        </section>
       </section>
     </section>
   );

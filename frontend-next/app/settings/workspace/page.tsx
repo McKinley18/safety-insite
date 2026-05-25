@@ -23,7 +23,7 @@ const riskProfiles = [
 ] as const;
 
 const regulatoryScopes = [
-  ["all", "All / Let SafeScope evaluate", "Use when the app should decide the likely applicable agency."],
+  ["all", "Let SafeScope evaluate", "Use when the app should decide the likely applicable agency."],
   ["msha", "MSHA", "Mining operations and 30 CFR matching."],
   ["osha_general", "OSHA General Industry", "General industry and 29 CFR 1910 matching."],
   ["osha_construction", "OSHA Construction", "Construction and 29 CFR 1926 matching."],
@@ -128,6 +128,12 @@ export default function SettingsPage() {
   const [invites, setInvites] = useState<any[]>([]);
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState("Auditor");
+
+  const [assignmentType, setAssignmentType] = useState("Corrective Action");
+  const [assignmentOwner, setAssignmentOwner] = useState("");
+  const [assignmentTitle, setAssignmentTitle] = useState("");
+  const [assignmentDueDate, setAssignmentDueDate] = useState("");
+  const [assignedWork, setAssignedWork] = useState<any[]>([]);
 
   const [planCode, setPlanCode] = useState("basic");
   const [status, setStatus] = useState("");
@@ -274,6 +280,30 @@ export default function SettingsPage() {
     }
   }
 
+  function addAssignedWork() {
+    if (!assignmentTitle.trim()) {
+      setStatusType("error");
+      setStatus("Enter an assignment title before adding work.");
+      return;
+    }
+
+    const assignment = {
+      id: `assignment-${Date.now()}`,
+      type: assignmentType,
+      title: assignmentTitle.trim(),
+      owner: assignmentOwner || "Unassigned",
+      dueDate: assignmentDueDate || "No due date",
+      status: "Open",
+      createdAt: new Date().toISOString(),
+    };
+
+    setAssignedWork((current) => [assignment, ...current]);
+    setAssignmentTitle("");
+    setAssignmentDueDate("");
+    setStatusType("success");
+    setStatus(`${assignment.type} assigned.`);
+  }
+
   async function saveSettings() {
     try {
       if (
@@ -363,7 +393,7 @@ export default function SettingsPage() {
           {[
             [
               regulatoryScopes.find(([id]) => id === regulatoryScope)?.[1] ||
-                "All / Let SafeScope evaluate",
+                "Let SafeScope evaluate",
               "Regulatory Scope",
             ],
             [selectedMatrixLabel, "Risk Matrix"],
@@ -568,90 +598,229 @@ export default function SettingsPage() {
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <SectionHeader
-          title="Team"
-          description={`Company plan includes ${companySeats} users. Current seats: ${usedSeats}/${companySeats}.`}
-        />
+        <div className="flex flex-col gap-3 border-b border-slate-200 pb-3 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Company Command Hub
+            </p>
+            <h2 className="mt-1 text-xl font-black text-slate-900">
+              Team, seats, roles, and assigned work
+            </h2>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+              One place for account leaders and managers to add employees,
+              assign roles, manage seats, assign inspections, assign follow-ups,
+              assign corrective actions, and track safety work.
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-center">
+            <p className="text-2xl font-black text-slate-900">
+              {usedSeats}/{companySeats}
+            </p>
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+              Seats Used
+            </p>
+          </div>
+        </div>
 
         {hasPlanEntitlement("teamMembers", planCode) ? (
-          <>
-            <div className="mt-4 space-y-3">
-              {members.map((member) => (
-                <div
-                  key={member.id}
-                  className="flex items-center justify-between border-b border-slate-200 pb-3"
-                >
-                  <div>
-                    <p className="font-black text-slate-900">
-                      {member.name || "User"}
-                    </p>
-                    <p className="text-sm font-semibold text-slate-500">
-                      {member.email}
-                    </p>
-                  </div>
-                  <span className="text-xs font-black uppercase tracking-wide text-[#F97316]">
-                    {member.role}
-                  </span>
+          <div className="mt-4 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+            <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+                    Users & Roles
+                  </p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                    Add employees and define their workspace access.
+                  </p>
                 </div>
-              ))}
-            </div>
 
-            <div className="mt-5 grid gap-3 md:grid-cols-[1fr_160px_auto]">
-              <input
-                value={inviteEmail}
-                onChange={(event) => setInviteEmail(event.target.value)}
-                placeholder="employee@example.com"
-                className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-              />
+                <button
+                  type="button"
+                  className="rounded-lg bg-[#F97316] px-3 py-1.5 text-[10px] font-black text-black transition hover:bg-[#EA580C]"
+                >
+                  Add Seats
+                </button>
+              </div>
 
-              <select
-                value={inviteRole}
-                onChange={(event) => setInviteRole(event.target.value)}
-                className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-              >
-                <option value="Auditor">Auditor</option>
-                <option value="Viewer">Viewer</option>
-                <option value="Owner">Owner</option>
-              </select>
+              <div className="mt-3 grid gap-2 md:grid-cols-[1fr_130px_auto]">
+                <input
+                  value={inviteEmail}
+                  onChange={(event) => setInviteEmail(event.target.value)}
+                  placeholder="employee@example.com"
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8]"
+                />
 
-              <button
-                type="button"
-                onClick={sendInvite}
-                className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8]"
-              >
-                Add Employee
-              </button>
-            </div>
+                <select
+                  value={inviteRole}
+                  onChange={(event) => setInviteRole(event.target.value)}
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8]"
+                >
+                  <option value="Owner">Owner</option>
+                  <option value="Manager">Manager</option>
+                  <option value="Auditor">Auditor</option>
+                  <option value="Viewer">Viewer</option>
+                </select>
 
-            {!!invites.length && (
-              <div className="mt-5 space-y-2">
-                <h3 className="text-sm font-black text-slate-900">
-                  Pending Invites
-                </h3>
-                {invites.map((invite) => (
+                <button
+                  type="button"
+                  onClick={sendInvite}
+                  className="rounded-lg bg-[#102A43] px-3 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8]"
+                >
+                  Add User
+                </button>
+              </div>
+
+              <div className="mt-3 grid gap-2">
+                {(members.length
+                  ? members
+                  : [
+                      {
+                        id: "owner",
+                        name: "Account Owner",
+                        email: "Owner account",
+                        role: "Owner",
+                      },
+                    ]
+                ).map((member) => (
                   <div
-                    key={invite.id}
-                    className="border-b border-slate-200 py-2"
+                    key={member.id}
+                    className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2"
                   >
-                    <p className="text-sm font-black text-slate-900">
-                      {invite.email}
-                    </p>
-                    <p className="break-all text-xs font-semibold text-slate-500">
-                      {invite.role} • Token: {invite.token}
-                    </p>
+                    <div className="min-w-0">
+                      <p className="truncate text-xs font-black text-slate-900">
+                        {member.name || "User"}
+                      </p>
+                      <p className="truncate text-[11px] font-semibold text-slate-500">
+                        {member.email}
+                      </p>
+                    </div>
+
+                    <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
+                      {member.role}
+                    </span>
                   </div>
                 ))}
               </div>
-            )}
-          </>
+
+              {!!invites.length && (
+                <div className="mt-3 rounded-lg border border-dashed border-slate-300 bg-white px-3 py-2">
+                  <p className="text-xs font-black text-slate-900">
+                    Pending Invites
+                  </p>
+                  <div className="mt-2 grid gap-2">
+                    {invites.map((invite) => (
+                      <div key={invite.id}>
+                        <p className="text-xs font-black text-slate-900">
+                          {invite.email}
+                        </p>
+                        <p className="break-all text-[11px] font-semibold text-slate-500">
+                          {invite.role} • Token: {invite.token}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+
+            <section className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+                Assignment Center
+              </p>
+              <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                Assign corrective actions, inspections, follow-ups, and reviews.
+              </p>
+
+              <div className="mt-3 grid gap-2 md:grid-cols-2">
+                <select
+                  value={assignmentType}
+                  onChange={(event) => setAssignmentType(event.target.value)}
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8]"
+                >
+                  <option>Corrective Action</option>
+                  <option>Inspection</option>
+                  <option>Inspection Follow-Up</option>
+                  <option>Supervisor Review</option>
+                </select>
+
+                <select
+                  value={assignmentOwner}
+                  onChange={(event) => setAssignmentOwner(event.target.value)}
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8]"
+                >
+                  <option value="">Assign to...</option>
+                  {members.map((member) => (
+                    <option key={member.id} value={member.name || member.email}>
+                      {member.name || member.email}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  value={assignmentTitle}
+                  onChange={(event) => setAssignmentTitle(event.target.value)}
+                  placeholder="Assignment title"
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8] md:col-span-2"
+                />
+
+                <input
+                  type="date"
+                  value={assignmentDueDate}
+                  onChange={(event) => setAssignmentDueDate(event.target.value)}
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8]"
+                />
+
+                <button
+                  type="button"
+                  onClick={addAssignedWork}
+                  className="rounded-lg bg-[#F97316] px-3 py-2 text-xs font-black text-black transition hover:bg-[#EA580C]"
+                >
+                  Assign Work
+                </button>
+              </div>
+
+              <div className="mt-3 grid gap-2">
+                {assignedWork.length ? (
+                  assignedWork.map((item) => (
+                    <div
+                      key={item.id}
+                      className="rounded-lg border border-slate-200 bg-white px-3 py-2"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="truncate text-xs font-black text-slate-900">
+                            {item.title}
+                          </p>
+                          <p className="mt-0.5 text-[11px] font-semibold text-slate-500">
+                            {item.type} • {item.owner} • Due: {item.dueDate}
+                          </p>
+                        </div>
+
+                        <span className="rounded-full bg-orange-50 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700">
+                          {item.status}
+                        </span>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="rounded-lg border border-dashed border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-500">
+                    No assigned company work yet.
+                  </p>
+                )}
+              </div>
+            </section>
+          </div>
         ) : (
           <div className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
             <p className="text-sm font-black text-slate-900">
               Company plan required
             </p>
             <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-              Employee invitations, shared roles, and team workspace access are
-              available on the Company plan.
+              Team management, seats, roles, assignments, shared corrective
+              actions, and inspection follow-up tracking are available on the
+              Company plan.
             </p>
           </div>
         )}
