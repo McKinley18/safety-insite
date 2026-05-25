@@ -452,7 +452,7 @@ export default function InspectionReviewPage() {
           <button
             type="button"
             onClick={addFindingToReport}
-            className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-700 shadow-sm transition hover:bg-slate-50"
+            className="rounded-xl bg-[#F97316] px-3 py-2 text-xs font-black text-black shadow-sm transition hover:bg-[#EA580C]"
           >
             Add Finding
           </button>
