@@ -1,2 +1,92 @@
 [
+  {
+    "candidateId": "HARVEST-0001",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official NIOSH/CDC Stacks FACE record. Evidence identifies a warehouse worker fatality after falling 12 feet from a pallet raised on forklift forks.",
+    "approvedHazardCategory": "Falls",
+    "approvedSourceTitle": "NIOSH FACE: Warehouse Worker Dies After Falling 12 Feet From A Pallet Raised On A Forklift Truck",
+    "approvedSourceDate": "1994-09-26",
+    "approvedControls": ["Prohibit elevating workers on pallets", "Use approved personnel platforms", "Provide fall protection for elevated work"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0002",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official NIOSH/CDC Stacks FACE record. Evidence identifies a construction worker killed when a trench collapsed.",
+    "approvedHazardCategory": "Trenching & Shoring",
+    "approvedSourceTitle": "NIOSH FACE: Construction Worker Killed When Trench Collapsed",
+    "approvedSourceDate": "2018-10-01",
+    "approvedControls": ["Use trench protective systems", "Provide competent-person excavation inspections", "Keep workers out of unprotected trenches"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0004",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official NIOSH/CDC Stacks FACE record. Evidence identifies a forklift driver pinned under an overturned forklift.",
+    "approvedHazardCategory": "Powered Mobile Equipment / Traffic",
+    "approvedSourceTitle": "NIOSH FACE: Forklift Driver Pinned Under an Overturned Forklift Dies",
+    "approvedSourceDate": "2007-05-17",
+    "approvedControls": ["Use seatbelts/restraint systems", "Control loading dock edges", "Train forklift operators on overturn hazards"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0005",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official CSB investigation page. Evidence identifies a July 31, 2024 ammonia release at Cuisine Solutions in Sterling, Virginia, with multiple hospital evaluations.",
+    "approvedHazardCategory": "Chemical Exposure",
+    "approvedSourceTitle": "CSB Investigation: Cuisine Solutions Ammonia Release",
+    "approvedSourceDate": "2025-09-25",
+    "approvedControls": ["Maintain ammonia refrigeration systems", "Control release pathways", "Strengthen emergency response and ventilation controls"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0006",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official CSB investigation page. Evidence identifies combustible dust explosions and fire at Didion Milling that killed five workers and injured fourteen.",
+    "approvedHazardCategory": "Combustible Dust",
+    "approvedSourceTitle": "CSB Investigation: Didion Milling Company Explosion and Fire",
+    "approvedSourceDate": "2023-12-06",
+    "approvedControls": ["Control combustible dust accumulation", "Implement dust hazard analysis", "Maintain explosion prevention and housekeeping programs"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0007",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official CSB investigation page. Evidence identifies a pressure vessel explosion at Loy-Lange Box Company that killed a worker and members of the public.",
+    "approvedHazardCategory": "Pressure / Line Opening",
+    "approvedSourceTitle": "CSB Investigation: Loy-Lange Box Company Pressure Vessel Explosion",
+    "approvedSourceDate": "2022-07-29",
+    "approvedControls": ["Inspect and maintain pressure vessels", "Control pressure relief hazards", "Verify mechanical integrity of pressure systems"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0008",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official CSB investigation page. Evidence identifies a massive explosion and fire at AB Specialty Silicones that killed four workers.",
+    "approvedHazardCategory": "Fire / Explosion",
+    "approvedSourceTitle": "CSB Investigation: AB Specialty Silicones, LLC",
+    "approvedSourceDate": "2021-09-24",
+    "approvedControls": ["Control reactive chemical hazards", "Implement process safety controls", "Strengthen hazard analysis and emergency planning"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0009",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official NIOSH/CDC Stacks FACE record. Evidence identifies a confined space incident killing a company employee and a rescuing firefighter.",
+    "approvedHazardCategory": "Confined Space",
+    "approvedSourceTitle": "NIOSH FACE: Confined Space Incident Kills Two Workers – Company Employee and Rescuing Fireman",
+    "approvedSourceDate": "1985-01-06",
+    "approvedControls": ["Implement confined space entry permits", "Test atmosphere before entry", "Prevent unplanned rescue entry without proper equipment"],
+    "approvedCitationHints": []
+  },
+  {
+    "candidateId": "HARVEST-0010",
+    "decision": "approve",
+    "reviewerNotes": "Approved as an official NIOSH/CDC Stacks FACE record. Evidence identifies a machine operator who died after his head was crushed in a machine.",
+    "approvedHazardCategory": "Machine Guarding",
+    "approvedSourceTitle": "NIOSH FACE: Machine Operator Dies After Head Crushed in Machine",
+    "approvedSourceDate": "2007-10-04",
+    "approvedControls": ["Guard machine pinch/crush points", "Use lockout before clearing or servicing equipment", "Train operators on machine hazard zones"],
+    "approvedCitationHints": []
+  }
 ]
