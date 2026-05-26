@@ -24,6 +24,85 @@ export type HazardProfile = {
 
 export const HAZARD_TAXONOMY: HazardProfile[] = [
   {
+    id: "personal_protective_equipment",
+    label: "Personal Protective Equipment",
+    family: "Personal Protective Equipment",
+    strongSignals: [
+      { term: "safety glasses", weight: 10 },
+      { term: "eye protection", weight: 10 },
+      { term: "goggles", weight: 9 },
+      { term: "face shield", weight: 9 },
+      { term: "steel chip", weight: 9 },
+      { term: "eye injury", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "protective eyewear", weight: 6 },
+      { term: "flying particles", weight: 6 }
+    ],
+    weakSignals: [],
+    negativeSignals: [{ term: "silica", weight: -50 }, { term: "dust", weight: -50 }],
+    contextBoosts: [],
+    commonConsequences: ["eye injury", "vision loss"],
+    requiredControls: ["use approved safety glasses", "wear face shield"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 3,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["eye protection missing", "inadequate eye shielding"]
+  },
+  {
+    id: "drowning_hazards",
+    label: "Drowning Hazards",
+    family: "Drowning Hazards",
+    strongSignals: [
+      { term: "drowned", weight: 10 },
+      { term: "drowning", weight: 10 },
+      { term: "sediment pond", weight: 10 },
+      { term: "settling pond", weight: 10 },
+      { term: "personal flotation device", weight: 10 },
+      { term: "PFD", weight: 10 }
+    ],
+    moderateSignals: [
+      { term: "water hazard", weight: 6 },
+      { term: "pond", weight: 5 },
+      { term: "flotation", weight: 5 }
+    ],
+    weakSignals: [],
+    negativeSignals: [{ term: "guarding", weight: -50 }, { term: "fall protection", weight: -50 }],
+    contextBoosts: [],
+    commonConsequences: ["drowning", "asphyxiation"],
+    requiredControls: ["provide flotation devices", "install pond edge markers"],
+    defaultSeverity: "critical",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["unprotected water hazard", "missing PFD"]
+  },
+  {
+    id: "ground_control",
+    label: "Ground Control / Highwall / Roof Fall",
+    family: "Ground Control",
+    strongSignals: [
+      { term: "highwall collapse", weight: 10 },
+      { term: "roof fall", weight: 10 },
+      { term: "fall of ground", weight: 10 },
+      { term: "bench collapse", weight: 9 },
+      { term: "highwall failure", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "scaling failure", weight: 6 },
+      { term: "face slough", weight: 6 },
+      { term: "roof support collapse", weight: 6 }
+    ],
+    weakSignals: [],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["entrapment", "crush injury"],
+    requiredControls: ["scaling procedures", "roof support"],
+    defaultSeverity: "critical",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["highwall instability", "unprotected face"]
+  },
+  {
     id: "machine_guarding",
     label: "Machine Guarding",
     family: "Machine",

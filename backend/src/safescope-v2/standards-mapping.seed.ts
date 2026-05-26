@@ -441,3 +441,4 @@ export const STANDARDS_MAPPING: Record<string, SafeScopeStandardMapping[]> = {
     },
   ],
 };
+

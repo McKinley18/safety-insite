@@ -179,6 +179,51 @@ export class WeightedClassifierService {
         }
       }
 
+      // 9. Respirable Dust / Silica over-trigger guardrails
+      const hasEyeFacePpeSignal = /(safety glasses|eye protection|goggles|face shield|protective eyewear)/i.test(normalizedText);
+      const hasEyeInjuryOrProjectileSignal = /(steel chip|chip flew|flying chip|flying particle|flew into.*eye|eye injury|struck.*eye|into their eye|into his eye|into her eye)/i.test(normalizedText);
+      const isEyeFacePpeInjuryText = hasEyeFacePpeSignal && hasEyeInjuryOrProjectileSignal;
+
+      if (isEyeFacePpeInjuryText) {
+        const isPpeProfile =
+          profile.id === "ppe" ||
+          profile.id === "personal_protective_equipment" ||
+          /personal protective equipment|ppe|eye.*face/i.test(profile.label || "");
+
+        if (isPpeProfile) {
+          score += 95;
+        }
+
+        if (
+          profile.id === "respirable_dust_silica" ||
+          /respirable|silica|dust/i.test(profile.label || "")
+        ) {
+          score -= 120;
+        }
+      }
+
+      const isDrowningWaterHazardText = /(drowned|drowning|sediment pond|settling pond|water hazard|personal flotation device|pfd|flotation device|fell into.*pond|falling into.*pond)/i.test(normalizedText);
+      if (isDrowningWaterHazardText) {
+        const isDrowningProfile =
+          profile.id === "drowning_hazards" ||
+          profile.id === "drowning_water_hazard" ||
+          profile.id === "water_hazards" ||
+          /drowning|water hazard|flotation/i.test(profile.label || "");
+
+        if (isDrowningProfile) {
+          score += 110;
+        }
+
+        if (
+          profile.id === "respirable_dust_silica" ||
+          profile.id === "falls" ||
+          profile.id === "machine_guarding" ||
+          /respirable|silica|dust|machine guarding|fall protection/i.test(profile.label || "")
+        ) {
+          score -= 120;
+        }
+      }
+
       // 9. Safety Shower / Eye Wash vs Walking/Working Surfaces Guardrail
       const isSafetyShowerEyewashText = /(safety shower|eye wash|eyewash)/i.test(normalizedText);
       if (isSafetyShowerEyewashText) {
@@ -190,217 +235,124 @@ export class WeightedClassifierService {
         }
       }
 
-      // 10. Scaffold booster & generic Fall/Machine/Housekeeping guardrail
-      const hasScaffoldSpecificTerms = /(scaffold|scaffolding|scaffold frame|scaffold platform|scaffold plank|mudsill|baseplate|outrigger|cross brace|scaffold guardrail|scaffold access|scaffold deck|supported scaffold|mobile scaffold|rolling scaffold)/i.test(normalizedText);
-      if (hasScaffoldSpecificTerms) {
-        if (profile.id === "scaffolds") {
-          score += 50;
+      
+      // Ground Control / Highwall / Roof Fall Booster
+      const hasGroundControlDetector = /(highwall|bench collapse|face slough|roof fall|roof material|falling rock|roof support|scaling|ground failure|overburden)/i.test(normalizedText);
+
+      if (hasGroundControlDetector) {
+        if (profile.id === "ground_control") {
+          score += 60;
         }
-        if (profile.id === "falls" || profile.id === "walking_working_surfaces" || profile.id === "machine_guarding" || profile.id === "loto_stored_energy") {
-          score -= 45;
+
+        if (profile.id === "falls") {
+          score -= 50;
+        }
+
+        if (
+          profile.id === "machine_guarding" &&
+          !/(unguarded|nip point|rotating|pulley|belt|shaft|guard)/i.test(normalizedText)
+        ) {
+          score -= 50;
+        }
+
+        if (profile.id === "powered_mobile_equipment") {
+          score -= 40;
         }
       }
 
-      // 11. Compressed Gas Cylinders vs Material Handling & Machine Guarding
-      const hasCylinderSpecificTerms = /(cylinder|gas cylinder|oxygen cylinder|acetylene cylinder|protective valve cap|valve cap|manifold|chained upright|fuel gas cylinder|cylinder storage)/i.test(normalizedText);
-      if (hasCylinderSpecificTerms) {
-        if (profile.id === "compressed_gas_cylinders") {
-          score += 50;
-        }
-        if (profile.id === "material_handling" || profile.id === "machine_guarding") {
-          score -= 45;
-        }
-      }
+      const evidenceTokens = unique([
+        ...strong.matches,
+        ...moderate.matches,
+        ...weak.matches,
+        ...context.matches,
+      ]);
 
-      // 12. Compressed Air / Hose Safety vs Electrical/Material Handling/Machine Guarding
-      const hasAirHoseSpecificTerms = /(air compressor hose|air hose|whipcheck|whip check|safety chain|hose coupling|compressor hose|air line connector|air nozzle pressure|clothing blowdown|hose clamp)/i.test(normalizedText);
-      if (hasAirHoseSpecificTerms) {
-        if (profile.id === "compressed_air_hose_safety") {
-          score += 50;
-        }
-        if (profile.id === "electrical" || profile.id === "material_handling" || profile.id === "machine_guarding" || profile.id === "loto_stored_energy") {
-          score -= 45;
-        }
-      }
+      const negativeTokens = unique(negative.matches);
+      const matchedControls = profile.requiredControls || [];
+      const commonConsequences = profile.commonConsequences || [];
 
-      // 13. Chemical Storage vs Hazard Communication & Confined Space & Machine Guarding
-      const hasChemicalStorageSpecificTerms = /(acid and base drums|containment tub|containment pallet|chemical storage|solvent drum|acid drum|secondary containment|corrosive storage|corrosive chemical tote|reactive chemicals|drainage containment|spigot showing|chemical pallet)/i.test(normalizedText) && !/(training|records|missing records|hazcom training|sds folder|safety data sheet folder)/i.test(normalizedText);
-      if (hasChemicalStorageSpecificTerms) {
-        if (profile.id === "chemical_storage") {
-          score += 50;
-        }
-        if (profile.id === "hazard_communication" || profile.id === "confined_space" || profile.id === "machine_guarding" || profile.id === "falls") {
-          score -= 45;
-        }
-      }
-
-      // 14. Welding / Cutting / Hot Work vs Electrical & PPE & Machine Guarding & Confined Space
-      const hasHotWorkSpecificTerms = /(welding|welder|cutting torch|oxyacetylene|flashback arrestor|hot work|fire watch|welding leads|welding screen|sparks falling)/i.test(normalizedText) && !/(explosion hazard|flammable vapors|combustible dust)/i.test(normalizedText);
-      if (hasHotWorkSpecificTerms) {
-        if (profile.id === "welding_cutting_hot_work") {
-          score += 50;
-        }
-        if (profile.id === "electrical" || profile.id === "ppe" || profile.id === "machine_guarding" || profile.id === "confined_space") {
-          score -= 45;
-        }
-      }
-
-      // 15. First Aid / Eyewash / Safety Shower Access vs Housekeeping/Walking/Working Surfaces & Egress & LOTO & Machine Guarding
-      const hasFirstAidShowerSpecificTerms = /(eyewash|eye wash|safety shower|emergency shower|drench shower|first aid box|eyewash station|first aid station)/i.test(normalizedText);
-      if (hasFirstAidShowerSpecificTerms) {
-        if (profile.id === "first_aid_eyewash_safety_shower_access") {
-          score += 50;
-        }
-        if (profile.id === "walking_working_surfaces" || profile.id === "emergency_egress" || profile.id === "loto_stored_energy" || profile.id === "machine_guarding" || profile.id === "confined_space" || profile.id === "falls") {
-          score -= 45;
-        }
-      }
-
-      // 16. Lockout / Stored Energy (LOTO) Booster
-      const hasRealLotoTerms = /(locked out|not locked out|lockout|tagout|energy isolation|zero energy|de-energiz|isolate power|energy source|power isolation|isolation disconnect|residual pressure|accumulator valve|bleed hydraulic|zero energy verification|energy verification)/i.test(normalizedText);
-      if (hasRealLotoTerms) {
-        if (profile.id === "loto_stored_energy") {
-          score += 55;
-        }
-        if (profile.id === "electrical") {
-          const hasDirectElectricalExposure = /(live wire|exposed conductor|exposed wiring|frayed wire|energized electrical|shock hazard)/i.test(normalizedText);
-          if (!hasDirectElectricalExposure) {
-            score -= 45;
-          }
-        }
-        if (profile.id === "machine_guarding") {
-          const hasDirectMachineExposure = /(unguarded conveyor|unguarded rotating|nip point|pinch point|missing guard)/i.test(normalizedText);
-          if (!hasDirectMachineExposure) {
-            score -= 45;
-          }
-        }
-      }
-
-      // 17. Confined Space Booster
-      const hasConfinedSpaceTerms = /(confined space|permit required|tank entry|vessel entry|entrant|retrieval line|rescue line|digester pit|manhole entry|sewer entry)/i.test(normalizedText);
-      if (hasConfinedSpaceTerms) {
-        if (profile.id === "confined_space") {
-          score += 50;
-        }
-        if (profile.id === "loto_stored_energy" || profile.id === "electrical" || profile.id === "machine_guarding" || profile.id === "falls") {
-          score -= 45;
-        }
-      }
-
-      // 18. Fire Protection / Explosion Booster
-      const hasFireExtinguisherTerms = /(extinguisher|sprinkler|fire hose|fire pump|hydrant)/i.test(normalizedText);
-      if (hasFireExtinguisherTerms) {
-        if (profile.id === "fire_explosion") {
-          score += 50;
-        }
-        if (profile.id === "machine_guarding" || profile.id === "electrical" || profile.id === "loto_stored_energy" || profile.id === "falls") {
-          score -= 45;
-        }
-      }
+      const maxPossibleSignalScore = [
+        ...profile.strongSignals,
+        ...profile.moderateSignals,
+        ...profile.weakSignals,
+        ...profile.contextBoosts,
+      ].reduce((sum, signal) => sum + Math.max(signal.weight, 0), 0);
 
       return {
         id: profile.id,
         classification: profile.label,
         family: profile.family,
         score,
-        maxPossibleSignalScore:
-          strong.score + moderate.score + weak.score + context.score,
-        evidenceTokens: unique([
-          ...strong.matches,
-          ...moderate.matches,
-          ...weak.matches,
-          ...context.matches,
-        ]),
-        negativeTokens: unique(negative.matches),
-        matchedControls: profile.requiredControls,
-        commonConsequences: profile.commonConsequences,
+        maxPossibleSignalScore,
+        evidenceTokens,
+        negativeTokens,
+        matchedControls,
+        commonConsequences,
         explanation:
           score > 0
             ? `SafeScope matched weighted ${profile.label} signals.`
-            : `No meaningful ${profile.label} signal match.`,
+            : `Insufficient weighted signal evidence for ${profile.label}.`,
       };
-    }).sort((a, b) => b.score - a.score);
+    });
 
-    const best = candidates[0];
-    const second = candidates[1];
-    const margin = best && second ? best.score - second.score : best?.score || 0;
+    const sorted = candidates
+      .filter((candidate) => candidate.score > 0)
+      .sort((a, b) => b.score - a.score);
 
-    if (!best || best.score <= 0) {
-      return {
-        classification: "Review Required",
-        confidence: 0,
-        confidenceBand: "low",
-        evidenceTokens: [],
-        ambiguityWarnings: ["No strong SafeScope taxonomy match."],
-        requiresHumanReview: true,
-        explanation: "No weighted hazard profile exceeded the classification threshold.",
-        additionalHazards: [],
-        excludedHazards: candidates.slice(0, 5).map((candidate) => ({
-          classification: candidate.classification,
-          reason: "No positive weighted signal match.",
-          negativeTokens: candidate.negativeTokens,
-        })),
-      };
-    }
+    const primary = sorted[0] || {
+      id: "unknown",
+      classification: "Unclassified",
+      family: "Unknown",
+      score: 0,
+      maxPossibleSignalScore: 0,
+      evidenceTokens: [],
+      negativeTokens: [],
+      matchedControls: [],
+      commonConsequences: [],
+      explanation: "SafeScope could not identify enough weighted hazard signals.",
+    };
 
-    const confidence = confidenceFromScore(best.score, margin);
-    const ambiguityWarnings: string[] = [];
+    const runnerUp = sorted[1];
+    const scoreMargin = runnerUp ? primary.score - runnerUp.score : primary.score;
+    const { confidence, confidenceBand } = confidenceFromScore(primary.score, scoreMargin);
 
-    if (second && second.score > 0 && margin <= 3) {
-      ambiguityWarnings.push(
-        `Close match between ${best.classification} and ${second.classification}.`
-      );
-    }
-
-    if (best.negativeTokens.length > 0) {
-      ambiguityWarnings.push(
-        `${best.classification} had exclusion signals: ${best.negativeTokens.join(", ")}.`
-      );
-    }
-
-    const additionalHazards = candidates
-      .filter((candidate) => candidate.score > 0 && candidate.classification !== best.classification)
-      .slice(0, 4)
-      .map((candidate) => {
-        const band = confidenceFromScore(candidate.score, candidate.score);
-        return {
-          classification: candidate.classification,
-          confidence: band.confidence,
-          confidenceBand: band.confidenceBand,
-          evidenceTokens: candidate.evidenceTokens,
-          negativeTokens: candidate.negativeTokens,
-          requiresHumanReview: band.confidenceBand === "low",
-          explanation: candidate.explanation,
-        };
-      });
-
-    const excludedHazards = candidates
-      .filter((candidate) => candidate.score <= 0 || candidate.negativeTokens.length > 0)
-      .slice(0, 6)
-      .map((candidate) => ({
-        classification: candidate.classification,
-        reason:
-          candidate.negativeTokens.length > 0
-            ? `Excluded or reduced by signals: ${candidate.negativeTokens.join(", ")}.`
-            : "Insufficient weighted signal evidence.",
-        negativeTokens: candidate.negativeTokens,
-      }));
+    const ambiguityWarnings =
+      runnerUp && scoreMargin <= 3
+        ? [`Close match between ${primary.classification} and ${runnerUp.classification}.`]
+        : [];
 
     return {
-      classification: best.classification,
-      confidence: confidence.confidence,
-      confidenceBand: confidence.confidenceBand,
-      evidenceTokens: best.evidenceTokens,
+      classification: primary.classification,
+      confidence,
+      confidenceBand,
+      evidenceTokens: primary.evidenceTokens,
       ambiguityWarnings,
-      requiresHumanReview:
-        confidence.confidenceBand === "low" || ambiguityWarnings.length > 0,
-      explanation: best.explanation,
-      score: best.score,
-      scoreMargin: margin,
-      commonConsequences: best.commonConsequences,
-      requiredControls: best.matchedControls,
-      additionalHazards,
-      excludedHazards,
+      requiresHumanReview: confidenceBand !== "high" || ambiguityWarnings.length > 0,
+      explanation: primary.explanation,
+      commonConsequences: primary.commonConsequences,
+      requiredControls: primary.matchedControls,
+      score: primary.score,
+      scoreMargin,
+      additionalHazards: sorted.slice(1, 4).map((candidate) => ({
+        classification: candidate.classification,
+        confidence:
+          primary.score > 0
+            ? Math.max(0.1, Math.min(0.8, candidate.score / primary.score))
+            : 0.1,
+        confidenceBand: candidate.score >= 10 ? "medium" : "low",
+        evidenceTokens: candidate.evidenceTokens,
+        score: candidate.score,
+      })),
+      excludedHazards: candidates
+        .filter((candidate) => candidate.id !== primary.id)
+        .map((candidate) => ({
+          classification: candidate.classification,
+          reason:
+            candidate.score <= 0
+              ? "Insufficient weighted signal evidence."
+              : "Lower weighted score than primary classification.",
+          negativeTokens: candidate.negativeTokens,
+        })),
     };
   }
 }
