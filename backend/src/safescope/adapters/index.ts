@@ -7,3 +7,4 @@ export * from './corrective-action-recommendation.adapter';
 export * from './review-governance.adapter';
 export * from './audit-trace.adapter';
 export * from './report-summary.adapter';
+export * from './mocks/mock-source-intelligence-retrieval.adapter';

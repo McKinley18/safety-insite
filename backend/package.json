@@ -47,7 +47,8 @@
     "source:intelligence:validate-preview": "ts-node scripts/validate-source-intelligence-preview.ts",
     "source:intelligence:validate-orchestrator-contract": "ts-node scripts/validate-safescope-orchestrator-contract.ts",
     "source:intelligence:validate-governance": "npm run source:intelligence:validate-preview && npm run source:intelligence:validate-orchestrator-contract && npm run source:intelligence:validate-adapter-contracts",
-    "source:intelligence:validate-adapter-contracts": "ts-node scripts/validate-safescope-adapter-contracts.ts"
+    "source:intelligence:validate-adapter-contracts": "ts-node scripts/validate-safescope-adapter-contracts.ts",
+    "source:intelligence:validate-mock-source-adapter": "ts-node scripts/validate-safescope-mock-source-adapter.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
