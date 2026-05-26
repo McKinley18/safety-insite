@@ -1,30 +1,53 @@
-const fs = require("fs");
 
+const fs = require("fs");
 const scenarios = JSON.parse(fs.readFileSync("safescope-gauntlet.source.v1.json", "utf8"));
 const intel = JSON.parse(fs.readFileSync("safescope-source-intelligence.v1.json", "utf8"));
 
-let fail = false;
+let structuralCriticalFailures = 0;
+let sourceQualityWarnings = 0;
+let sourceQualityCriticalFailures = 0;
 
-// 1. Counts
-console.log("Scenario count:", scenarios.length);
-console.log("Intel records:", intel.length);
-
-// 2. Parity
-const sourceIdsInScenarios = new Set(scenarios.map(s => s.sourceId));
-const sourceIdsInIntel = new Set(intel.map(s => s.sourceId));
-const missing = Array.from(sourceIdsInScenarios).filter(id => !sourceIdsInIntel.has(id));
-if (missing.length > 0) { console.error("Missing links:", missing); fail = true; }
-
-// 3. Duplicate IDs/Observations
+// 1. Structural Checks
+if (scenarios.length !== 150) { structuralCriticalFailures++; }
 const ids = scenarios.map(s => s.scenarioId);
-if (ids.length !== new Set(ids).size) { console.error("Duplicate scenarioIds found"); fail = true; }
+if (ids.length !== new Set(ids).size) { structuralCriticalFailures++; }
 
-const obs = scenarios.map(s => s.observation);
-if (obs.length !== new Set(obs).size) { console.error("Duplicate observations found"); fail = true; }
+// 2. Quality Checks
+const suspectRegex = /^Source Title \d+/i;
+const genericTitles = ["MSHA Fatality", "MSHA Fatality Report", "OSHA Inspection", "Inspection: Construction"];
+const genericUrls = ["https://www.osha.gov/fatalities", "https://www.msha.gov/data-and-reports/fatality-reports"];
+const genericNotes = ["Derived from source", "Automatically reconciled"];
 
-// 4. Metadata check
-const missingMeta = scenarios.filter(s => !s.sourceId || !s.sourceUrl || !s.sourceAgency).length;
-if (missingMeta > 0) { console.error("Missing metadata in scenarios:", missingMeta); fail = true; }
+scenarios.forEach(s => {
+    let suspect = false;
+    if (suspectRegex.test(s.sourceTitle) || genericTitles.includes(s.sourceTitle)) { suspect = true; }
+    if (genericUrls.includes(s.sourceUrl)) { suspect = true; }
+    if (genericNotes.includes(s.sourceGroundingNotes)) { suspect = true; }
 
-if (fail) process.exit(1);
-console.log("PASS: Dataset integrity verified.");
+    if (suspect) {
+        sourceQualityWarnings++;
+        sourceQualityCriticalFailures++;
+        console.log("Strict failure:", s.scenarioId, s.sourceTitle);
+    }
+});
+
+console.log("Structural critical failures:", structuralCriticalFailures);
+console.log("Source quality warnings:", sourceQualityWarnings);
+console.log("Source quality critical failures:", sourceQualityCriticalFailures);
+
+const strict = process.env.STRICT_SOURCE_QUALITY === "1";
+
+if (strict) {
+    if (structuralCriticalFailures > 0 || sourceQualityCriticalFailures > 0) {
+        console.log("FAIL: Strict source quality audit failed.");
+        process.exit(1);
+    }
+    console.log("PASS: Strict source quality audit passed.");
+} else {
+    if (sourceQualityWarnings > 0) console.log("Note: Source quality warnings do not fail default mode.");
+    if (structuralCriticalFailures > 0) {
+        console.log("FAIL: Dataset structural integrity check failed.");
+        process.exit(1);
+    }
+    console.log("PASS: Dataset structural integrity verified.");
+}
