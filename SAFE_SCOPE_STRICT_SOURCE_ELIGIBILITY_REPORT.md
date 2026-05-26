@@ -1,0 +1,104 @@
+# SAFE_SCOPE_STRICT_SOURCE_ELIGIBILITY_REPORT.md
+
+- **Total scenarios:** 150
+- **Strict eligible scenario count:** 55
+- **Strict ineligible scenario count:** 95
+- **Strict eligible intel count:** 52
+- **Strict ineligible intel count:** 65
+
+## Ineligible Scenarios
+- SRC-MSHA-002: Fatality: Onyx Sterling Pit
+- SRC-MSHA-003: Fatality: Leer Mine
+- SRC-MSHA-004: Fatality: Borger Pit
+- SRC-MSHA-005: Fatality: Pueblo Plant & Quarry
+- SRC-MSHA-006: Fatality: Stillwater Mine
+- SRC-MSHA-007: Fatality: Crushed Stone Plant
+- SRC-OSHA-001: Investigation: Construction Site
+- SRC-OSHA-002: Investigation: Chemical Plant
+- SRC-OSHA-003: Investigation: Machine Shop
+- SRC-OSHA-004: Inspection: Manufacturing
+- SRC-OSHA-005: Inspection: General Manufacturing
+- SRC-OSHA-006: Inspection: Woodworking Shop
+- SRC-OSHA-007: Investigation: Construction
+- SRC-OSHA-008: Inspection: Warehouse
+- SRC-OSHA-009: Investigation: Chemical Processing
+- SRC-OSHA-010: Inspection: Steel Mill
+- SRC-OSHA-011: Investigation: Grain Elevator
+- SRC-OSHA-012: Inspection: Electrical Contracting
+- SRC-OSHA-013: Investigation: Scaffolding
+- SRC-OSHA-014: Inspection: Food Processing
+- SRC-OSHA-016: Inspection: Construction
+- SRC-OSHA-017: Inspection: Manufacturing
+- SRC-OSHA-018: Investigation: Warehouse
+- SRC-OSHA-019: Inspection: Food Processing
+- SRC-OSHA-020: Inspection: Steel Mill
+- SRC-OSHA-015: Inspection: General Construction
+- SRC-OSHA-021: Inspection: Manufacturing
+- SRC-OSHA-023: Inspection: Warehouse
+- SRC-OSHA-999: Investigation: Chemical
+- SRC-OSHA-1000: Inspection: General Construction
+- SRC-OSHA-022: Inspection: Manufacturing
+- SRC-OSHA-1001: Investigation: Construction
+- SRC-OSHA-024: Inspection: Warehouse
+- SRC-OSHA-025: Investigation: Chemical
+- SRC-OSHA-026: Inspection: Construction Site
+- SRC-OSHA-027: Investigation: Metal Fabrication
+- SRC-OSHA-1002: Inspection: General Construction
+- SRC-OSHA-1003: Inspection: Manufacturing
+- SRC-OSHA-1004: Investigation: Construction
+- SRC-OSHA-1005: Inspection: Warehouse
+- SRC-OSHA-1006: Investigation: Chemical
+- SRC-OSHA-1007: Inspection: Electrical
+- SRC-OSHA-1008: Investigation: Metal Shop
+- SRC-OSHA-1009: Inspection: Warehouse
+- SRC-OSHA-1010: Inspection: Electrical
+- SRC-OSHA-028: Inspection: General Construction
+- SRC-OSHA-029: Inspection: Manufacturing
+- SRC-OSHA-030: Investigation: Construction
+- SRC-OSHA-031: Inspection: Warehouse
+- SRC-OSHA-032: Investigation: Chemical
+- SRC-OSHA-1011: Inspection: General Construction
+- SRC-OSHA-1012: Inspection: Manufacturing
+- SRC-OSHA-1013: Investigation: Construction
+- SRC-OSHA-1014: Inspection: Warehouse
+- SRC-OSHA-1015: Investigation: Chemical
+- SRC-OSHA-1016: Inspection: Electrical
+- SRC-OSHA-1017: Inspection: General Construction
+- SRC-OSHA-1018: Inspection: Manufacturing
+- SRC-OSHA-1019: Investigation: Construction
+- SRC-OSHA-033: Inspection: General Construction
+- SRC-OSHA-035: Investigation: Construction
+- SRC-OSHA-037: Investigation: Chemical
+- SRC-OSHA-038: Inspection: Electrical
+- SRC-OSHA-039: Investigation: Metal Fabrication
+- SRC-OSHA-1020: Inspection: Construction
+- SRC-OSHA-034: Inspection: Chemical Plant
+- SRC-OSHA-1021: Investigation: Construction
+- SRC-OSHA-036: Inspection: Warehouse
+- SRC-OSHA-1022: Investigation: Chemical
+- SRC-OSHA-1023: Inspection: Electrical
+- SRC-OSHA-1024: Investigation: Metal Fabrication
+- SRC-MSHA-067: MSHA Fatality
+- SRC-MSHA-068: MSHA Fatality
+- SRC-MSHA-069: MSHA Fatality
+- SRC-MSHA-070: MSHA Fatality
+- SRC-MSHA-071: MSHA Fatality
+- SRC-OSHA-040: Investigation: Construction
+- SRC-OSHA-041: Inspection: Manufacturing
+- SRC-OSHA-042: Inspection: Construction
+- SRC-OSHA-043: Inspection: Warehouse
+- SRC-OSHA-044: Investigation: Chemical Plant
+- SRC-OSHA-045: Inspection: Electrical Contracting
+- SRC-OSHA-046: Investigation: Metal Fabrication
+- SRC-OSHA-047: Inspection: Construction
+- SRC-OSHA-048: Inspection: General Manufacturing
+- SRC-OSHA-049: Inspection: General Construction
+- SRC-OSHA-1025: Investigation: Chemical Release
+- SRC-OSHA-1026: Inspection: Warehouse
+- SRC-OSHA-1027: Investigation: Construction
+- SRC-OSHA-1028: Inspection: Manufacturing
+- SRC-OSHA-1029: Investigation: Chemical
+- SRC-OSHA-1030: Inspection: General Construction
+- SRC-OSHA-1031: Inspection: Electrical
+- SRC-OSHA-1032: Investigation: Metal Fabrication
+- SRC-OSHA-1033: Inspection: Construction
