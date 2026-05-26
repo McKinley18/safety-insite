@@ -242,11 +242,16 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "chemical container", weight: 5 },
       { term: "sds", weight: 5 },
       { term: "hazcom", weight: 6 },
-      { term: "safety data sheet", weight: 6 }
+      { term: "safety data sheet", weight: 6 },
+      { term: "hazcom training", weight: 7 },
+      { term: "training records", weight: 7 },
+      { term: "missing training", weight: 7 }
     ],
     weakSignals: [
       { term: "chemical", weight: 3 },
-      { term: "label", weight: 3 }
+      { term: "label", weight: 3 },
+      { term: "training", weight: 4 },
+      { term: "records", weight: 3 }
     ],
     negativeSignals: [],
     contextBoosts: [
@@ -315,7 +320,9 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "ignition source", weight: 6 },
       { term: "hot work", weight: 6 },
       { term: "sparks", weight: 5 },
-      { term: "fire extinguisher", weight: 5 }
+      { term: "fire extinguisher", weight: 5 },
+      { term: "extinguisher", weight: 5 },
+      { term: "sprinkler", weight: 5 }
     ],
     weakSignals: [
       { term: "fire", weight: 3 },
@@ -521,38 +528,464 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
     label: "Material Handling",
     family: "Material Handling",
     strongSignals: [
-      { term: "gas cylinder", weight: 10 },
-      { term: "oxygen cylinder", weight: 9 },
-      { term: "unsecured cylinder", weight: 9 },
-      { term: "upright cylinder", weight: 9 },
-      { term: "cylinder storage", weight: 8 },
-      { term: "oxygen manifold", weight: 8 },
-      { term: "whipcheck", weight: 10 },
-      { term: "safety chain on hose", weight: 9 },
-      { term: "high pressure air line", weight: 9 },
-      { term: "compressor hose", weight: 8 }
+      { term: "spill kit blocked", weight: 9 },
+      { term: "scrap metal rack", weight: 8 },
+      { term: "timber stack leaning", weight: 9 },
+      { term: "unstable lumber", weight: 9 },
+      { term: "banding strap", weight: 8 },
+      { term: "raw materials stacked", weight: 9 }
     ],
     moderateSignals: [
-      { term: "cylinder", weight: 5 },
-      { term: "manifold", weight: 5 },
-      { term: "hose safety", weight: 6 },
-      { term: "whip check", weight: 6 }
+      { term: "storage rack", weight: 5 },
+      { term: "pallet stack", weight: 5 },
+      { term: "lumber stack", weight: 6 },
+      { term: "spill kit", weight: 5 }
     ],
     weakSignals: [
-      { term: "hose", weight: 3 },
-      { term: "chain", weight: 2 },
-      { term: "connector", weight: 2 }
+      { term: "stack", weight: 2 },
+      { term: "box", weight: 1 },
+      { term: "rack", weight: 2 }
     ],
     negativeSignals: [],
     contextBoosts: [
-      { term: "unsecured gas", weight: 4 },
-      { term: "high pressure release", weight: 4 }
+      { term: "load securement", weight: 4 }
     ],
-    commonConsequences: ["flying projectile cylinder", "uncontrolled whip hose strike", "asphyxiation or toxic release"],
-    requiredControls: ["secure cylinders upright in chains", "install whipcheck safety device", "install cylinder caps", "separate reactive gases"],
+    commonConsequences: ["falling materials injury", "blocked emergency access spill kit", "trip from loose bands"],
+    requiredControls: ["restack raw materials safely", "clear emergency spill kit", "organize scrap metal racks"],
     defaultSeverity: "medium",
     defaultSeverityScore: 3,
     defaultLikelihoodScore: 3,
-    humanReviewTriggers: ["unsecured high pressure cylinder", "hose without safety device"]
+    humanReviewTriggers: ["unstable material stack", "blocked safety response gear"]
+  },
+  {
+    id: "scaffolds",
+    label: "Scaffolds",
+    family: "Scaffolds",
+    strongSignals: [
+      { term: "scaffold legs resting on stacked bricks", weight: 10 },
+      { term: "scaffold platform missing guardrails", weight: 10 },
+      { term: "scaffold platform", weight: 9 },
+      { term: "scaffold outrigger", weight: 9 },
+      { term: "supported scaffold", weight: 9 },
+      { term: "mobile scaffold", weight: 9 },
+      { term: "rolling scaffold", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "scaffold", weight: 6 },
+      { term: "scaffolding", weight: 6 },
+      { term: "scaffold frame", weight: 6 },
+      { term: "scaffold platform", weight: 6 },
+      { term: "scaffold plank", weight: 6 },
+      { term: "mudsill", weight: 5 },
+      { term: "baseplate", weight: 5 },
+      { term: "outrigger", weight: 5 },
+      { term: "cross brace", weight: 4 },
+      { term: "scaffold access", weight: 5 },
+      { term: "scaffold deck", weight: 5 }
+    ],
+    weakSignals: [
+      { term: "plank", weight: 3 },
+      { term: "deck", weight: 2 },
+      { term: "base", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["fall from height", "scaffold collapse", "struck-by falling object"],
+    requiredControls: ["install mudsills and baseplates", "install scaffold guardrails", "secure work platform", "provide safe ladder access"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["scaffold platform without guardrails", "scaffold on unstable base"]
+  },
+  {
+    id: "compressed_gas_cylinders",
+    label: "Compressed Gas Cylinders",
+    family: "Compressed Gas Cylinders",
+    strongSignals: [
+      { term: "oxygen and acetylene stored directly touching", weight: 10 },
+      { term: "unsecured gas cylinder", weight: 10 },
+      { term: "protective valve cap missing", weight: 9 },
+      { term: "high pressure cylinder", weight: 9 },
+      { term: "cylinder rack loose", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "gas cylinder", weight: 6 },
+      { term: "oxygen cylinder", weight: 6 },
+      { term: "acetylene cylinder", weight: 6 },
+      { term: "compressed gas", weight: 6 },
+      { term: "cylinder cap", weight: 5 },
+      { term: "cylinder valve", weight: 5 },
+      { term: "regulator", weight: 4 },
+      { term: "manifold", weight: 4 },
+      { term: "chained upright", weight: 5 },
+      { term: "unsecured cylinder", weight: 6 },
+      { term: "cylinder storage", weight: 5 },
+      { term: "fuel gas cylinder", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "cylinder", weight: 3 },
+      { term: "gas", weight: 2 },
+      { term: "cap", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["cylinder projectile", "explosion", "toxic or flammable gas release"],
+    requiredControls: ["secure cylinders upright", "install protective valve caps", "separate incompatible gas cylinders"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["unsecured gas cylinder", "damaged cylinder valve"]
+  },
+  {
+    id: "compressed_air_hose_safety",
+    label: "Compressed Air / Hose Safety",
+    family: "Compressed Air / Hose Safety",
+    strongSignals: [
+      { term: "air compressor hose without safety whipcheck", weight: 10 },
+      { term: "air nozzle pressure", weight: 9 },
+      { term: "clothing blowdown", weight: 9 },
+      { term: "damaged hose clamp connector", weight: 9 },
+      { term: "receiver tank missing pressure relief", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "compressed air hose", weight: 6 },
+      { term: "high pressure air line", weight: 6 },
+      { term: "whipcheck", weight: 6 },
+      { term: "whip check", weight: 6 },
+      { term: "safety chain", weight: 5 },
+      { term: "hose coupling", weight: 5 },
+      { term: "hose connector", weight: 5 },
+      { term: "compressor hose", weight: 6 },
+      { term: "air line connector", weight: 6 },
+      { term: "pneumatic line", weight: 6 },
+      { term: "hose restraint", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "hose", weight: 3 },
+      { term: "air", weight: 2 },
+      { term: "clamp", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["whipping hose impact", "flying particles under pressure", "pressure vessel rupture"],
+    requiredControls: ["install whipcheck safety device", "reduce nozzle pressure below 30 psi", "inspect hose clamps regularly", "install pressure relief valve"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["unsecured air hose", "excessive nozzle pressure"]
+  },
+  {
+    id: "chemical_storage",
+    label: "Chemical Storage",
+    family: "Chemical Storage",
+    strongSignals: [
+      { term: "acid and base drums stored on same rack", weight: 10 },
+      { term: "secondary containment tub full of water", weight: 10 },
+      { term: "cracked outer jacket on corrosive chemical tote", weight: 9 },
+      { term: "reactive chemicals without drainage containment", weight: 9 },
+      { term: "spigot showing continuous slow drip", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "chemical storage", weight: 6 },
+      { term: "drum storage", weight: 6 },
+      { term: "solvent drum", weight: 6 },
+      { term: "acid drum", weight: 6 },
+      { term: "containment", weight: 5 },
+      { term: "secondary containment", weight: 6 },
+      { term: "incompatible chemicals", weight: 6 },
+      { term: "corrosive storage", weight: 6 },
+      { term: "flammable storage cabinet", weight: 6 },
+      { term: "chemical pallet", weight: 5 },
+      { term: "leaking drum", weight: 6 },
+      { term: "transfer piping containment", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "chemical", weight: 3 },
+      { term: "drum", weight: 2 },
+      { term: "pallet", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["chemical spill", "incompatible chemical reaction", "environmental contamination"],
+    requiredControls: ["segregate incompatible chemicals", "drain containment tub", "replace leaking container", "use chemical secondary containment"],
+    defaultSeverity: "medium",
+    defaultSeverityScore: 3,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["incompatible chemical contact", "leaking chemical drum"]
+  },
+  {
+    id: "welding_cutting_hot_work",
+    label: "Welding / Cutting / Hot Work",
+    family: "Welding / Cutting / Hot Work",
+    strongSignals: [
+      { term: "welding generator lead showing damaged insulation", weight: 10 },
+      { term: "arc welding performed without safety flash screen", weight: 10 },
+      { term: "oxyacetylene torch missing flashback arrestor", weight: 9 },
+      { term: "hot work executed without active fire watch", weight: 9 },
+      { term: "welding sparks falling directly on trash", weight: 9 },
+      { term: "damaged gas hose on cutting torch", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "welding", weight: 6 },
+      { term: "cutting", weight: 5 },
+      { term: "torch", weight: 5 },
+      { term: "grinder sparks", weight: 5 },
+      { term: "hot work permit", weight: 6 },
+      { term: "fire watch", weight: 6 },
+      { term: "welding screen", weight: 6 },
+      { term: "arc flash from welding", weight: 6 },
+      { term: "welding leads", weight: 6 },
+      { term: "oxygen acetylene torch", weight: 6 },
+      { term: "brazing", weight: 5 },
+      { term: "burning operation", weight: 5 }
+    ],
+    weakSignals: [
+      { term: "sparks", weight: 3 },
+      { term: "leads", weight: 2 },
+      { term: "hose", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["fire initiation", "welding flash eye injury", "electric shock from welding machine"],
+    requiredControls: ["assign fire watch", "install welding safety screen", "install flashback arrestor", "replace damaged welding cables"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["hot work without fire watch", "exposed welding leads"]
+  },
+  {
+    id: "scaffolds",
+    label: "Scaffolds",
+    family: "Scaffolds",
+    strongSignals: [
+      { term: "scaffold legs resting on stacked bricks", weight: 10 },
+      { term: "scaffold platform missing guardrails", weight: 10 },
+      { term: "scaffold platform", weight: 9 },
+      { term: "scaffold outrigger", weight: 9 },
+      { term: "supported scaffold", weight: 9 },
+      { term: "mobile scaffold", weight: 9 },
+      { term: "rolling scaffold", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "scaffold", weight: 6 },
+      { term: "scaffolding", weight: 6 },
+      { term: "scaffold frame", weight: 6 },
+      { term: "scaffold platform", weight: 6 },
+      { term: "scaffold plank", weight: 6 },
+      { term: "mudsill", weight: 5 },
+      { term: "baseplate", weight: 5 },
+      { term: "outrigger", weight: 5 },
+      { term: "cross brace", weight: 4 },
+      { term: "scaffold access", weight: 5 },
+      { term: "scaffold deck", weight: 5 }
+    ],
+    weakSignals: [
+      { term: "plank", weight: 3 },
+      { term: "deck", weight: 2 },
+      { term: "base", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["fall from height", "scaffold collapse", "struck-by falling object"],
+    requiredControls: ["install mudsills and baseplates", "install scaffold guardrails", "secure work platform", "provide safe ladder access"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["scaffold platform without guardrails", "scaffold on unstable base"]
+  },
+  {
+    id: "compressed_gas_cylinders",
+    label: "Compressed Gas Cylinders",
+    family: "Compressed Gas Cylinders",
+    strongSignals: [
+      { term: "oxygen and acetylene stored directly touching", weight: 10 },
+      { term: "unsecured gas cylinder", weight: 10 },
+      { term: "protective valve cap missing", weight: 9 },
+      { term: "high pressure cylinder", weight: 9 },
+      { term: "cylinder rack loose", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "gas cylinder", weight: 6 },
+      { term: "oxygen cylinder", weight: 6 },
+      { term: "acetylene cylinder", weight: 6 },
+      { term: "compressed gas", weight: 6 },
+      { term: "cylinder cap", weight: 5 },
+      { term: "cylinder valve", weight: 5 },
+      { term: "regulator", weight: 4 },
+      { term: "manifold", weight: 4 },
+      { term: "chained upright", weight: 5 },
+      { term: "unsecured cylinder", weight: 6 },
+      { term: "cylinder storage", weight: 5 },
+      { term: "fuel gas cylinder", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "cylinder", weight: 3 },
+      { term: "gas", weight: 2 },
+      { term: "cap", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["cylinder projectile", "explosion", "toxic or flammable gas release"],
+    requiredControls: ["secure cylinders upright", "install protective valve caps", "separate incompatible gas cylinders"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["unsecured gas cylinder", "damaged cylinder valve"]
+  },
+  {
+    id: "compressed_air_hose_safety",
+    label: "Compressed Air / Hose Safety",
+    family: "Compressed Air / Hose Safety",
+    strongSignals: [
+      { term: "air compressor hose without safety whipcheck", weight: 10 },
+      { term: "air nozzle pressure", weight: 9 },
+      { term: "clothing blowdown", weight: 9 },
+      { term: "damaged hose clamp connector", weight: 9 },
+      { term: "receiver tank missing pressure relief", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "compressed air hose", weight: 6 },
+      { term: "high pressure air line", weight: 6 },
+      { term: "whipcheck", weight: 6 },
+      { term: "whip check", weight: 6 },
+      { term: "safety chain", weight: 5 },
+      { term: "hose coupling", weight: 5 },
+      { term: "hose connector", weight: 5 },
+      { term: "compressor hose", weight: 6 },
+      { term: "air line connector", weight: 6 },
+      { term: "pneumatic line", weight: 6 },
+      { term: "hose restraint", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "hose", weight: 3 },
+      { term: "air", weight: 2 },
+      { term: "clamp", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["whipping hose impact", "flying particles under pressure", "pressure vessel rupture"],
+    requiredControls: ["install whipcheck safety device", "reduce nozzle pressure below 30 psi", "inspect hose clamps regularly", "install pressure relief valve"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["unsecured air hose", "excessive nozzle pressure"]
+  },
+  {
+    id: "chemical_storage",
+    label: "Chemical Storage",
+    family: "Chemical Storage",
+    strongSignals: [
+      { term: "acid and base drums stored on same rack", weight: 10 },
+      { term: "secondary containment tub full of water", weight: 10 },
+      { term: "cracked outer jacket on corrosive chemical tote", weight: 9 },
+      { term: "reactive chemicals without drainage containment", weight: 9 },
+      { term: "spigot showing continuous slow drip", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "chemical storage", weight: 6 },
+      { term: "drum storage", weight: 6 },
+      { term: "solvent drum", weight: 6 },
+      { term: "acid drum", weight: 6 },
+      { term: "containment", weight: 5 },
+      { term: "secondary containment", weight: 6 },
+      { term: "incompatible chemicals", weight: 6 },
+      { term: "corrosive storage", weight: 6 },
+      { term: "flammable storage cabinet", weight: 6 },
+      { term: "chemical pallet", weight: 5 },
+      { term: "leaking drum", weight: 6 },
+      { term: "transfer piping containment", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "chemical", weight: 3 },
+      { term: "drum", weight: 2 },
+      { term: "pallet", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["chemical spill", "incompatible chemical reaction", "environmental contamination"],
+    requiredControls: ["segregate incompatible chemicals", "drain containment tub", "replace leaking container", "use chemical secondary containment"],
+    defaultSeverity: "medium",
+    defaultSeverityScore: 3,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["incompatible chemical contact", "leaking chemical drum"]
+  },
+  {
+    id: "welding_cutting_hot_work",
+    label: "Welding / Cutting / Hot Work",
+    family: "Welding / Cutting / Hot Work",
+    strongSignals: [
+      { term: "welding generator lead showing damaged insulation", weight: 10 },
+      { term: "arc welding performed without safety flash screen", weight: 10 },
+      { term: "oxyacetylene torch missing flashback arrestor", weight: 9 },
+      { term: "hot work executed without active fire watch", weight: 9 },
+      { term: "welding sparks falling directly on trash", weight: 9 },
+      { term: "damaged gas hose on cutting torch", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "welding", weight: 6 },
+      { term: "cutting", weight: 5 },
+      { term: "torch", weight: 5 },
+      { term: "grinder sparks", weight: 5 },
+      { term: "hot work permit", weight: 6 },
+      { term: "fire watch", weight: 6 },
+      { term: "welding screen", weight: 6 },
+      { term: "arc flash from welding", weight: 6 },
+      { term: "welding leads", weight: 6 },
+      { term: "oxygen acetylene torch", weight: 6 },
+      { term: "brazing", weight: 5 },
+      { term: "burning operation", weight: 5 }
+    ],
+    weakSignals: [
+      { term: "sparks", weight: 3 },
+      { term: "leads", weight: 2 },
+      { term: "hose", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["fire initiation", "welding flash eye injury", "electric shock from welding machine"],
+    requiredControls: ["assign fire watch", "install welding safety screen", "install flashback arrestor", "replace damaged welding cables"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["hot work without fire watch", "exposed welding leads"]
+  },
+  {
+    id: "first_aid_eyewash_safety_shower_access",
+    label: "First Aid / Eyewash / Safety Shower Access",
+    family: "First Aid / Eyewash / Safety Shower Access",
+    strongSignals: [
+      { term: "safety eyewash station blocked by", weight: 10 },
+      { term: "drench shower pull rod bent", weight: 10 },
+      { term: "eyewash plumbing valve showing", weight: 9 },
+      { term: "missing visual weekly inspection tags on eyewash", weight: 9 },
+      { term: "first aid box completely empty", weight: 9 },
+      { term: "eyewash station basin covered in thick grease", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "eyewash", weight: 6 },
+      { term: "eye wash", weight: 6 },
+      { term: "safety shower", weight: 6 },
+      { term: "emergency shower", weight: 6 },
+      { term: "first aid station", weight: 5 },
+      { term: "blocked eyewash", weight: 8 },
+      { term: "blocked safety shower", weight: 8 },
+      { term: "inspection tag", weight: 4 },
+      { term: "weekly activation", weight: 5 },
+      { term: "emergency wash station", weight: 6 },
+      { term: "drench shower", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "shower", weight: 3 },
+      { term: "basin", weight: 2 },
+      { term: "valve", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [],
+    commonConsequences: ["delayed chemical exposure emergency washing", "delayed first aid treatment"],
+    requiredControls: ["clear access to eyewash", "replace corroded valve", "conduct weekly eyewash inspection", "replenish first aid supplies"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["blocked safety shower eyewash", "corroded emergency valve"]
   }
 ];

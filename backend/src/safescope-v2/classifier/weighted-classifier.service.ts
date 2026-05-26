@@ -113,7 +113,7 @@ export class WeightedClassifierService {
       }
 
       // 5. A. MACHINE GUARDING OVER-TRIGGERING ON CATWALK/ACCESS/FALL/SCAFFOLD
-      const hasAccessFallScaffoldTerms = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower)/i.test(normalizedText);
+      const hasAccessFallScaffoldTerms = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|safety harness|harness|perimeter side|unprotected edge|unprotected perimeter|lanyard|lifeline)/i.test(normalizedText);
       if (hasAccessFallScaffoldTerms) {
         if (profile.id === "machine_guarding") {
           const hasMachineContactExposure = /(unguarded conveyor|unguarded rotating|unguarded shaft|missing guard|guard removed|exposed rotating|nip point|pinch point|moving machine part|exposed.*rotating|exposed.*moving|pulley|sprocket|belt|gear|rotating component|point of operation)/i.test(normalizedText);
@@ -127,8 +127,8 @@ export class WeightedClassifierService {
       }
 
       // 6. B. ELECTRICAL OVER-TRIGGERING ON PASSAGEWAY TRIP/SLIP OR CONFINED SPACE ENTRY
-      const isTripPassagewayOrHousekeepingText = /(trip|slip|grease|cords|floor passageway|passageway|housekeeping|walking surface|obstruction)/i.test(normalizedText);
-      const isConfinedSpaceEntryText = /(cleanout|vessel cleanout|reaction vessel|worker entry|confined space|permit required|attendant|sewer tank|vessel entry|tank entry)/i.test(normalizedText);
+      const isTripPassagewayOrHousekeepingText = /(trip|slip|grease|cords|floor passageway|passageway|housekeeping|walking surface|obstruction|wet floor|aisleway|aisle|spill|puddle|standing water|water on floor)/i.test(normalizedText);
+      const isConfinedSpaceEntryText = /(cleanout|vessel cleanout|reaction vessel|worker entry|confined space|permit required|attendant|sewer tank|vessel entry|tank entry|entrant|retrieval line|rescue line|digester pit|manhole entry|sewer entry)/i.test(normalizedText);
       
       const hasElectricalExposure = /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash)/i.test(normalizedText);
 
@@ -136,8 +136,11 @@ export class WeightedClassifierService {
         if (!hasElectricalExposure) {
           score -= 45; // Penalize electrical when no actual electrical hazard exists
         }
-        if (isTripPassagewayOrHousekeepingText && !hasElectricalExposure) {
-          score -= 30; // Further penalize trip/slip hazards on cords without exposed wires
+        if (isTripPassagewayOrHousekeepingText) {
+          const hasDirectElectricalExposure = /(live wire|exposed conductor|exposed wiring|frayed wire|energized electrical|shock hazard|exposed energized|damaged insulation)/i.test(normalizedText);
+          if (!hasDirectElectricalExposure) {
+            score -= 45; // Further penalize electrical on trip/slip floor conditions near electrical locations
+          }
         }
       }
 
@@ -183,6 +186,114 @@ export class WeightedClassifierService {
           score -= 45;
         }
         if (profile.id === "loto_stored_energy") {
+          score -= 45;
+        }
+      }
+
+      // 10. Scaffold booster & generic Fall/Machine/Housekeeping guardrail
+      const hasScaffoldSpecificTerms = /(scaffold|scaffolding|scaffold frame|scaffold platform|scaffold plank|mudsill|baseplate|outrigger|cross brace|scaffold guardrail|scaffold access|scaffold deck|supported scaffold|mobile scaffold|rolling scaffold)/i.test(normalizedText);
+      if (hasScaffoldSpecificTerms) {
+        if (profile.id === "scaffolds") {
+          score += 50;
+        }
+        if (profile.id === "falls" || profile.id === "walking_working_surfaces" || profile.id === "machine_guarding" || profile.id === "loto_stored_energy") {
+          score -= 45;
+        }
+      }
+
+      // 11. Compressed Gas Cylinders vs Material Handling & Machine Guarding
+      const hasCylinderSpecificTerms = /(cylinder|gas cylinder|oxygen cylinder|acetylene cylinder|protective valve cap|valve cap|manifold|chained upright|fuel gas cylinder|cylinder storage)/i.test(normalizedText);
+      if (hasCylinderSpecificTerms) {
+        if (profile.id === "compressed_gas_cylinders") {
+          score += 50;
+        }
+        if (profile.id === "material_handling" || profile.id === "machine_guarding") {
+          score -= 45;
+        }
+      }
+
+      // 12. Compressed Air / Hose Safety vs Electrical/Material Handling/Machine Guarding
+      const hasAirHoseSpecificTerms = /(air compressor hose|air hose|whipcheck|whip check|safety chain|hose coupling|compressor hose|air line connector|air nozzle pressure|clothing blowdown|hose clamp)/i.test(normalizedText);
+      if (hasAirHoseSpecificTerms) {
+        if (profile.id === "compressed_air_hose_safety") {
+          score += 50;
+        }
+        if (profile.id === "electrical" || profile.id === "material_handling" || profile.id === "machine_guarding" || profile.id === "loto_stored_energy") {
+          score -= 45;
+        }
+      }
+
+      // 13. Chemical Storage vs Hazard Communication & Confined Space & Machine Guarding
+      const hasChemicalStorageSpecificTerms = /(acid and base drums|containment tub|containment pallet|chemical storage|solvent drum|acid drum|secondary containment|corrosive storage|corrosive chemical tote|reactive chemicals|drainage containment|spigot showing|chemical pallet)/i.test(normalizedText) && !/(training|records|missing records|hazcom training|sds folder|safety data sheet folder)/i.test(normalizedText);
+      if (hasChemicalStorageSpecificTerms) {
+        if (profile.id === "chemical_storage") {
+          score += 50;
+        }
+        if (profile.id === "hazard_communication" || profile.id === "confined_space" || profile.id === "machine_guarding" || profile.id === "falls") {
+          score -= 45;
+        }
+      }
+
+      // 14. Welding / Cutting / Hot Work vs Electrical & PPE & Machine Guarding & Confined Space
+      const hasHotWorkSpecificTerms = /(welding|welder|cutting torch|oxyacetylene|flashback arrestor|hot work|fire watch|welding leads|welding screen|sparks falling)/i.test(normalizedText) && !/(explosion hazard|flammable vapors|combustible dust)/i.test(normalizedText);
+      if (hasHotWorkSpecificTerms) {
+        if (profile.id === "welding_cutting_hot_work") {
+          score += 50;
+        }
+        if (profile.id === "electrical" || profile.id === "ppe" || profile.id === "machine_guarding" || profile.id === "confined_space") {
+          score -= 45;
+        }
+      }
+
+      // 15. First Aid / Eyewash / Safety Shower Access vs Housekeeping/Walking/Working Surfaces & Egress & LOTO & Machine Guarding
+      const hasFirstAidShowerSpecificTerms = /(eyewash|eye wash|safety shower|emergency shower|drench shower|first aid box|eyewash station|first aid station)/i.test(normalizedText);
+      if (hasFirstAidShowerSpecificTerms) {
+        if (profile.id === "first_aid_eyewash_safety_shower_access") {
+          score += 50;
+        }
+        if (profile.id === "walking_working_surfaces" || profile.id === "emergency_egress" || profile.id === "loto_stored_energy" || profile.id === "machine_guarding" || profile.id === "confined_space" || profile.id === "falls") {
+          score -= 45;
+        }
+      }
+
+      // 16. Lockout / Stored Energy (LOTO) Booster
+      const hasRealLotoTerms = /(locked out|not locked out|lockout|tagout|energy isolation|zero energy|de-energiz|isolate power|energy source|power isolation|isolation disconnect|residual pressure|accumulator valve|bleed hydraulic|zero energy verification|energy verification)/i.test(normalizedText);
+      if (hasRealLotoTerms) {
+        if (profile.id === "loto_stored_energy") {
+          score += 55;
+        }
+        if (profile.id === "electrical") {
+          const hasDirectElectricalExposure = /(live wire|exposed conductor|exposed wiring|frayed wire|energized electrical|shock hazard)/i.test(normalizedText);
+          if (!hasDirectElectricalExposure) {
+            score -= 45;
+          }
+        }
+        if (profile.id === "machine_guarding") {
+          const hasDirectMachineExposure = /(unguarded conveyor|unguarded rotating|nip point|pinch point|missing guard)/i.test(normalizedText);
+          if (!hasDirectMachineExposure) {
+            score -= 45;
+          }
+        }
+      }
+
+      // 17. Confined Space Booster
+      const hasConfinedSpaceTerms = /(confined space|permit required|tank entry|vessel entry|entrant|retrieval line|rescue line|digester pit|manhole entry|sewer entry)/i.test(normalizedText);
+      if (hasConfinedSpaceTerms) {
+        if (profile.id === "confined_space") {
+          score += 50;
+        }
+        if (profile.id === "loto_stored_energy" || profile.id === "electrical" || profile.id === "machine_guarding" || profile.id === "falls") {
+          score -= 45;
+        }
+      }
+
+      // 18. Fire Protection / Explosion Booster
+      const hasFireExtinguisherTerms = /(extinguisher|sprinkler|fire hose|fire pump|hydrant)/i.test(normalizedText);
+      if (hasFireExtinguisherTerms) {
+        if (profile.id === "fire_explosion") {
+          score += 50;
+        }
+        if (profile.id === "machine_guarding" || profile.id === "electrical" || profile.id === "loto_stored_energy" || profile.id === "falls") {
           score -= 45;
         }
       }

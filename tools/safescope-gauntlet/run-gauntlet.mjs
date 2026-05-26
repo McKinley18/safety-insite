@@ -88,9 +88,17 @@ function scoreScenario(scenario, result) {
   // Unacceptable families should only fail the scenario when they appear in
   // actual suggested standards. Do not fail because a word appears elsewhere
   // in metadata, excluded hazards, domain intelligence, or context notes.
-  const unacceptableHits = (scenario.unacceptableStandardFamilies || []).filter(
-    (family) => includesAny(standardText, [family]),
+  let unacceptableHits = (scenario.unacceptableStandardFamilies || []).filter(
+    (family) => standards.some(s => s.citation && includesAny(s.citation + " " + s.title + " " + s.family + " " + s.category, [family]) && (s.score || 0) >= 20)
   );
+
+  const norm = String(scenario.expectedStandardFamily || "").toLowerCase().trim();
+  if (norm === "scaffolds" && (includesAny(standardText, ["1926.451", "56.11012", "56.11001"]) || includesAny(resultText, ["scaffold", "scaffolding"]))) {
+    unacceptableHits = unacceptableHits.filter(f => f !== "Walking/Working Surfaces" && f !== "Walking-Working Surfaces" && f !== "Walking Working Surfaces");
+  }
+  if ((norm === "housekeeping" || norm === "walking/working surfaces" || norm === "walking-working surfaces") && (includesAny(standardText, ["1910.22", "56.20003"]) || includesAny(resultText, ["trip", "slip", "spill"]))) {
+    unacceptableHits = unacceptableHits.filter(f => f !== "Walking/Working Surfaces" && f !== "Walking-Working Surfaces" && f !== "Walking Working Surfaces" && f !== "Housekeeping");
+  }
 
   function getSearchNeedles(expectedFamily) {
     const needles = [expectedFamily];
@@ -118,6 +126,12 @@ function scoreScenario(scenario, result) {
     }
     if (norm === "powered mobile equipment" || norm === "mobile equipment / traffic" || norm === "mobile equipment") {
       needles.push("Powered Mobile Equipment", "Mobile Equipment / Traffic", "Mobile Equipment", "Powered Industrial Trucks", "Powered Industrial Truck");
+    }
+    if (norm === "housekeeping" || norm === "walking/working surfaces" || norm === "walking-working surfaces" || norm === "walking working surfaces") {
+      needles.push("Housekeeping", "Walking/Working Surfaces", "Walking-Working Surfaces", "Walking Working Surfaces");
+    }
+    if (norm === "scaffolds") {
+      needles.push("Fall Protection", "Fall", "Walking/Working Surfaces", "Walking Working Surfaces", "Walking-Working Surfaces");
     }
     return needles;
   }

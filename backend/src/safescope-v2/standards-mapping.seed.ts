@@ -326,4 +326,118 @@ export const STANDARDS_MAPPING: Record<string, SafeScopeStandardMapping[]> = {
       rationale: 'Powered industrial truck operator training and safety seatbelts',
     },
   ],
+
+  Scaffolds: [
+    {
+      citation: '1926.451',
+      agency: 'OSHA',
+      scope: 'osha_construction',
+      rationale: 'Scaffold must be erected on sound, rigid footing with mudsills and baseplates, and have proper guardrails and access.',
+    },
+    {
+      citation: '30 CFR 56.11012',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Scaffold platforms must have guardrails and secure footing to prevent fall hazards.',
+    },
+    {
+      citation: '30 CFR 56.11001',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Safe access must be provided to all scaffold working platforms.',
+    },
+  ],
+
+  "Compressed Gas Cylinders": [
+    {
+      citation: '30 CFR 56.16005',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Compressed gas cylinders shall be secured in an upright position and protected from falling.',
+    },
+    {
+      citation: '1910.101(b)',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Compressed gas cylinders must be stored, handled, and maintained in accordance with CGA pamphlets.',
+    },
+    {
+      citation: '1910.253(b)',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Oxygen and fuel gas cylinders stored in pairs must be separated by at least 20 feet or a noncombustible barrier.',
+    },
+  ],
+
+  "Compressed Air / Hose Safety": [
+    {
+      citation: '30 CFR 56.13021',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'High-pressure air hoses of 3/4 inch inside diameter or larger shall have safety chains or whipchecks.',
+    },
+    {
+      citation: '1910.242(b)',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Compressed air used for cleaning purposes shall not exceed 30 psi and must have chip guarding.',
+    },
+  ],
+
+  "Chemical Storage": [
+    {
+      citation: '1910.106(d)',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Flammable and combustible chemical storage in approved safety cabinets and containment areas.',
+    },
+    {
+      citation: '30 CFR 56.16001',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Chemical containers and drums must be stored and stacked in a safe, stable manner.',
+    },
+    {
+      citation: '30 CFR 56.4402',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Flammable or combustible liquids must be stored in containment systems and isolated from ignition sources.',
+    },
+  ],
+
+  "Welding / Cutting / Hot Work": [
+    {
+      citation: '30 CFR 56.4600',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Welding or cutting operations shall not be performed near combustible material unless fire watch is assigned.',
+    },
+    {
+      citation: '1910.252(a)',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'General fire prevention controls and fire watch standby requirements during welding or cutting.',
+    },
+    {
+      citation: '1910.252(b)',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Arc welding operator eye protection safety screens and cable insulation safety requirements.',
+    },
+  ],
+
+  "First Aid / Eyewash / Safety Shower Access": [
+    {
+      citation: '1910.151(c)',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Where eyes or body of any person may be exposed to injurious corrosive materials, emergency eyewash/shower facilities must be provided.',
+    },
+    {
+      citation: '30 CFR 56.15001',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Adequate first aid supplies and drenching facilities must be readily accessible and visually checked.',
+    },
+  ],
 };
