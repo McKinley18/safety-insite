@@ -2,14 +2,17 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { SourceIntelligenceService } from './source-intelligence.service';
 import { SourceGovernanceService } from './source-governance.service';
 import { SourceIngestionService } from './source-ingestion.service';
+import { SourceRetrievalService } from './source-retrieval.service';
 import { SourceIntelligenceIngestionPreviewDto } from './dto/source-ingestion-preview.dto';
+import { SourceIntelligenceSearchDto } from './dto/source-intelligence-search.dto';
 
 @Controller('source-intelligence')
 export class SourceIntelligenceController {
   constructor(
     private readonly intelligenceService: SourceIntelligenceService,
     private readonly governanceService: SourceGovernanceService,
-    private readonly ingestionService: SourceIngestionService
+    private readonly ingestionService: SourceIngestionService,
+    private readonly retrievalService: SourceRetrievalService
   ) {}
 
   @Get('status')
@@ -25,5 +28,10 @@ export class SourceIntelligenceController {
   @Post('import/preview/validate')
   validatePreview(@Body() body: SourceIntelligenceIngestionPreviewDto) {
     return this.ingestionService.validateIngestionPreview(body);
+  }
+
+  @Post('search')
+  search(@Body() body: SourceIntelligenceSearchDto) {
+    return this.retrievalService.searchVerifiedSources(body);
   }
 }
