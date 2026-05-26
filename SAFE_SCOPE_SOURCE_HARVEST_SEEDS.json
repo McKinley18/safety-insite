@@ -1,2 +1,82 @@
 [
+  {
+    "seedId": "SEED-0001",
+    "sourceAgency": "NIOSH",
+    "sourceUrl": "https://stacks.cdc.gov/view/cdc/170076",
+    "sourceType": "FACE_report",
+    "expectedHazardCategory": "Falls",
+    "notes": "Warehouse worker dies after falling 12 feet from a pallet raised on forklift forks."
+  },
+  {
+    "seedId": "SEED-0002",
+    "sourceAgency": "NIOSH",
+    "sourceUrl": "https://stacks.cdc.gov/view/cdc/164952",
+    "sourceType": "FACE_report",
+    "expectedHazardCategory": "Trenching & Shoring",
+    "notes": "Construction worker killed when an unprotected trench collapsed and buried him."
+  },
+  {
+    "seedId": "SEED-0003",
+    "sourceAgency": "NIOSH",
+    "sourceUrl": "https://stacks.cdc.gov/view/cdc/166192",
+    "sourceType": "FACE_report",
+    "expectedHazardCategory": "Machine Guarding",
+    "notes": "Machinist fatally caught in vertical milling machine while operating at aerospace parts manufacturer."
+  },
+  {
+    "seedId": "SEED-0004",
+    "sourceAgency": "NIOSH",
+    "sourceUrl": "https://stacks.cdc.gov/view/cdc/166254",
+    "sourceType": "FACE_report",
+    "expectedHazardCategory": "Powered Mobile Equipment / Traffic",
+    "notes": "Forklift driver pinned under overturned forklift after backing over loading dock edge."
+  },
+  {
+    "seedId": "SEED-0005",
+    "sourceAgency": "CSB",
+    "sourceUrl": "https://www.csb.gov/cuisine-solutions-ammonia-release-/",
+    "sourceType": "CSB_investigation",
+    "expectedHazardCategory": "Chemical Exposure",
+    "notes": "CSB investigation into Cuisine Solutions ammonia release at food processing facility."
+  },
+  {
+    "seedId": "SEED-0006",
+    "sourceAgency": "CSB",
+    "sourceUrl": "https://www.csb.gov/didion-milling-company-explosion-and-fire-/",
+    "sourceType": "CSB_investigation",
+    "expectedHazardCategory": "Combustible Dust",
+    "notes": "CSB investigation into Didion Milling combustible dust explosions and fire."
+  },
+  {
+    "seedId": "SEED-0007",
+    "sourceAgency": "CSB",
+    "sourceUrl": "https://www.csb.gov/loy-lange-box-company-pressure-vessel-explosion-/",
+    "sourceType": "CSB_investigation",
+    "expectedHazardCategory": "Pressure / Line Opening",
+    "notes": "CSB investigation into pressure vessel explosion at Loy-Lange Box Company."
+  },
+  {
+    "seedId": "SEED-0008",
+    "sourceAgency": "CSB",
+    "sourceUrl": "https://www.csb.gov/ab-specialty-silicones-llc/",
+    "sourceType": "CSB_investigation",
+    "expectedHazardCategory": "Fire / Explosion",
+    "notes": "CSB investigation into AB Specialty Silicones explosion and fire."
+  },
+  {
+    "seedId": "SEED-0009",
+    "sourceAgency": "NIOSH",
+    "sourceUrl": "https://stacks.cdc.gov/view/cdc/164006",
+    "sourceType": "FACE_report",
+    "expectedHazardCategory": "Confined Space",
+    "notes": "NIOSH confined space incident involving two worker fatalities in a storage tank."
+  },
+  {
+    "seedId": "SEED-0010",
+    "sourceAgency": "NIOSH",
+    "sourceUrl": "https://stacks.cdc.gov/view/cdc/165123",
+    "sourceType": "FACE_report",
+    "expectedHazardCategory": "Machine Guarding",
+    "notes": "Machine operator dies after head crushed in flatbed thermoforming machine."
+  }
 ]
