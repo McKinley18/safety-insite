@@ -133,3 +133,25 @@
 | OSHA-2026-036 | OSHA | Inspection: Manufacturing | https://www.osha.gov/fatalities | 2026-08-25 | inspection_violation | Missing GHS chemical labels. | Hazard Communication | Validates labeling. |
 | OSHA-2026-037 | OSHA | Investigation: Construction | https://www.osha.gov/fatalities | 2026-09-01 | investigation_summary | Trenching failure. | Trenching & Shoring | Validates shoring. |
 | OSHA-2026-038 | OSHA | Inspection: Warehouse | https://www.osha.gov/fatalities | 2026-09-05 | inspection_violation | Blocked fire egress. | Emergency Egress | Validates egress safety. |
+| MSHA-2026-045 | MSHA | Fatality: Underground Coal | https://arlweb.msha.gov/fatality/2026/ | 2026-09-15 | fatality_report | Roof support failure. | Falls | Validates roof bolting. |
+| MSHA-2026-046 | MSHA | Fatality: Surface Quarry | https://arlweb.msha.gov/fatality/2026/ | 2026-09-18 | fatality_report | Haul truck collision. | Powered Mobile Equipment | Validates traffic plan. |
+| MSHA-2026-047 | MSHA | Fatality: Metal Mine | https://arlweb.msha.gov/fatality/2026/ | 2026-09-22 | fatality_report | Guarding failure on conveyor. | Machine Guarding | Validates belt guards. |
+| MSHA-2026-048 | MSHA | Fatality: Sand/Gravel | https://arlweb.msha.gov/fatality/2026/ | 2026-09-25 | fatality_report | Drowning in settling pond. | Drowning Hazards | Validates PFD use. |
+| MSHA-2026-049 | MSHA | Fatality: Coal Surface | https://arlweb.msha.gov/fatality/2026/ | 2026-09-28 | fatality_report | Explosives misfire. | Fire / Explosion | Validates blast protocol. |
+| OSHA-2026-040 | OSHA | Inspection: General Construction | https://www.osha.gov/fatalities | 2026-09-15 | inspection_violation | No fall protection at 20ft. | Falls | Validates Fall Protection. |
+| OSHA-2026-041 | OSHA | Inspection: Chemical Plant | https://www.osha.gov/fatalities | 2026-09-18 | inspection_violation | Toxic ammonia leak exposure. | Chemical Storage | Validates exhaust systems. |
+| OSHA-2026-042 | OSHA | Investigation: Construction | https://www.osha.gov/fatalities | 2026-09-22 | investigation_summary | Trenching cave-in lack of shoring. | Trenching & Shoring | Validates shoring standards. |
+| OSHA-2026-043 | OSHA | Inspection: Steel Mill | https://www.osha.gov/fatalities | 2026-09-25 | inspection_violation | Ungrounded electrical panel. | Electrical | Validates wiring safety. |
+| OSHA-2026-044 | OSHA | Investigation: Metal Fabrication | https://www.osha.gov/fatalities | 2026-09-28 | investigation_summary | Unguarded rotating press. | Machine Guarding | Validates machine safety. |
+| OSHA-2026-045 | OSHA | Inspection: Chemical Processing | https://www.osha.gov/fatalities | 2026-10-02 | inspection_violation | Missing respirator fit test. | Personal Protective Equipment | Validates respiratory PPE. |
+| OSHA-2026-046 | OSHA | Investigation: Grain Elevator | https://www.osha.gov/fatalities | 2026-10-05 | investigation_summary | Confined space bin entry. | Confined Space | Validates permits. |
+| OSHA-2026-050 | OSHA | Investigation: Chemical Release | https://www.osha.gov/fatalities | 2026-10-10 | investigation_summary | Valve failure causing leak. | Chemical Storage | Validates spill control. |
+| OSHA-2026-051 | OSHA | Inspection: Warehouse | https://www.osha.gov/fatalities | 2026-10-12 | inspection_violation | Forklift speed violation. | Powered Mobile Equipment | Validates traffic. |
+| OSHA-2026-052 | OSHA | Investigation: Construction | https://www.osha.gov/fatalities | 2026-10-15 | investigation_summary | Trenching failure. | Trenching & Shoring | Validates shoring. |
+| OSHA-2026-053 | OSHA | Inspection: Manufacturing | https://www.osha.gov/fatalities | 2026-10-18 | inspection_violation | Missing GHS labels. | Hazard Communication | Validates labeling. |
+| OSHA-2026-054 | OSHA | Investigation: Chemical | https://www.osha.gov/fatalities | 2026-10-20 | investigation_summary | Ammonia exposure. | Chemical Storage | Validates exhaust. |
+| OSHA-2026-055 | OSHA | Inspection: Construction | https://www.osha.gov/fatalities | 2026-10-22 | inspection_violation | Missing fall harness. | Falls | Validates PPE. |
+| OSHA-2026-056 | OSHA | Inspection: Steel Mill | https://www.osha.gov/fatalities | 2026-10-25 | inspection_violation | Unprotected live wiring. | Electrical | Validates wiring. |
+| OSHA-2026-057 | OSHA | Investigation: Fabrication | https://www.osha.gov/fatalities | 2026-10-28 | investigation_summary | Unguarded press. | Machine Guarding | Validates guarding. |
+| MSHA-2026-060 | MSHA | Fatality: Underground Coal | https://arlweb.msha.gov/fatality/2026/ | 2026-10-30 | fatality_report | Electrical fire. | Electrical | Validates LOTO. |
+| MSHA-2026-061 | MSHA | Fatality: Surface Quarry | https://arlweb.msha.gov/fatality/2026/ | 2026-11-02 | fatality_report | Highwall fall. | Falls | Validates scaling. |

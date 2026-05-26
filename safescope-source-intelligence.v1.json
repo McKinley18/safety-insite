@@ -3657,5 +3657,1766 @@
     "linkedScenarioIds": [
       "SRC-MSHA-053"
     ]
+  },
+  {
+    "sourceId": "MSHA-2026-045",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Miner fatal struck by roof sec",
+    "equipmentInvolved": "Roof bolter",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.202"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner fatal struck by roof section failure; roof bolting plan not followed.",
+    "summaryDetailed": "Failure to follow approved support plan allowed roof collapse.",
+    "fieldObservationTemplates": [
+      "Miner fatal struck by roof section failure; roof bolting plan not followed."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer drill bit fault.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-054"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-046",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Haul truck lost control on sli",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck lost control on slick ramp and tipped over edge without berm containment.",
+    "summaryDetailed": "Roadway lacks edge protection (berms) to contain equipment loss.",
+    "fieldObservationTemplates": [
+      "Haul truck lost control on slick ramp and tipped over edge without berm containment."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer vehicle maintenance status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-055"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-048",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-08",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Haul truck struck a stationary",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck struck a stationary vehicle at intersection due to blind spot speed.",
+    "summaryDetailed": "Traffic control absent at intersection leads to fatal mobile equipment collision.",
+    "fieldObservationTemplates": [
+      "Haul truck struck a stationary vehicle at intersection due to blind spot speed."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer driver fatigue.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-057"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-027",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: General Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-15",
+    "sourceReliability": "official",
+    "industryContext": "General Construction",
+    "incidentType": "Worker on roof installation wi",
+    "equipmentInvolved": "Roofing equipment",
+    "hazardFamilies": [
+      "Falls",
+      "Walking/Working Surfaces"
+    ],
+    "standardsOrCitationHints": [
+      "1926.501"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "PPE_Policy"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker on roof installation without harness; edge protection missing at 20ft height.",
+    "summaryDetailed": "Working at height without fall protection system is a life-safety violation.",
+    "fieldObservationTemplates": [
+      "Worker on roof installation without harness; edge protection missing at 20ft height."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer anchor existence.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-033"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-029",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-22",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Excavation walls failed during",
+    "equipmentInvolved": "Trenching equipment",
+    "hazardFamilies": [
+      "Trenching & Shoring",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "1926.652"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Trench_Box_Requirement"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Excavation walls failed during pipe installation; lack of shoring present.",
+    "summaryDetailed": "Failure to provide trench protection in unstable soil led to fatal wall collapse.",
+    "fieldObservationTemplates": [
+      "Excavation walls failed during pipe installation; lack of shoring present."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer project duration.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-035"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-031",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Chemical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-28",
+    "sourceReliability": "official",
+    "industryContext": "Chemical",
+    "incidentType": "Toxic ammonia vapor leak occur",
+    "equipmentInvolved": "Ventilation",
+    "hazardFamilies": [
+      "Chemical Storage",
+      "Personal Protective Equipment"
+    ],
+    "standardsOrCitationHints": [
+      "1910.134"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ventilation_System_Maintenance"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Toxic ammonia vapor leak occurred; worker lacked respiratory protection in spill zone.",
+    "summaryDetailed": "Failure to provide respiratory PPE in area of known ammonia leak.",
+    "fieldObservationTemplates": [
+      "Toxic ammonia vapor leak occurred; worker lacked respiratory protection in spill zone."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer exposure duration.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-037"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-032",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Electrical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-02",
+    "sourceReliability": "official",
+    "industryContext": "Electrical",
+    "incidentType": "Panel box ungrounded in active",
+    "equipmentInvolved": "Electrical panel",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "1926.403"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Electrical_Safety"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Panel box ungrounded in active substation; shock risk.",
+    "summaryDetailed": "Ungrounded live parts create shock/arc hazard.",
+    "fieldObservationTemplates": [
+      "Panel box ungrounded in active substation; shock risk."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer voltage level.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-038"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-033",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Metal Fabrication",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-05",
+    "sourceReliability": "official",
+    "industryContext": "Metal Shop",
+    "incidentType": "Worker reached into press mach",
+    "equipmentInvolved": "Press machine",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "1910.212"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fixed_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker reached into press machine while in motion due to guard override.",
+    "summaryDetailed": "Guard bypass on rotating press is lethal risk.",
+    "fieldObservationTemplates": [
+      "Worker reached into press machine while in motion due to guard override."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer previous injuries.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-039"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-025",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Substation fire due to short c",
+    "equipmentInvolved": "Electrical cabinet",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fire_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Substation fire due to short circuit, no suppression used.",
+    "summaryDetailed": "Inadequate maintenance of electrical components led to fire.",
+    "fieldObservationTemplates": [
+      "Substation fire due to short circuit, no suppression used."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer cabinet age.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-060"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-026",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-25",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Bench scaling operation trigge",
+    "equipmentInvolved": "Scaling equipment",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Bench scaling operation triggered highwall fall of ground killing operator.",
+    "summaryDetailed": "Scaling of unstable bench caused sudden rock fall.",
+    "fieldObservationTemplates": [
+      "Bench scaling operation triggered highwall fall of ground killing operator."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer scaling method.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-061"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-027",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-01",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Maintenance worker bypassed lo",
+    "equipmentInvolved": "Repair bay",
+    "hazardFamilies": [
+      "Lockout / Stored Energy",
+      "Electrical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Maintenance worker bypassed lockout during equipment repair.",
+    "summaryDetailed": "Bypassing LOTO for repairs leads to fatal equipment activation.",
+    "fieldObservationTemplates": [
+      "Maintenance worker bypassed lockout during equipment repair."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor error.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-056"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-050",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-25",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Miner died when caught between",
+    "equipmentInvolved": "Plow assembly",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1722"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner died when caught between longwall plow and chain assembly.",
+    "summaryDetailed": "Moving plow components require strict guarding/isolation.",
+    "fieldObservationTemplates": [
+      "Miner died when caught between longwall plow and chain assembly."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer signal failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-062",
+      "SRC-MSHA-066"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-051",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-28",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Operator fatally struck by col",
+    "equipmentInvolved": "Excavator",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Operator fatally struck by collapsing highwall during scaling operations.",
+    "summaryDetailed": "Highwall face instability caused fatal strike during removal.",
+    "fieldObservationTemplates": [
+      "Operator fatally struck by collapsing highwall during scaling operations."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer support method.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-063",
+      "SRC-MSHA-058"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-052",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-02",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Electrician caught by energize",
+    "equipmentInvolved": "Drill motor",
+    "hazardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.12000"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Electrician caught by energized drill motor after bypass of safety interlock.",
+    "summaryDetailed": "Bypassing electrical safety systems during maintenance is lethal.",
+    "fieldObservationTemplates": [
+      "Electrician caught by energized drill motor after bypass of safety interlock."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor mandate.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-064",
+      "SRC-MSHA-059"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-053",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-05",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Berm failure allowed haul truc",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Berm failure allowed haul truck to drive off highwall edge.",
+    "summaryDetailed": "Inadequate berm protection allowed truck departure over edge.",
+    "fieldObservationTemplates": [
+      "Berm failure allowed haul truck to drive off highwall edge."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer driver impairment.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-065"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-040",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-15",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Worker on unprotected roof edg",
+    "equipmentInvolved": "Roofing equipment",
+    "hazardFamilies": [
+      "Falls",
+      "Walking/Working Surfaces"
+    ],
+    "standardsOrCitationHints": [
+      "1926.501"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "PPE_Policy"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker on unprotected roof edge at 25 feet without fall arrest.",
+    "summaryDetailed": "Absence of fall protection while working at 25 feet is a violation.",
+    "fieldObservationTemplates": [
+      "Worker on unprotected roof edge at 25 feet without fall arrest."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer anchor status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-1020"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-041",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Chemical Plant",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-20",
+    "sourceReliability": "official",
+    "industryContext": "Chemical Plant",
+    "incidentType": "Ammonia storage containers fou",
+    "equipmentInvolved": "Chemical storage",
+    "hazardFamilies": [
+      "Hazard Communication",
+      "Chemical Storage"
+    ],
+    "standardsOrCitationHints": [
+      "1910.1200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Hazcom_Training"
+    ],
+    "fatalityOrSeverity": "medium",
+    "summaryShort": "Ammonia storage containers found unlabelled in common area.",
+    "summaryDetailed": "Missing GHS labels on corrosive chemicals prevent safe identification.",
+    "fieldObservationTemplates": [
+      "Ammonia storage containers found unlabelled in common area."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer exposure level.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-034"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-042",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-25",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Trench collapse occurred becau",
+    "equipmentInvolved": "Trenching equipment",
+    "hazardFamilies": [
+      "Trenching & Shoring",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "1926.652"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Trench_Box_Requirement"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Trench collapse occurred because no shoring or trench box was installed in sandy soil.",
+    "summaryDetailed": "Unprotected trench work in unstable soil led to collapse.",
+    "fieldObservationTemplates": [
+      "Trench collapse occurred because no shoring or trench box was installed in sandy soil."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer pipe status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-1021"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-043",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Warehouse",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-30",
+    "sourceReliability": "official",
+    "industryContext": "Warehouse",
+    "incidentType": "Emergency fire exit aisle comp",
+    "equipmentInvolved": "Exit door",
+    "hazardFamilies": [
+      "Emergency Egress",
+      "Housekeeping"
+    ],
+    "standardsOrCitationHints": [
+      "1910.37"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Exit_Access_Clearance"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Emergency fire exit aisle completely blocked by stacked pallets.",
+    "summaryDetailed": "Blocked exit access violates fire safety/evacuation requirements.",
+    "fieldObservationTemplates": [
+      "Emergency fire exit aisle completely blocked by stacked pallets."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer duration of blockage.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-036"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-044",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Chemical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-05",
+    "sourceReliability": "official",
+    "industryContext": "Chemical",
+    "incidentType": "Corrosive vapor leak occurred;",
+    "equipmentInvolved": "Ventilation",
+    "hazardFamilies": [
+      "Chemical Storage",
+      "Personal Protective Equipment"
+    ],
+    "standardsOrCitationHints": [
+      "1910.134"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ventilation_System_Maintenance"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Corrosive vapor leak occurred; area lacked emergency ventilation and spill cleanup gear.",
+    "summaryDetailed": "Ventilation failure without spill cleanup gear causes inhalation risk.",
+    "fieldObservationTemplates": [
+      "Corrosive vapor leak occurred; area lacked emergency ventilation and spill cleanup gear."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer total chemical released.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-1022"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-045",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Electrical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-08",
+    "sourceReliability": "official",
+    "industryContext": "Electrical",
+    "incidentType": "Panel box ungrounded in high-t",
+    "equipmentInvolved": "Electrical cabinet",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "1926.403"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Electrical_Safety"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Panel box ungrounded in high-traffic work zone; exposed live contacts.",
+    "summaryDetailed": "Ungrounded panel creates lethal arc/shock risk.",
+    "fieldObservationTemplates": [
+      "Panel box ungrounded in high-traffic work zone; exposed live contacts."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer voltage level.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-1023"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-046",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Metal Fabrication",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-12",
+    "sourceReliability": "official",
+    "industryContext": "Metal Shop",
+    "incidentType": "Unguarded rotating press cause",
+    "equipmentInvolved": "Machine press",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "1910.212"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fixed_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Unguarded rotating press caused entanglement injury to operator hand.",
+    "summaryDetailed": "Unprotected rotating machinery results in entanglement/crush.",
+    "fieldObservationTemplates": [
+      "Unguarded rotating press caused entanglement injury to operator hand."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer machine manufacturer.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-1024"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-060",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-20",
+    "sourceReliability": "official",
+    "industryContext": "Surface Coal",
+    "incidentType": "Miner struck by haul truck whi",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner struck by haul truck while crossing blind intersection.",
+    "summaryDetailed": "Inadequate traffic control at blind crossing led to fatal strike.",
+    "fieldObservationTemplates": [
+      "Miner struck by haul truck while crossing blind intersection."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer signal failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-067"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-061",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Equipment maintenance on unblo",
+    "equipmentInvolved": "Conveyor drive",
+    "hazardFamilies": [
+      "Lockout / Stored Energy",
+      "Machine Guarding"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Equipment maintenance on unblocked drive system led to crush.",
+    "summaryDetailed": "Maintenance without energy isolation is lethal.",
+    "fieldObservationTemplates": [
+      "Equipment maintenance on unblocked drive system led to crush."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor knowledge.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-068",
+      "SRC-MSHA-072"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-062",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-02",
+    "sourceReliability": "official",
+    "industryContext": "Coal Mine",
+    "incidentType": "Roof fall occurred in developm",
+    "equipmentInvolved": "Roof bolter",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.202"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Roof fall occurred in development section while drilling.",
+    "summaryDetailed": "Sudden roof collapse during drilling.",
+    "fieldObservationTemplates": [
+      "Roof fall occurred in development section while drilling."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer tool failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-069"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-063",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-08",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Unsecured explosives exploded ",
+    "equipmentInvolved": "Explosives box",
+    "hazardFamilies": [
+      "Fire / Explosion",
+      "Explosives"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.6100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Blasting_Procedure"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Unsecured explosives exploded during transport in mine vehicle.",
+    "summaryDetailed": "Explosives handling breach led to fatal detonation.",
+    "fieldObservationTemplates": [
+      "Unsecured explosives exploded during transport in mine vehicle."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer defect.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-070"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-064",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-12",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel",
+    "incidentType": "Worker entangled in rotating b",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker entangled in rotating belt conveyor nip point.",
+    "summaryDetailed": "Access to unguarded nip point leads to fatal entanglement.",
+    "fieldObservationTemplates": [
+      "Worker entangled in rotating belt conveyor nip point."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer guard age.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-071"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-050",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-07-20",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Worker fell from ladder withou",
+    "equipmentInvolved": "Portable ladder",
+    "hazardFamilies": [
+      "Falls",
+      "Walking/Working Surfaces"
+    ],
+    "standardsOrCitationHints": [
+      "1910.23"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ladder_Safety"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Worker fell from ladder without securing top rails.",
+    "summaryDetailed": "Unstable ladder setup led to fall incident.",
+    "fieldObservationTemplates": [
+      "Worker fell from ladder without securing top rails."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer ladder status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-040",
+      "SRC-OSHA-1025"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-051",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Manufacturing",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-07-25",
+    "sourceReliability": "official",
+    "industryContext": "Manufacturing",
+    "incidentType": "Chemical spill uncontained in ",
+    "equipmentInvolved": "Chemical storage",
+    "hazardFamilies": [
+      "Chemical Storage",
+      "Housekeeping"
+    ],
+    "standardsOrCitationHints": [
+      "1910.120"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Spill_Cleanup_Protocol"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Chemical spill uncontained in production floor drain area.",
+    "summaryDetailed": "Spill containment failure creates toxic exposure hazard.",
+    "fieldObservationTemplates": [
+      "Chemical spill uncontained in production floor drain area."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer volume.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-041",
+      "SRC-OSHA-1026"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-052",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-07-30",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Scaffolding work platform over",
+    "equipmentInvolved": "Scaffolding",
+    "hazardFamilies": [
+      "Scaffolds",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "1926.451"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Scaffold_Load_Limit"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Scaffolding work platform overloaded beyond rated capacity causing deck failure.",
+    "summaryDetailed": "Overloaded scaffold platform collapsed under material weight.",
+    "fieldObservationTemplates": [
+      "Scaffolding work platform overloaded beyond rated capacity causing deck failure."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer load weight.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-042",
+      "SRC-OSHA-1027"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-053",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Warehouse",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-02",
+    "sourceReliability": "official",
+    "industryContext": "Warehouse",
+    "incidentType": "Emergency fire exit aisle comp",
+    "equipmentInvolved": "Exit door",
+    "hazardFamilies": [
+      "Emergency Egress",
+      "Housekeeping"
+    ],
+    "standardsOrCitationHints": [
+      "1910.37"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Exit_Access_Clearance"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Emergency fire exit aisle completely blocked by pallet storage.",
+    "summaryDetailed": "Blocked egress path prevents emergency evacuation.",
+    "fieldObservationTemplates": [
+      "Emergency fire exit aisle completely blocked by pallet storage."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer fire detection function.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-043",
+      "SRC-OSHA-1028"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-054",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Chemical Plant",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-05",
+    "sourceReliability": "official",
+    "industryContext": "Chemical",
+    "incidentType": "Ammonia vapor exposure after v",
+    "equipmentInvolved": "Ventilation system",
+    "hazardFamilies": [
+      "Chemical Storage",
+      "Personal Protective Equipment"
+    ],
+    "standardsOrCitationHints": [
+      "1910.134"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ventilation_System_Maintenance"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Ammonia vapor exposure after ventilation system shutdown for maintenance without supplemental PFD/resp-prot.",
+    "summaryDetailed": "System failure without backup PPE caused inhalation hazard.",
+    "fieldObservationTemplates": [
+      "Ammonia vapor exposure after ventilation system shutdown for maintenance without supplemental PFD/resp-prot."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer ventilation shutdown cause.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-044",
+      "SRC-OSHA-1029"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-055",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Electrical Contracting",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-08",
+    "sourceReliability": "official",
+    "industryContext": "Electrical Contracting",
+    "incidentType": "Exposed terminal box live wire",
+    "equipmentInvolved": "Electrical cabinet",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "1910.303"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Electrical_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Exposed terminal box live wires uncovered during panel maintenance.",
+    "summaryDetailed": "Unenclosed electrical contact hazard poses shock risk.",
+    "fieldObservationTemplates": [
+      "Exposed terminal box live wires uncovered during panel maintenance."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer voltage level.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-045",
+      "SRC-OSHA-1030"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-056",
+    "sourceAgency": "OSHA",
+    "sourceType": "investigation_summary",
+    "sourceTitle": "Investigation: Metal Fabrication",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-12",
+    "sourceReliability": "official",
+    "industryContext": "Metal Fabrication",
+    "incidentType": "Rotating parts on milling mach",
+    "equipmentInvolved": "Milling machine",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "1910.212"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fixed_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Rotating parts on milling machine lacked guarding; amputated worker thumb.",
+    "summaryDetailed": "Rotating machine parts entanglement led to amputation.",
+    "fieldObservationTemplates": [
+      "Rotating parts on milling machine lacked guarding; amputated worker thumb."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer machine make.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-046",
+      "SRC-OSHA-1031"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-057",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-15",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Crane boom contacted power lin",
+    "equipmentInvolved": "Crane",
+    "hazardFamilies": [
+      "Electrical",
+      "Lifting & Rigging"
+    ],
+    "standardsOrCitationHints": [
+      "1926.1408"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Overhead_Line_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Crane boom contacted power line while lifting heavy structural steel.",
+    "summaryDetailed": "Contact with overhead lines without clearance/grounding caused arc flash.",
+    "fieldObservationTemplates": [
+      "Crane boom contacted power line while lifting heavy structural steel."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer ground stability.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-047",
+      "SRC-OSHA-1032"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-058",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: General Manufacturing",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-18",
+    "sourceReliability": "official",
+    "industryContext": "General Manufacturing",
+    "incidentType": "Amputation from unguarded conv",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "1910.212"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Amputation from unguarded conveyor drive point.",
+    "summaryDetailed": "Unguarded belt drive entanglement resulted in amputation.",
+    "fieldObservationTemplates": [
+      "Amputation from unguarded conveyor drive point."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer conveyor maintenance mode.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-048"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-059",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: General Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-20",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Floor opening without guardrai",
+    "equipmentInvolved": "Floor opening",
+    "hazardFamilies": [
+      "Falls",
+      "Walking/Working Surfaces"
+    ],
+    "standardsOrCitationHints": [
+      "1926.501"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Guardrail_Standard"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Floor opening without guardrails; worker fell 10ft.",
+    "summaryDetailed": "Fall through unprotected floor opening due to missing guardrail.",
+    "fieldObservationTemplates": [
+      "Floor opening without guardrails; worker fell 10ft."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer opening creation time.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-049"
+    ]
+  },
+  {
+    "sourceId": "OSHA-2026-060",
+    "sourceAgency": "OSHA",
+    "sourceType": "inspection_violation",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-30",
+    "sourceReliability": "official",
+    "industryContext": "Construction",
+    "incidentType": "Trenching violation",
+    "equipmentInvolved": "Trenching equipment",
+    "hazardFamilies": [
+      "Trenching & Shoring",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "1926.652"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Trench_Box_Requirement"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker in unprotected trench without ladder.",
+    "summaryDetailed": "Trench violation found without shoring/ladder.",
+    "fieldObservationTemplates": [
+      "No trench box.",
+      "No ladder."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer project status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-OSHA-1033"
+    ]
   }
 ]

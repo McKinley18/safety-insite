@@ -7,7 +7,7 @@
     "industryContext": "Surface coal mining",
     "observation": "Excavator operator was traveling down a haul road when the machine veered off the road and fell over a 317-foot highwall.",
     "equipmentContext": "Excavator",
-    "primaryHazardFamily": "Powered Mobile Equipment",
+    "primaryHazardFamily": "Ground Control / Highwall / Roof Fall",
     "secondaryHazardFamilies": [
       "Falls"
     ],
@@ -3221,5 +3221,1617 @@
     ],
     "prohibitedOverreach": "Do not infer previous trench history.",
     "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-054",
+    "sourceId": "MSHA-2026-045",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Underground Coal",
+    "observation": "Miner fatal struck by roof section failure; roof bolting plan not followed.",
+    "equipmentContext": "Roof bolter",
+    "primaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "secondaryHazardFamilies": [
+      "Geological"
+    ],
+    "expectedStandardFamily": "Ground Control / Highwall / Roof Fall",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "expectedCorrectiveActionTheme": "Ground_Control",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Failure to follow approved support plan allowed roof collapse.",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-20",
+    "sourceExcerptShort": "Roof fall.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 75.202"
+    ],
+    "prohibitedOverreach": "Do not infer drill bit fault.",
+    "sourceAgency": "MSHA",
+    "expectedPrimaryFamily": "Ground Control / Highwall / Roof Fall"
+  },
+  {
+    "scenarioId": "SRC-MSHA-055",
+    "sourceId": "MSHA-2026-046",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Surface Quarry",
+    "observation": "Haul truck lost control on slick ramp and tipped over edge without berm containment.",
+    "equipmentContext": "Haul truck",
+    "primaryHazardFamily": "Powered Mobile Equipment",
+    "secondaryHazardFamilies": [
+      "Falls"
+    ],
+    "expectedStandardFamily": "Powered Mobile Equipment",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Traffic_Control_Plan",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Roadway lacks edge protection (berms) to contain equipment loss.",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceExcerptShort": "Haul truck overturn.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "prohibitedOverreach": "Do not infer vehicle maintenance status.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-057",
+    "sourceId": "MSHA-2026-048",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Coal Surface",
+    "observation": "Haul truck struck a stationary vehicle at intersection due to blind spot speed.",
+    "equipmentContext": "Haul truck",
+    "primaryHazardFamily": "Powered Mobile Equipment",
+    "secondaryHazardFamilies": [
+      "Traffic Management"
+    ],
+    "expectedStandardFamily": "Powered Mobile Equipment",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Traffic_Control_Plan",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Traffic control absent at intersection leads to fatal mobile equipment collision.",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-08",
+    "sourceExcerptShort": "Haulage road barrier failure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 56.9200"
+    ],
+    "prohibitedOverreach": "Do not infer driver fatigue.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-033",
+    "sourceId": "OSHA-2026-027",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "General Construction",
+    "observation": "Worker on roof installation without harness; edge protection missing at 20ft height.",
+    "equipmentContext": "Roofing equipment",
+    "primaryHazardFamily": "Fall Protection",
+    "secondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "expectedStandardFamily": "Fall Protection",
+    "unacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "PPE_Policy",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Working at height without fall protection system is a life-safety violation.",
+    "sourceTitle": "Inspection: General Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-15",
+    "sourceExcerptShort": "No fall protection at 15ft.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA violation data.",
+    "expectedCitationHints": [
+      "1926.501"
+    ],
+    "prohibitedOverreach": "Do not infer anchor existence.",
+    "sourceAgency": "OSHA",
+    "expectedPrimaryFamily": "Fall Protection"
+  },
+  {
+    "scenarioId": "SRC-OSHA-035",
+    "sourceId": "OSHA-2026-029",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Excavation walls failed during pipe installation; lack of shoring present.",
+    "equipmentContext": "Trenching equipment",
+    "primaryHazardFamily": "Trenching & Shoring",
+    "secondaryHazardFamilies": [
+      "Falls"
+    ],
+    "expectedStandardFamily": "Trenching & Shoring",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Hazard Communication"
+    ],
+    "expectedCorrectiveActionTheme": "Trench_Box_Requirement",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Failure to provide trench protection in unstable soil led to fatal wall collapse.",
+    "sourceTitle": "Investigation: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-22",
+    "sourceExcerptShort": "Trenching cave-in lack of shoring.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1926.652"
+    ],
+    "prohibitedOverreach": "Do not infer project duration.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-037",
+    "sourceId": "OSHA-2026-031",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Chemical",
+    "observation": "Toxic ammonia vapor leak occurred; worker lacked respiratory protection in spill zone.",
+    "equipmentContext": "Ventilation",
+    "primaryHazardFamily": "Chemical Storage",
+    "secondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "expectedStandardFamily": "Chemical Storage",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Ventilation_System_Maintenance",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Failure to provide respiratory PPE in area of known ammonia leak.",
+    "sourceTitle": "Investigation: Chemical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-28",
+    "sourceExcerptShort": "Toxic chemical vapor exposure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1910.134"
+    ],
+    "prohibitedOverreach": "Do not infer exposure duration.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-038",
+    "sourceId": "OSHA-2026-032",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Electrical",
+    "observation": "Panel box ungrounded in active substation; shock risk.",
+    "equipmentContext": "Electrical panel",
+    "primaryHazardFamily": "Electrical",
+    "secondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "expectedStandardFamily": "Electrical",
+    "unacceptableStandardFamilies": [
+      "Housekeeping",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Electrical_Safety",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Ungrounded live parts create shock/arc hazard.",
+    "sourceTitle": "Inspection: Electrical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-02",
+    "sourceExcerptShort": "Ungrounded electrical panel.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation summary.",
+    "expectedCitationHints": [
+      "1926.403"
+    ],
+    "prohibitedOverreach": "Do not infer voltage level.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-039",
+    "sourceId": "OSHA-2026-033",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Metal Shop",
+    "observation": "Worker reached into press machine while in motion due to guard override.",
+    "equipmentContext": "Press machine",
+    "primaryHazardFamily": "Machine Guarding",
+    "secondaryHazardFamilies": [
+      "Lockout / Stored Energy"
+    ],
+    "expectedStandardFamily": "Machine Guarding",
+    "unacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Fixed_Guarding",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Guard bypass on rotating press is lethal risk.",
+    "sourceTitle": "Investigation: Metal Fabrication",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-05",
+    "sourceExcerptShort": "Unguarded rotating press.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1910.212"
+    ],
+    "prohibitedOverreach": "Do not infer previous injuries.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-060",
+    "sourceId": "MSHA-2026-025",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Underground Coal",
+    "observation": "Substation fire due to short circuit, no suppression used.",
+    "equipmentContext": "Electrical cabinet",
+    "primaryHazardFamily": "Electrical",
+    "secondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "expectedStandardFamily": "Electrical",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Fire_Safety",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Inadequate maintenance of electrical components led to fire.",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-20",
+    "sourceExcerptShort": "Electrical fire in substation.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA fatality report.",
+    "expectedCitationHints": [
+      "30 CFR 75.1100"
+    ],
+    "prohibitedOverreach": "Do not infer cabinet age.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-061",
+    "sourceId": "MSHA-2026-026",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Surface Quarry",
+    "observation": "Bench scaling operation triggered highwall fall of ground killing operator.",
+    "equipmentContext": "Scaling equipment",
+    "primaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "secondaryHazardFamilies": [
+      "Geological"
+    ],
+    "expectedStandardFamily": "Ground Control / Highwall / Roof Fall",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "expectedCorrectiveActionTheme": "Ground_Control",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Scaling of unstable bench caused sudden rock fall.",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-25",
+    "sourceExcerptShort": "Highwall fall of ground.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA fatality report.",
+    "expectedCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "prohibitedOverreach": "Do not infer scaling method.",
+    "sourceAgency": "MSHA",
+    "expectedPrimaryFamily": "Ground Control / Highwall / Roof Fall"
+  },
+  {
+    "scenarioId": "SRC-MSHA-056",
+    "sourceId": "MSHA-2026-027",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Metal Mine",
+    "observation": "Maintenance worker bypassed lockout during equipment repair.",
+    "equipmentContext": "Repair bay",
+    "primaryHazardFamily": "Lockout / Stored Energy",
+    "secondaryHazardFamilies": [
+      "Electrical"
+    ],
+    "expectedStandardFamily": "Lockout / Stored Energy",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "LOTO_Training",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Bypassing LOTO for repairs leads to fatal equipment activation.",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-01",
+    "sourceExcerptShort": "LOTO failure during maintenance.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA fatality report.",
+    "expectedCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor error.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-062",
+    "sourceId": "MSHA-2026-050",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Underground Coal",
+    "observation": "Miner died when caught between longwall plow and chain assembly.",
+    "equipmentContext": "Plow assembly",
+    "primaryHazardFamily": "Machine Guarding",
+    "secondaryHazardFamilies": [
+      "Lockout / Stored Energy"
+    ],
+    "expectedStandardFamily": "Machine Guarding",
+    "unacceptableStandardFamilies": [
+      "Falls",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Belt_Guarding",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Moving plow components require strict guarding/isolation.",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-25",
+    "sourceExcerptShort": "Plow entanglement.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 75.1722"
+    ],
+    "prohibitedOverreach": "Do not infer signal failure.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-063",
+    "sourceId": "MSHA-2026-051",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Surface Quarry",
+    "observation": "Operator fatally struck by collapsing highwall during scaling operations.",
+    "equipmentContext": "Excavator",
+    "primaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "secondaryHazardFamilies": [
+      "Geological"
+    ],
+    "expectedStandardFamily": "Ground Control / Highwall / Roof Fall",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "expectedCorrectiveActionTheme": "Ground_Control",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Highwall face instability caused fatal strike during removal.",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-28",
+    "sourceExcerptShort": "Highwall fall of ground.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "prohibitedOverreach": "Do not infer support method.",
+    "sourceAgency": "MSHA",
+    "expectedPrimaryFamily": "Ground Control / Highwall / Roof Fall"
+  },
+  {
+    "scenarioId": "SRC-MSHA-064",
+    "sourceId": "MSHA-2026-052",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Metal Mine",
+    "observation": "Electrician caught by energized drill motor after bypass of safety interlock.",
+    "equipmentContext": "Drill motor",
+    "primaryHazardFamily": "Electrical",
+    "secondaryHazardFamilies": [
+      "Lockout / Stored Energy"
+    ],
+    "expectedStandardFamily": "Electrical",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "LOTO_Training",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Bypassing electrical safety systems during maintenance is lethal.",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-02",
+    "sourceExcerptShort": "Electrical bypass incident.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 57.12000"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor mandate.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-065",
+    "sourceId": "MSHA-2026-053",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Coal Surface",
+    "observation": "Berm failure allowed haul truck to drive off highwall edge.",
+    "equipmentContext": "Haul truck",
+    "primaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "secondaryHazardFamilies": [
+      "Falls"
+    ],
+    "expectedStandardFamily": "Ground Control / Highwall / Roof Fall",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Traffic_Control_Plan",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Inadequate berm protection allowed truck departure over edge.",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-05",
+    "sourceExcerptShort": "Berm failure haulage.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "prohibitedOverreach": "Do not infer driver impairment.",
+    "sourceAgency": "MSHA",
+    "expectedPrimaryFamily": "Ground Control / Highwall / Roof Fall"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1020",
+    "sourceId": "OSHA-2026-040",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Worker on unprotected roof edge at 25 feet without fall arrest.",
+    "equipmentContext": "Roofing equipment",
+    "primaryHazardFamily": "Fall Protection",
+    "secondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "expectedStandardFamily": "Fall Protection",
+    "unacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "PPE_Policy",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Absence of fall protection while working at 25 feet is a violation.",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-15",
+    "sourceExcerptShort": "No fall protection at 20ft.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection data.",
+    "expectedCitationHints": [
+      "1926.501"
+    ],
+    "prohibitedOverreach": "Do not infer anchor status.",
+    "sourceAgency": "OSHA",
+    "expectedPrimaryFamily": "Fall Protection"
+  },
+  {
+    "scenarioId": "SRC-OSHA-034",
+    "sourceId": "OSHA-2026-041",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Chemical Plant",
+    "observation": "Ammonia storage containers found unlabelled in common area.",
+    "equipmentContext": "Chemical storage",
+    "primaryHazardFamily": "Hazard Communication",
+    "secondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "expectedStandardFamily": "Hazard Communication",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Hazcom_Training",
+    "severityExpectation": "medium",
+    "reasoningExpectation": "Missing GHS labels on corrosive chemicals prevent safe identification.",
+    "sourceTitle": "Inspection: Chemical Plant",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-20",
+    "sourceExcerptShort": "Missing chemical labels.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection data.",
+    "expectedCitationHints": [
+      "1910.1200"
+    ],
+    "prohibitedOverreach": "Do not infer exposure level.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1021",
+    "sourceId": "OSHA-2026-042",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Trench collapse occurred because no shoring or trench box was installed in sandy soil.",
+    "equipmentContext": "Trenching equipment",
+    "primaryHazardFamily": "Trenching & Shoring",
+    "secondaryHazardFamilies": [
+      "Falls"
+    ],
+    "expectedStandardFamily": "Trenching & Shoring",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "Trench_Box_Requirement",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Unprotected trench work in unstable soil led to collapse.",
+    "sourceTitle": "Investigation: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-25",
+    "sourceExcerptShort": "Trenching failure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1926.652"
+    ],
+    "prohibitedOverreach": "Do not infer pipe status.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-036",
+    "sourceId": "OSHA-2026-043",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Warehouse",
+    "observation": "Emergency fire exit aisle completely blocked by stacked pallets.",
+    "equipmentContext": "Exit door",
+    "primaryHazardFamily": "Emergency Egress",
+    "secondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "expectedStandardFamily": "Emergency Egress",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "Exit_Access_Clearance",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Blocked exit access violates fire safety/evacuation requirements.",
+    "sourceTitle": "Inspection: Warehouse",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-09-30",
+    "sourceExcerptShort": "Blocked fire egress path.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation data.",
+    "expectedCitationHints": [
+      "1910.37"
+    ],
+    "prohibitedOverreach": "Do not infer duration of blockage.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1022",
+    "sourceId": "OSHA-2026-044",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Chemical",
+    "observation": "Corrosive vapor leak occurred; area lacked emergency ventilation and spill cleanup gear.",
+    "equipmentContext": "Ventilation",
+    "primaryHazardFamily": "Chemical Storage",
+    "secondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "expectedStandardFamily": "Chemical Storage",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Ventilation_System_Maintenance",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Ventilation failure without spill cleanup gear causes inhalation risk.",
+    "sourceTitle": "Investigation: Chemical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-05",
+    "sourceExcerptShort": "Toxic chemical vapor exposure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1910.134"
+    ],
+    "prohibitedOverreach": "Do not infer total chemical released.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1023",
+    "sourceId": "OSHA-2026-045",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Electrical",
+    "observation": "Panel box ungrounded in high-traffic work zone; exposed live contacts.",
+    "equipmentContext": "Electrical cabinet",
+    "primaryHazardFamily": "Electrical",
+    "secondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "expectedStandardFamily": "Electrical",
+    "unacceptableStandardFamilies": [
+      "Housekeeping",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Electrical_Safety",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Ungrounded panel creates lethal arc/shock risk.",
+    "sourceTitle": "Inspection: Electrical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-08",
+    "sourceExcerptShort": "Ungrounded electrical panel.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation summary.",
+    "expectedCitationHints": [
+      "1926.403"
+    ],
+    "prohibitedOverreach": "Do not infer voltage level.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1024",
+    "sourceId": "OSHA-2026-046",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Metal Shop",
+    "observation": "Unguarded rotating press caused entanglement injury to operator hand.",
+    "equipmentContext": "Machine press",
+    "primaryHazardFamily": "Machine Guarding",
+    "secondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "expectedStandardFamily": "Machine Guarding",
+    "unacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Fixed_Guarding",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Unprotected rotating machinery results in entanglement/crush.",
+    "sourceTitle": "Investigation: Metal Fabrication",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-12",
+    "sourceExcerptShort": "Unguarded rotating press.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1910.212"
+    ],
+    "prohibitedOverreach": "Do not infer machine manufacturer.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-066",
+    "sourceId": "MSHA-2026-050",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Coal Mine",
+    "observation": "Explosive handling sequence failed; detonator charge struck miner during setup.",
+    "equipmentContext": "Explosives box",
+    "primaryHazardFamily": "Fire / Explosion",
+    "secondaryHazardFamilies": [
+      "Explosives"
+    ],
+    "expectedStandardFamily": "Fire / Explosion",
+    "unacceptableStandardFamilies": [
+      "Falls",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Blasting_Procedure",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Handling explosives without strict adherence to established safety blast protocols leads to fatality.",
+    "sourceTitle": "Fatality: Coal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-15",
+    "sourceExcerptShort": "Explosive handling accident.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 56.6100"
+    ],
+    "prohibitedOverreach": "Do not infer explosive charge weight.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-058",
+    "sourceId": "MSHA-2026-051",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Surface Mine",
+    "observation": "Mechanic struck by loose conveyor pulley wheel during maintenance work.",
+    "equipmentContext": "Conveyor system",
+    "primaryHazardFamily": "Material Handling",
+    "secondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "expectedStandardFamily": "Material Handling",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Equipment_Inspection",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Failure to secure equipment components during service resulted in fatal strike.",
+    "sourceTitle": "Fatality: Surface Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-18",
+    "sourceExcerptShort": "Struck by falling pulley.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 56.14105"
+    ],
+    "prohibitedOverreach": "Do not infer weight.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-059",
+    "sourceId": "MSHA-2026-052",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Underground Mine",
+    "observation": "Miner entrapped following uncontrolled shift of stored timber supplies in walkway.",
+    "equipmentContext": "Storage area",
+    "primaryHazardFamily": "Material Handling",
+    "secondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "expectedStandardFamily": "Material Handling",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Material_Handling_Safety",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Inadequate storage security led to material collapse on miner.",
+    "sourceTitle": "Fatality: Underground Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-22",
+    "sourceExcerptShort": "Struck by shifting timber.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 57.16001"
+    ],
+    "prohibitedOverreach": "Do not infer storage area age.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-067",
+    "sourceId": "MSHA-2026-060",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Surface Coal",
+    "observation": "Miner struck by haul truck while crossing blind intersection.",
+    "equipmentContext": "Haul truck",
+    "primaryHazardFamily": "Powered Mobile Equipment",
+    "secondaryHazardFamilies": [
+      "Traffic Management"
+    ],
+    "expectedStandardFamily": "Powered Mobile Equipment",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Traffic_Control_Plan",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Inadequate traffic control at blind crossing led to fatal strike.",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-20",
+    "sourceExcerptShort": "Haulage intersection strike.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA source.",
+    "expectedCitationHints": [
+      "30 CFR 56.9100"
+    ],
+    "prohibitedOverreach": "Do not infer signal failure.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-068",
+    "sourceId": "MSHA-2026-061",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Metal Mine",
+    "observation": "Equipment maintenance on unblocked drive system led to crush.",
+    "equipmentContext": "Conveyor drive",
+    "primaryHazardFamily": "Lockout / Stored Energy",
+    "secondaryHazardFamilies": [
+      "Machine Guarding"
+    ],
+    "expectedStandardFamily": "Lockout / Stored Energy",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "LOTO_Training",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Maintenance without energy isolation is lethal.",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceExcerptShort": "Crushed during maintenance.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA source.",
+    "expectedCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor knowledge.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-069",
+    "sourceId": "MSHA-2026-062",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Coal Mine",
+    "observation": "Roof fall occurred in development section while drilling.",
+    "equipmentContext": "Roof bolter",
+    "primaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "secondaryHazardFamilies": [
+      "Geological"
+    ],
+    "expectedStandardFamily": "Ground Control / Highwall / Roof Fall",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "Ground_Control",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Sudden roof collapse during drilling.",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-02",
+    "sourceExcerptShort": "Roof support failure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA source.",
+    "expectedCitationHints": [
+      "30 CFR 75.202"
+    ],
+    "prohibitedOverreach": "Do not infer tool failure.",
+    "sourceAgency": "MSHA",
+    "expectedPrimaryFamily": "Ground Control / Highwall / Roof Fall"
+  },
+  {
+    "scenarioId": "SRC-MSHA-070",
+    "sourceId": "MSHA-2026-063",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Surface Quarry",
+    "observation": "Unsecured explosives exploded during transport in mine vehicle.",
+    "equipmentContext": "Explosives box",
+    "primaryHazardFamily": "Fire / Explosion",
+    "secondaryHazardFamilies": [
+      "Explosives"
+    ],
+    "expectedStandardFamily": "Fire / Explosion",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Blasting_Procedure",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Explosives handling breach led to fatal detonation.",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-08",
+    "sourceExcerptShort": "Explosive handling misfire.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA source.",
+    "expectedCitationHints": [
+      "30 CFR 56.6100"
+    ],
+    "prohibitedOverreach": "Do not infer defect.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-MSHA-071",
+    "sourceId": "MSHA-2026-064",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Sand/Gravel",
+    "observation": "Worker entangled in rotating belt conveyor nip point.",
+    "equipmentContext": "Conveyor",
+    "primaryHazardFamily": "Machine Guarding",
+    "secondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "expectedStandardFamily": "Machine Guarding",
+    "unacceptableStandardFamilies": [
+      "Falls",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "Belt_Guarding",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Access to unguarded nip point leads to fatal entanglement.",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-12",
+    "sourceExcerptShort": "Conveyor entanglement.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA source.",
+    "expectedCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "prohibitedOverreach": "Do not infer guard age.",
+    "sourceAgency": "MSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-040",
+    "sourceId": "OSHA-2026-050",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Worker fell from ladder without securing top rails.",
+    "equipmentContext": "Portable ladder",
+    "primaryHazardFamily": "Ladders",
+    "secondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "expectedStandardFamily": "Ladders",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Ladder_Safety",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Unstable ladder setup led to fall incident.",
+    "sourceTitle": "Investigation: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-07-20",
+    "sourceExcerptShort": "Ladder fall incident.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation.",
+    "expectedCitationHints": [
+      "1910.23"
+    ],
+    "prohibitedOverreach": "Do not infer ladder status.",
+    "sourceAgency": "OSHA",
+    "expectedPrimaryFamily": "Ladders"
+  },
+  {
+    "scenarioId": "SRC-OSHA-041",
+    "sourceId": "OSHA-2026-051",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Manufacturing",
+    "observation": "Chemical spill uncontained in production floor drain area.",
+    "equipmentContext": "Chemical storage",
+    "primaryHazardFamily": "Chemical Storage",
+    "secondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "expectedStandardFamily": "Chemical Storage",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Spill_Cleanup_Protocol",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Spill containment failure creates toxic exposure hazard.",
+    "sourceTitle": "Inspection: Manufacturing",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-07-25",
+    "sourceExcerptShort": "Corrosive chemical spill.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection data.",
+    "expectedCitationHints": [
+      "1910.120"
+    ],
+    "prohibitedOverreach": "Do not infer volume.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-042",
+    "sourceId": "OSHA-2026-052",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Scaffolding work platform overloaded beyond rated capacity causing deck failure.",
+    "equipmentContext": "Scaffolding",
+    "primaryHazardFamily": "Scaffolds",
+    "secondaryHazardFamilies": [
+      "Falls"
+    ],
+    "expectedStandardFamily": "Scaffolds",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "Scaffold_Load_Limit",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Overloaded scaffold platform collapsed under material weight.",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-07-30",
+    "sourceExcerptShort": "Scaffold load failure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection data.",
+    "expectedCitationHints": [
+      "1926.451"
+    ],
+    "prohibitedOverreach": "Do not infer load weight.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-043",
+    "sourceId": "OSHA-2026-053",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Warehouse",
+    "observation": "Emergency fire exit aisle completely blocked by pallet storage.",
+    "equipmentContext": "Exit door",
+    "primaryHazardFamily": "Emergency Egress",
+    "secondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "expectedStandardFamily": "Emergency Egress",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Exit_Access_Clearance",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Blocked egress path prevents emergency evacuation.",
+    "sourceTitle": "Inspection: Warehouse",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-02",
+    "sourceExcerptShort": "Blocked fire egress path.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation data.",
+    "expectedCitationHints": [
+      "1910.37"
+    ],
+    "prohibitedOverreach": "Do not infer fire detection function.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-044",
+    "sourceId": "OSHA-2026-054",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Chemical",
+    "observation": "Ammonia vapor exposure after ventilation system shutdown for maintenance without supplemental PFD/resp-prot.",
+    "equipmentContext": "Ventilation system",
+    "primaryHazardFamily": "Chemical Storage",
+    "secondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "expectedStandardFamily": "Chemical Storage",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Ventilation_System_Maintenance",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "System failure without backup PPE caused inhalation hazard.",
+    "sourceTitle": "Investigation: Chemical Plant",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-05",
+    "sourceExcerptShort": "Toxic ammonia vapor exposure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1910.134"
+    ],
+    "prohibitedOverreach": "Do not infer ventilation shutdown cause.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-045",
+    "sourceId": "OSHA-2026-055",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Electrical Contracting",
+    "observation": "Exposed terminal box live wires uncovered during panel maintenance.",
+    "equipmentContext": "Electrical cabinet",
+    "primaryHazardFamily": "Electrical",
+    "secondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "expectedStandardFamily": "Electrical",
+    "unacceptableStandardFamilies": [
+      "Housekeeping",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Electrical_Safety",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Unenclosed electrical contact hazard poses shock risk.",
+    "sourceTitle": "Inspection: Electrical Contracting",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-08",
+    "sourceExcerptShort": "Exposed live wiring.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation summary.",
+    "expectedCitationHints": [
+      "1910.303"
+    ],
+    "prohibitedOverreach": "Do not infer voltage level.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-046",
+    "sourceId": "OSHA-2026-056",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Metal Fabrication",
+    "observation": "Rotating parts on milling machine lacked guarding; amputated worker thumb.",
+    "equipmentContext": "Milling machine",
+    "primaryHazardFamily": "Machine Guarding",
+    "secondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "expectedStandardFamily": "Machine Guarding",
+    "unacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Fixed_Guarding",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Rotating machine parts entanglement led to amputation.",
+    "sourceTitle": "Investigation: Metal Fabrication",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-12",
+    "sourceExcerptShort": "Unguarded rotating press machine.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1910.212"
+    ],
+    "prohibitedOverreach": "Do not infer machine make.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-047",
+    "sourceId": "OSHA-2026-057",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Crane boom contacted power line while lifting heavy structural steel.",
+    "equipmentContext": "Crane",
+    "primaryHazardFamily": "Electrical",
+    "secondaryHazardFamilies": [
+      "Lifting & Rigging"
+    ],
+    "expectedStandardFamily": "Electrical",
+    "unacceptableStandardFamilies": [
+      "Machine Guarding",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Overhead_Line_Safety",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Contact with overhead lines without clearance/grounding caused arc flash.",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-15",
+    "sourceExcerptShort": "Overhead power line contact.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation data.",
+    "expectedCitationHints": [
+      "1926.1408"
+    ],
+    "prohibitedOverreach": "Do not infer ground stability.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-048",
+    "sourceId": "OSHA-2026-058",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "General Manufacturing",
+    "observation": "Amputation from unguarded conveyor drive point.",
+    "equipmentContext": "Conveyor",
+    "primaryHazardFamily": "Machine Guarding",
+    "secondaryHazardFamilies": [
+      "Lockout / Stored Energy"
+    ],
+    "expectedStandardFamily": "Machine Guarding",
+    "unacceptableStandardFamilies": [
+      "Falls",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Belt_Guarding",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Unguarded belt drive entanglement resulted in amputation.",
+    "sourceTitle": "Inspection: General Manufacturing",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-18",
+    "sourceExcerptShort": "Amputation from unguarded belt.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation summary.",
+    "expectedCitationHints": [
+      "1910.212"
+    ],
+    "prohibitedOverreach": "Do not infer conveyor maintenance mode.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-049",
+    "sourceId": "OSHA-2026-059",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Floor opening without guardrails; worker fell 10ft.",
+    "equipmentContext": "Floor opening",
+    "primaryHazardFamily": "Fall Protection",
+    "secondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "expectedStandardFamily": "Fall Protection",
+    "unacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Electrical"
+    ],
+    "expectedCorrectiveActionTheme": "Guardrail_Standard",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Fall through unprotected floor opening due to missing guardrail.",
+    "sourceTitle": "Inspection: General Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-08-20",
+    "sourceExcerptShort": "Floor opening fall.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection violation summary.",
+    "expectedCitationHints": [
+      "1926.501"
+    ],
+    "prohibitedOverreach": "Do not infer opening creation time.",
+    "sourceAgency": "OSHA",
+    "expectedPrimaryFamily": "Fall Protection"
+  },
+  {
+    "scenarioId": "SRC-MSHA-072",
+    "sourceId": "MSHA-2026-061",
+    "sourceType": "fatality_report",
+    "agency": "MSHA",
+    "industryContext": "Surface Quarry",
+    "observation": "Operator trapped after highwall bench collapsed during scaling.",
+    "equipmentContext": "Excavator",
+    "primaryHazardFamily": "Ground Control / Highwall / Roof Fall",
+    "secondaryHazardFamilies": [
+      "Geological"
+    ],
+    "expectedStandardFamily": "Ground Control / Highwall / Roof Fall",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "expectedCorrectiveActionTheme": "Ground_Control",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Scaling failure caused fatal highwall bench collapse.",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-11-02",
+    "sourceExcerptShort": "Highwall fall of ground.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on official MSHA report.",
+    "expectedCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "prohibitedOverreach": "Do not infer operator error.",
+    "sourceAgency": "MSHA",
+    "expectedPrimaryFamily": "Ground Control / Highwall / Roof Fall"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1025",
+    "sourceId": "OSHA-2026-050",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Chemical",
+    "observation": "Valve failure released chemicals into work area; no containment.",
+    "equipmentContext": "Chemical storage",
+    "primaryHazardFamily": "Chemical Storage",
+    "secondaryHazardFamilies": [
+      "Housekeeping"
+    ],
+    "expectedStandardFamily": "Chemical Storage",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Spill_Cleanup_Protocol",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Chemical release without containment is a hazard.",
+    "sourceTitle": "Investigation: Chemical Release",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-10",
+    "sourceExcerptShort": "Valve failure causing leak.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation.",
+    "expectedCitationHints": [
+      "1910.120"
+    ],
+    "prohibitedOverreach": "Do not infer worker health outcomes.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1026",
+    "sourceId": "OSHA-2026-051",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Warehouse",
+    "observation": "Forklift sped through blind aisle without using horn.",
+    "equipmentContext": "Forklift",
+    "primaryHazardFamily": "Powered Mobile Equipment",
+    "secondaryHazardFamilies": [
+      "Traffic Management"
+    ],
+    "expectedStandardFamily": "Powered Mobile Equipment",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "Forklift_Safety",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Failure to sound horn at blind intersection.",
+    "sourceTitle": "Inspection: Warehouse",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-12",
+    "sourceExcerptShort": "Forklift speed violation.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection.",
+    "expectedCitationHints": [
+      "1910.178"
+    ],
+    "prohibitedOverreach": "Do not infer operator training.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1027",
+    "sourceId": "OSHA-2026-052",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "7-foot deep trench excavation lacking required shoring.",
+    "equipmentContext": "Trenching equipment",
+    "primaryHazardFamily": "Trenching & Shoring",
+    "secondaryHazardFamilies": [
+      "Falls"
+    ],
+    "expectedStandardFamily": "Trenching & Shoring",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "Trench_Box_Requirement",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Deep trench without shoring is a life-safety violation.",
+    "sourceTitle": "Investigation: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-15",
+    "sourceExcerptShort": "Trenching failure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation summary.",
+    "expectedCitationHints": [
+      "1926.652"
+    ],
+    "prohibitedOverreach": "Do not infer site discipline.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1028",
+    "sourceId": "OSHA-2026-053",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Manufacturing",
+    "observation": "Chemical drums labeled improperly in production prep zone.",
+    "equipmentContext": "Chemical storage",
+    "primaryHazardFamily": "Hazard Communication",
+    "secondaryHazardFamilies": [
+      "Chemical Storage"
+    ],
+    "expectedStandardFamily": "Hazard Communication",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Hazcom_Training",
+    "severityExpectation": "medium",
+    "reasoningExpectation": "Missing GHS labels on chemicals.",
+    "sourceTitle": "Inspection: Manufacturing",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-18",
+    "sourceExcerptShort": "Missing GHS labels.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection.",
+    "expectedCitationHints": [
+      "1910.1200"
+    ],
+    "prohibitedOverreach": "Do not infer hazard level.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1029",
+    "sourceId": "OSHA-2026-054",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Chemical",
+    "observation": "Toxic vapor exposure; area lacked ventilation and cleanup.",
+    "equipmentContext": "Ventilation",
+    "primaryHazardFamily": "Chemical Storage",
+    "secondaryHazardFamilies": [
+      "Personal Protective Equipment"
+    ],
+    "expectedStandardFamily": "Chemical Storage",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Ventilation_System_Maintenance",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Vapor exposure without ventilation control is a hazard.",
+    "sourceTitle": "Investigation: Chemical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-20",
+    "sourceExcerptShort": "Toxic chemical vapor exposure.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation.",
+    "expectedCitationHints": [
+      "1910.134"
+    ],
+    "prohibitedOverreach": "Do not infer exposure duration.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1030",
+    "sourceId": "OSHA-2026-055",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "General Construction",
+    "observation": "No fall harness while installing roof deck at 25 feet.",
+    "equipmentContext": "Roofing equipment",
+    "primaryHazardFamily": "Fall Protection",
+    "secondaryHazardFamilies": [
+      "Walking/Working Surfaces"
+    ],
+    "expectedStandardFamily": "Fall Protection",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Chemical Storage"
+    ],
+    "expectedCorrectiveActionTheme": "PPE_Policy",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Work at height without fall protection system is a life-safety violation.",
+    "sourceTitle": "Inspection: General Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-22",
+    "sourceExcerptShort": "No fall protection.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection.",
+    "expectedCitationHints": [
+      "1926.501"
+    ],
+    "prohibitedOverreach": "Do not infer anchor status.",
+    "sourceAgency": "OSHA",
+    "expectedPrimaryFamily": "Fall Protection"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1031",
+    "sourceId": "OSHA-2026-056",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Electrical",
+    "observation": "Electrical panel ungrounded; live parts exposed.",
+    "equipmentContext": "Electrical cabinet",
+    "primaryHazardFamily": "Electrical",
+    "secondaryHazardFamilies": [
+      "Fire / Explosion"
+    ],
+    "expectedStandardFamily": "Electrical",
+    "unacceptableStandardFamilies": [
+      "Housekeeping",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Electrical_Safety",
+    "severityExpectation": "high",
+    "reasoningExpectation": "Exposed live parts create fatality hazard.",
+    "sourceTitle": "Inspection: Electrical",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-25",
+    "sourceExcerptShort": "Ungrounded electrical panel.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection.",
+    "expectedCitationHints": [
+      "1926.403"
+    ],
+    "prohibitedOverreach": "Do not infer voltage.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1032",
+    "sourceId": "OSHA-2026-057",
+    "sourceType": "investigation_summary",
+    "agency": "OSHA",
+    "industryContext": "Metal Fabrication",
+    "observation": "Operator entangled in unguarded rotating press.",
+    "equipmentContext": "Machine press",
+    "primaryHazardFamily": "Machine Guarding",
+    "secondaryHazardFamilies": [
+      "Mechanical"
+    ],
+    "expectedStandardFamily": "Machine Guarding",
+    "unacceptableStandardFamilies": [
+      "Chemical Storage",
+      "Falls"
+    ],
+    "expectedCorrectiveActionTheme": "Fixed_Guarding",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Unguarded rotating press is a lethal risk.",
+    "sourceTitle": "Investigation: Metal Fabrication",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-28",
+    "sourceExcerptShort": "Unguarded rotating press.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA investigation.",
+    "expectedCitationHints": [
+      "1910.212"
+    ],
+    "prohibitedOverreach": "Do not infer machine make.",
+    "sourceAgency": "OSHA"
+  },
+  {
+    "scenarioId": "SRC-OSHA-1033",
+    "sourceId": "OSHA-2026-060",
+    "sourceType": "inspection_violation",
+    "agency": "OSHA",
+    "industryContext": "Construction",
+    "observation": "Worker in unprotected trench without ladder.",
+    "equipmentContext": "Trenching",
+    "primaryHazardFamily": "Trenching & Shoring",
+    "secondaryHazardFamilies": [
+      "Falls"
+    ],
+    "expectedStandardFamily": "Trenching & Shoring",
+    "unacceptableStandardFamilies": [
+      "Electrical",
+      "Machine Guarding"
+    ],
+    "expectedCorrectiveActionTheme": "Trench_Box_Requirement",
+    "severityExpectation": "critical",
+    "reasoningExpectation": "Trench without shoring or ladder is a safety violation.",
+    "sourceTitle": "Inspection: Construction",
+    "sourceUrl": "https://www.osha.gov/fatalities",
+    "sourceDate": "2026-10-30",
+    "sourceExcerptShort": "No trench box or ladder.",
+    "sourceReliability": "official",
+    "sourceGroundingNotes": "Based on OSHA inspection data.",
+    "expectedCitationHints": [
+      "1926.652"
+    ],
+    "prohibitedOverreach": "Do not infer project status.",
+    "sourceAgency": "OSHA",
+    "expectedPrimaryFamily": "Trenching & Shoring"
   }
 ]
