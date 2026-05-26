@@ -1,7 +1,7 @@
 # SAFE_SCOPE_VERIFIED_SOURCE_CANDIDATES_AUDIT.md
 
-- Total candidates: 0
-- Valid: 0
+- Total candidates: 9
+- Valid: 9
 - Invalid: 0
 - Rejection breakdown: {
   "httpStatus": 0,
