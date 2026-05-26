@@ -1,279 +1,197 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
-import { createCheckoutSession, getAuthToken } from "@/lib/auth";
 
-const valuePillars = [
-  ["Field speed", "Capture findings faster"],
-  ["Defensible records", "Evidence-first documentation"],
-  ["Accountability", "Actions tied to ownership"],
-  ["Standards support", "MSHA & OSHA workflows"],
+const painPoints = [
+  "Hazards documented after the details are already fading",
+  "Photos, notes, standards, and corrective actions scattered across tools",
+  "Inspection reports that take too long to compile",
+  "Corrective actions that lose ownership and follow-through",
 ];
 
-const companyDrivers = [
-  ["Speed", "Capture hazards, evidence, risk context, and corrective actions while the condition is still fresh."],
-  ["Defensibility", "Build clearer records with evidence, standards rationale, review triggers, and traceable decision support."],
-  ["Accountability", "Move findings into assigned corrective action instead of letting hazards disappear into spreadsheets or inboxes."],
-  ["Visibility", "Help leadership see repeat hazards, overdue actions, risk concentration, and operational patterns over time."],
+const benefits = [
+  {
+    title: "Inspect faster",
+    text: "Capture findings, evidence, location, risk, and corrective action details in one guided workflow.",
+  },
+  {
+    title: "Build stronger records",
+    text: "Connect observations to photos, standards, SafeScope review, actions, and final report language.",
+  },
+  {
+    title: "Act before risk repeats",
+    text: "Turn inspection findings into assigned corrective actions and visibility for leadership.",
+  },
 ];
 
-const tiers = [
-  [
-    "Basic",
-    "Free",
-    "Individuals getting started",
-    "Fast local inspections, basic reports, evidence notes, limited SafeScope assistance, and local-only storage.",
-    null,
-  ],
-  [
-    "Plus",
-    "$24/mo",
-    "Safety professionals",
-    "Full SafeScope intelligence, standards support, corrective action guidance, inspection history, and offline field workflows.",
-    "plus",
-  ],
-  [
-    "Company",
-    "$149/mo • includes 5 users",
-    "Teams and operations",
-    "Shared workspace, company branding, assigned actions, analytics, supervisor validation, audit trail, and team roles. Additional users: $12/user/month.",
-    "company",
-  ],
-] as const;
+const proofPoints = [
+  "MSHA and OSHA-focused workflows",
+  "SafeScope intelligence built into inspections",
+  "Professional reports from field findings",
+  "Corrective action and follow-up support",
+  "Designed for serious safety operations",
+  "Built for accountability, not paperwork",
+];
 
 export default function AboutPage() {
-  const [billingStatus, setBillingStatus] = useState("");
-
-  async function startCheckout(planCode: "plus" | "company") {
-    try {
-      setBillingStatus("");
-
-      if (!getAuthToken()) {
-        window.location.href = "/login";
-        return;
-      }
-
-      const session = await createCheckoutSession(planCode);
-
-      if (session?.url) {
-        window.location.href = session.url;
-        return;
-      }
-
-      setBillingStatus("Billing checkout could not be started.");
-    } catch {
-      setBillingStatus("Billing is not configured yet. Please check back soon.");
-    }
-  }
-
   return (
-    <section className="mx-auto max-w-6xl space-y-10">
-      <header className="overflow-hidden rounded-[2.25rem] border border-slate-800 bg-[#0B1320] text-white shadow-2xl shadow-slate-900/20">
-        <div className="bg-[radial-gradient(circle_at_top_right,rgba(29,114,184,0.42),transparent_36%),linear-gradient(135deg,#0B1320_0%,#102A43_48%,#0B1320_100%)] px-6 py-10 sm:px-9 sm:py-14">
-          <p className="text-xs font-black uppercase tracking-[0.3em] text-[#C0C6CF]">
-            Sentinel Safety
-          </p>
+    <section className="mx-auto max-w-6xl space-y-6">
+      <div className="rounded-[36px] bg-[#050B14] px-6 py-16 text-center text-white shadow-sm sm:px-10 md:px-16 md:py-24">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-blue-200">
+          Sentinel Safety
+        </p>
 
-          <h1 className="mt-4 max-w-5xl text-4xl font-black tracking-tight sm:text-6xl">
-            Operational safety intelligence for companies that cannot afford weak records.
-          </h1>
+        <h1 className="mx-auto mt-6 max-w-5xl text-5xl font-black leading-[0.98] tracking-tight sm:text-6xl md:text-7xl">
+          Stop letting safety findings become paperwork.
+        </h1>
 
-          <p className="mt-5 max-w-3xl text-base font-semibold leading-7 text-slate-200">
-            Capture hazards, document evidence, review likely standards, assign corrective actions,
-            and build defensible safety records from the field — before risk becomes an incident,
-            citation, shutdown, or repeat failure.
-          </p>
+        <p className="mx-auto mt-7 max-w-3xl text-base font-semibold leading-7 text-slate-300 md:text-lg">
+          Sentinel Safety helps teams capture hazards, review risk, connect
+          standards, assign corrective actions, and generate professional
+          inspection reports from one focused workflow.
+        </p>
 
-          <div className="mt-8 grid overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] sm:grid-cols-4">
-            {valuePillars.map(([label, detail]) => (
-              <div key={label} className="border-b border-white/10 px-4 py-4 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
-                <p className="text-[11px] font-black uppercase tracking-[0.2em] text-[#C0C6CF]">
-                  {label}
-                </p>
-                <p className="mt-1 text-sm font-bold leading-5 text-white">
-                  {detail}
-                </p>
-              </div>
-            ))}
-          </div>
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <Link
+            href="/register"
+            className="rounded-full bg-[#1D72B8] px-7 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#2B86D1]"
+          >
+            Start Free
+          </Link>
 
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link href="/register" className="rounded-2xl bg-[#1D72B8] px-5 py-3 text-sm font-black text-white hover:bg-[#155A93]">
-              Start Free
-            </Link>
-            <a href="#plans" className="rounded-2xl border border-white/20 bg-white/10 px-5 py-3 text-sm font-black text-white hover:bg-white/15">
-              View Plans
-            </a>
-          </div>
+          <Link
+            href="/login"
+            className="rounded-full bg-white px-7 py-3 text-sm font-black !text-[#0B1320] shadow-sm transition hover:bg-blue-50"
+          >
+            Sign In
+          </Link>
         </div>
-      </header>
+      </div>
 
-      <section className="grid gap-6 border-b border-slate-200 pb-8 md:grid-cols-[0.8fr_1.2fr]">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            The Problem
-          </p>
-          <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-            Safety programs do not fail only because hazards exist.
-          </h2>
-        </div>
+      <div className="rounded-[32px] border border-slate-200 bg-white px-6 py-12 text-center shadow-sm sm:px-10 md:py-16">
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+          The Real Problem
+        </p>
 
-        <div className="space-y-4 text-sm font-semibold leading-7 text-slate-600">
-          <p>
-            They fail when hazards are recognized late, documented inconsistently, assigned without
-            follow-through, or buried in disconnected systems that leadership cannot act on quickly.
-          </p>
-          <p>
-            Sentinel Safety is designed to reduce those gaps by turning field observations into structured,
-            reviewable, and actionable safety intelligence.
-          </p>
-        </div>
-      </section>
+        <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-5xl">
+          Safety teams do not need more forms. They need findings that turn into action.
+        </h2>
 
-      <section className="grid gap-4 md:grid-cols-4">
-        {companyDrivers.map(([title, body]) => (
-          <div key={title} className="border-l-4 border-[#1D72B8] bg-white px-4 py-4 shadow-sm">
-            <h3 className="text-base font-black text-slate-950">{title}</h3>
-            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{body}</p>
-          </div>
-        ))}
-      </section>
-
-      <section className="grid gap-6 border-y border-slate-200 py-8 md:grid-cols-[0.8fr_1.2fr]">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Built for the field
-          </p>
-          <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-            Designed around real operating conditions.
-          </h2>
-        </div>
-
-        <div className="space-y-4 text-sm font-semibold leading-7 text-slate-600">
-          <p>
-            Field safety work happens around poor connectivity, changing conditions, active equipment,
-            production pressure, and limited time. Sentinel Safety is mobile-first, offline-capable,
-            and centered on rapid evidence capture instead of administrative overhead.
-          </p>
-          <p>
-            The platform helps inspectors document what they saw, why it matters, what standards may apply,
-            who owns the correction, and what evidence supports the record.
-          </p>
-        </div>
-      </section>
-
-      <section className="grid gap-6 border-b border-slate-200 pb-8 md:grid-cols-[0.8fr_1.2fr]">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            SafeScope Intelligence
-          </p>
-          <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-            Explainable intelligence, not blind automation.
-          </h2>
-        </div>
-
-        <div className="space-y-4 text-sm font-semibold leading-7 text-slate-600">
-          <p>
-            SafeScope is the operational reasoning engine inside Sentinel Safety. It supports hazard
-            classification, exposure-path reasoning, standards review, corrective action planning,
-            confidence calibration, and supervisor validation.
-          </p>
-          <p>
-            Every SafeScope output is designed to support qualified human review. It does not replace
-            professional judgment, legal review, competent-person evaluation, or site-specific safety oversight.
-          </p>
-        </div>
-      </section>
-
-      <section id="plans" className="space-y-4">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Access Tiers
-          </p>
-          <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-            Free to start. Powerful enough for serious operations.
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm font-semibold leading-7 text-slate-600">
-            Basic keeps field documentation accessible. Plus unlocks full SafeScope intelligence for
-            individual professionals. Company adds shared accountability, analytics, validation, and workspace control.
-          </p>
-        </div>
-
-        <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white">
-          <div className="hidden grid-cols-[0.7fr_0.7fr_1fr_1.4fr_0.7fr] border-b border-slate-200 bg-slate-50 px-4 py-3 text-xs font-black uppercase tracking-wide text-slate-500 md:grid">
-            <div>Tier</div>
-            <div>Price</div>
-            <div>Best For</div>
-            <div>Company Value</div>
-            <div>Action</div>
-          </div>
-
-          {tiers.map(([name, price, audience, description, planCode]) => (
-            <div key={name} className="grid gap-3 border-b border-slate-100 px-4 py-4 text-sm last:border-b-0 md:grid-cols-[0.7fr_0.7fr_1fr_1.4fr_0.7fr]">
-              <div>
-                <p className="text-xs font-black uppercase tracking-wide text-slate-400 md:hidden">Tier</p>
-                <p className="font-black text-slate-950">{name}</p>
-              </div>
-
-              <div>
-                <p className="text-xs font-black uppercase tracking-wide text-slate-400 md:hidden">Price</p>
-                <p className="font-bold text-[#1D72B8]">{price}</p>
-              </div>
-
-              <div>
-                <p className="text-xs font-black uppercase tracking-wide text-slate-400 md:hidden">Best For</p>
-                <p className="font-semibold text-slate-700">{audience}</p>
-              </div>
-
-              <div>
-                <p className="text-xs font-black uppercase tracking-wide text-slate-400 md:hidden">Company Value</p>
-                <p className="font-semibold leading-6 text-slate-600">{description}</p>
-              </div>
-
-              <div>
-                {planCode ? (
-                  <button
-                    type="button"
-                    onClick={() => startCheckout(planCode)}
-                    className="rounded-xl bg-[#1D72B8] px-3 py-2 text-xs font-black text-white hover:bg-[#155A93]"
-                  >
-                    Upgrade
-                  </button>
-                ) : (
-                  <Link href="/register" className="text-xs font-black text-[#1D72B8] hover:underline">
-                    Start Free
-                  </Link>
-                )}
-              </div>
+        <div className="mx-auto mt-9 grid max-w-5xl gap-3 md:grid-cols-2">
+          {painPoints.map((item) => (
+            <div
+              key={item}
+              className="rounded-2xl bg-slate-50 px-5 py-4 text-left text-sm font-bold leading-6 text-slate-700 ring-1 ring-slate-200"
+            >
+              {item}
             </div>
           ))}
         </div>
+      </div>
 
-        {billingStatus && (
-          <p className="rounded-xl bg-amber-50 p-3 text-sm font-bold text-amber-800">
-            {billingStatus}
-          </p>
-        )}
-      </section>
+      <div className="grid gap-4 md:grid-cols-3">
+        {benefits.map((item) => (
+          <div
+            key={item.title}
+            className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm"
+          >
+            <h3 className="text-2xl font-black text-slate-950">
+              {item.title}
+            </h3>
 
-      <section className="rounded-[2rem] border border-slate-200 bg-slate-50 px-6 py-7">
-        <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-          See Risk. Prevent Harm.
+            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
+              {item.text}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="rounded-[36px] bg-[#102A43] px-6 py-14 text-white shadow-sm sm:px-10 md:px-14 md:py-20">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
+              SafeScope
+            </p>
+
+            <h2 className="mt-5 text-4xl font-black leading-tight tracking-tight md:text-5xl">
+              Intelligence built for the inspection, not bolted on after.
+            </h2>
+
+            <p className="mt-5 text-base font-semibold leading-7 text-blue-100">
+              SafeScope helps classify hazards, evaluate risk signals, support
+              MSHA and OSHA standards review, and organize corrective action
+              focus areas so safety teams can make faster, better-supported
+              decisions.
+            </p>
+          </div>
+
+          <div className="rounded-[28px] bg-white/10 p-6 ring-1 ring-white/10">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+              Why it matters
+            </p>
+
+            <h3 className="mt-3 text-3xl font-black">
+              The best inspection tool is not just a checklist.
+            </h3>
+
+            <p className="mt-4 text-sm font-semibold leading-6 text-blue-100">
+              It should help users understand what they saw, why it matters,
+              what standards may apply, what action is needed, and how to
+              produce a record that leadership can act on.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-[32px] border border-slate-200 bg-white px-6 py-12 shadow-sm sm:px-10 md:py-16">
+        <p className="text-center text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+          Why Teams Choose It
         </p>
-        <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">
-          Built for organizations that need faster inspections, clearer documentation, stronger accountability, and defensible safety records.
+
+        <h2 className="mx-auto mt-5 max-w-4xl text-center text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-5xl">
+          Built for safety professionals who need more than a notes app.
         </h2>
 
-        <div className="mt-5 flex flex-wrap gap-3">
-          <Link href="/register" className="rounded-2xl bg-[#1D72B8] px-5 py-3 text-sm font-black text-white hover:bg-[#155A93]">
+        <div className="mt-9 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {proofPoints.map((item) => (
+            <div
+              key={item}
+              className="rounded-2xl bg-slate-50 px-5 py-4 text-center text-sm font-black text-slate-800 ring-1 ring-slate-200"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-[36px] bg-[#050B14] px-6 py-16 text-center text-white shadow-sm sm:px-10 md:px-16 md:py-24">
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
+          See Risk. Prevent Harm.
+        </p>
+
+        <h2 className="mx-auto mt-5 max-w-5xl text-4xl font-black leading-tight tracking-tight md:text-6xl">
+          Make every inspection easier to capture, easier to defend, and easier to act on.
+        </h2>
+
+        <p className="mx-auto mt-6 max-w-2xl text-base font-semibold leading-7 text-slate-300">
+          Start with better findings. Finish with stronger reports and clearer
+          accountability.
+        </p>
+
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
+          <Link
+            href="/register"
+            className="rounded-full bg-[#1D72B8] px-7 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#2B86D1]"
+          >
             Start Free
           </Link>
-          <Link href="/login" className="rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 hover:bg-slate-50">
-            Return to Sign In
+
+          <Link
+            href="/"
+            className="rounded-full bg-white px-7 py-3 text-sm font-black !text-[#0B1320] shadow-sm transition hover:bg-blue-50"
+          >
+            Back to Home
           </Link>
         </div>
-      </section>
+      </div>
     </section>
   );
 }

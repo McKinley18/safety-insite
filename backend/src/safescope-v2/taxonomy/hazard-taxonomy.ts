@@ -439,5 +439,120 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
     defaultSeverityScore: 5,
     defaultLikelihoodScore: 3,
     humanReviewTriggers: ["blocked exit", "locked exit", "occupied building"]
+  },
+  {
+    id: "trenching_shoring",
+    label: "Trenching & Shoring",
+    family: "Trenching & Shoring",
+    strongSignals: [
+      { term: "trench", weight: 10 },
+      { term: "excavation", weight: 9 },
+      { term: "shoring", weight: 10 },
+      { term: "sloping", weight: 9 },
+      { term: "benching", weight: 9 },
+      { term: "trench box", weight: 10 },
+      { term: "excavation depth", weight: 8 },
+      { term: "cave-in", weight: 10 },
+      { term: "digging", weight: 8 }
+    ],
+    moderateSignals: [
+      { term: "clay", weight: 5 },
+      { term: "sandy", weight: 5 },
+      { term: "excavated", weight: 5 },
+      { term: "soil", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "dig", weight: 3 },
+      { term: "ground", weight: 2 },
+      { term: "dirt", weight: 1 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [
+      { term: "cave-in potential", weight: 5 },
+      { term: "deep excavation", weight: 4 }
+    ],
+    commonConsequences: ["cave-in engulfment", "suffocation", "fatality"],
+    requiredControls: ["trench box", "shoring system", "sloping or benching", "ladder for egress", "keep spoils 2ft back"],
+    defaultSeverity: "critical",
+    defaultSeverityScore: 5,
+    defaultLikelihoodScore: 4,
+    humanReviewTriggers: ["unprotected trench deeper than 5ft", "excavation cave-in hazard"]
+  },
+  {
+    id: "lifting_rigging",
+    label: "Lifting & Rigging",
+    family: "Lifting & Rigging",
+    strongSignals: [
+      { term: "wire rope sling", weight: 10 },
+      { term: "crane lifting", weight: 10 },
+      { term: "damaged sling", weight: 9 },
+      { term: "frayed sling", weight: 9 },
+      { term: "overhead crane", weight: 9 },
+      { term: "spreader bar", weight: 9 },
+      { term: "lifting frame", weight: 8 },
+      { term: "hoisting hook", weight: 9 },
+      { term: "rigging", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "sling", weight: 6 },
+      { term: "hoisting", weight: 6 },
+      { term: "crane", weight: 5 },
+      { term: "shackle", weight: 5 },
+      { term: "lifting", weight: 5 }
+    ],
+    weakSignals: [
+      { term: "hook", weight: 3 },
+      { term: "cable", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [
+      { term: "overhead lift", weight: 4 },
+      { term: "cracked weld", weight: 5 }
+    ],
+    commonConsequences: ["dropped load", "struck-by fatality", "rigging failure"],
+    requiredControls: ["remove damaged rigging", "install hook safety latch", "conduct daily rigging inspection", "do not stand under load"],
+    defaultSeverity: "high",
+    defaultSeverityScore: 4,
+    defaultLikelihoodScore: 4,
+    humanReviewTriggers: ["damaged hoisting line", "loose overhead load", "missing hook safety latch"]
+  },
+  {
+    id: "material_handling",
+    label: "Material Handling",
+    family: "Material Handling",
+    strongSignals: [
+      { term: "gas cylinder", weight: 10 },
+      { term: "oxygen cylinder", weight: 9 },
+      { term: "unsecured cylinder", weight: 9 },
+      { term: "upright cylinder", weight: 9 },
+      { term: "cylinder storage", weight: 8 },
+      { term: "oxygen manifold", weight: 8 },
+      { term: "whipcheck", weight: 10 },
+      { term: "safety chain on hose", weight: 9 },
+      { term: "high pressure air line", weight: 9 },
+      { term: "compressor hose", weight: 8 }
+    ],
+    moderateSignals: [
+      { term: "cylinder", weight: 5 },
+      { term: "manifold", weight: 5 },
+      { term: "hose safety", weight: 6 },
+      { term: "whip check", weight: 6 }
+    ],
+    weakSignals: [
+      { term: "hose", weight: 3 },
+      { term: "chain", weight: 2 },
+      { term: "connector", weight: 2 }
+    ],
+    negativeSignals: [],
+    contextBoosts: [
+      { term: "unsecured gas", weight: 4 },
+      { term: "high pressure release", weight: 4 }
+    ],
+    commonConsequences: ["flying projectile cylinder", "uncontrolled whip hose strike", "asphyxiation or toxic release"],
+    requiredControls: ["secure cylinders upright in chains", "install whipcheck safety device", "install cylinder caps", "separate reactive gases"],
+    defaultSeverity: "medium",
+    defaultSeverityScore: 3,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["unsecured high pressure cylinder", "hose without safety device"]
   }
 ];

@@ -35,18 +35,18 @@ export default function EvidenceCaptureSection({
 }: Props) {
   return (
     <>
-      <div className="mb-4 flex items-start justify-between gap-3 border-b border-slate-200 pb-3">
+      <div className="mb-4 rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Capture Evidence
           </p>
-          <p className="mt-1 text-sm font-semibold text-slate-500">
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-slate-500">
             Add evidence, describe the condition, and note where it was found.
           </p>
         </div>
 
-        <div className="flex shrink-0 flex-wrap gap-2">
-          <label className="cursor-pointer rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]">
+        <div className="mt-5 flex flex-wrap justify-center gap-2">
+          <label className="cursor-pointer rounded-xl bg-white px-4 py-2 text-xs font-black text-[#102A43] shadow-sm transition hover:bg-blue-50">
             Take Photo
             <input
               type="file"
@@ -57,7 +57,7 @@ export default function EvidenceCaptureSection({
             />
           </label>
 
-          <label className="cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 shadow-sm transition hover:bg-slate-50">
+          <label className="cursor-pointer rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-white/20">
             Upload
             <input
               type="file"
@@ -157,7 +157,7 @@ export default function EvidenceCaptureSection({
           ))}
         </div>
       ) : (
-        <p className="mb-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+        <p className="mb-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 leading-6 text-sm font-semibold text-slate-500">
           No photos attached yet.
         </p>
       )}
@@ -173,7 +173,7 @@ export default function EvidenceCaptureSection({
         </div>
 
         <textarea
-          className="min-h-32 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-base font-semibold leading-6 text-slate-900 outline-none transition focus:border-[#1D72B8]"
+          className="min-h-28 w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-slate-50"
           placeholder="Example: Missing guard on rotating shaft near crusher drive."
           value={description}
           onChange={(event) => setDescription(event.target.value)}
@@ -184,7 +184,7 @@ export default function EvidenceCaptureSection({
             Location
           </label>
           <input
-            className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-base font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+            className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white"
             placeholder="Example: Crusher deck, west platform"
             value={location}
             onChange={(event) => setLocation(event.target.value)}

@@ -107,25 +107,6 @@ export default function InspectionWorkflowHeader({
         </div>
       </div>
 
-      {inspectionContext && (
-        <div className="mb-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="min-w-0">
-              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-                Inspection Context
-              </p>
-              <p className="mt-1 truncate text-sm font-black text-slate-900">
-                {inspectionContext.inspectionTitle}
-              </p>
-            </div>
-
-            <p className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
-              {inspectionContext.agency} ·{" "}
-              {inspectionContext.workflowDepth?.replaceAll("_", " ")}
-            </p>
-          </div>
-        </div>
-      )}
     </>
   );
 }

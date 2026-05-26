@@ -142,12 +142,162 @@ export class ApplicableStandardsService {
           "scenario: housekeeping / walking-working surface",
         );
       }
-
       if (citation === "30 CFR 56.11001" || citation === "30 CFR 57.11001") {
         score += 55;
         matchingReasons.push(
           "scenario: safe access affected by material buildup",
         );
+      }
+    }
+
+    // 🔷 SAFEGUARDING AND GATING GUARDRAILS FOR KNOWLEDGE CHUNKS
+
+    // 1. Lifting & Rigging vs. Electrical Guard
+    // Guardrail: Do not let wire rope slings or hose connectors trigger electrical standards unless actual electrical words are present.
+    const isLiftingOrRiggingText = /(wire rope|wire sling|wire rope sling|crane|spreader bar|shackle|rigging|hoist|sling)/i.test(observation);
+    const isMaterialHandlingHoseText = /(air line|compressor hose|safety chain|whipcheck|whip check|hose connector)/i.test(observation);
+    const isElectricalCitation = /^(29|30) CFR (56|57)\.12|^(1910|1926)\.3|^(1910|1926)\.4|56\.12016|57\.12016/i.test(citation);
+    if ((isLiftingOrRiggingText || isMaterialHandlingHoseText) && isElectricalCitation) {
+      const hasElectricalTerms = /(live|energized|electrical|voltage|breaker|panel|wiring|cord|arc|circuit|switch|junction)/i.test(observation);
+      if (!hasElectricalTerms) {
+        score -= 100;
+        matchingReasons.push("guardrail: wire rope sling or hose safety connector disqualified from electrical");
+      }
+    }
+
+    // 2. Machine Guarding Guardrail
+    // Guardrail: Machine guarding standards require explicit machine/guarding danger terms to avoid false-positive triggers on mobile equipment or cylinder storage.
+    const isMachineGuardingCitation = /56\.14107|57\.14107|1910\.212|1910\.219|77\.400|1926\.300/i.test(citation);
+    if (isMachineGuardingCitation) {
+      const hasGuardingTerms = /(guard|unguarded|nip point|pinch point|pulley|belt|shaft|gear|chain|rotating|moving part|estop|emergency stop|light curtain|barrier|sprocket)/i.test(observation);
+      if (!hasGuardingTerms) {
+        score -= 100;
+        matchingReasons.push("guardrail: machine guarding standard requires explicit guarding or moving parts terms");
+      }
+    }
+
+    // 3. Electrical Guardrail
+    // Guardrail: Electrical standards require explicit electrical danger terms.
+    if (isElectricalCitation) {
+      const hasElectricalTerms = /(live|energized|electrical|voltage|breaker|panel|wiring|cord|arc|circuit|switch|junction|outlet|plug|shock|power|substation|disconnect)/i.test(observation);
+      if (!hasElectricalTerms) {
+        score -= 100;
+        matchingReasons.push("guardrail: electrical standard requires explicit electrical terms");
+      }
+    }
+
+    // 4. Forklift / Seatbelt PIT Boost
+    // Forklift/seatbelt/PIT should boost powered industrial truck standards and penalize machine guarding.
+    const isForkliftSeatbeltText = /(forklift|seatbelt|industrial truck|pit|operator)/i.test(observation);
+    if (isForkliftSeatbeltText) {
+      const isPITCitation = /1910\.178|56\.9100|56\.9200/i.test(citation);
+      if (isPITCitation) {
+        score += 100;
+        matchingReasons.push("boost: forklift, seatbelt, or PIT term matched");
+      }
+      if (isMachineGuardingCitation) {
+        score -= 100;
+        matchingReasons.push("guardrail: forklift/seatbelt case penalized machine guarding");
+      }
+    }
+
+    // 5. Excavation / Trenching Boost
+    const isExcavationTrenchingText = /(trench|excavation|shoring|sloping|benching|cave-in|digging)/i.test(observation);
+    if (isExcavationTrenchingText) {
+      const isTrenchingCitation = /1926\.651|1926\.652/i.test(citation);
+      if (isTrenchingCitation) {
+        score += 100;
+        matchingReasons.push("boost: trenching or excavation matched");
+      }
+    }
+
+    // 6. Catwalk / Access / Scaffold / Fall vs Machine Guarding Gating
+    const isAccessFallScaffoldText = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|hole)/i.test(observation);
+    if (isAccessFallScaffoldText) {
+      const isMachineGuardingCitation = /56\.14107|57\.14107|1910\.212|1910\.219|77\.400|1926\.300/i.test(citation);
+      if (isMachineGuardingCitation) {
+        score -= 100;
+        matchingReasons.push("applied access mismatch standard penalty");
+      }
+      const isFallAccessOrHousekeepingCitation = /56\.11012|56\.11001|56\.20003|1910\.22|1926\.451|1926\.501|1926\.502/i.test(citation);
+      if (isFallAccessOrHousekeepingCitation) {
+        score += 100;
+        matchingReasons.push("applied access match standard boost");
+      }
+    }
+
+    // 7. Rigging & Hoisting hook safety latch vs LOTO / Electrical Gating
+    const isRiggingHookText = /(hook|hoisting hook|crane|lifting|sling|rigging|latch|safety latch|engine blocks|overhead crane|mobile crane)/i.test(observation);
+    if (isRiggingHookText) {
+      const isLotoCitation = /1910\.147|56\.12016|56\.14105|57\.12016|57\.14105/i.test(citation);
+      if (isLotoCitation || isElectricalCitation) {
+        score -= 100;
+        matchingReasons.push("applied rigging mismatch standard penalty");
+      }
+      const isLiftingRiggingCitation = /1910\.184|1926\.251|56\.16007/i.test(citation);
+      if (isLiftingRiggingCitation) {
+        score += 100;
+        matchingReasons.push("applied rigging match standard boost");
+      }
+    }
+
+    // 8. Trip slip passageway housekeeping vs Electrical Gating
+    const isHousekeepingTripText = /(trip|slip|grease|cords|floor passageway|passageway|housekeeping|walking surface|obstruction)/i.test(observation);
+    if (isHousekeepingTripText) {
+      const hasElectricalExposureTerms = /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash)/i.test(observation);
+      if (isElectricalCitation && !hasElectricalExposureTerms) {
+        score -= 100;
+        matchingReasons.push("applied housekeeping mismatch standard penalty");
+      }
+      const isHousekeepingCitation = /1910\.22|56\.20003/i.test(citation);
+      if (isHousekeepingCitation) {
+        score += 100;
+        matchingReasons.push("applied housekeeping match standard boost");
+      }
+    }
+
+    // 9. PPE Eye protection vs Fall/Access/Scaffold Gating
+    const isEyePpeText = /(safety glasses|eye protection|goggles|face shield|wear safety|failing safety)/i.test(observation);
+    if (isEyePpeText) {
+      const isFallAccessOrScaffoldCitation = /56\.11012|56\.11001|56\.20003|1910\.22|1926\.451|1926\.501|1926\.502/i.test(citation);
+      if (isFallAccessOrScaffoldCitation) {
+        score -= 100;
+        matchingReasons.push("applied ppe mismatch standard penalty");
+      }
+      const isPpeCitation = /1910\.133|1910\.132|56\.15004|56\.15006/i.test(citation);
+      if (isPpeCitation) {
+        score += 100;
+        matchingReasons.push("applied ppe match standard boost");
+      }
+    }
+
+    // 10. Confined Space entry vs Electrical Gating
+    const isConfinedSpaceEntryText = /(cleanout|vessel cleanout|reaction vessel|worker entry|confined space|permit required|attendant|sewer tank|vessel entry|tank entry)/i.test(observation);
+    if (isConfinedSpaceEntryText) {
+      const hasElectricalExposureTerms = /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash|480v|240v|4160v|contacts)/i.test(observation);
+      if (isElectricalCitation && !hasElectricalExposureTerms) {
+        score -= 100;
+        matchingReasons.push("applied confined space mismatch standard penalty");
+      }
+    }
+
+    // 11. Emergency Egress vs Machine Guarding Gating
+    const isEmergencyEgressText = /(exit|egress|exit route|exit sign|exit door|exit pathway|evacuation)/i.test(observation);
+    if (isEmergencyEgressText) {
+      const isMachineGuardingCitation = /56\.14107|57\.14107|1910\.212|1910\.219|77\.400|1926\.300/i.test(citation);
+      if (isMachineGuardingCitation) {
+        score -= 100;
+        matchingReasons.push("applied egress mismatch standard penalty");
+      }
+    }
+
+    // 12. Safety Shower / Eye Wash vs Walking/Working Surfaces Gating
+    const isSafetyShowerEyewashText = /(safety shower|eye wash|eyewash)/i.test(observation);
+    if (isSafetyShowerEyewashText) {
+      const isWalkingWorkingSurfaceCitation = /1910\.22|56\.20003/i.test(citation);
+      if (isWalkingWorkingSurfaceCitation) {
+        score -= 100;
+        matchingReasons.push("applied safety shower access standard penalty");
       }
     }
 
@@ -259,6 +409,7 @@ export class ApplicableStandardsService {
       all = [];
     }
 
+    const isForkliftSeatbelt = /(forklift|seatbelt|industrial truck|pit|operator)/i.test(observation);
     const fallbackStandards =
       this.isHousekeepingAccessScenario(observation) && siteType === "mining"
         ? [
@@ -291,7 +442,24 @@ export class ApplicableStandardsService {
               ],
             },
           ]
-        : [];
+        : isForkliftSeatbelt
+          ? [
+              {
+                id: "fallback-1910-178",
+                citation: "1910.178",
+                heading: "Powered Industrial Trucks",
+                summary:
+                  "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+                agencyCode: "OSHA",
+                scopeCode: "general_industry",
+                score: 110,
+                confidence: 99,
+                matchingReasons: [
+                  "fallback: forklift, seatbelt, or PIT term matched",
+                ],
+              },
+            ]
+          : [];
 
     const results = [
       ...fallbackStandards,
@@ -482,6 +650,158 @@ export class ApplicableStandardsService {
                   "negative: no moving machine part exposure described",
                 );
               }
+            }
+          }
+
+          // 🔷 SAFEGUARDING AND GATING GUARDRAILS FOR REPOSITORY STANDARDS
+          const citation = standard.citation || "";
+
+          // 1. Lifting & Rigging vs. Electrical Guard
+          // Guardrail: Do not let wire rope slings or hose connectors trigger electrical standards unless actual electrical words are present.
+          const isLiftingOrRiggingText = /(wire rope|wire sling|wire rope sling|crane|spreader bar|shackle|rigging|hoist|sling)/i.test(observation);
+          const isMaterialHandlingHoseText = /(air line|compressor hose|safety chain|whipcheck|whip check|hose connector)/i.test(observation);
+          const isElectricalCitation = /^(29|30) CFR (56|57)\.12|^(1910|1926)\.3|^(1910|1926)\.4|56\.12016|57\.12016/i.test(citation);
+          if ((isLiftingOrRiggingText || isMaterialHandlingHoseText) && isElectricalCitation) {
+            const hasElectricalTerms = /(live|energized|electrical|voltage|breaker|panel|wiring|cord|arc|circuit|switch|junction)/i.test(observation);
+            if (!hasElectricalTerms) {
+              score -= 100;
+              matchingReasons.push("guardrail: wire rope sling or hose safety connector disqualified from electrical");
+            }
+          }
+
+          // 2. Machine Guarding Guardrail
+          // Guardrail: Machine guarding standards require explicit machine/guarding danger terms to avoid false-positive triggers on mobile equipment or cylinder storage.
+          const isMachineGuardingCitation = /56\.14107|57\.14107|1910\.212|1910\.219|77\.400|1926\.300/i.test(citation);
+          if (isMachineGuardingCitation) {
+            const hasGuardingTerms = /(guard|unguarded|nip point|pinch point|pulley|belt|shaft|gear|chain|rotating|moving part|estop|emergency stop|light curtain|barrier|sprocket)/i.test(observation);
+            if (!hasGuardingTerms) {
+              score -= 100;
+              matchingReasons.push("guardrail: machine guarding standard requires explicit guarding or moving parts terms");
+            }
+          }
+
+          // 3. Electrical Guardrail
+          // Guardrail: Electrical standards require explicit electrical danger terms.
+          if (isElectricalCitation) {
+            const hasElectricalTerms = /(live|energized|electrical|voltage|breaker|panel|wiring|cord|arc|circuit|switch|junction|outlet|plug|shock|power|substation|disconnect)/i.test(observation);
+            if (!hasElectricalTerms) {
+              score -= 100;
+              matchingReasons.push("guardrail: electrical standard requires explicit electrical terms");
+            }
+          }
+
+          // 4. Forklift / Seatbelt PIT Boost
+          // Forklift/seatbelt/PIT should boost powered industrial truck standards and penalize machine guarding.
+          const isForkliftSeatbeltText = /(forklift|seatbelt|industrial truck|pit|operator)/i.test(observation);
+          if (isForkliftSeatbeltText) {
+            const isPITCitation = /1910\.178|56\.9100|56\.9200/i.test(citation);
+            if (isPITCitation) {
+              score += 100;
+              matchingReasons.push("boost: forklift, seatbelt, or PIT term matched");
+            }
+            if (isMachineGuardingCitation) {
+              score -= 100;
+              matchingReasons.push("guardrail: forklift/seatbelt case penalized machine guarding");
+            }
+          }
+
+          // 5. Excavation / Trenching Boost
+          const isExcavationTrenchingText = /(trench|excavation|shoring|sloping|benching|cave-in|digging)/i.test(observation);
+          if (isExcavationTrenchingText) {
+            const isTrenchingCitation = /1926\.651|1926\.652/i.test(citation);
+            if (isTrenchingCitation) {
+              score += 100;
+              matchingReasons.push("boost: trenching or excavation matched");
+            }
+          }
+
+          // 6. Catwalk / Access / Scaffold / Fall vs Machine Guarding Gating
+          const isAccessFallScaffoldText = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|hole)/i.test(observation);
+          if (isAccessFallScaffoldText) {
+            const isMachineGuardingCitation = /56\.14107|57\.14107|1910\.212|1910\.219|77\.400|1926\.300/i.test(citation);
+            if (isMachineGuardingCitation) {
+              score -= 100;
+              matchingReasons.push("applied access mismatch standard penalty");
+            }
+            const isFallAccessOrHousekeepingCitation = /56\.11012|56\.11001|56\.20003|1910\.22|1926\.451|1926\.501|1926\.502/i.test(citation);
+            if (isFallAccessOrHousekeepingCitation) {
+              score += 100;
+              matchingReasons.push("applied access match standard boost");
+            }
+          }
+
+          // 7. Rigging & Hoisting hook safety latch vs LOTO / Electrical Gating
+          const isRiggingHookText = /(hook|hoisting hook|crane|lifting|sling|rigging|latch|safety latch|engine blocks|overhead crane|mobile crane)/i.test(observation);
+          if (isRiggingHookText) {
+            const isLotoCitation = /1910\.147|56\.12016|56\.14105|57\.12016|57\.14105/i.test(citation);
+            if (isLotoCitation || isElectricalCitation) {
+              score -= 100;
+              matchingReasons.push("applied rigging mismatch standard penalty");
+            }
+            const isLiftingRiggingCitation = /1910\.184|1926\.251|56\.16007/i.test(citation);
+            if (isLiftingRiggingCitation) {
+              score += 100;
+              matchingReasons.push("applied rigging match standard boost");
+            }
+          }
+
+          // 8. Trip slip passageway housekeeping vs Electrical Gating
+          const isHousekeepingTripText = /(trip|slip|grease|cords|floor passageway|passageway|housekeeping|walking surface|obstruction)/i.test(observation);
+          if (isHousekeepingTripText) {
+            const hasElectricalExposureTerms = /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash)/i.test(observation);
+            if (isElectricalCitation && !hasElectricalExposureTerms) {
+              score -= 100;
+              matchingReasons.push("applied housekeeping mismatch standard penalty");
+            }
+            const isHousekeepingCitation = /1910\.22|56\.20003/i.test(citation);
+            if (isHousekeepingCitation) {
+              score += 100;
+              matchingReasons.push("applied housekeeping match standard boost");
+            }
+          }
+
+          // 9. PPE Eye protection vs Fall/Access/Scaffold Gating
+          const isEyePpeText = /(safety glasses|eye protection|goggles|face shield|wear safety|failing safety)/i.test(observation);
+          if (isEyePpeText) {
+            const isFallAccessOrScaffoldCitation = /56\.11012|56\.11001|56\.20003|1910\.22|1926\.451|1926\.501|1926\.502/i.test(citation);
+            if (isFallAccessOrScaffoldCitation) {
+              score -= 100;
+              matchingReasons.push("applied ppe mismatch standard penalty");
+            }
+            const isPpeCitation = /1910\.133|1910\.132|56\.15004|56\.15006/i.test(citation);
+            if (isPpeCitation) {
+              score += 100;
+              matchingReasons.push("applied ppe match standard boost");
+            }
+          }
+
+          // 10. Confined Space entry vs Electrical Gating
+          const isConfinedSpaceEntryText = /(cleanout|vessel cleanout|reaction vessel|worker entry|confined space|permit required|attendant|sewer tank|vessel entry|tank entry)/i.test(observation);
+          if (isConfinedSpaceEntryText) {
+            const hasElectricalExposureTerms = /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash|480v|240v|4160v|contacts)/i.test(observation);
+            if (isElectricalCitation && !hasElectricalExposureTerms) {
+              score -= 100;
+              matchingReasons.push("applied confined space mismatch standard penalty");
+            }
+          }
+
+          // 11. Emergency Egress vs Machine Guarding Gating
+          const isEmergencyEgressText = /(exit|egress|exit route|exit sign|exit door|exit pathway|evacuation)/i.test(observation);
+          if (isEmergencyEgressText) {
+            const isMachineGuardingCitation = /56\.14107|57\.14107|1910\.212|1910\.219|77\.400|1926\.300/i.test(citation);
+            if (isMachineGuardingCitation) {
+              score -= 100;
+              matchingReasons.push("applied egress mismatch standard penalty");
+            }
+          }
+
+          // 12. Safety Shower / Eye Wash vs Walking/Working Surfaces Gating
+          const isSafetyShowerEyewashText = /(safety shower|eye wash|eyewash)/i.test(observation);
+          if (isSafetyShowerEyewashText) {
+            const isWalkingWorkingSurfaceCitation = /1910\.22|56\.20003/i.test(citation);
+            if (isWalkingWorkingSurfaceCitation) {
+              score -= 100;
+              matchingReasons.push("applied safety shower access standard penalty");
             }
           }
 

@@ -12,7 +12,9 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [status, setStatus] = useState("");
-  const [statusType, setStatusType] = useState<"idle" | "success" | "error">("idle");
+  const [statusType, setStatusType] = useState<"idle" | "success" | "error">(
+    "idle",
+  );
   const [loading, setLoading] = useState(false);
 
   async function handleLogin(event: React.FormEvent) {
@@ -41,14 +43,13 @@ export default function LoginPage() {
       if (data.token) {
         window.localStorage.setItem("sentinel_auth_token", data.token);
         window.localStorage.setItem("token", data.token);
-
-        if (data.user) {
-          window.localStorage.setItem("sentinel_auth_user", JSON.stringify(data.user));
-        }
       }
 
       if (data.user) {
-        window.localStorage.setItem("sentinel_auth_user", JSON.stringify(data.user));
+        window.localStorage.setItem(
+          "sentinel_auth_user",
+          JSON.stringify(data.user),
+        );
       }
 
       setStatusType("success");
@@ -63,80 +64,136 @@ export default function LoginPage() {
   }
 
   return (
-    <section className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-      <div className="rounded-[28px] bg-[#0B1320] p-6 text-white shadow-xl shadow-slate-300/40">
-        <p className="text-xs font-black uppercase tracking-[0.28em] text-blue-200">
-          Sentinel Safety
-        </p>
-        <h1 className="mt-3 text-4xl font-black tracking-tight">
-          Welcome back to your command center.
-        </h1>
-        <p className="mt-4 text-sm font-semibold leading-6 text-slate-300">
-          Access inspections, reports, corrective actions, and SafeScope intelligence from your secure workspace.
-        </p>
+    <section className="mx-auto flex max-w-6xl items-center justify-center px-2 py-6">
+      <div className="grid w-full overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl shadow-slate-200/70 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="bg-[#0B1320] p-6 text-white sm:p-8 lg:p-10">
+          <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
+            Sentinel Safety
+          </p>
 
-        <div className="mt-6 space-y-3 text-sm font-bold text-slate-200">
-          <p>✓ Protected workspace access</p>
-          <p>✓ Audit-ready safety records</p>
-          <p>✓ Operational risk intelligence</p>
+          <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight md:text-5xl">
+            Welcome back.
+          </h1>
+
+          <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-slate-300">
+            Access your command center, inspections, reports, corrective actions,
+            and SafeScope intelligence from one secure workspace.
+          </p>
+
+          <div className="mt-8 grid gap-3">
+            {[
+              "Protected workspace access",
+              "Audit-ready safety records",
+              "Operational risk intelligence",
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/10"
+              >
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs font-black text-[#102A43]">
+                  ✓
+                </span>
+                <span className="text-sm font-black text-white">{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <form onSubmit={handleLogin} className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-black text-slate-900">Sign In</h1>
-        <p className="mt-2 text-sm font-semibold text-slate-500">
-          Access your Sentinel Safety workspace.
-        </p>
-
-        <div className="mt-5 space-y-3">
-          <input
-            autoComplete="email"
-            inputMode="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="Email"
-            className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
-          />
-
-          <div className="relative">
-            <input
-              autoComplete="current-password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="Password"
-              type={showPassword ? "text" : "password"}
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 pr-20 text-sm font-bold outline-none focus:border-[#1D72B8]"
-            />
-            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8]">
-              {showPassword ? "Hide" : "Show"}
-            </button>
-          </div>
-
-          <button type="submit" disabled={loading} className="block w-full rounded-xl bg-[#102A43] px-5 py-3 text-center text-sm font-black text-white disabled:opacity-60">
-            {loading ? "Signing In..." : "Sign In"}
-          </button>
-
-          <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-            <Link href="/register" className="text-sm font-black text-[#1D72B8] hover:underline">
-              Create an Account
-            </Link>
-
-            <Link href="/forgot-password" className="text-sm font-black text-slate-500 hover:text-[#1D72B8] hover:underline">
-              Forgot Password?
-            </Link>
-          </div>
-
-          {status && (
-            <p className={`rounded-xl p-3 text-sm font-bold ${
-              statusType === "error" ? "bg-red-50 text-red-700" :
-              statusType === "success" ? "bg-emerald-50 text-emerald-700" :
-              "bg-slate-50 text-slate-600"
-            }`}>
-              {status}
+        <form onSubmit={handleLogin} className="p-6 sm:p-8 lg:p-10">
+          <div className="mx-auto max-w-md">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+              Sign In
             </p>
-          )}
-        </div>
-      </form>
+
+            <h2 className="mt-2 text-3xl font-black text-slate-900">
+              Access your workspace
+            </h2>
+
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
+              Enter your email and password to continue.
+            </p>
+
+            <div className="mt-6 space-y-4">
+              <label className="block">
+                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+                  Email
+                </span>
+                <input
+                  autoComplete="email"
+                  inputMode="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white"
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+                  Password
+                </span>
+
+                <div className="relative">
+                  <input
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
+                    placeholder="Enter your password"
+                    type={showPassword ? "text" : "password"}
+                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 pr-20 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8]"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
+              </label>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="mx-auto block rounded-xl bg-[#102A43] px-8 py-3 text-center text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {loading ? "Signing In..." : "Sign In"}
+              </button>
+
+              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-1">
+                <Link
+                  href="/register"
+                  className="text-sm font-black text-[#1D72B8] hover:underline"
+                >
+                  Create an account
+                </Link>
+
+                <Link
+                  href="/forgot-password"
+                  className="text-sm font-black text-slate-500 hover:text-[#1D72B8] hover:underline"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+
+              {status && (
+                <p
+                  className={`rounded-xl px-3 py-3 text-sm font-bold leading-5 ${
+                    statusType === "error"
+                      ? "bg-red-50 text-red-700"
+                      : statusType === "success"
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "bg-slate-50 text-slate-600"
+                  }`}
+                >
+                  {status}
+                </p>
+              )}
+            </div>
+          </div>
+        </form>
+      </div>
     </section>
   );
 }

@@ -99,7 +99,7 @@ export default function CurrentHazardCard({
   return (
     <section
       ref={cardRef}
-      className="fixed inset-x-0 bottom-24 z-40 mx-auto w-[calc(100%-1rem)] max-w-3xl rounded-[1.05rem] border border-slate-200 bg-white/95 shadow-[0_10px_24px_rgba(15,23,42,0.18)] backdrop-blur sm:bottom-8"
+      className="fixed inset-x-0 bottom-28 z-40 mx-auto w-[calc(100%-1rem)] max-w-3xl rounded-[1.05rem] border border-slate-200 bg-white/95 shadow-[0_10px_24px_rgba(15,23,42,0.18)] backdrop-blur lg:bottom-16"
     >
       <button
         type="button"

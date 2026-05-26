@@ -129,6 +129,27 @@ export const STANDARDS_MAPPING: Record<string, SafeScopeStandardMapping[]> = {
     },
   ],
 
+  'Mobile Equipment / Traffic': [
+    {
+      citation: '1910.178',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Powered industrial truck operation and safety requirements',
+    },
+    {
+      citation: '30 CFR 56.9100',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Mobile equipment operators must maintain control of equipment',
+    },
+    {
+      citation: '30 CFR 56.9200',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Traffic control and safe movement of equipment near persons',
+    },
+  ],
+
   'Hazard Communication': [
     {
       citation: '1910.1200',
@@ -137,7 +158,6 @@ export const STANDARDS_MAPPING: Record<string, SafeScopeStandardMapping[]> = {
       rationale: 'Hazard communication requirements for chemical containers and labels',
     },
   ],
-
 
   "Confined Space": [
     {
@@ -232,13 +252,78 @@ export const STANDARDS_MAPPING: Record<string, SafeScopeStandardMapping[]> = {
     },
   ],
 
-
   Access: [
     {
       citation: '30 CFR 56.11001',
       agency: 'MSHA',
       scope: 'msha',
       rationale: 'Safe access must be provided and maintained',
+    },
+  ],
+
+  "Trenching & Shoring": [
+    {
+      citation: '1926.651',
+      agency: 'OSHA',
+      scope: 'osha_construction',
+      rationale: 'Specific excavation requirements and cave-in protection',
+    },
+    {
+      citation: '1926.652',
+      agency: 'OSHA',
+      scope: 'osha_construction',
+      rationale: 'Requirements for protective systems in excavations',
+    },
+  ],
+
+  "Lifting & Rigging": [
+    {
+      citation: '1910.184',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Sling safety requirements and visual inspection daily',
+    },
+    {
+      citation: '1926.251',
+      agency: 'OSHA',
+      scope: 'osha_construction',
+      rationale: 'Rigging equipment for material handling requirements',
+    },
+    {
+      citation: '30 CFR 56.16007',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Hoisting hook safety latches and strap safety requirements',
+    },
+  ],
+
+  "Material Handling": [
+    {
+      citation: '1910.101',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Compressed gas cylinder storage, handling, and security',
+    },
+    {
+      citation: '30 CFR 56.16005',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'Securing gas cylinders upright with chains and caps',
+    },
+    {
+      citation: '30 CFR 56.13021',
+      agency: 'MSHA',
+      scope: 'msha',
+      rationale: 'High-pressure air hose safety chains or whipchecks',
+    },
+  ],
+
+  "Powered Industrial Trucks": [
+    {
+      citation: '1910.178',
+      agency: 'OSHA',
+      scope: 'osha_general',
+      rationale: 'Powered industrial truck operator training and safety seatbelts',
     },
   ],
 };

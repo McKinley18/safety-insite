@@ -6,6 +6,90 @@ import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspection
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
+function NavyStepHeader({
+  step,
+  title,
+  description,
+  stats,
+}: {
+  step: string;
+  title: string;
+  description: string;
+  stats: Array<{ label: string; value: string | number }>;
+}) {
+  return (
+    <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
+      <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+        {step}
+      </p>
+
+      <h2 className="mt-1 text-2xl font-black text-white">{title}</h2>
+
+      <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-blue-100">
+        {description}
+      </p>
+
+      <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+        {stats.map((item) => (
+          <div
+            key={item.label}
+            className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15"
+          >
+            <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
+              {item.label}
+            </p>
+            <p className="mt-1 text-lg font-black text-white">{item.value}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function StepHeroCard({
+  step,
+  title,
+  description,
+  stats,
+}: {
+  step: string;
+  title: string;
+  description: string;
+  stats?: Array<{ label: string; value: string | number }>;
+}) {
+  return (
+    <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
+      <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+        {step}
+      </p>
+
+      <h2 className="mt-1 text-2xl font-black text-white">{title}</h2>
+
+      <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-blue-100">
+        {description}
+      </p>
+
+      {!!stats?.length && (
+        <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+          {stats.map((item) => (
+            <div
+              key={item.label}
+              className="flex min-h-[76px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15"
+            >
+              <p className="text-center text-[9px] font-black uppercase tracking-wide text-blue-100">
+                {item.label}
+              </p>
+              <p className="mt-1 text-center text-lg font-black text-white">
+                {item.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 type InspectionStepRendererProps = {
   currentStep: number;
   isAdvancedMode: boolean;
@@ -154,7 +238,7 @@ export default function InspectionStepRenderer({
   return (
     <div className="px-1 py-1 sm:px-2">
       {currentStep === 1 && (
-        <div className="space-y-2">
+        <div className="space-y-4">
           <EvidenceCaptureSection
             photos={photos}
             setPhotos={setPhotos}
@@ -176,7 +260,8 @@ export default function InspectionStepRenderer({
       )}
 
       {currentStep === 2 && (
-        <SafeScopeInspectionStep
+        <div className="space-y-4">
+          <SafeScopeInspectionStep
           hazardCategory={hazardCategory}
           setHazardCategory={setHazardCategory}
           safeScopeHelpOpen={safeScopeHelpOpen}
@@ -202,9 +287,25 @@ export default function InspectionStepRenderer({
           safeScopeStandardsOpen={safeScopeStandardsOpen}
           setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
         />
+        </div>
       )}
       {currentStep === 3 && (
-        <FindingReviewEditor
+        <div className="space-y-4">
+          <StepHeroCard
+            step="Step 3"
+            title="Standards & Actions"
+            description="Confirm selected standards, validate risk, and prepare corrective actions for the finding."
+            stats={[
+              { label: "Standards", value: selectedStandards.length },
+              {
+                label: "Actions",
+                value: selectedGeneratedActions.length + manualActions.length,
+              },
+              { label: "Risk", value: severity && likelihood ? "Set" : "Open" },
+            ]}
+          />
+
+          <FindingReviewEditor
           description={description}
           setDescription={setDescription}
           location={location}
@@ -237,6 +338,7 @@ export default function InspectionStepRenderer({
           addManualAction={addManualAction}
           removeManualAction={removeManualAction}
         />
+        </div>
       )}
 
     </div>

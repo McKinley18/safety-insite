@@ -1,7 +1,6 @@
 "use client";
 
 import { getCoverPage, setCoverPage } from "@/lib/reportStorage";
-import PageHeader from "@/components/ui/PageHeader";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -81,11 +80,18 @@ export default function InspectionCoverPage() {
 
   return (
     <section>
-      <PageHeader
-        eyebrow="Inspection Start"
-        title="Start Field Inspection"
-        description="Capture the problem first. Report details can come from workspace settings and be reviewed before final output."
-      />
+      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-center text-white shadow-sm sm:p-6">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          Inspection Start
+        </p>
+        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          Start Field Inspection
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Capture the problem first. Report details can come from workspace
+          settings and be reviewed before final output.
+        </p>
+      </section>
 
       <div className="rounded-2xl border border-blue-100 bg-[#F4F9FF] px-4 py-4">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">

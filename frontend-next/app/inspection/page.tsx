@@ -1,5 +1,4 @@
 "use client";
-import SafeScopeDisclaimer from "@/components/compliance/SafeScopeDisclaimer";
 
 import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
@@ -38,6 +37,7 @@ import {
 } from "@/lib/evidenceStorage";
 import { enqueueOfflineItem } from "@/lib/offlineQueue";
 import FinalizeInspectionSection from "@/components/inspection/FinalizeInspectionSection";
+import GenerateReportSection from "@/components/inspection/GenerateReportSection";
 import InspectionStepRenderer from "@/components/inspection/InspectionStepRenderer";
 import CurrentHazardCard from "@/components/inspection/CurrentHazardCard";
 import InspectionWorkflowHeader from "@/components/inspection/InspectionWorkflowHeader";
@@ -960,9 +960,7 @@ export default function InspectionPage() {
   }
 
   return (
-    <div className="pb-16">
-      <SafeScopeDisclaimer compact tone="warning" />
-
+    <div className="pb-64 lg:pb-48">
       <InspectionWorkflowHeader
         currentStep={currentStep}
         steps={steps}
@@ -1067,6 +1065,20 @@ export default function InspectionPage() {
         findings={findings}
         editFinding={editFinding}
         deleteFinding={deleteFinding}
+      />
+
+      <GenerateReportSection
+        currentStep={currentStep}
+        findings={findings}
+        includeStandardsInReport={includeStandardsInReport}
+        setIncludeStandardsInReport={setIncludeStandardsInReport}
+        includeActionsInReport={includeActionsInReport}
+        setIncludeActionsInReport={setIncludeActionsInReport}
+        includePhotosInReport={includePhotosInReport}
+        setIncludePhotosInReport={setIncludePhotosInReport}
+        includeSafeScopeNotesInReport={includeSafeScopeNotesInReport}
+        setIncludeSafeScopeNotesInReport={setIncludeSafeScopeNotesInReport}
+        generateReport={generateReport}
       />
 
       {currentStep < 4 && (

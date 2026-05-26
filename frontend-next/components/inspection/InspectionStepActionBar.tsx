@@ -31,7 +31,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 1) {
     return (
-      <div className="sticky bottom-3 z-20 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
         <div className="text-center">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Capture Finding
@@ -57,7 +57,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 2) {
     return (
-      <div className="sticky bottom-3 z-20 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
@@ -95,7 +95,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 3) {
     return (
-      <div className="sticky bottom-3 z-20 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
@@ -120,7 +120,7 @@ export default function InspectionStepActionBar({
               onClick={() => goToInspectionStep(4)}
               className="rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
             >
-              Finalize Report
+              Finalize Findings
             </button>
           </div>
         </div>
@@ -130,14 +130,39 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 4) {
     return (
-      <div className="sticky bottom-3 z-20 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-              Finalize
+              Finalize Findings
             </p>
             <p className="mt-1 text-sm font-semibold text-slate-600">
-              Save the current finding if needed, then generate the inspection report.
+              Save, review, and edit findings before choosing report options.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => goToInspectionStep(5)}
+            className="rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
+          >
+            Continue to Report Options
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (currentStep === 5) {
+    return (
+      <div className="sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+              Generate Report
+            </p>
+            <p className="mt-1 text-sm font-semibold text-slate-600">
+              Confirm report options and generate the final inspection report.
             </p>
           </div>
 

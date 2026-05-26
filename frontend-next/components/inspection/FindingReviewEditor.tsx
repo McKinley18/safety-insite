@@ -94,11 +94,11 @@ export default function FindingReviewEditor({
 
   return (
     <section className="space-y-4">
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+      <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
           Finding Review
         </p>
-        <h2 className="mt-1 text-xl font-black text-slate-900">
+        <h2 className="mt-1 text-2xl font-black text-white">
           Confirm finding details
         </h2>
 
@@ -155,7 +155,7 @@ export default function FindingReviewEditor({
               value={description}
               onChange={(event) => setDescription(event.target.value)}
               placeholder="Describe what was observed"
-              className="min-h-28 w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold leading-6 text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
+              className="min-h-28 w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 leading-6 text-sm font-semibold leading-6 text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-slate-50"
             />
           </label>
 

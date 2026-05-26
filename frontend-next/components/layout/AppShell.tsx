@@ -290,12 +290,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main
-        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-2" : "pb-44 lg:pb-10"}`}
+        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-6" : "pb-44 lg:pb-10"}`}
       >
         {children}
       </main>
 
-      <footer className="mt-auto hidden w-full border-t border-slate-800 bg-[#0F172A] lg:block">
+      <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A]">
         <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link

@@ -104,6 +104,27 @@ export default function InspectionReviewPage() {
 
   const reportPackage = getReportPackageForPlan(previewPlanCode);
 
+  async function updateReportOption(key: string, value: boolean) {
+    if (!report) return;
+
+    const nextReport = {
+      ...report,
+      [key]: value,
+    };
+
+    setReport(nextReport);
+    await setLatestReport(nextReport);
+
+    const existingReports = await getReports<any>();
+    if (Array.isArray(existingReports) && existingReports.length) {
+      await setReports(
+        existingReports.map((item: any) =>
+          item.id === nextReport.id ? nextReport : item,
+        ),
+      );
+    }
+  }
+
   async function exportReport() {
     if (!report) return;
 
@@ -260,7 +281,7 @@ export default function InspectionReviewPage() {
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-              Final Report Review
+              Step 5: Final Review
             </p>
             <h2 className="mt-2 max-w-3xl text-3xl font-black tracking-tight">
               {report.title || "Inspection Report"}
@@ -404,6 +425,76 @@ export default function InspectionReviewPage() {
           <span className="mx-auto rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600 sm:mx-0">
             {reportPackage.shortLabel}
           </span>
+        </div>
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+          Final Report Options
+        </p>
+        <h2 className="mt-1 text-xl font-black text-slate-900">
+          Choose what to include
+        </h2>
+        <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+          These options control the final report review and PDF export.
+        </p>
+
+        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            [
+              "includeStandardsInReport",
+              "Standards",
+              "Selected citations",
+              report.includeStandardsInReport !== false,
+            ],
+            [
+              "includeActionsInReport",
+              "Actions",
+              "Corrective work",
+              report.includeActionsInReport !== false,
+            ],
+            [
+              "includePhotosInReport",
+              "Photos",
+              "Evidence images",
+              report.includePhotosInReport !== false,
+            ],
+            [
+              "includeSafeScopeNotesInReport",
+              "SafeScope Notes",
+              "Validation appendix",
+              Boolean(report.includeSafeScopeNotesInReport),
+            ],
+          ].map(([key, label, desc, checked]: any) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => updateReportOption(key, !checked)}
+              className={`rounded-xl border px-3 py-3 text-left transition ${
+                checked
+                  ? "border-[#1D72B8] bg-[#E8F4FF]"
+                  : "border-slate-200 bg-slate-50"
+              }`}
+            >
+              <span className="flex items-start gap-2">
+                <span
+                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-[#1D72B8] text-xs font-black text-white ${
+                    checked ? "bg-[#1D72B8]" : "bg-white"
+                  }`}
+                >
+                  {checked ? "✓" : ""}
+                </span>
+                <span>
+                  <span className="block text-sm font-black text-slate-900">
+                    {label}
+                  </span>
+                  <span className="mt-0.5 block text-xs font-semibold text-slate-500">
+                    {desc}
+                  </span>
+                </span>
+              </span>
+            </button>
+          ))}
         </div>
       </section>
 

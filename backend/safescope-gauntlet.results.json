@@ -1,0 +1,3122 @@
+{
+  "generatedAt": "2026-05-26T00:49:46.829Z",
+  "apiBaseUrl": "http://localhost:4000",
+  "scenarioFile": "../safescope-gauntlet.seed.json",
+  "total": 100,
+  "passed": 100,
+  "failed": 0,
+  "averageScore": 90.2,
+  "results": [
+    {
+      "scenarioId": "GAUNTLET-001",
+      "observation": "missing fire extinguisher in haul truck",
+      "expectedPrimaryFamily": "Fire Protection",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "Machine"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operation and safety requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-002",
+      "observation": "unguarded conveyor tail pulley",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-003",
+      "observation": "exposed live electrical wiring on packaging machine",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-004",
+      "observation": "open floor edge without guardrails or fall arrest at six feet height",
+      "expectedPrimaryFamily": "Fall Protection",
+      "expectedStandardFamily": "Fall Protection",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-005",
+      "observation": "unlabeled chemical storage tank containing corrosive liquid",
+      "expectedPrimaryFamily": "Hazard Communication",
+      "expectedStandardFamily": "Hazard Communication",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "Confined Space"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.1200",
+          "title": "Hazard communication requirements for chemical containers and labels",
+          "family": "osha_general",
+          "score": 100
+        }
+      ],
+      "classification": "Hazard Communication"
+    },
+    {
+      "scenarioId": "GAUNTLET-006",
+      "observation": "performing cleanout of crusher drive belt pulley while machine is running without lockout applied",
+      "expectedPrimaryFamily": "Lockout / Stored Energy",
+      "expectedStandardFamily": "Lockout / Stored Energy",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Permit-required confined space entry requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 95
+        },
+        {
+          "citation": "1910.219",
+          "title": "Guard belts, pulleys, shafts, gears, and similar power-transmission parts.",
+          "family": "general_industry",
+          "score": 24
+        },
+        {
+          "citation": "1910.147",
+          "title": "Use lockout/tagout to control hazardous energy during service or maintenance.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-007",
+      "observation": "unauthorized employee entry into permit required confined space sewer tank without supervisor or attendant present",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "Hazard Communication"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Control confined space entry with permits, testing, attendants, and rescue planning.",
+          "family": "general_industry",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-008",
+      "observation": "missing steel toe boots and hard hat in active warehouse loading dock area with heavy forklift traffic",
+      "expectedPrimaryFamily": "PPE",
+      "expectedStandardFamily": "PPE",
+      "unacceptableStandardFamilies": [
+        "LOTO",
+        "Confined Space"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-009",
+      "observation": "spillage of fine coal material and mud accumulation on transfer tower travelway catwalk",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 167
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-010",
+      "observation": "blocked emergency exit door locked from the inside in packaging bay area during active shift",
+      "expectedPrimaryFamily": "Emergency Preparedness",
+      "expectedStandardFamily": "Emergency Preparedness",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.36",
+          "title": "Design and construction requirements for exit routes",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.37",
+          "title": "Maintenance, safeguards, and operational features for exit routes",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Emergency Egress"
+    },
+    {
+      "scenarioId": "GAUNTLET-011",
+      "observation": "workers digging an eight-foot deep excavation trench without shoring or sloping system in sandy clay soil",
+      "expectedPrimaryFamily": "Trenching & Shoring",
+      "expectedStandardFamily": "Trenching & Shoring",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Hazard Communication"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1926.651",
+          "title": "Specific excavation requirements and cave-in protection",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "1926.652",
+          "title": "Requirements for protective systems in excavations",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Trenching & Shoring"
+    },
+    {
+      "scenarioId": "GAUNTLET-012",
+      "observation": "damaged and frayed wire rope sling used for overhead crane steel plate lifting",
+      "expectedPrimaryFamily": "Lifting & Rigging",
+      "expectedStandardFamily": "Lifting & Rigging",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "Electrical"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-013",
+      "observation": "unsecured gas cylinder standing upright without chain or cap near oxygen manifold",
+      "expectedPrimaryFamily": "Material Handling",
+      "expectedStandardFamily": "Material Handling",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.101",
+          "title": "Compressed gas cylinder storage, handling, and security",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16005",
+          "title": "Securing gas cylinders upright with chains and caps",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.13021",
+          "title": "High-pressure air hose safety chains or whipchecks",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 12
+        },
+        {
+          "citation": "1910.219",
+          "title": "Guard belts, pulleys, shafts, gears, and similar power-transmission parts.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Material Handling"
+    },
+    {
+      "scenarioId": "GAUNTLET-014",
+      "observation": "operator operating forklift without wearing seatbelt near pedestrian walkway intersection",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Industrial Trucks",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-015",
+      "observation": "haul truck backup alarm inoperative while operating in pit loading area",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Mobile Equipment",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-016",
+      "observation": "visible thick white dust cloud from quarry secondary impact crusher circuit",
+      "expectedPrimaryFamily": "Respirable Dust / Silica",
+      "expectedStandardFamily": "Industrial Hygiene",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.1053",
+          "title": "Respirable crystalline silica exposure controls",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.1153",
+          "title": "Respirable crystalline silica in construction",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.5001",
+          "title": "Exposure limits for airborne contaminants",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Respirable Dust / Silica"
+    },
+    {
+      "scenarioId": "GAUNTLET-017",
+      "observation": "combustible wood shavings and dust piled on top of electrical conduit and junction boxes in mill room",
+      "expectedPrimaryFamily": "Fire / Explosion",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.106",
+          "title": "Flammable liquids handling and storage requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.157",
+          "title": "Portable fire extinguisher requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.4100",
+          "title": "Firefighting equipment requirements at surface metal/nonmetal mines",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "1910.303(b)(1)",
+          "title": "Electrical equipment must be safe and free from recognized hazards.",
+          "family": "general_industry",
+          "score": 24
+        }
+      ],
+      "classification": "Fire / Explosion"
+    },
+    {
+      "scenarioId": "GAUNTLET-018",
+      "observation": "lack of safety chain or secure wire rope connector on high pressure air line from mobile compressor",
+      "expectedPrimaryFamily": "Material Handling",
+      "expectedStandardFamily": "Material Handling",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 12
+        },
+        {
+          "citation": "1910.219",
+          "title": "Guard belts, pulleys, shafts, gears, and similar power-transmission parts.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-019",
+      "observation": "damaged structural rungs on portable aluminum extension ladder leaning against scaffold frame",
+      "expectedPrimaryFamily": "Fall Protection",
+      "expectedStandardFamily": "Fall Protection",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "Electrical"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-020",
+      "observation": "machine operator bypassed safety light curtain on milling machine using reflective tape to expedite feeding",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-021",
+      "observation": "the operator of the packaging machine reported that the emergency stop button was not functioning",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Emergency Preparedness",
+        "Emergency egress"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-022",
+      "observation": "truck driver reported missing seatbelt buckle assembly inside the cab of the utility vehicle",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Mobile Equipment",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Machine Guarding"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-023",
+      "observation": "chemical reaction vessel cleanout requires worker entry but the electrical lock box was damaged",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "Electrical"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Permit-required confined space entry requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-024",
+      "observation": "fire in the computer server cabinet was extinguished but the cooling fan guards were not reinstalled",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "Electrical"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-025",
+      "observation": "catwalk handrail loose near the belt conveyor drive motor assembly",
+      "expectedPrimaryFamily": "Fall Protection",
+      "expectedStandardFamily": "Fall Protection",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "Machine"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-026",
+      "observation": "electrical panel clear working space obstructed by heavy wooden shipping crates",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "Housekeeping"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-027",
+      "observation": "forklift fuel tank cap leaking liquid petroleum gas during refueling station transfer",
+      "expectedPrimaryFamily": "Fire / Explosion",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Powered Industrial Trucks",
+        "Material Handling"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-028",
+      "observation": "scaffold erection supervisor failed to wear safety glasses during bolt tensioning walkthrough",
+      "expectedPrimaryFamily": "PPE",
+      "expectedStandardFamily": "PPE",
+      "unacceptableStandardFamilies": [
+        "Fall Protection",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.1053",
+          "title": "Respirable crystalline silica exposure controls",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.1153",
+          "title": "Respirable crystalline silica in construction",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.5001",
+          "title": "Exposure limits for airborne contaminants",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Respirable Dust / Silica"
+    },
+    {
+      "scenarioId": "GAUNTLET-029",
+      "observation": "dust suppression water hose leaking on the stairs of the secondary crusher floor",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Respirable Dust / Silica",
+        "Material Handling"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-030",
+      "observation": "maintenance lock missing from electrical switch room door containing 480v switchgear",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Emergency egress",
+        "Emergency Preparedness"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-031",
+      "observation": "welding generator lead cable insulation damaged exposing bare copper wire near structural steel",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-032",
+      "observation": "missing self-closing safety gate on vertical ladderway platform opening at 15 feet height",
+      "expectedPrimaryFamily": "Fall Protection",
+      "expectedStandardFamily": "Fall Protection",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 77
+        },
+        {
+          "citation": "1910.219",
+          "title": "Guard belts, pulleys, shafts, gears, and similar power-transmission parts.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-033",
+      "observation": "forklift forks left suspended in the air two feet above floor level while operator walked away",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Industrial Trucks",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "Machine Guarding"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-034",
+      "observation": "loose guardrails and missing toe boards on high screen deck access travelway",
+      "expectedPrimaryFamily": "Fall Protection",
+      "expectedStandardFamily": "Fall Protection",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-035",
+      "observation": "combustible trash and oil soaked rags stored in open cardboard boxes in machining shop",
+      "expectedPrimaryFamily": "Fire / Explosion",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.106",
+          "title": "Flammable liquids handling and storage requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.157",
+          "title": "Portable fire extinguisher requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.4100",
+          "title": "Firefighting equipment requirements at surface metal/nonmetal mines",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Fire / Explosion"
+    },
+    {
+      "scenarioId": "GAUNTLET-036",
+      "observation": "worker cleared jammed cardboard folder without isolating air power or locking electrical panels",
+      "expectedPrimaryFamily": "Lockout / Stored Energy",
+      "expectedStandardFamily": "Lockout / Stored Energy",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-037",
+      "observation": "safety shower and eye wash station blocked by plastic chemical drum storage pallet in mixing bay",
+      "expectedPrimaryFamily": "PPE",
+      "expectedStandardFamily": "PPE",
+      "unacceptableStandardFamilies": [
+        "LOTO",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-038",
+      "observation": "loose coal and spillage piled under conveyor drive belt assembly on primary screen floor",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-039",
+      "observation": "missing exit sign and direction indicators in back warehouse distribution aisle",
+      "expectedPrimaryFamily": "Emergency Preparedness",
+      "expectedStandardFamily": "Emergency Preparedness",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.36",
+          "title": "Design and construction requirements for exit routes",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.37",
+          "title": "Maintenance, safeguards, and operational features for exit routes",
+          "family": "osha_general",
+          "score": 100
+        }
+      ],
+      "classification": "Emergency Egress"
+    },
+    {
+      "scenarioId": "GAUNTLET-040",
+      "observation": "no secondary container labels on spray bottles containing solvent cleaner used in lathe maintenance",
+      "expectedPrimaryFamily": "Hazard Communication",
+      "expectedStandardFamily": "Hazard Communication",
+      "unacceptableStandardFamilies": [
+        "LOTO",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.1200",
+          "title": "Hazard communication requirements for chemical containers and labels",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.147",
+          "title": "Use lockout/tagout to control hazardous energy during service or maintenance.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Hazard Communication"
+    },
+    {
+      "scenarioId": "GAUNTLET-041",
+      "observation": "broken latch on emergency fire door in logistics storage room preventing positive closure during alarm test",
+      "expectedPrimaryFamily": "Emergency Preparedness",
+      "expectedStandardFamily": "Emergency Preparedness",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-042",
+      "observation": "grinder tool rest opening clearance measured at one-half inch from grinding wheel face",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-043",
+      "observation": "oxygen and acetylene manifolds stored touching without fire barrier wall inside gas cylinder yard",
+      "expectedPrimaryFamily": "Material Handling",
+      "expectedStandardFamily": "Material Handling",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.101",
+          "title": "Compressed gas cylinder storage, handling, and security",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16005",
+          "title": "Securing gas cylinders upright with chains and caps",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.13021",
+          "title": "High-pressure air hose safety chains or whipchecks",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Material Handling"
+    },
+    {
+      "scenarioId": "GAUNTLET-044",
+      "observation": "excavation dirt and stone spoil piles placed right on the edge of six-foot trench wall",
+      "expectedPrimaryFamily": "Trenching & Shoring",
+      "expectedStandardFamily": "Trenching & Shoring",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1926.651",
+          "title": "Specific excavation requirements and cave-in protection",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "1926.652",
+          "title": "Requirements for protective systems in excavations",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Trenching & Shoring"
+    },
+    {
+      "scenarioId": "GAUNTLET-045",
+      "observation": "forklift truck warning horn does not sound when pressed at blind aisle intersection",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Industrial Trucks",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "Machine Guarding"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-046",
+      "observation": "open face electrical breaker box door exposing internal energized bus bar at 240v in assembly line floor",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-047",
+      "observation": "lack of lock or safety latch hook on hoisting hook used with shop mobile crane lifting engine blocks",
+      "expectedPrimaryFamily": "Lifting & Rigging",
+      "expectedStandardFamily": "Lifting & Rigging",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-048",
+      "observation": "employees entering acid digester pit without testing atmospheric concentration of toxic hydrogen sulfide gas",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-049",
+      "observation": "oil leak from overhead compressor crane dripping on active metal cutting lathe operator floor area",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-050",
+      "observation": "lack of monthly visual check tags on portable class a fire extinguishers in machining shop office aisle",
+      "expectedPrimaryFamily": "Fire / Explosion",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.106",
+          "title": "Flammable liquids handling and storage requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.157",
+          "title": "Portable fire extinguisher requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.4100",
+          "title": "Firefighting equipment requirements at surface metal/nonmetal mines",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Fire / Explosion"
+    },
+    {
+      "scenarioId": "GAUNTLET-051",
+      "observation": "missing lock on the high voltage disconnect box inside crusher substation during cleanout work",
+      "expectedPrimaryFamily": "Lockout / Stored Energy",
+      "expectedStandardFamily": "Lockout / Stored Energy",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Permit-required confined space entry requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-052",
+      "observation": "damaged protective cover plate on industrial sewing machine v-belt drive assembly exposing nip point",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-053",
+      "observation": "cracked structural weld on structural steel spreader bar lifting frame hook ring",
+      "expectedPrimaryFamily": "Lifting & Rigging",
+      "expectedStandardFamily": "Lifting & Rigging",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-054",
+      "observation": "masonry wall scaffold frame erected on loose dirt floor using stack bricks instead of mudsills",
+      "expectedPrimaryFamily": "Fall Protection",
+      "expectedStandardFamily": "Fall Protection",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-055",
+      "observation": "pedestrian walkway line in logistics warehouse warehouse path obstructed by stack conveyor pallets",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Industrial Trucks",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operation and safety requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-056",
+      "observation": "unguarded high-voltage electrical contacts inside elevator machinery access cabinet door unlocked",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-057",
+      "observation": "unsafe employee entry into high-voltage switch room without rubber hazard-insulated protective gloves",
+      "expectedPrimaryFamily": "PPE",
+      "expectedStandardFamily": "PPE",
+      "unacceptableStandardFamilies": [
+        "LOTO",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-058",
+      "observation": "employee entering mixing vessel cleanout hatch without permit, chemical isolation blanking or air testing",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Permit-required confined space entry requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-059",
+      "observation": "uncoiled electrical cords and grease stains creating trip slip hazard on production conveyor floor passageway",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 179
+        }
+      ],
+      "classification": "Walking/Working Surfaces"
+    },
+    {
+      "scenarioId": "GAUNTLET-060",
+      "observation": "missing portable carbon dioxide fire extinguisher next to primary electrical distribution board panel board",
+      "expectedPrimaryFamily": "Fire / Explosion",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-061",
+      "observation": "crusher feed conveyor v-belt drive guard loose hanging off structural mounting frame",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-062",
+      "observation": "haul truck steering hydraulic leak dripping fluid on front brake disc assembly",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Mobile Equipment",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operation and safety requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-063",
+      "observation": "broken structural hinge on electrical panel safety cabinet exposing inner live switches to rain in quarry yard",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-064",
+      "observation": "packaging room floor cluttered with scrap cardboard cuttings and plastic wrap creating trip hazard near conveyors",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 112
+        }
+      ],
+      "classification": "Walking/Working Surfaces"
+    },
+    {
+      "scenarioId": "GAUNTLET-065",
+      "observation": "missing safety glasses and face shield on machinist grinding steel blades on bench grinder",
+      "expectedPrimaryFamily": "PPE",
+      "expectedStandardFamily": "PPE",
+      "unacceptableStandardFamilies": [
+        "LOTO",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.1053",
+          "title": "Respirable crystalline silica exposure controls",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.1153",
+          "title": "Respirable crystalline silica in construction",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.5001",
+          "title": "Exposure limits for airborne contaminants",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Respirable Dust / Silica"
+    },
+    {
+      "scenarioId": "GAUNTLET-066",
+      "observation": "lack of lock or safety latch hook on hoisting hook used with shop mobile crane lifting engine blocks",
+      "expectedPrimaryFamily": "Lifting & Rigging",
+      "expectedStandardFamily": "Lifting & Rigging",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 100,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": true,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-067",
+      "observation": "unlabeled safety data sheet folder missing files for chemical cleaners used in machining shop",
+      "expectedPrimaryFamily": "Hazard Communication",
+      "expectedStandardFamily": "Hazard Communication",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.1200",
+          "title": "Hazard communication requirements for chemical containers and labels",
+          "family": "osha_general",
+          "score": 100
+        }
+      ],
+      "classification": "Hazard Communication"
+    },
+    {
+      "scenarioId": "GAUNTLET-068",
+      "observation": "employees entering paint mixer vessel cleanout hatch without permit, air testing or helper present",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Permit-required confined space entry requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-069",
+      "observation": "grease puddle and wet spot under conveyor drive gearbox creating slip hazard in main passageway",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-070",
+      "observation": "lack of exit door signage over back packaging room emergency double door",
+      "expectedPrimaryFamily": "Emergency Preparedness",
+      "expectedStandardFamily": "Emergency Preparedness",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.36",
+          "title": "Design and construction requirements for exit routes",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.37",
+          "title": "Maintenance, safeguards, and operational features for exit routes",
+          "family": "osha_general",
+          "score": 100
+        }
+      ],
+      "classification": "Emergency Egress"
+    },
+    {
+      "scenarioId": "GAUNTLET-071",
+      "observation": "loose catwalk floor grating creating hole exposure on head pulley access tower",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-072",
+      "observation": "missing rubber insulating mat in front of 480v distribution panels in motor control center MCC room",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-073",
+      "observation": "acid transfer piping secondary containment outer jacket cracked in chemical packaging vault",
+      "expectedPrimaryFamily": "Hazard Communication",
+      "expectedStandardFamily": "Hazard Communication",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-074",
+      "observation": "exit route pathway in warehouse shipping aisle obstructed by wood pallet stack",
+      "expectedPrimaryFamily": "Emergency Preparedness",
+      "expectedStandardFamily": "Emergency Preparedness",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.36",
+          "title": "Design and construction requirements for exit routes",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.37",
+          "title": "Maintenance, safeguards, and operational features for exit routes",
+          "family": "osha_general",
+          "score": 100
+        }
+      ],
+      "classification": "Emergency Egress"
+    },
+    {
+      "scenarioId": "GAUNTLET-075",
+      "observation": "machining shop lathe operator failing to wear safety glasses during high speed turning cuts",
+      "expectedPrimaryFamily": "PPE",
+      "expectedStandardFamily": "PPE",
+      "unacceptableStandardFamilies": [
+        "LOTO",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "1910.1053",
+          "title": "Respirable crystalline silica exposure controls",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.1153",
+          "title": "Respirable crystalline silica in construction",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.5001",
+          "title": "Exposure limits for airborne contaminants",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Respirable Dust / Silica"
+    },
+    {
+      "scenarioId": "GAUNTLET-076",
+      "observation": "unguarded pinch point on cardboard box palletizer conveyor return pulley under assembly line",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-077",
+      "observation": "heavy industrial crane hook used for lifting mold plates missing safety locking latch in foundry shop",
+      "expectedPrimaryFamily": "Lifting & Rigging",
+      "expectedStandardFamily": "Lifting & Rigging",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 100,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": true,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-078",
+      "observation": "workers executing internal tank weld repairs without permit validation or attendant stand-by outside",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Control confined space entry with permits, testing, attendants, and rescue planning.",
+          "family": "general_industry",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-079",
+      "observation": "water condensation leak on logistics warehouse warehouse path creating wet slip hazard in walkway",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 179
+        }
+      ],
+      "classification": "Walking/Working Surfaces"
+    },
+    {
+      "scenarioId": "GAUNTLET-080",
+      "observation": "broken visual pressure dial gage on carbon dioxide fire extinguisher next to primary server bay",
+      "expectedPrimaryFamily": "Fire / Explosion",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.106",
+          "title": "Flammable liquids handling and storage requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.157",
+          "title": "Portable fire extinguisher requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.4100",
+          "title": "Firefighting equipment requirements at surface metal/nonmetal mines",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Fire / Explosion"
+    },
+    {
+      "scenarioId": "GAUNTLET-081",
+      "observation": "quarry conveyor drive gear mesh exposed without structural guarding plate near motor housing",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-082",
+      "observation": "service utility vehicle parking brakes inoperative during quarry pit operation",
+      "expectedPrimaryFamily": "Mobile Equipment / Traffic",
+      "expectedStandardFamily": "Powered Mobile Equipment",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "30 CFR 56.9100",
+          "title": "Mobile equipment operators must maintain control of equipment",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.9200",
+          "title": "Traffic control and safe movement of equipment near persons",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Mobile Equipment / Traffic"
+    },
+    {
+      "scenarioId": "GAUNTLET-083",
+      "observation": "cracked safety cover casing on primary substation transformer bus exposing copper lead wire at 4160v",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-084",
+      "observation": "logistics corridor floor passageway obstructed by loose pallet wrap and plastic strap bands near dock doors",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Walking/Working Surfaces"
+    },
+    {
+      "scenarioId": "GAUNTLET-085",
+      "observation": "machining bench grinder wheel rest opening clearance measured at five-eighths inch from grinding face",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-086",
+      "observation": "lack of Lockout tag and padlock on primary screen disconnect during screen motor repair",
+      "expectedPrimaryFamily": "Lockout / Stored Energy",
+      "expectedStandardFamily": "Lockout / Stored Energy",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.147",
+          "title": "Use lockout/tagout to control hazardous energy during service or maintenance.",
+          "family": "general_industry",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work must be de-energized before work is performed",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.14105",
+          "title": "Repairs or maintenance must not be performed until machinery is blocked against hazardous motion",
+          "family": "msha",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 12
+        },
+        {
+          "citation": "1910.219",
+          "title": "Guard belts, pulleys, shafts, gears, and similar power-transmission parts.",
+          "family": "general_industry",
+          "score": 12
+        }
+      ],
+      "classification": "Lockout / Stored Energy"
+    },
+    {
+      "scenarioId": "GAUNTLET-087",
+      "observation": "missing hazardous chemical material safety data sheets SDS folder for solvent cleaners in maintenance room",
+      "expectedPrimaryFamily": "Hazard Communication",
+      "expectedStandardFamily": "Hazard Communication",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.1200",
+          "title": "Hazard communication requirements for chemical containers and labels",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.147",
+          "title": "Use lockout/tagout to control hazardous energy during service or maintenance.",
+          "family": "general_industry",
+          "score": 18
+        }
+      ],
+      "classification": "Hazard Communication"
+    },
+    {
+      "scenarioId": "GAUNTLET-088",
+      "observation": "employees executing internal chemical mixer vessel cleanout work without permit check or standby attendant present",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Control confined space entry with permits, testing, attendants, and rescue planning.",
+          "family": "general_industry",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-089",
+      "observation": "grease accumulation gearbox leakage creating slip trip hazard on production conveyor floor travelway",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 279
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-090",
+      "observation": "lack of exit door signage over back packaging room emergency double doors path",
+      "expectedPrimaryFamily": "Emergency Preparedness",
+      "expectedStandardFamily": "Emergency Preparedness",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.36",
+          "title": "Design and construction requirements for exit routes",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.37",
+          "title": "Maintenance, safeguards, and operational features for exit routes",
+          "family": "osha_general",
+          "score": 100
+        }
+      ],
+      "classification": "Emergency Egress"
+    },
+    {
+      "scenarioId": "GAUNTLET-091",
+      "observation": "loose catwalk floor grating creating hole fall hazard on head pulley access tower",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 100
+        }
+      ],
+      "classification": "Fall Protection"
+    },
+    {
+      "scenarioId": "GAUNTLET-092",
+      "observation": "missing rubber insulating matting in front of 480v distribution panels mcc room",
+      "expectedPrimaryFamily": "Electrical",
+      "expectedStandardFamily": "Electrical",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.12016",
+          "title": "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
+          "family": "msha",
+          "score": 90
+        }
+      ],
+      "classification": "Electrical"
+    },
+    {
+      "scenarioId": "GAUNTLET-093",
+      "observation": "acid transfer piping secondary containment outer jacket cracked chemical packaging vault",
+      "expectedPrimaryFamily": "Hazard Communication",
+      "expectedStandardFamily": "Hazard Communication",
+      "unacceptableStandardFamilies": [
+        "Fire / Explosion",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-094",
+      "observation": "exit route shipping path logistics warehouse warehouse path pallet stack",
+      "expectedPrimaryFamily": "Emergency Preparedness",
+      "expectedStandardFamily": "Emergency Preparedness",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.36",
+          "title": "Design and construction requirements for exit routes",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.37",
+          "title": "Maintenance, safeguards, and operational features for exit routes",
+          "family": "osha_general",
+          "score": 100
+        }
+      ],
+      "classification": "Emergency Egress"
+    },
+    {
+      "scenarioId": "GAUNTLET-095",
+      "observation": "machining shop lathe operator failing safety glasses high speed turning",
+      "expectedPrimaryFamily": "PPE",
+      "expectedStandardFamily": "PPE",
+      "unacceptableStandardFamilies": [
+        "LOTO",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.178",
+          "title": "Powered industrial truck operator training, maintenance, and safety requirements including operator restraint systems (seatbelts).",
+          "family": "general_industry",
+          "score": 110
+        },
+        {
+          "citation": "1910.1053",
+          "title": "Respirable crystalline silica exposure controls",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.1153",
+          "title": "Respirable crystalline silica in construction",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.5001",
+          "title": "Exposure limits for airborne contaminants",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Respirable Dust / Silica"
+    },
+    {
+      "scenarioId": "GAUNTLET-096",
+      "observation": "unguarded return pulley conveyor packaging belt vbelt secondary belt under packaging assembly line",
+      "expectedPrimaryFamily": "Machine Guarding",
+      "expectedStandardFamily": "Machine Guarding",
+      "unacceptableStandardFamilies": [
+        "Walking/Working Surfaces",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "30 CFR 56.14107(a)",
+          "title": "Guard moving machine parts that could contact employees.",
+          "family": "mining",
+          "score": 90
+        }
+      ],
+      "classification": "Machine Guarding"
+    },
+    {
+      "scenarioId": "GAUNTLET-097",
+      "observation": "heavy crane hook structural hoist hook missing safety locking latch foundry shop mold plate lifting",
+      "expectedPrimaryFamily": "Lifting & Rigging",
+      "expectedStandardFamily": "Lifting & Rigging",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "Fall Protection"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.184",
+          "title": "Sling safety requirements and visual inspection daily",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1926.251",
+          "title": "Rigging equipment for material handling requirements",
+          "family": "osha_construction",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.16007",
+          "title": "Hoisting hook safety latches and strap safety requirements",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Lifting & Rigging"
+    },
+    {
+      "scenarioId": "GAUNTLET-098",
+      "observation": "workers executing internal mixer tank repairs no permit validation continuous attendant outside",
+      "expectedPrimaryFamily": "Confined Space",
+      "expectedStandardFamily": "Confined Space",
+      "unacceptableStandardFamilies": [
+        "PPE",
+        "Walking/Working Surfaces"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.146",
+          "title": "Control confined space entry with permits, testing, attendants, and rescue planning.",
+          "family": "general_industry",
+          "score": 100
+        },
+        {
+          "citation": "1926 Subpart AA",
+          "title": "Confined spaces in construction requirements",
+          "family": "osha_construction",
+          "score": 100
+        }
+      ],
+      "classification": "Confined Space"
+    },
+    {
+      "scenarioId": "GAUNTLET-099",
+      "observation": "grease accumulation wet spot gearbox leak slip trip hazard production floor passageway path",
+      "expectedPrimaryFamily": "Walking/Working Surfaces",
+      "expectedStandardFamily": "Housekeeping",
+      "unacceptableStandardFamilies": [
+        "Electrical",
+        "PPE"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.22(a)",
+          "title": "Keep walking-working surfaces clean, orderly, and free of hazards.",
+          "family": "general_industry",
+          "score": 179
+        }
+      ],
+      "classification": "Walking/Working Surfaces"
+    },
+    {
+      "scenarioId": "GAUNTLET-100",
+      "observation": "broken visual pressure dial gage carbon dioxide fire extinguisher server bay mcc room",
+      "expectedPrimaryFamily": "Fire / Explosion",
+      "expectedStandardFamily": "Fire / Explosion",
+      "unacceptableStandardFamilies": [
+        "Machine Guarding",
+        "LOTO"
+      ],
+      "score": 90,
+      "passed": true,
+      "primaryFamilyHit": true,
+      "expectedStandardHit": true,
+      "correctiveActionHit": false,
+      "unacceptableHits": [],
+      "topStandards": [
+        {
+          "citation": "1910.106",
+          "title": "Flammable liquids handling and storage requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "1910.157",
+          "title": "Portable fire extinguisher requirements",
+          "family": "osha_general",
+          "score": 100
+        },
+        {
+          "citation": "30 CFR 56.4100",
+          "title": "Firefighting equipment requirements at surface metal/nonmetal mines",
+          "family": "msha",
+          "score": 100
+        }
+      ],
+      "classification": "Fire / Explosion"
+    }
+  ]
+}

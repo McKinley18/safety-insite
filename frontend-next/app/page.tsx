@@ -1,137 +1,271 @@
 import Link from "next/link";
 
+const outcomes = [
+  {
+    label: "Capture",
+    title: "Document hazards in the field",
+    text: "Record photos, locations, observed conditions, and evidence notes in a structured inspection workflow.",
+  },
+  {
+    label: "Analyze",
+    title: "Use SafeScope to support review",
+    text: "Classify hazards, surface risk signals, suggest standards, and organize reasoning for qualified safety review.",
+  },
+  {
+    label: "Act",
+    title: "Turn findings into corrective action",
+    text: "Create report-ready findings, corrective actions, follow-up language, and executive summaries.",
+  },
+];
+
 const capabilities = [
-  {
-    title: "SafeScope Intelligence",
-    text: "Analyze inspection findings with hazard classification, causal reasoning, energy-transfer awareness, confidence calibration, and standards defensibility support.",
-  },
-  {
-    title: "Domain-Specific Safety Logic",
-    text: "Apply specialized reference intelligence for confined space, LOTO, mobile equipment, trenching, electrical, lifting and rigging, and HazCom/GHS scenarios.",
-  },
-  {
-    title: "Audit-Ready Traceability",
-    text: "Capture reasoning snapshots, engine metadata, review signals, and supervisor validation history to support defensible safety decisions.",
-  },
-  {
-    title: "Inspection-to-Action Workflow",
-    text: "Move from observed hazards to standards review, risk scoring, corrective actions, verification language, and report-ready documentation.",
-  },
-];
-
-const trust = [
+  "Hazard photo and evidence capture",
+  "SafeScope hazard classification",
   "MSHA and OSHA standards support",
-  "Curated + CFR-backed standard matching",
-  "Supervisor validation workflow",
-  "Workspace-scoped learning foundations",
-  "Confidence and reasoning drift monitoring",
-  "Decision-support disclaimers built into the workflow",
+  "Risk scoring and priority signals",
+  "Corrective action tracking",
+  "Professional inspection reports",
+  "Executive review summaries",
+  "Analytics and trend intelligence",
 ];
 
-const domains = [
-  "Confined Space",
-  "LOTO / Energy Isolation",
-  "Mobile Equipment",
-  "Trenching",
-  "Electrical",
-  "Lifting & Rigging",
-  "HazCom / GHS",
+const audience = [
+  "Mining operations",
+  "Construction teams",
+  "General industry employers",
+  "Safety managers",
+  "Supervisors",
+  "Auditors and consultants",
+];
+
+const trustPoints = [
+  "Designed as decision support for qualified safety professionals",
+  "Built around reviewable findings, not black-box conclusions",
+  "Supports MSHA and OSHA-focused inspection workflows",
+  "Connects observations, standards, risk, and corrective action",
 ];
 
 export default function MarketingPage() {
   return (
-    <section className="space-y-10">
-      <div className="overflow-hidden rounded-[32px] bg-[#0B1320] p-8 text-white shadow-sm md:p-12">
-        <p className="mb-3 text-xs font-black uppercase tracking-[1px] text-[#5DB7FF]">
-          Sentinel Safety
-        </p>
+    <section className="space-y-8">
+      <div className="overflow-hidden rounded-[32px] bg-[#0B1320] p-6 text-white shadow-sm sm:p-8 md:p-12">
+        <div className="grid gap-8 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#5DB7FF]">
+              Sentinel Safety
+            </p>
 
-        <h1 className="max-w-5xl text-4xl font-black leading-tight md:text-6xl">
-          Safety intelligence for inspections, standards, and corrective action.
-        </h1>
+            <h1 className="mt-4 max-w-5xl text-4xl font-black leading-tight md:text-6xl">
+              See Risk.
+              <span className="block text-[#5DB7FF]">Prevent Harm.</span>
+            </h1>
 
-        <p className="mt-5 max-w-3xl text-base font-semibold leading-7 text-slate-300 md:text-lg">
-          Sentinel Safety combines structured inspection workflows with SafeScope, an operational safety intelligence engine built to help identify hazards, reason through exposure pathways, support standards review, and produce stronger safety records.
-        </p>
+            <p className="mt-5 max-w-3xl text-base font-semibold leading-7 text-slate-300 md:text-lg">
+              Sentinel Safety helps safety teams capture hazards, review
+              standards, create corrective actions, and generate professional
+              inspection reports with SafeScope intelligence built into the
+              workflow.
+            </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/register" className="rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black text-white">
-            Create an Account
-          </Link>
-          <Link href="/login" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black !text-[#0B1320]">
-            Sign In
-          </Link>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/register"
+                className="rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#2B86D1]"
+              >
+                Create an Account
+              </Link>
+
+              <Link
+                href="/login"
+                className="rounded-full border border-white/20 bg-white px-6 py-3 text-sm font-black !text-[#0B1320] shadow-sm transition hover:bg-blue-50"
+              >
+                Sign In
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-[28px] border border-white/10 bg-white/10 p-5 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+              Built for the full safety cycle
+            </p>
+
+            <div className="mt-4 space-y-3">
+              {["Identify", "Analyze", "Correct", "Report", "Track"].map(
+                (item, index) => (
+                  <div
+                    key={item}
+                    className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/10"
+                  >
+                    <span className="text-sm font-black text-white">
+                      {item}
+                    </span>
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-black text-[#102A43]">
+                      {index + 1}
+                    </span>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+          The problem
+        </p>
+
+        <h2 className="mt-2 text-3xl font-black text-slate-900">
+          Safety documentation is too often scattered, inconsistent, and hard to defend.
+        </h2>
+
+        <p className="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">
+          Field observations, photos, standards, risk levels, corrective actions,
+          and final reports are commonly handled in separate tools. Sentinel
+          Safety is being built to bring those pieces into one structured,
+          professional workflow.
+        </p>
       </div>
 
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[1px] text-[#1D72B8]">
-          Platform Capabilities
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+          Platform Workflow
         </p>
+
         <h2 className="mb-5 text-3xl font-black text-slate-900">
-          Built for serious safety operations.
+          From hazard capture to report-ready action.
         </h2>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          {capabilities.map((feature) => (
-            <div key={feature.title} className="rounded-2xl border border-slate-200 border border-slate-300 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-black text-slate-900">{feature.title}</h3>
-              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{feature.text}</p>
+        <div className="grid gap-4 md:grid-cols-3">
+          {outcomes.map((item) => (
+            <div
+              key={item.title}
+              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+                {item.label}
+              </p>
+              <h3 className="mt-2 text-lg font-black text-slate-900">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-slate-300 bg-white p-6 shadow-sm">
-        <p className="mb-2 text-xs font-black uppercase tracking-[1px] text-[#1D72B8]">
-          SafeScope Domain Intelligence
-        </p>
-        <h2 className="text-3xl font-black text-slate-900">
-          More than a generic hazard lookup.
-        </h2>
-        <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-600">
-          SafeScope is being developed to reason across specialized safety domains and identify when multiple operational risks interact.
-        </p>
+      <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+              SafeScope Intelligence
+            </p>
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {domains.map((domain) => (
-            <div key={domain} className="border-l-4 border-[#1D72B8] bg-slate-50 px-4 py-3 text-sm font-black text-slate-800">
-              {domain}
-            </div>
-          ))}
+            <h2 className="mt-2 text-3xl font-black text-slate-900">
+              Safety intelligence designed for real inspection decisions.
+            </h2>
+
+            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
+              SafeScope is the intelligence layer inside Sentinel Safety. It is
+              being developed to help organize observations, classify hazards,
+              connect applicable standards, identify risk themes, and recommend
+              corrective action focus areas.
+            </p>
+
+            <p className="mt-3 rounded-2xl bg-slate-50 px-4 py-3 text-xs font-bold leading-5 text-slate-500">
+              SafeScope supports qualified safety judgment. It does not replace
+              competent-person review, professional responsibility, or employer
+              compliance obligations.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {capabilities.map((item) => (
+              <div
+                key={item}
+                className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-slate-300 bg-white p-6 shadow-sm">
-        <p className="mb-2 text-xs font-black uppercase tracking-[1px] text-[#1D72B8]">
-          Trust Layer
-        </p>
-        <h2 className="text-3xl font-black text-slate-900">
-          Explainable. Reviewable. Auditable.
-        </h2>
+      <div className="grid gap-4 lg:grid-cols-2">
+        <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            Built For
+          </p>
 
-        <div className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
-          {trust.map((item) => (
-            <div key={item} className="flex items-start gap-3 py-3 text-sm font-bold text-slate-700">
-              <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-[#1D72B8]" />
-              <span>{item}</span>
-            </div>
-          ))}
+          <h2 className="mt-2 text-2xl font-black text-slate-900">
+            Serious safety operations.
+          </h2>
+
+          <div className="mt-5 grid gap-2 sm:grid-cols-2">
+            {audience.map((item) => (
+              <div
+                key={item}
+                className="rounded-xl bg-slate-50 px-4 py-3 text-sm font-black text-slate-800"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            Trust Layer
+          </p>
+
+          <h2 className="mt-2 text-2xl font-black text-slate-900">
+            Reviewable. Explainable. Report-ready.
+          </h2>
+
+          <div className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
+            {trustPoints.map((item) => (
+              <div
+                key={item}
+                className="flex items-start gap-3 py-3 text-sm font-bold leading-6 text-slate-700"
+              >
+                <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#1D72B8]" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="rounded-[28px] bg-[#0F172A] p-8 text-center text-white">
-        <h2 className="text-3xl font-black">Start building your safety workspace.</h2>
+      <div className="rounded-[28px] bg-[#0F172A] p-8 text-center text-white shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+          Sentinel Safety
+        </p>
+
+        <h2 className="mt-2 text-3xl font-black">
+          Build stronger inspections from the first observation.
+        </h2>
+
         <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Use Sentinel Safety to document hazards, support qualified review, and create stronger inspection and corrective action records.
+          Document hazards, support qualified review, and produce stronger safety
+          records from one professional workflow.
         </p>
 
         <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/register" className="rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black text-white">
+          <Link
+            href="/register"
+            className="rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#2B86D1]"
+          >
             Create an Account
           </Link>
-          <Link href="/login" className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black !text-[#0B1320]">
-            Already have an account?
+
+          <Link
+            href="/safescope"
+            className="rounded-full border border-white/20 bg-white px-6 py-3 text-sm font-black !text-[#0B1320] shadow-sm transition hover:bg-blue-50"
+          >
+            Learn About SafeScope
           </Link>
         </div>
       </div>

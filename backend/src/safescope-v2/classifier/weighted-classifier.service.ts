@@ -66,7 +66,126 @@ export class WeightedClassifierService {
       const context = scoreSignals(normalizedText, profile.contextBoosts);
       const negative = scoreSignals(normalizedText, profile.negativeSignals);
 
-      const score = strong.score + moderate.score + weak.score + context.score + negative.score;
+      let score = strong.score + moderate.score + weak.score + context.score + negative.score;
+
+      // 🔷 CUSTOM CLASSIFIER GUARDRAILS & BOOSTERS
+      
+      // 1. Confined Space Guardrail
+      // Confined Space requires entry/permit/atmosphere/attendant indicators to avoid false positives on simple chemical storage tanks.
+      if (profile.id === "confined_space") {
+        const containsTankOrVessel = normalizedText.includes("tank") || normalizedText.includes("vessel");
+        const hasEntryIndicators = /(entry|inside|permit|atmosphere|attendant|opening|entrant|confined|testing|rescue|ventilation|entering)/i.test(normalizedText);
+        if (containsTankOrVessel && !hasEntryIndicators) {
+          score -= 30; // Apply heavy penalty to prevent false-positive classifications on unlabeled storage tanks
+        }
+      }
+
+      // 2. Hazard Communication Booster
+      if (profile.id === "hazard_communication") {
+        const hasHazcomSignals = /(unlabeled|missing label|sds|safety data sheet|chemical container|corrosive liquid|ghs|chemical storage|label)/i.test(normalizedText);
+        if (hasHazcomSignals) {
+          score += 15;
+        }
+      }
+
+      // 3. Lifting & Rigging vs Electrical Guardrail
+      // Prevent "wire" in "wire rope" from mis-classifying Lifting & Rigging as Electrical
+      const hasLiftingSignals = /(wire rope|wire sling|wire rope sling|crane|spreader bar|shackle|rigging|hoist|sling)/i.test(normalizedText);
+      if (hasLiftingSignals) {
+        if (profile.id === "electrical") {
+          score -= 45;
+        }
+        if (profile.id === "lifting_rigging") {
+          score += 25;
+        }
+      }
+
+      // 4. Material Handling vs Electrical Guardrail
+      // Prevent "line" or "wire" in air line / whipcheck from mis-classifying Material Handling as Electrical
+      const hasMaterialHandlingSignals = /(air line|compressor hose|safety chain|whipcheck|whip check|hose connector|cylinder|gas cylinder|oxygen cylinder|manifold)/i.test(normalizedText);
+      if (hasMaterialHandlingSignals) {
+        if (profile.id === "electrical") {
+          score -= 45;
+        }
+        if (profile.id === "material_handling") {
+          score += 25;
+        }
+      }
+
+      // 5. A. MACHINE GUARDING OVER-TRIGGERING ON CATWALK/ACCESS/FALL/SCAFFOLD
+      const hasAccessFallScaffoldTerms = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower)/i.test(normalizedText);
+      if (hasAccessFallScaffoldTerms) {
+        if (profile.id === "machine_guarding") {
+          const hasMachineContactExposure = /(unguarded conveyor|unguarded rotating|unguarded shaft|missing guard|guard removed|exposed rotating|nip point|pinch point|moving machine part|exposed.*rotating|exposed.*moving|pulley|sprocket|belt|gear|rotating component|point of operation)/i.test(normalizedText);
+          if (!hasMachineContactExposure) {
+            score -= 45; // Penalize machine guarding in catwalk/grating/fall contexts unless explicit moving parts are unguarded
+          }
+        }
+        if (profile.id === "falls" || profile.id === "walking_working_surfaces") {
+          score += 25;
+        }
+      }
+
+      // 6. B. ELECTRICAL OVER-TRIGGERING ON PASSAGEWAY TRIP/SLIP OR CONFINED SPACE ENTRY
+      const isTripPassagewayOrHousekeepingText = /(trip|slip|grease|cords|floor passageway|passageway|housekeeping|walking surface|obstruction)/i.test(normalizedText);
+      const isConfinedSpaceEntryText = /(cleanout|vessel cleanout|reaction vessel|worker entry|confined space|permit required|attendant|sewer tank|vessel entry|tank entry)/i.test(normalizedText);
+      
+      const hasElectricalExposure = /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash)/i.test(normalizedText);
+
+      if (profile.id === "electrical") {
+        if (!hasElectricalExposure) {
+          score -= 45; // Penalize electrical when no actual electrical hazard exists
+        }
+        if (isTripPassagewayOrHousekeepingText && !hasElectricalExposure) {
+          score -= 30; // Further penalize trip/slip hazards on cords without exposed wires
+        }
+      }
+
+      if (isTripPassagewayOrHousekeepingText && profile.id === "walking_working_surfaces") {
+        score += 25;
+      }
+
+      if (isConfinedSpaceEntryText && profile.id === "confined_space") {
+        score += 35; // Confined Space entry must win when cleanout/entry/permit conditions exist
+      }
+
+      // 7. C. LOCKOUT/STORED ENERGY OVER-TRIGGERING ON "LOCK" AS HOISTING HOOK SAFETY LATCH
+      const isRiggingHookLatchText = /(hook|hoisting hook|crane|lifting|sling|rigging|latch|safety latch|engine blocks|overhead crane|mobile crane)/i.test(normalizedText);
+      const hasLotoIsolationTerms = /(lockout|tagout|loto|deenergize|isolate energy|isolate power|energy isolation|zero energy|blocked against motion)/i.test(normalizedText);
+
+      if (isRiggingHookLatchText) {
+        if (profile.id === "lifting_rigging") {
+          score += 35;
+        }
+        if (profile.id === "loto_stored_energy" && !hasLotoIsolationTerms) {
+          score -= 45; // Penalize LOTO if it's just hook latch/rigging without energy control
+        }
+        if (profile.id === "electrical") {
+          score -= 45; // Rigging shouldn't trigger electrical
+        }
+      }
+
+      // 8. PPE vs Fall/Access
+      const isEyePpeText = /(safety glasses|eye protection|goggles|face shield|wear safety|failing safety)/i.test(normalizedText);
+      if (isEyePpeText) {
+        if (profile.id === "ppe") {
+          score += 45;
+        }
+        if (profile.id === "falls" || profile.id === "walking_working_surfaces" || profile.id === "machine_guarding") {
+          score -= 45;
+        }
+      }
+
+      // 9. Safety Shower / Eye Wash vs Walking/Working Surfaces Guardrail
+      const isSafetyShowerEyewashText = /(safety shower|eye wash|eyewash)/i.test(normalizedText);
+      if (isSafetyShowerEyewashText) {
+        if (profile.id === "walking_working_surfaces") {
+          score -= 45;
+        }
+        if (profile.id === "loto_stored_energy") {
+          score -= 45;
+        }
+      }
 
       return {
         id: profile.id,

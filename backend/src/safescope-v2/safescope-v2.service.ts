@@ -311,17 +311,34 @@ export class SafescopeV2Service {
     const allCandidates = [primaryCandidate, ...additionalCandidates];
 
     const severityPriority: Record<string, number> = {
+      "Confined Space": 105,
+      "Trenching & Shoring": 102,
+      "Fall Protection": 100,
       Fall: 100,
+      "Mobile Equipment / Traffic": 95,
       "Powered Mobile Equipment": 95,
       Electrical: 90,
+      "Lockout / Stored Energy": 88,
+      "Fire / Explosion": 87,
+      "Lifting & Rigging": 86,
       Machine: 85,
+      "Machine Guarding": 85,
+      "Respirable Dust / Silica": 75,
       "Hazard Communication": 70,
+      "Emergency Egress": 68,
+      "Walking/Working Surfaces": 65,
+      "Material Handling": 60,
       Housekeeping: 50,
       PPE: 40,
       "Review Required": 0,
     };
 
     const promotedPrimary: any = [...allCandidates].sort((a: any, b: any) => {
+      const confidenceDiff = (b.confidence || 0) - (a.confidence || 0);
+      if (Math.abs(confidenceDiff) >= 0.20) {
+        return confidenceDiff;
+      }
+
       const scoreDelta = (b.risk?.riskScore || 0) - (a.risk?.riskScore || 0);
       if (scoreDelta !== 0) return scoreDelta;
 

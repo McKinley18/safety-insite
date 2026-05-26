@@ -52,7 +52,7 @@ export default function QuickCaptureSection({
     <>
       <div className="mb-4 flex items-start justify-between gap-3 border-b border-slate-200 pb-3">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
             Describe Finding
           </p>
           <p className="mt-1 text-sm font-semibold text-slate-500">
