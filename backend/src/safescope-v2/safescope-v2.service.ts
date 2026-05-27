@@ -696,13 +696,43 @@ export class SafescopeV2Service {
       }
     }
 
+    const selectedMshaScope = scopes?.includes("msha_mnm_underground")
+      ? "msha_mnm_underground"
+      : scopes?.includes("msha_coal_underground")
+        ? "msha_coal_underground"
+        : scopes?.includes("msha_coal_surface")
+          ? "msha_coal_surface"
+          : scopes?.includes("msha_mnm_surface")
+            ? "msha_mnm_surface"
+            : scopes?.includes("msha")
+              ? "msha"
+              : undefined;
+
+    const defaultElectricalCitation =
+      selectedMshaScope === "msha_mnm_underground"
+        ? "30 CFR 57.12016"
+        : selectedMshaScope === "msha_coal_underground"
+          ? "30 CFR 75.511"
+          : selectedMshaScope === "msha_coal_surface"
+            ? "30 CFR 77.501"
+            : "30 CFR 56.12016";
+
+    const defaultMachineGuardingCitation =
+      selectedMshaScope === "msha_mnm_underground"
+        ? "30 CFR 57.14107"
+        : selectedMshaScope === "msha_coal_underground"
+          ? "30 CFR 75.1722"
+          : selectedMshaScope === "msha_coal_surface"
+            ? "30 CFR 77.400"
+            : "30 CFR 56.14107(a)";
+
     const defaultElectricalStandards =
       finalPrimary.classification === "Electrical"
         ? [
             {
-              citation: "30 CFR 56.12016",
+              citation: defaultElectricalCitation,
               agency: "MSHA",
-              scope: "msha",
+              scope: selectedMshaScope || "msha",
               rationale:
                 "Electrical work or energized electrical exposure requires de-energization and safe electrical controls.",
               source: ["curated_fallback"],
@@ -710,6 +740,9 @@ export class SafescopeV2Service {
               matchingReasons: [
                 "Electrical classification selected",
                 "Energized or live electrical exposure indicated",
+                selectedMshaScope
+                  ? `Scoped MSHA fallback selected: ${selectedMshaScope}`
+                  : "Default MSHA fallback selected",
               ],
             },
           ]
@@ -719,9 +752,9 @@ export class SafescopeV2Service {
       finalPrimary.classification === "Machine Guarding"
         ? [
             {
-              citation: "30 CFR 56.14107(a)",
+              citation: defaultMachineGuardingCitation,
               agency: "MSHA",
-              scope: "mining",
+              scope: selectedMshaScope || "mining",
               rationale:
                 "Guard moving machine parts that could contact employees.",
               source: ["curated_fallback"],
@@ -729,6 +762,9 @@ export class SafescopeV2Service {
               matchingReasons: [
                 "Machine Guarding classification selected",
                 "Conveyor, pulley, guarding, or moving-parts exposure indicated",
+                selectedMshaScope
+                  ? `Scoped MSHA fallback selected: ${selectedMshaScope}`
+                  : "Default MSHA fallback selected",
               ],
             },
           ]
