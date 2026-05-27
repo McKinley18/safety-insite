@@ -1,8 +1,11 @@
-import { Controller, Post, Param, Headers, NotFoundException, Inject, forwardRef } from '@nestjs/common';
+import { Controller, Post, Param, Headers, NotFoundException, Inject, forwardRef, Req, UseGuards } from '@nestjs/common';
+import { Request } from 'express';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 import { ActionEngineService, ActionInput } from './action-engine.service';
 import { ReportsService } from '../reports/reports.service';
 import { CorrectiveActionsService } from '../corrective-actions/corrective-actions.service';
 
+@UseGuards(JwtGuard)
 @Controller('action-engine')
 export class ActionEngineController {
   constructor(
@@ -18,9 +21,10 @@ export class ActionEngineController {
   async generateActions(
     @Param('reportId') reportId: string,
     @Headers('authorization') authHeader: string,
+    @Req() req: Request & { user?: any },
   ) {
-    // 1. Fetch Report
-    const report = await this.reportsService.findOne(reportId);
+    // 1. Fetch Report within the authenticated user's organization scope.
+    const report = await this.reportsService.findOne(reportId, req.user);
     if (!report) {
       throw new NotFoundException(`Report with ID ${reportId} not found`);
     }

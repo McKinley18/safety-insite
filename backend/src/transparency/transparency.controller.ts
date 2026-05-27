@@ -1,30 +1,28 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Req, UseGuards } from '@nestjs/common';
+import { Request } from 'express';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 import { TransparencyService } from './transparency.service';
 
+@UseGuards(JwtGuard)
 @Controller('reports')
 export class TransparencyController {
   constructor(private readonly transparencyService: TransparencyService) {}
 
   @Get(':id/explain')
-  async explain(@Param('id') id: string) {
-    const breakdown = await this.transparencyService.getDecisionBreakdown(id);
+  async explain(@Param('id') id: string, @Req() req: Request & { user?: any }) {
+    const breakdown = await this.transparencyService.getDecisionBreakdown(id, req.user);
     const justification = await this.transparencyService.getActionJustification(id);
     const outcome = await this.transparencyService.getOutcomeExplanation(id);
 
-    const narrative = `This hazard was classified as ${breakdown.category} with ${breakdown.confidenceLevel} confidence due to direct matches with '${breakdown.signals.fuzzyMatches[0]}'. The recommended action is ${justification.priority} because it presents ${justification.whyThisAction} per ${justification.standardJustification}. The corrective action has been ${outcome.effectiveness}ly verified after ${outcome.factors.observationWindow} days with no recurrence in a high-exposure area.`;
+    const primaryMatch = breakdown.signals.fuzzyMatches[0] || 'available evidence';
 
-    console.log("\n=== DECISION EXPLANATION ===\n");
-    console.log(`Category: ${breakdown.category} (${breakdown.confidenceLevel} CONFIDENCE)`);
-    console.log(`\nWhy:\n- Matched: ${breakdown.signals.fuzzyMatches.join(', ')}\n- Context: ${breakdown.signals.contextSignals.join(', ')}`);
-    console.log(`\nAction:\n- ${justification.priority} due to ${justification.whyThisAction}`);
-    console.log(`\nOutcome:\n- ${outcome.effectiveness} (Confidence: ${outcome.verificationConfidence})`);
-    console.log(`\nNarrative:\n"${narrative}"`);
+    const narrative = `This hazard was classified as ${breakdown.category} with ${breakdown.confidenceLevel} confidence due to direct matches with '${primaryMatch}'. The recommended action is ${justification.priority} because it presents ${justification.whyThisAction} per ${justification.standardJustification}. The corrective action has been ${outcome.effectiveness}ly verified after ${outcome.factors.observationWindow} days with no recurrence in a high-exposure area.`;
 
     return {
       breakdown,
       justification,
       outcome,
-      narrative
+      narrative,
     };
   }
 }

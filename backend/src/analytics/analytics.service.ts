@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, IsNull } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Report } from '../reports/entities/report.entity';
 
 @Injectable()
@@ -10,14 +10,15 @@ export class AnalyticsService {
     private readonly reportsRepo: Repository<Report>,
   ) {}
 
-  async getSafetyTrends() {
+  async getSafetyTrends(user?: any) {
     const reports = await this.reportsRepo.find({
+      where: user?.organizationId ? { organizationId: user.organizationId } : {},
       order: { reportedDatetime: 'DESC' },
       take: 500,
     });
 
     const submittedReports = reports.filter((r) =>
-      ['submitted', 'reviewed', 'closed', 'draft'].includes(
+      ['submitted', 'reviewed', 'closed', 'draft', 'classified', 'active'].includes(
         String(r.status || '').toLowerCase(),
       ),
     );
@@ -57,16 +58,15 @@ export class AnalyticsService {
         .sort((a, b) => b.count - a.count)
         .slice(0, limit);
 
-
     const highRiskCount = submittedReports.filter((r) => {
       const standards = Array.isArray(r.likelyStandards) ? r.likelyStandards : [];
       return standards.some((standard) =>
         ['high', 'critical'].includes(
           String(
             standard.suggestedPriority ||
-            standard.riskAssessment?.finalPriority ||
-            r.severity ||
-            '',
+              standard.riskAssessment?.finalPriority ||
+              r.severity ||
+              '',
           ).toLowerCase(),
         ),
       );
