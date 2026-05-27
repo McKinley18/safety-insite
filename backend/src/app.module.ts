@@ -18,6 +18,7 @@ import { OutcomesModule } from './outcomes/outcomes.module';
 import { TransparencyModule } from './transparency/transparency.module';
 import { PdfModule } from './pdf/pdf.module';
 import { BillingModule } from './billing/billing.module';
+import { DashboardsModule } from './dashboards/dashboards.module';
 import { SafeScopeKnowledgeModule } from './safescope-knowledge/safescope-knowledge.module';
 import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
 
@@ -72,6 +73,7 @@ import { MaintenanceSeedController } from './maintenance/maintenance-seed.contro
     TransparencyModule,
     PdfModule,
     BillingModule,
+    DashboardsModule,
   ],
 })
 export class AppModule {}
