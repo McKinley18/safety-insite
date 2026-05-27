@@ -31,6 +31,10 @@ echo "== Backend SafeScope v2 scoped classify smoke test =="
 npx ts-node scripts/smoke-safescope-v2-scoped-classify.ts
 
 echo ""
+echo "== Backend corrective actions organization scope smoke test =="
+npm run smoke:corrective-actions-scope
+
+echo ""
 echo "== Git status after checks =="
 cd ~/Sentinel_Safety
 git status --short
