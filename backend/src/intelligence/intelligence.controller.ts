@@ -1,7 +1,9 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { IntelligenceService } from './intelligence.service';
 import { StandardsService } from '../standards/standards.service';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('intelligence')
 export class IntelligenceController {
   constructor(

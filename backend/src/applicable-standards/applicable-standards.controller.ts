@@ -1,7 +1,9 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Post, UseGuards } from "@nestjs/common";
 import { ApplicableStandardsService } from "./applicable-standards.service";
 import { SuggestStandardsDto } from "./dto/applicable-standards.dto";
+import { JwtGuard } from "../auth/guards/jwt.guard";
 
+@UseGuards(JwtGuard)
 @Controller("applicable-standards")
 export class ApplicableStandardsController {
   constructor(private service: ApplicableStandardsService) {}

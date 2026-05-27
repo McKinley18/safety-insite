@@ -1,7 +1,9 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { SafeScopeService } from './safescope.service';
 import { FeedbackService } from './engine/feedback.service';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('safescope')
 export class SafeScopeController {
   constructor(

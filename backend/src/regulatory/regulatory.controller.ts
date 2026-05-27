@@ -1,8 +1,10 @@
-import { Controller, Post, Get, Query, Headers, UnauthorizedException, BadRequestException } from '@nestjs/common';
+import { Controller, Post, Get, Query, Headers, UnauthorizedException, BadRequestException, UseGuards } from '@nestjs/common';
 import { RegulatorySyncService } from './regulatory-sync.service';
 import { RegulatoryService } from './regulatory.service';
 import { ConfigService } from '@nestjs/config';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('regulatory')
 export class RegulatoryController {
   constructor(private syncService: RegulatorySyncService, private regulatoryService: RegulatoryService, private config: ConfigService) {}

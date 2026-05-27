@@ -1,9 +1,10 @@
-import { Body, Controller, Headers, NotFoundException, Post, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Headers, NotFoundException, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { Standard } from '../standards/entities/standard.entity';
 import { SafeScopeKnowledgeDocument } from '../safescope-knowledge/entities/safescope-knowledge-document.entity';
 import { SafeScopeKnowledgeChunk } from '../safescope-knowledge/entities/safescope-knowledge-chunk.entity';
 import { starterKnowledge } from '../safescope-knowledge/seed/starter-knowledge';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
 const standards: Partial<Standard>[] = [
   {
@@ -111,6 +112,7 @@ function authorityWeight(authorityTier: number) {
   return Number(Math.max(0.1, 1 - (authorityTier - 1) * 0.15).toFixed(2));
 }
 
+@UseGuards(JwtGuard)
 @Controller('maintenance')
 export class MaintenanceSeedController {
   constructor(private readonly dataSource: DataSource) {}
