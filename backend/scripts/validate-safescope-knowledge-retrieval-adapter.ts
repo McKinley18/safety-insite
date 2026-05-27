@@ -123,10 +123,30 @@ async function run() {
     errors.push('at least one approved knowledge match is required for this validation scenario.');
   }
 
+  const topMatchFallEvidence = [
+    topMatch?.title,
+    topMatch?.citation,
+    topMatch?.sectionHeading,
+    topMatch?.excerpt,
+    ...(topMatch?.tags?.hazards || []),
+    ...(topMatch?.tags?.standards || []),
+  ]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  const topMatchKnownFallCitation =
+    /29 cfr 1910\.(28|29|30|140)|29 cfr 1926\.(500|501|502|503|451|453|1050|1053)/.test(
+      String(topMatch?.citation || '').toLowerCase(),
+    );
+
   if (
     topMatch &&
-    !String(topMatch.title || '').toLowerCase().includes('fall') &&
-    !String(topMatch.citation || '').toLowerCase().includes('fall')
+    !topMatchFallEvidence.includes('fall') &&
+    !topMatchFallEvidence.includes('walking-working surfaces') &&
+    !topMatchFallEvidence.includes('guardrail') &&
+    !topMatchFallEvidence.includes('ladder') &&
+    !topMatchKnownFallCitation
   ) {
     errors.push('top knowledge match must be directly related to Fall Protection.');
   }

@@ -671,6 +671,60 @@ export class SafeScopeKnowledgeService {
 
     let domainScore = 0;
 
+    const heading = String(chunk.sectionHeading || "").toLowerCase();
+    const citation = String(chunk.citation || "").toLowerCase();
+    const title = String(chunk.document?.title || "").toLowerCase();
+    const sourceType = String(chunk.document?.sourceType || "").toLowerCase();
+    const regulatoryChunk = sourceType === "regulation";
+
+    const strongFallCitation =
+      /29 cfr 1910\.(28|29|30|140)|29 cfr 1926\.(500|501|502|503|451|1053)/.test(
+        citation,
+      );
+
+    const fallHeading =
+      /(fall protection|fall protection systems|walking-working surfaces|duty to have fall protection|unprotected sides and edges|scaffolds|ladders|stairways|guardrail)/.test(
+        heading + " " + title,
+      );
+
+    const unrelatedFallHeading =
+      /(respiratory protection|air contaminants|asbestos|permit-required confined spaces|pulp, paper|electric power generation|welding|flammable liquids|sanitation|fire brigades)/.test(
+        heading + " " + title,
+      );
+
+    const strongMachineGuardingCitation =
+      /30 cfr 5[67]\.14|30 cfr 77\.400|29 cfr 1910\.21[12789]|29 cfr 1926\.30[047]/.test(
+        citation,
+      );
+
+    const machineGuardingHeading =
+      /(machine guarding|guarding|mechanical equipment guards|moving machine parts|power-transmission|abrasive wheel|conveyor|pulley|rotating shaft|pinch point|nip point)/.test(
+        heading + " " + title,
+      );
+
+    const unrelatedMachineGuardingHeading =
+      /(fall protection|respiratory protection|confined spaces|sanitation|fire protection|medical services|air contaminants)/.test(
+        heading + " " + title,
+      );
+
+    const strongConfinedSpaceCitation =
+      /29 cfr 1910\.146|29 cfr 1926\.120[1-9]/.test(citation);
+
+    const confinedSpaceQuery =
+      /(confined space|permit required confined space|permit-required confined space|tank|vessel|silo|pit|vault|manhole|atmospheric testing|engulfment)/.test(
+        normalizedQuery,
+      );
+
+    const confinedSpaceHeading =
+      /(confined space|permit-required confined space|permit required confined space|entry permit|atmospheric testing|authorized entrant|attendant)/.test(
+        heading + " " + title,
+      );
+
+    const unrelatedConfinedSpaceHeading =
+      /(fall protection|machine guarding|respiratory protection|welding|fire protection|electrical|materials handling)/.test(
+        heading + " " + title,
+      );
+
     if (machineGuardingQuery) {
       if (
         /(machine guarding|unguarded moving parts|moving machine parts|pinch point|entanglement|conveyor|pulley|rotating shaft|guarding)/.test(
@@ -679,6 +733,10 @@ export class SafeScopeKnowledgeService {
       ) {
         domainScore += 80;
       }
+
+      if (machineGuardingHeading) domainScore += 90;
+      if (strongMachineGuardingCitation) domainScore += 120;
+      if (regulatoryChunk && unrelatedMachineGuardingHeading) domainScore -= 90;
 
       if (/mobile equipment|haul truck|loader|forklift|pedestrian|traffic|backing|spotter|berm|blind spot/.test(haystack) && !mobileEquipmentQuery) {
         domainScore -= 60;
@@ -701,8 +759,24 @@ export class SafeScopeKnowledgeService {
       domainScore += 70;
     }
 
-    if (fallQuery && /fall hazard|fall protection|guardrail|ladder|scaffold|roof|unprotected edge/.test(haystack)) {
-      domainScore += 70;
+    if (fallQuery) {
+      if (/fall hazard|fall protection|guardrail|ladder|scaffold|roof|unprotected edge/.test(haystack)) {
+        domainScore += 70;
+      }
+
+      if (fallHeading) domainScore += 100;
+      if (strongFallCitation) domainScore += 140;
+      if (regulatoryChunk && unrelatedFallHeading) domainScore -= 130;
+    }
+
+    if (confinedSpaceQuery) {
+      if (/confined space|permit-required confined space|permit required confined space|atmospheric testing|engulfment|authorized entrant|attendant|entry permit/.test(haystack)) {
+        domainScore += 80;
+      }
+
+      if (confinedSpaceHeading) domainScore += 100;
+      if (strongConfinedSpaceCitation) domainScore += 140;
+      if (regulatoryChunk && unrelatedConfinedSpaceHeading) domainScore -= 120;
     }
 
     return (
