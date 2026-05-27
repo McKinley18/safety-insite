@@ -1,21 +1,27 @@
-import { Controller, Get } from '@nestjs/common';
-import { Classification } from '../classifications/entities/classification.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+
+import { Request } from 'express';
+
+import { ReviewsService } from './reviews.service';
+
+import { JwtGuard } from '../auth/guards/jwt.guard';
+
+@UseGuards(JwtGuard)
 
 @Controller('review-queue')
+
 export class ReviewQueueController {
-  constructor(
-    @InjectRepository(Classification) private classificationRepo: Repository<Classification>,
-  ) {}
+
+  constructor(private readonly reviewsService: ReviewsService) {}
 
   @Get()
-  async getQueue() {
-    return this.classificationRepo.find({
-      where: {
-        requiresHumanReview: true,
-        classificationStatus: 'pending',
-      },
-    });
+
+  async getQueue(@Req() req: Request & { user?: any }) {
+
+    return this.reviewsService.getReviewQueue(req.user);
+
   }
+
 }
+
