@@ -35,6 +35,10 @@ echo "== Backend corrective actions organization scope smoke test =="
 npm run smoke:corrective-actions-scope
 
 echo ""
+echo "== Backend dashboard organization scope smoke test =="
+npm run smoke:dashboard-scope
+
+echo ""
 echo "== Git status after checks =="
 cd ~/Sentinel_Safety
 git status --short
