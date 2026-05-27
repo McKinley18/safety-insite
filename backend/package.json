@@ -63,7 +63,8 @@
     "source:intelligence:validate-knowledge-retrieval-adapter": "ts-node scripts/validate-safescope-knowledge-retrieval-adapter.ts",
     "source:intelligence:validate-knowledge-retrieval-scenarios": "ts-node scripts/validate-safescope-knowledge-retrieval-scenarios.ts",
     "source:intelligence:validate-knowledge-domain-scoring-helper": "ts-node scripts/validate-knowledge-domain-scoring-helper.ts",
-    "smoke:corrective-actions-scope": "ts-node scripts/smoke-corrective-actions-organization-scope.ts"
+    "smoke:corrective-actions-scope": "ts-node scripts/smoke-corrective-actions-organization-scope.ts",
+    "smoke:dashboard-scope": "ts-node scripts/smoke-dashboard-organization-scope.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
