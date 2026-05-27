@@ -13,6 +13,7 @@ import {
   inviteOrganizationMember,
 } from "@/lib/auth";
 import { getFacilities, type Facility } from "@/lib/facilityStorage";
+import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 
 const roleOptions = ["Owner", "Manager", "Auditor", "Viewer"] as const;
 
@@ -83,7 +84,25 @@ type AssignedWork = {
   priority: string;
   status: string;
   createdAt: string;
+  source?: string;
+  findingTitle?: string;
 };
+
+function actionToAssignedWork(action: StoredAction): AssignedWork {
+  return {
+    id: `action-${action.id}`,
+    type: "Corrective Action",
+    title: action.title || action.findingTitle || "Corrective action",
+    owner: "Unassigned",
+    location: action.location || "Field Inspection",
+    dueDate: action.due || "No due date",
+    priority: action.priority || "Medium",
+    status: action.status || "Open",
+    createdAt: action.createdAt || new Date().toISOString(),
+    source: action.source || "Inspection",
+    findingTitle: action.findingTitle,
+  };
+}
 
 export default function CompanyControlCenterPage() {
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
@@ -137,7 +156,25 @@ export default function CompanyControlCenterPage() {
           window.localStorage.getItem("sentinel_company_assigned_work") || "[]",
         );
 
-        setAssignedWork(Array.isArray(savedAssignments) ? savedAssignments : []);
+        const manualAssignments = Array.isArray(savedAssignments)
+          ? savedAssignments
+          : [];
+
+        const storedActions = await getStoredActions();
+        const actionAssignments = storedActions.map(actionToAssignedWork);
+
+        const mergedAssignments = [
+          ...manualAssignments,
+          ...actionAssignments.filter(
+            (actionAssignment) =>
+              !manualAssignments.some(
+                (manualAssignment: AssignedWork) =>
+                  manualAssignment.id === actionAssignment.id,
+              ),
+          ),
+        ];
+
+        setAssignedWork(mergedAssignments);
         setFacilities(getFacilities());
       }
     }
@@ -202,9 +239,13 @@ export default function CompanyControlCenterPage() {
     setAssignedWork(next);
 
     if (typeof window !== "undefined") {
+      const manualOnly = next.filter(
+        (item) => !String(item.id || "").startsWith("action-"),
+      );
+
       window.localStorage.setItem(
         "sentinel_company_assigned_work",
-        JSON.stringify(next),
+        JSON.stringify(manualOnly),
       );
     }
   }
@@ -692,6 +733,7 @@ export default function CompanyControlCenterPage() {
                     </p>
                     <p className="mt-0.5 text-[11px] font-semibold text-slate-500">
                       {item.type} • {item.owner} • {item.location || "Unassigned location"} • Due: {item.dueDate}
+                      {item.findingTitle ? ` • Finding: ${item.findingTitle}` : ""}
                     </p>
                   </div>
 
