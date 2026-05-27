@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 import { SourceIntelligenceService } from './source-intelligence.service';
 import { SourceGovernanceService } from './source-governance.service';
 import { SourceIngestionService } from './source-ingestion.service';
@@ -6,6 +7,7 @@ import { SourceRetrievalService } from './source-retrieval.service';
 import { SourceIntelligenceIngestionPreviewDto } from './dto/source-ingestion-preview.dto';
 import { SourceIntelligenceSearchDto } from './dto/source-intelligence-search.dto';
 
+@UseGuards(JwtGuard)
 @Controller('source-intelligence')
 export class SourceIntelligenceController {
   constructor(

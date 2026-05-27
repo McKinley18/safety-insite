@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { JwtGuard } from '../../auth/guards/jwt.guard';
 import { SupervisorValidationService } from './supervisor-validation.service';
 
+@UseGuards(JwtGuard)
 @Controller('safescope-v2/supervisor-validations')
 export class SupervisorValidationController {
   constructor(

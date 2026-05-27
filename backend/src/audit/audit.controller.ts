@@ -1,7 +1,10 @@
-import { Controller, Get, Headers, UnauthorizedException } from '@nestjs/common';
+import { Controller, Get, Headers, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Request } from 'express';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 import * as jwt from 'jsonwebtoken';
 import { AuditService } from './audit.service';
 
+@UseGuards(JwtGuard)
 @Controller('audit')
 export class AuditController {
   constructor(private readonly auditService: AuditService) {}
