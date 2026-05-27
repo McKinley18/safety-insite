@@ -11,3 +11,4 @@ export * from './mocks/mock-source-intelligence-retrieval.adapter';
 export * from './source-intelligence-retrieval-service.adapter';
 export * from './hazard-classification-service.adapter';
 export * from './standards-matching-service.adapter';
+export * from './risk-assessment-service.adapter';
