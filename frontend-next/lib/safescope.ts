@@ -203,9 +203,13 @@ export async function runSafeScopeV2Classify(input: {
 }) {
   const requestUrl = `${API_BASE_URL}/safescope-v2/classify`;
 
+  const normalizedScopes = Array.isArray(input.scopes)
+    ? input.scopes.map((scope) => String(scope || "").trim()).filter(Boolean)
+    : undefined;
+
   const safePayload = {
     text: String(input.text || "").trim(),
-    scopes: Array.isArray(input.scopes) ? input.scopes : ["msha"],
+    ...(normalizedScopes?.length ? { scopes: normalizedScopes } : {}),
     riskProfileId: input.riskProfileId || "standard_5x5",
     evidenceTexts: Array.isArray(input.evidenceTexts)
       ? input.evidenceTexts.map((item) => String(item || "").trim()).filter(Boolean)
