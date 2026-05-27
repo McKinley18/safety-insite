@@ -9,3 +9,4 @@ export * from './audit-trace.adapter';
 export * from './report-summary.adapter';
 export * from './mocks/mock-source-intelligence-retrieval.adapter';
 export * from './source-intelligence-retrieval-service.adapter';
+export * from './hazard-classification-service.adapter';
