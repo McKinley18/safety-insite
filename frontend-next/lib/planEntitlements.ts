@@ -62,13 +62,23 @@ export function normalizePlanCode(plan?: string | null): PlanCode {
 }
 
 export function getStoredPlanCode(): PlanCode {
-  if (typeof window === "undefined") return "basic";
+  const localDevDefault =
+    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" ? "company" : "basic";
+
+  if (typeof window === "undefined") return normalizePlanCode(localDevDefault);
 
   try {
     const user = JSON.parse(window.localStorage.getItem("sentinel_auth_user") || "{}");
-    return normalizePlanCode(user.planCode || user.type);
+
+    return normalizePlanCode(
+      user.planCode ||
+        user.type ||
+        user.plan ||
+        user.subscriptionTier ||
+        localDevDefault,
+    );
   } catch {
-    return "basic";
+    return normalizePlanCode(localDevDefault);
   }
 }
 
