@@ -10,8 +10,23 @@ export class SuggestStandardsDto {
   hazardCategory?: string;
 
   @IsOptional()
-  @IsIn(["MSHA", "OSHA_CONSTRUCTION", "OSHA_GENERAL_INDUSTRY"])
-  source?: "MSHA" | "OSHA_CONSTRUCTION" | "OSHA_GENERAL_INDUSTRY";
+  @IsIn([
+    "MSHA",
+    "MSHA_MNM_SURFACE",
+    "MSHA_MNM_UNDERGROUND",
+    "MSHA_COAL_UNDERGROUND",
+    "MSHA_COAL_SURFACE",
+    "OSHA_CONSTRUCTION",
+    "OSHA_GENERAL_INDUSTRY",
+  ])
+  source?:
+    | "MSHA"
+    | "MSHA_MNM_SURFACE"
+    | "MSHA_MNM_UNDERGROUND"
+    | "MSHA_COAL_UNDERGROUND"
+    | "MSHA_COAL_SURFACE"
+    | "OSHA_CONSTRUCTION"
+    | "OSHA_GENERAL_INDUSTRY";
 
   @IsOptional()
   @Type(() => Number)

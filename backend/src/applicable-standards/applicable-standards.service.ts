@@ -34,6 +34,7 @@ export class ApplicableStandardsService {
     chunk: SafeScopeKnowledgeChunk,
     observation: string,
     siteType?: string,
+    mshaPartPreference?: "56" | "57" | "75" | "77",
   ) {
     const citation = chunk.citation || "";
     const heading = chunk.sectionHeading || "";
@@ -50,6 +51,20 @@ export class ApplicableStandardsService {
     if (siteType === "mining" && agency === "MSHA") {
       score += 15;
       matchingReasons.push("scope: mining");
+    }
+
+    if (mshaPartPreference && new RegExp(`30 CFR ${mshaPartPreference}\\.`).test(citation)) {
+      score += 120;
+      matchingReasons.push(`scope: MSHA Part ${mshaPartPreference}`);
+    }
+
+    if (
+      mshaPartPreference &&
+      /30 CFR (56|57|75|77)\./.test(citation) &&
+      !new RegExp(`30 CFR ${mshaPartPreference}\\.`).test(citation)
+    ) {
+      score -= 90;
+      matchingReasons.push(`demoted: outside selected MSHA Part ${mshaPartPreference}`);
     }
 
     if (
@@ -329,14 +344,25 @@ export class ApplicableStandardsService {
     source?: string,
     limit = 5,
   ) {
-    const siteType =
-      source === "MSHA"
-        ? "mining"
-        : source === "OSHA_CONSTRUCTION"
-          ? "construction"
-          : source === "OSHA_GENERAL_INDUSTRY"
-            ? "general_industry"
-            : undefined;
+    const sourceMode = String(source || "");
+    const siteType = sourceMode.startsWith("MSHA")
+      ? "mining"
+      : source === "OSHA_CONSTRUCTION"
+        ? "construction"
+        : source === "OSHA_GENERAL_INDUSTRY"
+          ? "general_industry"
+          : undefined;
+
+    const mshaPartPreference =
+      source === "MSHA_MNM_SURFACE"
+        ? "56"
+        : source === "MSHA_MNM_UNDERGROUND"
+          ? "57"
+          : source === "MSHA_COAL_UNDERGROUND"
+            ? "75"
+            : source === "MSHA_COAL_SURFACE"
+              ? "77"
+              : undefined;
 
     const observation = (description || "").toLowerCase();
 
@@ -361,7 +387,7 @@ export class ApplicableStandardsService {
           });
 
         // Add agency filter if provided
-        if (source === "MSHA") {
+        if (sourceMode.startsWith("MSHA")) {
           queryBuilder.andWhere("d.agency = :agency", { agency: "MSHA" });
         } else if (
           source === "OSHA_CONSTRUCTION" ||
@@ -377,7 +403,7 @@ export class ApplicableStandardsService {
 
         knowledgeMatches = chunks
           .map((chunk) =>
-            this.scoreKnowledgeChunk(chunk, observation, siteType),
+            this.scoreKnowledgeChunk(chunk, observation, siteType, mshaPartPreference),
           )
           .filter((item) => item.score > 0)
           .sort((a, b) => b.score - a.score);

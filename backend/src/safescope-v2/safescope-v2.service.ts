@@ -72,6 +72,10 @@ export class SafescopeV2Service {
   private scopeToSource(scopes?: string[]) {
     if (!scopes || scopes.length === 0 || scopes.includes("all"))
       return undefined;
+    if (scopes.includes("msha_mnm_surface")) return "MSHA_MNM_SURFACE";
+    if (scopes.includes("msha_mnm_underground")) return "MSHA_MNM_UNDERGROUND";
+    if (scopes.includes("msha_coal_underground")) return "MSHA_COAL_UNDERGROUND";
+    if (scopes.includes("msha_coal_surface")) return "MSHA_COAL_SURFACE";
     if (scopes.includes("msha")) return "MSHA";
     if (scopes.includes("osha_construction")) return "OSHA_CONSTRUCTION";
     if (scopes.includes("osha_general")) return "OSHA_GENERAL_INDUSTRY";
@@ -372,13 +376,21 @@ export class SafescopeV2Service {
     const knowledgeBrainResult =
       await this.safeScopeKnowledge.retrieveForHazard({
         fusedText,
-        agencyMode: scopes?.includes("msha")
-          ? "msha"
-          : scopes?.includes("osha_construction")
-            ? "osha_construction"
-            : scopes?.includes("osha_general")
-              ? "osha_general"
-              : undefined,
+        agencyMode: scopes?.includes("msha_mnm_surface")
+          ? "msha_mnm_surface"
+          : scopes?.includes("msha_mnm_underground")
+            ? "msha_mnm_underground"
+            : scopes?.includes("msha_coal_underground")
+              ? "msha_coal_underground"
+              : scopes?.includes("msha_coal_surface")
+                ? "msha_coal_surface"
+                : scopes?.includes("msha")
+                  ? "msha"
+                  : scopes?.includes("osha_construction")
+                    ? "osha_construction"
+                    : scopes?.includes("osha_general")
+                      ? "osha_general"
+                      : undefined,
         classification: promotedPrimary.classification,
         location:
           (expandedContext as any)?.location || (expandedContext as any)?.area,
