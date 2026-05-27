@@ -16,6 +16,7 @@ type Scenario = {
   fusedText: string;
   expectedAny: RegExp[];
   rejectTop?: RegExp[];
+  allowCrossScopeSupport?: RegExp[];
 };
 
 const scenarios: Scenario[] = [
@@ -26,6 +27,7 @@ const scenarios: Scenario[] = [
     fusedText: 'Worker standing near an unprotected open edge with missing fall protection.',
     expectedAny: [/fall/i, /walking-working/i, /guardrail/i, /ladder/i, /1926\.50[0-3]/i, /1910\.140/i],
     rejectTop: [/respiratory/i, /confined/i, /grain/i, /pulp/i],
+    allowCrossScopeSupport: [/29 CFR 1910\.140/i],
   },
   {
     name: 'OSHA general confined space tank entry',
@@ -145,7 +147,20 @@ async function run() {
       top && scenario.rejectTop?.some((pattern) => pattern.test(topIdentity)),
     );
 
-    const passed = Boolean(top) && topPassesExpected && !topFailsRejected;
+    const topCitation = String(top?.citation || '');
+    const crossScopeAllowed = Boolean(
+      scenario.allowCrossScopeSupport?.some((pattern) => pattern.test(topIdentity)),
+    );
+
+    const topFailsScope =
+      scenario.agencyMode === 'osha_general'
+        ? /29 CFR 1926\./i.test(topCitation)
+        : scenario.agencyMode === 'osha_construction'
+          ? /29 CFR 1910\./i.test(topCitation) && !crossScopeAllowed
+          : false;
+
+    const passed =
+      Boolean(top) && topPassesExpected && !topFailsRejected && !topFailsScope;
 
     results.push({
       scenario: scenario.name,
@@ -165,6 +180,7 @@ async function run() {
       synthesisCounts: result.sourceSynthesis?.counts,
       expectedMatched: topPassesExpected,
       rejectedMatched: topFailsRejected,
+      scopeRejected: topFailsScope,
     });
   }
 

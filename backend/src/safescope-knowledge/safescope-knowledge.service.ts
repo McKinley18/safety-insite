@@ -40,6 +40,7 @@ type CreateSafeScopeKnowledgeDocumentDto = {
 type SearchSafeScopeKnowledgeDto = {
   query: string;
   agency?: string;
+  agencyMode?: string;
   sourceTypes?: string[];
   approvedOnly?: boolean;
   limit?: number;
@@ -366,7 +367,7 @@ export class SafeScopeKnowledgeService {
     const scored = filtered
       .map((chunk) => ({
         chunk,
-        score: this.scoreChunk(query, terms, chunk),
+        score: this.scoreChunk(query, terms, chunk, dto.agencyMode),
       }))
       .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score)
@@ -502,6 +503,7 @@ export class SafeScopeKnowledgeService {
     return this.search({
       query,
       agency,
+      agencyMode: input.agencyMode,
       approvedOnly: true,
       limit: 8,
       workspaceId: input.workspaceId,
@@ -605,6 +607,7 @@ export class SafeScopeKnowledgeService {
     query: string,
     terms: string[],
     chunk: SafeScopeKnowledgeChunk,
+    agencyMode?: string,
   ) {
     const haystack = [
       chunk.chunkText,
@@ -671,6 +674,16 @@ export class SafeScopeKnowledgeService {
 
     let domainScore = 0;
 
+    const oshaGeneralMode = agencyMode === "osha_general";
+    const oshaConstructionMode = agencyMode === "osha_construction";
+    const is1910Citation = /29 cfr 1910\./.test(normalizedCitation);
+    const is1926Citation = /29 cfr 1926\./.test(normalizedCitation);
+
+    if (oshaGeneralMode && is1910Citation) domainScore += 90;
+    if (oshaGeneralMode && is1926Citation) domainScore -= 220;
+    if (oshaConstructionMode && is1926Citation) domainScore += 90;
+    if (oshaConstructionMode && is1910Citation) domainScore -= 120;
+
     const heading = String(chunk.sectionHeading || "").toLowerCase();
     const citation = String(chunk.citation || "").toLowerCase();
     const title = String(chunk.document?.title || "").toLowerCase();
@@ -724,6 +737,26 @@ export class SafeScopeKnowledgeService {
 
     const strongConfinedSpaceCitation =
       /29 cfr 1910\.146|29 cfr 1926\.120[1-9]/.test(citation);
+
+    const electricalQuery =
+      /(electrical|energized|conductor|conductors|panel|breaker|wiring|cord|grounding|arc flash|overcurrent|junction box|exposed live parts|live parts|clearance)/.test(
+        normalizedQuery,
+      );
+
+    const strongElectricalCitation =
+      /29 cfr 1910\.(30[3-5]|33[2-5])|29 cfr 1926\.(40[0-9]|41[0-9]|43[0-2])/.test(
+        citation,
+      );
+
+    const electricalHeading =
+      /(electrical|wiring|grounding|conductors|live parts|energized|panel|switchboards|overcurrent|general requirements|selection and use of work practices)/.test(
+        heading + " " + title,
+      );
+
+    const unrelatedElectricalHeading =
+      /(fall protection|confined spaces|machine guarding|respiratory protection|walking-working surfaces|stairways|ladders|grain handling|loading and haulage)/.test(
+        heading + " " + title,
+      );
 
     const confinedSpaceQuery =
       /(confined space|permit required confined space|permit-required confined space|tank|vessel|silo|pit|vault|manhole|atmospheric testing|engulfment)/.test(
@@ -808,6 +841,16 @@ export class SafeScopeKnowledgeService {
       if (confinedSpaceHeading) domainScore += 100;
       if (strongConfinedSpaceCitation) domainScore += 140;
       if (regulatoryChunk && unrelatedConfinedSpaceHeading) domainScore -= 120;
+    }
+
+    if (electricalQuery) {
+      if (/electrical|energized|conductor|conductors|panel|breaker|wiring|cord|grounding|arc flash|overcurrent|live parts|junction box|clearance/.test(haystack)) {
+        domainScore += 85;
+      }
+
+      if (electricalHeading) domainScore += 115;
+      if (strongElectricalCitation) domainScore += 170;
+      if (regulatoryChunk && unrelatedElectricalHeading) domainScore -= 120;
     }
 
     return (
