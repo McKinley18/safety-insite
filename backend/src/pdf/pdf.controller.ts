@@ -1,8 +1,10 @@
-import { Controller, Get, Param, Res } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, Req, Res, UseGuards } from '@nestjs/common';
 import { PdfService } from './pdf.service';
 import { ReportsService } from '../reports/reports.service';
-import { Response } from 'express';
+import { Response, Request } from 'express';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('pdf')
 export class PdfController {
   constructor(
@@ -11,8 +13,16 @@ export class PdfController {
   ) {}
 
   @Get(':id')
-  async generate(@Param('id') id: string, @Res() res: Response) {
-    const report = await this.reportsService.findOne(id);
+  async generate(
+    @Param('id') id: string,
+    @Req() req: Request & { user?: any },
+    @Res() res: Response,
+  ) {
+    const report = await this.reportsService.findOne(id, req.user);
+
+    if (!report) {
+      throw new NotFoundException('Report not found');
+    }
 
     const pdf = await this.pdfService.generate(report);
 
@@ -22,6 +32,6 @@ export class PdfController {
       'Content-Length': pdf.length,
     });
 
-    res.end(pdf);
+    return res.end(pdf);
   }
 }
