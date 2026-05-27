@@ -12,6 +12,9 @@ export class Site {
   @ManyToOne(() => Organization, org => org.sites)
   organization: Organization;
 
+  @Column({ nullable: true })
+  organizationId: string;
+
   @CreateDateColumn()
   createdAt: Date;
 }
