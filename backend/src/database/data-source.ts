@@ -28,6 +28,11 @@ import { HazardTaxonomy } from '../intelligence-framework/entities/hazard-taxono
 import { Notification } from '../notifications/notification.entity';
 import { SafeScopeReasoningSnapshot } from '../safescope-v2/snapshots/reasoning-snapshot.entity';
 import { SafeScopeSupervisorValidation } from '../safescope-v2/validation/supervisor-validation.entity';
+import { SafeScopeKnowledgeDocument } from '../safescope-knowledge/entities/safescope-knowledge-document.entity';
+import { SafeScopeKnowledgeChunk } from '../safescope-knowledge/entities/safescope-knowledge-chunk.entity';
+import { SafeScopeKnowledgeRetrievalLog } from '../safescope-knowledge/entities/safescope-knowledge-retrieval-log.entity';
+import { SafeScopeKnowledgeSource } from '../safescope-knowledge/entities/safescope-knowledge-source.entity';
+import { SafeScopeKnowledgeIngestionRun } from '../safescope-knowledge/entities/safescope-knowledge-ingestion-run.entity';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -66,6 +71,11 @@ export const dataSource = new DataSource({
     Notification,
     SafeScopeReasoningSnapshot,
     SafeScopeSupervisorValidation,
+    SafeScopeKnowledgeDocument,
+    SafeScopeKnowledgeChunk,
+    SafeScopeKnowledgeRetrievalLog,
+    SafeScopeKnowledgeSource,
+    SafeScopeKnowledgeIngestionRun,
   ],
   migrations: ['src/database/migrations/*.ts'],
   synchronize: true,
