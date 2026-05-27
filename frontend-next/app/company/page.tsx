@@ -48,6 +48,10 @@ export default function CompanyControlCenterPage() {
   const [assignmentDueDate, setAssignmentDueDate] = useState("");
   const [assignedWork, setAssignedWork] = useState<AssignedWork[]>([]);
   const [facilities, setFacilities] = useState<Facility[]>([]);
+  const [filterLocation, setFilterLocation] = useState("");
+  const [filterOwner, setFilterOwner] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
+  const [filterType, setFilterType] = useState("");
   const [status, setStatus] = useState("");
 
   const companySeats = 5;
@@ -102,6 +106,25 @@ export default function CompanyControlCenterPage() {
       overdue: overdue.length,
       inspections: assignedWork.filter((item) => item.type === "Inspection").length,
     };
+  }, [assignedWork]);
+
+  const filteredAssignedWork = useMemo(() => {
+    return assignedWork.filter((item) => {
+      const matchesLocation = !filterLocation || item.location === filterLocation;
+      const matchesOwner = !filterOwner || item.owner === filterOwner;
+      const matchesStatus = !filterStatus || item.status === filterStatus;
+      const matchesType = !filterType || item.type === filterType;
+
+      return matchesLocation && matchesOwner && matchesStatus && matchesType;
+    });
+  }, [assignedWork, filterLocation, filterOwner, filterStatus, filterType]);
+
+  const ownerOptions = useMemo(() => {
+    return Array.from(new Set(assignedWork.map((item) => item.owner).filter(Boolean)));
+  }, [assignedWork]);
+
+  const locationOptions = useMemo(() => {
+    return Array.from(new Set(assignedWork.map((item) => item.location).filter(Boolean)));
   }, [assignedWork]);
 
   function persistAssignedWork(next: AssignedWork[]) {
@@ -161,12 +184,25 @@ export default function CompanyControlCenterPage() {
     setStatus(`${assignment.type} assigned.`);
   }
 
-  function markAssignmentComplete(id: string) {
+  function updateAssignmentStatus(id: string, nextStatus: string) {
     persistAssignedWork(
       assignedWork.map((item) =>
-        item.id === id ? { ...item, status: "Completed" } : item,
+        item.id === id ? { ...item, status: nextStatus } : item,
       ),
     );
+    setStatus(`Assignment marked ${nextStatus.toLowerCase()}.`);
+  }
+
+  function removeAssignment(id: string) {
+    persistAssignedWork(assignedWork.filter((item) => item.id !== id));
+    setStatus("Assignment removed.");
+  }
+
+  function clearFilters() {
+    setFilterLocation("");
+    setFilterOwner("");
+    setFilterStatus("");
+    setFilterType("");
   }
 
   function previewPlan(nextPlan: PlanCode) {
@@ -495,21 +531,71 @@ export default function CompanyControlCenterPage() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {["Location", "Owner", "Status", "Type"].map((filter) => (
-              <select
-                key={filter}
-                className="rounded-lg border border-slate-300 bg-slate-50 px-2 py-1.5 text-[11px] font-bold text-slate-700 outline-none"
-                defaultValue=""
-              >
-                <option value="">{filter}: All</option>
-              </select>
-            ))}
+            <select
+              value={filterLocation}
+              onChange={(event) => setFilterLocation(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-slate-50 px-2 py-1.5 text-[11px] font-bold text-slate-700 outline-none"
+            >
+              <option value="">Location: All</option>
+              {locationOptions.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={filterOwner}
+              onChange={(event) => setFilterOwner(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-slate-50 px-2 py-1.5 text-[11px] font-bold text-slate-700 outline-none"
+            >
+              <option value="">Owner: All</option>
+              {ownerOptions.map((owner) => (
+                <option key={owner} value={owner}>
+                  {owner}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={filterStatus}
+              onChange={(event) => setFilterStatus(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-slate-50 px-2 py-1.5 text-[11px] font-bold text-slate-700 outline-none"
+            >
+              <option value="">Status: All</option>
+              {["Open", "In Progress", "Blocked", "Completed"].map((itemStatus) => (
+                <option key={itemStatus} value={itemStatus}>
+                  {itemStatus}
+                </option>
+              ))}
+            </select>
+
+            <select
+              value={filterType}
+              onChange={(event) => setFilterType(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-slate-50 px-2 py-1.5 text-[11px] font-bold text-slate-700 outline-none"
+            >
+              <option value="">Type: All</option>
+              {assignmentTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-[11px] font-black text-slate-700 transition hover:bg-slate-100"
+            >
+              Clear
+            </button>
           </div>
         </div>
 
         <div className="mt-3 grid gap-2">
-          {assignedWork.length ? (
-            assignedWork.map((item) => (
+          {filteredAssignedWork.length ? (
+            filteredAssignedWork.map((item) => (
               <div
                 key={item.id}
                 className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2"
@@ -530,22 +616,41 @@ export default function CompanyControlCenterPage() {
                     </span>
 
                     {item.status !== "Completed" && (
-                      <button
-                        type="button"
-                        onClick={() => markAssignmentComplete(item.id)}
-                        className="rounded-lg bg-[#102A43] px-2 py-1 text-[10px] font-black text-white"
-                      >
-                        Complete
-                      </button>
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => updateAssignmentStatus(item.id, "In Progress")}
+                          className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-[10px] font-black text-slate-700"
+                        >
+                          Start
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => updateAssignmentStatus(item.id, "Completed")}
+                          className="rounded-lg bg-[#102A43] px-2 py-1 text-[10px] font-black text-white"
+                        >
+                          Complete
+                        </button>
+                      </>
                     )}
+
+                    <button
+                      type="button"
+                      onClick={() => removeAssignment(item.id)}
+                      className="rounded-lg border border-red-200 bg-white px-2 py-1 text-[10px] font-black text-red-700"
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               </div>
             ))
           ) : (
             <p className="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
-              No assigned company work yet. Assigned inspections, follow-ups,
-              corrective actions, and reviews will appear here.
+              {assignedWork.length
+                ? "No assigned work matches the current filters."
+                : "No assigned company work yet. Assigned inspections, follow-ups, corrective actions, and reviews will appear here."}
             </p>
           )}
         </div>
