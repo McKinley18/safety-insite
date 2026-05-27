@@ -52,7 +52,8 @@
     "source:intelligence:validate-orchestrator-mock-source-flow": "ts-node scripts/validate-safescope-orchestrator-with-mock-source.ts",
     "source:intelligence:validate-real-source-adapter": "ts-node scripts/validate-safescope-real-source-adapter.ts",
     "source:intelligence:validate-orchestrator-real-source-flow": "ts-node scripts/validate-safescope-orchestrator-with-real-source.ts",
-    "source:intelligence:validate-hazard-classification-adapter": "ts-node scripts/validate-safescope-hazard-classification-adapter.ts"
+    "source:intelligence:validate-hazard-classification-adapter": "ts-node scripts/validate-safescope-hazard-classification-adapter.ts",
+    "source:intelligence:validate-orchestrator-hazard-classification-flow": "ts-node scripts/validate-safescope-orchestrator-with-hazard-classification.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
