@@ -13,6 +13,12 @@ export class AuditSession {
   siteId: string;
 
   @Column({ nullable: true })
+  tenantId: string;
+
+  @Column({ nullable: true })
+  organizationId: string;
+
+  @Column({ nullable: true })
   auditorName: string;
 
   @Column({ type: 'date', nullable: true })

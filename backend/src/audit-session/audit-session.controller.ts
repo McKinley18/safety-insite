@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Headers, Param, Patch, Post } from '@nestjs/common';
 import { AuditSessionService } from './audit-session.service';
 import { AuditAnalysisService } from './audit-analysis.service';
 
@@ -10,23 +10,27 @@ export class AuditSessionController {
   ) {}
 
   @Post()
-  createSession(@Body() dto: any) {
-    return this.sessionService.createSession(dto);
+  createSession(@Headers('authorization') authorization: string, @Body() dto: any) {
+    return this.sessionService.createSession(authorization, dto);
   }
 
   @Get()
-  findAll() {
-    return this.sessionService.findAll();
+  findAll(@Headers('authorization') authorization: string) {
+    return this.sessionService.findAll(authorization);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sessionService.findOne(id);
+  findOne(@Headers('authorization') authorization: string, @Param('id') id: string) {
+    return this.sessionService.findOne(authorization, id);
   }
 
   @Post(':id/entries')
-  addEntry(@Param('id') id: string, @Body() dto: any) {
-    return this.sessionService.addEntry(id, dto);
+  addEntry(
+    @Headers('authorization') authorization: string,
+    @Param('id') id: string,
+    @Body() dto: any,
+  ) {
+    return this.sessionService.addEntry(authorization, id, dto);
   }
 
   @Post(':sessionId/entries/:entryId/analyze')
@@ -38,7 +42,7 @@ export class AuditSessionController {
   }
 
   @Patch(':id/publish')
-  publish(@Param('id') id: string) {
-    return this.sessionService.publish(id);
+  publish(@Headers('authorization') authorization: string, @Param('id') id: string) {
+    return this.sessionService.publish(authorization, id);
   }
 }
