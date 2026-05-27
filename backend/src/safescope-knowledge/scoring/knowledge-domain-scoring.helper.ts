@@ -171,6 +171,98 @@ export function scoreKnowledgeDomainAlignment(input: DomainScoringInput) {
       headingAndTitle,
     );
 
+  if (
+    agencyMode === "osha_construction" &&
+    /(fall protection|open side|open edge|unprotected|guardrail|safety net|personal fall arrest|lower level|walking working surface)/.test(
+      normalizedQuery,
+    )
+  ) {
+    if (/29 cfr 1926\.501$|^1926\.501$/.test(citation)) {
+      domainScore += 1400;
+    }
+
+    if (/29 cfr 1926\.502$|^1926\.502$/.test(citation)) {
+      domainScore += 450;
+    }
+
+    if (
+      regulatoryChunk &&
+      /1926\.307|mechanical power-transmission apparatus|tools - hand and power|1926\.1050|stairways and ladders/.test(
+        haystack,
+      )
+    ) {
+      domainScore -= 520;
+    }
+  }
+
+  if (
+    agencyMode === "msha_mnm_underground" &&
+    /(lockout|locked out|tagged|deenergized|de-energized|electrically powered equipment|mechanical work|repair)/.test(
+      normalizedQuery,
+    )
+  ) {
+    if (/30 cfr 57\.12016$|^57\.12016$/.test(citation)) {
+      domainScore += 1400;
+    }
+
+    if (/30 cfr 57\.12017$|^57\.12017$/.test(citation)) {
+      domainScore += 500;
+    }
+
+    if (
+      regulatoryChunk &&
+      /57\.12027|grounding mobile equipment|56\.12016|75\.511|77\./.test(
+        haystack,
+      )
+    ) {
+      domainScore -= 520;
+    }
+  }
+
+  if (
+    agencyMode === "msha_mnm_surface" &&
+    /(lockout|locked out|tagged|deenergized|de-energized|electrically powered equipment|mechanical work|repair)/.test(
+      normalizedQuery,
+    )
+  ) {
+    if (/30 cfr 56\.12016$|^56\.12016$/.test(citation)) {
+      domainScore += 1400;
+    }
+
+    if (/30 cfr 56\.12017$|^56\.12017$/.test(citation)) {
+      domainScore += 500;
+    }
+
+    if (
+      regulatoryChunk &&
+      /56\.12027|grounding mobile equipment|57\.12016|75\.511|77\./.test(
+        haystack,
+      )
+    ) {
+      domainScore -= 520;
+    }
+  }
+
+  if (
+    agencyMode === "msha_coal_underground" &&
+    /(machine guarding|unguarded|guard|guarding|moving machine parts|moving parts|conveyor|pulley|drive pulley|tail pulley|head pulley|sprocket|chain|shaft)/.test(
+      normalizedQuery,
+    )
+  ) {
+    if (/30 cfr 75\.1722$|^75\.1722$/.test(citation)) {
+      domainScore += 1600;
+    }
+
+    if (
+      regulatoryChunk &&
+      /75\.1728|power-driven pulleys|56\.14107|57\.14107|77\.400/.test(
+        haystack,
+      )
+    ) {
+      domainScore -= 620;
+    }
+  }
+
   if (machineGuardingQuery) {
     if (
       /(machine guarding|unguarded moving parts|moving machine parts|pinch point|entanglement|conveyor|pulley|rotating shaft|guarding)/.test(

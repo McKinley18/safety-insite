@@ -630,6 +630,42 @@ export class SafeScopeKnowledgeService {
       .trim();
 
     if (
+      agencyMode === "osha_construction" &&
+      /(fall protection|open side|open edge|unprotected|guardrail|safety net|personal fall arrest|lower level|walking working surface)/.test(
+        normalizedQuery,
+      )
+    ) {
+      return ["1926.501", "1926.502", "1926.500"];
+    }
+
+    if (
+      agencyMode === "msha_mnm_surface" &&
+      /(lockout|locked out|tagged|deenergized|de-energized|electrically powered equipment|mechanical work|repair)/.test(
+        normalizedQuery,
+      )
+    ) {
+      return ["56.12016", "56.12017"];
+    }
+
+    if (
+      agencyMode === "msha_mnm_underground" &&
+      /(lockout|locked out|tagged|deenergized|de-energized|electrically powered equipment|mechanical work|repair)/.test(
+        normalizedQuery,
+      )
+    ) {
+      return ["57.12016", "57.12017"];
+    }
+
+    if (
+      agencyMode === "msha_coal_underground" &&
+      /(machine guarding|unguarded|guard|guarding|moving machine parts|moving parts|conveyor|pulley|drive pulley|tail pulley|head pulley|sprocket|chain|shaft)/.test(
+        normalizedQuery,
+      )
+    ) {
+      return ["75.1722"];
+    }
+
+    if (
       agencyMode === "msha_coal_underground" &&
       /(lockout|locked out|tagged|deenergized|de-energized|electrical work|power circuits|distribution circuits|repair)/.test(
         normalizedQuery,
