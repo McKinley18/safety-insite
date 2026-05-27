@@ -22,6 +22,39 @@ type ActionItem = {
   createdAt: string;
 };
 
+const priorityOptions = ["Critical", "High", "Medium", "Low"] as const;
+
+function getPriorityRank(priority?: string) {
+  if (priority === "Critical") return 0;
+  if (priority === "High") return 1;
+  if (priority === "Medium") return 2;
+  if (priority === "Low") return 3;
+  return 4;
+}
+
+function isActionOverdue(action: ActionItem) {
+  if (String(action.status || "").toLowerCase() === "completed") return false;
+  if (!action.due) return false;
+
+  const due = new Date(action.due);
+  if (Number.isNaN(due.getTime())) return false;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return due.getTime() < today.getTime();
+}
+
+function getStatusTone(action: ActionItem) {
+  const status = String(action.status || "");
+
+  if (status === "Completed") return "Completed";
+  if (status === "Blocked") return "Blocked";
+  if (isActionOverdue(action)) return "Overdue";
+  if (status === "In Progress") return "In Progress";
+  return "Open";
+}
+
 type Report = {
   id?: string;
   createdAt?: string;
@@ -34,6 +67,10 @@ export default function ActionsPage() {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
   const [due, setDue] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
+  const [filterPriority, setFilterPriority] = useState("");
+  const [filterSource, setFilterSource] = useState("");
+  const [filterOverdueOnly, setFilterOverdueOnly] = useState(false);
 
   useEffect(() => {
     async function loadActions() {
@@ -73,7 +110,66 @@ export default function ActionsPage() {
     );
   }, [reports]);
 
-  const actions = [...manualActions, ...reportActions];
+  const actions = useMemo(() => {
+    const combined = [...manualActions, ...reportActions];
+
+    return combined
+      .filter((action) => {
+        const matchesStatus = !filterStatus || getStatusTone(action) === filterStatus || action.status === filterStatus;
+        const matchesPriority = !filterPriority || action.priority === filterPriority;
+        const matchesSource = !filterSource || action.source === filterSource;
+        const matchesOverdue = !filterOverdueOnly || isActionOverdue(action);
+
+        return matchesStatus && matchesPriority && matchesSource && matchesOverdue;
+      })
+      .sort((a, b) => {
+        const statusDelta =
+          (isActionOverdue(b) ? 1 : 0) - (isActionOverdue(a) ? 1 : 0);
+
+        if (statusDelta !== 0) return statusDelta;
+
+        const priorityDelta =
+          getPriorityRank(a.priority) - getPriorityRank(b.priority);
+
+        if (priorityDelta !== 0) return priorityDelta;
+
+        const aDue = a.due ? new Date(a.due).getTime() : Number.MAX_SAFE_INTEGER;
+        const bDue = b.due ? new Date(b.due).getTime() : Number.MAX_SAFE_INTEGER;
+
+        return aDue - bDue;
+      });
+  }, [
+    manualActions,
+    reportActions,
+    filterStatus,
+    filterPriority,
+    filterSource,
+    filterOverdueOnly,
+  ]);
+
+  const actionSummary = useMemo(() => {
+    const combined = [...manualActions, ...reportActions];
+
+    return {
+      total: combined.length,
+      open: combined.filter((action) => action.status !== "Completed").length,
+      overdue: combined.filter(isActionOverdue).length,
+      blocked: combined.filter((action) => action.status === "Blocked").length,
+    };
+  }, [manualActions, reportActions]);
+
+  const sourceOptions = useMemo(() => {
+    return Array.from(
+      new Set([...manualActions, ...reportActions].map((action) => action.source).filter(Boolean)),
+    );
+  }, [manualActions, reportActions]);
+
+  function clearFilters() {
+    setFilterStatus("");
+    setFilterPriority("");
+    setFilterSource("");
+    setFilterOverdueOnly(false);
+  }
 
   async function updateStoredActionStatus(actionId: string, status: string) {
     const nextActions = manualActions.map((action) =>
@@ -148,10 +244,9 @@ export default function ActionsPage() {
               onChange={(event) => setPriority(event.target.value)}
               className="rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
             >
-              <option>Low</option>
-              <option>Medium</option>
-              <option>High</option>
-              <option>Critical</option>
+              {priorityOptions.map((item) => (
+                <option key={item}>{item}</option>
+              ))}
             </select>
 
             <input
@@ -172,11 +267,93 @@ export default function ActionsPage() {
         </div>
       </section>
 
+      <section className="grid gap-3 sm:grid-cols-4">
+        {[
+          [String(actionSummary.total), "Total"],
+          [String(actionSummary.open), "Open"],
+          [String(actionSummary.overdue), "Overdue"],
+          [String(actionSummary.blocked), "Blocked"],
+        ].map(([value, label]) => (
+          <div
+            key={label}
+            className="rounded-xl border border-slate-200 bg-white px-3 py-3 shadow-sm"
+          >
+            <p className="text-2xl font-black text-slate-900">{value}</p>
+            <p className="mt-1 text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+              {label}
+            </p>
+          </div>
+        ))}
+      </section>
+
+      <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+        <div className="flex flex-wrap items-center gap-2">
+          <select
+            value={filterStatus}
+            onChange={(event) => setFilterStatus(event.target.value)}
+            className="rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-black text-slate-700 outline-none"
+          >
+            <option value="">Status: All</option>
+            {["Open", "In Progress", "Blocked", "Completed", "Overdue"].map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={filterPriority}
+            onChange={(event) => setFilterPriority(event.target.value)}
+            className="rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-black text-slate-700 outline-none"
+          >
+            <option value="">Priority: All</option>
+            {priorityOptions.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={filterSource}
+            onChange={(event) => setFilterSource(event.target.value)}
+            className="rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-xs font-black text-slate-700 outline-none"
+          >
+            <option value="">Source: All</option>
+            {sourceOptions.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+
+          <button
+            type="button"
+            onClick={() => setFilterOverdueOnly((current) => !current)}
+            className={`rounded-xl border px-3 py-2 text-xs font-black transition ${
+              filterOverdueOnly
+                ? "border-red-200 bg-red-50 text-red-700"
+                : "border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+            }`}
+          >
+            Overdue Only
+          </button>
+
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+          >
+            Clear
+          </button>
+        </div>
+      </section>
+
       <section className="border-y border-slate-200">
         {actions.length ? (
           actions.map((action, index) => {
             const storedAction = manualActions.some((manualAction) => manualAction.id === action.id);
-            const isComplete = String(action.status).toLowerCase() === "completed";
+            const statusTone = getStatusTone(action);
 
             return (
               <OperationalRow
@@ -186,7 +363,7 @@ export default function ActionsPage() {
                 metadata={[
                   action.location || "Workspace",
                   `Due: ${action.due || "Not set"}`,
-                  `Status: ${action.status}`,
+                  `Status: ${statusTone}`,
                   `Source: ${action.source}`,
                   `Priority: ${action.priority}`,
                 ]}
@@ -213,8 +390,8 @@ export default function ActionsPage() {
           })
         ) : (
           <EmptyState
-            title="No corrective actions available yet."
-            description="Actions created manually or generated from reports will appear here."
+            title={manualActions.length || reportActions.length ? "No corrective actions match the current filters." : "No corrective actions available yet."}
+            description={manualActions.length || reportActions.length ? "Clear filters to view all corrective actions." : "Actions created manually or generated from reports will appear here."}
           />
         )}
       </section>
