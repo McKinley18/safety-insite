@@ -1,7 +1,9 @@
 import { Controller, Get, Post, Patch, Body, Param, Request, UseGuards } from '@nestjs/common';
 import { TaxonomyService } from './taxonomy.service';
 import { HAZARD_CATEGORIES, SEVERITY_LEVELS } from './taxonomy.config';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
+@UseGuards(JwtGuard)
 @Controller('taxonomy')
 export class TaxonomyController {
   constructor(private readonly taxonomyService: TaxonomyService) {}
