@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Param, Patch, Query, Headers } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Query, Headers, UseGuards } from '@nestjs/common';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 import { CorrectiveActionsService } from './corrective-actions.service';
 import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
 
+@UseGuards(JwtGuard)
 @Controller('actions')
 export class CorrectiveActionsController {
   constructor(private readonly service: CorrectiveActionsService) {}
