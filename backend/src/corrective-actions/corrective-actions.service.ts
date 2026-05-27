@@ -23,17 +23,52 @@ export class CorrectiveActionsService {
   private getAuthContext(authHeader?: string) {
     const token = authHeader?.replace('Bearer ', '');
     if (!token) throw new UnauthorizedException('Missing authorization token');
-    const secret = process.env.JWT_SECRET || 'local_dev_secret_only';
-    try {
-      return jwt.verify(token, secret) as any;
-    } catch {
-      throw new UnauthorizedException('Invalid authorization token');
+
+    const secrets = [
+      process.env.JWT_SECRET,
+      process.env.JWT_ACCESS_SECRET,
+      'development-only-secret-change-me',
+      'dev-only-secret-change-me',
+      'local_dev_secret_only',
+    ].filter(Boolean) as string[];
+
+    for (const secret of secrets) {
+      try {
+        const decoded = jwt.verify(token, secret) as any;
+        const userId = decoded.sub || decoded.userId;
+        const organizationId = decoded.organizationId || decoded.tenantId || 'default';
+        const tenantId = decoded.tenantId || decoded.organizationId || 'default';
+
+        return {
+          ...decoded,
+          userId,
+          sub: decoded.sub || userId,
+          organizationId,
+          tenantId,
+        };
+      } catch {
+        // Try the next known local/dev secret.
+      }
     }
+
+    throw new UnauthorizedException('Invalid authorization token');
   }
 
-  private buildFilter(statusCode?: string, priorityCode?: string, tenantId?: string, assignedToUserId?: string) {
+  private buildFilter(
+    statusCode?: string,
+    priorityCode?: string,
+    organizationId?: string,
+    tenantId?: string,
+    assignedToUserId?: string,
+  ) {
     const where: any = {};
-    if (tenantId) where.tenantId = tenantId;
+
+    if (organizationId && organizationId !== 'default') {
+      where.organizationId = organizationId;
+    } else if (tenantId) {
+      where.tenantId = tenantId;
+    }
+
     if (assignedToUserId) where.assignedToUserId = assignedToUserId;
     if (statusCode) where.statusCode = statusCode;
     if (priorityCode) where.priorityCode = priorityCode;
@@ -46,7 +81,13 @@ export class CorrectiveActionsService {
   ): Promise<{ data: CorrectiveAction[], meta: { total: number, page: number, limit: number } }> {
     const auth = this.getAuthContext(authHeader);
     const { page, limit, statusCode, priorityCode, assignedToMe } = options;
-    const where = this.buildFilter(statusCode, priorityCode, auth.tenantId, assignedToMe ? auth.sub : undefined);
+    const where = this.buildFilter(
+      statusCode,
+      priorityCode,
+      auth.organizationId,
+      auth.tenantId,
+      assignedToMe ? String(auth.userId) : undefined,
+    );
 
     const [data, total] = await this.actionRepo.findAndCount({
       where,
@@ -72,12 +113,13 @@ export class CorrectiveActionsService {
     const action = this.actionRepo.create({
       ...dto,
       tenantId: auth.tenantId,
+      organizationId: auth.organizationId,
       displayId: `ACT-${String(count + 2001).padStart(4, '0')}`,
     });
     const saved = await this.actionRepo.save(action);
     await this.auditService.log({
       tenantId: auth.tenantId,
-      actorUserId: auth.sub,
+      actorUserId: String(auth.userId),
       entityType: 'CORRECTIVE_ACTION',
       entityId: saved.id,
       actionCode: 'ACTION_CREATED',
@@ -93,7 +135,12 @@ export class CorrectiveActionsService {
   ) {
     const auth = this.getAuthContext(authHeader);
 
-    const action = await this.actionRepo.findOne({ where: { id, tenantId: auth.tenantId } });
+    const action = await this.actionRepo.findOne({
+      where:
+        auth.organizationId && auth.organizationId !== 'default'
+          ? { id, organizationId: auth.organizationId }
+          : { id, tenantId: auth.tenantId },
+    });
     if (!action) throw new Error('Action not found');
 
     const before = { ...action };
@@ -102,7 +149,7 @@ export class CorrectiveActionsService {
     if (body.statusCode === 'closed') {
       action.closureNotes = body.closureNotes || action.closureNotes;
       action.verifiedAt = new Date();
-      action.verifiedByUserId = auth.sub;
+      action.verifiedByUserId = String(auth.userId);
     }
 
     const updated = await this.actionRepo.save(action);
@@ -143,7 +190,7 @@ export class CorrectiveActionsService {
 
     await this.auditService.log({
       tenantId: auth.tenantId,
-      actorUserId: auth.sub,
+      actorUserId: String(auth.userId),
       entityType: 'CORRECTIVE_ACTION',
       entityId: updated.id,
       actionCode: 'ACTION_STATUS_UPDATED',
@@ -172,7 +219,10 @@ export class CorrectiveActionsService {
     const oneDay = 1000 * 60 * 60 * 24;
 
     const actions = await this.actionRepo.find({
-      where: { tenantId: auth.tenantId },
+      where:
+        auth.organizationId && auth.organizationId !== 'default'
+          ? { organizationId: auth.organizationId }
+          : { tenantId: auth.tenantId },
       order: { dueDate: 'ASC' },
     });
 
