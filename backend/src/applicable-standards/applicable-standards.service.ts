@@ -111,10 +111,25 @@ export class ApplicableStandardsService {
     }
 
     if (this.isMovingMachineScenario(observation)) {
-      if (citation === "30 CFR 56.14107" || citation === "30 CFR 77.400") {
-        score += 90;
+      if (
+        citation === "30 CFR 56.14107" ||
+        citation === "30 CFR 57.14107" ||
+        citation === "30 CFR 75.1722" ||
+        citation === "30 CFR 77.400"
+      ) {
+        score += 120;
         matchingReasons.push(
           "scenario: unguarded conveyor pulley / exposed nip point",
+        );
+      }
+
+      if (
+        mshaPartPreference === "57" &&
+        /30 CFR 57\.4263/.test(citation)
+      ) {
+        score -= 80;
+        matchingReasons.push(
+          "demoted: underground belt conveyor rule is supporting, not primary guarding citation",
         );
       }
     }
@@ -198,6 +213,44 @@ export class ApplicableStandardsService {
       if (!hasElectricalTerms) {
         score -= 100;
         matchingReasons.push("guardrail: electrical standard requires explicit electrical terms");
+      }
+    }
+
+    const isElectricalLockoutText =
+      /(electrically powered|electrical equipment|mechanically repaired|mechanical work|deenergized|de-energized|locked out|lockout|power switch|power switches|energized without)/i.test(
+        observation,
+      );
+
+    if (isElectricalLockoutText) {
+      if (
+        mshaPartPreference === "56" &&
+        citation === "30 CFR 56.12016"
+      ) {
+        score += 220;
+        matchingReasons.push(
+          "scenario: MSHA Part 56 electrically-powered equipment lockout",
+        );
+      }
+
+      if (
+        mshaPartPreference === "57" &&
+        citation === "30 CFR 57.12016"
+      ) {
+        score += 220;
+        matchingReasons.push(
+          "scenario: MSHA Part 57 electrically-powered equipment lockout",
+        );
+      }
+
+      if (
+        mshaPartPreference &&
+        /30 CFR (56|57)\.12/.test(citation) &&
+        citation !== `30 CFR ${mshaPartPreference}.12016`
+      ) {
+        score -= 70;
+        matchingReasons.push(
+          "demoted: electrical section is not the direct electrically-powered equipment lockout citation",
+        );
       }
     }
 
