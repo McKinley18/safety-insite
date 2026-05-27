@@ -75,15 +75,15 @@ export default function ActionsPage() {
 
   const actions = [...manualActions, ...reportActions];
 
-  async function updateManualActionStatus(index: number, status: string) {
-    const nextActions = manualActions.map((action, actionIndex) =>
-      actionIndex === index ? { ...action, status } : action
+  async function updateStoredActionStatus(actionId: string, status: string) {
+    const nextActions = manualActions.map((action) =>
+      action.id === actionId ? { ...action, status } : action
     );
 
     setManualActions(nextActions);
     await saveStoredActions(nextActions);
 
-    const updatedAction = nextActions[index];
+    const updatedAction = nextActions.find((action) => action.id === actionId);
 
     await addActivityEvent({
       type: "Action",
@@ -175,12 +175,12 @@ export default function ActionsPage() {
       <section className="border-y border-slate-200">
         {actions.length ? (
           actions.map((action, index) => {
-            const isManualAction = index < manualActions.length;
+            const storedAction = manualActions.some((manualAction) => manualAction.id === action.id);
             const isComplete = String(action.status).toLowerCase() === "completed";
 
             return (
               <OperationalRow
-                key={`${action.title}-${index}`}
+                key={action.id || `${action.title}-${index}`}
                 title={action.title}
                 subtitle={action.findingTitle || action.location || "Workspace action"}
                 metadata={[
@@ -191,10 +191,10 @@ export default function ActionsPage() {
                   `Priority: ${action.priority}`,
                 ]}
                 actions={
-                  isManualAction ? (
+                  storedAction ? (
                     <select
                       value={action.status}
-                      onChange={(event) => updateManualActionStatus(index, event.target.value)}
+                      onChange={(event) => updateStoredActionStatus(action.id, event.target.value)}
                       className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-black text-slate-700 outline-none focus:border-[#1D72B8]"
                     >
                       <option>Open</option>
