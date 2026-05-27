@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:company-actions": "node scripts/check-company-actions-sync.js"
+    "check:company-actions": "node scripts/check-company-actions-sync.js",
+    "check:action-workflow": "node scripts/check-action-workflow-visibility.js"
   },
   "dependencies": {
     "clsx": "^2.1.1",
