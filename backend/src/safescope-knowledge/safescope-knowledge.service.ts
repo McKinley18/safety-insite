@@ -339,6 +339,24 @@ export class SafeScopeKnowledgeService {
       take: 300,
     });
 
+    const directCitationTerms = this.directCitationRecallTerms(query, dto.agencyMode);
+
+    if (directCitationTerms.length) {
+      const directChunks = await this.chunkRepo.find({
+        where: directCitationTerms.flatMap((term) => [
+          { citation: ILike(`%${term}%`) },
+          { sectionHeading: ILike(`%${term}%`) },
+          { chunkText: ILike(`%${term}%`) },
+        ]),
+        relations: { document: true },
+        take: 50,
+      });
+
+      const merged = new Map(chunks.map((chunk) => [chunk.id, chunk]));
+      for (const chunk of directChunks) merged.set(chunk.id, chunk);
+      chunks.splice(0, chunks.length, ...merged.values());
+    }
+
     const filtered = chunks.filter((chunk) => {
       if (
         dto.approvedOnly !== false &&
@@ -495,7 +513,7 @@ export class SafeScopeKnowledgeService {
       .join(" ");
 
     const agency =
-      input.agencyMode === "msha"
+      input.agencyMode === "msha" || input.agencyMode?.startsWith("msha_")
         ? "MSHA"
         : input.agencyMode?.startsWith("osha")
           ? "OSHA"
@@ -602,6 +620,25 @@ export class SafeScopeKnowledgeService {
       .slice(0, 20);
 
     return Array.from(new Set([...meaningfulPhrases, ...tokens]));
+  }
+
+  private directCitationRecallTerms(query: string, agencyMode?: string) {
+    const normalizedQuery = `${agencyMode || ""} ${query}`
+      .toLowerCase()
+      .replace(/[^a-z0-9.\s-]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (
+      agencyMode === "msha_coal_underground" &&
+      /(lockout|locked out|tagged|deenergized|de-energized|electrical work|power circuits|distribution circuits|repair)/.test(
+        normalizedQuery,
+      )
+    ) {
+      return ["75.511", "75.511-1", "75.153"];
+    }
+
+    return [];
   }
 
   private scoreChunk(

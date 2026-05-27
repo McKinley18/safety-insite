@@ -12,7 +12,14 @@ config();
 type Scenario = {
   name: string;
   classification: string;
-  agencyMode: 'msha' | 'osha_general' | 'osha_construction';
+  agencyMode:
+    | 'msha'
+    | 'msha_mnm_surface'
+    | 'msha_mnm_underground'
+    | 'msha_coal_underground'
+    | 'msha_coal_surface'
+    | 'osha_general'
+    | 'osha_construction';
   fusedText: string;
   expectedAny: RegExp[];
   rejectTop?: RegExp[];
@@ -54,19 +61,35 @@ const scenarios: Scenario[] = [
     rejectTop: [/fall protection/i, /confined/i, /machine guarding/i],
   },
   {
-    name: 'MSHA machine guarding conveyor pulley',
+    name: 'MSHA MNM surface machine guarding conveyor pulley',
     classification: 'Machine Guarding',
-    agencyMode: 'msha',
-    fusedText: 'Conveyor tail pulley has missing guard exposing rotating parts and pinch point.',
-    expectedAny: [/guard/i, /machine/i, /moving/i, /pulley/i, /conveyor/i, /30 cfr 5[67]\.14/i, /77\.400/i],
+    agencyMode: 'msha_mnm_surface',
+    fusedText: 'Surface metal nonmetal mine conveyor tail pulley has missing guard exposing rotating parts and pinch point.',
+    expectedAny: [/guard/i, /machine/i, /moving/i, /pulley/i, /conveyor/i, /30 cfr 56\.14/i],
     rejectTop: [/fall protection/i, /confined/i, /respiratory/i],
   },
   {
-    name: 'MSHA mobile equipment pedestrian interaction',
+    name: 'MSHA MNM underground machine guarding conveyor pulley',
+    classification: 'Machine Guarding',
+    agencyMode: 'msha_mnm_underground',
+    fusedText: 'Underground metal nonmetal mine conveyor tail pulley has missing guard exposing rotating parts and pinch point.',
+    expectedAny: [/guard/i, /machine/i, /moving/i, /pulley/i, /conveyor/i, /30 cfr 57\.14/i],
+    rejectTop: [/fall protection/i, /confined/i, /respiratory/i],
+  },
+  {
+    name: 'MSHA coal underground electrical lockout',
+    classification: 'Lockout / Stored Energy',
+    agencyMode: 'msha_coal_underground',
+    fusedText: 'Underground coal mine electrical equipment was being repaired while not deenergized, locked out, tagged, or blocked against motion.',
+    expectedAny: [/75\.511/i],
+    rejectTop: [/fall protection/i, /confined/i, /respiratory/i, /parking brakes/i, /brakes/i, /56\.12006/i, /56\.12016/i, /57\.12016/i, /56\.12017/i, /57\.12017/i, /77\.808/i, /75\.1910/i, /75\.505/i, /75\.506/i, /75\.501-1/i, /75\.1003-2/i, /75\.705-2/i, /75\.821/i, /surface high-voltage lines/i, /testing, examination and maintenance/i],
+  },
+  {
+    name: 'MSHA coal surface mobile equipment interaction',
     classification: 'Mobile Equipment / Traffic',
-    agencyMode: 'msha',
-    fusedText: 'Loader operating near pedestrian walkway with blind spot exposure and no traffic control.',
-    expectedAny: [/mobile/i, /equipment/i, /traffic/i, /pedestrian/i, /loader/i, /30 cfr 5[67]\.91/i],
+    agencyMode: 'msha_coal_surface',
+    fusedText: 'Surface coal mine loader operating near pedestrian walkway with blind spot exposure and no traffic control.',
+    expectedAny: [/mobile/i, /equipment/i, /traffic/i, /pedestrian/i, /loader/i, /30 cfr 77\./i],
     rejectTop: [/fall protection/i, /confined/i, /respiratory/i],
   },
 ];
@@ -157,7 +180,15 @@ async function run() {
         ? /29 CFR 1926\./i.test(topCitation)
         : scenario.agencyMode === 'osha_construction'
           ? /29 CFR 1910\./i.test(topCitation) && !crossScopeAllowed
-          : false;
+          : scenario.agencyMode === 'msha_mnm_surface'
+            ? !/30 CFR 56\./i.test(topCitation)
+            : scenario.agencyMode === 'msha_mnm_underground'
+              ? !/30 CFR 57\./i.test(topCitation)
+              : scenario.agencyMode === 'msha_coal_underground'
+                ? !/30 CFR 75\./i.test(topCitation)
+                : scenario.agencyMode === 'msha_coal_surface'
+                  ? !/30 CFR 77\./i.test(topCitation)
+                  : false;
 
     const passed =
       Boolean(top) && topPassesExpected && !topFailsRejected && !topFailsScope;
