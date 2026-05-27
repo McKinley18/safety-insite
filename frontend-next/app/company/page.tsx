@@ -13,7 +13,7 @@ import {
   inviteOrganizationMember,
 } from "@/lib/auth";
 import { getFacilities, type Facility } from "@/lib/facilityStorage";
-import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
+import { getStoredActions, saveStoredActions, type StoredAction } from "@/lib/actionStorage";
 
 const roleOptions = ["Owner", "Manager", "Auditor", "Viewer"] as const;
 
@@ -235,7 +235,7 @@ export default function CompanyControlCenterPage() {
     return Array.from(new Set(assignedWork.map((item) => item.location).filter(Boolean)));
   }, [assignedWork]);
 
-  function persistAssignedWork(next: AssignedWork[]) {
+  async function persistAssignedWork(next: AssignedWork[]) {
     setAssignedWork(next);
 
     if (typeof window !== "undefined") {
@@ -247,6 +247,24 @@ export default function CompanyControlCenterPage() {
         "sentinel_company_assigned_work",
         JSON.stringify(manualOnly),
       );
+
+      const storedActions = await getStoredActions();
+      const syncedActions = storedActions.map((action) => {
+        const assignedItem = next.find((item) => item.id === `action-${action.id}`);
+
+        if (!assignedItem) return action;
+
+        return {
+          ...action,
+          status: assignedItem.status,
+          priority: assignedItem.priority || action.priority,
+          due: assignedItem.dueDate === "No due date" ? action.due : assignedItem.dueDate,
+          location: assignedItem.location || action.location,
+          findingTitle: assignedItem.findingTitle || action.findingTitle,
+        };
+      });
+
+      await saveStoredActions(syncedActions);
     }
   }
 
@@ -272,7 +290,7 @@ export default function CompanyControlCenterPage() {
     }
   }
 
-  function addAssignedWork() {
+  async function addAssignedWork() {
     if (!assignmentTitle.trim()) {
       setStatus("Enter an assignment title before assigning work.");
       return;
@@ -290,7 +308,7 @@ export default function CompanyControlCenterPage() {
       createdAt: new Date().toISOString(),
     };
 
-    persistAssignedWork([assignment, ...assignedWork]);
+    await persistAssignedWork([assignment, ...assignedWork]);
     setAssignmentTitle("");
     setAssignmentLocation("");
     setAssignmentDueDate("");
@@ -298,8 +316,8 @@ export default function CompanyControlCenterPage() {
     setStatus(`${assignment.type} assigned.`);
   }
 
-  function updateAssignmentStatus(id: string, nextStatus: string) {
-    persistAssignedWork(
+  async function updateAssignmentStatus(id: string, nextStatus: string) {
+    await persistAssignedWork(
       assignedWork.map((item) =>
         item.id === id ? { ...item, status: nextStatus } : item,
       ),
@@ -307,8 +325,8 @@ export default function CompanyControlCenterPage() {
     setStatus(`Assignment marked ${nextStatus.toLowerCase()}.`);
   }
 
-  function removeAssignment(id: string) {
-    persistAssignedWork(assignedWork.filter((item) => item.id !== id));
+  async function removeAssignment(id: string) {
+    await persistAssignedWork(assignedWork.filter((item) => item.id !== id));
     setStatus("Assignment removed.");
   }
 
