@@ -59,7 +59,8 @@
     "source:intelligence:validate-risk-assessment-adapter": "ts-node scripts/validate-safescope-risk-assessment-adapter.ts",
     "source:intelligence:validate-classification-standards-risk-flow": "ts-node scripts/validate-safescope-classification-standards-risk-flow.ts",
     "source:intelligence:validate-corrective-action-recommendation-adapter": "ts-node scripts/validate-safescope-corrective-action-recommendation-adapter.ts",
-    "source:intelligence:validate-classification-standards-risk-actions-flow": "ts-node scripts/validate-safescope-classification-standards-risk-actions-flow.ts"
+    "source:intelligence:validate-classification-standards-risk-actions-flow": "ts-node scripts/validate-safescope-classification-standards-risk-actions-flow.ts",
+    "source:intelligence:validate-knowledge-retrieval-adapter": "ts-node scripts/validate-safescope-knowledge-retrieval-adapter.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

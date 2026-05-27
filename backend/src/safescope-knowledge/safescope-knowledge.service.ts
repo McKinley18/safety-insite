@@ -373,29 +373,51 @@ export class SafeScopeKnowledgeService {
       .slice(0, limit);
 
     const matches = scored.map(({ chunk, score }) => {
-      const role = getSourceRole(
-        chunk.document?.sourceType || "",
-        chunk.authorityTier,
-      );
-      const governance = getSourceGovernance(
-        chunk.document?.sourceType || "",
-        chunk.authorityTier,
-      );
+      const isStarterReference =
+        String(chunk.citation || "").startsWith("SAFE-SCOPE-") ||
+        String(chunk.document?.title || "")
+          .toLowerCase()
+          .includes("starter reference");
+
+      const effectiveSourceType = isStarterReference
+        ? "training_material"
+        : chunk.document?.sourceType || "";
+
+      const effectiveAuthorityTier = isStarterReference
+        ? 5
+        : chunk.authorityTier;
+
+      const role = isStarterReference
+        ? "supporting_reference"
+        : getSourceRole(effectiveSourceType, effectiveAuthorityTier);
+
+      const governance = isStarterReference
+        ? getSourceGovernance({
+            sourceType: effectiveSourceType,
+            sourceRole: role,
+            authorityTier: effectiveAuthorityTier,
+          })
+        : getSourceGovernance(effectiveSourceType, effectiveAuthorityTier);
+
       return {
         chunkId: chunk.id,
         documentId: chunk.documentId,
         title: chunk.document?.title,
         agency: chunk.document?.agency,
-        sourceType: chunk.document?.sourceType,
+        sourceType: effectiveSourceType,
+        originalSourceType: chunk.document?.sourceType,
         sourceRole: role,
         sourceRoleLabel: ROLE_LABELS[role],
         usageGuidance: ROLE_GUIDANCE[role],
         sourceGovernance: governance,
         isPrimaryAuthority:
+          !isStarterReference &&
           chunk.authorityTier === 1 &&
-          chunk.document?.sourceType === "regulation",
-        isSupportiveAuthority: chunk.authorityTier > 1,
-        authorityTier: chunk.authorityTier,
+          chunk.document?.sourceType === "regulation" &&
+          Boolean(chunk.document?.sourceUrl),
+        isSupportiveAuthority: isStarterReference || effectiveAuthorityTier > 1,
+        authorityTier: effectiveAuthorityTier,
+        originalAuthorityTier: chunk.authorityTier,
         citation: chunk.citation,
         sourceUrl: chunk.document?.sourceUrl,
         sectionHeading: chunk.sectionHeading,
