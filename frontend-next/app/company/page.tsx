@@ -123,6 +123,7 @@ export default function CompanyControlCenterPage() {
   const [filterOwner, setFilterOwner] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
   const [filterType, setFilterType] = useState("");
+  const [filterOverdueOnly, setFilterOverdueOnly] = useState(false);
   const [status, setStatus] = useState("");
 
   const companySeats = 5;
@@ -191,7 +192,11 @@ export default function CompanyControlCenterPage() {
 
     return {
       total: assignedWork.length,
-      open: open.length,
+      open: assignedWork.filter((item) => item.status === "Open").length,
+      inProgress: assignedWork.filter((item) => item.status === "In Progress").length,
+      blocked: assignedWork.filter((item) => item.status === "Blocked").length,
+      completed: assignedWork.filter((item) => item.status === "Completed").length,
+      active: open.length,
       overdue: overdue.length,
       inspections: assignedWork.filter((item) => item.type === "Inspection").length,
     };
@@ -203,8 +208,15 @@ export default function CompanyControlCenterPage() {
       const matchesOwner = !filterOwner || item.owner === filterOwner;
       const matchesStatus = !filterStatus || item.status === filterStatus;
       const matchesType = !filterType || item.type === filterType;
+      const matchesOverdue = !filterOverdueOnly || isAssignmentOverdue(item);
 
-      return matchesLocation && matchesOwner && matchesStatus && matchesType;
+      return (
+        matchesLocation &&
+        matchesOwner &&
+        matchesStatus &&
+        matchesType &&
+        matchesOverdue
+      );
     });
 
     return filtered.sort((a, b) => {
@@ -225,7 +237,14 @@ export default function CompanyControlCenterPage() {
 
       return aDue - bDue;
     });
-  }, [assignedWork, filterLocation, filterOwner, filterStatus, filterType]);
+  }, [
+    assignedWork,
+    filterLocation,
+    filterOwner,
+    filterStatus,
+    filterType,
+    filterOverdueOnly,
+  ]);
 
   const ownerOptions = useMemo(() => {
     return Array.from(new Set(assignedWork.map((item) => item.owner).filter(Boolean)));
@@ -326,7 +345,16 @@ export default function CompanyControlCenterPage() {
   }
 
   async function removeAssignment(id: string) {
-    await persistAssignedWork(assignedWork.filter((item) => item.id !== id));
+    const item = assignedWork.find((assignment) => assignment.id === id);
+
+    if (item && isActionLinkedWork(item)) {
+      setStatus(
+        "Corrective action work is linked to the Actions tracker. Mark it completed or update it from Actions instead of removing it here.",
+      );
+      return;
+    }
+
+    await persistAssignedWork(assignedWork.filter((assignment) => assignment.id !== id));
     setStatus("Assignment removed.");
   }
 
@@ -335,6 +363,15 @@ export default function CompanyControlCenterPage() {
     setFilterOwner("");
     setFilterStatus("");
     setFilterType("");
+    setFilterOverdueOnly(false);
+  }
+
+  function isActionLinkedWork(item: AssignedWork) {
+    return String(item.id || "").startsWith("action-");
+  }
+
+  function getWorkSourceLabel(item: AssignedWork) {
+    return isActionLinkedWork(item) ? "Corrective Action" : "Manual Assignment";
   }
 
   function previewPlan(nextPlan: PlanCode) {
@@ -457,9 +494,9 @@ export default function CompanyControlCenterPage() {
         <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
           {[
             [`${usedSeats}/${companySeats}`, "Seats"],
-            [String(workSummary.open), "Open Work"],
+            [String(workSummary.active), "Active"],
             [String(workSummary.overdue), "Overdue"],
-            [String(workSummary.inspections), "Inspections"],
+            [String(workSummary.blocked), "Blocked"],
           ].map(([value, label]) => (
             <div
               key={label}
@@ -525,7 +562,26 @@ export default function CompanyControlCenterPage() {
             </button>
           </div>
 
-          <div className="mt-3 grid gap-2">
+          <div className="mt-3 grid gap-2 sm:grid-cols-4">
+          {[
+            [String(workSummary.open), "Open"],
+            [String(workSummary.inProgress), "In Progress"],
+            [String(workSummary.blocked), "Blocked"],
+            [String(workSummary.completed), "Completed"],
+          ].map(([value, label]) => (
+            <div
+              key={label}
+              className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center"
+            >
+              <p className="text-lg font-black text-slate-900">{value}</p>
+              <p className="mt-0.5 text-[10px] font-black uppercase tracking-wide text-slate-500">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-3 grid gap-2">
             {(members.length
               ? members
               : [
@@ -675,6 +731,18 @@ export default function CompanyControlCenterPage() {
           </div>
 
           <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setFilterOverdueOnly((current) => !current)}
+              className={`rounded-lg border px-2 py-1.5 text-[11px] font-black transition ${
+                filterOverdueOnly
+                  ? "border-red-200 bg-red-50 text-red-700"
+                  : "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              Overdue Only
+            </button>
+
             <select
               value={filterLocation}
               onChange={(event) => setFilterLocation(event.target.value)}
@@ -750,7 +818,7 @@ export default function CompanyControlCenterPage() {
                       {item.title}
                     </p>
                     <p className="mt-0.5 text-[11px] font-semibold text-slate-500">
-                      {item.type} • {item.owner} • {item.location || "Unassigned location"} • Due: {item.dueDate}
+                      {getWorkSourceLabel(item)} • {item.type} • {item.owner} • {item.location || "Unassigned location"} • Due: {item.dueDate}
                       {item.findingTitle ? ` • Finding: ${item.findingTitle}` : ""}
                     </p>
                   </div>
@@ -792,13 +860,15 @@ export default function CompanyControlCenterPage() {
                       </>
                     )}
 
-                    <button
-                      type="button"
-                      onClick={() => removeAssignment(item.id)}
-                      className="rounded-lg border border-red-200 bg-white px-2 py-1 text-[10px] font-black text-red-700"
-                    >
-                      Remove
-                    </button>
+                    {!isActionLinkedWork(item) && (
+                      <button
+                        type="button"
+                        onClick={() => removeAssignment(item.id)}
+                        className="rounded-lg border border-red-200 bg-white px-2 py-1 text-[10px] font-black text-red-700"
+                      >
+                        Remove
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
