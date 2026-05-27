@@ -12,6 +12,12 @@ export class Inspection {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column({ nullable: true })
+  organizationId: string;
+
+  @Column({ nullable: true })
+  createdByUserId: string;
+
   @Column()
   title: string;
 

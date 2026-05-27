@@ -1,15 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { Inspection } from './inspection.entity';
 
+type InspectionHazardInput = {
+  hazard: string;
+  severity: string | number;
+};
+
 type CreateInspectionInput = {
   title: string;
-  hazards: Array<{
-    hazard: string;
-    severity: string | number;
-  }>;
+  hazards?: InspectionHazardInput[];
 };
 
 @Injectable()
@@ -19,21 +21,38 @@ export class InspectionService {
     private repo: Repository<Inspection>,
   ) {}
 
-  async create(data: CreateInspectionInput) {
+  private requireOrganization(user?: any): string {
+    const organizationId = user?.organizationId;
+
+    if (!organizationId) {
+      throw new UnauthorizedException('Organization context is required.');
+    }
+
+    return String(organizationId);
+  }
+
+  async create(data: CreateInspectionInput, user?: any) {
+    const organizationId = this.requireOrganization(user);
+
     const inspection = this.repo.create({
       title: data.title,
+      organizationId,
+      createdByUserId: user?.userId ? String(user.userId) : undefined,
     });
 
-    inspection.hazards = data.hazards.map((h: CreateInspectionInput["hazards"][number]) => ({
+    inspection.hazards = (data.hazards || []).map((h: InspectionHazardInput) => ({
       description: h.hazard,
       severity: String(h.severity),
-    })) as unknown as Inspection["hazards"];
+    })) as unknown as Inspection['hazards'];
 
     return this.repo.save(inspection);
   }
 
-  findAll() {
+  findAll(user?: any) {
+    const organizationId = this.requireOrganization(user);
+
     return this.repo.find({
+      where: { organizationId },
       relations: ['hazards'],
       order: { createdAt: 'DESC' },
     });
