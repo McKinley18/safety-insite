@@ -46,7 +46,7 @@
     "verify:release-critical": "npm run build && ts-node src/safescope-knowledge/maintenance/audit-regulatory-coverage.ts && ts-node src/applicable-standards/tests/verify-applicable-standards-regression.ts",
     "source:intelligence:validate-preview": "ts-node scripts/validate-source-intelligence-preview.ts",
     "source:intelligence:validate-orchestrator-contract": "ts-node scripts/validate-safescope-orchestrator-contract.ts",
-    "source:intelligence:validate-governance": "npm run source:intelligence:validate-preview && npm run source:intelligence:validate-orchestrator-contract && npm run source:intelligence:validate-adapter-contracts",
+    "source:intelligence:validate-governance": "npm run source:intelligence:validate-preview && npm run source:intelligence:validate-orchestrator-contract && npm run source:intelligence:validate-adapter-contracts && npm run source:intelligence:validate-mock-source-adapter",
     "source:intelligence:validate-adapter-contracts": "ts-node scripts/validate-safescope-adapter-contracts.ts",
     "source:intelligence:validate-mock-source-adapter": "ts-node scripts/validate-safescope-mock-source-adapter.ts"
   },
