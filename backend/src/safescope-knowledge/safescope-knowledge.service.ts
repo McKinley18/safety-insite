@@ -707,6 +707,21 @@ export class SafeScopeKnowledgeService {
         heading + " " + title,
       );
 
+    const strongLotoCitation =
+      /29 cfr 1910\.147|29 cfr 1926\.417|30 cfr 5[67]\.12016|30 cfr 77\.500|30 cfr 75\.511/.test(
+        citation,
+      );
+
+    const lotoHeading =
+      /(control of hazardous energy|lockout|tagout|de-energization|deenergization|deenergized|locked out|stored energy|unexpected startup|maintenance and servicing)/.test(
+        heading + " " + title,
+      );
+
+    const unrelatedLotoHeading =
+      /(fall protection|respiratory protection|confined spaces|walking-working surfaces|stairways|ladders|grain handling|pulp, paper|commercial diving|medical services|sanitation)/.test(
+        heading + " " + title,
+      );
+
     const strongConfinedSpaceCitation =
       /29 cfr 1910\.146|29 cfr 1926\.120[1-9]/.test(citation);
 
@@ -755,8 +770,24 @@ export class SafeScopeKnowledgeService {
       domainScore += 70;
     }
 
-    if (lotoQuery && /lockout tagout|hazardous energy|zero energy|unexpected startup|stored energy/.test(haystack)) {
-      domainScore += 70;
+    if (lotoQuery) {
+      if (/lockout tagout|lockout|tagout|hazardous energy|zero energy|unexpected startup|stored energy|deenergized|de-energized|servicing|maintenance/.test(haystack)) {
+        domainScore += 80;
+      }
+
+      if (lotoHeading) domainScore += 110;
+      if (strongLotoCitation) domainScore += 160;
+      if (regulatoryChunk && unrelatedLotoHeading) domainScore -= 120;
+
+      if (
+        regulatoryChunk &&
+        /electric power generation|transmission|distribution|grain handling|pulp, paper|commercial diving/.test(
+          heading + " " + title,
+        ) &&
+        !/1910\.147|control of hazardous energy|lockout|tagout/.test(haystack)
+      ) {
+        domainScore -= 90;
+      }
     }
 
     if (fallQuery) {
