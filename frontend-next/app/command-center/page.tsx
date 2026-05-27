@@ -34,6 +34,48 @@ function getRiskBand(finding: any) {
   ).toLowerCase();
 }
 
+
+function isActionOverdue(action: StoredAction) {
+  if (String(action.status || "").toLowerCase() === "completed") return false;
+  if (!action.due) return false;
+
+  const dueDate = new Date(action.due);
+  if (Number.isNaN(dueDate.getTime())) return false;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return dueDate.getTime() < today.getTime();
+}
+
+function getActionPriorityRank(priority?: string) {
+  if (String(priority || "").toLowerCase() === "critical") return 0;
+  if (String(priority || "").toLowerCase() === "high") return 1;
+  if (String(priority || "").toLowerCase() === "medium") return 2;
+  if (String(priority || "").toLowerCase() === "low") return 3;
+  return 4;
+}
+
+function getActionStatusClass(action: StoredAction) {
+  if (String(action.status || "").toLowerCase() === "completed") {
+    return "bg-emerald-50 text-emerald-700";
+  }
+
+  if (String(action.status || "").toLowerCase() === "blocked") {
+    return "bg-red-50 text-red-700";
+  }
+
+  if (isActionOverdue(action)) {
+    return "bg-red-50 text-red-700";
+  }
+
+  if (String(action.status || "").toLowerCase() === "in progress") {
+    return "bg-blue-50 text-blue-700";
+  }
+
+  return "bg-orange-50 text-orange-700";
+}
+
 function formatDate(value?: string) {
   if (!value) return "Saved";
   const date = new Date(value);
@@ -76,12 +118,15 @@ export default function DashboardPage() {
       (action) => String(action.status || "").toLowerCase() !== "completed",
     );
 
-    const overdueActions = openActions.filter((action) => {
-      if (!action.due) return false;
-      const dueDate = new Date(action.due);
-      if (Number.isNaN(dueDate.getTime())) return false;
-      return dueDate.getTime() < Date.now();
-    });
+    const overdueActions = openActions.filter(isActionOverdue);
+
+    const blockedActions = openActions.filter(
+      (action) => String(action.status || "").toLowerCase() === "blocked",
+    );
+
+    const inProgressActions = openActions.filter(
+      (action) => String(action.status || "").toLowerCase() === "in progress",
+    );
 
     const criticalFindings = findings.filter((finding) => {
       const riskScore = getRiskScore(finding);
@@ -89,21 +134,24 @@ export default function DashboardPage() {
       return riskScore >= 20 || riskBand.includes("critical");
     });
 
-    const highPriorityActions = openActions
+    const highPriorityActions = [...openActions]
       .sort((a, b) => {
-        const priorityRank: Record<string, number> = {
-          critical: 4,
-          high: 3,
-          medium: 2,
-          low: 1,
-        };
+        const overdueDelta =
+          (isActionOverdue(b) ? 1 : 0) - (isActionOverdue(a) ? 1 : 0);
 
-        return (
-          (priorityRank[String(b.priority || "").toLowerCase()] || 0) -
-          (priorityRank[String(a.priority || "").toLowerCase()] || 0)
-        );
+        if (overdueDelta !== 0) return overdueDelta;
+
+        const priorityDelta =
+          getActionPriorityRank(a.priority) - getActionPriorityRank(b.priority);
+
+        if (priorityDelta !== 0) return priorityDelta;
+
+        const aDue = a.due ? new Date(a.due).getTime() : Number.MAX_SAFE_INTEGER;
+        const bDue = b.due ? new Date(b.due).getTime() : Number.MAX_SAFE_INTEGER;
+
+        return aDue - bDue;
       })
-      .slice(0, 3);
+      .slice(0, 5);
 
     const latestReports = [...reports]
       .sort(
@@ -124,6 +172,8 @@ export default function DashboardPage() {
       findingCount: findings.length,
       openActions: openActions.length,
       overdueActions: overdueActions.length,
+      blockedActions: blockedActions.length,
+      inProgressActions: inProgressActions.length,
       criticalFindings: criticalFindings.length,
       safeScopeReviewed,
       highPriorityActions,
@@ -242,12 +292,41 @@ export default function DashboardPage() {
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Action Snapshot
-          </p>
-          <h2 className="mt-1 text-xl font-black text-slate-900">
-            Corrective work
-          </h2>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+                Action Snapshot
+              </p>
+              <h2 className="mt-1 text-xl font-black text-slate-900">
+                Corrective work queue
+              </h2>
+            </div>
+
+            <Link
+              href="/actions"
+              className="rounded-xl border border-[#1D72B8] bg-white px-3 py-2 text-xs font-black text-[#102A43] transition hover:bg-[#E8F4FF]"
+            >
+              View Actions
+            </Link>
+          </div>
+
+          <div className="mt-4 grid grid-cols-3 gap-2">
+            {[
+              [String(dashboard.inProgressActions), "In Progress"],
+              [String(dashboard.overdueActions), "Overdue"],
+              [String(dashboard.blockedActions), "Blocked"],
+            ].map(([value, label]) => (
+              <div
+                key={label}
+                className="rounded-xl bg-slate-50 px-3 py-3 text-center"
+              >
+                <p className="text-xl font-black text-slate-900">{value}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
 
           {dashboard.highPriorityActions.length ? (
             <div className="mt-4 space-y-2">
@@ -257,34 +336,37 @@ export default function DashboardPage() {
                   className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="text-sm font-black text-slate-900">
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-black text-slate-900">
                         {action.title || action.findingTitle || "Corrective action"}
                       </p>
                       <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
                         {action.location || "No location"} · Due:{" "}
                         {action.due || "Not set"}
+                        {action.findingTitle ? ` · Finding: ${action.findingTitle}` : ""}
                       </p>
                     </div>
-                    <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
-                      {action.priority || "Priority"}
-                    </span>
+
+                    <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+                      <span className="rounded-full bg-white px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
+                        {action.priority || "Priority"}
+                      </span>
+
+                      <span
+                        className={`rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide ${getActionStatusClass(action)}`}
+                      >
+                        {isActionOverdue(action) ? "Overdue" : action.status || "Open"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
             <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-              No open high-priority actions yet.
+              No open corrective actions yet.
             </p>
           )}
-
-          <Link
-            href="/actions"
-            className="mt-4 inline-flex rounded-xl border border-[#1D72B8] bg-white px-3 py-2 text-xs font-black text-[#102A43] transition hover:bg-[#E8F4FF]"
-          >
-            View Actions
-          </Link>
         </section>
       </section>
 
