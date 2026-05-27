@@ -23,6 +23,56 @@ const assignmentTypes = [
   "Supervisor Review",
 ] as const;
 
+const priorityOptions = ["Critical", "High", "Medium", "Low"] as const;
+
+function getPriorityRank(priority?: string) {
+  if (priority === "Critical") return 0;
+  if (priority === "High") return 1;
+  if (priority === "Medium") return 2;
+  if (priority === "Low") return 3;
+  return 4;
+}
+
+function isAssignmentOverdue(item: AssignedWork) {
+  if (item.status === "Completed") return false;
+  if (!item.dueDate || item.dueDate === "No due date") return false;
+
+  const due = new Date(item.dueDate);
+  if (Number.isNaN(due.getTime())) return false;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return due.getTime() < today.getTime();
+}
+
+function getStatusClass(item: AssignedWork) {
+  if (item.status === "Completed") {
+    return "bg-emerald-50 text-emerald-700";
+  }
+
+  if (item.status === "Blocked") {
+    return "bg-red-50 text-red-700";
+  }
+
+  if (isAssignmentOverdue(item)) {
+    return "bg-red-50 text-red-700";
+  }
+
+  if (item.status === "In Progress") {
+    return "bg-blue-50 text-blue-700";
+  }
+
+  return "bg-orange-50 text-orange-700";
+}
+
+function getPriorityClass(priority?: string) {
+  if (priority === "Critical") return "bg-red-50 text-red-700";
+  if (priority === "High") return "bg-orange-50 text-orange-700";
+  if (priority === "Medium") return "bg-blue-50 text-blue-700";
+  return "bg-slate-100 text-slate-600";
+}
+
 type AssignedWork = {
   id: string;
   type: string;
@@ -30,6 +80,7 @@ type AssignedWork = {
   owner: string;
   location: string;
   dueDate: string;
+  priority: string;
   status: string;
   createdAt: string;
 };
@@ -46,6 +97,7 @@ export default function CompanyControlCenterPage() {
   const [assignmentLocation, setAssignmentLocation] = useState("");
   const [assignmentTitle, setAssignmentTitle] = useState("");
   const [assignmentDueDate, setAssignmentDueDate] = useState("");
+  const [assignmentPriority, setAssignmentPriority] = useState("Medium");
   const [assignedWork, setAssignedWork] = useState<AssignedWork[]>([]);
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [filterLocation, setFilterLocation] = useState("");
@@ -109,13 +161,32 @@ export default function CompanyControlCenterPage() {
   }, [assignedWork]);
 
   const filteredAssignedWork = useMemo(() => {
-    return assignedWork.filter((item) => {
+    const filtered = assignedWork.filter((item) => {
       const matchesLocation = !filterLocation || item.location === filterLocation;
       const matchesOwner = !filterOwner || item.owner === filterOwner;
       const matchesStatus = !filterStatus || item.status === filterStatus;
       const matchesType = !filterType || item.type === filterType;
 
       return matchesLocation && matchesOwner && matchesStatus && matchesType;
+    });
+
+    return filtered.sort((a, b) => {
+      const priorityDelta =
+        getPriorityRank(a.priority) - getPriorityRank(b.priority);
+
+      if (priorityDelta !== 0) return priorityDelta;
+
+      const aDue =
+        a.dueDate && a.dueDate !== "No due date"
+          ? new Date(a.dueDate).getTime()
+          : Number.MAX_SAFE_INTEGER;
+
+      const bDue =
+        b.dueDate && b.dueDate !== "No due date"
+          ? new Date(b.dueDate).getTime()
+          : Number.MAX_SAFE_INTEGER;
+
+      return aDue - bDue;
     });
   }, [assignedWork, filterLocation, filterOwner, filterStatus, filterType]);
 
@@ -173,6 +244,7 @@ export default function CompanyControlCenterPage() {
       owner: assignmentOwner || "Unassigned",
       location: assignmentLocation || "Unassigned location",
       dueDate: assignmentDueDate || "No due date",
+      priority: assignmentPriority,
       status: "Open",
       createdAt: new Date().toISOString(),
     };
@@ -181,6 +253,7 @@ export default function CompanyControlCenterPage() {
     setAssignmentTitle("");
     setAssignmentLocation("");
     setAssignmentDueDate("");
+    setAssignmentPriority("Medium");
     setStatus(`${assignment.type} assigned.`);
   }
 
@@ -481,9 +554,21 @@ export default function CompanyControlCenterPage() {
             </select>
 
             <select
+              value={assignmentPriority}
+              onChange={(event) => setAssignmentPriority(event.target.value)}
+              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8]"
+            >
+              {priorityOptions.map((priority) => (
+                <option key={priority} value={priority}>
+                  {priority} Priority
+                </option>
+              ))}
+            </select>
+
+            <select
               value={assignmentLocation}
               onChange={(event) => setAssignmentLocation(event.target.value)}
-              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8] md:col-span-2"
+              className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-bold outline-none focus:border-[#1D72B8]"
             >
               <option value="">Location / Site...</option>
               {facilities.map((facility) => (
@@ -610,9 +695,13 @@ export default function CompanyControlCenterPage() {
                     </p>
                   </div>
 
-                  <div className="flex shrink-0 items-center gap-2">
-                    <span className="rounded-full bg-orange-50 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700">
-                      {item.status}
+                  <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+                    <span className={`rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide ${getPriorityClass(item.priority)}`}>
+                      {item.priority || "Medium"}
+                    </span>
+
+                    <span className={`rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide ${getStatusClass(item)}`}>
+                      {isAssignmentOverdue(item) ? "Overdue" : item.status}
                     </span>
 
                     {item.status !== "Completed" && (
@@ -623,6 +712,14 @@ export default function CompanyControlCenterPage() {
                           className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-[10px] font-black text-slate-700"
                         >
                           Start
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => updateAssignmentStatus(item.id, "Blocked")}
+                          className="rounded-lg border border-red-200 bg-white px-2 py-1 text-[10px] font-black text-red-700"
+                        >
+                          Block
                         </button>
 
                         <button
