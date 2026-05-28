@@ -41,6 +41,9 @@ npm run smoke:dashboard-scope
 echo "== Backend entitlement guard smoke test =="
 npx ts-node scripts/smoke-entitlement-guards.ts
 
+echo "== Backend upload logo validation smoke test =="
+npx ts-node scripts/smoke-upload-logo-validation.ts
+
 echo ""
 echo "== Git status after checks =="
 cd ~/Sentinel_Safety
