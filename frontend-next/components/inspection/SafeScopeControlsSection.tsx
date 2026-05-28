@@ -93,7 +93,7 @@ export default function SafeScopeControlsSection({
         <button
           type="button"
           onClick={handleRunSafeScope}
-          className="w-full rounded-xl bg-white/10 px-5 py-3 text-sm font-black text-white ring-1 ring-white/15 transition hover:bg-white/20 active:scale-[0.98]"
+          className="w-full rounded-xl bg-[#F97316] px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-950/20 ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98]"
         >
           Run SafeScope Review
         </button>
