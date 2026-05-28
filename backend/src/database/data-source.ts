@@ -34,9 +34,16 @@ import { SafeScopeKnowledgeChunk } from '../safescope-knowledge/entities/safesco
 import { SafeScopeKnowledgeRetrievalLog } from '../safescope-knowledge/entities/safescope-knowledge-retrieval-log.entity';
 import { SafeScopeKnowledgeSource } from '../safescope-knowledge/entities/safescope-knowledge-source.entity';
 import { SafeScopeKnowledgeIngestionRun } from '../safescope-knowledge/entities/safescope-knowledge-ingestion-run.entity';
+import { AuditSession } from '../audit-session/audit-session.entity';
+import { AuditEntry } from '../audit-session/audit-entry.entity';
+import { AuditEntryAttachment } from '../audit-session/entities/audit-entry-attachment.entity';
+import { AuditEntryFinding } from '../audit-session/entities/audit-entry-finding.entity';
+import { Inspection } from '../inspection/inspection.entity';
+import { Hazard } from '../inspection/hazard.entity';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const databaseUrl = process.env.DATABASE_URL;
+const isTsNode = __filename.endsWith('.ts');
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -82,8 +89,14 @@ export const dataSource = new DataSource({
     SafeScopeKnowledgeRetrievalLog,
     SafeScopeKnowledgeSource,
     SafeScopeKnowledgeIngestionRun,
+    AuditSession,
+    AuditEntry,
+    AuditEntryAttachment,
+    AuditEntryFinding,
+    Inspection,
+    Hazard,
   ],
-  migrations: ['src/database/migrations/*.{ts,js}', 'dist/database/migrations/*.{ts,js}'],
+  migrations: [isTsNode ? 'src/database/migrations/*.ts' : 'dist/database/migrations/*.js'],
   synchronize: false,
   migrationsRun: false,
 });
