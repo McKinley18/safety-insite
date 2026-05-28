@@ -162,7 +162,7 @@ export default function FinalizeInspectionSection({
       </div>
 
       {findingSaveMessage && (
-        <div className="rounded-xl bg-emerald-50 px-3 py-2 text-sm font-black text-emerald-700">
+        <div className="mx-auto max-w-fit rounded-lg bg-yellow-200 px-2.5 py-1.5 text-center text-[11px] font-black leading-4 text-red-800 ring-1 ring-yellow-400 shadow-sm">
           {findingSaveMessage}
         </div>
       )}
@@ -183,11 +183,11 @@ export default function FinalizeInspectionSection({
               </p>
             </div>
 
-            <div className="flex shrink-0 flex-wrap gap-2">
+            <div className="flex shrink-0 flex-wrap justify-center gap-2 sm:min-w-[300px]">
               <button
                 type="button"
                 onClick={saveFinding}
-                className="rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98]"
+                className="flex h-10 w-[146px] items-center justify-center rounded-xl bg-[#102A43] px-3 text-center text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98]"
               >
                 {saveButtonLabel}
               </button>
@@ -195,9 +195,9 @@ export default function FinalizeInspectionSection({
               <button
                 type="button"
                 onClick={addNewFinding}
-                className="rounded-xl border border-amber-200 bg-white px-4 py-2 text-xs font-black text-amber-800 shadow-sm transition hover:bg-amber-100 active:scale-[0.98]"
+                className="flex h-10 w-[146px] items-center justify-center rounded-xl border border-amber-200 bg-white px-3 text-center text-xs font-black leading-tight text-amber-800 shadow-sm transition hover:bg-amber-100 active:scale-[0.98]"
               >
-                Save & Add Finding
+                Save & Add New Finding
               </button>
             </div>
           </div>

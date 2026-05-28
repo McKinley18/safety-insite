@@ -103,12 +103,6 @@ export default function SafeScopeControlsSection({
         </p>
       </div>
 
-      {safeScopeStatus && (
-        <p className="mt-3 rounded-xl border border-blue-200 bg-[#E8F4FF] px-3 py-2 text-center text-xs font-black leading-5 text-[#102A43] shadow-sm">
-          {safeScopeStatus}
-        </p>
-      )}
-
       {safeScopeResult && (
         <div className="mt-5 grid grid-cols-3 gap-2 text-center">
           <div className="min-w-0 flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-2 py-3 text-center ring-1 ring-white/15">
