@@ -37,16 +37,17 @@ export default function EvidenceCaptureSection({
     <>
       <div className="mb-4 rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
             Capture Evidence
           </p>
-          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-slate-500">
+          <h2 className="mt-1 text-2xl font-black text-white">Photo and field notes</h2>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-blue-100">
             Add evidence, describe the condition, and note where it was found.
           </p>
         </div>
 
-        <div className="mt-5 flex flex-wrap justify-center gap-2">
-          <label className="cursor-pointer rounded-xl bg-white px-4 py-2 text-xs font-black text-[#102A43] shadow-sm transition hover:bg-blue-50">
+        <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
+          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl bg-white px-4 py-2 text-center text-xs font-black text-[#102A43] shadow-sm transition hover:bg-blue-50">
             Take Photo
             <input
               type="file"
@@ -57,7 +58,7 @@ export default function EvidenceCaptureSection({
             />
           </label>
 
-          <label className="cursor-pointer rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-white/20">
+          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-center text-xs font-black text-white shadow-sm transition hover:bg-white/20">
             Upload
             <input
               type="file"
@@ -162,7 +163,7 @@ export default function EvidenceCaptureSection({
         </p>
       )}
 
-      <section className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="mb-3">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Observed Condition
@@ -190,8 +191,6 @@ export default function EvidenceCaptureSection({
             onChange={(event) => setLocation(event.target.value)}
           />
         </div>
-
-        
       </section>
     </>
   );
