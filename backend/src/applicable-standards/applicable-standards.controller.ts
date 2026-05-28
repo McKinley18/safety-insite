@@ -2,8 +2,10 @@ import { Body, Controller, Post, UseGuards } from "@nestjs/common";
 import { ApplicableStandardsService } from "./applicable-standards.service";
 import { SuggestStandardsDto } from "./dto/applicable-standards.dto";
 import { JwtGuard } from "../auth/guards/jwt.guard";
+import { EntitlementGuard, RequireEntitlement } from "../auth/entitlements/entitlement.guard";
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement("fullSafeScope")
 @Controller("applicable-standards")
 export class ApplicableStandardsController {
   constructor(private service: ApplicableStandardsService) {}

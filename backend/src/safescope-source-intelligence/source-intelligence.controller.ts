@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { SourceIntelligenceService } from './source-intelligence.service';
 import { SourceGovernanceService } from './source-governance.service';
 import { SourceIngestionService } from './source-ingestion.service';
@@ -7,7 +8,8 @@ import { SourceRetrievalService } from './source-retrieval.service';
 import { SourceIntelligenceIngestionPreviewDto } from './dto/source-ingestion-preview.dto';
 import { SourceIntelligenceSearchDto } from './dto/source-intelligence-search.dto';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('auditTrail')
 @Controller('source-intelligence')
 export class SourceIntelligenceController {
   constructor(
