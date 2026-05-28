@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { DataSource } from 'typeorm';
 import { User } from '../users/user.entity';
 import { Organization } from '../organizations/entities/organization.entity';
@@ -34,13 +35,18 @@ import { SafeScopeKnowledgeRetrievalLog } from '../safescope-knowledge/entities/
 import { SafeScopeKnowledgeSource } from '../safescope-knowledge/entities/safescope-knowledge-source.entity';
 import { SafeScopeKnowledgeIngestionRun } from '../safescope-knowledge/entities/safescope-knowledge-ingestion-run.entity';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const databaseUrl = process.env.DATABASE_URL;
+
 export const dataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: "mckinley",
-  password: "",
-  database: "sentinel_safety",
+  url: databaseUrl || undefined,
+  host: databaseUrl ? undefined : process.env.DB_HOST || 'localhost',
+  port: databaseUrl ? undefined : Number(process.env.DB_PORT || 5432),
+  username: databaseUrl ? undefined : process.env.DB_USERNAME || 'mckinley',
+  password: databaseUrl ? undefined : process.env.DB_PASSWORD || '',
+  database: databaseUrl ? undefined : process.env.DB_NAME || 'sentinel_safety',
+  ssl: isProduction ? { rejectUnauthorized: false } : false,
   entities: [
     User,
     Organization,
@@ -77,6 +83,7 @@ export const dataSource = new DataSource({
     SafeScopeKnowledgeSource,
     SafeScopeKnowledgeIngestionRun,
   ],
-  migrations: ['src/database/migrations/*.ts'],
-  synchronize: true,
-  });
+  migrations: ['src/database/migrations/*.{ts,js}', 'dist/database/migrations/*.{ts,js}'],
+  synchronize: false,
+  migrationsRun: false,
+});
