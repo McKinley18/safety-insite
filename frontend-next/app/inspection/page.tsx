@@ -321,8 +321,42 @@ export default function InspectionPage() {
     }
   }, []);
 
+  function getSafeScopeScopesForAgencyMode(mode: string) {
+    if (!mode || mode === "all") return undefined;
+
+    const scopeMap: Record<string, string[]> = {
+      msha: ["msha_mnm_surface"],
+      msha_mnm_surface: ["msha_mnm_surface"],
+      msha_mnm_underground: ["msha_mnm_underground"],
+      msha_coal_underground: ["msha_coal_underground"],
+      msha_coal_surface: ["msha_coal_surface"],
+      osha_general: ["osha_general"],
+      osha_construction: ["osha_construction"],
+    };
+
+    return scopeMap[mode] || [mode];
+  }
+
+  function getSafeScopeScopeLabel(mode: string) {
+    const labelMap: Record<string, string> = {
+      all: "All supported standards",
+      msha: "MSHA MNM Surface",
+      msha_mnm_surface: "MSHA MNM Surface",
+      msha_mnm_underground: "MSHA MNM Underground",
+      msha_coal_underground: "MSHA Coal Underground",
+      msha_coal_surface: "MSHA Coal Surface",
+      osha_general: "OSHA General Industry",
+      osha_construction: "OSHA Construction",
+    };
+
+    return labelMap[mode] || mode.toUpperCase();
+  }
+
   async function handleRunSafeScope() {
     try {
+      const safeScopeScopes = getSafeScopeScopesForAgencyMode(agencyMode);
+      const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
+
       setSafeScopeStatus("Running SafeScope match...");
       const result = await runSafeScopeV2Classify({
         text: [
@@ -330,9 +364,9 @@ export default function InspectionPage() {
           `Observed condition: ${description || "No description provided"}`,
           `Location: ${location || "No location provided"}`,
           `Evidence notes: ${evidenceNotes || "No evidence notes provided"}`,
-          `Regulatory scope: ${agencyMode.toUpperCase()}`,
+          `Regulatory scope: ${safeScopeScopeLabel}`,
         ].join("\n"),
-        scopes: agencyMode === "all" ? undefined : [agencyMode],
+        scopes: safeScopeScopes,
         riskProfileId,
         evidenceTexts: [
           evidenceNotes,
