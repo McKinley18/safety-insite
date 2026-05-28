@@ -6,6 +6,11 @@ import {
   listSafeScopeKnowledgeDocuments,
   searchSafeScopeKnowledge,
 } from "@/lib/safescopeKnowledge";
+import {
+  getStoredPlanCode,
+  hasPlanEntitlement,
+  type PlanCode,
+} from "@/lib/planEntitlements";
 
 function authorityLabel(tier: any) {
   const value = Number(tier || 5);
@@ -25,6 +30,7 @@ function formatPercent(value: any) {
 }
 
 export default function SafeScopeKnowledgePage() {
+  const [planCode, setPlanCode] = useState<PlanCode>("basic");
   const [documents, setDocuments] = useState<any[]>([]);
   const [documentsLoading, setDocumentsLoading] = useState(true);
   const [documentsError, setDocumentsError] = useState("");
@@ -36,6 +42,8 @@ export default function SafeScopeKnowledgePage() {
   const [searchResult, setSearchResult] = useState<any>(null);
 
   useEffect(() => {
+    setPlanCode(getStoredPlanCode());
+
     async function loadDocuments() {
       try {
         setDocumentsLoading(true);
@@ -103,6 +111,31 @@ export default function SafeScopeKnowledgePage() {
     } finally {
       setSearchLoading(false);
     }
+  }
+
+  const canAccessKnowledgeLibrary = hasPlanEntitlement("auditTrail", planCode);
+
+  if (!canAccessKnowledgeLibrary) {
+    return (
+      <section className="space-y-5">
+        <PageHeader
+          title="SafeScope Knowledge Library"
+          description="The SafeScope Knowledge Library is available with the Company plan for controlled review of approved reference intelligence."
+        />
+
+        <section className="rounded-2xl border border-dashed border-slate-300 bg-white p-5 text-center shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Company Plan Required
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Protected knowledge governance.
+          </h2>
+          <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+            This page exposes the approved SafeScope reference library and retrieval behavior. It is restricted to Company workspaces so knowledge governance, audit support, and reference review remain controlled.
+          </p>
+        </section>
+      </section>
+    );
   }
 
   return (
