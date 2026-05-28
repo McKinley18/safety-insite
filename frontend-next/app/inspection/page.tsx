@@ -1026,7 +1026,7 @@ export default function InspectionPage() {
   }
 
   return (
-    <div className="pb-64 lg:pb-48">
+    <div className="pb-32 lg:pb-24">
       <InspectionWorkflowHeader
         currentStep={currentStep}
         steps={steps}

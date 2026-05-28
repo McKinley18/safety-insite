@@ -32,6 +32,7 @@ export default function CurrentHazardCard({
   currentFindingSaved,
 }: CurrentHazardCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const cardRef = useRef<HTMLElement | null>(null);
 
   const hasData = Boolean(
@@ -65,6 +66,18 @@ export default function CurrentHazardCard({
       document.removeEventListener("touchstart", handlePointerDown);
     };
   }, [expanded]);
+
+  if (hidden) {
+    return (
+      <button
+        type="button"
+        onClick={() => setHidden(false)}
+        className="fixed bottom-28 left-1/2 z-40 -translate-x-1/2 rounded-full border border-slate-200 bg-white/95 px-4 py-2 text-xs font-black text-[#102A43] shadow-lg backdrop-blur transition hover:bg-blue-50 lg:bottom-16"
+      >
+        Show Finding Builder
+      </button>
+    );
+  }
 
   void hasData;
 
@@ -178,12 +191,30 @@ export default function CurrentHazardCard({
           </div>
 
           <div className="shrink-0 text-right">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              {expanded ? "Collapse" : "Expand"}
-            </p>
-            <p className="text-sm font-black leading-none text-slate-500">
+            <p className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-sm font-black leading-none text-slate-600">
               {expanded ? "⌄" : "⌃"}
             </p>
+
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={(event) => {
+                event.stopPropagation();
+                setExpanded(false);
+                setHidden(true);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  setExpanded(false);
+                  setHidden(true);
+                }
+              }}
+              className="mt-1 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500"
+            >
+              Hide
+            </span>
           </div>
         </div>
 
