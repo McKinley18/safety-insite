@@ -2,6 +2,7 @@ import { Controller, Get, Post, Patch, Body, Param, Request, UseGuards } from '@
 import { TaxonomyService } from './taxonomy.service';
 import { HAZARD_CATEGORIES, SEVERITY_LEVELS } from './taxonomy.config';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 
 @UseGuards(JwtGuard)
 @Controller('taxonomy')
@@ -13,6 +14,8 @@ export class TaxonomyController {
     return HAZARD_CATEGORIES;
   }
 
+  @UseGuards(EntitlementGuard)
+  @RequireEntitlement('auditTrail')
   @Get('rules/export')
   async exportRules() {
     const rules = await this.taxonomyService.findAllRules();
@@ -20,6 +23,8 @@ export class TaxonomyController {
     return csv;
   }
 
+  @UseGuards(EntitlementGuard)
+  @RequireEntitlement('auditTrail')
   @Post('rules/import')
   async importRules(@Body() dto: { csv: string }, @Request() req: any) {
     // Basic CSV import logic
@@ -30,10 +35,14 @@ export class TaxonomyController {
     }
     return { success: true };
   }
+  @UseGuards(EntitlementGuard)
+  @RequireEntitlement('auditTrail')
   @Post('rules')
   createRule(@Body() dto: any, @Request() req: any) {
     return this.taxonomyService.createRule(dto, req.user.userId);
   }
+  @UseGuards(EntitlementGuard)
+  @RequireEntitlement('auditTrail')
   @Post('rules/:ruleId/rollback/:versionId')
   async rollbackRule(
     @Param('ruleId') ruleId: string,
