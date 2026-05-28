@@ -12,15 +12,6 @@ type Props = {
   addNewFinding: () => void | Promise<void>;
   generateReport: () => void | Promise<void>;
 
-  includeStandardsInReport: boolean;
-  setIncludeStandardsInReport: (value: boolean) => void;
-  includeActionsInReport: boolean;
-  setIncludeActionsInReport: (value: boolean) => void;
-  includePhotosInReport: boolean;
-  setIncludePhotosInReport: (value: boolean) => void;
-  includeSafeScopeNotesInReport: boolean;
-  setIncludeSafeScopeNotesInReport: (value: boolean) => void;
-
   description: string;
   hazardCategory: string;
   location: string;
@@ -62,32 +53,6 @@ function getFindingStandards(finding: any) {
   return finding.selectedStandards || finding.standards || [];
 }
 
-function PreferenceToggle({
-  label,
-  checked,
-}: {
-  label: string;
-  description: string;
-  checked: boolean;
-  onChange: (value: boolean) => void;
-}) {
-  return (
-    <div className="flex h-9 items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3">
-      <p className="truncate text-sm font-black leading-none text-slate-900">
-        {label}
-      </p>
-
-      <span
-        className={`ml-3 shrink-0 rounded-full px-2 py-0.5 text-[10px] font-black uppercase leading-none tracking-wide ${
-          checked ? "bg-[#1D72B8] text-white" : "bg-slate-200 text-slate-500"
-        }`}
-      >
-        {checked ? "On" : "Off"}
-      </span>
-    </div>
-  );
-}
-
 export default function FinalizeInspectionSection({
   currentStep,
   findingSaveMessage,
@@ -96,14 +61,6 @@ export default function FinalizeInspectionSection({
   saveFinding,
   addNewFinding,
   generateReport,
-  includeStandardsInReport,
-  setIncludeStandardsInReport,
-  includeActionsInReport,
-  setIncludeActionsInReport,
-  includePhotosInReport,
-  setIncludePhotosInReport,
-  includeSafeScopeNotesInReport,
-  setIncludeSafeScopeNotesInReport,
   description,
   hazardCategory,
   location,
@@ -175,7 +132,7 @@ export default function FinalizeInspectionSection({
         </p>
 
         <div className="mt-5 grid grid-cols-3 gap-2 text-center">
-          <div className="rounded-xl bg-slate-50 px-3 py-2">
+          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Findings
             </p>
@@ -184,7 +141,7 @@ export default function FinalizeInspectionSection({
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 px-3 py-2">
+          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Current
             </p>
@@ -193,7 +150,7 @@ export default function FinalizeInspectionSection({
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 px-3 py-2">
+          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Next
             </p>

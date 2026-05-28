@@ -1113,14 +1113,6 @@ export default function InspectionPage() {
         saveFinding={saveFinding}
         addNewFinding={addNewFinding}
         generateReport={generateReport}
-        includeStandardsInReport={includeStandardsInReport}
-        setIncludeStandardsInReport={setIncludeStandardsInReport}
-        includeActionsInReport={includeActionsInReport}
-        setIncludeActionsInReport={setIncludeActionsInReport}
-        includePhotosInReport={includePhotosInReport}
-        setIncludePhotosInReport={setIncludePhotosInReport}
-        includeSafeScopeNotesInReport={includeSafeScopeNotesInReport}
-        setIncludeSafeScopeNotesInReport={setIncludeSafeScopeNotesInReport}
         description={description}
         hazardCategory={hazardCategory}
         location={location}
