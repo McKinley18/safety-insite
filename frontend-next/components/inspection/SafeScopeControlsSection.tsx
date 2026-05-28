@@ -104,36 +104,36 @@ export default function SafeScopeControlsSection({
       </div>
 
       {safeScopeStatus && (
-        <p className="mt-3 rounded-xl bg-slate-50 px-3 py-2 text-xs font-black leading-5 text-blue-100">
+        <p className="mt-3 rounded-xl border border-blue-200 bg-[#E8F4FF] px-3 py-2 text-center text-xs font-black leading-5 text-[#102A43] shadow-sm">
           {safeScopeStatus}
         </p>
       )}
 
       {safeScopeResult && (
         <div className="mt-5 grid grid-cols-3 gap-2 text-center">
-          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
+          <div className="min-w-0 flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-2 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Confidence
             </p>
-            <p className="mt-1 text-lg font-black text-white">
+            <p className="mt-1 max-w-full truncate text-sm font-black text-white sm:text-base lg:text-lg">
               {formatConfidence(confidence)}
             </p>
           </div>
 
-          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
+          <div className="min-w-0 flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-2 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Risk
             </p>
-            <p className="mt-1 truncate text-lg font-black text-white">
+            <p className="mt-1 max-w-full truncate text-sm font-black text-white sm:text-base lg:text-lg">
               {formatRisk(riskBand)}
             </p>
           </div>
 
-          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
+          <div className="min-w-0 flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-2 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Standard
             </p>
-            <p className="mt-1 truncate text-lg font-black text-white">
+            <p className="mt-1 max-w-full truncate text-[11px] font-black text-white sm:text-sm lg:text-base" title={topStandard?.citation || "Review"}>
               {topStandard?.citation || "Review"}
             </p>
           </div>

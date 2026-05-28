@@ -90,6 +90,32 @@ export default function CurrentHazardCard({
     safeScopeResult?.risk?.operationalRisk?.matrixBand ||
     "Not rated";
 
+  const confidenceValue =
+    typeof safeScopeResult?.confidenceIntelligence?.overallConfidence === "number"
+      ? safeScopeResult.confidenceIntelligence.overallConfidence
+      : typeof safeScopeResult?.confidence === "number"
+        ? Math.round(safeScopeResult.confidence * 100)
+        : null;
+
+  const confidenceLabel =
+    confidenceValue !== null ? `${confidenceValue}%` : "Pending";
+
+  const topStandard =
+    selectedStandards?.[0]?.citation ||
+    safeScopeResult?.suggestedStandards?.[0]?.citation ||
+    safeScopeResult?.standardsReasoning?.topDefensible?.[0]?.citation ||
+    safeScopeResult?.applicabilityIntelligence?.primaryApplicableStandards?.[0]?.citation ||
+    "Pending";
+
+  const riskTone =
+    String(riskLabel).toLowerCase() === "critical"
+      ? "bg-red-50 text-red-700 ring-red-100"
+      : String(riskLabel).toLowerCase() === "high"
+        ? "bg-orange-50 text-orange-700 ring-orange-100"
+        : String(riskLabel).toLowerCase() === "moderate"
+          ? "bg-amber-50 text-amber-700 ring-amber-100"
+          : "bg-slate-50 text-slate-700 ring-slate-100";
+
   const primaryLine = location || "Location not added";
   const secondaryLine = compactText(
     description,
@@ -135,6 +161,20 @@ export default function CurrentHazardCard({
             <p className="truncate text-[10px] font-bold leading-4 text-slate-500">
               {primaryLine} · {categorySource}
             </p>
+
+            <div className="mt-1 flex flex-wrap items-center gap-1.5">
+              <span className={`rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide ring-1 ${riskTone}`}>
+                {riskLabel}
+              </span>
+
+              <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-blue-700 ring-1 ring-blue-100">
+                {confidenceLabel} Confidence
+              </span>
+
+              <span className="max-w-[150px] truncate rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black tracking-wide text-slate-700 ring-1 ring-slate-200">
+                {topStandard}
+              </span>
+            </div>
           </div>
 
           <div className="shrink-0 text-right">
@@ -161,19 +201,19 @@ export default function CurrentHazardCard({
                 <p className="text-slate-900">{photos.length}</p>
               </div>
 
-              <div className="rounded-lg bg-slate-50 px-2 py-1.5">
-                <p className="text-[8px] uppercase tracking-wide text-slate-400">
+              <div className={`rounded-lg px-2 py-1.5 ring-1 ${riskTone}`}>
+                <p className="text-[8px] uppercase tracking-wide opacity-70">
                   Risk
                 </p>
-                <p className="truncate text-slate-900">{riskLabel}</p>
+                <p className="truncate">{riskLabel}</p>
               </div>
 
               <div className="rounded-lg bg-slate-50 px-2 py-1.5">
                 <p className="text-[8px] uppercase tracking-wide text-slate-400">
-                  Std.
+                  Standard
                 </p>
-                <p className="text-slate-900">
-                  {selectedCount}/{suggestedStandardsCount}
+                <p className="truncate text-slate-900">
+                  {topStandard !== "Pending" ? topStandard : `${selectedCount}/${suggestedStandardsCount}`}
                 </p>
               </div>
 
