@@ -32,12 +32,25 @@ function getPriorityRank(priority?: string) {
   return 4;
 }
 
+function parseLocalDate(value?: string) {
+  if (!value) return null;
+
+  const dateOnlyMatch = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (dateOnlyMatch) {
+    const [, year, month, day] = dateOnlyMatch;
+    return new Date(Number(year), Number(month) - 1, Number(day));
+  }
+
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
 function isActionOverdue(action: ActionItem) {
   if (String(action.status || "").toLowerCase() === "completed") return false;
   if (!action.due) return false;
 
-  const due = new Date(action.due);
-  if (Number.isNaN(due.getTime())) return false;
+  const due = parseLocalDate(action.due);
+  if (!due) return false;
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -133,8 +146,8 @@ export default function ActionsPage() {
 
         if (priorityDelta !== 0) return priorityDelta;
 
-        const aDue = a.due ? new Date(a.due).getTime() : Number.MAX_SAFE_INTEGER;
-        const bDue = b.due ? new Date(b.due).getTime() : Number.MAX_SAFE_INTEGER;
+        const aDue = a.due ? parseLocalDate(a.due)?.getTime() || Number.MAX_SAFE_INTEGER : Number.MAX_SAFE_INTEGER;
+        const bDue = b.due ? parseLocalDate(b.due)?.getTime() || Number.MAX_SAFE_INTEGER : Number.MAX_SAFE_INTEGER;
 
         return aDue - bDue;
       });

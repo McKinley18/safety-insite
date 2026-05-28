@@ -30,7 +30,7 @@ export function getReportPackageForPlan(
       label: "Company Compliance Package",
       shortLabel: "Company",
       description:
-        "Operational report package with team accountability, assignments, trend intelligence, SafeScope traceability, and company-level review support.",
+        "Management-ready compliance package with company metadata, team accountability, assigned corrective actions, trend intelligence, repeat-finding history, and full SafeScope traceability.",
       includesExecutiveSummary: true,
       includesSafeScopeSummary: true,
       includesSafeScopeTraceability: true,
@@ -49,13 +49,13 @@ export function getReportPackageForPlan(
       label: "Professional Report",
       shortLabel: "Pro",
       description:
-        "Professional safety report with SafeScope confidence, evidence gaps, standards rationale, corrective action context, and supervisor review signals.",
+        "Professional single-inspection report with executive summary, SafeScope confidence, evidence gaps, standards rationale, corrective action context, and supervisor review signals.",
       includesExecutiveSummary: true,
       includesSafeScopeSummary: true,
       includesSafeScopeTraceability: false,
       includesEvidenceGaps: true,
       includesConfidence: true,
-      includesRepeatIntelligence: true,
+      includesRepeatIntelligence: false,
       includesCompanyMetadata: false,
       includesAssignments: false,
       includesTrendSummary: false,
@@ -67,7 +67,7 @@ export function getReportPackageForPlan(
     label: "Field Report",
     shortLabel: "Basic",
     description:
-      "Clean inspection record with findings, locations, risk ratings, selected standards, corrective actions, photos, and human-review notice.",
+      "Clean field inspection record with findings, locations, risk ratings, selected standards, corrective actions, photos, and human-review notice.",
     includesExecutiveSummary: false,
     includesSafeScopeSummary: false,
     includesSafeScopeTraceability: false,

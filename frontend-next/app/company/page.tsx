@@ -34,12 +34,25 @@ function getPriorityRank(priority?: string) {
   return 4;
 }
 
+function parseLocalDate(value?: string) {
+  if (!value) return null;
+
+  const dateOnlyMatch = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (dateOnlyMatch) {
+    const [, year, month, day] = dateOnlyMatch;
+    return new Date(Number(year), Number(month) - 1, Number(day));
+  }
+
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
 function isAssignmentOverdue(item: AssignedWork) {
   if (item.status === "Completed") return false;
   if (!item.dueDate || item.dueDate === "No due date") return false;
 
-  const due = new Date(item.dueDate);
-  if (Number.isNaN(due.getTime())) return false;
+  const due = parseLocalDate(item.dueDate);
+  if (!due) return false;
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -187,7 +200,8 @@ export default function CompanyControlCenterPage() {
     const open = assignedWork.filter((item) => item.status !== "Completed");
     const overdue = open.filter((item) => {
       if (!item.dueDate || item.dueDate === "No due date") return false;
-      return new Date(item.dueDate).getTime() < Date.now();
+      const due = parseLocalDate(item.dueDate);
+      return due ? due.getTime() < Date.now() : false;
     });
 
     return {
@@ -227,12 +241,12 @@ export default function CompanyControlCenterPage() {
 
       const aDue =
         a.dueDate && a.dueDate !== "No due date"
-          ? new Date(a.dueDate).getTime()
+          ? parseLocalDate(a.dueDate)?.getTime() || Number.MAX_SAFE_INTEGER
           : Number.MAX_SAFE_INTEGER;
 
       const bDue =
         b.dueDate && b.dueDate !== "No due date"
-          ? new Date(b.dueDate).getTime()
+          ? parseLocalDate(b.dueDate)?.getTime() || Number.MAX_SAFE_INTEGER
           : Number.MAX_SAFE_INTEGER;
 
       return aDue - bDue;
@@ -336,11 +350,21 @@ export default function CompanyControlCenterPage() {
   }
 
   async function updateAssignmentStatus(id: string, nextStatus: string) {
-    await persistAssignedWork(
-      assignedWork.map((item) =>
-        item.id === id ? { ...item, status: nextStatus } : item,
-      ),
+    const nextAssignedWork = assignedWork.map((item) =>
+      item.id === id ? { ...item, status: nextStatus } : item,
     );
+
+    await persistAssignedWork(nextAssignedWork);
+
+    if (String(id || "").startsWith("action-")) {
+      const actionId = String(id).replace(/^action-/, "");
+      const storedActions = await getStoredActions();
+      const nextStoredActions = storedActions.map((action) =>
+        action.id === actionId ? { ...action, status: nextStatus } : action,
+      );
+      await saveStoredActions(nextStoredActions);
+    }
+
     setStatus(`Assignment marked ${nextStatus.toLowerCase()}.`);
   }
 
@@ -836,6 +860,7 @@ export default function CompanyControlCenterPage() {
                       <>
                         <button
                           type="button"
+                          aria-label={`Start ${item.title}`}
                           onClick={() => updateAssignmentStatus(item.id, "In Progress")}
                           className="rounded-lg border border-slate-300 bg-white px-2 py-1 text-[10px] font-black text-slate-700"
                         >
@@ -844,6 +869,7 @@ export default function CompanyControlCenterPage() {
 
                         <button
                           type="button"
+                          aria-label={`Block ${item.title}`}
                           onClick={() => updateAssignmentStatus(item.id, "Blocked")}
                           className="rounded-lg border border-red-200 bg-white px-2 py-1 text-[10px] font-black text-red-700"
                         >
@@ -852,6 +878,7 @@ export default function CompanyControlCenterPage() {
 
                         <button
                           type="button"
+                          aria-label={`Complete ${item.title}`}
                           onClick={() => updateAssignmentStatus(item.id, "Completed")}
                           className="rounded-lg bg-[#102A43] px-2 py-1 text-[10px] font-black text-white"
                         >

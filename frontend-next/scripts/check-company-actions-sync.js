@@ -44,7 +44,21 @@ async function main() {
     throw new Error("Corrective action did not appear in Company Control Center.");
   }
 
-  await page.getByRole("button", { name: "Start" }).first().click();
+  await page
+    .getByRole("button", { name: "Start Command sync test corrective action" })
+    .click();
+
+  await page.waitForTimeout(500);
+
+  const companyDebug = await page.evaluate(() => ({
+    companyAssignedWork: localStorage.getItem("sentinel_company_assigned_work"),
+    encryptedActionsLength: localStorage.getItem("sentinel_encrypted_actions")?.length || 0,
+    bodyText: document.body.innerText,
+  }));
+
+  if (!companyDebug.bodyText.includes("In Progress")) {
+    throw new Error("Company page did not visibly update the test action to In Progress.");
+  }
 
   await page.goto(`${APP_URL}/actions`, { waitUntil: "networkidle" });
 

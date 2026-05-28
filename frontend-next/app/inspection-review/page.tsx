@@ -9,7 +9,6 @@ import {
   setReports,
 } from "@/lib/reportStorage";
 import { localExporter } from "@/lib/localExporter";
-import SafeScopeDisclaimer from "@/components/compliance/SafeScopeDisclaimer";
 import { getReportPackageForPlan } from "@/lib/reportPackages";
 import { getStoredPlanCode } from "@/lib/planEntitlements";
 
@@ -75,6 +74,13 @@ function getReportPackageLabel(mode?: string) {
   return "Local-first private vault";
 }
 
+
+function formatReviewConfidence(value: any) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return null;
+  const percent = numeric <= 1 ? Math.round(numeric * 100) : Math.round(numeric);
+  return `${percent}%`;
+}
 
 function formatReviewDate(value?: string) {
   if (!value) return "Not set";
@@ -170,6 +176,7 @@ export default function InspectionReviewPage() {
     }));
 
     await localExporter.generatePDF({
+      reportPackage,
       adminInfo: {
         company: report.organizationName || "Organization Name",
         site: report.siteLocation || "Field Inspection",
@@ -300,7 +307,7 @@ export default function InspectionReviewPage() {
             [String(findings.length), "Findings"],
             [String(evidenceCount), "Evidence Items"],
             [String(actionCount), "Corrective Actions"],
-            [getReportPackageLabel(report.reportPackageMode), "Package"],
+            [reportPackage.shortLabel, "Tier"],
           ].map(([value, label]) => (
             <div
               key={label}
@@ -317,59 +324,86 @@ export default function InspectionReviewPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Report Details
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              Inspection information
-            </h2>
-          </div>
-
-          <button
-            type="button"
-            onClick={editReport}
-            className="mx-auto flex w-36 justify-center rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8] sm:mx-0"
-          >
-            Edit Details
-          </button>
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+            Report Details
+          </p>
+          <h2 className="mt-1 text-xl font-black text-slate-900">
+            Inspection information
+          </h2>
         </div>
+      </div>
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="relative rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+        <button
+          type="button"
+          onClick={editReport}
+          aria-label="Edit report details"
+          title="Edit report details"
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50 hover:text-[#1D72B8]"
+        >
+          <svg
+            aria-hidden="true"
+            className="h-4 w-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.25"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+          </svg>
+        </button>
+
+        <h3 className="truncate pr-10 text-sm font-black tracking-tight text-slate-900">
+          {report.organizationName || "Organization"} · {report.siteLocation || "Field Inspection"}
+        </h3>
+
+        <div className="mt-3 grid gap-2 lg:grid-cols-3">
           {[
-            ["Date", formatReviewDate(report.inspectionDate || report.createdAt)],
-            ["Lead Inspector", report.leadInspector || "Not entered"],
+            [
+              "Date",
+              formatReviewDate(report.inspectionDate || report.createdAt),
+            ],
+            [
+              "Lead Inspector",
+              report.leadInspector || "Not entered",
+            ],
             [
               "Confidentiality",
               report.isConfidential
                 ? report.confidentialityMarkerText || "Privileged & Confidential"
                 : "No",
             ],
-            [
-              "Additional Inspectors",
-              report.additionalInspectors?.length
-                ? report.additionalInspectors.join(", ")
-                : "None",
-            ],
           ].map(([label, value]) => (
             <div
               key={label}
-              className="rounded-xl bg-slate-50 px-3 py-3 text-center"
+              className="flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 px-3 text-center"
             >
-              <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+              <p className="text-[9px] font-black uppercase tracking-wide text-[#1D72B8]">
                 {label}
               </p>
-              <p className="mt-1 text-sm font-black leading-5 text-slate-800">
+              <p className="mt-0.5 max-w-full truncate text-xs font-black text-slate-800" title={String(value)}>
                 {value}
               </p>
             </div>
           ))}
         </div>
-      </section>
 
-      <SafeScopeDisclaimer compact tone="warning" />
+        {!!report.additionalInspectors?.length && (
+          <div className="mt-2 flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 px-3 text-center">
+            <p className="text-[9px] font-black uppercase tracking-wide text-[#1D72B8]">
+              Additional Inspectors
+            </p>
+            <p className="mt-0.5 max-w-full truncate text-xs font-black text-slate-800">
+              {report.additionalInspectors.join(", ")}
+            </p>
+          </div>
+        )}
+      </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -408,125 +442,68 @@ export default function InspectionReviewPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Report Package
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              {reportPackage.label}
-            </h2>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-              {reportPackage.description}
-            </p>
-          </div>
-
-          <span className="mx-auto rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-600 sm:mx-0">
-            {reportPackage.shortLabel}
-          </span>
-        </div>
-      </section>
-
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div>
         <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
           Final Report Options
         </p>
         <h2 className="mt-1 text-xl font-black text-slate-900">
-          Choose what to include
+          Included in export
         </h2>
-        <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-          These options control the final report review and PDF export.
+        <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+          Toggle the items that should appear in the final PDF.
         </p>
+      </div>
 
-        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {[
             [
               "includeStandardsInReport",
               "Standards",
-              "Selected citations",
               report.includeStandardsInReport !== false,
             ],
             [
               "includeActionsInReport",
               "Actions",
-              "Corrective work",
               report.includeActionsInReport !== false,
             ],
             [
               "includePhotosInReport",
               "Photos",
-              "Evidence images",
               report.includePhotosInReport !== false,
             ],
             [
               "includeSafeScopeNotesInReport",
               "SafeScope Notes",
-              "Validation appendix",
               Boolean(report.includeSafeScopeNotesInReport),
             ],
-          ].map(([key, label, desc, checked]: any) => (
+          ].map(([key, label, checked]: any) => (
             <button
               key={key}
               type="button"
               onClick={() => updateReportOption(key, !checked)}
-              className={`rounded-xl border px-3 py-3 text-left transition ${
+              className={`flex h-11 items-center justify-between rounded-xl border px-3 text-left transition ${
                 checked
                   ? "border-[#1D72B8] bg-[#E8F4FF]"
-                  : "border-slate-200 bg-slate-50"
+                  : "border-slate-200 bg-slate-50 hover:bg-white"
               }`}
             >
-              <span className="flex items-start gap-2">
-                <span
-                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-[#1D72B8] text-xs font-black text-white ${
-                    checked ? "bg-[#1D72B8]" : "bg-white"
-                  }`}
-                >
-                  {checked ? "✓" : ""}
-                </span>
-                <span>
-                  <span className="block text-sm font-black text-slate-900">
-                    {label}
-                  </span>
-                  <span className="mt-0.5 block text-xs font-semibold text-slate-500">
-                    {desc}
-                  </span>
-                </span>
+              <span className="truncate text-sm font-black text-slate-900">
+                {label}
+              </span>
+
+              <span
+                className={`ml-3 flex h-5 min-w-10 items-center justify-center rounded-full px-2 text-[10px] font-black uppercase tracking-wide ${
+                  checked
+                    ? "bg-[#1D72B8] text-white"
+                    : "bg-slate-200 text-slate-500"
+                }`}
+              >
+                {checked ? "On" : "Off"}
               </span>
             </button>
           ))}
         </div>
-      </section>
-
-      <section className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-center">
-        <button
-          type="button"
-          onClick={() => setHumanReviewConfirmed(!humanReviewConfirmed)}
-          className="flex w-full items-start gap-3 text-left"
-        >
-          <span
-            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${
-              humanReviewConfirmed ? "bg-[#1D72B8]" : "bg-white"
-            }`}
-          >
-            {humanReviewConfirmed ? "✓" : ""}
-          </span>
-          <span>
-            <span className="block text-sm font-black text-slate-900">
-              I confirm this report has been reviewed by a qualified person.
-            </span>
-            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
-              SafeScope outputs, standards, risk ratings, corrective actions,
-              and report language have been independently reviewed before export.
-            </span>
-          </span>
-        </button>
-
-        {exportWarning && (
-          <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-black text-amber-800">
-            {exportWarning}
-          </p>
-        )}
       </section>
 
       <section className="space-y-3">
@@ -536,7 +513,7 @@ export default function InspectionReviewPage() {
               Findings
             </p>
             <h2 className="mt-1 text-xl font-black text-slate-900">
-              Final finding cards
+              Findings Review
             </h2>
           </div>
 
@@ -600,7 +577,7 @@ export default function InspectionReviewPage() {
               return (
                 <details
                   key={finding.id || index}
-                  className="group rounded-2xl border border-slate-200 bg-white px-3 py-3 shadow-sm"
+                  className="group rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm"
                   open={index === 0}
                 >
                   <summary className="cursor-pointer list-none">
@@ -684,7 +661,7 @@ export default function InspectionReviewPage() {
                         <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
                           {reportPackage.includesConfidence
                             ? confidence !== undefined && confidence !== null
-                              ? `${confidence}% confidence`
+                              ? `${formatReviewConfidence(confidence) || "SafeScope"} confidence`
                               : finding.safeScopeResult
                                 ? "SafeScope reviewed"
                                 : "Manual"
@@ -775,15 +752,65 @@ export default function InspectionReviewPage() {
         )}
       </section>
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+        <button
+          type="button"
+          onClick={() => {
+            setHumanReviewConfirmed(!humanReviewConfirmed);
+            if (exportWarning) setExportWarning("");
+          }}
+          className="mx-auto flex max-w-2xl items-start gap-3 text-left"
+        >
+          <span
+            className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${
+              humanReviewConfirmed ? "bg-[#1D72B8]" : "bg-white"
+            }`}
+          >
+            {humanReviewConfirmed ? "✓" : ""}
+          </span>
+
+          <span>
+            <span className="block text-sm font-black text-slate-900">
+              I confirm this report has been reviewed by a qualified person.
+            </span>
+            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+              SafeScope outputs, standards, risk ratings, corrective actions,
+              and report language have been independently reviewed before export.
+              Use of this report remains subject to the Sentinel Safety legal terms.
+            </span>
+
+            <a
+              href="/legal"
+              className="mt-2 inline-block text-xs font-black text-[#1D72B8] underline underline-offset-2"
+              onClick={(event) => event.stopPropagation()}
+            >
+              Review legal terms
+            </a>
+          </span>
+        </button>
+
+        {exportWarning && (
+          <p className="mx-auto mt-3 max-w-md rounded-lg bg-amber-50 px-3 py-2 text-xs font-black text-amber-800 ring-1 ring-amber-200">
+            {exportWarning}
+          </p>
+        )}
+
         <button
           type="button"
           onClick={exportReport}
-          className="mx-auto mt-4 flex w-40 justify-center rounded-xl bg-[#102A43] px-3 py-2 text-xs font-black !text-white transition hover:bg-[#1D72B8]"
+          disabled={!humanReviewConfirmed}
+          className="mx-auto mt-4 flex h-10 w-44 items-center justify-center rounded-xl bg-[#102A43] px-3 text-xs font-black !text-white transition hover:bg-[#1D72B8] disabled:cursor-not-allowed disabled:bg-slate-300 disabled:!text-slate-500"
         >
           Export Final PDF
         </button>
+
+        {!humanReviewConfirmed && (
+          <p className="mt-2 text-[11px] font-bold text-slate-500">
+            Confirm qualified-person review to enable export.
+          </p>
+        )}
       </section>
+
     </section>
   );
 }
