@@ -44,6 +44,9 @@ npx ts-node scripts/smoke-entitlement-guards.ts
 echo "== Backend upload logo validation smoke test =="
 npx ts-node scripts/smoke-upload-logo-validation.ts
 
+echo "== Backend production env safety smoke test =="
+npx ts-node scripts/smoke-production-env-safety.ts
+
 echo ""
 echo "== Git status after checks =="
 cd ~/Sentinel_Safety
