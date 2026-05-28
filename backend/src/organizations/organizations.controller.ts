@@ -1,5 +1,5 @@
 import { Roles } from '../auth/decorators/roles.decorator';
-import { Body, Controller, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, ForbiddenException, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { OrganizationsService } from './organizations.service';
 import { JwtGuard } from '../auth/guards/jwt.guard';
@@ -55,7 +55,7 @@ export class OrganizationsController {
   @Get(':id')
   findOne(@Param('id') id: string, @Req() req: Request & { user?: any }) {
     if (id !== req.user?.organizationId) {
-      return this.service.findOne(req.user.organizationId);
+      throw new ForbiddenException('You can only view your own organization.');
     }
 
     return this.service.findOne(id);
