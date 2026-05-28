@@ -335,17 +335,6 @@ export default function AnalyticsPage() {
     analytics.totalReports || analytics.totalFindings || actions.length,
   );
 
-  function previewPlan(nextPlan: PlanCode) {
-    setPlanCode(nextPlan);
-
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(
-        "sentinel_auth_user",
-        JSON.stringify({ planCode: nextPlan, type: nextPlan }),
-      );
-    }
-  }
-
   const canViewProInsights = hasPlanEntitlement("analytics", planCode);
   const canViewCompanyInsights = hasPlanEntitlement("companyAnalytics", planCode);
   const canUseWorkspaceFilters = hasPlanEntitlement("workspaceFiltering", planCode);
@@ -422,36 +411,19 @@ export default function AnalyticsPage() {
       </section>
 
       <section className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Local Preview
+              Active Plan
             </p>
             <p className="mt-1 text-sm font-semibold text-slate-500">
-              Switch tiers locally to review Basic, Pro, and Company analytics.
+              Analytics access is based on the signed-in account plan.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 sm:w-auto">
-            {[
-              ["basic", "Basic"],
-              ["plus", "Pro"],
-              ["company", "Company"],
-            ].map(([id, label]) => (
-              <button
-                key={id}
-                type="button"
-                onClick={() => previewPlan(id as PlanCode)}
-                className={`rounded-xl px-3 py-2 text-xs font-black transition ${
-                  planCode === id
-                    ? "bg-[#1D72B8] text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+          <span className="mx-auto rounded-full bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wide text-slate-700 sm:mx-0">
+            {planCode === "company" ? "Company" : planCode === "plus" ? "Pro" : "Basic"}
+          </span>
         </div>
       </section>
 

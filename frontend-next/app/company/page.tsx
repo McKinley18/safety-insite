@@ -398,17 +398,6 @@ export default function CompanyControlCenterPage() {
     return isActionLinkedWork(item) ? "Corrective Action" : "Manual Assignment";
   }
 
-  function previewPlan(nextPlan: PlanCode) {
-    setPlanCode(nextPlan);
-
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(
-        "sentinel_auth_user",
-        JSON.stringify({ planCode: nextPlan, type: nextPlan }),
-      );
-    }
-  }
-
   if (!companyAccess) {
     return (
       <section className="space-y-5">
@@ -482,13 +471,6 @@ export default function CompanyControlCenterPage() {
               Workspace Settings
             </Link>
 
-            <button
-              type="button"
-              onClick={() => previewPlan("company")}
-              className="rounded-xl border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm font-black text-slate-700 transition hover:bg-slate-100"
-            >
-              Preview Company
-            </button>
           </div>
         </section>
       </section>

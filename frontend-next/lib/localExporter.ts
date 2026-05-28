@@ -251,7 +251,12 @@ export const localExporter = {
       `Lead Inspector: ${adminInfo?.inspector || "N/A"}`,
       ...(Array.isArray(adminInfo?.additionalInspectors) && adminInfo.additionalInspectors.length
         ? [`Additional Inspectors: ${adminInfo.additionalInspectors.filter(Boolean).join(", ")}`]
-        : []),
+        : ["Additional Inspectors: None"]),
+      `Confidentiality: ${
+        adminInfo?.isConfidential
+          ? adminInfo?.confidentialityMarkerText || "Privileged & Confidential"
+          : "No"
+      }`,
       `Report ID: ${adminInfo?.reportId || "N/A"}`,
       `${adminInfo?.findingCount || findings.length || 0} finding(s)`,
     ];

@@ -95,12 +95,13 @@ function formatReviewDate(value?: string) {
 
 export default function InspectionReviewPage() {
   const [report, setReport] = useState<any>(null);
-  const [previewPlanCode, setPreviewPlanCode] = useState(getStoredPlanCode());
+  const [planCode, setPlanCode] = useState(getStoredPlanCode());
   const [humanReviewConfirmed, setHumanReviewConfirmed] = useState(false);
   const [exportWarning, setExportWarning] = useState("");
 
   useEffect(() => {
     async function loadReport() {
+      setPlanCode(getStoredPlanCode());
       const latest = await getLatestReport<any>();
       setReport(latest);
     }
@@ -108,7 +109,7 @@ export default function InspectionReviewPage() {
     loadReport();
   }, []);
 
-  const reportPackage = getReportPackageForPlan(previewPlanCode);
+  const reportPackage = getReportPackageForPlan(planCode);
 
   async function updateReportOption(key: string, value: boolean) {
     if (!report) return;
@@ -362,7 +363,7 @@ export default function InspectionReviewPage() {
           {report.organizationName || "Organization"} · {report.siteLocation || "Field Inspection"}
         </h3>
 
-        <div className="mt-3 grid gap-2 lg:grid-cols-3">
+        <div className="mt-3 grid gap-2 lg:grid-cols-4">
           {[
             [
               "Date",
@@ -371,6 +372,12 @@ export default function InspectionReviewPage() {
             [
               "Lead Inspector",
               report.leadInspector || "Not entered",
+            ],
+            [
+              "Additional Inspectors",
+              report.additionalInspectors?.length
+                ? report.additionalInspectors.join(", ")
+                : "None",
             ],
             [
               "Confidentiality",
@@ -391,54 +398,6 @@ export default function InspectionReviewPage() {
               </p>
             </div>
           ))}
-        </div>
-
-        {!!report.additionalInspectors?.length && (
-          <div className="mt-2 flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 px-3 text-center">
-            <p className="text-[9px] font-black uppercase tracking-wide text-[#1D72B8]">
-              Additional Inspectors
-            </p>
-            <p className="mt-0.5 max-w-full truncate text-xs font-black text-slate-800">
-              {report.additionalInspectors.join(", ")}
-            </p>
-          </div>
-        )}
-      </section>
-
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Preview Report Tier
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
-              Switch report format
-            </h2>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
-              Preview how the same report appears for Basic, Pro, and Company.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2">
-            {([
-              ["basic", "Basic"],
-              ["plus", "Pro"],
-              ["company", "Company"],
-            ] as const).map(([value, label]) => (
-              <button
-                key={value}
-                type="button"
-                onClick={() => setPreviewPlanCode(value)}
-                className={`rounded-xl px-3 py-2 text-xs font-black transition ${
-                  previewPlanCode === value
-                    ? "bg-[#102A43] text-white"
-                    : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
         </div>
       </section>
 
