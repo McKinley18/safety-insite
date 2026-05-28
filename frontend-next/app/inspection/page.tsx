@@ -392,7 +392,21 @@ export default function InspectionPage() {
       setSafeScopeCompactDetailsOpen(false);
       setSafeScopeCompactDetailsOpen(false);
       setSafeScopeAdvancedOpen(false);
-      setSelectedStandards([]);
+
+      const autoSelectedStandards = Array.isArray(result?.suggestedStandards)
+        ? result.suggestedStandards.slice(0, 1)
+        : [];
+
+      const autoSelectedActions = Array.isArray(result?.generatedActions)
+        ? result.generatedActions.slice(0, 1).map((action: any) => ({
+            ...action,
+            source: "SafeScope",
+          }))
+        : [];
+
+      setSelectedStandards(autoSelectedStandards);
+      setSelectedGeneratedActions(autoSelectedActions);
+
       setSafeScopeStatus(
         `SafeScope v2: ${result.classification} (${
           result.confidenceBand === "high"
@@ -690,6 +704,24 @@ export default function InspectionPage() {
     if (!hasCurrentFindingData()) {
       setFindingSaveMessage("Enter finding details before saving.");
       return;
+    }
+
+    const safeScopeSuggestedStandardCount = safeScopeResult?.suggestedStandards?.length || 0;
+    const safeScopeGeneratedActionCount = safeScopeResult?.generatedActions?.length || 0;
+
+    if (
+      safeScopeResult &&
+      ((safeScopeSuggestedStandardCount > 0 && selectedStandards.length === 0) ||
+        (safeScopeGeneratedActionCount > 0 && selectedGeneratedActions.length === 0 && manualActions.length === 0))
+    ) {
+      const confirmed = window.confirm(
+        "SafeScope found recommended standards or corrective actions that are not selected for this finding. Save anyway?",
+      );
+
+      if (!confirmed) {
+        setFindingSaveMessage("Review SafeScope standards/actions before saving.");
+        return;
+      }
     }
 
     const current = buildCurrentFinding();
