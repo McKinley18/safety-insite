@@ -1,9 +1,11 @@
 import { Controller, Get, Post, Body, Param, Patch, Query, Headers, UseGuards } from '@nestjs/common';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { CorrectiveActionsService } from './corrective-actions.service';
 import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('cloudReports')
 @Controller('actions')
 export class CorrectiveActionsController {
   constructor(private readonly service: CorrectiveActionsService) {}

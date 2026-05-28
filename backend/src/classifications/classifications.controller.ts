@@ -6,8 +6,10 @@ import { Request } from 'express';
 import { ClassificationsService } from './classifications.service';
 
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('fullSafeScope')
 
 @Controller('classifications')
 

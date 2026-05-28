@@ -1,9 +1,11 @@
 import { Controller, Post, Body, Get, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { InspectionService } from './inspection.service';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('cloudReports')
 @Controller('inspections')
 export class InspectionController {
   constructor(private service: InspectionService) {}

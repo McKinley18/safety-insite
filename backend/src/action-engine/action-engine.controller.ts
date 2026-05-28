@@ -1,11 +1,13 @@
 import { Controller, Post, Param, Headers, NotFoundException, Inject, forwardRef, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { ActionEngineService, ActionInput } from './action-engine.service';
 import { ReportsService } from '../reports/reports.service';
 import { CorrectiveActionsService } from '../corrective-actions/corrective-actions.service';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('cloudReports')
 @Controller('action-engine')
 export class ActionEngineController {
   constructor(

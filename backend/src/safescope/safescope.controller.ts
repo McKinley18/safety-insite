@@ -2,8 +2,10 @@ import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { SafeScopeService } from './safescope.service';
 import { FeedbackService } from './engine/feedback.service';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('fullSafeScope')
 @Controller('safescope')
 export class SafeScopeController {
   constructor(
