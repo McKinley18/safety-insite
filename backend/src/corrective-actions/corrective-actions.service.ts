@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
+import { getJwtSecret } from '../auth/jwt-secret.util';
 import { CorrectiveAction } from './entities/corrective-action.entity';
 import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
 import { AuditService } from '../audit/audit.service';
@@ -24,34 +25,22 @@ export class CorrectiveActionsService {
     const token = authHeader?.replace('Bearer ', '');
     if (!token) throw new UnauthorizedException('Missing authorization token');
 
-    const secrets = [
-      process.env.JWT_SECRET,
-      process.env.JWT_ACCESS_SECRET,
-      'development-only-secret-change-me',
-      'dev-only-secret-change-me',
-      'local_dev_secret_only',
-    ].filter(Boolean) as string[];
+    try {
+      const decoded = jwt.verify(token, getJwtSecret()) as any;
+      const userId = decoded.sub || decoded.userId;
+      const organizationId = decoded.organizationId || decoded.tenantId || 'default';
+      const tenantId = decoded.tenantId || decoded.organizationId || 'default';
 
-    for (const secret of secrets) {
-      try {
-        const decoded = jwt.verify(token, secret) as any;
-        const userId = decoded.sub || decoded.userId;
-        const organizationId = decoded.organizationId || decoded.tenantId || 'default';
-        const tenantId = decoded.tenantId || decoded.organizationId || 'default';
-
-        return {
-          ...decoded,
-          userId,
-          sub: decoded.sub || userId,
-          organizationId,
-          tenantId,
-        };
-      } catch {
-        // Try the next known local/dev secret.
-      }
+      return {
+        ...decoded,
+        userId,
+        sub: decoded.sub || userId,
+        organizationId,
+        tenantId,
+      };
+    } catch {
+      throw new UnauthorizedException('Invalid authorization token');
     }
-
-    throw new UnauthorizedException('Invalid authorization token');
   }
 
   private buildFilter(

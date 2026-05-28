@@ -5,6 +5,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
+import { getJwtSecret } from './jwt-secret.util';
 import { User } from '../users/user.entity';
 import { OrganizationsModule } from '../organizations/organizations.module';
 
@@ -13,7 +14,7 @@ import { OrganizationsModule } from '../organizations/organizations.module';
     TypeOrmModule.forFeature([User]),
     OrganizationsModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'development-only-secret-change-me',
+      secret: getJwtSecret(),
       signOptions: {
         expiresIn: (process.env.JWT_EXPIRES_IN || '15m') as any,
       },

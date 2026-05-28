@@ -2,6 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
+import { getJwtSecret } from '../auth/jwt-secret.util';
 import { Notification } from './notification.entity';
 
 @Injectable()
@@ -15,16 +16,8 @@ export class NotificationsService {
     const token = authHeader?.replace('Bearer ', '');
     if (!token) throw new UnauthorizedException('Missing authorization token');
 
-    const secret = process.env.JWT_SECRET;
-
-    if (!secret && process.env.NODE_ENV === 'production') {
-      throw new UnauthorizedException('JWT secret is not configured.');
-    }
-
-    const signingSecret = secret || 'local_dev_secret_only';
-
     try {
-      return jwt.verify(token, signingSecret) as {
+      return jwt.verify(token, getJwtSecret()) as {
         sub: string;
         tenantId: string;
         role: string;

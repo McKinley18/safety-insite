@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/co
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
+import { getJwtSecret } from '../auth/jwt-secret.util';
 import { AuditSession } from './audit-session.entity';
 import { AuditEntry } from './audit-entry.entity';
 
@@ -18,34 +19,22 @@ export class AuditSessionService {
     const token = authHeader?.replace('Bearer ', '');
     if (!token) throw new UnauthorizedException('Missing authorization token');
 
-    const secrets = [
-      process.env.JWT_SECRET,
-      process.env.JWT_ACCESS_SECRET,
-      'development-only-secret-change-me',
-      'dev-only-secret-change-me',
-      'local_dev_secret_only',
-    ].filter(Boolean) as string[];
+    try {
+      const decoded = jwt.verify(token, getJwtSecret()) as any;
+      const userId = decoded.sub || decoded.userId;
+      const organizationId = decoded.organizationId || decoded.tenantId || null;
+      const tenantId = decoded.tenantId || decoded.organizationId || 'default';
 
-    for (const secret of secrets) {
-      try {
-        const decoded = jwt.verify(token, secret) as any;
-        const userId = decoded.sub || decoded.userId;
-        const organizationId = decoded.organizationId || decoded.tenantId || null;
-        const tenantId = decoded.tenantId || decoded.organizationId || 'default';
-
-        return {
-          ...decoded,
-          userId,
-          sub: userId,
-          organizationId,
-          tenantId,
-        };
-      } catch {
-        // Try next known local/dev secret.
-      }
+      return {
+        ...decoded,
+        userId,
+        sub: userId,
+        organizationId,
+        tenantId,
+      };
+    } catch {
+      throw new UnauthorizedException('Invalid authorization token');
     }
-
-    throw new UnauthorizedException('Invalid authorization token');
   }
 
   private buildScope(auth: any) {

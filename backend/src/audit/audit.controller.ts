@@ -3,6 +3,7 @@ import { Request } from 'express';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import * as jwt from 'jsonwebtoken';
+import { getJwtSecret } from '../auth/jwt-secret.util';
 import { AuditService } from './audit.service';
 
 @UseGuards(JwtGuard, EntitlementGuard)
@@ -15,16 +16,8 @@ export class AuditController {
     const token = authHeader?.replace('Bearer ', '');
     if (!token) throw new UnauthorizedException('Missing authorization token');
 
-    const secret = process.env.JWT_SECRET;
-
-    if (!secret && process.env.NODE_ENV === 'production') {
-      throw new UnauthorizedException('JWT secret is not configured.');
-    }
-
-    const signingSecret = secret || 'local_dev_secret_only';
-
     try {
-      return jwt.verify(token, signingSecret) as {
+      return jwt.verify(token, getJwtSecret()) as {
         sub: string;
         email: string;
         tenantId: string;
