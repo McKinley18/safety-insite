@@ -9,6 +9,86 @@ function getReportPackageExportNote(input: any) {
 
 const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Sentinel Safety / SafeScope. SafeScope outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
 
+function normalizePdfPercent(value: any) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return null;
+  return numeric <= 1 ? Math.round(numeric * 100) : Math.round(numeric);
+}
+
+function getFindingStandardsForPdf(f: any) {
+  return (
+    (Array.isArray(f.selectedStandards) && f.selectedStandards.length
+      ? f.selectedStandards
+      : null) ||
+    (Array.isArray(f.standards) && f.standards.length ? f.standards : null) ||
+    (Array.isArray(f.safeScopeResult?.suggestedStandards) &&
+    f.safeScopeResult.suggestedStandards.length
+      ? f.safeScopeResult.suggestedStandards
+      : [])
+  );
+}
+
+function getFindingActionsForPdf(f: any) {
+  return (
+    (Array.isArray(f.correctiveActions) && f.correctiveActions.length
+      ? f.correctiveActions
+      : null) ||
+    [
+      ...(Array.isArray(f.selectedGeneratedActions)
+        ? f.selectedGeneratedActions
+        : []),
+      ...(Array.isArray(f.manualActions) ? f.manualActions : []),
+    ]
+  );
+}
+
+function getFindingRiskForPdf(f: any) {
+  return (
+    f.safeScopeResult?.risk?.riskBand ||
+    f.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
+    f.riskBand ||
+    f.riskScore ||
+    "Not rated"
+  );
+}
+
+function getFindingConfidenceForPdf(f: any) {
+  return normalizePdfPercent(
+    f.safeScopeResult?.confidenceIntelligence?.overallConfidence ??
+      f.safeScopeResult?.confidence,
+  );
+}
+
+function getFindingCategoryForPdf(f: any) {
+  return (
+    f.category ||
+    f.hazardCategory ||
+    f.safeScopeResult?.classification ||
+    "Uncategorized"
+  );
+}
+
+function getStandardCitationForPdf(standard: any) {
+  return (
+    standard?.citation ||
+    standard?.standard ||
+    standard?.label ||
+    standard?.title ||
+    String(standard)
+  );
+}
+
+function getStandardSummaryForPdf(standard: any) {
+  return (
+    standard?.rationale ||
+    standard?.summary ||
+    standard?.heading ||
+    standard?.reasoning ||
+    ""
+  );
+}
+
+
 function formatPdfDate(value?: string) {
   if (!value) return new Date().toLocaleDateString("en-US");
   const date = new Date(value);
@@ -219,7 +299,7 @@ export const localExporter = {
       0,
     );
     const standardsCount = findings.reduce(
-      (total, f) => total + (f.standards?.length || 0),
+      (total, f) => total + getFindingStandardsForPdf(f).length,
       0,
     );
     const avgRisk =
@@ -362,7 +442,11 @@ export const localExporter = {
     autoTable(doc, {
       startY: 50,
       head: [["ID", "Hazard Category", "Explanation"]],
-      body: findings.map((f, i) => [i + 1, f.category, f.description]),
+      body: findings.map((f, i) => [
+        i + 1,
+        getFindingCategoryForPdf(f),
+        f.description || "No description provided.",
+      ]),
       headStyles: { fillColor: [226, 232, 240], textColor: [15, 23, 42] },
       columnStyles: {
         0: { cellWidth: 15 },
@@ -389,7 +473,7 @@ export const localExporter = {
       doc.setTextColor(15, 23, 42);
       doc.setFontSize(16);
       doc.setFont("helvetica", "bold");
-      doc.text(`FINDING #${i + 1}: ${f.category}`, 20, currentY);
+      doc.text(`FINDING #${i + 1}: ${getFindingCategoryForPdf(f)}`, 20, currentY);
       doc.setDrawColor(226, 232, 240);
       doc.setLineWidth(0.4);
       doc.line(20, currentY + 5, pageWidth - 20, currentY + 5);
@@ -397,7 +481,10 @@ export const localExporter = {
       currentY += 14;
 
       // Description
-      const descLines = doc.splitTextToSize(f.description, pageWidth - 40);
+      const descLines = doc.splitTextToSize(
+        f.description || "No description provided.",
+        pageWidth - 40,
+      );
       doc.setTextColor(71, 85, 105);
       doc.setFontSize(9);
       doc.setFont("helvetica", "bold");
@@ -407,16 +494,14 @@ export const localExporter = {
       currentY += descLines.length * 5 + 12;
 
       // Standards
-      const standards = Array.isArray(f.standards) ? f.standards : [];
+      const standards = getFindingStandardsForPdf(f);
       const standardText = standards.length
         ? standards
-            .map(
-              (standard: any) =>
-                standard.citation ||
-                standard.label ||
-                standard.title ||
-                String(standard),
-            )
+            .map((standard: any) => {
+              const citation = getStandardCitationForPdf(standard);
+              const summary = getStandardSummaryForPdf(standard);
+              return summary ? `${citation} — ${summary}` : citation;
+            })
             .join("\n")
         : "No standard selected.";
 
@@ -429,9 +514,7 @@ export const localExporter = {
       currentY += standardLines.length * 5 + 15;
 
       // Corrective Actions
-      const correctiveActions = Array.isArray(f.correctiveActions)
-        ? f.correctiveActions
-        : [];
+      const correctiveActions = getFindingActionsForPdf(f);
       const actionText = correctiveActions.length
         ? correctiveActions
             .map((action: any, actionIndex: number) => {
@@ -461,6 +544,63 @@ export const localExporter = {
       doc.setFont("helvetica", "normal");
       doc.text(actionLines, 20, currentY + 6);
       currentY += actionLines.length * 5 + 15;
+      const confidence = getFindingConfidenceForPdf(f);
+      const riskBand = getFindingRiskForPdf(f);
+      const safeScopeNotes = [];
+
+      if (f.safeScopeResult) {
+        safeScopeNotes.push(
+          `Classification: ${f.safeScopeResult.classification || getFindingCategoryForPdf(f)}`,
+        );
+        safeScopeNotes.push(`Risk: ${riskBand}`);
+        if (confidence !== null) safeScopeNotes.push(`Confidence: ${confidence}%`);
+
+        if (f.safeScopeResult.reasoningSnapshotId) {
+          safeScopeNotes.push(
+            `Reasoning snapshot: ${f.safeScopeResult.reasoningSnapshotId}`,
+          );
+        }
+
+        const reviewTriggers =
+          f.safeScopeResult.confidenceIntelligence?.reviewTriggers || [];
+        if (reviewTriggers.length) {
+          safeScopeNotes.push(
+            `Supervisor review trigger(s): ${reviewTriggers.slice(0, 3).join("; ")}`,
+          );
+        }
+
+        const evidenceGaps = f.safeScopeResult.knowledgeBrain?.evidenceGaps || [];
+        if (evidenceGaps.length) {
+          safeScopeNotes.push(
+            `Evidence gap(s): ${evidenceGaps.slice(0, 4).join("; ")}`,
+          );
+        }
+
+        const decisionSummary =
+          f.safeScopeResult.decisionExplainability?.decisionSummary ||
+          f.safeScopeResult.executiveJudgment?.auditReadySummary ||
+          f.safeScopeResult.explanation;
+
+        if (decisionSummary) {
+          safeScopeNotes.push(`SafeScope summary: ${decisionSummary}`);
+        }
+      }
+
+      if (safeScopeNotes.length) {
+        doc.setTextColor(15, 23, 42);
+        doc.setFont("helvetica", "bold");
+        doc.text("SAFESCOPE REVIEW SUMMARY", 20, currentY);
+        doc.setTextColor(71, 85, 105);
+        doc.setFont("helvetica", "normal");
+
+        const safeScopeLines = doc.splitTextToSize(
+          safeScopeNotes.join("\n"),
+          pageWidth - 40,
+        );
+        doc.text(safeScopeLines, 20, currentY + 6);
+        currentY += safeScopeLines.length * 5 + 15;
+      }
+
 
       // 5. PHOTO EVIDENCE
       if (f.photos && f.photos.length > 0) {
