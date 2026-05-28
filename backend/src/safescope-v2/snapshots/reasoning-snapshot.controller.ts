@@ -1,8 +1,10 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { JwtGuard } from '../../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../../auth/entitlements/entitlement.guard';
 import { ReasoningSnapshotService } from './reasoning-snapshot.service';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('fullSafeScope')
 @Controller('safescope-v2/reasoning-snapshots')
 export class ReasoningSnapshotController {
   constructor(private readonly snapshots: ReasoningSnapshotService) {}

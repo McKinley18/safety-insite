@@ -1,10 +1,12 @@
 import { Controller, Get, Headers, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import * as jwt from 'jsonwebtoken';
 import { AuditService } from './audit.service';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('auditTrail')
 @Controller('audit')
 export class AuditController {
   constructor(private readonly auditService: AuditService) {}
