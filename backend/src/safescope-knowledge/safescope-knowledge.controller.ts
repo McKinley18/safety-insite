@@ -1,8 +1,10 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { JwtGuard } from "../auth/guards/jwt.guard";
+import { EntitlementGuard, RequireEntitlement } from "../auth/entitlements/entitlement.guard";
 import { SafeScopeKnowledgeService } from "./safescope-knowledge.service";
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement("auditTrail")
 @Controller("safescope-knowledge")
 export class SafeScopeKnowledgeController {
   constructor(
