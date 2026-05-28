@@ -92,6 +92,13 @@ export class SafeScopeKnowledgeService {
     return this.findDocument(saved.id);
   }
 
+  async listDocuments() {
+    return this.documentRepo.find({
+      order: { createdAt: "DESC" },
+      take: 250,
+    });
+  }
+
   async listPendingDocuments() {
     return this.documentRepo.find({
       where: { approvalStatus: "pending_review" },

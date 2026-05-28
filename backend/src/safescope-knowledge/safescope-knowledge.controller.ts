@@ -16,6 +16,11 @@ export class SafeScopeKnowledgeController {
     return this.safeScopeKnowledgeService.createDocument(body);
   }
 
+  @Get("documents")
+  listDocuments() {
+    return this.safeScopeKnowledgeService.listDocuments();
+  }
+
   @Get("review/pending")
   listPendingDocuments() {
     return this.safeScopeKnowledgeService.listPendingDocuments();
