@@ -94,53 +94,6 @@ export default function FindingReviewEditor({
 
   return (
     <section className="space-y-4">
-      <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
-          Finding Review
-        </p>
-        <h2 className="mt-1 text-2xl font-black text-white">
-          Confirm finding details
-        </h2>
-
-        <div className="mt-4 grid grid-cols-4 gap-2">
-          <div className="rounded-xl bg-slate-50 px-3 py-2">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              Photos
-            </p>
-            <p className="mt-1 text-sm font-black text-slate-900">
-              {photos.length}
-            </p>
-          </div>
-
-          <div className="rounded-xl bg-slate-50 px-3 py-2">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              Category
-            </p>
-            <p className="mt-1 truncate text-sm font-black text-slate-900">
-              {finalCategory}
-            </p>
-          </div>
-
-          <div className="rounded-xl bg-slate-50 px-3 py-2">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              Risk
-            </p>
-            <p className="mt-1 truncate text-sm font-black text-slate-900">
-              {riskSummary(safeScopeResult, severity, likelihood)}
-            </p>
-          </div>
-
-          <div className="rounded-xl bg-slate-50 px-3 py-2">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              Actions
-            </p>
-            <p className="mt-1 text-sm font-black text-slate-900">
-              {actionCount}
-            </p>
-          </div>
-        </div>
-      </div>
-
       <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Description
