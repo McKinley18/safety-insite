@@ -38,6 +38,9 @@ echo ""
 echo "== Backend dashboard organization scope smoke test =="
 npm run smoke:dashboard-scope
 
+echo "== Backend entitlement guard smoke test =="
+npx ts-node scripts/smoke-entitlement-guards.ts
+
 echo ""
 echo "== Git status after checks =="
 cd ~/Sentinel_Safety

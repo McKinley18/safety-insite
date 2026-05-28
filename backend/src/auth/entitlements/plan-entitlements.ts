@@ -13,7 +13,7 @@ export const PLAN_ENTITLEMENTS = {
     fullSafeScope: true,
     cloudReports: false,
     teamMembers: false,
-    analytics: false,
+    analytics: true,
     supervisorValidation: false,
     auditTrail: false,
   },
