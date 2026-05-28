@@ -22,6 +22,7 @@ import { DashboardsModule } from './dashboards/dashboards.module';
 import { AnalyticsModule } from './analytics/analytics.module';
 import { SafeScopeKnowledgeModule } from './safescope-knowledge/safescope-knowledge.module';
 import { SafeScopeModule } from './safescope/safescope.module';
+import { UploadModule } from './upload/upload.module';
 import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
 
 @Module({
@@ -78,6 +79,7 @@ import { MaintenanceSeedController } from './maintenance/maintenance-seed.contro
     DashboardsModule,
     AnalyticsModule,
     SafeScopeModule,
+    UploadModule,
   ],
 })
 export class AppModule {}
