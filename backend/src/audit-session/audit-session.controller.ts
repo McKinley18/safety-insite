@@ -1,9 +1,11 @@
 import { Body, Controller, Get, Headers, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { AuditSessionService } from './audit-session.service';
 import { AuditAnalysisService } from './audit-analysis.service';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('cloudReports')
 @Controller('audit-sessions')
 export class AuditSessionController {
   constructor(

@@ -14,7 +14,8 @@ function assertContains(needle: string, label: string) {
 }
 
 async function main() {
-  assertContains('@UseGuards(JwtGuard)', 'Upload auth guard');
+  assertContains('@UseGuards(JwtGuard, EntitlementGuard)', 'Upload auth + entitlement guard');
+  assertContains("@RequireEntitlement('teamMembers')", 'Upload teamMembers entitlement');
   assertContains("@Controller('upload')", 'Upload route controller');
   assertContains("@Post('logo')", 'Logo upload POST route');
   assertContains('fileSize: 2 * 1024 * 1024', '2MB upload size limit');

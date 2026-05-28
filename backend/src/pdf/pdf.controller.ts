@@ -3,8 +3,10 @@ import { PdfService } from './pdf.service';
 import { ReportsService } from '../reports/reports.service';
 import { Response, Request } from 'express';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('cloudReports')
 @Controller('pdf')
 export class PdfController {
   constructor(

@@ -4,8 +4,10 @@ import { ExecutiveService } from './executive.service';
 import { PdfService } from '../pdf/pdf.service';
 import { ReportsService } from '../reports.service';
 import { JwtGuard } from '../../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../../auth/entitlements/entitlement.guard';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('cloudReports')
 @Controller('reports')
 export class ExecutiveController {
   constructor(

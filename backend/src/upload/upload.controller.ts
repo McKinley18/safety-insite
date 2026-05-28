@@ -7,6 +7,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -37,7 +38,8 @@ function safeLogoFilename(originalName: string) {
   return `logo-${unique}${ext}`;
 }
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, EntitlementGuard)
+@RequireEntitlement('teamMembers')
 @Controller('upload')
 export class UploadController {
   @Post('logo')
