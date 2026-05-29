@@ -5,6 +5,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_BASE_URL } from "@/lib/safescope";
 import { apiFetch } from "@/lib/apiFetch";
+import { AppButton } from "@/components/ui/AppButton";
+import { AppInput } from "@/components/ui/AppInput";
+import { AppPanel } from "@/components/ui/AppPanel";
 
 function validatePassword(password: string) {
   return {
@@ -114,7 +117,7 @@ export default function RegisterPage() {
 
   return (
     <section className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-      <div className="rounded-[28px] bg-[#0B1320] p-6 text-white shadow-xl shadow-slate-300/40">
+      <AppPanel variant="dark" padding="lg" className="rounded-[28px] p-6 text-white shadow-xl shadow-slate-300/40 sm:p-6">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-blue-200">
           Sentinel Safety
         </p>
@@ -130,7 +133,7 @@ export default function RegisterPage() {
           <p>✓ Secure evidence and inspection workflow</p>
           <p>✓ SafeScope decision-support intelligence</p>
         </div>
-      </div>
+      </AppPanel>
 
       <form onSubmit={handleRegister} className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
         <h1 className="text-3xl font-black text-slate-900">Create an Account</h1>
@@ -139,17 +142,17 @@ export default function RegisterPage() {
         </p>
 
         <div className="mt-5 space-y-3">
-          <input autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]" />
-          <input autoComplete="email" inputMode="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]" />
+          <AppInput autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
+          <AppInput autoComplete="email" inputMode="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
 
           <div className="relative">
-            <input autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type={showPassword ? "text" : "password"} className="w-full rounded-xl border border-slate-300 px-4 py-3 pr-20 text-sm font-bold outline-none focus:border-[#1D72B8]" />
+            <AppInput autoComplete="new-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type={showPassword ? "text" : "password"} className="pr-20" />
             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-black text-[#1D72B8]">
               {showPassword ? "Hide" : "Show"}
             </button>
           </div>
 
-          <input autoComplete="new-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" type={showPassword ? "text" : "password"} className="w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]" />
+          <AppInput autoComplete="new-password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" type={showPassword ? "text" : "password"} />
 
           <div className="rounded-xl bg-slate-50 p-4 text-xs font-bold text-slate-600">
             <p className="mb-2 font-black text-slate-800">Password Requirements</p>
@@ -173,9 +176,9 @@ export default function RegisterPage() {
             </span>
           </label>
 
-          <button type="submit" disabled={loading} className="block w-full rounded-xl bg-[#102A43] px-5 py-3 text-center text-sm font-black text-white disabled:opacity-60">
+          <AppButton type="submit" disabled={loading} fullWidth size="lg">
             {loading ? "Creating..." : "Create Secure Workspace"}
-          </button>
+          </AppButton>
 
           {status && (
             <p className={`rounded-xl p-3 text-sm font-bold ${
