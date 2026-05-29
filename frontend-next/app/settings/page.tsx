@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { getStoredPlanCode, hasPlanEntitlement } from "@/lib/planEntitlements";
 import { getFacilities } from "@/lib/facilityStorage";
 import { getOrganizationSettings } from "@/lib/auth";
+import { AppPanel } from "@/components/ui/AppPanel";
+import { HeroPanel } from "@/components/ui/HeroPanel";
 
 type StorageMode = "local" | "cloud" | "ask";
 
@@ -59,7 +61,7 @@ export default function SettingsHubPage() {
 
   return (
     <section className="space-y-5">
-      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-center text-white shadow-sm sm:p-6">
+      <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Settings
         </p>
@@ -70,10 +72,10 @@ export default function SettingsHubPage() {
           Manage sign-in preferences, app security, storage behavior, report
           defaults, and workspace controls.
         </p>
-      </section>
+      </HeroPanel>
 
       <section className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <AppPanel padding="md" className="p-5 sm:p-5">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
             App Preferences
           </p>
@@ -125,7 +127,7 @@ export default function SettingsHubPage() {
                 <div className="flex justify-center sm:justify-end">
                   <Link
                     href="/settings/workspace"
-                    className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-center text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+                    className="inline-flex w-44 items-center justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-center text-sm font-black !text-white transition hover:bg-[#1D72B8]"
                   >
                     Workspace Setup
                   </Link>
@@ -133,8 +135,8 @@ export default function SettingsHubPage() {
               </div>
             </div>
           </div>
-        </section>
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        </AppPanel>
+        <AppPanel padding="md" className="p-5 sm:p-5">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
             Storage & Report Security
           </p>
@@ -166,16 +168,16 @@ export default function SettingsHubPage() {
           <div className="mt-5 flex justify-center">
             <Link
               href="/settings/workspace"
-              className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+              className="inline-flex w-44 items-center justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
             >
               Change Storage
             </Link>
           </div>
-        </section>
+        </AppPanel>
       </section>
 
       <section className="grid gap-4 lg:grid-cols-2">
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <AppPanel padding="md" className="p-5 sm:p-5">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
             Workspace Preferences
           </p>
@@ -203,15 +205,15 @@ export default function SettingsHubPage() {
           <div className="mt-5 flex justify-center">
             <Link
               href="/settings/workspace"
-              className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+              className="inline-flex w-44 items-center justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
             >
               Workspace Setup
             </Link>
           </div>
-        </section>
+        </AppPanel>
 
         {isCompany ? (
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <AppPanel padding="md" className="p-5 sm:p-5">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
               Company Settings
             </p>
@@ -226,14 +228,14 @@ export default function SettingsHubPage() {
             <div className="mt-5 flex justify-center">
               <Link
                 href="/company"
-                className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
+                className="inline-flex w-44 items-center justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black !text-white transition hover:bg-[#1D72B8]"
               >
                 Company Center
               </Link>
             </div>
-          </section>
+          </AppPanel>
         ) : (
-          <section className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 shadow-sm">
+          <AppPanel variant="dashed" padding="md" className="p-5 sm:p-5">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-slate-500">
               Company Settings
             </p>
@@ -249,12 +251,12 @@ export default function SettingsHubPage() {
             <div className="mt-5 flex justify-center">
               <Link
                 href="/pricing"
-                className="flex w-44 justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-black transition hover:bg-[#EA580C]"
+                className="inline-flex w-44 items-center justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-black transition hover:bg-[#EA580C]"
               >
                 View Company
               </Link>
             </div>
-          </section>
+          </AppPanel>
         )}
       </section>
     </section>
