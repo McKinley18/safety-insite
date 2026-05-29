@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_BASE_URL } from "@/lib/safescope";
 import { apiFetch } from "@/lib/apiFetch";
+import { AppButton } from "@/components/ui/AppButton";
+import { AppInput } from "@/components/ui/AppInput";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -118,13 +120,13 @@ export default function LoginPage() {
                 <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
                   Email
                 </span>
-                <input
+                <AppInput
                   autoComplete="email"
                   inputMode="email"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white"
+                  className="bg-slate-50 px-3 placeholder:text-slate-400 focus:bg-white"
                 />
               </label>
 
@@ -134,13 +136,13 @@ export default function LoginPage() {
                 </span>
 
                 <div className="relative">
-                  <input
+                  <AppInput
                     autoComplete="current-password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                     placeholder="Enter your password"
                     type={showPassword ? "text" : "password"}
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 pr-20 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white"
+                    className="bg-slate-50 px-3 pr-20 placeholder:text-slate-400 focus:bg-white"
                   />
 
                   <button
@@ -153,13 +155,14 @@ export default function LoginPage() {
                 </div>
               </label>
 
-              <button
+              <AppButton
                 type="submit"
                 disabled={loading}
-                className="mx-auto block rounded-xl bg-[#102A43] px-8 py-3 text-center text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+                size="lg"
+                className="mx-auto px-8 shadow-sm active:scale-[0.98]"
               >
                 {loading ? "Signing In..." : "Sign In"}
-              </button>
+              </AppButton>
 
               <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-1">
                 <Link
