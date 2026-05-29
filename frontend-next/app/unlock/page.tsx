@@ -3,6 +3,9 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import PageHeader from "@/components/ui/PageHeader";
+import { AppButton } from "@/components/ui/AppButton";
+import { AppInput } from "@/components/ui/AppInput";
+import { AppPanel } from "@/components/ui/AppPanel";
 import {
   getAutoLockMinutes,
   hasPinSet,
@@ -62,49 +65,51 @@ export default function UnlockPage() {
         }
       />
 
-      <div className="rounded-[24px] bg-[#0B1320] p-5">
+      <AppPanel variant="dark" padding="md" className="rounded-[24px] p-5 sm:p-5">
         <p className="mb-2 text-[11px] font-black uppercase tracking-[1px] text-[#F97316]">
           Local Security
         </p>
 
         <label className="block">
           <span className="text-sm font-black text-white">PIN</span>
-          <input
+          <AppInput
             value={pin}
             onChange={(event) => setPinValue(event.target.value.replace(/\D/g, "").slice(0, 6))}
             inputMode="numeric"
             type="password"
-            className="mt-2 w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-center text-xl font-black tracking-[8px] text-slate-900 outline-none"
+            className="mt-2 border-white/10 text-center text-xl font-black tracking-[8px] focus:border-white/10"
           />
         </label>
 
         {!pinExists && (
           <label className="mt-4 block">
             <span className="text-sm font-black text-white">Confirm PIN</span>
-            <input
+            <AppInput
               value={confirmPin}
               onChange={(event) => setConfirmPin(event.target.value.replace(/\D/g, "").slice(0, 6))}
               inputMode="numeric"
               type="password"
-              className="mt-2 w-full rounded-xl border border-white/10 bg-white px-4 py-3 text-center text-xl font-black tracking-[8px] text-slate-900 outline-none"
+              className="mt-2 border-white/10 text-center text-xl font-black tracking-[8px] focus:border-white/10"
             />
           </label>
         )}
 
-        <button
+        <AppButton
           type="button"
           onClick={submit}
-          className="mt-5 w-full rounded-xl bg-[#1D72B8] px-5 py-3 text-sm font-black text-white"
+          fullWidth
+          size="lg"
+          className="mt-5 bg-[#1D72B8] hover:bg-[#1D72B8]"
         >
           {pinExists ? "Unlock" : "Create PIN"}
-        </button>
+        </AppButton>
 
         {status && (
           <p className="mt-3 rounded-xl bg-red-50 p-3 text-sm font-bold text-red-700">
             {status}
           </p>
         )}
-      </div>
+      </AppPanel>
     </section>
   );
 }
