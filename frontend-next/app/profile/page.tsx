@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AppButton } from "@/components/ui/AppButton";
+import { AppInput } from "@/components/ui/AppInput";
+import { AppPanel } from "@/components/ui/AppPanel";
+import { HeroPanel } from "@/components/ui/HeroPanel";
 
 type UserProfile = {
   email?: string;
@@ -88,7 +92,7 @@ export default function ProfilePage() {
 
   return (
     <section className="space-y-5">
-      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-center text-white shadow-sm sm:p-6">
+      <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           User Profile
         </p>
@@ -98,10 +102,10 @@ export default function ProfilePage() {
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
           Manage account details, plan access, sign out, and account-level actions.
         </p>
-      </section>
+      </HeroPanel>
 
       <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <AppPanel padding="md" className="p-5 sm:p-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
@@ -116,13 +120,13 @@ export default function ProfilePage() {
             </div>
 
             {!identityEditing && (
-              <button
+              <AppButton
                 type="button"
                 onClick={() => setIdentityEditing(true)}
-                className="mx-auto flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black text-white transition hover:bg-[#1D72B8] sm:mx-0"
+                className="mx-auto w-44 sm:mx-0"
               >
                 Edit Account
-              </button>
+              </AppButton>
             )}
           </div>
 
@@ -155,10 +159,10 @@ export default function ProfilePage() {
                   <span className="text-xs font-black uppercase tracking-wide text-slate-500">
                     First Name
                   </span>
-                  <input
+                  <AppInput
                     value={firstName}
                     onChange={(event) => setFirstName(event.target.value)}
-                    className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+                    className="mt-2"
                   />
                 </label>
 
@@ -166,10 +170,10 @@ export default function ProfilePage() {
                   <span className="text-xs font-black uppercase tracking-wide text-slate-500">
                     Last Name
                   </span>
-                  <input
+                  <AppInput
                     value={lastName}
                     onChange={(event) => setLastName(event.target.value)}
-                    className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+                    className="mt-2"
                   />
                 </label>
 
@@ -177,30 +181,31 @@ export default function ProfilePage() {
                   <span className="text-xs font-black uppercase tracking-wide text-slate-500">
                     Email Address
                   </span>
-                  <input
+                  <AppInput
                     value={profileEmail}
                     onChange={(event) => setProfileEmail(event.target.value)}
-                    className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold outline-none focus:border-[#1D72B8]"
+                    className="mt-2"
                   />
                 </label>
               </div>
 
               <div className="mt-4 flex flex-wrap justify-center gap-2">
-                <button
+                <AppButton
                   type="button"
                   onClick={saveAccountIdentity}
-                  className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black text-white transition hover:bg-[#1D72B8]"
+                  className="w-44"
                 >
                   Save Changes
-                </button>
+                </AppButton>
 
-                <button
+                <AppButton
                   type="button"
+                  variant="secondary"
                   onClick={cancelAccountIdentityEdit}
-                  className="flex w-44 justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-black text-slate-700 transition hover:bg-slate-50"
+                  className="w-44"
                 >
                   Cancel
-                </button>
+                </AppButton>
               </div>
             </>
           )}
@@ -210,10 +215,10 @@ export default function ProfilePage() {
               {status}
             </p>
           )}
-        </section>
+        </AppPanel>
 
         <section className="space-y-4">
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <AppPanel padding="md" className="p-5 sm:p-5">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
               Plan Access
             </p>
@@ -225,17 +230,18 @@ export default function ProfilePage() {
             </p>
 
             <div className="mt-4 flex justify-center">
-              <button
+              <AppButton
                 type="button"
+                variant="accent"
                 onClick={() => router.push("/pricing")}
-                className="flex w-44 justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-black transition hover:bg-[#EA580C]"
+                className="w-44"
               >
                 Upgrade Plan
-              </button>
+              </AppButton>
             </div>
-          </section>
+          </AppPanel>
 
-          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <AppPanel padding="md" className="p-5 sm:p-5">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
               Account Actions
             </p>
@@ -244,23 +250,24 @@ export default function ProfilePage() {
             </h2>
 
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <button
+              <AppButton
                 type="button"
                 onClick={signOut}
-                className="flex w-44 justify-center rounded-xl bg-[#102A43] px-4 py-2.5 text-sm font-black text-white transition hover:bg-[#1D72B8]"
+                className="w-44"
               >
                 Sign Out
-              </button>
+              </AppButton>
 
-              <button
+              <AppButton
                 type="button"
+                variant="danger"
                 onClick={deleteAccountPreview}
-                className="flex w-44 justify-center rounded-xl border border-red-100 bg-red-50 px-4 py-2.5 text-sm font-black text-red-700 transition hover:bg-red-100"
+                className="w-44"
               >
                 Delete Account
-              </button>
+              </AppButton>
             </div>
-          </section>
+          </AppPanel>
         </section>
       </section>
     </section>
