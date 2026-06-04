@@ -1,0 +1,82 @@
+{
+  "sourceKey": "msha-program-policy-manual",
+  "agency": "MSHA",
+  "urls": [
+    {
+      "url": "https://www.msha.gov/compliance-and-enforcement/compliance-assistance/program-policy-manual",
+      "titleHint": "MSHA Program Policy Manual - Landing Page",
+      "hazardTags": [
+        "machine guarding",
+        "workplace examination",
+        "hazardous energy",
+        "electrical",
+        "powered haulage"
+      ],
+      "equipmentTags": [
+        "conveyor",
+        "mobile equipment",
+        "electrical equipment",
+        "guarding"
+      ],
+      "taskTags": [
+        "inspection",
+        "maintenance",
+        "operation",
+        "workplace examination"
+      ],
+      "standardTags": [
+        "MSHA PPM",
+        "30 CFR"
+      ],
+      "lessonTags": [
+        "official policy guidance",
+        "interpretation support",
+        "enforcement context",
+        "do not replace CFR text"
+      ]
+    },
+    {
+      "url": "https://www.msha.gov/program-policy-manual/program-policy-manual-2",
+      "titleHint": "MSHA Program Policy Manual Volume IV - Metal and Nonmetal Mines",
+      "hazardTags": [
+        "machine guarding",
+        "workplace examination",
+        "ground control",
+        "fire prevention",
+        "air quality",
+        "electrical",
+        "materials handling",
+        "travelways",
+        "personal protection",
+        "powered haulage"
+      ],
+      "equipmentTags": [
+        "conveyor",
+        "mobile equipment",
+        "guarding",
+        "electrical equipment",
+        "travelway"
+      ],
+      "taskTags": [
+        "inspection",
+        "maintenance",
+        "operation",
+        "workplace examination",
+        "repair"
+      ],
+      "standardTags": [
+        "MSHA PPM",
+        "30 CFR 56",
+        "30 CFR 57",
+        "Parts 56/57"
+      ],
+      "lessonTags": [
+        "official policy guidance",
+        "metal nonmetal mines",
+        "interpretation support",
+        "enforcement context",
+        "do not replace CFR text"
+      ]
+    }
+  ]
+}

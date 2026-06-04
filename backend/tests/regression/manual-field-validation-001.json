@@ -1,0 +1,42 @@
+[
+  {
+    "id": "FIELD-001",
+    "observation": "conveyor tail pulley guard missing at crusher plant",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "56.14107(a)",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "FIELD-002",
+    "observation": "electrical panel left open with energized conductors exposed",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "electrical",
+    "citationReference": "AUTO",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "FIELD-003",
+    "observation": "fire extinguisher blocked by stored material",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "fire_safety",
+    "citationReference": "AUTO",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "FIELD-004",
+    "observation": "employee working at elevated platform with no fall protection",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "AUTO",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "FIELD-005",
+    "observation": "walkway clean, guarded, inspected, and no hazards observed",
+    "scopeExpected": "no_match",
+    "primaryHazardFamily": "other",
+    "citationReference": "NO_MATCH",
+    "context": { "industryScope": "mining" }
+  }
+]

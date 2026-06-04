@@ -1,0 +1,802 @@
+[
+  {
+    "id": "case_09011",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9011 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09012",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9012 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09013",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9013 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09014",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9014 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09015",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9015 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09016",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9016 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09017",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9017 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09018",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9018 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09019",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9019 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09020",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9020 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09021",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9021 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09022",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9022 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09023",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9023 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09024",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9024 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09025",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9025 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09026",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9026 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09027",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9027 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09028",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9028 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09029",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9029 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09030",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9030 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09031",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9031 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09032",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9032 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09033",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9033 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09034",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9034 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09035",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9035 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09036",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9036 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09037",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9037 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09038",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9038 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09039",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9039 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09040",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9040 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09041",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9041 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09042",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9042 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09043",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9043 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09044",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9044 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09045",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9045 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09046",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9046 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09047",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9047 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09048",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9048 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09049",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9049 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09050",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9050 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09051",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9051 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09052",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9052 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09053",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9053 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09054",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9054 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09055",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9055 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09056",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9056 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09057",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9057 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09058",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9058 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09059",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9059 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09060",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9060 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09061",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9061 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09062",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9062 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09063",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9063 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09064",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9064 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09065",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9065 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09066",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9066 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09067",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9067 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09068",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9068 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09069",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9069 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09070",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9070 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09071",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9071 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09072",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9072 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09073",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9073 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09074",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9074 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09075",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9075 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09076",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9076 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09077",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9077 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09078",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9078 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09079",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9079 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09080",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9080 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09081",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9081 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09082",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9082 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09083",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9083 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09084",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9084 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09085",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9085 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09086",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9086 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09087",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9087 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09088",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9088 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09089",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9089 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09090",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9090 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09091",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9091 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09092",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9092 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09093",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9093 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09094",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9094 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09095",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9095 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09096",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9096 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09097",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9097 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09098",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9098 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09099",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9099 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09100",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9100 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09101",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9101 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_09102",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9102 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09103",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9103 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09104",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9104 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09105",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9105 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09106",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9106 family Guarding",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09107",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9107 family Electrical",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09108",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9108 family Fall protection",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09109",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9109 family Housekeeping",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_09110",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Enterprise hazard test 9110 family Access",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  }
+]

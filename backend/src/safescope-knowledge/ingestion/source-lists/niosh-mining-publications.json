@@ -1,0 +1,76 @@
+{
+  "sourceKey": "niosh-mining-publications",
+  "agency": "NIOSH",
+  "urls": [
+    {
+      "url": "https://www.cdc.gov/niosh/docs/2021-119/default.html",
+      "titleHint": "NIOSH: Best Practices for Dust Control in Coal Mining, Second Edition",
+      "hazardTags": [
+        "respirable dust",
+        "silica",
+        "coal mine dust",
+        "occupational health",
+        "industrial hygiene"
+      ],
+      "equipmentTags": [
+        "continuous miner",
+        "longwall",
+        "roof bolter",
+        "dust collector",
+        "ventilation"
+      ],
+      "taskTags": [
+        "drilling",
+        "cutting",
+        "mining",
+        "dust control",
+        "ventilation"
+      ],
+      "standardTags": [
+        "NIOSH mining",
+        "respirable dust",
+        "silica exposure"
+      ],
+      "lessonTags": [
+        "engineering controls",
+        "health risk reasoning",
+        "exposure prevention",
+        "dust control"
+      ]
+    },
+    {
+      "url": "https://stacks.cdc.gov/view/cdc/215659",
+      "titleHint": "NIOSH Hearing Loss Prevention Program for Mining",
+      "hazardTags": [
+        "noise",
+        "hearing loss",
+        "occupational health",
+        "industrial hygiene"
+      ],
+      "equipmentTags": [
+        "mining equipment",
+        "mobile equipment",
+        "drills",
+        "crushers",
+        "conveyors"
+      ],
+      "taskTags": [
+        "operation",
+        "maintenance",
+        "equipment operation",
+        "noise exposure monitoring"
+      ],
+      "standardTags": [
+        "NIOSH mining",
+        "noise exposure",
+        "hearing conservation"
+      ],
+      "lessonTags": [
+        "hearing loss prevention",
+        "noise control",
+        "health risk reasoning",
+        "exposure prevention"
+      ]
+    }
+  ]
+}

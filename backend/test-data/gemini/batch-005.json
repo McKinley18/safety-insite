@@ -1,0 +1,184 @@
+[
+    {
+      "id": "case_00091",
+      "scopeExpected": "mining",
+      "agencyExpected": "MSHA",
+      "observation": "belt drive pulley unguarded near tail section",
+      "primaryHazardFamily": "machine_guarding",
+      "difficulty": "easy",
+      "whyDifficult": "Direct component identification."
+    },
+    {
+      "id": "case_00092",
+      "scopeExpected": "construction",
+      "agencyExpected": "OSHA",
+      "observation": "lader base on slick slab missing base support",
+      "primaryHazardFamily": "ladder_safety",
+      "difficulty": "medium",
+      "whyDifficult": "Typo 'lader' and environment context."
+    },
+    {
+      "id": "case_00093",
+      "scopeExpected": "general_industry",
+      "agencyExpected": "OSHA",
+      "observation": "480V panel cover missing live terminals exposed",
+      "primaryHazardFamily": "electrical",
+      "difficulty": "hard",
+      "whyDifficult": "Combining hardware defect with voltage."
+    },
+    {
+      "id": "case_00094",
+      "scopeExpected": "mining",
+      "agencyExpected": "MSHA",
+      "observation": "waste oil barrels stored directly on soil floor",
+      "primaryHazardFamily": "housekeeping",
+      "difficulty": "medium",
+      "whyDifficult": "Material storage vs spill regulation."
+    },
+    {
+      "id": "case_00095",
+      "scopeExpected": "construction",
+      "agencyExpected": "OSHA",
+      "observation": "trench 6ft depth no cave-in protection box",
+      "primaryHazardFamily": "excavation",
+      "difficulty": "easy",
+      "whyDifficult": "Depth regulation criteria."
+    },
+    {
+      "id": "case_00096",
+      "scopeExpected": "mining",
+      "agencyExpected": "MSHA",
+      "observation": "pre-shift exam missing signature from yesterday morning",
+      "primaryHazardFamily": "workplace_exam",
+      "difficulty": "medium",
+      "whyDifficult": "Administrative compliance window."
+    },
+    {
+      "id": "case_00097",
+      "scopeExpected": "general_industry",
+      "agencyExpected": "OSHA",
+      "observation": "oxygen bottle not chained to wall rack",
+      "primaryHazardFamily": "compressed_gas_cylinders",
+      "difficulty": "easy",
+      "whyDifficult": "Storage standard requirement."
+    },
+    {
+      "id": "case_00098",
+      "scopeExpected": "construction",
+      "agencyExpected": "OSHA",
+      "observation": "scaffold walkboards missing clips, shifting under feet",
+      "primaryHazardFamily": "scaffold",
+      "difficulty": "hard",
+      "whyDifficult": "Component-specific standard."
+    },
+    {
+      "id": "case_00099",
+      "scopeExpected": "mining",
+      "agencyExpected": "MSHA",
+      "observation": "haul road edge dropoff point 14 lacking berm",
+      "primaryHazardFamily": "roadway_berm",
+      "difficulty": "medium",
+      "whyDifficult": "Location-specific terminology."
+    },
+    {
+      "id": "case_00100",
+      "scopeExpected": "no_match",
+      "agencyExpected": "NONE",
+      "observation": "Area inspected; everything looks good.",
+      "primaryHazardFamily": "other",
+      "difficulty": "brutal",
+      "expectedOutcome": { "citationConfidence": "no_match" },
+      "whyDifficult": "Positive state confirmation."
+    },
+    {
+      "id": "case_00101",
+      "scopeExpected": "general_industry",
+      "agencyExpected": "OSHA",
+      "observation": "machine guard was loose, maintenance fixed it",
+      "primaryHazardFamily": "machine_guarding",
+      "difficulty": "brutal",
+      "expectedOutcome": { "citationConfidence": "no_match" },
+      "whyDifficult": "Remediated hazard trap."
+    },
+    {
+      "id": "case_00102",
+      "scopeExpected": "mining",
+      "agencyExpected": "MSHA",
+      "observation": "thick dust levels at crusher feed station",
+      "primaryHazardFamily": "respiratory",
+      "difficulty": "medium",
+      "whyDifficult": "Airborne contaminant context."
+    },
+    {
+      "id": "case_00103",
+      "scopeExpected": "construction",
+      "agencyExpected": "OSHA",
+      "observation": "worker grinding no face prot observed",
+      "primaryHazardFamily": "ppe",
+      "difficulty": "easy",
+      "whyDifficult": "Abbreviation 'prot'."
+    },
+    {
+      "id": "case_00104",
+      "scopeExpected": "general_industry",
+      "agencyExpected": "OSHA",
+      "observation": "no lockout tagout on mixer prior to cleaning",
+      "primaryHazardFamily": "lockout_tagout",
+      "difficulty": "medium",
+      "whyDifficult": "Maintenance context."
+    },
+    {
+      "id": "case_00105",
+      "scopeExpected": "mining",
+      "agencyExpected": "MSHA",
+      "observation": "conveyor guard bent, belt rubbing side frame",
+      "primaryHazardFamily": "machine_guarding",
+      "difficulty": "medium",
+      "whyDifficult": "Multi-hazard context (Guarding vs Conveyor wear)."
+    },
+    {
+      "id": "case_00106",
+      "scopeExpected": "construction",
+      "agencyExpected": "OSHA",
+      "observation": "aerial lift bucket gate not latched for worker",
+      "primaryHazardFamily": "mobile_equipment",
+      "difficulty": "medium",
+      "whyDifficult": "Component-level hardware defect."
+    },
+    {
+      "id": "case_00107",
+      "scopeExpected": "general_industry",
+      "agencyExpected": "OSHA",
+      "observation": "area noise 95dB in pump room continuous",
+      "primaryHazardFamily": "noise",
+      "difficulty": "medium",
+      "whyDifficult": "Threshold-based noise hazard."
+    },
+    {
+      "id": "case_00108",
+      "scopeExpected": "mining",
+      "agencyExpected": "MSHA",
+      "observation": "no safe path to access secondary crusher screen",
+      "primaryHazardFamily": "safe_access",
+      "difficulty": "medium",
+      "whyDifficult": "Access definitions."
+    },
+    {
+      "id": "case_00109",
+      "scopeExpected": "construction",
+      "agencyExpected": "OSHA",
+      "observation": "concrete forms not braced, bowing out",
+      "primaryHazardFamily": "other",
+      "difficulty": "hard",
+      "whyDifficult": "Construction specialty."
+    },
+    {
+      "id": "case_00110",
+      "scopeExpected": "general_industry",
+      "agencyExpected": "OSHA",
+      "observation": "spill kit blocked by junk in aisle",
+      "primaryHazardFamily": "housekeeping",
+      "difficulty": "medium",
+      "whyDifficult": "Cross-category emergency access."
+    }
+]

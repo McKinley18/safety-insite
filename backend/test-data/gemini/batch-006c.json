@@ -1,0 +1,93 @@
+[
+  {
+    "id": "case_00141",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "nitrogen bottle not chained on trolley",
+    "primaryHazardFamily": "compressed_gas_cylinders",
+    "difficulty": "medium",
+    "whyDifficult": "Hardware context (trolley vs rack)."
+  },
+  {
+    "id": "case_00142",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "trench 5ft wall no sloped side",
+    "primaryHazardFamily": "excavation",
+    "difficulty": "medium",
+    "whyDifficult": "Depth threshold ambiguity (5ft)."
+  },
+  {
+    "id": "case_00143",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "shift exam log not in place at start of shift",
+    "primaryHazardFamily": "workplace_exam",
+    "difficulty": "hard",
+    "whyDifficult": "Timing of documentation."
+  },
+  {
+    "id": "case_00144",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "no hearing prot provided in compressor room",
+    "primaryHazardFamily": "noise",
+    "difficulty": "medium",
+    "whyDifficult": "Typo prot."
+  },
+  {
+    "id": "case_00145",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "tie off point for harness bent/deformed",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "hard",
+    "whyDifficult": "Component-specific damage."
+  },
+  {
+    "id": "case_00146",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "loader alarm sounding faint or intermittent",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "hard",
+    "whyDifficult": "Ambiguous functionality status."
+  },
+  {
+    "id": "case_00147",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Machine guard inspected and found secure.",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "brutal",
+    "expectedOutcome": { "citationConfidence": "no_match" },
+    "whyDifficult": "Keyword trap."
+  },
+  {
+    "id": "case_00148",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "laddder climbing no 3-pt contact",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "medium",
+    "whyDifficult": "Typo and shorthand."
+  },
+  {
+    "id": "case_00149",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "conveyer gard gone and tail pully exposed belt slip",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "hard",
+    "whyDifficult": "Multiple typos."
+  },
+  {
+    "id": "case_00150",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "oil slick by compressor needs cleaning immediately",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "easy",
+    "whyDifficult": "Simple classification."
+  }
+]

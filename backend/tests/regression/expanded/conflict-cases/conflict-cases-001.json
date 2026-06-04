@@ -1,0 +1,42 @@
+[
+  {
+    "id": "CONFLICT-001",
+    "observation": "unguarded conveyor at elevated screen deck",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "56.14107(a)",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "CONFLICT-002",
+    "observation": "open edge on catwalk beside conveyor",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "56.15005",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "CONFLICT-003",
+    "observation": "missing guard on grinder near jobsite exit",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "tools_equipment",
+    "citationReference": "1926.20(b)(2)",
+    "context": { "industryScope": "construction" }
+  },
+  {
+    "id": "CONFLICT-004",
+    "observation": "fire extinguisher blocked by stored material near exit route",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "fire_safety",
+    "citationReference": "1910.37(a)(3)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "CONFLICT-005",
+    "observation": "employee working near roof edge without harness",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "1926.501(b)(1)",
+    "context": { "industryScope": "construction" }
+  }
+]

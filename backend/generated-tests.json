@@ -1,0 +1,8042 @@
+[
+  {
+    "input": "improper fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged motor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "missing forklift in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper no safety glasses near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed conveyor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected corrosive liquid on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged machine during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "missing missing gloves in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured no helmet in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose slippery area on site",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper belt during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "worn mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty shaft in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe wet floor in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained slippery area near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged shaft in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded grease buildup in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "loose motor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "loose belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked grease buildup near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked belt in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected blocked exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "improper blocked exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "worn live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "missing truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained pulley on site",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed conveyor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "worn no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained roof edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe shaft during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked conveyor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose voltage hazard in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained equipment during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained no safety glasses during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained slick surface in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe motor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn blocked exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "missing exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty elevated platform in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded flammable material in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "improper pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked forklift in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose mobile equipment near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose ladder in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty slick surface in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed slippery area in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured slippery area near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn combustible storage during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected ladder on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe combustible storage near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained elevated platform in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged elevated platform in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "worn corrosive liquid in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged truck near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper pulley in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty stairs in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected machine in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "worn elevated platform in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained wet floor in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "worn gearbox in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured slick surface in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "loose pulley during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "loose ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked forklift in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed missing gloves near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn corrosive liquid on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded slippery area in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe hazardous material on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing wet floor in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "worn stairs in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper shaft in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe flammable material in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected shaft near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "improper missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose gearbox in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "worn mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper forklift in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose oil spill in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "loose flammable material in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "worn truck in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded corrosive liquid in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed belt near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged gearbox on site",
+    "expected": "machine"
+  },
+  {
+    "input": "worn motor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed hazardous material on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained slick surface during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe shaft near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "worn flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded oil spill during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "improper exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "loose gearbox in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "improper forklift in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured flammable material during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded conveyor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "missing blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper live wires in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured elevated platform in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty flammable material during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "missing chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded open edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained equipment in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked missing gloves in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty equipment in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked no helmet in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn exposed wiring in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper equipment in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked ladder in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "loose no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose no helmet in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose conveyor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "improper combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected slippery area in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "improper chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected conveyor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "missing toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "worn oil spill in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained forklift in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "loose slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "improper voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing elevated platform in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged hazardous material in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose conveyor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked conveyor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe gearbox during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn motor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected pulley near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "worn electrical panel near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "worn conveyor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "improper slippery area on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded no safety glasses during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged corrosive liquid on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose ladder on site",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose combustible storage on site",
+    "expected": "fire"
+  },
+  {
+    "input": "missing blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "loose missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "loose toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose machine in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded shaft near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "worn electrical panel in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected forklift in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected oil spill in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "worn blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "improper chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked no safety glasses during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "loose elevated platform in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe live wires in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed machine near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "improper wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose oil spill during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe oil spill during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured gearbox in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "worn roof edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty pulley in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper wet floor in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty ladder in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded combustible storage near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed blocked exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged elevated platform in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "loose chemical container during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe slippery area on site",
+    "expected": "slip"
+  },
+  {
+    "input": "loose elevated platform in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed flammable material in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged roof edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn live wires in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained chemical container during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded wet floor in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured pulley near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "loose slippery area in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe shaft in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty corrosive liquid in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured belt near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "worn chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty stairs in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "missing no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded slick surface in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked shaft in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged gearbox in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "worn wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected hazardous material in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "improper exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe elevated platform in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe gearbox in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn fire exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "loose truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked roof edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "missing no safety glasses near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty voltage hazard in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged machine on site",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected pulley on site",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged mobile equipment near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked ladder on site",
+    "expected": "fall"
+  },
+  {
+    "input": "worn missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty open edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper elevated platform near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured equipment in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose combustible storage in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected machine in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "missing missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe electrical panel near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected live wires in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe stairs in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured motor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected combustible storage during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "missing pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "loose live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "worn no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "loose vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed ladder in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose slick surface in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed slick surface during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "wires look exposed",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "missing motor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "worn blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "loose pulley in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "improper fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe machine in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded pulley near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "improper no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose mobile equipment on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed ladder in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked flammable material during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "missing roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "worn electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded flammable material in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty truck in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing equipment in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed pulley in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained corrosive liquid in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose toxic substance during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked gearbox near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed motor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded blocked exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "improper no safety glasses during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged chemical container during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "improper oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained blocked exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured forklift in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked slick surface in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "missing voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty no safety glasses near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured shaft on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured pulley in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed gearbox near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe missing gloves near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe motor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded belt during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose machine in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing belt in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained open edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked corrosive liquid in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked pulley near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe combustible storage during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty gearbox in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged mobile equipment during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe pulley during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "missing no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded voltage hazard in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty belt near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained flammable material during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked machine during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained shaft in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked combustible storage near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed no safety glasses near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "improper machine in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked electrical panel near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "loose voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "improper missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed no helmet in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "improper slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded equipment in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe open edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "improper vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded motor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked gearbox on site",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged slippery area on site",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper equipment in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed pulley in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn roof edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained machine in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained conveyor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected combustible storage in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "improper vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked gearbox in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe no safety glasses near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained stairs near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "improper motor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "loose no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn shaft in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn belt near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged conveyor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose elevated platform near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured belt during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "improper corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged motor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "loose truck near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose combustible storage near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed oil spill near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded stairs in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "worn fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "missing roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing slippery area in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained slippery area in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "missing hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded gearbox in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe hazardous material in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged ladder in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty roof edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked slippery area in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected ladder in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured slippery area in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "loose toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn motor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn voltage hazard in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing pulley on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged oil spill in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "missing slippery area near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked wet floor in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked motor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged stairs in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose equipment near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded pulley in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained stairs in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "loose no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper fire exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained motor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "missing equipment in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "loose open edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "improper fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "improper forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing hazardous material in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "improper wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "missing toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged missing gloves near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty equipment in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty exposed wiring during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured pulley during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained gearbox during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty equipment during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "worn belt in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured hazardous material in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged elevated platform during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "loose exposed wiring during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "missing roof edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "worn grease buildup in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed wet floor in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe conveyor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper missing gloves in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured shaft in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing elevated platform near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "improper electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn conveyor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "missing grease buildup near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "missing forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper roof edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "improper forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed slick surface in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "loose mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "worn roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "worn wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained stairs in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "loose roof edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty combustible storage during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe ladder in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe slick surface in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper toxic substance during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected vehicle during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing exposed wiring in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "floor was slick",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked shaft in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty exposed wiring in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn conveyor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed forklift in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged slick surface in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained oil spill in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected conveyor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "worn toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured open edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked roof edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing fire exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed electrical panel in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained belt on site",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured fire exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected gearbox in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged roof edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "worn open edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "missing slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured missing gloves near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected stairs in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected flammable material during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "improper open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured machine in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged conveyor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "worn machine near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "improper no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing mobile equipment on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose roof edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged open edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "loose hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "loose voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked elevated platform in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected exposed wiring during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "that exit is blocked",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "missing slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "smelled something burning near chemicals",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged no helmet in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded stairs in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained conveyor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty oil spill near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "worn toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper slippery area near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged truck in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "missing open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "loose electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected grease buildup near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected missing gloves in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected roof edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty conveyor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected open edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "missing wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained elevated platform in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed fire exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "improper flammable material near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty pulley in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded forklift in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe truck near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained flammable material in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected slick surface in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "worn voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected stairs in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "loose chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn gearbox on site",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe combustible storage in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose truck in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty roof edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "loose no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "missing grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe equipment in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected conveyor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty wet floor in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "worn chemical container during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty vehicle in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured mobile equipment on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe wet floor in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged slippery area near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged ladder in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty motor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained vehicle in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured roof edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose flammable material during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "loose stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "worn hazardous material in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty slick surface during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "improper blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected corrosive liquid in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "improper blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing oil spill near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed forklift in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "improper pulley on site",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained belt in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "missing shaft near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "missing toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked truck near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed hazardous material in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose forklift in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty belt during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "improper fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "loose fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected no helmet in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged fire exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "worn toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "improper gearbox in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured truck in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured elevated platform in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured belt on site",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn ladder in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe exposed wiring during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded gearbox near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured slick surface during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "improper mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured exposed wiring during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe stairs in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty motor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected vehicle in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained motor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty slippery area in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed ladder on site",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained toxic substance during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing forklift in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded hazardous material in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose machine in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn pulley on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed roof edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "missing conveyor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected motor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected elevated platform in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected machine near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged belt near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured hazardous material on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged exposed wiring in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper elevated platform in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty equipment near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected belt in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "loose vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged blocked exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained electrical panel near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed conveyor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "missing chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper motor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed grease buildup in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "loose electrical panel in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed slick surface in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "improper mobile equipment on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected motor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed mobile equipment on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained grease buildup near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe no helmet in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn pulley during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured toxic substance during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn conveyor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected shaft in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "worn hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "worn no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty hazardous material in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe grease buildup near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "missing conveyor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "worn live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected grease buildup during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "worn pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe vehicle in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained slick surface in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "missing no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked slippery area near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "missing chemical container during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn belt in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked combustible storage in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "worn slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed truck near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked motor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "worn grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected mobile equipment near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn roof edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured conveyor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "worn vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "missing corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained corrosive liquid on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded equipment near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "worn oil spill in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "improper slippery area in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "worn slick surface in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "improper grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked toxic substance during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper no helmet in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged slippery area in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked machine on site",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing stairs near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "missing slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "worn exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured electrical panel in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked no helmet in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "worn conveyor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured vehicle in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty stairs near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty combustible storage on site",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged grease buildup in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "missing no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "almost fell off that edge",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected oil spill during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained roof edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded gearbox on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected slippery area in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured conveyor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "guy slipped walking in",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "loose equipment during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "missing oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "missing wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "loose missing gloves in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed motor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "improper truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "worn no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "missing no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded pulley in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged electrical panel near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper belt on site",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper live wires on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked chemical container near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose electrical panel in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured roof edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "loose hazardous material in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe flammable material in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed equipment in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe fire exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "loose no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked equipment during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected grease buildup in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "missing grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "worn fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected equipment during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded stairs near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper gearbox in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "worn grease buildup near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "loose electrical panel near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "faulty shaft near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected motor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe exposed wiring in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged motor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded equipment during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "loose truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured blocked exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected oil spill near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "improper no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper forklift in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty forklift in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained roof edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged belt in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "improper combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "worn belt in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained oil spill near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "worn exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded belt in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked no safety glasses near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn hazardous material on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded elevated platform during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "worn wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "worn exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe electrical panel in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "worn forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected equipment in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "loose forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "worn blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "loose pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged gearbox during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "missing oil spill in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "missing ladder in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "missing elevated platform during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "improper vehicle during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "no gloves while handling chemicals",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn shaft on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured ladder in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded exposed wiring during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "improper toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured motor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded chemical container during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing corrosive liquid in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing no safety glasses in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "missing slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe belt on site",
+    "expected": "machine"
+  },
+  {
+    "input": "loose stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe gearbox on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "loose exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing shaft during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged gearbox near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed equipment in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "loose blocked exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "loose open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "loose wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked oil spill during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "missing chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained open edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected stairs near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured voltage hazard in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing slick surface in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained elevated platform in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "missing shaft on site",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose motor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "worn voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper missing gloves near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn wet floor in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose vehicle during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged elevated platform in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe voltage hazard in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "loose gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "missing combustible storage during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "improper ladder in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "improper belt near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked flammable material near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty roof edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty gearbox on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured forklift in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed equipment during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe electrical panel in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded vehicle in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper combustible storage near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "worn electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged equipment near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe elevated platform in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "improper open edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged slippery area in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed roof edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "exposed flammable material in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged live wires in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured slick surface in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper combustible storage in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained gearbox in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "missing no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed open edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "loose no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty conveyor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty mobile equipment during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe equipment in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed slippery area on site",
+    "expected": "slip"
+  },
+  {
+    "input": "worn blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty voltage hazard on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged motor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe conveyor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "improper machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "worn elevated platform near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "loose elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "loose combustible storage during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "worn truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured oil spill in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected combustible storage on site",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked chemical container in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured no safety glasses near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded motor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe motor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected mobile equipment on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected vehicle in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose gearbox near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged elevated platform on site",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked flammable material in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured combustible storage on site",
+    "expected": "fire"
+  },
+  {
+    "input": "improper oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty stairs in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "missing electrical panel near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "damaged missing gloves in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper slick surface in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed shaft in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked live wires in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "worn corrosive liquid in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged combustible storage in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected slick surface in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded hazardous material in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained motor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper mobile equipment in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed wet floor in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed motor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "improper grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "missing stairs on site",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "missing flammable material on site",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded shaft during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "something seems off with that equipment",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged elevated platform near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "worn open edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "loose mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "worn no helmet in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked blocked exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained vehicle in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged open edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "loose machine during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed toxic substance on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded machine during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "no guard on that machine",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed stairs near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "loose blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained elevated platform during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded fire exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "improper toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe oil spill in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected equipment in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected pulley in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected electrical panel in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsafe hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged combustible storage near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty motor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked slick surface during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "loose truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked ladder in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked elevated platform in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "improper combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "worn mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked machine in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged equipment in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "missing flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose slick surface in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "worn ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured equipment in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded slippery area near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked vehicle in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected pulley during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "loose oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "loose electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded shaft in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing gearbox near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "worn equipment in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "missing electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "improper flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "improper stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected conveyor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing roof edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "loose toxic substance in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe flammable material during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked mobile equipment near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "worn gearbox near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed voltage hazard in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed elevated platform near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe conveyor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed no helmet near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "missing grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured flammable material in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained blocked exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected machine during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured truck near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe stairs in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded open edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured missing gloves in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe pulley on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "worn corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing gearbox in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected combustible storage near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "worn voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn open edge in production line",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty oil spill on site",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty shaft in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "loose elevated platform in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "missing shaft in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "missing corrosive liquid on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "improper belt in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured corrosive liquid on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "worn truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed truck in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn ladder in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "worn missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked elevated platform during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "missing live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked missing gloves near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked roof edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged oil spill during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded electrical panel during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "exposed no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose truck in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed fire exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "improper hazardous material in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "missing wet floor in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed hazardous material in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged roof edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked exposed wiring in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty toxic substance during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "worn no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose oil spill near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained no safety glasses on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained combustible storage on site",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed machine in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "missing combustible storage in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked slick surface in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing elevated platform in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "missing hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty exposed wiring in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper truck in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper blocked exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "loose grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "improper fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "worn chemical container in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty no helmet during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "improper vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "missing belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing hazardous material during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "loose slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained no PPE in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe belt in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged blocked exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unsecured live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper motor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded conveyor during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty slippery area in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected corrosive liquid near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked combustible storage during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unsafe wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "missing motor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed live wires in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed grease buildup on site",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "improper electrical panel in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "worn mobile equipment during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose shaft on site",
+    "expected": "machine"
+  },
+  {
+    "input": "missing no PPE on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded ladder on site",
+    "expected": "fall"
+  },
+  {
+    "input": "unguarded corrosive liquid in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "poorly maintained wet floor near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured ladder on site",
+    "expected": "fall"
+  },
+  {
+    "input": "worn blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected no safety glasses during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty no PPE in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty mobile equipment in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing no helmet in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected missing gloves in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty slick surface in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty belt in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "improper roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured no PPE in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected no PPE in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed oil spill during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed flammable material in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected toxic substance in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "exposed live wires in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured ladder during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed grease buildup in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed toxic substance during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "improper no helmet on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "faulty electrical panel on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper truck near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose pulley in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose equipment in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "damaged shaft in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "exposed hazardous material near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured fire exit during operation",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn conveyor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe mobile equipment near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "worn equipment in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "improper truck in production line",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose live wires in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded ladder near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "missing stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked oil spill near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "unguarded mobile equipment during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed no safety glasses during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded electrical panel in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "forklift almost hit someone",
+    "expected": "vehicle"
+  },
+  {
+    "input": "loose voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn forklift near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing wet floor on site",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty grease buildup near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "improper elevated platform in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "damaged fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "missing chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "faulty wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "worn no helmet in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe blocked exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "unguarded oil spill in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked fire exit in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "loose fire exit in warehouse",
+    "expected": "fire"
+  },
+  {
+    "input": "unprotected pulley in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded open edge on site",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty ladder in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unsafe missing gloves in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "damaged vehicle on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked slippery area in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged wet floor in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "poorly maintained vehicle near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "worn slippery area during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unprotected wet floor in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured combustible storage in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "poorly maintained conveyor near entrance",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty motor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "worn equipment on site",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected forklift in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "missing missing gloves near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose blocked exit near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty forklift in work area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unguarded no safety glasses in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsafe live wires in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "improper corrosive liquid during operation",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured open edge during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "faulty chemical container in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "unprotected wet floor during operation",
+    "expected": "slip"
+  },
+  {
+    "input": "damaged voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured exposed wiring in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected oil spill in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty no PPE during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "unprotected no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unguarded mobile equipment near entrance",
+    "expected": "vehicle"
+  },
+  {
+    "input": "exposed oil spill in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty chemical container in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "unguarded blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "exposed exposed wiring near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured live wires in production line",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked grease buildup in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected slick surface near entrance",
+    "expected": "slip"
+  },
+  {
+    "input": "exposed open edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "improper motor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty hazardous material on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe forklift on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "damaged machine in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unsecured slippery area on site",
+    "expected": "slip"
+  },
+  {
+    "input": "improper ladder in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained ladder in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "missing live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded pulley in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "poorly maintained roof edge near entrance",
+    "expected": "fall"
+  },
+  {
+    "input": "missing conveyor on site",
+    "expected": "machine"
+  },
+  {
+    "input": "worn voltage hazard during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose blocked exit in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "damaged blocked exit in storage area",
+    "expected": "fire"
+  },
+  {
+    "input": "faulty voltage hazard in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn belt on site",
+    "expected": "machine"
+  },
+  {
+    "input": "blocked truck during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained exposed wiring in warehouse",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected roof edge in work area",
+    "expected": "fall"
+  },
+  {
+    "input": "unsecured no helmet in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured toxic substance in work area",
+    "expected": "chemical"
+  },
+  {
+    "input": "blocked wet floor in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "loose no safety glasses in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper forklift during operation",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsecured electrical panel in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected no helmet in work area",
+    "expected": "ppe"
+  },
+  {
+    "input": "unsecured missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "blocked live wires near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "poorly maintained mobile equipment in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "poorly maintained pulley during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "improper roof edge in warehouse",
+    "expected": "fall"
+  },
+  {
+    "input": "unprotected flammable material in production line",
+    "expected": "fire"
+  },
+  {
+    "input": "missing vehicle in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked gearbox during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "improper grease buildup in work area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsecured exposed wiring on site",
+    "expected": "electrical"
+  },
+  {
+    "input": "unguarded live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "unsecured no helmet in production line",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose truck on site",
+    "expected": "vehicle"
+  },
+  {
+    "input": "unsafe corrosive liquid in production line",
+    "expected": "chemical"
+  },
+  {
+    "input": "loose wet floor in warehouse",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty missing gloves in warehouse",
+    "expected": "ppe"
+  },
+  {
+    "input": "exposed forklift in storage area",
+    "expected": "vehicle"
+  },
+  {
+    "input": "faulty mobile equipment in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "improper voltage hazard in storage area",
+    "expected": "electrical"
+  },
+  {
+    "input": "worn slippery area on site",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty machine during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "missing machine during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded chemical container on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged stairs during operation",
+    "expected": "fall"
+  },
+  {
+    "input": "blocked pulley in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unsafe conveyor in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty no PPE near entrance",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper conveyor in warehouse",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded belt in storage area",
+    "expected": "machine"
+  },
+  {
+    "input": "poorly maintained no safety glasses in storage area",
+    "expected": "ppe"
+  },
+  {
+    "input": "missing live wires during operation",
+    "expected": "electrical"
+  },
+  {
+    "input": "loose voltage hazard near entrance",
+    "expected": "electrical"
+  },
+  {
+    "input": "unprotected hazardous material in storage area",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsecured slick surface in storage area",
+    "expected": "slip"
+  },
+  {
+    "input": "unsafe slippery area in production line",
+    "expected": "slip"
+  },
+  {
+    "input": "unprotected fire exit on site",
+    "expected": "fire"
+  },
+  {
+    "input": "loose combustible storage in work area",
+    "expected": "fire"
+  },
+  {
+    "input": "blocked exposed wiring in work area",
+    "expected": "electrical"
+  },
+  {
+    "input": "blocked slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "faulty roof edge in storage area",
+    "expected": "fall"
+  },
+  {
+    "input": "poorly maintained shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "missing conveyor in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "unprotected toxic substance near entrance",
+    "expected": "chemical"
+  },
+  {
+    "input": "unsafe slick surface on site",
+    "expected": "slip"
+  },
+  {
+    "input": "blocked belt on site",
+    "expected": "machine"
+  },
+  {
+    "input": "faulty gearbox during operation",
+    "expected": "machine"
+  },
+  {
+    "input": "loose flammable material near entrance",
+    "expected": "fire"
+  },
+  {
+    "input": "missing missing gloves during operation",
+    "expected": "ppe"
+  },
+  {
+    "input": "improper belt in work area",
+    "expected": "machine"
+  },
+  {
+    "input": "worn forklift in warehouse",
+    "expected": "vehicle"
+  },
+  {
+    "input": "blocked conveyor in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded pulley in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "unguarded shaft in production line",
+    "expected": "machine"
+  },
+  {
+    "input": "improper toxic substance in warehouse",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged missing gloves on site",
+    "expected": "ppe"
+  },
+  {
+    "input": "loose corrosive liquid on site",
+    "expected": "chemical"
+  },
+  {
+    "input": "damaged forklift during operation",
+    "expected": "vehicle"
+  }
+]

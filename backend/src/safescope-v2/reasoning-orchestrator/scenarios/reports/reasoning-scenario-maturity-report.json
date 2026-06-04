@@ -1,0 +1,682 @@
+{
+  "engine": "safescope_reasoning_scenario_maturity_report",
+  "mode": "deterministic_test_only",
+  "generatedAt": "2026-05-31T01:58:17.792Z",
+  "scenarioCount": 51,
+  "totalScenarioTarget": 103,
+  "totalScenarioGap": 52,
+  "trackedDomainCount": 21,
+  "maturitySummary": {
+    "targetMetDomains": 6,
+    "developingDomains": 0,
+    "starterDomains": 15,
+    "noneDomains": 0,
+    "broadDomainCoverageComplete": true,
+    "scenarioDepthTargetMet": false
+  },
+  "jurisdictionScenarioCounts": {
+    "msha": 19,
+    "osha_general_industry": 24,
+    "osha_construction": 7,
+    "unclear": 1
+  },
+  "domainMaturity": [
+    {
+      "domain": "machine_guarding",
+      "label": "Machine Guarding",
+      "priority": "critical",
+      "currentScenarioCount": 6,
+      "minimumScenarioTarget": 6,
+      "gap": 0,
+      "coverageLevel": "target_met",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 10,
+      "maturityNotes": "Domain meets current broad scenario target."
+    },
+    {
+      "domain": "lockout_tagout",
+      "label": "Lockout / Tagout / Hazardous Energy",
+      "priority": "critical",
+      "currentScenarioCount": 6,
+      "minimumScenarioTarget": 6,
+      "gap": 0,
+      "coverageLevel": "target_met",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 10,
+      "maturityNotes": "Domain meets current broad scenario target."
+    },
+    {
+      "domain": "fall_protection",
+      "label": "Fall Protection / Elevated Work",
+      "priority": "critical",
+      "currentScenarioCount": 6,
+      "minimumScenarioTarget": 6,
+      "gap": 0,
+      "coverageLevel": "target_met",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 9,
+      "maturityNotes": "Domain meets current broad scenario target."
+    },
+    {
+      "domain": "electrical",
+      "label": "Electrical Safety",
+      "priority": "critical",
+      "currentScenarioCount": 6,
+      "minimumScenarioTarget": 6,
+      "gap": 0,
+      "coverageLevel": "target_met",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 11,
+      "maturityNotes": "Domain meets current broad scenario target."
+    },
+    {
+      "domain": "confined_space",
+      "label": "Confined Space",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 8,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "hazard_communication",
+      "label": "Hazard Communication",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "mobile_equipment",
+      "label": "Mobile Equipment",
+      "priority": "critical",
+      "currentScenarioCount": 6,
+      "minimumScenarioTarget": 6,
+      "gap": 0,
+      "coverageLevel": "target_met",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 9,
+      "maturityNotes": "Domain meets current broad scenario target."
+    },
+    {
+      "domain": "powered_haulage",
+      "label": "Powered Haulage",
+      "priority": "critical",
+      "currentScenarioCount": 6,
+      "minimumScenarioTarget": 6,
+      "gap": 0,
+      "coverageLevel": "target_met",
+      "relevantJurisdictions": [
+        "msha"
+      ],
+      "trackedSubtypeCount": 9,
+      "maturityNotes": "Domain meets current broad scenario target."
+    },
+    {
+      "domain": "ground_control",
+      "label": "Ground Control",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 8,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "health_exposure",
+      "label": "Health Exposure / Industrial Hygiene",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 8,
+      "gap": 7,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 10,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "material_handling",
+      "label": "Material Handling",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "walking_working_surfaces",
+      "label": "Walking Working Surfaces",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "fire_protection",
+      "label": "Fire Protection",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "emergency_response",
+      "label": "Emergency Response",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "ppe",
+      "label": "Personal Protective Equipment",
+      "priority": "medium",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "welding_cutting_hot_work",
+      "label": "Welding / Cutting / Hot Work",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "cranes_rigging_hoisting",
+      "label": "Cranes / Rigging / Hoisting",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "excavation_trenching",
+      "label": "Excavation / Trenching",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "osha_construction",
+        "msha"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "traffic_control",
+      "label": "Traffic Control / Work Zone Interaction",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_construction",
+        "osha_general_industry"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "training_procedure_gap",
+      "label": "Training / Procedure Gap",
+      "priority": "medium",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 5,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "unknown",
+      "label": "Unknown / Insufficient Information",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 3,
+      "gap": 2,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "unclear"
+      ],
+      "trackedSubtypeCount": 5,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    }
+  ],
+  "priorityGaps": [
+    {
+      "domain": "health_exposure",
+      "label": "Health Exposure / Industrial Hygiene",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 8,
+      "gap": 7,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 10,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "confined_space",
+      "label": "Confined Space",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 8,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "ground_control",
+      "label": "Ground Control",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 8,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "excavation_trenching",
+      "label": "Excavation / Trenching",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "osha_construction",
+        "msha"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "unknown",
+      "label": "Unknown / Insufficient Information",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 3,
+      "gap": 2,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "unclear"
+      ],
+      "trackedSubtypeCount": 5,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "walking_working_surfaces",
+      "label": "Walking Working Surfaces",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "hazard_communication",
+      "label": "Hazard Communication",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "material_handling",
+      "label": "Material Handling",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "fire_protection",
+      "label": "Fire Protection",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "emergency_response",
+      "label": "Emergency Response",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "welding_cutting_hot_work",
+      "label": "Welding / Cutting / Hot Work",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "cranes_rigging_hoisting",
+      "label": "Cranes / Rigging / Hoisting",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "traffic_control",
+      "label": "Traffic Control / Work Zone Interaction",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_construction",
+        "osha_general_industry"
+      ],
+      "trackedSubtypeCount": 6,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "ppe",
+      "label": "Personal Protective Equipment",
+      "priority": "medium",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 7,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    },
+    {
+      "domain": "training_procedure_gap",
+      "label": "Training / Procedure Gap",
+      "priority": "medium",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3,
+      "coverageLevel": "starter",
+      "relevantJurisdictions": [
+        "msha",
+        "osha_general_industry",
+        "osha_construction"
+      ],
+      "trackedSubtypeCount": 5,
+      "maturityNotes": "Domain has only starter coverage and should receive additional scenario depth."
+    }
+  ],
+  "recommendedNextDomains": [
+    {
+      "domain": "health_exposure",
+      "label": "Health Exposure / Industrial Hygiene",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 8,
+      "gap": 7
+    },
+    {
+      "domain": "confined_space",
+      "label": "Confined Space",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4
+    },
+    {
+      "domain": "ground_control",
+      "label": "Ground Control",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4
+    },
+    {
+      "domain": "excavation_trenching",
+      "label": "Excavation / Trenching",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4
+    },
+    {
+      "domain": "unknown",
+      "label": "Unknown / Insufficient Information",
+      "priority": "critical",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 3,
+      "gap": 2
+    },
+    {
+      "domain": "walking_working_surfaces",
+      "label": "Walking Working Surfaces",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 5,
+      "gap": 4
+    },
+    {
+      "domain": "hazard_communication",
+      "label": "Hazard Communication",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3
+    },
+    {
+      "domain": "material_handling",
+      "label": "Material Handling",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3
+    },
+    {
+      "domain": "fire_protection",
+      "label": "Fire Protection",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3
+    },
+    {
+      "domain": "emergency_response",
+      "label": "Emergency Response",
+      "priority": "high",
+      "currentScenarioCount": 1,
+      "minimumScenarioTarget": 4,
+      "gap": 3
+    }
+  ],
+  "guardrails": {
+    "reportOnly": true,
+    "doesNotModifyReasoning": true,
+    "doesNotApproveKnowledge": true,
+    "doesNotDeclareViolations": true,
+    "doesNotChangeScenarioFixtures": true
+  }
+}

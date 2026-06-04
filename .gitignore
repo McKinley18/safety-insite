@@ -1,0 +1,19 @@
+node_modules/
+dist/
+.next/
+.env
+.env.local
+.DS_Store
+*.log
+.vscode/
+.idea/
+.expo/
+.cache/
+
+# Local recovery / backup artifacts
+UI_RECOVERY_AUDIT/
+backups/
+.vercel
+
+# Local research workspace
+research/

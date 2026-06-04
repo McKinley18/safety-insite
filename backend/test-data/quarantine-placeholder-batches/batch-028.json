@@ -1,0 +1,802 @@
+[
+  {
+    "id": "case_01211",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 0",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01212",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 1",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01213",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 2",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01214",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 3",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01215",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 4",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01216",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 5",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01217",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 6",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01218",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 7",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01219",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 8",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01220",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 9",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01221",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 10",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01222",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 11",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01223",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 12",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01224",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 13",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01225",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 14",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01226",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 15",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01227",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 16",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01228",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 17",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01229",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 18",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01230",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 19",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01231",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 20",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01232",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 21",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01233",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 22",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01234",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 23",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01235",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 24",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01236",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 25",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01237",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 26",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01238",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 27",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01239",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 28",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01240",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 29",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01241",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 30",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01242",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 31",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01243",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 32",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01244",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 33",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01245",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 34",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01246",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 35",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01247",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 36",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01248",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 37",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01249",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 38",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01250",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 39",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01251",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 40",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01252",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 41",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01253",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 42",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01254",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 43",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01255",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 44",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01256",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 45",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01257",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 46",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01258",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 47",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01259",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 48",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01260",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 49",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01261",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 50",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01262",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 51",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01263",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 52",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01264",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 53",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01265",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 54",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01266",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 55",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01267",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 56",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01268",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 57",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01269",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 58",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01270",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 59",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01271",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 60",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01272",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 61",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01273",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 62",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01274",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 63",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01275",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 64",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01276",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 65",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01277",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 66",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01278",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 67",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01279",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 68",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01280",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 69",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01281",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 70",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01282",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 71",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01283",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 72",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01284",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 73",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01285",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 74",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01286",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 75",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01287",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 76",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01288",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 77",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01289",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 78",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01290",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 79",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01291",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 80",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01292",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 81",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01293",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 82",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01294",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 83",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01295",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 84",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01296",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 85",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01297",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 86",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01298",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 87",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01299",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 88",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01300",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 89",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01301",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 90",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_01302",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 91",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01303",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 92",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01304",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 93",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01305",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 94",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01306",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Guarding - 95",
+    "primaryHazardFamily": "guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01307",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Electrical - 96",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01308",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Fall protection - 97",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01309",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Housekeeping - 98",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01310",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Realistic hazard test in Access - 99",
+    "primaryHazardFamily": "access",
+    "difficulty": "medium"
+  }
+]

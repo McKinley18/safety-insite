@@ -1,0 +1,4222 @@
+[
+  {
+    "conditionId": "MSHA_MACHINE_GUARDING_MOVING_PARTS_EXPOSED",
+    "citation": "56.14107(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "MSHA_HOUSEKEEPING_SPILLAGE_TRAVELWAY",
+    "citation": "56.20003(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "housekeeping",
+    "regulatoryIntent": "Maintain clean and orderly work areas to prevent slip, trip, and access hazards.",
+    "correctiveActions": [
+      "Remove debris, spillage, or obstruction.",
+      "Restore safe walking or working surface.",
+      "Document cleanup and recurrence controls."
+    ],
+    "verificationSteps": [
+      "Area is clear.",
+      "No slip/trip hazard remains."
+    ],
+    "rootCausePrompts": [
+      "What caused the buildup?",
+      "Is cleanup frequency adequate?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "MSHA_ELECTRICAL_DAMAGED_CONDUCTORS",
+    "citation": "56.12004",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "MSHA_SAFE_ACCESS_LADDER_STAIR_PLATFORM",
+    "citation": "56.11001",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "safe_access",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_ROADWAY_BERM_INADEQUATE",
+    "citation": "56.9300(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "roadway_berm",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_MOBILE_EQUIPMENT_WARNING_DEVICE",
+    "citation": "56.14132(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "MSHA_WORKPLACE_EXAM_DEFICIENT",
+    "citation": "56.18002(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "workplace_exam",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_RESPIRATORY_DUST_EXPOSURE",
+    "citation": "56.5001(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_FALL_EDGE_EXPOSURE",
+    "citation": "1926.501(b)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_LADDER_UNSAFE_USE",
+    "citation": "1926.1053(b)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "ladder_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_SCAFFOLD_GUARDRAIL_PLATFORM",
+    "citation": "1926.451(g)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "scaffold",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_EXCAVATION_NO_PROTECTION",
+    "citation": "1926.652(a)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "excavation",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_PPE_EYE_FACE",
+    "citation": "1926.102(a)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_ELECTRICAL_TEMP_WIRING",
+    "citation": "1926.416(a)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_STRUCK_BY_SUSPENDED_LOAD",
+    "citation": "1926.251",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "struck_by",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_LOCKOUT_TAGOUT_UNCONTROLLED_ENERGY",
+    "citation": "1910.147(c)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "lockout_tagout",
+    "regulatoryIntent": "Control hazardous energy during servicing or maintenance.",
+    "correctiveActions": [
+      "Stop work.",
+      "Isolate energy sources.",
+      "Apply lockout/tagout.",
+      "Verify zero energy."
+    ],
+    "verificationSteps": [
+      "Energy isolated.",
+      "Lock/tag applied.",
+      "Zero energy verified."
+    ],
+    "rootCausePrompts": [
+      "Was LOTO procedure followed?",
+      "Was employee trained?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_GI_ELECTRICAL_EXPOSED_LIVE_PARTS",
+    "citation": "1910.303(b)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_GI_HOUSEKEEPING_WALKING_SURFACE",
+    "citation": "1910.22(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "housekeeping",
+    "regulatoryIntent": "Maintain clean and orderly work areas to prevent slip, trip, and access hazards.",
+    "correctiveActions": [
+      "Remove debris, spillage, or obstruction.",
+      "Restore safe walking or working surface.",
+      "Document cleanup and recurrence controls."
+    ],
+    "verificationSteps": [
+      "Area is clear.",
+      "No slip/trip hazard remains."
+    ],
+    "rootCausePrompts": [
+      "What caused the buildup?",
+      "Is cleanup frequency adequate?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_GI_POWERED_INDUSTRIAL_TRUCK_UNSAFE_OPERATION",
+    "citation": "1910.178",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "powered_industrial_truck",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_NOISE_HEARING_PROTECTION",
+    "citation": "1910.95(c)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "noise",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_RESPIRATORY_PROTECTION_DEFICIENT",
+    "citation": "1910.134",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_HAZCOM_UNLABELED_CONTAINER",
+    "citation": "1910.1200",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "hazcom",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_MACHINE_GUARDING_POINT_OF_OPERATION",
+    "citation": "1910.212(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_GI_FIRE_EGRESS_EXTINGUISHER",
+    "citation": "1910.37(a)(3)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_GROUND_CONTROL_UNSTABLE_HIGHWALL",
+    "citation": "56.3130",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "ground_control",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_GROUND_CONTROL_LOOSE_GROUND",
+    "citation": "56.3200",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "ground_control",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_FIRE_EXTINGUISHER_MISSING_BLOCKED",
+    "citation": "56.4201",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_FLAMMABLE_STORAGE_DEFICIENT",
+    "citation": "56.4400",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_COMPRESSED_GAS_CYLINDER_UNSECURED",
+    "citation": "56.4600",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "compressed_gas",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_WELDING_CUTTING_FIRE_EXPOSURE",
+    "citation": "56.4604",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "welding_cutting",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_NOISE_EXPOSURE_HEARING_PROTECTION",
+    "citation": "56.5050",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "noise",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_ILLUMINATION_INADEQUATE",
+    "citation": "56.17001",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "illumination",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_TOOLS_EQUIPMENT_DEFECTIVE",
+    "citation": "56.14100(b)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "tools_equipment",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_PARKING_BRAKES_WHEEL_CHOCKS",
+    "citation": "56.14207",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_REBAR_IMPALEMENT",
+    "citation": "1926.701(b)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "impalement",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_AERIAL_LIFT_FALL_EXPOSURE",
+    "citation": "1926.453(b)(2)(v)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_HOUSEKEEPING_DEBRIS",
+    "citation": "1926.25(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "housekeeping",
+    "regulatoryIntent": "Maintain clean and orderly work areas to prevent slip, trip, and access hazards.",
+    "correctiveActions": [
+      "Remove debris, spillage, or obstruction.",
+      "Restore safe walking or working surface.",
+      "Document cleanup and recurrence controls."
+    ],
+    "verificationSteps": [
+      "Area is clear.",
+      "No slip/trip hazard remains."
+    ],
+    "rootCausePrompts": [
+      "What caused the buildup?",
+      "Is cleanup frequency adequate?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_FIRE_EXTINGUISHER_ACCESS",
+    "citation": "1926.150(c)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_COMPRESSED_GAS_CYLINDER",
+    "citation": "1926.350(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "compressed_gas",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_WELDING_HOT_WORK",
+    "citation": "1926.352(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "welding_cutting",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_MATERIAL_STORAGE_UNSTABLE",
+    "citation": "1926.250(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "material_handling",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_HAND_POWER_TOOLS_DEFECTIVE",
+    "citation": "1926.300(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "tools_equipment",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_MOTOR_VEHICLE_BACKING",
+    "citation": "1926.601(b)(4)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_SILICA_DUST_CONTROL",
+    "citation": "1926.1153(c)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_WALKING_WORKING_SURFACE_FALL_HAZARD",
+    "citation": "1910.28(b)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_GI_FIXED_LADDER_DEFICIENT",
+    "citation": "1910.23",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "ladder_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_EXIT_ROUTE_BLOCKED",
+    "citation": "1910.37(a)(3)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "emergency_egress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_PORTABLE_FIRE_EXTINGUISHER_BLOCKED",
+    "citation": "1910.157(c)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_FLAMMABLE_LIQUID_STORAGE",
+    "citation": "1910.106",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_COMPRESSED_GAS_CYLINDER_UNSECURED",
+    "citation": "1910.101",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "compressed_gas",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_WELDING_CUTTING_HOT_WORK",
+    "citation": "1910.252",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "welding_cutting",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_CONFINED_SPACE_ENTRY_DEFICIENT",
+    "citation": "1910.146",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "confined_space",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_PPE_GENERAL_DEFICIENT",
+    "citation": "1910.132(a)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_RECORDKEEPING_TRAINING_DEFICIENT",
+    "citation": "1910.1200(h)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "training_documentation",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_MOBILE_EQUIPMENT_DEFECTS",
+    "citation": "56.14100(b)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "MSHA_MOBILE_EQUIPMENT_BRAKES",
+    "citation": "56.14101(a)(1)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "MSHA_BERM_INADEQUATE_SECONDARY",
+    "citation": "56.9300(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "roadway_berm",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_EMERGENCY_EGRESS_BLOCKED",
+    "citation": "56.11001",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "emergency_egress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_FIRE_HOT_WORK_NO_FIRE_WATCH",
+    "citation": "56.4604",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_CONFINED_SPACE_NO_PERMIT",
+    "citation": "1926.1204",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "confined_space",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_EMERGENCY_ACCESS_BLOCKED",
+    "citation": "1926.34",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "emergency_egress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_CONFINED_SPACE_ATMOSPHERE_NOT_TESTED",
+    "citation": "1910.146",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "confined_space",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_EMERGENCY_LIGHT_FAILED",
+    "citation": "1910.37(a)(3)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "emergency_egress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_SPILL_RESPONSE_DEFICIENT",
+    "citation": "1910.120",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "environmental_spill",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_EYEWASH_BLOCKED_OR_NOT_FUNCTIONAL",
+    "citation": "1910.151(c)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "emergency_response",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_ERGONOMICS_REPETITIVE_STRAIN",
+    "citation": "5(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "ergonomics",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_MANUAL_HANDLING_OVEREXERTION",
+    "citation": "5(a)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "ergonomics",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_MANUAL_MATERIAL_HANDLING_OVEREXERTION",
+    "citation": "56.16002",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "material_handling",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_MACHINE_DEFECT_CONTINUED_OPERATION",
+    "citation": "1910.212(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "tools_equipment",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_DEFECTIVE_EQUIPMENT_IN_USE",
+    "citation": "1926.20(b)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "tools_equipment",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_CONTRACTOR_HAZARD_COMMUNICATION",
+    "citation": "45.4",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "contractor_site_controls",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_SITE_INSPECTION_DEFICIENT",
+    "citation": "1926.20(b)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "site_controls",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_TRAINING_RECORD_MISSING",
+    "citation": "1910.1200(h)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "training_documentation",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_FALL_TRAINING_DEFICIENT",
+    "citation": "1926.503(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "training_documentation",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_TASK_TRAINING_DEFICIENT",
+    "citation": "46.7",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "training_documentation",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_CHEMICAL_EXPOSURE_SPLASH",
+    "citation": "1910.132(a)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_HAND_TOOL_DAMAGED",
+    "citation": "1910.242(a)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "tools_equipment",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_LOTO_STORED_ENERGY",
+    "citation": "1910.147(d)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "lockout_tagout",
+    "regulatoryIntent": "Control hazardous energy during servicing or maintenance.",
+    "correctiveActions": [
+      "Stop work.",
+      "Isolate energy sources.",
+      "Apply lockout/tagout.",
+      "Verify zero energy."
+    ],
+    "verificationSteps": [
+      "Energy isolated.",
+      "Lock/tag applied.",
+      "Zero energy verified."
+    ],
+    "rootCausePrompts": [
+      "Was LOTO procedure followed?",
+      "Was employee trained?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_SLIP_TRIP_FLOOR",
+    "citation": "1910.22(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "housekeeping",
+    "regulatoryIntent": "Maintain clean and orderly work areas to prevent slip, trip, and access hazards.",
+    "correctiveActions": [
+      "Remove debris, spillage, or obstruction.",
+      "Restore safe walking or working surface.",
+      "Document cleanup and recurrence controls."
+    ],
+    "verificationSteps": [
+      "Area is clear.",
+      "No slip/trip hazard remains."
+    ],
+    "rootCausePrompts": [
+      "What caused the buildup?",
+      "Is cleanup frequency adequate?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_MSHA_GUARDRAIL_HANDRAIL_DEFECT",
+    "citation": "56.11002",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "safe_access",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_MSHA_WORKING_AT_HEIGHT_NO_PROTECTION",
+    "citation": "56.15005",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_MSHA_SEATBELT_NOT_WORN",
+    "citation": "56.14131(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_MSHA_BACKUP_ALARM_AUDIBILITY",
+    "citation": "56.14132(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_MSHA_PPE_HARD_HAT",
+    "citation": "56.15002",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_CONSTRUCTION_HARD_HAT",
+    "citation": "1926.100(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_GI_HARD_HAT",
+    "citation": "1910.135(a)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_GI_BLOODBORNE_EXPOSURE",
+    "citation": "1910.1030",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "biological",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_GI_FIRST_AID_DEFICIENT",
+    "citation": "1910.151(b)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "emergency_response",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_CONSTRUCTION_FIRST_AID_DEFICIENT",
+    "citation": "1926.50(c)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "emergency_response",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_MSHA_FIRST_AID_DEFICIENT",
+    "citation": "56.18010",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "emergency_response",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_GI_DOCK_EDGE_FALL_HAZARD",
+    "citation": "1910.28(b)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_OSHA_GI_PIT_OPENING_UNGUARDED",
+    "citation": "1910.28(b)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_OSHA_CONSTRUCTION_FLOOR_HOLE_UNPROTECTED",
+    "citation": "1926.501(b)(4)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_MSHA_OPEN_HOLE_UNGUARDED",
+    "citation": "56.11012",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_OSHA_GI_AIR_CONTAMINANT_EXPOSURE",
+    "citation": "1910.1000",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_CONSTRUCTION_AIR_CONTAMINANT_EXPOSURE",
+    "citation": "1926.55(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_MSHA_AIR_CONTAMINANT_EXPOSURE",
+    "citation": "56.5001(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V1_OSHA_GI_ELECTRICAL_CLEARANCE_BLOCKED",
+    "citation": "1910.303(g)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_OSHA_CONSTRUCTION_TEMP_PANEL_CLEARANCE_BLOCKED",
+    "citation": "1926.403(i)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V1_MSHA_ELECTRICAL_CLEARANCE_BLOCKED",
+    "citation": "56.12030",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_MSHA_CONVEYOR_ENTANGLEMENT_EXPOSURE",
+    "citation": "56.14107(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_MSHA_RUNOVER_BACKOVER_EXPOSURE",
+    "citation": "56.9100",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "mobile_equipment",
+    "regulatoryIntent": "Prevent struck-by, runover, rollover, uncontrolled movement, and equipment-defect hazards.",
+    "correctiveActions": [
+      "Remove unsafe equipment/activity from service.",
+      "Correct defect or traffic issue.",
+      "Verify safe operation before release."
+    ],
+    "verificationSteps": [
+      "Unsafe condition corrected.",
+      "Equipment/control verified."
+    ],
+    "rootCausePrompts": [
+      "Was condition found in pre-op?",
+      "Were traffic controls adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_MSHA_HIGHWALL_FALLING_MATERIAL",
+    "citation": "56.3130",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "ground_control",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_MSHA_DUMP_POINT_OVERRUN_RISK",
+    "citation": "56.9300(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "roadway_berm",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_MSHA_ELECTROCUTION_DAMAGED_CABLE_WET_AREA",
+    "citation": "56.12004",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_FALL_LEADING_EDGE",
+    "citation": "1926.501(b)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_FALL_HOLE_COVER",
+    "citation": "1926.501(b)(4)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "fall_protection",
+    "regulatoryIntent": "Protect workers from falls from elevation, edges, holes, and openings.",
+    "correctiveActions": [
+      "Stop exposed work.",
+      "Install guardrail, cover, restraint, or fall arrest system.",
+      "Verify protection before work resumes."
+    ],
+    "verificationSteps": [
+      "Fall hazard protected.",
+      "Workers protected correctly."
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_CRANE_SWING_RADIUS",
+    "citation": "1926.1424(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "struck_by",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_TRENCH_NO_EGRESS",
+    "citation": "1926.651(c)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "excavation",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_TRENCH_SPOIL_PILE_EDGE",
+    "citation": "1926.651(j)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "excavation",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_AMPUTATION_POINT_OF_OPERATION",
+    "citation": "1910.212(a)(3)(ii)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_FORKLIFT_PEDESTRIAN_STRUCK_BY",
+    "citation": "1910.178",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "powered_industrial_truck",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_ARC_FLASH_OPEN_ELECTRICAL_PANEL",
+    "citation": "1910.303(b)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_CONFINED_SPACE_OXYGEN_DEFICIENCY",
+    "citation": "1910.146",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "confined_space",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_CHEMICAL_INHALATION_EXPOSURE",
+    "citation": "1910.1000",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_MSHA_PINCH_POINT_BLOCKED_ENERGY",
+    "citation": "56.12016",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "lockout_tagout",
+    "regulatoryIntent": "Control hazardous energy during servicing or maintenance.",
+    "correctiveActions": [
+      "Stop work.",
+      "Isolate energy sources.",
+      "Apply lockout/tagout.",
+      "Verify zero energy."
+    ],
+    "verificationSteps": [
+      "Energy isolated.",
+      "Lock/tag applied.",
+      "Zero energy verified."
+    ],
+    "rootCausePrompts": [
+      "Was LOTO procedure followed?",
+      "Was employee trained?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_PINCH_CRUSH_CAUGHT_BETWEEN",
+    "citation": "1926.20(b)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "caught_between",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_PINCH_CRUSH_CAUGHT_BETWEEN",
+    "citation": "1910.212(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "caught_between",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_MSHA_WATER_HAZARD_DROWNING_RISK",
+    "citation": "56.15020",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "water_hazard",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_WATER_HAZARD_DROWNING_RISK",
+    "citation": "1926.106(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "water_hazard",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_WORKPLACE_VIOLENCE_GENERAL_DUTY",
+    "citation": "5(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "workplace_violence",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_GI_HEAT_STRESS_GENERAL_DUTY",
+    "citation": "5(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "heat_stress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_OSHA_CONSTRUCTION_HEAT_STRESS_GENERAL_DUTY",
+    "citation": "5(a)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "heat_stress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V2_MSHA_HEAT_STRESS_EXPOSURE",
+    "citation": "56.18002(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "heat_stress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_MSHA_ELECTRICAL_PANEL_OPEN_LIVE_PARTS",
+    "citation": "56.12032",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V3_MSHA_ELECTRICAL_IMPROPER_GROUNDING",
+    "citation": "56.12025",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "electrical",
+    "regulatoryIntent": "Prevent shock, burn, arc flash, and energized-part exposure.",
+    "correctiveActions": [
+      "Restrict access.",
+      "Have qualified person correct condition.",
+      "Repair/cover/secure electrical component.",
+      "Verify before release."
+    ],
+    "verificationSteps": [
+      "Electrical condition corrected.",
+      "Access/enclosure/clearance verified."
+    ],
+    "rootCausePrompts": [
+      "Was damage or installation issue involved?",
+      "Was qualified person assigned?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V3_OSHA_GI_RESPIRATOR_NOT_WORN_REQUIRED",
+    "citation": "1910.134",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_OSHA_GI_RESPIRATOR_IMPROPER_USE",
+    "citation": "1910.134",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "respiratory",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_MSHA_CONVEYOR_GUARD_MISSING_TAIL",
+    "citation": "56.14107(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V3_MSHA_CONVEYOR_GUARD_MISSING_HEAD",
+    "citation": "56.14107(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V3_OSHA_CONSTRUCTION_LADDER_IMPROPER_ANGLE",
+    "citation": "1926.1053(b)(5)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "ladder_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_OSHA_CONSTRUCTION_LADDER_NOT_EXTENDED",
+    "citation": "1926.1053(b)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "ladder_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_OSHA_GI_FORKLIFT_UNTRAINED_OPERATOR",
+    "citation": "1910.178(l)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "powered_industrial_truck",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_OSHA_GI_FORKLIFT_UNSAFE_SPEED",
+    "citation": "1910.178(n)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "powered_industrial_truck",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_MSHA_HOUSEKEEPING_OILY_SLIPPERY_SURFACE",
+    "citation": "56.20003(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "housekeeping",
+    "regulatoryIntent": "Maintain clean and orderly work areas to prevent slip, trip, and access hazards.",
+    "correctiveActions": [
+      "Remove debris, spillage, or obstruction.",
+      "Restore safe walking or working surface.",
+      "Document cleanup and recurrence controls."
+    ],
+    "verificationSteps": [
+      "Area is clear.",
+      "No slip/trip hazard remains."
+    ],
+    "rootCausePrompts": [
+      "What caused the buildup?",
+      "Is cleanup frequency adequate?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "V3_OSHA_GI_EXIT_BLOCKED",
+    "citation": "1910.37(a)(3)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "emergency_egress",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_OSHA_CONSTRUCTION_FIRE_EXTINGUISHER_MISSING",
+    "citation": "1926.150(c)(1)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "V3_OSHA_GI_FIRE_EXTINGUISHER_BLOCKED",
+    "citation": "1910.157(c)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "fire_safety",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_LOCKOUT_TAGOUT_CONVEYOR",
+    "citation": "1910.147(c)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "lockout_tagout",
+    "regulatoryIntent": "Control hazardous energy during servicing or maintenance.",
+    "correctiveActions": [
+      "Stop work.",
+      "Isolate energy sources.",
+      "Apply lockout/tagout.",
+      "Verify zero energy."
+    ],
+    "verificationSteps": [
+      "Energy isolated.",
+      "Lock/tag applied.",
+      "Zero energy verified."
+    ],
+    "rootCausePrompts": [
+      "Was LOTO procedure followed?",
+      "Was employee trained?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_GI_MACHINE_GUARD_MISSING",
+    "citation": "1910.212(a)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_MACHINE_GUARD_DEFECT",
+    "citation": "1926.20(b)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "tools_equipment",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_HARD_HAT_NOT_WORN",
+    "citation": "1910.135(a)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "OSHA_GI_LOCKOUT_NOT_APPLIED",
+    "citation": "1910.147(c)(1)",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "family": "lockout_tagout",
+    "regulatoryIntent": "Control hazardous energy during servicing or maintenance.",
+    "correctiveActions": [
+      "Stop work.",
+      "Isolate energy sources.",
+      "Apply lockout/tagout.",
+      "Verify zero energy."
+    ],
+    "verificationSteps": [
+      "Energy isolated.",
+      "Lock/tag applied.",
+      "Zero energy verified."
+    ],
+    "rootCausePrompts": [
+      "Was LOTO procedure followed?",
+      "Was employee trained?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_LOCKOUT_NOT_APPLIED",
+    "citation": "1926.20(b)(2)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "tools_equipment",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_LOCKOUT_NOT_APPLIED_MAINTENANCE",
+    "citation": "56.12016",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "lockout_tagout",
+    "regulatoryIntent": "Control hazardous energy during servicing or maintenance.",
+    "correctiveActions": [
+      "Stop work.",
+      "Isolate energy sources.",
+      "Apply lockout/tagout.",
+      "Verify zero energy."
+    ],
+    "verificationSteps": [
+      "Energy isolated.",
+      "Lock/tag applied.",
+      "Zero energy verified."
+    ],
+    "rootCausePrompts": [
+      "Was LOTO procedure followed?",
+      "Was employee trained?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 4,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "MSHA_MACHINE_GUARD_MISSING_CRUSHER",
+    "citation": "56.14107(a)",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "machine_guarding",
+    "regulatoryIntent": "Prevent contact with moving machine parts and nip points.",
+    "correctiveActions": [
+      "Stop/restrict equipment use.",
+      "Install or repair guarding.",
+      "Verify guard is secure before operation."
+    ],
+    "verificationSteps": [
+      "Guard installed.",
+      "No access to moving parts."
+    ],
+    "rootCausePrompts": [
+      "Why was guarding missing?",
+      "Was inspection frequency adequate?"
+    ],
+    "suggestedSeverity": 5,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 4,
+    "suggestedPriority": "critical",
+    "defaultDaysToComplete": 0,
+    "actionSource": "family-template"
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_HARD_HAT_NOT_WORN",
+    "citation": "1926.100(a)",
+    "scope": "construction",
+    "agency": "OSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  },
+  {
+    "conditionId": "MSHA_HARD_HAT_NOT_WORN_PIT",
+    "citation": "56.15002",
+    "scope": "mining",
+    "agency": "MSHA",
+    "family": "ppe",
+    "regulatoryIntent": "Correct the identified hazardous condition using the hierarchy of controls.",
+    "correctiveActions": [
+      "Control employee exposure.",
+      "Correct hazard.",
+      "Verify completion.",
+      "Document evidence."
+    ],
+    "verificationSteps": [
+      "Hazard controlled.",
+      "Correction completed.",
+      "Evidence attached."
+    ],
+    "rootCausePrompts": [
+      "Why did the condition exist?",
+      "What prevents recurrence?"
+    ],
+    "suggestedSeverity": 3,
+    "suggestedLikelihood": 3,
+    "suggestedExposure": 3,
+    "suggestedPriority": "medium",
+    "defaultDaysToComplete": 3,
+    "actionSource": "fallback-template"
+  }
+]

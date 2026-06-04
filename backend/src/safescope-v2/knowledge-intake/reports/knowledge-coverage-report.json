@@ -1,0 +1,1391 @@
+{
+  "generatedAt": "2026-05-30T17:46:20.643Z",
+  "totalRegisteredSources": 44,
+  "sourceModCount": 3,
+  "requiredTopicCount": 16,
+  "globalSummary": {
+    "strongTopics": 9,
+    "partialTopics": 7,
+    "missingTopics": 0
+  },
+  "modSummary": {
+    "modsComplete": 0,
+    "modsIncomplete": 3,
+    "totalModDomains": 37,
+    "strongModDomains": 4,
+    "partialModDomains": 33,
+    "missingModDomains": 0
+  },
+  "globalCoverage": [
+    {
+      "topic": "Machine Guarding",
+      "sourceCount": 3,
+      "regulatorySourceCount": 3,
+      "guidanceSourceCount": 0,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "OSHA General Industry Regulations - 1910.212",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.212"
+        },
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Regulations - 30 CFR Part 56",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56"
+        },
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Regulations - 30 CFR Part 57",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57"
+        }
+      ]
+    },
+    {
+      "topic": "Lockout/Tagout",
+      "sourceCount": 2,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 1,
+      "status": "partial",
+      "sources": [
+        {
+          "sourceTitle": "OSHA General Industry Regulations - 1910.147",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147"
+        },
+        {
+          "sourceTitle": "MSHA Program Policy Manual - Metal and Nonmetal 56/57",
+          "agency": "MSHA",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.msha.gov/regulations/rulemaking/program-policy-manual"
+        }
+      ]
+    },
+    {
+      "topic": "Fall Protection",
+      "sourceCount": 3,
+      "regulatorySourceCount": 3,
+      "guidanceSourceCount": 0,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "OSHA Construction Regulations - 1926.501",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.501"
+        },
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart J Travelways and Escapeways",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-J"
+        },
+        {
+          "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart J Travelways and Escapeways",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-J"
+        }
+      ]
+    },
+    {
+      "topic": "Electrical",
+      "sourceCount": 3,
+      "regulatorySourceCount": 3,
+      "guidanceSourceCount": 0,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "OSHA General Industry Regulations - 1910 Subpart S",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910SubpartS"
+        },
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart K Electricity",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-K"
+        },
+        {
+          "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart K Electricity",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-K"
+        }
+      ]
+    },
+    {
+      "topic": "Excavation",
+      "sourceCount": 1,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 0,
+      "status": "partial",
+      "sources": [
+        {
+          "sourceTitle": "OSHA Construction Regulations - 1926 Subpart P",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926SubpartP"
+        }
+      ]
+    },
+    {
+      "topic": "Confined Spaces",
+      "sourceCount": 2,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 1,
+      "status": "partial",
+      "sources": [
+        {
+          "sourceTitle": "OSHA General Industry Regulations - 1910.146",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146"
+        },
+        {
+          "sourceTitle": "NIOSH Confined Spaces",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/topics/confinedspace/"
+        }
+      ]
+    },
+    {
+      "topic": "HazCom",
+      "sourceCount": 1,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 0,
+      "status": "partial",
+      "sources": [
+        {
+          "sourceTitle": "OSHA General Industry Regulations - 1910.1200",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1200"
+        }
+      ]
+    },
+    {
+      "topic": "Exposure Assessment",
+      "sourceCount": 3,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 2,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+        },
+        {
+          "sourceTitle": "OSHA Safety and Health Topics - Chemical Hazards",
+          "agency": "OSHA",
+          "sourceType": "Guidance",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/chemical-hazards"
+        },
+        {
+          "sourceTitle": "OSHA Technical Manual - Sampling",
+          "agency": "OSHA",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.osha.gov/otm/section-2-occupational-health-hazards/chapter-1"
+        }
+      ]
+    },
+    {
+      "topic": "Noise",
+      "sourceCount": 2,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 1,
+      "status": "partial",
+      "sources": [
+        {
+          "sourceTitle": "OSHA General Industry Regulations - 1910.95",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.95"
+        },
+        {
+          "sourceTitle": "NIOSH Noise and Hearing Loss Prevention",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/noise/"
+        }
+      ]
+    },
+    {
+      "topic": "Respirable Silica",
+      "sourceCount": 4,
+      "regulatorySourceCount": 3,
+      "guidanceSourceCount": 1,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "MSHA Respirable Dust Regulations - 30 CFR Part 56 Health Standards",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-D"
+        },
+        {
+          "sourceTitle": "OSHA Respirable Crystalline Silica - General Industry Standard",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1053"
+        },
+        {
+          "sourceTitle": "OSHA Respirable Crystalline Silica - Construction Standard",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.1153"
+        },
+        {
+          "sourceTitle": "NIOSH Silica",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/silica/"
+        }
+      ]
+    },
+    {
+      "topic": "Heat Stress",
+      "sourceCount": 4,
+      "regulatorySourceCount": 0,
+      "guidanceSourceCount": 4,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "NIOSH Heat Stress and Workers",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/heat-stress/about/index.html"
+        },
+        {
+          "sourceTitle": "NIOSH Workplace Recommendations for Heat",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/heat-stress/recommendations/index.html"
+        },
+        {
+          "sourceTitle": "NIOSH Criteria for a Recommended Standard: Occupational Exposure to Heat and Hot Environments",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/docs/2016-106/default.html"
+        },
+        {
+          "sourceTitle": "OSHA Heat Exposure Overview",
+          "agency": "OSHA",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.osha.gov/heat-exposure"
+        }
+      ]
+    },
+    {
+      "topic": "Mobile Equipment",
+      "sourceCount": 6,
+      "regulatorySourceCount": 5,
+      "guidanceSourceCount": 1,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart M Machinery and Equipment",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-M"
+        },
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart H Loading, Hauling, and Dumping",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-H"
+        },
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart O Materials Storage and Handling",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-O"
+        },
+        {
+          "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart O Materials Storage and Handling",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-O"
+        },
+        {
+          "sourceTitle": "OSHA Powered Industrial Trucks - 1910.178",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.178"
+        },
+        {
+          "sourceTitle": "OSHA Powered Industrial Trucks - Forklifts Overview",
+          "agency": "OSHA",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.osha.gov/powered-industrial-trucks"
+        }
+      ]
+    },
+    {
+      "topic": "Powered Haulage",
+      "sourceCount": 2,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 1,
+      "status": "partial",
+      "sources": [
+        {
+          "sourceTitle": "MSHA Surface Coal Mine Safety Regulations - 30 CFR Part 77",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-77"
+        },
+        {
+          "sourceTitle": "MSHA Fatality Reports",
+          "agency": "MSHA",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.msha.gov/data-reports/fatality-reports/search"
+        }
+      ]
+    },
+    {
+      "topic": "Ground Control",
+      "sourceCount": 2,
+      "regulatorySourceCount": 2,
+      "guidanceSourceCount": 0,
+      "status": "partial",
+      "sources": [
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart B Ground Control",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-B"
+        },
+        {
+          "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart B Ground Control",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-B"
+        }
+      ]
+    },
+    {
+      "topic": "Corrective Actions",
+      "sourceCount": 3,
+      "regulatorySourceCount": 1,
+      "guidanceSourceCount": 2,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "MSHA Accident, Illness and Injury and Employment Self Extracting Files",
+          "agency": "MSHA",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.msha.gov/data-reports/data-sources-calculators"
+        },
+        {
+          "sourceTitle": "OSHA Personal Protective Equipment - 1910 Subpart I",
+          "agency": "OSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910SubpartI"
+        },
+        {
+          "sourceTitle": "NIOSH Ergonomics and Musculoskeletal Disorders",
+          "agency": "NIOSH/CDC",
+          "sourceType": "Guidance",
+          "reliabilityTier": "government_guidance",
+          "sourceUrl": "https://www.cdc.gov/niosh/ergonomics/"
+        }
+      ]
+    },
+    {
+      "topic": "Evidence Sufficiency",
+      "sourceCount": 3,
+      "regulatorySourceCount": 3,
+      "guidanceSourceCount": 0,
+      "status": "strong",
+      "sources": [
+        {
+          "sourceTitle": "MSHA Training and Retraining of Miners - 30 CFR Part 46",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-H/part-46"
+        },
+        {
+          "sourceTitle": "MSHA Training and Retraining of Miners - 30 CFR Part 48",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-H/part-48"
+        },
+        {
+          "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart Q Safety Programs",
+          "agency": "MSHA",
+          "sourceType": "Regulation",
+          "reliabilityTier": "regulatory",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-Q"
+        }
+      ]
+    }
+  ],
+  "modCoverage": [
+    {
+      "modId": "msha-regulatory-mod",
+      "modName": "MSHA Regulatory Intake Mod",
+      "sourceAuthority": "MSHA",
+      "minSourcesPerDomain": 3,
+      "allowedSourceTypes": [
+        "cfr",
+        "policy_manual",
+        "accident_report"
+      ],
+      "authorityTier": "federal_regulation",
+      "totalDomains": 13,
+      "strongDomains": 3,
+      "partialDomains": 10,
+      "missingDomains": 0,
+      "canStop": false,
+      "stopConditions": [
+        "all listed domains have minimum source coverage",
+        "all gathered records pass quarantine validation",
+        "coverage report has no missing critical MSHA anchors"
+      ],
+      "domains": [
+        {
+          "domain": "machine_guarding",
+          "mappedTopic": "Machine Guarding",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Regulations - 30 CFR Part 56",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56"
+            },
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Regulations - 30 CFR Part 57",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57"
+            }
+          ]
+        },
+        {
+          "domain": "mobile_equipment",
+          "mappedTopic": "Mobile Equipment",
+          "sourceCount": 4,
+          "minSourcesRequired": 3,
+          "status": "strong",
+          "sourcesNeeded": 0,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart M Machinery and Equipment",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-M"
+            },
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart H Loading, Hauling, and Dumping",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-H"
+            },
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart O Materials Storage and Handling",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-O"
+            },
+            {
+              "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart O Materials Storage and Handling",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-O"
+            }
+          ]
+        },
+        {
+          "domain": "powered_haulage",
+          "mappedTopic": "Powered Haulage",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Surface Coal Mine Safety Regulations - 30 CFR Part 77",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-77"
+            },
+            {
+              "sourceTitle": "MSHA Fatality Reports",
+              "agency": "MSHA",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.msha.gov/data-reports/fatality-reports/search"
+            }
+          ]
+        },
+        {
+          "domain": "ground_control",
+          "mappedTopic": "Ground Control",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart B Ground Control",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-B"
+            },
+            {
+              "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart B Ground Control",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-B"
+            }
+          ]
+        },
+        {
+          "domain": "electrical",
+          "mappedTopic": "Electrical",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart K Electricity",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-K"
+            },
+            {
+              "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart K Electricity",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-K"
+            }
+          ]
+        },
+        {
+          "domain": "lockout_tagout",
+          "mappedTopic": "Lockout/Tagout",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Program Policy Manual - Metal and Nonmetal 56/57",
+              "agency": "MSHA",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.msha.gov/regulations/rulemaking/program-policy-manual"
+            }
+          ]
+        },
+        {
+          "domain": "working_surfaces",
+          "mappedTopic": "Fall Protection",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart J Travelways and Escapeways",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-J"
+            },
+            {
+              "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart J Travelways and Escapeways",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-J"
+            }
+          ]
+        },
+        {
+          "domain": "berms",
+          "mappedTopic": "Powered Haulage",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Surface Coal Mine Safety Regulations - 30 CFR Part 77",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-O/part-77"
+            },
+            {
+              "sourceTitle": "MSHA Fatality Reports",
+              "agency": "MSHA",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.msha.gov/data-reports/fatality-reports/search"
+            }
+          ]
+        },
+        {
+          "domain": "highwall",
+          "mappedTopic": "Ground Control",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart B Ground Control",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-B"
+            },
+            {
+              "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart B Ground Control",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-B"
+            }
+          ]
+        },
+        {
+          "domain": "material_handling",
+          "mappedTopic": "Mobile Equipment",
+          "sourceCount": 4,
+          "minSourcesRequired": 3,
+          "status": "strong",
+          "sourcesNeeded": 0,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart M Machinery and Equipment",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-M"
+            },
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart H Loading, Hauling, and Dumping",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-H"
+            },
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart O Materials Storage and Handling",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-O"
+            },
+            {
+              "sourceTitle": "MSHA Underground Metal and Nonmetal Safety Standards - 30 CFR 57 Subpart O Materials Storage and Handling",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-57/subpart-O"
+            }
+          ]
+        },
+        {
+          "domain": "fire_protection",
+          "mappedTopic": "Corrective Actions",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Accident, Illness and Injury and Employment Self Extracting Files",
+              "agency": "MSHA",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.msha.gov/data-reports/data-sources-calculators"
+            }
+          ]
+        },
+        {
+          "domain": "respirable_dust",
+          "mappedTopic": "Respirable Silica",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Respirable Dust Regulations - 30 CFR Part 56 Health Standards",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-D"
+            }
+          ]
+        },
+        {
+          "domain": "training",
+          "mappedTopic": "Evidence Sufficiency",
+          "sourceCount": 3,
+          "minSourcesRequired": 3,
+          "status": "strong",
+          "sourcesNeeded": 0,
+          "sources": [
+            {
+              "sourceTitle": "MSHA Training and Retraining of Miners - 30 CFR Part 46",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-H/part-46"
+            },
+            {
+              "sourceTitle": "MSHA Training and Retraining of Miners - 30 CFR Part 48",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-H/part-48"
+            },
+            {
+              "sourceTitle": "MSHA Metal and Nonmetal Safety Standards - 30 CFR 56 Subpart Q Safety Programs",
+              "agency": "MSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.ecfr.gov/current/title-30/chapter-I/subchapter-K/part-56/subpart-Q"
+            }
+          ]
+        }
+      ],
+      "nextActions": [
+        "msha-regulatory-mod: add 1 more authoritative source(s) for machine_guarding (Machine Guarding).",
+        "msha-regulatory-mod: add 1 more authoritative source(s) for powered_haulage (Powered Haulage).",
+        "msha-regulatory-mod: add 1 more authoritative source(s) for ground_control (Ground Control).",
+        "msha-regulatory-mod: add 1 more authoritative source(s) for electrical (Electrical).",
+        "msha-regulatory-mod: add 2 more authoritative source(s) for lockout_tagout (Lockout/Tagout).",
+        "msha-regulatory-mod: add 1 more authoritative source(s) for working_surfaces (Fall Protection).",
+        "msha-regulatory-mod: add 1 more authoritative source(s) for berms (Powered Haulage).",
+        "msha-regulatory-mod: add 1 more authoritative source(s) for highwall (Ground Control).",
+        "msha-regulatory-mod: add 2 more authoritative source(s) for fire_protection (Corrective Actions).",
+        "msha-regulatory-mod: add 2 more authoritative source(s) for respirable_dust (Respirable Silica)."
+      ]
+    },
+    {
+      "modId": "niosh-health-exposure-mod",
+      "modName": "NIOSH Health and Exposure Intake Mod",
+      "sourceAuthority": "NIOSH/CDC",
+      "minSourcesPerDomain": 3,
+      "allowedSourceTypes": [
+        "expert_reference",
+        "policy_manual",
+        "technical_standard"
+      ],
+      "authorityTier": "expert_reference",
+      "totalDomains": 12,
+      "strongDomains": 1,
+      "partialDomains": 11,
+      "missingDomains": 0,
+      "canStop": false,
+      "stopConditions": [
+        "all listed domains have minimum health/exposure source coverage",
+        "all gathered records pass quarantine validation",
+        "coverage report has no missing critical health-exposure anchors"
+      ],
+      "domains": [
+        {
+          "domain": "respirable_silica",
+          "mappedTopic": "Respirable Silica",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Silica",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/silica/"
+            }
+          ]
+        },
+        {
+          "domain": "noise",
+          "mappedTopic": "Noise",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Noise and Hearing Loss Prevention",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/noise/"
+            }
+          ]
+        },
+        {
+          "domain": "heat_stress",
+          "mappedTopic": "Heat Stress",
+          "sourceCount": 3,
+          "minSourcesRequired": 3,
+          "status": "strong",
+          "sourcesNeeded": 0,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Heat Stress and Workers",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/heat-stress/about/index.html"
+            },
+            {
+              "sourceTitle": "NIOSH Workplace Recommendations for Heat",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/heat-stress/recommendations/index.html"
+            },
+            {
+              "sourceTitle": "NIOSH Criteria for a Recommended Standard: Occupational Exposure to Heat and Hot Environments",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/docs/2016-106/default.html"
+            }
+          ]
+        },
+        {
+          "domain": "chemical_exposure",
+          "mappedTopic": "Exposure Assessment",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+            }
+          ]
+        },
+        {
+          "domain": "respiratory_protection",
+          "mappedTopic": "Exposure Assessment",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+            }
+          ]
+        },
+        {
+          "domain": "welding_fume",
+          "mappedTopic": "Exposure Assessment",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+            }
+          ]
+        },
+        {
+          "domain": "dust",
+          "mappedTopic": "Exposure Assessment",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+            }
+          ]
+        },
+        {
+          "domain": "asbestos",
+          "mappedTopic": "Exposure Assessment",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+            }
+          ]
+        },
+        {
+          "domain": "lead",
+          "mappedTopic": "Exposure Assessment",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+            }
+          ]
+        },
+        {
+          "domain": "confined_space_atmosphere",
+          "mappedTopic": "Confined Spaces",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Confined Spaces",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/topics/confinedspace/"
+            }
+          ]
+        },
+        {
+          "domain": "ergonomics",
+          "mappedTopic": "Corrective Actions",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Ergonomics and Musculoskeletal Disorders",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/ergonomics/"
+            }
+          ]
+        },
+        {
+          "domain": "industrial_hygiene_sampling",
+          "mappedTopic": "Exposure Assessment",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "NIOSH Pocket Guide to Chemical Hazards - Introduction",
+              "agency": "NIOSH/CDC",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.cdc.gov/niosh/npg/nengintro.html"
+            }
+          ]
+        }
+      ],
+      "nextActions": [
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for respirable_silica (Respirable Silica).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for noise (Noise).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for chemical_exposure (Exposure Assessment).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for respiratory_protection (Exposure Assessment).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for welding_fume (Exposure Assessment).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for dust (Exposure Assessment).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for asbestos (Exposure Assessment).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for lead (Exposure Assessment).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for confined_space_atmosphere (Confined Spaces).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for ergonomics (Corrective Actions).",
+        "niosh-health-exposure-mod: add 2 more authoritative source(s) for industrial_hygiene_sampling (Exposure Assessment)."
+      ]
+    },
+    {
+      "modId": "osha-regulatory-mod",
+      "modName": "OSHA Regulatory Intake Mod",
+      "sourceAuthority": "OSHA",
+      "minSourcesPerDomain": 3,
+      "allowedSourceTypes": [
+        "cfr",
+        "interpretation_letter",
+        "policy_manual"
+      ],
+      "authorityTier": "federal_regulation",
+      "totalDomains": 12,
+      "strongDomains": 0,
+      "partialDomains": 12,
+      "missingDomains": 0,
+      "canStop": false,
+      "stopConditions": [
+        "all listed domains have minimum source coverage",
+        "all gathered records pass quarantine validation",
+        "coverage report has no missing critical regulatory anchors"
+      ],
+      "domains": [
+        {
+          "domain": "machine_guarding",
+          "mappedTopic": "Machine Guarding",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA General Industry Regulations - 1910.212",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.212"
+            }
+          ]
+        },
+        {
+          "domain": "lockout_tagout",
+          "mappedTopic": "Lockout/Tagout",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA General Industry Regulations - 1910.147",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147"
+            }
+          ]
+        },
+        {
+          "domain": "fall_protection",
+          "mappedTopic": "Fall Protection",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA Construction Regulations - 1926.501",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.501"
+            }
+          ]
+        },
+        {
+          "domain": "electrical",
+          "mappedTopic": "Electrical",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA General Industry Regulations - 1910 Subpart S",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910SubpartS"
+            }
+          ]
+        },
+        {
+          "domain": "confined_space",
+          "mappedTopic": "Confined Spaces",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA General Industry Regulations - 1910.146",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.146"
+            }
+          ]
+        },
+        {
+          "domain": "hazard_communication",
+          "mappedTopic": "HazCom",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA General Industry Regulations - 1910.1200",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1200"
+            }
+          ]
+        },
+        {
+          "domain": "excavation",
+          "mappedTopic": "Excavation",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA Construction Regulations - 1926 Subpart P",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926SubpartP"
+            }
+          ]
+        },
+        {
+          "domain": "noise",
+          "mappedTopic": "Noise",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA General Industry Regulations - 1910.95",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.95"
+            }
+          ]
+        },
+        {
+          "domain": "respirable_silica",
+          "mappedTopic": "Respirable Silica",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "OSHA Respirable Crystalline Silica - General Industry Standard",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1053"
+            },
+            {
+              "sourceTitle": "OSHA Respirable Crystalline Silica - Construction Standard",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.1153"
+            }
+          ]
+        },
+        {
+          "domain": "ppe",
+          "mappedTopic": "Corrective Actions",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA Personal Protective Equipment - 1910 Subpart I",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910SubpartI"
+            }
+          ]
+        },
+        {
+          "domain": "walking_working_surfaces",
+          "mappedTopic": "Fall Protection",
+          "sourceCount": 1,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 2,
+          "sources": [
+            {
+              "sourceTitle": "OSHA Construction Regulations - 1926.501",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.501"
+            }
+          ]
+        },
+        {
+          "domain": "powered_industrial_trucks",
+          "mappedTopic": "Mobile Equipment",
+          "sourceCount": 2,
+          "minSourcesRequired": 3,
+          "status": "partial",
+          "sourcesNeeded": 1,
+          "sources": [
+            {
+              "sourceTitle": "OSHA Powered Industrial Trucks - 1910.178",
+              "agency": "OSHA",
+              "sourceType": "Regulation",
+              "reliabilityTier": "regulatory",
+              "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.178"
+            },
+            {
+              "sourceTitle": "OSHA Powered Industrial Trucks - Forklifts Overview",
+              "agency": "OSHA",
+              "sourceType": "Guidance",
+              "reliabilityTier": "government_guidance",
+              "sourceUrl": "https://www.osha.gov/powered-industrial-trucks"
+            }
+          ]
+        }
+      ],
+      "nextActions": [
+        "osha-regulatory-mod: add 2 more authoritative source(s) for machine_guarding (Machine Guarding).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for lockout_tagout (Lockout/Tagout).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for fall_protection (Fall Protection).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for electrical (Electrical).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for confined_space (Confined Spaces).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for hazard_communication (HazCom).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for excavation (Excavation).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for noise (Noise).",
+        "osha-regulatory-mod: add 1 more authoritative source(s) for respirable_silica (Respirable Silica).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for ppe (Corrective Actions).",
+        "osha-regulatory-mod: add 2 more authoritative source(s) for walking_working_surfaces (Fall Protection).",
+        "osha-regulatory-mod: add 1 more authoritative source(s) for powered_industrial_trucks (Mobile Equipment)."
+      ]
+    }
+  ],
+  "nextActions": [
+    "Global coverage: add more authoritative sources for Lockout/Tagout.",
+    "Global coverage: add more authoritative sources for Excavation.",
+    "Global coverage: add more authoritative sources for Confined Spaces.",
+    "Global coverage: add more authoritative sources for HazCom.",
+    "Global coverage: add more authoritative sources for Noise.",
+    "Global coverage: add more authoritative sources for Powered Haulage.",
+    "Global coverage: add more authoritative sources for Ground Control.",
+    "msha-regulatory-mod: add 1 more authoritative source(s) for machine_guarding (Machine Guarding).",
+    "msha-regulatory-mod: add 1 more authoritative source(s) for powered_haulage (Powered Haulage).",
+    "msha-regulatory-mod: add 1 more authoritative source(s) for ground_control (Ground Control).",
+    "msha-regulatory-mod: add 1 more authoritative source(s) for electrical (Electrical).",
+    "msha-regulatory-mod: add 2 more authoritative source(s) for lockout_tagout (Lockout/Tagout).",
+    "msha-regulatory-mod: add 1 more authoritative source(s) for working_surfaces (Fall Protection).",
+    "msha-regulatory-mod: add 1 more authoritative source(s) for berms (Powered Haulage).",
+    "msha-regulatory-mod: add 1 more authoritative source(s) for highwall (Ground Control).",
+    "msha-regulatory-mod: add 2 more authoritative source(s) for fire_protection (Corrective Actions).",
+    "msha-regulatory-mod: add 2 more authoritative source(s) for respirable_dust (Respirable Silica).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for respirable_silica (Respirable Silica).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for noise (Noise).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for chemical_exposure (Exposure Assessment).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for respiratory_protection (Exposure Assessment).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for welding_fume (Exposure Assessment).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for dust (Exposure Assessment).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for asbestos (Exposure Assessment).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for lead (Exposure Assessment).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for confined_space_atmosphere (Confined Spaces).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for ergonomics (Corrective Actions).",
+    "niosh-health-exposure-mod: add 2 more authoritative source(s) for industrial_hygiene_sampling (Exposure Assessment).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for machine_guarding (Machine Guarding).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for lockout_tagout (Lockout/Tagout).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for fall_protection (Fall Protection).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for electrical (Electrical).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for confined_space (Confined Spaces).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for hazard_communication (HazCom).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for excavation (Excavation).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for noise (Noise).",
+    "osha-regulatory-mod: add 1 more authoritative source(s) for respirable_silica (Respirable Silica).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for ppe (Corrective Actions).",
+    "osha-regulatory-mod: add 2 more authoritative source(s) for walking_working_surfaces (Fall Protection).",
+    "osha-regulatory-mod: add 1 more authoritative source(s) for powered_industrial_trucks (Mobile Equipment)."
+  ],
+  "sourceBoundary": "Coverage reporting is advisory and quarantined. It does not approve knowledge records, change SafeScope reasoning logic, declare violations, or authorize production use."
+}

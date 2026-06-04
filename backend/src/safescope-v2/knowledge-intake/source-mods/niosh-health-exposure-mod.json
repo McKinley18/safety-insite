@@ -1,0 +1,77 @@
+{
+  "modId": "niosh-health-exposure-mod",
+  "modName": "NIOSH Health and Exposure Intake Mod",
+  "purpose": "Collect NIOSH/CDC occupational health, exposure, sampling, and disease-mechanism intelligence for SafeScope.",
+  "sourceAuthority": "NIOSH/CDC",
+  "allowedDomains": [
+    "respirable_silica",
+    "noise",
+    "heat_stress",
+    "chemical_exposure",
+    "respiratory_protection",
+    "welding_fume",
+    "dust",
+    "asbestos",
+    "lead",
+    "confined_space_atmosphere",
+    "ergonomics",
+    "industrial_hygiene_sampling"
+  ],
+  "allowedSourceTypes": [
+    "expert_reference",
+    "policy_manual",
+    "technical_standard"
+  ],
+  "authorityTier": "expert_reference",
+  "startingUrls": [
+    "https://www.cdc.gov/niosh/",
+    "https://www.cdc.gov/niosh/npg/",
+    "https://www.cdc.gov/niosh/topics/"
+  ],
+  "searchBoundaries": {
+    "allowedHostnames": [
+      "cdc.gov",
+      "www.cdc.gov"
+    ],
+    "disallowedContent": [
+      "blogs",
+      "forums",
+      "vendor summaries",
+      "uncited health claims",
+      "non-government summaries"
+    ]
+  },
+  "extractionTargets": [
+    "hazard health mechanism",
+    "exposure route",
+    "sampling basis",
+    "dose or duration concepts",
+    "symptoms and chronic effects",
+    "recommended evidence",
+    "uncertainty limits",
+    "source boundary"
+  ],
+  "forbiddenBehavior": [
+    "Do not create legal compliance requirements from guidance.",
+    "Do not invent exposure limits.",
+    "Do not declare exposure compliance without sampling.",
+    "Do not approve records for production use.",
+    "Do not change SafeScope reasoning logic."
+  ],
+  "defaults": {
+    "reviewStatus": "unreviewed",
+    "approvedForUse": false,
+    "sourceBoundary": "advisory",
+    "jurisdiction": "US_FEDERAL_HEALTH_GUIDANCE"
+  },
+  "batchControls": {
+    "maxRecordsPerRun": 25,
+    "minSourcesPerDomain": 3,
+    "continueUntilCoverageComplete": true,
+    "stopOnlyWhen": [
+      "all listed domains have minimum health/exposure source coverage",
+      "all gathered records pass quarantine validation",
+      "coverage report has no missing critical health-exposure anchors"
+    ]
+  }
+}

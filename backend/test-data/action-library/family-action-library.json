@@ -1,0 +1,93 @@
+{
+  "housekeeping": {
+    "regulatoryIntent": "Maintain clean and orderly work areas to prevent hazards.",
+    "correctiveActions": [
+      "Remove debris, spillage, or obstructions from affected area.",
+      "Restore safe walking/working surface.",
+      "Implement routine housekeeping schedule.",
+      "Inspect adjacent areas for recurrence."
+    ],
+    "verificationSteps": [
+      "Area is clean and unobstructed",
+      "No slip/trip hazards remain"
+    ],
+    "rootCausePrompts": [
+      "Is housekeeping frequency sufficient?",
+      "Is source of spillage controlled?"
+    ]
+  },
+
+  "mobile_equipment": {
+    "regulatoryIntent": "Ensure safe operation and condition of mobile equipment.",
+    "correctiveActions": [
+      "Remove equipment from service if unsafe.",
+      "Repair or correct identified defect.",
+      "Verify equipment function before returning to service.",
+      "Document inspection and corrective action."
+    ],
+    "verificationSteps": [
+      "Equipment inspected",
+      "Defect corrected",
+      "Safe operation confirmed"
+    ],
+    "rootCausePrompts": [
+      "Was defect identified in pre-op inspection?",
+      "Why was defect not corrected?"
+    ]
+  },
+
+  "fall_protection": {
+    "regulatoryIntent": "Protect workers from fall hazards.",
+    "correctiveActions": [
+      "Stop work immediately in exposed area.",
+      "Install fall protection system (guardrail, harness, etc.).",
+      "Verify anchorage and equipment integrity.",
+      "Train or brief workers before resuming work."
+    ],
+    "verificationSteps": [
+      "Fall protection in place",
+      "Workers properly protected"
+    ],
+    "rootCausePrompts": [
+      "Was fall protection planned?",
+      "Was supervision present?"
+    ]
+  },
+
+  "lockout_tagout": {
+    "regulatoryIntent": "Control hazardous energy during servicing.",
+    "correctiveActions": [
+      "Stop work immediately.",
+      "Isolate all energy sources.",
+      "Apply lockout/tagout devices.",
+      "Verify zero energy state."
+    ],
+    "verificationSteps": [
+      "Energy isolated",
+      "Lock/tag applied",
+      "Zero energy verified"
+    ],
+    "rootCausePrompts": [
+      "Was LOTO procedure followed?",
+      "Was worker trained?"
+    ]
+  },
+
+  "ppe": {
+    "regulatoryIntent": "Ensure appropriate personal protective equipment is used.",
+    "correctiveActions": [
+      "Stop work until PPE is worn.",
+      "Provide required PPE.",
+      "Train employee on proper use.",
+      "Enforce PPE compliance."
+    ],
+    "verificationSteps": [
+      "PPE worn correctly",
+      "Supervisor verified compliance"
+    ],
+    "rootCausePrompts": [
+      "Was PPE available?",
+      "Was training adequate?"
+    ]
+  }
+}

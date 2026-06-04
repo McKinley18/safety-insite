@@ -1,0 +1,41 @@
+{
+  "recordId": "osha-29-cfr-1910-147",
+  "sourceAuthority": "OSHA",
+  "sourceType": "cfr",
+  "authorityTier": "federal_regulation",
+  "citation": "29 CFR 1910.147",
+  "title": "The control of hazardous energy (lockout/tagout)",
+  "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+  "retrievedAt": "2026-05-30T17:30:00Z",
+  "jurisdiction": "US_FEDERAL_OSHA_GENERAL_INDUSTRY",
+  "hazardDomains": ["mechanical", "electrical", "operational"],
+  "applicabilityTriggers": [
+    "lockout",
+    "tagout",
+    "hazardous energy",
+    "stored energy",
+    "unexpected startup",
+    "service",
+    "maintenance",
+    "clearing jam",
+    "adjustment",
+    "energy isolation"
+  ],
+  "standardIntent": "Protect employees from unexpected energization, startup, or release of stored energy during service or maintenance by requiring energy-control procedures, isolation, lockout/tagout devices, and verification before work proceeds.",
+  "evidenceNeeded": [
+    "Document task being performed: operation, service, maintenance, cleanup, adjustment, or troubleshooting.",
+    "Identify all energy sources, including electrical, mechanical, hydraulic, pneumatic, thermal, chemical, gravity, and stored energy.",
+    "Document energy-isolating devices, locks, tags, blocking, bleeding, relieving, or restraint methods.",
+    "Verify whether zero-energy try/test verification was performed.",
+    "Identify affected and authorized employees involved."
+  ],
+  "nonApplicabilityQuestions": [
+    "Was the task normal production rather than service or maintenance?",
+    "Was employee exposure controlled by effective alternative guarding during normal production?",
+    "Was the equipment fully de-energized and verified before employee exposure?",
+    "Is the work under a different jurisdiction or more specific standard?"
+  ],
+  "sourceBoundary": "mandatory",
+  "reviewStatus": "unreviewed",
+  "approvedForUse": false
+}

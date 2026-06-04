@@ -1,0 +1,3 @@
+import 'reflect-metadata';
+import { dataSource } from '../src/database/data-source';
+// ...

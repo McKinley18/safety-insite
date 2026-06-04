@@ -1,0 +1,232 @@
+{
+  "audit": "SafeScope Field Realism Gauntlet",
+  "version": "field_realism_v1",
+  "generatedAt": "2026-06-04T23:00:20.649Z",
+  "caseCount": 18,
+  "status": "passed",
+  "cases": [
+    {
+      "id": "REAL-MSHA-GUARDING-001",
+      "title": "messy conveyor guard description",
+      "expectedSignals": [
+        "guard",
+        "pulley"
+      ],
+      "expectedReviewSignals": [
+        "lock",
+        "exposure"
+      ]
+    },
+    {
+      "id": "REAL-OSHA-HAZCOM-001",
+      "title": "unlabeled chemical jug",
+      "expectedSignals": [
+        "label",
+        "sds"
+      ],
+      "expectedReviewSignals": [
+        "identity",
+        "chemical"
+      ]
+    },
+    {
+      "id": "REAL-MOBILE-001",
+      "title": "loader pedestrian interaction",
+      "expectedSignals": [
+        "pedestrian",
+        "traffic"
+      ],
+      "expectedReviewSignals": [
+        "separation",
+        "visibility"
+      ]
+    },
+    {
+      "id": "REAL-LOTO-001",
+      "title": "maintenance energy control ambiguity",
+      "expectedSignals": [
+        "lock",
+        "energy"
+      ],
+      "expectedReviewSignals": [
+        "zero",
+        "verification"
+      ]
+    },
+    {
+      "id": "REAL-FALL-001",
+      "title": "uncertain fall exposure",
+      "expectedSignals": [
+        "fall",
+        "rail"
+      ],
+      "expectedReviewSignals": [
+        "height",
+        "protection"
+      ]
+    },
+    {
+      "id": "REAL-CONFINED-001",
+      "title": "tank entry uncertainty",
+      "expectedSignals": [
+        "confined",
+        "entry"
+      ],
+      "expectedReviewSignals": [
+        "atmosphere",
+        "permit"
+      ]
+    },
+    {
+      "id": "REAL-ELECTRICAL-001",
+      "title": "electrical exposure unclear",
+      "expectedSignals": [
+        "electrical",
+        "live"
+      ],
+      "expectedReviewSignals": [
+        "energized",
+        "restrict"
+      ]
+    },
+    {
+      "id": "REAL-SILICA-001",
+      "title": "dusty cutting task",
+      "expectedSignals": [
+        "dust",
+        "silica"
+      ],
+      "expectedReviewSignals": [
+        "respiratory",
+        "control"
+      ]
+    },
+    {
+      "id": "REAL-CHEM-STORAGE-001",
+      "title": "mixed chemical storage",
+      "expectedSignals": [
+        "chemical",
+        "segregate"
+      ],
+      "expectedReviewSignals": [
+        "secondary",
+        "containment"
+      ]
+    },
+    {
+      "id": "REAL-MULTI-GUARD-LOTO-001",
+      "title": "machine guarding with LOTO ambiguity",
+      "expectedSignals": [
+        "guard",
+        "lock"
+      ],
+      "expectedReviewSignals": [
+        "energy",
+        "exposure"
+      ]
+    },
+    {
+      "id": "REAL-MULTI-ELECTRICAL-WET-001",
+      "title": "open electrical panel with wet area",
+      "expectedSignals": [
+        "electrical",
+        "energized"
+      ],
+      "expectedReviewSignals": [
+        "restrict",
+        "verify"
+      ]
+    },
+    {
+      "id": "REAL-MULTI-MOBILE-VISIBILITY-001",
+      "title": "mobile equipment backing with visibility issue",
+      "expectedSignals": [
+        "mobile",
+        "pedestrian"
+      ],
+      "expectedReviewSignals": [
+        "traffic",
+        "separation"
+      ]
+    },
+    {
+      "id": "REAL-MULTI-CHEM-LABEL-LEAK-001",
+      "title": "unknown leaking chemical container",
+      "expectedSignals": [
+        "label",
+        "chemical"
+      ],
+      "expectedReviewSignals": [
+        "sds",
+        "spill"
+      ]
+    },
+    {
+      "id": "REAL-FALSE-HOTWORK-CHEMICAL-001",
+      "title": "chemical storage should not route as hot work",
+      "expectedSignals": [
+        "chemical",
+        "storage"
+      ],
+      "expectedReviewSignals": [
+        "segregate",
+        "incompatible"
+      ]
+    },
+    {
+      "id": "REAL-FALSE-ELECTRICAL-GUARDING-001",
+      "title": "energized wording should preserve guarding priority",
+      "expectedSignals": [
+        "guard",
+        "pulley"
+      ],
+      "expectedReviewSignals": [
+        "exposure",
+        "energy"
+      ]
+    },
+    {
+      "id": "REAL-FALSE-GENERIC-DUST-001",
+      "title": "dust observation should identify respiratory uncertainty",
+      "expectedSignals": [
+        "dust",
+        "respiratory"
+      ],
+      "expectedReviewSignals": [
+        "sample",
+        "control"
+      ]
+    },
+    {
+      "id": "REAL-INCOMPLETE-FALL-001",
+      "title": "incomplete fall exposure description",
+      "expectedSignals": [
+        "fall",
+        "rail"
+      ],
+      "expectedReviewSignals": [
+        "height",
+        "protection"
+      ]
+    },
+    {
+      "id": "REAL-INCOMPLETE-CONFINED-SPACE-001",
+      "title": "partial vessel entry with missing atmospheric evidence",
+      "expectedSignals": [
+        "entry",
+        "confined"
+      ],
+      "expectedReviewSignals": [
+        "atmosphere",
+        "permit"
+      ]
+    }
+  ],
+  "boundary": {
+    "validatesMessyFieldLanguage": true,
+    "validatesFalseRouteResistance": true,
+    "validatesIncompleteObservationHandling": true,
+    "requiresQualifiedReview": true,
+    "doesNotDeclareViolations": true
+  }
+}

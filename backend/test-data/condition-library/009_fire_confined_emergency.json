@@ -1,0 +1,98 @@
+[
+  {
+    "conditionId": "MSHA_EMERGENCY_EGRESS_BLOCKED",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.11001",
+    "family": "emergency_egress",
+    "equipmentTerms": ["exit", "travelway", "escape route", "walkway"],
+    "failureTerms": ["blocked", "obstructed", "not passable", "restricted access"],
+    "safeSuppressors": ["clear", "unobstructed", "accessible"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "MSHA_FIRE_HOT_WORK_NO_FIRE_WATCH",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.4604",
+    "family": "fire_safety",
+    "equipmentTerms": ["welder", "torch", "grinder", "hot work"],
+    "failureTerms": ["no fire watch", "sparks near combustibles", "combustibles nearby"],
+    "safeSuppressors": ["fire watch", "combustibles removed"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_CONFINED_SPACE_NO_PERMIT",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.1204",
+    "family": "confined_space",
+    "equipmentTerms": ["manhole", "vault", "tank", "confined space"],
+    "failureTerms": ["no permit", "no atmospheric test", "no attendant", "unauthorized entry"],
+    "safeSuppressors": ["permit complete", "atmosphere tested", "attendant present"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_EMERGENCY_ACCESS_BLOCKED",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.34",
+    "family": "emergency_egress",
+    "equipmentTerms": ["exit", "access route", "emergency route", "stairway"],
+    "failureTerms": ["blocked", "obstructed", "not marked", "restricted"],
+    "safeSuppressors": ["clear", "marked", "unobstructed"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_GI_CONFINED_SPACE_ATMOSPHERE_NOT_TESTED",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.146",
+    "family": "confined_space",
+    "equipmentTerms": ["tank", "vessel", "pit", "silo", "confined space"],
+    "failureTerms": ["atmosphere not tested", "no permit", "no attendant", "ventilation missing"],
+    "safeSuppressors": ["atmosphere tested", "permit complete", "ventilated"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_GI_EMERGENCY_LIGHT_FAILED",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.37(a)(3)",
+    "family": "emergency_egress",
+    "equipmentTerms": ["emergency light", "exit sign", "egress light"],
+    "failureTerms": ["not illuminated", "failed test", "battery dead", "light out"],
+    "safeSuppressors": ["battery test passed", "illuminated", "working"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_GI_SPILL_RESPONSE_DEFICIENT",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.120",
+    "family": "environmental_spill",
+    "equipmentTerms": ["chemical spill", "spill kit", "leak", "container"],
+    "failureTerms": ["spill not contained", "no spill kit", "unknown liquid", "leaking drum"],
+    "safeSuppressors": ["contained", "cleaned", "spill kit available"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_GI_EYEWASH_BLOCKED_OR_NOT_FUNCTIONAL",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.151(c)",
+    "family": "emergency_response",
+    "equipmentTerms": ["eyewash", "safety shower", "emergency shower"],
+    "failureTerms": ["blocked", "not functional", "no flow", "access obstructed"],
+    "safeSuppressors": ["flow test complete", "access clear", "functional"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  }
+]

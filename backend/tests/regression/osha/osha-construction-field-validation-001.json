@@ -1,0 +1,26 @@
+[
+  {
+    "id": "OSHA-CON-001",
+    "observation": "worker on roof leading edge without fall protection",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "1926.501(b)(2)",
+    "context": { "industryScope": "construction" }
+  },
+  {
+    "id": "OSHA-CON-002",
+    "observation": "stored lumber stacked unstable in jobsite material area",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "material_handling",
+    "citationReference": "1926.250(a)",
+    "context": { "industryScope": "construction" }
+  },
+  {
+    "id": "OSHA-CON-003",
+    "observation": "defective portable grinder missing guard used on jobsite",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "tools_equipment",
+    "citationReference": "1926.300(a)",
+    "context": { "industryScope": "construction" }
+  }
+]

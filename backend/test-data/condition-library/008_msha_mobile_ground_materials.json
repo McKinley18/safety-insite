@@ -1,0 +1,38 @@
+[
+  {
+    "conditionId": "MSHA_MOBILE_EQUIPMENT_DEFECTS",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.14100(b)",
+    "family": "mobile_equipment",
+    "equipmentTerms": ["haul truck", "loader", "equipment"],
+    "failureTerms": ["defect", "unsafe condition", "not corrected"],
+    "safeSuppressors": ["inspected and safe", "no defects"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  },
+  {
+    "conditionId": "MSHA_MOBILE_EQUIPMENT_BRAKES",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.14101(a)(1)",
+    "family": "mobile_equipment",
+    "equipmentTerms": ["haul truck", "loader", "equipment"],
+    "failureTerms": ["brakes not working", "brake failure"],
+    "safeSuppressors": ["brakes tested functional"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "MSHA_BERM_INADEQUATE_SECONDARY",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.9300(a)",
+    "family": "roadway_berm",
+    "equipmentTerms": ["berm", "dump point"],
+    "failureTerms": ["berm too low", "missing berm"],
+    "safeSuppressors": ["berm adequate"],
+    "negativeSignals": [],
+    "confidenceFloor": 95
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "recordId": "msha-30-cfr-56-14107",
+  "sourceAuthority": "MSHA",
+  "sourceType": "cfr",
+  "authorityTier": "federal_regulation",
+  "citation": "30 CFR 56.14107",
+  "title": "Moving machine parts",
+  "sourceUrl": "https://www.ecfr.gov/current/title-30/section-56.14107",
+  "retrievedAt": "2026-05-30T17:30:00Z",
+  "jurisdiction": "US_FEDERAL_MINING",
+  "hazardDomains": ["mechanical", "operational"],
+  "applicabilityTriggers": [
+    "surface mine",
+    "moving machine parts",
+    "conveyor",
+    "tail pulley",
+    "head pulley",
+    "drive belt",
+    "rotating shaft",
+    "pinch point",
+    "miner access",
+    "guard missing"
+  ],
+  "standardIntent": "Protect miners from contact with moving machine parts by requiring guarding where moving parts may cause injury.",
+  "evidenceNeeded": [
+    "Photograph moving machine part, guard condition, access path, and surrounding work area.",
+    "Document whether miners can contact the moving part during travel, work, inspection, cleanup, or maintenance.",
+    "Identify equipment type and machine part involved.",
+    "Document whether the equipment was operating, stopped, de-energized, locked/tagged, or otherwise controlled.",
+    "Evaluate whether related MSHA standards may apply for cleanup, maintenance, guarding, or conveyor safety."
+  ],
+  "nonApplicabilityQuestions": [
+    "Is this location under MSHA jurisdiction?",
+    "Can a miner reasonably contact the moving part?",
+    "Is the moving part already guarded by location, barrier, enclosure, or other effective guarding?",
+    "Is the issue actually a maintenance/energy-control condition rather than normal guarding?"
+  ],
+  "sourceBoundary": "mandatory",
+  "reviewStatus": "unreviewed",
+  "approvedForUse": false
+}

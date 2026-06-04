@@ -1,0 +1,180 @@
+{
+  "generatedAt": "2026-06-03T13:42:37.365979+00:00",
+  "audit": "SafeScope Canonical Pipeline Map",
+  "pipeline": [
+    {
+      "stage": 1,
+      "name": "Field Input Capture",
+      "purpose": "Capture observation text, evidence notes, photos, regulatory scope, risk profile, and workspace context.",
+      "primary_files": [
+        "frontend-next/app/inspection/page.tsx",
+        "frontend-next/components/inspection/SafeScopeControlsSection.tsx",
+        "frontend-next/lib/safescope.ts",
+        "backend/src/safescope-v2/dto/classify.dto.ts",
+        "backend/src/safescope-v2/safescope-v2.controller.ts"
+      ],
+      "output": "ClassifyDto / SafeScope classify request"
+    },
+    {
+      "stage": 2,
+      "name": "Evidence Fusion",
+      "purpose": "Combine hazard description and supporting evidence text into one usable narrative for classification and reasoning.",
+      "primary_files": [
+        "backend/src/safescope-v2/evidence/evidence-fusion.service.ts",
+        "backend/src/safescope-v2/safescope-v2.service.ts"
+      ],
+      "output": "fusedText / combinedNarrative"
+    },
+    {
+      "stage": 3,
+      "name": "Hazard Classification",
+      "purpose": "Identify primary hazard classification, confidence, additional hazards, excluded hazards, and review requirement.",
+      "primary_files": [
+        "backend/src/safescope-v2/classifier/weighted-classifier.service.ts",
+        "backend/src/safescope-v2/engine/deterministic-classifier.ts",
+        "backend/src/safescope-v2/taxonomy/safescope-taxonomy.registry.ts",
+        "backend/src/safescope-v2/brain/hazard-universe/hazard-universe.registry.ts",
+        "backend/src/safescope-v2/safescope-v2.service.ts"
+      ],
+      "output": "classification candidate(s)"
+    },
+    {
+      "stage": 4,
+      "name": "Mechanism / Exposure / Operational Context",
+      "purpose": "Determine mechanisms of injury, energy transfer, exposure path, equipment context, operational state, event sequence, and related controls.",
+      "primary_files": [
+        "backend/src/safescope-v2/mechanism-intelligence/mechanism-intelligence.service.ts",
+        "backend/src/safescope-v2/equipment-knowledge/equipment-task-mechanism-detector.service.ts",
+        "backend/src/safescope-v2/equipment-knowledge/equipment-archetype-detector.service.ts",
+        "backend/src/safescope-v2/energy-intelligence/energy-transfer-intelligence.service.ts",
+        "backend/src/safescope-v2/exposure-intelligence/exposure-intelligence.service.ts",
+        "backend/src/safescope-v2/exposure-path/exposure-path.service.ts",
+        "backend/src/safescope-v2/operational-state/operational-state.service.ts",
+        "backend/src/safescope-v2/event-sequence/event-sequence.service.ts"
+      ],
+      "output": "mechanism, exposure, equipment, and operational reasoning"
+    },
+    {
+      "stage": 5,
+      "name": "Brain Query and Snapshot",
+      "purpose": "Query regulatory, mechanism, controls, and evidence brain compartments and assemble a situational awareness packet.",
+      "primary_files": [
+        "backend/src/safescope-v2/brain/query-orchestrator/brain-query-orchestrator.service.ts",
+        "backend/src/safescope-v2/brain/snapshot-builder/brain-snapshot-builder.service.ts",
+        "backend/src/safescope-v2/brain/regulatory-brain/regulatory-brain.service.ts",
+        "backend/src/safescope-v2/brain/mechanism-brain/mechanism-brain.service.ts",
+        "backend/src/safescope-v2/brain/controls-brain/controls-brain.service.ts",
+        "backend/src/safescope-v2/brain/evidence-brain/evidence-brain.service.ts"
+      ],
+      "output": "brainSnapshot / situationalAwarenessPacket"
+    },
+    {
+      "stage": 6,
+      "name": "Standards Matching and Applicability",
+      "purpose": "Rank standards by scope fit, applicability, source authority, and hazard context while preserving human-review boundaries.",
+      "primary_files": [
+        "backend/src/applicable-standards/applicable-standards.service.ts",
+        "backend/src/safescope-v2/standards-intelligence/standards-intelligence.service.ts",
+        "backend/src/safescope-v2/standards-reasoning/standards-reasoning.service.ts",
+        "backend/src/safescope-v2/regulatory-applicability/regulatory-applicability.service.ts",
+        "backend/src/safescope-v2/reasoning-orchestrator/applicability/applicability-analysis.service.ts",
+        "backend/src/safescope-v2/brain/regulatory-brain/regulatory-knowledge.registry.ts"
+      ],
+      "output": "suggestedStandards / topStandards / applicability reasoning"
+    },
+    {
+      "stage": 7,
+      "name": "Evidence Gaps and Decision Confidence",
+      "purpose": "Identify missing critical information, unsupported claims, review triggers, confidence limits, and whether qualified review is required.",
+      "primary_files": [
+        "backend/src/safescope-v2/brain/evidence-gap-intelligence/evidence-gap-intelligence.service.ts",
+        "backend/src/safescope-v2/evidence-quality/evidence-quality.service.ts",
+        "backend/src/safescope-v2/evidence-sufficiency/evidence-sufficiency.service.ts",
+        "backend/src/safescope-v2/confidence/confidence-intelligence.service.ts",
+        "backend/src/safescope-v2/brain/decision-confidence/decision-confidence.service.ts",
+        "backend/src/safescope-v2/validation/confidence-calibration.service.ts",
+        "backend/src/safescope-v2/validation/reasoning-drift.service.ts"
+      ],
+      "output": "evidence gaps, confidence intelligence, review triggers"
+    },
+    {
+      "stage": 8,
+      "name": "Corrective Action Intelligence",
+      "purpose": "Generate corrective controls, immediate controls, action quality signals, control effectiveness reasoning, and verification evidence.",
+      "primary_files": [
+        "backend/src/action-engine/action-engine.service.ts",
+        "backend/src/safescope-v2/corrective-actions/corrective-action-template.registry.ts",
+        "backend/src/safescope-v2/action-quality/action-quality.service.ts",
+        "backend/src/safescope-v2/action-effectiveness/action-effectiveness.service.ts",
+        "backend/src/safescope-v2/control-effectiveness/control-effectiveness.service.ts",
+        "backend/src/safescope-v2/control-intelligence/control-intelligence.service.ts",
+        "backend/src/safescope-v2/brain/controls-brain/controls-knowledge.registry.ts"
+      ],
+      "output": "generatedActions / correctiveActions / immediateControls"
+    },
+    {
+      "stage": 9,
+      "name": "Field Output Contract",
+      "purpose": "Package SafeScope output into a field-usable contract with primary message, priority, disposition, controls, actions, evidence gaps, questions, warnings, and review boundary.",
+      "primary_files": [
+        "backend/src/safescope-v2/safescope-v2.service.ts",
+        "backend/scripts/validate-safescope-field-output-contract.ts",
+        "backend/scripts/validate-safescope-field-output-scenarios.ts",
+        "backend/scripts/validate-safescope-field-realism-gauntlet.ts"
+      ],
+      "output": "fieldOutput v1"
+    },
+    {
+      "stage": 10,
+      "name": "Finding Persistence",
+      "purpose": "Preserve SafeScope output, selected standards, selected actions, field-output actions, manual actions, risk, and evidence into a report finding.",
+      "primary_files": [
+        "frontend-next/lib/inspection/findingBuilder.ts",
+        "frontend-next/app/inspection/page.tsx",
+        "frontend-next/lib/inspection/reportBuilder.ts",
+        "frontend-next/lib/reportStorage.ts"
+      ],
+      "output": "saved finding / inspection report"
+    },
+    {
+      "stage": 11,
+      "name": "Review, Export, and Traceability",
+      "purpose": "Show findings, SafeScope appendix, validation status, field-output evidence gaps, supervisor questions, and export PDF report package.",
+      "primary_files": [
+        "frontend-next/app/inspection-review/page.tsx",
+        "frontend-next/app/reports/page.tsx",
+        "frontend-next/lib/localExporter.ts",
+        "frontend-next/lib/reportPackages.ts"
+      ],
+      "output": "reviewed report / PDF export"
+    },
+    {
+      "stage": 12,
+      "name": "Human Feedback and Governed Learning",
+      "purpose": "Capture qualified reviewer feedback, supervisor validation, learning memory, and improvement candidates without allowing automatic self-modification.",
+      "primary_files": [
+        "backend/src/safescope-v2/feedback/safescope-feedback.service.ts",
+        "backend/src/safescope-v2/validation/supervisor-validation.service.ts",
+        "backend/src/safescope-v2/brain/learning-memory/learning-memory.service.ts",
+        "backend/src/safescope-v2/brain/improvement-candidate-engine/improvement-candidate-engine.service.ts",
+        "backend/src/safescope-v2/learning/learning-governance.service.ts"
+      ],
+      "output": "review signals / learning memory / improvement candidates"
+    }
+  ],
+  "openQuestions": [
+    "Are all older intelligence modules still used in the active classify path, or do some need to be retired or explicitly marked legacy?",
+    "Should every SafeScope output include a brainSnapshot summary and a fieldOutput contract by default?",
+    "Should fieldOutput become the primary object used by the frontend for actions/evidence gaps instead of generatedActions?",
+    "Do all standards suggestions include scope fit, source authority, and applicability rationale in a consistent shape?",
+    "Do corrective actions always include verification evidence and action effectiveness reasoning?",
+    "Do supervisor validation and feedback produce measurable learning-memory records that feed improvement candidates?"
+  ],
+  "recommendedNextTasks": [
+    "Add an automated pipeline contract validator that asserts every major stage returns a stable object.",
+    "Add a dependency map that marks each SafeScope service as active, supporting, experimental, legacy, or unused.",
+    "Add a duplicate/overlap audit for standards, controls, evidence, mechanism, and scenario registries.",
+    "Add adversarial gauntlets for conflicting evidence, vague observations, multi-hazard observations, and misleading keywords.",
+    "Add governed learning workflow tests from supervisor feedback to learning memory to improvement candidates."
+  ]
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "FIELD-LANG-001",
+    "observation": "conveyor head pulley guard removed and miners working nearby",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "56.14107(a)",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "FIELD-LANG-002",
+    "observation": "catwalk beside screen deck has open edge with no handrail",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "56.15005",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "FIELD-LANG-003",
+    "observation": "electrical cabinet door left open exposing energized parts",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "electrical",
+    "citationReference": "1910.303(b)(1)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "FIELD-LANG-004",
+    "observation": "employee using compressed air without eye protection",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "ppe",
+    "citationReference": "1910.132(a)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "FIELD-LANG-005",
+    "observation": "worker exposed to six foot leading edge on construction floor",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "1926.501(b)(2)",
+    "context": { "industryScope": "construction" }
+  },
+  {
+    "id": "FIELD-LANG-006",
+    "observation": "jobsite stairway missing handrail",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "safe_access",
+    "citationReference": "1926.1052(c)",
+    "context": { "industryScope": "construction" }
+  },
+  {
+    "id": "FIELD-LANG-007",
+    "observation": "walkway clean, guards in place, no defects observed",
+    "scopeExpected": "no_match",
+    "primaryHazardFamily": "other",
+    "citationReference": "NO_MATCH",
+    "context": { "industryScope": "mining" }
+  }
+]

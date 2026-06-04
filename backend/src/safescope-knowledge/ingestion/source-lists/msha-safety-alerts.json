@@ -1,0 +1,138 @@
+{
+  "sourceKey": "msha-safety-alerts",
+  "agency": "MSHA",
+  "urls": [
+    {
+      "url": "https://www.msha.gov/news-and-updates/alerts-hazards/filter/msha-winter-safety-alert",
+      "titleHint": "MSHA Winter - Safety Alert",
+      "hazardTags": [
+        "winter weather",
+        "slip trip fall",
+        "mobile equipment",
+        "visibility"
+      ],
+      "equipmentTags": [
+        "truck",
+        "mobile equipment",
+        "windshield",
+        "heater",
+        "defroster"
+      ],
+      "taskTags": [
+        "travel",
+        "equipment operation",
+        "pre-shift inspection"
+      ],
+      "standardTags": [],
+      "lessonTags": [
+        "weather preparedness",
+        "visibility",
+        "safe access",
+        "seasonal hazard prevention"
+      ]
+    },
+    {
+      "url": "https://www.msha.gov/news-and-updates/alerts-hazards/filter/mnm-safety-alert-seat-belt-use-mobile-equipment",
+      "titleHint": "MNM Safety Alert: Seat Belt Use on Mobile Equipment",
+      "hazardTags": [
+        "powered haulage",
+        "mobile equipment",
+        "rollover",
+        "struck by"
+      ],
+      "equipmentTags": [
+        "truck",
+        "loader",
+        "mobile equipment",
+        "seat belt"
+      ],
+      "taskTags": [
+        "equipment operation",
+        "travel",
+        "pre-operational inspection"
+      ],
+      "standardTags": [
+        "30 CFR 56.14130",
+        "30 CFR 57.14130",
+        "30 CFR 56.14131",
+        "30 CFR 57.14131"
+      ],
+      "lessonTags": [
+        "seat belt use",
+        "mobile equipment safety",
+        "rollover prevention",
+        "fatality prevention"
+      ]
+    },
+    {
+      "url": "https://www.msha.gov/working-proximity-belt-conveyors-safety-alert",
+      "titleHint": "MSHA Safety Alert: Working in Proximity to Belt Conveyors",
+      "hazardTags": [
+        "conveyor",
+        "machine guarding",
+        "entanglement",
+        "pinch point",
+        "caught in"
+      ],
+      "equipmentTags": [
+        "conveyor",
+        "belt",
+        "return roller",
+        "tail pulley"
+      ],
+      "taskTags": [
+        "maintenance",
+        "cleanup",
+        "inspection",
+        "belt work"
+      ],
+      "standardTags": [
+        "30 CFR 56.14107",
+        "30 CFR 57.14107",
+        "30 CFR 77.400",
+        "30 CFR 75.1722"
+      ],
+      "lessonTags": [
+        "lockout tagout tryout",
+        "block against motion",
+        "guard moving machine parts",
+        "conveyor exposure control"
+      ]
+    },
+    {
+      "url": "https://www.msha.gov/belt-conveyor-system-stored-energy-safety-alert",
+      "titleHint": "MSHA Safety Alert: Belt Conveyor System Stored Energy",
+      "hazardTags": [
+        "conveyor",
+        "stored energy",
+        "lockout tagout",
+        "entanglement",
+        "caught in"
+      ],
+      "equipmentTags": [
+        "belt conveyor",
+        "pulley",
+        "take-up",
+        "belt"
+      ],
+      "taskTags": [
+        "maintenance",
+        "belt splicing",
+        "repair",
+        "cleanup"
+      ],
+      "standardTags": [
+        "30 CFR 56.12016",
+        "30 CFR 57.12016",
+        "30 CFR 56.14105",
+        "30 CFR 57.14105"
+      ],
+      "lessonTags": [
+        "control stored energy",
+        "lockout before maintenance",
+        "block against motion",
+        "verify zero energy"
+      ]
+    }
+  ]
+}

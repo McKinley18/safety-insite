@@ -1,0 +1,45 @@
+export const LOTO_REFERENCE = {
+  domain: 'lockout_tagout_energy_isolation',
+  indicators: [
+    'lockout', 'tagout', 'loto', 'locked out', 'not locked out',
+    'de-energized', 'energized', 'zero energy', 'isolation',
+    'blocked', 'stored energy', 'restart', 'startup',
+    'maintenance', 'servicing', 'clearing jam', 'adjusting', 'guard removed',
+  ],
+  energyTypes: [
+    'electrical', 'mechanical', 'hydraulic', 'pneumatic',
+    'thermal', 'chemical', 'gravity', 'stored energy',
+  ],
+  requiredControls: [
+    'identify all energy sources',
+    'notify affected employees',
+    'shut down equipment',
+    'isolate energy sources',
+    'apply locks and tags',
+    'release stored energy',
+    'verify zero energy',
+    'control restart',
+    'document authorized employee control',
+  ],
+  failureModes: [
+    'equipment not isolated',
+    'stored energy not relieved',
+    'restart not controlled',
+    'guard removed while energized',
+    'maintenance performed during operation',
+    'authorized employee control unclear',
+    'verification of zero energy missing',
+  ],
+  escalationPatterns: [
+    'unexpected energization',
+    'unexpected startup',
+    'release of stored energy',
+    'caught-in during clearing or adjustment',
+    'electrical contact during troubleshooting',
+  ],
+  standards: {
+    OSHA_GENERAL_INDUSTRY: ['29 CFR 1910.147'],
+    OSHA_CONSTRUCTION: ['29 CFR 1926.417', '29 CFR 1926.702(j)'],
+    MSHA: ['30 CFR 56.12016', '30 CFR 56.14105', '30 CFR 57.12016', '30 CFR 57.14105'],
+  },
+};

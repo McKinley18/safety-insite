@@ -1,0 +1,57 @@
+[
+  {
+    "category": "guarding",
+    "expected": ["guard", "moving", "machine", "conveyor", "pulley"],
+    "inputs": [
+      "Conveyor tail pulley missing guard near feed hopper.",
+      "conveyer gard missing near hopper",
+      "Unguarded rotating shaft at crusher motor.",
+      "Belt drive guard removed while operating.",
+      "Pinch point exposed on return roller."
+    ]
+  },
+  {
+    "category": "safe_access",
+    "expected": ["access", "ladder", "platform", "walkway", "travelway"],
+    "inputs": [
+      "Damaged ladder with bent side rail at crusher platform.",
+      "No safe access to working place.",
+      "Walkway grating missing near screen tower.",
+      "Travelway blocked by stored material.",
+      "Loose ladder to elevated work area."
+    ]
+  },
+  {
+    "category": "electrical",
+    "expected": ["electrical", "wire", "cord", "conductor", "damage"],
+    "inputs": [
+      "Damaged electrical cord supplying pump.",
+      "Exposed wire in wet area.",
+      "Panel has exposed energized parts.",
+      "Cord insulation cut and conductor showing.",
+      "Cable crushed by mobile equipment."
+    ]
+  },
+  {
+    "category": "housekeeping",
+    "expected": ["housekeeping", "debris", "slip", "trip", "walkway"],
+    "inputs": [
+      "Oil spill on walkway near shop.",
+      "Loose aggregate creating trip hazard.",
+      "Trash and debris around work area.",
+      "Mud buildup causing slip hazard.",
+      "Scrap metal cluttering passageway."
+    ]
+  },
+  {
+    "category": "edge_cases",
+    "expected": [],
+    "inputs": [
+      "",
+      "unsafe",
+      "thing broken",
+      "ladder!!!! broken??? rail@@@",
+      "possible 56.14107 guard issue"
+    ]
+  }
+]

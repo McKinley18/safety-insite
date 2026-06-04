@@ -1,0 +1,42 @@
+[
+  {
+    "id": "SHORT-001",
+    "observation": "missing guard",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "1910.212(a)(1)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "SHORT-002",
+    "observation": "unguarded pulley",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "56.14107(a)",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "SHORT-003",
+    "observation": "no handrail",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "safe_access",
+    "citationReference": "1926.1052(c)",
+    "context": { "industryScope": "construction" }
+  },
+  {
+    "id": "SHORT-004",
+    "observation": "blocked exit",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "emergency_egress",
+    "citationReference": "1910.37(a)(3)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "SHORT-005",
+    "observation": "backup alarm failed",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "mobile_equipment",
+    "citationReference": "56.14132(a)",
+    "context": { "industryScope": "mining" }
+  }
+]

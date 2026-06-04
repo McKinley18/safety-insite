@@ -1,0 +1,80 @@
+[
+  {
+    "conditionId": "MSHA_HOUSEKEEPING_WALKWAY_OBSTRUCTED",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.20003(a)",
+    "family": "housekeeping",
+    "equipmentTerms": ["walkway", "screen deck", "plant floor"],
+    "failureTerms": ["spillage", "loose rock", "debris", "obstructed"],
+    "safeSuppressors": ["clean", "clear", "unobstructed", "good condition"],
+    "requiredSignals": ["walkway"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "MSHA_SAFE_ACCESS_LADDER_DAMAGE",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.11001",
+    "family": "safe_access",
+    "equipmentTerms": ["ladder", "fixed ladder"],
+    "failureTerms": ["missing rung", "broken rung", "damaged rung"],
+    "safeSuppressors": ["repaired", "secured", "good condition"],
+    "requiredSignals": ["ladder"],
+    "negativeSignals": ["scaffold"],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_FALL_PROTECTION_EDGE",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.501(b)(1)",
+    "family": "fall_protection",
+    "equipmentTerms": ["roof", "edge", "elevation"],
+    "failureTerms": ["no fall protection", "unprotected edge", "no harness"],
+    "safeSuppressors": ["protected", "guarded", "tied off"],
+    "requiredSignals": ["edge"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_SCAFFOLD_GUARDRAIL",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.451(g)",
+    "family": "scaffold",
+    "equipmentTerms": ["scaffold"],
+    "failureTerms": ["missing guardrail", "no guardrail"],
+    "safeSuppressors": ["guardrails complete", "secured"],
+    "requiredSignals": ["scaffold"],
+    "negativeSignals": ["ladder"],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_STRUCK_BY_SUSPENDED_LOAD",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.251",
+    "family": "struck_by",
+    "equipmentTerms": ["crane", "beam", "load"],
+    "failureTerms": ["under suspended load", "beneath load"],
+    "safeSuppressors": ["clear of load"],
+    "requiredSignals": ["load"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_RESPIRATORY_WRONG_CARTRIDGE",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.134",
+    "family": "respiratory",
+    "equipmentTerms": ["respirator", "cartridge"],
+    "failureTerms": ["wrong cartridge", "dust cartridge for vapor"],
+    "safeSuppressors": ["fit test completed", "correct cartridge"],
+    "requiredSignals": ["cartridge"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  }
+]

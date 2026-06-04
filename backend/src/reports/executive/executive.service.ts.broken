@@ -1,0 +1,69 @@
+import { buildControlStates } from "../../engine/controls/control.state";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Report } from "../entities/report.entity";
+
+import { classifyHazard, rankHazards } from "../../engine/hazard.classifier";
+import { HazardStandardMap } from "../../engine/hazard.rules";
+import { evaluateRequiredControls } from "../../engine/controls/required.controls";
+import { expandControlsFromHazards } from "../../engine/controls/control.expansion";
+import { calculateControlScore } from "../../engine/controls/control.scoring";
+import { calculateRisk, calculateHazardRisk } from "../../engine/risk.engine";
+import { generateActions } from "../../engine/action.engine";
+
+@Injectable()
+export class ExecutiveService {
+  constructor(
+    @InjectRepository(Report)
+    private readonly repo: Repository<Report>
+  ) {}
+
+  async generateExecutiveSummary(reportId: string) {
+    console.log("=== EXEC START ===");
+
+    const report = await this.repo.findOne({
+      where: { id: reportId },
+      relations: ["attachments"],
+    });
+
+    if (!report) throw new NotFoundException("Report not found");
+
+    const text = report.narrative || report.title || "";
+
+    const classification = classifyHazard(text);
+    const hazardTypes = classification?.hazardTypes || [];
+
+    const ranked = rankHazards(hazardTypes);
+    const primaryHazard = ranked.length ? ranked[0].type : null;
+
+    const controlFindings = evaluateRequiredControls(text) || [];
+
+const normalize = (v: any) =>
+  String(v || "").toLowerCase().trim().replace(/\s+/g, "_");
+
+const requiredControls = Array.from(
+  new Set([
+    ...expandControlsFromHazards(hazardTypes).map(normalize),
+    ...(hazardTypes.includes("fall_hazard_from_lift")
+      ? ["fall_protection", "harness", "tie_off", "anchor_point"]
+      : []),
+  ])
+);
+
+const controlStates = buildControlStates(
+  hazardTypes,
+  controlFindings,
+  requiredControls
+);
+
+const presentControls = controlStates.filter(c => c.state === "present");
+const missingControls = controlStates.filter(c => c.state === "missing");
+
+    const severity = report.severity ?? "unknown";
+
+const findings = allStandards.map((s: string, i: number) => ({
+  index: i + 1,
+  citation: s,
+}));
+

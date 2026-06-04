@@ -1,0 +1,21 @@
+{
+  "audit": "SafeScope Mind vs. Memory Audit",
+  "version": "v1",
+  "purpose": "Prove SafeScope performs connected safety reasoning rather than static response regurgitation.",
+  "requiredCapabilities": [
+    "novel_scenario_generalization",
+    "cross_hazard_reasoning",
+    "false_positive_resistance",
+    "evidence_aware_confidence",
+    "specific_corrective_action_reasoning",
+    "human_review_boundary_preservation"
+  ],
+  "recommendedNextTasks": [
+    "Add Mind vs Memory validator script",
+    "Add novel scenario tests",
+    "Add false-positive trap tests",
+    "Add multi-hazard tests",
+    "Add evidence-gap confidence tests",
+    "Wire validator into production readiness"
+  ]
+}

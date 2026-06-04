@@ -1,0 +1,122 @@
+[
+  {
+    "conditionId": "OSHA_GI_ERGONOMICS_REPETITIVE_STRAIN",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "5(a)(1)",
+    "family": "ergonomics",
+    "equipmentTerms": ["workstation", "assembly line", "packing station"],
+    "failureTerms": ["repetitive strain", "awkward posture", "forceful exertion", "poor workstation setup"],
+    "safeSuppressors": ["adjusted", "ergonomic controls installed", "rotation implemented"],
+    "negativeSignals": [],
+    "confidenceFloor": 80
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_MANUAL_HANDLING_OVEREXERTION",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "5(a)(1)",
+    "family": "ergonomics",
+    "equipmentTerms": ["material", "block", "pipe", "sheetrock", "manual lift"],
+    "failureTerms": ["team lift not used", "manual handling overload", "overexertion", "awkward lift"],
+    "safeSuppressors": ["mechanical aid used", "team lift used"],
+    "negativeSignals": [],
+    "confidenceFloor": 80
+  },
+  {
+    "conditionId": "MSHA_MANUAL_MATERIAL_HANDLING_OVEREXERTION",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "56.16002",
+    "family": "material_handling",
+    "equipmentTerms": ["rock", "screen media", "belt roll", "manual lift", "material"],
+    "failureTerms": ["manual handling overload", "awkward lift", "uncontrolled material", "pinch point while lifting"],
+    "safeSuppressors": ["mechanical aid used", "secured", "team lift used"],
+    "negativeSignals": [],
+    "confidenceFloor": 80
+  },
+  {
+    "conditionId": "OSHA_GI_MACHINE_DEFECT_CONTINUED_OPERATION",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.212(a)(1)",
+    "family": "tools_equipment",
+    "equipmentTerms": ["machine", "press", "saw", "conveyor", "equipment"],
+    "failureTerms": ["defect not corrected", "operated with defect", "unsafe condition", "guard damaged"],
+    "safeSuppressors": ["removed from service", "repaired", "locked out"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_DEFECTIVE_EQUIPMENT_IN_USE",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.20(b)(2)",
+    "family": "tools_equipment",
+    "equipmentTerms": ["equipment", "tool", "machine", "vehicle"],
+    "failureTerms": ["defect not corrected", "unsafe equipment", "used with defect", "inspection failed"],
+    "safeSuppressors": ["removed from service", "repaired", "tagged out"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  },
+  {
+    "conditionId": "MSHA_CONTRACTOR_HAZARD_COMMUNICATION",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "45.4",
+    "family": "contractor_site_controls",
+    "equipmentTerms": ["contractor", "contractor crew", "site contractor"],
+    "failureTerms": ["hazard not communicated", "not informed of site hazards", "contractor exposed"],
+    "safeSuppressors": ["hazards communicated", "site orientation completed"],
+    "negativeSignals": [],
+    "confidenceFloor": 80
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_SITE_INSPECTION_DEFICIENT",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.20(b)(2)",
+    "family": "site_controls",
+    "equipmentTerms": ["site inspection", "competent person", "jobsite", "work area"],
+    "failureTerms": ["hazard not corrected", "inspection not performed", "unsafe condition left open"],
+    "safeSuppressors": ["corrected", "inspection complete", "competent person reviewed"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  },
+  {
+    "conditionId": "OSHA_GI_TRAINING_RECORD_MISSING",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.1200(h)",
+    "family": "training_documentation",
+    "equipmentTerms": ["training record", "employee training", "documentation"],
+    "failureTerms": ["missing training record", "training not documented", "employee not trained"],
+    "safeSuppressors": ["training complete", "record available", "documented"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_FALL_TRAINING_DEFICIENT",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.503(a)",
+    "family": "training_documentation",
+    "equipmentTerms": ["fall protection training", "training record", "employee training"],
+    "failureTerms": ["not trained", "training missing", "does not recognize fall hazard"],
+    "safeSuppressors": ["training complete", "documented", "retrained"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  },
+  {
+    "conditionId": "MSHA_TASK_TRAINING_DEFICIENT",
+    "scope": "mining",
+    "agency": "MSHA",
+    "citation": "46.7",
+    "family": "training_documentation",
+    "equipmentTerms": ["task training", "training record", "miner training"],
+    "failureTerms": ["task training missing", "not trained", "training not documented"],
+    "safeSuppressors": ["training complete", "record available", "documented"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  }
+]

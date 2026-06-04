@@ -1,0 +1,28 @@
+src/alerts/alerts.controller.ts(24,11): error TS2339: Property 'status' does not exist on type 'Alert'.
+src/alerts/alerts.controller.ts(25,11): error TS2339: Property 'statusAt' does not exist on type 'Alert'.
+src/database/seed.ts(38,33): error TS2339: Property 'citation' does not exist on type 'never'.
+src/database/seed.ts(48,11): error TS2698: Spread types may only be created from object types.
+src/inspection/inspection.service.ts(17,34): error TS7006: Parameter 'h' implicitly has an 'any' type.
+src/intelligence-library/scripts/generate-scenarios.ts(7,7): error TS7034: Variable 'scenarios' implicitly has type 'any[]' in some locations where its type cannot be determined.
+src/intelligence-library/scripts/generate-scenarios.ts(16,93): error TS7005: Variable 'scenarios' implicitly has an 'any[]' type.
+src/intelligence/predictive.service.ts(18,11): error TS7034: Variable 'alerts' implicitly has type 'any[]' in some locations where its type cannot be determined.
+src/intelligence/predictive.service.ts(31,12): error TS7005: Variable 'alerts' implicitly has an 'any[]' type.
+src/match-engine/match-engine.service.ts(20,26): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ guarding: { keywords: string[]; conditions: string[]; }; electrical: { keywords: string[]; conditions: string[]; }; fall_protection: { keywords: string[]; conditions: string[]; }; housekeeping: { keywords: string[]; conditions: string[]; }; }'.
+src/match-engine/match-engine.service.ts(22,37): error TS7006: Parameter 'cond' implicitly has an 'any' type.
+src/safescope/ai/ai.service.ts(29,45): error TS7006: Parameter 'a' implicitly has an 'any' type.
+src/safescope/engine/risk.service.ts(11,12): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ Low: { weight: number; }; Moderate: { weight: number; }; High: { weight: number; }; Critical: { weight: number; }; }'.
+src/safescope/standards/standards.service.ts(11,8): error TS7006: Parameter 'seed' implicitly has an 'any' type.
+src/standards/ingestion/ingest.cfr.bulk.ts(90,23): error TS7006: Parameter 'repo' implicitly has an 'any' type.
+src/standards/ingestion/ingest.cfr.bulk.ts(90,29): error TS7006: Parameter 'record' implicitly has an 'any' type.
+src/standards/ingestion/ingest.cfr.ts(22,23): error TS7006: Parameter 'repo' implicitly has an 'any' type.
+src/standards/ingestion/ingest.cfr.ts(22,29): error TS7006: Parameter 'record' implicitly has an 'any' type.
+src/standards/ingestion/ingest.ts(22,23): error TS7006: Parameter 'repo' implicitly has an 'any' type.
+src/standards/ingestion/ingest.ts(22,29): error TS7006: Parameter 'record' implicitly has an 'any' type.
+src/standards/seed/standards.seed.ts(4,7): error TS2322: Type '({ agencyCode: "MSHA"; citation: string; partNumber: string; subpart: string; title: string; standardText: string; plainLanguageSummary: string; scopeCode: "mining"; hazardCodes: string[]; keywords: string[]; } | { ...; } | { ...; } | undefined)[]' is not assignable to type 'Partial<Standard>[]'.
+src/standards/standards-seed.service.ts(22,26): error TS2339: Property 'citation' does not exist on type 'never'.
+src/standards/standards-seed.service.ts(29,35): error TS2339: Property 'citation' does not exist on type 'never'.
+src/standards/standards-seed.service.ts(36,13): error TS2698: Spread types may only be created from object types.
+src/standards/standards-seed.service.ts(43,13): error TS2698: Spread types may only be created from object types.
+src/standards/standards-seed.service.ts(49,67): error TS2339: Property 'citation' does not exist on type 'never'.
+src/standards/standards-seed.service.ts(50,59): error TS2339: Property 'citation' does not exist on type 'never'.
+src/standards/standards-seed.service.ts(65,11): error TS2769: No overload matches this call.

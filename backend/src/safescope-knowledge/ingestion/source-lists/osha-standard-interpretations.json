@@ -1,0 +1,19 @@
+{
+  "sourceKey": "osha-standard-interpretations",
+  "agency": "OSHA",
+  "urls": [
+    {
+      "url": "https://www.osha.gov/laws-regs/standardinterpretations/2005-07-07",
+      "titleHint": "OSHA Interpretation: Machine guarding and exposure to hazards from robotic shuttle system",
+      "standardTags": ["1910.212", "1910.212(a)(1)"],
+      "hazardTags": ["machine guarding", "moving parts", "nip points"],
+      "equipmentTags": ["machine", "robotic shuttle", "conveyor"],
+      "taskTags": ["operation", "maintenance", "travel"],
+      "lessonTags": [
+        "interpretation support",
+        "guarding exposure",
+        "applicability"
+      ]
+    }
+  ]
+}

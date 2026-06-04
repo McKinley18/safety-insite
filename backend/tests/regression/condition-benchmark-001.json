@@ -1,0 +1,1372 @@
+[
+  {
+    "id": "CBM-000001",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "crusher has guard missing at plant.",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "medium",
+    "citationReference": "56.14107(a)",
+    "conditionIdExpected": "MSHA_MACHINE_GUARDING_MOVING_PARTS_EXPOSED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000002",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "walkway has spillage at plant.",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium",
+    "citationReference": "56.20003(a)",
+    "conditionIdExpected": "MSHA_HOUSEKEEPING_SPILLAGE_TRAVELWAY",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000003",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "cable has damaged cable at plant.",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium",
+    "citationReference": "56.12004",
+    "conditionIdExpected": "MSHA_ELECTRICAL_DAMAGED_CONDUCTORS",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000004",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "ladder has missing rung at crusher tower.",
+    "primaryHazardFamily": "safe_access",
+    "difficulty": "medium",
+    "citationReference": "56.11001",
+    "conditionIdExpected": "MSHA_SAFE_ACCESS_LADDER_STAIR_PLATFORM",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000005",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "berm has berm low at pit.",
+    "primaryHazardFamily": "roadway_berm",
+    "difficulty": "medium",
+    "citationReference": "56.9300(a)",
+    "conditionIdExpected": "MSHA_ROADWAY_BERM_INADEQUATE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000006",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "haul truck has backup alarm not audible at pit.",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "citationReference": "56.14132(a)",
+    "conditionIdExpected": "MSHA_MOBILE_EQUIPMENT_WARNING_DEVICE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000007",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "exam record has hazard not recorded at plant office.",
+    "primaryHazardFamily": "workplace_exam",
+    "difficulty": "medium",
+    "citationReference": "56.18002(a)",
+    "conditionIdExpected": "MSHA_WORKPLACE_EXAM_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000008",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "crusher has dust cloud at crusher.",
+    "primaryHazardFamily": "respiratory",
+    "difficulty": "medium",
+    "citationReference": "56.5001(a)",
+    "conditionIdExpected": "MSHA_RESPIRATORY_DUST_EXPOSURE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000009",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "roof edge has without fall protection at roof.",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium",
+    "citationReference": "1926.501(b)(1)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_FALL_EDGE_EXPOSURE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000010",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "ladder has unstable at jobsite.",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "medium",
+    "citationReference": "1926.1053(b)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_LADDER_UNSAFE_USE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000011",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "scaffold has missing guardrail at masonry.",
+    "primaryHazardFamily": "scaffold",
+    "difficulty": "medium",
+    "citationReference": "1926.451(g)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_SCAFFOLD_GUARDRAIL_PLATFORM",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000012",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "trench has no shoring at sewer.",
+    "primaryHazardFamily": "excavation",
+    "difficulty": "medium",
+    "citationReference": "1926.652(a)(1)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_EXCAVATION_NO_PROTECTION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000013",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "cut-off saw has without face shield at cutting.",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "medium",
+    "citationReference": "1926.102(a)(1)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_PPE_EYE_FACE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000014",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "temporary power cord has damaged insulation at jobsite.",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium",
+    "citationReference": "1926.416(a)(1)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_ELECTRICAL_TEMP_WIRING",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000015",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "suspended load has worker beneath at crane lift.",
+    "primaryHazardFamily": "struck_by",
+    "difficulty": "medium",
+    "citationReference": "1926.251",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_STRUCK_BY_SUSPENDED_LOAD",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000016",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "conveyor has without lockout at maintenance.",
+    "primaryHazardFamily": "lockout_tagout",
+    "difficulty": "medium",
+    "citationReference": "1910.147(c)(1)",
+    "conditionIdExpected": "OSHA_GI_LOCKOUT_TAGOUT_UNCONTROLLED_ENERGY",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000017",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "control panel has open panel at maintenance room.",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium",
+    "citationReference": "1910.303(b)(1)",
+    "conditionIdExpected": "OSHA_GI_ELECTRICAL_EXPOSED_LIVE_PARTS",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000018",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "aisle has oil spill at warehouse.",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium",
+    "citationReference": "1910.22(a)(1)",
+    "conditionIdExpected": "OSHA_GI_HOUSEKEEPING_WALKING_SURFACE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000019",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "forklift has elevated load at warehouse.",
+    "primaryHazardFamily": "powered_industrial_truck",
+    "difficulty": "medium",
+    "citationReference": "1910.178",
+    "conditionIdExpected": "OSHA_GI_POWERED_INDUSTRIAL_TRUCK_UNSAFE_OPERATION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000020",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "compressor has without hearing protection at compressor room.",
+    "primaryHazardFamily": "noise",
+    "difficulty": "medium",
+    "citationReference": "1910.95(c)(1)",
+    "conditionIdExpected": "OSHA_GI_NOISE_HEARING_PROTECTION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000021",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "respirator has wrong cartridge at paint.",
+    "primaryHazardFamily": "respiratory",
+    "difficulty": "medium",
+    "citationReference": "1910.134",
+    "conditionIdExpected": "OSHA_GI_RESPIRATORY_PROTECTION_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000022",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "chemical bottle has unlabeled at janitorial.",
+    "primaryHazardFamily": "hazcom",
+    "difficulty": "medium",
+    "citationReference": "1910.1200",
+    "conditionIdExpected": "OSHA_GI_HAZCOM_UNLABELED_CONTAINER",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000023",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "bench grinder has unguarded at maintenance shop.",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "medium",
+    "citationReference": "1910.212(a)(1)",
+    "conditionIdExpected": "OSHA_GI_MACHINE_GUARDING_POINT_OF_OPERATION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000024",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "exit sign has not illuminated at warehouse.",
+    "primaryHazardFamily": "fire_safety",
+    "difficulty": "medium",
+    "citationReference": "1910.37(a)(3)",
+    "conditionIdExpected": "OSHA_GI_FIRE_EGRESS_EXTINGUISHER",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000025",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "highwall has loose material at pit.",
+    "primaryHazardFamily": "ground_control",
+    "difficulty": "medium",
+    "citationReference": "56.3130",
+    "conditionIdExpected": "MSHA_GROUND_CONTROL_UNSTABLE_HIGHWALL",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000026",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "ground has loose ground at pit.",
+    "primaryHazardFamily": "ground_control",
+    "difficulty": "medium",
+    "citationReference": "56.3200",
+    "conditionIdExpected": "MSHA_GROUND_CONTROL_LOOSE_GROUND",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000027",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "fire extinguisher has missing at shop.",
+    "primaryHazardFamily": "fire_safety",
+    "difficulty": "medium",
+    "citationReference": "56.4201",
+    "conditionIdExpected": "MSHA_FIRE_EXTINGUISHER_MISSING_BLOCKED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000028",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "flammable liquid has improper storage at shop.",
+    "primaryHazardFamily": "fire_safety",
+    "difficulty": "medium",
+    "citationReference": "56.4400",
+    "conditionIdExpected": "MSHA_FLAMMABLE_STORAGE_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000029",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "compressed gas cylinder has unsecured at shop.",
+    "primaryHazardFamily": "compressed_gas",
+    "difficulty": "medium",
+    "citationReference": "56.4600",
+    "conditionIdExpected": "MSHA_COMPRESSED_GAS_CYLINDER_UNSECURED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000030",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "welder has sparks near combustibles at shop.",
+    "primaryHazardFamily": "welding_cutting",
+    "difficulty": "medium",
+    "citationReference": "56.4604",
+    "conditionIdExpected": "MSHA_WELDING_CUTTING_FIRE_EXPOSURE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000031",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "crusher has no hearing protection at crusher.",
+    "primaryHazardFamily": "noise",
+    "difficulty": "medium",
+    "citationReference": "56.5050",
+    "conditionIdExpected": "MSHA_NOISE_EXPOSURE_HEARING_PROTECTION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000032",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "lighting has poor lighting at night shift.",
+    "primaryHazardFamily": "illumination",
+    "difficulty": "medium",
+    "citationReference": "56.17001",
+    "conditionIdExpected": "MSHA_ILLUMINATION_INADEQUATE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000033",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "equipment has defect not corrected at pre-op inspection.",
+    "primaryHazardFamily": "tools_equipment",
+    "difficulty": "medium",
+    "citationReference": "56.14100(b)",
+    "conditionIdExpected": "MSHA_TOOLS_EQUIPMENT_DEFECTIVE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000034",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "truck has not chocked at haul road.",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "citationReference": "56.14207",
+    "conditionIdExpected": "MSHA_PARKING_BRAKES_WHEEL_CHOCKS",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000035",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "rebar has uncapped at concrete work.",
+    "primaryHazardFamily": "impalement",
+    "difficulty": "medium",
+    "citationReference": "1926.701(b)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_REBAR_IMPALEMENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000036",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "aerial lift has lanyard not attached at elevated work.",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium",
+    "citationReference": "1926.453(b)(2)(v)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_AERIAL_LIFT_FALL_EXPOSURE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000037",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "walkway has debris at jobsite.",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium",
+    "citationReference": "1926.25(a)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_HOUSEKEEPING_DEBRIS",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000038",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "fire extinguisher has missing at jobsite.",
+    "primaryHazardFamily": "fire_safety",
+    "difficulty": "medium",
+    "citationReference": "1926.150(c)(1)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_FIRE_EXTINGUISHER_ACCESS",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000039",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "oxygen cylinder has unsecured at welding area.",
+    "primaryHazardFamily": "compressed_gas",
+    "difficulty": "medium",
+    "citationReference": "1926.350(a)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_COMPRESSED_GAS_CYLINDER",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000040",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "welding has combustibles nearby at steel work.",
+    "primaryHazardFamily": "welding_cutting",
+    "difficulty": "medium",
+    "citationReference": "1926.352(a)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_WELDING_HOT_WORK",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000041",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "stored material has unstable stack at staging area.",
+    "primaryHazardFamily": "material_handling",
+    "difficulty": "medium",
+    "citationReference": "1926.250(a)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_MATERIAL_STORAGE_UNSTABLE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000042",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "power tool has damaged guard at jobsite.",
+    "primaryHazardFamily": "tools_equipment",
+    "difficulty": "medium",
+    "citationReference": "1926.300(a)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_HAND_POWER_TOOLS_DEFECTIVE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000043",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "dump truck has backup alarm not working at jobsite.",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "citationReference": "1926.601(b)(4)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_MOTOR_VEHICLE_BACKING",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000044",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "concrete saw has dry cutting at concrete.",
+    "primaryHazardFamily": "respiratory",
+    "difficulty": "medium",
+    "citationReference": "1926.1153(c)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_SILICA_DUST_CONTROL",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000045",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "platform has unguarded edge at warehouse.",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium",
+    "citationReference": "1910.28(b)",
+    "conditionIdExpected": "OSHA_GI_WALKING_WORKING_SURFACE_FALL_HAZARD",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000046",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "fixed ladder has damaged rung at warehouse.",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "medium",
+    "citationReference": "1910.23",
+    "conditionIdExpected": "OSHA_GI_FIXED_LADDER_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000047",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "exit route has blocked at warehouse.",
+    "primaryHazardFamily": "emergency_egress",
+    "difficulty": "medium",
+    "citationReference": "1910.37(a)(3)",
+    "conditionIdExpected": "OSHA_GI_EXIT_ROUTE_BLOCKED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000048",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "fire extinguisher has blocked at warehouse.",
+    "primaryHazardFamily": "fire_safety",
+    "difficulty": "medium",
+    "citationReference": "1910.157(c)(1)",
+    "conditionIdExpected": "OSHA_GI_PORTABLE_FIRE_EXTINGUISHER_BLOCKED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000049",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "flammable liquid has open container at paint room.",
+    "primaryHazardFamily": "fire_safety",
+    "difficulty": "medium",
+    "citationReference": "1910.106",
+    "conditionIdExpected": "OSHA_GI_FLAMMABLE_LIQUID_STORAGE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000050",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "compressed gas cylinder has unsecured at maintenance shop.",
+    "primaryHazardFamily": "compressed_gas",
+    "difficulty": "medium",
+    "citationReference": "1910.101",
+    "conditionIdExpected": "OSHA_GI_COMPRESSED_GAS_CYLINDER_UNSECURED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000051",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "welding has combustibles nearby at maintenance shop.",
+    "primaryHazardFamily": "welding_cutting",
+    "difficulty": "medium",
+    "citationReference": "1910.252",
+    "conditionIdExpected": "OSHA_GI_WELDING_CUTTING_HOT_WORK",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000052",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "tank has no permit at entry.",
+    "primaryHazardFamily": "confined_space",
+    "difficulty": "medium",
+    "citationReference": "1910.146",
+    "conditionIdExpected": "OSHA_GI_CONFINED_SPACE_ENTRY_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000053",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "PPE has not worn at maintenance.",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "medium",
+    "citationReference": "1910.132(a)",
+    "conditionIdExpected": "OSHA_GI_PPE_GENERAL_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000054",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "training record has missing training at chemical handling.",
+    "primaryHazardFamily": "training_documentation",
+    "difficulty": "medium",
+    "citationReference": "1910.1200(h)",
+    "conditionIdExpected": "OSHA_GI_RECORDKEEPING_TRAINING_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000055",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "haul truck has defect at plant area.",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "citationReference": "56.14100(b)",
+    "conditionIdExpected": "MSHA_MOBILE_EQUIPMENT_DEFECTS",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000056",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "haul truck has brakes not working at plant area.",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "citationReference": "56.14101(a)(1)",
+    "conditionIdExpected": "MSHA_MOBILE_EQUIPMENT_BRAKES",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000057",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "berm has berm too low at plant area.",
+    "primaryHazardFamily": "roadway_berm",
+    "difficulty": "hard",
+    "citationReference": "56.9300(a)",
+    "conditionIdExpected": "MSHA_BERM_INADEQUATE_SECONDARY",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000058",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "exit has blocked at plant area.",
+    "primaryHazardFamily": "emergency_egress",
+    "difficulty": "medium",
+    "citationReference": "56.11001",
+    "conditionIdExpected": "MSHA_EMERGENCY_EGRESS_BLOCKED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000059",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "welder has no fire watch at plant area.",
+    "primaryHazardFamily": "fire_safety",
+    "difficulty": "medium",
+    "citationReference": "56.4604",
+    "conditionIdExpected": "MSHA_FIRE_HOT_WORK_NO_FIRE_WATCH",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000060",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "manhole has no permit at jobsite.",
+    "primaryHazardFamily": "confined_space",
+    "difficulty": "medium",
+    "citationReference": "1926.1204",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_CONFINED_SPACE_NO_PERMIT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000061",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "exit has blocked at jobsite.",
+    "primaryHazardFamily": "emergency_egress",
+    "difficulty": "medium",
+    "citationReference": "1926.34",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_EMERGENCY_ACCESS_BLOCKED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000062",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "tank has atmosphere not tested at work area.",
+    "primaryHazardFamily": "confined_space",
+    "difficulty": "medium",
+    "citationReference": "1910.146",
+    "conditionIdExpected": "OSHA_GI_CONFINED_SPACE_ATMOSPHERE_NOT_TESTED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000063",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "emergency light has not illuminated at work area.",
+    "primaryHazardFamily": "emergency_egress",
+    "difficulty": "medium",
+    "citationReference": "1910.37(a)(3)",
+    "conditionIdExpected": "OSHA_GI_EMERGENCY_LIGHT_FAILED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000064",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "chemical spill has spill not contained at work area.",
+    "primaryHazardFamily": "environmental_spill",
+    "difficulty": "medium",
+    "citationReference": "1910.120",
+    "conditionIdExpected": "OSHA_GI_SPILL_RESPONSE_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000065",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "eyewash has blocked at work area.",
+    "primaryHazardFamily": "emergency_response",
+    "difficulty": "medium",
+    "citationReference": "1910.151(c)",
+    "conditionIdExpected": "OSHA_GI_EYEWASH_BLOCKED_OR_NOT_FUNCTIONAL",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000066",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "workstation has repetitive strain at work area.",
+    "primaryHazardFamily": "ergonomics",
+    "difficulty": "medium",
+    "citationReference": "5(a)(1)",
+    "conditionIdExpected": "OSHA_GI_ERGONOMICS_REPETITIVE_STRAIN",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000067",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "material has team lift not used at jobsite.",
+    "primaryHazardFamily": "ergonomics",
+    "difficulty": "medium",
+    "citationReference": "5(a)(1)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_MANUAL_HANDLING_OVEREXERTION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000068",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "rock has manual handling overload at plant area.",
+    "primaryHazardFamily": "material_handling",
+    "difficulty": "medium",
+    "citationReference": "56.16002",
+    "conditionIdExpected": "MSHA_MANUAL_MATERIAL_HANDLING_OVEREXERTION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000069",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "machine has defect not corrected at work area.",
+    "primaryHazardFamily": "tools_equipment",
+    "difficulty": "medium",
+    "citationReference": "1910.212(a)(1)",
+    "conditionIdExpected": "OSHA_GI_MACHINE_DEFECT_CONTINUED_OPERATION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000070",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "equipment has defect not corrected at jobsite.",
+    "primaryHazardFamily": "tools_equipment",
+    "difficulty": "medium",
+    "citationReference": "1926.20(b)(2)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_DEFECTIVE_EQUIPMENT_IN_USE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000071",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "contractor has hazard not communicated at plant area.",
+    "primaryHazardFamily": "contractor_site_controls",
+    "difficulty": "medium",
+    "citationReference": "45.4",
+    "conditionIdExpected": "MSHA_CONTRACTOR_HAZARD_COMMUNICATION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000072",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "site inspection has hazard not corrected at jobsite.",
+    "primaryHazardFamily": "site_controls",
+    "difficulty": "medium",
+    "citationReference": "1926.20(b)(2)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_SITE_INSPECTION_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000073",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "training record has missing training record at work area.",
+    "primaryHazardFamily": "training_documentation",
+    "difficulty": "medium",
+    "citationReference": "1910.1200(h)",
+    "conditionIdExpected": "OSHA_GI_TRAINING_RECORD_MISSING",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000074",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "fall protection training has not trained at jobsite.",
+    "primaryHazardFamily": "training_documentation",
+    "difficulty": "medium",
+    "citationReference": "1926.503(a)",
+    "conditionIdExpected": "OSHA_CONSTRUCTION_FALL_TRAINING_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000075",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "task training has task training missing at plant area.",
+    "primaryHazardFamily": "training_documentation",
+    "difficulty": "medium",
+    "citationReference": "46.7",
+    "conditionIdExpected": "MSHA_TASK_TRAINING_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000076",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "chemical has no goggles at work area.",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "medium",
+    "citationReference": "1910.132(a)",
+    "conditionIdExpected": "V2_OSHA_GI_CHEMICAL_EXPOSURE_SPLASH",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000077",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "hammer has damaged tool at work area.",
+    "primaryHazardFamily": "tools_equipment",
+    "difficulty": "medium",
+    "citationReference": "1910.242(a)",
+    "conditionIdExpected": "V2_OSHA_GI_HAND_TOOL_DAMAGED",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000078",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "hydraulic has stored energy not relieved at work area.",
+    "primaryHazardFamily": "lockout_tagout",
+    "difficulty": "medium",
+    "citationReference": "1910.147(d)",
+    "conditionIdExpected": "V2_OSHA_GI_LOTO_STORED_ENERGY",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000079",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "floor has slip hazard at work area.",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium",
+    "citationReference": "1910.22(a)(1)",
+    "conditionIdExpected": "V2_OSHA_GI_SLIP_TRIP_FLOOR",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000080",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "handrail has loose at plant area.",
+    "primaryHazardFamily": "safe_access",
+    "difficulty": "medium",
+    "citationReference": "56.11002",
+    "conditionIdExpected": "V1_MSHA_GUARDRAIL_HANDRAIL_DEFECT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000081",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "platform has no fall protection at plant area.",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium",
+    "citationReference": "56.15005",
+    "conditionIdExpected": "V1_MSHA_WORKING_AT_HEIGHT_NO_PROTECTION",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000082",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "haul truck has seatbelt not worn at plant area.",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "citationReference": "56.14131(a)",
+    "conditionIdExpected": "V1_MSHA_SEATBELT_NOT_WORN",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000083",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "backup alarm has not audible at plant area.",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "citationReference": "56.14132(a)",
+    "conditionIdExpected": "V1_MSHA_BACKUP_ALARM_AUDIBILITY",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000084",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "hard hat has not worn at plant area.",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "medium",
+    "citationReference": "56.15002",
+    "conditionIdExpected": "V1_MSHA_PPE_HARD_HAT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000085",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "hard hat has not worn at jobsite.",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "medium",
+    "citationReference": "1926.100(a)",
+    "conditionIdExpected": "V1_OSHA_CONSTRUCTION_HARD_HAT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000086",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "hard hat has not worn at work area.",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "medium",
+    "citationReference": "1910.135(a)",
+    "conditionIdExpected": "V1_OSHA_GI_HARD_HAT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000087",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "blood has exposure at work area.",
+    "primaryHazardFamily": "biological",
+    "difficulty": "medium",
+    "citationReference": "1910.1030",
+    "conditionIdExpected": "V1_OSHA_GI_BLOODBORNE_EXPOSURE",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000088",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "first aid has not available at work area.",
+    "primaryHazardFamily": "emergency_response",
+    "difficulty": "medium",
+    "citationReference": "1910.151(b)",
+    "conditionIdExpected": "V1_OSHA_GI_FIRST_AID_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "CBM-000089",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "first aid has not available at jobsite.",
+    "primaryHazardFamily": "emergency_response",
+    "difficulty": "medium",
+    "citationReference": "1926.50(c)",
+    "conditionIdExpected": "V1_OSHA_CONSTRUCTION_FIRST_AID_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "CBM-000090",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "first aid has not available at plant area.",
+    "primaryHazardFamily": "emergency_response",
+    "difficulty": "medium",
+    "citationReference": "56.18010",
+    "conditionIdExpected": "V1_MSHA_FIRST_AID_DEFICIENT",
+    "source": "condition-benchmark-001",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "CBM-000091",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Equipment inspected and functioning properly.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000092",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Walkway clear and unobstructed.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000093",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Guard installed and all fasteners tight.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000094",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Panel closed with clearance maintained.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000095",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Forklift inspection completed with no defects found.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000096",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Scaffold guardrails complete and planks secured.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000097",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Trench shield installed before employees entered excavation.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000098",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Respirator fit check completed before dusty task.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000099",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Fire extinguisher inspection current and access clear.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  },
+  {
+    "id": "CBM-000100",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Backup alarm tested and functioning properly.",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "citationReference": "NO_MATCH",
+    "conditionIdExpected": "NO_MATCH",
+    "source": "condition-benchmark-001"
+  }
+]

@@ -1,0 +1,409 @@
+{
+  "engine": "safescope_reasoning_orchestrator_snapshot",
+  "mode": "contract_snapshot_test_only",
+  "generatedAt": "2026-05-30T22:49:09.357Z",
+  "purpose": "Document and validate the SafeScope reasoning orchestrator output contract before UI or production reasoning integration.",
+  "scenarios": {
+    "machineGuardingSnapshot": {
+      "engine": "safescope_reasoning_orchestrator_v1",
+      "mode": "deterministic_test_only_advisory",
+      "productionReasoningModified": false,
+      "requestSummary": {
+        "hazardObservation": "Unguarded conveyor tail pulley with employee access during cleanup.",
+        "siteType": "surface aggregate mine",
+        "taskContext": "workplace inspection",
+        "industryContext": "mining"
+      },
+      "jurisdictionAssessment": {
+        "likelyJurisdiction": "msha",
+        "reasons": [
+          "Mining or aggregate-site terms were detected."
+        ],
+        "requiresHumanConfirmation": true
+      },
+      "hazardClassification": {
+        "primaryDomain": "machine_guarding",
+        "reasons": [
+          "Machine guarding terms such as guard, nip point, pulley, belt, conveyor, or rotating shaft were detected."
+        ]
+      },
+      "approvedKnowledgeContext": {
+        "engine": "safescope_approved_knowledge_integration_adapter",
+        "mode": "disabled_by_default_context_adapter",
+        "enabled": false,
+        "reasoningEngine": "safescope_native",
+        "classification": "machine_guarding",
+        "jurisdictionHint": "msha",
+        "approvedRecordCountAvailable": 0,
+        "references": [],
+        "recordsUsed": [],
+        "adapterUseBoundary": {
+          "readOnly": true,
+          "disabledByDefault": true,
+          "canProvideContext": false,
+          "canModifyNativeReasoning": false,
+          "canCreateCitations": false,
+          "canDeclareViolations": false,
+          "canOverrideRegulations": false,
+          "canBypassHumanReview": false,
+          "canUseUnapprovedRecords": false
+        },
+        "integrationNotes": [
+          "Approved knowledge integration adapter is disabled by default.",
+          "No approved knowledge context was requested from the bridge.",
+          "SafeScope native reasoning behavior is unchanged."
+        ]
+      },
+      "applicabilitySignals": [
+        {
+          "signal": "hazard-domain-detected",
+          "matched": true,
+          "explanation": "A supported hazard domain was detected: machine_guarding."
+        },
+        {
+          "signal": "employee-exposure-known",
+          "matched": true,
+          "explanation": "Employee exposure was indicated."
+        },
+        {
+          "signal": "visual-evidence-available",
+          "matched": true,
+          "explanation": "Photos are available for visual confirmation."
+        },
+        {
+          "signal": "specific-equipment-or-condition",
+          "matched": true,
+          "explanation": "Checks whether a specific equipment item or physical condition is described."
+        }
+      ],
+      "applicabilityAnalysis": {
+        "engine": "safescope_applicability_analysis_v1",
+        "mode": "deterministic_test_only_advisory",
+        "productionReasoningModified": false,
+        "jurisdiction": "msha",
+        "hazardDomain": "machine_guarding",
+        "recordAnalyses": [],
+        "summary": {
+          "likelyApplicableCount": 0,
+          "possiblyApplicableCount": 0,
+          "insufficientEvidenceCount": 0,
+          "notApplicableCount": 0
+        },
+        "conclusionBoundary": {
+          "advisoryOnly": true,
+          "doesNotDeclareViolation": true,
+          "doesNotCreateCitation": true,
+          "requiresQualifiedReview": true
+        }
+      },
+      "correctiveActionReasoning": {
+        "engine": "safescope_corrective_action_reasoning_v1",
+        "mode": "deterministic_test_only_advisory",
+        "productionReasoningModified": false,
+        "jurisdiction": "msha",
+        "hazardDomain": "machine_guarding",
+        "recommendations": [
+          {
+            "controlLevel": "administrative",
+            "priority": "immediate",
+            "action": "Restrict employee access to the hazard area until a qualified person evaluates the condition.",
+            "rationale": "Known employee exposure increases urgency and requires interim protection while the condition is evaluated.",
+            "verificationEvidence": [
+              "Access restriction photo",
+              "Barricade or signage record",
+              "Supervisor confirmation",
+              "Affected-employee communication record"
+            ],
+            "cautions": [
+              "Do not rely on barricades as the final corrective action when an engineering control is required.",
+              "Confirm that access restriction does not create a secondary hazard."
+            ]
+          },
+          {
+            "controlLevel": "engineering",
+            "priority": "high",
+            "action": "Evaluate and install or repair guarding that prevents employee contact with moving machine parts.",
+            "rationale": "Machine guarding hazards are best controlled by physical guarding or equivalent engineering controls.",
+            "verificationEvidence": [
+              "Guard installation or repair photo",
+              "Guard design or manufacturer documentation",
+              "Post-correction inspection record",
+              "Operational check after correction"
+            ],
+            "cautions": [
+              "Guarding must not create new pinch points, access limitations, or maintenance hazards.",
+              "Final design should be reviewed by a qualified person familiar with the equipment."
+            ]
+          },
+          {
+            "controlLevel": "administrative",
+            "priority": "medium",
+            "action": "Update inspection, maintenance, and pre-use checks to include the identified guarding condition.",
+            "rationale": "Administrative controls help sustain the correction and detect recurrence.",
+            "verificationEvidence": [
+              "Updated inspection checklist",
+              "Maintenance work order",
+              "Training or toolbox talk record"
+            ],
+            "cautions": [
+              "Administrative controls should support, not replace, required physical guarding."
+            ]
+          },
+          {
+            "controlLevel": "verification",
+            "priority": "medium",
+            "action": "Verify the completed corrective action with objective evidence before closure.",
+            "rationale": "Corrective actions should be closed based on evidence, not only on assignment or intent.",
+            "verificationEvidence": [
+              "Before-and-after photos",
+              "Responsible person signoff",
+              "Completion date",
+              "Follow-up inspection result"
+            ],
+            "cautions": [
+              "Closure evidence should be reviewed for adequacy and recurrence risk."
+            ]
+          }
+        ],
+        "summary": {
+          "totalRecommendations": 4,
+          "immediateCount": 1,
+          "engineeringCount": 1,
+          "administrativeCount": 2,
+          "ppeCount": 0,
+          "verificationCount": 1
+        },
+        "reasoningBoundary": {
+          "advisoryOnly": true,
+          "doesNotDeclareViolation": true,
+          "doesNotGuaranteeAbatement": true,
+          "requiresQualifiedReview": true,
+          "requiresSiteSpecificValidation": true
+        }
+      },
+      "missingEvidence": [],
+      "confidence": {
+        "level": "high",
+        "reasons": [
+          "A likely jurisdiction was identified.",
+          "A supported hazard domain was identified."
+        ]
+      },
+      "conclusionBoundary": {
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      },
+      "recommendedNextQuestions": [
+        "Is the moving part guarded, partially guarded, removed, damaged, or accessible during operation?"
+      ]
+    },
+    "uncertainSnapshot": {
+      "engine": "safescope_reasoning_orchestrator_v1",
+      "mode": "deterministic_test_only_advisory",
+      "productionReasoningModified": false,
+      "requestSummary": {
+        "hazardObservation": "Possible issue observed."
+      },
+      "jurisdictionAssessment": {
+        "likelyJurisdiction": "unclear",
+        "reasons": [
+          "No clear jurisdiction-specific site terms were detected."
+        ],
+        "requiresHumanConfirmation": true
+      },
+      "hazardClassification": {
+        "primaryDomain": "unknown",
+        "reasons": [
+          "No supported hazard-domain keywords were detected with enough certainty."
+        ]
+      },
+      "approvedKnowledgeContext": {
+        "engine": "safescope_approved_knowledge_integration_adapter",
+        "mode": "disabled_by_default_context_adapter",
+        "enabled": false,
+        "reasoningEngine": "safescope_native",
+        "classification": "unknown",
+        "jurisdictionHint": "unclear",
+        "approvedRecordCountAvailable": 0,
+        "references": [],
+        "recordsUsed": [],
+        "adapterUseBoundary": {
+          "readOnly": true,
+          "disabledByDefault": true,
+          "canProvideContext": false,
+          "canModifyNativeReasoning": false,
+          "canCreateCitations": false,
+          "canDeclareViolations": false,
+          "canOverrideRegulations": false,
+          "canBypassHumanReview": false,
+          "canUseUnapprovedRecords": false
+        },
+        "integrationNotes": [
+          "Approved knowledge integration adapter is disabled by default.",
+          "No approved knowledge context was requested from the bridge.",
+          "SafeScope native reasoning behavior is unchanged."
+        ]
+      },
+      "applicabilitySignals": [
+        {
+          "signal": "hazard-domain-detected",
+          "matched": false,
+          "explanation": "No supported hazard domain was detected."
+        },
+        {
+          "signal": "employee-exposure-known",
+          "matched": false,
+          "explanation": "Employee exposure is not confirmed."
+        },
+        {
+          "signal": "visual-evidence-available",
+          "matched": false,
+          "explanation": "Photos are not available for visual confirmation."
+        },
+        {
+          "signal": "specific-equipment-or-condition",
+          "matched": false,
+          "explanation": "Checks whether a specific equipment item or physical condition is described."
+        }
+      ],
+      "applicabilityAnalysis": {
+        "engine": "safescope_applicability_analysis_v1",
+        "mode": "deterministic_test_only_advisory",
+        "productionReasoningModified": false,
+        "jurisdiction": "unclear",
+        "hazardDomain": "unknown",
+        "recordAnalyses": [],
+        "summary": {
+          "likelyApplicableCount": 0,
+          "possiblyApplicableCount": 0,
+          "insufficientEvidenceCount": 0,
+          "notApplicableCount": 0
+        },
+        "conclusionBoundary": {
+          "advisoryOnly": true,
+          "doesNotDeclareViolation": true,
+          "doesNotCreateCitation": true,
+          "requiresQualifiedReview": true
+        }
+      },
+      "correctiveActionReasoning": {
+        "engine": "safescope_corrective_action_reasoning_v1",
+        "mode": "deterministic_test_only_advisory",
+        "productionReasoningModified": false,
+        "jurisdiction": "unclear",
+        "hazardDomain": "unknown",
+        "recommendations": [
+          {
+            "controlLevel": "verification",
+            "priority": "medium",
+            "action": "Collect missing evidence before finalizing the corrective action package.",
+            "rationale": "Evidence gaps reduce defensibility and may change the appropriate corrective action.",
+            "verificationEvidence": [
+              "siteType: Site type is needed to distinguish MSHA, OSHA General Industry, and OSHA Construction context.",
+              "photosAvailable: Photos help confirm physical conditions and reduce uncertainty.",
+              "employeeExposureKnown: Employee exposure must be understood before applicability can be assessed defensibly."
+            ],
+            "cautions": [
+              "Do not close the corrective action until critical evidence gaps are resolved or explicitly documented."
+            ]
+          },
+          {
+            "controlLevel": "verification",
+            "priority": "medium",
+            "action": "Gather additional facts and assign qualified review before selecting corrective actions.",
+            "rationale": "The hazard domain or applicability context is not specific enough for a defensible corrective action recommendation.",
+            "verificationEvidence": [
+              "Additional hazard description",
+              "Photos or inspection notes",
+              "Jurisdiction confirmation",
+              "Employee exposure information"
+            ],
+            "cautions": [
+              "Avoid prescribing a final corrective action until the hazard is better defined."
+            ]
+          },
+          {
+            "controlLevel": "verification",
+            "priority": "medium",
+            "action": "Verify the completed corrective action with objective evidence before closure.",
+            "rationale": "Corrective actions should be closed based on evidence, not only on assignment or intent.",
+            "verificationEvidence": [
+              "Before-and-after photos",
+              "Responsible person signoff",
+              "Completion date",
+              "Follow-up inspection result"
+            ],
+            "cautions": [
+              "Closure evidence should be reviewed for adequacy and recurrence risk."
+            ]
+          }
+        ],
+        "summary": {
+          "totalRecommendations": 3,
+          "immediateCount": 0,
+          "engineeringCount": 0,
+          "administrativeCount": 0,
+          "ppeCount": 0,
+          "verificationCount": 3
+        },
+        "reasoningBoundary": {
+          "advisoryOnly": true,
+          "doesNotDeclareViolation": true,
+          "doesNotGuaranteeAbatement": true,
+          "requiresQualifiedReview": true,
+          "requiresSiteSpecificValidation": true
+        }
+      },
+      "missingEvidence": [
+        {
+          "field": "siteType",
+          "reason": "Site type is needed to distinguish MSHA, OSHA General Industry, and OSHA Construction context.",
+          "importance": "high"
+        },
+        {
+          "field": "photosAvailable",
+          "reason": "Photos help confirm physical conditions and reduce uncertainty.",
+          "importance": "medium"
+        },
+        {
+          "field": "employeeExposureKnown",
+          "reason": "Employee exposure must be understood before applicability can be assessed defensibly.",
+          "importance": "high"
+        }
+      ],
+      "confidence": {
+        "level": "low",
+        "reasons": [
+          "Jurisdiction is unclear.",
+          "Hazard domain is unknown."
+        ]
+      },
+      "conclusionBoundary": {
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      },
+      "recommendedNextQuestions": [
+        "What type of site is this: mine, construction site, general industry facility, or other?",
+        "Can the user provide photos showing the hazard condition and surrounding access path?",
+        "Are employees exposed to the hazard during operation, maintenance, travel, or inspection?",
+        "Which regulatory context appears most likely: MSHA, OSHA General Industry, or OSHA Construction?"
+      ]
+    }
+  },
+  "contractAssertions": {
+    "orchestratorIsAdvisory": true,
+    "doesNotDeclareViolations": true,
+    "doesNotCreateCitations": true,
+    "productionReasoningUnchanged": true,
+    "approvedContextDisabledByDefault": true,
+    "applicabilityAnalysisEmbedded": true,
+    "correctiveActionReasoningEmbedded": true,
+    "correctiveActionReasoningProtected": true,
+    "qualifiedReviewRequired": true
+  },
+  "sourceBoundary": "This snapshot is a test-only contract artifact. It does not wire the reasoning orchestrator into production, declare violations, create citations, bypass human review, or modify SafeScope native reasoning."
+}

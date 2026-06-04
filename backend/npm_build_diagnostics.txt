@@ -1,0 +1,28 @@
+
+> sentinel-safety-backend@1.0.0 build
+> tsc --extendedDiagnostics
+
+Files:                        1533
+Lines of Library:            50663
+Lines of Definitions:       187399
+Lines of TypeScript:         10543
+Lines of JavaScript:             0
+Lines of JSON:                   0
+Lines of Other:                  0
+Identifiers:                216667
+Symbols:                    135730
+Types:                          89
+Instantiations:                  0
+Memory used:               221827K
+Assignability cache size:        0
+Identity cache size:             0
+Subtype cache size:              0
+Strict subtype cache size:       0
+I/O Read time:               0.03s
+Parse time:                  0.23s
+ResolveModule time:          0.06s
+ResolveLibrary time:         0.00s
+ResolveTypeReference time:   0.00s
+Program time:                0.38s
+Bind time:                   0.12s
+Total time:                  0.50s

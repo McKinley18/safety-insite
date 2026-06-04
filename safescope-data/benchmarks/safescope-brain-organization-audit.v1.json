@@ -1,0 +1,734 @@
+{
+  "audit": "SafeScope Brain Organization Audit",
+  "generatedAt": "2026-06-03T13:20:25.175932Z",
+  "summary": {
+    "brainDirectoriesReviewed": [
+      "backend/src/safescope-v2/brain",
+      "backend/src/safescope-v2/reasoning-orchestrator",
+      "backend/src/safescope-v2/knowledge-intake",
+      "backend/src/safescope-knowledge"
+    ],
+    "activeEntrypoints": [
+      "backend/src/safescope-v2/safescope-v2.service.ts",
+      "backend/src/safescope-v2/safescope-v2.controller.ts",
+      "backend/src/safescope-v2/brain/query-orchestrator/brain-query-orchestrator.service.ts",
+      "backend/src/safescope-v2/brain/snapshot-builder/brain-snapshot-builder.service.ts",
+      "backend/src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service.ts"
+    ],
+    "fileCount": 141,
+    "safescopeValidatorCount": 100,
+    "productionReadinessStepCount": 28
+  },
+  "activeEntrypoints": [
+    "backend/src/safescope-v2/safescope-v2.service.ts",
+    "backend/src/safescope-v2/safescope-v2.controller.ts",
+    "backend/src/safescope-v2/brain/query-orchestrator/brain-query-orchestrator.service.ts",
+    "backend/src/safescope-v2/brain/snapshot-builder/brain-snapshot-builder.service.ts",
+    "backend/src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service.ts"
+  ],
+  "productionReadinessSteps": [
+    "Production environment readiness",
+    "Reasoning result contract",
+    "Reasoning snapshot equipment fields",
+    "Reasoning snapshot summary contract",
+    "Live equipment snapshot context",
+    "Reasoning snapshot access control",
+    "Supervisor validation workspace scope",
+    "Standards scope-fit ranking",
+    "SafeScope Brain snapshot builder",
+    "SafeScope Brain query orchestrator",
+    "SafeScope Field Readiness Routing",
+    "SafeScope Field Output Contract",
+    "SafeScope Field Output Scenarios",
+    "SafeScope Field Realism Gauntlet",
+    "SafeScope Evidence Brain",
+    "SafeScope Evidence Gap Intelligence",
+    "SafeScope Decision Confidence",
+    "SafeScope Learning Memory",
+    "SafeScope Improvement Candidate Engine",
+    "SafeScope Controls Brain",
+    "SafeScope Mechanism Brain",
+    "SafeScope Regulatory Brain",
+    "SafeScope Scenario Disambiguation",
+    "SafeScope Brain foundation",
+    "SafeScope Brain alignment audit",
+    "SafeScope Brain coverage matrix",
+    "SafeScope finding audit",
+    "Backend TypeScript build"
+  ],
+  "files": [
+    {
+      "path": "backend/src/safescope-v2/brain/README.md",
+      "category": "documentation"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/controls-brain/controls-brain.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/controls-brain/controls-brain.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/controls-brain/controls-knowledge.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/decision-confidence/decision-confidence.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/decision-confidence/decision-confidence.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/evidence-brain/evidence-brain.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/evidence-brain/evidence-brain.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/evidence-brain/evidence-knowledge.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/evidence-gap-intelligence/evidence-gap-intelligence.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/evidence-gap-intelligence/evidence-gap-intelligence.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/evidence-gap-intelligence/evidence-gap-intelligence.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/hazard-universe/hazard-universe.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/hazard-universe/hazard-universe.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/improvement-candidate-engine/improvement-candidate-engine.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/improvement-candidate-engine/improvement-candidate-engine.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/learning-memory/learning-memory.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/learning-memory/learning-memory.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/mechanism-brain/mechanism-brain.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/mechanism-brain/mechanism-brain.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/mechanism-brain/mechanism-knowledge.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/query-orchestrator/brain-query-orchestrator.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/query-orchestrator/brain-query-orchestrator.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/regulatory-brain/regulatory-brain.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/regulatory-brain/regulatory-brain.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/regulatory-brain/regulatory-knowledge.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/safescope-brain.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/scenario-disambiguation/scenario-disambiguation.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/scenario-disambiguation/scenario-disambiguation.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/scenario-disambiguation/scenario-disambiguation.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/snapshot-builder/brain-snapshot-builder.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/snapshot-builder/brain-snapshot-builder.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/source-governance/governance-validator.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/source-governance/source-authority.registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/brain/source-governance/source-governance.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/applicability/applicability-analysis.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/applicability/applicability-analysis.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/corrective-actions/corrective-action-reasoning.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/corrective-actions/corrective-action-reasoning.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/domain-candidate.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/reasoning-orchestrator.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/reports/reasoning-orchestrator-snapshot.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/scenarios/reasoning-scenario-fixtures.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/scenarios/reasoning-scenario-runner.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/scenarios/reasoning-scenario.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/scenarios/reports/reasoning-scenario-coverage-report.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/scenarios/reports/reasoning-scenario-maturity-report.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/reasoning-orchestrator/scenarios/scenario-coverage-taxonomy.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/bridge/approved-knowledge-bridge.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/bridge/approved-knowledge-bridge.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/bridge/reports/approved-knowledge-bridge-snapshot.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/docs/APPROVED_KNOWLEDGE_PATHWAY.md",
+      "category": "documentation"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/docs/RESEARCH_LIBRARY_README.md",
+      "category": "documentation"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/docs/RESEARCH_PLAN.md",
+      "category": "documentation"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/integration/approved-knowledge-integration-adapter.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/integration/approved-knowledge-integration.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/integration/reports/approved-knowledge-integration-snapshot.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/knowledge-intake.guardrails.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/knowledge-intake.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/knowledge-record-validator.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/knowledge-source-mod-template.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/query/approved-knowledge-query.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/query/approved-knowledge-query.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/records/approved/approved-knowledge-bundle.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/records/quarantined/msha-56-14107-machine-guarding.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/records/quarantined/niosh-exposure-assessment-foundation.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/records/quarantined/osha-1910-147-lockout-tagout.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/records/quarantined/osha-1910-212-machine-guarding.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/records/quarantined/sample-msha-record.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/reports/knowledge-coverage-report.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/review/knowledge-review.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/review/knowledge-review.types.ts",
+      "category": "contract_or_type_definition"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/source-mods/msha-regulatory-mod.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/source-mods/niosh-health-exposure-mod.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/source-mods/osha-regulatory-mod.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/source-register/source-register.csv",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-v2/knowledge-intake/source-register/source-register.seed.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/entities/safescope-knowledge-chunk.entity.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/entities/safescope-knowledge-document.entity.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/entities/safescope-knowledge-ingestion-run.entity.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/entities/safescope-knowledge-retrieval-log.entity.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/entities/safescope-knowledge-source.entity.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/export/export-knowledge-bundle.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connector-priority-planner.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/msha-30-cfr.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/msha-fatality.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/msha-program-policy-manual.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/msha-safety-alert.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/niosh-mining-publication.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/osha-ecfr.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/osha-incident-database.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/connectors/osha-standard-interpretation.connector.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/ingestion-control-plane.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/ingestion-run-logger.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-msha-30-cfr-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-msha-fatality-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-msha-program-policy-manual-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-msha-safety-alert-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-niosh-mining-publication-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-osha-ecfr-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-osha-incident-database-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/run-osha-standard-interpretation-ingestion.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/seed-knowledge-sources.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/msha-30-cfr-core.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/msha-fatality-urls.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/msha-program-policy-manual.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/msha-safety-alerts.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/niosh-mining-publications.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/osha-directives.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/osha-ecfr-1910.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/osha-ecfr-1926.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/osha-fatality-catastrophe-data.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/osha-incident-database.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/osha-safety-health-topics.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/source-lists/osha-standard-interpretations.json",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/ingestion/verify-safescope-ingestion-sources.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/audit-regulatory-coverage.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/ensure-knowledge-tables.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-connector-priority-planner.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-ingestion-control-plane.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-knowledge-review-workflow.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-knowledge-source-roles.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-knowledge-source-synthesis.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-msha-30-cfr-ingestion.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-osha-ecfr-ingestion.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-source-expansion-registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/maintenance/verify-source-governance.ts",
+      "category": "validator_or_audit"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/safescope-knowledge.controller.ts",
+      "category": "api_entrypoint"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/safescope-knowledge.module.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/safescope-knowledge.service.ts",
+      "category": "reasoning_or_service_module"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/scoring/knowledge-domain-scoring.helper.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/seed/safescope-knowledge.seed.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/seed/starter-knowledge.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/sources/safescope-source-registry.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/sources/safescope-source-registry.types.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/sources/source-governance-helper.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/sources/source-registry-metadata.ts",
+      "category": "knowledge_registry_or_data"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/sources/source-role-helper.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/sources/source-synthesis-helper.ts",
+      "category": "supporting_file"
+    },
+    {
+      "path": "backend/src/safescope-knowledge/sources/verify-source-registry.ts",
+      "category": "knowledge_registry_or_data"
+    }
+  ],
+  "validators": [
+    "backend/scripts/audit-safescope-brain-alignment.ts",
+    "backend/scripts/audit-safescope-brain-coverage-matrix.ts",
+    "backend/scripts/audit-safescope-findings.ts",
+    "backend/scripts/audit-safescope-hazard-universe-coverage.ts",
+    "backend/scripts/audit-safescope-knowledge-expansion-readiness.ts",
+    "backend/scripts/export-approved-safescope-knowledge.ts",
+    "backend/scripts/generate-safescope-approved-knowledge-bridge-snapshot.ts",
+    "backend/scripts/generate-safescope-approved-knowledge-integration-snapshot.ts",
+    "backend/scripts/generate-safescope-reasoning-orchestrator-snapshot.ts",
+    "backend/scripts/generate-safescope-reasoning-scenario-coverage.ts",
+    "backend/scripts/generate-safescope-reasoning-scenario-maturity.ts",
+    "backend/scripts/report-safescope-knowledge-coverage.ts",
+    "backend/scripts/safescope-failure-analysis.ts",
+    "backend/scripts/smoke-deployment-safescope.ts",
+    "backend/scripts/smoke-safescope-v2-scoped-classify.ts",
+    "backend/scripts/validate-approved-safescope-knowledge-export.ts",
+    "backend/scripts/validate-safescope-action-quality-gauntlet.ts",
+    "backend/scripts/validate-safescope-adapter-contracts.ts",
+    "backend/scripts/validate-safescope-ai-contract.ts",
+    "backend/scripts/validate-safescope-ai-scenario-gauntlet.ts",
+    "backend/scripts/validate-safescope-applicability-analysis.ts",
+    "backend/scripts/validate-safescope-approved-export-with-fixture.ts",
+    "backend/scripts/validate-safescope-approved-knowledge-bridge-contract.ts",
+    "backend/scripts/validate-safescope-approved-knowledge-bridge-snapshot.ts",
+    "backend/scripts/validate-safescope-approved-knowledge-bridge.ts",
+    "backend/scripts/validate-safescope-approved-knowledge-integration-adapter.ts",
+    "backend/scripts/validate-safescope-approved-knowledge-integration-contract.ts",
+    "backend/scripts/validate-safescope-approved-knowledge-integration-snapshot.ts",
+    "backend/scripts/validate-safescope-approved-knowledge-query.ts",
+    "backend/scripts/validate-safescope-brain-foundation.ts",
+    "backend/scripts/validate-safescope-brain-query-orchestrator.ts",
+    "backend/scripts/validate-safescope-brain-snapshot-builder.ts",
+    "backend/scripts/validate-safescope-causal-chain-gauntlet.ts",
+    "backend/scripts/validate-safescope-classification-standards-risk-actions-flow.ts",
+    "backend/scripts/validate-safescope-classification-standards-risk-flow.ts",
+    "backend/scripts/validate-safescope-control-effectiveness-gauntlet.ts",
+    "backend/scripts/validate-safescope-controls-brain.ts",
+    "backend/scripts/validate-safescope-corrective-action-reasoning.ts",
+    "backend/scripts/validate-safescope-corrective-action-recommendation-adapter.ts",
+    "backend/scripts/validate-safescope-coverage-gauntlet.ts",
+    "backend/scripts/validate-safescope-decision-confidence.ts",
+    "backend/scripts/validate-safescope-domain-candidate-scoring.ts",
+    "backend/scripts/validate-safescope-equipment-archetype-detector.ts",
+    "backend/scripts/validate-safescope-equipment-archetype-orchestrator-integration.ts",
+    "backend/scripts/validate-safescope-equipment-archetypes.ts",
+    "backend/scripts/validate-safescope-equipment-context-detector.ts",
+    "backend/scripts/validate-safescope-equipment-knowledge.ts",
+    "backend/scripts/validate-safescope-equipment-reasoning-summary.ts",
+    "backend/scripts/validate-safescope-equipment-task-mechanism-detector.ts",
+    "backend/scripts/validate-safescope-equipment-task-mechanism-orchestrator-integration.ts",
+    "backend/scripts/validate-safescope-equipment-task-mechanisms.ts",
+    "backend/scripts/validate-safescope-evidence-brain.ts",
+    "backend/scripts/validate-safescope-evidence-gap-intelligence.ts",
+    "backend/scripts/validate-safescope-evidence-gauntlet.ts",
+    "backend/scripts/validate-safescope-exposure-gauntlet.ts",
+    "backend/scripts/validate-safescope-field-output-contract.ts",
+    "backend/scripts/validate-safescope-field-output-scenarios.ts",
+    "backend/scripts/validate-safescope-field-readiness-routing.ts",
+    "backend/scripts/validate-safescope-field-realism-gauntlet.ts",
+    "backend/scripts/validate-safescope-hazard-classification-adapter.ts",
+    "backend/scripts/validate-safescope-hazard-domain-gauntlet.ts",
+    "backend/scripts/validate-safescope-hazard-universe.ts",
+    "backend/scripts/validate-safescope-improvement-candidate-engine.ts",
+    "backend/scripts/validate-safescope-knowledge-expansion-gate.ts",
+    "backend/scripts/validate-safescope-knowledge-intake.ts",
+    "backend/scripts/validate-safescope-knowledge-pipeline.ts",
+    "backend/scripts/validate-safescope-knowledge-relevance.ts",
+    "backend/scripts/validate-safescope-knowledge-retrieval-adapter.ts",
+    "backend/scripts/validate-safescope-knowledge-retrieval-scenarios.ts",
+    "backend/scripts/validate-safescope-knowledge-review-workflow.ts",
+    "backend/scripts/validate-safescope-learning-memory.ts",
+    "backend/scripts/validate-safescope-mechanism-brain.ts",
+    "backend/scripts/validate-safescope-mock-source-adapter.ts",
+    "backend/scripts/validate-safescope-orchestrator-classification-standards-flow.ts",
+    "backend/scripts/validate-safescope-orchestrator-contract.ts",
+    "backend/scripts/validate-safescope-orchestrator-with-hazard-classification.ts",
+    "backend/scripts/validate-safescope-orchestrator-with-mock-source.ts",
+    "backend/scripts/validate-safescope-orchestrator-with-real-source.ts",
+    "backend/scripts/validate-safescope-real-source-adapter.ts",
+    "backend/scripts/validate-safescope-reasoning-orchestrator-snapshot.ts",
+    "backend/scripts/validate-safescope-reasoning-orchestrator.ts",
+    "backend/scripts/validate-safescope-reasoning-result-contract.ts",
+    "backend/scripts/validate-safescope-reasoning-scenario-coverage.ts",
+    "backend/scripts/validate-safescope-reasoning-scenario-maturity.ts",
+    "backend/scripts/validate-safescope-reasoning-scenarios.ts",
+    "backend/scripts/validate-safescope-reasoning-snapshot-access-control.ts",
+    "backend/scripts/validate-safescope-reasoning-snapshot-equipment-fields.ts",
+    "backend/scripts/validate-safescope-reasoning-snapshot-summary-contract.ts",
+    "backend/scripts/validate-safescope-regulatory-applicability-gauntlet.ts",
+    "backend/scripts/validate-safescope-regulatory-brain.ts",
+    "backend/scripts/validate-safescope-risk-assessment-adapter.ts",
+    "backend/scripts/validate-safescope-safety-health-domain-matrix-gauntlet.ts",
+    "backend/scripts/validate-safescope-scenario-disambiguation.ts",
+    "backend/scripts/validate-safescope-source-register.ts",
+    "backend/scripts/validate-safescope-standards-intent-gauntlet.ts",
+    "backend/scripts/validate-safescope-standards-matching-adapter.ts",
+    "backend/scripts/validate-safescope-standards-scope-fit-ranking.ts",
+    "backend/scripts/validate-safescope-supervisor-validation-workspace-scope.ts",
+    "backend/scripts/validate-safescope-v2-live-equipment-snapshot-context.ts",
+    "backend/scripts/verify-safescope-production-readiness.ts"
+  ],
+  "recommendations": [
+    "Create a canonical SafeScope reasoning pipeline map.",
+    "Label each SafeScope module as active, support, validator, legacy, or candidate.",
+    "Document which modules feed fieldOutput, reports, PDFs, and learning memory.",
+    "Create a hazard-domain coverage matrix tying standards, mechanisms, evidence, controls, and tests together.",
+    "Add a validator that fails when a brain registry has no matching scenario coverage."
+  ]
+}

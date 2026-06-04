@@ -1,0 +1,1842 @@
+[
+  {
+    "id": "FIELD-V2-MSHA-GUARDING-VAGUE-001",
+    "title": "vague conveyor guarding observation",
+    "hazardObservation": "During a plant walkdown, the inspector noted a belt conveyor area where a roller could be reached from the walkway. The note says guarding may be incomplete, but the photo angle does not clearly show whether a fixed guard is installed.",
+    "siteType": "surface metal/nonmetal mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "plant inspection",
+    "equipmentInvolved": "belt conveyor return roller",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "conveyor",
+      "guard",
+      "roller",
+      "exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-GUARDING-CLEANUP-LOTO-001",
+    "title": "cleanup around conveyor with guarding and LOTO ambiguity",
+    "hazardObservation": "A miner was cleaning spilled material near the tail pulley area while the conveyor was stopped. The report does not confirm whether the belt was locked out or only paused from the control room. Guarding around the pulley was partially removed.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "cleanup around conveyor",
+    "equipmentInvolved": "belt conveyor tail pulley",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "guard",
+      "lockout",
+      "energy",
+      "pulley"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-LOTO-ACTIVE-001",
+    "title": "active LOTO exposure during maintenance",
+    "hazardObservation": "Maintenance employees were replacing a jammed machine component. The machine was stopped, but no lock was visible on the disconnect and the supervisor said they were relying on the operator not to restart it.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "machine maintenance",
+    "equipmentInvolved": "production machine",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "lockout",
+      "restart",
+      "energy",
+      "maintenance"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-LOTO-TRAINING-ONLY-001",
+    "title": "LOTO mentioned only in training context",
+    "hazardObservation": "The safety board had an outdated lockout/tagout training roster posted. No servicing, maintenance, machine access, or employee exposure to hazardous energy was occurring at the time of observation.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "document review",
+    "equipmentInvolved": "training records",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "training",
+      "review"
+    ],
+    "forbiddenTerms": [
+      "unexpected startup",
+      "active exposure"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-WET-001",
+    "title": "wet floor near electrical equipment with uncertainty",
+    "hazardObservation": "Water was observed on the floor near an electrical cabinet. The cabinet door appeared closed, but the photo does not confirm whether energized parts were exposed or whether employees were walking through the wet area.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "facility inspection",
+    "equipmentInvolved": "electrical cabinet",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "water",
+      "electrical",
+      "confirm",
+      "exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-FIRE-EXTINGUISHER-NO-HOTWORK-001",
+    "title": "blocked fire extinguisher without hot work",
+    "hazardObservation": "A portable fire extinguisher was blocked by stacked boxes in a warehouse aisle. No welding, cutting, brazing, grinding, or other hot work was taking place.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "warehouse inspection",
+    "equipmentInvolved": "portable fire extinguisher",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "extinguisher",
+      "blocked",
+      "access"
+    ],
+    "forbiddenTerms": [
+      "hot work",
+      "welding"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-SILICA-NEGATED-001",
+    "title": "generic dirt dust should not become silica",
+    "hazardObservation": "Dust was tracked into the shipping office from muddy boots after trucks entered the yard. No cutting, drilling, grinding, crushing, or silica-containing material disturbance was observed.",
+    "siteType": "warehouse office",
+    "industryContext": "osha general industry",
+    "taskContext": "housekeeping inspection",
+    "equipmentInvolved": "walking surface",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "dust",
+      "housekeeping"
+    ],
+    "forbiddenTerms": [
+      "respirable crystalline silica",
+      "silica standard"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONFINED-NO-ENTRY-001",
+    "title": "tank present but no entry",
+    "hazardObservation": "A tank was labeled as a permit-required confined space, but the employee was only walking past it. No entry, partial body entry, testing, cleaning, or retrieval setup was involved in the observed condition.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "area inspection",
+    "equipmentInvolved": "storage tank",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "confirm",
+      "entry"
+    ],
+    "forbiddenTerms": [
+      "atmospheric testing required",
+      "entry permit violation"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONFINED-ACTUAL-ENTRY-001",
+    "title": "tank entry with missing atmospheric evidence",
+    "hazardObservation": "An employee had head and shoulders inside a tank opening while pulling a hose. No atmospheric meter, attendant, retrieval setup, or entry permit was visible in the photo.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "tank cleaning",
+    "equipmentInvolved": "tank vessel",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "confined",
+      "entry",
+      "atmosphere",
+      "permit"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-MOBILE-BACKING-001",
+    "title": "mobile equipment backing near pedestrian",
+    "hazardObservation": "A haul truck was backing near the crusher dump area while a ground person walked behind the truck. The note does not mention a spotter, backup alarm, radio contact, or designated pedestrian route.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "mobile equipment operation",
+    "equipmentInvolved": "haul truck",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "backing",
+      "pedestrian",
+      "traffic",
+      "separation"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-FORKLIFT-PEDESTRIAN-001",
+    "title": "forklift turning through shared pedestrian aisle",
+    "hazardObservation": "A forklift turned out of the warehouse doorway into a shared aisle while two employees were walking through the same path. The note does not mention painted lanes, barriers, horn use, spotter, or pedestrian separation.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "material handling and pedestrian traffic",
+    "equipmentInvolved": "forklift",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "forklift",
+      "pedestrian",
+      "traffic",
+      "separation"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-FORKLIFT-TRAINING-001",
+    "title": "forklift operator training documentation issue",
+    "hazardObservation": "Forklift was parked in the shipping area and the supervisor said the operator training file could not be located. No unsafe driving, pedestrian exposure, struck-by event, or equipment defect was observed during the inspection.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "operator training documentation review",
+    "equipmentInvolved": "powered industrial truck",
+    "photosAvailable": false,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "forklift",
+      "training",
+      "documentation",
+      "verify"
+    ],
+    "forbiddenTerms": [
+      "struck-by injury"
+    ]
+  },
+  {
+    "id": "FIELD-V2-MSHA-BERM-EDGE-001",
+    "title": "haul truck near dump edge with unclear berm condition",
+    "hazardObservation": "A haul truck backed toward the stockpile dump edge. The berm looked low in the photo, but the image does not show berm height, tire size, dump-point condition, or whether a spotter was present.",
+    "siteType": "surface metal/nonmetal mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "dump point operation",
+    "equipmentInvolved": "haul truck",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "berm",
+      "edge",
+      "dump",
+      "verify"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-FALL-CLEAR-MISSING-001",
+    "title": "open-sided platform with no guardrail",
+    "hazardObservation": "Employee was standing on an elevated work platform with an open side. No top rail, midrail, chain, or personal fall arrest was visible. The platform height was not documented in the note.",
+    "siteType": "industrial facility",
+    "industryContext": "osha general industry",
+    "taskContext": "elevated work observation",
+    "equipmentInvolved": "work platform",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "fall",
+      "platform",
+      "guardrail",
+      "height"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-LADDER-SETUP-001",
+    "title": "portable ladder set on uneven surface",
+    "hazardObservation": "A portable extension ladder was being used to access a mezzanine. The feet were sitting partly on loose gravel and the ladder was not tied off. The note does not confirm angle, extension above landing, or whether another employee was footing it.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "ladder access",
+    "equipmentInvolved": "extension ladder",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "ladder",
+      "access",
+      "secure",
+      "verify"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-SCAFFOLD-GUARDRAIL-001",
+    "title": "scaffold platform missing midrail",
+    "hazardObservation": "Workers were on a scaffold platform and one side appeared to have a top rail but no midrail. The photo does not show platform height, access ladder, toe boards, or whether fall protection was used.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "scaffold work",
+    "equipmentInvolved": "scaffold",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "scaffold",
+      "guardrail",
+      "midrail",
+      "height"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-HAZCOM-SDS-001",
+    "title": "secondary chemical bottle with missing SDS",
+    "hazardObservation": "A spray bottle marked only with a handwritten abbreviation was found on a maintenance bench. Employees said it was a solvent, but the exact chemical and SDS were not available at the work area.",
+    "siteType": "maintenance shop",
+    "industryContext": "osha general industry",
+    "taskContext": "chemical storage inspection",
+    "equipmentInvolved": "secondary chemical container",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "chemical",
+      "label",
+      "sds",
+      "identify"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-CHEMICAL-SPILL-001",
+    "title": "unknown liquid leaking from container",
+    "hazardObservation": "An unlabeled five-gallon container was leaking a clear liquid onto the floor near a floor drain. The note does not identify the chemical, exposure route, PPE, spill response, SDS, or whether the area was isolated.",
+    "siteType": "industrial facility",
+    "industryContext": "osha general industry",
+    "taskContext": "chemical spill observation",
+    "equipmentInvolved": "chemical container",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "chemical",
+      "leak",
+      "sds",
+      "isolate"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-SILICA-ACTIVE-CUTTING-001",
+    "title": "concrete cutting dust with missing controls",
+    "hazardObservation": "A worker was dry cutting concrete block inside a renovation area and visible dust was drifting toward another employee. The note does not mention water delivery, vacuum collection, respiratory protection, or exposure assessment.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "concrete cutting",
+    "equipmentInvolved": "cutoff saw",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "silica",
+      "dust",
+      "water",
+      "respiratory"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-HOTWORK-COMBUSTIBLES-001",
+    "title": "hot work near combustibles without fire watch documented",
+    "hazardObservation": "Employees were torch cutting a bracket near cardboard boxes and oily absorbent pads. The note does not mention hot work authorization, fire watch, combustible clearance, shielding, or post-work inspection.",
+    "siteType": "maintenance shop",
+    "industryContext": "osha general industry",
+    "taskContext": "torch cutting repair",
+    "equipmentInvolved": "torch cutting equipment",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "hot work",
+      "combustible",
+      "fire watch",
+      "inspect"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CYLINDER-OXY-FUEL-001",
+    "title": "oxygen and acetylene cylinders stored together",
+    "hazardObservation": "Oxygen and acetylene cylinders were stored side by side near the welding cart. They were not separated by distance or a fire-rated barrier, and the note does not confirm valve caps, securement, or whether cylinders were in use.",
+    "siteType": "general industry shop",
+    "industryContext": "osha general industry",
+    "taskContext": "welding cylinder storage",
+    "equipmentInvolved": "oxygen and acetylene cylinders",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "oxygen",
+      "acetylene",
+      "separation",
+      "cylinder"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-RIGGING-DEFECT-001",
+    "title": "damaged sling found before lift",
+    "hazardObservation": "A synthetic sling on the rigging rack had a visible cut and missing tag. No suspended load was present and no lift was underway, but the sling was stored with serviceable rigging.",
+    "siteType": "fabrication shop",
+    "industryContext": "osha general industry",
+    "taskContext": "rigging pre-use inspection",
+    "equipmentInvolved": "synthetic lifting sling",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "sling",
+      "rigging",
+      "rigging",
+      "inspect"
+    ],
+    "forbiddenTerms": [
+      "suspended load exposure"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-SUSPENDED-LOAD-001",
+    "title": "worker standing under suspended load",
+    "hazardObservation": "A worker stood inside the fall zone while a crane held a palletized load above waist height. The note does not mention exclusion zone, tag line use, lift plan, signal person, or rigging capacity verification.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "crane lift",
+    "equipmentInvolved": "crane and rigging",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "suspended load",
+      "fall zone",
+      "exclusion",
+      "rigging"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-EYEWASH-BLOCKED-001",
+    "title": "eyewash blocked near corrosive storage",
+    "hazardObservation": "A pallet of supplies was stored directly in front of the emergency eyewash next to corrosive cleaner containers. The note does not confirm whether the eyewash was functional, inspected, or reachable within the required time.",
+    "siteType": "industrial facility",
+    "industryContext": "osha general industry",
+    "taskContext": "chemical storage area inspection",
+    "equipmentInvolved": "emergency eyewash",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "eyewash",
+      "blocked",
+      "corrosive",
+      "access"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-HAND-PPE-001",
+    "title": "sharp metal handling without gloves",
+    "hazardObservation": "Employee was handling cut sheet metal with sharp edges and no gloves were visible. The note does not mention whether cut-resistant gloves were available, whether other handling tools were used, or whether an injury occurred.",
+    "siteType": "fabrication shop",
+    "industryContext": "osha general industry",
+    "taskContext": "material handling",
+    "equipmentInvolved": "sheet metal",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "gloves",
+      "hand",
+      "sharp",
+      "ppe"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-COAL-UG-RIB-001",
+    "title": "underground coal rib sloughing near travelway",
+    "hazardObservation": "A section of rib along the underground travelway had fresh sloughage on the mine floor. Miners were walking past the area, but the note does not state whether the rib was scaled, supported, flagged, or barricaded.",
+    "siteType": "underground coal mine",
+    "industryContext": "coal mining",
+    "taskContext": "underground travelway inspection",
+    "equipmentInvolved": "mine rib and travelway",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "rib",
+      "ground",
+      "support",
+      "barricade"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-COAL-METHANE-001",
+    "title": "coal section methane reading uncertainty",
+    "hazardObservation": "The production section note says methane readings were discussed after a ventilation curtain was found pulled back, but the actual methane percentage and last calibrated detector reading were not recorded.",
+    "siteType": "underground coal mine",
+    "industryContext": "coal mining",
+    "taskContext": "section ventilation inspection",
+    "equipmentInvolved": "ventilation curtain and methane detector",
+    "photosAvailable": false,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "methane",
+      "ventilation",
+      "reading",
+      "verify"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-MNM-UG-VENT-001",
+    "title": "underground metal nonmetal ventilation obstruction",
+    "hazardObservation": "Vent tubing in an underground heading was kinked and partially crushed near the face. The heading had been entered earlier, but no airflow reading, contaminant measurement, or supervisor verification was attached.",
+    "siteType": "underground metal/nonmetal mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "underground heading inspection",
+    "equipmentInvolved": "ventilation tubing",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "ventilation",
+      "airflow",
+      "verify",
+      "exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-ESCAPEWAY-BLOCKED-001",
+    "title": "underground escapeway partially blocked",
+    "hazardObservation": "Supplies were staged along the secondary escapeway and narrowed the travel path. The note does not confirm whether the required clearance was maintained or whether the material was temporary.",
+    "siteType": "underground metal/nonmetal mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "escapeway inspection",
+    "equipmentInvolved": "escapeway supplies",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "escapeway",
+      "egress",
+      "clearance",
+      "remove"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-TRENCH-001",
+    "title": "construction trench with unclear protective system",
+    "hazardObservation": "Employees were working in a trench beside a utility line. The photo shows vertical walls, but the depth, soil type, protective system, ladder access, and competent-person inspection were not documented.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "utility trench work",
+    "equipmentInvolved": "excavation trench",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "trench",
+      "protective",
+      "competent",
+      "egress"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-FALL-ROOF-001",
+    "title": "roof edge work with missing fall protection detail",
+    "hazardObservation": "A worker was near the edge of a low-slope roof unloading material. The note does not show distance to the edge, roof height, warning line status, guardrail, safety monitor, or personal fall arrest setup.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "roof material staging",
+    "equipmentInvolved": "roof edge",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "fall",
+      "roof",
+      "edge",
+      "height"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-SCAFFOLD-ACCESS-001",
+    "title": "scaffold access ladder missing",
+    "hazardObservation": "Workers were seen climbing the scaffold cross braces to reach the platform. The platform had some guardrails, but no stair tower, ladder, or other safe access was visible.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "scaffold access observation",
+    "equipmentInvolved": "supported scaffold",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "scaffold",
+      "access",
+      "ladder",
+      "climbing"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-DROPPED-OBJECT-001",
+    "title": "overhead work with unsecured tools",
+    "hazardObservation": "Employees were working from an elevated platform above a walkway. Hand tools and loose fittings were sitting near the platform edge, and pedestrians were still using the walkway below.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "overhead installation work",
+    "equipmentInvolved": "elevated platform and hand tools",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "falling",
+      "object",
+      "pedestrian",
+      "control"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-NOISE-MISSING-DOSIMETRY-001",
+    "title": "high noise complaint without measurements",
+    "hazardObservation": "Employees reported that the compressor room was too loud to communicate normally. No sound level meter reading, dosimetry, exposure duration, hearing protection use, or hearing conservation review was attached.",
+    "siteType": "manufacturing facility",
+    "industryContext": "osha general industry",
+    "taskContext": "noise complaint follow-up",
+    "equipmentInvolved": "compressor room",
+    "photosAvailable": false,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "noise",
+      "dosimetry",
+      "hearing",
+      "measure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-HEAT-STRESS-001",
+    "title": "hot warehouse work with missing exposure data",
+    "hazardObservation": "Employees were loading trailers in a hot warehouse during the afternoon. The note mentions sweating and fatigue, but no WBGT, temperature, workload, acclimatization, water access, or work-rest schedule was documented.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "trailer loading",
+    "equipmentInvolved": "warehouse dock",
+    "photosAvailable": false,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "heat",
+      "water",
+      "rest",
+      "exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-COLD-STRESS-001",
+    "title": "cold weather maintenance with missing duration",
+    "hazardObservation": "A mechanic was repairing a pump outside during freezing rain. The report says gloves were wet, but does not document exposure duration, warming breaks, dry PPE, wind chill, or supervisor monitoring.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "outdoor maintenance",
+    "equipmentInvolved": "pump",
+    "photosAvailable": false,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "cold",
+      "duration",
+      "warming",
+      "ppe"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-UNKNOWN-VAGUE-001",
+    "title": "vague unsafe condition note",
+    "hazardObservation": "The inspection note only says unsafe condition by the west wall. No task, equipment, employee exposure, material, height, energy source, chemical, or photo was provided.",
+    "siteType": "facility",
+    "industryContext": "unknown",
+    "taskContext": "general inspection",
+    "equipmentInvolved": "unknown",
+    "photosAvailable": false,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "unknown",
+      "evidence",
+      "verify",
+      "review"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-JURISDICTION-AMBIGUOUS-001",
+    "title": "ambiguous shop observation with no jurisdiction context",
+    "hazardObservation": "A maintenance shop had an open electrical cabinet and extension cords across the floor. The report does not say whether this is a mine shop, construction site, or general industry facility.",
+    "siteType": "maintenance shop",
+    "industryContext": "unknown",
+    "taskContext": "shop inspection",
+    "equipmentInvolved": "electrical cabinet and extension cords",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "electrical",
+      "jurisdiction",
+      "confirm",
+      "review"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MULTI-ELECTRICAL-WET-PEDESTRIAN-001",
+    "title": "wet floor, open panel, and pedestrian route",
+    "hazardObservation": "Water was running across the floor in front of an open electrical panel, and employees were walking through the area to reach the time clock. The note does not confirm whether parts were energized.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "facility inspection",
+    "equipmentInvolved": "electrical panel",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "electrical",
+      "water",
+      "restrict",
+      "energized"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-FALSE-ELECTRICAL-PANEL-CLOSED-001",
+    "title": "closed electrical panel with housekeeping issue nearby",
+    "hazardObservation": "A closed electrical panel was present in the hallway, but no exposed parts, damage, heat, smoke, or open cover were observed. The actual issue was boxes stored in the walking path.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "hallway inspection",
+    "equipmentInvolved": "closed electrical panel and boxes",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "walking",
+      "path",
+      "review",
+      "evidence"
+    ],
+    "forbiddenTerms": [
+      "open electrical cabinet",
+      "arc flash injury"
+    ]
+  },
+  {
+    "id": "FIELD-V2-FALSE-FALL-NO-EXPOSURE-001",
+    "title": "guarded mezzanine with no employee exposure",
+    "hazardObservation": "The mezzanine guardrails appeared intact and the gate was closed. No employee was working near the edge. The only concern noted was a missing inspection tag on stored material.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "mezzanine inspection",
+    "equipmentInvolved": "mezzanine guardrail",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "evidence",
+      "review"
+    ],
+    "forbiddenTerms": [
+      "unprotected edge",
+      "worker exposed to fall"
+    ]
+  },
+  {
+    "id": "FIELD-V2-MSHA-CONVEYOR-NO-EXPOSURE-001",
+    "title": "conveyor guarded and no employee exposure",
+    "hazardObservation": "The conveyor tail pulley guard was in place and the belt was not running. No miners were cleaning, adjusting, or reaching near moving parts. The note asks whether a faded warning label should be replaced.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "conveyor inspection",
+    "equipmentInvolved": "conveyor tail pulley",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "guard",
+      "label",
+      "verify"
+    ],
+    "forbiddenTerms": [
+      "unguarded nip point",
+      "unexpected startup"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-PPE-EYE-NO-GRINDER-DEFECT-001",
+    "title": "eye protection missing but grinder condition not defective",
+    "hazardObservation": "An employee was grinding a small bracket and was not wearing safety glasses or a face shield. The grinder guard appeared installed and no wheel defect was reported.",
+    "siteType": "fabrication shop",
+    "industryContext": "osha general industry",
+    "taskContext": "grinding task",
+    "equipmentInvolved": "bench grinder",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "eye",
+      "face",
+      "ppe",
+      "protection"
+    ],
+    "forbiddenTerms": [
+      "defective wheel",
+      "remove grinder from service"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-GRINDER-GUARD-NO-PPE-ISSUE-001",
+    "title": "grinder guard missing but PPE not the main issue",
+    "hazardObservation": "A pedestal grinder had the tongue guard removed and the tool rest gap appeared excessive. The operator was wearing safety glasses, and no missing PPE was observed.",
+    "siteType": "fabrication shop",
+    "industryContext": "osha general industry",
+    "taskContext": "grinder inspection",
+    "equipmentInvolved": "pedestal grinder",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "grinder",
+      "guard",
+      "tool rest",
+      "adjust"
+    ],
+    "forbiddenTerms": [
+      "missing eye protection"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-HAZCOM-UNKNOWN-DRUM-001",
+    "title": "unknown drum with partial label",
+    "hazardObservation": "A 55-gallon drum in the storage room had a torn label and residue around the bung. Employees could not identify the contents and no SDS was immediately available.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "chemical storage inspection",
+    "equipmentInvolved": "55-gallon drum",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "label",
+      "sds",
+      "chemical",
+      "identify"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-HOTWORK-NEGATED-COMBUSTIBLES-001",
+    "title": "combustibles near heater with hot work negated",
+    "hazardObservation": "No welding, cutting, brazing, or grinding was occurring. Oily rags and cardboard were piled next to a portable heater in the maintenance room.",
+    "siteType": "maintenance shop",
+    "industryContext": "osha general industry",
+    "taskContext": "fire prevention housekeeping inspection",
+    "equipmentInvolved": "portable heater",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "heater",
+      "remove",
+      "housekeeping"
+    ],
+    "forbiddenTerms": [
+      "hot work permit",
+      "fire watch"
+    ]
+  },
+  {
+    "id": "FIELD-V2-MSHA-MOBILE-NO-PEDESTRIAN-001",
+    "title": "parked loader with no pedestrian exposure",
+    "hazardObservation": "A loader was parked in the yard with the bucket lowered. No pedestrians were nearby, no travel was occurring, and no backing movement was observed. The concern was an expired pre-use inspection tag.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "mobile equipment inspection",
+    "equipmentInvolved": "front-end loader",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "inspection",
+      "verify",
+      "equipment"
+    ],
+    "forbiddenTerms": [
+      "struck-by injury"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-EMERGENCY-EXIT-BLOCKED-001",
+    "title": "emergency exit route blocked by pallets",
+    "hazardObservation": "Pallets of finished product were staged in front of an exit door. The exit sign was visible, but the path width and whether the door could open fully were not documented.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "egress inspection",
+    "equipmentInvolved": "exit door and pallets",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "exit",
+      "egress",
+      "clear",
+      "verify"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-MULTI-CHEM-FIRE-TRIP-001",
+    "title": "multi-hazard chemical storage with trip and fire concerns",
+    "hazardObservation": "Unlabeled solvent bottles were stored on the floor beside cardboard waste, and the containers partially blocked the aisle. No hot work was occurring and no spill was visible.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "storage room inspection",
+    "equipmentInvolved": "solvent bottles and cardboard",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "chemical",
+      "label",
+      "aisle",
+      "segregate"
+    ],
+    "forbiddenTerms": [
+      "hot work permit"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-MATERIAL-STORAGE-FALLING-001",
+    "title": "unstable material storage near employee walkway",
+    "hazardObservation": "Boxes of metal parts were stacked unevenly on a storage rack beside an employee walkway. Some boxes leaned over the rack edge, but no forklift movement or suspended load was involved.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "material storage inspection",
+    "equipmentInvolved": "storage rack and boxed parts",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "material",
+      "storage",
+      "falling",
+      "walkway"
+    ],
+    "forbiddenTerms": [
+      "suspended load"
+    ]
+  },
+  {
+    "id": "FIELD-V2-MSHA-COAL-UG-BELT-SPILLAGE-001",
+    "title": "underground coal belt spillage near travelway",
+    "hazardObservation": "Coal spillage had accumulated along the beltline near a travelway. The note says miners walk through the area, but it does not confirm whether the belt was running, whether cleanup was underway, or whether guarding/lockout was needed.",
+    "siteType": "underground coal mine",
+    "industryContext": "mining coal",
+    "taskContext": "beltline travelway inspection",
+    "equipmentInvolved": "belt conveyor",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "spillage",
+      "travelway",
+      "cleanup",
+      "belt"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-COAL-UG-ROOF-BOLT-001",
+    "title": "loose roof bolt plate near coal travelway",
+    "hazardObservation": "A roof bolt plate appeared loose near an underground coal travelway. The inspector noted rib sloughing nearby, but no fresh roof fall was observed. It is unclear whether the area was barricaded or examined by a competent person.",
+    "siteType": "underground coal mine",
+    "industryContext": "mining coal",
+    "taskContext": "travelway inspection",
+    "equipmentInvolved": "roof support",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "roof",
+      "rib",
+      "barricade",
+      "examine"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-MNM-UG-GROUND-CONTROL-001",
+    "title": "metal nonmetal underground loose ground near heading",
+    "hazardObservation": "Loose material was visible on the rib near an underground heading. Employees were working in the area, but the note does not say whether scaling occurred, whether the ground was supported, or whether the area was restricted.",
+    "siteType": "underground metal nonmetal mine",
+    "industryContext": "mining metal nonmetal",
+    "taskContext": "development heading inspection",
+    "equipmentInvolved": "ground support",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "loose",
+      "ground",
+      "scale",
+      "restrict"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-MNM-UG-ELECTRICAL-CABLE-001",
+    "title": "damaged trailing cable with unclear energized status",
+    "hazardObservation": "A trailing cable had visible jacket damage near an underground pump. The pump area was damp. The observation does not confirm whether conductors were exposed, whether the cable was energized, or whether it had been removed from service.",
+    "siteType": "underground metal nonmetal mine",
+    "industryContext": "mining metal nonmetal",
+    "taskContext": "pump inspection",
+    "equipmentInvolved": "trailing cable",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "cable",
+      "electrical",
+      "energized",
+      "restrict"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-SURFACE-HIGHWALL-001",
+    "title": "surface highwall loose material with unclear exclusion zone",
+    "hazardObservation": "Loose rock was visible on the highwall above the pit road. A haul truck route passed below the area. The note does not confirm whether the road was closed, bermed off, scaled, or examined by a competent person.",
+    "siteType": "surface metal nonmetal mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "pit road inspection",
+    "equipmentInvolved": "highwall",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "highwall",
+      "loose rock",
+      "restrict",
+      "scale"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-SURFACE-DUMP-BERM-001",
+    "title": "dump point berm appears low with truck exposure",
+    "hazardObservation": "At the dump point, the berm appeared lower than the axle height of trucks using the area. The photo is angled and does not clearly show berm continuity or truck position during dumping.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "dump point inspection",
+    "equipmentInvolved": "haul truck and berm",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "berm",
+      "dump",
+      "truck",
+      "edge"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-EXCAVATION-LADDER-001",
+    "title": "construction trench with missing ladder access detail",
+    "hazardObservation": "Workers were in a trench estimated near six feet deep. A ladder was not visible in the photo, and the note does not describe soil type, protective system, inspection, or egress distance.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "utility trench work",
+    "equipmentInvolved": "trench",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "trench",
+      "egress",
+      "ladder",
+      "protective system"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-REBAR-IMPALEMENT-001",
+    "title": "uncapped vertical rebar near walking path",
+    "hazardObservation": "Several vertical rebar ends were exposed near a construction walking path. Employees were carrying material through the area, but the note does not identify whether caps or impalement protection were available nearby.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "site access inspection",
+    "equipmentInvolved": "vertical rebar",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "rebar",
+      "impalement",
+      "cap",
+      "protect"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-CRANE-SWING-RADIUS-001",
+    "title": "crane swing radius not clearly barricaded",
+    "hazardObservation": "A mobile crane was operating near a laydown area. Workers were walking near the counterweight side, and the swing radius barricade was not visible in the photo.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "crane operation observation",
+    "equipmentInvolved": "mobile crane",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "crane",
+      "swing radius",
+      "barricade",
+      "counterweight"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-POWERLINE-CRANE-001",
+    "title": "crane operating near overhead power line",
+    "hazardObservation": "A crane boom was positioned near overhead utility lines. The observation does not confirm voltage, distance, de-energization, spotter use, or whether minimum approach distance was evaluated.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "crane lift planning",
+    "equipmentInvolved": "crane and overhead power line",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "crane",
+      "overhead",
+      "electrical",
+      "distance"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-MACHINE-JAM-CLEARING-001",
+    "title": "machine jam clearing with unclear energy control",
+    "hazardObservation": "An employee was reaching toward a jammed packaging machine. The machine appeared stopped, but the note does not confirm whether it was locked out, blocked, or capable of unexpected movement.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "jam clearing",
+    "equipmentInvolved": "packaging machine",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "jam",
+      "lockout",
+      "unexpected",
+      "machine"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-MACHINE-GUARD-REMOVED-NO-WORK-001",
+    "title": "machine guard removed but machine tagged out",
+    "hazardObservation": "A machine guard was removed from a press, but the machine was tagged out for repair and no employee was working near the point of operation. The note does not confirm lock status or who controls the tag.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "maintenance staging",
+    "equipmentInvolved": "press",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "guard",
+      "tag",
+      "lock",
+      "verify"
+    ],
+    "forbiddenTerms": [
+      "active point of operation exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-ELECTRICAL-PANEL-BLOCKED-001",
+    "title": "electrical panel access blocked by stored boxes",
+    "hazardObservation": "Boxes were stacked in front of an electrical panel. The panel door was closed and there was no exposed wiring. The issue appears to be access and clearance, not exposed live parts.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "warehouse inspection",
+    "equipmentInvolved": "electrical panel",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "electrical",
+      "panel",
+      "access",
+      "clear"
+    ],
+    "forbiddenTerms": []
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-BATTERY-CHARGING-001",
+    "title": "forklift battery charging area with eyewash uncertainty",
+    "hazardObservation": "Forklift batteries were being charged in the maintenance bay. The eyewash station was not visible and the note does not confirm ventilation, acid spill supplies, or emergency eyewash access.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "battery charging inspection",
+    "equipmentInvolved": "forklift battery charger",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "battery",
+      "eyewash",
+      "ventilation",
+      "acid"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-PRESSURE-HOSE-001",
+    "title": "compressed air hose damaged near workstation",
+    "hazardObservation": "A compressed air hose had cracked outer covering near a workstation. It is unclear whether the hose was pressurized, leaking, restrained, or removed from service.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "maintenance inspection",
+    "equipmentInvolved": "compressed air hose",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "hose",
+      "inspect",
+      "damaged"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-FALLING-OBJECT-NO-EXPOSURE-001",
+    "title": "stored material secured with no employee exposure",
+    "hazardObservation": "Pipe bundles were stored on a rack with chocks in place. No employees were working below or beside the rack at the time of observation. The note asks whether this is a falling-object issue.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "storage inspection",
+    "equipmentInvolved": "pipe rack",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "storage",
+      "rack",
+      "confirm"
+    ],
+    "forbiddenTerms": [
+      "worker in fall zone",
+      "struck by suspended load"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-CHEMICAL-NO-LEAK-001",
+    "title": "closed labeled chemical containers with no leak",
+    "hazardObservation": "Closed labeled chemical containers were stored in a cabinet. No leak, spill, odor, unlabeled container, or incompatible storage was observed. The inspector only noted that the cabinet looked crowded.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "chemical cabinet inspection",
+    "equipmentInvolved": "chemical cabinet",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "chemical",
+      "cabinet",
+      "storage"
+    ],
+    "forbiddenTerms": [
+      "spill response",
+      "leaking chemical"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-HOTWORK-PERMIT-OK-001",
+    "title": "hot work permit present with controls documented",
+    "hazardObservation": "Hot work was occurring in the maintenance shop. The permit was posted, nearby combustibles were cleared, an extinguisher was present, and a fire watch was assigned. The note asks whether additional evidence is needed before closing.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "hot work observation",
+    "equipmentInvolved": "welding equipment",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "hot work",
+      "permit",
+      "fire watch"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-JURISDICTION-MINE-CONTRACTOR-001",
+    "title": "contractor shop near mine with jurisdiction uncertainty",
+    "hazardObservation": "A contractor repair shop near the quarry had an unguarded bench grinder. The note does not confirm whether the shop is on mine property, whether miners use it, or whether OSHA or MSHA jurisdiction applies.",
+    "siteType": "contractor repair shop near quarry",
+    "industryContext": "unclear",
+    "taskContext": "shop inspection",
+    "equipmentInvolved": "bench grinder",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "jurisdiction",
+      "guard",
+      "grinder",
+      "confirm"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-JURISDICTION-CONSTRUCTION-PLANT-001",
+    "title": "construction work inside operating plant with jurisdiction uncertainty",
+    "hazardObservation": "A contractor crew was installing pipe supports inside an operating processing plant. Workers used a scaffold and grinders. The note does not clarify whether OSHA construction, OSHA general industry, or MSHA applies.",
+    "siteType": "operating processing plant",
+    "industryContext": "unclear",
+    "taskContext": "contractor installation work",
+    "equipmentInvolved": "scaffold and grinders",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "jurisdiction",
+      "construction",
+      "scaffold",
+      "confirm"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MULTI-FORKLIFT-SPILL-ELECTRICAL-001",
+    "title": "forklift traffic, spill, and electrical panel access conflict",
+    "hazardObservation": "A forklift route passed through a wet spill area near an electrical panel. Pedestrians also used the aisle. The panel was closed, but boxes blocked access to it.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "warehouse inspection",
+    "equipmentInvolved": "forklift, spill, electrical panel",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "forklift",
+      "pedestrian",
+      "spill",
+      "electrical"
+    ],
+    "forbiddenTerms": [
+      "exposed live parts"
+    ]
+  },
+  {
+    "id": "FIELD-V2-MULTI-SCAFFOLD-HOTWORK-FALL-001",
+    "title": "scaffold hot work with fall and fire controls unclear",
+    "hazardObservation": "A welder was working from a scaffold near stored cardboard. The note does not confirm scaffold guardrails, fire watch, combustible clearance, or whether fall protection was required.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "elevated hot work",
+    "equipmentInvolved": "scaffold and welding equipment",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "scaffold",
+      "hot work",
+      "fall",
+      "fire watch"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MULTI-CONFINED-HOTWORK-ENTRY-001",
+    "title": "tank entry with hot work planned but not started",
+    "hazardObservation": "A crew planned to weld inside a tank later in the shift. At the time of inspection, the manway was open and an entrant was checking tools near the opening. No atmospheric test, permit, attendant, ventilation, or hot work authorization was documented.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "tank entry preparation",
+    "equipmentInvolved": "tank and welding equipment",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "entry",
+      "permit",
+      "ventilation"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-MULTI-GUARDING-ELECTRICAL-WET-001",
+    "title": "mine plant guarding issue with wet electrical area nearby",
+    "hazardObservation": "A plant conveyor tail pulley had a damaged guard, and water was pooling near a motor junction box. Employees walk through the area to adjust material flow. The note does not confirm whether the junction box was energized or whether the conveyor was locked out.",
+    "siteType": "surface aggregate plant",
+    "industryContext": "mining aggregate",
+    "taskContext": "plant inspection",
+    "equipmentInvolved": "conveyor and motor junction box",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "guard",
+      "conveyor",
+      "electrical",
+      "lockout"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-JURISDICTION-MSHA-OSHA-MOBILE-SHOP-001",
+    "title": "mobile equipment repair shop with MSHA OSHA jurisdiction uncertainty",
+    "hazardObservation": "A loader was parked in a maintenance shop for tire repair. The shop services mine equipment, but the note does not confirm whether the shop is on mine property, whether miners work there, whether the loader was energized, or whether the tire work involved stored-energy controls.",
+    "siteType": "maintenance shop near aggregate operation",
+    "industryContext": "unclear",
+    "taskContext": "mobile equipment tire repair staging",
+    "equipmentInvolved": "front-end loader",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "jurisdiction",
+      "loader",
+      "repair",
+      "confirm"
+    ],
+    "forbiddenTerms": [
+      "backing exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-COAL-UG-BELT-GUARD-NO-EXPOSURE-001",
+    "title": "underground coal belt guard removed but area barricaded",
+    "hazardObservation": "A belt drive guard was removed for scheduled maintenance, but the belt was locked out, tagged, and the entry was barricaded. No miners were working near moving parts at the time of observation. The note asks whether this should be treated as an active guarding exposure.",
+    "siteType": "underground coal mine",
+    "industryContext": "mining coal",
+    "taskContext": "belt maintenance inspection",
+    "equipmentInvolved": "belt drive",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "guard",
+      "belt",
+      "lockout",
+      "verify"
+    ],
+    "forbiddenTerms": [
+      "unguarded moving belt exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-COAL-UG-SCOOP-BATTERY-001",
+    "title": "battery scoop charging with ventilation uncertainty",
+    "hazardObservation": "A battery scoop was on charge in an underground shop. The area had a fan running, but the observation does not confirm hydrogen monitoring, charger condition, eyewash availability, or whether ignition sources were controlled.",
+    "siteType": "underground coal mine",
+    "industryContext": "mining coal",
+    "taskContext": "battery charging area inspection",
+    "equipmentInvolved": "battery scoop charger",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "battery",
+      "charging",
+      "ventilation",
+      "eyewash"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-COAL-UG-CABLE-HANGING-001",
+    "title": "coal mine cable hanging low near travelway",
+    "hazardObservation": "A trailing cable was hanging low across the rib line near a travelway. The jacket appeared intact, but miners and mobile equipment pass through the area. The note does not confirm whether the cable was energized or protected from damage.",
+    "siteType": "underground coal mine",
+    "industryContext": "mining coal",
+    "taskContext": "travelway inspection",
+    "equipmentInvolved": "trailing cable",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "cable",
+      "travelway",
+      "protect",
+      "energized"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-MNM-UG-ORE-PASS-BARRICADE-001",
+    "title": "ore pass opening with unclear barricade condition",
+    "hazardObservation": "An ore pass opening was observed near the drift. A chain was present but sagging, and the sign was dirty. The note does not confirm whether the opening was adequately barricaded or whether employees could access the edge.",
+    "siteType": "underground metal nonmetal mine",
+    "industryContext": "mining metal nonmetal",
+    "taskContext": "underground drift inspection",
+    "equipmentInvolved": "ore pass opening",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "opening",
+      "barricade",
+      "fall",
+      "access"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-MNM-UG-REFUGE-ROUTE-001",
+    "title": "refuge route sign missing with travelway open",
+    "hazardObservation": "A refuge chamber route marker was missing at an intersection, but the travelway itself was open and clear. The observation does not confirm whether alternate route markers were visible or whether miners had current evacuation maps.",
+    "siteType": "underground metal nonmetal mine",
+    "industryContext": "mining metal nonmetal",
+    "taskContext": "emergency preparedness inspection",
+    "equipmentInvolved": "refuge route signage",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "refuge",
+      "route",
+      "sign",
+      "evacuation"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-SURFACE-CRUSHER-DUST-WATER-001",
+    "title": "crusher dust with water spray not confirmed",
+    "hazardObservation": "Dust was visible around the crusher feed during dry material processing. A water spray manifold was installed, but the note does not confirm whether sprays were operating, whether respirable dust sampling exists, or whether employees were exposed downwind.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "crusher operation inspection",
+    "equipmentInvolved": "crusher and water sprays",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "dust",
+      "spray",
+      "sampling",
+      "exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-SURFACE-CONVEYOR-PULLCORD-001",
+    "title": "conveyor emergency stop pull cord slack",
+    "hazardObservation": "The emergency stop pull cord along a surface conveyor appeared slack near the tail section. The conveyor was running and a miner walks that side during cleanup. The note does not confirm whether the pull cord activates the stop switch.",
+    "siteType": "surface aggregate mine",
+    "industryContext": "mining aggregate",
+    "taskContext": "conveyor walkway inspection",
+    "equipmentInvolved": "conveyor emergency stop pull cord",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "conveyor",
+      "emergency stop",
+      "pull cord",
+      "verify"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MSHA-SURFACE-WELDING-CYLINDER-TRUCK-001",
+    "title": "welding cylinders in service truck with cap and securement uncertainty",
+    "hazardObservation": "Oxygen and fuel gas cylinders were stored in a service truck bed near the plant. One cap was off and the cylinders were held with a loose chain. No hot work was underway.",
+    "siteType": "surface mine maintenance area",
+    "industryContext": "mining aggregate",
+    "taskContext": "service truck inspection",
+    "equipmentInvolved": "oxygen and fuel gas cylinders",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "cylinder",
+      "cap",
+      "separate"
+    ]
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-SILICA-HOUSEKEEPING-001",
+    "title": "construction dust cleanup with silica uncertainty",
+    "hazardObservation": "Workers were dry sweeping dust after cutting concrete earlier in the day. The note does not confirm whether the material contains silica, whether wet methods or HEPA vacuum were available, or whether respirators were required.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "post-cutting cleanup",
+    "equipmentInvolved": "broom and concrete dust",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "dust",
+      "silica",
+      "wet",
+      "HEPA"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-LADDER-NO-EXPOSURE-001",
+    "title": "ladder stored damaged but not in use",
+    "hazardObservation": "A portable ladder with a bent rung was lying in the laydown yard with a damaged tag attached. No worker was using it, and it appeared staged for disposal. The note asks whether it should still be tracked.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "laydown yard inspection",
+    "equipmentInvolved": "portable ladder",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "ladder",
+      "remove",
+      "tag",
+      "verify"
+    ],
+    "forbiddenTerms": [
+      "worker fell",
+      "active ladder use"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-FORKLIFT-LOAD-VISIBILITY-001",
+    "title": "telehandler load blocks forward visibility",
+    "hazardObservation": "A telehandler carried a pallet of block that blocked the operator's forward view while moving through an area where laborers were staging materials. The note does not mention a spotter or traffic control.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "material handling",
+    "equipmentInvolved": "telehandler",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "visibility",
+      "spotter",
+      "pedestrian",
+      "traffic"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-CONSTRUCTION-EXCAVATION-SPOIL-PILE-001",
+    "title": "excavation spoil pile near edge",
+    "hazardObservation": "Spoil material was piled near the edge of an excavation. The note does not confirm excavation depth, soil type, distance from edge, or whether workers entered the trench.",
+    "siteType": "construction site",
+    "industryContext": "osha construction",
+    "taskContext": "excavation inspection",
+    "equipmentInvolved": "excavation and spoil pile",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "excavation",
+      "spoil",
+      "edge",
+      "distance"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-CONVEYOR-TRAINING-ONLY-001",
+    "title": "conveyor safety mentioned only in training records",
+    "hazardObservation": "The audit note says conveyor pinch point training records were incomplete. No conveyor was running, no guard was missing, and no employee exposure to moving parts was observed.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "training record review",
+    "equipmentInvolved": "conveyor",
+    "photosAvailable": false,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "training",
+      "record",
+      "conveyor",
+      "verify"
+    ],
+    "forbiddenTerms": [
+      "unguarded nip point",
+      "caught in running conveyor"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-LOCKOUT-ENERGY-STORED-AIR-001",
+    "title": "stored air pressure during maintenance prep",
+    "hazardObservation": "Maintenance planned to replace a valve on a compressed air line. The lock was applied to the compressor disconnect, but the note does not confirm bleed-down, zero-energy verification, or whether pressure gauges were checked.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "compressed air maintenance",
+    "equipmentInvolved": "compressed air line",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "lockout",
+      "pressure",
+      "bleed",
+      "verify"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-ROBOT-CELL-GATE-BYPASS-001",
+    "title": "robot cell gate bypass rumor without confirmation",
+    "hazardObservation": "An employee said the robot cell gate interlock was bypassed last week, but during inspection the gate was closed and no bypass device was visible. Production was running nearby. The note does not confirm current interlock status.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "robot cell inspection",
+    "equipmentInvolved": "robot cell gate interlock",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "interlock",
+      "gate",
+      "bypass"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-ERGONOMICS-REPETITIVE-LIFT-001",
+    "title": "repetitive lifting complaint with missing weight data",
+    "hazardObservation": "Employees reported shoulder strain from repeatedly lifting boxes to a shoulder-height pallet. The note does not include box weight, frequency, duration, reach distance, or injury history.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "manual material handling",
+    "equipmentInvolved": "boxes and pallets",
+    "photosAvailable": false,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "lifting",
+      "weight",
+      "frequency"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-RESPIRATOR-VOLUNTARY-USE-001",
+    "title": "voluntary respirator use with unclear exposure basis",
+    "hazardObservation": "Employees wore dust masks voluntarily while sweeping packaging dust. The note does not confirm contaminant type, airborne measurements, required respirator program elements, or whether the masks were required by management.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "housekeeping dust cleanup",
+    "equipmentInvolved": "dust masks",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "respirator",
+      "exposure",
+      "program"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-BLOODBORNE-SHARPS-001",
+    "title": "discarded sharp found in restroom",
+    "hazardObservation": "A used needle was found in a restroom trash can. No employee injury was reported. The note does not confirm cleanup procedure, sharps container availability, PPE, or exposure control plan status.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "restroom inspection",
+    "equipmentInvolved": "discarded needle",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "bloodborne",
+      "sharps",
+      "PPE",
+      "cleanup",
+      "sharps container",
+      "exposure control plan"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-GI-POWERED-DOOR-CRUSH-POINT-001",
+    "title": "powered overhead door crush point uncertainty",
+    "hazardObservation": "A powered overhead door closed quickly near a pedestrian walkway. The note does not confirm photo-eye function, warning devices, manual release condition, or whether employees pass under the door during operation.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "dock door inspection",
+    "equipmentInvolved": "powered overhead door",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "door",
+      "crush",
+      "warning",
+      "verify"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-JURISDICTION-RAIL-SPUR-MINE-PLANT-001",
+    "title": "rail spur near mine plant with jurisdiction uncertainty",
+    "hazardObservation": "A railcar was being loaded near the mine plant boundary. The note does not confirm whether the work was under mine operations, railroad control, or contractor control. Workers were near moving rail equipment.",
+    "siteType": "mine plant rail spur",
+    "industryContext": "unclear",
+    "taskContext": "railcar loading",
+    "equipmentInvolved": "railcar",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "jurisdiction",
+      "rail",
+      "worker",
+      "confirm"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-JURISDICTION-PUBLIC-ROAD-HAUL-TRUCK-001",
+    "title": "haul truck crossing public road with jurisdiction uncertainty",
+    "hazardObservation": "A haul truck crossed a public road between two mine areas. The note does not confirm whether traffic control was managed by the mine, DOT, or contractor personnel. Pedestrians were not observed.",
+    "siteType": "mine access road",
+    "industryContext": "unclear",
+    "taskContext": "haul road crossing",
+    "equipmentInvolved": "haul truck",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "jurisdiction",
+      "traffic",
+      "haul truck",
+      "confirm"
+    ],
+    "forbiddenTerms": [
+      "backing exposure"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MULTI-NOISE-FORKLIFT-CO-001",
+    "title": "forklift area with noise and possible carbon monoxide concern",
+    "hazardObservation": "Employees complained of headaches in a busy propane forklift charging and staging area with loud backup alarms. The note does not include CO readings, ventilation status, noise dosimetry, or forklift maintenance records.",
+    "siteType": "warehouse",
+    "industryContext": "osha general industry",
+    "taskContext": "forklift staging inspection",
+    "equipmentInvolved": "propane forklifts",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "forklift",
+      "ventilation",
+      "CO",
+      "noise"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-MULTI-CHEMICAL-EYEWASH-NO-SPLASH-001",
+    "title": "corrosive storage with eyewash blocked but no spill",
+    "hazardObservation": "Corrosive containers were closed and labeled, but a cart partially blocked the eyewash station. No spill, leak, or splash incident was observed.",
+    "siteType": "general industry facility",
+    "industryContext": "osha general industry",
+    "taskContext": "chemical storage inspection",
+    "equipmentInvolved": "corrosive containers and eyewash",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "eyewash",
+      "access",
+      "corrosive"
+    ],
+    "forbiddenTerms": [
+      "spill response",
+      "leaking chemical"
+    ]
+  },
+  {
+    "id": "FIELD-V2-MULTI-MINE-BLASTING-MAGAZINE-001",
+    "title": "mine explosives magazine housekeeping with security uncertainty",
+    "hazardObservation": "The explosives magazine area had weeds and debris near the perimeter fence. The magazine door appeared closed. The note does not confirm inventory, security lock condition, separation distance, or whether ignition sources were nearby.",
+    "siteType": "surface mine blasting area",
+    "industryContext": "mining aggregate",
+    "taskContext": "magazine inspection",
+    "equipmentInvolved": "explosives magazine",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "magazine",
+      "security"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-UNKNOWN-PHOTO-ONLY-001",
+    "title": "photo only unclear condition requiring evidence hold",
+    "hazardObservation": "The inspector uploaded a blurry photo and wrote only 'unsafe?' No task, location, equipment, employee exposure, or condition details were provided.",
+    "siteType": "unknown",
+    "industryContext": "unclear",
+    "taskContext": "unknown",
+    "equipmentInvolved": "",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "evidence",
+      "confirm",
+      "exposure",
+      "task"
+    ],
+    "shouldHaveMissingEvidence": true
+  }
+]

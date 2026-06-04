@@ -1,0 +1,41 @@
+{
+  "matrixId": "default-5x5x5",
+  "name": "Default 5x5x5 Risk Matrix",
+  "version": 1,
+  "dimensions": {
+    "severity": [
+      { "value": 1, "label": "Minor", "description": "First aid or minimal impact" },
+      { "value": 2, "label": "Moderate", "description": "Medical treatment or restricted duty" },
+      { "value": 3, "label": "Serious", "description": "Lost time injury or significant property damage" },
+      { "value": 4, "label": "Major", "description": "Permanent impairment or major incident potential" },
+      { "value": 5, "label": "Catastrophic", "description": "Fatality or multiple serious injuries" }
+    ],
+    "likelihood": [
+      { "value": 1, "label": "Rare" },
+      { "value": 2, "label": "Unlikely" },
+      { "value": 3, "label": "Possible" },
+      { "value": 4, "label": "Likely" },
+      { "value": 5, "label": "Almost Certain" }
+    ],
+    "exposure": [
+      { "value": 1, "label": "Rare exposure" },
+      { "value": 2, "label": "Occasional exposure" },
+      { "value": 3, "label": "Regular exposure" },
+      { "value": 4, "label": "Frequent exposure" },
+      { "value": 5, "label": "Continuous exposure" }
+    ]
+  },
+  "bands": [
+    { "min": 1, "max": 12, "priority": "low", "defaultDaysToComplete": 30, "requiredApprover": "supervisor" },
+    { "min": 13, "max": 35, "priority": "medium", "defaultDaysToComplete": 14, "requiredApprover": "supervisor" },
+    { "min": 36, "max": 74, "priority": "high", "defaultDaysToComplete": 3, "requiredApprover": "manager" },
+    { "min": 75, "max": 125, "priority": "critical", "defaultDaysToComplete": 0, "requiredApprover": "safety_manager" }
+  ],
+  "rules": {
+    "criticalRequiresImmediateControl": true,
+    "criticalEscalationRule": "notify_safety_manager_immediately",
+    "highEscalationRule": "notify_area_manager",
+    "mediumEscalationRule": "normal_followup",
+    "lowEscalationRule": "routine_tracking"
+  }
+}

@@ -1,0 +1,2002 @@
+[
+  {
+    "id": "case_01311",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01312",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01313",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01314",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01315",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01316",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01317",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01318",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01319",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01320",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01321",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01322",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01323",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01324",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01325",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01326",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01327",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01328",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01329",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01330",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01331",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01332",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01333",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01334",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01335",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01336",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01337",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01338",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01339",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01340",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01341",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01342",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01343",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01344",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01345",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01346",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01347",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01348",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01349",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01350",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01351",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01352",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01353",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01354",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01355",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01356",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01357",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01358",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01359",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01360",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01361",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01362",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01363",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01364",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01365",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01366",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01367",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01368",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01369",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01370",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01371",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01372",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01373",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01374",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01375",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01376",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01377",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01378",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01379",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01380",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01381",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01382",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01383",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01384",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01385",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01386",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01387",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01388",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01389",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01390",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01391",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01392",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01393",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01394",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01395",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01396",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01397",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01398",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01399",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01400",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01401",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01402",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01403",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01404",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01405",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01406",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01407",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01408",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01409",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01410",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01411",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01412",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01413",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01414",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01415",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01416",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01417",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01418",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01419",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01420",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01421",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01422",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01423",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01424",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01425",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01426",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01427",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01428",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01429",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01430",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01431",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01432",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01433",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01434",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01435",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01436",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01437",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01438",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01439",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01440",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01441",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01442",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01443",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01444",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01445",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01446",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01447",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01448",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01449",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01450",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01451",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01452",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01453",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01454",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01455",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01456",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01457",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01458",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01459",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01460",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01461",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01462",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01463",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01464",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01465",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01466",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01467",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01468",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01469",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01470",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01471",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01472",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01473",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01474",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01475",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01476",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01477",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01478",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01479",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01480",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01481",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01482",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01483",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01484",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01485",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01486",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01487",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01488",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01489",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01490",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01491",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01492",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01493",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01494",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01495",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01496",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01497",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01498",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01499",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01500",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01501",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01502",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01503",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01504",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01505",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01506",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01507",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01508",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01509",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01510",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01511",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01512",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01513",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01514",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01515",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01516",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01517",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01518",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01519",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01520",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01521",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01522",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01523",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01524",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01525",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01526",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01527",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01528",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01529",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01530",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01531",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01532",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01533",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01534",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01535",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01536",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01537",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01538",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01539",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01540",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01541",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01542",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01543",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01544",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01545",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01546",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01547",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01548",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01549",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01550",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01551",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Area inspected; everything looks good.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01552",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Frayed extension cord laying in standing water near the maintenance shop exit.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01553",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Worker observed on open roof edge with no fall restraint equipment.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01554",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil spill detected on stairs leading to the secondary plant level.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01555",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "No lockout tagout applied to primary feeder breaker during motor inspection.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01556",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder leaning unsecured against concrete wall.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01557",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Pre-shift record missing for yesterday's shift.",
+    "primaryHazardFamily": "Fall Protection",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01558",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Machine guards appear to be in full compliance, area clean.",
+    "primaryHazardFamily": "Housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01559",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm height on haul road 12 appears below minimum specs.",
+    "primaryHazardFamily": "Machine Guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01560",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Dust cloud reported at crusher dump point.",
+    "primaryHazardFamily": "Electrical",
+    "difficulty": "medium"
+  }
+]

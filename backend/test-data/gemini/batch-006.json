@@ -1,0 +1,51 @@
+[
+  {
+    "id": "case_00111",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "belt drive guard missing on #4 screen plant motor",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_00112",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "extension cord run through metal doorway damaged",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_00113",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "forklift driver texting on phone while backing up",
+    "primaryHazardFamily": "powered_industrial_truck",
+    "difficulty": "brutal"
+  },
+  {
+    "id": "case_00114",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "pit berm missing at dump point 14",
+    "primaryHazardFamily": "roadway_berm",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_00115",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "welding sparks hitting pile of scrap wood",
+    "primaryHazardFamily": "fire",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_00116",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "safety guard installed and inspected",
+    "primaryHazardFamily": "other",
+    "difficulty": "brutal",
+    "expectedOutcome": { "citationConfidence": "no_match" }
+  }
+]

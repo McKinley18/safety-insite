@@ -1,0 +1,186 @@
+[
+  {
+    "id": "case_00001",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "tail pulley guard missing on conveyor 4 by primary crusher",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "easy",
+    "expectedOutcome": { "citationConfidence": "exact" },
+    "whyDifficult": "Standard phrasing; engine should trigger MSHA Part 56 guarding."
+  },
+  {
+    "id": "case_00002",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "frklft operator no seatbelt near warehouse rack",
+    "primaryHazardFamily": "powered_industrial_truck",
+    "difficulty": "medium",
+    "whyDifficult": "Typo 'frklft' and shorthand."
+  },
+  {
+    "id": "case_00003",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "worker 12ft high no fall prot on roof",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "medium",
+    "whyDifficult": "Shifting 'fall prot' shorthand and height specification."
+  },
+  {
+    "id": "case_00004",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "trip hazard in aisle cleaned up by maintenance",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "brutal",
+    "expectedOutcome": { "citationConfidence": "no_match" },
+    "whyDifficult": "Engine must identify remediation and suppress false positive."
+  },
+  {
+    "id": "case_00005",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "crusher feed dust level high respirable silica?",
+    "primaryHazardFamily": "respiratory",
+    "difficulty": "hard",
+    "whyDifficult": "Ambiguous input framed as question."
+  },
+  {
+    "id": "case_00006",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "scaffold missing middle rail plank 2nd level",
+    "primaryHazardFamily": "scaffold",
+    "difficulty": "medium",
+    "whyDifficult": "Specific construction detail."
+  },
+  {
+    "id": "case_00007",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "loto not done before motor repair on 480v pump",
+    "primaryHazardFamily": "lockout_tagout",
+    "difficulty": "medium",
+    "whyDifficult": "Abbreviated loto and mixed voltage context."
+  },
+  {
+    "id": "case_00008",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "haul road edge berm eroded badly at station 4",
+    "primaryHazardFamily": "roadway_berm",
+    "difficulty": "medium",
+    "whyDifficult": "Location-specific note."
+  },
+  {
+    "id": "case_00009",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "unsafe area near shop",
+    "primaryHazardFamily": "other",
+    "difficulty": "brutal",
+    "expectedOutcome": { "citationConfidence": "no_match" },
+    "whyDifficult": "Extremely vague, no actionable hazard."
+  },
+  {
+    "id": "case_00010",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "trench 9ft no box or shoring by north entrance",
+    "primaryHazardFamily": "excavation",
+    "difficulty": "easy",
+    "whyDifficult": "Standard excavation failure."
+  },
+  {
+    "id": "case_00011",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "IMG_9921 cable insulation cut 440v",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "hard",
+    "whyDifficult": "Photo-caption style text."
+  },
+  {
+    "id": "case_00012",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "exit sign blocked by stack of boxes in shipping dock",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium",
+    "whyDifficult": "Competing hazards egress vs housekeeping."
+  },
+  {
+    "id": "case_00013",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "operator entry exam not documented since yesterday",
+    "primaryHazardFamily": "workplace_exam",
+    "difficulty": "medium",
+    "whyDifficult": "Alternate wording for workplace exam record."
+  },
+  {
+    "id": "case_00014",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "compressed nitrogen bottle unsecured leaning against wall",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "whyDifficult": "Compressed gas support not yet fully seeded."
+  },
+  {
+    "id": "case_00015",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "rebar impalement hazard unprotected at slab pour",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "hard",
+    "whyDifficult": "Construction specific terminology."
+  },
+  {
+    "id": "case_00016",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "loader backup alarm weak sound",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "medium",
+    "whyDifficult": "Ambiguous weak sound vs non-functional."
+  },
+  {
+    "id": "case_00017",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "machine guard inspected secure",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "brutal",
+    "expectedOutcome": { "citationConfidence": "no_match" },
+    "whyDifficult": "False positive trap due to keyword guard."
+  },
+  {
+    "id": "case_00018",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "laddder broken climbing",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "easy",
+    "whyDifficult": "Typo laddder."
+  },
+  {
+    "id": "case_00019",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "conveyer gard missing tail pully exposed",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "hard",
+    "whyDifficult": "Dual typos conveyer gard pully."
+  },
+  {
+    "id": "case_00020",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "forklift leaking hydro oil operator no belt and loud noise",
+    "primaryHazardFamily": "powered_industrial_truck",
+    "difficulty": "brutal",
+    "whyDifficult": "Multi-hazard description."
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "recordId": "niosh-exposure-assessment-foundation",
+  "sourceAuthority": "NIOSH/CDC",
+  "sourceType": "technical_standard",
+  "authorityTier": "expert_reference",
+  "citation": "NIOSH occupational exposure assessment guidance",
+  "title": "Exposure assessment foundation for occupational health hazards",
+  "sourceUrl": "https://www.cdc.gov/niosh/",
+  "retrievedAt": "2026-05-30T17:30:00Z",
+  "jurisdiction": "US_FEDERAL_HEALTH_GUIDANCE",
+  "hazardDomains": ["chemical", "operational"],
+  "applicabilityTriggers": [
+    "airborne exposure",
+    "chemical exposure",
+    "dust",
+    "fume",
+    "vapor",
+    "mist",
+    "respirable silica",
+    "noise",
+    "industrial hygiene sampling",
+    "exposure duration"
+  ],
+  "standardIntent": "Support recognition of occupational health exposure pathways, sampling needs, uncertainty, and health-risk context. This record is advisory and does not create legal compliance requirements by itself.",
+  "evidenceNeeded": [
+    "Identify contaminant or agent.",
+    "Document exposure route, task, duration, frequency, and affected employees.",
+    "Collect quantitative sampling data when exposure compliance or dose estimation is needed.",
+    "Document controls such as ventilation, wet methods, enclosure, respiratory protection, and administrative controls.",
+    "Record uncertainty when only qualitative exposure information is available."
+  ],
+  "nonApplicabilityQuestions": [
+    "Is there an identifiable health agent or exposure route?",
+    "Is quantitative sampling required before making a compliance or exposure-limit statement?",
+    "Is the source guidance rather than a binding regulation?",
+    "Are OSHA, MSHA, or other enforceable exposure limits more directly applicable?"
+  ],
+  "sourceBoundary": "advisory",
+  "reviewStatus": "unreviewed",
+  "approvedForUse": false
+}

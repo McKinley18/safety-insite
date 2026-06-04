@@ -1,0 +1,114 @@
+[
+  {
+    "category": "guarding",
+    "inputs": [
+      "Conveyor tail pulley missing guard near feed hopper.",
+      "conveyer gard missing near hopper",
+      "Unguarded rotating shaft at crusher motor.",
+      "Belt drive guard removed while operating.",
+      "Pinch point exposed on return roller.",
+      "Rotating shaft has no guard around coupling.",
+      "Return roller pinch point exposed on conveyor.",
+      "Guard removed from screen deck while operating.",
+      "Missing machine guard by head pulley.",
+      "Exposed moving parts at plant gearbox.",
+      "Broken guard allows contact with moving belt."
+    ]
+  },
+  {
+    "category": "safe_access",
+    "inputs": [
+      "Damaged ladder with bent side rail at crusher platform.",
+      "No safe access to working place.",
+      "Walkway grating missing near screen tower.",
+      "Travelway blocked by stored material.",
+      "Loose ladder to elevated work area.",
+      "Missing handrail on stairway to plant deck.",
+      "Platform access ladder is loose and unstable.",
+      "Travelway to pump station is blocked.",
+      "Broken steps create unsafe access."
+    ]
+  },
+  {
+    "category": "electrical",
+    "inputs": [
+      "Damaged electrical cord supplying pump.",
+      "Exposed wire in wet area.",
+      "Panel has exposed energized parts.",
+      "Cord insulation cut and conductor showing.",
+      "Cable crushed by mobile equipment.",
+      "Junction box cover missing.",
+      "Panel has exposed energized components.",
+      "Cord across travelway getting crushed.",
+      "Damaged cable on portable pump."
+    ]
+  },
+  {
+    "category": "housekeeping",
+    "inputs": [
+      "Oil spill on walkway near shop.",
+      "Loose aggregate creating trip hazard.",
+      "Trash and debris around work area.",
+      "Mud buildup causing slip hazard.",
+      "Scrap metal cluttering passageway.",
+      "Service room not clean or orderly.",
+      "Stored material blocking passageway."
+    ]
+  },
+  {
+    "category": "fire_safety",
+    "inputs": [
+      "Fire extinguisher blocked by stored materials.",
+      "Extinguisher not accessible in shop.",
+      "Fire suppression equipment obstructed.",
+      "Fuel storage area has poor housekeeping.",
+      "Hot work area lacks accessible extinguisher.",
+      "Blocked access to fire protection equipment."
+    ]
+  },
+  {
+    "category": "fall_protection",
+    "inputs": [
+      "Employee working near elevated platform edge without fall protection.",
+      "Open edge on crusher deck without barricade.",
+      "Missing guardrail near elevated walkway.",
+      "No fall protection while working at height.",
+      "Person exposed to fall hazard from platform.",
+      "Elevated work area has unprotected edge."
+    ]
+  },
+  {
+    "category": "mobile_equipment",
+    "inputs": [
+      "Berm missing along elevated haul road.",
+      "Dump truck travelway lacks berm.",
+      "No traffic control at blind intersection.",
+      "Mobile equipment operating near pedestrians.",
+      "Seat belt not used in loader.",
+      "Back-up alarm not working on haul truck.",
+      "Elevated roadway edge lacks protection."
+    ]
+  },
+  {
+    "category": "ppe",
+    "inputs": [
+      "Employee handling sharp metal without gloves.",
+      "Missing hard hat in active plant area.",
+      "Worker grinding without face shield.",
+      "No eye protection during cutting task.",
+      "Employee exposed to sharp edges without PPE.",
+      "Gloves not used while handling scrap steel."
+    ]
+  },
+  {
+    "category": "edge_cases",
+    "inputs": [
+      "",
+      "unsafe",
+      "thing broken",
+      "ladder!!!! broken??? rail@@@",
+      "possible 56.14107 guard issue",
+      "conveyer gard missing; tail pulley guard gone; oil spill on floor near shop"
+    ]
+  }
+]

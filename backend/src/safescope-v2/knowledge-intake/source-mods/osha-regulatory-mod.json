@@ -1,0 +1,78 @@
+{
+  "modId": "osha-regulatory-mod",
+  "modName": "OSHA Regulatory Intake Mod",
+  "purpose": "Collect OSHA regulatory anchors and source-grounded applicability intelligence for SafeScope.",
+  "sourceAuthority": "OSHA",
+  "allowedDomains": [
+    "machine_guarding",
+    "lockout_tagout",
+    "fall_protection",
+    "electrical",
+    "confined_space",
+    "hazard_communication",
+    "excavation",
+    "noise",
+    "respirable_silica",
+    "ppe",
+    "walking_working_surfaces",
+    "powered_industrial_trucks"
+  ],
+  "allowedSourceTypes": [
+    "cfr",
+    "interpretation_letter",
+    "policy_manual"
+  ],
+  "authorityTier": "federal_regulation",
+  "startingUrls": [
+    "https://www.osha.gov/laws-regs/regulations/standardnumber/1910",
+    "https://www.osha.gov/laws-regs/regulations/standardnumber/1926",
+    "https://www.osha.gov/laws-regs/standardinterpretations"
+  ],
+  "searchBoundaries": {
+    "allowedHostnames": [
+      "osha.gov",
+      "www.osha.gov"
+    ],
+    "disallowedContent": [
+      "blogs",
+      "forums",
+      "sales pages",
+      "unofficial summaries",
+      "uncited training articles"
+    ]
+  },
+  "extractionTargets": [
+    "citation",
+    "title",
+    "standard text summary",
+    "regulatory intent",
+    "applicability triggers",
+    "evidence needed before citation",
+    "non-applicability questions",
+    "related hazards",
+    "source boundary"
+  ],
+  "forbiddenBehavior": [
+    "Do not declare violations.",
+    "Do not approve records for production use.",
+    "Do not infer requirements that are not grounded in source text.",
+    "Do not mix OSHA regulation with guidance unless clearly labeled.",
+    "Do not change SafeScope reasoning logic."
+  ],
+  "defaults": {
+    "reviewStatus": "unreviewed",
+    "approvedForUse": false,
+    "sourceBoundary": "mandatory",
+    "jurisdiction": "US_FEDERAL"
+  },
+  "batchControls": {
+    "maxRecordsPerRun": 25,
+    "minSourcesPerDomain": 3,
+    "continueUntilCoverageComplete": true,
+    "stopOnlyWhen": [
+      "all listed domains have minimum source coverage",
+      "all gathered records pass quarantine validation",
+      "coverage report has no missing critical regulatory anchors"
+    ]
+  }
+}

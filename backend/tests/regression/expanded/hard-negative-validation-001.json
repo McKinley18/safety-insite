@@ -1,0 +1,26 @@
+[
+  {
+    "id": "NEG-001",
+    "observation": "conveyor guard inspected and secure with no defects noted",
+    "scopeExpected": "no_match",
+    "primaryHazardFamily": "other",
+    "citationReference": "NO_MATCH",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "NEG-002",
+    "observation": "fire extinguisher accessible and inspection tag current",
+    "scopeExpected": "no_match",
+    "primaryHazardFamily": "other",
+    "citationReference": "NO_MATCH",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "NEG-003",
+    "observation": "employee tied off while working near roof edge",
+    "scopeExpected": "no_match",
+    "primaryHazardFamily": "other",
+    "citationReference": "NO_MATCH",
+    "context": { "industryScope": "construction" }
+  }
+]

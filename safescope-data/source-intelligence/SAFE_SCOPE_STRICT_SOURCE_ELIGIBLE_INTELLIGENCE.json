@@ -1,0 +1,2399 @@
+[
+  {
+    "sourceId": "MSHA-2024-001",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Mountain Surface Mine",
+    "sourceUrl": "https://www.msha.gov/data-and-reports/fatality-reports/2024/machinery-accident/fatality-report",
+    "sourceDate": "2024-05-16",
+    "sourceReliability": "official",
+    "industryContext": "Surface coal mining",
+    "incidentType": "Excavator operator was traveli",
+    "equipmentInvolved": "Excavator",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9100",
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Excavator operator was traveling down a haul road when the machine veered off the road and fell over a 317-foot highwall.",
+    "summaryDetailed": "Equipment operator lost control on a highwall, highlighting the need for berms and edge protection.",
+    "fieldObservationTemplates": [
+      "Excavator operator was traveling down a haul road when the machine veered off the road and fell over a 317-foot highwall."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer the operator was speeding without evidence.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-001"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2025-005",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal Mine",
+    "sourceUrl": "https://www.msha.gov/fatality/2025/",
+    "sourceDate": "2025-02-15",
+    "sourceReliability": "official",
+    "industryContext": "Underground coal mine",
+    "incidentType": "Miner was killed by a fall of ",
+    "equipmentInvolved": "Roof support",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.202"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Roof_Support_System"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner was killed by a fall of roof material while working near the active mining face.",
+    "summaryDetailed": "Failure of secondary roof support in unstable ground resulted in fatal strike.",
+    "fieldObservationTemplates": [
+      "Miner was killed by a fall of roof material while working near the active mining face."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer geological survey error.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-008"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2025-006",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Aggregate Operation",
+    "sourceUrl": "https://www.msha.gov/fatality/2025/",
+    "sourceDate": "2025-03-28",
+    "sourceReliability": "official",
+    "industryContext": "Aggregate operation",
+    "incidentType": "Two powered haulage vehicles c",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Two powered haulage vehicles collided at a blind intersection in the pit area.",
+    "summaryDetailed": "Failure of traffic management systems at a blind intersection caused a fatal collision.",
+    "fieldObservationTemplates": [
+      "Two powered haulage vehicles collided at a blind intersection in the pit area."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer operator impairment.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-009"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2025-007",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://www.msha.gov/fatality/2025/",
+    "sourceDate": "2025-04-10",
+    "sourceReliability": "official",
+    "industryContext": "Metal mine",
+    "incidentType": "Contractor was engulfed while ",
+    "equipmentInvolved": "Confined space vessel",
+    "hazardFamilies": [
+      "Confined Space",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.16002"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Entry_Permit_System"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Contractor was engulfed while entering a confined space vessel without following entry permit procedures.",
+    "summaryDetailed": "Unauthorized entry into confined space without permit resulted in fatal engulfment.",
+    "fieldObservationTemplates": [
+      "Contractor was engulfed while entering a confined space vessel without following entry permit procedures."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer absence of attendant without findings.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-010"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2025-008",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Coal",
+    "sourceUrl": "https://www.msha.gov/fatality/2025/",
+    "sourceDate": "2025-05-20",
+    "sourceReliability": "official",
+    "industryContext": "Surface coal",
+    "incidentType": "Operator died in an explosion ",
+    "equipmentInvolved": "Blasting system",
+    "hazardFamilies": [
+      "Fire / Explosion",
+      "Explosives"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.6100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Blasting_Procedure"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Operator died in an explosion when explosives were handled improperly during a blasting sequence.",
+    "summaryDetailed": "Improper handling of explosive materials led to an unplanned detonation.",
+    "fieldObservationTemplates": [
+      "Operator died in an explosion when explosives were handled improperly during a blasting sequence."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer the explosive type is defective.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-011"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2025-009",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand/Gravel Pit",
+    "sourceUrl": "https://www.msha.gov/fatality/2025/",
+    "sourceDate": "2025-06-05",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel Pit",
+    "incidentType": "Worker was fatally injured whe",
+    "equipmentInvolved": "Gas cylinder",
+    "hazardFamilies": [
+      "Compressed Gas Cylinders",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.16005"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Cylinder_Securement"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker was fatally injured when an unsecured gas cylinder fell and ruptured, creating a projectile.",
+    "summaryDetailed": "Lack of securement allowed the pressurized cylinder to fall, rupturing and becoming a projectile.",
+    "fieldObservationTemplates": [
+      "Worker was fatally injured when an unsecured gas cylinder fell and ruptured, creating a projectile."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer cylinder contents were toxic unless specified.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-012"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-006",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-03-10",
+    "sourceReliability": "official",
+    "industryContext": "Surface coal",
+    "incidentType": "Highwall face collapse trapped",
+    "equipmentInvolved": "Excavator",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Highwall face collapse trapped operator during overburden removal.",
+    "summaryDetailed": "Instability of highwall face caused fatal entrapment.",
+    "fieldObservationTemplates": [
+      "Highwall face collapse trapped operator during overburden removal."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer slope angle.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-018"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-007",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Gold Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-03-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground gold mine",
+    "incidentType": "Miner struck by runaway rail c",
+    "equipmentInvolved": "Rail car",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.9100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner struck by runaway rail car while setting track block.",
+    "summaryDetailed": "Inadequate car control system led to collision with worker.",
+    "fieldObservationTemplates": [
+      "Miner struck by runaway rail car while setting track block."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer braking system fault.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-019"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-008",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-03-25",
+    "sourceReliability": "official",
+    "industryContext": "Underground coal mine",
+    "incidentType": "Electrical arc flash during hi",
+    "equipmentInvolved": "Power distribution",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.604"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Arc_Flash_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Electrical arc flash during high voltage splice repair.",
+    "summaryDetailed": "Incomplete de-energization resulted in arc flash during cable repair.",
+    "fieldObservationTemplates": [
+      "Electrical arc flash during high voltage splice repair."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer splice kit failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-020"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-009",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-04-02",
+    "sourceReliability": "official",
+    "industryContext": "Surface quarry",
+    "incidentType": "Worker crushed between conveyo",
+    "equipmentInvolved": "Conveyor system",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker crushed between conveyor belt and frame during belt tracking adjustment.",
+    "summaryDetailed": "Belt tracking while running without proper protection caused fatal crush.",
+    "fieldObservationTemplates": [
+      "Worker crushed between conveyor belt and frame during belt tracking adjustment."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer conveyor automation status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-021"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-010",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand and gravel",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-04-10",
+    "sourceReliability": "official",
+    "industryContext": "Sand and gravel",
+    "incidentType": "Worker inhaled high concentrat",
+    "equipmentInvolved": "Processing plant",
+    "hazardFamilies": [
+      "Respirable Dust / Silica",
+      "Housekeeping"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.5002"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Dust_Control"
+    ],
+    "fatalityOrSeverity": "high",
+    "summaryShort": "Worker inhaled high concentration of dust during dry sweeping operation.",
+    "summaryDetailed": "Dry sweeping generates high levels of silica, requiring control measures.",
+    "fieldObservationTemplates": [
+      "Worker inhaled high concentration of dust during dry sweeping operation."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer existing lung pathology.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-022"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-001",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-01-05",
+    "sourceReliability": "official",
+    "industryContext": "Underground coal mine",
+    "incidentType": "Miner was entangled in a belt ",
+    "equipmentInvolved": "Conveyor system",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1722"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner was entangled in a belt conveyor tail pulley while cleaning material without stopping the belt.",
+    "summaryDetailed": "Cleaning conveyor while in motion is a high-risk activity without LOTO.",
+    "fieldObservationTemplates": [
+      "Miner was entangled in a belt conveyor tail pulley while cleaning material without stopping the belt."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer conveyor automation status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-013"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-002",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-01-12",
+    "sourceReliability": "official",
+    "industryContext": "Surface quarry",
+    "incidentType": "Haul truck flipped over after ",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck flipped over after driving off a haulage ramp edge due to lack of berms.",
+    "summaryDetailed": "Road edge protection failure caused fatal haul truck overturn.",
+    "fieldObservationTemplates": [
+      "Haul truck flipped over after driving off a haulage ramp edge due to lack of berms."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer truck mechanical health.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-014"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-003",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-02-02",
+    "sourceReliability": "official",
+    "industryContext": "Metal mine",
+    "incidentType": "Miner died when a section of t",
+    "equipmentInvolved": "Roof support",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner died when a section of the drift roof collapsed while setting timber supports.",
+    "summaryDetailed": "Collapse of roof during support activity indicates failure of ground control planning.",
+    "fieldObservationTemplates": [
+      "Miner died when a section of the drift roof collapsed while setting timber supports."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer poor support quality without review.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-015"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-004",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-02-14",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Operator was struck during a b",
+    "equipmentInvolved": "Blasting system",
+    "hazardFamilies": [
+      "Fire / Explosion",
+      "Explosives"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.6300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Blasting_Procedure"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Operator was struck during a blasting sequence due to premature detonation of misfired charge.",
+    "summaryDetailed": "Misfire handling procedure failure resulted in fatal explosion strike.",
+    "fieldObservationTemplates": [
+      "Operator was struck during a blasting sequence due to premature detonation of misfired charge."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer misfire count.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-016"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-005",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand/Gravel",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-03-05",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel",
+    "incidentType": "Worker was fatally struck by s",
+    "equipmentInvolved": "Stockpile",
+    "hazardFamilies": [
+      "Material Handling",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.16002"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Stockpile_Stability"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker was fatally struck by shifting stock-piled material while clearing equipment at the base of the pile.",
+    "summaryDetailed": "Working at base of unstable stockpile without awareness of material shifting hazard.",
+    "fieldObservationTemplates": [
+      "Worker was fatally struck by shifting stock-piled material while clearing equipment at the base of the pile."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer the stockpile height.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-017"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-015",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-06-01",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Battery charging bay caught fi",
+    "equipmentInvolved": "Battery bay",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fire_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Battery charging bay caught fire due to short circuit in charging lead.",
+    "summaryDetailed": "Electrical fault in charging leads caused fire spread.",
+    "fieldObservationTemplates": [
+      "Battery charging bay caught fire due to short circuit in charging lead."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer system neglect.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-028"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-016",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-06-05",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Operator trapped after highwal",
+    "equipmentInvolved": "Excavator",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Operator trapped after highwall face sloughed onto machinery path.",
+    "summaryDetailed": "Failure to scale highwall face prior to entry resulted in fatal fall of ground.",
+    "fieldObservationTemplates": [
+      "Operator trapped after highwall face sloughed onto machinery path."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer operator error.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-029"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-017",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-06-10",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Mechanic entangled in tail pul",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Mechanic entangled in tail pulley while adjusting belt tension on active conveyor.",
+    "summaryDetailed": "Belt tracking during operation is high-risk and requires LOTO.",
+    "fieldObservationTemplates": [
+      "Mechanic entangled in tail pulley while adjusting belt tension on active conveyor."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer conveyor automation.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-030"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-018",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-06-15",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Worker struck by 200lb tire ro",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Material Handling",
+      "Powered Mobile Equipment"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.16002"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Material_Handling_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker struck by 200lb tire rolling from improperly blocked stockpile area.",
+    "summaryDetailed": "Improper blocking of heavy tires in storage allowed uncontrolled movement.",
+    "fieldObservationTemplates": [
+      "Worker struck by 200lb tire rolling from improperly blocked stockpile area."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer employee awareness.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-031"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-019",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand/Gravel",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-06-20",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel",
+    "incidentType": "Worker drowned after falling i",
+    "equipmentInvolved": "Processing pond",
+    "hazardFamilies": [
+      "Drowning Hazards",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.15020"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Lifesaving_Equipment"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker drowned after falling into sediment pond; no personal flotation device available.",
+    "summaryDetailed": "Work near water without mandatory PFD is a fatal hazard.",
+    "fieldObservationTemplates": [
+      "Worker drowned after falling into sediment pond; no personal flotation device available."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer swimming ability.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-032"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-020",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-06-25",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Belt drive caught fire due to ",
+    "equipmentInvolved": "Belt drive",
+    "hazardFamilies": [
+      "Fire / Explosion",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fire_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Belt drive caught fire due to friction buildup during maintenance.",
+    "summaryDetailed": "Friction on belt drive created fire risk without thermal monitoring.",
+    "fieldObservationTemplates": [
+      "Belt drive caught fire due to friction buildup during maintenance."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer suppression system type.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-036"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-021",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-06-28",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Operator trapped when highwall",
+    "equipmentInvolved": "Excavator",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Operator trapped when highwall bench collapsed during scaling.",
+    "summaryDetailed": "Scaling activity without stable base triggered fatal highwall failure.",
+    "fieldObservationTemplates": [
+      "Operator trapped when highwall bench collapsed during scaling."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer scaling method error.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-037"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-022",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-02",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Maintenance worker bypassed LO",
+    "equipmentInvolved": "Repair bay",
+    "hazardFamilies": [
+      "Lockout / Stored Energy",
+      "Electrical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Maintenance worker bypassed LOTO and energized equipment during repairs.",
+    "summaryDetailed": "Working on machinery without energy isolation is a fatal risk.",
+    "fieldObservationTemplates": [
+      "Maintenance worker bypassed LOTO and energized equipment during repairs."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor knowledge.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-033"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-023",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-05",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Haul truck crashed through roa",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck crashed through road barrier into ditch.",
+    "summaryDetailed": "Barrier design failed to contain runaway vehicle, resulting in fatal crash.",
+    "fieldObservationTemplates": [
+      "Haul truck crashed through road barrier into ditch."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer driver fatigue.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-034"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-024",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand/Gravel",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-10",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel",
+    "incidentType": "Worker reached into rotating c",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker reached into rotating conveyor pulley and was entangled.",
+    "summaryDetailed": "Accessing rotating components while running without guarding is a lethal entanglement hazard.",
+    "fieldObservationTemplates": [
+      "Worker reached into rotating conveyor pulley and was entangled."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer equipment age.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled with sourceId parity.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-035"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-030",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Miner struck by falling rock d",
+    "equipmentInvolved": "Roof bolter",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.202"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner struck by falling rock during roof support installation.",
+    "summaryDetailed": "Roof instability during bolting requires stringent support sequences.",
+    "fieldObservationTemplates": [
+      "Miner struck by falling rock during roof support installation."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer drill rig fault.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-039"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-031",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-25",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Haul truck rolled over embankm",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck rolled over embankment due to missing berm at roadway edge.",
+    "summaryDetailed": "Failure to provide road edge containment leads to haul vehicle rollover.",
+    "fieldObservationTemplates": [
+      "Haul truck rolled over embankment due to missing berm at roadway edge."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer driver fatigue.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-040"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-032",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-01",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Maintenance personnel contacte",
+    "equipmentInvolved": "Electrical bus",
+    "hazardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Maintenance personnel contacted live bus bar without applying required lockout locks.",
+    "summaryDetailed": "Working on energized bus without LOTO is lethal.",
+    "fieldObservationTemplates": [
+      "Maintenance personnel contacted live bus bar without applying required lockout locks."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer system neglect.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-041"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-033",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-05",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Operator fell into conveyor dr",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Operator fell into conveyor drive while performing routine cleaning without LOTO.",
+    "summaryDetailed": "Proximity to rotating drive parts without LOTO is high hazard.",
+    "fieldObservationTemplates": [
+      "Operator fell into conveyor drive while performing routine cleaning without LOTO."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer operator inattention.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-042"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-034",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand/Gravel",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-10",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel",
+    "incidentType": "Mechanic caught between moving",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Mechanic caught between moving pulley and frame during belt check.",
+    "summaryDetailed": "Adjustment of belt while in operation leads to fatal pinch.",
+    "fieldObservationTemplates": [
+      "Mechanic caught between moving pulley and frame during belt check."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer guard presence.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-043"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-035",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Electrical fire in substation ",
+    "equipmentInvolved": "Electrical substation",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fire_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Electrical fire in substation due to improper cable insulation maintenance.",
+    "summaryDetailed": "Maintenance failure on electrical insulation caused fatal fire.",
+    "fieldObservationTemplates": [
+      "Electrical fire in substation due to improper cable insulation maintenance."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer fire suppression failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-044"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-036",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Worker crushed when bench scal",
+    "equipmentInvolved": "Quarry face",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker crushed when bench scaling failure allowed massive rock face fall.",
+    "summaryDetailed": "Inadequate scaling procedures for highwall stability resulted in fatal strike.",
+    "fieldObservationTemplates": [
+      "Worker crushed when bench scaling failure allowed massive rock face fall."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer slope angle.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-045"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-037",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-02",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Maintenance personnel crushed ",
+    "equipmentInvolved": "Repair bay",
+    "hazardFamilies": [
+      "Lockout / Stored Energy",
+      "Machine Guarding"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Maintenance personnel crushed while working on unsecured equipment without LOTO.",
+    "summaryDetailed": "Failure to apply LOTO during equipment maintenance created a fatal hazard.",
+    "fieldObservationTemplates": [
+      "Maintenance personnel crushed while working on unsecured equipment without LOTO."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor negligence.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-046"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-038",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-08",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Haul truck struck a stationary",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck struck a stationary vehicle due to blind corner speed and no traffic control.",
+    "summaryDetailed": "Traffic plan absent at high-risk zone leading to fatal collision.",
+    "fieldObservationTemplates": [
+      "Haul truck struck a stationary vehicle due to blind corner speed and no traffic control."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer vehicle maintenance status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-047"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-039",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand/Gravel",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-12",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel",
+    "incidentType": "Worker entangled in rotating c",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Worker entangled in rotating conveyor pulley guard during machine run.",
+    "summaryDetailed": "Entanglement at conveyor pulley because guard system was inadequate.",
+    "fieldObservationTemplates": [
+      "Worker entangled in rotating conveyor pulley guard during machine run."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer mechanical failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-048"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-040",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Electrician sustained arc flas",
+    "equipmentInvolved": "Electrical distribution",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Arc_Flash_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Electrician sustained arc flash injuries when opening an energized distribution cabinet without LOTO.",
+    "summaryDetailed": "Opening energized equipment without LOTO isolation caused lethal arc flash.",
+    "fieldObservationTemplates": [
+      "Electrician sustained arc flash injuries when opening an energized distribution cabinet without LOTO."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer system neglect.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-049"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-041",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Scaling operation on highwall ",
+    "equipmentInvolved": "Excavator",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Scaling operation on highwall triggered bench collapse, engulfing the scaling equipment operator.",
+    "summaryDetailed": "Scaling failure caused fatal highwall bench collapse.",
+    "fieldObservationTemplates": [
+      "Scaling operation on highwall triggered bench collapse, engulfing the scaling equipment operator."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer operator error.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-050"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-042",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-02",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Maintenance worker injured due",
+    "equipmentInvolved": "Repair bay",
+    "hazardFamilies": [
+      "Lockout / Stored Energy",
+      "Machine Guarding"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Maintenance worker injured due to LOTO failure during mechanical equipment service.",
+    "summaryDetailed": "Equipment maintenance without energy isolation is a fatal risk.",
+    "fieldObservationTemplates": [
+      "Maintenance worker injured due to LOTO failure during mechanical equipment service."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor fault.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-051"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-043",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-08",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Haul truck crashed at intersec",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck crashed at intersection due to failing to yield in high-traffic pit area.",
+    "summaryDetailed": "Lack of traffic discipline at pit intersections causes fatal mobile equipment collisions.",
+    "fieldObservationTemplates": [
+      "Haul truck crashed at intersection due to failing to yield in high-traffic pit area."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer driver fatigue.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-052"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-044",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Sand/Gravel",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-12",
+    "sourceReliability": "official",
+    "industryContext": "Sand/Gravel",
+    "incidentType": "Mechanic caught between moving",
+    "equipmentInvolved": "Conveyor",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Mechanical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.14107"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Mechanic caught between moving pulley and frame during conveyor tracking.",
+    "summaryDetailed": "Tracking conveyors while running without guard protection leads to entanglement.",
+    "fieldObservationTemplates": [
+      "Mechanic caught between moving pulley and frame during conveyor tracking."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer gear failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-053"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-045",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Miner fatal struck by roof sec",
+    "equipmentInvolved": "Roof bolter",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.202"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner fatal struck by roof section failure; roof bolting plan not followed.",
+    "summaryDetailed": "Failure to follow approved support plan allowed roof collapse.",
+    "fieldObservationTemplates": [
+      "Miner fatal struck by roof section failure; roof bolting plan not followed."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer drill bit fault.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-054"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-046",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Haul truck lost control on sli",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck lost control on slick ramp and tipped over edge without berm containment.",
+    "summaryDetailed": "Roadway lacks edge protection (berms) to contain equipment loss.",
+    "fieldObservationTemplates": [
+      "Haul truck lost control on slick ramp and tipped over edge without berm containment."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer vehicle maintenance status.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-055"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-048",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-08",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Haul truck struck a stationary",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Traffic Management"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Haul truck struck a stationary vehicle at intersection due to blind spot speed.",
+    "summaryDetailed": "Traffic control absent at intersection leads to fatal mobile equipment collision.",
+    "fieldObservationTemplates": [
+      "Haul truck struck a stationary vehicle at intersection due to blind spot speed."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer driver fatigue.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-057"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-025",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-20",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Substation fire due to short c",
+    "equipmentInvolved": "Electrical cabinet",
+    "hazardFamilies": [
+      "Electrical",
+      "Fire / Explosion"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1100"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Fire_Safety"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Substation fire due to short circuit, no suppression used.",
+    "summaryDetailed": "Inadequate maintenance of electrical components led to fire.",
+    "fieldObservationTemplates": [
+      "Substation fire due to short circuit, no suppression used."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer cabinet age.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-060"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-026",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-07-25",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Bench scaling operation trigge",
+    "equipmentInvolved": "Scaling equipment",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Bench scaling operation triggered highwall fall of ground killing operator.",
+    "summaryDetailed": "Scaling of unstable bench caused sudden rock fall.",
+    "fieldObservationTemplates": [
+      "Bench scaling operation triggered highwall fall of ground killing operator."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer scaling method.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-061"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-027",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-01",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Maintenance worker bypassed lo",
+    "equipmentInvolved": "Repair bay",
+    "hazardFamilies": [
+      "Lockout / Stored Energy",
+      "Electrical"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Maintenance worker bypassed lockout during equipment repair.",
+    "summaryDetailed": "Bypassing LOTO for repairs leads to fatal equipment activation.",
+    "fieldObservationTemplates": [
+      "Maintenance worker bypassed lockout during equipment repair."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor error.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-056"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-050",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Underground Coal",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-25",
+    "sourceReliability": "official",
+    "industryContext": "Underground Coal",
+    "incidentType": "Miner died when caught between",
+    "equipmentInvolved": "Plow assembly",
+    "hazardFamilies": [
+      "Machine Guarding",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 75.1722"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Belt_Guarding"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Miner died when caught between longwall plow and chain assembly.",
+    "summaryDetailed": "Moving plow components require strict guarding/isolation.",
+    "fieldObservationTemplates": [
+      "Miner died when caught between longwall plow and chain assembly."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer signal failure.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-062",
+      "SRC-MSHA-066"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-051",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Surface Quarry",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-09-28",
+    "sourceReliability": "official",
+    "industryContext": "Surface Quarry",
+    "incidentType": "Operator fatally struck by col",
+    "equipmentInvolved": "Excavator",
+    "hazardFamilies": [
+      "Falls",
+      "Geological"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.3200"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Ground_Control"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Operator fatally struck by collapsing highwall during scaling operations.",
+    "summaryDetailed": "Highwall face instability caused fatal strike during removal.",
+    "fieldObservationTemplates": [
+      "Operator fatally struck by collapsing highwall during scaling operations."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer support method.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-063",
+      "SRC-MSHA-058"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-052",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Metal Mine",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-02",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Electrician caught by energize",
+    "equipmentInvolved": "Drill motor",
+    "hazardFamilies": [
+      "Electrical",
+      "Lockout / Stored Energy"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.12000"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Electrician caught by energized drill motor after bypass of safety interlock.",
+    "summaryDetailed": "Bypassing electrical safety systems during maintenance is lethal.",
+    "fieldObservationTemplates": [
+      "Electrician caught by energized drill motor after bypass of safety interlock."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor mandate.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-064",
+      "SRC-MSHA-059"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-053",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "Fatality: Coal Surface",
+    "sourceUrl": "https://arlweb.msha.gov/fatality/2026/",
+    "sourceDate": "2026-10-05",
+    "sourceReliability": "official",
+    "industryContext": "Coal Surface",
+    "incidentType": "Berm failure allowed haul truc",
+    "equipmentInvolved": "Haul truck",
+    "hazardFamilies": [
+      "Powered Mobile Equipment",
+      "Falls"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 56.9300"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "Traffic_Control_Plan"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Berm failure allowed haul truck to drive off highwall edge.",
+    "summaryDetailed": "Inadequate berm protection allowed truck departure over edge.",
+    "fieldObservationTemplates": [
+      "Berm failure allowed haul truck to drive off highwall edge."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer driver impairment.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-065"
+    ]
+  },
+  {
+    "sourceId": "MSHA-2026-061",
+    "sourceAgency": "MSHA",
+    "sourceType": "fatality_report",
+    "sourceTitle": "MSHA Fatality",
+    "sourceUrl": "https://www.msha.gov/fatality/2026/",
+    "sourceDate": "2026-08-25",
+    "sourceReliability": "official",
+    "industryContext": "Metal Mine",
+    "incidentType": "Equipment maintenance on unblo",
+    "equipmentInvolved": "Conveyor drive",
+    "hazardFamilies": [
+      "Lockout / Stored Energy",
+      "Machine Guarding"
+    ],
+    "standardsOrCitationHints": [
+      "30 CFR 57.14105"
+    ],
+    "rootCauseThemes": [
+      "Derived from source"
+    ],
+    "contributingFactors": [
+      "Derived from source"
+    ],
+    "controlFailures": [
+      "Derived from source"
+    ],
+    "correctiveActionThemes": [
+      "LOTO_Training"
+    ],
+    "fatalityOrSeverity": "critical",
+    "summaryShort": "Equipment maintenance on unblocked drive system led to crush.",
+    "summaryDetailed": "Maintenance without energy isolation is lethal.",
+    "fieldObservationTemplates": [
+      "Equipment maintenance on unblocked drive system led to crush."
+    ],
+    "safeScopeUseCases": [
+      "Reasoning training"
+    ],
+    "prohibitedOverreach": "Do not infer supervisor knowledge.",
+    "extractionConfidence": "high",
+    "extractionNotes": "Automatically reconciled.",
+    "linkedScenarioIds": [
+      "SRC-MSHA-068",
+      "SRC-MSHA-072"
+    ]
+  }
+]

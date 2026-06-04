@@ -1,0 +1,73 @@
+{
+  "engine": "safescope_approved_knowledge_integration_snapshot",
+  "mode": "contract_snapshot_read_only",
+  "generatedAt": "2026-05-30T21:28:35.249Z",
+  "purpose": "Document the SafeScope approved knowledge integration adapter contract before any production SafeScope native reasoning integration.",
+  "disabledSnapshot": {
+    "engine": "safescope_approved_knowledge_integration_adapter",
+    "mode": "disabled_by_default_context_adapter",
+    "enabled": false,
+    "reasoningEngine": "safescope_native",
+    "classification": "Machine Guarding",
+    "jurisdictionHint": "MSHA_OR_OSHA_REVIEW_NEEDED",
+    "approvedRecordCountAvailable": 0,
+    "references": [],
+    "recordsUsed": [],
+    "adapterUseBoundary": {
+      "readOnly": true,
+      "disabledByDefault": true,
+      "canProvideContext": false,
+      "canModifyNativeReasoning": false,
+      "canCreateCitations": false,
+      "canDeclareViolations": false,
+      "canOverrideRegulations": false,
+      "canBypassHumanReview": false,
+      "canUseUnapprovedRecords": false
+    },
+    "integrationNotes": [
+      "Approved knowledge integration adapter is disabled by default.",
+      "No approved knowledge context was requested from the bridge.",
+      "SafeScope native reasoning behavior is unchanged."
+    ]
+  },
+  "enabledSnapshot": {
+    "engine": "safescope_approved_knowledge_integration_adapter",
+    "mode": "disabled_by_default_context_adapter",
+    "enabled": true,
+    "reasoningEngine": "safescope_native",
+    "classification": "Machine Guarding",
+    "jurisdictionHint": "OSHA_GENERAL_INDUSTRY",
+    "approvedRecordCountAvailable": 0,
+    "references": [],
+    "recordsUsed": [],
+    "adapterUseBoundary": {
+      "readOnly": true,
+      "disabledByDefault": true,
+      "canProvideContext": true,
+      "canModifyNativeReasoning": false,
+      "canCreateCitations": false,
+      "canDeclareViolations": false,
+      "canOverrideRegulations": false,
+      "canBypassHumanReview": false,
+      "canUseUnapprovedRecords": false
+    },
+    "integrationNotes": [
+      "Approved knowledge integration adapter may provide read-only context only when explicitly enabled.",
+      "Adapter output cannot modify native reasoning, create citations, declare violations, override regulations, or bypass qualified human review.",
+      "Adapter only exposes records returned by the approved knowledge bridge."
+    ]
+  },
+  "contractAssertions": {
+    "adapterDisabledByDefault": true,
+    "disabledAdapterReturnsNoReferences": true,
+    "disabledAdapterReturnsNoRecords": true,
+    "enabledAdapterStillReadOnly": true,
+    "cannotModifyNativeReasoning": true,
+    "cannotCreateCitations": true,
+    "cannotDeclareViolations": true,
+    "cannotOverrideRegulations": true,
+    "cannotBypassHumanReview": true,
+    "cannotUseUnapprovedRecords": true
+  },
+  "sourceBoundary": "This integration snapshot is a contract and documentation artifact only. It does not approve records, wire approved knowledge into production reasoning, alter SafeScope native reasoning, create citations, declare violations, override regulations, or bypass qualified human review."
+}

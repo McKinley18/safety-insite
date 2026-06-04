@@ -1,0 +1,417 @@
+[
+  {
+    "id": "case_01386",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Crusher feed conveyor guard bent",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01387",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Ladder legs un-secured on steel deck",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01388",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Panel 120V missing dead-front cover",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01389",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Dump ramp berm height low",
+    "primaryHazardFamily": "roadway_berm",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01390",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Torch hot work near wood pile, no watch",
+    "primaryHazardFamily": "fire",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01391",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Machine guarding secure after work.",
+    "primaryHazardFamily": "other",
+    "difficulty": "brutal",
+    "expectedOutcome": {
+      "citationConfidence": "no_match"
+    }
+  },
+  {
+    "id": "case_01392",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Emergency light failing test",
+    "primaryHazardFamily": "emergency",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01393",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Secondary screen ladder missing rung",
+    "primaryHazardFamily": "safe_access",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01394",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Scaffold mid-rail clip missing",
+    "primaryHazardFamily": "scaffold",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01395",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Shift exam log missing entries",
+    "primaryHazardFamily": "workplace_exam",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01396",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Compressed gas cylinder unsecured",
+    "primaryHazardFamily": "compressed_gas_cylinders",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01397",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Trench 9ft no shoring",
+    "primaryHazardFamily": "excavation",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01398",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Shift exam record unsigned",
+    "primaryHazardFamily": "workplace_exam",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01399",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "High noise pump area no hearing prot",
+    "primaryHazardFamily": "noise",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01400",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Harness d-ring bent and deformed",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01401",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Backup alarm on haul truck intermittent",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01402",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guard inspected and secure.",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "brutal",
+    "expectedOutcome": {
+      "citationConfidence": "no_match"
+    }
+  },
+  {
+    "id": "case_01403",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Ladder climbing no 3-point contact",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01404",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Conveyor guard missing, belt rubbing side",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01405",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill near compressor shop",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01406",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Main screen plant feed motor guard missing",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01407",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Ladder base sliding on wet mud",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01408",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Live electrical parts exposed in panel",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01409",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Waste oil drums on dirt floor",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01410",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Trench 5ft wall unprotected",
+    "primaryHazardFamily": "excavation",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01411",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Drive belt pulley nip point unguarded",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01412",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Extension cord frayed inside pinch area",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01413",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Forklift horn failed to sound",
+    "primaryHazardFamily": "powered_industrial_truck",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01414",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Berm on haul road appears eroded",
+    "primaryHazardFamily": "roadway_berm",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01415",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Cutting lead sparking near fuel drum",
+    "primaryHazardFamily": "fire",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01416",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Everything inspected; safety items are in order.",
+    "primaryHazardFamily": "other",
+    "difficulty": "brutal",
+    "expectedOutcome": {
+      "citationConfidence": "no_match"
+    }
+  },
+  {
+    "id": "case_01417",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Emergency light failing to illuminate",
+    "primaryHazardFamily": "emergency",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01418",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Secondary screen ladder missing rung",
+    "primaryHazardFamily": "safe_access",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01419",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Scaffold clip missing on platform",
+    "primaryHazardFamily": "scaffold",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01420",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Exam record unsigned",
+    "primaryHazardFamily": "workplace_exam",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01421",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Gas cylinder unsecured on floor",
+    "primaryHazardFamily": "compressed_gas_cylinders",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01422",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Trench 7ft no shoring",
+    "primaryHazardFamily": "excavation",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01423",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Exam record incomplete entry",
+    "primaryHazardFamily": "workplace_exam",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01424",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Hearing protection not worn in bottling",
+    "primaryHazardFamily": "noise",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01425",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Fall protection harness latch defective",
+    "primaryHazardFamily": "fall_protection",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01426",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Loader alarm faint tone",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01427",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Machine guarding secure after repair.",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "brutal",
+    "expectedOutcome": {
+      "citationConfidence": "no_match"
+    }
+  },
+  {
+    "id": "case_01428",
+    "scopeExpected": "no_match",
+    "agencyExpected": "NONE",
+    "observation": "Ladder climbing technique per standard",
+    "primaryHazardFamily": "other",
+    "difficulty": "easy",
+    "expectedOutcome": {
+      "citationConfidence": "no_match"
+    }
+  },
+  {
+    "id": "case_01429",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Conveyor tail guard missing",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01430",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Oil spill near maintenance floor",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01431",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Crusher drive guard missing",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "easy"
+  },
+  {
+    "id": "case_01432",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Ladder base slippery mud",
+    "primaryHazardFamily": "ladder_safety",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01433",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "observation": "Busbar contacts exposed",
+    "primaryHazardFamily": "electrical",
+    "difficulty": "hard"
+  },
+  {
+    "id": "case_01434",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "observation": "Oil waste on dirt floor",
+    "primaryHazardFamily": "housekeeping",
+    "difficulty": "medium"
+  },
+  {
+    "id": "case_01435",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "observation": "Trench 5ft wall open",
+    "primaryHazardFamily": "excavation",
+    "difficulty": "easy"
+  }
+]

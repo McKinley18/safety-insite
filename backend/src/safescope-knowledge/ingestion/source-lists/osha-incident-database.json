@@ -1,0 +1,41 @@
+{
+  "sourceKey": "osha-fatality-catastrophe-data",
+  "agency": "OSHA",
+  "urls": [
+    {
+      "url": "https://www.osha.gov/ords/imis/accidentsearch.html",
+      "titleHint": "OSHA Accident Investigation Search",
+      "hazardTags": [
+        "incident database",
+        "fatality",
+        "catastrophe",
+        "accident investigation",
+        "trend intelligence"
+      ],
+      "equipmentTags": [
+        "equipment",
+        "machinery",
+        "vehicle",
+        "ladder",
+        "scaffold"
+      ],
+      "taskTags": [
+        "operation",
+        "maintenance",
+        "construction",
+        "material handling",
+        "workplace activity"
+      ],
+      "standardTags": [
+        "OSHA IMIS",
+        "OSHA accident investigation"
+      ],
+      "lessonTags": [
+        "incident pattern learning",
+        "recurrence detection",
+        "trend intelligence",
+        "fatality prevention"
+      ]
+    }
+  ]
+}

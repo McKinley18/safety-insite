@@ -1,0 +1,42 @@
+[
+  {
+    "id": "SYN-001",
+    "observation": "no guard on belt drive",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "1910.212(a)(1)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "SYN-002",
+    "observation": "belt drive exposed with employee access",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "1910.212(a)(1)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "SYN-003",
+    "observation": "unguarded moving parts at conveyor drive",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "56.14107(a)",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "SYN-004",
+    "observation": "respirator not worn during dusty cleanup",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "respiratory",
+    "citationReference": "1910.134",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "SYN-005",
+    "observation": "worker not tied off near elevated edge",
+    "scopeExpected": "construction",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "1926.501(b)(1)",
+    "context": { "industryScope": "construction" }
+  }
+]

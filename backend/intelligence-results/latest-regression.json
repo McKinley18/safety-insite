@@ -1,0 +1,107 @@
+{
+  "totalTests": 5000,
+  "conditionAccuracy": "0.00%",
+  "primaryCitationRelevance": "25.00%",
+  "worstFailures": [
+    {
+      "input": "unguarded conveyor 0",
+      "expected": "guarding",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "exposed conductor 1",
+      "expected": "electrical",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "working at height 2",
+      "expected": "fall_protection",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "guard removed 3",
+      "expected": "guarding",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "frayed wire 4",
+      "expected": "electrical",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "unguarded edge 5",
+      "expected": "fall_protection",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "pinch point exposed 6",
+      "expected": "guarding",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "wet electrical 7",
+      "expected": "electrical",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "no fall protection 8",
+      "expected": "fall_protection",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "pulley missing guard 9",
+      "expected": "guarding",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "panel cover missing 10",
+      "expected": "electrical",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "open edge 11",
+      "expected": "fall_protection",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "unguarded conveyor 12",
+      "expected": "guarding",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "exposed conductor 13",
+      "expected": "electrical",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "working at height 14",
+      "expected": "fall_protection",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "guard removed 15",
+      "expected": "guarding",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "frayed wire 16",
+      "expected": "electrical",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "unguarded edge 17",
+      "expected": "fall_protection",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "pinch point exposed 18",
+      "expected": "guarding",
+      "actual": "other_uncertain"
+    },
+    {
+      "input": "wet electrical 19",
+      "expected": "electrical",
+      "actual": "other_uncertain"
+    }
+  ]
+}

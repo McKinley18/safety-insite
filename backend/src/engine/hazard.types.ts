@@ -1,0 +1,7 @@
+export enum HazardType {
+  FALL = 'FALL',
+  ELECTRICAL = 'ELECTRICAL',
+  STRUCK_BY = 'STRUCK_BY',
+  CAUGHT_IN = 'CAUGHT_IN',
+  MOBILE = 'MOBILE_EQUIPMENT',
+}

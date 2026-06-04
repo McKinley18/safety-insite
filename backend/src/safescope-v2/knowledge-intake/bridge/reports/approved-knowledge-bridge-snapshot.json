@@ -1,0 +1,66 @@
+{
+  "engine": "safescope_approved_knowledge_bridge_snapshot",
+  "mode": "contract_snapshot_read_only",
+  "generatedAt": "2026-05-30T21:15:07.636Z",
+  "purpose": "Document the SafeScope approved knowledge bridge contract before production reasoning integration. This snapshot is advisory and does not modify SafeScope reasoning behavior.",
+  "disabledSnapshot": {
+    "engine": "safescope_approved_knowledge_bridge",
+    "mode": "disabled_by_default_read_only",
+    "enabled": false,
+    "classification": "Machine Guarding",
+    "approvedRecordCountAvailable": 0,
+    "references": [],
+    "recordsUsed": [],
+    "reasoningUseBoundary": {
+      "canSupplementReasoning": false,
+      "canCreateCitations": false,
+      "canDeclareViolations": false,
+      "canOverrideRegulations": false,
+      "canBypassHumanReview": false,
+      "canUseUnapprovedRecords": false,
+      "productionReasoningModified": false
+    },
+    "bridgeNotes": [
+      "Approved knowledge bridge is disabled by default.",
+      "No approved records were queried or supplied to reasoning.",
+      "Production SafeScope reasoning behavior is unchanged."
+    ]
+  },
+  "enabledSnapshot": {
+    "engine": "safescope_approved_knowledge_bridge",
+    "mode": "disabled_by_default_read_only",
+    "enabled": true,
+    "classification": "Machine Guarding",
+    "approvedRecordCountAvailable": 0,
+    "references": [],
+    "recordsUsed": [],
+    "reasoningUseBoundary": {
+      "canSupplementReasoning": true,
+      "canCreateCitations": false,
+      "canDeclareViolations": false,
+      "canOverrideRegulations": false,
+      "canBypassHumanReview": false,
+      "canUseUnapprovedRecords": false,
+      "productionReasoningModified": false
+    },
+    "bridgeNotes": [
+      "Approved knowledge bridge is read-only.",
+      "Only human-reviewed approved records may be returned.",
+      "Bridge output may supplement future reasoning context but cannot create citations, declare violations, override regulations, or bypass qualified review.",
+      "This service is not wired into production SafeScope reasoning by default."
+    ]
+  },
+  "contractAssertions": {
+    "bridgeDisabledByDefault": true,
+    "disabledBridgeReturnsNoReferences": true,
+    "disabledBridgeReturnsNoRecords": true,
+    "enabledBridgeStillReadOnly": true,
+    "cannotCreateCitations": true,
+    "cannotDeclareViolations": true,
+    "cannotOverrideRegulations": true,
+    "cannotBypassHumanReview": true,
+    "cannotUseUnapprovedRecords": true,
+    "productionReasoningUnchanged": true
+  },
+  "sourceBoundary": "This bridge snapshot is a contract and documentation artifact only. It does not approve knowledge records, alter SafeScope native reasoning, declare violations, create citations, or bypass qualified human review."
+}

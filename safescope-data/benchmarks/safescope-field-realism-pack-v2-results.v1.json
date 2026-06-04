@@ -1,0 +1,848 @@
+{
+  "benchmark": "SafeScope Field Realism Pack v2",
+  "version": "v1",
+  "generatedAt": "2026-06-04T23:00:21.712Z",
+  "totalCases": 100,
+  "passCount": 100,
+  "failCount": 0,
+  "domainDistribution": {
+    "machine_guarding": 8,
+    "unknown": 14,
+    "machine_guarding_loto": 5,
+    "electrical": 5,
+    "fire_protection": 1,
+    "health_respiratory": 4,
+    "confined_space": 2,
+    "mobile_equipment": 13,
+    "fall_protection": 5,
+    "slips_trips_falls": 2,
+    "hazardous_materials": 6,
+    "welding_cutting_hot_work": 5,
+    "cranes_rigging_hoisting": 4,
+    "ppe": 3,
+    "roof_rib_control": 3,
+    "ventilation": 3,
+    "emergency_preparedness": 2,
+    "excavation_trenching": 3,
+    "ground_control": 1,
+    "health_exposure": 3,
+    "environmental_exposure": 1,
+    "slip_trip_fall": 3,
+    "material_handling": 1,
+    "tools_equipment": 3
+  },
+  "jurisdictionDistribution": {
+    "msha": 32,
+    "osha_general_industry": 51,
+    "osha_construction": 16,
+    "unclear": 1
+  },
+  "confidenceDistribution": {
+    "high": 68,
+    "moderate": 31,
+    "low": 1
+  },
+  "failedCases": [],
+  "cases": [
+    {
+      "id": "FIELD-V2-MSHA-GUARDING-VAGUE-001",
+      "title": "vague conveyor guarding observation",
+      "domain": "machine_guarding",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-GUARDING-CLEANUP-LOTO-001",
+      "title": "cleanup around conveyor with guarding and LOTO ambiguity",
+      "domain": "machine_guarding",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-LOTO-ACTIVE-001",
+      "title": "active LOTO exposure during maintenance",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-LOTO-TRAINING-ONLY-001",
+      "title": "LOTO mentioned only in training context",
+      "domain": "machine_guarding_loto",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-ELECTRICAL-WET-001",
+      "title": "wet floor near electrical equipment with uncertainty",
+      "domain": "electrical",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-FIRE-EXTINGUISHER-NO-HOTWORK-001",
+      "title": "blocked fire extinguisher without hot work",
+      "domain": "fire_protection",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-SILICA-NEGATED-001",
+      "title": "generic dirt dust should not become silica",
+      "domain": "health_respiratory",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONFINED-NO-ENTRY-001",
+      "title": "tank present but no entry",
+      "domain": "confined_space",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONFINED-ACTUAL-ENTRY-001",
+      "title": "tank entry with missing atmospheric evidence",
+      "domain": "confined_space",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MOBILE-BACKING-001",
+      "title": "mobile equipment backing near pedestrian",
+      "domain": "mobile_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-FORKLIFT-PEDESTRIAN-001",
+      "title": "forklift turning through shared pedestrian aisle",
+      "domain": "mobile_equipment",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-FORKLIFT-TRAINING-001",
+      "title": "forklift operator training documentation issue",
+      "domain": "mobile_equipment",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-BERM-EDGE-001",
+      "title": "haul truck near dump edge with unclear berm condition",
+      "domain": "mobile_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-FALL-CLEAR-MISSING-001",
+      "title": "open-sided platform with no guardrail",
+      "domain": "fall_protection",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-LADDER-SETUP-001",
+      "title": "portable ladder set on uneven surface",
+      "domain": "slips_trips_falls",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-SCAFFOLD-GUARDRAIL-001",
+      "title": "scaffold platform missing midrail",
+      "domain": "fall_protection",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-HAZCOM-SDS-001",
+      "title": "secondary chemical bottle with missing SDS",
+      "domain": "hazardous_materials",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CHEMICAL-SPILL-001",
+      "title": "unknown liquid leaking from container",
+      "domain": "hazardous_materials",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-SILICA-ACTIVE-CUTTING-001",
+      "title": "concrete cutting dust with missing controls",
+      "domain": "health_respiratory",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-HOTWORK-COMBUSTIBLES-001",
+      "title": "hot work near combustibles without fire watch documented",
+      "domain": "welding_cutting_hot_work",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CYLINDER-OXY-FUEL-001",
+      "title": "oxygen and acetylene cylinders stored together",
+      "domain": "welding_cutting_hot_work",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-RIGGING-DEFECT-001",
+      "title": "damaged sling found before lift",
+      "domain": "cranes_rigging_hoisting",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-SUSPENDED-LOAD-001",
+      "title": "worker standing under suspended load",
+      "domain": "cranes_rigging_hoisting",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-EYEWASH-BLOCKED-001",
+      "title": "eyewash blocked near corrosive storage",
+      "domain": "hazardous_materials",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-HAND-PPE-001",
+      "title": "sharp metal handling without gloves",
+      "domain": "ppe",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COAL-UG-RIB-001",
+      "title": "underground coal rib sloughing near travelway",
+      "domain": "roof_rib_control",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COAL-METHANE-001",
+      "title": "coal section methane reading uncertainty",
+      "domain": "ventilation",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MNM-UG-VENT-001",
+      "title": "underground metal nonmetal ventilation obstruction",
+      "domain": "ventilation",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-ESCAPEWAY-BLOCKED-001",
+      "title": "underground escapeway partially blocked",
+      "domain": "emergency_preparedness",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-TRENCH-001",
+      "title": "construction trench with unclear protective system",
+      "domain": "excavation_trenching",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-FALL-ROOF-001",
+      "title": "roof edge work with missing fall protection detail",
+      "domain": "ground_control",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-SCAFFOLD-ACCESS-001",
+      "title": "scaffold access ladder missing",
+      "domain": "fall_protection",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-DROPPED-OBJECT-001",
+      "title": "overhead work with unsecured tools",
+      "domain": "mobile_equipment",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-NOISE-MISSING-DOSIMETRY-001",
+      "title": "high noise complaint without measurements",
+      "domain": "health_exposure",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-HEAT-STRESS-001",
+      "title": "hot warehouse work with missing exposure data",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COLD-STRESS-001",
+      "title": "cold weather maintenance with missing duration",
+      "domain": "environmental_exposure",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-UNKNOWN-VAGUE-001",
+      "title": "vague unsafe condition note",
+      "domain": "hazardous_materials",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-JURISDICTION-AMBIGUOUS-001",
+      "title": "ambiguous shop observation with no jurisdiction context",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MULTI-ELECTRICAL-WET-PEDESTRIAN-001",
+      "title": "wet floor, open panel, and pedestrian route",
+      "domain": "electrical",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-FALSE-ELECTRICAL-PANEL-CLOSED-001",
+      "title": "closed electrical panel with housekeeping issue nearby",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-FALSE-FALL-NO-EXPOSURE-001",
+      "title": "guarded mezzanine with no employee exposure",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-CONVEYOR-NO-EXPOSURE-001",
+      "title": "conveyor guarded and no employee exposure",
+      "domain": "machine_guarding",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-PPE-EYE-NO-GRINDER-DEFECT-001",
+      "title": "eye protection missing but grinder condition not defective",
+      "domain": "ppe",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GRINDER-GUARD-NO-PPE-ISSUE-001",
+      "title": "grinder guard missing but PPE not the main issue",
+      "domain": "ppe",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-HAZCOM-UNKNOWN-DRUM-001",
+      "title": "unknown drum with partial label",
+      "domain": "hazardous_materials",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-HOTWORK-NEGATED-COMBUSTIBLES-001",
+      "title": "combustibles near heater with hot work negated",
+      "domain": "slip_trip_fall",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MOBILE-NO-PEDESTRIAN-001",
+      "title": "parked loader with no pedestrian exposure",
+      "domain": "mobile_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-EMERGENCY-EXIT-BLOCKED-001",
+      "title": "emergency exit route blocked by pallets",
+      "domain": "emergency_preparedness",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-MULTI-CHEM-FIRE-TRIP-001",
+      "title": "multi-hazard chemical storage with trip and fire concerns",
+      "domain": "machine_guarding_loto",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-MATERIAL-STORAGE-FALLING-001",
+      "title": "unstable material storage near employee walkway",
+      "domain": "material_handling",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COAL-UG-BELT-SPILLAGE-001",
+      "title": "underground coal belt spillage near travelway",
+      "domain": "machine_guarding_loto",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COAL-UG-ROOF-BOLT-001",
+      "title": "loose roof bolt plate near coal travelway",
+      "domain": "roof_rib_control",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MNM-UG-GROUND-CONTROL-001",
+      "title": "metal nonmetal underground loose ground near heading",
+      "domain": "roof_rib_control",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MNM-UG-ELECTRICAL-CABLE-001",
+      "title": "damaged trailing cable with unclear energized status",
+      "domain": "tools_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-SURFACE-HIGHWALL-001",
+      "title": "surface highwall loose material with unclear exclusion zone",
+      "domain": "mobile_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-SURFACE-DUMP-BERM-001",
+      "title": "dump point berm appears low with truck exposure",
+      "domain": "mobile_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-EXCAVATION-LADDER-001",
+      "title": "construction trench with missing ladder access detail",
+      "domain": "excavation_trenching",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-REBAR-IMPALEMENT-001",
+      "title": "uncapped vertical rebar near walking path",
+      "domain": "unknown",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-CRANE-SWING-RADIUS-001",
+      "title": "crane swing radius not clearly barricaded",
+      "domain": "cranes_rigging_hoisting",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-POWERLINE-CRANE-001",
+      "title": "crane operating near overhead power line",
+      "domain": "cranes_rigging_hoisting",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-MACHINE-JAM-CLEARING-001",
+      "title": "machine jam clearing with unclear energy control",
+      "domain": "machine_guarding_loto",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-MACHINE-GUARD-REMOVED-NO-WORK-001",
+      "title": "machine guard removed but machine tagged out",
+      "domain": "tools_equipment",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-ELECTRICAL-PANEL-BLOCKED-001",
+      "title": "electrical panel access blocked by stored boxes",
+      "domain": "electrical",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-BATTERY-CHARGING-001",
+      "title": "forklift battery charging area with eyewash uncertainty",
+      "domain": "mobile_equipment",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-PRESSURE-HOSE-001",
+      "title": "compressed air hose damaged near workstation",
+      "domain": "tools_equipment",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-FALLING-OBJECT-NO-EXPOSURE-001",
+      "title": "stored material secured with no employee exposure",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-CHEMICAL-NO-LEAK-001",
+      "title": "closed labeled chemical containers with no leak",
+      "domain": "hazardous_materials",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-HOTWORK-PERMIT-OK-001",
+      "title": "hot work permit present with controls documented",
+      "domain": "welding_cutting_hot_work",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-JURISDICTION-MINE-CONTRACTOR-001",
+      "title": "contractor shop near mine with jurisdiction uncertainty",
+      "domain": "unknown",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-JURISDICTION-CONSTRUCTION-PLANT-001",
+      "title": "construction work inside operating plant with jurisdiction uncertainty",
+      "domain": "fall_protection",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MULTI-FORKLIFT-SPILL-ELECTRICAL-001",
+      "title": "forklift traffic, spill, and electrical panel access conflict",
+      "domain": "mobile_equipment",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MULTI-SCAFFOLD-HOTWORK-FALL-001",
+      "title": "scaffold hot work with fall and fire controls unclear",
+      "domain": "fall_protection",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MULTI-CONFINED-HOTWORK-ENTRY-001",
+      "title": "tank entry with hot work planned but not started",
+      "domain": "ventilation",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MULTI-GUARDING-ELECTRICAL-WET-001",
+      "title": "mine plant guarding issue with wet electrical area nearby",
+      "domain": "electrical",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-JURISDICTION-MSHA-OSHA-MOBILE-SHOP-001",
+      "title": "mobile equipment repair shop with MSHA OSHA jurisdiction uncertainty",
+      "domain": "mobile_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COAL-UG-BELT-GUARD-NO-EXPOSURE-001",
+      "title": "underground coal belt guard removed but area barricaded",
+      "domain": "machine_guarding",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COAL-UG-SCOOP-BATTERY-001",
+      "title": "battery scoop charging with ventilation uncertainty",
+      "domain": "unknown",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-COAL-UG-CABLE-HANGING-001",
+      "title": "coal mine cable hanging low near travelway",
+      "domain": "electrical",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MNM-UG-ORE-PASS-BARRICADE-001",
+      "title": "ore pass opening with unclear barricade condition",
+      "domain": "unknown",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-MNM-UG-REFUGE-ROUTE-001",
+      "title": "refuge route sign missing with travelway open",
+      "domain": "slip_trip_fall",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-SURFACE-CRUSHER-DUST-WATER-001",
+      "title": "crusher dust with water spray not confirmed",
+      "domain": "health_respiratory",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-SURFACE-CONVEYOR-PULLCORD-001",
+      "title": "conveyor emergency stop pull cord slack",
+      "domain": "machine_guarding",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MSHA-SURFACE-WELDING-CYLINDER-TRUCK-001",
+      "title": "welding cylinders in service truck with cap and securement uncertainty",
+      "domain": "welding_cutting_hot_work",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-SILICA-HOUSEKEEPING-001",
+      "title": "construction dust cleanup with silica uncertainty",
+      "domain": "health_respiratory",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-LADDER-NO-EXPOSURE-001",
+      "title": "ladder stored damaged but not in use",
+      "domain": "slips_trips_falls",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-FORKLIFT-LOAD-VISIBILITY-001",
+      "title": "telehandler load blocks forward visibility",
+      "domain": "mobile_equipment",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-CONSTRUCTION-EXCAVATION-SPOIL-PILE-001",
+      "title": "excavation spoil pile near edge",
+      "domain": "excavation_trenching",
+      "jurisdiction": "osha_construction",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-CONVEYOR-TRAINING-ONLY-001",
+      "title": "conveyor safety mentioned only in training records",
+      "domain": "machine_guarding",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-LOCKOUT-ENERGY-STORED-AIR-001",
+      "title": "stored air pressure during maintenance prep",
+      "domain": "machine_guarding",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-ROBOT-CELL-GATE-BYPASS-001",
+      "title": "robot cell gate bypass rumor without confirmation",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-ERGONOMICS-REPETITIVE-LIFT-001",
+      "title": "repetitive lifting complaint with missing weight data",
+      "domain": "unknown",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-RESPIRATOR-VOLUNTARY-USE-001",
+      "title": "voluntary respirator use with unclear exposure basis",
+      "domain": "slip_trip_fall",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-BLOODBORNE-SHARPS-001",
+      "title": "discarded sharp found in restroom",
+      "domain": "health_exposure",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-OSHA-GI-POWERED-DOOR-CRUSH-POINT-001",
+      "title": "powered overhead door crush point uncertainty",
+      "domain": "machine_guarding",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-JURISDICTION-RAIL-SPUR-MINE-PLANT-001",
+      "title": "rail spur near mine plant with jurisdiction uncertainty",
+      "domain": "unknown",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-JURISDICTION-PUBLIC-ROAD-HAUL-TRUCK-001",
+      "title": "haul truck crossing public road with jurisdiction uncertainty",
+      "domain": "mobile_equipment",
+      "jurisdiction": "msha",
+      "confidenceLevel": "moderate",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MULTI-NOISE-FORKLIFT-CO-001",
+      "title": "forklift area with noise and possible carbon monoxide concern",
+      "domain": "health_exposure",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MULTI-CHEMICAL-EYEWASH-NO-SPLASH-001",
+      "title": "corrosive storage with eyewash blocked but no spill",
+      "domain": "machine_guarding_loto",
+      "jurisdiction": "osha_general_industry",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-MULTI-MINE-BLASTING-MAGAZINE-001",
+      "title": "mine explosives magazine housekeeping with security uncertainty",
+      "domain": "welding_cutting_hot_work",
+      "jurisdiction": "msha",
+      "confidenceLevel": "high",
+      "status": "pass"
+    },
+    {
+      "id": "FIELD-V2-UNKNOWN-PHOTO-ONLY-001",
+      "title": "photo only unclear condition requiring evidence hold",
+      "domain": "unknown",
+      "jurisdiction": "unclear",
+      "confidenceLevel": "low",
+      "status": "pass"
+    }
+  ]
+}

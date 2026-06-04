@@ -1,0 +1,192 @@
+import { buildControlStates } from "../../engine/controls/control.state";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Report } from "../entities/report.entity";
+
+import { classifyHazard, rankHazards } from "../../engine/hazard.classifier";
+import { HazardStandardMap } from "../../engine/hazard.rules";
+import { evaluateRequiredControls } from "../../engine/controls/required.controls";
+import { expandControlsFromHazards } from "../../engine/controls/control.expansion";
+import { calculateControlScore } from "../../engine/controls/control.scoring";
+import { calculateRisk, calculateHazardRisk } from "../../engine/risk.engine";
+import { generateActions } from "../../engine/action.engine";
+
+@Injectable()
+export class ExecutiveService {
+  constructor(
+    @InjectRepository(Report)
+    private readonly repo: Repository<Report>
+  ) {}
+
+  async generateExecutiveSummary(reportId: string) {
+    console.log("=== EXEC START ===");
+
+    const report = await this.repo.findOne({
+      where: { id: reportId },
+      relations: ["attachments"],
+    });
+
+    if (!report) throw new NotFoundException("Report not found");
+
+    const text = report.narrative || report.title || "";
+
+    const classification = classifyHazard(text);
+    const hazardTypes = classification?.hazardTypes || [];
+
+    const ranked = rankHazards(hazardTypes);
+    const primaryHazard = ranked.length ? ranked[0].type : null;
+
+    const controlFindings = evaluateRequiredControls(text) || [];
+
+    const normalize = (v: any) =>
+      String(v || "").toLowerCase().trim().replace(/\s+/g, "_");
+
+    const requiredControls = Array.from(
+
+// ===== CONTROL STATE ENGINE (CLEAN)
+const controlStates = buildControlStates(hazardTypes, controlFindings, requiredControls);
+const presentControls = controlStates.filter(c => c.state === "present");
+const missingControls = controlStates.filter(c => c.state === "missing");
+
+      new Set([
+        ...expandControlsFromHazards(hazardTypes).map(normalize),
+        ...(hazardTypes.includes("fall_hazard_from_lift")
+          ? ["fall_protection", "harness", "tie_off", "anchor_point"]
+          : [])
+      ])
+
+// PRESENT CONTROLS (STRICT — ONLY TRUE VERIFIED)
+
+// Remove controls already represented as hazards
+// Normalize hazard → control mapping
+const hazardControlSet = new Set(
+  ranked.map(h =>
+    h.type
+      .toLowerCase()
+      .replace("missing_", "")
+      .replace("_on_lift", "")
+      .replace("_from_lift", "")
+      .replace("hazard_", "")
+      .trim()
+  )
+
+// Remove duplicates between hazards + controls
+
+  return !presentControls.map(p => p.control).includes(normalized)
+    && !Array.from(hazardControlSet).some(h =>
+      normalized.includes(h) || h.includes(normalized)
+});
+
+    const severity = report.severity ?? "unknown";
+
+    const standardsRaw = report.likelyStandards;
+    const standardsList = Array.isArray(standardsRaw)
+      ? standardsRaw
+      : standardsRaw
+      ? [standardsRaw]
+      : [];
+
+    const findings = standardsList.map((s: any, i: number) => ({
+      index: i + 1,
+      citation: typeof s === "string" ? s : s?.citation ?? "Not identified",
+    }));
+
+    const overview = primaryHazard
+      ? "Inspection identified: " + primaryHazard.split("_").join(" ") + "."
+      : "A safety condition was identified requiring attention.";
+
+    const risk = calculateRisk({
+      severity: report.severity,
+      controls: controlFindings,
+    });
+
+    const engineOutput = generateActions(text, risk.riskBand);
+
+    const prioritizedActions = (engineOutput.prioritizedActions || "")
+      .split("\n")
+      .slice(0, 4)
+      .join("\n");
+
+    const riskEvaluation = primaryHazard
+      ? primaryHazard.split("_").join(" ") +
+        " presents a " +
+        risk.riskBand.toLowerCase() +
+        "-risk condition (Risk Score: " +
+        risk.riskScore +
+        ")."
+      : "A hazard presents a " +
+        risk.riskBand.toLowerCase() +
+        "-risk condition.";
+
+    const riskPriorities = [
+      ...ranked.map((h, i) => {
+        const hazardRisk = calculateHazardRisk(
+          { severity: report.severity, probability: 3, exposure: 3 },
+          h.type
+        return (
+          i + 1 +
+          ". " +
+          h.type.split("_").join(" ") +
+          " — " +
+          hazardRisk.riskBand +
+          " (Score: " +
+          hazardRisk.riskScore +
+          ")"
+      }),
+      ...missingControls.map(
+        (c, i) =>
+          i +
+          ranked.length +
+          1 +
+          ". Missing " +
+          c.split("_").join(" ") +
+          " — REQUIRED"
+      ),
+    ].join("\n");
+
+    const hazardStandards = hazardTypes.flatMap(h => HazardStandardMap[h] || []);
+
+    const allStandards = Array.from(new Set([
+      ...hazardStandards,
+      ...findings.map(f => f.citation),
+    ]));
+
+    const standardsText =
+      allStandards.length > 0
+        ? "Applicable regulatory standards include: " + allStandards.join(", ") + "."
+        : "No specific regulatory standard was automatically identified.";
+
+    const complianceNote =
+      findings.length > 0
+        ? "Potential regulatory exposure exists under applicable standards: " +
+          findings.map(f => f.citation).join(", ") +
+          "."
+        : "No regulatory exposure identified.";
+
+    const controlScore = calculateControlScore(requiredControls, presentControls.map(p => ({ control: p.control })));
+
+    return {
+      reportId: report.id,
+      overview,
+      riskEvaluation,
+      riskPriorities,
+      immediateAction: engineOutput.immediateAction,
+      prioritizedActions,
+      standards: standardsText,
+      correctiveActions: engineOutput.correctiveAction,
+      complianceNote,
+      metadata: {
+        complianceScore: controlScore.score,
+        controlsRequired: controlScore.requiredCount,
+        controlsMissing: controlScore.missingCount,
+        severity,
+        hasStandards: findings.length > 0,
+        findingsCount: findings.length,
+        riskScore: risk.riskScore,
+        riskBand: risk.riskBand,
+      },
+      findings,
+    };
+  }
+}

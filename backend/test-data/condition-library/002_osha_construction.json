@@ -1,0 +1,93 @@
+[
+  {
+    "conditionId": "OSHA_CONSTRUCTION_FALL_EDGE_EXPOSURE",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.501(b)(1)",
+    "family": "fall_protection",
+    "equipmentTerms": ["roof edge", "leading edge", "floor opening", "elevated work surface"],
+    "failureTerms": ["without fall protection", "no fall protection", "not tied off", "unprotected edge", "unsecured cover"],
+    "contextTerms": ["roof", "deck", "building", "elevated work"],
+    "safeSuppressors": ["tied off", "guardrail installed", "cover secured"],
+    "negativeSignals": ["ladder", "scaffold"],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_LADDER_UNSAFE_USE",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.1053(b)",
+    "family": "ladder_safety",
+    "equipmentTerms": ["ladder", "extension ladder", "step ladder"],
+    "failureTerms": ["unstable", "sliding", "wrong angle", "top cap", "damaged rung", "feet on loose gravel"],
+    "contextTerms": ["jobsite", "roof access", "wall access"],
+    "safeSuppressors": ["secured", "stable footing", "proper angle"],
+    "negativeSignals": ["fixed mining ladder"],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_SCAFFOLD_GUARDRAIL_PLATFORM",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.451(g)",
+    "family": "scaffold",
+    "equipmentTerms": ["scaffold", "frame scaffold", "mobile scaffold", "platform"],
+    "failureTerms": ["missing guardrail", "no guardrail", "incomplete platform", "plank missing", "caster unlocked"],
+    "contextTerms": ["masonry", "drywall", "elevated work"],
+    "safeSuppressors": ["guardrails complete", "planks secured", "caster locked"],
+    "negativeSignals": ["ladder"],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_EXCAVATION_NO_PROTECTION",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.652(a)(1)",
+    "family": "excavation",
+    "equipmentTerms": ["trench", "excavation", "trench wall", "utility trench"],
+    "failureTerms": ["no shoring", "no sloping", "no protective system", "vertical wall", "water seepage"],
+    "contextTerms": ["sewer", "storm drain", "utility excavation"],
+    "safeSuppressors": ["trench shield installed", "sloped", "shored"],
+    "negativeSignals": ["warehouse"],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_PPE_EYE_FACE",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.102(a)(1)",
+    "family": "ppe",
+    "equipmentTerms": ["cut-off saw", "grinder", "face shield", "eye protection"],
+    "failureTerms": ["without face shield", "no eye protection", "no safety glasses"],
+    "contextTerms": ["cutting", "grinding", "concrete"],
+    "safeSuppressors": ["face shield worn", "eye protection worn", "available"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_ELECTRICAL_TEMP_WIRING",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.416(a)(1)",
+    "family": "electrical",
+    "equipmentTerms": ["temporary power cord", "cord", "wiring", "temporary panel"],
+    "failureTerms": ["damaged insulation", "wiring visible", "exposed live parts", "energized"],
+    "contextTerms": ["jobsite", "temporary power"],
+    "safeSuppressors": ["inspected", "no damage", "de-energized"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "OSHA_CONSTRUCTION_STRUCK_BY_SUSPENDED_LOAD",
+    "scope": "construction",
+    "agency": "OSHA",
+    "citation": "1926.251",
+    "family": "struck_by",
+    "equipmentTerms": ["suspended load", "beam", "crane", "rigging", "sling"],
+    "failureTerms": ["worker beneath", "standing beneath", "under suspended", "frayed sling"],
+    "contextTerms": ["crane lift", "steel erection", "material hoist"],
+    "safeSuppressors": ["clear of load", "tag line used", "rigging inspected"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  }
+]

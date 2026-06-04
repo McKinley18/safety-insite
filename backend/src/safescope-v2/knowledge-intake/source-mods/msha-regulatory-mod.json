@@ -1,0 +1,81 @@
+{
+  "modId": "msha-regulatory-mod",
+  "modName": "MSHA Regulatory Intake Mod",
+  "purpose": "Collect MSHA regulatory anchors and mine-safety applicability intelligence for SafeScope.",
+  "sourceAuthority": "MSHA",
+  "allowedDomains": [
+    "machine_guarding",
+    "mobile_equipment",
+    "powered_haulage",
+    "ground_control",
+    "electrical",
+    "lockout_tagout",
+    "working_surfaces",
+    "berms",
+    "highwall",
+    "material_handling",
+    "fire_protection",
+    "respirable_dust",
+    "training"
+  ],
+  "allowedSourceTypes": [
+    "cfr",
+    "policy_manual",
+    "accident_report"
+  ],
+  "authorityTier": "federal_regulation",
+  "startingUrls": [
+    "https://www.ecfr.gov/current/title-30",
+    "https://www.msha.gov/regulations",
+    "https://www.msha.gov/data-reports/fatality-reports/search"
+  ],
+  "searchBoundaries": {
+    "allowedHostnames": [
+      "msha.gov",
+      "www.msha.gov",
+      "ecfr.gov",
+      "www.ecfr.gov"
+    ],
+    "disallowedContent": [
+      "blogs",
+      "forums",
+      "vendor summaries",
+      "unofficial checklists",
+      "uncited training articles"
+    ]
+  },
+  "extractionTargets": [
+    "citation",
+    "title",
+    "standard text summary",
+    "regulatory intent",
+    "mine applicability triggers",
+    "evidence needed before citation",
+    "non-applicability questions",
+    "accident pathway lessons",
+    "source boundary"
+  ],
+  "forbiddenBehavior": [
+    "Do not declare violations.",
+    "Do not approve records for production use.",
+    "Do not infer MSHA requirements that are not grounded in source text.",
+    "Do not treat accident reports as regulation.",
+    "Do not change SafeScope reasoning logic."
+  ],
+  "defaults": {
+    "reviewStatus": "unreviewed",
+    "approvedForUse": false,
+    "sourceBoundary": "mandatory",
+    "jurisdiction": "US_FEDERAL_MINING"
+  },
+  "batchControls": {
+    "maxRecordsPerRun": 25,
+    "minSourcesPerDomain": 3,
+    "continueUntilCoverageComplete": true,
+    "stopOnlyWhen": [
+      "all listed domains have minimum source coverage",
+      "all gathered records pass quarantine validation",
+      "coverage report has no missing critical MSHA anchors"
+    ]
+  }
+}

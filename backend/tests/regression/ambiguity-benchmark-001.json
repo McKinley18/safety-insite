@@ -1,0 +1,122 @@
+[
+  {
+    "id": "AMB-000001",
+    "observation": "machine guard missing at plant area",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "hard",
+    "citationReference": "1910.212(a)(1)",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "AMB-000002",
+    "observation": "machine guard missing at jobsite",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "primaryHazardFamily": "tools_equipment",
+    "difficulty": "hard",
+    "citationReference": "1926.20(b)(2)",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "AMB-000003",
+    "observation": "machine guard missing at crusher",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "primaryHazardFamily": "machine_guarding",
+    "difficulty": "hard",
+    "citationReference": "56.14107(a)",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "AMB-000004",
+    "observation": "hard hat not worn at plant",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "hard",
+    "citationReference": "1910.135(a)",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "AMB-000005",
+    "observation": "hard hat not worn at jobsite",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "hard",
+    "citationReference": "1926.100(a)",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "AMB-000006",
+    "observation": "hard hat not worn at pit",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "primaryHazardFamily": "ppe",
+    "difficulty": "hard",
+    "citationReference": "56.15002",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "AMB-000007",
+    "observation": "lockout not applied during maintenance at plant",
+    "scopeExpected": "general_industry",
+    "agencyExpected": "OSHA",
+    "primaryHazardFamily": "lockout_tagout",
+    "difficulty": "hard",
+    "citationReference": "1910.147(c)(1)",
+    "context": {
+      "industryScope": "general_industry"
+    }
+  },
+  {
+    "id": "AMB-000008",
+    "observation": "lockout not applied during maintenance at jobsite",
+    "scopeExpected": "construction",
+    "agencyExpected": "OSHA",
+    "primaryHazardFamily": "tools_equipment",
+    "difficulty": "hard",
+    "citationReference": "1926.20(b)(2)",
+    "context": {
+      "industryScope": "construction"
+    }
+  },
+  {
+    "id": "AMB-000009",
+    "observation": "lockout not applied during maintenance at processing plant",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "primaryHazardFamily": "lockout_tagout",
+    "difficulty": "hard",
+    "citationReference": "56.12016",
+    "context": {
+      "industryScope": "mining"
+    }
+  },
+  {
+    "id": "AMB-000010",
+    "observation": "backup alarm not audible",
+    "scopeExpected": "mining",
+    "agencyExpected": "MSHA",
+    "primaryHazardFamily": "mobile_equipment",
+    "difficulty": "hard",
+    "citationReference": "56.14132(a)",
+    "context": {
+      "industryScope": "mining"
+    }
+  }
+]

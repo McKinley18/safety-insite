@@ -1,0 +1,38 @@
+{
+  "recordId": "osha-29-cfr-1910-212",
+  "sourceAuthority": "OSHA",
+  "sourceType": "cfr",
+  "authorityTier": "federal_regulation",
+  "citation": "29 CFR 1910.212",
+  "title": "General requirements for all machines",
+  "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.212",
+  "retrievedAt": "2026-05-30T17:30:00Z",
+  "jurisdiction": "US_FEDERAL_OSHA_GENERAL_INDUSTRY",
+  "hazardDomains": ["mechanical", "operational"],
+  "applicabilityTriggers": [
+    "machine guarding",
+    "point of operation",
+    "rotating parts",
+    "nip point",
+    "ingoing pinch point",
+    "employee access to moving parts",
+    "unguarded machine part"
+  ],
+  "standardIntent": "Protect employees from machine hazards by requiring guarding methods that prevent contact with points of operation, ingoing nip points, rotating parts, flying chips, sparks, and other hazardous machine motions or emissions.",
+  "evidenceNeeded": [
+    "Photograph the machine, point of operation, guard condition, and employee access path.",
+    "Document whether employees can contact moving parts during operation, setup, adjustment, cleaning, or maintenance.",
+    "Identify whether fixed, barrier, distance, two-hand, interlocked, or other guarding is present.",
+    "Document task being performed and equipment operating state.",
+    "Verify whether additional standards or lockout/tagout requirements may apply for service or maintenance."
+  ],
+  "nonApplicabilityQuestions": [
+    "Is the cited condition actually a machine or machine process covered by OSHA general industry requirements?",
+    "Is the hazard fully enclosed or otherwise guarded so employee contact is not reasonably possible?",
+    "Is the task service or maintenance where lockout/tagout may be the more specific controlling standard?",
+    "Is the workplace under MSHA jurisdiction instead of OSHA?"
+  ],
+  "sourceBoundary": "mandatory",
+  "reviewStatus": "unreviewed",
+  "approvedForUse": false
+}

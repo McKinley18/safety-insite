@@ -1,0 +1,26 @@
+[
+  {
+    "id": "MSHA-FIELD-001",
+    "observation": "crusher tail pulley guard missing and miners exposed to moving parts",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "machine_guarding",
+    "citationReference": "56.14107(a)",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "MSHA-FIELD-002",
+    "observation": "unguarded elevated platform edge at screen deck",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "fall_protection",
+    "citationReference": "56.15005",
+    "context": { "industryScope": "mining" }
+  },
+  {
+    "id": "MSHA-FIELD-003",
+    "observation": "backup alarm on front end loader not working",
+    "scopeExpected": "mining",
+    "primaryHazardFamily": "mobile_equipment",
+    "citationReference": "56.14132(a)",
+    "context": { "industryScope": "mining" }
+  }
+]

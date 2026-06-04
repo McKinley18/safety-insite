@@ -1,0 +1,50 @@
+[
+  {
+    "conditionId": "V2_OSHA_GI_CHEMICAL_EXPOSURE_SPLASH",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.132(a)",
+    "family": "ppe",
+    "equipmentTerms": ["chemical", "acid", "caustic", "solvent"],
+    "failureTerms": ["no goggles", "no face shield", "splash exposure"],
+    "safeSuppressors": ["goggles worn", "face shield worn"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "V2_OSHA_GI_HAND_TOOL_DAMAGED",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.242(a)",
+    "family": "tools_equipment",
+    "equipmentTerms": ["hammer", "wrench", "tool"],
+    "failureTerms": ["damaged tool", "cracked handle", "mushroomed head"],
+    "safeSuppressors": ["good condition", "removed from service"],
+    "negativeSignals": [],
+    "confidenceFloor": 85
+  },
+  {
+    "conditionId": "V2_OSHA_GI_LOTO_STORED_ENERGY",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.147(d)",
+    "family": "lockout_tagout",
+    "equipmentTerms": ["hydraulic", "pneumatic", "press"],
+    "failureTerms": ["stored energy not relieved", "unexpected movement"],
+    "safeSuppressors": ["zero energy verified"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  },
+  {
+    "conditionId": "V2_OSHA_GI_SLIP_TRIP_FLOOR",
+    "scope": "general_industry",
+    "agency": "OSHA",
+    "citation": "1910.22(a)(1)",
+    "family": "housekeeping",
+    "equipmentTerms": ["floor", "walkway"],
+    "failureTerms": ["slip hazard", "trip hazard", "wet floor", "debris"],
+    "safeSuppressors": ["clean", "dry"],
+    "negativeSignals": [],
+    "confidenceFloor": 90
+  }
+]

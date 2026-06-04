@@ -1,0 +1,212 @@
+{
+  "sourceKey": "osha-ecfr-1926",
+  "agency": "OSHA",
+  "urls": [
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-A",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "A",
+      "titleHint": "29 CFR 1926 Subpart A - General"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-B",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "B",
+      "titleHint": "29 CFR 1926 Subpart B - General Interpretations"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-C",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "C",
+      "titleHint": "29 CFR 1926 Subpart C - General Safety and Health Provisions"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-D",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "D",
+      "titleHint": "29 CFR 1926 Subpart D - Occupational Health and Environmental Controls"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-E",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "E",
+      "titleHint": "29 CFR 1926 Subpart E - Personal Protective and Life Saving Equipment"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-F",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "F",
+      "titleHint": "29 CFR 1926 Subpart F - Fire Protection and Prevention"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-G",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "G",
+      "titleHint": "29 CFR 1926 Subpart G - Signs, Signals, and Barricades"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-H",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "H",
+      "titleHint": "29 CFR 1926 Subpart H - Materials Handling, Storage, Use, and Disposal"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-I",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "I",
+      "titleHint": "29 CFR 1926 Subpart I - Tools - Hand and Power"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-J",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "J",
+      "titleHint": "29 CFR 1926 Subpart J - Welding and Cutting"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-K",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "K",
+      "titleHint": "29 CFR 1926 Subpart K - Electrical",
+      "hazardTags": ["Electrical"],
+      "standardTags": ["29 CFR 1926.404"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-L",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "L",
+      "titleHint": "29 CFR 1926 Subpart L - Scaffolds",
+      "hazardTags": ["Fall Protection"],
+      "standardTags": ["29 CFR 1926.451"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-M",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "M",
+      "titleHint": "29 CFR 1926 Subpart M - Fall Protection",
+      "hazardTags": ["Fall Protection"],
+      "standardTags": ["29 CFR 1926.501"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-N",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "N",
+      "titleHint": "29 CFR 1926 Subpart N - Cranes, Derricks, Hoists, Elevators, and Conveyors"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-O",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "O",
+      "titleHint": "29 CFR 1926 Subpart O - Motor Vehicles, Mechanized Equipment, and Marine Operations"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-P",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "P",
+      "titleHint": "29 CFR 1926 Subpart P - Excavations",
+      "hazardTags": ["Trenching / Excavation"],
+      "standardTags": ["29 CFR 1926.651", "29 CFR 1926.652"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-X",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "X",
+      "titleHint": "29 CFR 1926 Subpart X - Stairways and Ladders",
+      "hazardTags": ["Fall Protection"],
+      "standardTags": ["29 CFR 1926.1053"]
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-Q",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "Q",
+      "titleHint": "29 CFR 1926 Subpart Q - Concrete and Masonry Construction"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-R",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "R",
+      "titleHint": "29 CFR 1926 Subpart R - Steel Erection"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-S",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "S",
+      "titleHint": "29 CFR 1926 Subpart S - Underground Construction, Caissons, Cofferdams, and Compressed Air"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-T",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "T",
+      "titleHint": "29 CFR 1926 Subpart T - Demolition"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-U",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "U",
+      "titleHint": "29 CFR 1926 Subpart U - Blasting and the Use of Explosives"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-V",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "V",
+      "titleHint": "29 CFR 1926 Subpart V - Power Transmission and Distribution"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-W",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "W",
+      "titleHint": "29 CFR 1926 Subpart W - Rollover Protective Structures; Overhead Protection"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-Y",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "Y",
+      "titleHint": "29 CFR 1926 Subpart Y - Commercial Diving Operations"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-Z",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "Z",
+      "titleHint": "29 CFR 1926 Subpart Z - Toxic and Hazardous Substances"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-AA",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "AA",
+      "titleHint": "29 CFR 1926 Subpart AA - Confined Spaces in Construction"
+    },
+    {
+      "url": "https://www.ecfr.gov/current/title-29/part-1926/subpart-CC",
+      "fetchUrl": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml",
+      "part": "1926",
+      "subpart": "CC",
+      "titleHint": "29 CFR 1926 Subpart CC - Cranes and Derricks in Construction"
+    }
+  ]
+}

@@ -1,0 +1,4228 @@
+{
+  "metadata": {
+    "project": "Sentinel Safety",
+    "engine": "Sentinel Safety",
+    "version": "0.1.0",
+    "status": "expandable_full_database_seed",
+    "purpose": "Condition-first regulatory hazard identification library before citation matching",
+    "sources": [
+      "30 CFR Part 56 - MSHA Surface Metal/Nonmetal",
+      "29 CFR Part 1926 - OSHA Construction",
+      "29 CFR Part 1910 - OSHA General Industry"
+    ]
+  },
+  "families": [
+    "machine_guarding",
+    "electrical",
+    "housekeeping",
+    "safe_access",
+    "roadway_berm",
+    "mobile_equipment",
+    "workplace_exam",
+    "respiratory",
+    "noise",
+    "fall_protection",
+    "ladder_safety",
+    "scaffold",
+    "excavation",
+    "ppe",
+    "struck_by",
+    "lockout_tagout",
+    "powered_industrial_truck",
+    "hazcom",
+    "fire_safety",
+    "compressed_gas",
+    "confined_space",
+    "welding_cutting",
+    "material_handling",
+    "tools_equipment",
+    "emergency_egress",
+    "other",
+    "ground_control",
+    "illumination",
+    "impalement",
+    "training_documentation",
+    "environmental_spill",
+    "emergency_response",
+    "ergonomics",
+    "contractor_site_controls",
+    "site_controls",
+    "biological",
+    "caught_between",
+    "water_hazard",
+    "workplace_violence",
+    "heat_stress"
+  ],
+  "conditions": [
+    {
+      "conditionId": "MSHA_MACHINE_GUARDING_MOVING_PARTS_EXPOSED",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14107(a)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "crusher",
+        "conveyor",
+        "pulley",
+        "belt drive",
+        "shaft",
+        "roller",
+        "drive motor",
+        "nip point"
+      ],
+      "failureTerms": [
+        "guard missing",
+        "unguarded",
+        "guard removed",
+        "exposed moving parts",
+        "open nip point",
+        "rotating shaft exposed"
+      ],
+      "contextTerms": [
+        "plant",
+        "crusher",
+        "screen deck",
+        "transfer point",
+        "walkway"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "guard secured",
+        "guard inspected",
+        "all fasteners tight"
+      ],
+      "negativeSignals": [
+        "scaffold",
+        "roof edge",
+        "respirator"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_HOUSEKEEPING_SPILLAGE_TRAVELWAY",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.20003(a)",
+      "family": "housekeeping",
+      "equipmentTerms": [
+        "walkway",
+        "travelway",
+        "plant floor",
+        "screen deck",
+        "stairs",
+        "fuel island"
+      ],
+      "failureTerms": [
+        "spillage",
+        "loose rock",
+        "oil spill",
+        "diesel residue",
+        "debris",
+        "blocked access",
+        "trip hazard"
+      ],
+      "contextTerms": [
+        "plant",
+        "screen deck",
+        "walkway",
+        "travelway",
+        "fueling area"
+      ],
+      "safeSuppressors": [
+        "clear",
+        "clean",
+        "dry",
+        "unobstructed",
+        "spill cleaned"
+      ],
+      "negativeSignals": [
+        "live wires",
+        "fall protection",
+        "unguarded"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_ELECTRICAL_DAMAGED_CONDUCTORS",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.12004",
+      "family": "electrical",
+      "equipmentTerms": [
+        "cable",
+        "cord",
+        "junction box",
+        "panel",
+        "pump cable",
+        "conductor",
+        "wiring"
+      ],
+      "failureTerms": [
+        "damaged cable",
+        "split jacket",
+        "frayed",
+        "exposed conductors",
+        "wiring exposed",
+        "cover missing"
+      ],
+      "contextTerms": [
+        "plant",
+        "sump",
+        "wet area",
+        "motor control",
+        "crusher"
+      ],
+      "safeSuppressors": [
+        "cover installed",
+        "cord inspected",
+        "no damage",
+        "panel closed"
+      ],
+      "negativeSignals": [
+        "housekeeping",
+        "scaffold"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_SAFE_ACCESS_LADDER_STAIR_PLATFORM",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.11001",
+      "family": "safe_access",
+      "equipmentTerms": [
+        "ladder",
+        "fixed ladder",
+        "stairs",
+        "handrail",
+        "catwalk",
+        "grating",
+        "platform"
+      ],
+      "failureTerms": [
+        "missing rung",
+        "broken rung",
+        "damaged rung",
+        "loose handrail",
+        "missing grating",
+        "damaged stairs",
+        "unsafe access"
+      ],
+      "contextTerms": [
+        "crusher tower",
+        "screen platform",
+        "plant access",
+        "elevated platform"
+      ],
+      "safeSuppressors": [
+        "secured",
+        "repaired",
+        "stable",
+        "good condition"
+      ],
+      "negativeSignals": [
+        "scaffold"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_ROADWAY_BERM_INADEQUATE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.9300(a)",
+      "family": "roadway_berm",
+      "equipmentTerms": [
+        "berm",
+        "haul road",
+        "dump point",
+        "ramp",
+        "road shoulder"
+      ],
+      "failureTerms": [
+        "berm low",
+        "below axle height",
+        "berm missing",
+        "washed out",
+        "drop-off",
+        "edge unprotected"
+      ],
+      "contextTerms": [
+        "pit",
+        "haul road",
+        "dump edge",
+        "stockpile",
+        "elevated road"
+      ],
+      "safeSuppressors": [
+        "height verified",
+        "adequate berm",
+        "guardrail installed"
+      ],
+      "negativeSignals": [
+        "roof edge",
+        "warehouse"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_MOBILE_EQUIPMENT_WARNING_DEVICE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14132(a)",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "haul truck",
+        "loader",
+        "dozer",
+        "water truck",
+        "service truck",
+        "backup alarm",
+        "horn"
+      ],
+      "failureTerms": [
+        "backup alarm not audible",
+        "alarm inoperative",
+        "horn not working",
+        "warning device failed"
+      ],
+      "contextTerms": [
+        "pit",
+        "haul road",
+        "plant yard",
+        "dump area"
+      ],
+      "safeSuppressors": [
+        "tested functional",
+        "functioning properly",
+        "audible",
+        "passed inspection"
+      ],
+      "negativeSignals": [
+        "forklift",
+        "warehouse"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_WORKPLACE_EXAM_DEFICIENT",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.18002(a)",
+      "family": "workplace_exam",
+      "equipmentTerms": [
+        "exam record",
+        "workplace exam",
+        "pre-shift log",
+        "corrective action log"
+      ],
+      "failureTerms": [
+        "hazard not recorded",
+        "record missing",
+        "exam incomplete",
+        "corrective action left open"
+      ],
+      "contextTerms": [
+        "plant office",
+        "shift exam",
+        "workplace inspection"
+      ],
+      "safeSuppressors": [
+        "record complete",
+        "signed",
+        "corrective action closed"
+      ],
+      "negativeSignals": [
+        "roof",
+        "scaffold"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_RESPIRATORY_DUST_EXPOSURE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.5001(a)",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "crusher",
+        "transfer point",
+        "baghouse",
+        "dust collector",
+        "water spray"
+      ],
+      "failureTerms": [
+        "dust cloud",
+        "dust suppression off",
+        "dust leak",
+        "silica dust",
+        "visible dust"
+      ],
+      "contextTerms": [
+        "crusher",
+        "dump pocket",
+        "baghouse",
+        "screen plant"
+      ],
+      "safeSuppressors": [
+        "dust suppression operating",
+        "sprays working",
+        "dust controlled"
+      ],
+      "negativeSignals": [
+        "guard missing"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_FALL_EDGE_EXPOSURE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.501(b)(1)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "roof edge",
+        "leading edge",
+        "floor opening",
+        "elevated work surface"
+      ],
+      "failureTerms": [
+        "without fall protection",
+        "no fall protection",
+        "not tied off",
+        "unprotected edge",
+        "unsecured cover"
+      ],
+      "contextTerms": [
+        "roof",
+        "deck",
+        "building",
+        "elevated work"
+      ],
+      "safeSuppressors": [
+        "tied off",
+        "guardrail installed",
+        "cover secured"
+      ],
+      "negativeSignals": [
+        "ladder",
+        "scaffold"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_LADDER_UNSAFE_USE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.1053(b)",
+      "family": "ladder_safety",
+      "equipmentTerms": [
+        "ladder",
+        "extension ladder",
+        "step ladder"
+      ],
+      "failureTerms": [
+        "unstable",
+        "sliding",
+        "wrong angle",
+        "top cap",
+        "damaged rung",
+        "feet on loose gravel"
+      ],
+      "contextTerms": [
+        "jobsite",
+        "roof access",
+        "wall access"
+      ],
+      "safeSuppressors": [
+        "secured",
+        "stable footing",
+        "proper angle"
+      ],
+      "negativeSignals": [
+        "fixed mining ladder"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_SCAFFOLD_GUARDRAIL_PLATFORM",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.451(g)",
+      "family": "scaffold",
+      "equipmentTerms": [
+        "scaffold",
+        "frame scaffold",
+        "mobile scaffold",
+        "platform"
+      ],
+      "failureTerms": [
+        "missing guardrail",
+        "no guardrail",
+        "incomplete platform",
+        "plank missing",
+        "caster unlocked"
+      ],
+      "contextTerms": [
+        "masonry",
+        "drywall",
+        "elevated work"
+      ],
+      "safeSuppressors": [
+        "guardrails complete",
+        "planks secured",
+        "caster locked"
+      ],
+      "negativeSignals": [
+        "ladder"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_EXCAVATION_NO_PROTECTION",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.652(a)(1)",
+      "family": "excavation",
+      "equipmentTerms": [
+        "trench",
+        "excavation",
+        "trench wall",
+        "utility trench"
+      ],
+      "failureTerms": [
+        "no shoring",
+        "no sloping",
+        "no protective system",
+        "vertical wall",
+        "water seepage"
+      ],
+      "contextTerms": [
+        "sewer",
+        "storm drain",
+        "utility excavation"
+      ],
+      "safeSuppressors": [
+        "trench shield installed",
+        "sloped",
+        "shored"
+      ],
+      "negativeSignals": [
+        "warehouse"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_PPE_EYE_FACE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.102(a)(1)",
+      "family": "ppe",
+      "equipmentTerms": [
+        "cut-off saw",
+        "grinder",
+        "face shield",
+        "eye protection"
+      ],
+      "failureTerms": [
+        "without face shield",
+        "no eye protection",
+        "no safety glasses"
+      ],
+      "contextTerms": [
+        "cutting",
+        "grinding",
+        "concrete"
+      ],
+      "safeSuppressors": [
+        "face shield worn",
+        "eye protection worn",
+        "available"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_ELECTRICAL_TEMP_WIRING",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.416(a)(1)",
+      "family": "electrical",
+      "equipmentTerms": [
+        "temporary power cord",
+        "cord",
+        "wiring",
+        "temporary panel"
+      ],
+      "failureTerms": [
+        "damaged insulation",
+        "wiring visible",
+        "exposed live parts",
+        "energized"
+      ],
+      "contextTerms": [
+        "jobsite",
+        "temporary power"
+      ],
+      "safeSuppressors": [
+        "inspected",
+        "no damage",
+        "de-energized"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_STRUCK_BY_SUSPENDED_LOAD",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.251",
+      "family": "struck_by",
+      "equipmentTerms": [
+        "suspended load",
+        "beam",
+        "crane",
+        "rigging",
+        "sling"
+      ],
+      "failureTerms": [
+        "worker beneath",
+        "standing beneath",
+        "under suspended",
+        "frayed sling"
+      ],
+      "contextTerms": [
+        "crane lift",
+        "steel erection",
+        "material hoist"
+      ],
+      "safeSuppressors": [
+        "clear of load",
+        "tag line used",
+        "rigging inspected"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_LOCKOUT_TAGOUT_UNCONTROLLED_ENERGY",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.147(c)(1)",
+      "family": "lockout_tagout",
+      "equipmentTerms": [
+        "conveyor",
+        "mixer",
+        "agitator",
+        "press",
+        "motor"
+      ],
+      "failureTerms": [
+        "without lockout",
+        "no lock applied",
+        "clearing jam while energized",
+        "unexpected startup"
+      ],
+      "contextTerms": [
+        "maintenance",
+        "servicing",
+        "cleaning",
+        "jam clearing"
+      ],
+      "safeSuppressors": [
+        "locked out",
+        "energy isolated",
+        "zero energy verified"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_ELECTRICAL_EXPOSED_LIVE_PARTS",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.303(b)(1)",
+      "family": "electrical",
+      "equipmentTerms": [
+        "control panel",
+        "breaker panel",
+        "junction box",
+        "busbar"
+      ],
+      "failureTerms": [
+        "open panel",
+        "live parts exposed",
+        "energized parts exposed",
+        "missing knockout"
+      ],
+      "contextTerms": [
+        "maintenance room",
+        "MCC room",
+        "electrical room"
+      ],
+      "safeSuppressors": [
+        "panel closed",
+        "cover installed",
+        "clearance maintained"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_HOUSEKEEPING_WALKING_SURFACE",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.22(a)(1)",
+      "family": "housekeeping",
+      "equipmentTerms": [
+        "aisle",
+        "walkway",
+        "exit route",
+        "floor",
+        "stairs"
+      ],
+      "failureTerms": [
+        "oil spill",
+        "wet floor",
+        "blocked aisle",
+        "pallets blocking",
+        "debris"
+      ],
+      "contextTerms": [
+        "warehouse",
+        "shipping",
+        "production floor"
+      ],
+      "safeSuppressors": [
+        "clear",
+        "dry",
+        "unobstructed",
+        "clean"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_POWERED_INDUSTRIAL_TRUCK_UNSAFE_OPERATION",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.178",
+      "family": "powered_industrial_truck",
+      "equipmentTerms": [
+        "forklift",
+        "stand-up lift",
+        "reach truck",
+        "powered industrial truck"
+      ],
+      "failureTerms": [
+        "elevated load",
+        "horn not working",
+        "speeding",
+        "blind corner",
+        "pedestrian conflict"
+      ],
+      "contextTerms": [
+        "warehouse",
+        "dock",
+        "aisle",
+        "intersection"
+      ],
+      "safeSuppressors": [
+        "inspection completed",
+        "no defects",
+        "horn tested"
+      ],
+      "negativeSignals": [
+        "haul truck"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_NOISE_HEARING_PROTECTION",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.95(c)(1)",
+      "family": "noise",
+      "equipmentTerms": [
+        "compressor",
+        "grinder",
+        "press",
+        "generator",
+        "noise area"
+      ],
+      "failureTerms": [
+        "without hearing protection",
+        "earplugs not worn",
+        "high noise"
+      ],
+      "contextTerms": [
+        "compressor room",
+        "fabrication",
+        "production"
+      ],
+      "safeSuppressors": [
+        "earplugs worn",
+        "hearing protection available"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_RESPIRATORY_PROTECTION_DEFICIENT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.134",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "respirator",
+        "cartridge",
+        "mask"
+      ],
+      "failureTerms": [
+        "wrong cartridge",
+        "dust cartridge for vapor",
+        "no fit test",
+        "respirator not used"
+      ],
+      "contextTerms": [
+        "paint",
+        "solvent",
+        "dust",
+        "fumes"
+      ],
+      "safeSuppressors": [
+        "fit check completed",
+        "fit test completed",
+        "correct cartridge"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_HAZCOM_UNLABELED_CONTAINER",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.1200",
+      "family": "hazcom",
+      "equipmentTerms": [
+        "chemical bottle",
+        "secondary container",
+        "solvent",
+        "drum"
+      ],
+      "failureTerms": [
+        "unlabeled",
+        "missing label",
+        "no SDS",
+        "unknown chemical"
+      ],
+      "contextTerms": [
+        "janitorial",
+        "mixing",
+        "chemical storage"
+      ],
+      "safeSuppressors": [
+        "label readable",
+        "SDS available"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_MACHINE_GUARDING_POINT_OF_OPERATION",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.212(a)(1)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "bench grinder",
+        "press",
+        "belt sander",
+        "saw",
+        "machine"
+      ],
+      "failureTerms": [
+        "unguarded",
+        "tool rest gap excessive",
+        "point of operation exposed",
+        "guard missing"
+      ],
+      "contextTerms": [
+        "maintenance shop",
+        "fabrication",
+        "production"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "interlock tested"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_FIRE_EGRESS_EXTINGUISHER",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.37(a)(3)",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "exit sign",
+        "exit route",
+        "emergency light",
+        "fire extinguisher"
+      ],
+      "failureTerms": [
+        "not illuminated",
+        "blocked",
+        "obstructed",
+        "inspection expired",
+        "missing from mount"
+      ],
+      "contextTerms": [
+        "warehouse",
+        "corridor",
+        "assembly floor",
+        "office"
+      ],
+      "safeSuppressors": [
+        "illuminated",
+        "accessible",
+        "inspection current",
+        "unobstructed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_GROUND_CONTROL_UNSTABLE_HIGHWALL",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.3130",
+      "family": "ground_control",
+      "equipmentTerms": [
+        "highwall",
+        "bench",
+        "pit wall",
+        "slope"
+      ],
+      "failureTerms": [
+        "loose material",
+        "unstable wall",
+        "overhang",
+        "sloughing",
+        "falling rock"
+      ],
+      "contextTerms": [
+        "pit",
+        "quarry",
+        "bench",
+        "highwall"
+      ],
+      "safeSuppressors": [
+        "scaled",
+        "barricaded",
+        "stable",
+        "inspected"
+      ],
+      "negativeSignals": [
+        "trench",
+        "scaffold"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_GROUND_CONTROL_LOOSE_GROUND",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.3200",
+      "family": "ground_control",
+      "equipmentTerms": [
+        "ground",
+        "wall",
+        "face",
+        "bank"
+      ],
+      "failureTerms": [
+        "loose ground",
+        "loose rock",
+        "unsupported ground",
+        "fall hazard"
+      ],
+      "contextTerms": [
+        "pit",
+        "quarry",
+        "work area",
+        "bench"
+      ],
+      "safeSuppressors": [
+        "scaled",
+        "supported",
+        "barricaded",
+        "removed"
+      ],
+      "negativeSignals": [
+        "warehouse"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_FIRE_EXTINGUISHER_MISSING_BLOCKED",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.4201",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "fire extinguisher",
+        "extinguisher",
+        "fire protection"
+      ],
+      "failureTerms": [
+        "missing",
+        "blocked",
+        "not accessible",
+        "inspection expired",
+        "discharged"
+      ],
+      "contextTerms": [
+        "shop",
+        "plant",
+        "fuel island",
+        "equipment"
+      ],
+      "safeSuppressors": [
+        "inspection current",
+        "accessible",
+        "charged",
+        "mounted"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_FLAMMABLE_STORAGE_DEFICIENT",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.4400",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "flammable liquid",
+        "fuel",
+        "gasoline",
+        "solvent",
+        "flammable cabinet"
+      ],
+      "failureTerms": [
+        "improper storage",
+        "open container",
+        "not labeled",
+        "stored near ignition",
+        "leaking container"
+      ],
+      "contextTerms": [
+        "shop",
+        "fuel area",
+        "storage room",
+        "maintenance area"
+      ],
+      "safeSuppressors": [
+        "cabinet closed",
+        "properly stored",
+        "container labeled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_COMPRESSED_GAS_CYLINDER_UNSECURED",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.4600",
+      "family": "compressed_gas",
+      "equipmentTerms": [
+        "compressed gas cylinder",
+        "oxygen cylinder",
+        "acetylene cylinder",
+        "cylinder"
+      ],
+      "failureTerms": [
+        "unsecured",
+        "not chained",
+        "lying on floor",
+        "cap missing",
+        "stored improperly"
+      ],
+      "contextTerms": [
+        "shop",
+        "welding area",
+        "maintenance area",
+        "storage cage"
+      ],
+      "safeSuppressors": [
+        "secured",
+        "chained",
+        "cap installed",
+        "upright"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_WELDING_CUTTING_FIRE_EXPOSURE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.4604",
+      "family": "welding_cutting",
+      "equipmentTerms": [
+        "welder",
+        "cutting torch",
+        "hot work",
+        "grinder"
+      ],
+      "failureTerms": [
+        "sparks near combustibles",
+        "no fire watch",
+        "hot work near fuel",
+        "slag on combustible material"
+      ],
+      "contextTerms": [
+        "shop",
+        "maintenance area",
+        "plant",
+        "fuel area"
+      ],
+      "safeSuppressors": [
+        "fire watch",
+        "combustibles removed",
+        "permit complete"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_NOISE_EXPOSURE_HEARING_PROTECTION",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.5050",
+      "family": "noise",
+      "equipmentTerms": [
+        "crusher",
+        "screen plant",
+        "compressor",
+        "drill",
+        "noise area"
+      ],
+      "failureTerms": [
+        "no hearing protection",
+        "hearing protection not worn",
+        "high noise",
+        "posted noise area"
+      ],
+      "contextTerms": [
+        "crusher",
+        "screen deck",
+        "compressor room",
+        "plant"
+      ],
+      "safeSuppressors": [
+        "earplugs worn",
+        "hearing protection provided",
+        "noise controlled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_ILLUMINATION_INADEQUATE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.17001",
+      "family": "illumination",
+      "equipmentTerms": [
+        "lighting",
+        "light",
+        "work area",
+        "travelway"
+      ],
+      "failureTerms": [
+        "poor lighting",
+        "light out",
+        "inadequate illumination",
+        "dark travelway"
+      ],
+      "contextTerms": [
+        "night shift",
+        "plant",
+        "walkway",
+        "shop",
+        "loading area"
+      ],
+      "safeSuppressors": [
+        "lighting adequate",
+        "light replaced",
+        "illumination verified"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_TOOLS_EQUIPMENT_DEFECTIVE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14100(b)",
+      "family": "tools_equipment",
+      "equipmentTerms": [
+        "equipment",
+        "tool",
+        "mobile equipment",
+        "machine",
+        "loader",
+        "truck"
+      ],
+      "failureTerms": [
+        "defect not corrected",
+        "unsafe defect",
+        "used with defect",
+        "reported defect"
+      ],
+      "contextTerms": [
+        "pre-op inspection",
+        "maintenance",
+        "operation",
+        "shift"
+      ],
+      "safeSuppressors": [
+        "removed from service",
+        "repaired",
+        "defect corrected"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_PARKING_BRAKES_WHEEL_CHOCKS",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14207",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "truck",
+        "loader",
+        "mobile equipment",
+        "parked equipment",
+        "wheel chock"
+      ],
+      "failureTerms": [
+        "not chocked",
+        "parking brake not set",
+        "unattended equipment",
+        "parked on grade"
+      ],
+      "contextTerms": [
+        "haul road",
+        "shop",
+        "fuel island",
+        "pit"
+      ],
+      "safeSuppressors": [
+        "chocked",
+        "parking brake set",
+        "secured against movement"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_REBAR_IMPALEMENT",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.701(b)",
+      "family": "impalement",
+      "equipmentTerms": [
+        "rebar",
+        "reinforcing steel",
+        "vertical steel"
+      ],
+      "failureTerms": [
+        "uncapped",
+        "unprotected",
+        "impalement hazard",
+        "exposed vertical"
+      ],
+      "contextTerms": [
+        "concrete work",
+        "foundation",
+        "slab",
+        "wall forms"
+      ],
+      "safeSuppressors": [
+        "capped",
+        "protected",
+        "covered"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_AERIAL_LIFT_FALL_EXPOSURE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.453(b)(2)(v)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "aerial lift",
+        "boom lift",
+        "man lift",
+        "basket"
+      ],
+      "failureTerms": [
+        "lanyard not attached",
+        "not tied off",
+        "no fall restraint",
+        "standing on rail"
+      ],
+      "contextTerms": [
+        "elevated work",
+        "steel erection",
+        "exterior work"
+      ],
+      "safeSuppressors": [
+        "lanyard connected",
+        "tied off",
+        "anchored"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_HOUSEKEEPING_DEBRIS",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.25(a)",
+      "family": "housekeeping",
+      "equipmentTerms": [
+        "walkway",
+        "floor",
+        "stairway",
+        "work area",
+        "access path"
+      ],
+      "failureTerms": [
+        "debris",
+        "scrap material",
+        "trip hazard",
+        "blocked access",
+        "poor housekeeping"
+      ],
+      "contextTerms": [
+        "jobsite",
+        "building interior",
+        "staging area"
+      ],
+      "safeSuppressors": [
+        "clean",
+        "clear",
+        "debris removed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_FIRE_EXTINGUISHER_ACCESS",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.150(c)(1)",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "fire extinguisher",
+        "extinguisher",
+        "fire protection"
+      ],
+      "failureTerms": [
+        "missing",
+        "blocked",
+        "not accessible",
+        "inspection expired"
+      ],
+      "contextTerms": [
+        "jobsite",
+        "hot work",
+        "fuel storage",
+        "temporary office"
+      ],
+      "safeSuppressors": [
+        "accessible",
+        "inspection current",
+        "mounted"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_COMPRESSED_GAS_CYLINDER",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.350(a)",
+      "family": "compressed_gas",
+      "equipmentTerms": [
+        "oxygen cylinder",
+        "acetylene cylinder",
+        "compressed gas cylinder",
+        "cylinder"
+      ],
+      "failureTerms": [
+        "unsecured",
+        "not capped",
+        "not separated",
+        "stored improperly",
+        "lying on floor"
+      ],
+      "contextTerms": [
+        "welding area",
+        "construction site",
+        "storage cage"
+      ],
+      "safeSuppressors": [
+        "secured",
+        "capped",
+        "upright",
+        "separated"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_WELDING_HOT_WORK",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.352(a)",
+      "family": "welding_cutting",
+      "equipmentTerms": [
+        "welding",
+        "cutting torch",
+        "hot work",
+        "grinder"
+      ],
+      "failureTerms": [
+        "combustibles nearby",
+        "sparks near combustibles",
+        "no fire watch",
+        "no shielding"
+      ],
+      "contextTerms": [
+        "steel work",
+        "welding area",
+        "renovation",
+        "jobsite"
+      ],
+      "safeSuppressors": [
+        "fire watch",
+        "combustibles removed",
+        "shielded"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_MATERIAL_STORAGE_UNSTABLE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.250(a)",
+      "family": "material_handling",
+      "equipmentTerms": [
+        "stored material",
+        "lumber",
+        "pipe",
+        "pallet",
+        "stack"
+      ],
+      "failureTerms": [
+        "unstable stack",
+        "material not secured",
+        "falling material",
+        "stacked too high"
+      ],
+      "contextTerms": [
+        "staging area",
+        "jobsite",
+        "storage area"
+      ],
+      "safeSuppressors": [
+        "secured",
+        "stacked stable",
+        "blocked"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_HAND_POWER_TOOLS_DEFECTIVE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.300(a)",
+      "family": "tools_equipment",
+      "equipmentTerms": [
+        "power tool",
+        "grinder",
+        "saw",
+        "drill",
+        "hand tool"
+      ],
+      "failureTerms": [
+        "damaged guard",
+        "missing guard",
+        "defective",
+        "cord damaged",
+        "unsafe tool"
+      ],
+      "contextTerms": [
+        "jobsite",
+        "tool room",
+        "cutting area"
+      ],
+      "safeSuppressors": [
+        "inspected",
+        "removed from service",
+        "guard installed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_MOTOR_VEHICLE_BACKING",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.601(b)(4)",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "dump truck",
+        "vehicle",
+        "truck",
+        "backing alarm",
+        "spotter"
+      ],
+      "failureTerms": [
+        "backup alarm not working",
+        "no spotter",
+        "backing without alarm",
+        "limited rear view"
+      ],
+      "contextTerms": [
+        "jobsite",
+        "haul route",
+        "loading area"
+      ],
+      "safeSuppressors": [
+        "spotter used",
+        "alarm working",
+        "clear backup path"
+      ],
+      "negativeSignals": [
+        "haul truck pit"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_SILICA_DUST_CONTROL",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.1153(c)",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "concrete saw",
+        "grinder",
+        "jackhammer",
+        "masonry saw",
+        "silica"
+      ],
+      "failureTerms": [
+        "dry cutting",
+        "no water control",
+        "dust cloud",
+        "no dust collection",
+        "respirator not used"
+      ],
+      "contextTerms": [
+        "concrete",
+        "masonry",
+        "cutting",
+        "grinding"
+      ],
+      "safeSuppressors": [
+        "water control used",
+        "dust collection operating",
+        "respirator worn"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_WALKING_WORKING_SURFACE_FALL_HAZARD",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.28(b)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "platform",
+        "mezzanine",
+        "floor opening",
+        "open-sided surface"
+      ],
+      "failureTerms": [
+        "unguarded edge",
+        "missing guardrail",
+        "fall hazard",
+        "opening uncovered"
+      ],
+      "contextTerms": [
+        "warehouse",
+        "maintenance platform",
+        "mezzanine",
+        "production area"
+      ],
+      "safeSuppressors": [
+        "guardrail installed",
+        "cover secured",
+        "protected"
+      ],
+      "negativeSignals": [
+        "roof edge",
+        "scaffold"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_FIXED_LADDER_DEFICIENT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.23",
+      "family": "ladder_safety",
+      "equipmentTerms": [
+        "fixed ladder",
+        "portable ladder",
+        "step ladder",
+        "ladder"
+      ],
+      "failureTerms": [
+        "damaged rung",
+        "missing rung",
+        "unstable",
+        "slippery rung",
+        "defective"
+      ],
+      "contextTerms": [
+        "warehouse",
+        "maintenance area",
+        "platform access",
+        "plant"
+      ],
+      "safeSuppressors": [
+        "stable",
+        "secured",
+        "inspected",
+        "removed from service"
+      ],
+      "negativeSignals": [
+        "scaffold"
+      ],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_EXIT_ROUTE_BLOCKED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.37(a)(3)",
+      "family": "emergency_egress",
+      "equipmentTerms": [
+        "exit route",
+        "exit door",
+        "emergency exit",
+        "corridor"
+      ],
+      "failureTerms": [
+        "blocked",
+        "obstructed",
+        "not visible",
+        "exit sign not illuminated",
+        "locked exit"
+      ],
+      "contextTerms": [
+        "warehouse",
+        "office",
+        "production floor",
+        "corridor"
+      ],
+      "safeSuppressors": [
+        "marked and unobstructed",
+        "illuminated",
+        "accessible"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_PORTABLE_FIRE_EXTINGUISHER_BLOCKED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.157(c)(1)",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "fire extinguisher",
+        "extinguisher"
+      ],
+      "failureTerms": [
+        "blocked",
+        "not accessible",
+        "missing",
+        "inspection expired",
+        "discharged"
+      ],
+      "contextTerms": [
+        "warehouse",
+        "assembly floor",
+        "shop",
+        "office"
+      ],
+      "safeSuppressors": [
+        "inspection current",
+        "access clear",
+        "mounted",
+        "charged"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_FLAMMABLE_LIQUID_STORAGE",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.106",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "flammable liquid",
+        "solvent",
+        "gasoline",
+        "flammable cabinet",
+        "drum"
+      ],
+      "failureTerms": [
+        "open container",
+        "improper storage",
+        "stored near ignition",
+        "leaking container",
+        "cabinet door open"
+      ],
+      "contextTerms": [
+        "paint room",
+        "chemical storage",
+        "maintenance shop"
+      ],
+      "safeSuppressors": [
+        "cabinet closed",
+        "properly stored",
+        "container labeled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_COMPRESSED_GAS_CYLINDER_UNSECURED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.101",
+      "family": "compressed_gas",
+      "equipmentTerms": [
+        "compressed gas cylinder",
+        "oxygen cylinder",
+        "acetylene cylinder",
+        "cylinder"
+      ],
+      "failureTerms": [
+        "unsecured",
+        "not chained",
+        "cap missing",
+        "stored improperly",
+        "lying on floor"
+      ],
+      "contextTerms": [
+        "maintenance shop",
+        "welding area",
+        "storage room"
+      ],
+      "safeSuppressors": [
+        "secured",
+        "chained",
+        "cap installed",
+        "upright"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_WELDING_CUTTING_HOT_WORK",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.252",
+      "family": "welding_cutting",
+      "equipmentTerms": [
+        "welding",
+        "cutting torch",
+        "hot work",
+        "grinder"
+      ],
+      "failureTerms": [
+        "combustibles nearby",
+        "sparks near combustibles",
+        "no fire watch",
+        "no shielding"
+      ],
+      "contextTerms": [
+        "maintenance shop",
+        "fabrication",
+        "welding area"
+      ],
+      "safeSuppressors": [
+        "fire watch",
+        "combustibles removed",
+        "shielded"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_CONFINED_SPACE_ENTRY_DEFICIENT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.146",
+      "family": "confined_space",
+      "equipmentTerms": [
+        "tank",
+        "vessel",
+        "pit",
+        "silo",
+        "confined space"
+      ],
+      "failureTerms": [
+        "no permit",
+        "no atmospheric test",
+        "no attendant",
+        "unauthorized entry",
+        "ventilation missing"
+      ],
+      "contextTerms": [
+        "entry",
+        "maintenance",
+        "cleaning",
+        "inspection"
+      ],
+      "safeSuppressors": [
+        "permit complete",
+        "atmosphere tested",
+        "attendant present",
+        "ventilated"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_PPE_GENERAL_DEFICIENT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.132(a)",
+      "family": "ppe",
+      "equipmentTerms": [
+        "PPE",
+        "personal protective equipment"
+      ],
+      "failureTerms": [
+        "not worn",
+        "not used"
+      ],
+      "contextTerms": [
+        "maintenance",
+        "chemical handling",
+        "grinding",
+        "cutting"
+      ],
+      "safeSuppressors": [
+        "worn correctly",
+        "available",
+        "provided",
+        "intact"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90,
+      "priority": 160
+    },
+    {
+      "conditionId": "OSHA_GI_RECORDKEEPING_TRAINING_DEFICIENT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.1200(h)",
+      "family": "training_documentation",
+      "equipmentTerms": [
+        "training record",
+        "employee training",
+        "hazcom training",
+        "documentation"
+      ],
+      "failureTerms": [
+        "missing training",
+        "training not documented",
+        "employee not trained",
+        "record unavailable"
+      ],
+      "contextTerms": [
+        "chemical handling",
+        "new employee",
+        "annual training"
+      ],
+      "safeSuppressors": [
+        "training complete",
+        "record available",
+        "documented"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_MOBILE_EQUIPMENT_DEFECTS",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14100(b)",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "haul truck",
+        "loader",
+        "equipment"
+      ],
+      "failureTerms": [
+        "defect",
+        "unsafe condition",
+        "not corrected"
+      ],
+      "safeSuppressors": [
+        "inspected and safe",
+        "no defects"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "MSHA_MOBILE_EQUIPMENT_BRAKES",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14101(a)(1)",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "haul truck",
+        "loader",
+        "equipment"
+      ],
+      "failureTerms": [
+        "brakes not working",
+        "brake failure"
+      ],
+      "safeSuppressors": [
+        "brakes tested functional"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_BERM_INADEQUATE_SECONDARY",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.9300(a)",
+      "family": "roadway_berm",
+      "equipmentTerms": [
+        "berm",
+        "dump point"
+      ],
+      "failureTerms": [
+        "berm too low",
+        "missing berm"
+      ],
+      "safeSuppressors": [
+        "berm adequate"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "MSHA_EMERGENCY_EGRESS_BLOCKED",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.11001",
+      "family": "emergency_egress",
+      "equipmentTerms": [
+        "exit",
+        "travelway",
+        "escape route",
+        "walkway"
+      ],
+      "failureTerms": [
+        "blocked",
+        "obstructed",
+        "not passable",
+        "restricted access"
+      ],
+      "safeSuppressors": [
+        "clear",
+        "unobstructed",
+        "accessible"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_FIRE_HOT_WORK_NO_FIRE_WATCH",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.4604",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "welder",
+        "torch",
+        "grinder",
+        "hot work"
+      ],
+      "failureTerms": [
+        "no fire watch",
+        "sparks near combustibles",
+        "combustibles nearby"
+      ],
+      "safeSuppressors": [
+        "fire watch",
+        "combustibles removed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_CONFINED_SPACE_NO_PERMIT",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.1204",
+      "family": "confined_space",
+      "equipmentTerms": [
+        "manhole",
+        "vault",
+        "tank",
+        "confined space"
+      ],
+      "failureTerms": [
+        "no permit",
+        "no atmospheric test",
+        "no attendant",
+        "unauthorized entry"
+      ],
+      "safeSuppressors": [
+        "permit complete",
+        "atmosphere tested",
+        "attendant present"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_EMERGENCY_ACCESS_BLOCKED",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.34",
+      "family": "emergency_egress",
+      "equipmentTerms": [
+        "exit",
+        "access route",
+        "emergency route",
+        "stairway"
+      ],
+      "failureTerms": [
+        "blocked",
+        "obstructed",
+        "not marked",
+        "restricted"
+      ],
+      "safeSuppressors": [
+        "clear",
+        "marked",
+        "unobstructed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_CONFINED_SPACE_ATMOSPHERE_NOT_TESTED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.146",
+      "family": "confined_space",
+      "equipmentTerms": [
+        "tank",
+        "vessel",
+        "pit",
+        "silo",
+        "confined space"
+      ],
+      "failureTerms": [
+        "atmosphere not tested",
+        "no permit",
+        "no attendant",
+        "ventilation missing"
+      ],
+      "safeSuppressors": [
+        "atmosphere tested",
+        "permit complete",
+        "ventilated"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_EMERGENCY_LIGHT_FAILED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.37(a)(3)",
+      "family": "emergency_egress",
+      "equipmentTerms": [
+        "emergency light",
+        "exit sign",
+        "egress light"
+      ],
+      "failureTerms": [
+        "not illuminated",
+        "failed test",
+        "battery dead",
+        "light out"
+      ],
+      "safeSuppressors": [
+        "battery test passed",
+        "illuminated",
+        "working"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_SPILL_RESPONSE_DEFICIENT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.120",
+      "family": "environmental_spill",
+      "equipmentTerms": [
+        "chemical spill",
+        "spill kit",
+        "leak",
+        "container"
+      ],
+      "failureTerms": [
+        "spill not contained",
+        "no spill kit",
+        "unknown liquid",
+        "leaking drum"
+      ],
+      "safeSuppressors": [
+        "contained",
+        "cleaned",
+        "spill kit available"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_EYEWASH_BLOCKED_OR_NOT_FUNCTIONAL",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.151(c)",
+      "family": "emergency_response",
+      "equipmentTerms": [
+        "eyewash",
+        "safety shower",
+        "emergency shower"
+      ],
+      "failureTerms": [
+        "blocked",
+        "not functional",
+        "no flow",
+        "access obstructed"
+      ],
+      "safeSuppressors": [
+        "flow test complete",
+        "access clear",
+        "functional"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_ERGONOMICS_REPETITIVE_STRAIN",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "5(a)(1)",
+      "family": "ergonomics",
+      "equipmentTerms": [
+        "workstation",
+        "assembly line",
+        "packing station"
+      ],
+      "failureTerms": [
+        "repetitive strain",
+        "awkward posture",
+        "forceful exertion",
+        "poor workstation setup"
+      ],
+      "safeSuppressors": [
+        "adjusted",
+        "ergonomic controls installed",
+        "rotation implemented"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 80
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_MANUAL_HANDLING_OVEREXERTION",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "5(a)(1)",
+      "family": "ergonomics",
+      "equipmentTerms": [
+        "material",
+        "block",
+        "pipe",
+        "sheetrock",
+        "manual lift"
+      ],
+      "failureTerms": [
+        "team lift not used",
+        "manual handling overload",
+        "overexertion",
+        "awkward lift"
+      ],
+      "safeSuppressors": [
+        "mechanical aid used",
+        "team lift used"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 80
+    },
+    {
+      "conditionId": "MSHA_MANUAL_MATERIAL_HANDLING_OVEREXERTION",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.16002",
+      "family": "material_handling",
+      "equipmentTerms": [
+        "rock",
+        "screen media",
+        "belt roll",
+        "manual lift",
+        "material"
+      ],
+      "failureTerms": [
+        "manual handling overload",
+        "awkward lift",
+        "uncontrolled material",
+        "pinch point while lifting"
+      ],
+      "safeSuppressors": [
+        "mechanical aid used",
+        "secured",
+        "team lift used"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 80
+    },
+    {
+      "conditionId": "OSHA_GI_MACHINE_DEFECT_CONTINUED_OPERATION",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.212(a)(1)",
+      "family": "tools_equipment",
+      "equipmentTerms": [
+        "machine",
+        "press",
+        "saw",
+        "conveyor",
+        "equipment"
+      ],
+      "failureTerms": [
+        "defect not corrected",
+        "operated with defect",
+        "unsafe condition",
+        "guard damaged"
+      ],
+      "safeSuppressors": [
+        "removed from service",
+        "repaired",
+        "locked out"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_DEFECTIVE_EQUIPMENT_IN_USE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.20(b)(2)",
+      "family": "tools_equipment",
+      "equipmentTerms": [
+        "equipment",
+        "tool",
+        "machine",
+        "vehicle"
+      ],
+      "failureTerms": [
+        "defect not corrected",
+        "unsafe equipment",
+        "used with defect",
+        "inspection failed"
+      ],
+      "safeSuppressors": [
+        "removed from service",
+        "repaired",
+        "tagged out"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "MSHA_CONTRACTOR_HAZARD_COMMUNICATION",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "45.4",
+      "family": "contractor_site_controls",
+      "equipmentTerms": [
+        "contractor",
+        "contractor crew",
+        "site contractor"
+      ],
+      "failureTerms": [
+        "hazard not communicated",
+        "not informed of site hazards",
+        "contractor exposed"
+      ],
+      "safeSuppressors": [
+        "hazards communicated",
+        "site orientation completed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 80
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_SITE_INSPECTION_DEFICIENT",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.20(b)(2)",
+      "family": "site_controls",
+      "equipmentTerms": [
+        "site inspection",
+        "competent person",
+        "jobsite",
+        "work area"
+      ],
+      "failureTerms": [
+        "hazard not corrected",
+        "inspection not performed",
+        "unsafe condition left open"
+      ],
+      "safeSuppressors": [
+        "corrected",
+        "inspection complete",
+        "competent person reviewed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "OSHA_GI_TRAINING_RECORD_MISSING",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.1200(h)",
+      "family": "training_documentation",
+      "equipmentTerms": [
+        "training record",
+        "employee training",
+        "documentation"
+      ],
+      "failureTerms": [
+        "missing training record",
+        "training not documented",
+        "employee not trained"
+      ],
+      "safeSuppressors": [
+        "training complete",
+        "record available",
+        "documented"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_FALL_TRAINING_DEFICIENT",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.503(a)",
+      "family": "training_documentation",
+      "equipmentTerms": [
+        "fall protection training",
+        "training record",
+        "employee training"
+      ],
+      "failureTerms": [
+        "not trained",
+        "training missing",
+        "does not recognize fall hazard"
+      ],
+      "safeSuppressors": [
+        "training complete",
+        "documented",
+        "retrained"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "MSHA_TASK_TRAINING_DEFICIENT",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "46.7",
+      "family": "training_documentation",
+      "equipmentTerms": [
+        "task training",
+        "training record",
+        "miner training"
+      ],
+      "failureTerms": [
+        "task training missing",
+        "not trained",
+        "training not documented"
+      ],
+      "safeSuppressors": [
+        "training complete",
+        "record available",
+        "documented"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V2_OSHA_GI_CHEMICAL_EXPOSURE_SPLASH",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.132(a)",
+      "family": "ppe",
+      "equipmentTerms": [
+        "chemical",
+        "acid",
+        "caustic",
+        "solvent"
+      ],
+      "failureTerms": [
+        "no goggles",
+        "no face shield",
+        "splash exposure"
+      ],
+      "safeSuppressors": [
+        "goggles worn",
+        "face shield worn"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_OSHA_GI_HAND_TOOL_DAMAGED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.242(a)",
+      "family": "tools_equipment",
+      "equipmentTerms": [
+        "hammer",
+        "wrench",
+        "tool"
+      ],
+      "failureTerms": [
+        "damaged tool",
+        "cracked handle",
+        "mushroomed head"
+      ],
+      "safeSuppressors": [
+        "good condition",
+        "removed from service"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V2_OSHA_GI_LOTO_STORED_ENERGY",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.147(d)",
+      "family": "lockout_tagout",
+      "equipmentTerms": [
+        "hydraulic",
+        "pneumatic",
+        "press"
+      ],
+      "failureTerms": [
+        "stored energy not relieved",
+        "unexpected movement"
+      ],
+      "safeSuppressors": [
+        "zero energy verified"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_OSHA_GI_SLIP_TRIP_FLOOR",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.22(a)(1)",
+      "family": "housekeeping",
+      "equipmentTerms": [
+        "floor",
+        "walkway"
+      ],
+      "failureTerms": [
+        "slip hazard",
+        "trip hazard",
+        "wet floor",
+        "debris"
+      ],
+      "safeSuppressors": [
+        "clean",
+        "dry"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_MSHA_GUARDRAIL_HANDRAIL_DEFECT",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.11002",
+      "family": "safe_access",
+      "equipmentTerms": [
+        "handrail",
+        "guardrail",
+        "railing"
+      ],
+      "failureTerms": [
+        "loose",
+        "missing",
+        "damaged",
+        "not secure"
+      ],
+      "safeSuppressors": [
+        "secure",
+        "repaired",
+        "installed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_MSHA_WORKING_AT_HEIGHT_NO_PROTECTION",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.15005",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "platform",
+        "elevated work",
+        "highwall",
+        "top of equipment"
+      ],
+      "failureTerms": [
+        "no fall protection",
+        "not tied off",
+        "unguarded edge"
+      ],
+      "safeSuppressors": [
+        "tied off",
+        "guarded",
+        "fall protection worn"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_MSHA_SEATBELT_NOT_WORN",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14131(a)",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "seatbelt",
+        "seat belt",
+        "dozer",
+        "haul truck",
+        "loader",
+        "mobile equipment"
+      ],
+      "failureTerms": [
+        "seatbelt not worn",
+        "no seatbelt",
+        "operator not buckled",
+        "seat belt not worn"
+      ],
+      "safeSuppressors": [
+        "seatbelt worn",
+        "buckled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90,
+      "priority": 180
+    },
+    {
+      "conditionId": "V1_MSHA_BACKUP_ALARM_AUDIBILITY",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14132(a)",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "backup alarm",
+        "reverse alarm",
+        "haul truck",
+        "loader"
+      ],
+      "failureTerms": [
+        "not audible",
+        "faint",
+        "inoperative",
+        "failed test"
+      ],
+      "safeSuppressors": [
+        "audible",
+        "tested functional",
+        "working"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_MSHA_PPE_HARD_HAT",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.15002",
+      "family": "ppe",
+      "equipmentTerms": [
+        "hard hat",
+        "head protection"
+      ],
+      "failureTerms": [
+        "not worn",
+        "missing",
+        "damaged"
+      ],
+      "safeSuppressors": [
+        "worn",
+        "available",
+        "intact"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_OSHA_CONSTRUCTION_HARD_HAT",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.100(a)",
+      "family": "ppe",
+      "equipmentTerms": [
+        "hard hat",
+        "head protection"
+      ],
+      "failureTerms": [
+        "not worn",
+        "missing",
+        "damaged"
+      ],
+      "safeSuppressors": [
+        "worn",
+        "available",
+        "intact"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_OSHA_GI_HARD_HAT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.135(a)",
+      "family": "ppe",
+      "equipmentTerms": [
+        "hard hat",
+        "head protection"
+      ],
+      "failureTerms": [
+        "not worn",
+        "missing",
+        "damaged"
+      ],
+      "safeSuppressors": [
+        "worn",
+        "available",
+        "intact"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_OSHA_GI_BLOODBORNE_EXPOSURE",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.1030",
+      "family": "biological",
+      "equipmentTerms": [
+        "blood",
+        "needle",
+        "sharps",
+        "biohazard"
+      ],
+      "failureTerms": [
+        "exposure",
+        "unlabeled biohazard",
+        "sharps container overfilled",
+        "needle stick"
+      ],
+      "safeSuppressors": [
+        "contained",
+        "labeled",
+        "disposed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V1_OSHA_GI_FIRST_AID_DEFICIENT",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.151(b)",
+      "family": "emergency_response",
+      "equipmentTerms": [
+        "first aid",
+        "medical response",
+        "first aid kit"
+      ],
+      "failureTerms": [
+        "not available",
+        "missing supplies",
+        "no trained responder"
+      ],
+      "safeSuppressors": [
+        "available",
+        "stocked",
+        "trained responder"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V1_OSHA_CONSTRUCTION_FIRST_AID_DEFICIENT",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.50(c)",
+      "family": "emergency_response",
+      "equipmentTerms": [
+        "first aid",
+        "medical response",
+        "first aid kit"
+      ],
+      "failureTerms": [
+        "not available",
+        "missing supplies",
+        "no trained responder"
+      ],
+      "safeSuppressors": [
+        "available",
+        "stocked",
+        "trained responder"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V1_MSHA_FIRST_AID_DEFICIENT",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.18010",
+      "family": "emergency_response",
+      "equipmentTerms": [
+        "first aid",
+        "medical response",
+        "first aid kit"
+      ],
+      "failureTerms": [
+        "not available",
+        "missing supplies",
+        "no trained responder"
+      ],
+      "safeSuppressors": [
+        "available",
+        "stocked",
+        "trained responder"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V1_OSHA_GI_DOCK_EDGE_FALL_HAZARD",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.28(b)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "dock edge",
+        "loading dock",
+        "platform edge"
+      ],
+      "failureTerms": [
+        "unguarded edge",
+        "fall hazard",
+        "missing barrier"
+      ],
+      "safeSuppressors": [
+        "barrier installed",
+        "guarded"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_OSHA_GI_PIT_OPENING_UNGUARDED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.28(b)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "pit",
+        "floor opening",
+        "hole"
+      ],
+      "failureTerms": [
+        "unguarded",
+        "uncovered",
+        "open hole",
+        "fall hazard"
+      ],
+      "safeSuppressors": [
+        "covered",
+        "guarded",
+        "secured"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_OSHA_CONSTRUCTION_FLOOR_HOLE_UNPROTECTED",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.501(b)(4)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "floor hole",
+        "floor opening",
+        "hole cover"
+      ],
+      "failureTerms": [
+        "unprotected",
+        "cover unsecured",
+        "hole uncovered"
+      ],
+      "safeSuppressors": [
+        "cover secured",
+        "guarded",
+        "covered"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_MSHA_OPEN_HOLE_UNGUARDED",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.11012",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "opening",
+        "hole",
+        "manway",
+        "floor opening"
+      ],
+      "failureTerms": [
+        "unguarded",
+        "uncovered",
+        "open hole",
+        "fall hazard"
+      ],
+      "safeSuppressors": [
+        "guarded",
+        "covered",
+        "secured"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_OSHA_GI_AIR_CONTAMINANT_EXPOSURE",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.1000",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "dust",
+        "fume",
+        "mist",
+        "air contaminant"
+      ],
+      "failureTerms": [
+        "visible fume",
+        "overexposure",
+        "dust cloud",
+        "poor ventilation"
+      ],
+      "safeSuppressors": [
+        "ventilated",
+        "controlled",
+        "below limit"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V1_OSHA_CONSTRUCTION_AIR_CONTAMINANT_EXPOSURE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.55(a)",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "dust",
+        "fume",
+        "mist",
+        "air contaminant"
+      ],
+      "failureTerms": [
+        "visible fume",
+        "overexposure",
+        "dust cloud",
+        "poor ventilation"
+      ],
+      "safeSuppressors": [
+        "ventilated",
+        "controlled",
+        "below limit"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V1_MSHA_AIR_CONTAMINANT_EXPOSURE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.5001(a)",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "dust",
+        "fume",
+        "mist",
+        "air contaminant"
+      ],
+      "failureTerms": [
+        "visible fume",
+        "overexposure",
+        "dust cloud",
+        "poor ventilation"
+      ],
+      "safeSuppressors": [
+        "ventilated",
+        "controlled",
+        "below limit"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V1_OSHA_GI_ELECTRICAL_CLEARANCE_BLOCKED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.303(g)(1)",
+      "family": "electrical",
+      "equipmentTerms": [
+        "electrical panel",
+        "breaker panel",
+        "disconnect",
+        "MCC"
+      ],
+      "failureTerms": [
+        "clearance blocked",
+        "access blocked",
+        "stored material in front"
+      ],
+      "safeSuppressors": [
+        "clearance maintained",
+        "access clear"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_OSHA_CONSTRUCTION_TEMP_PANEL_CLEARANCE_BLOCKED",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.403(i)",
+      "family": "electrical",
+      "equipmentTerms": [
+        "temporary panel",
+        "electrical panel",
+        "disconnect"
+      ],
+      "failureTerms": [
+        "clearance blocked",
+        "access blocked",
+        "stored material in front"
+      ],
+      "safeSuppressors": [
+        "clearance maintained",
+        "access clear"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V1_MSHA_ELECTRICAL_CLEARANCE_BLOCKED",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.12030",
+      "family": "electrical",
+      "equipmentTerms": [
+        "electrical panel",
+        "disconnect",
+        "MCC",
+        "switchgear"
+      ],
+      "failureTerms": [
+        "clearance blocked",
+        "access blocked",
+        "stored material in front"
+      ],
+      "safeSuppressors": [
+        "clearance maintained",
+        "access clear"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_MSHA_CONVEYOR_ENTANGLEMENT_EXPOSURE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14107(a)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "conveyor",
+        "belt",
+        "tail pulley",
+        "return roller"
+      ],
+      "failureTerms": [
+        "entanglement exposure",
+        "caught in",
+        "unguarded nip point",
+        "reaching near moving belt"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "locked out",
+        "belt stopped"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_MSHA_RUNOVER_BACKOVER_EXPOSURE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.9100",
+      "family": "mobile_equipment",
+      "equipmentTerms": [
+        "haul truck",
+        "loader",
+        "dozer",
+        "water truck"
+      ],
+      "failureTerms": [
+        "pedestrian in blind spot",
+        "backing toward worker",
+        "runover exposure",
+        "no spotter"
+      ],
+      "safeSuppressors": [
+        "spotter used",
+        "pedestrian separated",
+        "traffic controlled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_MSHA_HIGHWALL_FALLING_MATERIAL",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.3130",
+      "family": "ground_control",
+      "equipmentTerms": [
+        "highwall",
+        "pit wall",
+        "bench face"
+      ],
+      "failureTerms": [
+        "falling rock",
+        "loose material overhead",
+        "sloughing",
+        "unstable highwall"
+      ],
+      "safeSuppressors": [
+        "scaled",
+        "barricaded",
+        "area restricted"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_MSHA_DUMP_POINT_OVERRUN_RISK",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.9300(a)",
+      "family": "roadway_berm",
+      "equipmentTerms": [
+        "dump point",
+        "stockpile edge",
+        "berm"
+      ],
+      "failureTerms": [
+        "overtravel risk",
+        "berm missing",
+        "berm below axle",
+        "soft edge"
+      ],
+      "safeSuppressors": [
+        "berm adequate",
+        "dump block used",
+        "edge verified"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_MSHA_ELECTROCUTION_DAMAGED_CABLE_WET_AREA",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.12004",
+      "family": "electrical",
+      "equipmentTerms": [
+        "cable",
+        "cord",
+        "pump cable"
+      ],
+      "failureTerms": [
+        "damaged insulation",
+        "exposed conductors",
+        "wet area",
+        "standing water"
+      ],
+      "safeSuppressors": [
+        "cord removed",
+        "cable repaired",
+        "de-energized"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_FALL_LEADING_EDGE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.501(b)(2)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "leading edge",
+        "deck edge",
+        "roof edge"
+      ],
+      "failureTerms": [
+        "no fall protection",
+        "not tied off",
+        "unprotected leading edge"
+      ],
+      "safeSuppressors": [
+        "tied off",
+        "guardrail installed",
+        "fall protection used"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_FALL_HOLE_COVER",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.501(b)(4)",
+      "family": "fall_protection",
+      "equipmentTerms": [
+        "floor hole",
+        "floor opening",
+        "cover"
+      ],
+      "failureTerms": [
+        "cover unsecured",
+        "hole uncovered",
+        "unmarked cover",
+        "fall through opening"
+      ],
+      "safeSuppressors": [
+        "cover secured",
+        "marked cover",
+        "guarded"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_CRANE_SWING_RADIUS",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.1424(a)",
+      "family": "struck_by",
+      "equipmentTerms": [
+        "crane",
+        "excavator",
+        "swing radius"
+      ],
+      "failureTerms": [
+        "worker in swing radius",
+        "unprotected swing area",
+        "struck-by exposure"
+      ],
+      "safeSuppressors": [
+        "barricaded",
+        "spotter used",
+        "area restricted"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_TRENCH_NO_EGRESS",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.651(c)(2)",
+      "family": "excavation",
+      "equipmentTerms": [
+        "trench",
+        "excavation",
+        "ladder"
+      ],
+      "failureTerms": [
+        "no safe egress",
+        "ladder missing",
+        "egress too far",
+        "no exit from trench"
+      ],
+      "safeSuppressors": [
+        "ladder provided",
+        "safe egress",
+        "exit within required distance"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_TRENCH_SPOIL_PILE_EDGE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.651(j)(2)",
+      "family": "excavation",
+      "equipmentTerms": [
+        "trench",
+        "excavation",
+        "spoil pile"
+      ],
+      "failureTerms": [
+        "spoil too close",
+        "material at edge",
+        "surcharge load at trench edge"
+      ],
+      "safeSuppressors": [
+        "spoil set back",
+        "material removed",
+        "edge clear"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_GI_AMPUTATION_POINT_OF_OPERATION",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.212(a)(3)(ii)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "press",
+        "saw",
+        "shear",
+        "point of operation"
+      ],
+      "failureTerms": [
+        "unguarded point of operation",
+        "hand near blade",
+        "amputation exposure"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "two hand control",
+        "interlock working"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_GI_FORKLIFT_PEDESTRIAN_STRUCK_BY",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.178",
+      "family": "powered_industrial_truck",
+      "equipmentTerms": [
+        "forklift",
+        "powered industrial truck",
+        "pedestrian"
+      ],
+      "failureTerms": [
+        "pedestrian in travel path",
+        "blind corner",
+        "no horn",
+        "struck-by exposure"
+      ],
+      "safeSuppressors": [
+        "pedestrian separated",
+        "horn used",
+        "spotter used"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_GI_ARC_FLASH_OPEN_ELECTRICAL_PANEL",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.303(b)(1)",
+      "family": "electrical",
+      "equipmentTerms": [
+        "electrical panel",
+        "switchgear",
+        "MCC",
+        "live parts"
+      ],
+      "failureTerms": [
+        "open energized panel",
+        "arc flash exposure",
+        "live parts exposed"
+      ],
+      "safeSuppressors": [
+        "panel closed",
+        "de-energized",
+        "cover installed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_GI_CONFINED_SPACE_OXYGEN_DEFICIENCY",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.146",
+      "family": "confined_space",
+      "equipmentTerms": [
+        "tank",
+        "vessel",
+        "pit",
+        "confined space"
+      ],
+      "failureTerms": [
+        "oxygen deficient",
+        "no atmospheric test",
+        "entry without monitoring"
+      ],
+      "safeSuppressors": [
+        "atmosphere tested",
+        "continuous monitor",
+        "permit complete"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_GI_CHEMICAL_INHALATION_EXPOSURE",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.1000",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "solvent",
+        "chemical vapor",
+        "fume",
+        "spray operation"
+      ],
+      "failureTerms": [
+        "strong vapor",
+        "poor ventilation",
+        "respirator not used",
+        "overexposure"
+      ],
+      "safeSuppressors": [
+        "ventilated",
+        "respirator worn",
+        "exposure controlled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_MSHA_PINCH_POINT_BLOCKED_ENERGY",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.12016",
+      "family": "lockout_tagout",
+      "equipmentTerms": [
+        "crusher",
+        "conveyor",
+        "feeder",
+        "pinch point"
+      ],
+      "failureTerms": [
+        "maintenance without lockout",
+        "power not disconnected",
+        "stored energy not blocked"
+      ],
+      "safeSuppressors": [
+        "locked out",
+        "blocked against motion",
+        "power disconnected"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_PINCH_CRUSH_CAUGHT_BETWEEN",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.20(b)(2)",
+      "family": "caught_between",
+      "equipmentTerms": [
+        "excavator",
+        "truck",
+        "formwork",
+        "equipment"
+      ],
+      "failureTerms": [
+        "caught between",
+        "pinch point",
+        "crush exposure",
+        "worker between equipment"
+      ],
+      "safeSuppressors": [
+        "separated",
+        "spotter used",
+        "area controlled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_OSHA_GI_PINCH_CRUSH_CAUGHT_BETWEEN",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.212(a)(1)",
+      "family": "caught_between",
+      "equipmentTerms": [
+        "conveyor",
+        "press",
+        "roller",
+        "machine"
+      ],
+      "failureTerms": [
+        "caught between",
+        "pinch point",
+        "crush exposure",
+        "hand near roller"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "interlocked",
+        "locked out"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_MSHA_WATER_HAZARD_DROWNING_RISK",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.15020",
+      "family": "water_hazard",
+      "equipmentTerms": [
+        "pond",
+        "sump",
+        "water hazard",
+        "dredge"
+      ],
+      "failureTerms": [
+        "no life jacket",
+        "working near water",
+        "fall into water"
+      ],
+      "safeSuppressors": [
+        "life jacket worn",
+        "barrier installed",
+        "rescue equipment available"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_WATER_HAZARD_DROWNING_RISK",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.106(a)",
+      "family": "water_hazard",
+      "equipmentTerms": [
+        "water",
+        "river",
+        "pond",
+        "barge"
+      ],
+      "failureTerms": [
+        "no life jacket",
+        "working over water",
+        "drowning hazard"
+      ],
+      "safeSuppressors": [
+        "life jacket worn",
+        "skiff available",
+        "ring buoy available"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V2_OSHA_GI_WORKPLACE_VIOLENCE_GENERAL_DUTY",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "5(a)(1)",
+      "family": "workplace_violence",
+      "equipmentTerms": [
+        "employee",
+        "public area",
+        "security"
+      ],
+      "failureTerms": [
+        "violent threat",
+        "assault risk",
+        "no security control"
+      ],
+      "safeSuppressors": [
+        "security present",
+        "threat controlled"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 75
+    },
+    {
+      "conditionId": "V2_OSHA_GI_HEAT_STRESS_GENERAL_DUTY",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "5(a)(1)",
+      "family": "heat_stress",
+      "equipmentTerms": [
+        "heat",
+        "hot work area",
+        "outdoor work"
+      ],
+      "failureTerms": [
+        "heat illness symptoms",
+        "no water",
+        "no shade",
+        "excessive heat"
+      ],
+      "safeSuppressors": [
+        "water provided",
+        "shade available",
+        "cooldown breaks"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 80
+    },
+    {
+      "conditionId": "V2_OSHA_CONSTRUCTION_HEAT_STRESS_GENERAL_DUTY",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "5(a)(1)",
+      "family": "heat_stress",
+      "equipmentTerms": [
+        "heat",
+        "roof work",
+        "outdoor work"
+      ],
+      "failureTerms": [
+        "heat illness symptoms",
+        "no water",
+        "no shade",
+        "excessive heat"
+      ],
+      "safeSuppressors": [
+        "water provided",
+        "shade available",
+        "cooldown breaks"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 80
+    },
+    {
+      "conditionId": "V2_MSHA_HEAT_STRESS_EXPOSURE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.18002(a)",
+      "family": "heat_stress",
+      "equipmentTerms": [
+        "heat",
+        "hot plant area",
+        "outdoor work"
+      ],
+      "failureTerms": [
+        "heat illness symptoms",
+        "no water",
+        "no shade",
+        "excessive heat"
+      ],
+      "safeSuppressors": [
+        "water provided",
+        "shade available",
+        "cooldown breaks"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 80
+    },
+    {
+      "conditionId": "V3_MSHA_ELECTRICAL_PANEL_OPEN_LIVE_PARTS",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.12032",
+      "family": "electrical",
+      "equipmentTerms": [
+        "electrical panel",
+        "control panel",
+        "switchgear"
+      ],
+      "failureTerms": [
+        "panel open",
+        "live parts exposed",
+        "energized components visible"
+      ],
+      "safeSuppressors": [
+        "panel closed",
+        "de-energized"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_MSHA_ELECTRICAL_IMPROPER_GROUNDING",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.12025",
+      "family": "electrical",
+      "equipmentTerms": [
+        "equipment",
+        "frame",
+        "generator"
+      ],
+      "failureTerms": [
+        "not grounded",
+        "missing ground",
+        "improper grounding"
+      ],
+      "safeSuppressors": [
+        "properly grounded"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_OSHA_GI_RESPIRATOR_NOT_WORN_REQUIRED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.134",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "respirator",
+        "dust mask"
+      ],
+      "failureTerms": [
+        "not wearing respirator",
+        "no respirator used",
+        "respirator removed"
+      ],
+      "safeSuppressors": [
+        "respirator worn"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_OSHA_GI_RESPIRATOR_IMPROPER_USE",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.134",
+      "family": "respiratory",
+      "equipmentTerms": [
+        "respirator",
+        "cartridge"
+      ],
+      "failureTerms": [
+        "improper fit",
+        "facial hair interfering",
+        "seal broken"
+      ],
+      "safeSuppressors": [
+        "fit test completed",
+        "properly worn"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V3_MSHA_CONVEYOR_GUARD_MISSING_TAIL",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14107(a)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "conveyor",
+        "tail pulley"
+      ],
+      "failureTerms": [
+        "guard missing",
+        "unguarded tail pulley"
+      ],
+      "safeSuppressors": [
+        "guard installed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_MSHA_CONVEYOR_GUARD_MISSING_HEAD",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14107(a)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "conveyor",
+        "head pulley"
+      ],
+      "failureTerms": [
+        "guard missing",
+        "unguarded head pulley"
+      ],
+      "safeSuppressors": [
+        "guard installed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_OSHA_CONSTRUCTION_LADDER_IMPROPER_ANGLE",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.1053(b)(5)",
+      "family": "ladder_safety",
+      "equipmentTerms": [
+        "ladder"
+      ],
+      "failureTerms": [
+        "improper angle",
+        "too steep",
+        "too shallow"
+      ],
+      "safeSuppressors": [
+        "proper angle"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V3_OSHA_CONSTRUCTION_LADDER_NOT_EXTENDED",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.1053(b)(1)",
+      "family": "ladder_safety",
+      "equipmentTerms": [
+        "ladder"
+      ],
+      "failureTerms": [
+        "not extended",
+        "does not extend above landing"
+      ],
+      "safeSuppressors": [
+        "extended properly"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V3_OSHA_GI_FORKLIFT_UNTRAINED_OPERATOR",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.178(l)",
+      "family": "powered_industrial_truck",
+      "equipmentTerms": [
+        "forklift",
+        "operator"
+      ],
+      "failureTerms": [
+        "untrained operator",
+        "no certification",
+        "no training"
+      ],
+      "safeSuppressors": [
+        "trained operator"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_OSHA_GI_FORKLIFT_UNSAFE_SPEED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.178(n)",
+      "family": "powered_industrial_truck",
+      "equipmentTerms": [
+        "forklift"
+      ],
+      "failureTerms": [
+        "excessive speed",
+        "too fast",
+        "unsafe speed"
+      ],
+      "safeSuppressors": [
+        "controlled speed"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 85
+    },
+    {
+      "conditionId": "V3_MSHA_HOUSEKEEPING_OILY_SLIPPERY_SURFACE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.20003(a)",
+      "family": "housekeeping",
+      "equipmentTerms": [
+        "walkway",
+        "floor"
+      ],
+      "failureTerms": [
+        "oil spill",
+        "slippery surface",
+        "grease on walkway"
+      ],
+      "safeSuppressors": [
+        "cleaned",
+        "dry"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_OSHA_GI_EXIT_BLOCKED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.37(a)(3)",
+      "family": "emergency_egress",
+      "equipmentTerms": [
+        "exit",
+        "door",
+        "egress"
+      ],
+      "failureTerms": [
+        "blocked exit",
+        "obstructed egress",
+        "exit not accessible"
+      ],
+      "safeSuppressors": [
+        "clear exit"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 95
+    },
+    {
+      "conditionId": "V3_OSHA_CONSTRUCTION_FIRE_EXTINGUISHER_MISSING",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.150(c)(1)",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "fire extinguisher"
+      ],
+      "failureTerms": [
+        "missing extinguisher",
+        "not available"
+      ],
+      "safeSuppressors": [
+        "extinguisher present"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "V3_OSHA_GI_FIRE_EXTINGUISHER_BLOCKED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.157(c)(1)",
+      "family": "fire_safety",
+      "equipmentTerms": [
+        "fire extinguisher"
+      ],
+      "failureTerms": [
+        "blocked access",
+        "not accessible"
+      ],
+      "safeSuppressors": [
+        "accessible"
+      ],
+      "negativeSignals": [],
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_LOCKOUT_TAGOUT_CONVEYOR",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.147(c)(1)",
+      "family": "lockout_tagout",
+      "equipmentTerms": [
+        "conveyor",
+        "belt",
+        "drive"
+      ],
+      "failureTerms": [
+        "without lockout",
+        "no lockout",
+        "not locked out",
+        "no loto",
+        "without loto"
+      ],
+      "safeSuppressors": [
+        "locked out",
+        "loto applied",
+        "energy isolated"
+      ],
+      "requiredSignals": [
+        "conveyor"
+      ],
+      "negativeSignals": [],
+      "priority": 80,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_MACHINE_GUARD_MISSING",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.212(a)(1)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "machine",
+        "guard"
+      ],
+      "failureTerms": [
+        "guard missing",
+        "missing guard"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "guard inspected",
+        "securely installed"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "plant",
+        "plant area",
+        "warehouse",
+        "work area"
+      ],
+      "priority": 170,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_MACHINE_GUARD_DEFECT",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.20(b)(2)",
+      "family": "tools_equipment",
+      "equipmentTerms": [
+        "machine",
+        "guard",
+        "equipment"
+      ],
+      "failureTerms": [
+        "guard missing",
+        "missing guard",
+        "unguarded"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "guard inspected",
+        "securely installed"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "jobsite",
+        "construction"
+      ],
+      "priority": 80,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_HARD_HAT_NOT_WORN",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.135(a)",
+      "family": "ppe",
+      "equipmentTerms": [
+        "hard hat",
+        "head protection"
+      ],
+      "failureTerms": [
+        "not worn",
+        "no hard hat",
+        "without hard hat"
+      ],
+      "safeSuppressors": [
+        "hard hat worn",
+        "head protection worn"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "plant",
+        "plant area",
+        "warehouse",
+        "work area"
+      ],
+      "priority": 150,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_GI_LOCKOUT_NOT_APPLIED",
+      "scope": "general_industry",
+      "agency": "OSHA",
+      "citation": "1910.147(c)(1)",
+      "family": "lockout_tagout",
+      "equipmentTerms": [
+        "equipment",
+        "machine",
+        "conveyor",
+        "maintenance",
+        "lockout"
+      ],
+      "failureTerms": [
+        "lockout not applied",
+        "no lockout",
+        "without lockout",
+        "not locked out"
+      ],
+      "safeSuppressors": [
+        "locked out",
+        "lockout applied",
+        "energy isolated"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "plant",
+        "plant area",
+        "maintenance",
+        "work area"
+      ],
+      "priority": 170,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_LOCKOUT_NOT_APPLIED",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.20(b)(2)",
+      "family": "tools_equipment",
+      "equipmentTerms": [
+        "equipment",
+        "machine",
+        "maintenance"
+      ],
+      "failureTerms": [
+        "lockout not applied",
+        "no lockout",
+        "without lockout",
+        "not locked out"
+      ],
+      "safeSuppressors": [
+        "locked out",
+        "lockout applied",
+        "energy isolated"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "jobsite",
+        "construction"
+      ],
+      "priority": 80,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_LOCKOUT_NOT_APPLIED_MAINTENANCE",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.12016",
+      "family": "lockout_tagout",
+      "equipmentTerms": [
+        "conveyor",
+        "crusher"
+      ],
+      "failureTerms": [
+        "lockout not applied",
+        "no lockout",
+        "without lockout",
+        "not locked out"
+      ],
+      "safeSuppressors": [
+        "locked out",
+        "lockout applied",
+        "power disconnected",
+        "energy isolated"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "processing plant",
+        "crusher",
+        "mine",
+        "pit"
+      ],
+      "priority": 180,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_MACHINE_GUARD_MISSING_CRUSHER",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.14107(a)",
+      "family": "machine_guarding",
+      "equipmentTerms": [
+        "crusher",
+        "conveyor"
+      ],
+      "failureTerms": [
+        "guard missing",
+        "missing guard",
+        "unguarded"
+      ],
+      "safeSuppressors": [
+        "guard installed",
+        "guard inspected",
+        "securely installed"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "crusher",
+        "processing plant",
+        "mine",
+        "pit"
+      ],
+      "priority": 60,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_HARD_HAT_NOT_WORN",
+      "scope": "construction",
+      "agency": "OSHA",
+      "citation": "1926.100(a)",
+      "family": "ppe",
+      "equipmentTerms": [
+        "hard hat",
+        "head protection"
+      ],
+      "failureTerms": [
+        "not worn",
+        "no hard hat",
+        "without hard hat"
+      ],
+      "safeSuppressors": [
+        "hard hat worn",
+        "head protection worn"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "jobsite",
+        "construction"
+      ],
+      "priority": 70,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "MSHA_HARD_HAT_NOT_WORN_PIT",
+      "scope": "mining",
+      "agency": "MSHA",
+      "citation": "56.15002",
+      "family": "ppe",
+      "equipmentTerms": [
+        "hard hat",
+        "head protection"
+      ],
+      "failureTerms": [
+        "not worn",
+        "no hard hat",
+        "without hard hat"
+      ],
+      "safeSuppressors": [
+        "hard hat worn",
+        "head protection worn"
+      ],
+      "negativeSignals": [],
+      "contextTerms": [
+        "pit",
+        "mine",
+        "crusher",
+        "processing plant"
+      ],
+      "priority": 90,
+      "confidenceFloor": 90
+    },
+    {
+      "conditionId": "OSHA_CONSTRUCTION_STAIRWAY_HANDRAIL_MISSING",
+      "citation": "1926.1052(c)",
+      "scope": "construction",
+      "agency": "OSHA",
+      "family": "safe_access",
+      "equipmentKeywords": [
+        "stairway",
+        "stairs",
+        "stair"
+      ],
+      "failureKeywords": [
+        "missing handrail",
+        "no handrail",
+        "handrail missing"
+      ],
+      "contextKeywords": [
+        "jobsite",
+        "construction",
+        "access"
+      ],
+      "summary": "Stairways must have required handrails where applicable."
+    }
+  ]
+}

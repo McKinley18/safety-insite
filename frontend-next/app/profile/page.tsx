@@ -1,0 +1,260 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { AppButton } from "@/components/ui/AppButton";
+import { AppInput } from "@/components/ui/AppInput";
+import { AppPanel } from "@/components/ui/AppPanel";
+import { HeroPanel } from "@/components/ui/HeroPanel";
+import SectionHeader from "@/components/ui/SectionHeader";
+import SummaryRow from "@/components/ui/SummaryRow";
+
+type UserProfile = {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  name?: string;
+  role?: string;
+  type?: string;
+  organizationId?: number;
+};
+
+export default function ProfilePage() {
+  const router = useRouter();
+  const [user, setUser] = useState<UserProfile>({});
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [profileEmail, setProfileEmail] = useState("");
+  const [identityEditing, setIdentityEditing] = useState(false);
+  const [status, setStatus] = useState("");
+
+  function loadUserProfile() {
+    try {
+      const raw = window.localStorage.getItem("sentinel_auth_user");
+      const parsed = raw ? JSON.parse(raw) : {};
+
+      const nameParts = String(parsed.name || "")
+        .trim()
+        .split(" ")
+        .filter(Boolean);
+
+      setUser(parsed);
+      setFirstName(parsed.firstName || nameParts[0] || "");
+      setLastName(parsed.lastName || nameParts.slice(1).join(" ") || "");
+      setProfileEmail(parsed.email || "");
+    } catch {
+      setUser({});
+    }
+  }
+
+  useEffect(() => {
+    loadUserProfile();
+  }, []);
+
+  function saveAccountIdentity() {
+    const raw = window.localStorage.getItem("sentinel_auth_user") || "{}";
+    const existing = JSON.parse(raw);
+
+    const updated = {
+      ...existing,
+      firstName,
+      lastName,
+      email: profileEmail,
+      name: [firstName, lastName].filter(Boolean).join(" ").trim(),
+    };
+
+    window.localStorage.setItem("sentinel_auth_user", JSON.stringify(updated));
+    setUser(updated);
+    setIdentityEditing(false);
+    setStatus("Profile updated locally.");
+  }
+
+  function cancelAccountIdentityEdit() {
+    loadUserProfile();
+    setIdentityEditing(false);
+  }
+
+  function signOut() {
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("sentinel_auth_token");
+    window.localStorage.removeItem("sentinel_auth_user");
+    router.push("/login");
+  }
+
+  function deleteAccountPreview() {
+    setStatus(
+      "Account deletion request prepared. Production deletion should require confirmation, re-authentication, and backend account removal.",
+    );
+  }
+
+  const displayName =
+    [firstName, lastName].filter(Boolean).join(" ").trim() || "Sentinel User";
+
+  const planLabel = String(user.type || "basic");
+
+  return (
+    <section className="space-y-5">
+      <HeroPanel align="center">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          User Profile
+        </p>
+        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          Personal account.
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Manage account details, plan access, sign out, and account-level actions.
+        </p>
+      </HeroPanel>
+
+      <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+        <AppPanel padding="md">
+          <SectionHeader
+            eyebrow="Account Details"
+            title={displayName}
+            description="Review the personal identity details connected to this account."
+            action={
+              !identityEditing ? (
+                <AppButton
+                  type="button"
+                  onClick={() => setIdentityEditing(true)}
+                  className="mx-auto w-44 sm:mx-0"
+                >
+                  Edit Account
+                </AppButton>
+              ) : null
+            }
+          />
+
+          {!identityEditing ? (
+            <div className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-slate-50">
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+                <SummaryRow label="First Name" value={firstName || "Not provided"} />
+              </div>
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+                <SummaryRow label="Last Name" value={lastName || "Not provided"} />
+              </div>
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+                <SummaryRow label="Email Address" value={profileEmail || "Not provided"} />
+              </div>
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+                <SummaryRow label="Plan" value={planLabel} />
+              </div>
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+                <SummaryRow label="Role" value={user.role || "user"} last />
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <label>
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                    First Name
+                  </span>
+                  <AppInput
+                    value={firstName}
+                    onChange={(event) => setFirstName(event.target.value)}
+                    className="mt-2"
+                  />
+                </label>
+
+                <label>
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                    Last Name
+                  </span>
+                  <AppInput
+                    value={lastName}
+                    onChange={(event) => setLastName(event.target.value)}
+                    className="mt-2"
+                  />
+                </label>
+
+                <label className="sm:col-span-2">
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                    Email Address
+                  </span>
+                  <AppInput
+                    value={profileEmail}
+                    onChange={(event) => setProfileEmail(event.target.value)}
+                    className="mt-2"
+                  />
+                </label>
+              </div>
+
+              <div className="mt-4 flex flex-wrap justify-center gap-2">
+                <AppButton
+                  type="button"
+                  onClick={saveAccountIdentity}
+                  className="w-44"
+                >
+                  Save Changes
+                </AppButton>
+
+                <AppButton
+                  type="button"
+                  variant="secondary"
+                  onClick={cancelAccountIdentityEdit}
+                  className="w-44"
+                >
+                  Cancel
+                </AppButton>
+              </div>
+            </>
+          )}
+
+          {status && (
+            <p className="mt-3 rounded-xl bg-emerald-50 px-3 py-2 text-center text-xs font-black text-emerald-700">
+              {status}
+            </p>
+          )}
+        </AppPanel>
+
+        <section className="space-y-4">
+          <AppPanel padding="md">
+            <SectionHeader
+              eyebrow="Plan Access"
+              title={`${planLabel} plan`}
+              description="Upgrade or manage your account plan as your safety program grows."
+            />
+
+            <div className="mt-4 flex justify-center">
+              <AppButton
+                type="button"
+                variant="accent"
+                onClick={() => router.push("/pricing")}
+                className="w-44"
+              >
+                Upgrade Plan
+              </AppButton>
+            </div>
+          </AppPanel>
+
+          <AppPanel padding="md">
+            <SectionHeader
+              eyebrow="Account Actions"
+              title="Session and account controls"
+            />
+
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              <AppButton
+                type="button"
+                onClick={signOut}
+                className="w-44"
+              >
+                Sign Out
+              </AppButton>
+
+              <AppButton
+                type="button"
+                variant="danger"
+                onClick={deleteAccountPreview}
+                className="w-44"
+              >
+                Delete Account
+              </AppButton>
+            </div>
+          </AppPanel>
+        </section>
+      </section>
+    </section>
+  );
+}

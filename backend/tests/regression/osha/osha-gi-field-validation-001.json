@@ -1,0 +1,26 @@
+[
+  {
+    "id": "OSHA-GI-001",
+    "observation": "exit route blocked by pallets in warehouse",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "emergency_egress",
+    "citationReference": "1910.37(a)(3)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "OSHA-GI-002",
+    "observation": "fire extinguisher inspection tag expired in maintenance shop",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "fire_safety",
+    "citationReference": "1910.157(c)(1)",
+    "context": { "industryScope": "general_industry" }
+  },
+  {
+    "id": "OSHA-GI-003",
+    "observation": "employee spraying coating without respirator in paint booth",
+    "scopeExpected": "general_industry",
+    "primaryHazardFamily": "respiratory",
+    "citationReference": "1910.134",
+    "context": { "industryScope": "general_industry" }
+  }
+]

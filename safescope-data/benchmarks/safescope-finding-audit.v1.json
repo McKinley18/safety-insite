@@ -1,0 +1,1997 @@
+[
+  {
+    "id": "MNM-SURFACE-CONVEYOR-001",
+    "title": "Unguarded conveyor tail pulley",
+    "findingDescription": "The conveyor tail pulley beside the travelway was operating without a guard installed, exposing miners to an in-running nip point.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "surface_metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "machine_guarding",
+      "hazardMechanism": "rotating_equipment_nip_point",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "plant",
+      "equipment": "conveyor tail pulley",
+      "task": "normal operations"
+    },
+    "expected": {
+      "hazardFamily": "machine_guarding",
+      "hazardMechanism": "rotating_equipment_nip_point",
+      "equipment": "conveyor",
+      "primaryCitation": "30 CFR 56.14107",
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "guard",
+        "nip point",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "machine_guarding",
+      "hazardMechanism": "rotating_equipment_nip_point",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "OSHA-CONST-EXCAVATION-001",
+    "title": "Unprotected trench",
+    "findingDescription": "A 7-foot deep excavation in sandy soil had no shoring, sloping, or shielding systems installed.",
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "trenching_and_excavation",
+      "hazardMechanism": "collapse",
+      "sourceScope": "OSHA Construction",
+      "authority": "OSHA",
+      "workArea": "jobsite",
+      "equipment": "trench",
+      "task": "excavation"
+    },
+    "expected": {
+      "hazardFamily": "trenching_and_excavation",
+      "hazardMechanism": "collapse",
+      "equipment": "excavation",
+      "primaryCitation": "29 CFR 1926.652(a)(1)",
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "protective system",
+        "slope",
+        "shore",
+        "shield",
+        "egress"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "trenching_and_excavation",
+      "hazardMechanism": "collapse",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "COAL-UG-ROOF-001",
+    "title": "Loose roof in travelway",
+    "findingDescription": "Observations of fractured roof strata with visible loose rock along the main intake travelway.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal_underground",
+      "mineScope": "underground",
+      "hazardDomain": "roof_control",
+      "hazardMechanism": "fall_of_ground",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "travelway",
+      "equipment": "roof support",
+      "task": "travel"
+    },
+    "expected": {
+      "hazardFamily": "roof_control",
+      "hazardMechanism": "fall_of_ground",
+      "equipment": "roof",
+      "primaryCitation": "30 CFR 75.202(a)",
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "barricade",
+        "scale",
+        "support"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal",
+      "mineScope": "underground",
+      "hazardDomain": "roof_control",
+      "hazardMechanism": "fall_of_ground",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "OSHA-GI-ELECTRICAL-001",
+    "title": "Exposed energized wiring",
+    "findingDescription": "Electrical junction box cover missing, exposing energized wire terminals inside a production workshop.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "electrical",
+      "hazardMechanism": "shock",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "workshop",
+      "equipment": "junction box",
+      "task": "normal operations"
+    },
+    "expected": {
+      "hazardFamily": "electrical",
+      "hazardMechanism": "shock",
+      "equipment": "electrical_panel",
+      "primaryCitation": "29 CFR 1910.303(g)(2)(i)",
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "de-energize",
+        "cover",
+        "enclosure",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "electrical",
+      "hazardMechanism": "shock",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "MSHA-MNM-SURF-FALL-001",
+    "title": "surface MNM elevated work platform fall hazard",
+    "findingDescription": "Unprotected elevated work platform without guardrails at 6 feet.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "surface_metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "plant",
+      "equipment": "work platform",
+      "task": "maintenance"
+    },
+    "expected": {
+      "hazardFamily": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "equipment": "platform",
+      "primaryCitation": "30 CFR 56.15005",
+      "acceptableCitations": [
+        "30 CFR 56.15005"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "guardrail",
+        "fall protection",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-MNM-SURF-MOBILE-001",
+    "title": "surface MNM haul road missing berm/mobile equipment hazard",
+    "findingDescription": "Haul road embankment lacks adequate berm for edge protection.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "surface_metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "run_off_embankment",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "haul road",
+      "equipment": "haul truck",
+      "task": "hauling"
+    },
+    "expected": {
+      "hazardFamily": "mobile_equipment",
+      "hazardMechanism": "run_off_embankment",
+      "equipment": "haul road",
+      "primaryCitation": "30 CFR 56.9300",
+      "acceptableCitations": [
+        "30 CFR 56.9300"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "berm",
+        "protection",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "run_off_embankment",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-MNM-MILL-ELECT-001",
+    "title": "surface MNM damaged electrical cable/conductor exposure",
+    "findingDescription": "Damaged insulation on a high-voltage trailing cable for a mill drive.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "surface_metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "electrical",
+      "hazardMechanism": "shock_arc_flash",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "mill",
+      "equipment": "trailing cable",
+      "task": "production"
+    },
+    "expected": {
+      "hazardFamily": "electrical",
+      "hazardMechanism": "shock_arc_flash",
+      "equipment": "cable",
+      "primaryCitation": "30 CFR 56.12004",
+      "acceptableCitations": [
+        "30 CFR 56.12004"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "de-energize",
+        "repair",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "electrical",
+      "hazardMechanism": "shock_arc_flash",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-MNM-SURF-HOUSE-001",
+    "title": "surface MNM travelway housekeeping/slip-trip hazard",
+    "findingDescription": "Accumulation of loose rocks and debris in a primary travelway.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "surface_metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "slip_trip_fall",
+      "hazardMechanism": "trip",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "plant",
+      "equipment": "travelway",
+      "task": "travel"
+    },
+    "expected": {
+      "hazardFamily": "slip_trip_fall",
+      "hazardMechanism": "trip",
+      "equipment": "travelway",
+      "primaryCitation": "30 CFR 56.20003",
+      "acceptableCitations": [
+        "30 CFR 56.20003"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "clean",
+        "remove",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "slip_trip_fall",
+      "hazardMechanism": "trip",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-MNM-MAINT-LOTO-001",
+    "title": "surface MNM crusher maintenance without lockout/blocking",
+    "findingDescription": "Crusher maintenance being performed without energy isolation or mechanical blocking.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "surface_metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "machine_guarding_loto",
+      "hazardMechanism": "unexpected_startup",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "plant",
+      "equipment": "crusher",
+      "task": "maintenance"
+    },
+    "expected": {
+      "hazardFamily": "machine_guarding_loto",
+      "hazardMechanism": "unexpected_startup",
+      "equipment": "crusher",
+      "primaryCitation": "30 CFR 56.14105",
+      "acceptableCitations": [
+        "30 CFR 56.14105"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "LOTO",
+        "block",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "machine_guarding_loto",
+      "hazardMechanism": "unexpected_startup",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-COAL-UG-RIB-001",
+    "title": "underground coal loose rib/rib control",
+    "findingDescription": "Significant loose coal rib noted in the active face entry.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal_underground",
+      "mineScope": "underground",
+      "hazardDomain": "roof_rib_control",
+      "hazardMechanism": "rib_fall",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "face",
+      "equipment": "rib support",
+      "task": "mining"
+    },
+    "expected": {
+      "hazardFamily": "roof_rib_control",
+      "hazardMechanism": "rib_fall",
+      "equipment": "rib",
+      "primaryCitation": "30 CFR 75.202(a)",
+      "acceptableCitations": [
+        "30 CFR 75.202(a)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "barricade",
+        "scale",
+        "support"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal",
+      "mineScope": "underground",
+      "hazardDomain": "roof_rib_control",
+      "hazardMechanism": "rib_fall",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-COAL-UG-VENT-001",
+    "title": "underground coal ventilation curtain/airflow concern",
+    "findingDescription": "Damaged ventilation curtain obstructing required airflow at the face.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal_underground",
+      "mineScope": "underground",
+      "hazardDomain": "ventilation",
+      "hazardMechanism": "methane_gas_buildup",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "face",
+      "equipment": "ventilation",
+      "task": "mining"
+    },
+    "expected": {
+      "hazardFamily": "ventilation",
+      "hazardMechanism": "methane_gas_buildup",
+      "equipment": "ventilation_curtain",
+      "primaryCitation": "30 CFR 75.333",
+      "acceptableCitations": [
+        "30 CFR 75.333"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "repair",
+        "verify_flow"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal",
+      "mineScope": "underground",
+      "hazardDomain": "ventilation",
+      "hazardMechanism": "methane_gas_buildup",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-COAL-UG-HAUL-001",
+    "title": "underground coal mobile equipment/pedestrian interaction",
+    "findingDescription": "No proximity detection or adequate barriers for pedestrian in haulage area.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal_underground",
+      "mineScope": "underground",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "pedestrian_strike",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "haulage",
+      "equipment": "shuttle car",
+      "task": "transport"
+    },
+    "expected": {
+      "hazardFamily": "mobile_equipment",
+      "hazardMechanism": "pedestrian_strike",
+      "equipment": "haulage",
+      "primaryCitation": "30 CFR 75.1725",
+      "acceptableCitations": [
+        "30 CFR 75.1725"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "barriers",
+        "proximity_system",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal",
+      "mineScope": "underground",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "pedestrian_strike",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-COAL-UG-ESCAPE-001",
+    "title": "underground coal escapeway obstruction",
+    "findingDescription": "Primary escapeway blocked by equipment debris.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal_underground",
+      "mineScope": "underground",
+      "hazardDomain": "emergency_preparedness",
+      "hazardMechanism": "egress_blockage",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "escapeway",
+      "equipment": "N/A",
+      "task": "N/A"
+    },
+    "expected": {
+      "hazardFamily": "emergency_preparedness",
+      "hazardMechanism": "egress_blockage",
+      "equipment": "escapeway",
+      "primaryCitation": "30 CFR 75.380",
+      "acceptableCitations": [
+        "30 CFR 75.380"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "clear",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal",
+      "mineScope": "underground",
+      "hazardDomain": "emergency_preparedness",
+      "hazardMechanism": "egress_blockage",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-MNM-UG-GUARD-001",
+    "title": "underground MNM conveyor guarding",
+    "findingDescription": "Drive assembly unguarded on underground belt conveyor.",
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "underground_metal_nonmetal",
+      "mineScope": "underground",
+      "hazardDomain": "machine_guarding",
+      "hazardMechanism": "rotating_equipment",
+      "sourceScope": "MSHA 30 CFR",
+      "authority": "MSHA",
+      "workArea": "conveyor",
+      "equipment": "conveyor",
+      "task": "production"
+    },
+    "expected": {
+      "hazardFamily": "machine_guarding",
+      "hazardMechanism": "rotating_equipment",
+      "equipment": "conveyor",
+      "primaryCitation": "30 CFR 57.14107",
+      "acceptableCitations": [
+        "30 CFR 57.14107"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "guard",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "underground",
+      "hazardDomain": "machine_guarding",
+      "hazardMechanism": "rotating_equipment",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "OSHA-CONST-FALL-001",
+    "title": "construction unprotected leading edge/fall protection",
+    "findingDescription": "Employees working on an unprotected leading edge at 15 feet.",
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "sourceScope": "OSHA Construction",
+      "authority": "OSHA",
+      "workArea": "jobsite",
+      "equipment": "N/A",
+      "task": "construction"
+    },
+    "expected": {
+      "hazardFamily": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "equipment": "N/A",
+      "primaryCitation": "29 CFR 1926.501(b)(1)",
+      "acceptableCitations": [
+        "29 CFR 1926.501(b)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "guardrail",
+        "fall_arrest",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "OSHA-CONST-SCAFF-001",
+    "title": "construction scaffold missing guardrail",
+    "findingDescription": "Working platform on scaffold missing mid-rail and top-rail.",
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "sourceScope": "OSHA Construction",
+      "authority": "OSHA",
+      "workArea": "jobsite",
+      "equipment": "scaffold",
+      "task": "work"
+    },
+    "expected": {
+      "hazardFamily": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "equipment": "scaffold",
+      "primaryCitation": "29 CFR 1926.451(g)(4)",
+      "acceptableCitations": [
+        "29 CFR 1926.451(g)(4)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "install_guardrails",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "fall_protection",
+      "hazardMechanism": "fall_from_height",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "OSHA-CONST-LADDER-001",
+    "title": "construction ladder access/misuse",
+    "findingDescription": "Extension ladder not secured at the top and extending less than 3 feet above landing.",
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "slips_trips_falls",
+      "hazardMechanism": "fall_from_ladder",
+      "sourceScope": "OSHA Construction",
+      "authority": "OSHA",
+      "workArea": "jobsite",
+      "equipment": "ladder",
+      "task": "climbing"
+    },
+    "expected": {
+      "hazardFamily": "slips_trips_falls",
+      "hazardMechanism": "fall_from_ladder",
+      "equipment": "ladder",
+      "primaryCitation": "29 CFR 1926.1053(b)(1)",
+      "acceptableCitations": [
+        "29 CFR 1926.1053(b)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "secure",
+        "reposition",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "slips_trips_falls",
+      "hazardMechanism": "fall_from_ladder",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "OSHA-CONST-STRIKE-001",
+    "title": "construction struck-by mobile equipment",
+    "findingDescription": "Backhoe operating in congested area without a spotter.",
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "struck_by",
+      "sourceScope": "OSHA Construction",
+      "authority": "OSHA",
+      "workArea": "jobsite",
+      "equipment": "backhoe",
+      "task": "excavation"
+    },
+    "expected": {
+      "hazardFamily": "mobile_equipment",
+      "hazardMechanism": "struck_by",
+      "equipment": "backhoe",
+      "primaryCitation": "29 CFR 1926.602(a)(9)",
+      "acceptableCitations": [
+        "29 CFR 1926.602(a)(9)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "spotter",
+        "barriers",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "struck_by",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "OSHA-CONST-SILICA-001",
+    "title": "construction silica/dust exposure",
+    "findingDescription": "Dry cutting of concrete without engineering controls/water suppression.",
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "health_respiratory",
+      "hazardMechanism": "silica_inhalation",
+      "sourceScope": "OSHA Construction",
+      "authority": "OSHA",
+      "workArea": "jobsite",
+      "equipment": "concrete saw",
+      "task": "cutting"
+    },
+    "expected": {
+      "hazardFamily": "health_respiratory",
+      "hazardMechanism": "silica_inhalation",
+      "equipment": "concrete saw",
+      "primaryCitation": "29 CFR 1926.1153(c)(1)",
+      "acceptableCitations": [
+        "29 CFR 1926.1153(c)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "water_suppression",
+        "ventilation",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "health_respiratory",
+      "hazardMechanism": "silica_inhalation",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "OSHA-GI-MACHINE-001",
+    "title": "general industry machine guarding/point of operation",
+    "findingDescription": "Point of operation on drill press not guarded.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "machine_guarding",
+      "hazardMechanism": "pinch_point",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "shop",
+      "equipment": "drill press",
+      "task": "drilling"
+    },
+    "expected": {
+      "hazardFamily": "machine_guarding",
+      "hazardMechanism": "pinch_point",
+      "equipment": "drill press",
+      "primaryCitation": "29 CFR 1910.212(a)(3)(ii)",
+      "acceptableCitations": [
+        "29 CFR 1910.212(a)(3)(ii)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "guard",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "machine_guarding",
+      "hazardMechanism": "pinch_point",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-LOTO-001",
+    "title": "general industry lockout/tagout",
+    "findingDescription": "Maintenance work on production line without LOTO program compliance.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "machine_guarding_loto",
+      "hazardMechanism": "unexpected_startup",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "production line",
+      "equipment": "conveyor",
+      "task": "maintenance"
+    },
+    "expected": {
+      "hazardFamily": "machine_guarding_loto",
+      "hazardMechanism": "unexpected_startup",
+      "equipment": "conveyor",
+      "primaryCitation": "29 CFR 1910.147(c)(1)",
+      "acceptableCitations": [
+        "29 CFR 1910.147(c)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "LOTO",
+        "energy_isolation",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "machine_guarding_loto",
+      "hazardMechanism": "unexpected_startup",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-FORK-001",
+    "title": "forklift/pedestrian interaction",
+    "findingDescription": "Forklift operating in busy pedestrian walkway without clear delineation.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "pedestrian_strike",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "warehouse",
+      "equipment": "forklift",
+      "task": "transport"
+    },
+    "expected": {
+      "hazardFamily": "mobile_equipment",
+      "hazardMechanism": "pedestrian_strike",
+      "equipment": "forklift",
+      "primaryCitation": "29 CFR 1910.178(l)",
+      "acceptableCitations": [
+        "29 CFR 1910.178(l)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "segregation",
+        "barriers",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "pedestrian_strike",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-WWS-001",
+    "title": "general industry walking-working surface slip/trip",
+    "findingDescription": "Spilled oil in production area creating slip hazard.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "slip_trip_fall",
+      "hazardMechanism": "slip",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "production",
+      "equipment": "N/A",
+      "task": "N/A"
+    },
+    "expected": {
+      "hazardFamily": "slip_trip_fall",
+      "hazardMechanism": "slip",
+      "equipment": "N/A",
+      "primaryCitation": "29 CFR 1910.22(a)(2)",
+      "acceptableCitations": [
+        "29 CFR 1910.22(a)(2)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "clean",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "slip_trip_fall",
+      "hazardMechanism": "slip",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-HAZCOM-001",
+    "title": "general industry HazCom unlabeled container",
+    "findingDescription": "Chemical container in workshop missing hazard label.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "hazardous_materials",
+      "hazardMechanism": "chemical_exposure",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "workshop",
+      "equipment": "chemical container",
+      "task": "N/A"
+    },
+    "expected": {
+      "hazardFamily": "hazardous_materials",
+      "hazardMechanism": "chemical_exposure",
+      "equipment": "chemical container",
+      "primaryCitation": "29 CFR 1910.1200(f)(1)",
+      "acceptableCitations": [
+        "29 CFR 1910.1200(f)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "label",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "hazardous_materials",
+      "hazardMechanism": "chemical_exposure",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-CONFINED-001",
+    "title": "confined space entry controls missing",
+    "findingDescription": "Employee entered permitted confined space without entry permit or monitoring.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "confined_space",
+      "hazardMechanism": "asphyxiation",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "tank",
+      "equipment": "tank",
+      "task": "entry"
+    },
+    "expected": {
+      "hazardFamily": "confined_space",
+      "hazardMechanism": "asphyxiation",
+      "equipment": "tank",
+      "primaryCitation": "29 CFR 1910.146(c)(1)",
+      "acceptableCitations": [
+        "29 CFR 1910.146(c)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "permit",
+        "atmospheric_testing",
+        "attendant",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "confined_space",
+      "hazardMechanism": "asphyxiation",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-CONST-CRANE-SUSPENDED-LOAD-001",
+    "title": "construction employee under suspended crane load",
+    "findingDescription": "Employees were walking beneath a suspended crane load while the operator was moving the load across the jobsite without a controlled exclusion zone.",
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "cranes_rigging_hoisting",
+      "hazardMechanism": "struck_by_suspended_load",
+      "sourceScope": "OSHA Construction",
+      "authority": "OSHA",
+      "workArea": "jobsite",
+      "equipment": "mobile crane",
+      "task": "hoisting materials"
+    },
+    "expected": {
+      "hazardFamily": "cranes_rigging_hoisting",
+      "hazardMechanism": "struck_by_suspended_load",
+      "equipment": "mobile crane",
+      "primaryCitation": "29 CFR 1926.1425",
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "clear load path",
+        "exclusion zone",
+        "signal",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "cranes_rigging_hoisting",
+      "hazardMechanism": "struck_by_suspended_load",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "OSHA-GI-RIGGING-SLING-001",
+    "title": "general industry damaged sling used for lifting",
+    "findingDescription": "A frayed synthetic sling with missing identification was staged for use to lift a heavy load in the maintenance shop.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "cranes_rigging_hoisting",
+      "hazardMechanism": "rigging_failure",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "maintenance shop",
+      "equipment": "synthetic sling",
+      "task": "material lifting"
+    },
+    "expected": {
+      "hazardFamily": "cranes_rigging_hoisting",
+      "hazardMechanism": "rigging_failure",
+      "equipment": "synthetic sling",
+      "primaryCitation": "29 CFR 1910.184",
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "remove from service",
+        "inspect",
+        "rated capacity",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "cranes_rigging_hoisting",
+      "hazardMechanism": "rigging_failure",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-MATERIAL-STACK-001",
+    "title": "general industry unstable stacked material",
+    "findingDescription": "Palletized material was stacked unevenly and leaning into an employee aisle, creating a falling material exposure.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "material_handling",
+      "hazardMechanism": "unstable_stack_collapse",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "warehouse",
+      "equipment": "palletized material",
+      "task": "material storage"
+    },
+    "expected": {
+      "hazardFamily": "material_handling",
+      "hazardMechanism": "unstable_stack_collapse",
+      "equipment": "palletized material",
+      "primaryCitation": "29 CFR 1910.176(b)",
+      "acceptableCitations": [
+        "29 CFR 1910.176(b)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "secure",
+        "stabilize",
+        "clear aisle",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "material_handling",
+      "hazardMechanism": "unstable_stack_collapse",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-MATERIAL-FALLING-OBJECT-001",
+    "title": "general industry overhead stored material falling-object exposure",
+    "findingDescription": "Loose boxes were stored overhead on a rack above employees without restraint or falling object protection.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "material_handling",
+      "hazardMechanism": "falling_object_material",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "storage rack",
+      "equipment": "storage rack",
+      "task": "material storage"
+    },
+    "expected": {
+      "hazardFamily": "material_handling",
+      "hazardMechanism": "falling_object_material",
+      "equipment": "storage rack",
+      "primaryCitation": "29 CFR 1910.176(b)",
+      "acceptableCitations": [
+        "29 CFR 1910.176(b)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "secure",
+        "falling object",
+        "exclusion",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "material_handling",
+      "hazardMechanism": "falling_object_material",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-TOOLS-DEFECTIVE-001",
+    "title": "general industry defective portable power tool",
+    "findingDescription": "A portable drill with a cracked housing and damaged cord was available for use at the maintenance bench.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "tools_equipment",
+      "hazardMechanism": "defective_tool_contact",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "maintenance bench",
+      "equipment": "portable drill",
+      "task": "maintenance"
+    },
+    "expected": {
+      "hazardFamily": "tools_equipment",
+      "hazardMechanism": "defective_tool_contact",
+      "equipment": "portable drill",
+      "primaryCitation": "29 CFR 1910.242(a)",
+      "acceptableCitations": [
+        "29 CFR 1910.242(a)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "remove from service",
+        "tag",
+        "repair",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "tools_equipment",
+      "hazardMechanism": "defective_tool_contact",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-TOOLS-GRINDER-001",
+    "title": "general industry grinder missing guard",
+    "findingDescription": "Employee was using a handheld grinder with the wheel guard removed during metal grinding.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "tools_equipment",
+      "hazardMechanism": "abrasive_wheel_failure",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "fabrication shop",
+      "equipment": "handheld grinder",
+      "task": "grinding"
+    },
+    "expected": {
+      "hazardFamily": "tools_equipment",
+      "hazardMechanism": "abrasive_wheel_failure",
+      "equipment": "handheld grinder",
+      "primaryCitation": "29 CFR 1910.242(a)",
+      "acceptableCitations": [
+        "29 CFR 1910.242(a)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "guard",
+        "remove from service",
+        "inspect",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "tools_equipment",
+      "hazardMechanism": "abrasive_wheel_failure",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-FIRE-EXTINGUISHER-001",
+    "title": "general industry blocked fire extinguisher",
+    "findingDescription": "A portable fire extinguisher was blocked by stored materials and could not be readily accessed.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "fire_protection",
+      "hazardMechanism": "fire_extinguisher_access_failure",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "production area",
+      "equipment": "portable fire extinguisher",
+      "task": "emergency readiness"
+    },
+    "expected": {
+      "hazardFamily": "fire_protection",
+      "hazardMechanism": "fire_extinguisher_access_failure",
+      "equipment": "portable fire extinguisher",
+      "primaryCitation": "29 CFR 1910.157(c)(1)",
+      "acceptableCitations": [
+        "29 CFR 1910.157(c)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "clear access",
+        "inspect",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "fire_protection",
+      "hazardMechanism": "fire_extinguisher_access_failure",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-HOTWORK-FIREWATCH-001",
+    "title": "general industry hot work without fire watch",
+    "findingDescription": "Welding was being performed near combustible cardboard storage with no fire watch documented.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "welding_cutting_hot_work",
+      "hazardMechanism": "hot_work_ignition",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "fabrication area",
+      "equipment": "welder",
+      "task": "welding hot work"
+    },
+    "expected": {
+      "hazardFamily": "welding_cutting_hot_work",
+      "hazardMechanism": "hot_work_ignition",
+      "equipment": "welder",
+      "primaryCitation": "29 CFR 1910.252(a)(2)(iii)(A)",
+      "acceptableCitations": [
+        "29 CFR 1910.252(a)(2)(iii)(A)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "remove combustibles",
+        "fire watch",
+        "extinguisher",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "welding_cutting_hot_work",
+      "hazardMechanism": "hot_work_ignition",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-PPE-EYEFACE-001",
+    "title": "general industry grinding without eye and face protection",
+    "findingDescription": "Employee was grinding metal without safety glasses or a face shield.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "ppe",
+      "hazardMechanism": "eye_face_ppe_gap",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "shop",
+      "equipment": "grinder",
+      "task": "grinding"
+    },
+    "expected": {
+      "hazardFamily": "ppe",
+      "hazardMechanism": "eye_face_ppe_gap",
+      "equipment": "grinder",
+      "primaryCitation": "29 CFR 1910.132(d)(1)",
+      "acceptableCitations": [
+        "29 CFR 1910.132(d)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "eye protection",
+        "face shield",
+        "hazard assessment",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "ppe",
+      "hazardMechanism": "eye_face_ppe_gap",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-PPE-HAND-001",
+    "title": "general industry sharp material handling without hand protection",
+    "findingDescription": "Employee was handling sharp sheet metal edges without cut-resistant gloves.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "ppe",
+      "hazardMechanism": "hand_ppe_gap",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "fabrication area",
+      "equipment": "sheet metal",
+      "task": "material handling"
+    },
+    "expected": {
+      "hazardFamily": "ppe",
+      "hazardMechanism": "hand_ppe_gap",
+      "equipment": "sheet metal",
+      "primaryCitation": "29 CFR 1910.132(d)(1)",
+      "acceptableCitations": [
+        "29 CFR 1910.132(d)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "gloves",
+        "hazard assessment",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "ppe",
+      "hazardMechanism": "hand_ppe_gap",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-ERGONOMICS-LIFT-001",
+    "title": "general industry manual lifting overexertion exposure",
+    "findingDescription": "Employees were manually lifting 90-pound boxes from floor level to shoulder height repeatedly without a mechanical assist.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "ergonomics",
+      "hazardMechanism": "overexertion",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "shipping area",
+      "equipment": "boxes",
+      "task": "manual lifting"
+    },
+    "expected": {
+      "hazardFamily": "ergonomics",
+      "hazardMechanism": "overexertion",
+      "equipment": "boxes",
+      "primaryCitation": "General Duty / Ergonomics Guidance",
+      "acceptableCitations": [
+        "General Duty / Ergonomics Guidance"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "mechanical assist",
+        "reduce weight",
+        "posture",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "ergonomics",
+      "hazardMechanism": "overexertion",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-HEAT-STRESS-001",
+    "title": "general industry heat stress exposure",
+    "findingDescription": "Employees were performing heavy outdoor work in extreme heat with no documented work-rest schedule, shade, hydration plan, or acclimatization controls.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "environmental_exposure",
+      "hazardMechanism": "heat_illness",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "outdoor yard",
+      "equipment": "N/A",
+      "task": "heavy outdoor work"
+    },
+    "expected": {
+      "hazardFamily": "environmental_exposure",
+      "hazardMechanism": "heat_illness",
+      "equipment": "N/A",
+      "primaryCitation": "OSHA/NIOSH Heat and Cold Stress Guidance",
+      "acceptableCitations": [
+        "OSHA/NIOSH Heat and Cold Stress Guidance"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "work-rest",
+        "hydration",
+        "shade",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "environmental_exposure",
+      "hazardMechanism": "heat_illness",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-COLD-STRESS-001",
+    "title": "general industry cold stress exposure",
+    "findingDescription": "Employees were working outside in freezing wind conditions with wet gloves and no warming breaks or cold-stress monitoring plan.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "environmental_exposure",
+      "hazardMechanism": "cold_stress",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "outdoor loading area",
+      "equipment": "N/A",
+      "task": "outdoor loading"
+    },
+    "expected": {
+      "hazardFamily": "environmental_exposure",
+      "hazardMechanism": "cold_stress",
+      "equipment": "N/A",
+      "primaryCitation": "OSHA/NIOSH Heat and Cold Stress Guidance",
+      "acceptableCitations": [
+        "OSHA/NIOSH Heat and Cold Stress Guidance"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "warming",
+        "dry PPE",
+        "monitoring",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "environmental_exposure",
+      "hazardMechanism": "cold_stress",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-NOISE-001",
+    "title": "general industry high noise exposure without hearing conservation review",
+    "findingDescription": "Employees worked next to a loud compressor area for most of the shift with no noise measurements, no posted hearing protection requirement, and no hearing conservation review documented.",
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "health_exposure",
+      "hazardMechanism": "noise_induced_hearing_loss",
+      "sourceScope": "OSHA General Industry",
+      "authority": "OSHA",
+      "workArea": "compressor room",
+      "equipment": "compressor",
+      "task": "equipment operation"
+    },
+    "expected": {
+      "hazardFamily": "health_exposure",
+      "hazardMechanism": "noise_induced_hearing_loss",
+      "equipment": "compressor",
+      "primaryCitation": "29 CFR 1910.95",
+      "acceptableCitations": [
+        "29 CFR 1910.95"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "noise survey",
+        "hearing protection",
+        "hearing conservation",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "health_exposure",
+      "hazardMechanism": "noise_induced_hearing_loss",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-BLOODBORNE-001",
+    "title": "general industry bloodborne pathogen exposure from sharps handling",
+    "findingDescription": "Employees are handling used sharps and contaminated first-aid materials without a clearly available sharps container, exposure control procedure, or cleanup kit. Potential bloodborne pathogen exposure exists during cleanup and disposal.",
+    "expected": {
+      "hazardFamily": "health_exposure",
+      "hazardMechanism": "bloodborne_pathogen_exposure",
+      "equipment": "sharps container",
+      "primaryCitation": "29 CFR 1910.1030",
+      "acceptableCitations": [
+        "29 CFR 1910.1030"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "exposure control",
+        "sharps container",
+        "PPE",
+        "training",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "health_exposure",
+      "hazardMechanism": "bloodborne_pathogen_exposure",
+      "sourceScope": "OSHA General Industry",
+      "workContext": "health exposure / first aid / sharps handling"
+    },
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "health_exposure",
+      "hazardMechanism": "bloodborne_pathogen_exposure",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-CHEM-STORAGE-001",
+    "title": "general industry incompatible chemical storage",
+    "findingDescription": "Acid and alkaline chemical containers are stored together on the same shelf without segregation, secondary containment, or clear labeling. A spill could create chemical reaction exposure for employees.",
+    "expected": {
+      "hazardFamily": "hazcom",
+      "hazardMechanism": "chemical_exposure",
+      "equipment": "chemical storage cabinet",
+      "primaryCitation": "29 CFR 1910.1200",
+      "acceptableCitations": [
+        "29 CFR 1910.1200"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "segregate",
+        "label",
+        "SDS",
+        "secondary containment",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "hazcom",
+      "hazardMechanism": "chemical_exposure",
+      "sourceScope": "OSHA General Industry",
+      "workContext": "hazard communication / chemical storage"
+    },
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "hazcom",
+      "hazardMechanism": "chemical_exposure",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-EYEWASH-001",
+    "title": "general industry eyewash access blocked near corrosives",
+    "findingDescription": "Employees use corrosive cleaning chemicals, but the emergency eyewash station is blocked by stored materials and cannot be reached quickly from the chemical use area.",
+    "expected": {
+      "hazardFamily": "emergency_preparedness",
+      "hazardMechanism": "emergency_equipment_access_failure",
+      "equipment": "eyewash station",
+      "primaryCitation": "29 CFR 1910.151(c)",
+      "acceptableCitations": [
+        "29 CFR 1910.151(c)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "clear access",
+        "eyewash",
+        "corrosive",
+        "inspect",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "emergency_preparedness",
+      "hazardMechanism": "emergency_equipment_access_failure",
+      "sourceScope": "OSHA General Industry",
+      "workContext": "medical services / emergency eyewash / corrosive exposure"
+    },
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "emergency_preparedness",
+      "hazardMechanism": "emergency_equipment_access_failure",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-GI-COMPRESSED-GAS-001",
+    "title": "general industry unsecured compressed gas cylinders",
+    "findingDescription": "Compressed gas cylinders are standing upright near a work area without chains or restraints. Valve caps are missing on stored cylinders, creating struck-by and sudden release exposure.",
+    "expected": {
+      "hazardFamily": "material_handling",
+      "hazardMechanism": "compressed_gas_cylinder_release",
+      "equipment": "compressed gas cylinders",
+      "primaryCitation": "29 CFR 1910.101(b)",
+      "acceptableCitations": [
+        "29 CFR 1910.101(b)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "secure cylinders",
+        "valve cap",
+        "segregate",
+        "inspect",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "material_handling",
+      "hazardMechanism": "compressed_gas_cylinder_release",
+      "sourceScope": "OSHA General Industry",
+      "workContext": "compressed gas cylinder storage"
+    },
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "material_handling",
+      "hazardMechanism": "compressed_gas_cylinder_release",
+      "sourceScope": "OSHA General Industry"
+    }
+  },
+  {
+    "id": "OSHA-CONST-STRUCK-BY-OVERHEAD-001",
+    "title": "construction overhead work struck-by exposure",
+    "findingDescription": "Workers are performing tasks below an elevated work area where tools and materials are being used overhead. The area below is not barricaded and no toe boards or dropped-object controls are visible.",
+    "expected": {
+      "hazardFamily": "struck_by",
+      "hazardMechanism": "struck_by_falling_object",
+      "equipment": "elevated work platform",
+      "primaryCitation": "29 CFR 1926.501(c)",
+      "acceptableCitations": [
+        "29 CFR 1926.501(c)",
+        "29 CFR 1926.451(h)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "barricade",
+        "toe boards",
+        "secure tools",
+        "falling object",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "struck_by",
+      "hazardMechanism": "struck_by_falling_object",
+      "sourceScope": "OSHA Construction",
+      "workContext": "construction elevated work / falling object exposure"
+    },
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "struck_by",
+      "hazardMechanism": "struck_by_falling_object",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "OSHA-CONST-STAIRWAY-001",
+    "title": "construction temporary stairway missing handrail",
+    "findingDescription": "A temporary construction stairway used for access between levels is missing a handrail on the open side. Workers are using the stairway while carrying materials.",
+    "expected": {
+      "hazardFamily": "slips_trips_falls",
+      "hazardMechanism": "fall_on_stairway",
+      "equipment": "temporary stairway",
+      "primaryCitation": "29 CFR 1926.1052(c)(1)",
+      "acceptableCitations": [
+        "29 CFR 1926.1052(c)(1)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "install handrail",
+        "stairway",
+        "access control",
+        "inspect",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "slips_trips_falls",
+      "hazardMechanism": "fall_on_stairway",
+      "sourceScope": "OSHA Construction",
+      "workContext": "construction access / temporary stairway"
+    },
+    "context": {
+      "industry": "construction",
+      "jurisdiction": "osha",
+      "hazardDomain": "slips_trips_falls",
+      "hazardMechanism": "fall_on_stairway",
+      "sourceScope": "OSHA Construction"
+    }
+  },
+  {
+    "id": "MSHA-MNM-SURF-BERM-002",
+    "title": "surface mine dump point missing berm",
+    "findingDescription": "A haul truck dump point has an inadequate berm at the edge of the dump area. Mobile equipment could travel over the edge during dumping or backing.",
+    "expected": {
+      "hazardFamily": "mobile_equipment",
+      "hazardMechanism": "run_off_embankment",
+      "equipment": "haul truck dump point",
+      "primaryCitation": "30 CFR 56.9300",
+      "acceptableCitations": [
+        "30 CFR 56.9300"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "berm",
+        "dump point",
+        "restrict access",
+        "inspect",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "run_off_embankment",
+      "sourceScope": "MSHA 30 CFR Part 56",
+      "workContext": "surface mine haulage / dump point berm"
+    },
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "mobile_equipment",
+      "hazardMechanism": "run_off_embankment",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-MNM-SURF-CRUSHER-DUST-001",
+    "title": "surface mine crusher dust exposure",
+    "findingDescription": "Visible dust is generated at the crusher feed and transfer point while miners work nearby. Water spray controls are not operating and respiratory exposure controls are not documented.",
+    "expected": {
+      "hazardFamily": "health_exposure",
+      "hazardMechanism": "silica_inhalation",
+      "equipment": "crusher",
+      "primaryCitation": "30 CFR 56.5001",
+      "acceptableCitations": [
+        "30 CFR 56.5001"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "dust control",
+        "sampling",
+        "respiratory protection",
+        "water spray",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "health_exposure",
+      "hazardMechanism": "silica_inhalation",
+      "sourceScope": "MSHA 30 CFR Part 56",
+      "workContext": "surface mine crusher / dust exposure"
+    },
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "surface",
+      "hazardDomain": "health_exposure",
+      "hazardMechanism": "silica_inhalation",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-MNM-UG-VENT-001",
+    "title": "underground mine ventilation obstruction",
+    "findingDescription": "Ventilation tubing in an underground working area is damaged and partially disconnected, reducing airflow to the active work area. Miners may be exposed to poor air quality or contaminant buildup.",
+    "expected": {
+      "hazardFamily": "ventilation",
+      "hazardMechanism": "air_quality_contaminant_buildup",
+      "equipment": "ventilation tubing",
+      "primaryCitation": "30 CFR 57.8520",
+      "acceptableCitations": [
+        "30 CFR 57.8520"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "repair ventilation",
+        "airflow",
+        "monitor",
+        "restrict work",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "underground",
+      "hazardDomain": "ventilation",
+      "hazardMechanism": "air_quality_contaminant_buildup",
+      "sourceScope": "MSHA 30 CFR Part 57",
+      "workContext": "underground mine ventilation"
+    },
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "metal_nonmetal",
+      "mineScope": "underground",
+      "hazardDomain": "ventilation",
+      "hazardMechanism": "air_quality_contaminant_buildup",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "MSHA-COAL-UG-ELECT-CABLE-001",
+    "title": "underground coal trailing cable damage",
+    "findingDescription": "A trailing cable supplying mobile equipment has visible jacket damage in the travelway. The damaged cable could expose miners to electrical shock or arc flash during equipment operation.",
+    "expected": {
+      "hazardFamily": "electrical",
+      "hazardMechanism": "shock_arc_flash",
+      "equipment": "trailing cable",
+      "primaryCitation": "30 CFR 75.517",
+      "acceptableCitations": [
+        "30 CFR 75.517"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": true,
+      "minimumCorrectiveActionElements": [
+        "remove from service",
+        "repair cable",
+        "qualified electrician",
+        "inspect",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal",
+      "mineScope": "underground",
+      "hazardDomain": "electrical",
+      "hazardMechanism": "shock_arc_flash",
+      "sourceScope": "MSHA 30 CFR Part 75",
+      "workContext": "underground coal electrical trailing cable"
+    },
+    "context": {
+      "industry": "mining",
+      "jurisdiction": "msha",
+      "mineType": "coal",
+      "mineScope": "underground",
+      "hazardDomain": "electrical",
+      "hazardMechanism": "shock_arc_flash",
+      "sourceScope": "MSHA 30 CFR"
+    }
+  },
+  {
+    "id": "OSHA-GI-WELDING-CYLINDER-001",
+    "title": "general industry welding cylinder separation and hot work exposure",
+    "findingDescription": "Oxygen and fuel gas cylinders used for welding are stored together near hot work without separation, valve protection, or clear fire prevention controls.",
+    "expected": {
+      "hazardFamily": "welding_cutting_hot_work",
+      "hazardMechanism": "fire_explosion",
+      "equipment": "oxygen and fuel gas cylinders",
+      "primaryCitation": "29 CFR 1910.253(b)(2)(ii)",
+      "acceptableCitations": [
+        "29 CFR 1910.253(b)(2)(ii)"
+      ],
+      "requiresCorrectiveAction": true,
+      "requiresShutdownOrImmediateControl": false,
+      "minimumCorrectiveActionElements": [
+        "separate cylinders",
+        "valve protection",
+        "fire prevention",
+        "hot work",
+        "verify"
+      ]
+    },
+    "metadata": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "welding_cutting_hot_work",
+      "hazardMechanism": "fire_explosion",
+      "sourceScope": "OSHA General Industry",
+      "workContext": "welding / oxygen fuel gas cylinder storage"
+    },
+    "context": {
+      "industry": "general_industry",
+      "jurisdiction": "osha",
+      "hazardDomain": "welding_cutting_hot_work",
+      "hazardMechanism": "fire_explosion",
+      "sourceScope": "OSHA General Industry"
+    }
+  }
+]

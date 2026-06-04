@@ -1,0 +1,229 @@
+{
+  "metadata": {
+    "project": "Sentinel Safety",
+    "engine": "Sentinel Safety",
+    "purpose": "Expanded evidence-backed citation map for scenario-bank generation",
+    "status": "expanded_draft",
+    "methodology": [
+      "Prioritize frequently cited MSHA and OSHA standards",
+      "Map each citation to hazard family, industry context, equipment, failure modes, and scenario themes",
+      "Generate scenarios only after citation map validation"
+    ]
+  },
+  "msha_surface_metal_nonmetal": [
+    {
+      "citation": "56.14107(a)",
+      "title": "Moving machine parts shall be guarded",
+      "family": "machine_guarding",
+      "priority": "high",
+      "scenarioThemes": ["crusher drives", "conveyor tail pulleys", "return rollers", "unguarded nip points", "exposed rotating shafts"]
+    },
+    {
+      "citation": "56.20003(a)",
+      "title": "Workplaces, passageways, storerooms, and service rooms shall be kept clean and orderly",
+      "family": "housekeeping",
+      "priority": "high",
+      "scenarioThemes": ["spillage on travelways", "material buildup", "blocked access", "trip hazards", "waste accumulation"]
+    },
+    {
+      "citation": "56.12004",
+      "title": "Electrical conductors",
+      "family": "electrical",
+      "priority": "high",
+      "scenarioThemes": ["damaged cable jacket", "frayed conductors", "wet electrical exposure", "temporary power damage"]
+    },
+    {
+      "citation": "56.14100(b)",
+      "title": "Safety defects; examination, correction and records",
+      "family": "mobile_equipment",
+      "priority": "high",
+      "scenarioThemes": ["equipment defect not corrected", "brakes weak", "steering defect", "defect found but unit still used"]
+    },
+    {
+      "citation": "56.14132(a)",
+      "title": "Horns and backup alarms",
+      "family": "mobile_equipment",
+      "priority": "high",
+      "scenarioThemes": ["backup alarm faint", "horn inoperative", "warning device not audible", "loader backing near pedestrian"]
+    },
+    {
+      "citation": "56.12032",
+      "title": "Inspection and cover plates",
+      "family": "electrical",
+      "priority": "medium",
+      "scenarioThemes": ["missing cover plate", "open electrical box", "panel cover removed", "exposed breaker opening"]
+    },
+    {
+      "citation": "56.11001",
+      "title": "Safe access",
+      "family": "safe_access",
+      "priority": "high",
+      "scenarioThemes": ["missing ladder rung", "loose handrail", "damaged stairs", "missing grating", "blocked platform access"]
+    },
+    {
+      "citation": "56.9300(a)",
+      "title": "Berms or guardrails",
+      "family": "roadway_berm",
+      "priority": "high",
+      "scenarioThemes": ["low berm", "dump point edge", "soft berm shoulder", "haul road drop-off", "berm washed out"]
+    },
+    {
+      "citation": "56.18002(a)",
+      "title": "Examination of working places",
+      "family": "workplace_exam",
+      "priority": "medium",
+      "scenarioThemes": ["missing workplace exam", "hazard not recorded", "exam book incomplete", "record missing corrective action"]
+    },
+    {
+      "citation": "56.5001(a)",
+      "title": "Exposure limits for airborne contaminants",
+      "family": "respiratory",
+      "priority": "medium",
+      "scenarioThemes": ["crusher dust", "silica exposure", "dust suppression failure", "baghouse leak", "dry sweeping dust"]
+    }
+  ],
+  "osha_construction": [
+    {
+      "citation": "1926.501(b)(1)",
+      "title": "Unprotected sides and edges",
+      "family": "fall_protection",
+      "priority": "high",
+      "scenarioThemes": ["roof edge", "leading edge", "floor opening", "unprotected deck", "worker no tie-off"]
+    },
+    {
+      "citation": "1926.1053(b)",
+      "title": "Ladders",
+      "family": "ladder_safety",
+      "priority": "high",
+      "scenarioThemes": ["unstable ladder", "damaged ladder", "wrong angle", "top step use", "poor access landing"]
+    },
+    {
+      "citation": "1926.451(g)",
+      "title": "Scaffold fall protection",
+      "family": "scaffold",
+      "priority": "high",
+      "scenarioThemes": ["missing guardrail", "incomplete platform", "unlocked caster", "unsafe plank overhang"]
+    },
+    {
+      "citation": "1926.652(a)(1)",
+      "title": "Excavation protection",
+      "family": "excavation",
+      "priority": "high",
+      "scenarioThemes": ["unprotected trench", "vertical wall", "water seepage", "no safe egress", "trench shield missing"]
+    },
+    {
+      "citation": "1926.102(a)(1)",
+      "title": "Eye and face protection",
+      "family": "ppe",
+      "priority": "high",
+      "scenarioThemes": ["grinding without face shield", "cutting without eye protection", "flying particles"]
+    },
+    {
+      "citation": "1926.416(a)(1)",
+      "title": "Protection from electric shock",
+      "family": "electrical",
+      "priority": "medium",
+      "scenarioThemes": ["temporary wiring exposed", "energized parts accessible", "damaged cord in wet area"]
+    },
+    {
+      "citation": "1926.503(a)",
+      "title": "Fall protection training",
+      "family": "fall_protection",
+      "priority": "medium",
+      "scenarioThemes": ["worker exposed without recognizing fall hazard", "untrained worker near edge"]
+    },
+    {
+      "citation": "1926.701(b)",
+      "title": "Reinforcing steel",
+      "family": "impalement",
+      "priority": "medium",
+      "scenarioThemes": ["uncapped rebar", "impalement exposure", "exposed vertical steel"]
+    },
+    {
+      "citation": "1926.20(b)(2)",
+      "title": "Accident prevention responsibilities",
+      "family": "site_hazards",
+      "priority": "medium",
+      "scenarioThemes": ["hazard not corrected", "unsafe condition not addressed", "site inspection gap"]
+    },
+    {
+      "citation": "1926.251",
+      "title": "Rigging equipment for material handling",
+      "family": "struck_by",
+      "priority": "medium",
+      "scenarioThemes": ["damaged sling", "improper rigging", "load shift", "worker under suspended load"]
+    }
+  ],
+  "osha_general_industry": [
+    {
+      "citation": "1910.147(c)(1)",
+      "title": "Control of hazardous energy",
+      "family": "lockout_tagout",
+      "priority": "high",
+      "scenarioThemes": ["servicing energized equipment", "unexpected startup", "no lock applied", "jam clearing while energized"]
+    },
+    {
+      "citation": "1910.303(b)(1)",
+      "title": "Electrical equipment examination and use",
+      "family": "electrical",
+      "priority": "high",
+      "scenarioThemes": ["open panel", "exposed live parts", "missing knockout plug", "damaged electrical enclosure"]
+    },
+    {
+      "citation": "1910.22(a)(1)",
+      "title": "Walking-working surfaces housekeeping",
+      "family": "housekeeping",
+      "priority": "high",
+      "scenarioThemes": ["slip hazard", "blocked aisle", "wet floor", "debris in walkway"]
+    },
+    {
+      "citation": "1910.178",
+      "title": "Powered industrial trucks",
+      "family": "powered_industrial_truck",
+      "priority": "high",
+      "scenarioThemes": ["forklift speeding", "blind intersection", "elevated load travel", "pedestrian conflict"]
+    },
+    {
+      "citation": "1910.95(c)(1)",
+      "title": "Hearing conservation",
+      "family": "noise",
+      "priority": "medium",
+      "scenarioThemes": ["high noise area", "missing hearing protection", "compressor room exposure"]
+    },
+    {
+      "citation": "1910.134",
+      "title": "Respiratory protection",
+      "family": "respiratory",
+      "priority": "high",
+      "scenarioThemes": ["wrong respirator cartridge", "no fit test", "damaged respirator", "dust exposure without respirator"]
+    },
+    {
+      "citation": "1910.1200",
+      "title": "Hazard communication",
+      "family": "hazcom",
+      "priority": "high",
+      "scenarioThemes": ["unlabeled chemical container", "missing SDS", "unknown solvent bottle", "secondary container unlabeled"]
+    },
+    {
+      "citation": "1910.212(a)(1)",
+      "title": "Machine guarding",
+      "family": "machine_guarding",
+      "priority": "high",
+      "scenarioThemes": ["unguarded point of operation", "exposed rotating part", "missing guard on shop equipment"]
+    },
+    {
+      "citation": "1910.37(a)(3)",
+      "title": "Exit routes",
+      "family": "fire_safety",
+      "priority": "medium",
+      "scenarioThemes": ["exit sign not illuminated", "blocked exit route", "emergency light failed"]
+    },
+    {
+      "citation": "1910.157(c)(1)",
+      "title": "Portable fire extinguishers",
+      "family": "fire_safety",
+      "priority": "medium",
+      "scenarioThemes": ["extinguisher blocked", "inspection tag expired", "missing extinguisher from mount"]
+    }
+  ]
+}
