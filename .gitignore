@@ -17,3 +17,9 @@ backups/
 
 # Local research workspace
 research/
+
+# Local environment and deployment metadata
+.env
+.env.*
+!.env.example
+.vercel/
