@@ -1,7 +1,49 @@
 {
-  "total": 200,
-  "run": 200,
-  "errors": 0,
+  "summary": {
+    "totalCases": 200,
+    "runCases": 200,
+    "runErrors": 0,
+    "metrics": {
+      "hazardFamily": {
+        "exact_match": 0,
+        "partial_match": 0,
+        "mismatch": 0,
+        "field_not_available": 200
+      },
+      "scenarioFamily": {
+        "exact_match": 0,
+        "partial_match": 0,
+        "mismatch": 200,
+        "field_not_available": 0
+      },
+      "mechanism": {
+        "exact_match": 107,
+        "partial_match": 0,
+        "mismatch": 93,
+        "field_not_available": 0
+      },
+      "jurisdiction": {
+        "exact_match": 0,
+        "partial_match": 0,
+        "mismatch": 0,
+        "field_not_available": 200
+      },
+      "riskBand": {
+        "exact_match": 54,
+        "partial_match": 0,
+        "mismatch": 146,
+        "field_not_available": 0
+      }
+    },
+    "mismatchReasons": {},
+    "recommendations": [
+      "Expose hazardFamily/domain in calibration output contract",
+      "Expose jurisdiction assessment in calibration output contract",
+      "Align scenarioFamily taxonomy",
+      "Improve evidence gap comparison/extraction",
+      "Tune riskBand calibration after output contract is stable"
+    ]
+  },
   "details": [
     {
       "id": "FIELD-001",

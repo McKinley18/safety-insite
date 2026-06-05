@@ -8,7 +8,7 @@ const orchestrator = new SafeScopeIntelligenceOrchestrator();
 
 console.log(`Running Calibration Triage for ${dataset.length} cases...`);
 
-const results = {
+const runResults = {
     total: dataset.length,
     run: 0,
     errors: 0,
@@ -58,7 +58,7 @@ async function run() {
             };
 
             const output = await orchestrator.evaluate(input) as any;
-            results.run++;
+            runResults.run++;
 
             const scoring = {
                 hazardFamily: { expected: record.expectedHazardFamily, actual: output.scenarioIntelligence?.hazardCategory, status: getMatchStatus(output.scenarioIntelligence?.hazardCategory, record.expectedHazardFamily) },
@@ -68,14 +68,50 @@ async function run() {
                 riskBand: { expected: record.expectedRiskBand, actual: output.riskReasoning?.initialRiskLevel, status: getMatchStatus(output.riskReasoning?.initialRiskLevel, record.expectedRiskBand) }
             };
 
-            results.details.push({ id: record.id, scoring });
+            runResults.details.push({ id: record.id, scoring });
         } catch (e) {
-            results.errors++;
+            runResults.errors++;
         }
     }
 
-    fs.writeFileSync(path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-200-baseline-triage-results.v1.json'), JSON.stringify(results, null, 2));
-    console.log("Calibration Triage Results generated.");
+    // Generate Summary
+    const summary = {
+        totalCases: runResults.total,
+        runCases: runResults.run,
+        runErrors: runResults.errors,
+        metrics: {} as any,
+        mismatchReasons: {} as any,
+        recommendations: [
+            "Expose hazardFamily/domain in calibration output contract",
+            "Expose jurisdiction assessment in calibration output contract",
+            "Align scenarioFamily taxonomy",
+            "Improve evidence gap comparison/extraction",
+            "Tune riskBand calibration after output contract is stable"
+        ]
+    };
+
+    const categories = ['hazardFamily', 'scenarioFamily', 'mechanism', 'jurisdiction', 'riskBand'];
+    for (const cat of categories) {
+        summary.metrics[cat] = {
+            exact_match: 0,
+            partial_match: 0,
+            mismatch: 0,
+            field_not_available: 0
+        };
+    }
+
+    for (const detail of runResults.details) {
+        for (const cat of categories) {
+            const status = detail.scoring[cat].status;
+            const mappedStatus = status === 'normalized_exact_match' ? 'exact_match' : status === 'normalized_partial_alias_match' ? 'partial_match' : status === 'actual_value_different' ? 'mismatch' : 'field_not_available';
+            summary.metrics[cat][mappedStatus] = (summary.metrics[cat][mappedStatus] || 0) + 1;
+        }
+    }
+
+    const finalResults = { summary, details: runResults.details };
+    
+    fs.writeFileSync(path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-200-baseline-triage-results.v1.json'), JSON.stringify(finalResults, null, 2));
+    console.log("Calibration Triage Results with Summary generated.");
 }
 
 run();
