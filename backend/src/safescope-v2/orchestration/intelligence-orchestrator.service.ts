@@ -34,6 +34,7 @@ import { ApplicabilityIntelligenceService } from '../applicability/applicability
 import { ScenarioIntelligenceService } from '../brain/scenario-intelligence/scenario-intelligence.service';
 import { StandardFamilyMapperService } from '../brain/standard-family-mapper/standard-family-mapper.service';
 import { CitationReviewBrainService } from '../brain/citation-review-brain/citation-review.service';
+import { RiskReasoningBrainService } from '../brain/risk-reasoning/risk-reasoning.service';
 import { ObservationContextService } from '../brain/observation-context/observation-context.service';
 import { NarrativeGeneratorService } from '../brain/narrative-generator/narrative.service';
 import { EvidenceGapQuestionGeneratorService } from '../brain/evidence-gap-question-generator/evidence-gap-question.service';
@@ -93,6 +94,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private scenarioEngine = new ScenarioIntelligenceService();
   private standardMapper = new StandardFamilyMapperService();
   private citationReviewEngine = new CitationReviewBrainService();
+  private riskEngine = new RiskReasoningBrainService();
   private observationContextEngine = new ObservationContextService();
   private narrativeEngine = new NarrativeGeneratorService();
   private questionGenerator = new EvidenceGapQuestionGeneratorService();
@@ -307,6 +309,11 @@ export class SafeScopeIntelligenceOrchestrator {
         scenarioIntelligence.scenarioFamilyId
     );
 
+    const riskReasoning = this.riskEngine.evaluate(
+        scenarioIntelligence,
+        evidenceQuality.gaps || []
+    );
+
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
         text: fusedText,
@@ -420,6 +427,7 @@ export class SafeScopeIntelligenceOrchestrator {
           'observation_context',
           'scenario',
           'citation_level_review',
+          'risk_reasoning',
           'evidence_gap_questions',
           'corrective_action',
           'confidence',
@@ -456,6 +464,7 @@ export class SafeScopeIntelligenceOrchestrator {
       narrative,
       domainIntelligence,
       scenarioIntelligence,
+      riskReasoning,
       standardFamilyCandidates,
       citationLevelCandidates,
       evidenceGapQuestions,
