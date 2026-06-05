@@ -315,14 +315,18 @@ export class SafeScopeIntelligenceOrchestrator {
         evidenceQuality.gaps || []
     );
 
+    const jurisdiction = (observationContext.detectedJurisdictionSignals && observationContext.detectedJurisdictionSignals.length > 0) 
+        ? observationContext.detectedJurisdictionSignals[0] 
+        : 'unclear';
+
     const calibrationMeta: CalibrationMeta = {
-        hazardFamily: scenarioIntelligence.candidateStandardFamily,
+        hazardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
         scenarioFamily: scenarioIntelligence.scenarioFamilyId,
-        jurisdiction: observationContext.detectedJurisdictionSignals?.[0],
+        jurisdiction: jurisdiction,
         mechanism: scenarioIntelligence.mechanismOfInjury,
         riskBand: riskReasoning.initialRiskLevel,
-        standardFamily: scenarioIntelligence.candidateStandardFamily,
-        evidenceGaps: scenarioIntelligence.evidenceGaps
+        standardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
+        evidenceGaps: scenarioIntelligence.evidenceGaps.missingEvidence
     };
 
     const domainIntelligence = {

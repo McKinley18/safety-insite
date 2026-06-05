@@ -34,5 +34,3 @@ analysis.topMismatchPairs = Object.fromEntries(sortedPairs.slice(0, 10));
 
 console.log("Mismatch Analysis generated.");
 fs.writeFileSync(path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-200-mismatch-analysis.v1.json'), JSON.stringify(analysis, null, 2));
-EOF
-,file_path:
