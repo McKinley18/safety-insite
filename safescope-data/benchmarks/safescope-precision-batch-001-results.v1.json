@@ -1,0 +1,566 @@
+{
+  "version": "v1",
+  "batch": "001",
+  "generatedAt": "2026-06-05T22:45:23.649Z",
+  "summary": {
+    "total": 10,
+    "metrics": {
+      "hazardFamily": {
+        "exact_match": 4,
+        "actual_value_different": 2,
+        "field_not_available": 4
+      },
+      "scenarioFamily": {
+        "exact_match": 3,
+        "actual_value_different": 3,
+        "field_not_available": 4
+      },
+      "mechanism": {
+        "exact_match": 2,
+        "actual_value_different": 4,
+        "field_not_available": 4
+      },
+      "riskBand": {
+        "exact_match": 2,
+        "actual_value_different": 8,
+        "field_not_available": 0
+      },
+      "standardFamily": {
+        "exact_match": 4,
+        "actual_value_different": 2,
+        "field_not_available": 4
+      }
+    }
+  },
+  "details": [
+    {
+      "id": "PRECISION-001",
+      "observationText": "Employee cleaning spilled material at an operating conveyor tail pulley. The tail pulley guard is missing and the worker is within reach of the nip point.",
+      "expected": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "conveyor_cleanup",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "high",
+        "standardFamily": "machine_guarding"
+      },
+      "actual": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "conveyor_cleanup",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "critical",
+        "standardFamily": "machine_guarding"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "conveyor_cleanup",
+          "actual": "conveyor_cleanup",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.5,
+      "scenarioReasoning": [
+        "Matched against scenario family: Conveyor cleanup near moving parts"
+      ],
+      "evidenceGaps": [
+        "LOTO status",
+        "guard presence"
+      ]
+    },
+    {
+      "id": "PRECISION-002",
+      "observationText": "Conveyor tail pulley is unguarded along a travelway. Employees walk past the exposed pulley during normal production travel.",
+      "expected": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "unguarded_conveyor_pulley",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "high",
+        "standardFamily": "machine_guarding"
+      },
+      "actual": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "conveyor_cleanup",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "critical",
+        "standardFamily": "machine_guarding"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "unguarded_conveyor_pulley",
+          "actual": "conveyor_cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.5,
+      "scenarioReasoning": [
+        "Matched against scenario family: Conveyor cleanup near moving parts"
+      ],
+      "evidenceGaps": [
+        "LOTO status",
+        "guard presence"
+      ]
+    },
+    {
+      "id": "PRECISION-003",
+      "observationText": "Exposed rotating shaft and coupling on a pump motor are accessible beside the maintenance walkway. No fixed guard is installed.",
+      "expected": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "rotating_shaft_guarding",
+        "mechanism": "rotating_equipment_entanglement",
+        "riskBand": "high",
+        "standardFamily": "machine_guarding"
+      },
+      "actual": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "rotating_shaft_guarding",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "critical",
+        "standardFamily": "machine_guarding"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "rotating_shaft_guarding",
+          "actual": "rotating_shaft_guarding",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_entanglement",
+          "actual": "rotating_equipment_nip_point",
+          "status": "actual_value_different"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.46,
+      "scenarioReasoning": [
+        "Matched against scenario family: Exposed rotating shaft"
+      ],
+      "evidenceGaps": [
+        "access control"
+      ]
+    },
+    {
+      "id": "PRECISION-004",
+      "observationText": "Table saw point of operation is exposed while an employee cuts material. Blade guard is removed and hands pass near the cutting point.",
+      "expected": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "point_of_operation_guarding",
+        "mechanism": "cut_amputation_point_of_operation",
+        "riskBand": "high",
+        "standardFamily": "machine_guarding"
+      },
+      "actual": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "point_of_operation_guarding",
+        "mechanism": "crush_point",
+        "riskBand": "moderate",
+        "standardFamily": "machine_guarding"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "point_of_operation_guarding",
+          "actual": "point_of_operation_guarding",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "cut_amputation_point_of_operation",
+          "actual": "crush_point",
+          "status": "actual_value_different"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.47,
+      "scenarioReasoning": [
+        "Matched against scenario family: Point of operation guarding failure"
+      ],
+      "evidenceGaps": [
+        "access control"
+      ]
+    },
+    {
+      "id": "PRECISION-005",
+      "observationText": "Electrical panel door is blocked by stored materials. Employees cannot safely access disconnects or maintain required working clearance.",
+      "expected": {
+        "hazardFamily": "electrical",
+        "scenarioFamily": "electrical_panel_access",
+        "mechanism": "electrical_shock_arc_flash_access_clearance",
+        "riskBand": "moderate",
+        "standardFamily": "electrical"
+      },
+      "actual": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "rotating_shaft_guarding",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "critical",
+        "standardFamily": "machine_guarding"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "electrical",
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
+        },
+        "scenarioFamily": {
+          "expected": "electrical_panel_access",
+          "actual": "rotating_shaft_guarding",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "electrical_shock_arc_flash_access_clearance",
+          "actual": "rotating_equipment_nip_point",
+          "status": "actual_value_different"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "critical",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "electrical",
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
+        }
+      },
+      "confidence": 0.5,
+      "scenarioReasoning": [
+        "Matched against scenario family: Exposed rotating shaft"
+      ],
+      "evidenceGaps": [
+        "access control"
+      ]
+    },
+    {
+      "id": "PRECISION-006",
+      "observationText": "Extension cord has damaged insulation and is being used in a wet processing area. Employees handle the cord during cleanup.",
+      "expected": {
+        "hazardFamily": "electrical",
+        "scenarioFamily": "damaged_cord_wet_location",
+        "mechanism": "electrical_shock",
+        "riskBand": "high",
+        "standardFamily": "electrical"
+      },
+      "actual": {
+        "hazardFamily": "unknown",
+        "scenarioFamily": "unknown",
+        "mechanism": "unknown",
+        "riskBand": "moderate",
+        "standardFamily": "unknown"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "electrical",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "damaged_cord_wet_location",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "mechanism": {
+          "expected": "electrical_shock",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "electrical",
+          "actual": "unknown",
+          "status": "field_not_available"
+        }
+      },
+      "confidence": 0.46,
+      "scenarioReasoning": [
+        "Inferred from fused operational reasoning and observation."
+      ],
+      "evidenceGaps": [
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available."
+      ]
+    },
+    {
+      "id": "PRECISION-007",
+      "observationText": "Oil and loose aggregate are present across a pedestrian walkway. Employees use the walkway to access the plant control room.",
+      "expected": {
+        "hazardFamily": "slip_trip_fall",
+        "scenarioFamily": "housekeeping_slip_trip",
+        "mechanism": "slip_trip_fall_same_level",
+        "riskBand": "moderate",
+        "standardFamily": "walking_working_surfaces"
+      },
+      "actual": {
+        "hazardFamily": "unknown",
+        "scenarioFamily": "unknown",
+        "mechanism": "unknown",
+        "riskBand": "moderate",
+        "standardFamily": "unknown"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "slip_trip_fall",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "housekeeping_slip_trip",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "mechanism": {
+          "expected": "slip_trip_fall_same_level",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "walking_working_surfaces",
+          "actual": "unknown",
+          "status": "field_not_available"
+        }
+      },
+      "confidence": 0.46,
+      "scenarioReasoning": [
+        "Inferred from fused operational reasoning and observation."
+      ],
+      "evidenceGaps": [
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available.",
+        "Location or equipment context is limited."
+      ]
+    },
+    {
+      "id": "PRECISION-008",
+      "observationText": "Fire extinguisher is blocked by stacked pallets and the inspection tag is expired. Employees would not have ready access during a fire emergency.",
+      "expected": {
+        "hazardFamily": "fire_protection",
+        "scenarioFamily": "fire_extinguisher_access_inspection",
+        "mechanism": "delayed_emergency_response",
+        "riskBand": "moderate",
+        "standardFamily": "fire_protection"
+      },
+      "actual": {
+        "hazardFamily": "unknown",
+        "scenarioFamily": "unknown",
+        "mechanism": "unknown",
+        "riskBand": "moderate",
+        "standardFamily": "unknown"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "fire_protection",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "fire_extinguisher_access_inspection",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "mechanism": {
+          "expected": "delayed_emergency_response",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "fire_protection",
+          "actual": "unknown",
+          "status": "field_not_available"
+        }
+      },
+      "confidence": 0.43,
+      "scenarioReasoning": [
+        "Inferred from fused operational reasoning and observation."
+      ],
+      "evidenceGaps": [
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available.",
+        "Location or equipment context is limited."
+      ]
+    },
+    {
+      "id": "PRECISION-009",
+      "observationText": "Forklift operates through a shared pedestrian aisle with no marked walkway, no separation barrier, and employees walking beside moving equipment.",
+      "expected": {
+        "hazardFamily": "mobile_equipment",
+        "scenarioFamily": "mobile_equipment_pedestrian_interaction",
+        "mechanism": "struck_by_mobile_equipment",
+        "riskBand": "high",
+        "standardFamily": "powered_industrial_trucks"
+      },
+      "actual": {
+        "hazardFamily": "machine_guarding",
+        "scenarioFamily": "rotating_shaft_guarding",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "critical",
+        "standardFamily": "machine_guarding"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "mobile_equipment",
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
+        },
+        "scenarioFamily": {
+          "expected": "mobile_equipment_pedestrian_interaction",
+          "actual": "rotating_shaft_guarding",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "struck_by_mobile_equipment",
+          "actual": "rotating_equipment_nip_point",
+          "status": "actual_value_different"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "powered_industrial_trucks",
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
+        }
+      },
+      "confidence": 0.46,
+      "scenarioReasoning": [
+        "Matched against scenario family: Exposed rotating shaft"
+      ],
+      "evidenceGaps": [
+        "access control"
+      ]
+    },
+    {
+      "id": "PRECISION-010",
+      "observationText": "Worker is inside an excavation deeper than five feet with vertical walls and no visible protective system. Spoil pile is near the edge.",
+      "expected": {
+        "hazardFamily": "excavation_trenching",
+        "scenarioFamily": "excavation_protective_system_ambiguity",
+        "mechanism": "caught_in_cave_in",
+        "riskBand": "critical",
+        "standardFamily": "excavation_trenching"
+      },
+      "actual": {
+        "hazardFamily": "unknown",
+        "scenarioFamily": "unknown",
+        "mechanism": "unknown",
+        "riskBand": "moderate",
+        "standardFamily": "unknown"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "excavation_trenching",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "excavation_protective_system_ambiguity",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "mechanism": {
+          "expected": "caught_in_cave_in",
+          "actual": "unknown",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        },
+        "standardFamily": {
+          "expected": "excavation_trenching",
+          "actual": "unknown",
+          "status": "field_not_available"
+        }
+      },
+      "confidence": 0.47,
+      "scenarioReasoning": [
+        "Inferred from fused operational reasoning and observation."
+      ],
+      "evidenceGaps": [
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available.",
+        "Location or equipment context is limited."
+      ]
+    }
+  ]
+}
