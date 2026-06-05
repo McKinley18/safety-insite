@@ -12,15 +12,31 @@ const results = {
     total: dataset.length,
     run: 0,
     errors: 0,
+    scorable: {
+        hazardFamily: 0,
+        scenarioFamily: 0,
+        mechanism: 0,
+        jurisdiction: 0,
+        riskBand: 0,
+        standardFamily: 0,
+        evidenceGaps: 0
+    },
     matches: {
         hazardFamily: 0,
         scenarioFamily: 0,
         mechanism: 0,
         jurisdiction: 0,
-        riskBand: 0
+        riskBand: 0,
+        standardFamily: 0,
+        evidenceGaps: 0
     },
     details: [] as any[]
 };
+
+function checkMatch(actual: any, expected: any) {
+    if (actual === undefined || actual === null) return 'unavailable';
+    return actual === expected ? 'exact_match' : 'mismatch';
+}
 
 async function run() {
     for (const record of dataset) {
@@ -47,19 +63,25 @@ async function run() {
             const detail = {
                 id: record.id,
                 matches: {
-                    hazardFamily: output.scenarioIntelligence?.expectedHazardFamily === record.expectedHazardFamily,
-                    scenarioFamily: output.scenarioIntelligence?.scenarioFamilyId === record.expectedScenarioFamily,
-                    mechanism: output.scenarioIntelligence?.mechanismOfInjury === record.expectedMechanism,
-                    jurisdiction: output.observationContext?.jurisdiction === record.jurisdiction,
-                    riskBand: output.riskReasoning?.initialRiskLevel === record.expectedRiskBand,
+                    hazardFamily: checkMatch(output.scenarioIntelligence?.hazardCategory, record.expectedHazardFamily),
+                    scenarioFamily: checkMatch(output.scenarioIntelligence?.scenarioFamilyId, record.expectedScenarioFamily),
+                    mechanism: checkMatch(output.scenarioIntelligence?.mechanismOfInjury, record.expectedMechanism),
+                    jurisdiction: checkMatch(output.observationContext?.jurisdictionSignals?.[0], record.expectedJurisdiction),
+                    riskBand: checkMatch(output.riskReasoning?.initialRiskLevel, record.expectedRiskBand),
+                    standardFamily: checkMatch(output.scenarioIntelligence?.candidateStandardFamily, record.expectedStandardFamily),
+                    evidenceGaps: checkMatch(JSON.stringify(output.scenarioIntelligence?.evidenceGaps), JSON.stringify(record.evidenceGapsExpected))
                 }
             };
             
-            if (detail.matches.hazardFamily) results.matches.hazardFamily++;
-            if (detail.matches.scenarioFamily) results.matches.scenarioFamily++;
-            if (detail.matches.mechanism) results.matches.mechanism++;
-            if (detail.matches.jurisdiction) results.matches.jurisdiction++;
-            if (detail.matches.riskBand) results.matches.riskBand++;
+            for (const key in detail.matches) {
+                const matchVal = detail.matches[key as keyof typeof detail.matches];
+                if (matchVal !== 'unavailable') {
+                    results.scorable[key as keyof typeof results.scorable]++;
+                }
+                if (matchVal === 'exact_match') {
+                    results.matches[key as keyof typeof results.matches]++;
+                }
+            }
 
             results.details.push(detail);
         } catch (e) {
@@ -68,7 +90,7 @@ async function run() {
         }
     }
 
-    console.log("Calibration Results:", results);
+    console.log("Calibration Results:", JSON.stringify(results, null, 2));
     fs.writeFileSync(path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-200-baseline-calibration-results.v1.json'), JSON.stringify(results, null, 2));
 }
 

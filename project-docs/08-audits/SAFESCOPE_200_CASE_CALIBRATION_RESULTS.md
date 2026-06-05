@@ -4,15 +4,10 @@
 Calibration run against 200 baseline scenarios.
 
 ## Metrics
-- Total Cases: 200
-- Run Cases: 200
-- Hazard Family Matches: 0
-- Scenario Family Matches: 0
-- Mechanism Matches: 107
-- Jurisdiction Matches: 0
-- Risk Band Matches: 54
+(See safescope-data/benchmarks/safescope-200-baseline-calibration-results.v1.json for details)
 
 ## Observations
 - System baseline established.
-- Alignment with field expectation needs ongoing review, particularly for scenario families and jurisdictions which show zero matches.
+- Alignment with field expectation needs ongoing review, particularly for scenario families and jurisdictions.
+- Many fields are currently 'unavailable' (not_scored) as the engine output structure is being mapped.
 - Advisory guardrails intact.
