@@ -1,4 +1,4 @@
-import { NarrativeTypes, SafeScopeIntelligenceResultTypes } from '../types';
+import { SafeScopeNarrative, NarrativeMode, SafeScopeIntelligenceResult } from '../types';
 
 export type ReportSection = {
   header: string;
@@ -6,8 +6,8 @@ export type ReportSection = {
 };
 
 export const mapNarrativeToReportSections = (
-  result: SafeScopeIntelligenceResultTypes.SafeScopeIntelligenceResult,
-  mode: NarrativeTypes.NarrativeMode
+  result: SafeScopeIntelligenceResult,
+  mode: NarrativeMode
 ): ReportSection[] => {
   if (!result.narrative) return [];
 
