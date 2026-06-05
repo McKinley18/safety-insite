@@ -1,8 +1,4 @@
-import { SafeScopeIntelligenceResultTypes, NarrativeTypes } from '../types';
-
-export type SafeScopeIntelligenceResult = SafeScopeIntelligenceResultTypes.SafeScopeIntelligenceResult;
-export type SafeScopeNarrative = NarrativeTypes.SafeScopeNarrative;
-export type NarrativeMode = NarrativeTypes.NarrativeMode;
+import { SafeScopeIntelligenceResult, SafeScopeNarrative, NarrativeMode } from '../types';
 
 export type DisplaySection = {
   title: string;
@@ -23,8 +19,9 @@ export type SafeScopeDisplayAdapter = {
 
 export const createDisplayAdapter = (
   result: SafeScopeIntelligenceResult,
-  mode: 'simple' | 'professional' | 'audit'
+  mode: NarrativeMode
 ): SafeScopeDisplayAdapter => {
+
   return {
     summary: {
       title: 'Summary',

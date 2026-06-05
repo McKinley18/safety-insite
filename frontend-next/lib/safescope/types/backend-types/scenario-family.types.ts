@@ -1,0 +1,30 @@
+export type HierarchyLevel = 'elimination' | 'substitution' | 'engineering' | 'administrative' | 'ppe' | 'unknown';
+
+export type ScenarioFamilyKnowledgeRecord = {
+  id: string;
+  title: string;
+  domain: string;
+  applicableIndustries: string[];
+  applicableJurisdictions: string[];
+  commonObservationPhrases: string[];
+  equipmentIndicators: string[];
+  taskIndicators: string[];
+  unsafeConditionIndicators: string[];
+  operationalStateIndicators: string[];
+  energySourceIndicators: string[];
+  mechanismOfInjuryIndicators: string[];
+  exposureIndicators: string[];
+  missingOrFailedControlIndicators: string[];
+  criticalEvidenceQuestions: string[];
+  evidenceGaps: string[];
+  controlHierarchyGuidance: string[];
+  candidateStandardFamilies: string[];
+  correctiveActionThemes: string[];
+  confidenceBoosters: string[];
+  confidenceReducers: string[];
+  semanticConflictTriggers: string[];
+  humanReviewTriggers: string[];
+  advisoryOnly: boolean;
+  doesNotDeclareViolation: boolean;
+  requiresQualifiedReview: boolean;
+};
