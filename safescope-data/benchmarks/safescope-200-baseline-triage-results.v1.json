@@ -20,8 +20,8 @@
         "field_not_available": 0
       },
       "jurisdiction": {
-        "exact_match": 0,
-        "actual_value_different": 200,
+        "exact_match": 200,
+        "actual_value_different": 0,
         "field_not_available": 0
       },
       "riskBand": {
@@ -52,8 +52,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -82,8 +82,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -112,8 +112,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -142,8 +142,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -172,8 +172,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -202,8 +202,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -232,8 +232,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -262,8 +262,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -292,8 +292,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -322,8 +322,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -352,8 +352,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -382,8 +382,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -412,8 +412,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -442,8 +442,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -472,8 +472,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -502,8 +502,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -532,8 +532,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -562,8 +562,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -592,8 +592,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -622,8 +622,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -652,8 +652,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -682,8 +682,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -712,8 +712,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -742,8 +742,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -772,8 +772,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -802,8 +802,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -832,8 +832,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -862,8 +862,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -892,8 +892,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -922,8 +922,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -952,8 +952,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -982,8 +982,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -1012,8 +1012,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1042,8 +1042,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1072,8 +1072,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1102,8 +1102,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -1132,8 +1132,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1162,8 +1162,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1192,8 +1192,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -1222,8 +1222,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -1252,8 +1252,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1282,8 +1282,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1312,8 +1312,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1342,8 +1342,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -1372,8 +1372,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -1402,8 +1402,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -1432,8 +1432,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -1462,8 +1462,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1492,8 +1492,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -1522,8 +1522,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -1552,8 +1552,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1582,8 +1582,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1612,8 +1612,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -1642,8 +1642,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -1672,8 +1672,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -1702,8 +1702,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1732,8 +1732,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1762,8 +1762,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -1792,8 +1792,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1822,8 +1822,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -1852,8 +1852,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -1882,8 +1882,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -1912,8 +1912,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -1942,8 +1942,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -1972,8 +1972,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2002,8 +2002,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2032,8 +2032,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -2062,8 +2062,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2092,8 +2092,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2122,8 +2122,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2152,8 +2152,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2182,8 +2182,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -2212,8 +2212,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -2242,8 +2242,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -2272,8 +2272,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2302,8 +2302,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2332,8 +2332,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -2362,8 +2362,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -2392,8 +2392,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -2422,8 +2422,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -2452,8 +2452,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -2482,8 +2482,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2512,8 +2512,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2542,8 +2542,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2572,8 +2572,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2602,8 +2602,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2632,8 +2632,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2662,8 +2662,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -2692,8 +2692,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2722,8 +2722,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2752,8 +2752,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -2782,8 +2782,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2812,8 +2812,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2842,8 +2842,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2872,8 +2872,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2902,8 +2902,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -2932,8 +2932,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2962,8 +2962,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -2992,8 +2992,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -3022,8 +3022,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -3052,8 +3052,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -3082,8 +3082,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -3112,8 +3112,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3142,8 +3142,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -3172,8 +3172,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -3202,8 +3202,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3232,8 +3232,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -3262,8 +3262,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -3292,8 +3292,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3322,8 +3322,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -3352,8 +3352,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -3382,8 +3382,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -3412,8 +3412,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -3442,8 +3442,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -3472,8 +3472,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -3502,8 +3502,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -3532,8 +3532,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -3562,8 +3562,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3592,8 +3592,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -3622,8 +3622,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3652,8 +3652,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -3682,8 +3682,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -3712,8 +3712,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -3742,8 +3742,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -3772,8 +3772,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3802,8 +3802,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -3832,8 +3832,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -3862,8 +3862,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -3892,8 +3892,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -3922,8 +3922,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3952,8 +3952,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -3982,8 +3982,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -4012,8 +4012,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4042,8 +4042,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -4072,8 +4072,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4102,8 +4102,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4132,8 +4132,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4162,8 +4162,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4192,8 +4192,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -4222,8 +4222,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4252,8 +4252,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4282,8 +4282,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -4312,8 +4312,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4342,8 +4342,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4372,8 +4372,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -4402,8 +4402,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -4432,8 +4432,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -4462,8 +4462,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -4492,8 +4492,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -4522,8 +4522,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -4552,8 +4552,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -4582,8 +4582,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -4612,8 +4612,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4642,8 +4642,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -4672,8 +4672,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4702,8 +4702,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4732,8 +4732,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4762,8 +4762,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4792,8 +4792,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4822,8 +4822,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -4852,8 +4852,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4882,8 +4882,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4912,8 +4912,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -4942,8 +4942,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -4972,8 +4972,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -5002,8 +5002,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -5032,8 +5032,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -5062,8 +5062,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5092,8 +5092,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -5122,8 +5122,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -5152,8 +5152,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -5182,8 +5182,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5212,8 +5212,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -5242,8 +5242,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -5272,8 +5272,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5302,8 +5302,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -5332,8 +5332,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5362,8 +5362,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -5392,8 +5392,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5422,8 +5422,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -5452,8 +5452,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -5482,8 +5482,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5512,8 +5512,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5542,8 +5542,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -5572,8 +5572,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5602,8 +5602,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",
@@ -5632,8 +5632,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5662,8 +5662,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5692,8 +5692,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -5722,8 +5722,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5752,8 +5752,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5782,8 +5782,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -5812,8 +5812,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5842,8 +5842,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5872,8 +5872,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5902,8 +5902,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "low",
@@ -5932,8 +5932,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -5962,8 +5962,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -5992,8 +5992,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -6022,8 +6022,8 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
-          "status": "actual_value_different"
+          "actual": "msha",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "serious",

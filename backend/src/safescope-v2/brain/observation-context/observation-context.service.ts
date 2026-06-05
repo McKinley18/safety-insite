@@ -21,7 +21,7 @@ export class ObservationContextService {
       detectedExposureSignals: this.inferExposureSignals(normalizedText),
       detectedControls: [],
       detectedMissingOrFailedControls: [],
-      detectedJurisdictionSignals: [],
+      detectedJurisdictionSignals: this.inferJurisdiction(normalizedText),
       detectedIndustrySignals: [],
       ambiguitySignals: [],
       conflictSignals: [],
@@ -103,5 +103,13 @@ export class ObservationContextService {
 
   private inferExposureSignals(text: string): string[] {
     return ['unknown'];
+  }
+
+  private inferJurisdiction(text: string): string[] {
+    const signals = [];
+    if (text.includes('msha') || text.includes('mine')) signals.push('msha');
+    if (text.includes('osha')) signals.push('osha');
+    if (text.includes('construction')) signals.push('osha_construction');
+    return signals;
   }
 }
