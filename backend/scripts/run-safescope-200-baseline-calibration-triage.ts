@@ -61,11 +61,11 @@ async function run() {
             runResults.run++;
 
             const scoring = {
-                hazardFamily: { expected: record.expectedHazardFamily, actual: output.scenarioIntelligence?.hazardCategory, status: getMatchStatus(output.scenarioIntelligence?.hazardCategory, record.expectedHazardFamily) },
-                scenarioFamily: { expected: record.expectedScenarioFamily, actual: output.scenarioIntelligence?.scenarioFamilyId, status: getMatchStatus(output.scenarioIntelligence?.scenarioFamilyId, record.expectedScenarioFamily) },
-                mechanism: { expected: record.expectedMechanism, actual: output.scenarioIntelligence?.mechanismOfInjury, status: getMatchStatus(output.scenarioIntelligence?.mechanismOfInjury, record.expectedMechanism) },
-                jurisdiction: { expected: record.jurisdiction, actual: output.observationContext?.jurisdictionSignals?.[0], status: getMatchStatus(output.observationContext?.jurisdictionSignals?.[0], record.jurisdiction) },
-                riskBand: { expected: record.expectedRiskBand, actual: output.riskReasoning?.initialRiskLevel, status: getMatchStatus(output.riskReasoning?.initialRiskLevel, record.expectedRiskBand) }
+                hazardFamily: { expected: record.expectedHazardFamily, actual: output.calibrationMeta?.hazardFamily, status: getMatchStatus(output.calibrationMeta?.hazardFamily, record.expectedHazardFamily) },
+                scenarioFamily: { expected: record.expectedScenarioFamily, actual: output.calibrationMeta?.scenarioFamily, status: getMatchStatus(output.calibrationMeta?.scenarioFamily, record.expectedScenarioFamily) },
+                mechanism: { expected: record.expectedMechanism, actual: output.calibrationMeta?.mechanism, status: getMatchStatus(output.calibrationMeta?.mechanism, record.expectedMechanism) },
+                jurisdiction: { expected: record.expectedJurisdiction, actual: output.calibrationMeta?.jurisdiction, status: getMatchStatus(output.calibrationMeta?.jurisdiction, record.expectedJurisdiction) },
+                riskBand: { expected: record.expectedRiskBand, actual: output.calibrationMeta?.riskBand, status: getMatchStatus(output.calibrationMeta?.riskBand, record.expectedRiskBand) }
             };
 
             runResults.details.push({ id: record.id, scoring });

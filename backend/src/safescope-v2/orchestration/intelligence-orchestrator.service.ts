@@ -314,6 +314,16 @@ export class SafeScopeIntelligenceOrchestrator {
         evidenceQuality.gaps || []
     );
 
+    const calibrationMeta: CalibrationMeta = {
+        hazardFamily: scenarioIntelligence.candidateStandardFamily,
+        scenarioFamily: scenarioIntelligence.scenarioFamilyId,
+        jurisdiction: observationContext.detectedJurisdictionSignals?.[0],
+        mechanism: scenarioIntelligence.mechanismOfInjury,
+        riskBand: riskReasoning.initialRiskLevel,
+        standardFamily: scenarioIntelligence.candidateStandardFamily,
+        evidenceGaps: scenarioIntelligence.evidenceGaps
+    };
+
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
         text: fusedText,
@@ -465,6 +475,7 @@ export class SafeScopeIntelligenceOrchestrator {
       domainIntelligence,
       scenarioIntelligence,
       riskReasoning,
+      calibrationMeta,
       standardFamilyCandidates,
       citationLevelCandidates,
       evidenceGapQuestions,

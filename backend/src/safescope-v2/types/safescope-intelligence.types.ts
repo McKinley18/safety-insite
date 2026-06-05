@@ -35,11 +35,22 @@ import { RiskReasoning } from '../brain/risk-reasoning/risk-reasoning.types';
 import { SafeScopeNormalizedObservationContext } from '../brain/observation-context/observation-context.types';
 import { SafeScopeNarrative } from '../brain/narrative-generator/narrative.types';
 
+export type CalibrationMeta = {
+  hazardFamily?: string;
+  scenarioFamily?: string;
+  jurisdiction?: string;
+  mechanism?: string;
+  riskBand?: string;
+  standardFamily?: string;
+  evidenceGaps?: string[];
+};
+
 export type SafeScopeIntelligenceResult = {
   observationContext?: SafeScopeNormalizedObservationContext;
   narrative?: SafeScopeNarrative;
   scenarioIntelligence?: ScenarioIntelligence;
   riskReasoning?: RiskReasoning;
+  calibrationMeta?: CalibrationMeta;
   standardFamilyCandidates?: StandardFamilyCandidateRecord[];
   citationLevelCandidates?: CitationLevelCandidateReview[];
   evidenceGapQuestions?: EvidenceGapQuestionRecord[];
