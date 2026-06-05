@@ -31,6 +31,7 @@ export type ReviewerFeedbackRecord = {
   status: FeedbackStatus;
   promotedToRegistryId?: string;
   rejectedReason?: string;
+  acceptedBy?: string;
   
   advisoryGuardrails: {
     advisoryOnly: boolean;

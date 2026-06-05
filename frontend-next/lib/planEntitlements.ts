@@ -51,6 +51,35 @@ export const PLAN_ENTITLEMENTS = {
     workspaceFiltering: true,
     companyAnalytics: true,
     sharedReports: true,
+    
+    // New Intelligence Entitlements
+    intelligenceResult: true,
+    riskReasoning: true,
+    reportNarrative: true,
+    reviewerFeedbackSubmission: true,
+  },
+  pro: { // Adding "pro" alias for "plus"
+    fullSafeScope: true,
+    cloudReports: false,
+    teamMembers: false,
+    analytics: true,
+    supervisorValidation: false,
+    auditTrail: false,
+
+    quickCapture: true,
+    guidedInspection: true,
+    advancedReview: false,
+    inspectionAssignments: false,
+    correctiveActionAssignments: false,
+    workspaceFiltering: false,
+    companyAnalytics: false,
+    sharedReports: false,
+    
+    // New Intelligence Entitlements
+    intelligenceResult: true,
+    riskReasoning: true,
+    reportNarrative: true,
+    reviewerFeedbackSubmission: true,
   },
 } as const;
 

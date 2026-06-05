@@ -153,6 +153,116 @@ export const APPROVED_SOURCE_REGISTRY: ApprovedSourceRecord[] = [
       doesNotDeclareViolation: false,
       requiresQualifiedReview: false
     },
-    traceNotes: ['HazCom standard.']
+    traceNotes: ['Core HazCom standard.']
+  },
+  {
+    id: 'osha-1926-651',
+    title: 'Excavations - General Requirements',
+    sourceType: 'regulation',
+    agency: 'OSHA',
+    jurisdiction: 'osha_construction',
+    industryScope: ['construction'],
+    authorityTier: 'primary_regulation',
+    citation: '29 CFR 1926.651',
+    approvalStatus: 'pending_review',
+    version: '1.0.0',
+    deprecated: false,
+    duplicateRiskSignals: [],
+    evidenceRequiredBeforeUse: ['trench depth', 'soil type'],
+    prohibitedUses: [],
+    advisoryGuardrails: {
+      advisoryOnly: false,
+      doesNotDeclareViolation: false,
+      requiresQualifiedReview: true
+    },
+    traceNotes: ['Draft construction excavation standard.']
+  },
+  {
+    id: 'osha-1910-1030-draft',
+    title: 'Bloodborne Pathogens (Update Draft)',
+    sourceType: 'regulation',
+    agency: 'OSHA',
+    jurisdiction: 'osha_general_industry',
+    industryScope: ['general_industry'],
+    authorityTier: 'primary_regulation',
+    citation: '29 CFR 1910.1030',
+    approvalStatus: 'pending_review',
+    version: '1.1.0',
+    deprecated: false,
+    duplicateRiskSignals: [],
+    evidenceRequiredBeforeUse: ['exposure plan presence'],
+    prohibitedUses: [],
+    advisoryGuardrails: {
+      advisoryOnly: false,
+      doesNotDeclareViolation: false,
+      requiresQualifiedReview: true
+    },
+    traceNotes: ['Draft Bloodborne standard update.']
+  },
+  {
+    id: 'osha-1926-651',
+    title: 'Excavations - General Requirements',
+    sourceType: 'regulation',
+    agency: 'OSHA',
+    jurisdiction: 'osha_construction',
+    industryScope: ['construction'],
+    authorityTier: 'primary_regulation',
+    citation: '29 CFR 1926.651',
+    approvalStatus: 'pending_review',
+    version: '1.0.0',
+    deprecated: false,
+    duplicateRiskSignals: [],
+    evidenceRequiredBeforeUse: ['trench depth', 'soil type'],
+    prohibitedUses: [],
+    advisoryGuardrails: {
+      advisoryOnly: false,
+      doesNotDeclareViolation: false,
+      requiresQualifiedReview: true
+    },
+    traceNotes: ['Draft construction excavation standard.']
+  },
+  {
+    id: 'osha-1926-451',
+    title: 'Scaffolds - General Requirements',
+    sourceType: 'regulation',
+    agency: 'OSHA',
+    jurisdiction: 'osha_construction',
+    industryScope: ['construction'],
+    authorityTier: 'primary_regulation',
+    citation: '29 CFR 1926.451',
+    approvalStatus: 'pending_review',
+    version: '1.0.0',
+    deprecated: false,
+    duplicateRiskSignals: [],
+    evidenceRequiredBeforeUse: ['scaffold height', 'guardrail presence'],
+    prohibitedUses: [],
+    advisoryGuardrails: {
+      advisoryOnly: false,
+      doesNotDeclareViolation: false,
+      requiresQualifiedReview: true
+    },
+    traceNotes: ['Draft scaffold requirement.']
+  },
+  {
+    id: 'osha-1910-22',
+    title: 'Walking-Working Surfaces',
+    sourceType: 'regulation',
+    agency: 'OSHA',
+    jurisdiction: 'osha_general_industry',
+    industryScope: ['general_industry'],
+    authorityTier: 'primary_regulation',
+    citation: '29 CFR 1910.22',
+    approvalStatus: 'pending_review',
+    version: '1.0.0',
+    deprecated: false,
+    duplicateRiskSignals: [],
+    evidenceRequiredBeforeUse: ['surface condition', 'slip resistance'],
+    prohibitedUses: [],
+    advisoryGuardrails: {
+      advisoryOnly: false,
+      doesNotDeclareViolation: false,
+      requiresQualifiedReview: true
+    },
+    traceNotes: ['Draft walking-working surface requirement.']
   }
 ];

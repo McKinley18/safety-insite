@@ -1,0 +1,122 @@
+[
+  {
+    "id": "FIELD-001",
+    "observationText": "cleaning conveyor spillage while belt running",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "conveyor-cleanup",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "evidenceGapsExpected": ["LOTO status"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-002",
+    "observationText": "tail pulley guard missing and damaged",
+    "equipment": "conveyor pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "unguarded-conveyor-pulley",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "evidenceGapsExpected": ["access control"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-003",
+    "observationText": "automatic door stuck open",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "powered-door-malfunction",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "evidenceGapsExpected": ["sensor status"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-004",
+    "observationText": "fire extinguisher blocked by pallets",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "fire-extinguisher-ambiguity",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "evidenceGapsExpected": ["clearance status"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-005",
+    "observationText": "servicing motor while energized",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "energized-servicing",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "evidenceGapsExpected": ["energy state"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-006",
+    "observationText": "forklift driving through pedestrian aisle",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "mobile-pedestrian",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "evidenceGapsExpected": ["separation measures"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-007",
+    "observationText": "worker on ladder near roof edge",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "elevated-fall",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "evidenceGapsExpected": ["fall height"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-008",
+    "observationText": "unidentified liquid container leaking",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "chemical-exposure-unclear",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "evidenceGapsExpected": ["chemical identity"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-009",
+    "observationText": "extension cord with exposed wires",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "electrical-damage",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "evidenceGapsExpected": ["equipment state"],
+    "qualifiedReviewerDisposition": "pending_review"
+  },
+  {
+    "id": "FIELD-010",
+    "observationText": "emergency exit blocked by trash",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "blocked-emergency-access",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "evidenceGapsExpected": ["clearance status"],
+    "qualifiedReviewerDisposition": "pending_review"
+  }
+]

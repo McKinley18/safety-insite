@@ -18,6 +18,13 @@ export const mapNarrativeToReportSections = (
   sections.push({ header: narrative.findingTitle, body: narrative.findingSummary });
   sections.push({ header: 'Scenario Reasoning', body: narrative.scenarioExplanation });
   
+  if (result.riskReasoning && mode !== 'concise') {
+    sections.push({ 
+        header: 'Risk Assessment', 
+        body: `Risk Level: ${result.riskReasoning.initialRiskLevel.toUpperCase()}. Worst Case: ${result.riskReasoning.credibleWorstCaseOutcome.replace(/_/g, ' ')}.` 
+    });
+  }
+
   if (mode !== 'concise') {
     sections.push({ header: 'Recommended Corrective Actions', body: [narrative.immediateActionNarrative, narrative.permanentCorrectionNarrative] });
   }

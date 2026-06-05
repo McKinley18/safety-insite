@@ -41,12 +41,12 @@ export const createDisplayAdapter = (
     risk: {
       title: 'Risk Reasoning',
       content: result.riskReasoning ? `Level: ${result.riskReasoning.initialRiskLevel} (Worst case: ${result.riskReasoning.credibleWorstCaseOutcome})` : 'No risk reasoning',
-      isVisible: true
+      isVisible: ['professional', 'audit', 'report'].includes(mode)
     },
     correctiveActions: {
       title: 'Corrective Actions',
       content: result.correctiveActionReasoning?.permanentCorrections || [],
-      isVisible: true
+      isVisible: ['professional', 'audit', 'report'].includes(mode)
     },
     auditTrace: {
       title: 'Audit Trace',
@@ -56,7 +56,7 @@ export const createDisplayAdapter = (
     guardrails: {
       title: 'Governance',
       content: result.advisoryGuardrails || {},
-      isVisible: true
+      isVisible: ['simple', 'professional', 'audit'].includes(mode)
     },
     narrative: result.narrative || null
   };
