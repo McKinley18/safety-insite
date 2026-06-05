@@ -10,8 +10,8 @@
         "field_not_available": 0
       },
       "scenarioFamily": {
-        "exact_match": 0,
-        "actual_value_different": 200,
+        "exact_match": 7,
+        "actual_value_different": 193,
         "field_not_available": 0
       },
       "mechanism": {
@@ -102,8 +102,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded-hazard-generic",
-          "status": "actual_value_different"
+          "actual": "conveyor-cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
@@ -162,8 +162,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded-hazard-generic",
-          "status": "actual_value_different"
+          "actual": "conveyor-cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
@@ -192,7 +192,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -372,7 +372,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -432,7 +432,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -612,7 +612,7 @@
         },
         "scenarioFamily": {
           "expected": "housekeeping_slip_trip",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -2742,7 +2742,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -2772,7 +2772,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -2802,8 +2802,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded-hazard-generic",
-          "status": "actual_value_different"
+          "actual": "conveyor-cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
@@ -2832,8 +2832,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded-hazard-generic",
-          "status": "actual_value_different"
+          "actual": "conveyor-cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "unexpected_startup",
@@ -2862,7 +2862,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -2892,8 +2892,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded-hazard-generic",
-          "status": "actual_value_different"
+          "actual": "conveyor-cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "pedestrian_strike",
@@ -2922,7 +2922,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -2952,7 +2952,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -2982,7 +2982,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3012,7 +3012,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3042,7 +3042,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3072,7 +3072,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3102,7 +3102,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3132,7 +3132,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3162,7 +3162,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3192,7 +3192,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3222,7 +3222,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -3252,7 +3252,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5442,7 +5442,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5472,7 +5472,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5502,7 +5502,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5532,7 +5532,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5562,7 +5562,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5592,7 +5592,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5622,7 +5622,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5652,7 +5652,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5682,7 +5682,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5712,7 +5712,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5742,7 +5742,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5772,7 +5772,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5802,7 +5802,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5832,8 +5832,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded-hazard-generic",
-          "status": "actual_value_different"
+          "actual": "conveyor-cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "shock",
@@ -5862,8 +5862,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded-hazard-generic",
-          "status": "actual_value_different"
+          "actual": "conveyor-cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "chemical_exposure",
@@ -5892,7 +5892,7 @@
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5922,7 +5922,7 @@
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
@@ -5952,7 +5952,7 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "unguarded-hazard-generic",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
