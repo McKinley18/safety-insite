@@ -19,7 +19,7 @@ export type SafeScopeDisplayAdapter = {
 
 export const createDisplayAdapter = (
   result: SafeScopeIntelligenceResult,
-  mode: NarrativeMode
+  mode: 'simple' | NarrativeMode
 ): SafeScopeDisplayAdapter => {
 
   return {
