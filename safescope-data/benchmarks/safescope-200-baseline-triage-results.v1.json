@@ -7,8 +7,8 @@
       "hazardFamily": {
         "exact_match": 0,
         "partial_match": 0,
-        "mismatch": 0,
-        "field_not_available": 200
+        "mismatch": 200,
+        "field_not_available": 0
       },
       "scenarioFamily": {
         "exact_match": 0,
@@ -50,7 +50,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-0",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-0",
@@ -63,7 +64,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -78,7 +78,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-1",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-1",
@@ -91,7 +92,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -106,7 +106,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-2",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-2",
@@ -119,7 +120,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -134,7 +134,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-3",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-3",
@@ -147,7 +148,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -162,7 +162,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-4",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-4",
@@ -175,7 +176,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -190,7 +190,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-5",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-5",
@@ -203,7 +204,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -218,7 +218,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-6",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-6",
@@ -231,7 +232,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -246,7 +246,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-7",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-7",
@@ -259,7 +260,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -274,7 +274,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-8",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-8",
@@ -287,7 +288,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -302,7 +302,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-9",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-9",
@@ -315,7 +316,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -330,7 +330,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-10",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-10",
@@ -343,7 +344,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -358,7 +358,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-11",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-11",
@@ -371,7 +372,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -386,7 +386,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-12",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-12",
@@ -399,7 +400,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -414,7 +414,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-13",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-13",
@@ -427,7 +428,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -442,7 +442,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-14",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-14",
@@ -455,7 +456,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -470,7 +470,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-15",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-15",
@@ -483,7 +484,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -498,7 +498,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-16",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-16",
@@ -511,7 +512,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -526,7 +526,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-17",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-17",
@@ -539,7 +540,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -554,7 +554,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-18",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-18",
@@ -567,7 +568,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -582,7 +582,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-19",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-19",
@@ -595,7 +596,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -610,7 +610,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-20",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-20",
@@ -623,7 +624,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -638,7 +638,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-21",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-21",
@@ -651,7 +652,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -666,7 +666,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-22",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-22",
@@ -679,7 +680,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -694,7 +694,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-23",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-23",
@@ -707,7 +708,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -722,7 +722,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-24",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-24",
@@ -735,7 +736,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -750,7 +750,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-25",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-25",
@@ -763,7 +764,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -778,7 +778,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-26",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-26",
@@ -791,7 +792,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -806,7 +806,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-27",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-27",
@@ -819,7 +820,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -834,7 +834,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-28",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-28",
@@ -847,7 +848,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -862,7 +862,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-29",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-29",
@@ -875,7 +876,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -890,7 +890,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-30",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-30",
@@ -903,7 +904,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -918,7 +918,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-31",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-31",
@@ -931,7 +932,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -946,7 +946,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-32",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-32",
@@ -959,7 +960,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -974,7 +974,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-33",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-33",
@@ -987,7 +988,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1002,7 +1002,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-34",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-34",
@@ -1015,7 +1016,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1030,7 +1030,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-35",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-35",
@@ -1043,7 +1044,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1058,7 +1058,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-36",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-36",
@@ -1071,7 +1072,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1086,7 +1086,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-37",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-37",
@@ -1099,7 +1100,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1114,7 +1114,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-38",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-38",
@@ -1127,7 +1128,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1142,7 +1142,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-39",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-39",
@@ -1155,7 +1156,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1170,7 +1170,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-40",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-40",
@@ -1183,7 +1184,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1198,7 +1198,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-41",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-41",
@@ -1211,7 +1212,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1226,7 +1226,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-42",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-42",
@@ -1239,7 +1240,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1254,7 +1254,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-43",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-43",
@@ -1267,7 +1268,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1282,7 +1282,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-44",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-44",
@@ -1295,7 +1296,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1310,7 +1310,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-45",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-45",
@@ -1323,7 +1324,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1338,7 +1338,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-46",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-46",
@@ -1351,7 +1352,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1366,7 +1366,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-47",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-47",
@@ -1379,7 +1380,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1394,7 +1394,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-48",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-48",
@@ -1407,7 +1408,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1422,7 +1422,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-49",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-49",
@@ -1435,7 +1436,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1450,7 +1450,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-50",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-50",
@@ -1463,7 +1464,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1478,7 +1478,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-51",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-51",
@@ -1491,7 +1492,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1506,7 +1506,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-52",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-52",
@@ -1519,7 +1520,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1534,7 +1534,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-53",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-53",
@@ -1547,7 +1548,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1562,7 +1562,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-54",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-54",
@@ -1575,7 +1576,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1590,7 +1590,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-55",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-55",
@@ -1603,7 +1604,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1618,7 +1618,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-56",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-56",
@@ -1631,7 +1632,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1646,7 +1646,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-57",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-57",
@@ -1659,7 +1660,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1674,7 +1674,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-58",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-58",
@@ -1687,7 +1688,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1702,7 +1702,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-59",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-59",
@@ -1715,7 +1716,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1730,7 +1730,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-60",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-60",
@@ -1743,7 +1744,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1758,7 +1758,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-61",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-61",
@@ -1771,7 +1772,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1786,7 +1786,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-62",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-62",
@@ -1799,7 +1800,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1814,7 +1814,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-63",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-63",
@@ -1827,7 +1828,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1842,7 +1842,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-64",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-64",
@@ -1855,7 +1856,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1870,7 +1870,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-65",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-65",
@@ -1883,7 +1884,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1898,7 +1898,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-66",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-66",
@@ -1911,7 +1912,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1926,7 +1926,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-67",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-67",
@@ -1939,7 +1940,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1954,7 +1954,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-68",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-68",
@@ -1967,7 +1968,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -1982,7 +1982,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-69",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-69",
@@ -1995,7 +1996,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2010,7 +2010,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-70",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-70",
@@ -2023,7 +2024,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2038,7 +2038,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-71",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-71",
@@ -2051,7 +2052,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2066,7 +2066,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-72",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-72",
@@ -2079,7 +2080,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2094,7 +2094,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-73",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-73",
@@ -2107,7 +2108,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2122,7 +2122,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-74",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-74",
@@ -2135,7 +2136,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2150,7 +2150,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-75",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-75",
@@ -2163,7 +2164,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2178,7 +2178,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-76",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-76",
@@ -2191,7 +2192,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2206,7 +2206,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-77",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-77",
@@ -2219,7 +2220,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2234,7 +2234,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-78",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-78",
@@ -2247,7 +2248,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2262,7 +2262,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-79",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-79",
@@ -2275,7 +2276,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2290,7 +2290,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-80",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-80",
@@ -2303,7 +2304,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2318,7 +2318,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-81",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-81",
@@ -2331,7 +2332,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2346,7 +2346,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-82",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-82",
@@ -2359,7 +2360,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2374,7 +2374,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-83",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-83",
@@ -2387,7 +2388,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2402,7 +2402,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-84",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-84",
@@ -2415,7 +2416,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2430,7 +2430,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-85",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-85",
@@ -2443,7 +2444,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2458,7 +2458,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-86",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-86",
@@ -2471,7 +2472,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2486,7 +2486,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-87",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-87",
@@ -2499,7 +2500,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2514,7 +2514,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-88",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-88",
@@ -2527,7 +2528,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2542,7 +2542,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-89",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-89",
@@ -2555,7 +2556,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2570,7 +2570,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-90",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-90",
@@ -2583,7 +2584,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2598,7 +2598,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-91",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-91",
@@ -2611,7 +2612,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2626,7 +2626,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-92",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-92",
@@ -2639,7 +2640,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2654,7 +2654,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-93",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-93",
@@ -2667,7 +2668,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2682,7 +2682,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-94",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-94",
@@ -2695,7 +2696,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2710,7 +2710,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-95",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-95",
@@ -2723,7 +2724,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2738,7 +2738,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-96",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-96",
@@ -2751,7 +2752,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2766,7 +2766,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-97",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-97",
@@ -2779,7 +2780,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2794,7 +2794,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-98",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-98",
@@ -2807,7 +2808,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2822,7 +2822,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-99",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-99",
@@ -2835,7 +2836,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2850,7 +2850,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-100",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-100",
@@ -2863,7 +2864,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2878,7 +2878,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-101",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-101",
@@ -2891,7 +2892,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2906,7 +2906,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-102",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-102",
@@ -2919,7 +2920,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2934,7 +2934,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-103",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-103",
@@ -2947,7 +2948,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2962,7 +2962,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-104",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-104",
@@ -2975,7 +2976,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -2990,7 +2990,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-105",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-105",
@@ -3003,7 +3004,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3018,7 +3018,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-106",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-106",
@@ -3031,7 +3032,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3046,7 +3046,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-107",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-107",
@@ -3059,7 +3060,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3074,7 +3074,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-108",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-108",
@@ -3087,7 +3088,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3102,7 +3102,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-109",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-109",
@@ -3115,7 +3116,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3130,7 +3130,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-110",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-110",
@@ -3143,7 +3144,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3158,7 +3158,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-111",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-111",
@@ -3171,7 +3172,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3186,7 +3186,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-112",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-112",
@@ -3199,7 +3200,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3214,7 +3214,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-113",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-113",
@@ -3227,7 +3228,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3242,7 +3242,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-114",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-114",
@@ -3255,7 +3256,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3270,7 +3270,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-115",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-115",
@@ -3283,7 +3284,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3298,7 +3298,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-116",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-116",
@@ -3311,7 +3312,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3326,7 +3326,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-117",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-117",
@@ -3339,7 +3340,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3354,7 +3354,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-118",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-118",
@@ -3367,7 +3368,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3382,7 +3382,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-119",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-119",
@@ -3395,7 +3396,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3410,7 +3410,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-120",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-120",
@@ -3423,7 +3424,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3438,7 +3438,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-121",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-121",
@@ -3451,7 +3452,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3466,7 +3466,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-122",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-122",
@@ -3479,7 +3480,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3494,7 +3494,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-123",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-123",
@@ -3507,7 +3508,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3522,7 +3522,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-124",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-124",
@@ -3535,7 +3536,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3550,7 +3550,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-125",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-125",
@@ -3563,7 +3564,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3578,7 +3578,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-126",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-126",
@@ -3591,7 +3592,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3606,7 +3606,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-127",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-127",
@@ -3619,7 +3620,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3634,7 +3634,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-128",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-128",
@@ -3647,7 +3648,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3662,7 +3662,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-129",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-129",
@@ -3675,7 +3676,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3690,7 +3690,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-130",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-130",
@@ -3703,7 +3704,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3718,7 +3718,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-131",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-131",
@@ -3731,7 +3732,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3746,7 +3746,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-132",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-132",
@@ -3759,7 +3760,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3774,7 +3774,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-133",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-133",
@@ -3787,7 +3788,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3802,7 +3802,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-134",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-134",
@@ -3815,7 +3816,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3830,7 +3830,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-135",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-135",
@@ -3843,7 +3844,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3858,7 +3858,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-136",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-136",
@@ -3871,7 +3872,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3886,7 +3886,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-137",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-137",
@@ -3899,7 +3900,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3914,7 +3914,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-138",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-138",
@@ -3927,7 +3928,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3942,7 +3942,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-139",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-139",
@@ -3955,7 +3956,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3970,7 +3970,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-140",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-140",
@@ -3983,7 +3984,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -3998,7 +3998,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-141",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-141",
@@ -4011,7 +4012,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4026,7 +4026,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-142",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-142",
@@ -4039,7 +4040,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4054,7 +4054,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-143",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-143",
@@ -4067,7 +4068,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4082,7 +4082,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-144",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-144",
@@ -4095,7 +4096,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4110,7 +4110,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-145",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-145",
@@ -4123,7 +4124,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4138,7 +4138,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-146",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-146",
@@ -4151,7 +4152,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4166,7 +4166,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-147",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-147",
@@ -4179,7 +4180,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4194,7 +4194,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-148",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-148",
@@ -4207,7 +4208,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4222,7 +4222,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-149",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-149",
@@ -4235,7 +4236,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4250,7 +4250,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-150",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-150",
@@ -4263,7 +4264,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4278,7 +4278,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-151",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-151",
@@ -4291,7 +4292,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4306,7 +4306,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-152",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-152",
@@ -4319,7 +4320,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4334,7 +4334,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-153",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-153",
@@ -4347,7 +4348,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4362,7 +4362,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-154",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-154",
@@ -4375,7 +4376,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4390,7 +4390,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-155",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-155",
@@ -4403,7 +4404,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4418,7 +4418,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-156",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-156",
@@ -4431,7 +4432,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4446,7 +4446,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-157",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-157",
@@ -4459,7 +4460,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4474,7 +4474,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-158",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-158",
@@ -4487,7 +4488,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4502,7 +4502,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-159",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-159",
@@ -4515,7 +4516,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4530,7 +4530,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-160",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-160",
@@ -4543,7 +4544,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4558,7 +4558,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-161",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-161",
@@ -4571,7 +4572,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4586,7 +4586,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-162",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-162",
@@ -4599,7 +4600,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4614,7 +4614,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-163",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-163",
@@ -4627,7 +4628,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4642,7 +4642,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-164",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-164",
@@ -4655,7 +4656,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4670,7 +4670,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-165",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-165",
@@ -4683,7 +4684,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4698,7 +4698,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-166",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-166",
@@ -4711,7 +4712,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4726,7 +4726,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-167",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-167",
@@ -4739,7 +4740,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4754,7 +4754,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-168",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-168",
@@ -4767,7 +4768,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4782,7 +4782,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-169",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-169",
@@ -4795,7 +4796,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4810,7 +4810,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-170",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-170",
@@ -4823,7 +4824,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4838,7 +4838,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-171",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-171",
@@ -4851,7 +4852,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4866,7 +4866,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-172",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-172",
@@ -4879,7 +4880,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4894,7 +4894,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-173",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-173",
@@ -4907,7 +4908,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4922,7 +4922,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-174",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-174",
@@ -4935,7 +4936,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4950,7 +4950,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-175",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-175",
@@ -4963,7 +4964,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -4978,7 +4978,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-176",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-176",
@@ -4991,7 +4992,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5006,7 +5006,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-177",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-177",
@@ -5019,7 +5020,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5034,7 +5034,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-178",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-178",
@@ -5047,7 +5048,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5062,7 +5062,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-179",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-179",
@@ -5075,7 +5076,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5090,7 +5090,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-180",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-180",
@@ -5103,7 +5104,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5118,7 +5118,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-181",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-181",
@@ -5131,7 +5132,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5146,7 +5146,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-182",
-          "status": "field_not_available"
+          "actual": "machine_guarding",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-182",
@@ -5159,7 +5160,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5174,7 +5174,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-183",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-183",
@@ -5187,7 +5188,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5202,7 +5202,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-184",
-          "status": "field_not_available"
+          "actual": "machine_guarding_loto",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-184",
@@ -5215,7 +5216,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5230,7 +5230,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-185",
-          "status": "field_not_available"
+          "actual": "mobile_equipment",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-185",
@@ -5243,7 +5244,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5258,7 +5258,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-186",
-          "status": "field_not_available"
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-186",
@@ -5271,7 +5272,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5286,7 +5286,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-187",
-          "status": "field_not_available"
+          "actual": "hazcom",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-187",
@@ -5299,7 +5300,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5314,7 +5314,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-188",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-188",
@@ -5327,7 +5328,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5342,7 +5342,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-189",
-          "status": "field_not_available"
+          "actual": "emergency_preparedness",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-189",
@@ -5355,7 +5356,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5370,7 +5370,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-190",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-190",
@@ -5383,7 +5384,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5398,7 +5398,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-191",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-191",
@@ -5411,7 +5412,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5426,7 +5426,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-192",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-192",
@@ -5439,7 +5440,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5454,7 +5454,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-193",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-193",
@@ -5467,7 +5468,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5482,7 +5482,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-194",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-194",
@@ -5495,7 +5496,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "msha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5510,7 +5510,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-195",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-195",
@@ -5523,7 +5524,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5538,7 +5538,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-196",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-196",
@@ -5551,7 +5552,6 @@
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5566,7 +5566,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-197",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-197",
@@ -5579,7 +5580,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5594,7 +5594,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-198",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-198",
@@ -5607,7 +5608,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
@@ -5622,7 +5622,8 @@
       "scoring": {
         "hazardFamily": {
           "expected": "family-199",
-          "status": "field_not_available"
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
           "expected": "scenario-199",
@@ -5635,7 +5636,6 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "expected": "osha",
           "status": "field_not_available"
         },
         "riskBand": {
