@@ -1,34 +1,34 @@
 {
   "version": "v1",
   "batch": "001",
-  "generatedAt": "2026-06-05T22:47:55.495Z",
+  "generatedAt": "2026-06-05T22:59:51.772Z",
   "summary": {
     "total": 10,
     "metrics": {
       "hazardFamily": {
-        "exact_match": 4,
-        "actual_value_different": 2,
-        "field_not_available": 4
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
       },
       "scenarioFamily": {
-        "exact_match": 3,
-        "actual_value_different": 3,
-        "field_not_available": 4
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
       },
       "mechanism": {
-        "exact_match": 2,
-        "actual_value_different": 4,
-        "field_not_available": 4
+        "exact_match": 7,
+        "actual_value_different": 3,
+        "field_not_available": 0
       },
       "riskBand": {
-        "exact_match": 2,
-        "actual_value_different": 8,
+        "exact_match": 3,
+        "actual_value_different": 7,
         "field_not_available": 0
       },
       "standardFamily": {
-        "exact_match": 4,
-        "actual_value_different": 2,
-        "field_not_available": 4
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
       }
     }
   },
@@ -98,9 +98,9 @@
       },
       "actual": {
         "hazardFamily": "machine_guarding",
-        "scenarioFamily": "conveyor_cleanup",
-        "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
+        "scenarioFamily": "unguarded_conveyor_pulley",
+        "mechanism": "crush_point",
+        "riskBand": "moderate",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -111,17 +111,17 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor_cleanup",
-          "status": "actual_value_different"
+          "actual": "unguarded_conveyor_pulley",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
-          "actual": "rotating_equipment_nip_point",
-          "status": "exact_match"
+          "actual": "crush_point",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
+          "actual": "moderate",
           "status": "actual_value_different"
         },
         "standardFamily": {
@@ -132,11 +132,10 @@
       },
       "confidence": 0.5,
       "scenarioReasoning": [
-        "Matched against scenario family: Conveyor cleanup near moving parts"
+        "Matched against scenario family: Unguarded conveyor pulley"
       ],
       "evidenceGaps": [
-        "LOTO status",
-        "guard presence"
+        "access control"
       ]
     },
     {
@@ -254,45 +253,47 @@
         "standardFamily": "electrical"
       },
       "actual": {
-        "hazardFamily": "machine_guarding",
-        "scenarioFamily": "rotating_shaft_guarding",
-        "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
-        "standardFamily": "machine_guarding"
+        "hazardFamily": "electrical",
+        "scenarioFamily": "electrical_panel_access",
+        "mechanism": "electrical_shock_arc_flash_access_clearance",
+        "riskBand": "moderate",
+        "standardFamily": "electrical"
       },
       "scoring": {
         "hazardFamily": {
           "expected": "electrical",
-          "actual": "machine_guarding",
-          "status": "actual_value_different"
+          "actual": "electrical",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "electrical_panel_access",
-          "actual": "rotating_shaft_guarding",
-          "status": "actual_value_different"
+          "actual": "electrical_panel_access",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "electrical_shock_arc_flash_access_clearance",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "actual": "electrical_shock_arc_flash_access_clearance",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "moderate",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "electrical",
-          "actual": "machine_guarding",
-          "status": "actual_value_different"
+          "actual": "electrical",
+          "status": "exact_match"
         }
       },
       "confidence": 0.5,
       "scenarioReasoning": [
-        "Matched against scenario family: Exposed rotating shaft"
+        "Matched against scenario family: Blocked electrical panel access or working clearance"
       ],
       "evidenceGaps": [
-        "access control"
+        "energized status",
+        "clearance distance",
+        "access path condition"
       ]
     },
     {
@@ -306,27 +307,27 @@
         "standardFamily": "electrical"
       },
       "actual": {
-        "hazardFamily": "unknown",
-        "scenarioFamily": "unknown",
-        "mechanism": "unknown",
+        "hazardFamily": "electrical",
+        "scenarioFamily": "damaged_cord_wet_location",
+        "mechanism": "electrical_shock",
         "riskBand": "moderate",
-        "standardFamily": "unknown"
+        "standardFamily": "electrical"
       },
       "scoring": {
         "hazardFamily": {
           "expected": "electrical",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "damaged_cord_wet_location",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "damaged_cord_wet_location",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "electrical_shock",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "electrical_shock",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
@@ -335,17 +336,18 @@
         },
         "standardFamily": {
           "expected": "electrical",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "electrical",
+          "status": "exact_match"
         }
       },
       "confidence": 0.46,
       "scenarioReasoning": [
-        "Inferred from fused operational reasoning and observation."
+        "Matched against scenario family: Damaged electrical cord in wet location"
       ],
       "evidenceGaps": [
-        "No photo evidence is attached.",
-        "No supplemental evidence notes are available."
+        "energized status",
+        "extent of insulation damage",
+        "wet location confirmation"
       ]
     },
     {
@@ -359,27 +361,27 @@
         "standardFamily": "walking_working_surfaces"
       },
       "actual": {
-        "hazardFamily": "unknown",
-        "scenarioFamily": "unknown",
-        "mechanism": "unknown",
+        "hazardFamily": "slip_trip_fall",
+        "scenarioFamily": "housekeeping_slip_trip",
+        "mechanism": "slip_trip_fall_same_level",
         "riskBand": "moderate",
-        "standardFamily": "unknown"
+        "standardFamily": "walking_working_surfaces"
       },
       "scoring": {
         "hazardFamily": {
           "expected": "slip_trip_fall",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "slip_trip_fall",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "housekeeping_slip_trip",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "housekeeping_slip_trip",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "slip_trip_fall_same_level",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "slip_trip_fall_same_level",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -388,18 +390,18 @@
         },
         "standardFamily": {
           "expected": "walking_working_surfaces",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "walking_working_surfaces",
+          "status": "exact_match"
         }
       },
       "confidence": 0.46,
       "scenarioReasoning": [
-        "Inferred from fused operational reasoning and observation."
+        "Matched against scenario family: Housekeeping slip, trip, or same-level fall exposure"
       ],
       "evidenceGaps": [
-        "No photo evidence is attached.",
-        "No supplemental evidence notes are available.",
-        "Location or equipment context is limited."
+        "walking surface condition",
+        "employee travel frequency",
+        "cleanup status"
       ]
     },
     {
@@ -413,27 +415,27 @@
         "standardFamily": "fire_protection"
       },
       "actual": {
-        "hazardFamily": "unknown",
-        "scenarioFamily": "unknown",
-        "mechanism": "unknown",
+        "hazardFamily": "fire_protection",
+        "scenarioFamily": "fire_extinguisher_access_inspection",
+        "mechanism": "delayed_emergency_response",
         "riskBand": "moderate",
-        "standardFamily": "unknown"
+        "standardFamily": "fire_protection"
       },
       "scoring": {
         "hazardFamily": {
           "expected": "fire_protection",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "fire_extinguisher_access_inspection",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "fire_extinguisher_access_inspection",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "delayed_emergency_response",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "delayed_emergency_response",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
@@ -442,18 +444,18 @@
         },
         "standardFamily": {
           "expected": "fire_protection",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "fire_protection",
+          "status": "exact_match"
         }
       },
       "confidence": 0.43,
       "scenarioReasoning": [
-        "Inferred from fused operational reasoning and observation."
+        "Matched against scenario family: Blocked or overdue fire extinguisher access and inspection"
       ],
       "evidenceGaps": [
-        "No photo evidence is attached.",
-        "No supplemental evidence notes are available.",
-        "Location or equipment context is limited."
+        "inspection date",
+        "access clearance",
+        "extinguisher location"
       ]
     },
     {
@@ -467,45 +469,47 @@
         "standardFamily": "powered_industrial_trucks"
       },
       "actual": {
-        "hazardFamily": "machine_guarding",
-        "scenarioFamily": "rotating_shaft_guarding",
-        "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
-        "standardFamily": "machine_guarding"
+        "hazardFamily": "mobile_equipment",
+        "scenarioFamily": "mobile_equipment_pedestrian_interaction",
+        "mechanism": "struck_by_mobile_equipment",
+        "riskBand": "moderate",
+        "standardFamily": "powered_industrial_trucks"
       },
       "scoring": {
         "hazardFamily": {
           "expected": "mobile_equipment",
-          "actual": "machine_guarding",
-          "status": "actual_value_different"
+          "actual": "mobile_equipment",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "mobile_equipment_pedestrian_interaction",
-          "actual": "rotating_shaft_guarding",
-          "status": "actual_value_different"
+          "actual": "mobile_equipment_pedestrian_interaction",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "struck_by_mobile_equipment",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "actual": "struck_by_mobile_equipment",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
+          "actual": "moderate",
           "status": "actual_value_different"
         },
         "standardFamily": {
           "expected": "powered_industrial_trucks",
-          "actual": "machine_guarding",
-          "status": "actual_value_different"
+          "actual": "powered_industrial_trucks",
+          "status": "exact_match"
         }
       },
       "confidence": 0.46,
       "scenarioReasoning": [
-        "Matched against scenario family: Exposed rotating shaft"
+        "Matched against scenario family: Mobile equipment and pedestrian interaction"
       ],
       "evidenceGaps": [
-        "access control"
+        "traffic control layout",
+        "pedestrian frequency",
+        "equipment operating path"
       ]
     },
     {
@@ -519,27 +523,27 @@
         "standardFamily": "excavation_trenching"
       },
       "actual": {
-        "hazardFamily": "unknown",
-        "scenarioFamily": "unknown",
-        "mechanism": "unknown",
+        "hazardFamily": "excavation_trenching",
+        "scenarioFamily": "excavation_protective_system_ambiguity",
+        "mechanism": "caught_in_cave_in",
         "riskBand": "moderate",
-        "standardFamily": "unknown"
+        "standardFamily": "excavation_trenching"
       },
       "scoring": {
         "hazardFamily": {
           "expected": "excavation_trenching",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "excavation_trenching",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "excavation_protective_system_ambiguity",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "excavation_protective_system_ambiguity",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "caught_in_cave_in",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "caught_in_cave_in",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "critical",
@@ -548,18 +552,18 @@
         },
         "standardFamily": {
           "expected": "excavation_trenching",
-          "actual": "unknown",
-          "status": "field_not_available"
+          "actual": "excavation_trenching",
+          "status": "exact_match"
         }
       },
       "confidence": 0.47,
       "scenarioReasoning": [
-        "Inferred from fused operational reasoning and observation."
+        "Matched against scenario family: Excavation protective system unclear or missing"
       ],
       "evidenceGaps": [
-        "No photo evidence is attached.",
-        "No supplemental evidence notes are available.",
-        "Location or equipment context is limited."
+        "depth confirmation",
+        "protective system status",
+        "soil/spoil condition"
       ]
     }
   ]

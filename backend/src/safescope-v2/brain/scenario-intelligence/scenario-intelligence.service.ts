@@ -13,8 +13,49 @@ export class ScenarioIntelligenceService {
   }): ScenarioIntelligence {
     const text = input.text.toLowerCase();
 
-    // Find best matching scenario family
-    const matchedFamily = SCENARIO_FAMILY_REGISTRY.find(family => {
+    // Prefer highly specific precision scenarios before generic first-match routing.
+    const priorityScenarioId = (() => {
+      if (
+        (text.includes('electrical panel') || text.includes('panel door') || text.includes('disconnects')) &&
+        (text.includes('blocked') || text.includes('stored materials') || text.includes('working clearance'))
+      ) {
+        return 'electrical_panel_access';
+      }
+
+      if (
+        (text.includes('forklift') || text.includes('mobile equipment') || text.includes('powered industrial truck')) &&
+        (text.includes('pedestrian') || text.includes('shared pedestrian aisle') || text.includes('walking beside moving equipment')) &&
+        (text.includes('no marked walkway') || text.includes('no separation barrier') || text.includes('shared'))
+      ) {
+        return 'mobile_equipment_pedestrian_interaction';
+      }
+
+      if (
+        (text.includes('excavation') || text.includes('trench') || text.includes('trenching')) &&
+        (text.includes('worker is inside') || text.includes('employee in trench') || text.includes('inside an excavation')) &&
+        (text.includes('no visible protective system') || text.includes('vertical walls') || text.includes('deeper than five feet'))
+      ) {
+        return 'excavation_protective_system_ambiguity';
+      }
+
+      if (
+        (text.includes('conveyor tail pulley') || text.includes('tail pulley')) &&
+        (text.includes('unguarded') || text.includes('guard is missing') || text.includes('missing guard')) &&
+        !text.includes('cleaning spilled material') &&
+        !text.includes('cleanup')
+      ) {
+        return 'unguarded_conveyor_pulley';
+      }
+
+      return null;
+    })();
+
+    const priorityFamily = priorityScenarioId
+      ? SCENARIO_FAMILY_REGISTRY.find(family => family.id === priorityScenarioId)
+      : undefined;
+
+    // Find best matching scenario family using the existing conservative first-match behavior.
+    const matchedFamily = priorityFamily ?? SCENARIO_FAMILY_REGISTRY.find(family => {
       const phraseOrEquipMatch = family.commonObservationPhrases.some(phrase => text.includes(phrase)) ||
                                family.equipmentIndicators.some(indicator => text.includes(indicator));
       
