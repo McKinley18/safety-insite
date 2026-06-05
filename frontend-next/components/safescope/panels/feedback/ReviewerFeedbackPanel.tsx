@@ -34,8 +34,8 @@ export const ReviewerFeedbackPanel: React.FC<FeedbackProps> = ({ onCancel, onSub
         </select>
       </div>
 
+      <label className="text-xs font-black text-slate-800 uppercase mb-2 block">Notes (Optional)</label>
       <AppInput 
-        label="Notes (Optional)" 
         value={notes} 
         onChange={(e) => setNotes(e.target.value)} 
         placeholder="Add reviewer notes..."
