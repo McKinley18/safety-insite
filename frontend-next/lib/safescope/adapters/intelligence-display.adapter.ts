@@ -1,5 +1,8 @@
-import { SafeScopeIntelligenceResult } from '../types';
-import { SafeScopeNarrative } from '../types';
+import { SafeScopeIntelligenceResultTypes, NarrativeTypes } from '../types';
+
+export type SafeScopeIntelligenceResult = SafeScopeIntelligenceResultTypes.SafeScopeIntelligenceResult;
+export type SafeScopeNarrative = NarrativeTypes.SafeScopeNarrative;
+export type NarrativeMode = NarrativeTypes.NarrativeMode;
 
 export type DisplaySection = {
   title: string;
