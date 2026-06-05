@@ -9,10 +9,12 @@ const orchestrator = new SafeScopeIntelligenceOrchestrator();
 console.log(`Running Calibration Triage for ${dataset.length} cases...`);
 
 const results = {
-    total: dataset.length,
-    run: 0,
-    errors: 0,
-    metrics: {} as any,
+    summary: {
+        totalCases: dataset.length,
+        runCases: 0,
+        runErrors: 0,
+        metrics: {} as any
+    },
     details: [] as any[]
 };
 
@@ -52,7 +54,8 @@ async function run() {
             };
 
             const output = await orchestrator.evaluate(input) as any;
-            results.run++;
+            if (results.summary.runCases === 1) console.log("Sample Output:", JSON.stringify(output, null, 2));
+            results.summary.runCases++;
 
             const scoring = {
                 hazardFamily: { expected: record.expectedHazardFamily, actual: output.calibrationMeta?.hazardFamily, status: getMatchStatus(output.calibrationMeta?.hazardFamily, record.expectedHazardFamily) },
@@ -64,28 +67,26 @@ async function run() {
 
             results.details.push({ id: record.id, scoring });
         } catch (e) {
-            results.errors++;
+            results.summary.runErrors++;
         }
     }
 
     // Summary calculation
     const categories = ['hazardFamily', 'scenarioFamily', 'mechanism', 'jurisdiction', 'riskBand'];
-    results.metrics = {};
+    results.summary.metrics = {};
     for (const cat of categories) {
-        results.metrics[cat] = { exact_match: 0, actual_value_different: 0, field_not_available: 0 };
+        results.summary.metrics[cat] = { exact_match: 0, actual_value_different: 0, field_not_available: 0 };
     }
 
     for (const detail of results.details) {
         for (const cat of categories) {
             const status = detail.scoring[cat].status;
-            results.metrics[cat][status] = (results.metrics[cat][status] || 0) + 1;
+            results.summary.metrics[cat][status] = (results.summary.metrics[cat][status] || 0) + 1;
         }
     }
 
     fs.writeFileSync(path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-200-baseline-triage-results.v1.json'), JSON.stringify(results, null, 2));
-    console.log("Calibration Triage Results generated.");
+    console.log("Calibration Triage Results with Summary generated.");
 }
 
 run();
-EOF
-,file_path:

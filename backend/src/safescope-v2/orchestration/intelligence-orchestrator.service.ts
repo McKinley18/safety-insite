@@ -315,9 +315,14 @@ export class SafeScopeIntelligenceOrchestrator {
         evidenceQuality.gaps || []
     );
 
-    const jurisdiction = (observationContext.detectedJurisdictionSignals && observationContext.detectedJurisdictionSignals.length > 0) 
-        ? observationContext.detectedJurisdictionSignals[0] 
+    const detectedJurisdiction = (observationContext.detectedJurisdictionSignals && observationContext.detectedJurisdictionSignals.length > 0) 
+        ? observationContext.detectedJurisdictionSignals[0].toLowerCase()
         : 'unclear';
+        
+    let jurisdiction = 'unclear';
+    if (detectedJurisdiction.includes('msha')) jurisdiction = 'msha';
+    else if (detectedJurisdiction.includes('osha_construction')) jurisdiction = 'osha_construction';
+    else if (detectedJurisdiction.includes('osha')) jurisdiction = 'osha_general_industry';
 
     const calibrationMeta: CalibrationMeta = {
         hazardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
@@ -512,6 +517,7 @@ export class SafeScopeIntelligenceOrchestrator {
       siteMemory,
       confidenceCalibration,
       reasoningDrift,
+      calibrationMeta,
     };
   }
 }
