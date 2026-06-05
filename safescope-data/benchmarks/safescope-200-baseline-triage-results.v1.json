@@ -1,0 +1,5607 @@
+{
+  "total": 200,
+  "run": 200,
+  "errors": 0,
+  "details": [
+    {
+      "id": "FIELD-001",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-0",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-0",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-002",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-1",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-1",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-003",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-2",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-2",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-004",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-3",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-3",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-005",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-4",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-4",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-006",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-5",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-5",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-007",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-6",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-6",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-008",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-7",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-7",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-009",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-8",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-8",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-010",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-9",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-9",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-011",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-10",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-10",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-012",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-11",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-11",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-013",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-12",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-12",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-014",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-13",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-13",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-015",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-14",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-14",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-016",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-15",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-15",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-017",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-16",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-16",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-018",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-17",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-17",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-019",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-18",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-18",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-020",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-19",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-19",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-021",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-20",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-20",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-022",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-21",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-21",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-023",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-22",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-22",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "struck_by_suspended_load",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-024",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-23",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-23",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "laceration",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-025",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-24",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-24",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rib_fall",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-026",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-25",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-25",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-027",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-26",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-26",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-028",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-27",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-27",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-029",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-28",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-28",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-030",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-29",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-29",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-031",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-30",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-30",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-032",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-31",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-31",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-033",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-32",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-32",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-034",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-33",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-33",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-035",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-34",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-34",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-036",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-35",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-35",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-037",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-36",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-36",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-038",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-37",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-37",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-039",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-38",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-38",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-040",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-39",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-39",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-041",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-40",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-40",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-042",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-41",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-41",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-043",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-42",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-42",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-044",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-43",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-43",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-045",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-44",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-44",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-046",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-45",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-45",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-047",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-46",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-46",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-048",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-47",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-47",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "struck_by_suspended_load",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-049",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-48",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-48",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "laceration",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-050",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-49",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-49",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rib_fall",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-051",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-50",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-50",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-052",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-51",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-51",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-053",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-52",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-52",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-054",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-53",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-53",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-055",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-54",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-54",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-056",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-55",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-55",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-057",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-56",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-56",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-058",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-57",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-57",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-059",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-58",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-58",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-060",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-59",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-59",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-061",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-60",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-60",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-062",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-61",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-61",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-063",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-62",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-62",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-064",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-63",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-63",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-065",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-64",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-64",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-066",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-65",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-65",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-067",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-66",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-66",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-068",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-67",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-67",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-069",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-68",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-68",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-070",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-69",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-69",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-071",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-70",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-70",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-072",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-71",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-71",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-073",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-72",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-72",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "struck_by_suspended_load",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-074",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-73",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-73",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "laceration",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-075",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-74",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-74",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rib_fall",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-076",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-75",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-75",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-077",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-76",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-76",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-078",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-77",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-77",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-079",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-78",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-78",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-080",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-79",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-79",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-081",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-80",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-80",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-082",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-81",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-81",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-083",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-82",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-82",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-084",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-83",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-83",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-085",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-84",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-84",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-086",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-85",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-85",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-087",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-86",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-86",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-088",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-87",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-87",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-089",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-88",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-88",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-090",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-89",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-89",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-091",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-90",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-90",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-092",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-91",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-91",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-093",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-92",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-92",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-094",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-93",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-93",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-095",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-94",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-94",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-096",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-95",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-95",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-097",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-96",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-96",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-098",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-97",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-97",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "struck_by_suspended_load",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-099",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-98",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-98",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "laceration",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-100",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-99",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-99",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rib_fall",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-101",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-100",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-100",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-102",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-101",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-101",
+          "actual": "unguarded-conveyor-pulley",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-103",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-102",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-102",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-104",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-103",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-103",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-105",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-104",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-104",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-106",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-105",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-105",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-107",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-106",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-106",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-108",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-107",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-107",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-109",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-108",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-108",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-110",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-109",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-109",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-111",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-110",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-110",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-112",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-111",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-111",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-113",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-112",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-112",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-114",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-113",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-113",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-115",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-114",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-114",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-116",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-115",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-115",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-117",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-116",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-116",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-118",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-117",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-117",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-119",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-118",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-118",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-120",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-119",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-119",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-121",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-120",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-120",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-122",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-121",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-121",
+          "actual": "unguarded-conveyor-pulley",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-123",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-122",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-122",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-124",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-123",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-123",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-125",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-124",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-124",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-126",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-125",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-125",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-127",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-126",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-126",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-128",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-127",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-127",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-129",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-128",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-128",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-130",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-129",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-129",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-131",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-130",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-130",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-132",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-131",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-131",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-133",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-132",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-132",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-134",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-133",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-133",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-135",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-134",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-134",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-136",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-135",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-135",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-137",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-136",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-136",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-138",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-137",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-137",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-139",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-138",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-138",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-140",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-139",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-139",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-141",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-140",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-140",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-142",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-141",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-141",
+          "actual": "unguarded-conveyor-pulley",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-143",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-142",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-142",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-144",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-143",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-143",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-145",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-144",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-144",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-146",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-145",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-145",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-147",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-146",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-146",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-148",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-147",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-147",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-149",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-148",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-148",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-150",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-149",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-149",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-151",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-150",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-150",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-152",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-151",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-151",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-153",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-152",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-152",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-154",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-153",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-153",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-155",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-154",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-154",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-156",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-155",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-155",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-157",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-156",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-156",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-158",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-157",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-157",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-159",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-158",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-158",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-160",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-159",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-159",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-161",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-160",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-160",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-162",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-161",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-161",
+          "actual": "unguarded-conveyor-pulley",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-163",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-162",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-162",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-164",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-163",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-163",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-165",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-164",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-164",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-166",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-165",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-165",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-167",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-166",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-166",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-168",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-167",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-167",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-169",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-168",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-168",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-170",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-169",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-169",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-171",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-170",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-170",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-172",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-171",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-171",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-173",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-172",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-172",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-174",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-173",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-173",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-175",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-174",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-174",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-176",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-175",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-175",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-177",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-176",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-176",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-178",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-177",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-177",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-179",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-178",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-178",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-180",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-179",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-179",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-181",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-180",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-180",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-182",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-181",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-181",
+          "actual": "unguarded-conveyor-pulley",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "critical",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-183",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-182",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-182",
+          "actual": "powered-door-malfunction",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "crush_point",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-184",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-183",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-183",
+          "actual": "fire-extinguisher-ambiguity",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-185",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-184",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-184",
+          "actual": "energized-servicing",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-186",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-185",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-185",
+          "actual": "mobile-pedestrian",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-187",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-186",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-186",
+          "actual": "elevated-fall",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-188",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-187",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-187",
+          "actual": "chemical-exposure-unclear",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "chemical_exposure",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-189",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-188",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-188",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-190",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-189",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-189",
+          "actual": "blocked-emergency-access",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "egress_blockage",
+          "actual": "egress_blockage",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-191",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-190",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-190",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "excavation_collapse",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-192",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-191",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-191",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-193",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-192",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-192",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "slip",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-194",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-193",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-193",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "run_off_embankment",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-195",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-194",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-194",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "air_quality_contaminant_buildup",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "msha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-196",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-195",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-195",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "fire_explosion",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-197",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-196",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-196",
+          "actual": "electrical-damage",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-198",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-197",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-197",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "compressed_gas_cylinder_release",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-199",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-198",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-198",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "silica_inhalation",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "serious",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    },
+    {
+      "id": "FIELD-200",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "family-199",
+          "status": "field_not_available"
+        },
+        "scenarioFamily": {
+          "expected": "scenario-199",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure",
+          "actual": "unknown",
+          "status": "actual_value_different"
+        },
+        "jurisdiction": {
+          "expected": "osha",
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "moderate",
+          "status": "actual_value_different"
+        }
+      }
+    }
+  ]
+}
