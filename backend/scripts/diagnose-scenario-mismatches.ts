@@ -3,6 +3,7 @@ import * as path from 'path';
 
 const datasetPath = path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-field-validation-dataset.v1.json');
 const triageResultsPath = path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-200-baseline-triage-results.v1.json');
+const calibrationResultsPath = path.resolve(__dirname, '../../safescope-data/benchmarks/safescope-200-baseline-calibration-results.v1.json');
 
 type JsonRecord = Record<string, any>;
 
@@ -19,44 +20,15 @@ function normalizeScenarioId(value: unknown): string {
 }
 
 function getCaseId(record: JsonRecord): string {
-  return String(record.id ?? record.caseId ?? record.fieldId ?? 'unknown');
+  return String(record.id ?? record.caseId ?? record.fieldId ?? record.input?.id ?? record.case?.id ?? 'unknown');
 }
 
-function getExpectedScenario(record: JsonRecord): string {
-  return normalizeScenarioId(
-    record.expectedScenarioFamily ??
-    record.expected?.scenarioFamily ??
-    record.expected?.scenarioFamilyId ??
-    record.scenarioFamily
-  );
-}
-
-function getActualScenario(record: JsonRecord): string {
-  return normalizeScenarioId(
-    record.actualScenarioFamily ??
-    record.actual?.scenarioFamily ??
-    record.actual?.scenarioFamilyId ??
-    record.calibrationMeta?.scenarioFamily ??
-    record.output?.calibrationMeta?.scenarioFamily ??
-    record.result?.calibrationMeta?.scenarioFamily ??
-    record.scenarioIntelligence?.scenarioFamilyId ??
-    record.output?.scenarioIntelligence?.scenarioFamilyId ??
-    record.result?.scenarioIntelligence?.scenarioFamilyId
-  );
-}
-
-function getDetailList(results: any): JsonRecord[] {
+function getRecordList(results: any): JsonRecord[] {
   if (Array.isArray(results)) return results;
   if (Array.isArray(results.details)) return results.details;
   if (Array.isArray(results.results)) return results.results;
   if (Array.isArray(results.cases)) return results.cases;
-  return [];
-}
-
-function getDatasetList(dataset: any): JsonRecord[] {
-  if (Array.isArray(dataset)) return dataset;
-  if (Array.isArray(dataset.cases)) return dataset.cases;
-  if (Array.isArray(dataset.records)) return dataset.records;
+  if (Array.isArray(results.records)) return results.records;
   return [];
 }
 
@@ -68,14 +40,53 @@ function getField(record: JsonRecord, keys: string[]): string {
   return 'unknown';
 }
 
-const dataset = getDatasetList(readJson(datasetPath));
-const resultsRaw = readJson(triageResultsPath);
-const details = getDetailList(resultsRaw);
+function deepFindScenarioFamily(record: any): string {
+  const candidates = [
+    record?.actualScenarioFamily,
+    record?.actual?.scenarioFamily,
+    record?.actual?.scenarioFamilyId,
+    record?.calibrationMeta?.scenarioFamily,
+    record?.output?.calibrationMeta?.scenarioFamily,
+    record?.result?.calibrationMeta?.scenarioFamily,
+    record?.safeScopeResult?.calibrationMeta?.scenarioFamily,
+    record?.scenarioIntelligence?.scenarioFamilyId,
+    record?.output?.scenarioIntelligence?.scenarioFamilyId,
+    record?.result?.scenarioIntelligence?.scenarioFamilyId,
+    record?.safeScopeResult?.scenarioIntelligence?.scenarioFamilyId,
+  ];
 
-const datasetById = new Map<string, JsonRecord>();
-for (const record of dataset) {
-  datasetById.set(getCaseId(record), record);
+  for (const candidate of candidates) {
+    const normalized = normalizeScenarioId(candidate);
+    if (normalized !== 'unknown') return normalized;
+  }
+
+  return 'unknown';
 }
+
+function collectById(records: JsonRecord[]): Map<string, JsonRecord> {
+  const byId = new Map<string, JsonRecord>();
+  for (const record of records) {
+    byId.set(getCaseId(record), record);
+  }
+  return byId;
+}
+
+const dataset = getRecordList(readJson(datasetPath));
+const triage = readJson(triageResultsPath);
+const calibration = readJson(calibrationResultsPath);
+
+const triageRecords = getRecordList(triage);
+const calibrationRecords = getRecordList(calibration);
+
+const datasetById = collectById(dataset);
+const triageById = collectById(triageRecords);
+const calibrationById = collectById(calibrationRecords);
+
+const allIds = Array.from(new Set([
+  ...dataset.map(getCaseId),
+  ...triageRecords.map(getCaseId),
+  ...calibrationRecords.map(getCaseId),
+])).filter(id => id !== 'unknown').sort();
 
 const pairCounts = new Map<string, number>();
 const expectedCounts = new Map<string, number>();
@@ -88,37 +99,34 @@ let normalizedOnlyMatches = 0;
 let mismatch = 0;
 let unknownActual = 0;
 
-for (const detail of details) {
-  const id = getCaseId(detail);
+for (const id of allIds) {
   const datasetRecord = datasetById.get(id) ?? {};
-  const expectedRaw = (
-    detail.expectedScenarioFamily ??
-    detail.expected?.scenarioFamily ??
-    detail.expected?.scenarioFamilyId ??
+  const triageRecord = triageById.get(id) ?? {};
+  const calibrationRecord = calibrationById.get(id) ?? {};
+
+  const expectedRaw =
     datasetRecord.expectedScenarioFamily ??
     datasetRecord.expected?.scenarioFamily ??
-    datasetRecord.expected?.scenarioFamilyId
-  );
-  const actualRaw = (
-    detail.actualScenarioFamily ??
-    detail.actual?.scenarioFamily ??
-    detail.actual?.scenarioFamilyId ??
-    detail.calibrationMeta?.scenarioFamily ??
-    detail.output?.calibrationMeta?.scenarioFamily ??
-    detail.result?.calibrationMeta?.scenarioFamily ??
-    detail.scenarioIntelligence?.scenarioFamilyId ??
-    detail.output?.scenarioIntelligence?.scenarioFamilyId ??
-    detail.result?.scenarioIntelligence?.scenarioFamilyId
-  );
+    datasetRecord.expected?.scenarioFamilyId ??
+    triageRecord.expectedScenarioFamily ??
+    triageRecord.expected?.scenarioFamily ??
+    triageRecord.expected?.scenarioFamilyId ??
+    calibrationRecord.expectedScenarioFamily ??
+    calibrationRecord.expected?.scenarioFamily ??
+    calibrationRecord.expected?.scenarioFamilyId;
 
   const expected = normalizeScenarioId(expectedRaw);
-  const actual = normalizeScenarioId(actualRaw);
+
+  const actual =
+    deepFindScenarioFamily(triageRecord) !== 'unknown'
+      ? deepFindScenarioFamily(triageRecord)
+      : deepFindScenarioFamily(calibrationRecord);
 
   total += 1;
 
   if (expected === actual && expected !== 'unknown') {
     exact += 1;
-    if (typeof expectedRaw === 'string' && typeof actualRaw === 'string' && expectedRaw !== actualRaw) {
+    if (typeof expectedRaw === 'string' && expectedRaw !== actual) {
       normalizedOnlyMatches += 1;
     }
     continue;
@@ -139,12 +147,16 @@ for (const detail of details) {
       id,
       expected,
       actual,
+      matchStatus:
+        triageRecord.matches?.scenarioFamily ??
+        calibrationRecord.matches?.scenarioFamily ??
+        'unknown',
       equipment: getField(datasetRecord, ['equipment', 'equipmentInvolved', 'expectedEquipment']),
       task: getField(datasetRecord, ['task', 'taskContext', 'expectedTask']),
       controlFailure: getField(datasetRecord, ['controlFailure', 'failedControl', 'missingControl']),
       exposurePattern: getField(datasetRecord, ['exposurePattern', 'exposure']),
       locationContext: getField(datasetRecord, ['locationContext', 'location']),
-      observation: getField(datasetRecord, ['observation', 'hazardObservation', 'description', 'narrative'])
+      observation: getField(datasetRecord, ['observation', 'observationText', 'hazardObservation', 'description', 'narrative'])
     });
   }
   examples.set(pair, list);
