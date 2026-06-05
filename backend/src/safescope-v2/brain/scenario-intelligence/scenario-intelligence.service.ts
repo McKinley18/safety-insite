@@ -55,6 +55,7 @@ export class ScenarioIntelligenceService {
       mechanismOfInjury: input.classification?.mechanism || 'unknown',
       exposedPersonActivity: 'unknown',
       missingOrFailedControls: input.operationalReasoning?.missingControls || [],
+      hazardCategory: input.classification?.hazard || 'unknown', // Added this
       hierarchyLevel: 'unknown',
       candidateStandardFamily: input.suggestedStandards?.[0]?.family || 'unknown',
       evidenceGaps: input.evidenceGaps || [],
