@@ -5,21 +5,21 @@
     "runErrors": 0,
     "metrics": {
       "hazardFamily": {
-        "exact_match": 54,
+        "exact_match": 48,
         "partial_match": 0,
-        "mismatch": 146,
+        "mismatch": 152,
         "field_not_available": 0
       },
       "scenarioFamily": {
-        "exact_match": 10,
+        "exact_match": 7,
         "partial_match": 0,
-        "mismatch": 190,
+        "mismatch": 193,
         "field_not_available": 0
       },
       "mechanism": {
-        "exact_match": 22,
+        "exact_match": 26,
         "partial_match": 0,
-        "mismatch": 178,
+        "mismatch": 174,
         "field_not_available": 0
       },
       "jurisdiction": {
@@ -29,9 +29,9 @@
         "field_not_available": 200
       },
       "riskBand": {
-        "exact_match": 38,
+        "exact_match": 40,
         "partial_match": 0,
-        "mismatch": 162,
+        "mismatch": 160,
         "field_not_available": 0
       }
     },
@@ -49,27 +49,27 @@
       "id": "FIELD-001",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "expected": "excavation_trenching",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "conveyor-cleanup",
+          "expected": "excavation_protective_system_ambiguity",
+          "actual": "unknown",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "shock",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "excavation_collapse",
+          "actual": "unknown",
           "status": "actual_value_different"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "high",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
         }
       }
     },
@@ -77,26 +77,26 @@
       "id": "FIELD-002",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
+          "expected": "fire_protection",
+          "actual": "fire_protection",
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor-cleanup",
+          "expected": "fire_extinguisher_access_inspection",
+          "actual": "fire-extinguisher-ambiguity",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "rotating_equipment_nip_point",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "fire_extinguisher_access_failure",
+          "actual": "fire_extinguisher_access_failure",
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "high",
-          "actual": "critical",
+          "expected": "low",
+          "actual": "moderate",
           "status": "actual_value_different"
         }
       }
@@ -115,17 +115,17 @@
           "status": "normalized_exact_match"
         },
         "mechanism": {
-          "expected": "run_off_embankment",
+          "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "serious",
+          "expected": "critical",
           "actual": "critical",
-          "status": "actual_value_different"
+          "status": "normalized_exact_match"
         }
       }
     },
@@ -133,60 +133,32 @@
       "id": "FIELD-004",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
+          "expected": "electrical",
+          "actual": "electrical",
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "conveyor-cleanup",
+          "expected": "electrical_panel_access",
+          "actual": "electrical-damage",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "pedestrian_strike",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "moderate",
+          "status": "normalized_exact_match"
         }
       }
     },
     {
       "id": "FIELD-005",
-      "scoring": {
-        "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
-          "status": "normalized_exact_match"
-        },
-        "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "conveyor-cleanup",
-          "status": "actual_value_different"
-        },
-        "mechanism": {
-          "expected": "unexpected_startup",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
-        },
-        "jurisdiction": {
-          "status": "field_not_available"
-        },
-        "riskBand": {
-          "expected": "low",
-          "actual": "critical",
-          "status": "actual_value_different"
-        }
-      }
-    },
-    {
-      "id": "FIELD-006",
       "scoring": {
         "hazardFamily": {
           "expected": "machine_guarding",
@@ -202,6 +174,34 @@
           "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
           "status": "normalized_exact_match"
+        },
+        "jurisdiction": {
+          "status": "field_not_available"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "normalized_exact_match"
+        }
+      }
+    },
+    {
+      "id": "FIELD-006",
+      "scoring": {
+        "hazardFamily": {
+          "expected": "machine_guarding",
+          "actual": "machine_guarding",
+          "status": "normalized_exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "unguarded_conveyor_pulley",
+          "actual": "conveyor-cleanup",
+          "status": "actual_value_different"
+        },
+        "mechanism": {
+          "expected": "crush_point",
+          "actual": "rotating_equipment_nip_point",
+          "status": "actual_value_different"
         },
         "jurisdiction": {
           "status": "field_not_available"
@@ -217,26 +217,26 @@
       "id": "FIELD-007",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
+          "expected": "electrical",
+          "actual": "electrical",
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "point_of_operation_guarding",
-          "actual": "conveyor-cleanup",
+          "expected": "electrical_panel_access",
+          "actual": "electrical-damage",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "rotating_equipment_nip_point",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "shock",
+          "actual": "shock",
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "moderate",
-          "actual": "critical",
+          "expected": "critical",
+          "actual": "moderate",
           "status": "actual_value_different"
         }
       }
@@ -245,27 +245,27 @@
       "id": "FIELD-008",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
+          "expected": "electrical",
+          "actual": "electrical",
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "conveyor-cleanup",
+          "expected": "damaged_cord_wet_location",
+          "actual": "electrical-damage",
           "status": "actual_value_different"
         },
         "mechanism": {
           "expected": "shock",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "actual": "shock",
+          "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "moderate",
+          "status": "normalized_exact_match"
         }
       }
     },
@@ -273,26 +273,26 @@
       "id": "FIELD-009",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "expected": "housekeeping_walking_working_surfaces",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor-cleanup",
+          "expected": "housekeeping_slip_trip",
+          "actual": "unknown",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "pedestrian_strike",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "slip",
+          "actual": "unknown",
           "status": "actual_value_different"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "low",
-          "actual": "critical",
+          "expected": "critical",
+          "actual": "moderate",
           "status": "actual_value_different"
         }
       }
@@ -301,26 +301,26 @@
       "id": "FIELD-010",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "expected": "excavation_trenching",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "conveyor_cleanup",
-          "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "expected": "excavation_protective_system_ambiguity",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "chemical_exposure",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "excavation_collapse",
+          "actual": "unknown",
           "status": "actual_value_different"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "serious",
-          "actual": "critical",
+          "expected": "critical",
+          "actual": "moderate",
           "status": "actual_value_different"
         }
       }
@@ -329,27 +329,27 @@
       "id": "FIELD-011",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
+          "expected": "electrical",
+          "actual": "electrical",
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor-cleanup",
+          "expected": "electrical_panel_access",
+          "actual": "electrical-damage",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "arc_flash",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "expected": "shock",
+          "actual": "shock",
+          "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "critical",
-          "actual": "critical",
-          "status": "normalized_exact_match"
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
         }
       }
     },
@@ -362,12 +362,12 @@
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
+          "expected": "unguarded_conveyor_pulley",
           "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "shock",
+          "expected": "crush_point",
           "actual": "rotating_equipment_nip_point",
           "status": "actual_value_different"
         },
@@ -385,27 +385,27 @@
       "id": "FIELD-013",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
+          "expected": "mobile_equipment",
+          "actual": "mobile_equipment",
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "conveyor-cleanup",
+          "expected": "mobile_equipment_pedestrian_interaction",
+          "actual": "mobile-pedestrian",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "rotating_equipment_nip_point",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "pedestrian_strike",
+          "actual": "pedestrian_strike",
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "critical",
-          "actual": "critical",
-          "status": "normalized_exact_match"
+          "expected": "high",
+          "actual": "moderate",
+          "status": "actual_value_different"
         }
       }
     },
@@ -423,7 +423,7 @@
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "shock",
+          "expected": "crush_point",
           "actual": "rotating_equipment_nip_point",
           "status": "actual_value_different"
         },
@@ -431,7 +431,7 @@
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "high",
+          "expected": "serious",
           "actual": "critical",
           "status": "actual_value_different"
         }
@@ -441,26 +441,26 @@
       "id": "FIELD-015",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "expected": "excavation_trenching",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "conveyor_cleanup",
-          "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "expected": "excavation_protective_system_ambiguity",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "unexpected_startup",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "excavation_collapse",
+          "actual": "unknown",
           "status": "actual_value_different"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "low",
-          "actual": "critical",
+          "expected": "critical",
+          "actual": "moderate",
           "status": "actual_value_different"
         }
       }
@@ -469,27 +469,27 @@
       "id": "FIELD-016",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
+          "expected": "electrical",
+          "actual": "electrical",
           "status": "normalized_exact_match"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "conveyor-cleanup",
+          "expected": "damaged_cord_wet_location",
+          "actual": "electrical-damage",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "rotating_equipment_nip_point",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "shock",
+          "actual": "shock",
           "status": "normalized_exact_match"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "low",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "normalized_exact_match"
         }
       }
     },
@@ -497,18 +497,18 @@
       "id": "FIELD-017",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "expected": "excavation_trenching",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "conveyor_cleanup",
-          "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "expected": "excavation_protective_system_ambiguity",
+          "actual": "unknown",
+          "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "run_off_embankment",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "excavation_collapse",
+          "actual": "unknown",
           "status": "actual_value_different"
         },
         "jurisdiction": {
@@ -516,7 +516,7 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
+          "actual": "moderate",
           "status": "actual_value_different"
         }
       }
@@ -525,27 +525,27 @@
       "id": "FIELD-018",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "expected": "housekeeping_walking_working_surfaces",
+          "actual": "fall_protection",
+          "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "conveyor-cleanup",
+          "expected": "housekeeping_slip_trip",
+          "actual": "elevated-fall",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "pedestrian_strike",
-          "actual": "rotating_equipment_nip_point",
+          "expected": "slip",
+          "actual": "fall_from_height",
           "status": "actual_value_different"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "critical",
-          "actual": "critical",
-          "status": "normalized_exact_match"
+          "expected": "low",
+          "actual": "moderate",
+          "status": "actual_value_different"
         }
       }
     },
@@ -553,18 +553,18 @@
       "id": "FIELD-019",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "mobile_equipment",
+          "expected": "excavation_trenching",
+          "actual": "emergency_preparedness",
           "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "rotating_shaft_guarding",
-          "actual": "mobile-pedestrian",
+          "expected": "excavation_protective_system_ambiguity",
+          "actual": "blocked-emergency-access",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "chemical_exposure",
-          "actual": "pedestrian_strike",
+          "expected": "excavation_collapse",
+          "actual": "egress_blockage",
           "status": "actual_value_different"
         },
         "jurisdiction": {
@@ -581,27 +581,27 @@
       "id": "FIELD-020",
       "scoring": {
         "hazardFamily": {
-          "expected": "machine_guarding",
-          "actual": "mobile_equipment",
+          "expected": "housekeeping_walking_working_surfaces",
+          "actual": "machine_guarding",
           "status": "actual_value_different"
         },
         "scenarioFamily": {
-          "expected": "unguarded_conveyor_pulley",
-          "actual": "mobile-pedestrian",
+          "expected": "housekeeping_slip_trip",
+          "actual": "conveyor-cleanup",
           "status": "actual_value_different"
         },
         "mechanism": {
-          "expected": "chemical_exposure",
-          "actual": "pedestrian_strike",
+          "expected": "slip",
+          "actual": "rotating_equipment_nip_point",
           "status": "actual_value_different"
         },
         "jurisdiction": {
           "status": "field_not_available"
         },
         "riskBand": {
-          "expected": "moderate",
-          "actual": "moderate",
-          "status": "normalized_exact_match"
+          "expected": "serious",
+          "actual": "critical",
+          "status": "actual_value_different"
         }
       }
     },
