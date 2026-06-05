@@ -37,6 +37,7 @@ import { CitationReviewBrainService } from '../brain/citation-review-brain/citat
 import { RiskReasoningBrainService } from '../brain/risk-reasoning/risk-reasoning.service';
 import { ObservationContextService } from '../brain/observation-context/observation-context.service';
 import { NarrativeGeneratorService } from '../brain/narrative-generator/narrative.service';
+import { CalibrationMeta } from '../types/safescope-intelligence.types';
 import { EvidenceGapQuestionGeneratorService } from '../brain/evidence-gap-question-generator/evidence-gap-question.service';
 import { CorrectiveActionBrainService } from '../brain/corrective-action-brain/corrective-action.service';
 import { ExecutiveJudgmentService } from '../executive-judgment/executive-judgment.service';
