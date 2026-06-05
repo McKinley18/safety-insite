@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SafeScopeDisplayAdapter, DisplaySection } from '../../../lib/safescope/adapters/intelligence-display.adapter';
 import { ReviewerFeedbackPanel } from './feedback/ReviewerFeedbackPanel';
-import { AppButton } from '../ui/AppButton';
+import { AppButton } from '../../ui/AppButton';
 
 // ... existing SafeScopeSection component ...
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { AppButton } from '../../ui/AppButton';
-import { AppInput } from '../../ui/AppInput';
+import { AppButton } from '../../../ui/AppButton';
+import { AppInput } from '../../../ui/AppInput';
 
 type FeedbackType = 'correct' | 'incorrect' | 'partially_correct' | 'too_generic' | 'unsafe_or_misleading' | 'missing' | 'unnecessary' | 'helpful' | 'unclear';
 
