@@ -11,6 +11,7 @@ export type SafeScopeDisplayAdapter = {
   summary: DisplaySection;
   scenario: DisplaySection;
   evidence: DisplaySection;
+  risk: DisplaySection;
   correctiveActions: DisplaySection;
   auditTrace: DisplaySection;
   guardrails: DisplaySection;
@@ -34,7 +35,12 @@ export const createDisplayAdapter = (
     },
     evidence: {
       title: 'Evidence Gaps',
-      content: result.evidenceGapQuestions?.map(q => q.question) || [],
+      content: result.evidenceGapQuestions?.map((q: any) => q.question) || [],
+      isVisible: true
+    },
+    risk: {
+      title: 'Risk Reasoning',
+      content: result.riskReasoning ? `Level: ${result.riskReasoning.initialRiskLevel} (Worst case: ${result.riskReasoning.credibleWorstCaseOutcome})` : 'No risk reasoning',
       isVisible: true
     },
     correctiveActions: {

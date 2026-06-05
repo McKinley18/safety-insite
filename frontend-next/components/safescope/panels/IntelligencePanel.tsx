@@ -25,6 +25,7 @@ export const SafeScopeIntelligencePanel = ({ adapter }: { adapter: SafeScopeDisp
       <SafeScopeSection section={adapter.summary} />
       <SafeScopeSection section={adapter.scenario} />
       <SafeScopeSection section={adapter.evidence} />
+      <SafeScopeSection section={adapter.risk} />
       <SafeScopeSection section={adapter.correctiveActions} />
       <SafeScopeSection section={adapter.guardrails} />
       <SafeScopeSection section={adapter.auditTrace} />
