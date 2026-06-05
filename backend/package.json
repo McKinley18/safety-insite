@@ -70,7 +70,15 @@
     "smoke:deployment": "ts-node scripts/smoke-deployment-safescope.ts",
     "ingest:safescope:msha-ppm": "ts-node src/safescope-knowledge/ingestion/run-msha-program-policy-manual-ingestion.ts",
     "ingest:safescope:niosh-mining": "ts-node src/safescope-knowledge/ingestion/run-niosh-mining-publication-ingestion.ts",
-    "ingest:safescope:osha-incidents": "ts-node src/safescope-knowledge/ingestion/run-osha-incident-database-ingestion.ts"
+    "ingest:safescope:osha-incidents": "ts-node src/safescope-knowledge/ingestion/run-osha-incident-database-ingestion.ts",
+    "validate:safescope-field-dataset": "ts-node scripts/validate-safescope-field-validation-dataset.ts",
+    "validate:safescope-field-taxonomy": "ts-node scripts/validate-safescope-field-taxonomy-quality.ts",
+    "validate:safescope-field-uniqueness": "ts-node scripts/validate-dataset-uniqueness.ts",
+    "calibrate:safescope-200": "ts-node scripts/run-safescope-200-baseline-calibration.ts",
+    "calibrate:safescope-200:triage": "ts-node scripts/run-safescope-200-baseline-calibration-triage.ts",
+    "analyze:safescope-200:mismatches": "ts-node scripts/analyze-safescope-calibration-mismatches.ts",
+    "diagnose:safescope-200:scenario": "ts-node scripts/diagnose-scenario-mismatches.ts",
+    "safescope:benchmark": "npm run validate:safescope-field-dataset && npm run validate:safescope-field-taxonomy && npm run validate:safescope-field-uniqueness && npm run calibrate:safescope-200 && npm run calibrate:safescope-200:triage && npm run analyze:safescope-200:mismatches && npm run diagnose:safescope-200:scenario"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
