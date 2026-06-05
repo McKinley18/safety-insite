@@ -1,4 +1,4 @@
-import { ApprovedSourceRecord } from '../source-governance/source-governance.types';
+import { ApprovedSourceRecord } from './source-governance.types';
 
 export type CitationLevelCandidateReview = {
   id: string;

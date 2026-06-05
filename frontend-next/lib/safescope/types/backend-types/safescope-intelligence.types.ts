@@ -27,13 +27,13 @@ export type SafeScopeIntelligenceContext = {
 };
 
 import { ScenarioIntelligence } from './scenario-intelligence.types';
-import { StandardFamilyCandidateRecord } from '../brain/standard-family-mapper/standard-family-candidate.types';
-import { EvidenceGapQuestionRecord } from '../brain/evidence-gap-question-generator/evidence-gap-question.types';
-import { CitationLevelCandidateReview } from '../brain/citation-review-brain/citation-review.types';
-import { CorrectiveActionReasoning } from '../brain/corrective-action-brain/corrective-action.types';
-import { RiskReasoning } from '../brain/risk-reasoning/risk-reasoning.types';
-import { SafeScopeNormalizedObservationContext } from '../brain/observation-context/observation-context.types';
-import { SafeScopeNarrative } from '../brain/narrative-generator/narrative.types';
+import { StandardFamilyCandidateRecord } from './standard-family-candidate.types';
+import { EvidenceGapQuestionRecord } from './evidence-gap-question.types';
+import { CitationLevelCandidateReview } from './citation-review.types';
+import { CorrectiveActionReasoning } from './corrective-action.types';
+import { RiskReasoning } from './risk-reasoning.types';
+import { SafeScopeNormalizedObservationContext } from './observation-context.types';
+import { SafeScopeNarrative } from './narrative.types';
 
 export type SafeScopeIntelligenceResult = {
   observationContext?: SafeScopeNormalizedObservationContext;

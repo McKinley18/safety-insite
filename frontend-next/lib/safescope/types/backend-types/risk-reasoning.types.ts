@@ -1,4 +1,4 @@
-import { HierarchyLevel } from '../scenario-family-knowledge/scenario-family.types';
+import { HierarchyLevel } from './scenario-family.types';
 
 export type RiskReasoning = {
   riskReasoningId: string;
