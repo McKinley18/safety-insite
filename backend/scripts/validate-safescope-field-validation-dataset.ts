@@ -10,7 +10,7 @@ let validCases = 0;
 let missingFields = 0;
 
 for (const record of dataset) {
-    if (record.observationText && record.expectedHazardFamily && record.expectedMechanism) {
+    if (record.observationText && record.expectedScenarioFamily && record.expectedMechanism) {
         validCases++;
     } else {
         missingFields++;

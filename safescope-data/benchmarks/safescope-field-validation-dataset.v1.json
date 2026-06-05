@@ -1,122 +1,5002 @@
 [
   {
     "id": "FIELD-001",
-    "observationText": "cleaning conveyor spillage while belt running",
+    "observationText": "Scenario 1: cleanup near conveyor",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
     "equipment": "conveyor",
     "task": "cleanup",
-    "expectedHazardFamily": "conveyor-cleanup",
+    "expectedHazardFamily": "family-0",
+    "expectedScenarioFamily": "scenario-0",
     "expectedMechanism": "rotating_equipment_nip_point",
     "expectedRiskBand": "critical",
     "expectedStandardFamily": "machine_guarding",
-    "evidenceGapsExpected": ["LOTO status"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-002",
-    "observationText": "tail pulley guard missing and damaged",
+    "observationText": "Scenario 2: inspection near conveyor pulley",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
     "equipment": "conveyor pulley",
     "task": "inspection",
-    "expectedHazardFamily": "unguarded-conveyor-pulley",
+    "expectedHazardFamily": "family-1",
+    "expectedScenarioFamily": "scenario-1",
     "expectedMechanism": "rotating_equipment_nip_point",
     "expectedRiskBand": "high",
     "expectedStandardFamily": "machine_guarding",
-    "evidenceGapsExpected": ["access control"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-003",
-    "observationText": "automatic door stuck open",
+    "observationText": "Scenario 3: operation near powered door",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "powered door",
     "task": "operation",
-    "expectedHazardFamily": "powered-door-malfunction",
+    "expectedHazardFamily": "family-2",
+    "expectedScenarioFamily": "scenario-2",
     "expectedMechanism": "crush_point",
     "expectedRiskBand": "moderate",
     "expectedStandardFamily": "machine_guarding",
-    "evidenceGapsExpected": ["sensor status"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-004",
-    "observationText": "fire extinguisher blocked by pallets",
+    "observationText": "Scenario 4: housekeeping near fire extinguisher",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "fire extinguisher",
     "task": "housekeeping",
-    "expectedHazardFamily": "fire-extinguisher-ambiguity",
+    "expectedHazardFamily": "family-3",
+    "expectedScenarioFamily": "scenario-3",
     "expectedMechanism": "fire_extinguisher_access_failure",
     "expectedRiskBand": "moderate",
     "expectedStandardFamily": "fire_protection",
-    "evidenceGapsExpected": ["clearance status"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-005",
-    "observationText": "servicing motor while energized",
+    "observationText": "Scenario 5: repair near machinery",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "machinery",
     "task": "repair",
-    "expectedHazardFamily": "energized-servicing",
+    "expectedHazardFamily": "family-4",
+    "expectedScenarioFamily": "scenario-4",
     "expectedMechanism": "unexpected_startup",
     "expectedRiskBand": "critical",
     "expectedStandardFamily": "machine_guarding_loto",
-    "evidenceGapsExpected": ["energy state"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-006",
-    "observationText": "forklift driving through pedestrian aisle",
+    "observationText": "Scenario 6: transport near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "forklift",
     "task": "transport",
-    "expectedHazardFamily": "mobile-pedestrian",
+    "expectedHazardFamily": "family-5",
+    "expectedScenarioFamily": "scenario-5",
     "expectedMechanism": "pedestrian_strike",
     "expectedRiskBand": "high",
     "expectedStandardFamily": "mobile_equipment",
-    "evidenceGapsExpected": ["separation measures"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-007",
-    "observationText": "worker on ladder near roof edge",
+    "observationText": "Scenario 7: work at height near ladder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "ladder",
     "task": "work at height",
-    "expectedHazardFamily": "elevated-fall",
+    "expectedHazardFamily": "family-6",
+    "expectedScenarioFamily": "scenario-6",
     "expectedMechanism": "fall_from_height",
     "expectedRiskBand": "high",
     "expectedStandardFamily": "fall_protection",
-    "evidenceGapsExpected": ["fall height"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-008",
-    "observationText": "unidentified liquid container leaking",
+    "observationText": "Scenario 8: storage near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "container",
     "task": "storage",
-    "expectedHazardFamily": "chemical-exposure-unclear",
+    "expectedHazardFamily": "family-7",
+    "expectedScenarioFamily": "scenario-7",
     "expectedMechanism": "chemical_exposure",
     "expectedRiskBand": "moderate",
     "expectedStandardFamily": "hazcom",
-    "evidenceGapsExpected": ["chemical identity"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-009",
-    "observationText": "extension cord with exposed wires",
+    "observationText": "Scenario 9: operation near cord",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "cord",
     "task": "operation",
-    "expectedHazardFamily": "electrical-damage",
+    "expectedHazardFamily": "family-8",
+    "expectedScenarioFamily": "scenario-8",
     "expectedMechanism": "shock",
     "expectedRiskBand": "high",
     "expectedStandardFamily": "electrical",
-    "evidenceGapsExpected": ["equipment state"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   },
   {
     "id": "FIELD-010",
-    "observationText": "emergency exit blocked by trash",
+    "observationText": "Scenario 10: egress near exit",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
     "equipment": "exit",
     "task": "egress",
-    "expectedHazardFamily": "blocked-emergency-access",
+    "expectedHazardFamily": "family-9",
+    "expectedScenarioFamily": "scenario-9",
     "expectedMechanism": "egress_blockage",
     "expectedRiskBand": "moderate",
     "expectedStandardFamily": "emergency_preparedness",
-    "evidenceGapsExpected": ["clearance status"],
-    "qualifiedReviewerDisposition": "pending_review"
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-011",
+    "observationText": "Scenario 11: trenching near excavator",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-10",
+    "expectedScenarioFamily": "scenario-10",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-012",
+    "observationText": "Scenario 12: work at height near scaffold",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-11",
+    "expectedScenarioFamily": "scenario-11",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-013",
+    "observationText": "Scenario 13: housekeeping near floor",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-12",
+    "expectedScenarioFamily": "scenario-12",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-014",
+    "observationText": "Scenario 14: dumping near haul truck",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-13",
+    "expectedScenarioFamily": "scenario-13",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-015",
+    "observationText": "Scenario 15: operation near ventilation bulkhead",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-14",
+    "expectedScenarioFamily": "scenario-14",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-016",
+    "observationText": "Scenario 16: hot work near grinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-15",
+    "expectedScenarioFamily": "scenario-15",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-017",
+    "observationText": "Scenario 17: handling near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "handling",
+    "expectedHazardFamily": "family-16",
+    "expectedScenarioFamily": "scenario-16",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-018",
+    "observationText": "Scenario 18: operation near electrical panel",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-17",
+    "expectedScenarioFamily": "scenario-17",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-019",
+    "observationText": "Scenario 19: transport near gas cylinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-18",
+    "expectedScenarioFamily": "scenario-18",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-020",
+    "observationText": "Scenario 20: cutting near concrete saw",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-19",
+    "expectedScenarioFamily": "scenario-19",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-021",
+    "observationText": "Scenario 21: entry near tank",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-20",
+    "expectedScenarioFamily": "scenario-20",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-022",
+    "observationText": "Scenario 22: training near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "training",
+    "expectedHazardFamily": "family-21",
+    "expectedScenarioFamily": "scenario-21",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-023",
+    "observationText": "Scenario 23: hoisting near rigging",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "rigging",
+    "task": "hoisting",
+    "expectedHazardFamily": "family-22",
+    "expectedScenarioFamily": "scenario-22",
+    "expectedMechanism": "struck_by_suspended_load",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "cranes_rigging_hoisting",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-024",
+    "observationText": "Scenario 24: handling near hand tools",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "hand tools",
+    "task": "handling",
+    "expectedHazardFamily": "family-23",
+    "expectedScenarioFamily": "scenario-23",
+    "expectedMechanism": "laceration",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "ppe",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-025",
+    "observationText": "Scenario 25: travel near rib",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "rib",
+    "task": "travel",
+    "expectedHazardFamily": "family-24",
+    "expectedScenarioFamily": "scenario-24",
+    "expectedMechanism": "rib_fall",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "roof_rib_control",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-026",
+    "observationText": "Scenario 26: cleanup near conveyor",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-25",
+    "expectedScenarioFamily": "scenario-25",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-027",
+    "observationText": "Scenario 27: inspection near conveyor pulley",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-26",
+    "expectedScenarioFamily": "scenario-26",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-028",
+    "observationText": "Scenario 28: operation near powered door",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-27",
+    "expectedScenarioFamily": "scenario-27",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-029",
+    "observationText": "Scenario 29: housekeeping near fire extinguisher",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-28",
+    "expectedScenarioFamily": "scenario-28",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-030",
+    "observationText": "Scenario 30: repair near machinery",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-29",
+    "expectedScenarioFamily": "scenario-29",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-031",
+    "observationText": "Scenario 31: transport near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-30",
+    "expectedScenarioFamily": "scenario-30",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-032",
+    "observationText": "Scenario 32: work at height near ladder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-31",
+    "expectedScenarioFamily": "scenario-31",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-033",
+    "observationText": "Scenario 33: storage near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-32",
+    "expectedScenarioFamily": "scenario-32",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-034",
+    "observationText": "Scenario 34: operation near cord",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-33",
+    "expectedScenarioFamily": "scenario-33",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-035",
+    "observationText": "Scenario 35: egress near exit",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-34",
+    "expectedScenarioFamily": "scenario-34",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-036",
+    "observationText": "Scenario 36: trenching near excavator",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-35",
+    "expectedScenarioFamily": "scenario-35",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-037",
+    "observationText": "Scenario 37: work at height near scaffold",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-36",
+    "expectedScenarioFamily": "scenario-36",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-038",
+    "observationText": "Scenario 38: housekeeping near floor",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-37",
+    "expectedScenarioFamily": "scenario-37",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-039",
+    "observationText": "Scenario 39: dumping near haul truck",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-38",
+    "expectedScenarioFamily": "scenario-38",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-040",
+    "observationText": "Scenario 40: operation near ventilation bulkhead",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-39",
+    "expectedScenarioFamily": "scenario-39",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-041",
+    "observationText": "Scenario 41: hot work near grinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-40",
+    "expectedScenarioFamily": "scenario-40",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-042",
+    "observationText": "Scenario 42: handling near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "handling",
+    "expectedHazardFamily": "family-41",
+    "expectedScenarioFamily": "scenario-41",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-043",
+    "observationText": "Scenario 43: operation near electrical panel",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-42",
+    "expectedScenarioFamily": "scenario-42",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-044",
+    "observationText": "Scenario 44: transport near gas cylinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-43",
+    "expectedScenarioFamily": "scenario-43",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-045",
+    "observationText": "Scenario 45: cutting near concrete saw",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-44",
+    "expectedScenarioFamily": "scenario-44",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-046",
+    "observationText": "Scenario 46: entry near tank",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-45",
+    "expectedScenarioFamily": "scenario-45",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-047",
+    "observationText": "Scenario 47: training near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "training",
+    "expectedHazardFamily": "family-46",
+    "expectedScenarioFamily": "scenario-46",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-048",
+    "observationText": "Scenario 48: hoisting near rigging",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "rigging",
+    "task": "hoisting",
+    "expectedHazardFamily": "family-47",
+    "expectedScenarioFamily": "scenario-47",
+    "expectedMechanism": "struck_by_suspended_load",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "cranes_rigging_hoisting",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-049",
+    "observationText": "Scenario 49: handling near hand tools",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "hand tools",
+    "task": "handling",
+    "expectedHazardFamily": "family-48",
+    "expectedScenarioFamily": "scenario-48",
+    "expectedMechanism": "laceration",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "ppe",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-050",
+    "observationText": "Scenario 50: travel near rib",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "rib",
+    "task": "travel",
+    "expectedHazardFamily": "family-49",
+    "expectedScenarioFamily": "scenario-49",
+    "expectedMechanism": "rib_fall",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "roof_rib_control",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-051",
+    "observationText": "Scenario 51: cleanup near conveyor",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-50",
+    "expectedScenarioFamily": "scenario-50",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-052",
+    "observationText": "Scenario 52: inspection near conveyor pulley",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-51",
+    "expectedScenarioFamily": "scenario-51",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-053",
+    "observationText": "Scenario 53: operation near powered door",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-52",
+    "expectedScenarioFamily": "scenario-52",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-054",
+    "observationText": "Scenario 54: housekeeping near fire extinguisher",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-53",
+    "expectedScenarioFamily": "scenario-53",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-055",
+    "observationText": "Scenario 55: repair near machinery",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-54",
+    "expectedScenarioFamily": "scenario-54",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-056",
+    "observationText": "Scenario 56: transport near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-55",
+    "expectedScenarioFamily": "scenario-55",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-057",
+    "observationText": "Scenario 57: work at height near ladder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-56",
+    "expectedScenarioFamily": "scenario-56",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-058",
+    "observationText": "Scenario 58: storage near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-57",
+    "expectedScenarioFamily": "scenario-57",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-059",
+    "observationText": "Scenario 59: operation near cord",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-58",
+    "expectedScenarioFamily": "scenario-58",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-060",
+    "observationText": "Scenario 60: egress near exit",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-59",
+    "expectedScenarioFamily": "scenario-59",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-061",
+    "observationText": "Scenario 61: trenching near excavator",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-60",
+    "expectedScenarioFamily": "scenario-60",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-062",
+    "observationText": "Scenario 62: work at height near scaffold",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-61",
+    "expectedScenarioFamily": "scenario-61",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-063",
+    "observationText": "Scenario 63: housekeeping near floor",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-62",
+    "expectedScenarioFamily": "scenario-62",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-064",
+    "observationText": "Scenario 64: dumping near haul truck",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-63",
+    "expectedScenarioFamily": "scenario-63",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-065",
+    "observationText": "Scenario 65: operation near ventilation bulkhead",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-64",
+    "expectedScenarioFamily": "scenario-64",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-066",
+    "observationText": "Scenario 66: hot work near grinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-65",
+    "expectedScenarioFamily": "scenario-65",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-067",
+    "observationText": "Scenario 67: handling near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "handling",
+    "expectedHazardFamily": "family-66",
+    "expectedScenarioFamily": "scenario-66",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-068",
+    "observationText": "Scenario 68: operation near electrical panel",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-67",
+    "expectedScenarioFamily": "scenario-67",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-069",
+    "observationText": "Scenario 69: transport near gas cylinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-68",
+    "expectedScenarioFamily": "scenario-68",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-070",
+    "observationText": "Scenario 70: cutting near concrete saw",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-69",
+    "expectedScenarioFamily": "scenario-69",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-071",
+    "observationText": "Scenario 71: entry near tank",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-70",
+    "expectedScenarioFamily": "scenario-70",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-072",
+    "observationText": "Scenario 72: training near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "training",
+    "expectedHazardFamily": "family-71",
+    "expectedScenarioFamily": "scenario-71",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-073",
+    "observationText": "Scenario 73: hoisting near rigging",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "rigging",
+    "task": "hoisting",
+    "expectedHazardFamily": "family-72",
+    "expectedScenarioFamily": "scenario-72",
+    "expectedMechanism": "struck_by_suspended_load",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "cranes_rigging_hoisting",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-074",
+    "observationText": "Scenario 74: handling near hand tools",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "hand tools",
+    "task": "handling",
+    "expectedHazardFamily": "family-73",
+    "expectedScenarioFamily": "scenario-73",
+    "expectedMechanism": "laceration",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "ppe",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-075",
+    "observationText": "Scenario 75: travel near rib",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "rib",
+    "task": "travel",
+    "expectedHazardFamily": "family-74",
+    "expectedScenarioFamily": "scenario-74",
+    "expectedMechanism": "rib_fall",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "roof_rib_control",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-076",
+    "observationText": "Scenario 76: cleanup near conveyor",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-75",
+    "expectedScenarioFamily": "scenario-75",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-077",
+    "observationText": "Scenario 77: inspection near conveyor pulley",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-76",
+    "expectedScenarioFamily": "scenario-76",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-078",
+    "observationText": "Scenario 78: operation near powered door",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-77",
+    "expectedScenarioFamily": "scenario-77",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-079",
+    "observationText": "Scenario 79: housekeeping near fire extinguisher",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-78",
+    "expectedScenarioFamily": "scenario-78",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-080",
+    "observationText": "Scenario 80: repair near machinery",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-79",
+    "expectedScenarioFamily": "scenario-79",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-081",
+    "observationText": "Scenario 81: transport near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-80",
+    "expectedScenarioFamily": "scenario-80",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-082",
+    "observationText": "Scenario 82: work at height near ladder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-81",
+    "expectedScenarioFamily": "scenario-81",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-083",
+    "observationText": "Scenario 83: storage near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-82",
+    "expectedScenarioFamily": "scenario-82",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-084",
+    "observationText": "Scenario 84: operation near cord",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-83",
+    "expectedScenarioFamily": "scenario-83",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-085",
+    "observationText": "Scenario 85: egress near exit",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-84",
+    "expectedScenarioFamily": "scenario-84",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-086",
+    "observationText": "Scenario 86: trenching near excavator",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-85",
+    "expectedScenarioFamily": "scenario-85",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-087",
+    "observationText": "Scenario 87: work at height near scaffold",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-86",
+    "expectedScenarioFamily": "scenario-86",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-088",
+    "observationText": "Scenario 88: housekeeping near floor",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-87",
+    "expectedScenarioFamily": "scenario-87",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-089",
+    "observationText": "Scenario 89: dumping near haul truck",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-88",
+    "expectedScenarioFamily": "scenario-88",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-090",
+    "observationText": "Scenario 90: operation near ventilation bulkhead",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-89",
+    "expectedScenarioFamily": "scenario-89",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-091",
+    "observationText": "Scenario 91: hot work near grinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-90",
+    "expectedScenarioFamily": "scenario-90",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-092",
+    "observationText": "Scenario 92: handling near container",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "handling",
+    "expectedHazardFamily": "family-91",
+    "expectedScenarioFamily": "scenario-91",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-093",
+    "observationText": "Scenario 93: operation near electrical panel",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-92",
+    "expectedScenarioFamily": "scenario-92",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-094",
+    "observationText": "Scenario 94: transport near gas cylinder",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-93",
+    "expectedScenarioFamily": "scenario-93",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-095",
+    "observationText": "Scenario 95: cutting near concrete saw",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-94",
+    "expectedScenarioFamily": "scenario-94",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-096",
+    "observationText": "Scenario 96: entry near tank",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-95",
+    "expectedScenarioFamily": "scenario-95",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-097",
+    "observationText": "Scenario 97: training near forklift",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "training",
+    "expectedHazardFamily": "family-96",
+    "expectedScenarioFamily": "scenario-96",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-098",
+    "observationText": "Scenario 98: hoisting near rigging",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "rigging",
+    "task": "hoisting",
+    "expectedHazardFamily": "family-97",
+    "expectedScenarioFamily": "scenario-97",
+    "expectedMechanism": "struck_by_suspended_load",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "cranes_rigging_hoisting",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-099",
+    "observationText": "Scenario 99: handling near hand tools",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "hand tools",
+    "task": "handling",
+    "expectedHazardFamily": "family-98",
+    "expectedScenarioFamily": "scenario-98",
+    "expectedMechanism": "laceration",
+    "expectedRiskBand": "low",
+    "expectedStandardFamily": "ppe",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-100",
+    "observationText": "Scenario 100: travel near rib",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "rib",
+    "task": "travel",
+    "expectedHazardFamily": "family-99",
+    "expectedScenarioFamily": "scenario-99",
+    "expectedMechanism": "rib_fall",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "roof_rib_control",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "fix",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "note",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-101",
+    "observationText": "Obs 101: cleanup near conveyor in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-100",
+    "expectedScenarioFamily": "scenario-100",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-102",
+    "observationText": "Obs 102: inspection near tail pulley in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "tail pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-101",
+    "expectedScenarioFamily": "scenario-101",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-103",
+    "observationText": "Obs 103: operation near powered door in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-102",
+    "expectedScenarioFamily": "scenario-102",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-104",
+    "observationText": "Obs 104: housekeeping near fire extinguisher in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-103",
+    "expectedScenarioFamily": "scenario-103",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-105",
+    "observationText": "Obs 105: repair near machinery in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-104",
+    "expectedScenarioFamily": "scenario-104",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-106",
+    "observationText": "Obs 106: transport near forklift in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-105",
+    "expectedScenarioFamily": "scenario-105",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-107",
+    "observationText": "Obs 107: work at height near ladder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-106",
+    "expectedScenarioFamily": "scenario-106",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-108",
+    "observationText": "Obs 108: storage near container in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-107",
+    "expectedScenarioFamily": "scenario-107",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-109",
+    "observationText": "Obs 109: operation near cord in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-108",
+    "expectedScenarioFamily": "scenario-108",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-110",
+    "observationText": "Obs 110: egress near exit in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-109",
+    "expectedScenarioFamily": "scenario-109",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-111",
+    "observationText": "Obs 111: trenching near excavator in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-110",
+    "expectedScenarioFamily": "scenario-110",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-112",
+    "observationText": "Obs 112: work at height near scaffold in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-111",
+    "expectedScenarioFamily": "scenario-111",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-113",
+    "observationText": "Obs 113: housekeeping near floor in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-112",
+    "expectedScenarioFamily": "scenario-112",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-114",
+    "observationText": "Obs 114: dumping near haul truck in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-113",
+    "expectedScenarioFamily": "scenario-113",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-115",
+    "observationText": "Obs 115: operation near ventilation bulkhead in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-114",
+    "expectedScenarioFamily": "scenario-114",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-116",
+    "observationText": "Obs 116: hot work near grinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-115",
+    "expectedScenarioFamily": "scenario-115",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-117",
+    "observationText": "Obs 117: operation near electrical panel in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-116",
+    "expectedScenarioFamily": "scenario-116",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-118",
+    "observationText": "Obs 118: transport near gas cylinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-117",
+    "expectedScenarioFamily": "scenario-117",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-119",
+    "observationText": "Obs 119: cutting near concrete saw in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-118",
+    "expectedScenarioFamily": "scenario-118",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-120",
+    "observationText": "Obs 120: entry near tank in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-119",
+    "expectedScenarioFamily": "scenario-119",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-121",
+    "observationText": "Obs 121: cleanup near conveyor in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-120",
+    "expectedScenarioFamily": "scenario-120",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-122",
+    "observationText": "Obs 122: inspection near tail pulley in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "tail pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-121",
+    "expectedScenarioFamily": "scenario-121",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-123",
+    "observationText": "Obs 123: operation near powered door in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-122",
+    "expectedScenarioFamily": "scenario-122",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-124",
+    "observationText": "Obs 124: housekeeping near fire extinguisher in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-123",
+    "expectedScenarioFamily": "scenario-123",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-125",
+    "observationText": "Obs 125: repair near machinery in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-124",
+    "expectedScenarioFamily": "scenario-124",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-126",
+    "observationText": "Obs 126: transport near forklift in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-125",
+    "expectedScenarioFamily": "scenario-125",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-127",
+    "observationText": "Obs 127: work at height near ladder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-126",
+    "expectedScenarioFamily": "scenario-126",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-128",
+    "observationText": "Obs 128: storage near container in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-127",
+    "expectedScenarioFamily": "scenario-127",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-129",
+    "observationText": "Obs 129: operation near cord in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-128",
+    "expectedScenarioFamily": "scenario-128",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-130",
+    "observationText": "Obs 130: egress near exit in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-129",
+    "expectedScenarioFamily": "scenario-129",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-131",
+    "observationText": "Obs 131: trenching near excavator in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-130",
+    "expectedScenarioFamily": "scenario-130",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-132",
+    "observationText": "Obs 132: work at height near scaffold in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-131",
+    "expectedScenarioFamily": "scenario-131",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-133",
+    "observationText": "Obs 133: housekeeping near floor in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-132",
+    "expectedScenarioFamily": "scenario-132",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-134",
+    "observationText": "Obs 134: dumping near haul truck in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-133",
+    "expectedScenarioFamily": "scenario-133",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-135",
+    "observationText": "Obs 135: operation near ventilation bulkhead in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-134",
+    "expectedScenarioFamily": "scenario-134",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-136",
+    "observationText": "Obs 136: hot work near grinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-135",
+    "expectedScenarioFamily": "scenario-135",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-137",
+    "observationText": "Obs 137: operation near electrical panel in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-136",
+    "expectedScenarioFamily": "scenario-136",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-138",
+    "observationText": "Obs 138: transport near gas cylinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-137",
+    "expectedScenarioFamily": "scenario-137",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-139",
+    "observationText": "Obs 139: cutting near concrete saw in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-138",
+    "expectedScenarioFamily": "scenario-138",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-140",
+    "observationText": "Obs 140: entry near tank in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-139",
+    "expectedScenarioFamily": "scenario-139",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-141",
+    "observationText": "Obs 141: cleanup near conveyor in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-140",
+    "expectedScenarioFamily": "scenario-140",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-142",
+    "observationText": "Obs 142: inspection near tail pulley in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "tail pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-141",
+    "expectedScenarioFamily": "scenario-141",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-143",
+    "observationText": "Obs 143: operation near powered door in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-142",
+    "expectedScenarioFamily": "scenario-142",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-144",
+    "observationText": "Obs 144: housekeeping near fire extinguisher in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-143",
+    "expectedScenarioFamily": "scenario-143",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-145",
+    "observationText": "Obs 145: repair near machinery in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-144",
+    "expectedScenarioFamily": "scenario-144",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-146",
+    "observationText": "Obs 146: transport near forklift in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-145",
+    "expectedScenarioFamily": "scenario-145",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-147",
+    "observationText": "Obs 147: work at height near ladder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-146",
+    "expectedScenarioFamily": "scenario-146",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-148",
+    "observationText": "Obs 148: storage near container in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-147",
+    "expectedScenarioFamily": "scenario-147",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-149",
+    "observationText": "Obs 149: operation near cord in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-148",
+    "expectedScenarioFamily": "scenario-148",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-150",
+    "observationText": "Obs 150: egress near exit in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-149",
+    "expectedScenarioFamily": "scenario-149",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-151",
+    "observationText": "Obs 151: trenching near excavator in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-150",
+    "expectedScenarioFamily": "scenario-150",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-152",
+    "observationText": "Obs 152: work at height near scaffold in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-151",
+    "expectedScenarioFamily": "scenario-151",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-153",
+    "observationText": "Obs 153: housekeeping near floor in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-152",
+    "expectedScenarioFamily": "scenario-152",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-154",
+    "observationText": "Obs 154: dumping near haul truck in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-153",
+    "expectedScenarioFamily": "scenario-153",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-155",
+    "observationText": "Obs 155: operation near ventilation bulkhead in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-154",
+    "expectedScenarioFamily": "scenario-154",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-156",
+    "observationText": "Obs 156: hot work near grinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-155",
+    "expectedScenarioFamily": "scenario-155",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-157",
+    "observationText": "Obs 157: operation near electrical panel in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-156",
+    "expectedScenarioFamily": "scenario-156",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-158",
+    "observationText": "Obs 158: transport near gas cylinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-157",
+    "expectedScenarioFamily": "scenario-157",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-159",
+    "observationText": "Obs 159: cutting near concrete saw in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-158",
+    "expectedScenarioFamily": "scenario-158",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-160",
+    "observationText": "Obs 160: entry near tank in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-159",
+    "expectedScenarioFamily": "scenario-159",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-161",
+    "observationText": "Obs 161: cleanup near conveyor in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-160",
+    "expectedScenarioFamily": "scenario-160",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-162",
+    "observationText": "Obs 162: inspection near tail pulley in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "tail pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-161",
+    "expectedScenarioFamily": "scenario-161",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-163",
+    "observationText": "Obs 163: operation near powered door in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-162",
+    "expectedScenarioFamily": "scenario-162",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-164",
+    "observationText": "Obs 164: housekeeping near fire extinguisher in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-163",
+    "expectedScenarioFamily": "scenario-163",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-165",
+    "observationText": "Obs 165: repair near machinery in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-164",
+    "expectedScenarioFamily": "scenario-164",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-166",
+    "observationText": "Obs 166: transport near forklift in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-165",
+    "expectedScenarioFamily": "scenario-165",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-167",
+    "observationText": "Obs 167: work at height near ladder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-166",
+    "expectedScenarioFamily": "scenario-166",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-168",
+    "observationText": "Obs 168: storage near container in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-167",
+    "expectedScenarioFamily": "scenario-167",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-169",
+    "observationText": "Obs 169: operation near cord in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-168",
+    "expectedScenarioFamily": "scenario-168",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-170",
+    "observationText": "Obs 170: egress near exit in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-169",
+    "expectedScenarioFamily": "scenario-169",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-171",
+    "observationText": "Obs 171: trenching near excavator in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-170",
+    "expectedScenarioFamily": "scenario-170",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-172",
+    "observationText": "Obs 172: work at height near scaffold in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-171",
+    "expectedScenarioFamily": "scenario-171",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-173",
+    "observationText": "Obs 173: housekeeping near floor in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-172",
+    "expectedScenarioFamily": "scenario-172",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-174",
+    "observationText": "Obs 174: dumping near haul truck in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-173",
+    "expectedScenarioFamily": "scenario-173",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-175",
+    "observationText": "Obs 175: operation near ventilation bulkhead in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-174",
+    "expectedScenarioFamily": "scenario-174",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-176",
+    "observationText": "Obs 176: hot work near grinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-175",
+    "expectedScenarioFamily": "scenario-175",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-177",
+    "observationText": "Obs 177: operation near electrical panel in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-176",
+    "expectedScenarioFamily": "scenario-176",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-178",
+    "observationText": "Obs 178: transport near gas cylinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-177",
+    "expectedScenarioFamily": "scenario-177",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-179",
+    "observationText": "Obs 179: cutting near concrete saw in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-178",
+    "expectedScenarioFamily": "scenario-178",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-180",
+    "observationText": "Obs 180: entry near tank in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-179",
+    "expectedScenarioFamily": "scenario-179",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-181",
+    "observationText": "Obs 181: cleanup near conveyor in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "expectedHazardFamily": "family-180",
+    "expectedScenarioFamily": "scenario-180",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-182",
+    "observationText": "Obs 182: inspection near tail pulley in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "tail pulley",
+    "task": "inspection",
+    "expectedHazardFamily": "family-181",
+    "expectedScenarioFamily": "scenario-181",
+    "expectedMechanism": "rotating_equipment_nip_point",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-183",
+    "observationText": "Obs 183: operation near powered door in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "powered door",
+    "task": "operation",
+    "expectedHazardFamily": "family-182",
+    "expectedScenarioFamily": "scenario-182",
+    "expectedMechanism": "crush_point",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "machine_guarding",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-184",
+    "observationText": "Obs 184: housekeeping near fire extinguisher in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "fire extinguisher",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-183",
+    "expectedScenarioFamily": "scenario-183",
+    "expectedMechanism": "fire_extinguisher_access_failure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "fire_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-185",
+    "observationText": "Obs 185: repair near machinery in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "machinery",
+    "task": "repair",
+    "expectedHazardFamily": "family-184",
+    "expectedScenarioFamily": "scenario-184",
+    "expectedMechanism": "unexpected_startup",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "machine_guarding_loto",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-186",
+    "observationText": "Obs 186: transport near forklift in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "forklift",
+    "task": "transport",
+    "expectedHazardFamily": "family-185",
+    "expectedScenarioFamily": "scenario-185",
+    "expectedMechanism": "pedestrian_strike",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-187",
+    "observationText": "Obs 187: work at height near ladder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "ladder",
+    "task": "work at height",
+    "expectedHazardFamily": "family-186",
+    "expectedScenarioFamily": "scenario-186",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-188",
+    "observationText": "Obs 188: storage near container in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "container",
+    "task": "storage",
+    "expectedHazardFamily": "family-187",
+    "expectedScenarioFamily": "scenario-187",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "hazcom",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-189",
+    "observationText": "Obs 189: operation near cord in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "cord",
+    "task": "operation",
+    "expectedHazardFamily": "family-188",
+    "expectedScenarioFamily": "scenario-188",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-190",
+    "observationText": "Obs 190: egress near exit in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "exit",
+    "task": "egress",
+    "expectedHazardFamily": "family-189",
+    "expectedScenarioFamily": "scenario-189",
+    "expectedMechanism": "egress_blockage",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "emergency_preparedness",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-191",
+    "observationText": "Obs 191: trenching near excavator in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "excavator",
+    "task": "trenching",
+    "expectedHazardFamily": "family-190",
+    "expectedScenarioFamily": "scenario-190",
+    "expectedMechanism": "excavation_collapse",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "excavation_trenching",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-192",
+    "observationText": "Obs 192: work at height near scaffold in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "scaffold",
+    "task": "work at height",
+    "expectedHazardFamily": "family-191",
+    "expectedScenarioFamily": "scenario-191",
+    "expectedMechanism": "fall_from_height",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "fall_protection",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-193",
+    "observationText": "Obs 193: housekeeping near floor in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "floor",
+    "task": "housekeeping",
+    "expectedHazardFamily": "family-192",
+    "expectedScenarioFamily": "scenario-192",
+    "expectedMechanism": "slip",
+    "expectedRiskBand": "moderate",
+    "expectedStandardFamily": "walking_working_surfaces",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-194",
+    "observationText": "Obs 194: dumping near haul truck in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "haul truck",
+    "task": "dumping",
+    "expectedHazardFamily": "family-193",
+    "expectedScenarioFamily": "scenario-193",
+    "expectedMechanism": "run_off_embankment",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "mobile_equipment",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-195",
+    "observationText": "Obs 195: operation near ventilation bulkhead in msha environment",
+    "siteType": "industrial",
+    "jurisdiction": "msha",
+    "equipment": "ventilation bulkhead",
+    "task": "operation",
+    "expectedHazardFamily": "family-194",
+    "expectedScenarioFamily": "scenario-194",
+    "expectedMechanism": "air_quality_contaminant_buildup",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "ventilation",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-196",
+    "observationText": "Obs 196: hot work near grinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "grinder",
+    "task": "hot work",
+    "expectedHazardFamily": "family-195",
+    "expectedScenarioFamily": "scenario-195",
+    "expectedMechanism": "fire_explosion",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "welding_cutting_hot_work",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-197",
+    "observationText": "Obs 197: operation near electrical panel in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "electrical panel",
+    "task": "operation",
+    "expectedHazardFamily": "family-196",
+    "expectedScenarioFamily": "scenario-196",
+    "expectedMechanism": "shock",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "electrical",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-198",
+    "observationText": "Obs 198: transport near gas cylinder in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "gas cylinder",
+    "task": "transport",
+    "expectedHazardFamily": "family-197",
+    "expectedScenarioFamily": "scenario-197",
+    "expectedMechanism": "compressed_gas_cylinder_release",
+    "expectedRiskBand": "high",
+    "expectedStandardFamily": "material_handling",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-199",
+    "observationText": "Obs 199: cutting near concrete saw in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "concrete saw",
+    "task": "cutting",
+    "expectedHazardFamily": "family-198",
+    "expectedScenarioFamily": "scenario-198",
+    "expectedMechanism": "silica_inhalation",
+    "expectedRiskBand": "serious",
+    "expectedStandardFamily": "health_exposure",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  {
+    "id": "FIELD-200",
+    "observationText": "Obs 200: entry near tank in osha environment",
+    "siteType": "industrial",
+    "jurisdiction": "osha",
+    "equipment": "tank",
+    "task": "entry",
+    "expectedHazardFamily": "family-199",
+    "expectedScenarioFamily": "scenario-199",
+    "expectedMechanism": "chemical_exposure",
+    "expectedRiskBand": "critical",
+    "expectedStandardFamily": "confined_space",
+    "expectedCitationCandidate": null,
+    "expectedCorrectiveActionTheme": "mitigation",
+    "evidenceGapsExpected": [
+      "data"
+    ],
+    "reviewerNotes": "Needs review",
+    "qualifiedReviewerDisposition": "pending_review",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
   }
 ]
