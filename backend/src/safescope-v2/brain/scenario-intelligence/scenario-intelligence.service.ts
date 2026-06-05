@@ -15,9 +15,19 @@ export class ScenarioIntelligenceService {
 
     // Find best matching scenario family
     const matchedFamily = SCENARIO_FAMILY_REGISTRY.find(family => {
-      const match = family.commonObservationPhrases.some(phrase => text.includes(phrase)) ||
-                    family.equipmentIndicators.some(indicator => text.includes(indicator));
-      return match;
+      const phraseOrEquipMatch = family.commonObservationPhrases.some(phrase => text.includes(phrase)) ||
+                               family.equipmentIndicators.some(indicator => text.includes(indicator));
+      
+      if (!phraseOrEquipMatch) return false;
+      
+      if (family.taskIndicators.length > 0) {
+        const hasTaskIndicator = family.taskIndicators.some(t => text.includes(t));
+        if (hasTaskIndicator) {
+          return family.taskIndicators.some(t => text.includes(t));
+        }
+      }
+      
+      return true;
     });
 
     if (matchedFamily) {
