@@ -10,25 +10,27 @@ export class CitationReviewBrainService {
     scenarioIntelligence: ScenarioIntelligence,
     evidenceGaps: string[]
   ): CitationLevelCandidateReview[] {
-    // This is where we map scenario intelligence to approved source governance.
-    // Placeholder logic: Filter all approved sources that match the hazard domain.
-    
-    // In a full implementation, we would query the approved source registry
-    // and match based on the scenarioIntelligence context.
-    
-    // Example: Map some specific scenario families to citations
     const candidates: CitationLevelCandidateReview[] = [];
     
+    // Example: Map some specific scenario families to citations with evidence gates
     if (scenarioIntelligence.scenarioFamilyId === 'conveyor-cleanup') {
        candidates.push(this.createCandidate('osha-1910-147-loto', scenarioIntelligence, evidenceGaps));
     }
     
-    return candidates;
+    // Filter candidates based on authority and evidence status
+    return candidates.filter(c => 
+        this.governanceService.isAuthoritative(c.sourceId) && 
+        c.evidenceSatisfied
+    );
   }
 
   private createCandidate(sourceId: string, scenarioIntelligence: ScenarioIntelligence, evidenceGaps: string[]): CitationLevelCandidateReview {
     const record = this.governanceService.getRecord(sourceId) as ApprovedSourceRecord;
     
+    const requiredEvidence = record.evidenceRequiredBeforeUse || [];
+    const missingEvidence = requiredEvidence.filter(e => evidenceGaps.includes(e));
+    const evidenceSatisfied = missingEvidence.length === 0;
+
     return {
       id: `review-${sourceId}`,
       sourceId: record.id,
@@ -41,24 +43,24 @@ export class CitationReviewBrainService {
       approvalStatus: record.approvalStatus,
       relatedStandardFamily: record.standardFamily || 'unknown',
       relatedScenarioFamilies: [scenarioIntelligence.scenarioFamilyId],
-      relatedHazardDomains: record.hazardDomains || [], // Wait, need to fix source governance types to include hazardDomains
+      relatedHazardDomains: record.hazardDomains || [],
       relatedEquipmentIndicators: [],
       relatedTaskIndicators: [],
       relatedMechanismIndicators: [],
       relatedExposureIndicators: [],
-      requiredEvidence: record.evidenceRequiredBeforeUse || [],
-      missingEvidence: evidenceGaps,
-      evidenceSatisfied: evidenceGaps.length === 0,
+      requiredEvidence: requiredEvidence,
+      missingEvidence: missingEvidence,
+      evidenceSatisfied: evidenceSatisfied,
       confidence: scenarioIntelligence.confidenceSignals.score,
       confidenceBoosters: [],
-      confidenceReducers: evidenceGaps,
+      confidenceReducers: missingEvidence,
       humanReviewTriggers: ['Critical hazard interaction'],
       applicabilityNotes: record.applicabilityNotes || [],
       prohibitedUses: record.prohibitedUses || [],
       advisoryGuardrails: {
-        advisoryOnly: record.advisoryGuardrails?.advisoryOnly ?? true,
-        doesNotDeclareViolation: record.advisoryGuardrails?.doesNotDeclareViolation ?? true,
-        requiresQualifiedReview: record.advisoryGuardrails?.requiresQualifiedReview ?? true
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        requiresQualifiedReview: true
       },
       sourceTrace: ['Governed by SourceGovernanceService']
     };
