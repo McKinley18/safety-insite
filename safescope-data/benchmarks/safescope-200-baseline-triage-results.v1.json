@@ -6,43 +6,30 @@
     "metrics": {
       "hazardFamily": {
         "exact_match": 48,
-        "partial_match": 0,
-        "mismatch": 152,
+        "actual_value_different": 152,
         "field_not_available": 0
       },
       "scenarioFamily": {
         "exact_match": 7,
-        "partial_match": 0,
-        "mismatch": 193,
+        "actual_value_different": 193,
         "field_not_available": 0
       },
       "mechanism": {
         "exact_match": 26,
-        "partial_match": 0,
-        "mismatch": 174,
+        "actual_value_different": 174,
         "field_not_available": 0
       },
       "jurisdiction": {
         "exact_match": 0,
-        "partial_match": 0,
-        "mismatch": 0,
-        "field_not_available": 200
+        "actual_value_different": 200,
+        "field_not_available": 0
       },
       "riskBand": {
         "exact_match": 40,
-        "partial_match": 0,
-        "mismatch": 160,
+        "actual_value_different": 160,
         "field_not_available": 0
       }
-    },
-    "mismatchReasons": {},
-    "recommendations": [
-      "Expose hazardFamily/domain in calibration output contract",
-      "Expose jurisdiction assessment in calibration output contract",
-      "Align scenarioFamily taxonomy",
-      "Improve evidence gap comparison/extraction",
-      "Tune riskBand calibration after output contract is stable"
-    ]
+    }
   },
   "details": [
     {
@@ -64,12 +51,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -79,7 +68,7 @@
         "hazardFamily": {
           "expected": "fire_protection",
           "actual": "fire_protection",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "fire_extinguisher_access_inspection",
@@ -89,10 +78,12 @@
         "mechanism": {
           "expected": "fire_extinguisher_access_failure",
           "actual": "fire_extinguisher_access_failure",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -107,25 +98,27 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
           "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -135,7 +128,7 @@
         "hazardFamily": {
           "expected": "electrical",
           "actual": "electrical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "electrical_panel_access",
@@ -145,15 +138,17 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -163,25 +158,27 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
           "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -191,7 +188,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -204,7 +201,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -219,7 +218,7 @@
         "hazardFamily": {
           "expected": "electrical",
           "actual": "electrical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "electrical_panel_access",
@@ -229,10 +228,12 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -247,7 +248,7 @@
         "hazardFamily": {
           "expected": "electrical",
           "actual": "electrical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "damaged_cord_wet_location",
@@ -257,15 +258,17 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -288,7 +291,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -316,7 +321,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -331,7 +338,7 @@
         "hazardFamily": {
           "expected": "electrical",
           "actual": "electrical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "electrical_panel_access",
@@ -341,10 +348,12 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -359,7 +368,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -372,12 +381,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -387,7 +398,7 @@
         "hazardFamily": {
           "expected": "mobile_equipment",
           "actual": "mobile_equipment",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "mobile_equipment_pedestrian_interaction",
@@ -397,10 +408,12 @@
         "mechanism": {
           "expected": "pedestrian_strike",
           "actual": "pedestrian_strike",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -415,7 +428,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -428,7 +441,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -456,7 +471,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -471,7 +488,7 @@
         "hazardFamily": {
           "expected": "electrical",
           "actual": "electrical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "damaged_cord_wet_location",
@@ -481,15 +498,17 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -512,7 +531,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -540,7 +561,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -568,7 +591,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -596,7 +621,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -624,7 +651,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -652,7 +681,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -677,10 +708,12 @@
         "mechanism": {
           "expected": "pedestrian_strike",
           "actual": "pedestrian_strike",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -708,7 +741,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -736,12 +771,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -764,7 +801,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -792,12 +831,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -820,12 +861,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -848,12 +891,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -876,7 +921,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -904,7 +951,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -932,7 +981,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -960,7 +1011,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -985,10 +1038,12 @@
         "mechanism": {
           "expected": "pedestrian_strike",
           "actual": "pedestrian_strike",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1016,7 +1071,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -1044,7 +1101,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -1069,10 +1128,12 @@
         "mechanism": {
           "expected": "fall_from_height",
           "actual": "fall_from_height",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -1097,10 +1158,12 @@
         "mechanism": {
           "expected": "fall_from_height",
           "actual": "fall_from_height",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1128,7 +1191,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -1156,7 +1221,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -1184,7 +1251,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1212,7 +1281,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1240,7 +1311,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -1268,7 +1341,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -1296,12 +1371,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1324,12 +1401,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1352,7 +1431,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -1380,7 +1461,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -1408,12 +1491,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1436,7 +1521,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -1464,7 +1551,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -1492,7 +1581,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -1520,12 +1611,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1548,12 +1641,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1576,7 +1671,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -1604,7 +1701,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1632,7 +1731,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1660,7 +1761,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -1688,7 +1791,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1716,7 +1821,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -1744,7 +1851,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1772,12 +1881,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1800,7 +1911,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -1828,7 +1941,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -1853,10 +1968,12 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -1884,12 +2001,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1912,7 +2031,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -1937,15 +2058,17 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -1968,7 +2091,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -1996,7 +2121,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2024,7 +2151,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2052,7 +2181,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -2080,7 +2211,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -2108,7 +2241,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -2136,7 +2271,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2164,7 +2301,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2192,7 +2331,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -2220,7 +2361,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -2248,7 +2391,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -2276,7 +2421,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -2304,7 +2451,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -2332,7 +2481,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2360,7 +2511,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2388,7 +2541,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2416,12 +2571,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -2444,7 +2601,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2472,7 +2631,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2500,7 +2661,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -2528,7 +2691,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2556,7 +2721,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2571,7 +2738,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -2584,7 +2751,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -2599,7 +2768,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -2612,7 +2781,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2627,20 +2798,22 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
           "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2655,12 +2828,12 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
           "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "unexpected_startup",
@@ -2668,7 +2841,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2683,7 +2858,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -2696,7 +2871,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2711,12 +2888,12 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
           "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "pedestrian_strike",
@@ -2724,7 +2901,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2739,7 +2918,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -2752,7 +2931,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2767,7 +2948,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -2777,10 +2958,12 @@
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2795,7 +2978,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -2808,7 +2991,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -2823,7 +3008,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -2836,12 +3021,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -2851,7 +3038,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -2864,12 +3051,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -2879,7 +3068,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -2892,7 +3081,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2907,7 +3098,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -2920,7 +3111,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -2935,7 +3128,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -2948,7 +3141,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -2963,7 +3158,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -2976,7 +3171,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -2991,7 +3188,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -3004,7 +3201,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -3019,7 +3218,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -3032,7 +3231,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -3047,7 +3248,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -3060,7 +3261,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -3088,12 +3291,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3116,7 +3321,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -3144,7 +3351,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -3172,7 +3381,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -3197,10 +3408,12 @@
         "mechanism": {
           "expected": "pedestrian_strike",
           "actual": "pedestrian_strike",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -3228,7 +3441,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -3253,10 +3468,12 @@
         "mechanism": {
           "expected": "pedestrian_strike",
           "actual": "pedestrian_strike",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -3284,7 +3501,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -3312,7 +3531,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -3340,12 +3561,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3368,7 +3591,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -3396,12 +3621,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3424,7 +3651,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -3452,7 +3681,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -3480,7 +3711,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -3508,7 +3741,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -3536,12 +3771,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3564,7 +3801,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -3592,7 +3831,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -3620,7 +3861,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -3648,7 +3891,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -3676,12 +3921,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3704,7 +3951,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -3729,10 +3978,12 @@
         "mechanism": {
           "expected": "fall_from_height",
           "actual": "fall_from_height",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -3757,10 +4008,12 @@
         "mechanism": {
           "expected": "fall_from_height",
           "actual": "fall_from_height",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -3788,7 +4041,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -3816,12 +4071,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3844,12 +4101,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3872,12 +4131,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3900,7 +4161,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -3928,7 +4191,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -3956,12 +4221,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -3984,7 +4251,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4012,7 +4281,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -4040,12 +4311,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -4068,7 +4341,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4096,7 +4371,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -4124,7 +4401,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4152,7 +4431,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4180,7 +4461,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4205,10 +4488,12 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4236,7 +4521,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4264,7 +4551,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -4289,10 +4578,12 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4320,7 +4611,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4345,10 +4638,12 @@
         "mechanism": {
           "expected": "shock",
           "actual": "shock",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -4376,12 +4671,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -4404,7 +4701,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4432,7 +4731,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4460,7 +4761,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4488,7 +4791,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4516,7 +4821,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -4544,7 +4851,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4572,12 +4881,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -4600,12 +4911,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -4628,7 +4941,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4656,7 +4971,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4684,7 +5001,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -4712,7 +5031,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4740,7 +5061,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -4768,7 +5091,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
@@ -4796,7 +5121,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -4824,7 +5151,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4852,7 +5181,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -4880,7 +5211,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4908,7 +5241,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4936,7 +5271,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -4964,7 +5301,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -4992,7 +5331,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -5020,7 +5361,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -5048,7 +5391,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -5076,7 +5421,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -5091,7 +5438,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -5104,12 +5451,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -5119,7 +5468,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -5132,7 +5481,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5147,7 +5498,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5160,7 +5511,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5175,7 +5528,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5185,10 +5538,12 @@
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -5203,7 +5558,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -5216,7 +5571,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5231,7 +5588,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5244,7 +5601,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",
@@ -5259,7 +5618,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -5272,7 +5631,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -5287,7 +5648,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5300,7 +5661,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5315,7 +5678,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -5328,12 +5691,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -5343,7 +5708,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5356,7 +5721,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5371,7 +5738,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -5384,7 +5751,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -5399,7 +5768,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5412,12 +5781,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -5427,7 +5798,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5440,7 +5811,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -5455,12 +5828,12 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
           "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "shock",
@@ -5468,7 +5841,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -5483,12 +5858,12 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
           "actual": "conveyor-cleanup",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "chemical_exposure",
@@ -5496,7 +5871,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
@@ -5511,7 +5888,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
@@ -5524,7 +5901,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "low",
@@ -5539,7 +5918,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "rotating_shaft_guarding",
@@ -5549,15 +5928,17 @@
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
           "actual": "rotating_equipment_nip_point",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "critical",
           "actual": "critical",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -5567,7 +5948,7 @@
         "hazardFamily": {
           "expected": "machine_guarding",
           "actual": "machine_guarding",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
@@ -5580,7 +5961,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "high",
@@ -5608,12 +5991,14 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "moderate",
           "actual": "moderate",
-          "status": "normalized_exact_match"
+          "status": "exact_match"
         }
       }
     },
@@ -5636,7 +6021,9 @@
           "status": "actual_value_different"
         },
         "jurisdiction": {
-          "status": "field_not_available"
+          "expected": "msha",
+          "actual": "unclear",
+          "status": "actual_value_different"
         },
         "riskBand": {
           "expected": "serious",

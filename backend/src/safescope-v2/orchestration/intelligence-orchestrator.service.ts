@@ -517,7 +517,6 @@ export class SafeScopeIntelligenceOrchestrator {
       siteMemory,
       confidenceCalibration,
       reasoningDrift,
-      calibrationMeta,
     };
   }
 }

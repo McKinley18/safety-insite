@@ -3,36 +3,32 @@
   "metrics": {
     "hazardFamily": {
       "exact_match": 48,
-      "partial_match": 0,
-      "mismatch": 152,
+      "actual_value_different": 152,
       "field_not_available": 0
     },
     "scenarioFamily": {
       "exact_match": 7,
-      "partial_match": 0,
-      "mismatch": 193,
+      "actual_value_different": 193,
       "field_not_available": 0
     },
     "mechanism": {
       "exact_match": 26,
-      "partial_match": 0,
-      "mismatch": 174,
+      "actual_value_different": 174,
       "field_not_available": 0
     },
     "jurisdiction": {
       "exact_match": 0,
-      "partial_match": 0,
-      "mismatch": 0,
-      "field_not_available": 200
+      "actual_value_different": 200,
+      "field_not_available": 0
     },
     "riskBand": {
       "exact_match": 40,
-      "partial_match": 0,
-      "mismatch": 160,
+      "actual_value_different": 160,
       "field_not_available": 0
     }
   },
   "topMismatchPairs": {
+    "msha:unclear": 200,
     "critical:moderate": 39,
     "machine_guarding:mobile_equipment": 36,
     "machine_guarding:fall_protection": 36,
@@ -41,16 +37,8 @@
     "low:moderate": 30,
     "high:moderate": 30,
     "serious:moderate": 28,
-    "rotating_shaft_guarding:unknown": 16,
-    "unguarded_conveyor_pulley:conveyor-cleanup": 13
+    "rotating_shaft_guarding:unknown": 16
   },
-  "recommendations": [
-    "Expose hazardFamily/domain in calibration output contract",
-    "Expose jurisdiction assessment in calibration output contract",
-    "Align scenarioFamily taxonomy",
-    "Improve evidence gap comparison/extraction",
-    "Tune riskBand calibration after output contract is stable"
-  ],
   "mismatchReasoning": {
     "outputContractMapping": "Fields like hazardFamily and jurisdiction showing high 'field_not_available' or 'mismatch'.",
     "aliasMapping": "Some mechanisms map partially via aliasMap, but many remain 'actual_value_different'.",
