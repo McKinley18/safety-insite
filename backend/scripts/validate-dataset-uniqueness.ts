@@ -6,18 +6,36 @@ const dataset = JSON.parse(fs.readFileSync(datasetPath, 'utf-8'));
 
 console.log(`Checking uniqueness for ${dataset.length} cases...`);
 
-const signatures = new Set();
+const richSignatures = new Set();
 const duplicates = [];
 
+const richFields = [
+    'expectedScenarioFamily',
+    'expectedMechanism',
+    'jurisdiction',
+    'equipment',
+    'task',
+    'controlFailure',
+    'exposurePattern',
+    'locationContext'
+];
+
+console.log("Rich signature fields:", richFields);
+
 for (const record of dataset) {
-    const signature = `${record.expectedScenarioFamily}|${record.expectedMechanism}|${record.jurisdiction}|${record.equipment}|${record.task}`;
-    if (signatures.has(signature)) {
+    const signature = richFields.map(field => record[field] || 'null').join('|');
+    
+    if (richSignatures.has(signature)) {
         duplicates.push(record.id);
     }
-    signatures.add(signature);
+    richSignatures.add(signature);
 }
 
-console.log(`Duplicate signature count: ${duplicates.length}`);
+console.log(`Duplicate rich signature count: ${duplicates.length}`);
 if (duplicates.length > 0) {
     console.log("Duplicate IDs:", duplicates);
+    process.exit(1);
+} else {
+    console.log("Uniqueness Validation: PASSED");
+    process.exit(0);
 }
