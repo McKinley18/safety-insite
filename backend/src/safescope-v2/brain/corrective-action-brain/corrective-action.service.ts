@@ -4,48 +4,56 @@ import { ScenarioIntelligence } from '../../types/scenario-intelligence.types';
 export class CorrectiveActionBrainService {
   evaluate(
     scenarioIntelligence: ScenarioIntelligence,
-    scenarioFamilyId: string
+    evidenceGaps: string[]
   ): CorrectiveActionReasoning {
-    // Corrective Action Reasoning Logic
-    // Based on the scenarioIntelligence input, generate structured corrective actions.
-
-    // Placeholder logic for demonstration - will be refined
-    const urgency = this.determineUrgency(scenarioIntelligence);
+    const isCritical = scenarioIntelligence.mechanismOfInjury.includes('rotating_equipment') || scenarioIntelligence.mechanismOfInjury.includes('electrical_shock');
+    const isHighRisk = scenarioIntelligence.missingOrFailedControls.length > 0;
     
+    let urgency: 'low' | 'moderate' | 'high' | 'critical' = 'moderate';
+    if (isCritical) urgency = 'critical';
+    else if (isHighRisk) urgency = 'high';
+
+    const immediateActions = isCritical 
+        ? ['Immediately stop all work in the affected zone', 'Lock out and tag out all energy sources']
+        : ['Assess current hazard exposure', 'Secure the area'];
+
+    const interimControls = isHighRisk 
+        ? ['Implement temporary physical barriers', 'Assign a dedicated safety spotter']
+        : ['Restrict access until controls are verified'];
+
+    const permanentCorrections = scenarioIntelligence.scenarioFamilyId === 'conveyor-cleanup' 
+        ? ['Install permanent interlocked guarding system', 'Develop authorized lockout procedures']
+        : ['Implement permanent engineered solutions specific to hazard'];
+
     return {
-      scenarioFamilyId: scenarioFamilyId,
+      scenarioFamilyId: scenarioIntelligence.scenarioFamilyId,
       hazardDomain: scenarioIntelligence.candidateStandardFamily || 'unknown',
       mechanismOfInjury: scenarioIntelligence.mechanismOfInjury,
       exposurePathway: scenarioIntelligence.exposedPersonActivity,
       missingOrFailedControls: scenarioIntelligence.missingOrFailedControls,
-      immediateActions: ['Secure the area immediately', `Implement immediate controls for ${scenarioIntelligence.equipment}`],
-      interimControls: ['Restrict access until controls are verified'],
-      permanentCorrections: ['Implement engineered physical controls as required'],
-      administrativeFollowUps: ['Conduct root cause analysis', 'Train personnel on specific hazard'],
-      verificationSteps: ['Verify control functionality', 'Sign-off by supervisor'],
-      evidenceNeededBeforeFinalizing: scenarioIntelligence.evidenceGaps,
-      responsibleRoleSuggestions: ['Safety Manager', 'Area Supervisor'],
+      immediateActions: immediateActions,
+      interimControls: interimControls,
+      permanentCorrections: permanentCorrections,
+      administrativeFollowUps: ['Perform hazard analysis update', 'Conduct targeted tool-box safety briefing'],
+      verificationSteps: ['Competent person verification of controls', 'Document functional test results'],
+      evidenceNeededBeforeFinalizing: evidenceGaps,
+      responsibleRoleSuggestions: ['Safety Manager', 'Operations Supervisor'],
       urgencyLevel: urgency,
       controlHierarchyLevel: scenarioIntelligence.hierarchyLevel,
       standardFamilyReviewLinks: [],
       confidence: scenarioIntelligence.confidenceSignals.score,
-      humanReviewTriggers: ['Critical hazard interaction'],
+      humanReviewTriggers: ['Qualified safety review required due to high hazard complexity'],
       advisoryGuardrails: {
         advisoryOnly: true,
         doesNotDeclareViolation: true,
         requiresQualifiedReview: true
       },
       // Narrative fields
-      immediateActionNarrative: 'Immediately secure the affected area, establish a barricade, and notify the supervisor to prevent unauthorized access.',
-      interimControlNarrative: 'Implement temporary physical safeguards or increased surveillance until a permanent engineering control is validated.',
-      permanentCorrectionNarrative: `Install a permanent engineered solution, such as a physical guard, barrier, or interlock, specifically designed for the ${scenarioIntelligence.equipment}.`,
-      administrativeFollowUpNarrative: 'Update the hazard control plan and conduct mandatory training for all personnel affected by this specific hazard.',
-      verificationNarrative: 'Verification requires visual confirmation of the engineered control by a competent person, followed by a functional test and a formal safety sign-off.'
+      immediateActionNarrative: isCritical ? 'Halt all operations in the affected area immediately and initiate emergency energy isolation procedures.' : 'Secure the area to prevent further hazard exposure and notify the area supervisor.',
+      interimControlNarrative: 'Deploy temporary physical safeguards or implement strict access restrictions until permanent engineered controls are validated.',
+      permanentCorrectionNarrative: `Implement permanent engineered controls, such as ${scenarioIntelligence.missingOrFailedControls.join(' or ')}, to eliminate exposure to ${scenarioIntelligence.mechanismOfInjury}.`,
+      administrativeFollowUpNarrative: 'Review and update the hazard control plan; conduct a mandatory safety briefing for all personnel affected by this work activity.',
+      verificationNarrative: 'Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.'
     };
-  }
-
-  private determineUrgency(intelligence: ScenarioIntelligence): 'low' | 'moderate' | 'high' | 'critical' {
-    if (intelligence.confidenceSignals.score > 0.8) return 'high';
-    return 'moderate';
   }
 }
