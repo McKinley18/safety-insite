@@ -23,4 +23,10 @@ export type CorrectiveActionReasoning = {
     doesNotDeclareViolation: boolean;
     requiresQualifiedReview: boolean;
   };
+  // Narrative-ready fields
+  immediateActionNarrative: string;
+  interimControlNarrative: string;
+  permanentCorrectionNarrative: string;
+  administrativeFollowUpNarrative: string;
+  verificationNarrative: string;
 };
