@@ -326,7 +326,7 @@ export class SafeScopeIntelligenceOrchestrator {
         mechanism: scenarioIntelligence.mechanismOfInjury,
         riskBand: riskReasoning.initialRiskLevel,
         standardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
-        evidenceGaps: scenarioIntelligence.evidenceGaps.missingEvidence
+        evidenceGaps: scenarioIntelligence.evidenceGaps
     };
 
     const domainIntelligence = {
