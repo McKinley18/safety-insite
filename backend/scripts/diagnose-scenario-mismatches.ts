@@ -42,6 +42,7 @@ function getField(record: JsonRecord, keys: string[]): string {
 
 function deepFindScenarioFamily(record: any): string {
   const candidates = [
+    record?.scoring?.scenarioFamily?.actual,
     record?.actualScenarioFamily,
     record?.actual?.scenarioFamily,
     record?.actual?.scenarioFamilyId,
@@ -105,6 +106,7 @@ for (const id of allIds) {
   const calibrationRecord = calibrationById.get(id) ?? {};
 
   const expectedRaw =
+    triageRecord.scoring?.scenarioFamily?.expected ??
     datasetRecord.expectedScenarioFamily ??
     datasetRecord.expected?.scenarioFamily ??
     datasetRecord.expected?.scenarioFamilyId ??
@@ -148,6 +150,7 @@ for (const id of allIds) {
       expected,
       actual,
       matchStatus:
+        triageRecord.scoring?.scenarioFamily?.status ??
         triageRecord.matches?.scenarioFamily ??
         calibrationRecord.matches?.scenarioFamily ??
         'unknown',
