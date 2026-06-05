@@ -2,18 +2,18 @@
   "totalCases": 200,
   "metrics": {
     "hazardFamily": {
-      "exact_match": 48,
-      "actual_value_different": 152,
+      "exact_match": 185,
+      "actual_value_different": 15,
       "field_not_available": 0
     },
     "scenarioFamily": {
-      "exact_match": 7,
-      "actual_value_different": 193,
+      "exact_match": 0,
+      "actual_value_different": 200,
       "field_not_available": 0
     },
     "mechanism": {
-      "exact_match": 26,
-      "actual_value_different": 174,
+      "exact_match": 28,
+      "actual_value_different": 172,
       "field_not_available": 0
     },
     "jurisdiction": {
@@ -22,22 +22,22 @@
       "field_not_available": 0
     },
     "riskBand": {
-      "exact_match": 40,
-      "actual_value_different": 160,
+      "exact_match": 48,
+      "actual_value_different": 152,
       "field_not_available": 0
     }
   },
   "topMismatchPairs": {
-    "critical:moderate": 39,
-    "machine_guarding:mobile_equipment": 36,
-    "machine_guarding:fall_protection": 36,
-    "machine_guarding:electrical": 36,
-    "machine_guarding:unknown": 36,
-    "low:moderate": 30,
-    "high:moderate": 30,
-    "serious:moderate": 28,
-    "rotating_shaft_guarding:unknown": 16,
-    "unguarded_conveyor_pulley:conveyor-cleanup": 13
+    "rotating_shaft_guarding:unguarded-hazard-generic": 51,
+    "point_of_operation_guarding:unguarded-hazard-generic": 48,
+    "conveyor_cleanup:unguarded-hazard-generic": 43,
+    "unguarded_conveyor_pulley:unguarded-hazard-generic": 43,
+    "moderate:critical": 39,
+    "low:critical": 37,
+    "serious:critical": 35,
+    "high:critical": 34,
+    "shock:rotating_equipment_nip_point": 27,
+    "pedestrian_strike:rotating_equipment_nip_point": 24
   },
   "mismatchReasoning": {
     "outputContractMapping": "Fields like hazardFamily and jurisdiction showing high 'field_not_available' or 'mismatch'.",
