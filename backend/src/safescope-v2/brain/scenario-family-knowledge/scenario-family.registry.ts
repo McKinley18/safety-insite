@@ -2,16 +2,16 @@ import { ScenarioFamilyKnowledgeRecord } from './scenario-family.types';
 
 export const SCENARIO_FAMILY_REGISTRY: ScenarioFamilyKnowledgeRecord[] = [
   {
-    id: 'conveyor-cleanup',
+    id: 'conveyor_cleanup',
     title: 'Conveyor cleanup near moving parts',
     domain: 'machine_guarding',
     applicableIndustries: ['mining', 'manufacturing'],
     applicableJurisdictions: ['msha', 'osha'],
     commonObservationPhrases: ['cleaning', 'clearing spillage', 'moving conveyor', 'missing guard', 'inadequate guard', 'nip point', 'exposed rotating parts'],
-    equipmentIndicators: ['conveyor'],
-    taskIndicators: ['cleanup', 'maintenance', 'inspection', 'operation'],
+    equipmentIndicators: ['conveyor', 'pulley', 'drive', 'belt'],
+    taskIndicators: ['cleanup', 'maintenance', 'inspection', 'operation', 'repair'],
     unsafeConditionIndicators: ['moving parts', 'exposed', 'unguarded'],
-    operationalStateIndicators: ['running'],
+    operationalStateIndicators: ['running', 'operational'],
     energySourceIndicators: ['mechanical'],
     mechanismOfInjuryIndicators: ['rotating_equipment_nip_point'],
     exposureIndicators: ['worker near belt'],
@@ -36,8 +36,8 @@ export const SCENARIO_FAMILY_REGISTRY: ScenarioFamilyKnowledgeRecord[] = [
     applicableIndustries: ['mining'],
     applicableJurisdictions: ['msha'],
     commonObservationPhrases: ['unguarded tail pulley', 'exposed drive', 'nip point'],
-    equipmentIndicators: ['conveyor'],
-    taskIndicators: ['inspection', 'maintenance', 'cleanup', 'operation'],
+    equipmentIndicators: ['conveyor', 'pulley', 'drive'],
+    taskIndicators: ['inspection', 'maintenance', 'operation', 'cleanup'],
     unsafeConditionIndicators: ['unguarded', 'exposed'],
     operationalStateIndicators: ['operational'],
     energySourceIndicators: ['mechanical'],
@@ -64,7 +64,7 @@ export const SCENARIO_FAMILY_REGISTRY: ScenarioFamilyKnowledgeRecord[] = [
     applicableIndustries: ['mining', 'manufacturing'],
     applicableJurisdictions: ['msha', 'osha'],
     commonObservationPhrases: ['exposed rotating shaft', 'rotating shaft', 'nip point'],
-    equipmentIndicators: ['machinery', 'conveyor', 'forklift', 'ladder', 'panel', 'tank'],
+    equipmentIndicators: ['machinery', 'shaft', 'conveyor'],
     taskIndicators: ['maintenance', 'inspection', 'operation', 'cleanup'],
     unsafeConditionIndicators: ['exposed', 'unguarded'],
     operationalStateIndicators: ['operational'],
@@ -92,7 +92,7 @@ export const SCENARIO_FAMILY_REGISTRY: ScenarioFamilyKnowledgeRecord[] = [
     applicableIndustries: ['manufacturing'],
     applicableJurisdictions: ['osha'],
     commonObservationPhrases: ['point of operation', 'unguarded', 'pinch point'],
-    equipmentIndicators: ['machinery', 'conveyor', 'forklift', 'ladder', 'panel', 'tank'],
+    equipmentIndicators: ['machinery', 'press', 'blade', 'conveyor'],
     taskIndicators: ['operation', 'inspection', 'maintenance', 'cleanup'],
     unsafeConditionIndicators: ['unguarded', 'exposed'],
     operationalStateIndicators: ['operational'],
@@ -119,7 +119,7 @@ export const SCENARIO_FAMILY_REGISTRY: ScenarioFamilyKnowledgeRecord[] = [
     domain: 'machine_guarding',
     applicableIndustries: ['mining', 'manufacturing', 'construction'],
     applicableJurisdictions: ['msha', 'osha'],
-    commonObservationPhrases: ['missing guard', 'inadequate guard', 'unguarded', 'nip point', 'exposed rotating'],
+    commonObservationPhrases: ['missing guard', 'inadequate guard', 'unguarded'],
     equipmentIndicators: [],
     taskIndicators: [],
     unsafeConditionIndicators: ['missing guard', 'inadequate guard', 'unguarded'],
@@ -141,5 +141,4 @@ export const SCENARIO_FAMILY_REGISTRY: ScenarioFamilyKnowledgeRecord[] = [
     doesNotDeclareViolation: true,
     requiresQualifiedReview: true
   }
-  ];
-
+];

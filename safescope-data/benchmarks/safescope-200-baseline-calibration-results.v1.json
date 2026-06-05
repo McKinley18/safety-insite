@@ -12,12 +12,12 @@
     "evidenceGaps": 200
   },
   "matches": {
-    "hazardFamily": 185,
-    "scenarioFamily": 43,
-    "mechanism": 28,
+    "hazardFamily": 41,
+    "scenarioFamily": 7,
+    "mechanism": 6,
     "jurisdiction": 0,
-    "riskBand": 48,
-    "standardFamily": 190,
+    "riskBand": 40,
+    "standardFamily": 42,
     "evidenceGaps": 0
   },
   "details": [
@@ -49,7 +49,7 @@
       "id": "FIELD-003",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -64,8 +64,8 @@
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
@@ -73,7 +73,7 @@
       "id": "FIELD-005",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -100,8 +100,8 @@
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
@@ -149,7 +149,7 @@
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
@@ -173,7 +173,7 @@
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
@@ -264,840 +264,840 @@
     {
       "id": "FIELD-021",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-022",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-023",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-024",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-025",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-026",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-027",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-028",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-029",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-030",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-031",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-032",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-033",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-034",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-035",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-036",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-037",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-038",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-039",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-040",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-041",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-042",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-043",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-044",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-045",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-046",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-047",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-048",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-049",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-050",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-051",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-052",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-053",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-054",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-055",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-056",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-057",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-058",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-059",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-060",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-061",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-062",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-063",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-064",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-065",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-066",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-067",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-068",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-069",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-070",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-071",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-072",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-073",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-074",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-075",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-076",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-077",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-078",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-079",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-080",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-081",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-082",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-083",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-084",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-085",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-086",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-087",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-088",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-089",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-090",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
@@ -1129,7 +1129,7 @@
       "id": "FIELD-093",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1141,7 +1141,7 @@
       "id": "FIELD-094",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1165,7 +1165,7 @@
       "id": "FIELD-096",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1320,864 +1320,864 @@
     {
       "id": "FIELD-109",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-110",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-111",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-112",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-113",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-114",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-115",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-116",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-117",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-118",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-119",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-120",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-121",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-122",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-123",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-124",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-125",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-126",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-127",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-128",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-129",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-130",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-131",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-132",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-133",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-134",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-135",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-136",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-137",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-138",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-139",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-140",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-141",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-142",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-143",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-144",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-145",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-146",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-147",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-148",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-149",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-150",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-151",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-152",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-153",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-154",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-155",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-156",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-157",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-158",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-159",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-160",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-161",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-162",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-163",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-164",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-165",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-166",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-167",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-168",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-169",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "exact_match",
-        "standardFamily": "exact_match",
+        "riskBand": "mismatch",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-170",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-171",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-172",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-173",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-174",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-175",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-176",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
-        "mechanism": "exact_match",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-177",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-178",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-179",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-180",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
-        "mechanism": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
+        "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
@@ -2341,7 +2341,7 @@
       "id": "FIELD-194",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2353,7 +2353,7 @@
       "id": "FIELD-195",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2400,24 +2400,24 @@
     {
       "id": "FIELD-199",
       "matches": {
-        "hazardFamily": "exact_match",
-        "scenarioFamily": "exact_match",
+        "hazardFamily": "mismatch",
+        "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
-        "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "riskBand": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     },
     {
       "id": "FIELD-200",
       "matches": {
-        "hazardFamily": "exact_match",
+        "hazardFamily": "mismatch",
         "scenarioFamily": "mismatch",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
-        "standardFamily": "exact_match",
+        "standardFamily": "mismatch",
         "evidenceGaps": "mismatch"
       }
     }
