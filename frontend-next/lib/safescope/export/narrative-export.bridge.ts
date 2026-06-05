@@ -1,5 +1,4 @@
-import { SafeScopeNarrative, NarrativeMode } from '../types';
-import { SafeScopeIntelligenceResult } from '../types';
+import { NarrativeTypes, SafeScopeIntelligenceResultTypes } from '../types';
 
 export type ReportSection = {
   header: string;
@@ -7,13 +6,14 @@ export type ReportSection = {
 };
 
 export const mapNarrativeToReportSections = (
-  result: SafeScopeIntelligenceResult,
-  mode: NarrativeMode
+  result: SafeScopeIntelligenceResultTypes.SafeScopeIntelligenceResult,
+  mode: NarrativeTypes.NarrativeMode
 ): ReportSection[] => {
   if (!result.narrative) return [];
 
   const narrative = result.narrative;
   const sections: ReportSection[] = [];
+//...
 
   sections.push({ header: narrative.findingTitle, body: narrative.findingSummary });
   sections.push({ header: 'Scenario Reasoning', body: narrative.scenarioExplanation });
