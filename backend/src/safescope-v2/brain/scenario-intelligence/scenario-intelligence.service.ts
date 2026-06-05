@@ -15,6 +15,40 @@ export class ScenarioIntelligenceService {
 
     // Prefer highly specific precision scenarios before generic first-match routing.
     const priorityScenarioId = (() => {
+      const hasCleanupIntent =
+        text.includes('cleanup') ||
+        text.includes('cleaning') ||
+        text.includes('shoveling') ||
+        text.includes('clear spillage') ||
+        text.includes('clearing spillage') ||
+        text.includes('spilled material') ||
+        text.includes('spillage');
+
+      const hasConveyorPulleyOrRoller =
+        text.includes('conveyor tail pulley') ||
+        text.includes('tail pulley') ||
+        text.includes('head pulley') ||
+        text.includes('return roller') ||
+        text.includes('roller nip point');
+
+      const hasGuardingFailure =
+        text.includes('unguarded') ||
+        text.includes('guard is missing') ||
+        text.includes('missing guard') ||
+        text.includes('guard is removed') ||
+        text.includes('guard removed') ||
+        text.includes('no fixed guard') ||
+        text.includes('no coupling guard') ||
+        text.includes('blade guard is removed');
+
+      if (
+        (text.includes('table saw') || text.includes('press brake') || text.includes('point of operation') || text.includes('cutting blade') || text.includes('closing die')) &&
+        (text.includes('hands') || text.includes('operator') || text.includes('employee')) &&
+        hasGuardingFailure
+      ) {
+        return 'point_of_operation_guarding';
+      }
+
       if (
         (text.includes('electrical panel') || text.includes('panel door') || text.includes('disconnects')) &&
         (text.includes('blocked') || text.includes('stored materials') || text.includes('working clearance'))
@@ -32,17 +66,26 @@ export class ScenarioIntelligenceService {
 
       if (
         (text.includes('excavation') || text.includes('trench') || text.includes('trenching')) &&
-        (text.includes('worker is inside') || text.includes('employee in trench') || text.includes('inside an excavation')) &&
-        (text.includes('no visible protective system') || text.includes('vertical walls') || text.includes('deeper than five feet'))
+        (text.includes('worker is inside') || text.includes('employee in trench') || text.includes('inside an excavation') || text.includes('unprotected trench')) &&
+        (text.includes('no visible protective system') || text.includes('vertical walls') || text.includes('deeper than five feet') || text.includes('no trench box') || text.includes('no shoring') || text.includes('no sloping'))
       ) {
         return 'excavation_protective_system_ambiguity';
       }
 
       if (
-        (text.includes('conveyor tail pulley') || text.includes('tail pulley')) &&
-        (text.includes('unguarded') || text.includes('guard is missing') || text.includes('missing guard')) &&
-        !text.includes('cleaning spilled material') &&
-        !text.includes('cleanup')
+        text.includes('conveyor') &&
+        hasConveyorPulleyOrRoller &&
+        hasCleanupIntent &&
+        hasGuardingFailure
+      ) {
+        return 'conveyor-cleanup';
+      }
+
+      if (
+        text.includes('conveyor') &&
+        hasConveyorPulleyOrRoller &&
+        hasGuardingFailure &&
+        !hasCleanupIntent
       ) {
         return 'unguarded_conveyor_pulley';
       }
