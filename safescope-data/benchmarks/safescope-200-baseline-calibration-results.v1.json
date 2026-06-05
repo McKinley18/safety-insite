@@ -13,7 +13,7 @@
   },
   "matches": {
     "hazardFamily": 185,
-    "scenarioFamily": 0,
+    "scenarioFamily": 43,
     "mechanism": 28,
     "jurisdiction": 0,
     "riskBand": 48,
@@ -349,7 +349,7 @@
       "id": "FIELD-028",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -373,7 +373,7 @@
       "id": "FIELD-030",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -397,7 +397,7 @@
       "id": "FIELD-032",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -433,7 +433,7 @@
       "id": "FIELD-035",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -481,7 +481,7 @@
       "id": "FIELD-039",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -529,7 +529,7 @@
       "id": "FIELD-043",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -625,7 +625,7 @@
       "id": "FIELD-051",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -673,7 +673,7 @@
       "id": "FIELD-055",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -685,7 +685,7 @@
       "id": "FIELD-056",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -709,7 +709,7 @@
       "id": "FIELD-058",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -817,7 +817,7 @@
       "id": "FIELD-067",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -829,7 +829,7 @@
       "id": "FIELD-068",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -853,7 +853,7 @@
       "id": "FIELD-070",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -889,7 +889,7 @@
       "id": "FIELD-073",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -925,7 +925,7 @@
       "id": "FIELD-076",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -961,7 +961,7 @@
       "id": "FIELD-079",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -985,7 +985,7 @@
       "id": "FIELD-081",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -997,7 +997,7 @@
       "id": "FIELD-082",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1009,7 +1009,7 @@
       "id": "FIELD-083",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1069,7 +1069,7 @@
       "id": "FIELD-088",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1093,7 +1093,7 @@
       "id": "FIELD-090",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1357,7 +1357,7 @@
       "id": "FIELD-112",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -1429,7 +1429,7 @@
       "id": "FIELD-118",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1489,7 +1489,7 @@
       "id": "FIELD-123",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1501,7 +1501,7 @@
       "id": "FIELD-124",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -1561,7 +1561,7 @@
       "id": "FIELD-129",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1693,7 +1693,7 @@
       "id": "FIELD-140",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1729,7 +1729,7 @@
       "id": "FIELD-143",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1789,7 +1789,7 @@
       "id": "FIELD-148",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1825,7 +1825,7 @@
       "id": "FIELD-151",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -1849,7 +1849,7 @@
       "id": "FIELD-153",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -1909,7 +1909,7 @@
       "id": "FIELD-158",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -1945,7 +1945,7 @@
       "id": "FIELD-161",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -1957,7 +1957,7 @@
       "id": "FIELD-162",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2017,7 +2017,7 @@
       "id": "FIELD-167",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -2029,7 +2029,7 @@
       "id": "FIELD-168",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2041,7 +2041,7 @@
       "id": "FIELD-169",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "exact_match",
@@ -2089,7 +2089,7 @@
       "id": "FIELD-173",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2101,7 +2101,7 @@
       "id": "FIELD-174",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2149,7 +2149,7 @@
       "id": "FIELD-178",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2161,7 +2161,7 @@
       "id": "FIELD-179",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2173,7 +2173,7 @@
       "id": "FIELD-180",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",
@@ -2401,7 +2401,7 @@
       "id": "FIELD-199",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "mismatch",
         "jurisdiction": "unavailable",
         "riskBand": "mismatch",

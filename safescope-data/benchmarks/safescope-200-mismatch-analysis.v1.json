@@ -7,8 +7,8 @@
       "field_not_available": 0
     },
     "scenarioFamily": {
-      "exact_match": 7,
-      "actual_value_different": 193,
+      "exact_match": 50,
+      "actual_value_different": 150,
       "field_not_available": 0
     },
     "mechanism": {
@@ -28,16 +28,16 @@
     }
   },
   "topMismatchPairs": {
-    "rotating_shaft_guarding:unguarded-hazard-generic": 43,
     "moderate:critical": 39,
     "low:critical": 37,
-    "conveyor_cleanup:unguarded-hazard-generic": 36,
+    "conveyor_cleanup:rotating_shaft_guarding": 36,
     "serious:critical": 35,
-    "point_of_operation_guarding:unguarded-hazard-generic": 35,
+    "point_of_operation_guarding:rotating_shaft_guarding": 35,
     "high:critical": 34,
-    "unguarded_conveyor_pulley:unguarded-hazard-generic": 30,
+    "unguarded_conveyor_pulley:rotating_shaft_guarding": 30,
     "shock:rotating_equipment_nip_point": 27,
-    "pedestrian_strike:rotating_equipment_nip_point": 24
+    "pedestrian_strike:rotating_equipment_nip_point": 24,
+    "unexpected_startup:rotating_equipment_nip_point": 22
   },
   "mismatchReasoning": {
     "outputContractMapping": "Fields like hazardFamily and jurisdiction showing high 'field_not_available' or 'mismatch'.",
