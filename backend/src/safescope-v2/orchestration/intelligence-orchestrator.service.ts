@@ -325,7 +325,7 @@ export class SafeScopeIntelligenceOrchestrator {
     else if (detectedJurisdiction.includes('osha')) jurisdiction = 'osha_general_industry';
 
     const calibrationMeta: CalibrationMeta = {
-        hazardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
+        hazardFamily: scenarioIntelligence.hazardCategory || 'unknown',
         scenarioFamily: scenarioIntelligence.scenarioFamilyId,
         jurisdiction: jurisdiction,
         mechanism: scenarioIntelligence.mechanismOfInjury,

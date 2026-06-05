@@ -1,5 +1,6 @@
 export type ScenarioIntelligence = {
   scenarioFamilyId: string;
+  hazardCategory: string; // Added this
   equipment: string;
   task: string;
   unsafeCondition: string;

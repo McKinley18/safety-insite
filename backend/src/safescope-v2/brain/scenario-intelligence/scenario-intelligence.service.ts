@@ -22,6 +22,7 @@ export class ScenarioIntelligenceService {
     if (matchedFamily) {
       return {
         scenarioFamilyId: matchedFamily.id,
+        hazardCategory: matchedFamily.domain || 'unknown',
         equipment: matchedFamily.equipmentIndicators[0] || 'unknown',
         task: matchedFamily.taskIndicators[0] || 'unknown',
         unsafeCondition: matchedFamily.unsafeConditionIndicators[0] || 'unknown',
