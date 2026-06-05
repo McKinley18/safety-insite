@@ -29,7 +29,7 @@ export type SafeScopeIntelligenceContext = {
 import { ScenarioIntelligence } from './scenario-intelligence.types';
 import { StandardFamilyCandidateRecord } from '../brain/standard-family-mapper/standard-family-candidate.types';
 import { EvidenceGapQuestionRecord } from '../brain/evidence-gap-question-generator/evidence-gap-question.types';
-import { EvidenceGapQuestionRecord } from '../brain/evidence-gap-question-generator/evidence-gap-question.types';
+import { CitationLevelCandidateReview } from '../brain/citation-review-brain/citation-review.types';
 import { CorrectiveActionReasoning } from '../brain/corrective-action-brain/corrective-action.types';
 import { RiskReasoning } from '../brain/risk-reasoning/risk-reasoning.types';
 import { SafeScopeNormalizedObservationContext } from '../brain/observation-context/observation-context.types';

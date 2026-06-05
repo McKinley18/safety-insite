@@ -1,5 +1,5 @@
 import { RiskReasoning } from './risk-reasoning.types';
-import { ScenarioIntelligence } from '../scenario-intelligence/scenario-intelligence.types';
+import { ScenarioIntelligence } from '../../types/scenario-intelligence.types';
 
 export class RiskReasoningBrainService {
   evaluate(
