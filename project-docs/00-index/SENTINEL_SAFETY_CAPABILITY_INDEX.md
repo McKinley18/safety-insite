@@ -1050,3 +1050,13 @@ Check git status:
 - Existing precision batches 001-003 remain green.
 - SBAG, HRLG, DCA, output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.
 - Advisory-only boundaries remain preserved.
+
+## Approved Knowledge Promotion Workflow Governance
+- SafeScope Approved Knowledge Promotion Workflow Governance Core added.
+- It governs whether ASKIG-approved source candidates may move toward final approved-knowledge review.
+- It separates ready-for-final-review, needs-revision, merge-review-required, escalated-review-required, and blocked outcomes.
+- It requires reviewer approval before any future approved knowledge update.
+- It does not persist, export, or automatically promote approved knowledge.
+- It preserves advisory-only boundaries.
+- Existing precision batches 001-003 remain green.
+- ASKIG, SBAG, HRLG, DCA, output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.

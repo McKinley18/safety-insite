@@ -6,6 +6,7 @@ import { DefensibleCorrectiveActionService } from '../defensible-corrective-acti
 import { HumanReviewLearningGovernanceService } from '../human-review-learning-governance/hrlg.service';
 import { SourceBackedApplicabilityGovernanceService } from '../source-backed-applicability-governance/sbag.service';
 import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
+import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
@@ -119,6 +120,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private hrlgEngine = new HumanReviewLearningGovernanceService();
   private sbagEngine = new SourceBackedApplicabilityGovernanceService();
   private askigEngine = new ApprovedSourceKnowledgeIntakeGovernanceService();
+  private akpwgEngine = new ApprovedKnowledgePromotionWorkflowGovernanceService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -474,6 +476,8 @@ export class SafeScopeIntelligenceOrchestrator {
             calibrationMeta
         }
     );
+    
+    const akpwg = await this.akpwgEngine.evaluatePromotion(askig);
 
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
@@ -635,6 +639,7 @@ export class SafeScopeIntelligenceOrchestrator {
       hrlg,
       sbag,
       askig,
+      akpwg,
       confidenceGovernance,
       calibrationMeta,
       standardFamilyCandidates,
