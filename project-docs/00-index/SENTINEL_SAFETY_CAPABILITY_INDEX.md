@@ -1170,3 +1170,12 @@ Check git status:
 - It does not persist runtime knowledge or automatically promote knowledge.
 - Existing master validation remains green.
 - Advisory-only boundaries remain preserved.
+
+## Machine Guarding / Conveyor / LOTO Draft Knowledge Pack
+- SafeScope machine guarding / conveyor / LOTO draft knowledge pack added.
+- It includes 12 non-production draft_candidate records.
+- Records require qualified reviewer validation before use.
+- It is fully integrated with the Approved Knowledge Registry and Source Ingestion staging framework.
+- Existing precision batches 001-003 remain green.
+- All governance validations remain green.
+- Advisory-only boundaries remain preserved.

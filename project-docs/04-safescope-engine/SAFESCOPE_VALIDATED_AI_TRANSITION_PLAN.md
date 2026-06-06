@@ -494,3 +494,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - The Approved Knowledge Registry Schema is the structural foundation for future source-backed approved knowledge records and draft candidates.
 
 - The Approved Knowledge Registry Schema is the structural foundation for future source-backed approved knowledge records and draft candidates.
+
+- The machine guarding / conveyor / LOTO draft knowledge pack has been added, establishing the first domain-focused draft knowledge foundation.

@@ -21,6 +21,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'Machine guarding conveyor LOTO draft pack',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-machine-guarding-conveyor-loto-draft-pack.ts'],
+  },
+  {
     label: 'Source-backed knowledge candidates',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-source-backed-knowledge-candidates.ts'],
