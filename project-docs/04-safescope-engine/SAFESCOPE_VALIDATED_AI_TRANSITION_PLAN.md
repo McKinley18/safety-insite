@@ -480,3 +480,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - The Approved Source Knowledge Intake Governance Core is now the layer that controls whether external source material is eligible to become an approved knowledge candidate.
 
 - The Approved Knowledge Promotion Workflow Governance Core controls whether approved source candidates are ready for final review, merge review, escalation, revision, or blocking before any future approved knowledge update.
+
+- SafeScope now has an end-to-end governance pipeline contract validator that protects against future wiring regressions.

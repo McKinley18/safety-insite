@@ -1108,3 +1108,12 @@ Check git status:
 - It preserves advisory-only boundaries.
 - Existing precision batches 001-003 remain green.
 - ASKIG, SBAG, HRLG, DCA, output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.
+
+## Governance Pipeline Contract Validator
+- SafeScope Governance Pipeline Contract Validator added.
+- It validates that all governance layers are present together in the final orchestrator output.
+- It validates advisory guardrails across governance outputs.
+- It validates key policy relationships between evidence sufficiency, output policy, corrective action strength, applicability support, intake governance, promotion governance, and registry write guard.
+- Existing precision batches 001-003 remain green.
+- All governance validations remain green.
+- Frontend build remains green.
