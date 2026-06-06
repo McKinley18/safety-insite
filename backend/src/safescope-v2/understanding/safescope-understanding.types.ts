@@ -1,3 +1,5 @@
+import { SafeScopeScenarioUnderstandingResult } from './scenario-understanding.service';
+
 export type SafeScopeJurisdiction =
   | 'msha'
   | 'osha_general_industry'
@@ -127,7 +129,7 @@ export type SafeScopeUnderstanding = {
   energy: SafeScopeUnderstandingEnergy;
   controls: SafeScopeUnderstandingControls;
   mechanismCandidates: SafeScopeUnderstandingMechanismCandidate[];
-  scenarioUnderstanding?: any;
+  scenarioUnderstanding?: SafeScopeScenarioUnderstandingResult;
   evidenceGaps: string[];
   trace: string[];
   advisoryGuardrails: {
