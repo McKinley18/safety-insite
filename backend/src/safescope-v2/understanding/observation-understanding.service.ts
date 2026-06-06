@@ -221,10 +221,28 @@ export class ObservationUnderstandingService {
     }
 
     if (input.primaryEnergySource === 'electrical') {
+      const arcFlashSignal =
+        input.normalizedText.includes('arc flash') ||
+        input.normalizedText.includes('switchgear') ||
+        input.normalizedText.includes('breaker') ||
+        input.normalizedText.includes('mcc') ||
+        input.normalizedText.includes('motor control center');
+
+      const wetOrDamagedCordSignal =
+        input.normalizedText.includes('damaged insulation') ||
+        input.normalizedText.includes('exposed conductor') ||
+        input.normalizedText.includes('frayed cord') ||
+        input.normalizedText.includes('wet location') ||
+        input.normalizedText.includes('wet area');
+
       candidates.push({
-        mechanism: input.normalizedText.includes('arc flash') ? 'arc_flash' : 'electrical_shock',
-        confidence: 0.76,
-        reasons: ['Electrical energy source detected.'],
+        mechanism: arcFlashSignal && !wetOrDamagedCordSignal ? 'arc_flash' : 'electrical_shock',
+        confidence: input.workerExposed === true ? 0.82 : 0.76,
+        reasons: [
+          'Electrical energy source detected.',
+          arcFlashSignal ? 'Arc-flash-capable equipment or switching equipment signal detected.' : 'Direct-contact or shock pathway is more likely from available facts.',
+          wetOrDamagedCordSignal ? 'Wet or damaged conductor/insulation signal detected.' : 'Wet/damaged cord status requires confirmation if relevant.'
+        ],
         competingMechanisms: ['arc_flash', 'electrical_shock_arc_flash_access_clearance']
       });
     }

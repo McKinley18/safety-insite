@@ -41,19 +41,20 @@ export class EquipmentUnderstandingService {
       evidence.push('Mobile equipment language detected.');
     }
 
-    if (this.hasAny(normalizedText, ['electrical panel', 'panel', 'disconnect', 'breaker panel'])) {
+    if (this.hasAny(normalizedText, ['electrical panel', 'panel', 'disconnect', 'breaker panel', 'switchgear', 'mcc', 'motor control center'])) {
       category = 'electrical_equipment';
-      specificEquipment = this.firstPresent(normalizedText, ['electrical panel', 'breaker panel', 'disconnect', 'panel']);
+      specificEquipment = this.firstPresent(normalizedText, ['motor control center', 'switchgear', 'electrical panel', 'breaker panel', 'disconnect', 'panel', 'mcc']);
       component = this.hasAny(normalizedText, ['door', 'panel door']) ? 'panel_door' : component;
-      operationalState = this.hasAny(normalizedText, ['energized', 'live', 'in use']) ? 'energized' : operationalState;
+      component = this.hasAny(normalizedText, ['disconnect', 'breaker']) ? 'disconnect_or_breaker' : component;
+      operationalState = this.hasAny(normalizedText, ['energized', 'live', 'in use', 'powered', 'not de energized', 'not deenergized']) ? 'energized' : operationalState;
       evidence.push('Electrical equipment language detected.');
     }
 
-    if (this.hasAny(normalizedText, ['cord', 'extension cord', 'damaged insulation', 'exposed conductor'])) {
+    if (this.hasAny(normalizedText, ['cord', 'extension cord', 'damaged insulation', 'exposed conductor', 'frayed cord', 'plugged in'])) {
       category = 'electrical_cord';
-      specificEquipment = this.firstPresent(normalizedText, ['extension cord', 'electrical cord', 'cord']);
-      component = this.hasAny(normalizedText, ['insulation', 'conductor']) ? 'cord_insulation_or_conductor' : component;
-      operationalState = this.hasAny(normalizedText, ['energized', 'plugged in', 'in use']) ? 'energized' : operationalState;
+      specificEquipment = this.firstPresent(normalizedText, ['extension cord', 'electrical cord', 'frayed cord', 'cord']);
+      component = this.hasAny(normalizedText, ['insulation', 'conductor', 'frayed']) ? 'cord_insulation_or_conductor' : component;
+      operationalState = this.hasAny(normalizedText, ['energized', 'plugged in', 'in use', 'live', 'powered']) ? 'energized' : operationalState;
       evidence.push('Electrical cord language detected.');
     }
 

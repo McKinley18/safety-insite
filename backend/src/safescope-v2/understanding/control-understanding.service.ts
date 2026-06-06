@@ -55,6 +55,35 @@ export class ControlUnderstandingService {
       addFailed('access_control', 'Blocked or obstructed access signal detected.');
     }
 
+    if (
+      this.hasAny(normalizedText, [
+        'blocked electrical panel',
+        'blocked panel',
+        'blocked disconnect',
+        'blocked breaker',
+        'working clearance blocked',
+        'clearance blocked',
+        'stored materials in front',
+        'materials in front of panel'
+      ])
+    ) {
+      addFailed('electrical_working_clearance', 'Electrical working clearance or disconnect access issue detected.');
+    }
+
+    if (
+      this.hasAny(normalizedText, [
+        'damaged insulation',
+        'exposed conductor',
+        'frayed cord',
+        'missing strain relief',
+        'damaged cord',
+        'wet location',
+        'wet area'
+      ])
+    ) {
+      addFailed('electrical_integrity', 'Electrical insulation, conductor, or wet-location integrity issue detected.');
+    }
+
     if (this.hasAny(normalizedText, ['no protective system', 'no trench box', 'no shoring', 'no sloping', 'unprotected trench'])) {
       addMissing('excavation_protective_system', 'Missing excavation protective system signal detected.');
     }

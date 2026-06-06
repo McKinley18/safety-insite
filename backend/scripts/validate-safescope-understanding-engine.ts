@@ -67,6 +67,29 @@ const cases: ExpectedCase[] = [
     }
   },
   {
+    id: 'UNDERSTANDING-004A',
+    text: 'Employee using damaged extension cord with exposed conductor plugged in while lying in wet processing area.',
+    expected: {
+      equipmentCategory: 'electrical_cord',
+      component: 'cord_insulation_or_conductor',
+      workerExposed: true,
+      primaryEnergySource: 'electrical',
+      mechanism: 'electrical_shock',
+      scenarioId: 'damaged_cord_wet_location'
+    }
+  },
+  {
+    id: 'UNDERSTANDING-004B',
+    text: 'Electrical panel disconnect is blocked by stored materials and working clearance is blocked.',
+    expected: {
+      equipmentCategory: 'electrical_equipment',
+      component: 'disconnect_or_breaker',
+      primaryEnergySource: 'electrical',
+      mechanism: 'electrical_shock',
+      scenarioId: 'electrical_panel_access'
+    }
+  },
+  {
     id: 'UNDERSTANDING-005',
     text: 'Fire extinguisher is blocked by stacked pallets and inspection tag is expired.',
     expected: {

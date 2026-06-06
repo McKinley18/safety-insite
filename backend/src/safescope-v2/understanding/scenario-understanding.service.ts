@@ -170,7 +170,16 @@ export class ScenarioUnderstandingService {
   ) {
     if (u.equipment.category !== 'electrical_cord') return;
 
+    const wetOrDamaged =
+      u.normalizedText.includes('damaged insulation') ||
+      u.normalizedText.includes('exposed conductor') ||
+      u.normalizedText.includes('frayed cord') ||
+      u.normalizedText.includes('wet location') ||
+      u.normalizedText.includes('wet area') ||
+      u.normalizedText.includes('wet processing area');
+
     const missingFacts = this.missing([
+      ['damaged conductor/insulation or wet-location condition', wetOrDamaged],
       ['energized or in-use status', u.equipment.operationalState === 'energized'],
       ['worker exposure', u.exposure.workerExposed === true]
     ]);
@@ -198,6 +207,7 @@ export class ScenarioUnderstandingService {
 
     const accessIssue =
       u.controls.failedControls.includes('access_control') ||
+      u.controls.failedControls.includes('electrical_working_clearance') ||
       u.normalizedText.includes('blocked') ||
       u.normalizedText.includes('working clearance');
 
