@@ -21,6 +21,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'System index audit',
+    command: 'npx',
+    args: ['ts-node', 'scripts/audit-safescope-system-index.ts'],
+  },
+  {
     label: 'Hazard taxonomy coverage',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-hazard-taxonomy-coverage.ts'],

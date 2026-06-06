@@ -525,3 +525,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - SafeScope hazard taxonomy coverage map v1 added to manage absorption routing.
 
 - SafeScope hazard taxonomy coverage map v1 added to manage absorption routing.
+
+- SafeScope now has a system index and a automated repository audit script to ensure integrity as the AI governance structure expands.

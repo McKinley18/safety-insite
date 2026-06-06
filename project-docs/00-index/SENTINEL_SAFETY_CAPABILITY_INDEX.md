@@ -1285,3 +1285,10 @@ Check git status:
 - It covers major safety domains and maps them to draft packs or routing destinations.
 - Absorption is reviewer-controlled and routes to draft/review, not automatic approval.
 - Master validation includes the taxonomy coverage validator.
+
+## System Index + Validation Audit
+- SafeScope System Index added: inventories all governance, validation, and registry systems.
+- Draft Knowledge Pack Registry added: tracks all packs and validator coverage.
+- Hazard Taxonomy Gap Report added: identifies coverage priorities.
+- System Audit Script added: enforces validator/runner alignment.
+- Master validation remains green.
