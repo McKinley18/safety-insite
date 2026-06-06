@@ -519,3 +519,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 
 - SafeScope now has an end-to-end governance pipeline contract validator that protects against future wiring regressions.
 - SafeScope now has an AI Transition Gap Map to protect the final user-facing governance output shape.
+
+- SafeScope now has the first reviewer-controlled draft-to-approved promotion foundation, but approved record population and UI/API review workflow remain future work.

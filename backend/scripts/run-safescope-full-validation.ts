@@ -21,7 +21,7 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
-    label: 'Approved knowledge promotion v1',
+    label: 'Approved knowledge review API v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-promotion-v1.ts'],
   },

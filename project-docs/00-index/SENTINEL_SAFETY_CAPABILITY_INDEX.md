@@ -1266,3 +1266,10 @@ Check git status:
 - It adds a repo audit script to prevent draft pack validators from drifting out of the master validation runner.
 - It does not add new AI behavior or approved knowledge.
 - Advisory-only boundaries remain preserved.
+
+## Approved Knowledge Review + Promotion Workflow v1
+- SafeScope Approved Knowledge Review + Promotion Workflow v1 added.
+- Draft candidates can only become approved records with explicit reviewer/source/applicability/duplicate-review metadata.
+- Unknown authority, missing citation/source URL, outdated sources, incomplete mapping, prohibited declaration language, and weakened guardrails are rejected.
+- Promotion does not auto-learn, auto-cite, or auto-declare violations.
+- Master validation remains green.

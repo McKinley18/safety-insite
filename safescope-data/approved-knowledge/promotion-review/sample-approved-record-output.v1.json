@@ -2,46 +2,11 @@
   "recordId": "rec-1",
   "version": "1.0.0",
   "status": "approved",
-  "authority": {
-      "agency": "OSHA",
-      "authorityTier": "primary_regulation",
-      "jurisdiction": "osha_general_industry",
-      "sourceUrl": "http://osha.gov",
-      "citation": "1910.147",
-      "title": "LOTO",
-      "effectiveDate": "2026-01-01",
-      "revisionDate": "2026-01-01",
-      "sourceDateStatus": "current"
-  },
-  "mapping": {
-      "standardFamily": "loto",
-      "hazardFamilies": ["energy"],
-      "mechanisms": ["unexpected_startup"],
-      "equipmentGroups": ["conveyor"],
-      "taskContexts": ["maintenance"],
-      "applicabilitySignals": ["energized"],
-      "requiredFacts": ["energy_source"],
-      "disqualifyingFacts": [],
-      "evidenceQuestions": ["Is energy isolated?"]
-  },
-  "applicability": {
-      "plainLanguageSummary": "LOTO is required",
-      "appliesWhen": "servicing",
-      "doesNotApplyWhen": "normal operation",
-      "requiredReviewerChecks": ["LOTO check"]
-  },
-  "correctiveActionLinks": {
-      "preferredControlFamilies": ["isolation"],
-      "verificationMethods": ["zero energy check"],
-      "commonWeakActionsToAvoid": ["simple shutdown"]
-  },
   "governance": {
       "approvedBy": "SafetyMgr",
       "approvedAt": "2026-06-06",
       "reviewerRole": "Safety Manager",
       "changeReason": "Standard approval",
-      "supersedesRecordIds": [],
-      "duplicateKeys": ["loto-1910.147"],
       "advisoryOnly": true,
       "doesNotDeclareViolation": true,
       "doesNotCreateCitation": true,
