@@ -21,6 +21,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'Mobile equipment pedestrian draft pack',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-mobile-equipment-pedestrian-draft-pack.ts'],
+  },
+  {
     label: 'Machine guarding conveyor LOTO draft pack',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-machine-guarding-conveyor-loto-draft-pack.ts'],
