@@ -214,7 +214,20 @@ export class EvidenceSufficiencyService {
   }
 
   private scoreExposureClarity(workerExposed: boolean | 'unclear', proximity: string, text: string): ScoreReason {
-    if (workerExposed === true) {
+    const exposureNegated =
+      this.includesAny(text, [
+        'worker exposure access and proximity are not described',
+        'worker exposure is not described',
+        'employee exposure is not described',
+        'exposure is not described',
+        'access and proximity are not described',
+        'proximity is not described',
+        'not described',
+        'not clearly established',
+        'unknown exposure',
+      ]);
+
+    if (workerExposed === true && !exposureNegated) {
       return {
         key: 'exposureClarity',
         score: proximity !== 'unknown' && proximity !== 'not_established' ? 0.9 : 0.78,
@@ -223,7 +236,10 @@ export class EvidenceSufficiencyService {
       };
     }
 
-    if (this.includesAny(text, ['employee', 'worker', 'mechanic', 'employees nearby', 'working nearby', 'stands below', 'handling'])) {
+    if (
+      !exposureNegated &&
+      this.includesAny(text, ['employee', 'worker', 'mechanic', 'employees nearby', 'working nearby', 'stands below', 'handling'])
+    ) {
       return {
         key: 'exposureClarity',
         score: 0.7,
@@ -238,7 +254,7 @@ export class EvidenceSufficiencyService {
       weakest: 'Worker exposure is not clearly established.',
       missing: 'worker exposure',
       question: 'Confirm whether a worker was exposed and how close they were to the hazard.',
-      trace: 'Exposure clarity is weak.',
+      trace: exposureNegated ? 'Exposure clarity is weak because the observation states exposure/proximity is not described.' : 'Exposure clarity is weak.',
     };
   }
 
