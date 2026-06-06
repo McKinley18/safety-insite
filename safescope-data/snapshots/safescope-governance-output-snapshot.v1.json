@@ -1,0 +1,1771 @@
+{
+  "intelligenceMetadata": {
+    "engineName": "SafeScope Intelligence Orchestrator",
+    "engineVersion": "0.1.0",
+    "layersExecuted": [
+      "observation_context",
+      "observation_understanding",
+      "scenario",
+      "citation_level_review",
+      "risk_reasoning",
+      "evidence_gap_questions",
+      "corrective_action",
+      "confidence",
+      "operational_reasoning",
+      "trend",
+      "energy_transfer",
+      "evidence_quality",
+      "control",
+      "barrier",
+      "event_sequence",
+      "operational_state",
+      "human_factors",
+      "contradiction_detection",
+      "action_effectiveness",
+      "counterfactual",
+      "standards_reasoning",
+      "applicability_intelligence",
+      "decision_explainability",
+      "hazard_graph",
+      "exposure_path",
+      "correlation",
+      "site_memory",
+      "confidence_calibration",
+      "reasoning_drift",
+      "workspace_learning",
+      "learning_governance",
+      "learning_memory",
+      "domain_intelligence",
+      "cross_domain_interaction",
+      "executive_judgment"
+    ]
+  },
+  "observationContext": {
+    "rawObservation": "MSHA mechanic is servicing a conveyor drive with the guard removed while the equipment is not locked out. Stored and rotating energy could start unexpectedly and employees are exposed.",
+    "normalizedText": "msha mechanic is servicing a conveyor drive with the guard removed while the equipment is not locked out stored and rotating energy could start unexpectedly and employees are exposed",
+    "matchedTerms": [
+      "cleaning"
+    ],
+    "detectedEquipment": [
+      "conveyor"
+    ],
+    "detectedTasks": [
+      "unknown"
+    ],
+    "detectedUnsafeConditions": [
+      "unknown"
+    ],
+    "detectedOperationalStates": [
+      "unknown"
+    ],
+    "detectedEnergySources": [
+      "unknown"
+    ],
+    "detectedMechanismsOfInjury": [
+      "unknown"
+    ],
+    "detectedExposureSignals": [
+      "unknown"
+    ],
+    "detectedControls": [],
+    "detectedMissingOrFailedControls": [],
+    "detectedJurisdictionSignals": [
+      "msha"
+    ],
+    "detectedIndustrySignals": [],
+    "ambiguitySignals": [],
+    "conflictSignals": [],
+    "photoLikeDescriptionSignals": [],
+    "employeeExposureKnown": false,
+    "employeeExposureUnclear": true,
+    "taskContextKnown": false,
+    "operationalStateKnown": false,
+    "confidenceSignals": {
+      "score": 0.5,
+      "reasoning": [
+        "Initial normalization"
+      ]
+    },
+    "evidenceGaps": {
+      "missingEvidence": [],
+      "ambiguities": [],
+      "conflicts": []
+    },
+    "trace": [
+      "Normalized via ObservationContextService"
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "observationUnderstanding": {
+    "engine": "safescope_understanding_engine",
+    "rawText": "MSHA mechanic is servicing a conveyor drive with the guard removed while the equipment is not locked out. Stored and rotating energy could start unexpectedly and employees are exposed.",
+    "normalizedText": "msha mechanic is servicing a conveyor drive with the guard removed while the equipment is not locked out stored and rotating energy could start unexpectedly and employees are exposed",
+    "jurisdiction": {
+      "detected": "msha",
+      "evidence": [
+        "MSHA or mining signal detected."
+      ],
+      "needsConfirmation": false,
+      "confidence": {
+        "score": 0.85,
+        "reasons": [
+          "MSHA or mining signal detected."
+        ]
+      }
+    },
+    "equipment": {
+      "category": "conveyor",
+      "specificEquipment": "conveyor",
+      "component": "head_pulley_or_drive",
+      "motion": "unknown",
+      "operationalState": "unknown",
+      "confidence": {
+        "score": 0.71,
+        "reasons": [
+          "Conveyor language detected.",
+          "Head pulley, drive pulley, or conveyor drive component detected."
+        ]
+      }
+    },
+    "task": {
+      "activity": "maintenance",
+      "taskType": "maintenance",
+      "workerRole": "employee",
+      "confidence": {
+        "score": 0.75,
+        "reasons": [
+          "Task signal detected: maintenance.",
+          "Worker role signal detected: employee."
+        ]
+      }
+    },
+    "exposure": {
+      "workerExposed": true,
+      "proximity": "unknown",
+      "exposurePathway": "unknown",
+      "frequency": "unknown",
+      "confidence": {
+        "score": 0.4,
+        "reasons": [
+          "Worker or employee exposure language detected."
+        ]
+      }
+    },
+    "energy": {
+      "sources": [
+        "mechanical_rotation"
+      ],
+      "primaryEnergySource": "mechanical_rotation",
+      "energyTransferPath": "rotating mechanical energy can transfer through contact with exposed moving part",
+      "uncontrolledEnergyLikely": true,
+      "confidence": {
+        "score": 0.44999999999999996,
+        "reasons": [
+          "Mechanical rotation signal detected."
+        ]
+      }
+    },
+    "controls": {
+      "existingControls": [
+        "protective_control"
+      ],
+      "failedControls": [],
+      "missingControls": [
+        "guarding",
+        "energy_isolation"
+      ],
+      "strongestControlLevel": "energy_isolation",
+      "confidence": {
+        "score": 0.78,
+        "reasons": [
+          "Missing or removed guarding signal detected.",
+          "Missing energy isolation signal detected.",
+          "Existing protective control signal detected."
+        ]
+      }
+    },
+    "mechanismCandidates": [
+      {
+        "mechanism": "rotating_equipment_nip_point",
+        "confidence": 0.9,
+        "reasons": [
+          "Conveyor pulley, belt, roller, or in-running nip-point signal detected.",
+          "Guarding failure detected.",
+          "Worker exposure is indicated."
+        ],
+        "competingMechanisms": [
+          "rotating_equipment_entanglement",
+          "unexpected_startup",
+          "crush_point"
+        ]
+      }
+    ],
+    "scenarioUnderstanding": {
+      "candidates": [
+        {
+          "scenarioId": "unexpected_startup_energy_isolation",
+          "hazardFamily": "lockout_tagout",
+          "mechanism": "unexpected_startup",
+          "confidence": 0.86,
+          "reasons": [
+            "Servicing or maintenance activity detected.",
+            "Missing lockout/energy-isolation signal detected.",
+            "Unexpected startup/stored energy exposure should override generic machine-guarding routing."
+          ],
+          "requiredFacts": [
+            "servicing or maintenance task",
+            "energy isolation status",
+            "worker exposure"
+          ],
+          "missingFacts": []
+        },
+        {
+          "scenarioId": "unguarded_conveyor_pulley",
+          "hazardFamily": "machine_guarding",
+          "mechanism": "rotating_equipment_nip_point",
+          "confidence": 0.7,
+          "reasons": [
+            "Conveyor pulley/roller component detected.",
+            "Task is not primarily cleanup.",
+            "Scenario requires evaluating guarding and access to an in-running nip point."
+          ],
+          "requiredFacts": [
+            "conveyor pulley or roller",
+            "guarding status",
+            "worker exposure"
+          ],
+          "missingFacts": []
+        }
+      ],
+      "topScenario": {
+        "scenarioId": "unexpected_startup_energy_isolation",
+        "hazardFamily": "lockout_tagout",
+        "mechanism": "unexpected_startup",
+        "confidence": 0.86,
+        "reasons": [
+          "Servicing or maintenance activity detected.",
+          "Missing lockout/energy-isolation signal detected.",
+          "Unexpected startup/stored energy exposure should override generic machine-guarding routing."
+        ],
+        "requiredFacts": [
+          "servicing or maintenance task",
+          "energy isolation status",
+          "worker exposure"
+        ],
+        "missingFacts": []
+      },
+      "evidenceGaps": []
+    },
+    "evidenceGaps": [
+      "Worker proximity to the hazard is not clearly described.",
+      "Operational or energy state is not clearly established."
+    ],
+    "trace": [
+      "Normalized raw observation.",
+      "Evaluated jurisdiction, equipment, task, exposure, energy, and controls.",
+      "Generated mechanism candidates from structured facts.",
+      "Generated evidence gaps from missing or uncertain context."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "narrative": {
+    "findingTitle": "Review of conveyor-cleanup",
+    "findingSummary": "This finding relates to conveyor-cleanup observed in the field.",
+    "scenarioExplanation": "Reasoning indicates a scenario involving rotating_equipment_nip_point.",
+    "mechanismOfInjuryNarrative": "The mechanism of injury is related to rotating_equipment_nip_point.",
+    "exposureNarrative": "Exposure is related to worker near belt.",
+    "evidenceGapNarrative": "Some evidence is missing, requiring clarification.",
+    "followUpQuestionNarrative": "Was a verified Lockout/Tagout (LOTO) procedure applied before cleaning?",
+    "standardFamilyReviewNarrative": "Advisory review of standard families recommended.",
+    "citationCandidateReviewNarrative": "Advisory review of citations recommended.",
+    "correctiveActionNarrative": "Review recommended corrective actions.",
+    "immediateActionNarrative": "Secure the area.",
+    "interimControlNarrative": "Apply temporary controls.",
+    "permanentCorrectionNarrative": "Implement permanent engineered controls.",
+    "administrativeFollowUpNarrative": "Follow standard administrative procedures.",
+    "verificationNarrative": "Verify all implemented controls.",
+    "confidenceNarrative": "Confidence is determined based on scenario understanding.",
+    "qualifiedReviewDisclaimer": "This finding is for advisory purposes only and requires qualified review.",
+    "auditAppendixNarrative": "Audit details include source provenance and scenario mapping."
+  },
+  "domainIntelligence": {
+    "confinedSpace": null,
+    "loto": {
+      "domain": "lockout_tagout_energy_isolation",
+      "detectedIndicators": [
+        "locked out",
+        "not locked out",
+        "servicing",
+        "guard removed"
+      ],
+      "likelyEnergyTypes": [],
+      "detectedFailureModes": [],
+      "zeroEnergyVerified": false,
+      "isolationConcern": true,
+      "requiredControls": [
+        "identify all energy sources",
+        "notify affected employees",
+        "shut down equipment",
+        "isolate energy sources",
+        "apply locks and tags",
+        "release stored energy",
+        "verify zero energy",
+        "control restart",
+        "document authorized employee control"
+      ],
+      "escalationPatterns": [
+        "unexpected energization",
+        "unexpected startup",
+        "release of stored energy",
+        "caught-in during clearing or adjustment",
+        "electrical contact during troubleshooting"
+      ],
+      "standards": {
+        "OSHA_GENERAL_INDUSTRY": [
+          "29 CFR 1910.147"
+        ],
+        "OSHA_CONSTRUCTION": [
+          "29 CFR 1926.417",
+          "29 CFR 1926.702(j)"
+        ],
+        "MSHA": [
+          "30 CFR 56.12016",
+          "30 CFR 56.14105",
+          "30 CFR 57.12016",
+          "30 CFR 57.14105"
+        ]
+      },
+      "reasoningSummary": "Energy isolation concern detected. Verification of isolation and zero energy is needed before exposure."
+    },
+    "mobileEquipment": null,
+    "trenching": null,
+    "electrical": null,
+    "liftingRigging": null,
+    "hazcomGhs": null
+  },
+  "scenarioIntelligence": {
+    "scenarioFamilyId": "conveyor-cleanup",
+    "hazardCategory": "machine_guarding",
+    "equipment": "conveyor",
+    "task": "cleanup",
+    "unsafeCondition": "moving parts",
+    "operationalState": "running",
+    "energySource": "mechanical",
+    "mechanismOfInjury": "rotating_equipment_nip_point",
+    "exposedPersonActivity": "worker near belt",
+    "missingOrFailedControls": [
+      "guard missing",
+      "no LOTO"
+    ],
+    "hierarchyLevel": "unknown",
+    "candidateStandardFamily": "machine_guarding",
+    "evidenceGaps": [
+      "LOTO status",
+      "guard presence"
+    ],
+    "confidenceSignals": {
+      "score": 0.96,
+      "reasoning": [
+        "Matched against scenario family: Conveyor cleanup near moving parts"
+      ]
+    },
+    "qualifiedReviewRequired": true,
+    "advisoryOnly": true,
+    "doesNotDeclareViolation": true
+  },
+  "riskReasoning": {
+    "riskReasoningId": "risk-1780773696659",
+    "scenarioFamilyId": "conveyor-cleanup",
+    "hazardDomain": "machine_guarding",
+    "mechanismOfInjury": "rotating_equipment_nip_point",
+    "credibleWorstCaseOutcome": "amputation_entanglement_or_fatal_injury",
+    "severityEstimate": "high",
+    "likelihoodEstimate": "likely",
+    "exposureFrequency": "frequent",
+    "exposureDuration": "unknown",
+    "exposedPopulation": 1,
+    "energySourceSeverity": "high",
+    "controlFailureSeverity": "high",
+    "existingControls": [],
+    "missingOrFailedControls": [
+      "guard missing",
+      "no LOTO"
+    ],
+    "uncertaintyFactors": [
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available."
+    ],
+    "evidenceGaps": [
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available."
+    ],
+    "initialRiskLevel": "high",
+    "residualRiskLevel": "low",
+    "riskDrivers": [
+      "credible severity: high",
+      "exposure likelihood: likely",
+      "energy source: mechanical",
+      "mechanism: rotating_equipment_nip_point",
+      "missing/failed control: guard missing",
+      "missing/failed control: no LOTO"
+    ],
+    "riskReducers": [
+      "guard moving parts",
+      "isolate energy before work",
+      "verify access to danger zone is controlled"
+    ],
+    "urgencyLevel": "urgent",
+    "suggestedDueDateLogic": "same shift or before task continues",
+    "verificationRequirements": [
+      "verify fixed guard or equivalent safeguarding is installed and exposure is controlled"
+    ],
+    "confidence": 0.96,
+    "humanReviewTriggers": [
+      "High-risk condition requires qualified review.",
+      "Evidence gaps remain and should be resolved before final reliance."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "causalRiskReasoning": {
+    "engine": "safescope_causal_risk_reasoning",
+    "primaryEnergySource": "mechanical_rotation",
+    "energyTransferPath": "unexpected release of hazardous energy during servicing",
+    "exposedTarget": "worker_or_employee",
+    "initiatingCondition": "guarding, energy_isolation",
+    "failedOrMissingControl": "guarding, energy_isolation",
+    "mechanismOfInjury": "unexpected_startup",
+    "credibleWorstCase": "amputation, crushing injury, entanglement, or fatality from unexpected hazardous energy release",
+    "competingMechanisms": [
+      "rotating_equipment_nip_point",
+      "stored_energy_release",
+      "crush_point"
+    ],
+    "missingEvidence": [],
+    "confidence": {
+      "level": "high",
+      "score": 0.95,
+      "reasons": [
+        "Mechanism of injury was identified.",
+        "Primary energy source was identified.",
+        "Worker or employee exposure was identified.",
+        "Failed or missing control was identified.",
+        "Structured understanding provided supporting confidence."
+      ]
+    },
+    "reasoningTrace": [
+      "Read structured observation understanding when available.",
+      "Identified primary energy source: mechanical_rotation.",
+      "Mapped likely energy-transfer path: unexpected release of hazardous energy during servicing.",
+      "Identified exposed target: worker_or_employee.",
+      "Identified initiating condition: guarding, energy_isolation.",
+      "Identified failed or missing control: guarding, energy_isolation.",
+      "Selected mechanism of injury: unexpected_startup.",
+      "Estimated credible worst case: amputation, crushing injury, entanglement, or fatality from unexpected hazardous energy release.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "evidenceSufficiency": {
+    "engine": "safescope_evidence_sufficiency_engine",
+    "sufficiencyLevel": "sufficient",
+    "overallScore": 0.84,
+    "factScores": {
+      "observationClarity": 0.9,
+      "equipmentClarity": 0.9,
+      "taskClarity": 0.85,
+      "exposureClarity": 0.78,
+      "energyClarity": 0.88,
+      "controlFailureClarity": 0.9,
+      "mechanismClarity": 0.9,
+      "jurisdictionClarity": 0.85,
+      "evidenceSupport": 0.62
+    },
+    "strongestFacts": [
+      "Observation contains clear hazard context.",
+      "Equipment context identified: conveyor.",
+      "Task/activity identified: maintenance.",
+      "Worker exposure is identified.",
+      "Energy source identified: mechanical_rotation.",
+      "Missing or failed control is identified.",
+      "Mechanism of injury identified: unexpected_startup.",
+      "Jurisdiction identified: msha.",
+      "Evidence support is usable but should be reviewed."
+    ],
+    "weakestFacts": [],
+    "missingCriticalFacts": [],
+    "recommendedReviewerQuestions": [],
+    "confidenceImpact": {
+      "shouldDowngradeConfidence": false,
+      "downgradeReason": "Evidence supports high-confidence reasoning if other reasoning layers agree.",
+      "maximumSupportedConfidence": "high"
+    },
+    "reasoningTrace": [
+      "Evaluated observation clarity, equipment, task, exposure, energy, controls, mechanism, jurisdiction, and evidence support.",
+      "Observation clarity is strong.",
+      "Equipment clarity identified as conveyor.",
+      "Task clarity identified as maintenance.",
+      "Exposure clarity is strong.",
+      "Energy clarity identified as mechanical_rotation.",
+      "Control failure clarity is strong.",
+      "Mechanism clarity identified as unexpected_startup.",
+      "Jurisdiction clarity identified as msha.",
+      "Evidence support is partial.",
+      "Computed overall evidence sufficiency score: 0.84.",
+      "Assigned sufficiency level: sufficient.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "outputPolicy": {
+    "engine": "safescope_output_policy_governor",
+    "allowedLanguageStrength": "strong",
+    "prohibitedPhrases": [
+      "violation",
+      "violated",
+      "citation",
+      "cited",
+      "non-compliant",
+      "noncompliant",
+      "will be cited",
+      "is illegal"
+    ],
+    "requiredQualifiers": [
+      "Advisory only",
+      "Requires qualified human review"
+    ],
+    "allowedOutputModes": {
+      "canStateLikelyHazard": true,
+      "canStatePossibleHazard": true,
+      "canRecommendImmediateControls": true,
+      "canRecommendPermanentControls": true,
+      "canReferenceStandardFamily": false,
+      "canReferenceCitationCandidate": false,
+      "canGenerateExecutiveNarrative": true,
+      "canGenerateCorrectiveActionText": true,
+      "mustAskReviewerQuestionsFirst": false
+    },
+    "narrativePolicy": {
+      "openingQualifier": "Based on the available evidence, SafeScope can provide a strong advisory safety recommendation.",
+      "conclusionBoundary": "SafeScope provides advisory safety reasoning only and does not declare violations or create citations.",
+      "reviewInstruction": "A qualified reviewer must confirm facts, jurisdiction, applicability, and corrective-action adequacy before final reliance."
+    },
+    "correctiveActionPolicy": {
+      "allowedActionStrength": "strong_advisory",
+      "mustUseInterimControls": true,
+      "mustRequireVerification": true,
+      "mustAvoidViolationLanguage": true
+    },
+    "standardsPolicy": {
+      "allowedStandardLanguage": "none",
+      "mustAvoidCitationDeclaration": true,
+      "mustRequireApplicabilityReview": true
+    },
+    "evidencePolicy": {
+      "missingEvidenceMustBeShown": true,
+      "reviewerQuestionsMustBeShown": false,
+      "confidenceDowngradeMustBeShown": true
+    },
+    "decisionTrace": [
+      "Evaluated output policy after confidence governance.",
+      "Confidence governance maximum supported confidence: high.",
+      "Evidence sufficiency level: sufficient.",
+      "Selected language strength: strong.",
+      "Citation-candidate language is blocked or limited.",
+      "Violation/citation declaration language remains prohibited.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "dca": {
+    "engine": "safescope_defensible_corrective_action_core",
+    "actionStrength": "strong",
+    "immediateActions": [
+      {
+        "actionType": "immediate",
+        "title": "Stop servicing activity and secure hazardous energy exposure",
+        "description": "Pause affected work, establish control of hazardous energy, and keep workers clear until a qualified person verifies the equipment cannot unexpectedly start or release stored energy.",
+        "tiedMechanism": "unexpected_startup",
+        "tiedFailedControl": "guarding, energy_isolation",
+        "tiedExposure": "worker exposure identified; proximity=unknown",
+        "verificationMethod": "Supervisor field verification and worker access review.",
+        "priority": "critical",
+        "requiresHumanReview": true
+      }
+    ],
+    "interimControls": [
+      {
+        "actionType": "interim",
+        "title": "Maintain interim exposure controls",
+        "description": "Use controlled access and temporary energy-control oversight until the permanent isolation method is verified.",
+        "tiedMechanism": "unexpected_startup",
+        "tiedFailedControl": "guarding, energy_isolation",
+        "tiedExposure": "worker exposure identified; proximity=unknown",
+        "verificationMethod": "Document interim control placement and responsible person review.",
+        "priority": "critical",
+        "requiresHumanReview": true
+      }
+    ],
+    "permanentCorrectiveActions": [
+      {
+        "actionType": "permanent",
+        "title": "Complete permanent corrective action",
+        "description": "Implement and document energy isolation, lockout/tagout, try-out verification, and restart controls appropriate to the equipment and task.",
+        "tiedMechanism": "unexpected_startup",
+        "tiedFailedControl": "guarding, energy_isolation",
+        "tiedExposure": "worker exposure identified; proximity=unknown",
+        "verificationMethod": "Qualified review, closeout evidence, and recurrence-prevention verification.",
+        "priority": "critical",
+        "requiresHumanReview": true
+      }
+    ],
+    "verificationActions": [
+      {
+        "actionType": "verification",
+        "title": "Verify correction before closure",
+        "description": "Verify isolation records, lock placement, try-out results, stored-energy release, and supervisor review before returning equipment to service.",
+        "tiedMechanism": "unexpected_startup",
+        "tiedFailedControl": "guarding, energy_isolation",
+        "tiedExposure": "worker exposure identified; proximity=unknown",
+        "verificationMethod": "Verify isolation records, lock placement, try-out results, stored-energy release, and supervisor review before returning equipment to service.",
+        "priority": "critical",
+        "requiresHumanReview": true
+      }
+    ],
+    "assignedReviewNeeds": [
+      "Qualified safety review is required before final reliance or closure."
+    ],
+    "actionRationale": "Action strength strong was selected from output policy and confidence governance. Actions are tied to mechanism unexpected_startup, failed/missing control guarding, energy_isolation, and exposure worker exposure identified; proximity=unknown. Credible worst case considered: amputation, crushing injury, entanglement, or fatality from unexpected hazardous energy release. All actions remain advisory and require qualified review.",
+    "blockedActions": [],
+    "missingEvidenceBeforeFinalAction": [
+      "LOTO status",
+      "guard presence",
+      "Worker proximity to the hazard is not clearly described.",
+      "Operational or energy state is not clearly established."
+    ],
+    "reviewerQuestions": [
+      "Confirm energy isolation status, lockout method, stored-energy release, and try-out verification."
+    ],
+    "languagePolicyApplied": "strong",
+    "confidenceLimits": "high",
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "hrlg": {
+    "engine": "safescope_human_review_learning_governance_core",
+    "reviewRequired": true,
+    "reviewPriority": "critical",
+    "reviewerDecisionOptions": {
+      "accept": true,
+      "acceptWithEdits": true,
+      "reject": true,
+      "needsMoreEvidence": false,
+      "escalate": true
+    },
+    "reviewFocusAreas": [
+      "qualified reviewer final decision",
+      "high-risk or critical exposure review",
+      "corrective-action appropriateness review",
+      "learning eligibility review"
+    ],
+    "requiredReviewerConfirmations": [
+      "Confirm whether SafeScope output is accepted, edited, rejected, escalated, or requires more evidence.",
+      "Confirm any corrected hazard family, mechanism, exposure, controls, jurisdiction, standard family, and corrective actions."
+    ],
+    "correctionCapture": {
+      "shouldCaptureCorrectedHazardFamily": true,
+      "shouldCaptureCorrectedMechanism": false,
+      "shouldCaptureCorrectedExposure": false,
+      "shouldCaptureCorrectedControls": true,
+      "shouldCaptureCorrectedJurisdiction": false,
+      "shouldCaptureCorrectedStandardFamily": false,
+      "shouldCaptureCorrectedCorrectiveActions": true
+    },
+    "learningEligibility": {
+      "eligibleForLearningCandidate": true,
+      "eligibilityLevel": "approved_candidate",
+      "blockedReasons": [
+        "Qualified reviewer approval is still required before any future knowledge update."
+      ],
+      "requiredApprovals": [
+        "Qualified safety reviewer approval",
+        "Evidence review approval",
+        "Governance approval before any approved-knowledge update"
+      ]
+    },
+    "auditTrailRequirements": [
+      "Record SafeScope engine versions and output snapshot.",
+      "Record reviewer identity, decision, timestamp, and edits.",
+      "Record original SafeScope recommendation and final reviewer-approved correction.",
+      "Record evidence used for the decision.",
+      "Record whether learning candidate remains blocked, review-required, or approved-candidate.",
+      "Record confirmation that no automatic approved-knowledge update occurred."
+    ],
+    "governanceWarnings": [
+      "Do not automatically update approved knowledge from this output.",
+      "Reviewer approval is required before any future learning candidate can be used."
+    ],
+    "decisionTrace": [
+      "Evaluated human review and learning governance.",
+      "Evidence sufficiency level: sufficient.",
+      "Output policy language strength: strong.",
+      "Maximum supported confidence: high.",
+      "Review priority assigned: critical.",
+      "Learning eligibility assigned: approved_candidate.",
+      "Confirmed that learning output is governance-only and does not persist approved knowledge.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "sbag": {
+    "engine": "safescope_source_backed_applicability_governance_core",
+    "applicabilitySupportLevel": "partially_supported",
+    "jurisdictionSupport": {
+      "detectedJurisdiction": "msha",
+      "jurisdictionClear": true,
+      "requiresJurisdictionConfirmation": false,
+      "reasons": [
+        "Jurisdiction identified as msha."
+      ]
+    },
+    "standardFamilySupport": {
+      "canDiscussStandardFamily": true,
+      "supportedFamilies": [
+        "lockout_tagout",
+        "machine_guarding_energy_control"
+      ],
+      "blockedFamilies": [],
+      "reasons": [
+        "Evidence, confidence, output policy, and jurisdiction support standard-family discussion.",
+        "No approved/source-backed records were provided for this applicability decision."
+      ]
+    },
+    "citationCandidateSupport": {
+      "canDiscussCitationCandidate": false,
+      "citationCandidateMode": "blocked",
+      "candidates": [],
+      "blockedReasons": [
+        "Citation-candidate support is blocked or limited.",
+        "Approved/source-backed knowledge is unavailable.",
+        "Output policy blocks citation-candidate discussion.",
+        "No citation candidate was provided by source-backed reasoning."
+      ]
+    },
+    "sourceSupport": {
+      "approvedKnowledgeAvailable": false,
+      "sourceBackedSignals": [],
+      "missingSourceNeeds": [
+        "Approved/source-backed knowledge record for the applicable standard family.",
+        "Output policy permission for citation-candidate discussion."
+      ]
+    },
+    "applicabilityLimits": [
+      "SafeScope may not declare a violation or create a citation.",
+      "Applicability discussion requires qualified reviewer confirmation.",
+      "Approved/source-backed knowledge is missing, so citation-candidate language is limited or blocked.",
+      "Output policy does not permit citation-candidate discussion."
+    ],
+    "requiredReviewerConfirmations": [
+      "Confirm jurisdiction/site type before relying on applicability reasoning.",
+      "Confirm the standard family is applicable to the task, equipment, exposure, and site context.",
+      "Confirm any source-backed record before referencing a citation candidate.",
+      "Confirm SafeScope output remains advisory and does not declare a violation or create a citation.",
+      "Confirm source need: Approved/source-backed knowledge record for the applicable standard family.",
+      "Confirm source need: Output policy permission for citation-candidate discussion."
+    ],
+    "decisionTrace": [
+      "Evaluated source-backed applicability governance.",
+      "Evidence sufficiency level: sufficient.",
+      "Maximum supported confidence: high.",
+      "Output policy language strength: strong.",
+      "Jurisdiction clear: true.",
+      "Approved/source-backed knowledge available: false.",
+      "Applicability support level: partially_supported.",
+      "Citation candidate mode: blocked.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "askig": {
+    "engine": "safescope_approved_source_knowledge_intake_governance_core",
+    "intakeDecision": "blocked",
+    "sourceAuthority": {
+      "agency": "unknown",
+      "authorityTier": "unknown",
+      "jurisdiction": "unknown",
+      "sourceUrl": "unknown",
+      "citation": "unknown",
+      "title": "unknown",
+      "effectiveDate": "unknown",
+      "revisionDate": "unknown",
+      "sourceDateStatus": "unknown"
+    },
+    "sourceQuality": {
+      "hasCitation": false,
+      "hasTitle": false,
+      "hasJurisdiction": false,
+      "hasEffectiveDate": false,
+      "hasRevisionDate": false,
+      "hasSourceUrl": false,
+      "qualityScore": 0
+    },
+    "duplicateGovernance": {
+      "possibleDuplicate": false,
+      "duplicateKeys": [],
+      "duplicateReasons": [],
+      "recommendedMergeAction": "none"
+    },
+    "mappingGovernance": {
+      "standardFamily": "unknown",
+      "hazardFamilies": [],
+      "mechanisms": [],
+      "equipmentGroups": [],
+      "applicabilitySignals": [],
+      "mappingConfidence": "insufficient"
+    },
+    "reviewerRequirements": [
+      "qualified reviewer approval is required before this source can become approved knowledge.",
+      "confirm source authority tier, jurisdiction, citation, title, and source url.",
+      "confirm effective/revision date and whether the source is current.",
+      "confirm standard-family, hazard-family, mechanism, equipment, and applicability mapping."
+    ],
+    "blockedReasons": [
+      "Source agency/authority is unknown.",
+      "Authority tier is unknown.",
+      "Jurisdiction is missing or unclear.",
+      "Citation/reference is missing.",
+      "Source title is missing."
+    ],
+    "governanceWarnings": [
+      "Source URL is missing and should be confirmed before approval.",
+      "Source date status is unknown because effective/revision date is missing.",
+      "Mapping confidence is insufficient and requires reviewer mapping."
+    ],
+    "auditTrailRequirements": [
+      "Record original source metadata and normalized duplicate keys.",
+      "Record reviewer identity, decision, timestamp, and mapping edits.",
+      "Record authority tier, jurisdiction, citation, title, source URL, effective date, and revision date.",
+      "Record duplicate review outcome if possible duplicate is detected.",
+      "Record confirmation that no automatic approved-knowledge promotion occurred."
+    ],
+    "decisionTrace": [
+      "Evaluated approved source knowledge intake governance.",
+      "Agency: unknown.",
+      "Authority tier: unknown.",
+      "Jurisdiction: unknown.",
+      "Quality score: 0.00.",
+      "Source date status: unknown.",
+      "Mapping confidence: insufficient.",
+      "Possible duplicate: false.",
+      "Intake decision: blocked.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "akpwg": {
+    "engine": "SafeScope-Approved-Knowledge-Promotion-Workflow-Governance",
+    "promotionDecision": "blocked",
+    "promotionReadinessLevel": "not_ready",
+    "sourceCandidateStatus": {
+      "intakeDecision": "blocked",
+      "authorityTier": "unknown",
+      "agency": "unknown",
+      "jurisdiction": "unknown",
+      "citation": "unknown",
+      "title": "unknown",
+      "sourceDateStatus": "unknown",
+      "mappingConfidence": "insufficient"
+    },
+    "requiredPromotionApprovals": [
+      "Qualified reviewer approval"
+    ],
+    "reviewerWorkflow": {
+      "primaryReviewerRequired": true,
+      "secondaryReviewerRequired": true,
+      "legalOrComplianceReviewRequired": false,
+      "mergeReviewRequired": false,
+      "sourceOwnerReviewRequired": false,
+      "requiredReviewerRoles": [
+        "Safety Engineer"
+      ]
+    },
+    "readinessChecks": {
+      "sourceAuthorityAccepted": false,
+      "sourceQualityAccepted": false,
+      "duplicateResolved": false,
+      "mappingAccepted": false,
+      "freshnessAccepted": false,
+      "reviewerApprovalPresent": false,
+      "advisoryBoundaryAccepted": true
+    },
+    "lockedPromotionFields": {
+      "agency": "",
+      "authorityTier": "",
+      "jurisdiction": "",
+      "citation": "",
+      "title": "",
+      "sourceUrl": "",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "standardFamily": "",
+      "hazardFamilies": [],
+      "mechanisms": [],
+      "equipmentGroups": [],
+      "applicabilitySignals": []
+    },
+    "unresolvedIssues": [
+      "Placeholder AKPWG evaluation"
+    ],
+    "blockedReasons": [
+      "Placeholder AKPWG evaluation"
+    ],
+    "governanceWarnings": [
+      "AKPWG placeholder"
+    ],
+    "auditTrailRequirements": [
+      "All"
+    ],
+    "decisionTrace": [
+      "AKPWG: Initialized as blocked."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "akrwg": {
+    "engine": "safescope_approved_knowledge_registry_write_guard_core",
+    "writeDecision": "reject_write",
+    "writePermission": {
+      "canWriteApprovedKnowledge": false,
+      "canCreateDraftCandidate": false,
+      "canUpdateExistingRecord": false,
+      "canMergeDuplicate": false,
+      "requiresFinalReviewerApproval": true
+    },
+    "requiredInputs": {
+      "sourceIntakeDecision": "blocked",
+      "promotionDecision": "blocked",
+      "reviewerApprovalPresent": false,
+      "auditTrailPresent": false,
+      "duplicateResolved": true,
+      "versioningPresent": true,
+      "changeReasonPresent": true
+    },
+    "registryRecordReadiness": {
+      "readyForDraft": false,
+      "readyForApprovedRegistry": false,
+      "missingReadinessItems": [
+        "reviewable source intake decision",
+        "reviewable promotion decision",
+        "final qualified reviewer approval",
+        "complete audit trail"
+      ]
+    },
+    "duplicateWriteGuard": {
+      "possibleDuplicate": false,
+      "duplicateResolved": true,
+      "allowedAction": "create_new",
+      "reasons": [
+        "No duplicate indicated."
+      ]
+    },
+    "versioningGuard": {
+      "requiresVersionIncrement": false,
+      "previousVersion": "unknown",
+      "proposedVersion": "unknown",
+      "changeReasonRequired": false,
+      "versioningWarnings": []
+    },
+    "reviewerApprovalGuard": {
+      "approvalRequired": true,
+      "approvalPresent": false,
+      "approverRoleAccepted": false,
+      "requiredApproverRoles": [
+        "qualified_safety_reviewer",
+        "safety_manager",
+        "safety_director",
+        "admin"
+      ],
+      "approvalWarnings": [
+        "Final qualified reviewer approval is missing."
+      ]
+    },
+    "auditGuard": {
+      "auditRequired": true,
+      "auditTrailPresent": false,
+      "requiredAuditFields": [
+        "sourceId",
+        "reviewerId",
+        "decisionTimestamp",
+        "sourceSnapshot",
+        "changeReason",
+        "engineVersion"
+      ],
+      "missingAuditFields": [
+        "sourceId",
+        "reviewerId",
+        "decisionTimestamp",
+        "sourceSnapshot",
+        "changeReason",
+        "engineVersion"
+      ]
+    },
+    "blockedReasons": [
+      "Source intake decision is blocked.",
+      "Promotion decision is blocked.",
+      "Final qualified reviewer approval is missing.",
+      "Required audit trail is missing or incomplete."
+    ],
+    "governanceWarnings": [
+      "This guard is governance-only and does not persist approved knowledge.",
+      "Approved-registry write requires final qualified reviewer approval.",
+      "Audit trail must be completed before approved-registry write."
+    ],
+    "decisionTrace": [
+      "Evaluated approved knowledge registry write guard.",
+      "Source intake decision: blocked.",
+      "Promotion decision: blocked.",
+      "Reviewer approval present: false.",
+      "Audit trail present: false.",
+      "Duplicate resolved: true.",
+      "Versioning present: true.",
+      "Change reason present: true.",
+      "Write decision: reject_write.",
+      "Confirmed governance-only behavior; no approved knowledge was written.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "confidenceGovernance": {
+    "engine": "safescope_confidence_governance_core",
+    "finalConfidenceLevel": "high",
+    "maximumSupportedConfidence": "high",
+    "confidenceScore": 0.84,
+    "confidenceInputs": {
+      "observationUnderstandingConfidence": "moderate",
+      "causalRiskConfidence": "high",
+      "evidenceSufficiencyLevel": "high",
+      "evidenceSufficiencyScore": 0.84,
+      "scenarioConfidence": "high",
+      "riskConfidence": "high",
+      "standardsConfidence": "low"
+    },
+    "downgradeReasons": [
+      "Standards confidence limits standard-family and citation-candidate support, but does not block hazard-control reasoning."
+    ],
+    "blockingEvidenceGaps": [
+      "LOTO status",
+      "guard presence",
+      "Worker proximity to the hazard is not clearly described.",
+      "Operational or energy state is not clearly established."
+    ],
+    "humanReviewRequired": true,
+    "humanReviewReasons": [
+      "High or critical risk condition requires qualified review.",
+      "Blocking or weak evidence remains and should be reviewed."
+    ],
+    "outputPermissions": {
+      "canSupportStrongRecommendation": true,
+      "canSupportStandardFamilySuggestion": false,
+      "canSupportCitationCandidate": false,
+      "canSupportCorrectiveAction": true,
+      "canSupportReportNarrative": true
+    },
+    "decisionTrace": [
+      "Started confidence governance evaluation.",
+      "Used evidence sufficiency as the primary confidence gate.",
+      "Evidence sufficiency level: sufficient.",
+      "Maximum supported confidence: high.",
+      "Citation candidate support: blocked or limited.",
+      "Preserved advisory-only boundary and qualified-review requirement."
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "doesNotCreateCitation": true,
+      "requiresQualifiedReview": true
+    }
+  },
+  "calibrationMeta": {
+    "hazardFamily": "lockout_tagout",
+    "scenarioFamily": "unexpected_startup_energy_isolation",
+    "jurisdiction": "msha",
+    "mechanism": "unexpected_startup",
+    "riskBand": "high",
+    "standardFamily": "lockout_tagout",
+    "evidenceGaps": [
+      "LOTO status",
+      "guard presence",
+      "Worker proximity to the hazard is not clearly described.",
+      "Operational or energy state is not clearly established."
+    ]
+  },
+  "standardFamilyCandidates": [
+    {
+      "title": "Advisory Machine Guarding Standards Review",
+      "jurisdictionContext": [
+        "msha",
+        "osha"
+      ],
+      "candidateFamily": "machine_guarding",
+      "relatedScenarioFamilies": [
+        "conveyor-cleanup",
+        "unguarded-conveyor-pulley"
+      ],
+      "relatedHazardDomains": [
+        "machine_guarding"
+      ],
+      "relatedEquipmentIndicators": [
+        "conveyor",
+        "pulley"
+      ],
+      "relatedTaskIndicators": [
+        "cleanup",
+        "inspection"
+      ],
+      "relatedMechanismOfInjuryIndicators": [
+        "rotating_equipment_nip_point"
+      ],
+      "relatedExposureIndicators": [
+        "worker near belt"
+      ],
+      "relatedMissingControlIndicators": [
+        "guard missing",
+        "no LOTO"
+      ],
+      "evidenceRequired": [
+        "guard status",
+        "LOTO verification"
+      ],
+      "evidenceGaps": [
+        "access control",
+        "energy state"
+      ],
+      "confidenceBoosters": [
+        "observation of moving parts"
+      ],
+      "confidenceReducers": [
+        "vague description"
+      ],
+      "humanReviewTriggers": [
+        "high risk task"
+      ],
+      "reasoningNotes": [
+        "Review for advisory guarding standards."
+      ],
+      "advisoryGuardrails": {
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "requiresQualifiedReview": true
+      }
+    }
+  ],
+  "citationLevelCandidates": [
+    {
+      "sourceId": "osha-1910-147-loto",
+      "citation": "29 CFR 1910.147",
+      "title": "Control of Hazardous Energy (Lockout/Tagout)",
+      "agency": "OSHA",
+      "jurisdiction": "osha_general_industry",
+      "industryScope": [
+        "manufacturing"
+      ],
+      "authorityTier": "primary_regulation",
+      "approvalStatus": "approved",
+      "relatedStandardFamily": "unknown",
+      "relatedScenarioFamilies": [
+        "conveyor-cleanup"
+      ],
+      "relatedHazardDomains": [],
+      "relatedEquipmentIndicators": [],
+      "relatedTaskIndicators": [],
+      "relatedMechanismIndicators": [],
+      "relatedExposureIndicators": [],
+      "requiredEvidence": [
+        "LOTO status",
+        "energy isolation verification"
+      ],
+      "missingEvidence": [],
+      "evidenceSatisfied": true,
+      "confidence": 0.96,
+      "confidenceBoosters": [],
+      "confidenceReducers": [],
+      "humanReviewTriggers": [
+        "Critical hazard interaction"
+      ],
+      "applicabilityNotes": [],
+      "prohibitedUses": [],
+      "advisoryGuardrails": {
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "requiresQualifiedReview": true
+      },
+      "sourceTrace": [
+        "Governed by SourceGovernanceService"
+      ]
+    }
+  ],
+  "evidenceGapQuestions": [
+    {
+      "scenarioFamilyId": "conveyor-cleanup",
+      "hazardDomain": "machine_guarding",
+      "evidenceGapId": "LOTO status",
+      "question": "Was a verified Lockout/Tagout (LOTO) procedure applied before cleaning?",
+      "reasonForQuestion": "Conveyor cleaning near moving parts is high-risk; verifying energy isolation is critical.",
+      "relatedMechanismOfInjury": "rotating_equipment_nip_point",
+      "relatedExposurePathway": "worker near belt",
+      "relatedMissingControl": "no LOTO",
+      "relatedStandardFamilyCandidate": "candidate-machine-guarding",
+      "priority": "critical",
+      "answerType": "boolean",
+      "examplesOfUsefulEvidence": [
+        "photo of lock",
+        "tag details"
+      ],
+      "confidenceImpact": "high",
+      "humanReviewTrigger": true,
+      "advisoryGuardrails": {
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "requiresQualifiedReview": true
+      }
+    }
+  ],
+  "correctiveActionReasoning": {
+    "scenarioFamilyId": "conveyor-cleanup",
+    "hazardDomain": "machine_guarding",
+    "mechanismOfInjury": "rotating_equipment_nip_point",
+    "exposurePathway": "worker near belt",
+    "missingOrFailedControls": [
+      "guard missing",
+      "no LOTO"
+    ],
+    "immediateActions": [
+      "Immediately stop all work in the affected zone",
+      "Lock out and tag out all energy sources"
+    ],
+    "interimControls": [
+      "Implement temporary physical barriers",
+      "Assign a dedicated safety spotter"
+    ],
+    "permanentCorrections": [
+      "Install permanent interlocked guarding system",
+      "Develop authorized lockout procedures"
+    ],
+    "administrativeFollowUps": [
+      "Perform hazard analysis update",
+      "Conduct targeted tool-box safety briefing"
+    ],
+    "verificationSteps": [
+      "Competent person verification of controls",
+      "Document functional test results"
+    ],
+    "evidenceNeededBeforeFinalizing": [
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available."
+    ],
+    "responsibleRoleSuggestions": [
+      "Safety Manager",
+      "Operations Supervisor"
+    ],
+    "urgencyLevel": "critical",
+    "controlHierarchyLevel": "unknown",
+    "standardFamilyReviewLinks": [],
+    "confidence": 0.96,
+    "humanReviewTriggers": [
+      "Qualified safety review required due to high hazard complexity"
+    ],
+    "advisoryGuardrails": {
+      "advisoryOnly": true,
+      "doesNotDeclareViolation": true,
+      "requiresQualifiedReview": true
+    },
+    "immediateActionNarrative": "Halt all operations in the affected area immediately and initiate emergency energy isolation procedures.",
+    "interimControlNarrative": "Deploy temporary physical safeguards or implement strict access restrictions until permanent engineered controls are validated.",
+    "permanentCorrectionNarrative": "Implement permanent engineered controls, such as guard missing or no LOTO, to eliminate exposure to rotating_equipment_nip_point.",
+    "administrativeFollowUpNarrative": "Review and update the hazard control plan; conduct a mandatory safety briefing for all personnel affected by this work activity.",
+    "verificationNarrative": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations."
+  },
+  "crossDomainInteraction": {
+    "interactions": [],
+    "escalationRisks": [],
+    "reviewFocus": [],
+    "interactionSeverity": "none",
+    "interactionSummary": "No cross-domain interaction pattern detected from available domain intelligence."
+  },
+  "workspaceLearning": {
+    "workspaceId": null,
+    "learningMaturity": "limited_signal",
+    "repeatedSimilarFindingCount": 0,
+    "acceptedStandardFeedbackCount": 0,
+    "rejectedStandardFeedbackCount": 0,
+    "ineffectiveActionOutcomeCount": 0,
+    "learningSignals": [],
+    "learningSummary": "Workspace-specific learning is limited for this hazard type.",
+    "recommendedUse": "Use workspace learning as supporting intelligence only; do not override regulatory requirements or qualified human review."
+  },
+  "learningGovernance": {
+    "engine": "safescope_learning_governance",
+    "mode": "validation_gated_learning",
+    "approvedSignalCount": 0,
+    "quarantinedSignalCount": 0,
+    "approvedSignals": [],
+    "quarantinedSignals": [],
+    "totalConfidenceAdjustment": 0,
+    "learningWarnings": [],
+    "allowedInfluence": [
+      "adjust_confidence",
+      "increase_review_priority",
+      "suggest_evidence_questions",
+      "improve_corrective_action_recommendations",
+      "surface_workspace_trends"
+    ],
+    "prohibitedInfluence": [
+      "invent_citations",
+      "override_regulatory_requirements",
+      "remove_high_risk_review_flags",
+      "auto_finalize_compliance_decisions",
+      "promote_unreviewed_feedback_to_global_learning"
+    ],
+    "finalGovernanceRule": "SafeScope may learn from validated feedback and field outcomes, but learning cannot override regulations, source requirements, high-risk review triggers, or qualified human judgment."
+  },
+  "learningMemory": {
+    "engine": "safescope_learning_memory",
+    "mode": "governed_workspace_memory",
+    "classification": "Machine Guarding",
+    "relatedPriorFindingCount": 0,
+    "retainedLearning": [],
+    "learningCautions": [],
+    "nextLearningNeeds": [
+      "More supervisor-validated feedback is needed before SafeScope can safely adjust workspace-specific recommendations.",
+      "More site history is needed before SafeScope can identify meaningful recurrence patterns for this hazard type."
+    ],
+    "canSelfModifyRules": false,
+    "canOverrideStandards": false,
+    "canReduceHumanReview": false,
+    "canImproveRecommendations": false,
+    "memoryBoundary": "SafeScope learning memory may improve review questions, confidence calibration, recurrence awareness, and corrective-action suggestions, but it cannot change regulations, invent citations, bypass review, or self-modify core rules without validation."
+  },
+  "confidenceIntelligence": {
+    "overallConfidence": 0.96,
+    "confidenceBand": "high",
+    "strengths": [
+      "Applicable standards were identified."
+    ],
+    "missingCriticalInformation": [],
+    "conflictingSignals": [],
+    "recommendedFollowup": [],
+    "reasonCodes": [
+      "STANDARDS_IDENTIFIED"
+    ],
+    "reviewTriggers": [],
+    "supervisorReviewRecommended": false
+  },
+  "operationalReasoning": {
+    "exposurePathways": [],
+    "likelyInjuryMechanisms": [
+      "Caught-in, struck-by, pinch-point, or amputation exposure from moving machine parts."
+    ],
+    "operationalStateSignals": [
+      "Energy-control status is referenced."
+    ],
+    "humanInteractionSignals": [
+      "Worker or pedestrian exposure is described."
+    ],
+    "energyTransferSignals": [],
+    "initiatingConditions": [
+      "A physical condition appears degraded, missing, damaged, or uncontrolled."
+    ],
+    "contributingFactors": [],
+    "controlFailures": [
+      "A required protective control may be absent, bypassed, or ineffective."
+    ],
+    "possibleConsequences": [
+      "Caught-in, struck-by, pinch-point, or amputation exposure from moving machine parts."
+    ],
+    "causalChain": [
+      "A physical condition appears degraded, missing, damaged, or uncontrolled.",
+      "Exposure pathway requires confirmation.",
+      "Energy transfer mechanism requires confirmation.",
+      "A required protective control may be absent, bypassed, or ineffective.",
+      "Caught-in, struck-by, pinch-point, or amputation exposure from moving machine parts."
+    ],
+    "assumptions": [
+      "Exposure pathway may exist, but the description does not clearly define access or proximity."
+    ],
+    "uncertainty": [],
+    "reasoningSummary": "A physical condition appears degraded, missing, damaged, or uncontrolled. → Exposure pathway requires confirmation. → Energy transfer mechanism requires confirmation. → A required protective control may be absent, bypassed, or ineffective. → Caught-in, struck-by, pinch-point, or amputation exposure from moving machine parts.",
+    "causalNarrative": "SafeScope causal model: A physical condition appears degraded, missing, damaged, or uncontrolled. → Exposure pathway requires confirmation. → Energy transfer mechanism requires confirmation. → A required protective control may be absent, bypassed, or ineffective. → Caught-in, struck-by, pinch-point, or amputation exposure from moving machine parts..",
+    "supervisorQuestions": [
+      "Verify: Exposure pathway may exist, but the description does not clearly define access or proximity."
+    ]
+  },
+  "trendIntelligence": {
+    "recurrenceRisk": "low",
+    "trendDirection": "not_established",
+    "hotspotArea": null,
+    "relatedFindingCount": 0,
+    "recentRelatedFindingCount": 0,
+    "repeatedClassificationCount": 0,
+    "repeatedLocationCount": 0,
+    "highRiskRepeatCount": 0,
+    "escalationRecommended": false,
+    "controlFailureIndicators": [],
+    "similarFindingsTimeline": [],
+    "recommendation": "No recurring trend detected from provided prior findings."
+  },
+  "energyTransferIntelligence": {
+    "dominantEnergySource": "kinetic/mechanical",
+    "energySources": [
+      "kinetic/mechanical"
+    ],
+    "uncontrolledEnergyLikely": true,
+    "releaseMechanisms": [
+      "Contact with rotating, moving, or driven machine parts."
+    ],
+    "exposureInterfaces": [
+      "Exposure interface requires confirmation."
+    ],
+    "missingBarriers": [
+      "Energy isolation or interlock control may be absent, bypassed, or ineffective."
+    ],
+    "severityAmplifiers": [
+      "Mechanical energy can produce caught-in, crushing, amputation, or struck-by injuries."
+    ],
+    "controlLogic": [
+      "Verify guarding, isolation, interlocks, safe access, and lockout/tagout where applicable."
+    ],
+    "energyTransferSummary": "Primary energy source appears to be kinetic/mechanical. SafeScope evaluated release mechanism, exposure interface, and barrier/control effectiveness."
+  },
+  "evidenceQuality": {
+    "evidenceQualityScore": 82,
+    "evidenceQualityBand": "strong",
+    "strengths": [
+      "Narrative contains meaningful detail.",
+      "Location or equipment context is present."
+    ],
+    "gaps": [
+      "No photo evidence is attached.",
+      "No supplemental evidence notes are available."
+    ],
+    "defensibilityStatement": "Evidence appears strong enough to support classification and report review."
+  },
+  "controlIntelligence": {
+    "controlTypes": [],
+    "strongestControl": "general",
+    "durableControlPresent": false,
+    "ppeOnly": false,
+    "verificationNeeded": true,
+    "controlGaps": [
+      "No durable engineering, elimination, or energy-control measure was clearly identified."
+    ],
+    "hierarchyAssessment": "Recommendation set should be strengthened with engineering, elimination, substitution, or energy-control measures where feasible.",
+    "verificationRecommendation": "Require supervisor or competent-person verification before closure."
+  },
+  "barrierIntelligence": {
+    "barrierTypes": [
+      "physical_guarding"
+    ],
+    "failedOrMissingBarriers": [
+      "Energy isolation may be absent or incomplete.",
+      "Energy isolation or interlock control may be absent, bypassed, or ineffective."
+    ],
+    "barrierAdequacy": "weak",
+    "verificationNeeds": [
+      "Verify whether the missing or failed barrier directly controls the energy source and exposure pathway.",
+      "Field verification is needed before closure."
+    ],
+    "barrierReasoning": "Multiple barrier weaknesses may exist. Corrective action should address the failed barrier and verify effectiveness."
+  },
+  "eventSequence": {
+    "beforeEvent": [],
+    "duringEvent": [],
+    "afterEvent": [
+      "Energy control or shutdown condition is referenced."
+    ],
+    "sequenceGaps": [
+      "Pre-event work activity is not clearly described.",
+      "Event-state condition is not clearly described."
+    ],
+    "likelySequence": [
+      "Pre-event condition unknown.",
+      "Event-state condition unknown.",
+      "Energy control or shutdown condition is referenced."
+    ],
+    "sequenceConfidence": "low",
+    "sequenceSummary": "SafeScope reconstructed the likely event sequence from work activity, energy state, exposure, and control-status signals."
+  },
+  "operationalState": {
+    "primaryState": "shutdown_or_energy_control",
+    "states": [
+      "shutdown_or_energy_control"
+    ],
+    "stateSignals": [
+      "Shutdown or energy-control state indicated."
+    ],
+    "stateRisks": [
+      "Energy-control effectiveness should be verified before work proceeds."
+    ],
+    "stateConfidence": "medium",
+    "stateAwarenessSummary": "SafeScope inferred operational state as shutdown or energy control based on narrative and energy-state signals."
+  },
+  "humanFactors": {
+    "humanFactorsPresent": false,
+    "humanFactorSignals": [],
+    "behaviorRiskSignals": [],
+    "supervisionSignals": [],
+    "visibilitySignals": [],
+    "lineOfFireSignals": [],
+    "humanFactorsSummary": "No strong human-factor signal detected from available narrative.",
+    "recommendedReview": "Continue to verify worker exposure and task context during supervisor review."
+  },
+  "contradictionIntelligence": {
+    "contradictionsDetected": false,
+    "contradictionSeverity": "none",
+    "contradictions": [],
+    "reviewImpact": "No major internal contradictions detected from available narrative."
+  },
+  "actionEffectiveness": {
+    "effectivenessScore": 15,
+    "effectivenessBand": "weak",
+    "addressedElements": [],
+    "unresolvedElements": [
+      "Corrective action may not directly control the energy source.",
+      "Corrective action may not directly restore the failed or missing barrier.",
+      "Verification step should be explicitly included before closure."
+    ],
+    "effectivenessStatement": "Corrective actions may not fully address the causal chain, energy transfer pathway, or failed barrier.",
+    "recommendedImprovement": "Strengthen the corrective action by explicitly addressing unresolved causal, energy, barrier, or verification elements."
+  },
+  "counterfactualIntelligence": {
+    "counterfactuals": [
+      "If the failed or missing barrier had been effective, the exposure pathway would likely have been reduced.",
+      "If the energy source had been isolated or controlled, injury potential would likely have been reduced.",
+      "If a durable engineering or energy-control measure were present, reliance on behavior or PPE would likely decrease.",
+      "If corrective actions directly addressed all unresolved causal elements, recurrence likelihood would likely decrease."
+    ],
+    "preventionLevers": [
+      "Restore and verify the failed barrier.",
+      "Control, isolate, or verify zero energy before exposure.",
+      "Strengthen the control set with engineering, elimination, substitution, or energy-control measures.",
+      "Revise corrective actions to address unresolved causal-chain elements."
+    ],
+    "strongestPreventionLever": "Restore and verify the failed barrier.",
+    "counterfactualSummary": "SafeScope evaluated how alternate control states may have reduced exposure, energy transfer, recurrence, or injury potential."
+  },
+  "standardsReasoning": {
+    "topDefensible": [
+      {
+        "0": "1",
+        "1": "9",
+        "2": "1",
+        "3": "0",
+        "4": ".",
+        "5": "1",
+        "6": "4",
+        "7": "7",
+        "defensibilityScore": 0.5,
+        "domainBoost": 0,
+        "applicabilityConfidence": "low",
+        "reasoning": "Standard matched using hazard classification, operational context, exposure pathways, and contextual risk indicators."
+      }
+    ],
+    "summary": "Standards ranked using operational defensibility analysis."
+  },
+  "applicabilityIntelligence": {
+    "jurisdiction": "msha",
+    "operationalPhase": "maintenance",
+    "exposureEvidence": {
+      "workerExposure": true,
+      "exposureType": "direct_or_potential_worker_exposure"
+    },
+    "applicabilityConfidence": 15,
+    "primaryApplicableStandards": [],
+    "supportingStandards": [],
+    "excludedStandards": [
+      {
+        "0": "1",
+        "1": "9",
+        "2": "1",
+        "3": "0",
+        "4": ".",
+        "5": "1",
+        "6": "4",
+        "7": "7",
+        "applicabilityScore": 15,
+        "applicabilityReasons": [
+          "Worker exposure or access to the hazard is indicated."
+        ],
+        "exclusionReasons": [],
+        "applicabilityBand": "excluded"
+      }
+    ],
+    "reasoning": [
+      "Detected jurisdiction: msha.",
+      "Detected operational phase: maintenance.",
+      "Worker exposure evidence is present."
+    ]
+  },
+  "decisionExplainability": {
+    "decisionSummary": "Machine Guarding was selected based on hazard signals, context, risk indicators, and standards alignment.",
+    "confidenceStatement": "Overall confidence is 96%.",
+    "riskStatement": "Risk rating requires confirmation.",
+    "standardsStatement": "Top standards were selected from curated SafeScope mappings and CFR-backed matching where available.",
+    "controlStatement": "Recommendation set should be strengthened with engineering, elimination, substitution, or energy-control measures where feasible.",
+    "keyEvidence": [
+      "A physical condition appears degraded, missing, damaged, or uncontrolled. → Exposure pathway requires confirmation. → Energy transfer mechanism requires confirmation. → A required protective control may be absent, bypassed, or ineffective. → Caught-in, struck-by, pinch-point, or amputation exposure from moving machine parts.",
+      "Applicable standards were identified.",
+      "1 applicable standard suggestion(s) identified."
+    ],
+    "uncertainty": [
+      "No durable engineering, elimination, or energy-control measure was clearly identified."
+    ],
+    "escalationFactors": [
+      "Control intelligence recommends verification before closure."
+    ],
+    "supervisorReviewRecommended": true
+  },
+  "executiveJudgment": {
+    "classification": "Machine Guarding",
+    "riskBand": "Review",
+    "supervisorReviewRecommended": true,
+    "stopWorkRecommended": true,
+    "immediateActionRecommended": true,
+    "strongestCausalFactor": "Dominant energy source: kinetic/mechanical.",
+    "topUncertainty": "No photo evidence is attached.",
+    "topStandard": {
+      "defensibilityScore": 0.5,
+      "reasoning": "Standard matched using hazard classification, operational context, exposure pathways, and contextual risk indicators."
+    },
+    "primaryAction": null,
+    "decisionSummary": "Machine Guarding may require immediate controls or stop-work review.",
+    "auditReadySummary": "Machine Guarding may require immediate controls or stop-work review. Dominant energy source: kinetic/mechanical. Top uncertainty: No photo evidence is attached. No top standard selected."
+  },
+  "hazardGraph": {
+    "nodes": [
+      "Machine Guarding",
+      "uncontrolled_energy",
+      "shutdown_or_energy_control",
+      "barrier_failure"
+    ],
+    "edges": [
+      "Machine Guarding -> uncontrolled_energy",
+      "shutdown_or_energy_control -> Machine Guarding",
+      "barrier_failure -> Machine Guarding"
+    ],
+    "graphComplexity": "medium",
+    "cascadeRisks": [
+      "Uncontrolled energy may amplify exposure severity.",
+      "Barrier degradation may allow escalation into secondary hazards."
+    ],
+    "graphSummary": "SafeScope mapped interacting hazards, operational states, barrier failures, and energy-transfer relationships to identify possible cascading risk pathways."
+  },
+  "exposurePathIntelligence": {
+    "exposurePathways": [
+      "mechanical contact pathway"
+    ],
+    "workerInterfaces": [
+      "body-position interface"
+    ],
+    "exposureAmplifiers": [
+      "Uncontrolled energy conditions may amplify injury severity."
+    ],
+    "exposureComplexity": "low",
+    "exposureSummary": "SafeScope mapped likely exposure pathways, worker interfaces, and amplification conditions contributing to hazard exposure."
+  },
+  "correlationIntelligence": {
+    "correlatedHazards": [
+      "Machine Guarding"
+    ],
+    "correlatedSignals": [],
+    "systemicIndicators": [
+      "Control gaps suggest recommended actions may need stronger engineering, elimination, or verification controls."
+    ],
+    "cascadingRiskPaths": [],
+    "cascadePotential": "elevated",
+    "escalationRecommended": false,
+    "recommendation": "Review related hazards together before assigning corrective actions."
+  },
+  "siteMemory": {
+    "recurringRiskDetected": false,
+    "repeatedClassificationCount": 0,
+    "repeatedLocationCount": 0,
+    "operationalPatterns": [
+      "Multiple correlated hazards suggest broader operational-system weaknesses."
+    ],
+    "degradationRisk": "medium",
+    "siteMemorySummary": "No strong recurring operational memory pattern detected from available findings.",
+    "recommendedAction": "Continue monitoring for recurring operational patterns."
+  },
+  "confidenceCalibration": {
+    "baseConfidence": 0.96,
+    "calibratedConfidence": 0.88,
+    "calibrationBand": "reliable",
+    "reliabilityFactors": [
+      "Standards reasoning produced defensibility-ranked results."
+    ],
+    "calibrationWarnings": [
+      "Confidence reduced because corrective action effectiveness is weak."
+    ],
+    "reliabilityStatement": "SafeScope confidence appears supported by available evidence, standards reasoning, and consistency checks."
+  },
+  "reasoningDrift": {
+    "driftScore": 0,
+    "driftBand": "low",
+    "driftSignals": [],
+    "driftSummary": "No major reasoning drift indicators detected."
+  }
+}
