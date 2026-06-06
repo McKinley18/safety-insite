@@ -41,6 +41,7 @@ import { CalibrationMeta } from '../types/safescope-intelligence.types';
 import { EvidenceGapQuestionGeneratorService } from '../brain/evidence-gap-question-generator/evidence-gap-question.service';
 import { CorrectiveActionBrainService } from '../brain/corrective-action-brain/corrective-action.service';
 import { ExecutiveJudgmentService } from '../executive-judgment/executive-judgment.service';
+import { ObservationUnderstandingService } from '../understanding/observation-understanding.service';
 
 export type SafeScopeIntelligenceOrchestratorInput = {
   fusedText: string;
@@ -97,6 +98,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private citationReviewEngine = new CitationReviewBrainService();
   private riskEngine = new RiskReasoningBrainService();
   private observationContextEngine = new ObservationContextService();
+  private observationUnderstandingEngine = new ObservationUnderstandingService();
   private narrativeEngine = new NarrativeGeneratorService();
   private questionGenerator = new EvidenceGapQuestionGeneratorService();
   private correctiveActionEngine = new CorrectiveActionBrainService();
@@ -120,6 +122,7 @@ export class SafeScopeIntelligenceOrchestrator {
     } = input;
 
     const observationContext = this.observationContextEngine.normalize(fusedText);
+    const observationUnderstanding = this.observationUnderstandingEngine.evaluate(fusedText);
     const combined = `${fusedText} ${observationContext.normalizedText}`.toLowerCase();
 
     const photosAttached = (evidenceTexts || []).some((item) =>
@@ -445,6 +448,7 @@ export class SafeScopeIntelligenceOrchestrator {
         generatedAt: new Date().toISOString(),
         layersExecuted: [
           'observation_context',
+          'observation_understanding',
           'scenario',
           'citation_level_review',
           'risk_reasoning',
@@ -481,6 +485,7 @@ export class SafeScopeIntelligenceOrchestrator {
         ],
       },
       observationContext,
+      observationUnderstanding,
       narrative,
       domainIntelligence,
       scenarioIntelligence,

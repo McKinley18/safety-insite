@@ -1624,7 +1624,6 @@ export class SafescopeV2Service {
       nativeReasoning,
       fieldOutput,
       semanticUnderstanding,
-      observationUnderstanding,
       semanticRouting,
       decisionSupportMetadata: {
         ...aiReadiness,
