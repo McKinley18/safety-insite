@@ -35,6 +35,55 @@ Primary app folders:
 
 ---
 
+
+---
+
+## Latest Validation Checkpoint: SafeScope Precision Scenario Understanding
+
+Date verified: 2026-06-06
+
+Commit:
+
+- 36a4254 Expand SafeScope precision scenario understanding
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+
+Precision benchmark status:
+
+- Batch 001: 10/10 exact matches across hazard family, scenario family, mechanism, risk band, and standard family.
+- Batch 002: 10/10 exact matches across hazard family, scenario family, mechanism, risk band, and standard family.
+- Batch 003: 10/10 exact matches across hazard family, scenario family, mechanism, risk band, and standard family.
+
+Capabilities expanded in this checkpoint:
+
+- Fall-to-lower-level recognition for roof edges, ladders, floor holes, uncovered openings, and lower-level exposure.
+- Lockout/tagout override when servicing or maintenance includes missing energy isolation or unexpected startup exposure.
+- Hazard Communication recognition for unlabeled chemical containers, missing SDS, and missing hazard labels.
+- Permit-required confined space recognition for tanks, limited ventilation, entry, missing atmospheric testing, missing attendant, missing permit, and missing rescue plan.
+- Suspended-load and crane/rigging line-of-fire recognition.
+- Pressurized hose / compressed air stored-energy recognition.
+- Scenario-specific standard-family calibration for the above domains.
+- Scenario-specific risk-band calibration for critical and high consequence scenarios.
+
+Defensibility note:
+
+SafeScope remains advisory-only. These validations prove deterministic scenario-understanding behavior against curated benchmark cases. They do not convert SafeScope into an autonomous regulatory decision maker, violation engine, or citation authority.
+
+Known next maturity step:
+
+Move from green curated precision batches into broader defensibility testing, including larger mixed-domain benchmarks, false-positive/false-negative gauntlets, source-backed regulatory mapping, evidence sufficiency scoring, reviewer feedback loops, and field validation tracking.
+
+
 ## 2. Current Verified Build Status
 
 Backend:
