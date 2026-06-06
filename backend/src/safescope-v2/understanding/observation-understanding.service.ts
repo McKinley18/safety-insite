@@ -170,16 +170,31 @@ export class ObservationUnderstandingService {
     const hasMissingOrFailedGuard =
       input.missingControls.includes('guarding') || input.failedControls.includes('guarding');
 
-    if (
+    const shaftEntanglementSignal =
+      input.normalizedText.includes('shaft') ||
+      input.normalizedText.includes('coupling') ||
+      input.normalizedText.includes('keyway') ||
+      input.normalizedText.includes('pump motor') ||
+      input.normalizedText.includes('pump shaft') ||
+      input.normalizedText.includes('motor coupling');
+
+    const conveyorNipPointSignal =
       input.equipmentCategory === 'conveyor' &&
-      ['tail_pulley', 'head_pulley_or_drive', 'roller_or_idler'].includes(input.component) &&
-      hasMissingOrFailedGuard
-    ) {
+      (
+        ['tail_pulley', 'head_pulley_or_drive', 'roller_or_idler'].includes(input.component) ||
+        input.normalizedText.includes('nip point') ||
+        input.normalizedText.includes('in running nip') ||
+        input.normalizedText.includes('moving belt') ||
+        input.normalizedText.includes('tail pulley') ||
+        input.normalizedText.includes('head pulley')
+      );
+
+    if (conveyorNipPointSignal && hasMissingOrFailedGuard) {
       candidates.push({
         mechanism: 'rotating_equipment_nip_point',
-        confidence: input.workerExposed === true ? 0.86 : 0.68,
+        confidence: input.workerExposed === true ? 0.9 : 0.72,
         reasons: [
-          'Conveyor rotating component detected.',
+          'Conveyor pulley, belt, roller, or in-running nip-point signal detected.',
           'Guarding failure detected.',
           input.workerExposed === true ? 'Worker exposure is indicated.' : 'Worker exposure requires confirmation.'
         ],
@@ -189,14 +204,14 @@ export class ObservationUnderstandingService {
 
     if (
       input.primaryEnergySource === 'mechanical_rotation' &&
-      input.normalizedText.includes('shaft') &&
+      shaftEntanglementSignal &&
       hasMissingOrFailedGuard
     ) {
       candidates.push({
         mechanism: 'rotating_equipment_entanglement',
-        confidence: 0.78,
+        confidence: conveyorNipPointSignal ? 0.76 : 0.88,
         reasons: [
-          'Rotating shaft or rotating equipment language detected.',
+          'Rotating shaft, coupling, keyway, pump motor, or motor-coupling language detected.',
           'Guarding failure detected.'
         ],
         competingMechanisms: ['rotating_equipment_nip_point', 'crush_point', 'unexpected_startup']

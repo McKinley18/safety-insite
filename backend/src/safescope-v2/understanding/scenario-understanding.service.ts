@@ -55,6 +55,15 @@ export class ScenarioUnderstandingService {
     if (u.equipment.category !== 'conveyor') return;
     if (u.task.taskType !== 'cleanup') return;
 
+    const explicitTravelOnly =
+      u.normalizedText.includes('travelway') ||
+      u.normalizedText.includes('normal travel') ||
+      u.normalizedText.includes('walking through') ||
+      u.normalizedText.includes('employees pass') ||
+      u.normalizedText.includes('walk past');
+
+    if (explicitTravelOnly && !u.normalizedText.includes('cleaning') && !u.normalizedText.includes('cleanup')) return;
+
     const missingFacts = this.missing([
       ['worker exposure', u.exposure.workerExposed === true],
       ['rotating conveyor component', ['tail_pulley', 'head_pulley_or_drive', 'roller_or_idler'].includes(u.equipment.component)],
