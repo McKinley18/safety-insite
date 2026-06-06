@@ -74,6 +74,20 @@ const cases: ExpectedCase[] = [
       component: 'inspection_tag',
       primaryEnergySource: 'thermal_fire'
     }
+  },
+  {
+    id: 'UNDERSTANDING-006',
+    text: 'Employee working from ladder near unprotected edge with fall exposure to lower level.',
+    expected: {
+      equipmentCategory: 'fall_protection',
+      component: 'ladder',
+      taskType: 'maintenance',
+      workerExposed: true,
+      primaryEnergySource: 'gravity',
+      missingControl: 'fall_protection_or_edge_protection',
+      mechanism: 'fall_from_height',
+      scenarioId: 'fall_protection_unprotected_edge'
+    }
   }
 ];
 

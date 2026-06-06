@@ -59,6 +59,21 @@ export class ControlUnderstandingService {
       addMissing('excavation_protective_system', 'Missing excavation protective system signal detected.');
     }
 
+    if (
+      this.hasAny(normalizedText, [
+        'unprotected edge',
+        'no guardrail',
+        'missing guardrail',
+        'no fall protection',
+        'not tied off',
+        'no tie off',
+        'fall exposure',
+        'open edge'
+      ])
+    ) {
+      addMissing('fall_protection_or_edge_protection', 'Missing fall protection or edge protection signal detected.');
+    }
+
     if (this.hasAny(normalizedText, ['barrier present', 'guard installed', 'locked out', 'loto applied', 'barricaded'])) {
       addExisting('protective_control', 'Existing protective control signal detected.');
     }

@@ -241,6 +241,23 @@ export class ObservationUnderstandingService {
       });
     }
 
+    if (
+      input.equipmentCategory === 'fall_protection' ||
+      input.primaryEnergySource === 'gravity' ||
+      input.normalizedText.includes('fall exposure') ||
+      input.normalizedText.includes('unprotected edge')
+    ) {
+      candidates.push({
+        mechanism: 'fall_from_height',
+        confidence: input.workerExposed === true ? 0.82 : 0.62,
+        reasons: [
+          'Gravity/fall exposure signal detected.',
+          input.workerExposed === true ? 'Worker exposure is indicated.' : 'Worker exposure requires confirmation.'
+        ],
+        competingMechanisms: ['slip_trip_fall_same_level', 'falling_object_struck_by']
+      });
+    }
+
     if (input.equipmentCategory === 'mobile_equipment') {
       candidates.push({
         mechanism: 'struck_by_mobile_equipment',

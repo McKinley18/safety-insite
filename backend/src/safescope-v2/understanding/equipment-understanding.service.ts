@@ -65,6 +65,15 @@ export class EquipmentUnderstandingService {
       evidence.push('Excavation or trenching language detected.');
     }
 
+    if (this.hasAny(normalizedText, ['ladder', 'step ladder', 'extension ladder', 'platform', 'elevated work platform', 'unprotected edge'])) {
+      category = 'fall_protection';
+      specificEquipment = this.firstPresent(normalizedText, ['extension ladder', 'step ladder', 'ladder', 'elevated work platform', 'platform', 'unprotected edge']);
+      component = this.hasAny(normalizedText, ['unprotected edge', 'edge']) ? 'unprotected_edge' : component;
+      component = this.hasAny(normalizedText, ['ladder']) ? 'ladder' : component;
+      operationalState = this.hasAny(normalizedText, ['working from', 'climbing', 'standing on', 'near unprotected edge']) ? 'elevated_work' : operationalState;
+      evidence.push('Fall exposure, ladder, platform, or unprotected edge language detected.');
+    }
+
     if (this.hasAny(normalizedText, ['fire extinguisher', 'extinguisher'])) {
       category = 'fire_protection_equipment';
       specificEquipment = 'fire_extinguisher';

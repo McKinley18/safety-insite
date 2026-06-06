@@ -12,6 +12,7 @@ export class TaskUnderstandingService {
       { type: 'maintenance', activity: 'maintenance', terms: ['maintenance', 'repair', 'servicing', 'adjusting', 'clearing jam', 'jammed'] },
       { type: 'inspection', activity: 'inspection', terms: ['inspection', 'inspecting', 'examining', 'walkaround'] },
       { type: 'operation', activity: 'operation', terms: ['operation', 'operating', 'operator', 'running equipment'] },
+      { type: 'maintenance', activity: 'elevated work', terms: ['working from ladder', 'working from', 'climbing', 'standing on ladder', 'near unprotected edge'] },
       { type: 'travel', activity: 'travel', terms: ['walking', 'travelway', 'walkway', 'pedestrian path'] },
       { type: 'transport', activity: 'transport', terms: ['transport', 'hauling', 'forklift travel', 'mobile equipment travel'] },
       { type: 'emergency_response', activity: 'emergency response', terms: ['emergency access', 'fire response', 'extinguisher access'] }

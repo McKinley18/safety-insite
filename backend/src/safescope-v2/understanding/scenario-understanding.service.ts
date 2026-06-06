@@ -33,6 +33,7 @@ export class ScenarioUnderstandingService {
     this.addElectricalPanelCandidate(candidates, understanding, topMechanism);
     this.addExcavationCandidate(candidates, understanding, topMechanism);
     this.addMobileEquipmentCandidate(candidates, understanding, topMechanism);
+    this.addFallProtectionCandidate(candidates, understanding, topMechanism);
     this.addFireExtinguisherCandidate(candidates, understanding, topMechanism);
     this.addHousekeepingCandidate(candidates, understanding, topMechanism);
 
@@ -269,6 +270,39 @@ export class ScenarioUnderstandingService {
         'Scenario requires evaluating pedestrian/equipment interaction and line-of-fire exposure.'
       ],
       requiredFacts: ['mobile equipment', 'motion/operation', 'pedestrian or worker exposure'],
+      missingFacts
+    });
+  }
+
+  private addFallProtectionCandidate(
+    candidates: SafeScopeScenarioUnderstandingCandidate[],
+    u: SafeScopeUnderstanding,
+    mechanism?: SafeScopeUnderstandingMechanismCandidate
+  ) {
+    const fallSignal =
+      u.equipment.category === 'fall_protection' ||
+      u.energy.primaryEnergySource === 'gravity' ||
+      u.normalizedText.includes('fall exposure') ||
+      u.normalizedText.includes('unprotected edge');
+
+    if (!fallSignal) return;
+
+    const missingFacts = this.missing([
+      ['worker exposure', u.exposure.workerExposed === true],
+      ['elevated work or edge condition', u.equipment.component === 'ladder' || u.equipment.component === 'unprotected_edge' || u.normalizedText.includes('lower level')],
+      ['fall protection or edge protection status', u.controls.missingControls.includes('fall_protection_or_edge_protection')]
+    ]);
+
+    candidates.push({
+      scenarioId: 'fall_protection_unprotected_edge',
+      hazardFamily: 'fall_protection',
+      mechanism: mechanism?.mechanism === 'unknown' ? 'fall_from_height' : mechanism?.mechanism || 'fall_from_height',
+      confidence: this.score(0.61, missingFacts, mechanism?.confidence || 0.5),
+      reasons: [
+        'Fall exposure, ladder, platform, or unprotected edge signal detected.',
+        'Scenario requires evaluating elevated work exposure and fall protection status.'
+      ],
+      requiredFacts: ['worker exposure', 'elevated work or edge condition', 'fall protection status'],
       missingFacts
     });
   }
