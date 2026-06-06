@@ -512,3 +512,7 @@ SafeScope can be called a validated, defensible safety AI only when:
 - The fall protection / working-at-height draft knowledge pack has been added.
 
 - The excavation / trenching / ground control draft knowledge pack has been added.
+
+- The HazCom / chemical labeling / SDS / secondary container draft knowledge pack has been added.
+
+- The HazCom / chemical labeling / SDS / secondary container draft knowledge pack has been added.

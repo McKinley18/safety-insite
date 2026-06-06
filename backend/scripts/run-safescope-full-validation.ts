@@ -21,6 +21,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'HazCom chemical labeling SDS draft pack',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-hazcom-chemical-labeling-sds-draft-pack.ts'],
+  },
+  {
     label: 'Excavation trenching ground control draft pack',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-excavation-trenching-ground-control-draft-pack.ts'],
