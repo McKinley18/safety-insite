@@ -1259,3 +1259,10 @@ Check git status:
 - It is fully integrated with the Approved Knowledge Registry and Source Ingestion staging framework.
 - Master validation includes the draft pack validator.
 - Advisory-only boundaries remain preserved.
+
+## AI Transition Gap Map
+- SafeScope AI Transition Gap Map added.
+- It inventories current governance systems, draft knowledge packs, validators, and remaining AI transition gaps.
+- It adds a repo audit script to prevent draft pack validators from drifting out of the master validation runner.
+- It does not add new AI behavior or approved knowledge.
+- Advisory-only boundaries remain preserved.

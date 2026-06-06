@@ -21,6 +21,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'AI Transition Gap Map Audit',
+    command: 'npx',
+    args: ['ts-node', 'scripts/audit-safescope-ai-transition-gap-map.ts'],
+  },
+  {
     label: 'HazCom chemical labeling SDS draft pack',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-hazcom-chemical-labeling-sds-draft-pack.ts'],
