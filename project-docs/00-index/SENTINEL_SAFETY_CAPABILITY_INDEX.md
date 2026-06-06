@@ -38,6 +38,54 @@ Primary app folders:
 
 ---
 
+## Latest Validation Checkpoint: SafeScope Approved Knowledge Registry Write Guard Core
+
+Date verified: 2026-06-06
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope approved knowledge registry write guard validation passed.
+- SafeScope approved knowledge promotion workflow governance validation passed.
+- SafeScope approved source knowledge intake governance validation passed.
+- SafeScope source-backed applicability governance validation passed.
+- SafeScope human review learning governance validation passed.
+- SafeScope defensible corrective action validation passed.
+- SafeScope output policy validation passed.
+- SafeScope confidence governance validation passed.
+- SafeScope evidence sufficiency validation passed.
+- SafeScope causal-risk reasoning validation passed.
+- SafeScope domain intelligence golden tests passed.
+- SafeScope operational reasoning golden tests passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+- Frontend Next.js production build passed with 27/27 static pages.
+
+Capabilities added in this checkpoint:
+
+- SafeScope Approved Knowledge Registry Write Guard Core added.
+- It is the final governance gate before approved knowledge can be written.
+- It requires ASKIG/AKPWG approval, reviewer approval, audit trail, duplicate resolution, versioning, and change reason.
+- It can allow draft candidates separately from approved-registry writes.
+- It blocks unsafe or unreviewed approved-knowledge writes.
+- It does not persist or automatically promote approved knowledge.
+- Existing precision batches 001-003 remain green.
+- AKPWG, ASKIG, SBAG, HRLG, DCA, output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.
+- Advisory-only boundaries remain preserved.
+
+Defensibility note:
+
+The Approved Knowledge Registry Write Guard is the final gate before any source-backed material can become eligible for approved-registry write. It separates draft candidate creation from approved-registry write permission and blocks writes when reviewer approval, audit trail, duplicate resolution, versioning, change reason, or advisory guardrails are missing.
+
+SafeScope remains advisory-only. It does not declare violations, does not create citations, and still requires qualified human review before final reliance.
+
+
 ## Latest Validation Checkpoint: SafeScope Source-Backed Applicability Governance Core
 
 Date verified: 2026-06-06

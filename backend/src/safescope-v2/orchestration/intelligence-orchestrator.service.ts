@@ -7,6 +7,7 @@ import { HumanReviewLearningGovernanceService } from '../human-review-learning-g
 import { SourceBackedApplicabilityGovernanceService } from '../source-backed-applicability-governance/sbag.service';
 import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
 import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
+import { ApprovedKnowledgeRegistryWriteGuardService } from '../approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
@@ -121,6 +122,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private sbagEngine = new SourceBackedApplicabilityGovernanceService();
   private askigEngine = new ApprovedSourceKnowledgeIntakeGovernanceService();
   private akpwgEngine = new ApprovedKnowledgePromotionWorkflowGovernanceService();
+  private akrwgEngine = new ApprovedKnowledgeRegistryWriteGuardService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -479,6 +481,14 @@ export class SafeScopeIntelligenceOrchestrator {
     
     const akpwg = await this.akpwgEngine.evaluatePromotion(askig);
 
+    const akrwg = await this.akrwgEngine.evaluateWriteGuard(
+        askig,
+        akpwg,
+        {},
+        {},
+        {}
+    );
+
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
         text: fusedText,
@@ -640,6 +650,7 @@ export class SafeScopeIntelligenceOrchestrator {
       sbag,
       askig,
       akpwg,
+      akrwg,
       confidenceGovernance,
       calibrationMeta,
       standardFamilyCandidates,

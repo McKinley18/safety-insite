@@ -320,6 +320,15 @@ This should become the bridge between SafeScope reasoning and future approved-so
 
 
 
+### Current foundation added: Approved Knowledge Registry Write Guard
+
+SafeScope now includes an Approved Knowledge Registry Write Guard as the final gate before any knowledge can be written to the approved registry.
+
+This layer uses approved source intake governance, approved knowledge promotion workflow governance, reviewer approval, audit trail, duplicate resolution, versioning, and change reason controls to decide whether a record may become a draft candidate, must be held for review, must be rejected, or may become an approved-registry write candidate.
+
+It does not persist approved knowledge, does not automatically promote source records, and does not weaken SafeScope advisory-only boundaries.
+
+
 ### Track F: Human Review and Learning Governance
 
 Goal:
