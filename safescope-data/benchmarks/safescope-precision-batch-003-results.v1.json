@@ -1,0 +1,573 @@
+{
+  "version": "v1",
+  "batch": "003",
+  "generatedAt": "2026-06-06T13:35:12.554Z",
+  "summary": {
+    "total": 10,
+    "metrics": {
+      "hazardFamily": {
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
+      },
+      "scenarioFamily": {
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
+      },
+      "mechanism": {
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
+      },
+      "riskBand": {
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
+      },
+      "standardFamily": {
+        "exact_match": 10,
+        "actual_value_different": 0,
+        "field_not_available": 0
+      }
+    }
+  },
+  "details": [
+    {
+      "id": "PRECISION-021",
+      "observationText": "Employee working from an extension ladder near an unprotected roof edge with fall exposure to a lower level. No guardrail or personal fall protection is visible.",
+      "expected": {
+        "hazardFamily": "fall_protection",
+        "scenarioFamily": "fall_protection_unprotected_edge",
+        "mechanism": "fall_from_height",
+        "riskBand": "high",
+        "standardFamily": "fall_protection"
+      },
+      "actual": {
+        "hazardFamily": "fall_protection",
+        "scenarioFamily": "fall_protection_unprotected_edge",
+        "mechanism": "fall_from_height",
+        "riskBand": "high",
+        "standardFamily": "fall_protection"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "fall_protection",
+          "actual": "fall_protection",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "fall_protection_unprotected_edge",
+          "actual": "fall_protection_unprotected_edge",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "high",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "fall_protection",
+          "actual": "fall_protection",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.47,
+      "scenarioReasoning": [
+        "Matched against scenario family: Exposed rotating shaft"
+      ],
+      "evidenceGaps": [
+        "access control"
+      ]
+    },
+    {
+      "id": "PRECISION-022",
+      "observationText": "Open floor hole in a walking surface is uncovered and employees are working nearby. No cover, guardrail, or barricade is installed.",
+      "expected": {
+        "hazardFamily": "fall_protection",
+        "scenarioFamily": "fall_protection_unprotected_edge",
+        "mechanism": "fall_from_height",
+        "riskBand": "high",
+        "standardFamily": "fall_protection"
+      },
+      "actual": {
+        "hazardFamily": "fall_protection",
+        "scenarioFamily": "fall_protection_unprotected_edge",
+        "mechanism": "fall_from_height",
+        "riskBand": "high",
+        "standardFamily": "fall_protection"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "fall_protection",
+          "actual": "fall_protection",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "fall_protection_unprotected_edge",
+          "actual": "fall_protection_unprotected_edge",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "fall_from_height",
+          "actual": "fall_from_height",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "high",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "fall_protection",
+          "actual": "fall_protection",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.47,
+      "scenarioReasoning": [
+        "Matched against scenario family: Housekeeping slip, trip, or same-level fall exposure"
+      ],
+      "evidenceGaps": [
+        "walking surface condition",
+        "employee travel frequency",
+        "cleanup status"
+      ]
+    },
+    {
+      "id": "PRECISION-023",
+      "observationText": "Fire extinguisher cabinet is blocked by stacked pallets and the monthly inspection tag is expired. Employees would not have ready access during a fire emergency.",
+      "expected": {
+        "hazardFamily": "fire_protection",
+        "scenarioFamily": "fire_extinguisher_access_inspection",
+        "mechanism": "delayed_emergency_response",
+        "riskBand": "moderate",
+        "standardFamily": "fire_protection"
+      },
+      "actual": {
+        "hazardFamily": "fire_protection",
+        "scenarioFamily": "fire_extinguisher_access_inspection",
+        "mechanism": "delayed_emergency_response",
+        "riskBand": "moderate",
+        "standardFamily": "fire_protection"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "fire_protection",
+          "actual": "fire_protection",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "fire_extinguisher_access_inspection",
+          "actual": "fire_extinguisher_access_inspection",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "delayed_emergency_response",
+          "actual": "delayed_emergency_response",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "fire_protection",
+          "actual": "fire_protection",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.43,
+      "scenarioReasoning": [
+        "Matched against scenario family: Blocked or overdue fire extinguisher access and inspection"
+      ],
+      "evidenceGaps": [
+        "inspection date",
+        "access clearance",
+        "extinguisher location"
+      ]
+    },
+    {
+      "id": "PRECISION-024",
+      "observationText": "Oil spill across a main walkway where employees routinely travel. No barricade, absorbent, or warning sign has been placed.",
+      "expected": {
+        "hazardFamily": "slip_trip_fall",
+        "scenarioFamily": "housekeeping_slip_trip",
+        "mechanism": "slip_trip_fall_same_level",
+        "riskBand": "moderate",
+        "standardFamily": "walking_working_surfaces"
+      },
+      "actual": {
+        "hazardFamily": "slip_trip_fall",
+        "scenarioFamily": "housekeeping_slip_trip",
+        "mechanism": "slip_trip_fall_same_level",
+        "riskBand": "moderate",
+        "standardFamily": "walking_working_surfaces"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "slip_trip_fall",
+          "actual": "slip_trip_fall",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "housekeeping_slip_trip",
+          "actual": "housekeeping_slip_trip",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "slip_trip_fall_same_level",
+          "actual": "slip_trip_fall_same_level",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "walking_working_surfaces",
+          "actual": "walking_working_surfaces",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.46,
+      "scenarioReasoning": [
+        "Matched against scenario family: Housekeeping slip, trip, or same-level fall exposure"
+      ],
+      "evidenceGaps": [
+        "walking surface condition",
+        "employee travel frequency",
+        "cleanup status"
+      ]
+    },
+    {
+      "id": "PRECISION-025",
+      "observationText": "Mechanic is servicing a conveyor drive with the guard removed while the equipment is not locked out. Stored and rotating energy could start unexpectedly.",
+      "expected": {
+        "hazardFamily": "lockout_tagout",
+        "scenarioFamily": "unexpected_startup_energy_isolation",
+        "mechanism": "unexpected_startup",
+        "riskBand": "high",
+        "standardFamily": "lockout_tagout"
+      },
+      "actual": {
+        "hazardFamily": "lockout_tagout",
+        "scenarioFamily": "unexpected_startup_energy_isolation",
+        "mechanism": "unexpected_startup",
+        "riskBand": "high",
+        "standardFamily": "lockout_tagout"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "lockout_tagout",
+          "actual": "lockout_tagout",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "unexpected_startup_energy_isolation",
+          "actual": "unexpected_startup_energy_isolation",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "unexpected_startup",
+          "actual": "unexpected_startup",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "high",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "lockout_tagout",
+          "actual": "lockout_tagout",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.42,
+      "scenarioReasoning": [
+        "Matched against scenario family: Conveyor cleanup near moving parts"
+      ],
+      "evidenceGaps": [
+        "LOTO status",
+        "guard presence"
+      ]
+    },
+    {
+      "id": "PRECISION-026",
+      "observationText": "Forklift is backing through a blind corner into a shared pedestrian aisle with no spotter, no marked walkway, and employees walking nearby.",
+      "expected": {
+        "hazardFamily": "mobile_equipment",
+        "scenarioFamily": "mobile_equipment_pedestrian_interaction",
+        "mechanism": "struck_by_mobile_equipment",
+        "riskBand": "high",
+        "standardFamily": "powered_industrial_trucks"
+      },
+      "actual": {
+        "hazardFamily": "mobile_equipment",
+        "scenarioFamily": "mobile_equipment_pedestrian_interaction",
+        "mechanism": "struck_by_mobile_equipment",
+        "riskBand": "high",
+        "standardFamily": "powered_industrial_trucks"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "mobile_equipment",
+          "actual": "mobile_equipment",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "mobile_equipment_pedestrian_interaction",
+          "actual": "mobile_equipment_pedestrian_interaction",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "struck_by_mobile_equipment",
+          "actual": "struck_by_mobile_equipment",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "high",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "powered_industrial_trucks",
+          "actual": "powered_industrial_trucks",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.5,
+      "scenarioReasoning": [
+        "Matched against scenario family: Mobile equipment and pedestrian interaction"
+      ],
+      "evidenceGaps": [
+        "traffic control layout",
+        "pedestrian frequency",
+        "equipment operating path"
+      ]
+    },
+    {
+      "id": "PRECISION-027",
+      "observationText": "Unlabeled chemical container is being used at a workstation. Employees are handling the material and no SDS or hazard label is available.",
+      "expected": {
+        "hazardFamily": "hazcom",
+        "scenarioFamily": "chemical_label_sds_gap",
+        "mechanism": "chemical_exposure_unknown_agent",
+        "riskBand": "moderate",
+        "standardFamily": "hazard_communication"
+      },
+      "actual": {
+        "hazardFamily": "hazcom",
+        "scenarioFamily": "chemical_label_sds_gap",
+        "mechanism": "chemical_exposure_unknown_agent",
+        "riskBand": "moderate",
+        "standardFamily": "hazard_communication"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "hazcom",
+          "actual": "hazcom",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "chemical_label_sds_gap",
+          "actual": "chemical_label_sds_gap",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "chemical_exposure_unknown_agent",
+          "actual": "chemical_exposure_unknown_agent",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "moderate",
+          "actual": "moderate",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "hazard_communication",
+          "actual": "hazard_communication",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.43,
+      "scenarioReasoning": [
+        "Inferred from fused operational reasoning and observation."
+      ],
+      "evidenceGaps": [
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available.",
+        "Location or equipment context is limited."
+      ]
+    },
+    {
+      "id": "PRECISION-028",
+      "observationText": "Employee is preparing to enter a tank with limited ventilation. No atmospheric test, attendant, permit, or rescue plan is documented.",
+      "expected": {
+        "hazardFamily": "confined_space",
+        "scenarioFamily": "permit_required_confined_space_entry",
+        "mechanism": "atmospheric_hazard_engulfment_or_entrapment",
+        "riskBand": "critical",
+        "standardFamily": "confined_space"
+      },
+      "actual": {
+        "hazardFamily": "confined_space",
+        "scenarioFamily": "permit_required_confined_space_entry",
+        "mechanism": "atmospheric_hazard_engulfment_or_entrapment",
+        "riskBand": "critical",
+        "standardFamily": "confined_space"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "confined_space",
+          "actual": "confined_space",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "permit_required_confined_space_entry",
+          "actual": "permit_required_confined_space_entry",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "atmospheric_hazard_engulfment_or_entrapment",
+          "actual": "atmospheric_hazard_engulfment_or_entrapment",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "confined_space",
+          "actual": "confined_space",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.46,
+      "scenarioReasoning": [
+        "Matched against scenario family: Exposed rotating shaft"
+      ],
+      "evidenceGaps": [
+        "access control"
+      ]
+    },
+    {
+      "id": "PRECISION-029",
+      "observationText": "Worker stands below a suspended load during crane lift. Sling appears damaged and no exclusion zone is established.",
+      "expected": {
+        "hazardFamily": "lifting_rigging",
+        "scenarioFamily": "suspended_load_line_of_fire",
+        "mechanism": "struck_by_falling_suspended_load",
+        "riskBand": "critical",
+        "standardFamily": "cranes_rigging"
+      },
+      "actual": {
+        "hazardFamily": "lifting_rigging",
+        "scenarioFamily": "suspended_load_line_of_fire",
+        "mechanism": "struck_by_falling_suspended_load",
+        "riskBand": "critical",
+        "standardFamily": "cranes_rigging"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "lifting_rigging",
+          "actual": "lifting_rigging",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "suspended_load_line_of_fire",
+          "actual": "suspended_load_line_of_fire",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "struck_by_falling_suspended_load",
+          "actual": "struck_by_falling_suspended_load",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "critical",
+          "actual": "critical",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "cranes_rigging",
+          "actual": "cranes_rigging",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.43,
+      "scenarioReasoning": [
+        "Inferred from fused operational reasoning and observation."
+      ],
+      "evidenceGaps": [
+        "Narrative is short and may not fully support classification.",
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available.",
+        "Location or equipment context is limited."
+      ]
+    },
+    {
+      "id": "PRECISION-030",
+      "observationText": "Compressed air hose coupling is damaged and leaking near employees. The hose is pressurized and whipping movement is possible if the coupling fails.",
+      "expected": {
+        "hazardFamily": "stored_energy",
+        "scenarioFamily": "pressurized_hose_failure",
+        "mechanism": "struck_by_whipping_pressurized_line",
+        "riskBand": "high",
+        "standardFamily": "compressed_air_stored_energy"
+      },
+      "actual": {
+        "hazardFamily": "stored_energy",
+        "scenarioFamily": "pressurized_hose_failure",
+        "mechanism": "struck_by_whipping_pressurized_line",
+        "riskBand": "high",
+        "standardFamily": "compressed_air_stored_energy"
+      },
+      "scoring": {
+        "hazardFamily": {
+          "expected": "stored_energy",
+          "actual": "stored_energy",
+          "status": "exact_match"
+        },
+        "scenarioFamily": {
+          "expected": "pressurized_hose_failure",
+          "actual": "pressurized_hose_failure",
+          "status": "exact_match"
+        },
+        "mechanism": {
+          "expected": "struck_by_whipping_pressurized_line",
+          "actual": "struck_by_whipping_pressurized_line",
+          "status": "exact_match"
+        },
+        "riskBand": {
+          "expected": "high",
+          "actual": "high",
+          "status": "exact_match"
+        },
+        "standardFamily": {
+          "expected": "compressed_air_stored_energy",
+          "actual": "compressed_air_stored_energy",
+          "status": "exact_match"
+        }
+      },
+      "confidence": 0.47,
+      "scenarioReasoning": [
+        "Inferred from fused operational reasoning and observation."
+      ],
+      "evidenceGaps": [
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available.",
+        "Location or equipment context is limited."
+      ]
+    }
+  ]
+}

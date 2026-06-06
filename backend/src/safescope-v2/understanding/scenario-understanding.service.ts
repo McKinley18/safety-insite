@@ -34,6 +34,11 @@ export class ScenarioUnderstandingService {
     this.addExcavationCandidate(candidates, understanding, topMechanism);
     this.addMobileEquipmentCandidate(candidates, understanding, topMechanism);
     this.addFallProtectionCandidate(candidates, understanding, topMechanism);
+    this.addEnergyIsolationCandidate(candidates, understanding, topMechanism);
+    this.addHazcomCandidate(candidates, understanding, topMechanism);
+    this.addConfinedSpaceCandidate(candidates, understanding, topMechanism);
+    this.addSuspendedLoadCandidate(candidates, understanding, topMechanism);
+    this.addPressurizedHoseCandidate(candidates, understanding, topMechanism);
     this.addFireExtinguisherCandidate(candidates, understanding, topMechanism);
     this.addHousekeepingCandidate(candidates, understanding, topMechanism);
 
@@ -302,13 +307,18 @@ export class ScenarioUnderstandingService {
       u.equipment.category === 'fall_protection' ||
       u.energy.primaryEnergySource === 'gravity' ||
       u.normalizedText.includes('fall exposure') ||
-      u.normalizedText.includes('unprotected edge');
+      u.normalizedText.includes('unprotected edge') ||
+      u.normalizedText.includes('roof edge') ||
+      u.normalizedText.includes('floor hole') ||
+      u.normalizedText.includes('open floor hole') ||
+      u.normalizedText.includes('uncovered') ||
+      u.normalizedText.includes('lower level');
 
     if (!fallSignal) return;
 
     const missingFacts = this.missing([
       ['worker exposure', u.exposure.workerExposed === true],
-      ['elevated work or edge condition', u.equipment.component === 'ladder' || u.equipment.component === 'unprotected_edge' || u.normalizedText.includes('lower level')],
+      ['elevated work, edge, floor opening, or lower-level fall condition', u.equipment.component === 'ladder' || u.equipment.component === 'unprotected_edge' || u.normalizedText.includes('lower level') || u.normalizedText.includes('roof edge') || u.normalizedText.includes('floor hole') || u.normalizedText.includes('open floor hole')],
       ['fall protection or edge protection status', u.controls.missingControls.includes('fall_protection_or_edge_protection')]
     ]);
 
@@ -323,6 +333,205 @@ export class ScenarioUnderstandingService {
       ],
       requiredFacts: ['worker exposure', 'elevated work or edge condition', 'fall protection status'],
       missingFacts
+    });
+  }
+
+  private addEnergyIsolationCandidate(
+    candidates: SafeScopeScenarioUnderstandingCandidate[],
+    u: SafeScopeUnderstanding,
+    mechanism?: SafeScopeUnderstandingMechanismCandidate
+  ) {
+    const explicitEnergyIsolation =
+      u.normalizedText.includes('not locked out') ||
+      u.normalizedText.includes('lockout') ||
+      u.normalizedText.includes('locked out') ||
+      u.normalizedText.includes('energy isolation') ||
+      u.normalizedText.includes('unexpectedly') ||
+      u.normalizedText.includes('start unexpectedly') ||
+      u.normalizedText.includes('stored and rotating energy');
+
+    const servicingExposure =
+      u.task.taskType === 'servicing' ||
+      u.task.taskType === 'maintenance' ||
+      u.normalizedText.includes('servicing') ||
+      u.normalizedText.includes('mechanic');
+
+    if (!explicitEnergyIsolation || !servicingExposure) return;
+
+    candidates.push({
+      scenarioId: 'unexpected_startup_energy_isolation',
+      hazardFamily: 'lockout_tagout',
+      mechanism: 'unexpected_startup',
+      confidence: 0.86,
+      reasons: [
+        'Servicing or maintenance activity detected.',
+        'Missing lockout/energy-isolation signal detected.',
+        'Unexpected startup/stored energy exposure should override generic machine-guarding routing.'
+      ],
+      requiredFacts: ['servicing or maintenance task', 'energy isolation status', 'worker exposure'],
+      missingFacts: this.missing([
+        ['worker exposure', u.exposure.workerExposed === true]
+      ])
+    });
+  }
+
+  private addHazcomCandidate(
+    candidates: SafeScopeScenarioUnderstandingCandidate[],
+    u: SafeScopeUnderstanding,
+    mechanism?: SafeScopeUnderstandingMechanismCandidate
+  ) {
+    const chemicalSignal =
+      u.normalizedText.includes('chemical container') ||
+      u.normalizedText.includes('unlabeled chemical') ||
+      u.normalizedText.includes('unlabeled container') ||
+      u.normalizedText.includes('sds') ||
+      u.normalizedText.includes('hazard label') ||
+      u.normalizedText.includes('hazcom');
+
+    const labelOrSdsGap =
+      u.normalizedText.includes('unlabeled') ||
+      u.normalizedText.includes('no sds') ||
+      u.normalizedText.includes('missing sds') ||
+      u.normalizedText.includes('no hazard label') ||
+      u.normalizedText.includes('missing label') ||
+      u.normalizedText.includes('no label');
+
+    if (!chemicalSignal || !labelOrSdsGap) return;
+
+    candidates.push({
+      scenarioId: 'chemical_label_sds_gap',
+      hazardFamily: 'hazcom',
+      mechanism: 'chemical_exposure_unknown_agent',
+      confidence: 0.84,
+      reasons: [
+        'Chemical container or HazCom signal detected.',
+        'Missing label/SDS signal detected.',
+        'Unknown chemical identity and communication-control gap detected.'
+      ],
+      requiredFacts: ['chemical container/material', 'label or SDS status', 'employee handling or exposure'],
+      missingFacts: this.missing([
+        ['employee handling or exposure', u.exposure.workerExposed === true || u.normalizedText.includes('handling')]
+      ])
+    });
+  }
+
+  private addConfinedSpaceCandidate(
+    candidates: SafeScopeScenarioUnderstandingCandidate[],
+    u: SafeScopeUnderstanding,
+    mechanism?: SafeScopeUnderstandingMechanismCandidate
+  ) {
+    const spaceSignal =
+      u.normalizedText.includes('confined space') ||
+      u.normalizedText.includes('tank') ||
+      u.normalizedText.includes('vessel') ||
+      u.normalizedText.includes('limited ventilation');
+
+    const entrySignal =
+      u.normalizedText.includes('enter') ||
+      u.normalizedText.includes('entry') ||
+      u.normalizedText.includes('preparing to enter') ||
+      u.normalizedText.includes('inside');
+
+    const permitControlGap =
+      u.normalizedText.includes('no atmospheric test') ||
+      u.normalizedText.includes('atmospheric test') ||
+      u.normalizedText.includes('attendant') ||
+      u.normalizedText.includes('permit') ||
+      u.normalizedText.includes('rescue plan') ||
+      u.normalizedText.includes('limited ventilation');
+
+    if (!spaceSignal || !entrySignal || !permitControlGap) return;
+
+    candidates.push({
+      scenarioId: 'permit_required_confined_space_entry',
+      hazardFamily: 'confined_space',
+      mechanism: 'atmospheric_hazard_engulfment_or_entrapment',
+      confidence: 0.9,
+      reasons: [
+        'Tank/confined-space entry signal detected.',
+        'Missing atmospheric testing, attendant, permit, rescue, or ventilation controls detected.',
+        'Permit-required confined-space context should override generic equipment guarding.'
+      ],
+      requiredFacts: ['confined space or tank', 'entry activity', 'permit/atmospheric/rescue controls'],
+      missingFacts: []
+    });
+  }
+
+  private addSuspendedLoadCandidate(
+    candidates: SafeScopeScenarioUnderstandingCandidate[],
+    u: SafeScopeUnderstanding,
+    mechanism?: SafeScopeUnderstandingMechanismCandidate
+  ) {
+    const suspendedLoad =
+      u.normalizedText.includes('suspended load') ||
+      u.normalizedText.includes('hoisted load') ||
+      u.normalizedText.includes('crane lift') ||
+      u.normalizedText.includes('load path');
+
+    const lineOfFire =
+      u.normalizedText.includes('stands below') ||
+      u.normalizedText.includes('worker below') ||
+      u.normalizedText.includes('employees below') ||
+      u.normalizedText.includes('line of fire') ||
+      u.normalizedText.includes('below a suspended load');
+
+    const riggingGap =
+      u.normalizedText.includes('damaged sling') ||
+      u.normalizedText.includes('damaged rigging') ||
+      u.normalizedText.includes('no exclusion zone') ||
+      u.normalizedText.includes('exclusion zone');
+
+    if (!suspendedLoad || (!lineOfFire && !riggingGap)) return;
+
+    candidates.push({
+      scenarioId: 'suspended_load_line_of_fire',
+      hazardFamily: 'lifting_rigging',
+      mechanism: 'struck_by_falling_suspended_load',
+      confidence: 0.88,
+      reasons: [
+        'Suspended/hoisted load signal detected.',
+        'Line-of-fire or damaged rigging/exclusion-zone gap detected.',
+        'Crane/rigging scenario should route to suspended-load struck-by exposure.'
+      ],
+      requiredFacts: ['suspended load', 'worker in load path or below load', 'rigging/exclusion zone status'],
+      missingFacts: []
+    });
+  }
+
+  private addPressurizedHoseCandidate(
+    candidates: SafeScopeScenarioUnderstandingCandidate[],
+    u: SafeScopeUnderstanding,
+    mechanism?: SafeScopeUnderstandingMechanismCandidate
+  ) {
+    const hoseSignal =
+      u.normalizedText.includes('compressed air hose') ||
+      u.normalizedText.includes('pressurized hose') ||
+      u.normalizedText.includes('pressurized line') ||
+      u.normalizedText.includes('hose coupling');
+
+    const failureSignal =
+      u.normalizedText.includes('damaged') ||
+      u.normalizedText.includes('leaking') ||
+      u.normalizedText.includes('coupling fails') ||
+      u.normalizedText.includes('whipping') ||
+      u.normalizedText.includes('pressurized');
+
+    if (!hoseSignal || !failureSignal) return;
+
+    candidates.push({
+      scenarioId: 'pressurized_hose_failure',
+      hazardFamily: 'stored_energy',
+      mechanism: 'struck_by_whipping_pressurized_line',
+      confidence: 0.86,
+      reasons: [
+        'Compressed-air or pressurized-hose signal detected.',
+        'Damaged/leaking coupling or whipping line-of-fire signal detected.',
+        'Stored pressure release scenario detected.'
+      ],
+      requiredFacts: ['pressurized hose or line', 'damage/leak/failure condition', 'employee proximity'],
+      missingFacts: this.missing([
+        ['employee proximity', u.exposure.workerExposed === true || u.normalizedText.includes('near employees')]
+      ])
     });
   }
 
@@ -369,6 +578,7 @@ export class ScenarioUnderstandingService {
 
     if (!housekeeping) return;
     if (u.equipment.category === 'conveyor') return;
+    if (u.normalizedText.includes('floor hole') || u.normalizedText.includes('open floor hole')) return;
 
     const missingFacts = this.missing([
       ['walking/working surface condition', u.normalizedText.includes('floor') || u.normalizedText.includes('walkway') || u.normalizedText.includes('spill')],

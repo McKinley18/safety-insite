@@ -1,7 +1,7 @@
 {
   "version": "v1",
   "batch": "002",
-  "generatedAt": "2026-06-05T23:12:36.761Z",
+  "generatedAt": "2026-06-06T13:35:11.777Z",
   "summary": {
     "total": 10,
     "metrics": {
@@ -11,18 +11,18 @@
         "field_not_available": 0
       },
       "scenarioFamily": {
-        "exact_match": 9,
-        "actual_value_different": 1,
+        "exact_match": 10,
+        "actual_value_different": 0,
         "field_not_available": 0
       },
       "mechanism": {
-        "exact_match": 7,
-        "actual_value_different": 3,
+        "exact_match": 10,
+        "actual_value_different": 0,
         "field_not_available": 0
       },
       "riskBand": {
-        "exact_match": 0,
-        "actual_value_different": 10,
+        "exact_match": 10,
+        "actual_value_different": 0,
         "field_not_available": 0
       },
       "standardFamily": {
@@ -45,9 +45,9 @@
       },
       "actual": {
         "hazardFamily": "machine_guarding",
-        "scenarioFamily": "conveyor_cleanup",
+        "scenarioFamily": "unguarded_conveyor_pulley",
         "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -58,8 +58,8 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor_cleanup",
-          "status": "actual_value_different"
+          "actual": "unguarded_conveyor_pulley",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
@@ -68,8 +68,8 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -99,8 +99,8 @@
       "actual": {
         "hazardFamily": "machine_guarding",
         "scenarioFamily": "unguarded_conveyor_pulley",
-        "mechanism": "rotating_equipment_entanglement",
-        "riskBand": "critical",
+        "mechanism": "rotating_equipment_nip_point",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -116,13 +116,13 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
-          "actual": "rotating_equipment_entanglement",
-          "status": "actual_value_different"
+          "actual": "rotating_equipment_nip_point",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -152,7 +152,7 @@
         "hazardFamily": "machine_guarding",
         "scenarioFamily": "conveyor_cleanup",
         "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -173,8 +173,8 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -205,7 +205,7 @@
         "hazardFamily": "machine_guarding",
         "scenarioFamily": "conveyor_cleanup",
         "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -226,8 +226,8 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -257,8 +257,8 @@
       "actual": {
         "hazardFamily": "machine_guarding",
         "scenarioFamily": "rotating_shaft_guarding",
-        "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
+        "mechanism": "rotating_equipment_entanglement",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -274,13 +274,13 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "actual": "rotating_equipment_entanglement",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -309,8 +309,8 @@
       "actual": {
         "hazardFamily": "machine_guarding",
         "scenarioFamily": "rotating_shaft_guarding",
-        "mechanism": "rotating_equipment_nip_point",
-        "riskBand": "critical",
+        "mechanism": "rotating_equipment_entanglement",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -326,13 +326,13 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "rotating_equipment_nip_point",
-          "status": "actual_value_different"
+          "actual": "rotating_equipment_entanglement",
+          "status": "exact_match"
         },
         "riskBand": {
           "expected": "high",
-          "actual": "critical",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -362,7 +362,7 @@
         "hazardFamily": "machine_guarding",
         "scenarioFamily": "point_of_operation_guarding",
         "mechanism": "cut_amputation_point_of_operation",
-        "riskBand": "moderate",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -383,8 +383,8 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -414,7 +414,7 @@
         "hazardFamily": "machine_guarding",
         "scenarioFamily": "point_of_operation_guarding",
         "mechanism": "cut_amputation_point_of_operation",
-        "riskBand": "moderate",
+        "riskBand": "high",
         "standardFamily": "machine_guarding"
       },
       "scoring": {
@@ -435,8 +435,8 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "machine_guarding",
@@ -466,7 +466,7 @@
         "hazardFamily": "electrical",
         "scenarioFamily": "damaged_cord_wet_location",
         "mechanism": "electrical_shock",
-        "riskBand": "moderate",
+        "riskBand": "high",
         "standardFamily": "electrical"
       },
       "scoring": {
@@ -487,8 +487,8 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
-          "status": "actual_value_different"
+          "actual": "high",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "electrical",
@@ -520,7 +520,7 @@
         "hazardFamily": "excavation_trenching",
         "scenarioFamily": "excavation_protective_system_ambiguity",
         "mechanism": "caught_in_cave_in",
-        "riskBand": "moderate",
+        "riskBand": "critical",
         "standardFamily": "excavation_trenching"
       },
       "scoring": {
@@ -541,8 +541,8 @@
         },
         "riskBand": {
           "expected": "critical",
-          "actual": "moderate",
-          "status": "actual_value_different"
+          "actual": "critical",
+          "status": "exact_match"
         },
         "standardFamily": {
           "expected": "excavation_trenching",

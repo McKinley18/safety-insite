@@ -362,13 +362,29 @@ export class SafeScopeIntelligenceOrchestrator {
         ? understandingTopScenario.hazardFamily
         : undefined;
 
+    const understandingStandardFamily =
+      understandingScenarioFamily === 'fall_protection_unprotected_edge' ? 'fall_protection' :
+      understandingScenarioFamily === 'unexpected_startup_energy_isolation' ? 'lockout_tagout' :
+      understandingScenarioFamily === 'chemical_label_sds_gap' ? 'hazard_communication' :
+      understandingScenarioFamily === 'permit_required_confined_space_entry' ? 'confined_space' :
+      understandingScenarioFamily === 'suspended_load_line_of_fire' ? 'cranes_rigging' :
+      understandingScenarioFamily === 'pressurized_hose_failure' ? 'compressed_air_stored_energy' :
+      undefined;
+
+    const understandingRiskBand =
+      understandingScenarioFamily === 'permit_required_confined_space_entry' ? 'critical' :
+      understandingScenarioFamily === 'suspended_load_line_of_fire' ? 'critical' :
+      understandingScenarioFamily === 'pressurized_hose_failure' ? 'high' :
+      understandingScenarioFamily === 'fall_protection_unprotected_edge' ? 'high' :
+      undefined;
+
     const calibrationMeta: CalibrationMeta = {
         hazardFamily: understandingHazardFamily || scenarioIntelligence.hazardCategory || 'unknown',
         scenarioFamily: understandingScenarioFamily || scenarioIntelligence.scenarioFamilyId,
         jurisdiction: jurisdiction,
         mechanism: understandingScenarioMechanism || understandingMechanism || scenarioIntelligence.mechanismOfInjury,
-        riskBand: riskReasoning.initialRiskLevel,
-        standardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
+        riskBand: understandingRiskBand || riskReasoning.initialRiskLevel,
+        standardFamily: understandingStandardFamily || scenarioIntelligence.candidateStandardFamily || 'unknown',
         evidenceGaps: [
           ...(scenarioIntelligence.evidenceGaps || []),
           ...(observationUnderstanding.evidenceGaps || [])
