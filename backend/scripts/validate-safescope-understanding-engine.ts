@@ -12,6 +12,7 @@ type ExpectedCase = {
     primaryEnergySource?: string;
     missingControl?: string;
     mechanism?: string;
+    scenarioId?: string;
   };
 };
 
@@ -26,7 +27,8 @@ const cases: ExpectedCase[] = [
       workerExposed: true,
       primaryEnergySource: 'mechanical_rotation',
       missingControl: 'guarding',
-      mechanism: 'rotating_equipment_nip_point'
+      mechanism: 'rotating_equipment_nip_point',
+      scenarioId: 'conveyor_cleanup'
     }
   },
   {
@@ -38,7 +40,8 @@ const cases: ExpectedCase[] = [
       workerExposed: true,
       primaryEnergySource: 'soil_collapse',
       missingControl: 'excavation_protective_system',
-      mechanism: 'caught_in_cave_in'
+      mechanism: 'caught_in_cave_in',
+      scenarioId: 'excavation_protective_system_ambiguity'
     }
   },
   {
@@ -47,7 +50,8 @@ const cases: ExpectedCase[] = [
     expected: {
       equipmentCategory: 'electrical_cord',
       primaryEnergySource: 'electrical',
-      mechanism: 'electrical_shock'
+      mechanism: 'electrical_shock',
+      scenarioId: 'damaged_cord_wet_location'
     }
   },
   {
@@ -58,7 +62,8 @@ const cases: ExpectedCase[] = [
       taskType: 'operation',
       workerExposed: true,
       primaryEnergySource: 'mobile_equipment_kinetic',
-      mechanism: 'struck_by_mobile_equipment'
+      mechanism: 'struck_by_mobile_equipment',
+      scenarioId: 'mobile_equipment_pedestrian_interaction'
     }
   },
   {
@@ -79,6 +84,7 @@ let failed = false;
 for (const c of cases) {
   const result = service.evaluate(c.text);
   const actualMechanism = result.mechanismCandidates[0]?.mechanism;
+  const actualScenarioId = result.scenarioUnderstanding?.topScenario?.scenarioId;
 
   const allChecks: Array<[string, unknown, unknown]> = [
     ['jurisdiction', c.expected.jurisdiction, result.jurisdiction.detected],
@@ -92,7 +98,8 @@ for (const c of cases) {
       c.expected.missingControl,
       result.controls.missingControls.includes(c.expected.missingControl || '') ? c.expected.missingControl : 'missing'
     ],
-    ['mechanism', c.expected.mechanism, actualMechanism]
+    ['mechanism', c.expected.mechanism, actualMechanism],
+    ['scenarioId', c.expected.scenarioId, actualScenarioId]
   ];
 
   const checks = allChecks.filter(([, expected]) => expected !== undefined);
@@ -105,6 +112,7 @@ for (const c of cases) {
   console.log(`  energy=${result.energy.primaryEnergySource}`);
   console.log(`  controls missing=${result.controls.missingControls.join(',') || 'none'}`);
   console.log(`  top mechanism=${actualMechanism}`);
+  console.log(`  scenario=${actualScenarioId || 'unknown'}`);
   console.log(`  evidence gaps=${result.evidenceGaps.length}`);
 
   if (misses.length) {

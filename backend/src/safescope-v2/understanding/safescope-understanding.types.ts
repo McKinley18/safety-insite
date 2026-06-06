@@ -127,6 +127,7 @@ export type SafeScopeUnderstanding = {
   energy: SafeScopeUnderstandingEnergy;
   controls: SafeScopeUnderstandingControls;
   mechanismCandidates: SafeScopeUnderstandingMechanismCandidate[];
+  scenarioUnderstanding?: any;
   evidenceGaps: string[];
   trace: string[];
   advisoryGuardrails: {

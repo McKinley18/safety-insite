@@ -8,6 +8,7 @@ import { TaskUnderstandingService } from './task-understanding.service';
 import { ExposureUnderstandingService } from './exposure-understanding.service';
 import { EnergyUnderstandingService } from './energy-understanding.service';
 import { ControlUnderstandingService } from './control-understanding.service';
+import { ScenarioUnderstandingService } from './scenario-understanding.service';
 
 export class ObservationUnderstandingService {
   private readonly equipmentService = new EquipmentUnderstandingService();
@@ -15,6 +16,7 @@ export class ObservationUnderstandingService {
   private readonly exposureService = new ExposureUnderstandingService();
   private readonly energyService = new EnergyUnderstandingService();
   private readonly controlService = new ControlUnderstandingService();
+  private readonly scenarioService = new ScenarioUnderstandingService();
 
   evaluate(rawText: string): SafeScopeUnderstanding {
     const normalizedText = this.normalize(rawText);
@@ -37,15 +39,41 @@ export class ObservationUnderstandingService {
       failedControls: controls.failedControls
     });
 
-    const evidenceGaps = this.detectEvidenceGaps({
+    const baseUnderstanding: SafeScopeUnderstanding = {
+      engine: 'safescope_understanding_engine',
+      version: '0.1.0',
+      rawText,
+      normalizedText,
       jurisdiction,
-      equipmentCategory: equipment.category,
-      taskType: task.taskType,
-      workerExposed: exposure.workerExposed,
-      proximity: exposure.proximity,
-      operationalState: equipment.operationalState,
-      controlsKnown: controls.missingControls.length > 0 || controls.failedControls.length > 0 || controls.existingControls.length > 0
-    });
+      equipment,
+      task,
+      exposure,
+      energy,
+      controls,
+      mechanismCandidates,
+      evidenceGaps: [] as string[],
+      trace: [] as string[],
+      advisoryGuardrails: {
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        requiresQualifiedReview: true
+      }
+    };
+
+    const scenarioUnderstanding = this.scenarioService.evaluate(baseUnderstanding);
+
+    const evidenceGaps = [
+      ...this.detectEvidenceGaps({
+        jurisdiction,
+        equipmentCategory: equipment.category,
+        taskType: task.taskType,
+        workerExposed: exposure.workerExposed,
+        proximity: exposure.proximity,
+        operationalState: equipment.operationalState,
+        controlsKnown: controls.missingControls.length > 0 || controls.failedControls.length > 0 || controls.existingControls.length > 0
+      }),
+      ...scenarioUnderstanding.evidenceGaps
+    ].filter((gap, index, all) => all.indexOf(gap) === index);
 
     return {
       engine: 'safescope_understanding_engine',
@@ -59,6 +87,7 @@ export class ObservationUnderstandingService {
       energy,
       controls,
       mechanismCandidates,
+      scenarioUnderstanding,
       evidenceGaps,
       trace: [
         'Normalized raw observation.',
