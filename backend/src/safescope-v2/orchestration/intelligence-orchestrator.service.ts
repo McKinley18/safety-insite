@@ -1,3 +1,4 @@
+import { ConfidenceGovernanceService } from '../confidence-governance/confidence-governance.service';
 import { CausalRiskService } from '../causal-risk/causal-risk.service';
 import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidence-sufficiency.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
@@ -64,6 +65,7 @@ export type SafeScopeIntelligenceOrchestratorInput = {
 
 export class SafeScopeIntelligenceOrchestrator {
   private confidenceEngine = new ConfidenceIntelligenceService();
+  private governanceEngine = new ConfidenceGovernanceService();
   private trendEngine = new TrendIntelligenceService();
   private reasoningEngine = new OperationalReasoningService();
   private controlEngine = new ControlIntelligenceService();
@@ -344,7 +346,7 @@ export class SafeScopeIntelligenceOrchestrator {
     const understandingTopMechanism = observationUnderstanding.mechanismCandidates?.[0];
 
     const understandingScenarioFamily =
-      understandingTopScenario?.scenarioId && understandingTopScenario.confidence >= 0.55
+      understandingTopScenario?.scenarioId && (understandingTopScenario as any).confidence >= 0.55
         ? understandingTopScenario.scenarioId
         : undefined;
 
@@ -357,7 +359,7 @@ export class SafeScopeIntelligenceOrchestrator {
       understandingTopScenario?.mechanism &&
       understandingTopScenario.mechanism !== 'unknown' &&
       (
-        understandingTopScenario.confidence >= 0.55 ||
+        (understandingTopScenario as any).confidence >= 0.55 ||
         scenarioSpecificMechanismOverrides.includes(understandingTopScenario.scenarioId)
       )
         ? understandingTopScenario.mechanism
@@ -366,12 +368,12 @@ export class SafeScopeIntelligenceOrchestrator {
     const understandingMechanism =
       understandingTopMechanism?.mechanism &&
       understandingTopMechanism.mechanism !== 'unknown' &&
-      understandingTopMechanism.confidence >= 0.7
+      (understandingTopMechanism as any).confidence >= 0.7
         ? understandingTopMechanism.mechanism
         : undefined;
 
     const understandingHazardFamily =
-      understandingTopScenario?.hazardFamily && understandingTopScenario.confidence >= 0.55
+      understandingTopScenario?.hazardFamily && (understandingTopScenario as any).confidence >= 0.55
         ? understandingTopScenario.hazardFamily
         : undefined;
 
@@ -403,6 +405,17 @@ export class SafeScopeIntelligenceOrchestrator {
           ...(observationUnderstanding.evidenceGaps || [])
         ].filter((gap, index, all) => all.indexOf(gap) === index)
     };
+
+    const confidenceGovernance = this.governanceEngine.govern({
+      observationUnderstanding,
+      causalRiskReasoning,
+      evidenceSufficiency,
+      scenarioIntelligence,
+      riskReasoning,
+      standardsReasoning,
+      calibrationMeta,
+      fusedText
+    });
 
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
@@ -559,6 +572,7 @@ export class SafeScopeIntelligenceOrchestrator {
       riskReasoning,
       causalRiskReasoning,
       evidenceSufficiency,
+      confidenceGovernance,
       calibrationMeta,
       standardFamilyCandidates,
       citationLevelCandidates,

@@ -209,6 +209,15 @@ This layer evaluates whether the observation contains enough facts to support st
 This should become the main gate between SafeScope's reasoning layers and any future stronger classification, risk, corrective-action, or source-backed regulatory mapping behavior.
 
 
+### Current foundation added: Confidence Governance Core
+
+SafeScope now includes a Confidence Governance Core as the output governor that decides how strongly SafeScope may speak.
+
+This layer sits above all reasoning and intelligence engines. It enforces the advisory-only boundary, prevents weak evidence from being presented as high-confidence conclusions, and determines whether SafeScope can support strong recommendations, standard-family suggestions, citation candidates, corrective actions, and report narratives.
+
+This should become the final check before any output is passed to the frontend or reporting engines.
+
+
 ### Track D: Evidence Sufficiency and Confidence
 
 Goal:
