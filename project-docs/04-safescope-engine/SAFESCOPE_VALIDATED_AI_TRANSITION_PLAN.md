@@ -191,6 +191,15 @@ SafeScope can explain why a standard family or citation candidate was considered
 
 ---
 
+### Current foundation added: Causal-Risk Reasoning Core
+
+SafeScope now includes a causal-risk reasoning core as a foundation for defensible AI behavior.
+
+This layer is designed to reason from reusable safety primitives instead of memorized scenario answers. It evaluates energy source, energy-transfer path, exposed target, initiating condition, failed or missing controls, mechanism of injury, credible worst case, competing mechanisms, missing evidence, and confidence.
+
+This should become a central bridge between observation understanding, evidence sufficiency, risk reasoning, corrective action logic, and future source-backed regulatory mapping.
+
+
 ### Track D: Evidence Sufficiency and Confidence
 
 Goal:

@@ -81,67 +81,78 @@ const scenarios: GoldenScenario[] = [
   },
 ];
 
-let failures = 0;
+async function run() {
+  let failures = 0;
 
-for (const scenario of scenarios) {
-  const result = orchestrator.evaluate({
-    fusedText: scenario.input.text,
-    promotedPrimary: {
-      classification: scenario.input.classification,
-      confidence: scenario.input.confidence ?? 0.8,
-      evidenceTokens: [],
-      risk: scenario.input.risk || {},
-    },
-    classifierResult: {
-      ambiguityWarnings: [],
-    },
-    evidenceTexts: [],
-    expandedContext: {},
-    primaryStandardsResult: {
-      suggestedStandards: scenario.input.standards || [],
-    },
-    generatedActions: [
-      {
-        title: 'Correct hazard',
-        description: 'Install, verify, and document effective controls.',
-        suggestedFixes: ['Install guard or control exposure', 'Verify correction before closure'],
+  for (const scenario of scenarios) {
+    const result = await orchestrator.evaluate({
+      fusedText: scenario.input.text,
+      promotedPrimary: {
+        classification: scenario.input.classification,
+        confidence: scenario.input.confidence ?? 0.8,
+        evidenceTokens: [],
+        risk: scenario.input.risk || {},
       },
-    ],
-    additionalHazards: scenario.input.additionalHazards || [],
-    priorFindings: scenario.input.priorFindings || [],
-  });
+      classifierResult: {
+        ambiguityWarnings: [],
+      },
+      evidenceTexts: [],
+      expandedContext: {},
+      primaryStandardsResult: {
+        suggestedStandards: scenario.input.standards || [],
+      },
+      generatedActions: [
+        {
+          title: 'Correct hazard',
+          description: 'Install, verify, and document effective controls.',
+          suggestedFixes: ['Install guard or control exposure', 'Verify correction before closure'],
+        },
+      ],
+      additionalHazards: scenario.input.additionalHazards || [],
+      priorFindings: scenario.input.priorFindings || [],
+    });
 
-  const checks = [
-    scenario.expect.energySource
-      ? result.energyTransferIntelligence?.dominantEnergySource === scenario.expect.energySource
-      : true,
-    scenario.expect.operationalState
-      ? result.operationalState?.primaryState === scenario.expect.operationalState
-      : true,
-    typeof scenario.expect.contradiction === 'boolean'
-      ? result.contradictionIntelligence?.contradictionsDetected === scenario.expect.contradiction
-      : true,
-    scenario.expect.barrierAdequacy
-      ? result.barrierIntelligence?.barrierAdequacy === scenario.expect.barrierAdequacy
-      : true,
-    scenario.expect.cascadePotential
-      ? result.correlationIntelligence?.cascadePotential === scenario.expect.cascadePotential
-      : true,
-  ];
+    const checks = [
+      scenario.expect.energySource
+        ? result.energyTransferIntelligence?.dominantEnergySource === scenario.expect.energySource
+        : true,
+      scenario.expect.operationalState
+        ? result.operationalState?.primaryState === scenario.expect.operationalState
+        : true,
+      typeof scenario.expect.contradiction === 'boolean'
+        ? result.contradictionIntelligence?.contradictionsDetected === scenario.expect.contradiction
+        : true,
+      scenario.expect.barrierAdequacy
+        ? result.barrierIntelligence?.barrierAdequacy === scenario.expect.barrierAdequacy
+        : true,
+      scenario.expect.cascadePotential
+        ? result.correlationIntelligence?.cascadePotential === scenario.expect.cascadePotential
+        : true,
+    ];
 
-  const passed = checks.every(Boolean);
-
-  if (!passed) {
-    failures += 1;
-    console.error(`❌ ${scenario.name}`);
-    console.error(JSON.stringify(result, null, 2));
-  } else {
-    console.log(`✅ ${scenario.name}`);
+    if (checks.every(Boolean)) {
+      console.log(`✅ ${scenario.name}`);
+    } else {
+      failures += 1;
+      console.error(`❌ ${scenario.name}`);
+      console.error(JSON.stringify({
+        energy: result.energyTransferIntelligence,
+        operationalState: result.operationalState,
+        contradiction: result.contradictionIntelligence,
+        barrier: result.barrierIntelligence,
+        correlation: result.correlationIntelligence,
+      }, null, 2));
+    }
   }
+
+  if (failures > 0) {
+    throw new Error(`${failures} operational reasoning scenario(s) failed.`);
+  }
+
+  console.log('✅ SafeScope operational reasoning golden tests passed.');
 }
 
-if (failures > 0) {
-  throw new Error(`${failures} golden operational reasoning scenario(s) failed.`);
-}
-
-console.log('✅ SafeScope operational reasoning golden tests passed.');
+run().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

@@ -1052,7 +1052,7 @@ export class SafescopeV2Service {
         workspaceId,
       );
 
-    const intelligence = this.intelligenceOrchestrator.evaluate({
+    const intelligence = await this.intelligenceOrchestrator.evaluate({
       fusedText,
       promotedPrimary,
       classifierResult: result,

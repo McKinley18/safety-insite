@@ -1,4 +1,6 @@
+import { CausalRiskService } from '../causal-risk/causal-risk.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
+
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
 import { OperationalReasoningService } from '../reasoning/operational-reasoning.service';
 import { ControlIntelligenceService } from '../control-intelligence/control-intelligence.service';
@@ -102,9 +104,10 @@ export class SafeScopeIntelligenceOrchestrator {
   private narrativeEngine = new NarrativeGeneratorService();
   private questionGenerator = new EvidenceGapQuestionGeneratorService();
   private correctiveActionEngine = new CorrectiveActionBrainService();
+  private causalRiskEngine = new CausalRiskService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
-  evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
+  async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
     const {
       fusedText,
       promotedPrimary,
@@ -317,6 +320,8 @@ export class SafeScopeIntelligenceOrchestrator {
         scenarioIntelligence,
         evidenceQuality.gaps || []
     );
+
+    const causalRiskReasoning = await this.causalRiskEngine.analyzeCausalRisk(observationUnderstanding, fusedText);
 
     const detectedJurisdiction = (observationContext.detectedJurisdictionSignals && observationContext.detectedJurisdictionSignals.length > 0) 
         ? observationContext.detectedJurisdictionSignals[0].toLowerCase()
@@ -544,6 +549,7 @@ export class SafeScopeIntelligenceOrchestrator {
       domainIntelligence,
       scenarioIntelligence,
       riskReasoning,
+      causalRiskReasoning,
       calibrationMeta,
       standardFamilyCandidates,
       citationLevelCandidates,

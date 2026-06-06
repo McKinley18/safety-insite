@@ -38,6 +38,42 @@ Primary app folders:
 
 ---
 
+## Latest Validation Checkpoint: SafeScope Causal-Risk Reasoning Core
+
+Date verified: 2026-06-06
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope causal-risk reasoning validation passed.
+- SafeScope domain intelligence golden tests passed.
+- SafeScope operational reasoning golden tests passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+- Frontend Next.js production build passed with 27/27 static pages.
+
+Capabilities added in this checkpoint:
+
+- SafeScope causal-risk reasoning core added.
+- The engine now reasons from energy source, exposure, failed or missing controls, mechanism of injury, credible worst case, competing mechanisms, and missing evidence.
+- The causal-risk layer uses structured observation understanding where available and fused text as fallback context.
+- The causal-risk layer produces useful reasoning even when a scenario family is unknown.
+- Confidence is downgraded when exposure, controls, energy source, or mechanism are unclear.
+- Advisory-only boundaries remain preserved.
+
+Defensibility note:
+
+This is not a scenario memorization layer. It is a reusable reasoning primitive designed to help SafeScope explain why a hazard is dangerous, what energy is involved, how exposure could occur, what control failed, what credible worst case exists, and what evidence is still missing.
+
+SafeScope remains advisory-only. It does not declare violations, does not create citations, and still requires qualified human review before final reliance.
+
+
 ## Latest Validation Checkpoint: SafeScope Precision Scenario Understanding
 
 Date verified: 2026-06-06
