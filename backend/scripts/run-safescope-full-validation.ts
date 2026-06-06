@@ -21,6 +21,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'Confined space atmospheric draft pack',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-confined-space-atmospheric-draft-pack.ts'],
+  },
+  {
     label: 'Mobile equipment pedestrian draft pack',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-mobile-equipment-pedestrian-draft-pack.ts'],
