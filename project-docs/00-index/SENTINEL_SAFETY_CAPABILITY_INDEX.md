@@ -1133,3 +1133,40 @@ Check git status:
 - It stops on first failure and prints pass progress.
 - Governance snapshot, pipeline contract, write guard, promotion, intake, applicability, human review, DCA, output policy, confidence, evidence, causal-risk, golden tests, precision batches, observation understanding, trace snapshot, and field output contract are included.
 - Frontend build remains green.
+
+## Approved Knowledge Registry Schema
+- SafeScope Approved Knowledge Registry Schema added.
+- It defines the approved knowledge record structure.
+- It defines draft candidate export behavior.
+- It validates authority, citation, jurisdiction, source URL, mapping completeness, duplicate keys, review metadata, and advisory guardrails.
+- It prevents draft candidates from being treated as approved records.
+- It does not persist runtime knowledge or automatically promote knowledge.
+- Existing master validation remains green.
+- Advisory-only boundaries remain preserved.
+
+## Master Validation Runner
+- SafeScope Master Validation Runner added.
+- It runs the full backend SafeScope validation suite in one command.
+- It stops on first failure and prints pass progress.
+- Governance snapshot, pipeline contract, write guard, promotion, intake, applicability, human review, DCA, output policy, confidence, evidence, causal-risk, golden tests, precision batches, observation understanding, trace snapshot, and field output contract are included.
+- Frontend build remains green.
+
+## Approved Knowledge Registry Schema
+- SafeScope Approved Knowledge Registry Schema added.
+- It defines the approved knowledge record structure.
+- It defines draft candidate export behavior.
+- It validates authority, citation, jurisdiction, source URL, mapping completeness, duplicate keys, review metadata, and advisory guardrails.
+- It prevents draft candidates from being treated as approved records.
+- It does not persist runtime knowledge or automatically promote knowledge.
+- Existing master validation remains green.
+- Advisory-only boundaries remain preserved.
+
+## Approved Knowledge Registry Schema
+- SafeScope Approved Knowledge Registry Schema added.
+- It defines the approved knowledge record structure.
+- It defines draft candidate export behavior.
+- It validates authority, citation, jurisdiction, source URL, mapping completeness, duplicate keys, review metadata, and advisory guardrails.
+- It prevents draft candidates from being treated as approved records.
+- It does not persist runtime knowledge or automatically promote knowledge.
+- Existing master validation remains green.
+- Advisory-only boundaries remain preserved.

@@ -8,6 +8,9 @@ import { SourceBackedApplicabilityGovernanceService } from '../source-backed-app
 import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
 import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
 import { ApprovedKnowledgeRegistryWriteGuardService } from '../approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
+import { LearningCandidateQueueService } from '../learning-candidate-queue/learning-candidate-queue.service';
+import { GovernanceReportAdapterService } from '../governance-report-adapter/governance-report-adapter.service';
+import { ApprovedKnowledgeRegistryValidator } from '../approved-knowledge-registry/approved-knowledge-registry.validator';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
@@ -123,6 +126,8 @@ export class SafeScopeIntelligenceOrchestrator {
   private askigEngine = new ApprovedSourceKnowledgeIntakeGovernanceService();
   private akpwgEngine = new ApprovedKnowledgePromotionWorkflowGovernanceService();
   private akrwgEngine = new ApprovedKnowledgeRegistryWriteGuardService();
+  private lcqEngine = new LearningCandidateQueueService();
+  private adapterEngine = new GovernanceReportAdapterService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -489,6 +494,17 @@ export class SafeScopeIntelligenceOrchestrator {
         {}
     );
 
+    const lcq = this.lcqEngine.createCandidate(
+        {},
+        hrlg
+    );
+
+    const adapter = this.adapterEngine.adapt(
+        outputPolicy,
+        evidenceSufficiency,
+        causalRiskReasoning
+    );
+
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
         text: fusedText,
@@ -634,6 +650,7 @@ export class SafeScopeIntelligenceOrchestrator {
           'domain_intelligence',
           'cross_domain_interaction',
           'executive_judgment',
+          'registry_schema_foundation',
         ],
       },
       observationContext,
@@ -651,6 +668,9 @@ export class SafeScopeIntelligenceOrchestrator {
       askig,
       akpwg,
       akrwg,
+      lcq,
+      adapter,
+      registryValidator: ApprovedKnowledgeRegistryValidator,
       confidenceGovernance,
       calibrationMeta,
       standardFamilyCandidates,
