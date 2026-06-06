@@ -38,6 +38,52 @@ Primary app folders:
 
 ---
 
+## Latest Validation Checkpoint: SafeScope Source-Backed Applicability Governance Core
+
+Date verified: 2026-06-06
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope source-backed applicability governance validation passed.
+- SafeScope human review learning governance validation passed.
+- SafeScope defensible corrective action validation passed.
+- SafeScope output policy validation passed.
+- SafeScope confidence governance validation passed.
+- SafeScope evidence sufficiency validation passed.
+- SafeScope causal-risk reasoning validation passed.
+- SafeScope domain intelligence golden tests passed.
+- SafeScope operational reasoning golden tests passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+- Frontend Next.js production build passed with 27/27 static pages.
+
+Capabilities added in this checkpoint:
+
+- SafeScope Source-Backed Applicability Governance Core added.
+- It governs whether SafeScope can discuss standard families, citation candidates, and applicability reasoning.
+- It uses evidence sufficiency, confidence governance, output policy, jurisdiction clarity, and source support as gates.
+- It allows evidence-backed standard-family discussion when jurisdiction and evidence are sufficient, even when citation-candidate language remains blocked.
+- It blocks unsupported citation-candidate language.
+- It requires qualified reviewer confirmation for applicability and citation-candidate discussions.
+- It is not a scenario memorization layer.
+- Existing precision batches 001-003 remain green.
+- HRLG, DCA, output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.
+- Advisory-only boundaries remain preserved.
+
+Defensibility note:
+
+The Source-Backed Applicability Governance Core separates standard-family discussion from citation-candidate support. SafeScope may discuss an applicable standard family when evidence, jurisdiction, and output policy permit it, but citation-candidate language remains blocked unless source support and reviewer-confirmation requirements are satisfied.
+
+SafeScope remains advisory-only. It does not declare violations, does not create citations, and still requires qualified human review before final reliance.
+
+
 ## Latest Validation Checkpoint: SafeScope Human Review and Learning Governance Core
 
 Date verified: 2026-06-06

@@ -310,6 +310,16 @@ This layer determines what requires qualified human review, what reviewer correc
 
 This should become the governance bridge between reviewer feedback, future learning workflows, and approved knowledge management. It does not automatically write learned knowledge into the approved knowledge base.
 
+### Current foundation added: Source-Backed Applicability Governance Core
+
+SafeScope now includes a Source-Backed Applicability Governance Core as the layer that controls whether SafeScope may discuss standard families, citation candidates, and applicability reasoning.
+
+This layer uses evidence sufficiency, confidence governance, output policy, jurisdiction clarity, candidate standard families, citation candidates, and source support as gates. It allows standard-family discussion only when the evidence and jurisdiction support it, and it blocks citation-candidate language unless source support and qualified-review requirements are satisfied.
+
+This should become the bridge between SafeScope reasoning and future approved-source regulatory mapping. It is not a citation generator and does not declare violations.
+
+
+
 ### Track F: Human Review and Learning Governance
 
 Goal:

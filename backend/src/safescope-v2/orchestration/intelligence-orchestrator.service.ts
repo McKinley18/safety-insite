@@ -4,6 +4,7 @@ import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidenc
 import { OutputPolicyService } from '../output-policy/output-policy.service';
 import { DefensibleCorrectiveActionService } from '../defensible-corrective-action/dca.service';
 import { HumanReviewLearningGovernanceService } from '../human-review-learning-governance/hrlg.service';
+import { SourceBackedApplicabilityGovernanceService } from '../source-backed-applicability-governance/sbag.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
@@ -115,6 +116,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private outputPolicyEngine = new OutputPolicyService();
   private dcaEngine = new DefensibleCorrectiveActionService();
   private hrlgEngine = new HumanReviewLearningGovernanceService();
+  private sbagEngine = new SourceBackedApplicabilityGovernanceService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -452,6 +454,17 @@ export class SafeScopeIntelligenceOrchestrator {
         outputPolicy
     );
 
+    const sbag = await this.sbagEngine.evaluateApplicability(
+        confidenceGovernance,
+        evidenceSufficiency,
+        causalRiskReasoning,
+        dca,
+        observationUnderstanding,
+        calibrationMeta,
+        outputPolicy,
+        fusedText
+    );
+
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
         text: fusedText,
@@ -610,6 +623,7 @@ export class SafeScopeIntelligenceOrchestrator {
       outputPolicy,
       dca,
       hrlg,
+      sbag,
       confidenceGovernance,
       calibrationMeta,
       standardFamilyCandidates,
