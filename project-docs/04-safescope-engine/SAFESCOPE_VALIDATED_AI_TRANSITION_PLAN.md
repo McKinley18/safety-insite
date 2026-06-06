@@ -302,6 +302,14 @@ This layer uses causal-risk reasoning, evidence sufficiency, confidence governan
 This should become the main corrective-action bridge between SafeScope reasoning and user-facing inspection reports while preventing weak evidence from becoming overconfident final-action language.
 
 
+### Current foundation added: Human Review and Learning Governance Core
+
+SafeScope now includes a Human Review and Learning Governance Core as the layer that controls reviewer correction capture and prevents unsafe automatic learning.
+
+This layer determines what requires qualified human review, what reviewer corrections should be captured, whether a correction is blocked, review-required, or an approved learning candidate, and what audit trail is required before future knowledge updates.
+
+This should become the governance bridge between reviewer feedback, future learning workflows, and approved knowledge management. It does not automatically write learned knowledge into the approved knowledge base.
+
 ### Track F: Human Review and Learning Governance
 
 Goal:

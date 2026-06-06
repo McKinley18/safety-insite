@@ -38,6 +38,51 @@ Primary app folders:
 
 ---
 
+## Latest Validation Checkpoint: SafeScope Human Review and Learning Governance Core
+
+Date verified: 2026-06-06
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope human review learning governance validation passed.
+- SafeScope defensible corrective action validation passed.
+- SafeScope output policy validation passed.
+- SafeScope confidence governance validation passed.
+- SafeScope evidence sufficiency validation passed.
+- SafeScope causal-risk reasoning validation passed.
+- SafeScope domain intelligence golden tests passed.
+- SafeScope operational reasoning golden tests passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+- Frontend Next.js production build passed with 27/27 static pages.
+
+Capabilities added in this checkpoint:
+
+- SafeScope Human Review and Learning Governance Core added.
+- It determines what requires qualified human review before reliance.
+- It captures what reviewer corrections should be collected.
+- It blocks unsafe automatic learning.
+- It separates approved learning candidates, review-required candidates, and blocked candidates.
+- It protects SafeScope from silently learning bad information.
+- It is not a scenario memorization layer.
+- Existing precision batches 001-003 remain green.
+- DCA, output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.
+- Advisory-only boundaries remain preserved.
+
+Defensibility note:
+
+The Human Review and Learning Governance Core controls how SafeScope receives reviewer feedback, records human decisions, and determines whether corrections are eligible for future learning. It does not persist approved knowledge or allow automatic learning from unreviewed outputs.
+
+SafeScope remains advisory-only. It does not declare violations, does not create citations, and still requires qualified human review before final reliance.
+
+
 ## Latest Validation Checkpoint: SafeScope Defensible Corrective Action Core
 
 Date verified: 2026-06-06

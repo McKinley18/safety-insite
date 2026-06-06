@@ -3,6 +3,7 @@ import { CausalRiskService } from '../causal-risk/causal-risk.service';
 import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidence-sufficiency.service';
 import { OutputPolicyService } from '../output-policy/output-policy.service';
 import { DefensibleCorrectiveActionService } from '../defensible-corrective-action/dca.service';
+import { HumanReviewLearningGovernanceService } from '../human-review-learning-governance/hrlg.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
@@ -113,6 +114,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private evidenceSufficiencyEngine = new EvidenceSufficiencyService();
   private outputPolicyEngine = new OutputPolicyService();
   private dcaEngine = new DefensibleCorrectiveActionService();
+  private hrlgEngine = new HumanReviewLearningGovernanceService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -439,6 +441,16 @@ export class SafeScopeIntelligenceOrchestrator {
         outputPolicy,
         fusedText
     );
+    
+    const hrlg = await this.hrlgEngine.evaluateHRLG(
+        confidenceGovernance,
+        evidenceSufficiency,
+        causalRiskReasoning,
+        dca,
+        observationUnderstanding,
+        calibrationMeta,
+        outputPolicy
+    );
 
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
@@ -597,6 +609,7 @@ export class SafeScopeIntelligenceOrchestrator {
       evidenceSufficiency,
       outputPolicy,
       dca,
+      hrlg,
       confidenceGovernance,
       calibrationMeta,
       standardFamilyCandidates,
