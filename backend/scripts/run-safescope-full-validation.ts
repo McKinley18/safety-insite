@@ -21,6 +21,21 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'Source-backed knowledge candidates',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-source-backed-knowledge-candidates.ts'],
+  },
+  {
+    label: 'Approved knowledge registry IO',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-registry-io.ts'],
+  },
+  {
+    label: 'Approved knowledge search',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-search.ts'],
+  },
+  {
     label: 'Approved knowledge registry schema',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-registry-schema.ts'],
