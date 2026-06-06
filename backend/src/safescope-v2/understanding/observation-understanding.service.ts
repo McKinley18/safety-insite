@@ -1,0 +1,286 @@
+import {
+  SafeScopeUnderstanding,
+  SafeScopeUnderstandingJurisdiction,
+  SafeScopeUnderstandingMechanismCandidate
+} from './safescope-understanding.types';
+import { EquipmentUnderstandingService } from './equipment-understanding.service';
+import { TaskUnderstandingService } from './task-understanding.service';
+import { ExposureUnderstandingService } from './exposure-understanding.service';
+import { EnergyUnderstandingService } from './energy-understanding.service';
+import { ControlUnderstandingService } from './control-understanding.service';
+
+export class ObservationUnderstandingService {
+  private readonly equipmentService = new EquipmentUnderstandingService();
+  private readonly taskService = new TaskUnderstandingService();
+  private readonly exposureService = new ExposureUnderstandingService();
+  private readonly energyService = new EnergyUnderstandingService();
+  private readonly controlService = new ControlUnderstandingService();
+
+  evaluate(rawText: string): SafeScopeUnderstanding {
+    const normalizedText = this.normalize(rawText);
+
+    const jurisdiction = this.detectJurisdiction(normalizedText);
+    const equipment = this.equipmentService.evaluate(normalizedText);
+    const task = this.taskService.evaluate(normalizedText);
+    const exposure = this.exposureService.evaluate(normalizedText);
+    const energy = this.energyService.evaluate(normalizedText);
+    const controls = this.controlService.evaluate(normalizedText);
+
+    const mechanismCandidates = this.inferMechanismCandidates({
+      normalizedText,
+      equipmentCategory: equipment.category,
+      component: equipment.component,
+      taskType: task.taskType,
+      workerExposed: exposure.workerExposed,
+      primaryEnergySource: energy.primaryEnergySource,
+      missingControls: controls.missingControls,
+      failedControls: controls.failedControls
+    });
+
+    const evidenceGaps = this.detectEvidenceGaps({
+      jurisdiction,
+      equipmentCategory: equipment.category,
+      taskType: task.taskType,
+      workerExposed: exposure.workerExposed,
+      proximity: exposure.proximity,
+      operationalState: equipment.operationalState,
+      controlsKnown: controls.missingControls.length > 0 || controls.failedControls.length > 0 || controls.existingControls.length > 0
+    });
+
+    return {
+      engine: 'safescope_understanding_engine',
+      version: '0.1.0',
+      rawText,
+      normalizedText,
+      jurisdiction,
+      equipment,
+      task,
+      exposure,
+      energy,
+      controls,
+      mechanismCandidates,
+      evidenceGaps,
+      trace: [
+        'Normalized raw observation.',
+        'Evaluated jurisdiction, equipment, task, exposure, energy, and controls.',
+        'Generated mechanism candidates from structured facts.',
+        'Generated evidence gaps from missing or uncertain context.'
+      ],
+      advisoryGuardrails: {
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        requiresQualifiedReview: true
+      }
+    };
+  }
+
+  private normalize(rawText: string): string {
+    return rawText
+      .toLowerCase()
+      .replace(/[_/().,;:]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  private detectJurisdiction(text: string): SafeScopeUnderstandingJurisdiction {
+    const evidence: string[] = [];
+
+    if (text.includes('msha') || text.includes('mine') || text.includes('miner')) {
+      evidence.push('MSHA or mining signal detected.');
+      return {
+        detected: 'msha',
+        evidence,
+        needsConfirmation: false,
+        confidence: { score: 0.85, reasons: evidence }
+      };
+    }
+
+    if (text.includes('osha construction') || text.includes('construction')) {
+      evidence.push('OSHA construction signal detected.');
+      return {
+        detected: 'osha_construction',
+        evidence,
+        needsConfirmation: false,
+        confidence: { score: 0.8, reasons: evidence }
+      };
+    }
+
+    if (text.includes('osha') || text.includes('general industry')) {
+      evidence.push('OSHA general industry signal detected.');
+      return {
+        detected: 'osha_general_industry',
+        evidence,
+        needsConfirmation: false,
+        confidence: { score: 0.75, reasons: evidence }
+      };
+    }
+
+    return {
+      detected: 'unclear',
+      evidence: [],
+      needsConfirmation: true,
+      confidence: {
+        score: 0.2,
+        reasons: ['Jurisdiction signal is unclear.']
+      }
+    };
+  }
+
+  private inferMechanismCandidates(input: {
+    normalizedText: string;
+    equipmentCategory: string;
+    component: string;
+    taskType: string;
+    workerExposed: boolean | 'unclear';
+    primaryEnergySource: string;
+    missingControls: string[];
+    failedControls: string[];
+  }): SafeScopeUnderstandingMechanismCandidate[] {
+    const candidates: SafeScopeUnderstandingMechanismCandidate[] = [];
+
+    const hasMissingOrFailedGuard =
+      input.missingControls.includes('guarding') || input.failedControls.includes('guarding');
+
+    if (
+      input.equipmentCategory === 'conveyor' &&
+      ['tail_pulley', 'head_pulley_or_drive', 'roller_or_idler'].includes(input.component) &&
+      hasMissingOrFailedGuard
+    ) {
+      candidates.push({
+        mechanism: 'rotating_equipment_nip_point',
+        confidence: input.workerExposed === true ? 0.86 : 0.68,
+        reasons: [
+          'Conveyor rotating component detected.',
+          'Guarding failure detected.',
+          input.workerExposed === true ? 'Worker exposure is indicated.' : 'Worker exposure requires confirmation.'
+        ],
+        competingMechanisms: ['rotating_equipment_entanglement', 'unexpected_startup', 'crush_point']
+      });
+    }
+
+    if (
+      input.primaryEnergySource === 'mechanical_rotation' &&
+      input.normalizedText.includes('shaft') &&
+      hasMissingOrFailedGuard
+    ) {
+      candidates.push({
+        mechanism: 'rotating_equipment_entanglement',
+        confidence: 0.78,
+        reasons: [
+          'Rotating shaft or rotating equipment language detected.',
+          'Guarding failure detected.'
+        ],
+        competingMechanisms: ['rotating_equipment_nip_point', 'crush_point', 'unexpected_startup']
+      });
+    }
+
+    if (
+      input.normalizedText.includes('blade') ||
+      input.normalizedText.includes('point of operation') ||
+      input.normalizedText.includes('press brake') ||
+      input.normalizedText.includes('closing die')
+    ) {
+      candidates.push({
+        mechanism: 'cut_amputation_point_of_operation',
+        confidence: hasMissingOrFailedGuard ? 0.82 : 0.62,
+        reasons: [
+          'Point-of-operation or cutting/crushing component signal detected.',
+          hasMissingOrFailedGuard ? 'Safeguarding failure detected.' : 'Safeguarding status requires confirmation.'
+        ],
+        competingMechanisms: ['crush_point', 'rotating_equipment_entanglement', 'unexpected_startup']
+      });
+    }
+
+    if (input.primaryEnergySource === 'electrical') {
+      candidates.push({
+        mechanism: input.normalizedText.includes('arc flash') ? 'arc_flash' : 'electrical_shock',
+        confidence: 0.76,
+        reasons: ['Electrical energy source detected.'],
+        competingMechanisms: ['arc_flash', 'electrical_shock_arc_flash_access_clearance']
+      });
+    }
+
+    if (input.equipmentCategory === 'excavation' || input.primaryEnergySource === 'soil_collapse') {
+      candidates.push({
+        mechanism: 'caught_in_cave_in',
+        confidence: input.workerExposed === true ? 0.84 : 0.64,
+        reasons: [
+          'Excavation or trenching condition detected.',
+          input.workerExposed === true ? 'Worker exposure is indicated.' : 'Worker exposure requires confirmation.'
+        ],
+        competingMechanisms: ['fall_from_height', 'struck_by']
+      });
+    }
+
+    if (input.equipmentCategory === 'mobile_equipment') {
+      candidates.push({
+        mechanism: 'struck_by_mobile_equipment',
+        confidence: input.workerExposed === true ? 0.78 : 0.58,
+        reasons: ['Mobile equipment exposure pathway detected.'],
+        competingMechanisms: ['run_off_embankment', 'crush_point']
+      });
+    }
+
+    if (input.normalizedText.includes('walkway') || input.normalizedText.includes('slip') || input.normalizedText.includes('trip')) {
+      candidates.push({
+        mechanism: 'slip_trip_fall_same_level',
+        confidence: 0.7,
+        reasons: ['Walking-working surface or slip/trip signal detected.'],
+        competingMechanisms: ['fall_from_height']
+      });
+    }
+
+    if (!candidates.length) {
+      candidates.push({
+        mechanism: 'unknown',
+        confidence: 0.2,
+        reasons: ['Mechanism could not be determined from available structured facts.'],
+        competingMechanisms: []
+      });
+    }
+
+    return candidates.sort((a, b) => b.confidence - a.confidence);
+  }
+
+  private detectEvidenceGaps(input: {
+    jurisdiction: SafeScopeUnderstandingJurisdiction;
+    equipmentCategory: string;
+    taskType: string;
+    workerExposed: boolean | 'unclear';
+    proximity: string;
+    operationalState: string;
+    controlsKnown: boolean;
+  }): string[] {
+    const gaps: string[] = [];
+
+    if (input.jurisdiction.detected === 'unclear') {
+      gaps.push('Jurisdiction is unclear and should be confirmed.');
+    }
+
+    if (input.equipmentCategory === 'unknown') {
+      gaps.push('Equipment type is not clearly identified.');
+    }
+
+    if (input.taskType === 'unknown') {
+      gaps.push('Task or activity is not clearly identified.');
+    }
+
+    if (input.workerExposed !== true) {
+      gaps.push('Worker exposure is not clearly established.');
+    }
+
+    if (input.proximity === 'unknown' || input.proximity === 'not_established') {
+      gaps.push('Worker proximity to the hazard is not clearly described.');
+    }
+
+    if (input.operationalState === 'unknown') {
+      gaps.push('Operational or energy state is not clearly established.');
+    }
+
+    if (!input.controlsKnown) {
+      gaps.push('Existing, missing, or failed controls are not clearly described.');
+    }
+
+    return gaps;
+  }
+}

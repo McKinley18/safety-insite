@@ -1,0 +1,87 @@
+import {
+  SafeScopeControlHierarchyLevel,
+  SafeScopeUnderstandingControls
+} from './safescope-understanding.types';
+
+export class ControlUnderstandingService {
+  evaluate(normalizedText: string): SafeScopeUnderstandingControls {
+    const existingControls: string[] = [];
+    const failedControls: string[] = [];
+    const missingControls: string[] = [];
+    const reasons: string[] = [];
+
+    const addMissing = (control: string, reason: string) => {
+      if (!missingControls.includes(control)) missingControls.push(control);
+      reasons.push(reason);
+    };
+
+    const addFailed = (control: string, reason: string) => {
+      if (!failedControls.includes(control)) failedControls.push(control);
+      reasons.push(reason);
+    };
+
+    const addExisting = (control: string, reason: string) => {
+      if (!existingControls.includes(control)) existingControls.push(control);
+      reasons.push(reason);
+    };
+
+    if (
+      this.hasAny(normalizedText, [
+        'missing guard',
+        'guard missing',
+        'guard is missing',
+        'guard was missing',
+        'unguarded',
+        'guard removed',
+        'guard is removed',
+        'guard was removed',
+        'removed guard',
+        'no fixed guard',
+        'no guard'
+      ])
+    ) {
+      addMissing('guarding', 'Missing or removed guarding signal detected.');
+    }
+
+    if (this.hasAny(normalizedText, ['inadequate guard', 'damaged guard', 'guard not secured'])) {
+      addFailed('guarding', 'Failed or inadequate guarding signal detected.');
+    }
+
+    if (this.hasAny(normalizedText, ['no lockout', 'no loto', 'missing energy control', 'not locked out'])) {
+      addMissing('energy_isolation', 'Missing energy isolation signal detected.');
+    }
+
+    if (this.hasAny(normalizedText, ['blocked', 'obstructed', 'stored materials', 'blocked access'])) {
+      addFailed('access_control', 'Blocked or obstructed access signal detected.');
+    }
+
+    if (this.hasAny(normalizedText, ['no protective system', 'no trench box', 'no shoring', 'no sloping', 'unprotected trench'])) {
+      addMissing('excavation_protective_system', 'Missing excavation protective system signal detected.');
+    }
+
+    if (this.hasAny(normalizedText, ['barrier present', 'guard installed', 'locked out', 'loto applied', 'barricaded'])) {
+      addExisting('protective_control', 'Existing protective control signal detected.');
+    }
+
+    let strongestControlLevel: SafeScopeControlHierarchyLevel = 'unknown';
+    if (missingControls.includes('energy_isolation')) strongestControlLevel = 'energy_isolation';
+    else if (missingControls.includes('guarding') || failedControls.includes('guarding')) strongestControlLevel = 'guarding_barrier';
+    else if (missingControls.includes('excavation_protective_system')) strongestControlLevel = 'engineering';
+    else if (failedControls.includes('access_control')) strongestControlLevel = 'administrative';
+
+    return {
+      existingControls,
+      failedControls,
+      missingControls,
+      strongestControlLevel,
+      confidence: {
+        score: reasons.length ? Math.min(0.95, 0.3 + reasons.length * 0.16) : 0.2,
+        reasons: reasons.length ? reasons : ['No strong control status signal detected.']
+      }
+    };
+  }
+
+  private hasAny(text: string, terms: string[]): boolean {
+    return terms.some((term) => text.includes(term));
+  }
+}
