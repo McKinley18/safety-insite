@@ -484,3 +484,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - SafeScope now has an end-to-end governance pipeline contract validator that protects against future wiring regressions.
 
 - SafeScope now has a governance output snapshot fixture to protect the final user-facing governance output shape.
+
+- SafeScope now has a master validation runner to make full regression checks repeatable.

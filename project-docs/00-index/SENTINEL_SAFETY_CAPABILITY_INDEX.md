@@ -1126,3 +1126,10 @@ Check git status:
 - Existing precision batches 001-003 remain green.
 - All governance validations remain green.
 - Frontend build remains green.
+
+## Master Validation Runner
+- SafeScope Master Validation Runner added.
+- It runs the full backend SafeScope validation suite in one command.
+- It stops on first failure and prints pass progress.
+- Governance snapshot, pipeline contract, write guard, promotion, intake, applicability, human review, DCA, output policy, confidence, evidence, causal-risk, golden tests, precision batches, observation understanding, trace snapshot, and field output contract are included.
+- Frontend build remains green.
