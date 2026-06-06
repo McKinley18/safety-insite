@@ -1273,3 +1273,15 @@ Check git status:
 - Unknown authority, missing citation/source URL, outdated sources, incomplete mapping, prohibited declaration language, and weakened guardrails are rejected.
 - Promotion does not auto-learn, auto-cite, or auto-declare violations.
 - Master validation remains green.
+
+## Hazard Taxonomy Coverage
+- SafeScope hazard taxonomy coverage map added.
+- It covers major safety domains and maps them to draft packs or routing destinations.
+- Absorption is reviewer-controlled and routes to draft/review, not automatic approval.
+- Master validation includes the taxonomy coverage validator.
+
+## Hazard Taxonomy Coverage
+- SafeScope hazard taxonomy coverage map added.
+- It covers major safety domains and maps them to draft packs or routing destinations.
+- Absorption is reviewer-controlled and routes to draft/review, not automatic approval.
+- Master validation includes the taxonomy coverage validator.

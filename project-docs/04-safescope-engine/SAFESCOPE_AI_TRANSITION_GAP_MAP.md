@@ -90,3 +90,7 @@
 - Jurisdiction-aware applicability
 - Defensible advisory outputs
 - Validated regression suite
+
+- Hazard taxonomy coverage map v1 added.
+
+- Hazard taxonomy coverage map v1 added.
