@@ -66,7 +66,28 @@ export class EquipmentUnderstandingService {
       evidence.push('Excavation or trenching language detected.');
     }
 
-    if (this.hasAny(normalizedText, ['ladder', 'step ladder', 'extension ladder', 'platform', 'elevated work platform', 'unprotected edge'])) {
+    const shaftOrCouplingMachineSignal = this.hasAny(normalizedText, [
+      'rotating shaft',
+      'pump shaft',
+      'motor coupling',
+      'coupling',
+      'keyway',
+      'pump motor'
+    ]);
+
+    if (shaftOrCouplingMachineSignal) {
+      category = 'rotating_equipment';
+      specificEquipment = this.firstPresent(normalizedText, ['pump shaft', 'motor coupling', 'pump motor', 'coupling', 'rotating shaft']);
+      component = this.hasAny(normalizedText, ['coupling']) ? 'coupling' : 'rotating_shaft';
+      motion = 'rotating';
+      operationalState = this.hasAny(normalizedText, ['rotating', 'exposed', 'accessible']) ? 'operating_or_accessible' : operationalState;
+      evidence.push('Rotating shaft, coupling, keyway, or pump motor language detected.');
+    }
+
+    if (
+      !shaftOrCouplingMachineSignal &&
+      this.hasAny(normalizedText, ['ladder', 'step ladder', 'extension ladder', 'platform', 'elevated work platform', 'unprotected edge'])
+    ) {
       category = 'fall_protection';
       specificEquipment = this.firstPresent(normalizedText, ['extension ladder', 'step ladder', 'ladder', 'elevated work platform', 'platform', 'unprotected edge']);
       component = this.hasAny(normalizedText, ['unprotected edge', 'edge']) ? 'unprotected_edge' : component;

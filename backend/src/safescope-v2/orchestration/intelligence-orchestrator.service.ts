@@ -327,14 +327,37 @@ export class SafeScopeIntelligenceOrchestrator {
     else if (detectedJurisdiction.includes('osha_construction')) jurisdiction = 'osha_construction';
     else if (detectedJurisdiction.includes('osha')) jurisdiction = 'osha_general_industry';
 
+    const understandingTopScenario = observationUnderstanding.scenarioUnderstanding?.topScenario;
+    const understandingTopMechanism = observationUnderstanding.mechanismCandidates?.[0];
+
+    const understandingScenarioFamily =
+      understandingTopScenario?.scenarioId && understandingTopScenario.confidence >= 0.55
+        ? understandingTopScenario.scenarioId
+        : undefined;
+
+    const understandingMechanism =
+      understandingTopMechanism?.mechanism &&
+      understandingTopMechanism.mechanism !== 'unknown' &&
+      understandingTopMechanism.confidence >= 0.7
+        ? understandingTopMechanism.mechanism
+        : undefined;
+
+    const understandingHazardFamily =
+      understandingTopScenario?.hazardFamily && understandingTopScenario.confidence >= 0.55
+        ? understandingTopScenario.hazardFamily
+        : undefined;
+
     const calibrationMeta: CalibrationMeta = {
-        hazardFamily: scenarioIntelligence.hazardCategory || 'unknown',
-        scenarioFamily: scenarioIntelligence.scenarioFamilyId,
+        hazardFamily: understandingHazardFamily || scenarioIntelligence.hazardCategory || 'unknown',
+        scenarioFamily: understandingScenarioFamily || scenarioIntelligence.scenarioFamilyId,
         jurisdiction: jurisdiction,
-        mechanism: scenarioIntelligence.mechanismOfInjury,
+        mechanism: understandingMechanism || scenarioIntelligence.mechanismOfInjury,
         riskBand: riskReasoning.initialRiskLevel,
         standardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
-        evidenceGaps: scenarioIntelligence.evidenceGaps
+        evidenceGaps: [
+          ...(scenarioIntelligence.evidenceGaps || []),
+          ...(observationUnderstanding.evidenceGaps || [])
+        ].filter((gap, index, all) => all.indexOf(gap) === index)
     };
 
     const domainIntelligence = {

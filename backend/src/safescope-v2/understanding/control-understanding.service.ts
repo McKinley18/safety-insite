@@ -37,7 +37,21 @@ export class ControlUnderstandingService {
         'guard was removed',
         'removed guard',
         'no fixed guard',
-        'no guard'
+        'no guard',
+        'exposed nip point',
+        'exposed in-running nip point',
+        'in-running nip point',
+        'exposed pulley',
+        'exposed rotating shaft',
+        'exposed shaft',
+        'exposed coupling',
+        'no coupling guard',
+        'coupling guard is missing',
+        'coupling guard missing',
+        'coupling guard is removed',
+        'coupling guard removed',
+        'no coupling guard is installed',
+        'no coupling guard installed'
       ])
     ) {
       addMissing('guarding', 'Missing or removed guarding signal detected.');
