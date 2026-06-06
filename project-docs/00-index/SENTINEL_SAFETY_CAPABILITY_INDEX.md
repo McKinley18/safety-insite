@@ -1039,3 +1039,14 @@ Run core understanding validations:
 Check git status:
 
     git status --short
+
+## Approved Source Knowledge Intake Governance
+- SafeScope Approved Source Knowledge Intake Governance Core added.
+- It governs whether external source material can become an approved knowledge candidate.
+- It checks authority tier, jurisdiction, citation, title, source URL, dates, duplicates, and mapping confidence.
+- It blocks unknown or weak sources.
+- It flags duplicates for merge review.
+- It does not persist or automatically promote approved knowledge.
+- Existing precision batches 001-003 remain green.
+- SBAG, HRLG, DCA, output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.
+- Advisory-only boundaries remain preserved.

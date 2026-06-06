@@ -467,3 +467,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - The Capability Index records verified status.
 - The system continues to preserve advisory-only boundaries.
 
+
+- The Approved Source Knowledge Intake Governance Core is now the layer that controls whether external source material is eligible to become an approved knowledge candidate.
