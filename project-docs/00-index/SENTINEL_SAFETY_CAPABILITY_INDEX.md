@@ -38,6 +38,49 @@ Primary app folders:
 
 ---
 
+## Latest Validation Checkpoint: SafeScope Defensible Corrective Action Core
+
+Date verified: 2026-06-06
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope defensible corrective action validation passed.
+- SafeScope output policy validation passed.
+- SafeScope confidence governance validation passed.
+- SafeScope evidence sufficiency validation passed.
+- SafeScope causal-risk reasoning validation passed.
+- SafeScope domain intelligence golden tests passed.
+- SafeScope operational reasoning golden tests passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+- Frontend Next.js production build passed with 27/27 static pages.
+
+Capabilities added in this checkpoint:
+
+- SafeScope Defensible Corrective Action Core added.
+- It converts causal-risk reasoning, evidence sufficiency, confidence governance, and output policy into corrective-action reasoning.
+- It ties actions to mechanism of injury, failed or missing controls, worker exposure, credible worst case, and verification needs.
+- It separates immediate actions, interim controls, permanent corrective actions, verification actions, reviewer questions, and blocked actions.
+- It prevents weak evidence from becoming overconfident corrective-action language.
+- It is not a scenario memorization layer.
+- Existing precision batches 001-003 remain green.
+- Output policy, confidence governance, evidence sufficiency, and causal-risk validations remain green.
+- Advisory-only boundaries remain preserved.
+
+Defensibility note:
+
+The Defensible Corrective Action Core converts SafeScope's internal reasoning into practical corrective-action guidance while preserving evidence limits, output policy boundaries, and qualified-review requirements.
+
+SafeScope remains advisory-only. It does not declare violations, does not create citations, and still requires qualified human review before final reliance.
+
+
 ## Latest Validation Checkpoint: SafeScope Output Policy Governor
 
 Date verified: 2026-06-06

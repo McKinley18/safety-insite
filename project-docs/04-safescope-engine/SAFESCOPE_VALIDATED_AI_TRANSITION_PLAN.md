@@ -293,6 +293,15 @@ Corrective actions should read like they were written by a competent safety prof
 
 ---
 
+### Current foundation added: Defensible Corrective Action Core
+
+SafeScope now includes a Defensible Corrective Action Core as the layer that converts internal reasoning into practical, evidence-governed corrective actions.
+
+This layer uses causal-risk reasoning, evidence sufficiency, confidence governance, output policy, failed controls, exposure, mechanism of injury, credible worst case, and verification needs to separate immediate actions, interim controls, permanent corrective actions, verification steps, reviewer questions, and blocked actions.
+
+This should become the main corrective-action bridge between SafeScope reasoning and user-facing inspection reports while preventing weak evidence from becoming overconfident final-action language.
+
+
 ### Track F: Human Review and Learning Governance
 
 Goal:
