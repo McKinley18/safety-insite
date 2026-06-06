@@ -1,6 +1,7 @@
 import { ConfidenceGovernanceService } from '../confidence-governance/confidence-governance.service';
 import { CausalRiskService } from '../causal-risk/causal-risk.service';
 import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidence-sufficiency.service';
+import { OutputPolicyService } from '../output-policy/output-policy.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
@@ -109,6 +110,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private correctiveActionEngine = new CorrectiveActionBrainService();
   private causalRiskEngine = new CausalRiskService();
   private evidenceSufficiencyEngine = new EvidenceSufficiencyService();
+  private outputPolicyEngine = new OutputPolicyService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -417,6 +419,15 @@ export class SafeScopeIntelligenceOrchestrator {
       fusedText
     });
 
+    const outputPolicy = await this.outputPolicyEngine.evaluateOutputPolicy(
+      confidenceGovernance,
+      evidenceSufficiency,
+      causalRiskReasoning,
+      observationUnderstanding,
+      calibrationMeta,
+      fusedText
+    );
+
     const domainIntelligence = {
       confinedSpace: this.confinedSpaceEngine.evaluate({
         text: fusedText,
@@ -572,6 +583,7 @@ export class SafeScopeIntelligenceOrchestrator {
       riskReasoning,
       causalRiskReasoning,
       evidenceSufficiency,
+      outputPolicy,
       confidenceGovernance,
       calibrationMeta,
       standardFamilyCandidates,

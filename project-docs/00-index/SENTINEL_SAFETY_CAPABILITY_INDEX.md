@@ -38,6 +38,49 @@ Primary app folders:
 
 ---
 
+## Latest Validation Checkpoint: SafeScope Output Policy Governor
+
+Date verified: 2026-06-06
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope output policy validation passed.
+- SafeScope confidence governance validation passed.
+- SafeScope evidence sufficiency validation passed.
+- SafeScope causal-risk reasoning validation passed.
+- SafeScope domain intelligence golden tests passed.
+- SafeScope operational reasoning golden tests passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+- Frontend Next.js production build passed with 27/27 static pages.
+
+Capabilities added in this checkpoint:
+
+- SafeScope Output Policy Governor added.
+- It converts confidence governance, evidence sufficiency, causal-risk reasoning, and observation understanding into allowed output behavior.
+- It controls whether SafeScope may use strong, moderate, cautious, or questions-only language.
+- It gates likely-hazard statements, possible-hazard statements, immediate controls, permanent controls, standard-family references, citation candidates, executive narrative, and corrective-action text.
+- It preserves required qualifiers, prohibited violation/citation language, evidence disclosure, reviewer questions, and confidence downgrade visibility.
+- It is not a scenario memorization layer.
+- Existing precision batches 001-003 remain green.
+- Confidence governance, evidence sufficiency, and causal-risk validations remain green.
+- Advisory-only boundaries remain preserved.
+
+Defensibility note:
+
+The Output Policy Governor is the final language-strength gate before SafeScope output is shown to users. It helps ensure SafeScope does not speak more strongly than the evidence, confidence governance, and advisory-only boundaries allow.
+
+SafeScope remains advisory-only. It does not declare violations, does not create citations, and still requires qualified human review before final reliance.
+
+
+
 ## Latest Validation Checkpoint: SafeScope Confidence Governance Core
 
 Date verified: 2026-06-06

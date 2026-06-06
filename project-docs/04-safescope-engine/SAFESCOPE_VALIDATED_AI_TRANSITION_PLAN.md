@@ -251,6 +251,15 @@ SafeScope must produce stronger answers only when enough facts are present. When
 
 ---
 
+### Current foundation added: Output Policy Governor
+
+SafeScope now includes an Output Policy Governor as the final language-strength gate before output is presented.
+
+This layer uses confidence governance, evidence sufficiency, causal-risk reasoning, and observation understanding to decide how strongly SafeScope may speak. It controls whether outputs may present likely hazards, possible hazards, immediate controls, permanent controls, standard-family references, citation candidates, executive narrative, and corrective-action text.
+
+This should become the main bridge between SafeScope's internal reasoning and user-facing language so weak evidence cannot become overconfident report wording.
+
+
 ### Track E: Corrective Action Defensibility
 
 Goal:
