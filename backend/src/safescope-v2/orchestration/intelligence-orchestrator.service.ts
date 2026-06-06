@@ -10,6 +10,8 @@ import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../approved
 import { ApprovedKnowledgeRegistryWriteGuardService } from '../approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
 import { LearningCandidateQueueService } from '../learning-candidate-queue/learning-candidate-queue.service';
 import { GovernanceReportAdapterService } from '../governance-report-adapter/governance-report-adapter.service';
+import { EvidenceQuestionGenerationService } from '../evidence-question-generation/evidence-question-generation.service';
+import { CorrectiveActionControlMapService } from '../corrective-action-control-map/corrective-action-control-map.service';
 import { ApprovedKnowledgeRegistryValidator } from '../approved-knowledge-registry/approved-knowledge-registry.validator';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
@@ -128,6 +130,8 @@ export class SafeScopeIntelligenceOrchestrator {
   private akrwgEngine = new ApprovedKnowledgeRegistryWriteGuardService();
   private lcqEngine = new LearningCandidateQueueService();
   private adapterEngine = new GovernanceReportAdapterService();
+  private evgEngine = new EvidenceQuestionGenerationService();
+  private controlMapEngine = new CorrectiveActionControlMapService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -493,6 +497,18 @@ export class SafeScopeIntelligenceOrchestrator {
         {},
         {}
     );
+    
+    const evg = this.evgEngine.generateQuestions(
+        observationUnderstanding,
+        {},
+        {}
+    );
+
+    const controlMap = this.controlMapEngine.mapControls(
+        'hazard',
+        'mechanism',
+        []
+    );
 
     const lcq = this.lcqEngine.createCandidate(
         {},
@@ -502,7 +518,10 @@ export class SafeScopeIntelligenceOrchestrator {
     const adapter = this.adapterEngine.adapt(
         outputPolicy,
         evidenceSufficiency,
-        causalRiskReasoning
+        causalRiskReasoning,
+        {}, // placeholder for applicability retrieval output
+        evg,
+        controlMap
     );
 
     const domainIntelligence = {
@@ -670,6 +689,8 @@ export class SafeScopeIntelligenceOrchestrator {
       akrwg,
       lcq,
       adapter,
+      evg,
+      controlMap,
       registryValidator: ApprovedKnowledgeRegistryValidator,
       confidenceGovernance,
       calibrationMeta,
