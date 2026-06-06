@@ -38,6 +38,48 @@ Primary app folders:
 
 ---
 
+## Latest Validation Checkpoint: SafeScope Evidence Sufficiency Engine
+
+Date verified: 2026-06-06
+
+Validation results:
+
+- Backend TypeScript build passed.
+- SafeScope evidence sufficiency validation passed.
+- SafeScope causal-risk reasoning validation passed.
+- SafeScope domain intelligence golden tests passed.
+- SafeScope operational reasoning golden tests passed.
+- SafeScope precision batch 001 passed.
+- SafeScope precision batch 002 passed.
+- SafeScope precision batch 003 passed.
+- Observation understanding validation passed.
+- SafeScope understanding engine validation passed.
+- Main output observation-understanding validation passed.
+- Observation trace snapshot validation passed.
+- Field output contract validation passed.
+- Frontend Next.js production build passed with 27/27 static pages.
+
+Capabilities added in this checkpoint:
+
+- SafeScope Evidence Sufficiency Engine added.
+- It evaluates whether the observation contains enough facts to support strong reasoning.
+- It scores observation clarity, equipment clarity, task clarity, exposure clarity, energy clarity, control failure clarity, mechanism clarity, jurisdiction clarity, and evidence support.
+- It recommends reviewer questions for missing critical facts.
+- It prevents weak evidence from being presented as high-confidence reasoning.
+- It uses structured observation understanding, causal-risk reasoning, and fused observation text.
+- It is not a scenario memorization layer.
+- Existing precision batches 001-003 remain green.
+- Causal-risk validation remains green.
+- Advisory-only boundaries remain preserved.
+
+Defensibility note:
+
+The Evidence Sufficiency Engine strengthens SafeScope by forcing the system to evaluate whether enough facts are present before supporting stronger reasoning. This helps prevent overconfident outputs when worker exposure, energy state, failed controls, mechanism, jurisdiction, or supporting evidence are unclear.
+
+SafeScope remains advisory-only. It does not declare violations, does not create citations, and still requires qualified human review before final reliance.
+
+
+
 ## Latest Validation Checkpoint: SafeScope Causal-Risk Reasoning Core
 
 Date verified: 2026-06-06

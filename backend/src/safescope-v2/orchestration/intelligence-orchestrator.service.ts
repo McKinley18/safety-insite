@@ -1,4 +1,5 @@
 import { CausalRiskService } from '../causal-risk/causal-risk.service';
+import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidence-sufficiency.service';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
@@ -105,6 +106,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private questionGenerator = new EvidenceGapQuestionGeneratorService();
   private correctiveActionEngine = new CorrectiveActionBrainService();
   private causalRiskEngine = new CausalRiskService();
+  private evidenceSufficiencyEngine = new EvidenceSufficiencyService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -322,6 +324,12 @@ export class SafeScopeIntelligenceOrchestrator {
     );
 
     const causalRiskReasoning = await this.causalRiskEngine.analyzeCausalRisk(observationUnderstanding, fusedText);
+    
+    const evidenceSufficiency = await this.evidenceSufficiencyEngine.evaluateEvidenceSufficiency(
+        observationUnderstanding,
+        causalRiskReasoning,
+        fusedText
+    );
 
     const detectedJurisdiction = (observationContext.detectedJurisdictionSignals && observationContext.detectedJurisdictionSignals.length > 0) 
         ? observationContext.detectedJurisdictionSignals[0].toLowerCase()
@@ -550,6 +558,7 @@ export class SafeScopeIntelligenceOrchestrator {
       scenarioIntelligence,
       riskReasoning,
       causalRiskReasoning,
+      evidenceSufficiency,
       calibrationMeta,
       standardFamilyCandidates,
       citationLevelCandidates,

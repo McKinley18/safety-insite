@@ -200,6 +200,15 @@ This layer is designed to reason from reusable safety primitives instead of memo
 This should become a central bridge between observation understanding, evidence sufficiency, risk reasoning, corrective action logic, and future source-backed regulatory mapping.
 
 
+### Current foundation added: Evidence Sufficiency Engine
+
+SafeScope now includes an Evidence Sufficiency Engine as the next defensibility layer after causal-risk reasoning.
+
+This layer evaluates whether the observation contains enough facts to support strong reasoning. It scores observation clarity, equipment, task, exposure, energy, control failure, mechanism, jurisdiction, and supporting evidence. It also recommends reviewer questions when critical facts are missing and limits the maximum supported confidence when evidence is weak.
+
+This should become the main gate between SafeScope's reasoning layers and any future stronger classification, risk, corrective-action, or source-backed regulatory mapping behavior.
+
+
 ### Track D: Evidence Sufficiency and Confidence
 
 Goal:
