@@ -230,7 +230,7 @@ export class ScenarioUnderstandingService {
     candidates.push({
       scenarioId: 'electrical_panel_access',
       hazardFamily: 'electrical',
-      mechanism: mechanism?.mechanism || 'electrical_shock',
+      mechanism: 'electrical_shock_arc_flash_access_clearance',
       confidence: this.score(0.55, missingFacts, mechanism?.confidence || 0.5),
       reasons: [
         'Electrical panel or disconnect equipment detected.',
@@ -281,7 +281,7 @@ export class ScenarioUnderstandingService {
 
     candidates.push({
       scenarioId: 'mobile_equipment_pedestrian_interaction',
-      hazardFamily: 'powered_haulage',
+      hazardFamily: 'mobile_equipment',
       mechanism: mechanism?.mechanism || 'struck_by_mobile_equipment',
       confidence: this.score(0.59, missingFacts, mechanism?.confidence || 0.5),
       reasons: [

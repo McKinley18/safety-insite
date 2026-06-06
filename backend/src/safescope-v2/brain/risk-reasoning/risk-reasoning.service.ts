@@ -61,6 +61,10 @@ export class RiskReasoningBrainService {
       return 'critical';
     }
 
+    if (scenario.includes('electrical_panel_access')) {
+      return 'moderate';
+    }
+
     if (
       scenario.includes('conveyor_cleanup') ||
       scenario.includes('unguarded_conveyor_pulley') ||
