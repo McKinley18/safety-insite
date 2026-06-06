@@ -21,6 +21,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-governance-output-snapshot.ts'],
   },
   {
+    label: 'Fall protection working-at-height draft pack',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-fall-protection-working-at-height-draft-pack.ts'],
+  },
+  {
     label: 'Electrical energized equipment draft pack',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-electrical-energized-equipment-draft-pack.ts'],
