@@ -502,3 +502,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - The mobile equipment / pedestrian interaction draft knowledge pack has been added.
 
 - The mobile equipment / pedestrian interaction draft knowledge pack has been added.
+
+- The electrical / energized equipment / cords / panel access draft knowledge pack has been added.

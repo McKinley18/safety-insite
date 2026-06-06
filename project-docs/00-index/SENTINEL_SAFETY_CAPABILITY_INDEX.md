@@ -1203,3 +1203,11 @@ Check git status:
 - It is fully integrated with the Approved Knowledge Registry and Source Ingestion staging framework.
 - Master validation includes the draft pack validator.
 - Advisory-only boundaries remain preserved.
+
+## Electrical / Energized Equipment / Cords / Panel Access Draft Knowledge Pack
+- SafeScope electrical / energized equipment / cords / panel access draft knowledge pack added.
+- It includes 14 reviewer-required draft_candidate records.
+- Records require qualified reviewer validation before use.
+- It is fully integrated with the Approved Knowledge Registry and Source Ingestion staging framework.
+- Master validation includes the draft pack validator.
+- Advisory-only boundaries remain preserved.
