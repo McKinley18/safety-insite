@@ -1,4 +1,4 @@
-import { SafeScopeScenarioUnderstandingResult } from './scenario-understanding.service';
+import type { SafeScopeScenarioUnderstandingResult } from './scenario-understanding.service';
 
 export type SafeScopeJurisdiction =
   | 'msha'
