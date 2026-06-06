@@ -7,6 +7,8 @@ import { HumanReviewLearningGovernanceService } from '../human-review-learning-g
 import { SourceBackedApplicabilityGovernanceService } from '../source-backed-applicability-governance/sbag.service';
 import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../approved-source-knowledge-intake-governance/approved-source-knowledge-intake-governance.service';
 import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
+import { ApprovedKnowledgePromotionService } from '../approved-knowledge-promotion-v1/approved-knowledge-promotion-v1.service';
+import { HazardInformationAbsorptionService } from '../hazard-information-absorption/hazard-information-absorption.service';
 import { ApprovedKnowledgeRegistryWriteGuardService } from '../approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
 import { LearningCandidateQueueService } from '../learning-candidate-queue/learning-candidate-queue.service';
 import { GovernanceReportAdapterService } from '../governance-report-adapter/governance-report-adapter.service';
@@ -128,6 +130,8 @@ export class SafeScopeIntelligenceOrchestrator {
   private askigEngine = new ApprovedSourceKnowledgeIntakeGovernanceService();
   private akpwgEngine = new ApprovedKnowledgePromotionWorkflowGovernanceService();
   private akrwgEngine = new ApprovedKnowledgeRegistryWriteGuardService();
+  private promotionEngine = new ApprovedKnowledgePromotionService();
+  private absorptionEngine = new HazardInformationAbsorptionService();
   private lcqEngine = new LearningCandidateQueueService();
   private adapterEngine = new GovernanceReportAdapterService();
   private evgEngine = new EvidenceQuestionGenerationService();
@@ -498,6 +502,72 @@ export class SafeScopeIntelligenceOrchestrator {
         {}
     );
     
+    const dummyRecord: any = {
+        recordId: 'rec-1',
+        version: '1.0.0',
+        status: 'draft_candidate',
+        authority: {
+            agency: 'OSHA',
+            authorityTier: 'primary_regulation',
+            jurisdiction: 'osha_general_industry',
+            sourceUrl: 'http://osha.gov',
+            citation: '1910.147',
+            title: 'LOTO',
+            effectiveDate: '2026-01-01',
+            revisionDate: '2026-01-01',
+            sourceDateStatus: 'current'
+        },
+        mapping: {
+            standardFamily: 'loto',
+            hazardFamilies: ['energy'],
+            mechanisms: ['unexpected_startup'],
+            equipmentGroups: ['conveyor'],
+            taskContexts: ['maintenance'],
+            applicabilitySignals: ['energized'],
+            requiredFacts: ['energy_source'],
+            disqualifyingFacts: [],
+            evidenceQuestions: ['Is energy isolated?']
+        },
+        applicability: {
+            plainLanguageSummary: 'LOTO is required',
+            appliesWhen: 'servicing',
+            doesNotApplyWhen: 'normal operation',
+            requiredReviewerChecks: ['LOTO check']
+        },
+        correctiveActionLinks: {
+            preferredControlFamilies: ['isolation'],
+            verificationMethods: ['zero energy check'],
+            commonWeakActionsToAvoid: ['simple shutdown']
+        },
+        governance: {
+            supersedesRecordIds: [],
+            duplicateKeys: ['loto-1910.147'],
+            advisoryOnly: true,
+            doesNotDeclareViolation: true,
+            doesNotCreateCitation: true,
+            requiresQualifiedReview: true
+        }
+    };
+    
+    const promotion = await this.promotionEngine.promote(
+        dummyRecord,
+        {
+            approvedBy: 'SafetyMgr',
+            approvedAt: '2026-06-06',
+            reviewerRole: 'Safety Manager',
+            changeReason: 'Initial approval',
+            sourceVerified: true,
+            applicabilityVerified: true,
+            guardrailsVerified: true,
+            duplicateReviewCompleted: true
+        }
+    );
+    
+    const absorption = await this.absorptionEngine.absorb(
+        fusedText,
+        {}
+    );
+    
     const evg = this.evgEngine.generateQuestions(
         observationUnderstanding,
         {},
@@ -687,6 +757,8 @@ export class SafeScopeIntelligenceOrchestrator {
       askig,
       akpwg,
       akrwg,
+      promotion,
+      absorption,
       lcq,
       adapter,
       evg,
