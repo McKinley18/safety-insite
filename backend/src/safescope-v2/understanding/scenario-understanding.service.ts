@@ -344,7 +344,7 @@ export class ScenarioUnderstandingService {
     candidates.push({
       scenarioId: 'fire_extinguisher_access_inspection',
       hazardFamily: 'fire_protection',
-      mechanism: mechanism?.mechanism === 'unknown' ? 'fire_extinguisher_access_failure' : mechanism?.mechanism || 'fire_extinguisher_access_failure',
+      mechanism: 'delayed_emergency_response',
       confidence: 0.74,
       reasons: [
         'Fire extinguisher detected.',

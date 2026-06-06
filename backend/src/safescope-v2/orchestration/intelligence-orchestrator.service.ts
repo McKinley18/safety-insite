@@ -335,6 +335,21 @@ export class SafeScopeIntelligenceOrchestrator {
         ? understandingTopScenario.scenarioId
         : undefined;
 
+    const scenarioSpecificMechanismOverrides = [
+      'electrical_panel_access',
+      'fire_extinguisher_access_inspection'
+    ];
+
+    const understandingScenarioMechanism =
+      understandingTopScenario?.mechanism &&
+      understandingTopScenario.mechanism !== 'unknown' &&
+      (
+        understandingTopScenario.confidence >= 0.55 ||
+        scenarioSpecificMechanismOverrides.includes(understandingTopScenario.scenarioId)
+      )
+        ? understandingTopScenario.mechanism
+        : undefined;
+
     const understandingMechanism =
       understandingTopMechanism?.mechanism &&
       understandingTopMechanism.mechanism !== 'unknown' &&
@@ -351,7 +366,7 @@ export class SafeScopeIntelligenceOrchestrator {
         hazardFamily: understandingHazardFamily || scenarioIntelligence.hazardCategory || 'unknown',
         scenarioFamily: understandingScenarioFamily || scenarioIntelligence.scenarioFamilyId,
         jurisdiction: jurisdiction,
-        mechanism: understandingMechanism || scenarioIntelligence.mechanismOfInjury,
+        mechanism: understandingScenarioMechanism || understandingMechanism || scenarioIntelligence.mechanismOfInjury,
         riskBand: riskReasoning.initialRiskLevel,
         standardFamily: scenarioIntelligence.candidateStandardFamily || 'unknown',
         evidenceGaps: [
