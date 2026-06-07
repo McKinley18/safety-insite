@@ -25,6 +25,9 @@ export class AuditReadyReasoningTraceService {
       context
     } = input;
 
+    // Optional fields from retrieval output that might not be in the direct input types yet
+    const semantic = (input as any).semanticSynonymExpansion;
+
     const traceId = `trace-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const generatedAt = new Date().toISOString();
     
@@ -34,6 +37,10 @@ export class AuditReadyReasoningTraceService {
         `Evidence graded as ${evidenceWeighting.evidenceGrade}`,
         `Corrective action posture set to ${correctiveActionStrategy.actionPosture}`
     ];
+
+    if (semantic && semantic.primarySemanticFamilies.length > 0) {
+        primaryDecisionPath.push(`Semantic families expanded: ${semantic.primarySemanticFamilies.join(', ')}`);
+    }
 
     const sourceReasoning: string[] = approvedKnowledgeMatches.map(m => {
         const freshness = sourceFreshness[m.recordId];
@@ -54,13 +61,15 @@ export class AuditReadyReasoningTraceService {
     if (residualRiskVerification.confidenceAdjustment !== 0) {
         confidenceModifiers.push(`Risk verification adjustment: ${residualRiskVerification.confidenceAdjustment}`);
     }
+    if (semantic && semantic.semanticConfidenceScore > 0) {
+        confidenceModifiers.push(`Semantic match boost: +${(semantic.semanticConfidenceScore * 0.1).toFixed(2)}`);
+    }
 
     const humanReviewGates: string[] = [];
     if (jurisdictionApplicability.humanReviewRequired) humanReviewGates.push('Jurisdiction ambiguity requiring manual confirmation.');
     if (evidenceWeighting.evidenceGrade === 'conflicting') humanReviewGates.push('Contradictory evidence requiring verification.');
     if (multiHazardAnalysis.isMultiHazard) humanReviewGates.push('Multi-hazard complexity requiring per-hazard review.');
 
-    // Add learning candidate info to gates if relevant
     if (humanReviewFeedback && humanReviewFeedback.learningDisposition !== 'accept_no_learning_needed') {
         humanReviewGates.push(`Learning candidate created: ${humanReviewFeedback.learningDisposition}`);
     }
@@ -70,6 +79,9 @@ export class AuditReadyReasoningTraceService {
         ...jurisdictionApplicability.reviewerQuestions,
         ...residualRiskVerification.reviewerQuestions
     ];
+    if (semantic) {
+        reviewerChecklist.push(...semantic.reviewerQuestions);
+    }
 
     return {
       traceVersion: 'v1',
@@ -77,7 +89,10 @@ export class AuditReadyReasoningTraceService {
       generatedAt,
       observationSummary: observationText,
       primaryDecisionPath,
-      supportingEvidence: evidenceWeighting.supportingSignals,
+      supportingEvidence: [
+          ...evidenceWeighting.supportingSignals,
+          ...(semantic?.expandedSignals || [])
+      ],
       weakeningEvidence: evidenceWeighting.weakeningSignals,
       missingCriticalFacts: evidenceWeighting.missingCriticalFacts,
       detectedContradictions: evidenceWeighting.detectedContradictions,

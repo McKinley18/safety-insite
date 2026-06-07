@@ -1428,3 +1428,10 @@ Check git status:
 - Implements resilient data fetching with automatic demo fallback when the backend is unavailable.
 - Wires all primary reviewer actions (Approve, Reject, Request Info, Block) to governing backend services.
 - Establishes a professional 'Live Connection' status indicator to distinguish between production and demo modes.
+
+## Semantic Synonym Expansion
+- SafeScope Semantic Synonym Expansion v1 added.
+- Recognizes equivalent safety language (e.g., "pinch point" vs "nip point" vs "draw-in") without relying on exact keyword matching.
+- Implements governed synonym groups for 9+ critical safety domains including Machine Guarding, LOTO, Electrical, and Fall Protection.
+- Features deterministic matching with length-priority resolution and substring safety guards (e.g., preventing "guarded" from matching inside "unguarded").
+- Fully integrated into retrieval, field output, and audit traces to improve assessment precision and explainability.

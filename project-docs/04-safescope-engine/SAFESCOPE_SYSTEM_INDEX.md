@@ -54,3 +54,5 @@
 | Candidate Console | Reviewer workflow and API | backend/src/safescope-v2/reviewer-candidate-console/ | N/A | backend/scripts/validate-safescope-reviewer-candidate-console-v1.ts | Reviewer candidate console v1 | Active | Workflow management layer |
 
 | Reviewer API Wiring | Frontend-Backend integration | frontend-next/app/safescope-knowledge/review/page.tsx | backend/src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.controller.ts | backend/scripts/validate-safescope-reviewer-candidate-console-api-contract-v1.ts | API wiring v1 | Active | Connectivity layer |
+
+| Semantic Expansion | Neural-like synonym mapper | backend/src/safescope-v2/semantic-synonym-expansion/ | N/A | backend/scripts/validate-safescope-semantic-synonym-expansion-v1.ts | Semantic expansion v1 | Active | Pattern matching layer |

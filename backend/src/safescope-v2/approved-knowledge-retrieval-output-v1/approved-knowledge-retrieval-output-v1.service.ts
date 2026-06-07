@@ -15,6 +15,7 @@ import { SourceFreshnessGovernanceService } from '../source-freshness-governance
 import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 import { AuditReadyReasoningTraceService } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.service';
 import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
+import { SemanticSynonymExpansionService } from '../semantic-synonym-expansion/semantic-synonym-expansion.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -33,6 +34,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
   private traceService = new AuditReadyReasoningTraceService();
   private consoleService = new ReviewerCandidateConsoleService();
+  private semanticService = new SemanticSynonymExpansionService();
 
   async retrieve(
     observationText: string,
@@ -117,6 +119,15 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         context
     });
 
+    const semanticSynonymExpansion = this.semanticService.expand({
+        observationText,
+        taxonomyRoute,
+        context,
+        jurisdictionAssessment: jurisdictionApplicability,
+        evidenceWeighting,
+        multiHazardAnalysis: multiHazardDecomposition
+    });
+
     let reviewFeedback = undefined;
     if (context.humanReview) {
         reviewFeedback = this.feedbackService.processReview({
@@ -154,8 +165,10 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         humanReviewFeedback: reviewFeedback,
         sourceFreshness: sourceFreshnessGovernanceResults,
         jurisdictionApplicability,
-        context
-    });
+        context,
+        // Optional extension
+        semanticSynonymExpansion: semanticSynonymExpansion as any
+    } as any);
 
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
@@ -184,6 +197,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       sourceFreshnessGovernanceResults,
       jurisdictionApplicability,
       auditReadyReasoningTrace,
+      semanticSynonymExpansion,
       pendingReviewerCandidates,
       reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
@@ -191,7 +205,8 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       confidence: Math.max(0, Math.min(1.0, 
         Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)) + 
         riskVerification.confidenceAdjustment + 
-        freshnessConfidenceImpact
+        freshnessConfidenceImpact +
+        (semanticSynonymExpansion.semanticConfidenceScore * 0.1) // Slight boost for semantic matches
       )),
       evidenceGaps: [
           ...evidenceWeighting.missingCriticalFacts,
@@ -205,6 +220,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
           ...crossDomainCausalChain.reviewerQuestions,
           ...riskVerification.reviewerQuestions,
           ...jurisdictionApplicability.reviewerQuestions,
+          ...semanticSynonymExpansion.reviewerQuestions,
           'Verify categorization', 
           'Review evidence sufficiency'
       ],

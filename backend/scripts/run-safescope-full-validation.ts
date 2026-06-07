@@ -107,6 +107,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-audit-ready-reasoning-trace-v1.ts'],
   },
   {
+    label: 'Semantic synonym expansion v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-semantic-synonym-expansion-v1.ts'],
+  },
+  {
     label: 'Knowledge source ingestion and approved update workflow v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts'],

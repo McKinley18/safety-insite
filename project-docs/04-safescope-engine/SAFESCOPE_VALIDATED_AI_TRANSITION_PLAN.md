@@ -569,3 +569,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - Reviewer candidate console backend implemented, establishing the administrative interface for knowledge governance.
 
 - Reviewer candidate console API wiring completed, closing the loop between field feedback and knowledge governance.
+
+- Semantic synonym expansion implemented, establishing the foundation for intelligent synonym awareness and phrase-based reasoning.

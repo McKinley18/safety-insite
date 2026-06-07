@@ -21,6 +21,7 @@ export class FieldOutputComposerV1Service {
     const freshness = retrieval.sourceFreshnessGovernanceResults;
     const jurisdiction = retrieval.jurisdictionApplicability;
     const trace = retrieval.auditReadyReasoningTrace;
+    const semantic = retrieval.semanticSynonymExpansion;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
@@ -89,6 +90,7 @@ export class FieldOutputComposerV1Service {
         ...verification.reviewerQuestions,
         ...verification.verificationSteps,
         ...jurisdiction.reviewerQuestions,
+        ...semantic.reviewerQuestions,
         ...trace.reviewerChecklist
     ];
 
@@ -104,7 +106,8 @@ export class FieldOutputComposerV1Service {
     const warnings = [
         ...retrieval.draftKnowledgeWarnings,
         ...verification.weakActionWarnings,
-        ...freshnessWarnings
+        ...freshnessWarnings,
+        ...semantic.governanceWarnings
     ];
 
     return {
@@ -117,7 +120,8 @@ export class FieldOutputComposerV1Service {
       likelyMechanisms: [...new Set([
           ...(retrieval.taxonomyRoute?.matchedSignals || []), 
           ...(retrieval.topScenario?.matchedSignals || []),
-          ...causalChain.plausibleInjuryMechanisms
+          ...causalChain.plausibleInjuryMechanisms,
+          ...semantic.matchedCanonicalTerms
       ])],
       immediateActions: [...new Set(immediateActions)],
       durableCorrectiveActions: [...new Set(durableActions)],
@@ -136,7 +140,8 @@ export class FieldOutputComposerV1Service {
           strategy.advisoryBoundary,
           verification.advisoryBoundary,
           jurisdiction.advisoryBoundary,
-          trace.advisoryBoundary
+          trace.advisoryBoundary,
+          semantic.advisoryBoundary
       ],
       reviewerRequired: true,
       cannotDeclareViolation: true,

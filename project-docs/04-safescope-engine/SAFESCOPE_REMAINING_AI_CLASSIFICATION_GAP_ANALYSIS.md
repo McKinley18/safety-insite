@@ -21,7 +21,7 @@ SafeScope already implements the following core AI safety governance layers:
 
 | Feature | Description | Priority |
 | :--- | :--- | :--- |
-| **Semantic Synonym Expansion** | Moving beyond keyword matching to neural/vector semantic similarity for hazard signals. | High |
+| **Semantic Synonym Expansion** | Deterministic synonym mapping implemented; neural/vector expansion remains. | High |
 | **Photo/Image Reasoning** | Integrating visual evidence analysis to verify physical states (guards, PPE, LOTO). | High |
 | **Structured Inspection Memory** | Reasoning about the same hazard over multiple observations (repeat offenders). | Medium |
 | **Exposure Dose Intelligence** | Calculating cumulative risk exposure based on time, frequency, and severity. | Medium |

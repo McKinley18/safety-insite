@@ -8,8 +8,8 @@ import { HumanReviewFeedbackResult } from '../human-review-feedback-loop/human-r
 import { SourceFreshnessGovernanceResult } from '../source-freshness-governance/source-freshness-governance.types';
 import { JurisdictionApplicabilityResult } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.types';
 import { AuditReadyReasoningTraceResult } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.types';
-
 import { ReviewerCandidate } from '../reviewer-candidate-console/reviewer-candidate-console.types';
+import { SemanticSynonymExpansionResult } from '../semantic-synonym-expansion/semantic-synonym-expansion.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -28,6 +28,7 @@ export interface RetrievalOutput {
   sourceFreshnessGovernanceResults: Record<string, SourceFreshnessGovernanceResult>;
   jurisdictionApplicability: JurisdictionApplicabilityResult;
   auditReadyReasoningTrace: AuditReadyReasoningTraceResult;
+  semanticSynonymExpansion: SemanticSynonymExpansionResult;
   pendingReviewerCandidates?: ReviewerCandidate[];
   reviewFeedback?: HumanReviewFeedbackResult;
   draftKnowledgeWarnings: string[];
@@ -38,4 +39,5 @@ export interface RetrievalOutput {
   recommendedReviewerActions: string[];
   fieldOutputNotes: string;
 }
+
 
