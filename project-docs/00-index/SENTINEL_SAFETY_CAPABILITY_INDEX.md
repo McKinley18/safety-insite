@@ -1373,3 +1373,10 @@ Check git status:
 - Supports five distinct action postures: Act Now, Verify Then Act, Questions Only, Monitor, and Escalate Review.
 - Explicitly flags "weak actions to avoid" (e.g., "be careful") and prioritizes immediate exposure controls.
 - Fully integrated into field output composer for dynamic, risk-informed safety recommendations.
+
+## Risk Verification + Residual Risk Reassessment
+- SafeScope Risk Verification + Residual Risk Reassessment v1 added.
+- Evaluates the effectiveness of corrective actions against identified hazard mechanisms.
+- Identifies weak or incomplete actions (e.g., "retrain only") and flags residual risks.
+- Provides verification steps and adjusts confidence based on action quality and evidence clarity.
+- Fully integrated into field output for closed-loop safety reasoning.

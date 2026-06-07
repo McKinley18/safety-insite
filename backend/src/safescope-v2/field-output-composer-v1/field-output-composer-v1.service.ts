@@ -16,38 +16,64 @@ export class FieldOutputComposerV1Service {
     const narrative = retrieval.observationNarrative;
     const causalChain = retrieval.crossDomainCausalChain;
     const strategy = retrieval.correctiveActionStrategy;
+    const verification = retrieval.riskVerification;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
     const isMultiHazard = decomposition.isMultiHazard;
 
-    // Use narrative summary for primary assessment
+    // 1. Primary Assessment Narrative
     let assessment = narrative.narrativeSummary;
     if (causalChain.primaryCausalChain.length > 0) {
         assessment += ' ' + causalChain.primaryCausalChain.join(' ');
     }
+    
+    // 2. Add Risk Verification / Residual Risk Status
+    if (verification.verificationStatus === 'residual_risk_remaining') {
+        assessment += ' RESIDUAL RISK REMAINS: ' + verification.residualRiskReasons.join(' ');
+    } else if (verification.verificationStatus === 'escalation_required') {
+        assessment += ' ESCALATION REQUIRED: Assessment cannot proceed without qualified site review.';
+    }
 
-    // Determine actions based on strategy
-    const immediateActions = strategy.immediateControls.length > 0 
-        ? strategy.immediateControls.map(a => a.actionText)
-        : isConflicting || isInsufficient
-        ? ['Clarify observation facts', 'Restrict access if unsafe']
-        : ['Review hazard information', 'Assess area safety'];
+    // 3. Determine actions based on strategy and verification
+    const immediateActions = [
+        ...strategy.immediateControls.map(a => a.actionText),
+        ...verification.additionalControlsNeeded
+    ];
 
-    const durableActions = strategy.permanentControls.length > 0
-        ? strategy.permanentControls.map(a => a.actionText)
-        : strategy.interimControls.length > 0
-        ? strategy.interimControls.map(a => a.actionText)
-        : ['Conduct full safety inspection'];
+    if (immediateActions.length === 0) {
+        if (isConflicting || isInsufficient) {
+            immediateActions.push('Clarify observation facts', 'Restrict access if unsafe');
+        } else {
+            immediateActions.push('Review hazard information', 'Assess area safety');
+        }
+    }
+
+    const durableActions = [
+        ...strategy.permanentControls.map(a => a.actionText),
+        ...strategy.interimControls.map(a => a.actionText)
+    ];
+
+    if (durableActions.length === 0) {
+        durableActions.push('Conduct full safety inspection');
+    }
 
     const supervisorQuestions = [
         ...strategy.supervisorQuestions.map(q => q.actionText),
-        ...strategy.verificationSteps.map(v => v.actionText)
+        ...strategy.verificationSteps.map(v => v.actionText),
+        ...verification.reviewerQuestions,
+        ...verification.verificationSteps
     ];
 
     if (supervisorQuestions.length === 0) {
         supervisorQuestions.push('Has this been evaluated by a competent person?');
     }
+
+    // 4. Add Weak Action Warnings
+    const warnings = [
+        ...retrieval.draftKnowledgeWarnings,
+        ...verification.weakActionWarnings
+    ];
 
     return {
       version: 'v1',
@@ -65,12 +91,18 @@ export class FieldOutputComposerV1Service {
       durableCorrectiveActions: [...new Set(durableActions)],
       evidenceGaps: [
           ...retrieval.evidenceGaps,
-          ...causalChain.missingCausalFacts
+          ...causalChain.missingCausalFacts,
+          ...verification.residualRiskReasons
       ],
       supervisorQuestions: [...new Set(supervisorQuestions)],
       approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches,
-      draftKnowledgeWarnings: retrieval.draftKnowledgeWarnings,
-      advisoryBoundaries: [narrative.advisoryBoundary, causalChain.advisoryBoundary, strategy.advisoryBoundary],
+      draftKnowledgeWarnings: [...new Set(warnings)],
+      advisoryBoundaries: [
+          narrative.advisoryBoundary, 
+          causalChain.advisoryBoundary, 
+          strategy.advisoryBoundary,
+          verification.advisoryBoundary
+      ],
       reviewerRequired: true,
       cannotDeclareViolation: true,
       cannotCreateCitation: true,

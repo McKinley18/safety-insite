@@ -9,6 +9,7 @@ import { MultiHazardDecompositionService } from '../multi-hazard-decomposition/m
 import { ObservationNarrativeSynthesisService } from '../observation-narrative-synthesis/observation-narrative-synthesis.service';
 import { CrossDomainCausalChainService } from '../cross-domain-causal-chain/cross-domain-causal-chain.service';
 import { CorrectiveActionStrategyRankingService } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.service';
+import { RiskVerificationResidualRiskService } from '../risk-verification-residual-risk/risk-verification-residual-risk.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -21,6 +22,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private narrativeService = new ObservationNarrativeSynthesisService();
   private causalChainService = new CrossDomainCausalChainService();
   private strategyService = new CorrectiveActionStrategyRankingService();
+  private riskVerificationService = new RiskVerificationResidualRiskService();
 
   async retrieve(
     observationText: string,
@@ -80,6 +82,18 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         context
     });
 
+    const riskVerification = this.riskVerificationService.evaluate({
+        observationText,
+        hazardRoute: taxonomyRoute,
+        evidenceWeighting,
+        multiHazardAnalysis: multiHazardDecomposition,
+        causalChains: crossDomainCausalChain,
+        correctiveActionStrategy,
+        proposedActions: context.proposedActions,
+        completedActions: context.completedActions,
+        context
+    });
+
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -97,17 +111,20 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       observationNarrative: observationNarrative,
       crossDomainCausalChain: crossDomainCausalChain,
       correctiveActionStrategy: correctiveActionStrategy,
+      riskVerification: riskVerification,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
-      confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)),
+      confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)) + riskVerification.confidenceAdjustment,
       evidenceGaps: [
           ...evidenceWeighting.missingCriticalFacts,
+          ...riskVerification.residualRiskReasons,
           ...(approvedMatches.length === 0 ? ['Insufficient evidence for definitive assessment.'] : [])
       ],
       advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],
       recommendedReviewerActions: [
           ...evidenceWeighting.reviewerQuestions,
           ...crossDomainCausalChain.reviewerQuestions,
+          ...riskVerification.reviewerQuestions,
           'Verify categorization', 
           'Review evidence sufficiency'
       ],

@@ -3,6 +3,7 @@ import { MultiHazardDecompositionResult } from '../multi-hazard-decomposition/mu
 import { ObservationNarrativeSynthesisResult } from '../observation-narrative-synthesis/observation-narrative-synthesis.types';
 import { CrossDomainCausalChainResult } from '../cross-domain-causal-chain/cross-domain-causal-chain.types';
 import { CorrectiveActionStrategyResult } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.types';
+import { RiskVerificationResidualRiskResult } from '../risk-verification-residual-risk/risk-verification-residual-risk.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -17,6 +18,7 @@ export interface RetrievalOutput {
   observationNarrative: ObservationNarrativeSynthesisResult;
   crossDomainCausalChain: CrossDomainCausalChainResult;
   correctiveActionStrategy: CorrectiveActionStrategyResult;
+  riskVerification: RiskVerificationResidualRiskResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;
