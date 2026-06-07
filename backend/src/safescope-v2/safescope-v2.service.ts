@@ -63,11 +63,8 @@ export class SafescopeV2Service {
 
   private classifier = new WeightedClassifierService();
   private bridge = new StandardsBridgeService();
-  private intelligenceOrchestrator = new SafeScopeIntelligenceOrchestrator();
   private nativeReasoningService = new SafeScopeNativeReasoningService();
   private reasoningOrchestratorService = new SafeScopeReasoningOrchestratorService();
-  private visualService = new VisualEvidenceReasoningService();
-  private imageAnalysisService = new RealImageAnalysisService();
 
   private determineHumanReviewRequired(intelligence: any, primary: any) {
     return Boolean(
@@ -226,6 +223,9 @@ export class SafescopeV2Service {
     private readonly safeScopeKnowledge: SafeScopeKnowledgeService,
     private readonly standardsIntelligenceService: StandardsIntelligenceService,
     private readonly supervisorValidationService: SupervisorValidationService,
+    private readonly intelligenceOrchestrator: SafeScopeIntelligenceOrchestrator,
+    private readonly visualService: VisualEvidenceReasoningService,
+    private readonly imageAnalysisService: RealImageAnalysisService,
   ) {}
 
   async evaluateVisualEvidence(input: VisualEvidenceReasoningInput) {

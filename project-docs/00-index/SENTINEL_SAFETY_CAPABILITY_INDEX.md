@@ -1456,3 +1456,10 @@ Check git status:
 - Detects visual hazards such as missing guards, damaged cords, blocked exits, and PPE gaps based on simulated vision findings and metadata.
 - Automatically identifies consistency conflicts between written observations and visual findings.
 - Adjusts assessment confidence based on visual support levels (Supports, Conflicts, Adds New Concern, Uncertain).
+
+## Production Persistence + Audit Storage
+- SafeScope Production Persistence + Audit Storage v1 added.
+- Implements durable, database-backed storage for reviewer candidates, human review feedback, and source ingestion events.
+- Features a flexible repository layer with file-backed fallbacks for local/dev environments.
+- Captures audit-ready reasoning trace snapshots and visual evidence analysis results for long-term auditability.
+- Ensures strict separation between approved knowledge and draft/candidate records, preserving qualified human review boundaries.

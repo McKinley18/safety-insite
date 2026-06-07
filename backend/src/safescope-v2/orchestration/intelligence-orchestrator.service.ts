@@ -1,3 +1,4 @@
+import { Injectable, Optional } from '@nestjs/common';
 import { ConfidenceGovernanceService } from '../confidence-governance/confidence-governance.service';
 import { CausalRiskService } from '../causal-risk/causal-risk.service';
 import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidence-sufficiency.service';
@@ -56,12 +57,13 @@ import { StandardFamilyMapperService } from '../brain/standard-family-mapper/sta
 import { CitationReviewBrainService } from '../brain/citation-review-brain/citation-review.service';
 import { RiskReasoningBrainService } from '../brain/risk-reasoning/risk-reasoning.service';
 import { ObservationContextService } from '../brain/observation-context/observation-context.service';
+import { ObservationUnderstandingService } from '../understanding/observation-understanding.service';
 import { NarrativeGeneratorService } from '../brain/narrative-generator/narrative.service';
-import { CalibrationMeta } from '../types/safescope-intelligence.types';
 import { EvidenceGapQuestionGeneratorService } from '../brain/evidence-gap-question-generator/evidence-gap-question.service';
 import { CorrectiveActionBrainService } from '../brain/corrective-action-brain/corrective-action.service';
 import { ExecutiveJudgmentService } from '../executive-judgment/executive-judgment.service';
-import { ObservationUnderstandingService } from '../understanding/observation-understanding.service';
+import { SafeScopePersistenceService } from '../persistence/persistence.service';
+import { CalibrationMeta } from '../types/safescope-intelligence.types';
 
 export type SafeScopeIntelligenceOrchestratorInput = {
   fusedText: string;
@@ -80,6 +82,7 @@ export type SafeScopeIntelligenceOrchestratorInput = {
   supervisorValidations?: any[];
 };
 
+@Injectable()
 export class SafeScopeIntelligenceOrchestrator {
   private confidenceEngine = new ConfidenceIntelligenceService();
   private governanceEngine = new ConfidenceGovernanceService();
@@ -135,13 +138,26 @@ export class SafeScopeIntelligenceOrchestrator {
   private akrwgEngine = new ApprovedKnowledgeRegistryWriteGuardService();
   private promotionEngine = new ApprovedKnowledgePromotionService();
   private absorptionEngine = new HazardInformationAbsorptionService();
-  private retrievalEngine = new ApprovedKnowledgeRetrievalOutputV1Service();
-  private composerEngine = new FieldOutputComposerV1Service();
+  private retrievalEngine: ApprovedKnowledgeRetrievalOutputV1Service;
+  private composerEngine: FieldOutputComposerV1Service;
   private lcqEngine = new LearningCandidateQueueService();
   private adapterEngine = new GovernanceReportAdapterService();
   private evgEngine = new EvidenceQuestionGenerationService();
   private controlMapEngine = new CorrectiveActionControlMapService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
+
+  constructor(
+    @Optional()
+    private readonly persistence?: SafeScopePersistenceService,
+    @Optional()
+    retrievalEngine?: ApprovedKnowledgeRetrievalOutputV1Service,
+    @Optional()
+    composerEngine?: FieldOutputComposerV1Service,
+  ) {
+      const p = persistence || new SafeScopePersistenceService();
+      this.retrievalEngine = retrievalEngine || new ApprovedKnowledgeRetrievalOutputV1Service(p);
+      this.composerEngine = composerEngine || new FieldOutputComposerV1Service(this.retrievalEngine);
+  }
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
     const {

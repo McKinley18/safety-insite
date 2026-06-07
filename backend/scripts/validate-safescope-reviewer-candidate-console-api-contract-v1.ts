@@ -1,11 +1,12 @@
 import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
-import { ReviewerCandidateConsoleValidator } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.validator';
+import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
 
 async function validate() {
-  const service = new ReviewerCandidateConsoleService();
+  const persistence = new SafeScopePersistenceService();
+  const service = new ReviewerCandidateConsoleService(persistence);
   
   console.log('--- Testing API contract: candidate shape ---');
-  const candidate = service.addCandidate({
+  const candidate = await service.addCandidate({
       candidateType: 'human_review_learning',
       sourceSystem: 'test_system',
       priority: 'high',
@@ -32,7 +33,7 @@ async function validate() {
   console.log('[PASS] Candidate shape verified.');
 
   console.log('--- Testing API contract: action updates ---');
-  const approved = service.approveCandidate(candidate.candidateId, { 
+  const approved = await service.approveCandidate(candidate.candidateId, { 
       name: 'Test Reviewer', 
       role: 'Safety Director', 
       notes: 'API contract test approval' 

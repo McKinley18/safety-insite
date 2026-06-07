@@ -1,10 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Optional } from '@nestjs/common';
 import { FieldOutputV1 } from './field-output-composer-v1.types';
 import { ApprovedKnowledgeRetrievalOutputV1Service } from '../approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
 
 @Injectable()
 export class FieldOutputComposerV1Service {
-  private retrievalService = new ApprovedKnowledgeRetrievalOutputV1Service();
+  private retrievalService: ApprovedKnowledgeRetrievalOutputV1Service;
+
+  constructor(
+    @Optional()
+    retrievalService?: ApprovedKnowledgeRetrievalOutputV1Service,
+  ) {
+      this.retrievalService = retrievalService || new ApprovedKnowledgeRetrievalOutputV1Service();
+  }
 
   async compose(
     observationText: string,

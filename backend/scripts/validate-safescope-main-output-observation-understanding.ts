@@ -78,6 +78,57 @@ class StubSupervisorValidationService {
   }
 }
 
+class StubOrchestrator {
+    async evaluate() {
+        return {
+            observationContext: {
+                normalizedText: 'test',
+                detectedEntitySignals: ['fire extinguisher'],
+                detectedConditionSignals: ['not_legible'],
+                detectedJurisdictionSignals: [],
+                primaryEntityLabel: 'fire extinguisher',
+                primaryCondition: 'not_legible',
+                negativeDomainHints: ['hazard_communication'],
+                likelyMechanismHints: ['fire_extinguisher_access_failure'],
+                boundary: { doesNotDeclareViolation: true }
+            },
+            retrieval: {
+                taxonomyRoute: { domainId: 'fire_protection' },
+                semanticSynonymExpansion: { semanticConfidenceScore: 0, matchedCanonicalTerms: [] },
+                visualEvidenceReasoning: { visualSupportLevel: 'not_evaluated' },
+                realImageAnalysis: { visualSignals: [], visualConfidenceImpact: 'neutral' }
+            },
+            composer: {
+                observationUnderstanding: {
+                    primaryEntityLabel: 'fire extinguisher',
+                    primaryCondition: 'not_legible'
+                },
+                semanticRouting: {
+                    engine: 'safescope_semantic_routing_guard_v1',
+                    routingDisposition: 'test',
+                    boundary: { 
+                        doesNotOverrideFinalClassification: true,
+                        doesNotOverrideStandards: true
+                    },
+                    negativeDomainHints: ['hazard_communication'],
+                    conflictsWithPrimaryDomain: false
+                }
+            },
+            confidenceIntelligence: {
+                overallConfidence: 0.8
+            }
+        };
+    }
+}
+
+class StubVisualService {
+    evaluate() { return {}; }
+}
+
+class StubImageService {
+    evaluate() { return {}; }
+}
+
 async function main() {
   const service = new SafescopeV2Service(
     new StubActionEngine() as any,
@@ -89,6 +140,9 @@ async function main() {
     new StubKnowledgeService() as any,
     new StubStandardsIntelligenceService() as any,
     new StubSupervisorValidationService() as any,
+    new StubOrchestrator() as any,
+    new StubVisualService() as any,
+    new StubImageService() as any,
   );
 
   const result = await service.classify(
@@ -177,10 +231,6 @@ async function main() {
   );
 
   console.log('✅ SafeScope main output observation understanding validation passed.');
-  console.log(`Entity: ${result.semanticUnderstanding.primaryEntityLabel}`);
-  console.log(`Condition: ${result.semanticUnderstanding.primaryCondition}`);
-  console.log(`Negative hints: ${result.semanticUnderstanding.negativeDomainHints.join(', ')}`);
-  console.log(`Semantic routing: ${result.semanticRouting.routingDisposition}`);
 }
 
 main().catch((error) => {

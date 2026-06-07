@@ -23,7 +23,8 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-semantic-synonym-expansion-v1.ts',
         'validate-safescope-visual-evidence-reasoning-v1.ts',
         'validate-safescope-visual-evidence-api-ui-wiring-v1.ts',
-        'validate-safescope-real-image-analysis-v1.ts'
+        'validate-safescope-real-image-analysis-v1.ts',
+        'validate-safescope-production-persistence-audit-storage-v1.ts'
     ],
     output: [
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
@@ -45,6 +46,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-visual-evidence-reasoning-v1.ts',
         'validate-safescope-visual-evidence-api-ui-wiring-v1.ts',
         'validate-safescope-real-image-analysis-v1.ts',
+        'validate-safescope-production-persistence-audit-storage-v1.ts',
         'validate-safescope-field-output-contract.ts'
     ],
     orchestrator: [
@@ -67,6 +69,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-visual-evidence-reasoning-v1.ts',
         'validate-safescope-visual-evidence-api-ui-wiring-v1.ts',
         'validate-safescope-real-image-analysis-v1.ts',
+        'validate-safescope-production-persistence-audit-storage-v1.ts',
         'validate-safescope-main-output-observation-understanding.ts',
         'validate-safescope-observation-trace-snapshot.ts'
     ],
@@ -90,6 +93,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-visual-evidence-reasoning-v1.ts',
         'validate-safescope-visual-evidence-api-ui-wiring-v1.ts',
         'validate-safescope-real-image-analysis-v1.ts',
+        'validate-safescope-production-persistence-audit-storage-v1.ts',
         'validate-safescope-output-policy.ts',
         'validate-safescope-confidence-governance.ts'
     ],
@@ -118,6 +122,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-visual-evidence-reasoning-v1.ts',
         'validate-safescope-visual-evidence-api-ui-wiring-v1.ts',
         'validate-safescope-real-image-analysis-v1.ts',
+        'validate-safescope-production-persistence-audit-storage-v1.ts',
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-field-output-composer-v1.ts',
         'validate-safescope-orchestrator-field-output-wiring.ts',

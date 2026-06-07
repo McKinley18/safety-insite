@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Optional } from '@nestjs/common';
 import { RetrievalOutput } from './approved-knowledge-retrieval-output-v1.types';
 import { HazardTaxonomyCoverageService } from '../hazard-taxonomy-coverage/hazard-taxonomy-coverage.service';
 import { ApprovedKnowledgeRegistrySearchService } from '../approved-knowledge-registry/approved-knowledge-registry-search.service';
@@ -18,6 +18,7 @@ import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/r
 import { SemanticSynonymExpansionService } from '../semantic-synonym-expansion/semantic-synonym-expansion.service';
 import { VisualEvidenceReasoningService } from '../visual-evidence-reasoning/visual-evidence-reasoning.service';
 import { RealImageAnalysisService } from '../real-image-analysis/real-image-analysis.service';
+import { SafeScopePersistenceService } from '../persistence/persistence.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -31,14 +32,24 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private causalChainService = new CrossDomainCausalChainService();
   private strategyService = new CorrectiveActionStrategyRankingService();
   private riskVerificationService = new RiskVerificationResidualRiskService();
-  private feedbackService = new HumanReviewFeedbackLoopService();
+  private feedbackService: HumanReviewFeedbackLoopService;
   private freshnessService = new SourceFreshnessGovernanceService();
   private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
   private traceService = new AuditReadyReasoningTraceService();
-  private consoleService = new ReviewerCandidateConsoleService();
+  private consoleService: ReviewerCandidateConsoleService;
   private semanticService = new SemanticSynonymExpansionService();
   private visualService = new VisualEvidenceReasoningService();
   private imageAnalysisService = new RealImageAnalysisService();
+
+  constructor(
+    @Optional()
+    private readonly persistence?: SafeScopePersistenceService,
+  ) {
+      const p = persistence || new SafeScopePersistenceService();
+      this.persistence = p;
+      this.consoleService = new ReviewerCandidateConsoleService(p);
+      this.feedbackService = new HumanReviewFeedbackLoopService(this.consoleService, p);
+  }
 
   async retrieve(
     observationText: string,
@@ -148,9 +159,14 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
     });
 
 
+    const pendingReviewerCandidates = await this.consoleService.listCandidates({
+        domainId: taxonomyRoute.domainId,
+        status: 'pending_review'
+    });
+
     let reviewFeedback = undefined;
     if (context.humanReview) {
-        reviewFeedback = this.feedbackService.processReview({
+        reviewFeedback = await this.feedbackService.processReview({
             observationText,
             originalRetrievalOutput: undefined, 
             originalFieldOutput: undefined,
@@ -165,11 +181,6 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
             context
         });
     }
-
-    const pendingReviewerCandidates = this.consoleService.listCandidates({
-        domainId: taxonomyRoute.domainId,
-        status: 'pending_review'
-    });
 
     const auditReadyReasoningTrace = this.traceService.generateTrace({
         observationText,
@@ -187,7 +198,8 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         jurisdictionApplicability,
         context,
         semanticSynonymExpansion: semanticSynonymExpansion as any,
-        visualEvidenceReasoning: visualEvidenceReasoning as any
+        visualEvidenceReasoning: visualEvidenceReasoning as any,
+        realImageAnalysis: realImageAnalysis as any
     } as any);
 
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
@@ -206,7 +218,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
     if (visualEvidenceReasoning.confidenceImpact === 'downgrade') visualConfidenceModifier = -0.1;
     if (visualEvidenceReasoning.confidenceImpact === 'block_confident_language') visualConfidenceModifier = -0.3;
 
-    return {
+    const result: RetrievalOutput = {
       version: 'v1',
       observationSummary: observationText,
       taxonomyRoute: taxonomyRoute,
@@ -257,5 +269,41 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       ],
       fieldOutputNotes: 'Output generated as advisory, source-backed analysis.'
     };
+
+    // 6. Persistence
+    if (context.persist && this.persistence) {
+        await this.persistence.save({
+            type: 'reasoning_trace_snapshot',
+            status: 'active',
+            payload: auditReadyReasoningTrace,
+            metadata: { observationText },
+            workspaceId: context.workspaceId,
+            inspectionId: context.inspectionId,
+            observationId: context.observationId,
+            traceId: auditReadyReasoningTrace.traceId
+        });
+
+        await this.persistence.save({
+            type: 'visual_evidence_snapshot',
+            status: 'active',
+            payload: visualEvidenceReasoning,
+            metadata: { observationText },
+            workspaceId: context.workspaceId,
+            inspectionId: context.inspectionId,
+            observationId: context.observationId
+        });
+
+        await this.persistence.save({
+            type: 'real_image_analysis_snapshot',
+            status: 'active',
+            payload: realImageAnalysis,
+            metadata: { observationText },
+            workspaceId: context.workspaceId,
+            inspectionId: context.inspectionId,
+            observationId: context.observationId
+        });
+    }
+
+    return result;
   }
 }

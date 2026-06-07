@@ -1,8 +1,25 @@
 import { SourceIngestionApprovedUpdateWorkflowService } from '../src/safescope-v2/source-ingestion-approved-update-workflow/source-ingestion-approved-update-workflow.service';
 import { SourceIngestionApprovedUpdateWorkflowValidator } from '../src/safescope-v2/source-ingestion-approved-update-workflow/source-ingestion-approved-update-workflow.validator';
+import { ApprovedKnowledgeRegistrySearchService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-registry-search.service';
+import { SourceFreshnessGovernanceService } from '../src/safescope-v2/source-freshness-governance/source-freshness-governance.service';
+import { JurisdictionApplicabilityDecisionTreeService } from '../src/safescope-v2/jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
+import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
+import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
 
 async function validate() {
-  const service = new SourceIngestionApprovedUpdateWorkflowService();
+  const persistence = new SafeScopePersistenceService();
+  const search = new ApprovedKnowledgeRegistrySearchService();
+  const freshness = new SourceFreshnessGovernanceService();
+  const jurisdiction = new JurisdictionApplicabilityDecisionTreeService();
+  const consoleService = new ReviewerCandidateConsoleService(persistence);
+
+  const service = new SourceIngestionApprovedUpdateWorkflowService(
+      search,
+      freshness,
+      jurisdiction,
+      consoleService,
+      persistence
+  );
   
   const oshaInput = {
       sourceId: 'src-osha-new',
@@ -32,7 +49,7 @@ async function validate() {
   };
 
   console.log('--- Testing ingestion: OSHA Primary Regulation ---');
-  const candidate = service.ingest(oshaInput);
+  const candidate = await service.ingest(oshaInput);
   const candErrors = SourceIngestionApprovedUpdateWorkflowValidator.validateCandidate(candidate);
   if (candErrors.length > 0) {
       console.error('[FAIL] Candidate validation errors:', candErrors);
@@ -41,7 +58,7 @@ async function validate() {
   console.log('[PASS] OSHA Primary candidate created.');
 
   console.log('--- Testing promotion: Valid Approval ---');
-  const promotion = service.promote({
+  const promotion = await service.promote({
       candidate,
       reviewerDecision: 'approve',
       reviewerName: 'Safety Mgr',
@@ -67,7 +84,7 @@ async function validate() {
   console.log('--- Testing promotion: Missing Duplicate Review ---');
   // Simulate a candidate with possible duplicate
   candidate.duplicateAnalysis.duplicateStatus = 'possible_duplicate';
-  const blockedPromotion = service.promote({
+  const blockedPromotion = await service.promote({
       candidate,
       reviewerDecision: 'approve',
       reviewerName: 'Safety Mgr',

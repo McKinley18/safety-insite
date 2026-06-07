@@ -127,6 +127,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-real-image-analysis-v1.ts'],
   },
   {
+    label: 'Production persistence and audit storage v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-production-persistence-audit-storage-v1.ts'],
+  },
+  {
     label: 'Knowledge source ingestion and approved update workflow v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts'],

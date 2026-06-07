@@ -12,15 +12,19 @@ import { SourceFreshnessGovernanceService } from '../source-freshness-governance
 import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 import { ApprovedKnowledgeRecord, AuthorityAgency, AuthorityTier, Jurisdiction, SourceDateStatus } from '../approved-knowledge-registry/approved-knowledge-record.types';
 import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
+import { SafeScopePersistenceService } from '../persistence/persistence.service';
 
 @Injectable()
 export class SourceIngestionApprovedUpdateWorkflowService {
-  private searchService = new ApprovedKnowledgeRegistrySearchService();
-  private freshnessService = new SourceFreshnessGovernanceService();
-  private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
-  private consoleService = new ReviewerCandidateConsoleService();
+  constructor(
+    private readonly searchService: ApprovedKnowledgeRegistrySearchService,
+    private readonly freshnessService: SourceFreshnessGovernanceService,
+    private readonly jurisdictionService: JurisdictionApplicabilityDecisionTreeService,
+    private readonly consoleService: ReviewerCandidateConsoleService,
+    private readonly persistence: SafeScopePersistenceService,
+  ) {}
 
-  ingest(input: SourceIngestionInput): IngestionDraftCandidate {
+  async ingest(input: SourceIngestionInput): Promise<IngestionDraftCandidate> {
     const candidateId = `cand-${Date.now()}`;
     const normalizedSource = this.normalizeSource(input);
     const mapping = this.createMapping(input);
@@ -95,7 +99,7 @@ export class SourceIngestionApprovedUpdateWorkflowService {
     };
 
     // Register in Candidate Console
-    this.consoleService.addCandidate({
+    await this.consoleService.addCandidate({
         candidateType: 'source_ingestion',
         sourceSystem: 'source_ingestion_workflow',
         priority: 'high',
@@ -112,10 +116,22 @@ export class SourceIngestionApprovedUpdateWorkflowService {
         requiredReviewSteps: candidate.requiredReviewerChecks
     });
 
+    // 5. Persist Ingestion Event
+    await this.persistence.save({
+        type: 'source_ingestion_candidate',
+        status: candidateStatus,
+        payload: candidate,
+        metadata: {
+            agency: input.agency,
+            citation: input.citation,
+            jurisdiction: input.jurisdiction
+        }
+    });
+
     return candidate;
   }
 
-  promote(input: PromotionDecisionInput): PromotionResult {
+  async promote(input: PromotionDecisionInput): Promise<PromotionResult> {
     const { candidate, reviewerDecision, reviewerName, reviewerRole, sourceVerified, duplicateReviewed, jurisdictionConfirmed } = input;
     
     const reasons: string[] = [];
@@ -137,9 +153,6 @@ export class SourceIngestionApprovedUpdateWorkflowService {
             promotionStatus = 'promoted';
             canWriteApprovedRegistry = false; // Dry-run as per requirements
             reasons.push('All governance checks passed and human approval received.');
-            
-            // Update status in Candidate Console if possible
-            // Note: In a real system, we'd find the candidate in the console by some external ID or match
         } else {
             promotionStatus = 'blocked';
             if (!sourceVerified) reasons.push('Source verification required.');
@@ -192,7 +205,7 @@ export class SourceIngestionApprovedUpdateWorkflowService {
         };
     }
 
-    return {
+    const result: PromotionResult = {
       promotionStatus,
       canWriteApprovedRegistry,
       reasons,
@@ -204,6 +217,20 @@ export class SourceIngestionApprovedUpdateWorkflowService {
           decision: reviewerDecision
       }
     };
+
+    // 5. Persist Promotion Event
+    await this.persistence.save({
+        type: 'source_promotion_audit',
+        status: promotionStatus,
+        payload: result,
+        metadata: {
+            candidateId: candidate.candidateId,
+            reviewerName,
+            reviewerRole
+        }
+    });
+
+    return result;
   }
 
   private normalizeSource(input: SourceIngestionInput): any {

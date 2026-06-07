@@ -6,12 +6,16 @@ import {
   ReviewReliability 
 } from './human-review-feedback-loop.types';
 import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
+import { SafeScopePersistenceService } from '../persistence/persistence.service';
 
 @Injectable()
 export class HumanReviewFeedbackLoopService {
-  private consoleService = new ReviewerCandidateConsoleService();
+  constructor(
+    private readonly consoleService: ReviewerCandidateConsoleService,
+    private readonly persistence: SafeScopePersistenceService,
+  ) {}
 
-  processReview(input: HumanReviewInput): HumanReviewFeedbackResult {
+  async processReview(input: HumanReviewInput): Promise<HumanReviewFeedbackResult> {
     const feedbackId = `feedback-${Date.now()}`;
     const auditTrail: string[] = [`Review process initiated for feedback ${feedbackId}`];
     
@@ -84,7 +88,7 @@ export class HumanReviewFeedbackLoopService {
                 });
 
                 // Register in Candidate Console
-                this.consoleService.addCandidate({
+                await this.consoleService.addCandidate({
                     candidateType: 'human_review_learning',
                     sourceSystem: 'human_review_feedback_loop',
                     priority: 'medium',
@@ -118,7 +122,7 @@ export class HumanReviewFeedbackLoopService {
         auditTrail.push('Validator update recommended based on missing evidence notes.');
     }
 
-    return {
+    const result: HumanReviewFeedbackResult = {
       feedbackId,
       learningDisposition,
       reviewReliability,
@@ -134,5 +138,21 @@ export class HumanReviewFeedbackLoopService {
       auditTrail,
       advisoryBoundary: 'SafeScope human review feedback analysis is advisory only.'
     };
+
+    // 5. Persist Feedback
+    await this.persistence.save({
+        type: 'human_review_feedback',
+        status: learningDisposition,
+        payload: result,
+        metadata: {
+            reviewerRole: input.reviewerRole,
+            reviewerDecision: input.reviewerDecision,
+            reliability: reviewReliability
+        },
+        workspaceId: input.context?.workspaceId,
+        observationId: input.context?.observationId
+    });
+
+    return result;
   }
 }

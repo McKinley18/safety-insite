@@ -1,11 +1,13 @@
 import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
 import { ReviewerCandidateConsoleValidator } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.validator';
+import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
 
 async function validate() {
-  const service = new ReviewerCandidateConsoleService();
+  const persistence = new SafeScopePersistenceService();
+  const service = new ReviewerCandidateConsoleService(persistence);
   
   console.log('--- Testing candidate registration ---');
-  const candidate = service.addCandidate({
+  const candidate = await service.addCandidate({
       candidateType: 'source_ingestion',
       sourceSystem: 'test',
       priority: 'high',
@@ -30,7 +32,7 @@ async function validate() {
   console.log(`[PASS] Candidate registered: ${candidate.candidateId}`);
 
   console.log('--- Testing list and filter ---');
-  const pending = service.listCandidates({ status: 'pending_review' });
+  const pending = await service.listCandidates({ status: 'pending_review' });
   if (pending.length === 0) {
       console.error('[FAIL] Expected at least one pending candidate.');
       process.exit(1);
@@ -38,7 +40,7 @@ async function validate() {
   console.log('[PASS] Candidate listed.');
 
   console.log('--- Testing approve action ---');
-  const approved = service.approveCandidate(candidate.candidateId, { name: 'Admin', role: 'Safety Director', notes: 'Approved' });
+  const approved = await service.approveCandidate(candidate.candidateId, { name: 'Admin', role: 'Safety Director', notes: 'Approved' });
   if (approved?.status !== 'approved_for_promotion') {
       console.error('[FAIL] Expected status approved_for_promotion');
       process.exit(1);
@@ -50,7 +52,7 @@ async function validate() {
   console.log('[PASS] Candidate approved.');
 
   console.log('--- Testing block with prohibited language ---');
-  const badCandidate = service.addCandidate({
+  const badCandidate = await service.addCandidate({
       candidateType: 'human_review_learning',
       sourceSystem: 'test',
       priority: 'medium',
