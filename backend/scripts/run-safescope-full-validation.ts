@@ -52,6 +52,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-field-output-composer-v1.ts'],
   },
   {
+    label: 'Orchestrator field output wiring',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-orchestrator-field-output-wiring.ts'],
+  },
+  {
     label: 'AI Transition Gap Map Audit',
     command: 'npx',
     args: ['ts-node', 'scripts/audit-safescope-ai-transition-gap-map.ts'],

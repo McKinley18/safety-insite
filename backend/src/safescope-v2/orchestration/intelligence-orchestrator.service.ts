@@ -9,6 +9,8 @@ import { ApprovedSourceKnowledgeIntakeGovernanceService } from '../approved-sour
 import { ApprovedKnowledgePromotionWorkflowGovernanceService } from '../approved-knowledge-promotion-workflow-governance/approved-knowledge-promotion-workflow-governance.service';
 import { ApprovedKnowledgePromotionService } from '../approved-knowledge-promotion-v1/approved-knowledge-promotion-v1.service';
 import { HazardInformationAbsorptionService } from '../hazard-information-absorption/hazard-information-absorption.service';
+import { ApprovedKnowledgeRetrievalOutputV1Service } from '../approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service';
+import { FieldOutputComposerV1Service } from '../field-output-composer-v1/field-output-composer-v1.service';
 import { ApprovedKnowledgeRegistryWriteGuardService } from '../approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
 import { LearningCandidateQueueService } from '../learning-candidate-queue/learning-candidate-queue.service';
 import { GovernanceReportAdapterService } from '../governance-report-adapter/governance-report-adapter.service';
@@ -132,6 +134,8 @@ export class SafeScopeIntelligenceOrchestrator {
   private akrwgEngine = new ApprovedKnowledgeRegistryWriteGuardService();
   private promotionEngine = new ApprovedKnowledgePromotionService();
   private absorptionEngine = new HazardInformationAbsorptionService();
+  private retrievalEngine = new ApprovedKnowledgeRetrievalOutputV1Service();
+  private composerEngine = new FieldOutputComposerV1Service();
   private lcqEngine = new LearningCandidateQueueService();
   private adapterEngine = new GovernanceReportAdapterService();
   private evgEngine = new EvidenceQuestionGenerationService();
@@ -568,6 +572,16 @@ export class SafeScopeIntelligenceOrchestrator {
         {}
     );
     
+    const retrieval = await this.retrievalEngine.retrieve(
+        fusedText,
+        {}
+    );
+    
+    const composer = await this.composerEngine.compose(
+        fusedText,
+        retrieval
+    );
+    
     const evg = this.evgEngine.generateQuestions(
         observationUnderstanding,
         {},
@@ -759,6 +773,8 @@ export class SafeScopeIntelligenceOrchestrator {
       akrwg,
       promotion,
       absorption,
+      retrieval,
+      composer,
       lcq,
       adapter,
       evg,

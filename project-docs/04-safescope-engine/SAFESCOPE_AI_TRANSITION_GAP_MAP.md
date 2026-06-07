@@ -98,3 +98,5 @@
 - Approved knowledge retrieval output v1 added.
 
 - Field output composer v1 added.
+
+- Orchestrator field output wiring added.

@@ -16,3 +16,5 @@
 | Hazard Information Absorption | Absorption | `backend/src/safescope-v2/hazard-information-absorption/` | `safescope-data/hazard-information-absorption/` | `validate-safescope-hazard-information-absorption.ts` | Hazard information absorption | Active | Critical |
 
 | Field Output Composer v1 | Advisory output composition | backend/src/safescope-v2/field-output-composer-v1/ | N/A | backend/scripts/validate-safescope-field-output-composer-v1.ts | Field output composer v1 | Active | Advisory boundary preservation |
+
+| Orchestrator Output Pipeline | Integrated advisory pipeline | backend/src/safescope-v2/orchestration/ | N/A | backend/scripts/validate-safescope-orchestrator-field-output-wiring.ts | Orchestrator field output wiring | Active | Governance-compliant pipeline wiring |

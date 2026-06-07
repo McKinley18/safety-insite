@@ -1305,3 +1305,9 @@ Check git status:
 - It transforms approved knowledge retrieval into field-ready advisory responses.
 - It preserves advisory-only boundaries, prohibits violation/citation language, and flags draft content requiring review.
 - Master validation includes the field output composer validator.
+
+## Orchestrator Field Output Wiring
+- SafeScope orchestrator field output wiring added.
+- The main orchestration pipeline now integrates approved knowledge retrieval and field output composition.
+- SafeScope main output now exposes a governed advisory advisory field, ensuring field-facing notes and evidence gaps are surfaced while maintaining strict advisory-only boundaries.
+- Master validation includes the orchestrator output wiring validator.
