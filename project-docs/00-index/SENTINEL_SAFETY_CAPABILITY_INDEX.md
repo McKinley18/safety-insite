@@ -1421,3 +1421,10 @@ Check git status:
 - Implements strict status tracking (Pending Review, Needs Info, Approved, Rejected, Blocked, Archived) with full audit trails.
 - Enforces governance boundaries, requiring explicit human approval and jurisdiction confirmation before promotion to approved knowledge.
 - Fully integrated into retrieval and audit trace for real-time visibility into pending knowledge improvements.
+
+## Reviewer Candidate Console API Wiring
+- SafeScope Reviewer Candidate Console API Wiring v1 added.
+- Fully wired the frontend management console to the backend REST API, enabling real-time review workflows.
+- Implements resilient data fetching with automatic demo fallback when the backend is unavailable.
+- Wires all primary reviewer actions (Approve, Reject, Request Info, Block) to governing backend services.
+- Establishes a professional 'Live Connection' status indicator to distinguish between production and demo modes.

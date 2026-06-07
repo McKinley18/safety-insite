@@ -567,3 +567,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - Knowledge source ingestion and approved update workflow implemented, establishing the final core layer for governed AI knowledge growth.
 
 - Reviewer candidate console backend implemented, establishing the administrative interface for knowledge governance.
+
+- Reviewer candidate console API wiring completed, closing the loop between field feedback and knowledge governance.

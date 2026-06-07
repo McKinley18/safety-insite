@@ -48,7 +48,7 @@ SafeScope already implements the following core AI safety governance layers:
 
 | Feature | Description | Priority |
 | :--- | :--- | :--- |
-| **Reviewer Candidate Console** | Backend/API implemented; dedicated UI still needed. | High |
+| **Reviewer Candidate Console** | Backend/API and Frontend UI fully integrated. | High |
 | **Trace Visualization** | Graphical display of causal chains and reasoning traces for field users. | Medium |
 | **Offline Reasoning** | Lightweight local reasoning for mobile use in low-connectivity mine/site areas. | Medium |
 | **Report/PDF Audit Appendix** | Generating structured PDF reports including the audit trace for external inspectors. | High |

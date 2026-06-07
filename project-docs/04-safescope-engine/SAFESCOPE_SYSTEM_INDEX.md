@@ -52,3 +52,5 @@
 | Source Ingestion | Governed knowledge growth engine | backend/src/safescope-v2/source-ingestion-approved-update-workflow/ | N/A | backend/scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts | Source ingestion v1 | Active | Knowledge pipeline layer |
 
 | Candidate Console | Reviewer workflow and API | backend/src/safescope-v2/reviewer-candidate-console/ | N/A | backend/scripts/validate-safescope-reviewer-candidate-console-v1.ts | Reviewer candidate console v1 | Active | Workflow management layer |
+
+| Reviewer API Wiring | Frontend-Backend integration | frontend-next/app/safescope-knowledge/review/page.tsx | backend/src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.controller.ts | backend/scripts/validate-safescope-reviewer-candidate-console-api-contract-v1.ts | API wiring v1 | Active | Connectivity layer |

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageHeader from '../../../components/ui/PageHeader';
 import SentinelCard from '../../../components/ui/SentinelCard';
 import StatusBadge from '../../../components/ui/StatusBadge';
@@ -8,6 +8,8 @@ import MetricBlock from '../../../components/ui/MetricBlock';
 import { AppButton } from '../../../components/ui/AppButton';
 import { AppPanel } from '../../../components/ui/AppPanel';
 import EmptyState from '../../../components/ui/EmptyState';
+import { API_BASE_URL } from '../../../lib/safescope';
+import { authHeaders } from '../../../lib/auth';
 
 // Types (Mirrored from Backend)
 type CandidateStatus = 
@@ -55,7 +57,7 @@ interface ReviewerCandidate {
 // Mock Data
 const MOCK_CANDIDATES: ReviewerCandidate[] = [
   {
-    candidateId: 'cand-001',
+    candidateId: 'demo-001',
     candidateType: 'human_review_learning',
     sourceSystem: 'human_review_feedback_loop',
     createdAt: new Date().toISOString(),
@@ -77,7 +79,7 @@ const MOCK_CANDIDATES: ReviewerCandidate[] = [
     ]
   },
   {
-    candidateId: 'cand-002',
+    candidateId: 'demo-002',
     candidateType: 'source_ingestion',
     sourceSystem: 'source_ingestion_workflow',
     createdAt: new Date().toISOString(),
@@ -99,7 +101,7 @@ const MOCK_CANDIDATES: ReviewerCandidate[] = [
     ]
   },
   {
-    candidateId: 'cand-003',
+    candidateId: 'demo-003',
     candidateType: 'human_review_learning',
     sourceSystem: 'human_review_feedback_loop',
     createdAt: new Date().toISOString(),
@@ -124,9 +126,39 @@ const MOCK_CANDIDATES: ReviewerCandidate[] = [
 ];
 
 export default function ReviewerCandidateConsole() {
-  const [candidates, setCandidates] = useState<ReviewerCandidate[]>(MOCK_CANDIDATES);
+  const [candidates, setCandidates] = useState<ReviewerCandidate[]>([]);
   const [selectedCandidate, setSelectedCandidate] = useState<ReviewerCandidate | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
+
+  const fetchCandidates = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${API_BASE_URL}/safescope/reviewer-candidates`, {
+        headers: authHeaders()
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setCandidates(data);
+        setIsBackendConnected(true);
+      } else {
+        throw new Error('Backend failed to respond correctly.');
+      }
+    } catch (e) {
+      console.warn('Backend connection failed, falling back to mock data.', e);
+      setCandidates(MOCK_CANDIDATES);
+      setIsBackendConnected(false);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCandidates();
+  }, []);
 
   const pendingCount = candidates.filter(c => c.status === 'pending_review').length;
   const needsInfoCount = candidates.filter(c => c.status === 'needs_more_information').length;
@@ -137,7 +169,42 @@ export default function ReviewerCandidateConsole() {
     ? candidates 
     : candidates.filter(c => c.status === filterStatus);
 
-  const handleAction = (id: string, newStatus: CandidateStatus, notes?: string) => {
+  const handleAction = async (id: string, actionType: 'approve' | 'reject' | 'request-info' | 'block' | 'archive', notes?: string) => {
+    // If backend is connected and it's not a demo record, call the API
+    if (isBackendConnected && !id.startsWith('demo-')) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/safescope/reviewer-candidates/${id}/${actionType}`, {
+                method: 'POST',
+                headers: authHeaders(),
+                body: JSON.stringify({ 
+                    name: 'Current User', 
+                    role: 'Safety Reviewer', 
+                    notes: notes || `Action: ${actionType}`
+                })
+            });
+            if (!response.ok) throw new Error(`Action ${actionType} failed.`);
+            
+            const updatedCandidate = await response.json();
+            setCandidates(prev => prev.map(c => c.candidateId === id ? updatedCandidate : c));
+            if (selectedCandidate?.candidateId === id) setSelectedCandidate(updatedCandidate);
+            return;
+        } catch (e) {
+            console.error(e);
+            alert(`Error: ${e instanceof Error ? e.message : 'Action failed'}`);
+        }
+    }
+
+    // Local fallback/demo behavior
+    const statusMap: Record<string, CandidateStatus> = {
+        'approve': 'approved_for_promotion',
+        'reject': 'rejected',
+        'request-info': 'needs_more_information',
+        'block': 'blocked',
+        'archive': 'archived'
+    };
+
+    const newStatus = statusMap[actionType];
+
     setCandidates(prev => prev.map(c => {
       if (c.candidateId === id) {
         const updated = {
@@ -145,7 +212,7 @@ export default function ReviewerCandidateConsole() {
           status: newStatus,
           auditTrail: [
             ...c.auditTrail,
-            { action: newStatus, timestamp: new Date().toISOString(), actor: 'Current User', role: 'Safety Reviewer', notes }
+            { action: actionType, timestamp: new Date().toISOString(), actor: 'Current User', role: 'Safety Reviewer', notes }
           ]
         };
         if (selectedCandidate?.candidateId === id) setSelectedCandidate(updated);
@@ -163,167 +230,189 @@ export default function ReviewerCandidateConsole() {
             title="Reviewer Candidate Console"
             description="Staged candidates for qualified human review before promotion to approved SafeScope knowledge."
           />
+          <div className="flex items-center gap-2 mt-[-10px] pb-4 px-4 sm:px-5">
+              <div className={`w-2 h-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
+              <span className="text-[10px] font-black uppercase text-slate-400">
+                {isBackendConnected ? 'Live Connection Established' : 'Demo Fallback Mode'}
+              </span>
+              {!isBackendConnected && (
+                  <button onClick={fetchCandidates} className="text-[10px] text-blue-600 font-black uppercase ml-2 hover:underline">
+                    Retry Connection
+                  </button>
+              )}
+          </div>
         </AppPanel>
       </div>
 
       <AppPanel className="py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <MetricBlock label="Pending" value={pendingCount} />
-          <MetricBlock label="Needs Info" value={needsInfoCount} />
-          <MetricBlock label="Approved" value={approvedCount} />
-          <MetricBlock label="Rejected / Blocked" value={rejectedCount} />
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* List Column */}
-          <div className="lg:col-span-1 space-y-4">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Candidates</h2>
-              <select 
-                className="text-xs border rounded p-1"
-                value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value)}
-              >
-                <option value="all">All Statuses</option>
-                <option value="pending_review">Pending Review</option>
-                <option value="needs_more_information">Needs Info</option>
-                <option value="approved_for_promotion">Approved</option>
-                <option value="rejected">Rejected</option>
-                <option value="blocked">Blocked</option>
-              </select>
+        {isLoading ? (
+            <div className="flex items-center justify-center py-24">
+                <div className="text-center">
+                    <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Loading Candidates...</p>
+                </div>
+            </div>
+        ) : (
+        <>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <MetricBlock label="Pending" value={pendingCount} />
+                <MetricBlock label="Needs Info" value={needsInfoCount} />
+                <MetricBlock label="Approved" value={approvedCount} />
+                <MetricBlock label="Rejected / Blocked" value={rejectedCount} />
             </div>
 
-            {filteredCandidates.length === 0 ? (
-              <EmptyState title="No candidates found" description="No candidates match selected filters." />
-            ) : (
-              filteredCandidates.map(c => (
-                <div key={c.candidateId} onClick={() => setSelectedCandidate(c)}>
-                  <SentinelCard 
-                    interactive 
-                    className={`p-4 border-l-4 ${selectedCandidate?.candidateId === c.candidateId ? 'border-l-blue-600 bg-blue-50/50' : 'border-l-transparent'}`}
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <StatusBadge tone={c.priority === 'critical' ? 'critical' : c.priority === 'high' ? 'high' : 'medium'}>
-                        {c.priority.toUpperCase()}
-                      </StatusBadge>
-                      <span className="text-[10px] text-slate-400 font-mono">{c.candidateId}</span>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* List Column */}
+            <div className="lg:col-span-1 space-y-4">
+                <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Candidates</h2>
+                <select 
+                    className="text-xs border rounded p-1"
+                    value={filterStatus}
+                    onChange={(e) => setFilterStatus(e.target.value)}
+                >
+                    <option value="all">All Statuses</option>
+                    <option value="pending_review">Pending Review</option>
+                    <option value="needs_more_information">Needs Info</option>
+                    <option value="approved_for_promotion">Approved</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="blocked">Blocked</option>
+                </select>
+                </div>
+
+                {filteredCandidates.length === 0 ? (
+                <EmptyState title="No candidates found" description="No candidates match selected filters." />
+                ) : (
+                filteredCandidates.map(c => (
+                    <div key={c.candidateId} onClick={() => setSelectedCandidate(c)}>
+                    <SentinelCard 
+                        interactive 
+                        className={`p-4 border-l-4 ${selectedCandidate?.candidateId === c.candidateId ? 'border-l-blue-600 bg-blue-50/50' : 'border-l-transparent'}`}
+                    >
+                        <div className="flex justify-between items-start mb-2">
+                        <StatusBadge tone={c.priority === 'critical' ? 'critical' : c.priority === 'high' ? 'high' : 'medium'}>
+                            {c.priority.toUpperCase()}
+                        </StatusBadge>
+                        <span className="text-[10px] text-slate-400 font-mono">{c.candidateId}</span>
+                        </div>
+                        <p className="text-sm font-bold text-slate-900 mb-1 line-clamp-2">{c.summary}</p>
+                        <div className="flex gap-2 mt-2">
+                        <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-medium">{c.candidateType.replace(/_/g, ' ')}</span>
+                        <span className="text-[10px] text-slate-500">{new Date(c.createdAt).toLocaleDateString()}</span>
+                        </div>
+                    </SentinelCard>
                     </div>
-                    <p className="text-sm font-bold text-slate-900 mb-1 line-clamp-2">{c.summary}</p>
-                    <div className="flex gap-2 mt-2">
-                      <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-medium">{c.candidateType.replace(/_/g, ' ')}</span>
-                      <span className="text-[10px] text-slate-500">{new Date(c.createdAt).toLocaleDateString()}</span>
-                    </div>
-                  </SentinelCard>
-                </div>
-              ))
-            )}
-          </div>
-
-          {/* Detail Column */}
-          <div className="lg:col-span-2">
-            {selectedCandidate ? (
-              <SentinelCard className="p-8">
-                <div className="flex justify-between items-center mb-6">
-                  <div>
-                    <h3 className="text-xl font-black text-slate-900">{selectedCandidate.summary}</h3>
-                    <p className="text-sm text-slate-500">Source System: {selectedCandidate.sourceSystem}</p>
-                  </div>
-                  <div className="text-right">
-                    <StatusBadge tone={
-                      selectedCandidate.status === 'approved_for_promotion' ? 'success' : 
-                      selectedCandidate.status === 'pending_review' ? 'blue' : 
-                      selectedCandidate.status === 'blocked' ? 'critical' : 'slate'
-                    }>
-                      {selectedCandidate.status.toUpperCase().replace(/_/g, ' ')}
-                    </StatusBadge>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-8 mb-8">
-                  <div>
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Jurisdiction</h4>
-                    <p className="text-sm font-medium">{selectedCandidate.jurisdiction.replace(/_/g, ' ')}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Authority Tier</h4>
-                    <p className="text-sm font-medium">{selectedCandidate.authorityTier.replace(/_/g, ' ')}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Mechanisms</h4>
-                    <p className="text-sm font-medium">{selectedCandidate.mechanisms.join(', ') || 'None identified'}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Source References</h4>
-                    <p className="text-sm font-medium">{selectedCandidate.sourceReferences.join(', ') || 'No references'}</p>
-                  </div>
-                </div>
-
-                <div className="space-y-6 mb-8">
-                  <div>
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Proposed Knowledge / Change</h4>
-                    <div className="bg-slate-900 text-slate-100 p-4 rounded-xl text-sm font-mono whitespace-pre-wrap">
-                      {selectedCandidate.proposedKnowledgeText}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Evidence Basis</h4>
-                    <p className="text-sm italic text-slate-600 bg-white border border-slate-200 p-4 rounded-xl">{selectedCandidate.evidenceBasis}</p>
-                  </div>
-                </div>
-
-                {selectedCandidate.governanceFlags.length > 0 && (
-                  <div className="mb-8 p-4 bg-orange-50 border border-orange-200 rounded-xl">
-                    <h4 className="text-xs font-black text-orange-900 mb-2 flex items-center">
-                      ⚠️ Governance Flags
-                    </h4>
-                    <ul className="text-xs text-orange-800 list-disc list-inside space-y-1">
-                      {selectedCandidate.governanceFlags.map(f => <li key={f}>{f}</li>)}
-                    </ul>
-                  </div>
+                ))
                 )}
+            </div>
 
-                <div className="flex gap-3 pt-6 border-t border-slate-100">
-                  <AppButton 
-                    variant="primary" 
-                    disabled={selectedCandidate.status === 'blocked' || selectedCandidate.status === 'approved_for_promotion'}
-                    onClick={() => handleAction(selectedCandidate.candidateId, 'approved_for_promotion')}
-                  >
-                    Approve
-                  </AppButton>
-                  <AppButton 
-                    variant="secondary"
-                    onClick={() => handleAction(selectedCandidate.candidateId, 'needs_more_information', 'Reviewer requested more info.')}
-                  >
-                    Request Info
-                  </AppButton>
-                  <AppButton 
-                    variant="ghost"
-                    onClick={() => handleAction(selectedCandidate.candidateId, 'rejected', 'Reviewer rejected.')}
-                  >
-                    Reject
-                  </AppButton>
-                  <AppButton 
-                    variant="danger"
-                    onClick={() => handleAction(selectedCandidate.candidateId, 'blocked', 'Reviewer blocked for safety/compliance.')}
-                  >
-                    Block
-                  </AppButton>
-                </div>
+            {/* Detail Column */}
+            <div className="lg:col-span-2">
+                {selectedCandidate ? (
+                <SentinelCard className="p-8">
+                    <div className="flex justify-between items-center mb-6">
+                    <div>
+                        <h3 className="text-xl font-black text-slate-900">{selectedCandidate.summary}</h3>
+                        <p className="text-sm text-slate-500">Source System: {selectedCandidate.sourceSystem}</p>
+                    </div>
+                    <div className="text-right">
+                        <StatusBadge tone={
+                        selectedCandidate.status === 'approved_for_promotion' ? 'success' : 
+                        selectedCandidate.status === 'pending_review' ? 'blue' : 
+                        selectedCandidate.status === 'blocked' ? 'critical' : 'slate'
+                        }>
+                        {selectedCandidate.status.toUpperCase().replace(/_/g, ' ')}
+                        </StatusBadge>
+                    </div>
+                    </div>
 
-                <div className="mt-12 text-[10px] text-slate-400 border-t border-slate-100 pt-4">
-                  <p>⚖️ GOVERNANCE NOTICE: Candidates are staged for human review. Do not promote to approved knowledge without source verification. SafeScope remains an advisory system and does not declare violations.</p>
+                    <div className="grid grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Jurisdiction</h4>
+                        <p className="text-sm font-medium">{selectedCandidate.jurisdiction.replace(/_/g, ' ')}</p>
+                    </div>
+                    <div>
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Authority Tier</h4>
+                        <p className="text-sm font-medium">{selectedCandidate.authorityTier.replace(/_/g, ' ')}</p>
+                    </div>
+                    <div>
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Mechanisms</h4>
+                        <p className="text-sm font-medium">{selectedCandidate.mechanisms.join(', ') || 'None identified'}</p>
+                    </div>
+                    <div>
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Source References</h4>
+                        <p className="text-sm font-medium">{selectedCandidate.sourceReferences.join(', ') || 'No references'}</p>
+                    </div>
+                    </div>
+
+                    <div className="space-y-6 mb-8">
+                    <div>
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Proposed Knowledge / Change</h4>
+                        <div className="bg-slate-900 text-slate-100 p-4 rounded-xl text-sm font-mono whitespace-pre-wrap">
+                        {selectedCandidate.proposedKnowledgeText}
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Evidence Basis</h4>
+                        <p className="text-sm italic text-slate-600 bg-white border border-slate-200 p-4 rounded-xl">{selectedCandidate.evidenceBasis}</p>
+                    </div>
+                    </div>
+
+                    {selectedCandidate.governanceFlags.length > 0 && (
+                    <div className="mb-8 p-4 bg-orange-50 border border-orange-200 rounded-xl">
+                        <h4 className="text-xs font-black text-orange-900 mb-2 flex items-center">
+                        ⚠️ Governance Flags
+                        </h4>
+                        <ul className="text-xs text-orange-800 list-disc list-inside space-y-1">
+                        {selectedCandidate.governanceFlags.map(f => <li key={f}>{f}</li>)}
+                        </ul>
+                    </div>
+                    )}
+
+                    <div className="flex gap-3 pt-6 border-t border-slate-100">
+                    <AppButton 
+                        variant="primary" 
+                        disabled={selectedCandidate.status === 'blocked' || selectedCandidate.status === 'approved_for_promotion'}
+                        onClick={() => handleAction(selectedCandidate.candidateId, 'approve')}
+                    >
+                        Approve
+                    </AppButton>
+                    <AppButton 
+                        variant="secondary"
+                        onClick={() => handleAction(selectedCandidate.candidateId, 'request-info', 'Reviewer requested more info.')}
+                    >
+                        Request Info
+                    </AppButton>
+                    <AppButton 
+                        variant="ghost"
+                        onClick={() => handleAction(selectedCandidate.candidateId, 'reject', 'Reviewer rejected.')}
+                    >
+                        Reject
+                    </AppButton>
+                    <AppButton 
+                        variant="danger"
+                        onClick={() => handleAction(selectedCandidate.candidateId, 'block', 'Reviewer blocked for safety/compliance.')}
+                    >
+                        Block
+                    </AppButton>
+                    </div>
+
+                    <div className="mt-12 text-[10px] text-slate-400 border-t border-slate-100 pt-4">
+                    <p>⚖️ GOVERNANCE NOTICE: Candidates are staged for human review. Do not promote to approved knowledge without source verification. SafeScope remains an advisory system and does not declare violations.</p>
+                    </div>
+                </SentinelCard>
+                ) : (
+                <div className="h-full flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl p-12 text-center text-slate-400">
+                    <div>
+                    <p className="text-lg font-bold">Select a candidate to review details.</p>
+                    <p className="text-sm">Human verification is required for all learning and ingestion content.</p>
+                    </div>
                 </div>
-              </SentinelCard>
-            ) : (
-              <div className="h-full flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl p-12 text-center text-slate-400">
-                <div>
-                  <p className="text-lg font-bold">Select a candidate to review details.</p>
-                  <p className="text-sm">Human verification is required for all learning and ingestion content.</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+                )}
+            </div>
+            </div>
+        </>
+        )}
       </AppPanel>
     </div>
   );
