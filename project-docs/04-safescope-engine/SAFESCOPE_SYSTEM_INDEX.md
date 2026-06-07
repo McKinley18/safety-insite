@@ -50,3 +50,5 @@
 | Reasoning Trace | Audit-ready explainability engine | backend/src/safescope-v2/audit-ready-reasoning-trace/ | N/A | backend/scripts/validate-safescope-audit-ready-reasoning-trace-v1.ts | Audit reasoning trace v1 | Active | Defensibility layer |
 
 | Source Ingestion | Governed knowledge growth engine | backend/src/safescope-v2/source-ingestion-approved-update-workflow/ | N/A | backend/scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts | Source ingestion v1 | Active | Knowledge pipeline layer |
+
+| Candidate Console | Reviewer workflow and API | backend/src/safescope-v2/reviewer-candidate-console/ | N/A | backend/scripts/validate-safescope-reviewer-candidate-console-v1.ts | Reviewer candidate console v1 | Active | Workflow management layer |

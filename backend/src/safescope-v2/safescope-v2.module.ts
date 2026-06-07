@@ -19,6 +19,10 @@ import { SafeScopeKnowledgeModule } from "../safescope-knowledge/safescope-knowl
 import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
 import { Standard } from "../standards/entities/standard.entity";
 
+// SafeScope v2 New Services
+import { ReviewerCandidateConsoleService } from "./reviewer-candidate-console/reviewer-candidate-console.service";
+import { ReviewerCandidateConsoleController } from "./reviewer-candidate-console/reviewer-candidate-console.controller";
+
 @Module({
   imports: [
     ActionEngineModule,
@@ -36,6 +40,7 @@ import { Standard } from "../standards/entities/standard.entity";
     SafeScopeFeedbackController,
     ReasoningSnapshotController,
     SupervisorValidationController,
+    ReviewerCandidateConsoleController,
   ],
   providers: [
     SafescopeV2Service,
@@ -45,6 +50,7 @@ import { Standard } from "../standards/entities/standard.entity";
     SafeScopeFeedbackService,
     ReasoningSnapshotService,
     SupervisorValidationService,
+    ReviewerCandidateConsoleService,
   ],
 })
 export class SafescopeV2Module {}

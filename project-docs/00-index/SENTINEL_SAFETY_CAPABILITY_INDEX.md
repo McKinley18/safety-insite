@@ -1414,3 +1414,10 @@ Check git status:
 - Provides a controlled knowledge growth pipeline for ingesting official regulations, guidance, and site policies.
 - Implements strict source normalization, duplicate detection, and jurisdictional conflict checking.
 - Establishes a governed human-in-the-loop promotion workflow to ensure no unverified content enters the approved knowledge registry.
+
+## Reviewer Candidate Console
+- SafeScope Reviewer Candidate Console Backend/API v1 added.
+- Provides a centralized workflow for managing learning candidates and source ingestion candidates.
+- Implements strict status tracking (Pending Review, Needs Info, Approved, Rejected, Blocked, Archived) with full audit trails.
+- Enforces governance boundaries, requiring explicit human approval and jurisdiction confirmation before promotion to approved knowledge.
+- Fully integrated into retrieval and audit trace for real-time visibility into pending knowledge improvements.

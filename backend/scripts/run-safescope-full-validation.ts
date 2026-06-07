@@ -112,6 +112,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts'],
   },
   {
+    label: 'Reviewer candidate console v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-reviewer-candidate-console-v1.ts'],
+  },
+  {
     label: 'Approved knowledge retrieval matching v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts'],

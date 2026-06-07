@@ -5,9 +5,11 @@ import {
   LearningDisposition, 
   ReviewReliability 
 } from './human-review-feedback-loop.types';
+import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
 
 @Injectable()
 export class HumanReviewFeedbackLoopService {
+  private consoleService = new ReviewerCandidateConsoleService();
 
   processReview(input: HumanReviewInput): HumanReviewFeedbackResult {
     const feedbackId = `feedback-${Date.now()}`;
@@ -70,14 +72,35 @@ export class HumanReviewFeedbackLoopService {
                 if (input.correctedMechanism) acceptedCorrections.push('mechanism');
                 if (input.correctedActions) acceptedCorrections.push('correctiveActions');
                 
+                const candidateData = {
+                    hazardFamily: input.correctedHazardFamily,
+                    mechanism: input.correctedMechanism,
+                    actions: input.correctedActions
+                };
+                
                 learningCandidates.push({
                     type: 'correction',
-                    data: {
-                        hazardFamily: input.correctedHazardFamily,
-                        mechanism: input.correctedMechanism,
-                        actions: input.correctedActions
-                    }
+                    data: candidateData
                 });
+
+                // Register in Candidate Console
+                this.consoleService.addCandidate({
+                    candidateType: 'human_review_learning',
+                    sourceSystem: 'human_review_feedback_loop',
+                    priority: 'medium',
+                    domainIds: [],
+                    hazardFamilies: input.correctedHazardFamily ? [input.correctedHazardFamily] : [],
+                    mechanisms: input.correctedMechanism ? [input.correctedMechanism] : [],
+                    jurisdiction: input.correctedStandardFamily || 'unknown',
+                    authorityTier: 'unknown',
+                    sourceReferences: input.sourceReference ? [input.sourceReference] : [],
+                    summary: `Correction from ${input.reviewerRole}: ${input.reviewerNotes || 'No notes provided.'}`,
+                    proposedKnowledgeText: JSON.stringify(candidateData),
+                    evidenceBasis: input.observationText,
+                    governanceFlags: [],
+                    requiredReviewSteps: ['Verify correction against official sources']
+                });
+
             } else if (input.reviewerNotes && input.reviewerNotes.length < 10) {
                 learningDisposition = 'reject_learning';
                 blockedLearningReasons.push('Feedback notes are too vague for automated learning.');

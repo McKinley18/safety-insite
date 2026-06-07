@@ -1,0 +1,1028 @@
+[
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"hazardFamily\":\"mechanical\"}",
+    "evidenceBasis": "Unguarded conveyor.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847569350-924",
+    "createdAt": "2026-06-07T15:52:49.350Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:52:49.350Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [
+      "chemical_burn"
+    ],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [
+      "OSHA 1910.1200"
+    ],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"mechanism\":\"chemical_burn\"}",
+    "evidenceBasis": "Chemical container.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847569351-605",
+    "createdAt": "2026-06-07T15:52:49.351Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:52:49.351Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "source_ingestion_workflow",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://osha.gov",
+      "1910.999"
+    ],
+    "summary": "New source ingestion: New Safety Standard (1910.999)",
+    "proposedKnowledgeText": "New safety requirements for special equipment.",
+    "evidenceBasis": "Ingested source document",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify citation accuracy",
+      "Verify source URL leads to official material",
+      "Verify mapping of hazard families and mechanisms"
+    ],
+    "candidateId": "cand-1780847572331-809",
+    "createdAt": "2026-06-07T15:52:52.331Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:52:52.331Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "test",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://test.com"
+    ],
+    "summary": "Test candidate",
+    "proposedKnowledgeText": "Proposed text",
+    "evidenceBasis": "Test evidence",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Step 1"
+    ],
+    "candidateId": "cand-1780847572994-528",
+    "createdAt": "2026-06-07T15:52:52.994Z",
+    "status": "approved_for_promotion",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:52:52.994Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      },
+      {
+        "action": "approved",
+        "timestamp": "2026-06-07T15:52:52.994Z",
+        "actor": "Admin",
+        "role": "Safety Director",
+        "notes": "Approved"
+      }
+    ],
+    "reviewerDecision": "approve",
+    "reviewerRationale": "Approved"
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "test",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Bad candidate",
+    "proposedKnowledgeText": "This is a definitive violation.",
+    "evidenceBasis": "None",
+    "governanceFlags": [],
+    "requiredReviewSteps": [],
+    "candidateId": "cand-1780847572994-422",
+    "createdAt": "2026-06-07T15:52:52.994Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:52:52.994Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "source_ingestion_workflow",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://osha.gov",
+      "1910.999"
+    ],
+    "summary": "New source ingestion: New Safety Standard (1910.999)",
+    "proposedKnowledgeText": "New safety requirements for special equipment.",
+    "evidenceBasis": "Ingested source document",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify citation accuracy",
+      "Verify source URL leads to official material",
+      "Verify mapping of hazard families and mechanisms"
+    ],
+    "candidateId": "cand-1780847582793-784",
+    "createdAt": "2026-06-07T15:53:02.793Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:02.793Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "test",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://test.com"
+    ],
+    "summary": "Test candidate",
+    "proposedKnowledgeText": "Proposed text",
+    "evidenceBasis": "Test evidence",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Step 1"
+    ],
+    "candidateId": "cand-1780847583457-606",
+    "createdAt": "2026-06-07T15:53:03.457Z",
+    "status": "approved_for_promotion",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:03.458Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      },
+      {
+        "action": "approved",
+        "timestamp": "2026-06-07T15:53:03.458Z",
+        "actor": "Admin",
+        "role": "Safety Director",
+        "notes": "Approved"
+      }
+    ],
+    "reviewerDecision": "approve",
+    "reviewerRationale": "Approved"
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "test",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Bad candidate",
+    "proposedKnowledgeText": "This is a definitive violation.",
+    "evidenceBasis": "None",
+    "governanceFlags": [],
+    "requiredReviewSteps": [],
+    "candidateId": "cand-1780847583458-322",
+    "createdAt": "2026-06-07T15:53:03.458Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:03.458Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"hazardFamily\":\"mechanical\"}",
+    "evidenceBasis": "Unguarded conveyor.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847591076-897",
+    "createdAt": "2026-06-07T15:53:11.076Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:11.076Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [
+      "chemical_burn"
+    ],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [
+      "OSHA 1910.1200"
+    ],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"mechanism\":\"chemical_burn\"}",
+    "evidenceBasis": "Chemical container.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847591077-179",
+    "createdAt": "2026-06-07T15:53:11.077Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:11.077Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "source_ingestion_workflow",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://osha.gov",
+      "1910.999"
+    ],
+    "summary": "New source ingestion: New Safety Standard (1910.999)",
+    "proposedKnowledgeText": "New safety requirements for special equipment.",
+    "evidenceBasis": "Ingested source document",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify citation accuracy",
+      "Verify source URL leads to official material",
+      "Verify mapping of hazard families and mechanisms"
+    ],
+    "candidateId": "cand-1780847594024-752",
+    "createdAt": "2026-06-07T15:53:14.024Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:14.024Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "test",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://test.com"
+    ],
+    "summary": "Test candidate",
+    "proposedKnowledgeText": "Proposed text",
+    "evidenceBasis": "Test evidence",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Step 1"
+    ],
+    "candidateId": "cand-1780847594687-604",
+    "createdAt": "2026-06-07T15:53:14.687Z",
+    "status": "approved_for_promotion",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:14.687Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      },
+      {
+        "action": "approved",
+        "timestamp": "2026-06-07T15:53:14.687Z",
+        "actor": "Admin",
+        "role": "Safety Director",
+        "notes": "Approved"
+      }
+    ],
+    "reviewerDecision": "approve",
+    "reviewerRationale": "Approved"
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "test",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Bad candidate",
+    "proposedKnowledgeText": "This is a definitive violation.",
+    "evidenceBasis": "None",
+    "governanceFlags": [],
+    "requiredReviewSteps": [],
+    "candidateId": "cand-1780847594687-119",
+    "createdAt": "2026-06-07T15:53:14.687Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:14.687Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"hazardFamily\":\"mechanical\"}",
+    "evidenceBasis": "Unguarded conveyor.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847603489-407",
+    "createdAt": "2026-06-07T15:53:23.489Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:23.489Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [
+      "chemical_burn"
+    ],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [
+      "OSHA 1910.1200"
+    ],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"mechanism\":\"chemical_burn\"}",
+    "evidenceBasis": "Chemical container.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847603490-874",
+    "createdAt": "2026-06-07T15:53:23.490Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:23.490Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "source_ingestion_workflow",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://osha.gov",
+      "1910.999"
+    ],
+    "summary": "New source ingestion: New Safety Standard (1910.999)",
+    "proposedKnowledgeText": "New safety requirements for special equipment.",
+    "evidenceBasis": "Ingested source document",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify citation accuracy",
+      "Verify source URL leads to official material",
+      "Verify mapping of hazard families and mechanisms"
+    ],
+    "candidateId": "cand-1780847606461-561",
+    "createdAt": "2026-06-07T15:53:26.461Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:26.461Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "test",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://test.com"
+    ],
+    "summary": "Test candidate",
+    "proposedKnowledgeText": "Proposed text",
+    "evidenceBasis": "Test evidence",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Step 1"
+    ],
+    "candidateId": "cand-1780847607120-675",
+    "createdAt": "2026-06-07T15:53:27.120Z",
+    "status": "approved_for_promotion",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:27.120Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      },
+      {
+        "action": "approved",
+        "timestamp": "2026-06-07T15:53:27.121Z",
+        "actor": "Admin",
+        "role": "Safety Director",
+        "notes": "Approved"
+      }
+    ],
+    "reviewerDecision": "approve",
+    "reviewerRationale": "Approved"
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "test",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Bad candidate",
+    "proposedKnowledgeText": "This is a definitive violation.",
+    "evidenceBasis": "None",
+    "governanceFlags": [],
+    "requiredReviewSteps": [],
+    "candidateId": "cand-1780847607121-224",
+    "createdAt": "2026-06-07T15:53:27.121Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:27.121Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"hazardFamily\":\"mechanical\"}",
+    "evidenceBasis": "Unguarded conveyor.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847615481-808",
+    "createdAt": "2026-06-07T15:53:35.481Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:35.481Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [
+      "chemical_burn"
+    ],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [
+      "OSHA 1910.1200"
+    ],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"mechanism\":\"chemical_burn\"}",
+    "evidenceBasis": "Chemical container.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847615482-447",
+    "createdAt": "2026-06-07T15:53:35.482Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:35.482Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "source_ingestion_workflow",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://osha.gov",
+      "1910.999"
+    ],
+    "summary": "New source ingestion: New Safety Standard (1910.999)",
+    "proposedKnowledgeText": "New safety requirements for special equipment.",
+    "evidenceBasis": "Ingested source document",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify citation accuracy",
+      "Verify source URL leads to official material",
+      "Verify mapping of hazard families and mechanisms"
+    ],
+    "candidateId": "cand-1780847618463-227",
+    "createdAt": "2026-06-07T15:53:38.463Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:38.463Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "test",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://test.com"
+    ],
+    "summary": "Test candidate",
+    "proposedKnowledgeText": "Proposed text",
+    "evidenceBasis": "Test evidence",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Step 1"
+    ],
+    "candidateId": "cand-1780847619135-487",
+    "createdAt": "2026-06-07T15:53:39.135Z",
+    "status": "approved_for_promotion",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:39.135Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      },
+      {
+        "action": "approved",
+        "timestamp": "2026-06-07T15:53:39.135Z",
+        "actor": "Admin",
+        "role": "Safety Director",
+        "notes": "Approved"
+      }
+    ],
+    "reviewerDecision": "approve",
+    "reviewerRationale": "Approved"
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "test",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Bad candidate",
+    "proposedKnowledgeText": "This is a definitive violation.",
+    "evidenceBasis": "None",
+    "governanceFlags": [],
+    "requiredReviewSteps": [],
+    "candidateId": "cand-1780847619135-901",
+    "createdAt": "2026-06-07T15:53:39.135Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:39.135Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"hazardFamily\":\"mechanical\"}",
+    "evidenceBasis": "Unguarded conveyor.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847635095-310",
+    "createdAt": "2026-06-07T15:53:55.095Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:55.095Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "human_review_feedback_loop",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [
+      "chemical_burn"
+    ],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [
+      "OSHA 1910.1200"
+    ],
+    "summary": "Correction from Safety Manager: No notes provided.",
+    "proposedKnowledgeText": "{\"mechanism\":\"chemical_burn\"}",
+    "evidenceBasis": "Chemical container.",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify correction against official sources"
+    ],
+    "candidateId": "cand-1780847635096-399",
+    "createdAt": "2026-06-07T15:53:55.096Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:55.096Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "source_ingestion_workflow",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://osha.gov",
+      "1910.999"
+    ],
+    "summary": "New source ingestion: New Safety Standard (1910.999)",
+    "proposedKnowledgeText": "New safety requirements for special equipment.",
+    "evidenceBasis": "Ingested source document",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Verify citation accuracy",
+      "Verify source URL leads to official material",
+      "Verify mapping of hazard families and mechanisms"
+    ],
+    "candidateId": "cand-1780847638067-356",
+    "createdAt": "2026-06-07T15:53:58.067Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:58.067Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  },
+  {
+    "candidateType": "source_ingestion",
+    "sourceSystem": "test",
+    "priority": "high",
+    "domainIds": [
+      "machine_guarding"
+    ],
+    "hazardFamilies": [
+      "mechanical"
+    ],
+    "mechanisms": [
+      "nip_point"
+    ],
+    "jurisdiction": "osha_general_industry",
+    "authorityTier": "primary_regulation",
+    "sourceReferences": [
+      "http://test.com"
+    ],
+    "summary": "Test candidate",
+    "proposedKnowledgeText": "Proposed text",
+    "evidenceBasis": "Test evidence",
+    "governanceFlags": [],
+    "requiredReviewSteps": [
+      "Step 1"
+    ],
+    "candidateId": "cand-1780847638722-269",
+    "createdAt": "2026-06-07T15:53:58.722Z",
+    "status": "approved_for_promotion",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:58.722Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      },
+      {
+        "action": "approved",
+        "timestamp": "2026-06-07T15:53:58.722Z",
+        "actor": "Admin",
+        "role": "Safety Director",
+        "notes": "Approved"
+      }
+    ],
+    "reviewerDecision": "approve",
+    "reviewerRationale": "Approved"
+  },
+  {
+    "candidateType": "human_review_learning",
+    "sourceSystem": "test",
+    "priority": "medium",
+    "domainIds": [],
+    "hazardFamilies": [],
+    "mechanisms": [],
+    "jurisdiction": "unknown",
+    "authorityTier": "unknown",
+    "sourceReferences": [],
+    "summary": "Bad candidate",
+    "proposedKnowledgeText": "This is a definitive violation.",
+    "evidenceBasis": "None",
+    "governanceFlags": [],
+    "requiredReviewSteps": [],
+    "candidateId": "cand-1780847638722-815",
+    "createdAt": "2026-06-07T15:53:58.722Z",
+    "status": "pending_review",
+    "auditTrail": [
+      {
+        "action": "created",
+        "timestamp": "2026-06-07T15:53:58.722Z",
+        "actor": "system",
+        "role": "system",
+        "notes": "Candidate registered for review"
+      }
+    ]
+  }
+]

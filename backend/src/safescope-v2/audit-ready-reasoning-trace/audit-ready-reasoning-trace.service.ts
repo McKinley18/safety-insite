@@ -21,7 +21,8 @@ export class AuditReadyReasoningTraceService {
       residualRiskVerification, 
       humanReviewFeedback, 
       sourceFreshness, 
-      jurisdictionApplicability 
+      jurisdictionApplicability,
+      context
     } = input;
 
     const traceId = `trace-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
@@ -47,7 +48,6 @@ export class AuditReadyReasoningTraceService {
     if (evidenceWeighting.contradictionPenalty > 0) confidenceModifiers.push(`Penalty for contradictions: -${evidenceWeighting.contradictionPenalty}`);
     if (evidenceWeighting.missingFactPenalty > 0) confidenceModifiers.push(`Penalty for missing facts: -${evidenceWeighting.missingFactPenalty}`);
     
-    // Add freshness and verification impacts if significant
     Object.values(sourceFreshness).forEach(f => {
         if (f.confidenceImpact < 0) confidenceModifiers.push(`Source freshness impact: ${f.confidenceImpact}`);
     });
@@ -59,6 +59,11 @@ export class AuditReadyReasoningTraceService {
     if (jurisdictionApplicability.humanReviewRequired) humanReviewGates.push('Jurisdiction ambiguity requiring manual confirmation.');
     if (evidenceWeighting.evidenceGrade === 'conflicting') humanReviewGates.push('Contradictory evidence requiring verification.');
     if (multiHazardAnalysis.isMultiHazard) humanReviewGates.push('Multi-hazard complexity requiring per-hazard review.');
+
+    // Add learning candidate info to gates if relevant
+    if (humanReviewFeedback && humanReviewFeedback.learningDisposition !== 'accept_no_learning_needed') {
+        humanReviewGates.push(`Learning candidate created: ${humanReviewFeedback.learningDisposition}`);
+    }
 
     const reviewerChecklist: string[] = [
         ...evidenceWeighting.reviewerQuestions,

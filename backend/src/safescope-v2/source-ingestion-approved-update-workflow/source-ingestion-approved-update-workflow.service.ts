@@ -11,12 +11,14 @@ import { ApprovedKnowledgeRegistrySearchService } from '../approved-knowledge-re
 import { SourceFreshnessGovernanceService } from '../source-freshness-governance/source-freshness-governance.service';
 import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 import { ApprovedKnowledgeRecord, AuthorityAgency, AuthorityTier, Jurisdiction, SourceDateStatus } from '../approved-knowledge-registry/approved-knowledge-record.types';
+import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
 
 @Injectable()
 export class SourceIngestionApprovedUpdateWorkflowService {
   private searchService = new ApprovedKnowledgeRegistrySearchService();
   private freshnessService = new SourceFreshnessGovernanceService();
   private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
+  private consoleService = new ReviewerCandidateConsoleService();
 
   ingest(input: SourceIngestionInput): IngestionDraftCandidate {
     const candidateId = `cand-${Date.now()}`;
@@ -66,7 +68,7 @@ export class SourceIngestionApprovedUpdateWorkflowService {
 
     const advisoryBoundary = 'SafeScope source ingestion analysis is advisory only.';
 
-    return {
+    const candidate: IngestionDraftCandidate = {
       candidateId,
       candidateStatus,
       writeTarget: 'draft_only',
@@ -91,6 +93,26 @@ export class SourceIngestionApprovedUpdateWorkflowService {
       ],
       advisoryBoundary
     };
+
+    // Register in Candidate Console
+    this.consoleService.addCandidate({
+        candidateType: 'source_ingestion',
+        sourceSystem: 'source_ingestion_workflow',
+        priority: 'high',
+        domainIds: [input.mappedDomainId],
+        hazardFamilies: input.mappedHazardFamilies,
+        mechanisms: input.mappedMechanisms,
+        jurisdiction: input.jurisdiction,
+        authorityTier: input.authorityTier,
+        sourceReferences: [input.sourceUrl, input.citation],
+        summary: `New source ingestion: ${input.title} (${input.citation})`,
+        proposedKnowledgeText: input.sourceText,
+        evidenceBasis: 'Ingested source document',
+        governanceFlags: candidate.governanceWarnings,
+        requiredReviewSteps: candidate.requiredReviewerChecks
+    });
+
+    return candidate;
   }
 
   promote(input: PromotionDecisionInput): PromotionResult {
@@ -115,6 +137,9 @@ export class SourceIngestionApprovedUpdateWorkflowService {
             promotionStatus = 'promoted';
             canWriteApprovedRegistry = false; // Dry-run as per requirements
             reasons.push('All governance checks passed and human approval received.');
+            
+            // Update status in Candidate Console if possible
+            // Note: In a real system, we'd find the candidate in the console by some external ID or match
         } else {
             promotionStatus = 'blocked';
             if (!sourceVerified) reasons.push('Source verification required.');

@@ -9,6 +9,8 @@ import { SourceFreshnessGovernanceResult } from '../source-freshness-governance/
 import { JurisdictionApplicabilityResult } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.types';
 import { AuditReadyReasoningTraceResult } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.types';
 
+import { ReviewerCandidate } from '../reviewer-candidate-console/reviewer-candidate-console.types';
+
 export interface RetrievalOutput {
   version: string;
   observationSummary: string;
@@ -26,6 +28,7 @@ export interface RetrievalOutput {
   sourceFreshnessGovernanceResults: Record<string, SourceFreshnessGovernanceResult>;
   jurisdictionApplicability: JurisdictionApplicabilityResult;
   auditReadyReasoningTrace: AuditReadyReasoningTraceResult;
+  pendingReviewerCandidates?: ReviewerCandidate[];
   reviewFeedback?: HumanReviewFeedbackResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;

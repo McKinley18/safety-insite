@@ -14,6 +14,7 @@ import { HumanReviewFeedbackLoopService } from '../human-review-feedback-loop/hu
 import { SourceFreshnessGovernanceService } from '../source-freshness-governance/source-freshness-governance.service';
 import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 import { AuditReadyReasoningTraceService } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.service';
+import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -31,6 +32,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private freshnessService = new SourceFreshnessGovernanceService();
   private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
   private traceService = new AuditReadyReasoningTraceService();
+  private consoleService = new ReviewerCandidateConsoleService();
 
   async retrieve(
     observationText: string,
@@ -133,6 +135,11 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         });
     }
 
+    const pendingReviewerCandidates = this.consoleService.listCandidates({
+        domainId: taxonomyRoute.domainId,
+        status: 'pending_review'
+    });
+
     const auditReadyReasoningTrace = this.traceService.generateTrace({
         observationText,
         taxonomyRoute,
@@ -177,6 +184,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       sourceFreshnessGovernanceResults,
       jurisdictionApplicability,
       auditReadyReasoningTrace,
+      pendingReviewerCandidates,
       reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
