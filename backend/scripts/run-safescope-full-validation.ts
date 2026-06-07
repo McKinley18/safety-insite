@@ -162,6 +162,11 @@ const steps: ValidationStep[] = [
     args: ["ts-node", "scripts/validate-safescope-staging-hardening-v1.ts"],
   },
   {
+    label: "Staging deployment readiness v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-staging-deployment-readiness-v1.ts"],
+  },
+  {
     label: "Field test scenario packs v1",
     command: "npx",
     args: ["ts-node", "scripts/validate-safescope-field-test-scenario-packs-v1.ts"],

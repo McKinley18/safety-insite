@@ -54,4 +54,5 @@ This document tracks the systematic transition of SafeScope from a collection of
 
 - Production auth and workspace governance hardening implemented, securing SafeScope decision-making within organizational boundaries.
 
+- Staging deployment readiness v1 completed, establishing the pre-flight verification required for non-local environments.
 - Staging hardening pass completed, ensuring demo data and insecure defaults are removed from production-facing paths.

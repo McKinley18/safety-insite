@@ -31,6 +31,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-workspace-auth-governance-v1.ts',
         'validate-safescope-staging-hardening-v1.ts',
+        'validate-safescope-staging-deployment-readiness-v1.ts',
         'validate-safescope-field-test-scenario-packs-v1.ts'
     ],
     output: [
@@ -59,6 +60,8 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-role-based-approval-gates-v1.ts',
         'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-workspace-auth-governance-v1.ts',
+        'validate-safescope-staging-hardening-v1.ts',
+        'validate-safescope-staging-deployment-readiness-v1.ts',
         'validate-safescope-field-test-scenario-packs-v1.ts',
         'validate-safescope-field-output-contract.ts'
     ],
@@ -88,6 +91,8 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-role-based-approval-gates-v1.ts',
         'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-workspace-auth-governance-v1.ts',
+        'validate-safescope-staging-hardening-v1.ts',
+        'validate-safescope-staging-deployment-readiness-v1.ts',
         'validate-safescope-field-test-scenario-packs-v1.ts',
         'validate-safescope-main-output-observation-understanding.ts',
         'validate-safescope-observation-trace-snapshot.ts'
@@ -118,6 +123,8 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-role-based-approval-gates-v1.ts',
         'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-workspace-auth-governance-v1.ts',
+        'validate-safescope-staging-hardening-v1.ts',
+        'validate-safescope-staging-deployment-readiness-v1.ts',
         'validate-safescope-field-test-scenario-packs-v1.ts',
         'validate-safescope-output-policy.ts',
         'validate-safescope-confidence-governance.ts'
@@ -153,6 +160,8 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-role-based-approval-gates-v1.ts',
         'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-workspace-auth-governance-v1.ts',
+        'validate-safescope-staging-hardening-v1.ts',
+        'validate-safescope-staging-deployment-readiness-v1.ts',
         'validate-safescope-field-test-scenario-packs-v1.ts',
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-field-output-composer-v1.ts',

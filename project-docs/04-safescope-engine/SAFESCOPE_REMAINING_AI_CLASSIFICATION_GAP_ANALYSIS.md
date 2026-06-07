@@ -42,6 +42,8 @@ SafeScope already implements the following core AI safety governance layers:
 | :--- | :--- | :--- |
 | **Role-Based Approval Gates** | Implemented v1; jurisdiction and domain-specific gates active. | High |
 | **Site-Specific Policy Isolation** | Preventing internal site rules from polluting the global regulatory reasoning engine. | Medium |
+| **Staging Readiness** | Implemented v1; master validation and pre-flight checks active. | High |
+| **Staging Hardening** | Implemented v1; demo mode gated and secure defaults enforced. | High |
 | **Audit Log Hardening** | Implemented v1; workspace-secured persistence and audit trails active. | Critical |
 
 ## Remaining Frontend & Product Gaps
