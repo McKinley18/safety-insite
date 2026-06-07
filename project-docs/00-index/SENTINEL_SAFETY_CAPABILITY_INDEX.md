@@ -1463,3 +1463,10 @@ Check git status:
 - Features a flexible repository layer with file-backed fallbacks for local/dev environments.
 - Captures audit-ready reasoning trace snapshots and visual evidence analysis results for long-term auditability.
 - Ensures strict separation between approved knowledge and draft/candidate records, preserving qualified human review boundaries.
+
+## Full Regulatory Knowledge Expansion
+- SafeScope Full Regulatory Knowledge Expansion v1 added.
+- Expands approved-source seed records across 12+ critical safety domains including Machine Guarding, LOTO, Electrical, Fall Protection, and more.
+- Implements structured record schemas with built-in jurisdiction, authority tier, and freshness metadata.
+- Features automated coverage validation to ensure all required domains have governed source records.
+- Integrated into retrieval paths with duplicate detection and prohibited language guards.

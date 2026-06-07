@@ -31,7 +31,7 @@ SafeScope already implements the following core AI safety governance layers:
 
 | Feature | Description | Priority |
 | :--- | :--- | :--- |
-| **Full OSHA/MSHA Mapping** | Scaling the approved registry to cover all sub-parts of 1910, 1926, and 30 CFR. | Critical |
+| **Full OSHA/MSHA Mapping** | Scaling the approved registry; 12+ domains now have governed expansion seed records. | High |
 | **State-Specific Jurisdictions** | Incorporating California (Cal/OSHA), Washington, and other state-plan rules. | Medium |
 | **International Standards** | ISO 45001 and EU-OSHA alignment for global deployment. | Low |
 | **Automated Regulation Watch** | Web-crawling official sources to trigger freshness updates automatically. | High |

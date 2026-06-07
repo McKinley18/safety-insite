@@ -8,10 +8,15 @@ export class ApprovedKnowledgeRegistrySearchService {
   private approvedRecords: ApprovedKnowledgeRecord[] = [];
 
   constructor() {
-    const registryPath = path.resolve(__dirname, '../../../../safescope-data/approved-knowledge/registry/approved-knowledge-seed-records.v1.json');
-    if (fs.existsSync(registryPath)) {
-      const data = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
-      this.approvedRecords = data.records;
+    const registryDir = path.resolve(__dirname, '../../../../safescope-data/approved-knowledge/registry');
+    if (fs.existsSync(registryDir)) {
+      const files = fs.readdirSync(registryDir).filter(f => f.endsWith('.json'));
+      files.forEach(file => {
+          const data = JSON.parse(fs.readFileSync(path.join(registryDir, file), 'utf-8'));
+          if (data.records) {
+              this.approvedRecords.push(...data.records);
+          }
+      });
     }
   }
 

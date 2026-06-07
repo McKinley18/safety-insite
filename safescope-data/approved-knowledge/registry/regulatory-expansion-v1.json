@@ -1,0 +1,361 @@
+{
+  "records": [
+    {
+      "recordId": "app-loto-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+        "citation": "1910.147",
+        "title": "Control of hazardous energy (lockout/tagout)",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "lockout_tagout",
+        "standardFamily": "lockout_tagout",
+        "hazardFamilies": ["energy"],
+        "mechanisms": ["unexpected_startup"],
+        "equipmentGroups": ["machinery"],
+        "taskContexts": ["servicing", "maintenance"],
+        "applicabilitySignals": ["energized", "live", "power on", "not locked out", "no lock"],
+        "requiredFacts": ["energy_isolation_status"],
+        "disqualifyingFacts": ["normal_production_operations"],
+        "evidenceQuestions": ["Is energy source isolated?", "Is lockout device applied?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Hazardous energy must be controlled during servicing.",
+        "appliesWhen": "servicing and maintenance of machines and equipment",
+        "doesNotApplyWhen": "normal production operations",
+        "requiredReviewerChecks": ["Verify energy isolation method"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["isolation", "lockout"],
+        "verificationMethods": ["zero_energy_verification"],
+        "commonWeakActionsToAvoid": ["warning_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyDirector",
+        "approvedAt": "2026-06-07",
+        "reviewerRole": "Safety Director",
+        "changeReason": "Regulatory expansion v1",
+        "supersedesRecordIds": [],
+        "duplicateKeys": [],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-fall-02",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.28",
+        "citation": "1910.28",
+        "title": "Duty to have fall protection and falling object protection",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "fall_protection",
+        "standardFamily": "fall_protection",
+        "hazardFamilies": ["fall_protection"],
+        "mechanisms": ["fall_from_height"],
+        "equipmentGroups": ["elevated_platform", "roof"],
+        "taskContexts": ["operation", "maintenance"],
+        "applicabilitySignals": ["unprotected edge", "open edge", "fall hazard", "leading edge"],
+        "requiredFacts": ["edge_protection_status", "height"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is guardrail present?", "Is fall arrest used?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Fall protection is required for unprotected edges.",
+        "appliesWhen": "employees are exposed to fall hazards of 4 feet or more",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Verify fall distance"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["passive_fall_protection", "fall_arrest"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["verbal_warning"]
+      },
+      "governance": {
+        "approvedBy": "SafetyDirector",
+        "approvedAt": "2026-06-07",
+        "reviewerRole": "Safety Director",
+        "changeReason": "Regulatory expansion v1",
+        "supersedesRecordIds": [],
+        "duplicateKeys": [],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-wws-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.22",
+        "citation": "1910.22",
+        "title": "General requirements for walking-working surfaces",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "walking_working_surfaces",
+        "standardFamily": "walking_working_surfaces",
+        "hazardFamilies": ["slips_trips_falls"],
+        "mechanisms": ["slip", "trip"],
+        "equipmentGroups": ["floor", "walkway"],
+        "taskContexts": ["all"],
+        "applicabilitySignals": ["wet floor", "slick surface", "clutter", "trip hazard"],
+        "requiredFacts": ["surface_condition"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is surface clean and dry?", "Is walkway clear of obstructions?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Maintain clean and dry walking-working surfaces.",
+        "appliesWhen": "all permanent places of employment",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Verify housekeeping status"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["housekeeping", "spill_control"],
+        "verificationMethods": ["walkthrough"],
+        "commonWeakActionsToAvoid": ["signage_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyDirector",
+        "approvedAt": "2026-06-07",
+        "reviewerRole": "Safety Director",
+        "changeReason": "Regulatory expansion v1",
+        "supersedesRecordIds": [],
+        "duplicateKeys": [],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-stfh-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.22",
+        "citation": "1910.22(a)(1)",
+        "title": "Housekeeping - Walking-Working Surfaces",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "slips_trips_falls_housekeeping",
+        "standardFamily": "walking_working_surfaces",
+        "hazardFamilies": ["housekeeping"],
+        "mechanisms": ["slip", "trip"],
+        "equipmentGroups": ["work_area"],
+        "taskContexts": ["all"],
+        "applicabilitySignals": ["clutter", "debris", "messy", "clean condition"],
+        "requiredFacts": ["housekeeping_status"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is the area free of debris?", "Is the floor dry?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Keep work areas clean, orderly, and sanitary.",
+        "appliesWhen": "all places of employment, passageways, storerooms, and service rooms",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Verify cleaning schedule"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["housekeeping"],
+        "verificationMethods": ["visual_inspection"],
+        "commonWeakActionsToAvoid": ["verbal_warning"]
+      },
+      "governance": {
+        "approvedBy": "SafetyDirector",
+        "approvedAt": "2026-06-07",
+        "reviewerRole": "Safety Director",
+        "changeReason": "Regulatory expansion v1",
+        "supersedesRecordIds": [],
+        "duplicateKeys": [],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-haul-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "MSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "msha",
+        "sourceUrl": "https://www.ecfr.gov/current/title-30/section-56.14107",
+        "citation": "56.14107",
+        "title": "Moving machine parts",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "powered_haulage",
+        "standardFamily": "powered_haulage",
+        "hazardFamilies": ["mechanical"],
+        "mechanisms": ["entanglement", "nip_point"],
+        "equipmentGroups": ["conveyor", "crusher"],
+        "taskContexts": ["operation", "maintenance"],
+        "applicabilitySignals": ["conveyor", "belt", "pulley", "rotating parts"],
+        "requiredFacts": ["guarding_status"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Are moving parts guarded?", "Can persons contact moving parts?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Moving machine parts shall be guarded to protect persons from contact.",
+        "appliesWhen": "exposed moving machine parts may cause injury",
+        "doesNotApplyWhen": "guards are not required if parts are at least 7 feet above walking surfaces",
+        "requiredReviewerChecks": ["Verify guard effectiveness"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["physical_guarding"],
+        "verificationMethods": ["inspection"],
+        "commonWeakActionsToAvoid": ["training_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyDirector",
+        "approvedAt": "2026-06-07",
+        "reviewerRole": "Safety Director",
+        "changeReason": "Regulatory expansion v1",
+        "supersedesRecordIds": [],
+        "duplicateKeys": [],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-hazcom-02",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1200",
+        "citation": "1910.1200",
+        "title": "Hazard Communication",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "hazard_communication",
+        "standardFamily": "hazard_communication",
+        "hazardFamilies": ["chemical"],
+        "mechanisms": ["toxic_exposure"],
+        "equipmentGroups": ["chemical_container"],
+        "taskContexts": ["handling"],
+        "applicabilitySignals": ["chemical", "unlabeled", "sds", "hazard label"],
+        "requiredFacts": ["label_presence", "sds_availability"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is the container labeled?", "Is SDS available?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "All chemicals must be labeled and SDS available.",
+        "appliesWhen": "chemicals are used in the workplace",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Verify label details"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["labeling", "training"],
+        "verificationMethods": ["audit"],
+        "commonWeakActionsToAvoid": ["verbal_warning"]
+      },
+      "governance": {
+        "approvedBy": "SafetyDirector",
+        "approvedAt": "2026-06-07",
+        "reviewerRole": "Safety Director",
+        "changeReason": "Regulatory expansion v1",
+        "supersedesRecordIds": [],
+        "duplicateKeys": [],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-ppe-02",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.132",
+        "citation": "1910.132",
+        "title": "Personal Protective Equipment - General Requirements",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "personal_protective_equipment",
+        "standardFamily": "ppe",
+        "hazardFamilies": ["ppe"],
+        "mechanisms": ["exposure"],
+        "equipmentGroups": ["ppe"],
+        "taskContexts": ["all"],
+        "applicabilitySignals": ["protective equipment", "safety glasses", "hard hat", "vest"],
+        "requiredFacts": ["ppe_usage"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is appropriate PPE provided?", "Is PPE being used?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Employers must provide and ensure use of necessary PPE.",
+        "appliesWhen": "hazards are present that necessitate PPE",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Verify hazard assessment"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["ppe"],
+        "verificationMethods": ["observation"],
+        "commonWeakActionsToAvoid": ["verbal_warning"]
+      },
+      "governance": {
+        "approvedBy": "SafetyDirector",
+        "approvedAt": "2026-06-07",
+        "reviewerRole": "Safety Director",
+        "changeReason": "Regulatory expansion v1",
+        "supersedesRecordIds": [],
+        "duplicateKeys": [],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    }
+  ]
+}
