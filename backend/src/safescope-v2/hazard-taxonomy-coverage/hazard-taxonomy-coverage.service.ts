@@ -9,9 +9,7 @@ export class HazardTaxonomyCoverageService {
 
   constructor() {
     const mapPath = path.resolve(__dirname, '../../../../safescope-data/hazard-taxonomy/hazard-taxonomy-coverage-map.v1.json');
-    console.log('Loading taxonomy map from:', mapPath);
     this.coverageMap = JSON.parse(fs.readFileSync(mapPath, 'utf-8'));
-    console.log('Loaded', this.coverageMap.domains.length, 'domains.');
   }
 
   getAllDomains(): TaxonomyDomain[] {
@@ -32,25 +30,44 @@ export class HazardTaxonomyCoverageService {
 
   route(text: string): RoutingResult {
     const lowerText = text.toLowerCase();
-    console.log('Routing text:', lowerText);
+    
+    // Weighted matching logic
+    let bestDomain: TaxonomyDomain | null = null;
+    let maxScore = 0;
+    let bestMatches: string[] = [];
+
     for (const domain of this.coverageMap.domains) {
-      const entities = domain.commonEntities || [];
-      const mechanisms = domain.commonMechanisms || [];
-      const matches = [...entities, ...mechanisms].filter(
-        signal => lowerText.includes(signal.toLowerCase())
-      );
-      if (matches.length > 0) {
-        console.log('Matched domain:', domain.domainId, 'with signals:', matches);
+        const entities = domain.commonEntities || [];
+        const mechanisms = domain.commonMechanisms || [];
+        const signals = [...entities, ...mechanisms];
+        
+        let score = 0;
+        let matches: string[] = [];
+        
+        for (const signal of signals) {
+            if (lowerText.includes(signal.toLowerCase())) {
+                score += (signal.split(' ').length > 1 ? 2 : 1); // Weight multi-word signals higher
+                matches.push(signal);
+            }
+        }
+        
+        if (score > maxScore) {
+            maxScore = score;
+            bestDomain = domain;
+            bestMatches = matches;
+        }
+    }
+    
+    if (bestDomain && maxScore > 0) {
         return {
-          domainId: domain.domainId,
-          confidence: Math.min(matches.length / 2, 1),
-          matchedSignals: matches,
-          routeDisposition: domain.status === 'gap' ? 'hold_for_review' : 'categorize_only',
-          requiresHumanReview: domain.status === 'gap'
+          domainId: bestDomain.domainId,
+          confidence: Math.min(maxScore / 5, 1),
+          matchedSignals: bestMatches,
+          routeDisposition: bestDomain.status === 'gap' ? 'hold_for_review' : 'categorize_only',
+          requiresHumanReview: bestDomain.status === 'gap'
         };
       }
-    }
-    console.log('No domain matched.');
+    
     return {
       domainId: 'unknown',
       confidence: 0,

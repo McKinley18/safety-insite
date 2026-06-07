@@ -19,7 +19,15 @@ async function validate() {
     { text: 'damaged electrical cord', expectedDomain: 'electrical' },
     { text: 'blocked emergency exit', expectedDomain: 'emergency_egress' },
     { text: 'damaged rigging sling', expectedDomain: 'rigging_lifting' },
-    { text: 'hot work without fire watch', expectedDomain: 'hot_work' }
+    { text: 'hot work without fire watch', expectedDomain: 'hot_work' },
+
+    // Regression cases: prevent broad single-word false positives.
+    { text: 'worker near unprotected floor hole', expectedDomain: 'walking_working_surfaces' },
+    { text: 'trench with spoil pile near edge and ladder missing', expectedDomain: 'excavation_trenching' },
+    { text: 'open edge on elevated platform with no guardrail', expectedDomain: 'fall_protection' },
+    { text: 'employee grinding metal without safety glasses or face shield', expectedDomain: 'ppe' },
+    { text: 'palletized material is stacked unevenly and leaning into an employee aisle', expectedDomain: 'material_handling' },
+    { text: 'compressed air hose coupling is damaged and leaking near employees and whipping movement is possible', expectedDomain: 'compressed_gas' }
   ];
   
   for (const tc of testCases) {
