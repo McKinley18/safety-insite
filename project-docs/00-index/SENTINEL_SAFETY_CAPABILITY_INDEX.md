@@ -1328,3 +1328,9 @@ Check git status:
 - Real retrieval matching implemented, allowing orchestration to query approved records.
 - Field output composer now surfaces matched approved knowledge references and advisory boundaries.
 - Validation includes retrieval matching and ensures draft/placeholder content is flagged.
+
+## Scenario Expansion Pack v1
+- SafeScope Scenario Expansion Pack v1 added with 60+ scenario records.
+- Covers 15+ safety domains, improving practical hazard reasoning.
+- Scenario-level data supplements approved knowledge matches, enhancing field output summaries.
+- Master validation includes the scenario expansion pack validator.

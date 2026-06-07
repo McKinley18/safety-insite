@@ -21,9 +21,11 @@ export class FieldOutputComposerV1Service {
         ? `Matches found in approved knowledge for: ${retrieval.approvedKnowledgeMatches.map(m => m.authority.title).join(', ')}` 
         : 'Observation indicates potential hazard. Review recommended.',
       whyItMatters: 'Hazard awareness is necessary for safety.',
-      likelyMechanisms: retrieval.taxonomyRoute?.matchedSignals || [],
-      immediateActions: ['Review hazard information', 'Assess area safety'],
-      durableCorrectiveActions: retrieval.approvedKnowledgeMatches.map(m => m.correctiveActionLinks.preferredControlFamilies).flat(),
+      likelyMechanisms: [...(retrieval.taxonomyRoute?.matchedSignals || []), 
+                         ...(retrieval.approvedKnowledgeMatches.map(m => m.mapping.mechanisms).flat())],
+      immediateActions: [...new Set(['Review hazard information', 'Assess area safety', 
+                                    ...(retrieval.approvedKnowledgeMatches.map(m => m.applicability.plainLanguageSummary).flat())])],
+      durableCorrectiveActions: [...new Set([...retrieval.approvedKnowledgeMatches.map(m => m.correctiveActionLinks.preferredControlFamilies).flat()])],
       evidenceGaps: retrieval.evidenceGaps,
       supervisorQuestions: retrieval.approvedKnowledgeMatches.length > 0 
         ? retrieval.approvedKnowledgeMatches.map(m => m.mapping.evidenceQuestions).flat()

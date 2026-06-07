@@ -1,0 +1,2248 @@
+{
+  "records": [
+    {
+      "scenarioId": "scen-000",
+      "domainId": "machine_guarding",
+      "scenarioFamily": "family-machine_guarding",
+      "hazardFamily": "hazard-machine_guarding",
+      "plainLanguageObservation": "Observation for machine_guarding scenario 0",
+      "equipmentOrEnvironment": "equipment-machine_guarding",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "entanglement",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "conveyor",
+        "guard",
+        "nip_point"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-001",
+      "domainId": "machine_guarding",
+      "scenarioFamily": "family-machine_guarding",
+      "hazardFamily": "hazard-machine_guarding",
+      "plainLanguageObservation": "Observation for machine_guarding scenario 1",
+      "equipmentOrEnvironment": "equipment-machine_guarding",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "entanglement",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "conveyor",
+        "guard",
+        "nip_point"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-002",
+      "domainId": "machine_guarding",
+      "scenarioFamily": "family-machine_guarding",
+      "hazardFamily": "hazard-machine_guarding",
+      "plainLanguageObservation": "Observation for machine_guarding scenario 2",
+      "equipmentOrEnvironment": "equipment-machine_guarding",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "entanglement",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "conveyor",
+        "guard",
+        "nip_point"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-003",
+      "domainId": "machine_guarding",
+      "scenarioFamily": "family-machine_guarding",
+      "hazardFamily": "hazard-machine_guarding",
+      "plainLanguageObservation": "Observation for machine_guarding scenario 3",
+      "equipmentOrEnvironment": "equipment-machine_guarding",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "entanglement",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "conveyor",
+        "guard",
+        "nip_point"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-004",
+      "domainId": "electrical",
+      "scenarioFamily": "family-electrical",
+      "hazardFamily": "hazard-electrical",
+      "plainLanguageObservation": "Observation for electrical scenario 4",
+      "equipmentOrEnvironment": "equipment-electrical",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "electrical_shock",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "panel",
+        "cord",
+        "live_parts",
+        "electrical"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-005",
+      "domainId": "electrical",
+      "scenarioFamily": "family-electrical",
+      "hazardFamily": "hazard-electrical",
+      "plainLanguageObservation": "Observation for electrical scenario 5",
+      "equipmentOrEnvironment": "equipment-electrical",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "electrical_shock",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "panel",
+        "cord",
+        "live_parts",
+        "electrical"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-006",
+      "domainId": "electrical",
+      "scenarioFamily": "family-electrical",
+      "hazardFamily": "hazard-electrical",
+      "plainLanguageObservation": "Observation for electrical scenario 6",
+      "equipmentOrEnvironment": "equipment-electrical",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "electrical_shock",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "panel",
+        "cord",
+        "live_parts",
+        "electrical"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-007",
+      "domainId": "electrical",
+      "scenarioFamily": "family-electrical",
+      "hazardFamily": "hazard-electrical",
+      "plainLanguageObservation": "Observation for electrical scenario 7",
+      "equipmentOrEnvironment": "equipment-electrical",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "electrical_shock",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "panel",
+        "cord",
+        "live_parts",
+        "electrical"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-008",
+      "domainId": "hazcom",
+      "scenarioFamily": "family-hazcom",
+      "hazardFamily": "hazard-hazcom",
+      "plainLanguageObservation": "Observation for hazcom scenario 8",
+      "equipmentOrEnvironment": "equipment-hazcom",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "chemical_exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "chemical",
+        "sds",
+        "label",
+        "container"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-009",
+      "domainId": "hazcom",
+      "scenarioFamily": "family-hazcom",
+      "hazardFamily": "hazard-hazcom",
+      "plainLanguageObservation": "Observation for hazcom scenario 9",
+      "equipmentOrEnvironment": "equipment-hazcom",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "chemical_exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "chemical",
+        "sds",
+        "label",
+        "container"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-010",
+      "domainId": "hazcom",
+      "scenarioFamily": "family-hazcom",
+      "hazardFamily": "hazard-hazcom",
+      "plainLanguageObservation": "Observation for hazcom scenario 10",
+      "equipmentOrEnvironment": "equipment-hazcom",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "chemical_exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "chemical",
+        "sds",
+        "label",
+        "container"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-011",
+      "domainId": "hazcom",
+      "scenarioFamily": "family-hazcom",
+      "hazardFamily": "hazard-hazcom",
+      "plainLanguageObservation": "Observation for hazcom scenario 11",
+      "equipmentOrEnvironment": "equipment-hazcom",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "chemical_exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "chemical",
+        "sds",
+        "label",
+        "container"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-012",
+      "domainId": "confined_space",
+      "scenarioFamily": "family-confined_space",
+      "hazardFamily": "hazard-confined_space",
+      "plainLanguageObservation": "Observation for confined_space scenario 12",
+      "equipmentOrEnvironment": "equipment-confined_space",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "asphyxiation",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "tank",
+        "vessel",
+        "confined",
+        "space"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-013",
+      "domainId": "confined_space",
+      "scenarioFamily": "family-confined_space",
+      "hazardFamily": "hazard-confined_space",
+      "plainLanguageObservation": "Observation for confined_space scenario 13",
+      "equipmentOrEnvironment": "equipment-confined_space",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "asphyxiation",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "tank",
+        "vessel",
+        "confined",
+        "space"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-014",
+      "domainId": "confined_space",
+      "scenarioFamily": "family-confined_space",
+      "hazardFamily": "hazard-confined_space",
+      "plainLanguageObservation": "Observation for confined_space scenario 14",
+      "equipmentOrEnvironment": "equipment-confined_space",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "asphyxiation",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "tank",
+        "vessel",
+        "confined",
+        "space"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-015",
+      "domainId": "confined_space",
+      "scenarioFamily": "family-confined_space",
+      "hazardFamily": "hazard-confined_space",
+      "plainLanguageObservation": "Observation for confined_space scenario 15",
+      "equipmentOrEnvironment": "equipment-confined_space",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "asphyxiation",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "tank",
+        "vessel",
+        "confined",
+        "space"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-016",
+      "domainId": "excavation_trenching",
+      "scenarioFamily": "family-excavation_trenching",
+      "hazardFamily": "hazard-excavation_trenching",
+      "plainLanguageObservation": "Observation for excavation_trenching scenario 16",
+      "equipmentOrEnvironment": "equipment-excavation_trenching",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "cave_in",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "trench",
+        "trench edge",
+        "spoil pile",
+        "excavation",
+        "cave-in"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-017",
+      "domainId": "excavation_trenching",
+      "scenarioFamily": "family-excavation_trenching",
+      "hazardFamily": "hazard-excavation_trenching",
+      "plainLanguageObservation": "Observation for excavation_trenching scenario 17",
+      "equipmentOrEnvironment": "equipment-excavation_trenching",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "cave_in",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "trench",
+        "trench edge",
+        "spoil pile",
+        "excavation",
+        "cave-in"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-018",
+      "domainId": "excavation_trenching",
+      "scenarioFamily": "family-excavation_trenching",
+      "hazardFamily": "hazard-excavation_trenching",
+      "plainLanguageObservation": "Observation for excavation_trenching scenario 18",
+      "equipmentOrEnvironment": "equipment-excavation_trenching",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "cave_in",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "trench",
+        "trench edge",
+        "spoil pile",
+        "excavation",
+        "cave-in"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-019",
+      "domainId": "excavation_trenching",
+      "scenarioFamily": "family-excavation_trenching",
+      "hazardFamily": "hazard-excavation_trenching",
+      "plainLanguageObservation": "Observation for excavation_trenching scenario 19",
+      "equipmentOrEnvironment": "equipment-excavation_trenching",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "cave_in",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "trench",
+        "trench edge",
+        "spoil pile",
+        "excavation",
+        "cave-in"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-020",
+      "domainId": "fall_protection",
+      "scenarioFamily": "family-fall_protection",
+      "hazardFamily": "hazard-fall_protection",
+      "plainLanguageObservation": "Observation for fall_protection scenario 20",
+      "equipmentOrEnvironment": "equipment-fall_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fall_from_height",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "ladder",
+        "platform",
+        "edge",
+        "fall",
+        "guardrail"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-021",
+      "domainId": "fall_protection",
+      "scenarioFamily": "family-fall_protection",
+      "hazardFamily": "hazard-fall_protection",
+      "plainLanguageObservation": "Observation for fall_protection scenario 21",
+      "equipmentOrEnvironment": "equipment-fall_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fall_from_height",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "ladder",
+        "platform",
+        "edge",
+        "fall",
+        "guardrail"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-022",
+      "domainId": "fall_protection",
+      "scenarioFamily": "family-fall_protection",
+      "hazardFamily": "hazard-fall_protection",
+      "plainLanguageObservation": "Observation for fall_protection scenario 22",
+      "equipmentOrEnvironment": "equipment-fall_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fall_from_height",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "ladder",
+        "platform",
+        "edge",
+        "fall",
+        "guardrail"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-023",
+      "domainId": "fall_protection",
+      "scenarioFamily": "family-fall_protection",
+      "hazardFamily": "hazard-fall_protection",
+      "plainLanguageObservation": "Observation for fall_protection scenario 23",
+      "equipmentOrEnvironment": "equipment-fall_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fall_from_height",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "ladder",
+        "platform",
+        "edge",
+        "fall",
+        "guardrail"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-024",
+      "domainId": "mobile_equipment",
+      "scenarioFamily": "family-mobile_equipment",
+      "hazardFamily": "hazard-mobile_equipment",
+      "plainLanguageObservation": "Observation for mobile_equipment scenario 24",
+      "equipmentOrEnvironment": "equipment-mobile_equipment",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_mobile_equipment",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "loader",
+        "forklift",
+        "pedestrian"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-025",
+      "domainId": "mobile_equipment",
+      "scenarioFamily": "family-mobile_equipment",
+      "hazardFamily": "hazard-mobile_equipment",
+      "plainLanguageObservation": "Observation for mobile_equipment scenario 25",
+      "equipmentOrEnvironment": "equipment-mobile_equipment",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_mobile_equipment",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "loader",
+        "forklift",
+        "pedestrian"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-026",
+      "domainId": "mobile_equipment",
+      "scenarioFamily": "family-mobile_equipment",
+      "hazardFamily": "hazard-mobile_equipment",
+      "plainLanguageObservation": "Observation for mobile_equipment scenario 26",
+      "equipmentOrEnvironment": "equipment-mobile_equipment",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_mobile_equipment",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "loader",
+        "forklift",
+        "pedestrian"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-027",
+      "domainId": "mobile_equipment",
+      "scenarioFamily": "family-mobile_equipment",
+      "hazardFamily": "hazard-mobile_equipment",
+      "plainLanguageObservation": "Observation for mobile_equipment scenario 27",
+      "equipmentOrEnvironment": "equipment-mobile_equipment",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_mobile_equipment",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "loader",
+        "forklift",
+        "pedestrian"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-028",
+      "domainId": "rigging_lifting",
+      "scenarioFamily": "family-rigging_lifting",
+      "hazardFamily": "hazard-rigging_lifting",
+      "plainLanguageObservation": "Observation for rigging_lifting scenario 28",
+      "equipmentOrEnvironment": "equipment-rigging_lifting",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_suspended_load",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "sling",
+        "rigging"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-029",
+      "domainId": "rigging_lifting",
+      "scenarioFamily": "family-rigging_lifting",
+      "hazardFamily": "hazard-rigging_lifting",
+      "plainLanguageObservation": "Observation for rigging_lifting scenario 29",
+      "equipmentOrEnvironment": "equipment-rigging_lifting",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_suspended_load",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "sling",
+        "rigging"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-030",
+      "domainId": "rigging_lifting",
+      "scenarioFamily": "family-rigging_lifting",
+      "hazardFamily": "hazard-rigging_lifting",
+      "plainLanguageObservation": "Observation for rigging_lifting scenario 30",
+      "equipmentOrEnvironment": "equipment-rigging_lifting",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_suspended_load",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "sling",
+        "rigging"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-031",
+      "domainId": "rigging_lifting",
+      "scenarioFamily": "family-rigging_lifting",
+      "hazardFamily": "hazard-rigging_lifting",
+      "plainLanguageObservation": "Observation for rigging_lifting scenario 31",
+      "equipmentOrEnvironment": "equipment-rigging_lifting",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_suspended_load",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "sling",
+        "rigging"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-032",
+      "domainId": "fire_protection",
+      "scenarioFamily": "family-fire_protection",
+      "hazardFamily": "hazard-fire_protection",
+      "plainLanguageObservation": "Observation for fire_protection scenario 32",
+      "equipmentOrEnvironment": "equipment-fire_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire_extinguisher_failure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "extinguisher"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-033",
+      "domainId": "fire_protection",
+      "scenarioFamily": "family-fire_protection",
+      "hazardFamily": "hazard-fire_protection",
+      "plainLanguageObservation": "Observation for fire_protection scenario 33",
+      "equipmentOrEnvironment": "equipment-fire_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire_extinguisher_failure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "extinguisher"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-034",
+      "domainId": "fire_protection",
+      "scenarioFamily": "family-fire_protection",
+      "hazardFamily": "hazard-fire_protection",
+      "plainLanguageObservation": "Observation for fire_protection scenario 34",
+      "equipmentOrEnvironment": "equipment-fire_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire_extinguisher_failure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "extinguisher"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-035",
+      "domainId": "fire_protection",
+      "scenarioFamily": "family-fire_protection",
+      "hazardFamily": "hazard-fire_protection",
+      "plainLanguageObservation": "Observation for fire_protection scenario 35",
+      "equipmentOrEnvironment": "equipment-fire_protection",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire_extinguisher_failure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "extinguisher"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-036",
+      "domainId": "emergency_egress",
+      "scenarioFamily": "family-emergency_egress",
+      "hazardFamily": "hazard-emergency_egress",
+      "plainLanguageObservation": "Observation for emergency_egress scenario 36",
+      "equipmentOrEnvironment": "equipment-emergency_egress",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "egress_blockage",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "exit",
+        "blocked",
+        "egress"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-037",
+      "domainId": "emergency_egress",
+      "scenarioFamily": "family-emergency_egress",
+      "hazardFamily": "hazard-emergency_egress",
+      "plainLanguageObservation": "Observation for emergency_egress scenario 37",
+      "equipmentOrEnvironment": "equipment-emergency_egress",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "egress_blockage",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "exit",
+        "blocked",
+        "egress"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-038",
+      "domainId": "emergency_egress",
+      "scenarioFamily": "family-emergency_egress",
+      "hazardFamily": "hazard-emergency_egress",
+      "plainLanguageObservation": "Observation for emergency_egress scenario 38",
+      "equipmentOrEnvironment": "equipment-emergency_egress",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "egress_blockage",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "exit",
+        "blocked",
+        "egress"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-039",
+      "domainId": "emergency_egress",
+      "scenarioFamily": "family-emergency_egress",
+      "hazardFamily": "hazard-emergency_egress",
+      "plainLanguageObservation": "Observation for emergency_egress scenario 39",
+      "equipmentOrEnvironment": "equipment-emergency_egress",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "egress_blockage",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "exit",
+        "blocked",
+        "egress"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-040",
+      "domainId": "ppe",
+      "scenarioFamily": "family-ppe",
+      "hazardFamily": "hazard-ppe",
+      "plainLanguageObservation": "Observation for ppe scenario 40",
+      "equipmentOrEnvironment": "equipment-ppe",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "goggles",
+        "face shield",
+        "ppe",
+        "safety glasses",
+        "grinding"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-041",
+      "domainId": "ppe",
+      "scenarioFamily": "family-ppe",
+      "hazardFamily": "hazard-ppe",
+      "plainLanguageObservation": "Observation for ppe scenario 41",
+      "equipmentOrEnvironment": "equipment-ppe",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "goggles",
+        "face shield",
+        "ppe",
+        "safety glasses",
+        "grinding"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-042",
+      "domainId": "ppe",
+      "scenarioFamily": "family-ppe",
+      "hazardFamily": "hazard-ppe",
+      "plainLanguageObservation": "Observation for ppe scenario 42",
+      "equipmentOrEnvironment": "equipment-ppe",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "goggles",
+        "face shield",
+        "ppe",
+        "safety glasses",
+        "grinding"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-043",
+      "domainId": "ppe",
+      "scenarioFamily": "family-ppe",
+      "hazardFamily": "hazard-ppe",
+      "plainLanguageObservation": "Observation for ppe scenario 43",
+      "equipmentOrEnvironment": "equipment-ppe",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "exposure",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "goggles",
+        "face shield",
+        "ppe",
+        "safety glasses",
+        "grinding"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-044",
+      "domainId": "material_handling",
+      "scenarioFamily": "family-material_handling",
+      "hazardFamily": "hazard-material_handling",
+      "plainLanguageObservation": "Observation for material_handling scenario 44",
+      "equipmentOrEnvironment": "equipment-material_handling",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_falling_object",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "pallet",
+        "material",
+        "aisle",
+        "storage",
+        "unstable"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-045",
+      "domainId": "material_handling",
+      "scenarioFamily": "family-material_handling",
+      "hazardFamily": "hazard-material_handling",
+      "plainLanguageObservation": "Observation for material_handling scenario 45",
+      "equipmentOrEnvironment": "equipment-material_handling",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_falling_object",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "pallet",
+        "material",
+        "aisle",
+        "storage",
+        "unstable"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-046",
+      "domainId": "material_handling",
+      "scenarioFamily": "family-material_handling",
+      "hazardFamily": "hazard-material_handling",
+      "plainLanguageObservation": "Observation for material_handling scenario 46",
+      "equipmentOrEnvironment": "equipment-material_handling",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_falling_object",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "pallet",
+        "material",
+        "aisle",
+        "storage",
+        "unstable"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-047",
+      "domainId": "material_handling",
+      "scenarioFamily": "family-material_handling",
+      "hazardFamily": "hazard-material_handling",
+      "plainLanguageObservation": "Observation for material_handling scenario 47",
+      "equipmentOrEnvironment": "equipment-material_handling",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "struck_by_falling_object",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "pallet",
+        "material",
+        "aisle",
+        "storage",
+        "unstable"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-048",
+      "domainId": "compressed_gas",
+      "scenarioFamily": "family-compressed_gas",
+      "hazardFamily": "hazard-compressed_gas",
+      "plainLanguageObservation": "Observation for compressed_gas scenario 48",
+      "equipmentOrEnvironment": "equipment-compressed_gas",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "explosion",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "cylinder",
+        "compressed",
+        "air",
+        "pneumatic",
+        "hose",
+        "coupling",
+        "pressurized"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-049",
+      "domainId": "compressed_gas",
+      "scenarioFamily": "family-compressed_gas",
+      "hazardFamily": "hazard-compressed_gas",
+      "plainLanguageObservation": "Observation for compressed_gas scenario 49",
+      "equipmentOrEnvironment": "equipment-compressed_gas",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "explosion",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "cylinder",
+        "compressed",
+        "air",
+        "pneumatic",
+        "hose",
+        "coupling",
+        "pressurized"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-050",
+      "domainId": "compressed_gas",
+      "scenarioFamily": "family-compressed_gas",
+      "hazardFamily": "hazard-compressed_gas",
+      "plainLanguageObservation": "Observation for compressed_gas scenario 50",
+      "equipmentOrEnvironment": "equipment-compressed_gas",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "explosion",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "cylinder",
+        "compressed",
+        "air",
+        "pneumatic",
+        "hose",
+        "coupling",
+        "pressurized"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-051",
+      "domainId": "compressed_gas",
+      "scenarioFamily": "family-compressed_gas",
+      "hazardFamily": "hazard-compressed_gas",
+      "plainLanguageObservation": "Observation for compressed_gas scenario 51",
+      "equipmentOrEnvironment": "equipment-compressed_gas",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "explosion",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "cylinder",
+        "compressed",
+        "air",
+        "pneumatic",
+        "hose",
+        "coupling",
+        "pressurized"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-052",
+      "domainId": "hot_work",
+      "scenarioFamily": "family-hot_work",
+      "hazardFamily": "hazard-hot_work",
+      "plainLanguageObservation": "Observation for hot_work scenario 52",
+      "equipmentOrEnvironment": "equipment-hot_work",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "welder",
+        "hot",
+        "work",
+        "watch",
+        "cutting",
+        "grinding",
+        "torch",
+        "spark"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-053",
+      "domainId": "hot_work",
+      "scenarioFamily": "family-hot_work",
+      "hazardFamily": "hazard-hot_work",
+      "plainLanguageObservation": "Observation for hot_work scenario 53",
+      "equipmentOrEnvironment": "equipment-hot_work",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "welder",
+        "hot",
+        "work",
+        "watch",
+        "cutting",
+        "grinding",
+        "torch",
+        "spark"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-054",
+      "domainId": "hot_work",
+      "scenarioFamily": "family-hot_work",
+      "hazardFamily": "hazard-hot_work",
+      "plainLanguageObservation": "Observation for hot_work scenario 54",
+      "equipmentOrEnvironment": "equipment-hot_work",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "welder",
+        "hot",
+        "work",
+        "watch",
+        "cutting",
+        "grinding",
+        "torch",
+        "spark"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-055",
+      "domainId": "hot_work",
+      "scenarioFamily": "family-hot_work",
+      "hazardFamily": "hazard-hot_work",
+      "plainLanguageObservation": "Observation for hot_work scenario 55",
+      "equipmentOrEnvironment": "equipment-hot_work",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "fire",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "welder",
+        "hot",
+        "work",
+        "watch",
+        "cutting",
+        "grinding",
+        "torch",
+        "spark"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-056",
+      "domainId": "walking_working_surfaces",
+      "scenarioFamily": "family-walking_working_surfaces",
+      "hazardFamily": "hazard-walking_working_surfaces",
+      "plainLanguageObservation": "Observation for walking_working_surfaces scenario 56",
+      "equipmentOrEnvironment": "equipment-walking_working_surfaces",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "slips_trips_falls",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "floor",
+        "hole",
+        "walkway",
+        "opening",
+        "slip",
+        "trip",
+        "fall"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-057",
+      "domainId": "walking_working_surfaces",
+      "scenarioFamily": "family-walking_working_surfaces",
+      "hazardFamily": "hazard-walking_working_surfaces",
+      "plainLanguageObservation": "Observation for walking_working_surfaces scenario 57",
+      "equipmentOrEnvironment": "equipment-walking_working_surfaces",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "slips_trips_falls",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "floor",
+        "hole",
+        "walkway",
+        "opening",
+        "slip",
+        "trip",
+        "fall"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-058",
+      "domainId": "walking_working_surfaces",
+      "scenarioFamily": "family-walking_working_surfaces",
+      "hazardFamily": "hazard-walking_working_surfaces",
+      "plainLanguageObservation": "Observation for walking_working_surfaces scenario 58",
+      "equipmentOrEnvironment": "equipment-walking_working_surfaces",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "slips_trips_falls",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "floor",
+        "hole",
+        "walkway",
+        "opening",
+        "slip",
+        "trip",
+        "fall"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    },
+    {
+      "scenarioId": "scen-059",
+      "domainId": "walking_working_surfaces",
+      "scenarioFamily": "family-walking_working_surfaces",
+      "hazardFamily": "hazard-walking_working_surfaces",
+      "plainLanguageObservation": "Observation for walking_working_surfaces scenario 59",
+      "equipmentOrEnvironment": "equipment-walking_working_surfaces",
+      "taskContext": "operation",
+      "energyOrHazardSource": "source-i",
+      "mechanismOfHarm": "slips_trips_falls",
+      "exposurePattern": "pattern-i",
+      "likelyControlsMissing": [
+        "control-i"
+      ],
+      "evidenceSignals": [
+        "floor",
+        "hole",
+        "walkway",
+        "opening",
+        "slip",
+        "trip",
+        "fall"
+      ],
+      "evidenceGaps": [
+        "gap-i"
+      ],
+      "supervisorQuestions": [
+        "question-i?"
+      ],
+      "immediateActions": [
+        "action-i"
+      ],
+      "durableControls": [
+        "control-i"
+      ],
+      "knownFalsePositiveRisks": [
+        "risk-i"
+      ],
+      "advisoryBoundaryNote": "SafeScope advisory output"
+    }
+  ]
+}

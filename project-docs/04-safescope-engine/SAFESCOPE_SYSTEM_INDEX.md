@@ -24,3 +24,5 @@
 | Knowledge Retrieval Matching | Retrieval from approved registry | backend/src/safescope-v2/approved-knowledge-retrieval-output-v1/ | N/A | backend/scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts | Approved knowledge retrieval matching v1 | Active | Governance-compliant pipeline |
 
 | Approved Knowledge Seed Registry | Approved knowledge seed data | safescope-data/approved-knowledge/registry/ | N/A | N/A | Approved knowledge registry | Active | Foundation |
+
+| Scenario Expansion Pack | Domain-specific scenario logic | safescope-data/scenario-expansion/ | N/A | backend/scripts/validate-safescope-scenario-expansion-pack-v1.ts | Scenario expansion pack v1 | Active | Expanded domain reasoning |

@@ -104,3 +104,5 @@
 - Approved knowledge retrieval matching v1 added.
 
 - Approved knowledge population and matching v1 added.
+
+- Scenario expansion pack v1 added.

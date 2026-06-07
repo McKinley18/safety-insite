@@ -47,6 +47,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-retrieval-output-v1.ts'],
   },
   {
+    label: 'Scenario expansion pack v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-scenario-expansion-pack-v1.ts'],
+  },
+  {
     label: 'Field output composer v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-field-output-composer-v1.ts'],

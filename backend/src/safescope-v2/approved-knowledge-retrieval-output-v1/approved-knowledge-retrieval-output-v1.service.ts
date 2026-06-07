@@ -2,11 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { RetrievalOutput } from './approved-knowledge-retrieval-output-v1.types';
 import { HazardTaxonomyCoverageService } from '../hazard-taxonomy-coverage/hazard-taxonomy-coverage.service';
 import { ApprovedKnowledgeRegistrySearchService } from '../approved-knowledge-registry/approved-knowledge-registry-search.service';
+import { ScenarioExpansionService } from '../scenario-expansion/scenario-expansion.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
   private taxonomyService = new HazardTaxonomyCoverageService();
   private searchService = new ApprovedKnowledgeRegistrySearchService();
+  private scenarioService = new ScenarioExpansionService();
 
   async retrieve(
     observationText: string,
@@ -19,8 +21,11 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       text: observationText
     });
     
-    // For draft candidates, we'll simulate searching them in a dedicated draft search service.
-    // Given the constraints, let's keep it simple for now and just add a warning if taxonomy matches but approved doesn't.
+    const scenarioMatches = this.scenarioService.search({
+        domainId: taxonomyRoute.domainId,
+        text: observationText
+    });
+    
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -30,6 +35,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       observationSummary: observationText,
       taxonomyRoute: taxonomyRoute,
       approvedKnowledgeMatches: approvedMatches,
+      // scenarioMatches are included as supplement
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
       confidence: taxonomyRoute.confidence,

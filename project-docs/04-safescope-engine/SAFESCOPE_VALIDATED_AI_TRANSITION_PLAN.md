@@ -539,3 +539,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - Approved knowledge retrieval matching v1 added.
 
 - Approved knowledge registry now populated with initial seed records and wired into retrieval matching.
+
+- Scenario expansion pack v1 added, improving domain-specific hazard reasoning.
