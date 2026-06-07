@@ -6,6 +6,7 @@ import { ScenarioExpansionService } from '../scenario-expansion/scenario-expansi
 import { ScenarioEvaluationService } from '../scenario-evaluation/scenario-evaluation.service';
 import { FieldEvidenceWeightingService } from '../field-evidence-weighting/field-evidence-weighting.service';
 import { MultiHazardDecompositionService } from '../multi-hazard-decomposition/multi-hazard-decomposition.service';
+import { ObservationNarrativeSynthesisService } from '../observation-narrative-synthesis/observation-narrative-synthesis.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -15,6 +16,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private evaluationService = new ScenarioEvaluationService();
   private evidenceWeightingService = new FieldEvidenceWeightingService();
   private decompositionService = new MultiHazardDecompositionService();
+  private narrativeService = new ObservationNarrativeSynthesisService();
 
   async retrieve(
     observationText: string,
@@ -44,6 +46,17 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
 
     const multiHazardDecomposition = this.decompositionService.decompose(observationText, context);
 
+    const observationNarrative = await this.narrativeService.synthesize({
+        observationText,
+        taxonomyRoute,
+        approvedKnowledgeMatches: approvedMatches,
+        scenarioMatches: scenarioMatches,
+        evaluatedScenarios: evaluation.evaluatedScenarios,
+        evidenceWeighting: evidenceWeighting,
+        multiHazardAnalysis: multiHazardDecomposition,
+        context
+    });
+
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -58,6 +71,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       topScenario: evaluation.topScenario,
       evidenceWeighting: evidenceWeighting,
       multiHazardDecomposition: multiHazardDecomposition,
+      observationNarrative: observationNarrative,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
       confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)),

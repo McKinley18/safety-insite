@@ -67,6 +67,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-multi-hazard-decomposition-v1.ts'],
   },
   {
+    label: 'Observation narrative synthesis v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-observation-narrative-synthesis-v1.ts'],
+  },
+  {
     label: 'Approved knowledge retrieval matching v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts'],

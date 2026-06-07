@@ -1352,3 +1352,10 @@ Check git status:
 - Automatically recognizes when a single field observation contains multiple separate hazards.
 - Decomposes complex descriptions into individual hazard domain fragments using deterministic text analysis.
 - Fully integrated into retrieval and field output composer pipelines, providing per-hazard analysis and corrective themes.
+
+## Observation Narrative Synthesis
+- SafeScope Observation Narrative Synthesis v1 added.
+- Synthesizes complex detector outputs into a cohesive, safety-professional-style narrative.
+- Provides plain-language explanations of primary and secondary hazards, evidence basis, and uncertainties.
+- Automatically adjusts narrative tone based on evidence confidence (strong, moderate, weak, insufficient, conflicting).
+- Fully integrated into field output composer for human-readable advisory summaries.

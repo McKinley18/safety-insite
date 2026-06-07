@@ -32,3 +32,5 @@
 | Field Evidence Weighting | Intent-aware evidence analysis | backend/src/safescope-v2/field-evidence-weighting/ | N/A | backend/scripts/validate-safescope-field-evidence-weighting-v1.ts | Field evidence weighting v1 | Active | Defensive reasoning layer |
 
 | Multi-Hazard Decomposition | Complex observation analyzer | backend/src/safescope-v2/multi-hazard-decomposition/ | N/A | backend/scripts/validate-safescope-multi-hazard-decomposition-v1.ts | Multi-hazard observation decomposition v1 | Active | Phrase-splitting logic |
+
+| Observation Narrative Synthesis | Professional advisory generator | backend/src/safescope-v2/observation-narrative-synthesis/ | N/A | backend/scripts/validate-safescope-observation-narrative-synthesis-v1.ts | Observation narrative synthesis v1 | Active | Synthesis logic |

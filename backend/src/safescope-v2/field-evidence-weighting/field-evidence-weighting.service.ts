@@ -6,18 +6,16 @@ export class FieldEvidenceWeightingService {
 
   private contradictionSets = [
     { name: 'energy state', terms: ['de-energized', 'energized', 'live'] },
-    { name: 'lockout status', terms: ['locked out', 'not locked out'] },
-    { name: 'guard status', terms: ['guarded', 'unguarded', 'guard removed', 'guard missing'] },
+    { name: 'lockout status', terms: ['not locked out', 'locked out'] }, // Longer terms first
+    { name: 'guard status', terms: ['guard removed', 'guard missing', 'unguarded', 'guarded'] },
     { name: 'exposure status', terms: ['no exposure', 'employee exposed', 'within reach', 'employee nearby', 'employee access'] },
     { name: 'spill status', terms: ['cleaned up', 'contained', 'spill remains', 'leaking', 'active spill'] },
-    { name: 'inspection status', terms: ['inspected', 'current', 'expired', 'missing tag', 'illegible tag'] },
-    { name: 'label status', terms: ['labeled', 'unlabeled', 'no label', 'sds missing'] },
-    { name: 'barricade status', terms: ['barricaded', 'exclusion zone established', 'no barricade', 'no exclusion zone'] }
+    { name: 'inspection status', terms: ['missing tag', 'illegible tag', 'expired', 'inspected', 'current'] },
+    { name: 'label status', terms: ['unlabeled', 'no label', 'sds missing', 'labeled'] },
+    { name: 'barricade status', terms: ['no barricade', 'no exclusion zone', 'barricaded', 'exclusion zone established'] }
   ];
 
   private normalize(text: string): string {
-    // Replace punctuation with spaces but keep hyphens for now? 
-    // Actually, simpler to just treat everything as space-separated tokens.
     return ` ${text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\_`~()]/g, " ").replace(/-/g, " ")} `;
   }
   
@@ -34,10 +32,23 @@ export class FieldEvidenceWeightingService {
     let supportingSignals: string[] = [];
     
     this.contradictionSets.forEach(set => {
-      const found = set.terms.filter(term => this.hasTerm(lowerText, term));
+      const found: string[] = [];
+      const remainingText = lowerText;
+      
+      // Order terms by length descending to match longest possible first
+      const sortedTerms = [...set.terms].sort((a, b) => b.length - a.length);
+      
+      let tempText = remainingText;
+      sortedTerms.forEach(term => {
+          if (this.hasTerm(tempText, term)) {
+              found.push(term);
+              // Remove the found term to avoid matching shorter sub-terms
+              const normalizedTerm = term.toLowerCase().replace(/-/g, " ");
+              tempText = tempText.replace(new RegExp(` ${normalizedTerm} `, 'g'), " [FOUND] ");
+          }
+      });
+
       if (found.length > 1) {
-        // Double check for substring issues like "guarded" in "unguarded"
-        // The hasTerm uses spaces so it should be safe.
         detectedContradictions.push(`Contradiction in ${set.name}: ${found.join(' vs ')}`);
       }
       supportingSignals.push(...found);
@@ -63,7 +74,7 @@ export class FieldEvidenceWeightingService {
         evidenceGrade = 'conflicting';
     } else if (finalEvidenceConfidence >= 8) {
         evidenceGrade = 'strong';
-    } else if (finalEvidenceConfidence >= 4) { // Lowered threshold for Phase 1 moderate
+    } else if (finalEvidenceConfidence >= 4) {
         evidenceGrade = 'moderate';
     } else if (finalEvidenceConfidence > 0) {
         evidenceGrade = 'weak';

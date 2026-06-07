@@ -1,5 +1,6 @@
 import { EvidenceWeightingResult } from '../field-evidence-weighting/field-evidence-weighting.types';
 import { MultiHazardDecompositionResult } from '../multi-hazard-decomposition/multi-hazard-decomposition.types';
+import { ObservationNarrativeSynthesisResult } from '../observation-narrative-synthesis/observation-narrative-synthesis.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -11,6 +12,7 @@ export interface RetrievalOutput {
   topScenario?: any;
   evidenceWeighting: EvidenceWeightingResult;
   multiHazardDecomposition: MultiHazardDecompositionResult;
+  observationNarrative: ObservationNarrativeSynthesisResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;

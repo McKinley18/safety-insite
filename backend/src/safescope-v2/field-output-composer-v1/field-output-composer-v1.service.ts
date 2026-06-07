@@ -13,31 +13,22 @@ export class FieldOutputComposerV1Service {
     const retrieval = await this.retrievalService.retrieve(observationText, context);
     const weighting = retrieval.evidenceWeighting;
     const decomposition = retrieval.multiHazardDecomposition;
+    const narrative = retrieval.observationNarrative;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
     const isMultiHazard = decomposition.isMultiHazard;
 
-    let assessment = retrieval.topScenario 
-        ? `Scenario identified: ${retrieval.topScenario.title}`
-        : 'Observation indicates potential hazard. Review recommended.';
+    // Use narrative summary for primary assessment if available and clean
+    let assessment = narrative.narrativeSummary;
     
-    // Priority: 1. Conflicting, 2. Multi-Hazard, 3. Insufficient, 4. Scenario
-    if (isConflicting) {
-        assessment = `Evidence conflict detected: ${weighting.detectedContradictions.join('; ')}. Qualified review required before assessment.`;
-    } else if (isMultiHazard) {
-        assessment = `Multiple hazards detected (${decomposition.hazardCount}): ${decomposition.hazards.map(h => h.domainId).join(', ')}. Initial analysis provided for each.`;
-    } else if (isInsufficient) {
-        assessment = `Limited evidence provided. ${weighting.missingCriticalFacts.join(' ')} Qualified review required.`;
-    }
-
     return {
       version: 'v1',
       observationSummary: observationText,
       primaryDomain: retrieval.taxonomyRoute?.domainId || 'unknown',
       confidence: retrieval.confidence,
       fieldAssessment: assessment,
-      whyItMatters: retrieval.topScenario?.reasoningSummary || 'Hazard awareness is necessary for safety.',
+      whyItMatters: narrative.primaryConcern + ' ' + (narrative.secondaryConcerns.join(' ')),
       likelyMechanisms: [...(retrieval.taxonomyRoute?.matchedSignals || []), 
                          ...(retrieval.topScenario?.matchedSignals || [])],
       immediateActions: isConflicting
@@ -57,7 +48,7 @@ export class FieldOutputComposerV1Service {
         : (retrieval.topScenario?.recommendedReviewerQuestions || ['Has this been evaluated by a competent person?']),
       approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches,
       draftKnowledgeWarnings: retrieval.draftKnowledgeWarnings,
-      advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],
+      advisoryBoundaries: [narrative.advisoryBoundary],
       reviewerRequired: true,
       cannotDeclareViolation: true,
       cannotCreateCitation: true,

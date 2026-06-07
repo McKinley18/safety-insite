@@ -52,8 +52,9 @@ async function validate() {
 
       // Check integration with composer
       const composition = await composer.compose(tc.text);
-      if (tc.multi && !composition.fieldAssessment.includes('Multiple hazards detected')) {
-          console.error(`[FAIL] Expected composer to mention multiple hazards for "${tc.name}"`);
+      // Updated to match narrative synthesis format
+      if (tc.multi && !composition.fieldAssessment.includes('Multiple potential hazards')) {
+          console.error(`[FAIL] Expected composer to mention multiple hazards for "${tc.name}". Got: ${composition.fieldAssessment}`);
           process.exit(1);
       }
   }

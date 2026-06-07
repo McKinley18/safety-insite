@@ -547,3 +547,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - Field evidence weighting and contradiction handling implemented, improving defensive reasoning when field data is inconsistent.
 
 - Multi-hazard observation decomposition implemented, allowing SafeScope to analyze complex field observations with multiple concurrent hazards.
+
+- Observation narrative synthesis implemented, moving SafeScope output from raw data to professional advisory summaries.
