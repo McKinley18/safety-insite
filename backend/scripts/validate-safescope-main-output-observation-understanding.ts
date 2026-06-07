@@ -80,39 +80,41 @@ class StubSupervisorValidationService {
 
 class StubOrchestrator {
     async evaluate() {
+        const observationUnderstanding = {
+            primaryEntityLabel: 'fire extinguisher',
+            primaryCondition: 'not_legible'
+        };
+        const semanticUnderstanding = {
+            engine: 'test',
+            mode: 'test',
+            primaryEntityKind: 'emergency_equipment',
+            primaryEntityLabel: 'fire extinguisher',
+            primaryCondition: 'not_legible',
+            likelyDomainHints: ['fire_protection'],
+            likelyMechanismHints: ['fire_extinguisher_access_failure'],
+            negativeDomainHints: ['hazard_communication'],
+            evidenceGaps: [],
+            confidence: 0.8,
+            reasonCodes: [],
+            boundary: { doesNotDeclareViolation: true }
+        };
+        const semanticRouting = {
+            engine: 'safescope_semantic_routing_guard_v1',
+            routingDisposition: 'test',
+            boundary: { 
+                doesNotOverrideFinalClassification: true,
+                doesNotOverrideStandards: true
+            },
+            negativeDomainHints: ['hazard_communication'],
+            conflictsWithPrimaryDomain: false
+        };
         return {
-            observationContext: {
-                normalizedText: 'test',
-                detectedEntitySignals: ['fire extinguisher'],
-                detectedConditionSignals: ['not_legible'],
-                detectedJurisdictionSignals: [],
-                primaryEntityLabel: 'fire extinguisher',
-                primaryCondition: 'not_legible',
-                negativeDomainHints: ['hazard_communication'],
-                likelyMechanismHints: ['fire_extinguisher_access_failure'],
-                boundary: { doesNotDeclareViolation: true }
-            },
-            retrieval: {
-                taxonomyRoute: { domainId: 'fire_protection' },
-                semanticSynonymExpansion: { semanticConfidenceScore: 0, matchedCanonicalTerms: [] },
-                visualEvidenceReasoning: { visualSupportLevel: 'not_evaluated' },
-                realImageAnalysis: { visualSignals: [], visualConfidenceImpact: 'neutral' }
-            },
-            composer: {
-                observationUnderstanding: {
-                    primaryEntityLabel: 'fire extinguisher',
-                    primaryCondition: 'not_legible'
-                },
-                semanticRouting: {
-                    engine: 'safescope_semantic_routing_guard_v1',
-                    routingDisposition: 'test',
-                    boundary: { 
-                        doesNotOverrideFinalClassification: true,
-                        doesNotOverrideStandards: true
-                    },
-                    negativeDomainHints: ['hazard_communication'],
-                    conflictsWithPrimaryDomain: false
-                }
+            observationUnderstanding,
+            semanticUnderstanding,
+            semanticRouting,
+            fieldOutput: {
+                observationUnderstanding,
+                semanticRouting
             },
             confidenceIntelligence: {
                 overallConfidence: 0.8
@@ -126,6 +128,10 @@ class StubVisualService {
 }
 
 class StubImageService {
+    evaluate() { return {}; }
+}
+
+class StubOfflineService {
     evaluate() { return {}; }
 }
 
@@ -143,6 +149,7 @@ async function main() {
     new StubOrchestrator() as any,
     new StubVisualService() as any,
     new StubImageService() as any,
+    new StubOfflineService() as any,
   );
 
   const result = await service.classify(
@@ -162,12 +169,12 @@ async function main() {
 
   assert(
     result.semanticUnderstanding.primaryEntityLabel === 'fire extinguisher',
-    `Expected fire extinguisher entity label, got ${result.semanticUnderstanding.primaryEntityLabel}.`,
+    'Expected fire extinguisher entity label, got ' + result.semanticUnderstanding.primaryEntityLabel,
   );
 
   assert(
     result.semanticUnderstanding.primaryCondition === 'not_legible',
-    `Expected not_legible condition, got ${result.semanticUnderstanding.primaryCondition}.`,
+    'Expected not_legible condition, got ' + result.semanticUnderstanding.primaryCondition,
   );
 
   assert(

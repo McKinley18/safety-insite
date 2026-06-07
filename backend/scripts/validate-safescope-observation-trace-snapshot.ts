@@ -80,39 +80,41 @@ class StubSupervisorValidationService {
 
 class StubOrchestrator {
     async evaluate() {
+        const observationUnderstanding = {
+            primaryEntityLabel: 'fire extinguisher',
+            primaryCondition: 'not_legible'
+        };
+        const semanticUnderstanding = {
+            engine: 'test',
+            mode: 'test',
+            primaryEntityKind: 'emergency_equipment',
+            primaryEntityLabel: 'fire extinguisher',
+            primaryCondition: 'not_legible',
+            likelyDomainHints: ['fire_protection'],
+            likelyMechanismHints: ['fire_extinguisher_access_failure'],
+            negativeDomainHints: ['hazard_communication'],
+            evidenceGaps: [],
+            confidence: 0.8,
+            reasonCodes: [],
+            boundary: { doesNotDeclareViolation: true }
+        };
+        const semanticRouting = {
+            engine: 'safescope_semantic_routing_guard_v1',
+            routingDisposition: 'test',
+            boundary: { 
+                doesNotOverrideFinalClassification: true,
+                doesNotOverrideStandards: true
+            },
+            negativeDomainHints: ['hazard_communication'],
+            conflictsWithPrimaryDomain: false
+        };
         return {
-            observationContext: {
-                normalizedText: 'test',
-                detectedEntitySignals: ['fire extinguisher'],
-                detectedConditionSignals: ['not_legible'],
-                detectedJurisdictionSignals: [],
-                primaryEntityLabel: 'fire extinguisher',
-                primaryCondition: 'not_legible',
-                negativeDomainHints: ['hazard_communication'],
-                likelyMechanismHints: ['fire_extinguisher_access_failure'],
-                boundary: { doesNotDeclareViolation: true }
-            },
-            retrieval: {
-                taxonomyRoute: { domainId: 'fire_protection' },
-                semanticSynonymExpansion: { semanticConfidenceScore: 0, matchedCanonicalTerms: [] },
-                visualEvidenceReasoning: { visualSupportLevel: 'not_evaluated' },
-                realImageAnalysis: { visualSignals: [], visualConfidenceImpact: 'neutral' }
-            },
-            composer: {
-                observationUnderstanding: {
-                    primaryEntityLabel: 'fire extinguisher',
-                    primaryCondition: 'not_legible'
-                },
-                semanticRouting: {
-                    engine: 'safescope_semantic_routing_guard_v1',
-                    routingDisposition: 'test',
-                    boundary: { 
-                        doesNotOverrideFinalClassification: true,
-                        doesNotOverrideStandards: true
-                    },
-                    negativeDomainHints: ['hazard_communication'],
-                    conflictsWithPrimaryDomain: false
-                }
+            observationUnderstanding,
+            semanticUnderstanding,
+            semanticRouting,
+            fieldOutput: {
+                observationUnderstanding,
+                semanticRouting
             },
             confidenceIntelligence: {
                 overallConfidence: 0.8
@@ -129,6 +131,10 @@ class StubImageService {
     evaluate() { return {}; }
 }
 
+class StubOfflineService {
+    evaluate() { return {}; }
+}
+
 const service = new SafescopeV2Service(
   new StubActionEngine() as any,
   new StubContextExpansion() as any,
@@ -142,6 +148,7 @@ const service = new SafescopeV2Service(
   new StubOrchestrator() as any,
   new StubVisualService() as any,
   new StubImageService() as any,
+  new StubOfflineService() as any,
 );
 
 const cases = [
@@ -205,24 +212,24 @@ async function main() {
       [],
     );
 
-    assert(Boolean(result.semanticUnderstanding), `${testCase.id}: missing semanticUnderstanding.`);
-    assert(Boolean(result.semanticRouting), `${testCase.id}: missing semanticRouting.`);
-    assert(Boolean(result.fieldOutput?.observationUnderstanding), `${testCase.id}: missing fieldOutput observation understanding.`);
-    assert(Boolean(result.fieldOutput?.semanticRouting), `${testCase.id}: missing fieldOutput semantic routing.`);
+    assert(Boolean(result.semanticUnderstanding), testCase.id + ': missing semanticUnderstanding.');
+    assert(Boolean(result.semanticRouting), testCase.id + ': missing semanticRouting.');
+    assert(Boolean(result.fieldOutput?.observationUnderstanding), testCase.id + ': missing fieldOutput observation understanding.');
+    assert(Boolean(result.fieldOutput?.semanticRouting), testCase.id + ': missing fieldOutput semantic routing.');
 
     assert(
       result.semanticUnderstanding.boundary?.doesNotDeclareViolation === true,
-      `${testCase.id}: semantic understanding must not declare violations.`,
+      testCase.id + ': semantic understanding must not declare violations.',
     );
 
     assert(
       result.semanticRouting.boundary?.doesNotOverrideFinalClassification === true,
-      `${testCase.id}: semantic routing must not override final classification.`,
+      testCase.id + ': semantic routing must not override final classification.',
     );
 
     assert(
       result.semanticRouting.boundary?.doesNotOverrideStandards === true,
-      `${testCase.id}: semantic routing must not override standards.`,
+      testCase.id + ': semantic routing must not override standards.',
     );
 
     traces.push({
@@ -241,9 +248,8 @@ async function main() {
     });
   }
 
-  console.log(JSON.stringify(traces, null, 2));
   console.log('✅ SafeScope observation trace snapshot validation passed.');
-  console.log(`Trace cases: ${traces.length}`);
+  console.log('Trace cases: ' + traces.length);
 }
 
 main().catch((error) => {

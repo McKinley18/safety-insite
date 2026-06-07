@@ -8,6 +8,7 @@ import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { VisualEvidenceReasoningInput } from './visual-evidence-reasoning/visual-evidence-reasoning.types';
 import { RealImageAnalysisInput } from './real-image-analysis/real-image-analysis.types';
+import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.types';
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
@@ -113,6 +114,36 @@ export class SafescopeV2Controller {
           recommendedPhotoFollowups: ["Retry analysis or manually verify photos."],
           requiresHumanVerification: true,
           advisoryBoundary: "SafeScope real image analysis is advisory only."
+      };
+    }
+  }
+
+  @UseGuards(JwtGuard)
+  @Roles("ORG_OWNER", "SAFETY_DIRECTOR", "SUPERVISOR", "AUDITOR", "WORKER")
+  @Post("offline/evaluate")
+  async evaluateOffline(@Body() input: OfflineReasoningInput) {
+    try {
+      return await this.service.evaluateOffline(input);
+    } catch (error) {
+      console.error("SafeScope v2 offline evaluation failed:", error);
+      return {
+          version: "1.0.0",
+          mode: "offline_limited_advisory",
+          offlineAvailable: true,
+          confidenceCeiling: 0.1,
+          advisorySummary: "Offline evaluation service error. Observation captured but not assessed.",
+          likelyHazardDomains: [],
+          evidenceGaps: ["Service failure during offline reasoning."],
+          requiredSyncActions: ["Sync once online"],
+          supervisorQuestions: [],
+          offlineRestrictions: ["Service unavailable"],
+          offlineTraceId: "err-" + Date.now(),
+          requiresHumanReview: true,
+          requiresOnlineVerification: true,
+          doesNotDeclareViolation: true,
+          doesNotCreateCitation: true,
+          cannotPromoteKnowledge: true,
+          advisoryBoundary: "Service error fallback."
       };
     }
   }

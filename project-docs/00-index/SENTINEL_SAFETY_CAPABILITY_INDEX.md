@@ -1484,3 +1484,10 @@ Check git status:
 - Ensures that OSHA and MSHA regulatory records are reviewed by qualified personnel.
 - Protects the integrity of approved knowledge by blocking unauthorized promotions and prohibited legal language.
 - Fully integrated into the reviewer console, source ingestion, and human review feedback loops.
+
+## Offline Reasoning + Mobile Resilience
+- SafeScope Offline Reasoning + Mobile Resilience v1 added.
+- Implements a governed fallback layer for field users in low-connectivity areas (mines, remote sites).
+- Provides limited, deterministic, advisory-only guidance based on local knowledge summaries.
+- Automatically captures offline assessments as reasoning snapshots for later online sync and verification.
+- Enforces strict offline boundaries: no violation declarations, no citations, and mandatory online review requirements.

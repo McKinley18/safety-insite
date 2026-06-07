@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   runSafeScopeV2Classify,
+  runSafeScopeV2Offline,
   sendSafeScopeFeedback,
   submitSupervisorValidation,
 } from "@/lib/safescope";
@@ -110,6 +111,7 @@ export default function InspectionPage() {
   }, []);
   const [safeScopeStatus, setSafeScopeStatus] = useState("");
   const [safeScopeResult, setSafeScopeResult] = useState<any>(null);
+  const [isOfflineMode, setIsOfflineMode] = useState<boolean>(false);
   const [selectedStandards, setSelectedStandards] = useState<any[]>([]);
   const [feedbackNotes, setFeedbackNotes] = useState("");
   const [severity, setSeverity] = useState<number | null>(null);
@@ -361,6 +363,17 @@ export default function InspectionPage() {
       const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
 
       setSafeScopeStatus("Running SafeScope match...");
+      if (isOfflineMode) {
+        const result = await runSafeScopeV2Offline({
+          observationText: description,
+          localInspectionId: "local-ins-" + Date.now(),
+          localObservationId: "local-obs-" + Date.now(),
+          offlineKnowledgePackVersion: "v1.0.0-seed"
+          
+        });
+        setSafeScopeResult(result);
+        return;
+      }
       const result = await runSafeScopeV2Classify({
         text: [
           `Hazard category: ${hazardCategory || "Unspecified"}`,

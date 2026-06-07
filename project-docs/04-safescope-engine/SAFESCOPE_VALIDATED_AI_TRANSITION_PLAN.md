@@ -47,3 +47,5 @@ This document tracks the systematic transition of SafeScope from a collection of
 - Regulatory deduplication and citation normalization implemented, establishing the metadata foundation for scaling knowledge without redundant conflicts.
 
 - Role-based approval gates implemented, ensuring that only qualified experts can promote safety knowledge within their domains.
+
+- Offline reasoning and mobile resilience implemented, enabling field capture and advisory support in disconnected site environments.

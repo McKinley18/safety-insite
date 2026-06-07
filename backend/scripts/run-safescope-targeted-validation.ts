@@ -27,7 +27,8 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-production-persistence-audit-storage-v1.ts',
         'validate-safescope-full-regulatory-knowledge-expansion-v1.ts',
         'validate-safescope-regulatory-dedup-citation-normalization-v1.ts',
-        'validate-safescope-role-based-approval-gates-v1.ts'
+        'validate-safescope-role-based-approval-gates-v1.ts',
+        'validate-safescope-offline-reasoning-mobile-resilience-v1.ts'
     ],
     output: [
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
@@ -53,6 +54,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-full-regulatory-knowledge-expansion-v1.ts',
         'validate-safescope-regulatory-dedup-citation-normalization-v1.ts',
         'validate-safescope-role-based-approval-gates-v1.ts',
+        'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-field-output-contract.ts'
     ],
     orchestrator: [
@@ -79,6 +81,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-full-regulatory-knowledge-expansion-v1.ts',
         'validate-safescope-regulatory-dedup-citation-normalization-v1.ts',
         'validate-safescope-role-based-approval-gates-v1.ts',
+        'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-main-output-observation-understanding.ts',
         'validate-safescope-observation-trace-snapshot.ts'
     ],
@@ -106,6 +109,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-full-regulatory-knowledge-expansion-v1.ts',
         'validate-safescope-regulatory-dedup-citation-normalization-v1.ts',
         'validate-safescope-role-based-approval-gates-v1.ts',
+        'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-output-policy.ts',
         'validate-safescope-confidence-governance.ts'
     ],
@@ -138,6 +142,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-full-regulatory-knowledge-expansion-v1.ts',
         'validate-safescope-regulatory-dedup-citation-normalization-v1.ts',
         'validate-safescope-role-based-approval-gates-v1.ts',
+        'validate-safescope-offline-reasoning-mobile-resilience-v1.ts',
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-field-output-composer-v1.ts',
         'validate-safescope-orchestrator-field-output-wiring.ts',

@@ -1,4 +1,5 @@
 import { apiFetch } from "./apiFetch";
+import { authHeaders } from "./auth";
 import { searchOfflineKnowledgeBrain } from "./offlineKnowledgeSearch";
 import { downloadSafeScopeBrainBundle } from "./safescopeBrainBundle";
 import { getStoredPlanCode, hasPlanEntitlement } from "./planEntitlements";
@@ -354,6 +355,46 @@ export async function getSupervisorValidationHistory(
 
   if (!response.ok) {
     throw new Error("Supervisor validation history could not be loaded.");
+  }
+
+  return response.json();
+}
+
+export async function runSafeScopeV2Offline(input: {
+  observationText: string;
+  localInspectionId: string;
+  localObservationId: string;
+  offlineKnowledgePackVersion?: string;
+  workspaceId?: string;
+}) {
+  const requestUrl = API_BASE_URL + '/safescope-v2/offline/evaluate';
+  const response = await apiFetch(requestUrl, {
+    method: 'POST',
+    headers: authHeaders(),
+    body: JSON.stringify(input),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error('Offline reasoning failed:', errorText);
+    return {
+        mode: 'offline_limited_advisory',
+        offlineAvailable: true,
+        confidenceCeiling: 0.1,
+        advisorySummary: 'Network error during offline assessment. Observation cached for sync.',
+        likelyHazardDomains: [],
+        evidenceGaps: ['Connectivity lost during assessment.'],
+        requiredSyncActions: ['Sync once online'],
+        supervisorQuestions: [],
+        offlineRestrictions: ['Real-time assessment unavailable'],
+        offlineTraceId: 'err-local-' + Date.now(),
+        requiresHumanReview: true,
+        requiresOnlineVerification: true,
+        doesNotDeclareViolation: true,
+        doesNotCreateCitation: true,
+        cannotPromoteKnowledge: true,
+        advisoryBoundary: 'Offline network fallback.'
+    };
   }
 
   return response.json();
