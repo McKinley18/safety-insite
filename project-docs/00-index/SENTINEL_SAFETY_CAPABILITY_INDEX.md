@@ -1470,3 +1470,10 @@ Check git status:
 - Implements structured record schemas with built-in jurisdiction, authority tier, and freshness metadata.
 - Features automated coverage validation to ensure all required domains have governed source records.
 - Integrated into retrieval paths with duplicate detection and prohibited language guards.
+
+## Regulatory Deduplication + Citation Normalization
+- SafeScope Regulatory Knowledge Deduplication + Citation Normalization v1 added.
+- Implements deterministic normalization for OSHA and MSHA citations (e.g., "§1910.22" -> "1910.22").
+- Distinguishes between critical duplicates, legitimate shared citations across domains, and placeholder records.
+- Provides a governed overlap detection layer that flags conflicting jurisdictions or evidence requirements for qualified human review.
+- Prevents redundant unmanaged warnings in validation by explicitly allowing shared citations for different safety contexts.

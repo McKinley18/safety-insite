@@ -1,8 +1,10 @@
 import { ApprovedKnowledgeRegistrySearchService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-registry-search.service';
 import { ApprovedKnowledgeRecord } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-record.types';
+import { ApprovedKnowledgeCitationNormalizationService } from '../src/safescope-v2/approved-knowledge-registry/approved-knowledge-citation-normalization.service';
 
 async function validate() {
   const searchService = new ApprovedKnowledgeRegistrySearchService();
+  const dedupService = new ApprovedKnowledgeCitationNormalizationService();
   
   const requiredDomains = [
     'machine_guarding',
@@ -49,18 +51,35 @@ async function validate() {
   console.log('[PASS] All records passed integrity and governance checks.');
 
   console.log('--- Verifying Duplicate/Overlap Detection ---');
-  const citations = new Set<string>();
-  const duplicateCitations: string[] = [];
+  const processedRecords: ApprovedKnowledgeRecord[] = [];
+  const blockedDuplicates: string[] = [];
+  const overlapReviews: string[] = [];
+  const allowedShared: string[] = [];
+
   for (const record of allRecords) {
-      if (citations.has(record.authority.citation)) {
-          duplicateCitations.push(record.authority.citation);
+      const dedupResult = dedupService.evaluateOverlap(record, processedRecords);
+      
+      if (dedupResult.status === 'duplicate_blocked') {
+          blockedDuplicates.push(`${record.recordId} (${dedupResult.normalizedCitation})`);
+      } else if (dedupResult.status === 'overlap_review_required') {
+          overlapReviews.push(`${record.recordId} (${dedupResult.normalizedCitation})`);
+      } else if (dedupResult.status === 'shared_citation_allowed') {
+          allowedShared.push(`${record.recordId} (${dedupResult.normalizedCitation})`);
       }
-      citations.add(record.authority.citation);
+      
+      processedRecords.push(record);
   }
-  if (duplicateCitations.length > 0) {
-      console.warn(`[WARN] Duplicate citations found: ${duplicateCitations.join(', ')}`);
-  } else {
-      console.log('[PASS] No duplicate citations found.');
+
+  if (blockedDuplicates.length > 0) {
+      throw new Error(`Critical duplicates found and blocked: ${blockedDuplicates.join(', ')}`);
+  }
+
+  if (overlapReviews.length > 0) {
+      console.warn(`[WARN] Overlaps requiring review: ${overlapReviews.join(', ')}`);
+  }
+
+  if (allowedShared.length > 0) {
+      console.log(`[INFO] Legitimate shared citations allowed: ${allowedShared.join(', ')}`);
   }
 
   console.log('✅ SafeScope full regulatory knowledge expansion validation passed.');

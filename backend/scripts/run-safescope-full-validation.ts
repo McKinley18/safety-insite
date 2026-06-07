@@ -137,6 +137,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-full-regulatory-knowledge-expansion-v1.ts'],
   },
   {
+    label: 'Regulatory knowledge deduplication and citation normalization v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-regulatory-dedup-citation-normalization-v1.ts'],
+  },
+  {
     label: 'Knowledge source ingestion and approved update workflow v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts'],
