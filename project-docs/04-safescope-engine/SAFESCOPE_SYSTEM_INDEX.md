@@ -65,3 +65,4 @@
 | Citation Normalization | Regulatory identifier canonicalizer | backend/src/safescope-v2/approved-knowledge-registry/ | N/A | backend/scripts/validate-safescope-regulatory-dedup-citation-normalization-v1.ts | Normalization v1 | Active | Metadata layer |
 | Role-Based Gates | Reviewer authorization engine | backend/src/safescope-v2/role-based-approval-gates/ | N/A | backend/scripts/validate-safescope-role-based-approval-gates-v1.ts | Gates v1 | Active | Authorization layer |
 | Offline Reasoning | Mobile resilience fallback layer | backend/src/safescope-v2/offline-reasoning-mobile-resilience/ | N/A | backend/scripts/validate-safescope-offline-reasoning-mobile-resilience-v1.ts | Offline v1 | Active | Fallback layer |
+| Scenario Packs | Realistic safety test dataset | safescope-data/field-test-scenarios/ | N/A | backend/scripts/validate-safescope-field-test-scenario-packs-v1.ts | Scenario v1 | Active | Validation layer |

@@ -25,7 +25,7 @@ SafeScope already implements the following core AI safety governance layers:
 | **Photo/Image Reasoning** | Governed contract for real image analysis implemented; neural image recognition remains. | High |
 | **Structured Inspection Memory** | Reasoning about the same hazard over multiple observations (repeat offenders). | Medium |
 | **Exposure Dose Intelligence** | Calculating cumulative risk exposure based on time, frequency, and severity. | Medium |
-| **Adversarial Test Packs** | Systematic "Red Teaming" of the reasoning engine to detect overconfidence or logic gaps. | Medium |
+| **Field Test Scenario Packs** | Implemented v1; 20+ realistic scenarios active for regression testing. | Medium |
 
 ## Remaining Knowledge & Data Gaps
 

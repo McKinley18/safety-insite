@@ -152,6 +152,11 @@ const steps: ValidationStep[] = [
     args: ["ts-node", "scripts/validate-safescope-offline-reasoning-mobile-resilience-v1.ts"],
   },
   {
+    label: "Field test scenario packs v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-field-test-scenario-packs-v1.ts"],
+  },
+  {
     label: 'Knowledge source ingestion and approved update workflow v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts'],

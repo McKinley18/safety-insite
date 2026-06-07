@@ -1491,3 +1491,10 @@ Check git status:
 - Provides limited, deterministic, advisory-only guidance based on local knowledge summaries.
 - Automatically captures offline assessments as reasoning snapshots for later online sync and verification.
 - Enforces strict offline boundaries: no violation declarations, no citations, and mandatory online review requirements.
+
+## Field Test Scenario Packs
+- SafeScope Field Test Scenario Packs v1 added.
+- Expands realistic observation coverage across 20+ safety contexts, including surface mining, heavy machinery, and mobile equipment.
+- Provides a structured data layer for deterministic validation of complex, multi-hazard, and offline scenarios.
+- Verifies that SafeScope maintains advisory boundaries, respects review gates, and flags evidence gaps across diverse operational environments.
+- Features automated regression testing for vague, conflicting, and mixed jurisdiction observations.
