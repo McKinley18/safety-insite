@@ -33,7 +33,7 @@ const steps: ValidationStep[] = [
   {
     label: 'Approved knowledge review API v1',
     command: 'npx',
-    args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-promotion-v1.ts'],
+    args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-review-api-v1.ts'],
   },
 
   {
