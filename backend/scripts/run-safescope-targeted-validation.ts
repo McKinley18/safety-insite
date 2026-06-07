@@ -19,17 +19,20 @@ const validatorGroups: Record<string, string[]> = {
     output: [
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-field-output-composer-v1.ts',
+        'validate-safescope-field-evidence-weighting-v1.ts',
         'validate-safescope-field-output-contract.ts'
     ],
     orchestrator: [
         'validate-safescope-orchestrator-field-output-wiring.ts',
         'validate-safescope-governance-output-snapshot.ts',
+        'validate-safescope-field-evidence-weighting-v1.ts',
         'validate-safescope-main-output-observation-understanding.ts',
         'validate-safescope-observation-trace-snapshot.ts'
     ],
     governance: [
         'validate-safescope-governance-output-snapshot.ts',
         'validate-safescope-governance-pipeline-contract.ts',
+        'validate-safescope-field-evidence-weighting-v1.ts',
         'validate-safescope-approved-knowledge-registry-write-guard.ts',
         'validate-safescope-approved-knowledge-promotion-workflow-governance.ts',
         'validate-safescope-approved-source-knowledge-intake-governance.ts',
@@ -46,6 +49,7 @@ const validatorGroups: Record<string, string[]> = {
     core: [
         'audit-safescope-system-index.ts',
         'validate-safescope-hazard-taxonomy-coverage.ts',
+        'validate-safescope-field-evidence-weighting-v1.ts',
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-field-output-composer-v1.ts',
         'validate-safescope-orchestrator-field-output-wiring.ts',
