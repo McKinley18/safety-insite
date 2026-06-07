@@ -48,3 +48,5 @@
 | Jurisdiction Decision Tree | Regulatory applicability logic | backend/src/safescope-v2/jurisdiction-applicability-decision-tree/ | N/A | backend/scripts/validate-safescope-jurisdiction-applicability-decision-tree-v1.ts | Jurisdiction applicability v1 | Active | Regulatory routing layer |
 
 | Reasoning Trace | Audit-ready explainability engine | backend/src/safescope-v2/audit-ready-reasoning-trace/ | N/A | backend/scripts/validate-safescope-audit-ready-reasoning-trace-v1.ts | Audit reasoning trace v1 | Active | Defensibility layer |
+
+| Source Ingestion | Governed knowledge growth engine | backend/src/safescope-v2/source-ingestion-approved-update-workflow/ | N/A | backend/scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts | Source ingestion v1 | Active | Knowledge pipeline layer |

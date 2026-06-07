@@ -1408,3 +1408,9 @@ Check git status:
 - Details detected hazards, supporting/weakening evidence, jurisdiction logic, confidence modifiers, and corrective action ranking rationale.
 - Includes a dedicated reviewer checklist and clearly identifies human review gates for high-risk or ambiguous observations.
 - Fully integrated into field output for maximum transparency and defensibility.
+
+## Knowledge Source Ingestion + Approved Update Workflow
+- SafeScope Knowledge Source Ingestion + Approved Source Update Workflow v1 added.
+- Provides a controlled knowledge growth pipeline for ingesting official regulations, guidance, and site policies.
+- Implements strict source normalization, duplicate detection, and jurisdictional conflict checking.
+- Establishes a governed human-in-the-loop promotion workflow to ensure no unverified content enters the approved knowledge registry.
