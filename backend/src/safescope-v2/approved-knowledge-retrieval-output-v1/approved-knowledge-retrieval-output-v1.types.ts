@@ -2,6 +2,7 @@ import { EvidenceWeightingResult } from '../field-evidence-weighting/field-evide
 import { MultiHazardDecompositionResult } from '../multi-hazard-decomposition/multi-hazard-decomposition.types';
 import { ObservationNarrativeSynthesisResult } from '../observation-narrative-synthesis/observation-narrative-synthesis.types';
 import { CrossDomainCausalChainResult } from '../cross-domain-causal-chain/cross-domain-causal-chain.types';
+import { CorrectiveActionStrategyResult } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -15,6 +16,7 @@ export interface RetrievalOutput {
   multiHazardDecomposition: MultiHazardDecompositionResult;
   observationNarrative: ObservationNarrativeSynthesisResult;
   crossDomainCausalChain: CrossDomainCausalChainResult;
+  correctiveActionStrategy: CorrectiveActionStrategyResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;

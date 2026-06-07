@@ -36,3 +36,5 @@
 | Observation Narrative Synthesis | Professional advisory generator | backend/src/safescope-v2/observation-narrative-synthesis/ | N/A | backend/scripts/validate-safescope-observation-narrative-synthesis-v1.ts | Observation narrative synthesis v1 | Active | Synthesis logic |
 
 | Causal Chain Reasoning | Interaction logic engine | backend/src/safescope-v2/cross-domain-causal-chain/ | N/A | backend/scripts/validate-safescope-cross-domain-causal-chain-v1.ts | Cross-domain causal chain v1 | Active | Compound risk reasoning |
+
+| Strategy Ranking | Risk-informed control prioritization | backend/src/safescope-v2/corrective-action-strategy-ranking/ | N/A | backend/scripts/validate-safescope-corrective-action-strategy-ranking-v1.ts | Corrective action strategy ranking v1 | Active | Ranking logic |

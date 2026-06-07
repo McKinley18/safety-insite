@@ -15,17 +15,38 @@ export class FieldOutputComposerV1Service {
     const decomposition = retrieval.multiHazardDecomposition;
     const narrative = retrieval.observationNarrative;
     const causalChain = retrieval.crossDomainCausalChain;
+    const strategy = retrieval.correctiveActionStrategy;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
     const isMultiHazard = decomposition.isMultiHazard;
 
-    // Use narrative summary for primary assessment if available and clean
+    // Use narrative summary for primary assessment
     let assessment = narrative.narrativeSummary;
-    
-    // Add causal chain summary if multiple hazards or compound risks exist
     if (causalChain.primaryCausalChain.length > 0) {
         assessment += ' ' + causalChain.primaryCausalChain.join(' ');
+    }
+
+    // Determine actions based on strategy
+    const immediateActions = strategy.immediateControls.length > 0 
+        ? strategy.immediateControls.map(a => a.actionText)
+        : isConflicting || isInsufficient
+        ? ['Clarify observation facts', 'Restrict access if unsafe']
+        : ['Review hazard information', 'Assess area safety'];
+
+    const durableActions = strategy.permanentControls.length > 0
+        ? strategy.permanentControls.map(a => a.actionText)
+        : strategy.interimControls.length > 0
+        ? strategy.interimControls.map(a => a.actionText)
+        : ['Conduct full safety inspection'];
+
+    const supervisorQuestions = [
+        ...strategy.supervisorQuestions.map(q => q.actionText),
+        ...strategy.verificationSteps.map(v => v.actionText)
+    ];
+
+    if (supervisorQuestions.length === 0) {
+        supervisorQuestions.push('Has this been evaluated by a competent person?');
     }
 
     return {
@@ -40,32 +61,16 @@ export class FieldOutputComposerV1Service {
           ...(retrieval.topScenario?.matchedSignals || []),
           ...causalChain.plausibleInjuryMechanisms
       ])],
-      immediateActions: isConflicting
-        ? ['Clarify observation facts', 'Restrict access if unsafe']
-        : isMultiHazard
-        ? ['Analyze each hazard independently', 'Prioritize by risk level', 'Review area safety']
-        : isInsufficient
-        ? ['Clarify observation facts', 'Restrict access if unsafe']
-        : [...new Set([
-            'Review hazard information', 
-            'Assess area safety', 
-            ...(retrieval.topScenario?.recommendedReviewerQuestions || [])
-        ])],
-      durableCorrectiveActions: isConflicting || isInsufficient
-        ? ['Conduct full safety inspection']
-        : [...new Set([...(retrieval.approvedKnowledgeMatches.map(m => m.mapping.evidenceQuestions).flat())])],
+      immediateActions: [...new Set(immediateActions)],
+      durableCorrectiveActions: [...new Set(durableActions)],
       evidenceGaps: [
           ...retrieval.evidenceGaps,
           ...causalChain.missingCausalFacts
       ],
-      supervisorQuestions: [
-          ...weighting.reviewerQuestions,
-          ...causalChain.reviewerQuestions,
-          ...(retrieval.topScenario?.recommendedReviewerQuestions || ['Has this been evaluated by a competent person?'])
-      ],
+      supervisorQuestions: [...new Set(supervisorQuestions)],
       approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches,
       draftKnowledgeWarnings: retrieval.draftKnowledgeWarnings,
-      advisoryBoundaries: [narrative.advisoryBoundary, causalChain.advisoryBoundary],
+      advisoryBoundaries: [narrative.advisoryBoundary, causalChain.advisoryBoundary, strategy.advisoryBoundary],
       reviewerRequired: true,
       cannotDeclareViolation: true,
       cannotCreateCitation: true,

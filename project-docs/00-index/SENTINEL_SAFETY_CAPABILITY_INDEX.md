@@ -1366,3 +1366,10 @@ Check git status:
 - Maps initiating conditions, escalation factors, and exposure pathways into defensive causal chains.
 - Calculates compound risk levels based on hazard interaction severity.
 - Fully integrated into field output for complex advisory reasoning.
+
+## Corrective Action Strategy Ranking
+- SafeScope Corrective Action Strategy Ranking v1 added.
+- Automatically ranks corrective action strategies based on hazard domain, evidence clarity, and compound risk levels.
+- Supports five distinct action postures: Act Now, Verify Then Act, Questions Only, Monitor, and Escalate Review.
+- Explicitly flags "weak actions to avoid" (e.g., "be careful") and prioritizes immediate exposure controls.
+- Fully integrated into field output composer for dynamic, risk-informed safety recommendations.

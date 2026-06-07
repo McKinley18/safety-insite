@@ -551,3 +551,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - Observation narrative synthesis implemented, moving SafeScope output from raw data to professional advisory summaries.
 
 - Cross-domain causal chain reasoning implemented, enabling SafeScope to explain hazard interactions and compound risk pathways.
+
+- Corrective action strategy ranking implemented, allowing SafeScope to recommend prioritized, defensible safety controls based on evidence confidence.

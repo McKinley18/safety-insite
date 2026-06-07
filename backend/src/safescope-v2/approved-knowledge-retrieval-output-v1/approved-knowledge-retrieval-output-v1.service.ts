@@ -8,6 +8,7 @@ import { FieldEvidenceWeightingService } from '../field-evidence-weighting/field
 import { MultiHazardDecompositionService } from '../multi-hazard-decomposition/multi-hazard-decomposition.service';
 import { ObservationNarrativeSynthesisService } from '../observation-narrative-synthesis/observation-narrative-synthesis.service';
 import { CrossDomainCausalChainService } from '../cross-domain-causal-chain/cross-domain-causal-chain.service';
+import { CorrectiveActionStrategyRankingService } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -19,6 +20,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private decompositionService = new MultiHazardDecompositionService();
   private narrativeService = new ObservationNarrativeSynthesisService();
   private causalChainService = new CrossDomainCausalChainService();
+  private strategyService = new CorrectiveActionStrategyRankingService();
 
   async retrieve(
     observationText: string,
@@ -65,6 +67,19 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         evidenceWeighting
     });
 
+    const correctiveActionStrategy = this.strategyService.rank({
+        observationText,
+        taxonomyRoute,
+        approvedKnowledgeMatches: approvedMatches,
+        scenarioMatches: scenarioMatches,
+        evaluatedScenarios: evaluation.evaluatedScenarios,
+        evidenceWeighting: evidenceWeighting,
+        multiHazardAnalysis: multiHazardDecomposition,
+        narrativeSynthesis: observationNarrative,
+        causalChainAnalysis: crossDomainCausalChain,
+        context
+    });
+
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -81,6 +96,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       multiHazardDecomposition: multiHazardDecomposition,
       observationNarrative: observationNarrative,
       crossDomainCausalChain: crossDomainCausalChain,
+      correctiveActionStrategy: correctiveActionStrategy,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
       confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)),

@@ -23,6 +23,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-multi-hazard-decomposition-v1.ts',
         'validate-safescope-observation-narrative-synthesis-v1.ts',
         'validate-safescope-cross-domain-causal-chain-v1.ts',
+        'validate-safescope-corrective-action-strategy-ranking-v1.ts',
         'validate-safescope-field-output-contract.ts'
     ],
     orchestrator: [
@@ -32,6 +33,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-multi-hazard-decomposition-v1.ts',
         'validate-safescope-observation-narrative-synthesis-v1.ts',
         'validate-safescope-cross-domain-causal-chain-v1.ts',
+        'validate-safescope-corrective-action-strategy-ranking-v1.ts',
         'validate-safescope-main-output-observation-understanding.ts',
         'validate-safescope-observation-trace-snapshot.ts'
     ],
@@ -59,6 +61,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-multi-hazard-decomposition-v1.ts',
         'validate-safescope-observation-narrative-synthesis-v1.ts',
         'validate-safescope-cross-domain-causal-chain-v1.ts',
+        'validate-safescope-corrective-action-strategy-ranking-v1.ts',
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-field-output-composer-v1.ts',
         'validate-safescope-orchestrator-field-output-wiring.ts',

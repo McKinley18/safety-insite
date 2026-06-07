@@ -4,15 +4,39 @@ import { EvidenceWeightingResult, EvidenceGrade, FieldEvidenceWeightingInput } f
 @Injectable()
 export class FieldEvidenceWeightingService {
 
-  private contradictionSets = [
-    { name: 'energy state', terms: ['de-energized', 'energized', 'live'] },
-    { name: 'lockout status', terms: ['not locked out', 'locked out'] }, // Longer terms first
-    { name: 'guard status', terms: ['guard removed', 'guard missing', 'unguarded', 'guarded'] },
-    { name: 'exposure status', terms: ['no exposure', 'employee exposed', 'within reach', 'employee nearby', 'employee access'] },
-    { name: 'spill status', terms: ['cleaned up', 'contained', 'spill remains', 'leaking', 'active spill'] },
-    { name: 'inspection status', terms: ['missing tag', 'illegible tag', 'expired', 'inspected', 'current'] },
-    { name: 'label status', terms: ['unlabeled', 'no label', 'sds missing', 'labeled'] },
-    { name: 'barricade status', terms: ['no barricade', 'no exclusion zone', 'barricaded', 'exclusion zone established'] }
+  private supportingSignalsList = [
+    'energized', 'live', 'running', 'started', 'de-energized',
+    'locked out', 'not locked out', 'loto',
+    'guarded', 'unguarded', 'guard removed', 'guard missing', 'guard in place',
+    'employee exposed', 'within reach', 'employee nearby', 'employee access', 'pedestrian',
+    'no exposure', 'no employees nearby',
+    'cleaned up', 'contained', 'spill remains', 'leaking', 'active spill', 'wet floor', 'standing water', 'damp',
+    'inspected', 'current', 'expired', 'missing tag', 'illegible tag', 'damaged cord', 'exposed wire', 'damaged',
+    'unlabeled', 'no label', 'sds missing', 'labeled',
+    'barricaded', 'exclusion zone established', 'no barricade', 'no exclusion zone'
+  ];
+
+  private contradictionPairs = [
+    { a: 'de-energized', b: 'energized' },
+    { a: 'de-energized', b: 'live' },
+    { a: 'locked out', b: 'not locked out' },
+    { a: 'guarded', b: 'unguarded' },
+    { a: 'guarded', b: 'guard removed' },
+    { a: 'guarded', b: 'guard missing' },
+    { a: 'guard in place', b: 'unguarded' },
+    { a: 'no exposure', b: 'employee exposed' },
+    { a: 'no exposure', b: 'within reach' },
+    { a: 'no employees nearby', b: 'employee nearby' },
+    { a: 'cleaned up', b: 'spill remains' },
+    { a: 'cleaned up', b: 'leaking' },
+    { a: 'cleaned up', b: 'active spill' },
+    { a: 'inspected', b: 'expired' },
+    { a: 'current', b: 'expired' },
+    { a: 'labeled', b: 'unlabeled' },
+    { a: 'labeled', b: 'no label' },
+    { a: 'barricaded', b: 'no barricade' },
+    { a: 'barricaded', b: 'no exclusion zone' },
+    { a: 'exclusion zone established', b: 'no exclusion zone' }
   ];
 
   private normalize(text: string): string {
@@ -29,29 +53,24 @@ export class FieldEvidenceWeightingService {
     const lowerText = this.normalize(observationText);
     
     const detectedContradictions: string[] = [];
-    let supportingSignals: string[] = [];
+    const supportingSignals: string[] = [];
     
-    this.contradictionSets.forEach(set => {
-      const found: string[] = [];
-      const remainingText = lowerText;
-      
-      // Order terms by length descending to match longest possible first
-      const sortedTerms = [...set.terms].sort((a, b) => b.length - a.length);
-      
-      let tempText = remainingText;
-      sortedTerms.forEach(term => {
-          if (this.hasTerm(tempText, term)) {
-              found.push(term);
-              // Remove the found term to avoid matching shorter sub-terms
-              const normalizedTerm = term.toLowerCase().replace(/-/g, " ");
-              tempText = tempText.replace(new RegExp(` ${normalizedTerm} `, 'g'), " [FOUND] ");
-          }
-      });
+    // 1. Identify all supporting signals
+    const sortedSignals = [...this.supportingSignalsList].sort((a, b) => b.length - a.length);
+    let tempText = lowerText;
+    sortedSignals.forEach(signal => {
+        if (this.hasTerm(tempText, signal)) {
+            supportingSignals.push(signal);
+            const normalizedSignal = signal.toLowerCase().replace(/-/g, " ");
+            tempText = tempText.replace(new RegExp(` ${normalizedSignal} `, 'g'), " [FOUND] ");
+        }
+    });
 
-      if (found.length > 1) {
-        detectedContradictions.push(`Contradiction in ${set.name}: ${found.join(' vs ')}`);
-      }
-      supportingSignals.push(...found);
+    // 2. Detect explicit contradictions
+    this.contradictionPairs.forEach(pair => {
+        if (supportingSignals.includes(pair.a) && supportingSignals.includes(pair.b)) {
+            detectedContradictions.push(`Conflict: ${pair.a} vs ${pair.b}`);
+        }
     });
 
     const contradictionPenalty = detectedContradictions.length * 10;
@@ -59,7 +78,7 @@ export class FieldEvidenceWeightingService {
     const missingCriticalFacts: string[] = [];
     let missingFactPenalty = 0;
     
-    const hasExposure = /\b(employee|person|worker|exposed|nearby|within reach|access)\b/.test(observationText.toLowerCase());
+    const hasExposure = /\b(employee|person|worker|exposed|nearby|within reach|access|pedestrian)\b/i.test(observationText);
     if (!hasExposure) {
         missingCriticalFacts.push("Exposure to personnel is unclear.");
         missingFactPenalty += 2;
