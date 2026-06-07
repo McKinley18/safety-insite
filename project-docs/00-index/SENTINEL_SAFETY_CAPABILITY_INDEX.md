@@ -1311,3 +1311,8 @@ Check git status:
 - The main orchestration pipeline now integrates approved knowledge retrieval and field output composition.
 - SafeScope main output now exposes a governed advisory advisory field, ensuring field-facing notes and evidence gaps are surfaced while maintaining strict advisory-only boundaries.
 - Master validation includes the orchestrator output wiring validator.
+
+## Targeted Validation Mode
+- Targeted validation mode added, supporting area-based validation for rapid development cycles.
+- Includes support for: taxonomy, knowledge, output, orchestrator, governance, precision, and core areas.
+- Master validation continues to serve as the source of truth for full system integrity.

@@ -6,9 +6,13 @@ async function audit() {
   const draftCandidatesDir = path.join(root, '../safescope-data/approved-knowledge/draft-candidates');
   const taxonomyMapPath = path.join(root, '../safescope-data/hazard-taxonomy/hazard-taxonomy-coverage-map.v1.json');
   const runnerPath = path.join(root, 'scripts/run-safescope-full-validation.ts');
+  const targetedRunnerPath = path.join(root, 'scripts/run-safescope-targeted-validation.ts');
+  const packageJsonPath = path.join(root, 'package.json');
+  const guidePath = path.join(root, '../project-docs/04-safescope-engine/SAFESCOPE_TARGETED_VALIDATION_GUIDE.md');
   
   const draftFiles = fs.readdirSync(draftCandidatesDir).filter(f => f.endsWith('.json'));
   const runnerContent = fs.readFileSync(runnerPath, 'utf-8');
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
   
   let draftPackCount = 0;
   let draftCandidateRecordTotal = 0;
@@ -33,6 +37,11 @@ async function audit() {
       const taxonomy = JSON.parse(fs.readFileSync(taxonomyMapPath, 'utf-8'));
       if (taxonomy.domains.length < 40) errors.push('Fewer than 40 taxonomy domains');
   }
+
+  // Check Targeted Validation Infrastructure
+  if (!fs.existsSync(targetedRunnerPath)) errors.push('Missing targeted validation runner');
+  if (!fs.existsSync(guidePath)) errors.push('Missing targeted validation guide');
+  if (!packageJson.scripts['validate:safescope:targeted']) errors.push('Missing validate:safescope:targeted npm script');
 
   for (const file of draftFiles) {
     draftPackCount++;
