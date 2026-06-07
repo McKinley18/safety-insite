@@ -20,6 +20,7 @@ import { VisualEvidenceReasoningService } from '../visual-evidence-reasoning/vis
 import { RealImageAnalysisService } from '../real-image-analysis/real-image-analysis.service';
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
 import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
+import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -47,12 +48,15 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
     private readonly persistence?: SafeScopePersistenceService,
     @Optional()
     private readonly gates?: RoleBasedApprovalGatesService,
+    @Optional()
+    private readonly access?: WorkspaceGovernanceAccessService,
   ) {
       const p = persistence || new SafeScopePersistenceService();
       const g = gates || new RoleBasedApprovalGatesService();
+      const a = access || new WorkspaceGovernanceAccessService();
       this.persistence = p;
-      this.consoleService = new ReviewerCandidateConsoleService(p, g);
-      this.feedbackService = new HumanReviewFeedbackLoopService(this.consoleService, p, g);
+      this.consoleService = new ReviewerCandidateConsoleService(p, g, a);
+      this.feedbackService = new HumanReviewFeedbackLoopService(this.consoleService, p, g, a);
   }
 
   async retrieve(
@@ -166,7 +170,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
     const pendingReviewerCandidates = await this.consoleService.listCandidates({
         domainId: taxonomyRoute.domainId,
         status: 'pending_review'
-    });
+    }, context.user);
 
     let reviewFeedback = undefined;
     if (context.humanReview) {
@@ -183,7 +187,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
             missingEvidenceNotes: context.humanReview.missingEvidenceNotes,
             sourceReference: context.humanReview.sourceReference,
             context
-        });
+        }, context.user);
     }
 
     const auditReadyReasoningTrace = this.traceService.generateTrace({

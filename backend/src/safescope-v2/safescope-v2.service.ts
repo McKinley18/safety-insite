@@ -1,5 +1,5 @@
 import { StandardsBridgeService } from "./standards-bridge.service";
-import { Injectable, Optional } from "@nestjs/common";
+import { Injectable, Optional, ForbiddenException } from "@nestjs/common";
 import { WeightedClassifierService } from "./classifier/weighted-classifier.service";
 import { evaluateRisk } from "./risk/risk-engine";
 import { ActionEngineService } from "../action-engine/action-engine.service";
@@ -24,6 +24,8 @@ import { RealImageAnalysisInput } from "./real-image-analysis/real-image-analysi
 import { OfflineReasoningInput } from "./offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.types";
 import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.service";
 import { SafeScopePersistenceService } from "./persistence/persistence.service";
+import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/workspace-governance-access.service";
+import { UserGovernanceContext } from "./workspace-governance-access/workspace-governance.types";
 
 @Injectable()
 export class SafescopeV2Service {
@@ -46,19 +48,32 @@ export class SafescopeV2Service {
     private readonly visualService: VisualEvidenceReasoningService,
     private readonly imageAnalysisService: RealImageAnalysisService,
     private readonly offlineService: OfflineReasoningMobileResilienceService,
+    private readonly access: WorkspaceGovernanceAccessService,
     @Optional()
     private readonly persistence?: SafeScopePersistenceService,
   ) {}
 
-  async evaluateVisualEvidence(input: VisualEvidenceReasoningInput) {
+  async evaluateVisualEvidence(input: VisualEvidenceReasoningInput, user?: UserGovernanceContext) {
+    if (user) {
+        const decision = this.access.can(user, 'run_classification');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
     return this.visualService.evaluate(input);
   }
 
-  async evaluateRealImage(input: RealImageAnalysisInput) {
+  async evaluateRealImage(input: RealImageAnalysisInput, user?: UserGovernanceContext) {
+    if (user) {
+        const decision = this.access.can(user, 'run_classification');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
     return this.imageAnalysisService.evaluate(input);
   }
 
-  async evaluateOffline(input: OfflineReasoningInput) {
+  async evaluateOffline(input: OfflineReasoningInput, user?: UserGovernanceContext) {
+    if (user) {
+        const decision = this.access.can(user, 'run_classification');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
     const result = this.offlineService.evaluate(input);
     if (this.persistence) {
         await this.persistence.save({
@@ -66,7 +81,7 @@ export class SafescopeV2Service {
             status: "offline_captured",
             payload: result,
             metadata: { observationText: input.observationText, isOffline: true, syncRequired: true },
-            workspaceId: input.workspaceId,
+            workspaceId: input.workspaceId || user?.workspaceId,
             inspectionId: input.localInspectionId,
             observationId: input.localObservationId,
             traceId: result.offlineTraceId
@@ -83,7 +98,13 @@ export class SafescopeV2Service {
     workspaceId?: string,
     priorFindings?: any[],
     visualAttachments?: Attachment[],
+    user?: UserGovernanceContext,
   ) {
+      if (user) {
+          const decision = this.access.can(user, 'run_classification');
+          if (!decision.allowed) throw new ForbiddenException(decision.reason);
+      }
+
       const evidenceFusion = this.evidenceFusion.synthesize([
         text,
         ...(evidenceTexts || []),
@@ -103,7 +124,7 @@ export class SafescopeV2Service {
         generatedActions: [],
         additionalHazards: [],
         priorFindings,
-        workspaceId,
+        workspaceId: workspaceId || user?.workspaceId,
         supervisorValidations: [],
       });
 
@@ -127,14 +148,4 @@ export class SafescopeV2Service {
     if (scopes.includes("msha_mnm_underground")) return "MSHA_MNM_UNDERGROUND";
     return undefined;
   }
-}
-
-interface CalibrationMeta {
-    hazardFamily: string;
-    scenarioFamily: string | undefined;
-    jurisdiction: string;
-    mechanism: string;
-    riskBand: string;
-    standardFamily: string;
-    evidenceGaps: string[];
 }

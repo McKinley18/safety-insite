@@ -1498,3 +1498,10 @@ Check git status:
 - Provides a structured data layer for deterministic validation of complex, multi-hazard, and offline scenarios.
 - Verifies that SafeScope maintains advisory boundaries, respects review gates, and flags evidence gaps across diverse operational environments.
 - Features automated regression testing for vague, conflicting, and mixed jurisdiction observations.
+
+## Production Auth + Workspace Governance
+- SafeScope Production Auth + Workspace Governance Hardening v1 added.
+- Implements a deterministic access decision service for workspace isolation and role-based permissions.
+- Enforces cross-workspace security, plan-tier gating for advanced governance features, and assigned-inspection access for field inspectors.
+- Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
+- Establishes the foundation for production-ready, multi-tenant safety-AI governance.

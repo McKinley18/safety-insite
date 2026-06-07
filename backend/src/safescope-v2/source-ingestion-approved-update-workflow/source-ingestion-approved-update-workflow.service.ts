@@ -15,6 +15,8 @@ import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/r
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
 import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
 import { ReviewerRole } from '../role-based-approval-gates/role-based-approval-gates.types';
+import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
+import { UserGovernanceContext } from '../workspace-governance-access/workspace-governance.types';
 
 @Injectable()
 export class SourceIngestionApprovedUpdateWorkflowService {
@@ -25,9 +27,15 @@ export class SourceIngestionApprovedUpdateWorkflowService {
     private readonly consoleService: ReviewerCandidateConsoleService,
     private readonly persistence: SafeScopePersistenceService,
     private readonly gates: RoleBasedApprovalGatesService,
+    private readonly access: WorkspaceGovernanceAccessService,
   ) {}
 
-  async ingest(input: SourceIngestionInput): Promise<IngestionDraftCandidate> {
+  async ingest(input: SourceIngestionInput, user?: UserGovernanceContext): Promise<IngestionDraftCandidate> {
+    if (user) {
+        const decision = this.access.can(user, 'ingest_sources');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+
     const candidateId = 'cand-' + Date.now();
     const normalizedSource = this.normalizeSource(input);
     const mapping = this.createMapping(input);
@@ -112,7 +120,7 @@ export class SourceIngestionApprovedUpdateWorkflowService {
         evidenceBasis: 'Ingested source document',
         governanceFlags: candidate.governanceWarnings,
         requiredReviewSteps: candidate.requiredReviewerChecks
-    });
+    }, user?.workspaceId);
 
     await this.persistence.save({
         type: 'source_ingestion_candidate',
@@ -122,15 +130,21 @@ export class SourceIngestionApprovedUpdateWorkflowService {
             agency: input.agency,
             citation: input.citation,
             jurisdiction: input.jurisdiction
-        }
+        },
+        workspaceId: user?.workspaceId
     });
 
     return candidate;
   }
 
-  async promote(input: PromotionDecisionInput): Promise<PromotionResult> {
+  async promote(input: PromotionDecisionInput, user?: UserGovernanceContext): Promise<PromotionResult> {
     const { candidate, reviewerDecision, reviewerName, reviewerRole, sourceVerified, duplicateReviewed, jurisdictionConfirmed } = input;
     
+    if (user) {
+        const decision = this.access.can(user, 'promote_knowledge');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+
     const gateResult = this.gates.evaluate({
       role: reviewerRole as ReviewerRole,
       action: reviewerDecision === 'hold_for_review' ? 'request_info' : (reviewerDecision as any),
@@ -237,7 +251,8 @@ export class SourceIngestionApprovedUpdateWorkflowService {
             candidateId: candidate.candidateId,
             reviewerName,
             reviewerRole
-        }
+        },
+        workspaceId: user?.workspaceId
     });
 
     return result;

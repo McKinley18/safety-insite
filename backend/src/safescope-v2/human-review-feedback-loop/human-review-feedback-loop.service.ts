@@ -9,6 +9,8 @@ import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/r
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
 import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
 import { ReviewerRole } from '../role-based-approval-gates/role-based-approval-gates.types';
+import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
+import { UserGovernanceContext } from '../workspace-governance-access/workspace-governance.types';
 
 @Injectable()
 export class HumanReviewFeedbackLoopService {
@@ -16,16 +18,23 @@ export class HumanReviewFeedbackLoopService {
     private readonly consoleService: ReviewerCandidateConsoleService,
     private readonly persistence: SafeScopePersistenceService,
     private readonly gates: RoleBasedApprovalGatesService,
+    private readonly access: WorkspaceGovernanceAccessService,
   ) {}
 
-  async processReview(input: HumanReviewInput): Promise<HumanReviewFeedbackResult> {
+  async processReview(input: HumanReviewInput, user?: UserGovernanceContext): Promise<HumanReviewFeedbackResult> {
     const feedbackId = 'feedback-' + Date.now();
     const auditTrail: string[] = ['Review process initiated for feedback ' + feedbackId];
     
-    // Check gate for human review action
+    // 0. Workspace Access Check
+    if (user) {
+        const decision = this.access.can(user, 'manage_candidates', { workspaceId: input.context?.workspaceId });
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+
+    // 1. Role Gate Check
     const gateResult = this.gates.evaluate({
       role: input.reviewerRole as ReviewerRole,
-      action: 'approve', // Reviewing/correcting is a form of approval of the feedback itself
+      action: 'approve', 
       candidateType: 'human_review_learning',
       metadata: {
           affectsRegulatoryApplicability: !!(input.correctedStandardFamily || input.sourceReference)
@@ -116,7 +125,7 @@ export class HumanReviewFeedbackLoopService {
                     evidenceBasis: input.observationText,
                     governanceFlags: [],
                     requiredReviewSteps: ['Verify correction against official sources']
-                });
+                }, user?.workspaceId);
 
             } else if (input.reviewerNotes && input.reviewerNotes.length < 10) {
                 learningDisposition = 'reject_learning';
@@ -161,7 +170,7 @@ export class HumanReviewFeedbackLoopService {
             reliability: reviewReliability,
             gateResult: { allowed: gateResult.allowed, reason: gateResult.reason }
         },
-        workspaceId: input.context?.workspaceId,
+        workspaceId: user?.workspaceId || input.context?.workspaceId,
         observationId: input.context?.observationId
     });
 

@@ -29,6 +29,7 @@ class StubOrchestrator {
 class StubVisualService { evaluate() { return { visualSupportLevel: 'not_evaluated' }; } }
 class StubImageService { evaluate() { return { visualSignals: [] }; } }
 class StubOfflineService { evaluate() { return { mode: 'offline_limited_advisory', advisorySummary: 'Offline mode' }; } }
+class StubAccessService { can() { return { allowed: true }; } }
 
 async function validate() {
   const scenarioPackPath = path.resolve(__dirname, '../../safescope-data/field-test-scenarios/field-test-scenario-pack-v1.json');
@@ -44,14 +45,12 @@ async function validate() {
   const requiredFields = ['id', 'title', 'observationNarrative', 'expectedHazardDomains', 'expectedAdvisoryBoundaries'];
   pack.scenarios.forEach((s: any) => {
       requiredFields.forEach(f => {
-          if (!s[f]) throw new Error(`Scenario ${s.id} missing required field: ${f}`);
+          if (!s[f]) throw new Error('Scenario ' + s.id + ' missing required field: ' + f);
       });
   });
-  console.log(`[PASS] Schema validated for ${pack.scenarios.length} scenarios.`);
+  console.log('Schema validated for ' + pack.scenarios.length + ' scenarios.');
 
   console.log('--- Testing Scenarios through SafescopeV2Service ---');
-  // In a real validation, we use the actual SafescopeV2Service with real logic
-  // but for the script environment, we'll ensure the entry points work.
   const service = new SafescopeV2Service(
       new StubActionEngine() as any,
       new StubContextExpansion() as any,
@@ -65,11 +64,12 @@ async function validate() {
       new StubOrchestrator() as any,
       new StubVisualService() as any,
       new StubImageService() as any,
-      new StubOfflineService() as any
+      new StubOfflineService() as any,
+      new StubAccessService() as any
   );
 
   for (const scenario of pack.scenarios) {
-      console.log(`Testing scenario: ${scenario.id}`);
+      console.log('Testing scenario: ' + scenario.id);
       
       let result;
       if (scenario.offlineMode) {
@@ -79,7 +79,7 @@ async function validate() {
               localObservationId: 'test-obs',
               timestamp: new Date().toISOString()
           });
-          if (result.mode !== 'offline_limited_advisory') throw new Error(`Scenario ${scenario.id} failed offline mode check`);
+          if (result.mode !== 'offline_limited_advisory') throw new Error('Scenario ' + scenario.id + ' failed offline mode check');
       } else {
           result = await service.classify(
               scenario.observationNarrative,
@@ -94,17 +94,17 @@ async function validate() {
           // Verify advisory boundaries
           const boundaries = result.fieldOutput?.advisoryBoundaries || [];
           const hasAdvisory = boundaries.some((b: string) => b.toLowerCase().includes('advisory'));
-          if (!hasAdvisory) throw new Error(`Scenario ${scenario.id} output missing advisory boundary warning`);
+          if (!hasAdvisory) throw new Error('Scenario ' + scenario.id + ' output missing advisory boundary warning');
           
           // Prohibited language check
           const resultStr = JSON.stringify(result).toLowerCase();
           const prohibited = ["is a violation", "legal determination", "definitive violation"];
           prohibited.forEach(p => {
-              if (resultStr.includes(p)) throw new Error(`Scenario ${scenario.id} produced prohibited language: ${p}`);
+              if (resultStr.includes(p)) throw new Error('Scenario ' + scenario.id + ' produced prohibited language: ' + p);
           });
       }
       
-      console.log(`[PASS] Scenario ${scenario.id} verified.`);
+      console.log('[PASS] Scenario ' + scenario.id + ' verified.');
   }
 
   console.log('✅ SafeScope field test scenario packs validation passed.');

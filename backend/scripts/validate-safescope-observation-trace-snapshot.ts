@@ -135,6 +135,10 @@ class StubOfflineService {
     evaluate() { return {}; }
 }
 
+class StubAccessService { 
+    can() { return { allowed: true }; } 
+}
+
 const service = new SafescopeV2Service(
   new StubActionEngine() as any,
   new StubContextExpansion() as any,
@@ -149,6 +153,7 @@ const service = new SafescopeV2Service(
   new StubVisualService() as any,
   new StubImageService() as any,
   new StubOfflineService() as any,
+  new StubAccessService() as any,
 );
 
 const cases = [

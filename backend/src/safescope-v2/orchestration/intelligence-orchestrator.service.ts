@@ -64,6 +64,7 @@ import { CorrectiveActionBrainService } from '../brain/corrective-action-brain/c
 import { ExecutiveJudgmentService } from '../executive-judgment/executive-judgment.service';
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
 import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
+import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
 import { CalibrationMeta } from '../types/safescope-intelligence.types';
 
 export type SafeScopeIntelligenceOrchestratorInput = {
@@ -81,6 +82,7 @@ export type SafeScopeIntelligenceOrchestratorInput = {
   standardsFeedback?: any[];
   correctiveActionOutcomes?: any[];
   supervisorValidations?: any[];
+  user?: any;
 };
 
 @Injectable()
@@ -149,18 +151,17 @@ export class SafeScopeIntelligenceOrchestrator {
 
   constructor(
     @Optional()
-    private readonly persistence?: SafeScopePersistenceService,
+    persistence?: SafeScopePersistenceService,
     @Optional()
-    private readonly gates?: RoleBasedApprovalGatesService,
+    gates?: RoleBasedApprovalGatesService,
     @Optional()
-    retrievalEngine?: ApprovedKnowledgeRetrievalOutputV1Service,
-    @Optional()
-    composerEngine?: FieldOutputComposerV1Service,
+    access?: WorkspaceGovernanceAccessService,
   ) {
       const p = persistence || new SafeScopePersistenceService();
       const g = gates || new RoleBasedApprovalGatesService();
-      this.retrievalEngine = retrievalEngine || new ApprovedKnowledgeRetrievalOutputV1Service(p, g);
-      this.composerEngine = composerEngine || new FieldOutputComposerV1Service(this.retrievalEngine);
+      const a = access || new WorkspaceGovernanceAccessService();
+      this.retrievalEngine = new ApprovedKnowledgeRetrievalOutputV1Service(p, g, a);
+      this.composerEngine = new FieldOutputComposerV1Service(this.retrievalEngine);
   }
 
   async evaluate(input: SafeScopeIntelligenceOrchestratorInput) {
@@ -179,6 +180,7 @@ export class SafeScopeIntelligenceOrchestrator {
       standardsFeedback,
       correctiveActionOutcomes,
       supervisorValidations,
+      user
     } = input;
 
     const observationContext = this.observationContextEngine.normalize(fusedText);
@@ -598,7 +600,8 @@ export class SafeScopeIntelligenceOrchestrator {
         fusedText,
         {
             visualAttachments,
-            attachments: visualAttachments
+            attachments: visualAttachments,
+            user
         }
     );
     
@@ -606,7 +609,8 @@ export class SafeScopeIntelligenceOrchestrator {
         fusedText,
         {
             visualAttachments,
-            attachments: visualAttachments
+            attachments: visualAttachments,
+            user
         }
     );
     

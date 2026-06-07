@@ -2,11 +2,13 @@ import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-ca
 import { ReviewerCandidateConsoleValidator } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.validator';
 import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
 import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
+import { WorkspaceGovernanceAccessService } from '../src/safescope-v2/workspace-governance-access/workspace-governance-access.service';
 
 async function validate() {
   const persistence = new SafeScopePersistenceService();
   const gates = new RoleBasedApprovalGatesService();
-  const service = new ReviewerCandidateConsoleService(persistence, gates);
+  const access = new WorkspaceGovernanceAccessService();
+  const service = new ReviewerCandidateConsoleService(persistence, gates, access);
   
   console.log('--- Testing candidate registration ---');
   const candidate = await service.addCandidate({

@@ -47,6 +47,7 @@ import { ReviewerCandidateConsoleService } from "./reviewer-candidate-console/re
 import { ReviewerCandidateConsoleController } from "./reviewer-candidate-console/reviewer-candidate-console.controller";
 import { SourceIngestionApprovedUpdateWorkflowService } from "./source-ingestion-approved-update-workflow/source-ingestion-approved-update-workflow.service";
 import { RoleBasedApprovalGatesService } from "./role-based-approval-gates/role-based-approval-gates.service";
+import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/workspace-governance-access.service";
 import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.service";
 
 // SafeScope Intelligence Orchestrator and dependencies
@@ -163,6 +164,7 @@ import { ExecutiveJudgmentService } from "./executive-judgment/executive-judgmen
     ApprovedKnowledgeRetrievalOutputV1Service,
     SourceIngestionApprovedUpdateWorkflowService,
     RoleBasedApprovalGatesService,
+    WorkspaceGovernanceAccessService,
     OfflineReasoningMobileResilienceService,
     SafeScopeIntelligenceOrchestrator,
     ConfidenceIntelligenceService,

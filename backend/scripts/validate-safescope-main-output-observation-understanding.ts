@@ -135,6 +135,10 @@ class StubOfflineService {
     evaluate() { return {}; }
 }
 
+class StubAccessService { 
+    can() { return { allowed: true }; } 
+}
+
 async function main() {
   const service = new SafescopeV2Service(
     new StubActionEngine() as any,
@@ -150,6 +154,7 @@ async function main() {
     new StubVisualService() as any,
     new StubImageService() as any,
     new StubOfflineService() as any,
+    new StubAccessService() as any,
   );
 
   const result = await service.classify(

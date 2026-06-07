@@ -66,3 +66,4 @@
 | Role-Based Gates | Reviewer authorization engine | backend/src/safescope-v2/role-based-approval-gates/ | N/A | backend/scripts/validate-safescope-role-based-approval-gates-v1.ts | Gates v1 | Active | Authorization layer |
 | Offline Reasoning | Mobile resilience fallback layer | backend/src/safescope-v2/offline-reasoning-mobile-resilience/ | N/A | backend/scripts/validate-safescope-offline-reasoning-mobile-resilience-v1.ts | Offline v1 | Active | Fallback layer |
 | Scenario Packs | Realistic safety test dataset | safescope-data/field-test-scenarios/ | N/A | backend/scripts/validate-safescope-field-test-scenario-packs-v1.ts | Scenario v1 | Active | Validation layer |
+| Workspace Governance | Multi-tenant access decision engine | backend/src/safescope-v2/workspace-governance-access/ | N/A | backend/scripts/validate-safescope-workspace-auth-governance-v1.ts | Governance v1 | Active | Access control layer |

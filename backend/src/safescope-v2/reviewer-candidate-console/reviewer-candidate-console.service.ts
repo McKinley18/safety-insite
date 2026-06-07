@@ -8,18 +8,27 @@ import {
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
 import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
 import { ReviewerRole } from '../role-based-approval-gates/role-based-approval-gates.types';
+import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
+import { UserGovernanceContext } from '../workspace-governance-access/workspace-governance.types';
 
 @Injectable()
 export class ReviewerCandidateConsoleService {
   constructor(
     private readonly persistence: SafeScopePersistenceService,
     private readonly gates: RoleBasedApprovalGatesService,
+    private readonly access: WorkspaceGovernanceAccessService,
   ) {}
 
-  async listCandidates(filter: CandidateFilter = {}): Promise<ReviewerCandidate[]> {
+  async listCandidates(filter: CandidateFilter = {}, user?: UserGovernanceContext): Promise<ReviewerCandidate[]> {
+    if (user) {
+      const decision = this.access.can(user, 'view_candidates');
+      if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+
     const records = await this.persistence.find({
         type: 'reviewer_candidate',
         status: filter.status,
+        workspaceId: user?.workspaceId
     });
 
     return records.map(r => r.payload as ReviewerCandidate).filter(c => {
@@ -32,12 +41,21 @@ export class ReviewerCandidateConsoleService {
     });
   }
 
-  async getCandidateById(id: string): Promise<ReviewerCandidate | undefined> {
+  async getCandidateById(id: string, user?: UserGovernanceContext): Promise<ReviewerCandidate | undefined> {
+    if (user) {
+        const decision = this.access.can(user, 'view_candidates');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
     const record = await this.persistence.getById(id);
+    
+    if (user && record?.workspaceId && record.workspaceId !== user.workspaceId) {
+        throw new ForbiddenException('Cross-workspace access is blocked.');
+    }
+    
     return record?.payload as ReviewerCandidate;
   }
 
-  async addCandidate(candidate: Omit<ReviewerCandidate, 'candidateId' | 'createdAt' | 'status' | 'auditTrail'>): Promise<ReviewerCandidate> {
+  async addCandidate(candidate: Omit<ReviewerCandidate, 'candidateId' | 'createdAt' | 'status' | 'auditTrail'>, workspaceId?: string): Promise<ReviewerCandidate> {
     const tempId = 'temp-' + Date.now();
     const newCandidate: ReviewerCandidate = {
       ...candidate,
@@ -61,7 +79,8 @@ export class ReviewerCandidateConsoleService {
             candidateType: candidate.candidateType,
             priority: candidate.priority,
             jurisdiction: candidate.jurisdiction
-        }
+        },
+        workspaceId
     });
 
     newCandidate.candidateId = record.id;
@@ -70,9 +89,18 @@ export class ReviewerCandidateConsoleService {
     return newCandidate;
   }
 
-  async approveCandidate(id: string, reviewer: { name: string, role: string, notes?: string }): Promise<ReviewerCandidate | undefined> {
+  async approveCandidate(id: string, reviewer: { name: string, role: string, notes?: string }, user?: UserGovernanceContext): Promise<ReviewerCandidate | undefined> {
+    if (user) {
+        const decision = this.access.can(user, 'manage_candidates');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+
     const record = await this.persistence.getById(id);
     if (!record) return undefined;
+    
+    if (user && record.workspaceId && record.workspaceId !== user.workspaceId) {
+        throw new ForbiddenException('Cross-workspace access is blocked.');
+    }
 
     const candidate = record.payload as ReviewerCandidate;
     
@@ -99,9 +127,18 @@ export class ReviewerCandidateConsoleService {
     return candidate;
   }
 
-  async rejectCandidate(id: string, reviewer: { name: string, role: string, notes: string }): Promise<ReviewerCandidate | undefined> {
+  async rejectCandidate(id: string, reviewer: { name: string, role: string, notes: string }, user?: UserGovernanceContext): Promise<ReviewerCandidate | undefined> {
+    if (user) {
+        const decision = this.access.can(user, 'manage_candidates');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+    
     const record = await this.persistence.getById(id);
     if (!record) return undefined;
+
+    if (user && record.workspaceId && record.workspaceId !== user.workspaceId) {
+        throw new ForbiddenException('Cross-workspace access is blocked.');
+    }
 
     const candidate = record.payload as ReviewerCandidate;
     
@@ -126,9 +163,18 @@ export class ReviewerCandidateConsoleService {
     return candidate;
   }
 
-  async requestMoreInfo(id: string, reviewer: { name: string, role: string, notes: string }): Promise<ReviewerCandidate | undefined> {
+  async requestMoreInfo(id: string, reviewer: { name: string, role: string, notes: string }, user?: UserGovernanceContext): Promise<ReviewerCandidate | undefined> {
+    if (user) {
+        const decision = this.access.can(user, 'manage_candidates');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+    
     const record = await this.persistence.getById(id);
     if (!record) return undefined;
+
+    if (user && record.workspaceId && record.workspaceId !== user.workspaceId) {
+        throw new ForbiddenException('Cross-workspace access is blocked.');
+    }
 
     const candidate = record.payload as ReviewerCandidate;
     
@@ -150,9 +196,18 @@ export class ReviewerCandidateConsoleService {
     return candidate;
   }
 
-  async blockCandidate(id: string, reviewer: { name: string, role: string, notes: string }): Promise<ReviewerCandidate | undefined> {
+  async blockCandidate(id: string, reviewer: { name: string, role: string, notes: string }, user?: UserGovernanceContext): Promise<ReviewerCandidate | undefined> {
+    if (user) {
+        const decision = this.access.can(user, 'manage_candidates');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+    
     const record = await this.persistence.getById(id);
     if (!record) return undefined;
+
+    if (user && record.workspaceId && record.workspaceId !== user.workspaceId) {
+        throw new ForbiddenException('Cross-workspace access is blocked.');
+    }
 
     const candidate = record.payload as ReviewerCandidate;
     
@@ -174,9 +229,18 @@ export class ReviewerCandidateConsoleService {
     return candidate;
   }
 
-  async archiveCandidate(id: string, reviewer: { name: string, role: string, notes?: string }): Promise<ReviewerCandidate | undefined> {
+  async archiveCandidate(id: string, reviewer: { name: string, role: string, notes?: string }, user?: UserGovernanceContext): Promise<ReviewerCandidate | undefined> {
+    if (user) {
+        const decision = this.access.can(user, 'manage_candidates');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+    
     const record = await this.persistence.getById(id);
     if (!record) return undefined;
+
+    if (user && record.workspaceId && record.workspaceId !== user.workspaceId) {
+        throw new ForbiddenException('Cross-workspace access is blocked.');
+    }
 
     const candidate = record.payload as ReviewerCandidate;
     

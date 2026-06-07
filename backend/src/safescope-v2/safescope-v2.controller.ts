@@ -9,10 +9,33 @@ import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entit
 import { VisualEvidenceReasoningInput } from './visual-evidence-reasoning/visual-evidence-reasoning.types';
 import { RealImageAnalysisInput } from './real-image-analysis/real-image-analysis.types';
 import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.types';
+import { UserGovernanceContext, SafeScopeRole } from './workspace-governance-access/workspace-governance.types';
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
   constructor(private readonly service: SafescopeV2Service) {}
+
+  private getGovernanceContext(req: Request & { user?: any }): UserGovernanceContext {
+      const user = req.user;
+      const roleMap: Record<string, SafeScopeRole> = {
+          'ORG_OWNER': 'owner',
+          'SUPER_ADMIN': 'admin',
+          'SAFETY_DIRECTOR': 'safety_manager',
+          'SUPERVISOR': 'safety_manager',
+          'AUDITOR': 'compliance_admin',
+          'WORKER': 'field_inspector',
+          'VIEWER': 'viewer'
+      };
+
+      return {
+          userId: user?.id || 'anonymous',
+          workspaceId: user?.organizationId || user?.workspaceId || 'default',
+          role: roleMap[user?.role] || 'viewer',
+          planTier: user?.planTier || 'team', // default to team for demo
+          jurisdictionScopes: [],
+          reviewerQualifications: []
+      };
+  }
 
   @UseGuards(JwtGuard, EntitlementGuard)
   @RequireEntitlement('fullSafeScope')
@@ -20,7 +43,7 @@ export class SafescopeV2Controller {
   @Throttle({ default: { limit: 30, ttl: 60000 } })
   @Post('classify')
   async classify(@Body() body: ClassifyDto, @Req() req: Request & { user?: any }) {
-    const workspaceId = req.user?.organizationId || req.user?.workspaceId;
+    const context = this.getGovernanceContext(req);
 
     try {
       return await this.service.classify(
@@ -28,123 +51,53 @@ export class SafescopeV2Controller {
         body.scopes,
         body.evidenceTexts,
         body.riskProfileId,
-        workspaceId,
+        body.workspaceId || context.workspaceId,
         body.priorFindings,
+        body.visualAttachments,
+        context
       );
     } catch (error) {
       console.error('SafeScope v2 classify failed:', error);
-
-      return {
-        classification: 'Review Required',
-        confidence: 0.5,
-        confidenceBand: 'review_required',
-        evidenceTokens: [],
-        ambiguityWarnings: ['SafeScope full intelligence failed in production fallback mode.'],
-        requiresHumanReview: true,
-        explanation: 'SafeScope could not complete the full intelligence workflow. Manual review is required.',
-        commonConsequences: [],
-        requiredControls: [],
-        score: 0,
-        scoreMargin: 0,
-        excludedHazards: [],
-        suggestedStandards: [],
-        excludedStandards: [],
-        risk: null,
-        evidenceFusion: {
-          combinedNarrative: body.text || '',
-          inferredThemes: [],
-          signalDensity: 0,
-          reasoning: ['Fallback response returned by controller.'],
-        },
-        expandedContext: null,
-        confidenceIntelligence: {
-          overallConfidence: 0.5,
-          confidenceBand: 'review_required',
-          strengths: ['Request reached SafeScope.'],
-          missingCriticalInformation: ['Production SafeScope intelligence failed before completion.'],
-          conflictingSignals: [],
-          recommendedFollowup: ['Manually review hazard classification, standards, and corrective actions.'],
-        },
-        generatedActions: [],
-        additionalHazards: [],
-        fallbackMode: true,
-      };
+      throw error; // Rethrow to let Nest handle ForbiddenException etc.
     }
   }
 
   @UseGuards(JwtGuard)
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Post('visual-evidence/evaluate')
-  async evaluateVisualEvidence(@Body() input: VisualEvidenceReasoningInput) {
+  async evaluateVisualEvidence(@Body() input: VisualEvidenceReasoningInput, @Req() req: Request & { user?: any }) {
+    const context = this.getGovernanceContext(req);
     try {
-      return await this.service.evaluateVisualEvidence(input);
+      return await this.service.evaluateVisualEvidence(input, context);
     } catch (error) {
       console.error('SafeScope v2 visual evidence evaluation failed:', error);
-      return {
-          version: 'visual_evidence_reasoning_v1',
-          evidencePresence: 'unclear',
-          visualSupportLevel: 'not_evaluated',
-          photoEvidenceScore: 0,
-          linkedAttachmentCount: input.attachments?.length || 0,
-          relevantAttachmentIds: [],
-          missingVisualEvidence: [],
-          visualConsistencyFlags: [],
-          reviewerQuestions: ['SafeScope visual reasoning failed to process. Manual verification required.'],
-          confidenceImpact: 'neutral',
-          advisoryBoundary: 'SafeScope visual evidence reasoning is advisory only.'
-      };
+      throw error;
     }
   }
 
   @UseGuards(JwtGuard)
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Post('real-image-analysis/evaluate')
-  async evaluateRealImage(@Body() input: RealImageAnalysisInput) {
+  async evaluateRealImage(@Body() input: RealImageAnalysisInput, @Req() req: Request & { user?: any }) {
+    const context = this.getGovernanceContext(req);
     try {
-      return await this.service.evaluateRealImage(input);
+      return await this.service.evaluateRealImage(input, context);
     } catch (error) {
       console.error('SafeScope v2 real image analysis failed:', error);
-      return {
-          version: "real_image_analysis_v1",
-          imageCount: input.imageInputs?.length || 0,
-          visualSignals: [],
-          imageEvidenceSummary: "Error during real image analysis.",
-          visualConfidenceImpact: "neutral",
-          imageEvidenceLimitations: ["Service error"],
-          recommendedPhotoFollowups: ["Retry analysis or manually verify photos."],
-          requiresHumanVerification: true,
-          advisoryBoundary: "SafeScope real image analysis is advisory only."
-      };
+      throw error;
     }
   }
 
   @UseGuards(JwtGuard)
   @Roles("ORG_OWNER", "SAFETY_DIRECTOR", "SUPERVISOR", "AUDITOR", "WORKER")
   @Post("offline/evaluate")
-  async evaluateOffline(@Body() input: OfflineReasoningInput) {
+  async evaluateOffline(@Body() input: OfflineReasoningInput, @Req() req: Request & { user?: any }) {
+    const context = this.getGovernanceContext(req);
     try {
-      return await this.service.evaluateOffline(input);
+      return await this.service.evaluateOffline(input, context);
     } catch (error) {
       console.error("SafeScope v2 offline evaluation failed:", error);
-      return {
-          version: "1.0.0",
-          mode: "offline_limited_advisory",
-          offlineAvailable: true,
-          confidenceCeiling: 0.1,
-          advisorySummary: "Offline evaluation service error. Observation captured but not assessed.",
-          likelyHazardDomains: [],
-          evidenceGaps: ["Service failure during offline reasoning."],
-          requiredSyncActions: ["Sync once online"],
-          supervisorQuestions: [],
-          offlineRestrictions: ["Service unavailable"],
-          offlineTraceId: "err-" + Date.now(),
-          requiresHumanReview: true,
-          requiresOnlineVerification: true,
-          doesNotDeclareViolation: true,
-          doesNotCreateCitation: true,
-          cannotPromoteKnowledge: true,
-          advisoryBoundary: "Service error fallback."
-      };
+      throw error;
     }
   }
 }

@@ -51,3 +51,5 @@ This document tracks the systematic transition of SafeScope from a collection of
 - Offline reasoning and mobile resilience implemented, enabling field capture and advisory support in disconnected site environments.
 
 - Field test scenario packs implemented, establishing a robust realistic testing foundation for cross-domain safety reasoning.
+
+- Production auth and workspace governance hardening implemented, securing SafeScope decision-making within organizational boundaries.
