@@ -1292,3 +1292,10 @@ Check git status:
 - Hazard Taxonomy Gap Report added: identifies coverage priorities.
 - System Audit Script added: enforces validator/runner alignment.
 - Master validation remains green.
+
+## Approved Knowledge Retrieval Output v1
+- SafeScope Approved Knowledge Retrieval Output v1 added.
+- It provides a governed mechanism to query approved/reviewed knowledge records while strictly maintaining advisory-only boundaries.
+- It provides evidence gaps when applicability is incomplete.
+- It differentiates approved knowledge from draft candidates.
+- Master validation includes the retrieval output validator.

@@ -42,6 +42,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-hazard-information-absorption.ts'],
   },
   {
+    label: 'Approved knowledge retrieval output v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-retrieval-output-v1.ts'],
+  },
+  {
     label: 'AI Transition Gap Map Audit',
     command: 'npx',
     args: ['ts-node', 'scripts/audit-safescope-ai-transition-gap-map.ts'],

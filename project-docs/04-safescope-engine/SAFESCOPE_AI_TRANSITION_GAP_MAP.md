@@ -94,3 +94,5 @@
 - Hazard taxonomy coverage map v1 added.
 
 - Hazard taxonomy coverage map v1 added.
+
+- Approved knowledge retrieval output v1 added.
