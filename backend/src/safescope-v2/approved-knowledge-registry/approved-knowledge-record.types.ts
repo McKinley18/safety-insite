@@ -17,6 +17,7 @@ export interface SourceAuthority {
 }
 
 export interface Mapping {
+  domainId: string;
   standardFamily: string;
   hazardFamilies: string[];
   mechanisms: string[];

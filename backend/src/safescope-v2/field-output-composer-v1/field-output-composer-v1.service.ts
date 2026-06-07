@@ -17,13 +17,17 @@ export class FieldOutputComposerV1Service {
       observationSummary: observationText,
       primaryDomain: retrieval.taxonomyRoute?.domainId || 'unknown',
       confidence: retrieval.confidence,
-      fieldAssessment: 'Observation indicates potential hazard. Review recommended.',
+      fieldAssessment: retrieval.approvedKnowledgeMatches.length > 0 
+        ? `Matches found in approved knowledge for: ${retrieval.approvedKnowledgeMatches.map(m => m.authority.title).join(', ')}` 
+        : 'Observation indicates potential hazard. Review recommended.',
       whyItMatters: 'Hazard awareness is necessary for safety.',
-      likelyMechanisms: [],
+      likelyMechanisms: retrieval.taxonomyRoute?.matchedSignals || [],
       immediateActions: ['Review hazard information', 'Assess area safety'],
-      durableCorrectiveActions: ['Implement appropriate controls'],
+      durableCorrectiveActions: retrieval.approvedKnowledgeMatches.map(m => m.correctiveActionLinks.preferredControlFamilies).flat(),
       evidenceGaps: retrieval.evidenceGaps,
-      supervisorQuestions: ['Has this been evaluated by a competent person?'],
+      supervisorQuestions: retrieval.approvedKnowledgeMatches.length > 0 
+        ? retrieval.approvedKnowledgeMatches.map(m => m.mapping.evidenceQuestions).flat()
+        : ['Has this been evaluated by a competent person?'],
       approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches,
       draftKnowledgeWarnings: retrieval.draftKnowledgeWarnings,
       advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],

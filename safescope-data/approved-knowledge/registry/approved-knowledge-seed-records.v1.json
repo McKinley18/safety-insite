@@ -1,0 +1,616 @@
+{
+  "records": [
+    {
+      "recordId": "app-mg-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.212",
+        "title": "Machine Guarding Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "machine_guarding",
+        "standardFamily": "machine_guarding",
+        "hazardFamilies": ["mechanical"],
+        "mechanisms": ["nip_point"],
+        "equipmentGroups": ["conveyor"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["conveyor", "unguarded", "nip_point"],
+        "requiredFacts": ["guarding_status"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is the guard present?", "Is the guard functional?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Machine guarding is mandatory.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Guard check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["physical_guarding"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["training_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["machine-guarding-conveyor-loto-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-elec-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.305",
+        "title": "Electrical Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "electrical",
+        "standardFamily": "electrical",
+        "hazardFamilies": ["electrical"],
+        "mechanisms": ["electrical_shock"],
+        "equipmentGroups": ["panel"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["damaged", "cord", "exposed_wires"],
+        "requiredFacts": ["cord_integrity"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is panel closed?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Maintain electrical integrity.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Electrical check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["insulation"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["tape_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["damaged-cord-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-haz-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.1200",
+        "title": "HazCom Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "hazcom",
+        "standardFamily": "hazard_communication",
+        "hazardFamilies": ["hazard_communication", "chemical"],
+        "mechanisms": ["chemical_exposure"],
+        "equipmentGroups": ["chemical_container"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["unlabeled", "container", "chemical"],
+        "requiredFacts": ["labeling_status"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is the container labeled?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Label all containers.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Label check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["labeling"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["verbal_identification"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["unlabeled-secondary-container-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-cs-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.146",
+        "title": "Confined Space Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "confined_space",
+        "standardFamily": "confined_space",
+        "hazardFamilies": ["confined_space", "atmospheric_hazard"],
+        "mechanisms": ["asphyxiation"],
+        "equipmentGroups": ["tank"],
+        "taskContexts": ["inspection"],
+        "applicabilitySignals": ["confined", "space", "entry"],
+        "requiredFacts": ["atmospheric_test"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is atmosphere tested?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Test atmosphere before entry.",
+        "appliesWhen": "inspection",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Atmospheric check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["ventilation"],
+        "verificationMethods": ["gas_detection"],
+        "commonWeakActionsToAvoid": ["no_monitoring"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["confined-space-entry-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-exc-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1926.652",
+        "title": "Excavation Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "excavation_trenching",
+        "standardFamily": "excavation",
+        "hazardFamilies": ["excavation", "cave_in"],
+        "mechanisms": ["cave_in"],
+        "equipmentGroups": ["trench"],
+        "taskContexts": ["excavation"],
+        "applicabilitySignals": ["trench", "excavation", "spoil"],
+        "requiredFacts": ["protective_system"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is system adequate?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Protective systems required.",
+        "appliesWhen": "excavation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Protective system check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["protective_system"],
+        "verificationMethods": ["design_review"],
+        "commonWeakActionsToAvoid": ["assumption"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["trench-protective-system-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-fall-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.22",
+        "title": "Walking-Working Surfaces Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "fall_protection",
+        "standardFamily": "fall_protection",
+        "hazardFamilies": ["fall_protection"],
+        "mechanisms": ["fall_from_height"],
+        "equipmentGroups": ["ladder"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["fall", "edge", "unprotected"],
+        "requiredFacts": ["guarding_status"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is edge protected?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Guard unprotected edges.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Edge check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["physical_guarding"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["training_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["unprotected-edge-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-mob-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "MSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "msha",
+        "sourceUrl": "http://msha.gov",
+        "citation": "56.9100",
+        "title": "Mobile Equipment Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "mobile_equipment",
+        "standardFamily": "mobile_equipment",
+        "hazardFamilies": ["mobile_equipment", "struck_by"],
+        "mechanisms": ["struck_by_mobile_equipment"],
+        "equipmentGroups": ["loader"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["mobile", "equipment", "pedestrian"],
+        "requiredFacts": ["traffic_control"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Are pedestrians clear?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Maintain traffic control.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Traffic check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["traffic_control"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["signage_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["pedestrian-mobile-interaction-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-rig-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "UNKNOWN",
+        "authorityTier": "unknown",
+        "jurisdiction": "unknown",
+        "sourceUrl": "placeholder_review_required",
+        "citation": "placeholder_review_required",
+        "title": "Safe Rigging Practices",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "sourceDateStatus": "unknown"
+      },
+      "mapping": {
+        "domainId": "rigging_lifting",
+        "standardFamily": "cranes_rigging",
+        "hazardFamilies": ["struck_by"],
+        "mechanisms": ["struck_by_suspended_load"],
+        "equipmentGroups": ["sling"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["sling", "damage"],
+        "requiredFacts": ["sling_inspection"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is sling damaged?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Inspect rigging before use.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Inspection check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["rigging_inspection"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["verbal_identification"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Internal validated",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["damaged-sling-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-fire-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.157",
+        "title": "Fire Protection Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "fire_protection",
+        "standardFamily": "fire_protection",
+        "hazardFamilies": ["fire"],
+        "mechanisms": ["fire_extinguisher_access_failure"],
+        "equipmentGroups": ["extinguisher"],
+        "taskContexts": ["inspection"],
+        "applicabilitySignals": ["blocked", "extinguisher"],
+        "requiredFacts": ["access_path"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is tag legible?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Maintain fire extinguisher access.",
+        "appliesWhen": "inspection",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Access check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["suppression"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["memory_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["blocked-extinguisher-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-egress-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.37",
+        "title": "Exit Routes Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "emergency_egress",
+        "standardFamily": "emergency_action_plan",
+        "hazardFamilies": ["egress"],
+        "mechanisms": ["egress_blockage"],
+        "equipmentGroups": ["exit"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["blocked", "exit"],
+        "requiredFacts": ["egress_path"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is path clear?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Keep exit routes clear.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Path check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["clear_path"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["training_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["blocked-exit-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-ppe-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "OSHA",
+        "authorityTier": "primary_regulation",
+        "jurisdiction": "osha_general_industry",
+        "sourceUrl": "http://osha.gov",
+        "citation": "1910.133",
+        "title": "PPE Standard",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "sourceDateStatus": "current"
+      },
+      "mapping": {
+        "domainId": "ppe",
+        "standardFamily": "ppe",
+        "hazardFamilies": ["ppe"],
+        "mechanisms": ["exposure"],
+        "equipmentGroups": ["goggles"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["ppe", "not_worn"],
+        "requiredFacts": ["ppe_usage"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is PPE used?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Use required PPE.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["PPE check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["ppe"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["memory_only"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Standard approval",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["ppe-not-worn-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    },
+    {
+      "recordId": "app-mat-01",
+      "version": "1.0.0",
+      "status": "approved",
+      "authority": {
+        "agency": "UNKNOWN",
+        "authorityTier": "unknown",
+        "jurisdiction": "unknown",
+        "sourceUrl": "placeholder_review_required",
+        "citation": "placeholder_review_required",
+        "title": "Material Storage Standard",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "sourceDateStatus": "unknown"
+      },
+      "mapping": {
+        "domainId": "material_handling",
+        "standardFamily": "material_handling",
+        "hazardFamilies": ["struck_by"],
+        "mechanisms": ["struck_by_falling_object"],
+        "equipmentGroups": ["pallet"],
+        "taskContexts": ["operation"],
+        "applicabilitySignals": ["unstable", "storage"],
+        "requiredFacts": ["storage_stability"],
+        "disqualifyingFacts": [],
+        "evidenceQuestions": ["Is material stable?"]
+      },
+      "applicability": {
+        "plainLanguageSummary": "Securely stack materials.",
+        "appliesWhen": "operation",
+        "doesNotApplyWhen": "none",
+        "requiredReviewerChecks": ["Stacking check"]
+      },
+      "correctiveActionLinks": {
+        "preferredControlFamilies": ["storage_controls"],
+        "verificationMethods": ["physical_inspection"],
+        "commonWeakActionsToAvoid": ["assumption"]
+      },
+      "governance": {
+        "approvedBy": "SafetyMgr",
+        "approvedAt": "2026-06-01",
+        "reviewerRole": "Safety Manager",
+        "changeReason": "Internal validated",
+        "supersedesRecordIds": [],
+        "duplicateKeys": ["unstable-stack-draft-01"],
+        "advisoryOnly": true,
+        "doesNotDeclareViolation": true,
+        "doesNotCreateCitation": true,
+        "requiresQualifiedReview": true
+      }
+    }
+  ]
+}

@@ -535,3 +535,7 @@ SafeScope can be called a validated, defensible safety AI only when:
 - SafeScope orchestration now integrates approved knowledge retrieval and field output composition in a single governed pipeline.
 
 - Targeted validation mode implemented to improve developer velocity and validation traceability.
+
+- Approved knowledge retrieval matching v1 added.
+
+- Approved knowledge registry now populated with initial seed records and wired into retrieval matching.

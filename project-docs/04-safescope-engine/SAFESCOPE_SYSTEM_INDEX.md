@@ -18,3 +18,9 @@
 | Field Output Composer v1 | Advisory output composition | backend/src/safescope-v2/field-output-composer-v1/ | N/A | backend/scripts/validate-safescope-field-output-composer-v1.ts | Field output composer v1 | Active | Advisory boundary preservation |
 
 | Orchestrator Output Pipeline | Integrated advisory pipeline | backend/src/safescope-v2/orchestration/ | N/A | backend/scripts/validate-safescope-orchestrator-field-output-wiring.ts | Orchestrator field output wiring | Active | Governance-compliant pipeline wiring |
+
+| Approved Knowledge Seed Registry | Approved knowledge seed data | safescope-data/approved-knowledge/registry/ | N/A | N/A | Approved knowledge registry | Active | Foundation |
+
+| Knowledge Retrieval Matching | Retrieval from approved registry | backend/src/safescope-v2/approved-knowledge-retrieval-output-v1/ | N/A | backend/scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts | Approved knowledge retrieval matching v1 | Active | Governance-compliant pipeline |
+
+| Approved Knowledge Seed Registry | Approved knowledge seed data | safescope-data/approved-knowledge/registry/ | N/A | N/A | Approved knowledge registry | Active | Foundation |

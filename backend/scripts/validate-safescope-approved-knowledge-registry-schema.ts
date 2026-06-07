@@ -23,6 +23,7 @@ async function validate() {
         sourceDateStatus: 'current'
     },
     mapping: {
+        domainId: 'loto',
         standardFamily: 'loto',
         hazardFamilies: ['energy'],
         mechanisms: ['unexpected_startup'],
@@ -31,8 +32,9 @@ async function validate() {
         applicabilitySignals: ['energized'],
         requiredFacts: ['energy_source'],
         disqualifyingFacts: [],
-        evidenceQuestions: ['is energy isolated?']
+        evidenceQuestions: ['Is energy isolated?']
     },
+
     applicability: {
         plainLanguageSummary: 'LOTO is required',
         appliesWhen: 'servicing',

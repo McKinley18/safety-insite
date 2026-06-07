@@ -21,6 +21,7 @@ export class ApprovedKnowledgeDraftExportService {
         sourceDateStatus: 'unknown',
       },
       mapping: {
+        domainId: 'unknown',
         standardFamily: 'unknown',
         hazardFamilies: [],
         mechanisms: [],

@@ -100,3 +100,7 @@
 - Field output composer v1 added.
 
 - Orchestrator field output wiring added.
+
+- Approved knowledge retrieval matching v1 added.
+
+- Approved knowledge population and matching v1 added.

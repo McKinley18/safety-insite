@@ -1316,3 +1316,15 @@ Check git status:
 - Targeted validation mode added, supporting area-based validation for rapid development cycles.
 - Includes support for: taxonomy, knowledge, output, orchestrator, governance, precision, and core areas.
 - Master validation continues to serve as the source of truth for full system integrity.
+
+## Approved Knowledge Retrieval + Population v1
+- SafeScope Approved Knowledge Retrieval + Population v1 added.
+- Approved seed knowledge registry is now integrated into retrieval and field output composition.
+- SafeScope main output now differentiates between approved knowledge matches and draft candidate warnings, maintaining advisory boundaries.
+- Master validation includes the retrieval matching validator.
+
+## Approved Knowledge Population + Retrieval Matching v1
+- Approved seed knowledge registry added, populating 12 approved high-value domain records.
+- Real retrieval matching implemented, allowing orchestration to query approved records.
+- Field output composer now surfaces matched approved knowledge references and advisory boundaries.
+- Validation includes retrieval matching and ensures draft/placeholder content is flagged.
