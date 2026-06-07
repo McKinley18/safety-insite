@@ -6,6 +6,7 @@ import { SafescopeV2Service } from './safescope-v2.service';
 import { ClassifyDto } from './dto/classify.dto';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
+import { VisualEvidenceReasoningInput } from './visual-evidence-reasoning/visual-evidence-reasoning.types';
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
@@ -65,6 +66,30 @@ export class SafescopeV2Controller {
         generatedActions: [],
         additionalHazards: [],
         fallbackMode: true,
+      };
+    }
+  }
+
+  @UseGuards(JwtGuard)
+  @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
+  @Post('visual-evidence/evaluate')
+  async evaluateVisualEvidence(@Body() input: VisualEvidenceReasoningInput) {
+    try {
+      return await this.service.evaluateVisualEvidence(input);
+    } catch (error) {
+      console.error('SafeScope v2 visual evidence evaluation failed:', error);
+      return {
+          version: 'visual_evidence_reasoning_v1',
+          evidencePresence: 'unclear',
+          visualSupportLevel: 'not_evaluated',
+          photoEvidenceScore: 0,
+          linkedAttachmentCount: input.attachments?.length || 0,
+          relevantAttachmentIds: [],
+          missingVisualEvidence: [],
+          visualConsistencyFlags: [],
+          reviewerQuestions: ['SafeScope visual reasoning failed to process. Manual verification required.'],
+          confidenceImpact: 'neutral',
+          advisoryBoundary: 'SafeScope visual evidence reasoning is advisory only.'
       };
     }
   }

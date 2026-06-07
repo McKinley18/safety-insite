@@ -1,16 +1,26 @@
 export type AttachmentType = 'photo' | 'video' | 'document' | 'note';
 export type ViewType = 'wide_area' | 'close_up' | 'control_status' | 'employee_exposure' | 'equipment_id' | 'tag_label' | 'unknown';
 
+export interface AttachmentMetadata {
+  location?: string;
+  equipment?: string;
+  hazardKeywords?: string[];
+  confidenceNotes?: string;
+}
+
 export interface Attachment {
   id: string;
   type: AttachmentType;
   fileName?: string;
   capturedAt?: string;
+  uploadedBy?: string;
+  relatedObservationId?: string;
   linkedFindingId?: string;
   caption?: string;
   fieldNotes?: string;
   locationTag?: string;
   viewType?: ViewType;
+  metadata?: AttachmentMetadata;
 }
 
 export interface VisualEvidenceReasoningInput {

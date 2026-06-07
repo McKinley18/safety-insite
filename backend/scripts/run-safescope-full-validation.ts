@@ -117,6 +117,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-visual-evidence-reasoning-v1.ts'],
   },
   {
+    label: 'Visual evidence API and UI wiring v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-visual-evidence-api-ui-wiring-v1.ts'],
+  },
+  {
     label: 'Knowledge source ingestion and approved update workflow v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts'],

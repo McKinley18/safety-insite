@@ -1,4 +1,5 @@
 import { IsArray, IsOptional, IsString, MinLength } from 'class-validator';
+import { Attachment } from '../visual-evidence-reasoning/visual-evidence-reasoning.types';
 
 export class ClassifyDto {
   @IsString()
@@ -14,6 +15,10 @@ export class ClassifyDto {
   @IsArray()
   @IsString({ each: true })
   evidenceTexts?: string[];
+
+  @IsOptional()
+  @IsArray()
+  visualAttachments?: Attachment[];
 
   @IsOptional()
   @IsString()

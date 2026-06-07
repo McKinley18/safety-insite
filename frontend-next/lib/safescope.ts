@@ -198,6 +198,7 @@ export async function runSafeScopeV2Classify(input: {
   text: string;
   scopes?: string[];
   evidenceTexts?: string[];
+  visualAttachments?: any[];
   riskProfileId?: "simple_4x4" | "standard_5x5" | "advanced_6x6";
   priorFindings?: any[];
 }) {

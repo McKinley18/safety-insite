@@ -94,7 +94,7 @@ export default function EvidenceCaptureSection({
                     }}
                     className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
                   >
-                    Expand
+                    Annotate
                   </button>
 
                   <button
@@ -105,6 +105,57 @@ export default function EvidenceCaptureSection({
                     Remove
                   </button>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">Caption / Label</label>
+                    <input 
+                      type="text" 
+                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-bold"
+                      placeholder="e.g. Missing guard on shaft"
+                      value={photo.caption || ''}
+                      onChange={(e) => {
+                          const next = [...photos];
+                          next[index] = { ...photo, caption: e.target.value };
+                          setPhotos(next);
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">View Type</label>
+                    <select 
+                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-bold"
+                      value={photo.viewType || 'unknown'}
+                      onChange={(e) => {
+                          const next = [...photos];
+                          next[index] = { ...photo, viewType: e.target.value };
+                          setPhotos(next);
+                      }}
+                    >
+                      <option value="unknown">Select view type...</option>
+                      <option value="close_up">Close-up of condition</option>
+                      <option value="wide_area">Wide area / Context</option>
+                      <option value="control_status">Control/Lockout status</option>
+                      <option value="employee_exposure">Exposure path</option>
+                      <option value="tag_label">Tag / Label detail</option>
+                      <option value="equipment_id">Equipment ID</option>
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">Field Notes</label>
+                    <textarea 
+                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-semibold"
+                      placeholder="Additional details about what this photo represents..."
+                      rows={2}
+                      value={photo.fieldNotes || ''}
+                      onChange={(e) => {
+                          const next = [...photos];
+                          next[index] = { ...photo, fieldNotes: e.target.value };
+                          setPhotos(next);
+                      }}
+                    />
+                  </div>
               </div>
 
               <AnnotationEditor

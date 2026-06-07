@@ -264,6 +264,56 @@ function formatEquipmentReasoningMode(value: any) {
   return labels[mode] || mode.replace(/_/g, " ");
 }
 
+function SafeScopeVisualEvidenceAppendix({
+  safeScopeResult,
+}: {
+  safeScopeResult: any;
+}) {
+  const visual = safeScopeResult?.visualEvidenceReasoning;
+  if (!visual || visual.visualSupportLevel === 'not_evaluated') return null;
+
+  return (
+    <div className="rounded-xl bg-blue-50 px-3 py-2 ring-1 ring-blue-200">
+      <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+        Visual evidence analysis
+      </p>
+
+      <div className="mt-2 grid gap-2 md:grid-cols-2">
+        <p>
+          <span className="font-black text-slate-800">Status:</span>{" "}
+          {visual.visualSupportLevel.replace(/_/g, " ")}
+        </p>
+        <p>
+          <span className="font-black text-slate-800">Score:</span>{" "}
+          {visual.photoEvidenceScore}/10
+        </p>
+      </div>
+
+      {!!visual.visualConsistencyFlags?.length && (
+        <div className="mt-2">
+          <p className="text-[10px] font-black uppercase text-red-700">Consistency Conflicts</p>
+          <ul className="mt-1 list-inside list-disc text-xs font-bold text-red-800">
+            {visual.visualConsistencyFlags.map((f: string) => <li key={f}>{f}</li>)}
+          </ul>
+        </div>
+      )}
+
+      {!!visual.missingVisualEvidence?.length && (
+        <div className="mt-2">
+          <p className="text-[10px] font-black uppercase text-amber-700">Missing Views</p>
+          <ul className="mt-1 list-inside list-disc text-xs font-semibold text-amber-800">
+            {visual.missingVisualEvidence.map((m: string) => <li key={m}>{m}</li>)}
+          </ul>
+        </div>
+      )}
+
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 italic">
+        {visual.advisoryBoundary}
+      </p>
+    </div>
+  );
+}
+
 function SafeScopeEquipmentReasoningAppendix({
   safeScopeResult,
 }: {
@@ -1150,6 +1200,10 @@ export default function InspectionReviewPage() {
                                 .join(" · ")}
                             </p>
                           )}
+
+                        <SafeScopeVisualEvidenceAppendix
+                          safeScopeResult={finding.safeScopeResult}
+                        />
 
                         <SafeScopeEquipmentReasoningAppendix
                           safeScopeResult={finding.safeScopeResult}

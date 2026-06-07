@@ -17,6 +17,8 @@ import { getCorrectiveActionIntelligence } from "./intelligence/corrective-actio
 import { SupervisorValidationService } from "./validation/supervisor-validation.service";
 import { SafeScopeNativeReasoningService } from "./native-reasoning/native-reasoning.service";
 import { SafeScopeReasoningOrchestratorService } from "./reasoning-orchestrator/reasoning-orchestrator.service";
+import { VisualEvidenceReasoningService } from "./visual-evidence-reasoning/visual-evidence-reasoning.service";
+import { VisualEvidenceReasoningInput, Attachment } from "./visual-evidence-reasoning/visual-evidence-reasoning.types";
 
 @Injectable()
 export class SafescopeV2Service {
@@ -62,6 +64,7 @@ export class SafescopeV2Service {
   private intelligenceOrchestrator = new SafeScopeIntelligenceOrchestrator();
   private nativeReasoningService = new SafeScopeNativeReasoningService();
   private reasoningOrchestratorService = new SafeScopeReasoningOrchestratorService();
+  private visualService = new VisualEvidenceReasoningService();
 
   private determineHumanReviewRequired(intelligence: any, primary: any) {
     return Boolean(
@@ -221,6 +224,10 @@ export class SafescopeV2Service {
     private readonly standardsIntelligenceService: StandardsIntelligenceService,
     private readonly supervisorValidationService: SupervisorValidationService,
   ) {}
+
+  async evaluateVisualEvidence(input: VisualEvidenceReasoningInput) {
+    return this.visualService.evaluate(input);
+  }
 
   private scopeToSource(scopes?: string[]) {
     if (!scopes || scopes.length === 0 || scopes.includes("all"))
@@ -826,6 +833,7 @@ export class SafescopeV2Service {
     riskProfileId?: "simple_4x4" | "standard_5x5" | "advanced_6x6",
     workspaceId?: string,
     priorFindings?: any[],
+    visualAttachments?: Attachment[],
   ) {
     const evidenceFusion = this.evidenceFusion.synthesize([
       text,
@@ -1057,6 +1065,7 @@ export class SafescopeV2Service {
       promotedPrimary,
       classifierResult: result,
       evidenceTexts,
+      visualAttachments,
       expandedContext,
       primaryStandardsResult,
       generatedActions,

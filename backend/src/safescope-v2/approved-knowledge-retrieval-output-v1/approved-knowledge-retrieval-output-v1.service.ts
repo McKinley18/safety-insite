@@ -136,9 +136,10 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         evidenceWeighting,
         multiHazardAnalysis: multiHazardDecomposition,
         semanticSynonymExpansion,
-        attachments: context.attachments || [],
+        attachments: context.visualAttachments || context.attachments || [],
         context
     });
+
 
     let reviewFeedback = undefined;
     if (context.humanReview) {

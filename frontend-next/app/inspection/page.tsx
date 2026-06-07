@@ -371,6 +371,15 @@ export default function InspectionPage() {
         ].join("\n"),
         scopes: safeScopeScopes,
         riskProfileId,
+        visualAttachments: photos.map(p => ({
+          id: p.id,
+          type: 'photo',
+          fileName: p.name,
+          caption: p.caption,
+          fieldNotes: p.fieldNotes,
+          viewType: p.viewType || 'unknown',
+          capturedAt: p.capturedAt
+        })),
         evidenceTexts: [
           evidenceNotes,
           location,

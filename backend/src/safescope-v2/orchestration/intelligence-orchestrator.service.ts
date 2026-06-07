@@ -68,6 +68,7 @@ export type SafeScopeIntelligenceOrchestratorInput = {
   promotedPrimary: any;
   classifierResult: any;
   evidenceTexts?: string[];
+  visualAttachments?: any[];
   expandedContext: any;
   primaryStandardsResult: any;
   generatedActions: any[];
@@ -148,6 +149,7 @@ export class SafeScopeIntelligenceOrchestrator {
       promotedPrimary,
       classifierResult,
       evidenceTexts,
+      visualAttachments,
       expandedContext,
       primaryStandardsResult,
       generatedActions,
@@ -574,12 +576,18 @@ export class SafeScopeIntelligenceOrchestrator {
     
     const retrieval = await this.retrievalEngine.retrieve(
         fusedText,
-        {}
+        {
+            visualAttachments,
+            attachments: visualAttachments
+        }
     );
     
     const composer = await this.composerEngine.compose(
         fusedText,
-        retrieval
+        {
+            visualAttachments,
+            attachments: visualAttachments
+        }
     );
     
     const evg = this.evgEngine.generateQuestions(
