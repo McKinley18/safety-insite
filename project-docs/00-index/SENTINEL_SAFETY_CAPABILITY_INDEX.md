@@ -1380,3 +1380,10 @@ Check git status:
 - Identifies weak or incomplete actions (e.g., "retrain only") and flags residual risks.
 - Provides verification steps and adjusts confidence based on action quality and evidence clarity.
 - Fully integrated into field output for closed-loop safety reasoning.
+
+## Human Review Feedback Loop + Learning Governance
+- SafeScope Human Review Feedback Loop + Learning Governance v1 added.
+- Captures qualified reviewer feedback (e.g., corrected hazard families, mechanisms, or actions) and classifies it into governed learning outcomes.
+- Prevents direct pollution of approved knowledge by creating reviewed learning candidates.
+- Includes reliability scoring for feedback based on reviewer role and source linkage.
+- Automatically blocks feedback containing prohibited legal or enforcement language.

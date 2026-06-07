@@ -4,6 +4,7 @@ import { ObservationNarrativeSynthesisResult } from '../observation-narrative-sy
 import { CrossDomainCausalChainResult } from '../cross-domain-causal-chain/cross-domain-causal-chain.types';
 import { CorrectiveActionStrategyResult } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.types';
 import { RiskVerificationResidualRiskResult } from '../risk-verification-residual-risk/risk-verification-residual-risk.types';
+import { HumanReviewFeedbackResult } from '../human-review-feedback-loop/human-review-feedback-loop.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -19,6 +20,7 @@ export interface RetrievalOutput {
   crossDomainCausalChain: CrossDomainCausalChainResult;
   correctiveActionStrategy: CorrectiveActionStrategyResult;
   riskVerification: RiskVerificationResidualRiskResult;
+  reviewFeedback?: HumanReviewFeedbackResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;
@@ -27,3 +29,4 @@ export interface RetrievalOutput {
   recommendedReviewerActions: string[];
   fieldOutputNotes: string;
 }
+

@@ -17,6 +17,7 @@ export class FieldOutputComposerV1Service {
     const causalChain = retrieval.crossDomainCausalChain;
     const strategy = retrieval.correctiveActionStrategy;
     const verification = retrieval.riskVerification;
+    const feedback = retrieval.reviewFeedback;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
@@ -35,7 +36,12 @@ export class FieldOutputComposerV1Service {
         assessment += ' ESCALATION REQUIRED: Assessment cannot proceed without qualified site review.';
     }
 
-    // 3. Determine actions based on strategy and verification
+    // 3. Add Feedback Learning Disposition if present
+    if (feedback) {
+        assessment += ` [Review Result: ${feedback.learningDisposition}]`;
+    }
+
+    // 4. Determine actions based on strategy and verification
     const immediateActions = [
         ...strategy.immediateControls.map(a => a.actionText),
         ...verification.additionalControlsNeeded
@@ -69,7 +75,7 @@ export class FieldOutputComposerV1Service {
         supervisorQuestions.push('Has this been evaluated by a competent person?');
     }
 
-    // 4. Add Weak Action Warnings
+    // 5. Add Weak Action Warnings
     const warnings = [
         ...retrieval.draftKnowledgeWarnings,
         ...verification.weakActionWarnings

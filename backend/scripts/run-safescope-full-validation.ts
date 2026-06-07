@@ -87,6 +87,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-risk-verification-residual-risk-v1.ts'],
   },
   {
+    label: 'Human review feedback loop v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-human-review-feedback-loop-v1.ts'],
+  },
+  {
     label: 'Approved knowledge retrieval matching v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts'],

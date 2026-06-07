@@ -40,3 +40,5 @@
 | Strategy Ranking | Risk-informed control prioritization | backend/src/safescope-v2/corrective-action-strategy-ranking/ | N/A | backend/scripts/validate-safescope-corrective-action-strategy-ranking-v1.ts | Corrective action strategy ranking v1 | Active | Ranking logic |
 
 | Risk Verification | Action quality and residual risk analysis | backend/src/safescope-v2/risk-verification-residual-risk/ | N/A | backend/scripts/validate-safescope-risk-verification-residual-risk-v1.ts | Risk verification v1 | Active | Effectiveness logic |
+
+| Human Review Feedback Loop | Controlled expert learning loop | backend/src/safescope-v2/human-review-feedback-loop/ | N/A | backend/scripts/validate-safescope-human-review-feedback-loop-v1.ts | Human review feedback loop v1 | Active | Governed learning mechanism |

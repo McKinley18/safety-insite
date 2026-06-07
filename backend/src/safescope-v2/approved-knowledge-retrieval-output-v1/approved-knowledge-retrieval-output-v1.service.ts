@@ -10,6 +10,7 @@ import { ObservationNarrativeSynthesisService } from '../observation-narrative-s
 import { CrossDomainCausalChainService } from '../cross-domain-causal-chain/cross-domain-causal-chain.service';
 import { CorrectiveActionStrategyRankingService } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.service';
 import { RiskVerificationResidualRiskService } from '../risk-verification-residual-risk/risk-verification-residual-risk.service';
+import { HumanReviewFeedbackLoopService } from '../human-review-feedback-loop/human-review-feedback-loop.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -23,6 +24,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private causalChainService = new CrossDomainCausalChainService();
   private strategyService = new CorrectiveActionStrategyRankingService();
   private riskVerificationService = new RiskVerificationResidualRiskService();
+  private feedbackService = new HumanReviewFeedbackLoopService();
 
   async retrieve(
     observationText: string,
@@ -94,6 +96,24 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         context
     });
 
+    let reviewFeedback = undefined;
+    if (context.humanReview) {
+        reviewFeedback = this.feedbackService.processReview({
+            observationText,
+            originalRetrievalOutput: undefined, // To be populated by caller if needed
+            originalFieldOutput: undefined,
+            reviewerRole: context.humanReview.reviewerRole || 'unknown',
+            reviewerDecision: context.humanReview.reviewerDecision || 'accepted',
+            reviewerNotes: context.humanReview.reviewerNotes,
+            correctedHazardFamily: context.humanReview.correctedHazardFamily,
+            correctedMechanism: context.humanReview.correctedMechanism,
+            correctedActions: context.humanReview.correctedActions,
+            missingEvidenceNotes: context.humanReview.missingEvidenceNotes,
+            sourceReference: context.humanReview.sourceReference,
+            context
+        });
+    }
+
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -112,6 +132,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       crossDomainCausalChain: crossDomainCausalChain,
       correctiveActionStrategy: correctiveActionStrategy,
       riskVerification: riskVerification,
+      reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
       confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)) + riskVerification.confidenceAdjustment,
