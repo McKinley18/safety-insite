@@ -7,6 +7,7 @@ import { ScenarioEvaluationService } from '../scenario-evaluation/scenario-evalu
 import { FieldEvidenceWeightingService } from '../field-evidence-weighting/field-evidence-weighting.service';
 import { MultiHazardDecompositionService } from '../multi-hazard-decomposition/multi-hazard-decomposition.service';
 import { ObservationNarrativeSynthesisService } from '../observation-narrative-synthesis/observation-narrative-synthesis.service';
+import { CrossDomainCausalChainService } from '../cross-domain-causal-chain/cross-domain-causal-chain.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -17,6 +18,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private evidenceWeightingService = new FieldEvidenceWeightingService();
   private decompositionService = new MultiHazardDecompositionService();
   private narrativeService = new ObservationNarrativeSynthesisService();
+  private causalChainService = new CrossDomainCausalChainService();
 
   async retrieve(
     observationText: string,
@@ -57,6 +59,12 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         context
     });
 
+    const crossDomainCausalChain = this.causalChainService.analyze({
+        observationText,
+        multiHazardDecomposition,
+        evidenceWeighting
+    });
+
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -72,6 +80,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       evidenceWeighting: evidenceWeighting,
       multiHazardDecomposition: multiHazardDecomposition,
       observationNarrative: observationNarrative,
+      crossDomainCausalChain: crossDomainCausalChain,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
       confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)),
@@ -82,6 +91,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],
       recommendedReviewerActions: [
           ...evidenceWeighting.reviewerQuestions,
+          ...crossDomainCausalChain.reviewerQuestions,
           'Verify categorization', 
           'Review evidence sufficiency'
       ],

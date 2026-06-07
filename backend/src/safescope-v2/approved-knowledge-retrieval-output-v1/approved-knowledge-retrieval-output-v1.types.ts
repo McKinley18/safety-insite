@@ -1,6 +1,7 @@
 import { EvidenceWeightingResult } from '../field-evidence-weighting/field-evidence-weighting.types';
 import { MultiHazardDecompositionResult } from '../multi-hazard-decomposition/multi-hazard-decomposition.types';
 import { ObservationNarrativeSynthesisResult } from '../observation-narrative-synthesis/observation-narrative-synthesis.types';
+import { CrossDomainCausalChainResult } from '../cross-domain-causal-chain/cross-domain-causal-chain.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -13,6 +14,7 @@ export interface RetrievalOutput {
   evidenceWeighting: EvidenceWeightingResult;
   multiHazardDecomposition: MultiHazardDecompositionResult;
   observationNarrative: ObservationNarrativeSynthesisResult;
+  crossDomainCausalChain: CrossDomainCausalChainResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;

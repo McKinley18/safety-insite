@@ -72,6 +72,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-observation-narrative-synthesis-v1.ts'],
   },
   {
+    label: 'Cross-domain causal chain reasoning v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-cross-domain-causal-chain-v1.ts'],
+  },
+  {
     label: 'Approved knowledge retrieval matching v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts'],

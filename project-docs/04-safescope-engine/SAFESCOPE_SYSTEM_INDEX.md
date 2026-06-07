@@ -34,3 +34,5 @@
 | Multi-Hazard Decomposition | Complex observation analyzer | backend/src/safescope-v2/multi-hazard-decomposition/ | N/A | backend/scripts/validate-safescope-multi-hazard-decomposition-v1.ts | Multi-hazard observation decomposition v1 | Active | Phrase-splitting logic |
 
 | Observation Narrative Synthesis | Professional advisory generator | backend/src/safescope-v2/observation-narrative-synthesis/ | N/A | backend/scripts/validate-safescope-observation-narrative-synthesis-v1.ts | Observation narrative synthesis v1 | Active | Synthesis logic |
+
+| Causal Chain Reasoning | Interaction logic engine | backend/src/safescope-v2/cross-domain-causal-chain/ | N/A | backend/scripts/validate-safescope-cross-domain-causal-chain-v1.ts | Cross-domain causal chain v1 | Active | Compound risk reasoning |

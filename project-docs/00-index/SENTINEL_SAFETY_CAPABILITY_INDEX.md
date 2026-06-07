@@ -1359,3 +1359,10 @@ Check git status:
 - Provides plain-language explanations of primary and secondary hazards, evidence basis, and uncertainties.
 - Automatically adjusts narrative tone based on evidence confidence (strong, moderate, weak, insufficient, conflicting).
 - Fully integrated into field output composer for human-readable advisory summaries.
+
+## Cross-Domain Causal Chain Reasoning
+- SafeScope Cross-Domain Causal Chain Reasoning v1 added.
+- Identifies interactions between separate safety domains (e.g., LOTO failure + machine guarding gap).
+- Maps initiating conditions, escalation factors, and exposure pathways into defensive causal chains.
+- Calculates compound risk levels based on hazard interaction severity.
+- Fully integrated into field output for complex advisory reasoning.
