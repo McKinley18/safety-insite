@@ -13,6 +13,7 @@ import { RiskVerificationResidualRiskService } from '../risk-verification-residu
 import { HumanReviewFeedbackLoopService } from '../human-review-feedback-loop/human-review-feedback-loop.service';
 import { SourceFreshnessGovernanceService } from '../source-freshness-governance/source-freshness-governance.service';
 import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
+import { AuditReadyReasoningTraceService } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -29,6 +30,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private feedbackService = new HumanReviewFeedbackLoopService();
   private freshnessService = new SourceFreshnessGovernanceService();
   private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
+  private traceService = new AuditReadyReasoningTraceService();
 
   async retrieve(
     observationText: string,
@@ -131,6 +133,23 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         });
     }
 
+    const auditReadyReasoningTrace = this.traceService.generateTrace({
+        observationText,
+        taxonomyRoute,
+        approvedKnowledgeMatches: approvedMatches,
+        evaluatedScenarioMatches: evaluation.evaluatedScenarios,
+        evidenceWeighting,
+        multiHazardAnalysis: multiHazardDecomposition,
+        narrativeSynthesis: observationNarrative,
+        causalChainAnalysis: crossDomainCausalChain,
+        correctiveActionStrategy,
+        residualRiskVerification: riskVerification,
+        humanReviewFeedback: reviewFeedback,
+        sourceFreshness: sourceFreshnessGovernanceResults,
+        jurisdictionApplicability,
+        context
+    });
+
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -157,6 +176,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       riskVerification: riskVerification,
       sourceFreshnessGovernanceResults,
       jurisdictionApplicability,
+      auditReadyReasoningTrace,
       reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',

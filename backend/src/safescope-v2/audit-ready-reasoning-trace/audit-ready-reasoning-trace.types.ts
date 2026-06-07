@@ -7,32 +7,44 @@ import { RiskVerificationResidualRiskResult } from '../risk-verification-residua
 import { HumanReviewFeedbackResult } from '../human-review-feedback-loop/human-review-feedback-loop.types';
 import { SourceFreshnessGovernanceResult } from '../source-freshness-governance/source-freshness-governance.types';
 import { JurisdictionApplicabilityResult } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.types';
-import { AuditReadyReasoningTraceResult } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.types';
 
-export interface RetrievalOutput {
-  version: string;
-  observationSummary: string;
+export interface AuditReadyReasoningTraceInput {
+  observationText: string;
   taxonomyRoute: any;
   approvedKnowledgeMatches: any[];
-  scenarioMatches: any[];
-  evaluatedScenarios: any[];
-  topScenario?: any;
+  evaluatedScenarioMatches: any[];
   evidenceWeighting: EvidenceWeightingResult;
-  multiHazardDecomposition: MultiHazardDecompositionResult;
-  observationNarrative: ObservationNarrativeSynthesisResult;
-  crossDomainCausalChain: CrossDomainCausalChainResult;
+  multiHazardAnalysis: MultiHazardDecompositionResult;
+  narrativeSynthesis: ObservationNarrativeSynthesisResult;
+  causalChainAnalysis: CrossDomainCausalChainResult;
   correctiveActionStrategy: CorrectiveActionStrategyResult;
-  riskVerification: RiskVerificationResidualRiskResult;
-  sourceFreshnessGovernanceResults: Record<string, SourceFreshnessGovernanceResult>;
+  residualRiskVerification: RiskVerificationResidualRiskResult;
+  humanReviewFeedback?: HumanReviewFeedbackResult;
+  sourceFreshness: Record<string, SourceFreshnessGovernanceResult>;
   jurisdictionApplicability: JurisdictionApplicabilityResult;
-  auditReadyReasoningTrace: AuditReadyReasoningTraceResult;
-  reviewFeedback?: HumanReviewFeedbackResult;
-  draftKnowledgeWarnings: string[];
-  applicabilityAssessment: string;
-  confidence: number;
-  evidenceGaps: string[];
-  advisoryBoundaries: string[];
-  recommendedReviewerActions: string[];
-  fieldOutputNotes: string;
+  context?: any;
 }
 
+export interface AuditReadyReasoningTraceResult {
+  traceVersion: string;
+  traceId: string;
+  generatedAt: string;
+  observationSummary: string;
+  primaryDecisionPath: string[];
+  supportingEvidence: string[];
+  weakeningEvidence: string[];
+  missingCriticalFacts: string[];
+  detectedContradictions: string[];
+  jurisdictionReasoning: string;
+  sourceReasoning: string[];
+  scenarioReasoning: string[];
+  causalChainReasoning: string[];
+  correctiveActionReasoning: string;
+  residualRiskReasoning: string;
+  confidenceModifiers: string[];
+  rejectedAlternatives: string[];
+  humanReviewGates: string[];
+  advisoryBoundary: string;
+  safeScopeLimitations: string[];
+  reviewerChecklist: string[];
+}

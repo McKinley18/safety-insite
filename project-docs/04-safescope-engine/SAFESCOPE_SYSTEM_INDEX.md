@@ -46,3 +46,5 @@
 | Source Freshness Governance | Source currency and authority monitor | backend/src/safescope-v2/source-freshness-governance/ | N/A | backend/scripts/validate-safescope-source-freshness-governance-v1.ts | Source freshness v1 | Active | Currency reasoning layer |
 
 | Jurisdiction Decision Tree | Regulatory applicability logic | backend/src/safescope-v2/jurisdiction-applicability-decision-tree/ | N/A | backend/scripts/validate-safescope-jurisdiction-applicability-decision-tree-v1.ts | Jurisdiction applicability v1 | Active | Regulatory routing layer |
+
+| Reasoning Trace | Audit-ready explainability engine | backend/src/safescope-v2/audit-ready-reasoning-trace/ | N/A | backend/scripts/validate-safescope-audit-ready-reasoning-trace-v1.ts | Audit reasoning trace v1 | Active | Defensibility layer |

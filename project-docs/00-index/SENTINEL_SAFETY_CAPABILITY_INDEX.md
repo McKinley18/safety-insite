@@ -1401,3 +1401,10 @@ Check git status:
 - Identifies jurisdiction conflicts (e.g., OSHA standards cited at an MSHA site) and flags mixed-jurisdiction cases for human review.
 - Automatically blocks or downgrades regulatory references when applicability confidence is low or unclear.
 - Fully integrated into field output composer for legally defensive safety summaries.
+
+## Audit-Ready Reasoning Trace + Explainability
+- SafeScope Audit-Ready Reasoning Trace + Explainability v1 added.
+- Provides a comprehensive, structured reasoning trace explaining every step of the safety assessment process.
+- Details detected hazards, supporting/weakening evidence, jurisdiction logic, confidence modifiers, and corrective action ranking rationale.
+- Includes a dedicated reviewer checklist and clearly identifies human review gates for high-risk or ambiguous observations.
+- Fully integrated into field output for maximum transparency and defensibility.

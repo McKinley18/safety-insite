@@ -20,6 +20,7 @@ export class FieldOutputComposerV1Service {
     const feedback = retrieval.reviewFeedback;
     const freshness = retrieval.sourceFreshnessGovernanceResults;
     const jurisdiction = retrieval.jurisdictionApplicability;
+    const trace = retrieval.auditReadyReasoningTrace;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
@@ -49,14 +50,17 @@ export class FieldOutputComposerV1Service {
     if (feedback) {
         assessment += ` [Review Result: ${feedback.learningDisposition}]`;
     }
+    
+    // 5. Audit Trace Summary for transparency
+    assessment += ` (Trace ID: ${trace.traceId})`;
 
-    // 5. Source Freshness Warnings
+    // 6. Source Freshness Warnings
     const freshnessWarnings: string[] = [];
     Object.values(freshness).forEach((res: any) => {
         freshnessWarnings.push(...res.sourceWarnings);
     });
 
-    // 6. Determine actions based on strategy and verification
+    // 7. Determine actions based on strategy and verification
     const immediateActions = [
         ...strategy.immediateControls.map(a => a.actionText),
         ...verification.additionalControlsNeeded
@@ -84,7 +88,8 @@ export class FieldOutputComposerV1Service {
         ...strategy.verificationSteps.map(v => v.actionText),
         ...verification.reviewerQuestions,
         ...verification.verificationSteps,
-        ...jurisdiction.reviewerQuestions
+        ...jurisdiction.reviewerQuestions,
+        ...trace.reviewerChecklist
     ];
 
     Object.values(freshness).forEach((res: any) => {
@@ -95,7 +100,7 @@ export class FieldOutputComposerV1Service {
         supervisorQuestions.push('Has this been evaluated by a competent person?');
     }
 
-    // 7. Add Warnings
+    // 8. Add Warnings
     const warnings = [
         ...retrieval.draftKnowledgeWarnings,
         ...verification.weakActionWarnings,
@@ -130,7 +135,8 @@ export class FieldOutputComposerV1Service {
           causalChain.advisoryBoundary, 
           strategy.advisoryBoundary,
           verification.advisoryBoundary,
-          jurisdiction.advisoryBoundary
+          jurisdiction.advisoryBoundary,
+          trace.advisoryBoundary
       ],
       reviewerRequired: true,
       cannotDeclareViolation: true,
