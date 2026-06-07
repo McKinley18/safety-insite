@@ -96,3 +96,5 @@
 - Hazard taxonomy coverage map v1 added.
 
 - Approved knowledge retrieval output v1 added.
+
+- Field output composer v1 added.

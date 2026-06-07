@@ -1299,3 +1299,9 @@ Check git status:
 - It provides evidence gaps when applicability is incomplete.
 - It differentiates approved knowledge from draft candidates.
 - Master validation includes the retrieval output validator.
+
+## Field Output Composer v1
+- SafeScope Field Output Composer v1 added.
+- It transforms approved knowledge retrieval into field-ready advisory responses.
+- It preserves advisory-only boundaries, prohibits violation/citation language, and flags draft content requiring review.
+- Master validation includes the field output composer validator.

@@ -14,3 +14,5 @@
 | Approved Knowledge Review API | API | `backend/src/safescope-v2/approved-knowledge-review-api/` | `safescope-data/approved-knowledge/review-decisions/` | `validate-safescope-approved-knowledge-review-api-v1.ts` | Approved knowledge review API v1 | Active | Critical |
 | Hazard Taxonomy Coverage | Routing | `backend/src/safescope-v2/hazard-taxonomy-coverage/` | `safescope-data/hazard-taxonomy/` | `validate-safescope-hazard-taxonomy-coverage.ts` | Hazard taxonomy coverage | Active | Critical |
 | Hazard Information Absorption | Absorption | `backend/src/safescope-v2/hazard-information-absorption/` | `safescope-data/hazard-information-absorption/` | `validate-safescope-hazard-information-absorption.ts` | Hazard information absorption | Active | Critical |
+
+| Field Output Composer v1 | Advisory output composition | backend/src/safescope-v2/field-output-composer-v1/ | N/A | backend/scripts/validate-safescope-field-output-composer-v1.ts | Field output composer v1 | Active | Advisory boundary preservation |
