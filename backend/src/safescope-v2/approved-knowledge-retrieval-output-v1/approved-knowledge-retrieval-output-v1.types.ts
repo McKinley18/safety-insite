@@ -6,6 +6,7 @@ import { CorrectiveActionStrategyResult } from '../corrective-action-strategy-ra
 import { RiskVerificationResidualRiskResult } from '../risk-verification-residual-risk/risk-verification-residual-risk.types';
 import { HumanReviewFeedbackResult } from '../human-review-feedback-loop/human-review-feedback-loop.types';
 import { SourceFreshnessGovernanceResult } from '../source-freshness-governance/source-freshness-governance.types';
+import { JurisdictionApplicabilityResult } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -22,6 +23,7 @@ export interface RetrievalOutput {
   correctiveActionStrategy: CorrectiveActionStrategyResult;
   riskVerification: RiskVerificationResidualRiskResult;
   sourceFreshnessGovernanceResults: Record<string, SourceFreshnessGovernanceResult>;
+  jurisdictionApplicability: JurisdictionApplicabilityResult;
   reviewFeedback?: HumanReviewFeedbackResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;

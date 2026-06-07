@@ -19,6 +19,7 @@ export class FieldOutputComposerV1Service {
     const verification = retrieval.riskVerification;
     const feedback = retrieval.reviewFeedback;
     const freshness = retrieval.sourceFreshnessGovernanceResults;
+    const jurisdiction = retrieval.jurisdictionApplicability;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
@@ -37,18 +38,25 @@ export class FieldOutputComposerV1Service {
         assessment += ' ESCALATION REQUIRED: Assessment cannot proceed without qualified site review.';
     }
 
-    // 3. Add Feedback Learning Disposition if present
+    // 3. Add Jurisdiction Caution
+    if (jurisdiction.primaryJurisdiction === 'unclear' || jurisdiction.primaryJurisdiction === 'mixed') {
+        assessment += ` [JURISDICTION CAUTION: ${jurisdiction.reasoningSummary}]`;
+    } else if (jurisdiction.primaryJurisdiction === 'company_policy_only') {
+        assessment += ' [NOTICE: Assessment based on company policy only.]';
+    }
+
+    // 4. Add Feedback Learning Disposition if present
     if (feedback) {
         assessment += ` [Review Result: ${feedback.learningDisposition}]`;
     }
 
-    // 4. Source Freshness Warnings
+    // 5. Source Freshness Warnings
     const freshnessWarnings: string[] = [];
-    Object.values(freshness).forEach(res => {
+    Object.values(freshness).forEach((res: any) => {
         freshnessWarnings.push(...res.sourceWarnings);
     });
 
-    // 5. Determine actions based on strategy and verification
+    // 6. Determine actions based on strategy and verification
     const immediateActions = [
         ...strategy.immediateControls.map(a => a.actionText),
         ...verification.additionalControlsNeeded
@@ -75,10 +83,11 @@ export class FieldOutputComposerV1Service {
         ...strategy.supervisorQuestions.map(q => q.actionText),
         ...strategy.verificationSteps.map(v => v.actionText),
         ...verification.reviewerQuestions,
-        ...verification.verificationSteps
+        ...verification.verificationSteps,
+        ...jurisdiction.reviewerQuestions
     ];
 
-    Object.values(freshness).forEach(res => {
+    Object.values(freshness).forEach((res: any) => {
         supervisorQuestions.push(...res.updateQuestions);
     });
 
@@ -86,7 +95,7 @@ export class FieldOutputComposerV1Service {
         supervisorQuestions.push('Has this been evaluated by a competent person?');
     }
 
-    // 6. Add Warnings
+    // 7. Add Warnings
     const warnings = [
         ...retrieval.draftKnowledgeWarnings,
         ...verification.weakActionWarnings,
@@ -110,16 +119,18 @@ export class FieldOutputComposerV1Service {
       evidenceGaps: [
           ...retrieval.evidenceGaps,
           ...causalChain.missingCausalFacts,
-          ...verification.residualRiskReasons
+          ...verification.residualRiskReasons,
+          ...jurisdiction.missingJurisdictionFacts
       ],
       supervisorQuestions: [...new Set(supervisorQuestions)],
-      approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches,
+      approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches.filter(m => !jurisdiction.blockedKnowledgeScopes.includes(m.recordId)),
       draftKnowledgeWarnings: [...new Set(warnings)],
       advisoryBoundaries: [
           narrative.advisoryBoundary, 
           causalChain.advisoryBoundary, 
           strategy.advisoryBoundary,
-          verification.advisoryBoundary
+          verification.advisoryBoundary,
+          jurisdiction.advisoryBoundary
       ],
       reviewerRequired: true,
       cannotDeclareViolation: true,

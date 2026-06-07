@@ -12,6 +12,7 @@ import { CorrectiveActionStrategyRankingService } from '../corrective-action-str
 import { RiskVerificationResidualRiskService } from '../risk-verification-residual-risk/risk-verification-residual-risk.service';
 import { HumanReviewFeedbackLoopService } from '../human-review-feedback-loop/human-review-feedback-loop.service';
 import { SourceFreshnessGovernanceService } from '../source-freshness-governance/source-freshness-governance.service';
+import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -27,6 +28,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private riskVerificationService = new RiskVerificationResidualRiskService();
   private feedbackService = new HumanReviewFeedbackLoopService();
   private freshnessService = new SourceFreshnessGovernanceService();
+  private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
 
   async retrieve(
     observationText: string,
@@ -103,11 +105,19 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         sourceFreshnessGovernanceResults[match.recordId] = this.freshnessService.evaluate(match.authority);
     });
 
+    const jurisdictionApplicability = this.jurisdictionService.evaluate({
+        observationText,
+        taxonomyRoute,
+        approvedKnowledgeMatches: approvedMatches,
+        sourceFreshnessResults: sourceFreshnessGovernanceResults,
+        context
+    });
+
     let reviewFeedback = undefined;
     if (context.humanReview) {
         reviewFeedback = this.feedbackService.processReview({
             observationText,
-            originalRetrievalOutput: undefined, // To be populated by caller if needed
+            originalRetrievalOutput: undefined, 
             originalFieldOutput: undefined,
             reviewerRole: context.humanReview.reviewerRole || 'unknown',
             reviewerDecision: context.humanReview.reviewerDecision || 'accepted',
@@ -127,7 +137,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
 
     // Calculate freshness impact
     let freshnessConfidenceImpact = 0;
-    Object.values(sourceFreshnessGovernanceResults).forEach(res => {
+    Object.values(sourceFreshnessGovernanceResults).forEach((res: any) => {
         freshnessConfidenceImpact += res.confidenceImpact;
     });
 
@@ -146,6 +156,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       correctiveActionStrategy: correctiveActionStrategy,
       riskVerification: riskVerification,
       sourceFreshnessGovernanceResults,
+      jurisdictionApplicability,
       reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
@@ -157,6 +168,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       evidenceGaps: [
           ...evidenceWeighting.missingCriticalFacts,
           ...riskVerification.residualRiskReasons,
+          ...jurisdictionApplicability.missingJurisdictionFacts,
           ...(approvedMatches.length === 0 ? ['Insufficient evidence for definitive assessment.'] : [])
       ],
       advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],
@@ -164,6 +176,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
           ...evidenceWeighting.reviewerQuestions,
           ...crossDomainCausalChain.reviewerQuestions,
           ...riskVerification.reviewerQuestions,
+          ...jurisdictionApplicability.reviewerQuestions,
           'Verify categorization', 
           'Review evidence sufficiency'
       ],

@@ -1394,3 +1394,10 @@ Check git status:
 - Identifies stale, superseded, or missing-date source records and applies usage restrictions (Allowed, Caution, Review Required, Blocked).
 - Evaluates authority tiers (Primary Regulation, Official Guidance, Consensus Standard, Company Policy) to ensure legal and best-practice distinction.
 - Fully integrated into retrieval and field output composer pipelines for automated currency warnings.
+
+## Jurisdiction-Specific Applicability Decision Tree
+- SafeScope Jurisdiction-Specific Applicability Decision Tree v1 added.
+- Automatically distinguishes between MSHA (mining), OSHA General Industry, and OSHA Construction jurisdictions based on deterministic environmental and activity signals.
+- Identifies jurisdiction conflicts (e.g., OSHA standards cited at an MSHA site) and flags mixed-jurisdiction cases for human review.
+- Automatically blocks or downgrades regulatory references when applicability confidence is low or unclear.
+- Fully integrated into field output composer for legally defensive safety summaries.

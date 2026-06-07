@@ -44,3 +44,5 @@
 | Human Review Feedback Loop | Controlled expert learning loop | backend/src/safescope-v2/human-review-feedback-loop/ | N/A | backend/scripts/validate-safescope-human-review-feedback-loop-v1.ts | Human review feedback loop v1 | Active | Governed learning mechanism |
 
 | Source Freshness Governance | Source currency and authority monitor | backend/src/safescope-v2/source-freshness-governance/ | N/A | backend/scripts/validate-safescope-source-freshness-governance-v1.ts | Source freshness v1 | Active | Currency reasoning layer |
+
+| Jurisdiction Decision Tree | Regulatory applicability logic | backend/src/safescope-v2/jurisdiction-applicability-decision-tree/ | N/A | backend/scripts/validate-safescope-jurisdiction-applicability-decision-tree-v1.ts | Jurisdiction applicability v1 | Active | Regulatory routing layer |

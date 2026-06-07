@@ -97,6 +97,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-source-freshness-governance-v1.ts'],
   },
   {
+    label: 'Jurisdiction-specific applicability decision tree v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-jurisdiction-applicability-decision-tree-v1.ts'],
+  },
+  {
     label: 'Approved knowledge retrieval matching v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts'],
