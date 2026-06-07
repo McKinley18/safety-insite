@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ForbiddenException } from '@nestjs/common';
 import { 
   SourceIngestionInput, 
   IngestionDraftCandidate, 
@@ -13,6 +13,8 @@ import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-ap
 import { ApprovedKnowledgeRecord, AuthorityAgency, AuthorityTier, Jurisdiction, SourceDateStatus } from '../approved-knowledge-registry/approved-knowledge-record.types';
 import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
+import { ReviewerRole } from '../role-based-approval-gates/role-based-approval-gates.types';
 
 @Injectable()
 export class SourceIngestionApprovedUpdateWorkflowService {
@@ -22,14 +24,14 @@ export class SourceIngestionApprovedUpdateWorkflowService {
     private readonly jurisdictionService: JurisdictionApplicabilityDecisionTreeService,
     private readonly consoleService: ReviewerCandidateConsoleService,
     private readonly persistence: SafeScopePersistenceService,
+    private readonly gates: RoleBasedApprovalGatesService,
   ) {}
 
   async ingest(input: SourceIngestionInput): Promise<IngestionDraftCandidate> {
-    const candidateId = `cand-${Date.now()}`;
+    const candidateId = 'cand-' + Date.now();
     const normalizedSource = this.normalizeSource(input);
     const mapping = this.createMapping(input);
     
-    // 1. Freshness Analysis
     const freshnessAnalysis = this.freshnessService.evaluate({
         agency: input.agency,
         authorityTier: input.authorityTier,
@@ -42,15 +44,12 @@ export class SourceIngestionApprovedUpdateWorkflowService {
         sourceDateStatus: input.sourceDateStatus
     });
 
-    // 2. Jurisdiction Analysis
     const jurisdictionAnalysis = this.jurisdictionService.evaluate({
         observationText: input.sourceText
     });
 
-    // 3. Duplicate and Conflict Detection
     const duplicateAnalysis = this.detectDuplicatesAndConflicts(input);
 
-    // 4. Governance Decision
     let candidateStatus: IngestionCandidateStatus = 'needs_review';
     const governanceWarnings: string[] = [];
     const blockedReasons: string[] = [];
@@ -98,7 +97,6 @@ export class SourceIngestionApprovedUpdateWorkflowService {
       advisoryBoundary
     };
 
-    // Register in Candidate Console
     await this.consoleService.addCandidate({
         candidateType: 'source_ingestion',
         sourceSystem: 'source_ingestion_workflow',
@@ -109,14 +107,13 @@ export class SourceIngestionApprovedUpdateWorkflowService {
         jurisdiction: input.jurisdiction,
         authorityTier: input.authorityTier,
         sourceReferences: [input.sourceUrl, input.citation],
-        summary: `New source ingestion: ${input.title} (${input.citation})`,
+        summary: 'New source ingestion: ' + input.title + ' (' + input.citation + ')',
         proposedKnowledgeText: input.sourceText,
         evidenceBasis: 'Ingested source document',
         governanceFlags: candidate.governanceWarnings,
         requiredReviewSteps: candidate.requiredReviewerChecks
     });
 
-    // 5. Persist Ingestion Event
     await this.persistence.save({
         type: 'source_ingestion_candidate',
         status: candidateStatus,
@@ -134,6 +131,19 @@ export class SourceIngestionApprovedUpdateWorkflowService {
   async promote(input: PromotionDecisionInput): Promise<PromotionResult> {
     const { candidate, reviewerDecision, reviewerName, reviewerRole, sourceVerified, duplicateReviewed, jurisdictionConfirmed } = input;
     
+    const gateResult = this.gates.evaluate({
+      role: reviewerRole as ReviewerRole,
+      action: reviewerDecision === 'hold_for_review' ? 'request_info' : (reviewerDecision as any),
+      candidateType: 'source_ingestion',
+      jurisdiction: candidate.normalizedSource.jurisdiction,
+      isRegulatory: candidate.normalizedSource.authorityTier === 'primary_regulation' || candidate.normalizedSource.authorityTier === 'secondary_regulation',
+      containsProhibitedLanguage: this.checkForProhibitedLanguage(candidate.normalizedSource.sourceText || '')
+    });
+
+    if (!gateResult.allowed) {
+      throw new ForbiddenException(gateResult.reason);
+    }
+
     const reasons: string[] = [];
     let promotionStatus: any = 'held_for_review';
     let canWriteApprovedRegistry = false;
@@ -151,7 +161,7 @@ export class SourceIngestionApprovedUpdateWorkflowService {
 
         if (canPromote) {
             promotionStatus = 'promoted';
-            canWriteApprovedRegistry = false; // Dry-run as per requirements
+            canWriteApprovedRegistry = false; 
             reasons.push('All governance checks passed and human approval received.');
         } else {
             promotionStatus = 'blocked';
@@ -214,11 +224,11 @@ export class SourceIngestionApprovedUpdateWorkflowService {
           promotedAt: new Date().toISOString(),
           promotedBy: reviewerName,
           role: reviewerRole,
-          decision: reviewerDecision
+          decision: reviewerDecision,
+          gateResult: { allowed: gateResult.allowed, reason: gateResult.reason }
       }
     };
 
-    // 5. Persist Promotion Event
     await this.persistence.save({
         type: 'source_promotion_audit',
         status: promotionStatus,
@@ -244,7 +254,8 @@ export class SourceIngestionApprovedUpdateWorkflowService {
           sourceUrl: input.sourceUrl,
           effectiveDate: input.effectiveDate,
           revisionDate: input.revisionDate,
-          sourceDateStatus: input.sourceDateStatus
+          sourceDateStatus: input.sourceDateStatus,
+          sourceText: input.sourceText
       };
   }
 
@@ -297,5 +308,10 @@ export class SourceIngestionApprovedUpdateWorkflowService {
           conflictReasons: [],
           recommendedDisposition: 'Accept as new candidate'
       };
+  }
+
+  private checkForProhibitedLanguage(text: string): boolean {
+    const prohibited = ["is a violation", "creates a citation", "must comply", "regulatory violation"];
+    return prohibited.some(p => text.toLowerCase().includes(p));
   }
 }

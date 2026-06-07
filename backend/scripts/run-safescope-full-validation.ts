@@ -142,6 +142,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-regulatory-dedup-citation-normalization-v1.ts'],
   },
   {
+    label: "Role-based approval gates v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-role-based-approval-gates-v1.ts"],
+  },
+  {
     label: 'Knowledge source ingestion and approved update workflow v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-source-ingestion-approved-update-workflow-v1.ts'],

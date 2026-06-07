@@ -1,10 +1,12 @@
 import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
 import { ReviewerCandidateConsoleValidator } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.validator';
 import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
 
 async function validate() {
   const persistence = new SafeScopePersistenceService();
-  const service = new ReviewerCandidateConsoleService(persistence);
+  const gates = new RoleBasedApprovalGatesService();
+  const service = new ReviewerCandidateConsoleService(persistence, gates);
   
   console.log('--- Testing candidate registration ---');
   const candidate = await service.addCandidate({
@@ -29,7 +31,7 @@ async function validate() {
       console.error('[FAIL] Candidate validation errors:', errors);
       process.exit(1);
   }
-  console.log(`[PASS] Candidate registered: ${candidate.candidateId}`);
+  console.log('[PASS] Candidate registered: ' + candidate.candidateId);
 
   console.log('--- Testing list and filter ---');
   const pending = await service.listCandidates({ status: 'pending_review' });
@@ -40,7 +42,7 @@ async function validate() {
   console.log('[PASS] Candidate listed.');
 
   console.log('--- Testing approve action ---');
-  const approved = await service.approveCandidate(candidate.candidateId, { name: 'Admin', role: 'Safety Director', notes: 'Approved' });
+  const approved = await service.approveCandidate(candidate.candidateId, { name: 'Admin', role: 'compliance_admin', notes: 'Approved' });
   if (approved?.status !== 'approved_for_promotion') {
       console.error('[FAIL] Expected status approved_for_promotion');
       process.exit(1);

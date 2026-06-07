@@ -63,6 +63,7 @@ import { EvidenceGapQuestionGeneratorService } from '../brain/evidence-gap-quest
 import { CorrectiveActionBrainService } from '../brain/corrective-action-brain/corrective-action.service';
 import { ExecutiveJudgmentService } from '../executive-judgment/executive-judgment.service';
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
 import { CalibrationMeta } from '../types/safescope-intelligence.types';
 
 export type SafeScopeIntelligenceOrchestratorInput = {
@@ -150,12 +151,15 @@ export class SafeScopeIntelligenceOrchestrator {
     @Optional()
     private readonly persistence?: SafeScopePersistenceService,
     @Optional()
+    private readonly gates?: RoleBasedApprovalGatesService,
+    @Optional()
     retrievalEngine?: ApprovedKnowledgeRetrievalOutputV1Service,
     @Optional()
     composerEngine?: FieldOutputComposerV1Service,
   ) {
       const p = persistence || new SafeScopePersistenceService();
-      this.retrievalEngine = retrievalEngine || new ApprovedKnowledgeRetrievalOutputV1Service(p);
+      const g = gates || new RoleBasedApprovalGatesService();
+      this.retrievalEngine = retrievalEngine || new ApprovedKnowledgeRetrievalOutputV1Service(p, g);
       this.composerEngine = composerEngine || new FieldOutputComposerV1Service(this.retrievalEngine);
   }
 
@@ -179,14 +183,14 @@ export class SafeScopeIntelligenceOrchestrator {
 
     const observationContext = this.observationContextEngine.normalize(fusedText);
     const observationUnderstanding = this.observationUnderstandingEngine.evaluate(fusedText);
-    const combined = `${fusedText} ${observationContext.normalizedText}`.toLowerCase();
+    const combined = fusedText + ' ' + observationContext.normalizedText;
 
     const photosAttached = (evidenceTexts || []).some((item) =>
       String(item).toLowerCase().includes('photo')
     );
 
     const confidenceIntelligence = this.confidenceEngine.evaluate({
-      text: combined,
+      text: combined.toLowerCase(),
       classification: promotedPrimary.classification,
       classifierConfidence: promotedPrimary.confidence,
       evidenceTexts,
@@ -627,7 +631,7 @@ export class SafeScopeIntelligenceOrchestrator {
         outputPolicy,
         evidenceSufficiency,
         causalRiskReasoning,
-        {}, // placeholder for applicability retrieval output
+        {}, 
         evg,
         controlMap
     );

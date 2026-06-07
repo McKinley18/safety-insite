@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ForbiddenException } from '@nestjs/common';
 import { 
   HumanReviewInput, 
   HumanReviewFeedbackResult, 
@@ -7,18 +7,35 @@ import {
 } from './human-review-feedback-loop.types';
 import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
+import { ReviewerRole } from '../role-based-approval-gates/role-based-approval-gates.types';
 
 @Injectable()
 export class HumanReviewFeedbackLoopService {
   constructor(
     private readonly consoleService: ReviewerCandidateConsoleService,
     private readonly persistence: SafeScopePersistenceService,
+    private readonly gates: RoleBasedApprovalGatesService,
   ) {}
 
   async processReview(input: HumanReviewInput): Promise<HumanReviewFeedbackResult> {
-    const feedbackId = `feedback-${Date.now()}`;
-    const auditTrail: string[] = [`Review process initiated for feedback ${feedbackId}`];
+    const feedbackId = 'feedback-' + Date.now();
+    const auditTrail: string[] = ['Review process initiated for feedback ' + feedbackId];
     
+    // Check gate for human review action
+    const gateResult = this.gates.evaluate({
+      role: input.reviewerRole as ReviewerRole,
+      action: 'approve', // Reviewing/correcting is a form of approval of the feedback itself
+      candidateType: 'human_review_learning',
+      metadata: {
+          affectsRegulatoryApplicability: !!(input.correctedStandardFamily || input.sourceReference)
+      }
+    });
+
+    if (!gateResult.allowed) {
+        throw new ForbiddenException(gateResult.reason);
+    }
+
     let learningDisposition: LearningDisposition = 'accept_no_learning_needed';
     let reviewReliability: ReviewReliability = 'moderate';
     
@@ -31,17 +48,15 @@ export class HumanReviewFeedbackLoopService {
     const recommendedValidatorUpdates: string[] = [];
     const recommendedKnowledgeUpdates: string[] = [];
 
-    // 1. Reliability Assessment
     if (input.sourceReference) {
       reviewReliability = 'high';
       auditTrail.push('High reliability assigned due to source reference.');
     }
     if (input.reviewerRole.toLowerCase().includes('safety') || input.reviewerRole.toLowerCase().includes('mgr')) {
       reviewReliability = 'high';
-      auditTrail.push(`Reliability boosted by professional role: ${input.reviewerRole}`);
+      auditTrail.push('Reliability boosted by professional role: ' + input.reviewerRole);
     }
 
-    // 2. Governance Blocks
     const checkLegalLanguage = (text?: string) => {
         if (!text) return false;
         const prohibited = ["is a violation", "creates a citation", "must comply", "regulatory violation"];
@@ -54,7 +69,6 @@ export class HumanReviewFeedbackLoopService {
         auditTrail.push('Learning blocked due to prohibited legal language.');
     }
 
-    // 3. Learning Logic
     if (learningDisposition !== 'block_unsafe_learning') {
         if (input.reviewerDecision === 'accepted') {
             learningDisposition = 'accept_no_learning_needed';
@@ -87,7 +101,6 @@ export class HumanReviewFeedbackLoopService {
                     data: candidateData
                 });
 
-                // Register in Candidate Console
                 await this.consoleService.addCandidate({
                     candidateType: 'human_review_learning',
                     sourceSystem: 'human_review_feedback_loop',
@@ -98,7 +111,7 @@ export class HumanReviewFeedbackLoopService {
                     jurisdiction: input.correctedStandardFamily || 'unknown',
                     authorityTier: 'unknown',
                     sourceReferences: input.sourceReference ? [input.sourceReference] : [],
-                    summary: `Correction from ${input.reviewerRole}: ${input.reviewerNotes || 'No notes provided.'}`,
+                    summary: 'Correction from ' + input.reviewerRole + ': ' + (input.reviewerNotes || 'No notes provided.'),
                     proposedKnowledgeText: JSON.stringify(candidateData),
                     evidenceBasis: input.observationText,
                     governanceFlags: [],
@@ -116,9 +129,8 @@ export class HumanReviewFeedbackLoopService {
         }
     }
 
-    // 4. Validator/Knowledge Recommendations
     if (input.missingEvidenceNotes) {
-        recommendedValidatorUpdates.push(`Add evidence signals based on reviewer notes: ${input.missingEvidenceNotes}`);
+        recommendedValidatorUpdates.push('Add evidence signals based on reviewer notes: ' + input.missingEvidenceNotes);
         auditTrail.push('Validator update recommended based on missing evidence notes.');
     }
 
@@ -139,7 +151,6 @@ export class HumanReviewFeedbackLoopService {
       advisoryBoundary: 'SafeScope human review feedback analysis is advisory only.'
     };
 
-    // 5. Persist Feedback
     await this.persistence.save({
         type: 'human_review_feedback',
         status: learningDisposition,
@@ -147,7 +158,8 @@ export class HumanReviewFeedbackLoopService {
         metadata: {
             reviewerRole: input.reviewerRole,
             reviewerDecision: input.reviewerDecision,
-            reliability: reviewReliability
+            reliability: reviewReliability,
+            gateResult: { allowed: gateResult.allowed, reason: gateResult.reason }
         },
         workspaceId: input.context?.workspaceId,
         observationId: input.context?.observationId

@@ -40,7 +40,7 @@ SafeScope already implements the following core AI safety governance layers:
 
 | Feature | Description | Priority |
 | :--- | :--- | :--- |
-| **Role-Based Approval Gates** | Enforcing specific reviewer roles for specific hazard domains (e.g., Electrician for LOTO). | High |
+| **Role-Based Approval Gates** | Implemented v1; jurisdiction and domain-specific gates active. | High |
 | **Site-Specific Policy Isolation** | Preventing internal site rules from polluting the global regulatory reasoning engine. | Medium |
 | **Audit Log Hardening** | Production persistence layer for traces and candidates implemented; immutable storage remains. | Critical |
 

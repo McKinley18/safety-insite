@@ -1477,3 +1477,10 @@ Check git status:
 - Distinguishes between critical duplicates, legitimate shared citations across domains, and placeholder records.
 - Provides a governed overlap detection layer that flags conflicting jurisdictions or evidence requirements for qualified human review.
 - Prevents redundant unmanaged warnings in validation by explicitly allowing shared citations for different safety contexts.
+
+## Role-Based Approval Gates
+- SafeScope Role-Based Approval Gates v1 added.
+- Implements strict authorization logic for safety reviewers based on jurisdiction, candidate type, and risk.
+- Ensures that OSHA and MSHA regulatory records are reviewed by qualified personnel.
+- Protects the integrity of approved knowledge by blocking unauthorized promotions and prohibited legal language.
+- Fully integrated into the reviewer console, source ingestion, and human review feedback loops.

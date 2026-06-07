@@ -5,20 +5,23 @@ import { SourceFreshnessGovernanceService } from '../src/safescope-v2/source-fre
 import { JurisdictionApplicabilityDecisionTreeService } from '../src/safescope-v2/jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
 import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
 
 async function validate() {
   const persistence = new SafeScopePersistenceService();
+  const gates = new RoleBasedApprovalGatesService();
   const search = new ApprovedKnowledgeRegistrySearchService();
   const freshness = new SourceFreshnessGovernanceService();
   const jurisdiction = new JurisdictionApplicabilityDecisionTreeService();
-  const consoleService = new ReviewerCandidateConsoleService(persistence);
+  const consoleService = new ReviewerCandidateConsoleService(persistence, gates);
 
   const service = new SourceIngestionApprovedUpdateWorkflowService(
       search,
       freshness,
       jurisdiction,
       consoleService,
-      persistence
+      persistence,
+      gates
   );
   
   const oshaInput = {
@@ -26,7 +29,7 @@ async function validate() {
       agency: 'OSHA',
       jurisdiction: 'osha_general_industry',
       authorityTier: 'primary_regulation',
-      citation: '1910.999', // New citation
+      citation: '1910.999', 
       title: 'New Safety Standard',
       sourceUrl: 'http://osha.gov',
       effectiveDate: '2026-01-01',
@@ -45,7 +48,7 @@ async function validate() {
       disqualifyingFacts: [],
       evidenceQuestions: ['Is guard in place?'],
       submittedBy: 'System',
-      reviewerRole: 'Admin'
+      reviewerRole: 'compliance_admin'
   };
 
   console.log('--- Testing ingestion: OSHA Primary Regulation ---');
@@ -62,7 +65,7 @@ async function validate() {
       candidate,
       reviewerDecision: 'approve',
       reviewerName: 'Safety Mgr',
-      reviewerRole: 'Safety Manager',
+      reviewerRole: 'compliance_admin',
       reviewerNotes: 'Verified and approved.',
       sourceVerified: true,
       duplicateReviewed: true,
@@ -76,19 +79,18 @@ async function validate() {
   }
   
   if (promotion.promotionStatus !== 'promoted') {
-      console.error(`[FAIL] Expected status promoted, got ${promotion.promotionStatus}. Reasons: ${promotion.reasons.join('; ')}`);
+      console.error('[FAIL] Expected status promoted, got ' + promotion.promotionStatus + '. Reasons: ' + promotion.reasons.join('; '));
       process.exit(1);
   }
   console.log('[PASS] Valid promotion successful.');
 
   console.log('--- Testing promotion: Missing Duplicate Review ---');
-  // Simulate a candidate with possible duplicate
   candidate.duplicateAnalysis.duplicateStatus = 'possible_duplicate';
   const blockedPromotion = await service.promote({
       candidate,
       reviewerDecision: 'approve',
       reviewerName: 'Safety Mgr',
-      reviewerRole: 'Safety Manager',
+      reviewerRole: 'compliance_admin',
       reviewerNotes: 'Approved but forgot duplicate check.',
       sourceVerified: true,
       duplicateReviewed: false,
@@ -96,7 +98,7 @@ async function validate() {
   });
   
   if (blockedPromotion.promotionStatus !== 'blocked') {
-      console.error(`[FAIL] Expected status blocked for missing duplicate review, got ${blockedPromotion.promotionStatus}`);
+      console.error('[FAIL] Expected status blocked for missing duplicate review, got ' + blockedPromotion.promotionStatus);
       process.exit(1);
   }
   console.log('[PASS] Promotion blocked correctly for missing duplicate review.');

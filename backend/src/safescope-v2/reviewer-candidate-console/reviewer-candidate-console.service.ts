@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ForbiddenException } from '@nestjs/common';
 import { 
   ReviewerCandidate, 
   CandidateFilter, 
@@ -6,18 +6,20 @@ import {
   CandidateAuditEntry
 } from './reviewer-candidate-console.types';
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
+import { ReviewerRole } from '../role-based-approval-gates/role-based-approval-gates.types';
 
 @Injectable()
 export class ReviewerCandidateConsoleService {
   constructor(
     private readonly persistence: SafeScopePersistenceService,
+    private readonly gates: RoleBasedApprovalGatesService,
   ) {}
 
   async listCandidates(filter: CandidateFilter = {}): Promise<ReviewerCandidate[]> {
     const records = await this.persistence.find({
         type: 'reviewer_candidate',
         status: filter.status,
-        // Workspace and other filters could be added here
     });
 
     return records.map(r => r.payload as ReviewerCandidate).filter(c => {
@@ -36,7 +38,7 @@ export class ReviewerCandidateConsoleService {
   }
 
   async addCandidate(candidate: Omit<ReviewerCandidate, 'candidateId' | 'createdAt' | 'status' | 'auditTrail'>): Promise<ReviewerCandidate> {
-    const tempId = `temp-${Date.now()}`;
+    const tempId = 'temp-' + Date.now();
     const newCandidate: ReviewerCandidate = {
       ...candidate,
       candidateId: tempId,
@@ -62,7 +64,6 @@ export class ReviewerCandidateConsoleService {
         }
     });
 
-    // Update payload with the real record ID
     newCandidate.candidateId = record.id;
     await this.persistence.updateStatus(record.id, 'pending_review', { payload: newCandidate });
 
@@ -71,80 +72,145 @@ export class ReviewerCandidateConsoleService {
 
   async approveCandidate(id: string, reviewer: { name: string, role: string, notes?: string }): Promise<ReviewerCandidate | undefined> {
     const record = await this.persistence.getById(id);
-    if (record) {
-      const candidate = record.payload as ReviewerCandidate;
-      candidate.status = 'approved_for_promotion';
-      candidate.reviewerDecision = 'approve';
-      candidate.reviewerRationale = reviewer.notes;
-      this.addAuditEntry(candidate, 'approved', reviewer);
-      
-      await this.persistence.updateStatus(id, 'approved_for_promotion', { payload: candidate });
-      return candidate;
+    if (!record) return undefined;
+
+    const candidate = record.payload as ReviewerCandidate;
+    
+    const gateResult = this.gates.evaluate({
+      role: reviewer.role as ReviewerRole,
+      action: 'approve',
+      candidateType: candidate.candidateType,
+      jurisdiction: candidate.jurisdiction,
+      isRegulatory: candidate.authorityTier === 'primary_regulation' || candidate.authorityTier === 'secondary_regulation',
+      containsProhibitedLanguage: this.checkForProhibitedLanguage(candidate.proposedKnowledgeText || ''),
+      priority: candidate.priority
+    });
+
+    if (!gateResult.allowed) {
+      throw new ForbiddenException(gateResult.reason);
     }
-    return undefined;
+
+    candidate.status = 'approved_for_promotion';
+    candidate.reviewerDecision = 'approve';
+    candidate.reviewerRationale = reviewer.notes;
+    this.addAuditEntry(candidate, 'approved', reviewer, gateResult);
+    
+    await this.persistence.updateStatus(id, 'approved_for_promotion', { payload: candidate });
+    return candidate;
   }
 
   async rejectCandidate(id: string, reviewer: { name: string, role: string, notes: string }): Promise<ReviewerCandidate | undefined> {
     const record = await this.persistence.getById(id);
-    if (record) {
-      const candidate = record.payload as ReviewerCandidate;
-      candidate.status = 'rejected';
-      candidate.reviewerDecision = 'reject';
-      candidate.reviewerRationale = reviewer.notes;
-      this.addAuditEntry(candidate, 'rejected', reviewer);
-      
-      await this.persistence.updateStatus(id, 'rejected', { payload: candidate });
-      return candidate;
+    if (!record) return undefined;
+
+    const candidate = record.payload as ReviewerCandidate;
+    
+    const gateResult = this.gates.evaluate({
+      role: reviewer.role as ReviewerRole,
+      action: 'reject',
+      candidateType: candidate.candidateType,
+      jurisdiction: candidate.jurisdiction,
+      priority: candidate.priority
+    });
+
+    if (!gateResult.allowed) {
+      throw new ForbiddenException(gateResult.reason);
     }
-    return undefined;
+
+    candidate.status = 'rejected';
+    candidate.reviewerDecision = 'reject';
+    candidate.reviewerRationale = reviewer.notes;
+    this.addAuditEntry(candidate, 'rejected', reviewer, gateResult);
+    
+    await this.persistence.updateStatus(id, 'rejected', { payload: candidate });
+    return candidate;
   }
 
   async requestMoreInfo(id: string, reviewer: { name: string, role: string, notes: string }): Promise<ReviewerCandidate | undefined> {
     const record = await this.persistence.getById(id);
-    if (record) {
-      const candidate = record.payload as ReviewerCandidate;
-      candidate.status = 'needs_more_information';
-      this.addAuditEntry(candidate, 'requested_info', reviewer);
-      
-      await this.persistence.updateStatus(id, 'needs_more_information', { payload: candidate });
-      return candidate;
+    if (!record) return undefined;
+
+    const candidate = record.payload as ReviewerCandidate;
+    
+    const gateResult = this.gates.evaluate({
+      role: reviewer.role as ReviewerRole,
+      action: 'request_info',
+      candidateType: candidate.candidateType,
+      jurisdiction: candidate.jurisdiction
+    });
+
+    if (!gateResult.allowed) {
+      throw new ForbiddenException(gateResult.reason);
     }
-    return undefined;
+
+    candidate.status = 'needs_more_information';
+    this.addAuditEntry(candidate, 'requested_info', reviewer, gateResult);
+    
+    await this.persistence.updateStatus(id, 'needs_more_information', { payload: candidate });
+    return candidate;
   }
 
   async blockCandidate(id: string, reviewer: { name: string, role: string, notes: string }): Promise<ReviewerCandidate | undefined> {
     const record = await this.persistence.getById(id);
-    if (record) {
-      const candidate = record.payload as ReviewerCandidate;
-      candidate.status = 'blocked';
-      this.addAuditEntry(candidate, 'blocked', reviewer);
-      
-      await this.persistence.updateStatus(id, 'blocked', { payload: candidate });
-      return candidate;
+    if (!record) return undefined;
+
+    const candidate = record.payload as ReviewerCandidate;
+    
+    const gateResult = this.gates.evaluate({
+      role: reviewer.role as ReviewerRole,
+      action: 'block',
+      candidateType: candidate.candidateType,
+      jurisdiction: candidate.jurisdiction
+    });
+
+    if (!gateResult.allowed) {
+      throw new ForbiddenException(gateResult.reason);
     }
-    return undefined;
+
+    candidate.status = 'blocked';
+    this.addAuditEntry(candidate, 'blocked', reviewer, gateResult);
+    
+    await this.persistence.updateStatus(id, 'blocked', { payload: candidate });
+    return candidate;
   }
 
   async archiveCandidate(id: string, reviewer: { name: string, role: string, notes?: string }): Promise<ReviewerCandidate | undefined> {
     const record = await this.persistence.getById(id);
-    if (record) {
-      const candidate = record.payload as ReviewerCandidate;
-      candidate.status = 'archived';
-      this.addAuditEntry(candidate, 'archived', reviewer);
-      
-      await this.persistence.updateStatus(id, 'archived', { payload: candidate });
-      return candidate;
+    if (!record) return undefined;
+
+    const candidate = record.payload as ReviewerCandidate;
+    
+    const gateResult = this.gates.evaluate({
+      role: reviewer.role as ReviewerRole,
+      action: 'archive',
+      candidateType: candidate.candidateType,
+      jurisdiction: candidate.jurisdiction
+    });
+
+    if (!gateResult.allowed) {
+      throw new ForbiddenException(gateResult.reason);
     }
-    return undefined;
+
+    candidate.status = 'archived';
+    this.addAuditEntry(candidate, 'archived', reviewer, gateResult);
+    
+    await this.persistence.updateStatus(id, 'archived', { payload: candidate });
+    return candidate;
   }
 
-  private addAuditEntry(candidate: ReviewerCandidate, action: string, actor: { name: string, role: string, notes?: string }) {
+  private addAuditEntry(candidate: ReviewerCandidate, action: string, actor: { name: string, role: string, notes?: string }, gateResult?: any) {
     candidate.auditTrail.push({
       action,
       timestamp: new Date().toISOString(),
       actor: actor.name,
       role: actor.role,
-      notes: actor.notes
-    });
+      notes: actor.notes,
+      gateResult: gateResult ? { allowed: gateResult.allowed, reason: gateResult.reason } : undefined
+    } as any);
+  }
+
+  private checkForProhibitedLanguage(text: string): boolean {
+    const prohibited = ["is a violation", "creates a citation", "must comply", "regulatory violation"];
+    return prohibited.some(p => text.toLowerCase().includes(p));
   }
 }

@@ -8,7 +8,7 @@ async function validate() {
     { 
         name: 'accepted as-is',
         text: 'Unguarded conveyor tail pulley.',
-        context: { humanReview: { reviewerRole: 'Safety Manager', reviewerDecision: 'accepted' } },
+        context: { humanReview: { reviewerRole: 'safety_manager', reviewerDecision: 'accepted' } },
         expectDisposition: 'accept_no_learning_needed'
     },
     { 
@@ -16,7 +16,7 @@ async function validate() {
         text: 'Unguarded conveyor.',
         context: { 
             humanReview: { 
-                reviewerRole: 'Safety Manager', 
+                reviewerRole: 'safety_manager', 
                 reviewerDecision: 'corrected',
                 correctedHazardFamily: 'mechanical'
             } 
@@ -26,7 +26,7 @@ async function validate() {
     { 
         name: 'unsafe flag',
         text: 'Damaged cord.',
-        context: { humanReview: { reviewerRole: 'Foreman', reviewerDecision: 'unsafe' } },
+        context: { humanReview: { reviewerRole: 'safety_manager', reviewerDecision: 'unsafe' } },
         expectDisposition: 'block_unsafe_learning'
     },
     { 
@@ -34,7 +34,7 @@ async function validate() {
         text: 'Blocked exit.',
         context: { 
             humanReview: { 
-                reviewerRole: 'Safety Specialist', 
+                reviewerRole: 'safety_reviewer', 
                 reviewerDecision: 'corrected',
                 reviewerNotes: 'This is a violation and a citation should be issued.'
             } 
@@ -46,7 +46,7 @@ async function validate() {
         text: 'Chemical container.',
         context: { 
             humanReview: { 
-                reviewerRole: 'Safety Manager', 
+                reviewerRole: 'compliance_admin', 
                 reviewerDecision: 'corrected',
                 correctedMechanism: 'chemical_burn',
                 sourceReference: 'OSHA 1910.1200'
@@ -59,7 +59,7 @@ async function validate() {
         text: 'Fall hazard.',
         context: { 
             humanReview: { 
-                reviewerRole: 'Worker', 
+                reviewerRole: 'safety_manager', 
                 reviewerDecision: 'corrected',
                 reviewerNotes: 'bad'
             } 
@@ -69,27 +69,27 @@ async function validate() {
   ];
 
   for (const tc of testCases) {
-      console.log(`--- Testing human review: ${tc.name} ---`);
+      console.log('--- Testing human review: ' + tc.name + ' ---');
       const retrieval = await retrievalService.retrieve(tc.text, tc.context);
       const feedback = retrieval.reviewFeedback;
       
       if (!feedback) {
-          console.error(`[FAIL] No review feedback returned for "${tc.name}"`);
+          console.error('[FAIL] No review feedback returned for ' + tc.name);
           process.exit(1);
       }
 
       const errors = HumanReviewFeedbackLoopValidator.validate(feedback);
       if (errors.length > 0) {
-          console.error(`[FAIL] Validator errors for "${tc.name}":`, errors);
+          console.error('[FAIL] Validator errors for ' + tc.name + ':', errors);
           process.exit(1);
       }
       
       if (feedback.learningDisposition !== tc.expectDisposition) {
-          console.error(`[FAIL] Expected disposition ${tc.expectDisposition} for "${tc.name}". Got: ${feedback.learningDisposition}`);
+          console.error('[FAIL] Expected disposition ' + tc.expectDisposition + ' for ' + tc.name + '. Got: ' + feedback.learningDisposition);
           process.exit(1);
       }
 
-      console.log(`[PASS] Case: ${tc.name}`);
+      console.log('[PASS] Case: ' + tc.name);
   }
 
   console.log('✅ SafeScope human review feedback loop validation passed.');

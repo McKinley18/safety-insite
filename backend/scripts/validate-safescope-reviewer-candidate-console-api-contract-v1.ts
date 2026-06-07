@@ -1,9 +1,11 @@
 import { ReviewerCandidateConsoleService } from '../src/safescope-v2/reviewer-candidate-console/reviewer-candidate-console.service';
 import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../src/safescope-v2/role-based-approval-gates/role-based-approval-gates.service';
 
 async function validate() {
   const persistence = new SafeScopePersistenceService();
-  const service = new ReviewerCandidateConsoleService(persistence);
+  const gates = new RoleBasedApprovalGatesService();
+  const service = new ReviewerCandidateConsoleService(persistence, gates);
   
   console.log('--- Testing API contract: candidate shape ---');
   const candidate = await service.addCandidate({
@@ -23,7 +25,6 @@ async function validate() {
       requiredReviewSteps: ['Verification step']
   });
 
-  // Verify essential fields for frontend display
   if (!candidate.candidateId) throw new Error('Candidate missing ID');
   if (!candidate.summary) throw new Error('Candidate missing summary/title');
   if (!candidate.candidateType) throw new Error('Candidate missing type');
@@ -35,20 +36,20 @@ async function validate() {
   console.log('--- Testing API contract: action updates ---');
   const approved = await service.approveCandidate(candidate.candidateId, { 
       name: 'Test Reviewer', 
-      role: 'Safety Director', 
+      role: 'compliance_admin', 
       notes: 'API contract test approval' 
   });
 
   if (approved?.status !== 'approved_for_promotion') {
-      throw new Error(`Unexpected status after approval: ${approved?.status}`);
+      throw new Error('[FAIL] Unexpected status after approval: ' + approved?.status);
   }
 
   const latestAudit = approved.auditTrail[approved.auditTrail.length - 1];
   if (latestAudit.action !== 'approved') {
-      throw new Error(`Unexpected audit action: ${latestAudit.action}`);
+      throw new Error('[FAIL] Unexpected audit action: ' + latestAudit.action);
   }
   if (latestAudit.actor !== 'Test Reviewer') {
-      throw new Error(`Unexpected audit actor: ${latestAudit.actor}`);
+      throw new Error('[FAIL] Unexpected audit actor: ' + latestAudit.actor);
   }
 
   console.log('[PASS] Action updates verified.');

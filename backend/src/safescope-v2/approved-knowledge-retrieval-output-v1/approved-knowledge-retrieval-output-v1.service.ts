@@ -19,6 +19,7 @@ import { SemanticSynonymExpansionService } from '../semantic-synonym-expansion/s
 import { VisualEvidenceReasoningService } from '../visual-evidence-reasoning/visual-evidence-reasoning.service';
 import { RealImageAnalysisService } from '../real-image-analysis/real-image-analysis.service';
 import { SafeScopePersistenceService } from '../persistence/persistence.service';
+import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -44,11 +45,14 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   constructor(
     @Optional()
     private readonly persistence?: SafeScopePersistenceService,
+    @Optional()
+    private readonly gates?: RoleBasedApprovalGatesService,
   ) {
       const p = persistence || new SafeScopePersistenceService();
+      const g = gates || new RoleBasedApprovalGatesService();
       this.persistence = p;
-      this.consoleService = new ReviewerCandidateConsoleService(p);
-      this.feedbackService = new HumanReviewFeedbackLoopService(this.consoleService, p);
+      this.consoleService = new ReviewerCandidateConsoleService(p, g);
+      this.feedbackService = new HumanReviewFeedbackLoopService(this.consoleService, p, g);
   }
 
   async retrieve(
@@ -206,13 +210,11 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         ? ['No approved matches found. Information requires human review.'] 
         : [];
 
-    // Calculate freshness impact
     let freshnessConfidenceImpact = 0;
     Object.values(sourceFreshnessGovernanceResults).forEach((res: any) => {
         freshnessConfidenceImpact += res.confidenceImpact;
     });
 
-    // Calculate visual impact
     let visualConfidenceModifier = 0;
     if (visualEvidenceReasoning.confidenceImpact === 'boost') visualConfidenceModifier = 0.1;
     if (visualEvidenceReasoning.confidenceImpact === 'downgrade') visualConfidenceModifier = -0.1;
@@ -270,7 +272,6 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       fieldOutputNotes: 'Output generated as advisory, source-backed analysis.'
     };
 
-    // 6. Persistence
     if (context.persist && this.persistence) {
         await this.persistence.save({
             type: 'reasoning_trace_snapshot',

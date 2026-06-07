@@ -45,3 +45,5 @@ This document tracks the systematic transition of SafeScope from a collection of
 - Full regulatory knowledge expansion implemented, establishing a robust, governed foundation of safety citations and applicability rules.
 
 - Regulatory deduplication and citation normalization implemented, establishing the metadata foundation for scaling knowledge without redundant conflicts.
+
+- Role-based approval gates implemented, ensuring that only qualified experts can promote safety knowledge within their domains.
