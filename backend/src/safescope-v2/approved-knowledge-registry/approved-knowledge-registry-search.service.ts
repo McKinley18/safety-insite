@@ -12,24 +12,20 @@ export class ApprovedKnowledgeRegistrySearchService {
     if (fs.existsSync(registryPath)) {
       const data = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
       this.approvedRecords = data.records;
-    } else {
-        console.error('Registry file not found!');
     }
   }
 
   search(criteria: { domainId?: string, hazardFamily?: string, scenarioFamily?: string, mechanism?: string, standardFamily?: string, text?: string }): ApprovedKnowledgeRecord[] {
-    const matches = this.approvedRecords.filter(record => {
+    return this.approvedRecords.filter(record => {
       if (criteria.domainId && record.mapping.domainId !== criteria.domainId) return false;
       if (criteria.hazardFamily && !record.mapping.hazardFamilies.includes(criteria.hazardFamily)) return false;
       if (criteria.standardFamily && record.mapping.standardFamily !== criteria.standardFamily) return false;
-
+      
       if (criteria.text) {
         const lowerText = criteria.text.toLowerCase();
         return record.mapping.applicabilitySignals.some(signal => lowerText.includes(signal.toLowerCase()));
       }
       return true;
     });
-    return matches;
   }
-
 }

@@ -1346,3 +1346,9 @@ Check git status:
 - Automatically detects conflicting facts (e.g. energized vs de-energized) and missing critical facts (e.g. exposure status).
 - Downgrades assessment confidence and generates reviewer questions when evidence is weak or conflicting.
 - Fully integrated into retrieval and field output composer pipelines.
+
+## Multi-Hazard Observation Decomposition
+- SafeScope Multi-Hazard Observation Decomposition v1 added.
+- Automatically recognizes when a single field observation contains multiple separate hazards.
+- Decomposes complex descriptions into individual hazard domain fragments using deterministic text analysis.
+- Fully integrated into retrieval and field output composer pipelines, providing per-hazard analysis and corrective themes.

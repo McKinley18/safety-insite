@@ -156,7 +156,7 @@
       "status": "gap",
       "relatedStandardFamilies": ["ppe"],
       "commonEntities": ["goggles", "face shield", "ppe", "safety glasses", "grinding", "eye"],
-      "commonMechanisms": ["exposure"],
+      "commonMechanisms": ["eye_injury", "hand_injury", "inhalation"],
       "commonControls": ["ppe"],
       "evidenceQuestions": ["Is PPE used?"],
       "existingCoverageFiles": [],

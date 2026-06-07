@@ -1,4 +1,5 @@
 import { EvidenceWeightingResult } from '../field-evidence-weighting/field-evidence-weighting.types';
+import { MultiHazardDecompositionResult } from '../multi-hazard-decomposition/multi-hazard-decomposition.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -9,6 +10,7 @@ export interface RetrievalOutput {
   evaluatedScenarios: any[];
   topScenario?: any;
   evidenceWeighting: EvidenceWeightingResult;
+  multiHazardDecomposition: MultiHazardDecompositionResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;

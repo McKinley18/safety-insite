@@ -12,16 +12,21 @@ export class FieldOutputComposerV1Service {
   ): Promise<FieldOutputV1> {
     const retrieval = await this.retrievalService.retrieve(observationText, context);
     const weighting = retrieval.evidenceWeighting;
+    const decomposition = retrieval.multiHazardDecomposition;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
+    const isMultiHazard = decomposition.isMultiHazard;
 
     let assessment = retrieval.topScenario 
         ? `Scenario identified: ${retrieval.topScenario.title}`
         : 'Observation indicates potential hazard. Review recommended.';
     
+    // Priority: 1. Conflicting, 2. Multi-Hazard, 3. Insufficient, 4. Scenario
     if (isConflicting) {
         assessment = `Evidence conflict detected: ${weighting.detectedContradictions.join('; ')}. Qualified review required before assessment.`;
+    } else if (isMultiHazard) {
+        assessment = `Multiple hazards detected (${decomposition.hazardCount}): ${decomposition.hazards.map(h => h.domainId).join(', ')}. Initial analysis provided for each.`;
     } else if (isInsufficient) {
         assessment = `Limited evidence provided. ${weighting.missingCriticalFacts.join(' ')} Qualified review required.`;
     }
@@ -35,13 +40,17 @@ export class FieldOutputComposerV1Service {
       whyItMatters: retrieval.topScenario?.reasoningSummary || 'Hazard awareness is necessary for safety.',
       likelyMechanisms: [...(retrieval.taxonomyRoute?.matchedSignals || []), 
                          ...(retrieval.topScenario?.matchedSignals || [])],
-      immediateActions: isConflicting || isInsufficient
+      immediateActions: isConflicting
+        ? ['Clarify observation facts', 'Restrict access if unsafe']
+        : isMultiHazard
+        ? ['Analyze each hazard independently', 'Prioritize by risk level', 'Review area safety']
+        : isInsufficient
         ? ['Clarify observation facts', 'Restrict access if unsafe']
         : [...new Set(['Review hazard information', 'Assess area safety', 
                                     ...(retrieval.topScenario?.recommendedReviewerQuestions || [])])],
       durableCorrectiveActions: isConflicting || isInsufficient
         ? ['Conduct full safety inspection']
-        : [...new Set([...(retrieval.approvedKnowledgeMatches.map(m => m.correctiveActionLinks.preferredControlFamilies).flat())])],
+        : [...new Set([...(retrieval.approvedKnowledgeMatches.map(m => m.mapping.evidenceQuestions).flat())])],
       evidenceGaps: retrieval.evidenceGaps,
       supervisorQuestions: isConflicting 
         ? weighting.reviewerQuestions
