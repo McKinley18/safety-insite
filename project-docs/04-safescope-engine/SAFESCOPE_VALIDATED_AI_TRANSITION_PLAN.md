@@ -53,3 +53,5 @@ This document tracks the systematic transition of SafeScope from a collection of
 - Field test scenario packs implemented, establishing a robust realistic testing foundation for cross-domain safety reasoning.
 
 - Production auth and workspace governance hardening implemented, securing SafeScope decision-making within organizational boundaries.
+
+- Staging hardening pass completed, ensuring demo data and insecure defaults are removed from production-facing paths.

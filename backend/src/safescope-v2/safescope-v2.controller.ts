@@ -27,11 +27,23 @@ export class SafescopeV2Controller {
           'VIEWER': 'viewer'
       };
 
+      // Fail-safe defaults for missing context
+      if (!user) {
+          return {
+              userId: 'anonymous',
+              workspaceId: 'default',
+              role: 'viewer',
+              planTier: 'individual',
+              jurisdictionScopes: [],
+              reviewerQualifications: []
+          };
+      }
+
       return {
-          userId: user?.id || 'anonymous',
-          workspaceId: user?.organizationId || user?.workspaceId || 'default',
-          role: roleMap[user?.role] || 'viewer',
-          planTier: user?.planTier || 'team', // default to team for demo
+          userId: user.id || 'anonymous',
+          workspaceId: user.organizationId || user.workspaceId || 'default',
+          role: roleMap[user.role] || 'viewer',
+          planTier: user.planTier || 'individual',
           jurisdictionScopes: [],
           reviewerQualifications: []
       };

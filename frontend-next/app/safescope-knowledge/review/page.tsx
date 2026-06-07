@@ -54,6 +54,9 @@ interface ReviewerCandidate {
   auditTrail: CandidateAuditEntry[];
 }
 
+// Roles for access demonstration
+type SafeScopeRole = 'owner' | 'admin' | 'safety_manager' | 'compliance_admin' | 'field_inspector' | 'viewer';
+
 // Mock Data
 const MOCK_CANDIDATES: ReviewerCandidate[] = [
   {
@@ -99,29 +102,6 @@ const MOCK_CANDIDATES: ReviewerCandidate[] = [
     auditTrail: [
       { action: 'created', timestamp: new Date().toISOString(), actor: 'System', role: 'System', notes: 'Source ingested' }
     ]
-  },
-  {
-    candidateId: 'demo-003',
-    candidateType: 'human_review_learning',
-    sourceSystem: 'human_review_feedback_loop',
-    createdAt: new Date().toISOString(),
-    status: 'blocked',
-    priority: 'critical',
-    domainIds: ['emergency_egress'],
-    hazardFamilies: ['egress'],
-    mechanisms: ['entrapment'],
-    jurisdiction: 'unclear',
-    authorityTier: 'unknown',
-    sourceReferences: [],
-    summary: 'Proposed correction: This is a definitive violation.',
-    proposedKnowledgeText: 'Declaring a regulatory violation without approved source.',
-    evidenceBasis: 'Worker feedback',
-    governanceFlags: ['PROHIBITED_LEGAL_LANGUAGE', 'UNSUPPORTED_ENFORCEMENT_CLAIM'],
-    requiredReviewSteps: ['Block unsafe learning'],
-    auditTrail: [
-      { action: 'created', timestamp: new Date().toISOString(), actor: 'System', role: 'System', notes: 'Captured' },
-      { action: 'blocked', timestamp: new Date().toISOString(), actor: 'Governance Engine', role: 'System', notes: 'Prohibited language detected' }
-    ]
   }
 ];
 
@@ -132,12 +112,16 @@ export default function ReviewerCandidateConsole() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
+  
+  // Hardened Auth State
+  const [currentUserRole, setCurrentUserRole] = useState<SafeScopeRole>('admin');
+  const [userPlanTier, setUserPlanTier] = useState<'individual' | 'team' | 'company'>('company');
 
   const fetchCandidates = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${API_BASE_URL}/safescope/reviewer-candidates`, {
+      const response = await fetch(API_BASE_URL + '/safescope/reviewer-candidates', {
         headers: authHeaders()
       });
       if (response.ok) {
@@ -148,9 +132,17 @@ export default function ReviewerCandidateConsole() {
         throw new Error('Backend failed to respond correctly.');
       }
     } catch (e) {
-      console.warn('Backend connection failed, falling back to mock data.', e);
-      setCandidates(MOCK_CANDIDATES);
+      console.warn('Backend connection failed.');
       setIsBackendConnected(false);
+      
+      // Staging Hardening: Only allow mock data if explicitly enabled
+      if (process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK === 'true') {
+          console.log('SafeScope Review Demo Fallback enabled.');
+          setCandidates(MOCK_CANDIDATES);
+      } else {
+          setError('Unable to connect to the SafeScope governance engine. Staging/Production mode: Demo data disabled.');
+          setCandidates([]);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -159,6 +151,9 @@ export default function ReviewerCandidateConsole() {
   useEffect(() => {
     fetchCandidates();
   }, []);
+
+  const canManage = ['owner', 'admin', 'safety_manager', 'compliance_admin'].includes(currentUserRole);
+  const canPromote = ['owner', 'admin', 'compliance_admin'].includes(currentUserRole) && userPlanTier !== 'individual';
 
   const pendingCount = candidates.filter(c => c.status === 'pending_review').length;
   const needsInfoCount = candidates.filter(c => c.status === 'needs_more_information').length;
@@ -170,19 +165,31 @@ export default function ReviewerCandidateConsole() {
     : candidates.filter(c => c.status === filterStatus);
 
   const handleAction = async (id: string, actionType: 'approve' | 'reject' | 'request-info' | 'block' | 'archive', notes?: string) => {
-    // If backend is connected and it's not a demo record, call the API
+    if (!canManage) {
+        alert('Unauthorized: Your role does not have permission to manage candidates.');
+        return;
+    }
+
+    if (actionType === 'approve' && !canPromote) {
+        alert('Unauthorized: Knowledge promotion requires Admin/Compliance role and a Team/Company plan.');
+        return;
+    }
+
     if (isBackendConnected && !id.startsWith('demo-')) {
         try {
-            const response = await fetch(`${API_BASE_URL}/safescope/reviewer-candidates/${id}/${actionType}`, {
+            const response = await fetch(API_BASE_URL + '/safescope/reviewer-candidates/' + id + '/' + actionType, {
                 method: 'POST',
                 headers: authHeaders(),
                 body: JSON.stringify({ 
                     name: 'Current User', 
-                    role: 'Safety Reviewer', 
-                    notes: notes || `Action: ${actionType}`
+                    role: currentUserRole, 
+                    notes: notes || 'Action: ' + actionType
                 })
             });
-            if (!response.ok) throw new Error(`Action ${actionType} failed.`);
+            if (!response.ok) {
+                const data = await response.json();
+                throw new Error(data.message || 'Action ' + actionType + ' failed.');
+            }
             
             const updatedCandidate = await response.json();
             setCandidates(prev => prev.map(c => c.candidateId === id ? updatedCandidate : c));
@@ -190,36 +197,36 @@ export default function ReviewerCandidateConsole() {
             return;
         } catch (e) {
             console.error(e);
-            alert(`Error: ${e instanceof Error ? e.message : 'Action failed'}`);
+            alert('Error: ' + (e instanceof Error ? e.message : 'Action failed'));
         }
-    }
-
-    // Local fallback/demo behavior
-    const statusMap: Record<string, CandidateStatus> = {
-        'approve': 'approved_for_promotion',
-        'reject': 'rejected',
-        'request-info': 'needs_more_information',
-        'block': 'blocked',
-        'archive': 'archived'
-    };
-
-    const newStatus = statusMap[actionType];
-
-    setCandidates(prev => prev.map(c => {
-      if (c.candidateId === id) {
-        const updated = {
-          ...c,
-          status: newStatus,
-          auditTrail: [
-            ...c.auditTrail,
-            { action: actionType, timestamp: new Date().toISOString(), actor: 'Current User', role: 'Safety Reviewer', notes }
-          ]
+    } else if (process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK === 'true') {
+        // Local fallback only in demo mode
+        const statusMap: Record<string, CandidateStatus> = {
+            'approve': 'approved_for_promotion',
+            'reject': 'rejected',
+            'request-info': 'needs_more_information',
+            'block': 'blocked',
+            'archive': 'archived'
         };
-        if (selectedCandidate?.candidateId === id) setSelectedCandidate(updated);
-        return updated;
-      }
-      return c;
-    }));
+
+        setCandidates(prev => prev.map(c => {
+          if (c.candidateId === id) {
+            const updated = {
+              ...c,
+              status: statusMap[actionType],
+              auditTrail: [
+                ...c.auditTrail,
+                { action: actionType, timestamp: new Date().toISOString(), actor: 'Current User', role: currentUserRole, notes }
+              ]
+            } as ReviewerCandidate;
+            if (selectedCandidate?.candidateId === id) setSelectedCandidate(updated);
+            return updated;
+          }
+          return c;
+        }));
+    } else {
+        alert('Action unavailable: System is disconnected and Demo Fallback is disabled.');
+    }
   };
 
   return (
@@ -230,21 +237,70 @@ export default function ReviewerCandidateConsole() {
             title="Reviewer Candidate Console"
             description="Staged candidates for qualified human review before promotion to approved SafeScope knowledge."
           />
-          <div className="flex items-center gap-2 mt-[-10px] pb-4 px-4 sm:px-5">
-              <div className={`w-2 h-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
-              <span className="text-[10px] font-black uppercase text-slate-400">
-                {isBackendConnected ? 'Live Connection Established' : 'Demo Fallback Mode'}
-              </span>
-              {!isBackendConnected && (
-                  <button onClick={fetchCandidates} className="text-[10px] text-blue-600 font-black uppercase ml-2 hover:underline">
-                    Retry Connection
-                  </button>
-              )}
+          <div className="flex flex-wrap items-center gap-4 mt-[-10px] pb-4 px-4 sm:px-5">
+              <div className="flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
+                  <span className="text-[10px] font-black uppercase text-slate-400">
+                    {isBackendConnected ? 'Live Connection' : 'Demo Fallback'}
+                  </span>
+              </div>
+              <div className="h-4 w-[1px] bg-slate-200" />
+              <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-black uppercase text-slate-400">Role:</span>
+                  <select 
+                    value={currentUserRole}
+                    onChange={(e) => setCurrentUserRole(e.target.value as SafeScopeRole)}
+                    className="text-[10px] font-black uppercase text-blue-600 bg-transparent border-none p-0 focus:ring-0 cursor-pointer"
+                  >
+                      <option value="owner">Owner</option>
+                      <option value="admin">Admin</option>
+                      <option value="compliance_admin">Compliance Admin</option>
+                      <option value="safety_manager">Safety Manager</option>
+                      <option value="field_inspector">Field Inspector</option>
+                      <option value="viewer">Viewer</option>
+                  </select>
+              </div>
+              <div className="h-4 w-[1px] bg-slate-200" />
+              <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-black uppercase text-slate-400">Plan:</span>
+                  <select 
+                    value={userPlanTier}
+                    onChange={(e) => setUserPlanTier(e.target.value as any)}
+                    className="text-[10px] font-black uppercase text-blue-600 bg-transparent border-none p-0 focus:ring-0 cursor-pointer"
+                  >
+                      <option value="company">Company</option>
+                      <option value="team">Team</option>
+                      <option value="individual">Individual</option>
+                  </select>
+              </div>
           </div>
         </AppPanel>
       </div>
 
       <AppPanel className="py-8">
+        {!canManage && (
+            <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
+                <span className="text-xl">🚫</span>
+                <div>
+                    <p className="text-xs font-black text-red-900 uppercase">ReadOnly Access</p>
+                    <p className="text-[10px] font-bold text-red-700">Your current role ({currentUserRole.toUpperCase()}) does not have permission to manage candidates.</p>
+                </div>
+            </div>
+        )}
+
+        {error && (
+             <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
+                <span className="text-xl">⚠️</span>
+                <div>
+                    <p className="text-xs font-black text-amber-900 uppercase">Connection Issue</p>
+                    <p className="text-[10px] font-bold text-amber-700">{error}</p>
+                    <button onClick={fetchCandidates} className="text-[10px] text-blue-600 font-black uppercase hover:underline mt-1">
+                        Retry Connection
+                    </button>
+                </div>
+            </div>
+        )}
+
         {isLoading ? (
             <div className="flex items-center justify-center py-24">
                 <div className="text-center">
@@ -262,7 +318,6 @@ export default function ReviewerCandidateConsole() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* List Column */}
             <div className="lg:col-span-1 space-y-4">
                 <div className="flex items-center justify-between mb-4">
                 <h2 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Candidates</h2>
@@ -298,7 +353,6 @@ export default function ReviewerCandidateConsole() {
                         <p className="text-sm font-bold text-slate-900 mb-1 line-clamp-2">{c.summary}</p>
                         <div className="flex gap-2 mt-2">
                         <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-medium">{c.candidateType.replace(/_/g, ' ')}</span>
-                        <span className="text-[10px] text-slate-500">{new Date(c.createdAt).toLocaleDateString()}</span>
                         </div>
                     </SentinelCard>
                     </div>
@@ -306,7 +360,6 @@ export default function ReviewerCandidateConsole() {
                 )}
             </div>
 
-            {/* Detail Column */}
             <div className="lg:col-span-2">
                 {selectedCandidate ? (
                 <SentinelCard className="p-8">
@@ -335,78 +388,54 @@ export default function ReviewerCandidateConsole() {
                         <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Authority Tier</h4>
                         <p className="text-sm font-medium">{selectedCandidate.authorityTier.replace(/_/g, ' ')}</p>
                     </div>
-                    <div>
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Mechanisms</h4>
-                        <p className="text-sm font-medium">{selectedCandidate.mechanisms.join(', ') || 'None identified'}</p>
-                    </div>
-                    <div>
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Source References</h4>
-                        <p className="text-sm font-medium">{selectedCandidate.sourceReferences.join(', ') || 'No references'}</p>
-                    </div>
                     </div>
 
                     <div className="space-y-6 mb-8">
                     <div>
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Proposed Knowledge / Change</h4>
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Proposed Knowledge</h4>
                         <div className="bg-slate-900 text-slate-100 p-4 rounded-xl text-sm font-mono whitespace-pre-wrap">
                         {selectedCandidate.proposedKnowledgeText}
                         </div>
                     </div>
-                    <div>
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Evidence Basis</h4>
-                        <p className="text-sm italic text-slate-600 bg-white border border-slate-200 p-4 rounded-xl">{selectedCandidate.evidenceBasis}</p>
                     </div>
-                    </div>
-
-                    {selectedCandidate.governanceFlags.length > 0 && (
-                    <div className="mb-8 p-4 bg-orange-50 border border-orange-200 rounded-xl">
-                        <h4 className="text-xs font-black text-orange-900 mb-2 flex items-center">
-                        ⚠️ Governance Flags
-                        </h4>
-                        <ul className="text-xs text-orange-800 list-disc list-inside space-y-1">
-                        {selectedCandidate.governanceFlags.map(f => <li key={f}>{f}</li>)}
-                        </ul>
-                    </div>
-                    )}
 
                     <div className="flex gap-3 pt-6 border-t border-slate-100">
                     <AppButton 
                         variant="primary" 
-                        disabled={selectedCandidate.status === 'blocked' || selectedCandidate.status === 'approved_for_promotion'}
+                        disabled={!canPromote || selectedCandidate.status === 'approved_for_promotion' || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
                         onClick={() => handleAction(selectedCandidate.candidateId, 'approve')}
                     >
-                        Approve
+                        Approve & Promote
                     </AppButton>
                     <AppButton 
                         variant="secondary"
+                        disabled={!canManage || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
                         onClick={() => handleAction(selectedCandidate.candidateId, 'request-info', 'Reviewer requested more info.')}
                     >
                         Request Info
                     </AppButton>
                     <AppButton 
-                        variant="ghost"
-                        onClick={() => handleAction(selectedCandidate.candidateId, 'reject', 'Reviewer rejected.')}
-                    >
-                        Reject
-                    </AppButton>
-                    <AppButton 
                         variant="danger"
+                        disabled={!canManage || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
                         onClick={() => handleAction(selectedCandidate.candidateId, 'block', 'Reviewer blocked for safety/compliance.')}
                     >
                         Block
                     </AppButton>
                     </div>
 
+                    {!canPromote && canManage && (
+                        <p className="mt-4 text-[10px] font-bold text-amber-600 italic">
+                            ⚠️ Promotion requires Compliance Admin role and Team/Company plan.
+                        </p>
+                    )}
+
                     <div className="mt-12 text-[10px] text-slate-400 border-t border-slate-100 pt-4">
-                    <p>⚖️ GOVERNANCE NOTICE: Candidates are staged for human review. Do not promote to approved knowledge without source verification. SafeScope remains an advisory system and does not declare violations.</p>
+                    <p>⚖️ GOVERNANCE NOTICE: Candidates are staged for human review. Do not promote to approved knowledge without source verification. SafeScope remains an advisory system.</p>
                     </div>
                 </SentinelCard>
                 ) : (
                 <div className="h-full flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl p-12 text-center text-slate-400">
-                    <div>
                     <p className="text-lg font-bold">Select a candidate to review details.</p>
-                    <p className="text-sm">Human verification is required for all learning and ingestion content.</p>
-                    </div>
                 </div>
                 )}
             </div>

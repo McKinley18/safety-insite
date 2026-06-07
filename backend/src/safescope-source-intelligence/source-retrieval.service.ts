@@ -2,6 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { SourceIntelligenceSearchDto } from './dto/source-intelligence-search.dto';
 import { SourceIntelligenceMatchDto } from './dto/source-intelligence-match.dto';
 
+/**
+ * @deprecated Legacy source-intelligence module.
+ * SafeScope v2 now utilizes ApprovedKnowledgeRetrievalOutputV1Service 
+ * and ApprovedKnowledgeRegistrySearchService for governed source retrieval.
+ */
 @Injectable()
 export class SourceRetrievalService {
   searchVerifiedSources(query: SourceIntelligenceSearchDto): {
@@ -15,15 +20,12 @@ export class SourceRetrievalService {
       readOnly: true;
     };
   } {
-    // TODO: Implement database search logic.
-    // 1. Filter records where verificationStatus === "verified"
-    // 2. Rank by hazardCategory, keyword, equipmentInvolved, agency, citationAuthority
-    // 3. Return top limit results (default 10)
-    // 4. Ensure no pending_review/rejected records are returned.
+    // This legacy service is maintained for dependency compatibility during v2 migration.
+    // It must not return invented or unverified source matches in staging/production.
     
     return {
       query,
-      matches: [], // TODO: Future DB integration
+      matches: [], 
       retrievalStatus: "stubbed",
       databaseReadEnabled: false,
       governance: {

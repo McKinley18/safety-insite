@@ -13,7 +13,7 @@ import { UserGovernanceContext } from '../workspace-governance-access/workspace-
 
 @Injectable()
 export class SafeScopePersistenceService {
-  private readonly useFileFallback = true; 
+  private readonly persistenceMode: 'file' | 'database';
   private readonly dataPath = path.resolve(__dirname, '../../../../../safescope-data/persistence/audit_records.json');
 
   constructor(
@@ -21,8 +21,16 @@ export class SafeScopePersistenceService {
     @InjectRepository(SafeScopeAuditRecordEntity)
     private readonly repository?: Repository<SafeScopeAuditRecordEntity>,
   ) {
-    if (this.useFileFallback) {
+    const envMode = process.env.SAFE_SCOPE_PERSISTENCE_MODE;
+    const isProduction = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging';
+    
+    this.persistenceMode = (envMode as any) || (isProduction ? 'database' : 'file');
+
+    if (this.persistenceMode === 'file') {
       this.ensureDirectory();
+    } else if (this.persistenceMode === 'database' && !this.repository) {
+        // In staging/production, we must not silently fall back if DB is the target but unavailable
+        console.error('FATAL: SafeScope persistence configured for database but repository is unavailable.');
     }
   }
 
@@ -54,7 +62,7 @@ export class SafeScopePersistenceService {
   }
 
   async save(record: Omit<SafeScopeAuditRecord, 'id' | 'createdAt' | 'updatedAt'>): Promise<SafeScopeAuditRecord> {
-    if (this.repository && !this.useFileFallback) {
+    if (this.repository && this.persistenceMode === 'database') {
       const entity = this.repository.create(record as any) as any;
       const saved = await this.repository.save(entity);
       return this.mapEntityToType(saved);
@@ -78,7 +86,7 @@ export class SafeScopePersistenceService {
     }
     const effectiveWorkspaceId = user?.workspaceId || filter.workspaceId;
 
-    if (this.repository && !this.useFileFallback) {
+    if (this.repository && this.persistenceMode === 'database') {
       const query = this.repository.createQueryBuilder('record');
       if (filter.type) query.andWhere('record.type = :type', { type: filter.type });
       if (effectiveWorkspaceId) query.andWhere('record.workspaceId = :workspaceId', { workspaceId: effectiveWorkspaceId });
@@ -106,7 +114,7 @@ export class SafeScopePersistenceService {
   async getById(id: string, user?: UserGovernanceContext): Promise<SafeScopeAuditRecord | undefined> {
     let record: SafeScopeAuditRecord | undefined;
 
-    if (this.repository && !this.useFileFallback) {
+    if (this.repository && this.persistenceMode === 'database') {
       const entity = await this.repository.findOne({ where: { id } as any });
       record = entity ? this.mapEntityToType(entity) : undefined;
     } else {
@@ -121,7 +129,7 @@ export class SafeScopePersistenceService {
   }
 
   async updateStatus(id: string, status: string, metadataUpdate: Record<string, any> = {}, user?: UserGovernanceContext): Promise<SafeScopeAuditRecord | undefined> {
-    if (this.repository && !this.useFileFallback) {
+    if (this.repository && this.persistenceMode === 'database') {
       const entity = await this.repository.findOne({ where: { id } as any });
       if (entity) {
         if (user && entity.workspaceId && entity.workspaceId !== user.workspaceId) {

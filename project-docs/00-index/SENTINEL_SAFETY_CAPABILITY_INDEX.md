@@ -1505,3 +1505,10 @@ Check git status:
 - Enforces cross-workspace security, plan-tier gating for advanced governance features, and assigned-inspection access for field inspectors.
 - Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
 - Establishes the foundation for production-ready, multi-tenant safety-AI governance.
+
+## Staging Hardening
+- SafeScope Staging Hardening Pass v1 implemented.
+- Gates demo/mock behavior behind environment variables (`NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK`).
+- Hardens backend auth defaults to fail-safe 'viewer/individual' mode for unauthenticated or incomplete context.
+- Implements environment-controlled persistence (`SAFE_SCOPE_PERSISTENCE_MODE`), defaulting to database in staging/production.
+- Replaced placeholder UI elements with production-safe governance lockdown notices.
