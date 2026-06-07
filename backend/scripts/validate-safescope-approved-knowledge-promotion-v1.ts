@@ -21,6 +21,7 @@ async function validate() {
         sourceDateStatus: 'current'
     },
     mapping: {
+        domainId: 'machine_guarding',
         standardFamily: 'loto',
         hazardFamilies: ['energy'],
         mechanisms: ['unexpected_startup'],
