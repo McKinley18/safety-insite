@@ -11,6 +11,7 @@ import { AuditReadyReasoningTraceResult } from '../audit-ready-reasoning-trace/a
 import { ReviewerCandidate } from '../reviewer-candidate-console/reviewer-candidate-console.types';
 import { SemanticSynonymExpansionResult } from '../semantic-synonym-expansion/semantic-synonym-expansion.types';
 import { VisualEvidenceReasoningResult } from '../visual-evidence-reasoning/visual-evidence-reasoning.types';
+import { RealImageAnalysisResult } from '../real-image-analysis/real-image-analysis.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -31,6 +32,7 @@ export interface RetrievalOutput {
   auditReadyReasoningTrace: AuditReadyReasoningTraceResult;
   semanticSynonymExpansion: SemanticSynonymExpansionResult;
   visualEvidenceReasoning: VisualEvidenceReasoningResult;
+  realImageAnalysis: RealImageAnalysisResult;
   pendingReviewerCandidates?: ReviewerCandidate[];
   reviewFeedback?: HumanReviewFeedbackResult;
   draftKnowledgeWarnings: string[];

@@ -19,6 +19,8 @@ import { SafeScopeNativeReasoningService } from "./native-reasoning/native-reaso
 import { SafeScopeReasoningOrchestratorService } from "./reasoning-orchestrator/reasoning-orchestrator.service";
 import { VisualEvidenceReasoningService } from "./visual-evidence-reasoning/visual-evidence-reasoning.service";
 import { VisualEvidenceReasoningInput, Attachment } from "./visual-evidence-reasoning/visual-evidence-reasoning.types";
+import { RealImageAnalysisService } from "./real-image-analysis/real-image-analysis.service";
+import { RealImageAnalysisInput } from "./real-image-analysis/real-image-analysis.types";
 
 @Injectable()
 export class SafescopeV2Service {
@@ -65,6 +67,7 @@ export class SafescopeV2Service {
   private nativeReasoningService = new SafeScopeNativeReasoningService();
   private reasoningOrchestratorService = new SafeScopeReasoningOrchestratorService();
   private visualService = new VisualEvidenceReasoningService();
+  private imageAnalysisService = new RealImageAnalysisService();
 
   private determineHumanReviewRequired(intelligence: any, primary: any) {
     return Boolean(
@@ -227,6 +230,10 @@ export class SafescopeV2Service {
 
   async evaluateVisualEvidence(input: VisualEvidenceReasoningInput) {
     return this.visualService.evaluate(input);
+  }
+
+  async evaluateRealImage(input: RealImageAnalysisInput) {
+    return this.imageAnalysisService.evaluate(input);
   }
 
   private scopeToSource(scopes?: string[]) {

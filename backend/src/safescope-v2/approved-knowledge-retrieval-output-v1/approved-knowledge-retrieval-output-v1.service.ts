@@ -17,6 +17,7 @@ import { AuditReadyReasoningTraceService } from '../audit-ready-reasoning-trace/
 import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
 import { SemanticSynonymExpansionService } from '../semantic-synonym-expansion/semantic-synonym-expansion.service';
 import { VisualEvidenceReasoningService } from '../visual-evidence-reasoning/visual-evidence-reasoning.service';
+import { RealImageAnalysisService } from '../real-image-analysis/real-image-analysis.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -37,6 +38,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private consoleService = new ReviewerCandidateConsoleService();
   private semanticService = new SemanticSynonymExpansionService();
   private visualService = new VisualEvidenceReasoningService();
+  private imageAnalysisService = new RealImageAnalysisService();
 
   async retrieve(
     observationText: string,
@@ -140,6 +142,11 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         context
     });
 
+    const realImageAnalysis = this.imageAnalysisService.evaluate({
+        observationText,
+        imageInputs: context.visualAttachments || context.attachments || []
+    });
+
 
     let reviewFeedback = undefined;
     if (context.humanReview) {
@@ -218,6 +225,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       auditReadyReasoningTrace,
       semanticSynonymExpansion,
       visualEvidenceReasoning,
+      realImageAnalysis,
       pendingReviewerCandidates,
       reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,

@@ -22,6 +22,7 @@ export class FieldOutputComposerV1Service {
     const jurisdiction = retrieval.jurisdictionApplicability;
     const trace = retrieval.auditReadyReasoningTrace;
     const visual = retrieval.visualEvidenceReasoning;
+    const realImage = retrieval.realImageAnalysis;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
@@ -48,10 +49,17 @@ export class FieldOutputComposerV1Service {
     }
 
     // 4. Add Visual Evidence Status
-    if (visual.visualSupportLevel === 'conflicting') {
+    if (visual.visualSupportLevel === 'conflicting' || realImage.visualConfidenceImpact === 'downgrade' || realImage.visualConfidenceImpact === 'block') {
         assessment += ' [VISUAL CONFLICT DETECTED: Attached evidence contradicts observation text.]';
     } else if (visual.visualSupportLevel === 'insufficient' && visual.evidencePresence !== 'none') {
         assessment += ' [NOTICE: Attached evidence provides insufficient support for this hazard type.]';
+    }
+
+    if (realImage.visualSignals.length > 0) {
+        const concerns = realImage.visualSignals.filter(s => s.support === 'adds_new_concern');
+        if (concerns.length > 0) {
+            assessment += ` [VISION DISCOVERY: Potential additional concerns identified: ${concerns.map(c => c.signal).join(', ')}]`;
+        }
     }
 
     // 5. Add Feedback Learning Disposition if present
@@ -75,7 +83,7 @@ export class FieldOutputComposerV1Service {
     ];
 
     if (immediateActions.length === 0) {
-        if (isConflicting || isInsufficient || visual.visualSupportLevel === 'conflicting') {
+        if (isConflicting || isInsufficient || visual.visualSupportLevel === 'conflicting' || realImage.visualConfidenceImpact === 'block') {
             immediateActions.push('Clarify observation facts', 'Restrict access if unsafe');
         } else {
             immediateActions.push('Review hazard information', 'Assess area safety');
@@ -98,6 +106,7 @@ export class FieldOutputComposerV1Service {
         ...verification.verificationSteps,
         ...jurisdiction.reviewerQuestions,
         ...visual.reviewerQuestions,
+        ...realImage.recommendedPhotoFollowups,
         ...trace.reviewerChecklist
     ];
 

@@ -7,6 +7,7 @@ import { ClassifyDto } from './dto/classify.dto';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { VisualEvidenceReasoningInput } from './visual-evidence-reasoning/visual-evidence-reasoning.types';
+import { RealImageAnalysisInput } from './real-image-analysis/real-image-analysis.types';
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
@@ -90,6 +91,28 @@ export class SafescopeV2Controller {
           reviewerQuestions: ['SafeScope visual reasoning failed to process. Manual verification required.'],
           confidenceImpact: 'neutral',
           advisoryBoundary: 'SafeScope visual evidence reasoning is advisory only.'
+      };
+    }
+  }
+
+  @UseGuards(JwtGuard)
+  @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
+  @Post('real-image-analysis/evaluate')
+  async evaluateRealImage(@Body() input: RealImageAnalysisInput) {
+    try {
+      return await this.service.evaluateRealImage(input);
+    } catch (error) {
+      console.error('SafeScope v2 real image analysis failed:', error);
+      return {
+          version: "real_image_analysis_v1",
+          imageCount: input.imageInputs?.length || 0,
+          visualSignals: [],
+          imageEvidenceSummary: "Error during real image analysis.",
+          visualConfidenceImpact: "neutral",
+          imageEvidenceLimitations: ["Service error"],
+          recommendedPhotoFollowups: ["Retry analysis or manually verify photos."],
+          requiresHumanVerification: true,
+          advisoryBoundary: "SafeScope real image analysis is advisory only."
       };
     }
   }

@@ -22,7 +22,7 @@ SafeScope already implements the following core AI safety governance layers:
 | Feature | Description | Priority |
 | :--- | :--- | :--- |
 | **Semantic Synonym Expansion** | Deterministic synonym mapping implemented; neural/vector expansion remains. | High |
-| **Photo/Image Reasoning** | Metadata reasoning fully wired into API and UI; neural image recognition remains. | High |
+| **Photo/Image Reasoning** | Governed contract for real image analysis implemented; neural image recognition remains. | High |
 | **Structured Inspection Memory** | Reasoning about the same hazard over multiple observations (repeat offenders). | Medium |
 | **Exposure Dose Intelligence** | Calculating cumulative risk exposure based on time, frequency, and severity. | Medium |
 | **Adversarial Test Packs** | Systematic "Red Teaming" of the reasoning engine to detect overconfidence or logic gaps. | Medium |

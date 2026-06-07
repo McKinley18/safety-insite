@@ -264,6 +264,57 @@ function formatEquipmentReasoningMode(value: any) {
   return labels[mode] || mode.replace(/_/g, " ");
 }
 
+function SafeScopeRealImageAnalysisAppendix({
+  safeScopeResult,
+}: {
+  safeScopeResult: any;
+}) {
+  const realImage = safeScopeResult?.realImageAnalysis;
+  if (!realImage || !realImage.visualSignals?.length) return null;
+
+  return (
+    <div className="mt-3 rounded-xl bg-indigo-50 px-3 py-2 ring-1 ring-indigo-200">
+      <p className="text-[10px] font-black uppercase tracking-wide text-indigo-700">
+        AI Photo Analysis (Beta)
+      </p>
+
+      <div className="mt-2 space-y-2">
+        {realImage.visualSignals.map((sig: any, idx: number) => (
+          <div key={idx} className="flex items-start gap-2">
+            <div className={`mt-1 h-1.5 w-1.5 rounded-full shrink-0 ${
+              sig.support === 'supports_observation' ? 'bg-emerald-500' :
+              sig.support === 'conflicts_with_observation' ? 'bg-red-500' :
+              'bg-amber-500'
+            }`} />
+            <div>
+              <p className="text-xs font-bold text-slate-800">
+                {sig.signal.replace(/_/g, " ")} 
+                <span className="ml-1 text-[10px] font-black uppercase text-slate-400 italic">
+                  ({sig.support.replace(/_/g, " ")})
+                </span>
+              </p>
+              <p className="text-[10px] text-slate-500">Basis: {sig.basis.join(', ')}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {!!realImage.recommendedPhotoFollowups?.length && (
+        <div className="mt-2">
+          <p className="text-[10px] font-black uppercase text-indigo-700">Recommended Follow-ups</p>
+          <ul className="mt-1 list-inside list-disc text-[10px] font-semibold text-indigo-800">
+            {realImage.recommendedPhotoFollowups.map((f: string) => <li key={f}>{f}</li>)}
+          </ul>
+        </div>
+      )}
+
+      <p className="mt-2 text-[10px] font-bold leading-relaxed text-slate-400 italic">
+        {realImage.advisoryBoundary} {realImage.imageEvidenceLimitations.join(' · ')}
+      </p>
+    </div>
+  );
+}
+
 function SafeScopeVisualEvidenceAppendix({
   safeScopeResult,
 }: {
@@ -1200,6 +1251,10 @@ export default function InspectionReviewPage() {
                                 .join(" · ")}
                             </p>
                           )}
+
+                        <SafeScopeRealImageAnalysisAppendix
+                          safeScopeResult={finding.safeScopeResult}
+                        />
 
                         <SafeScopeVisualEvidenceAppendix
                           safeScopeResult={finding.safeScopeResult}

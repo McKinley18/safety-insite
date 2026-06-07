@@ -1449,3 +1449,10 @@ Check git status:
 - Supports structured metadata for photos, including captions, field notes, and view types (e.g., close-up, wide-area).
 - Automatically surfaces visual/text consistency conflicts and missing required views in the field-facing assessment.
 - Integrated into both the primary inspection flow and the inspection review interface.
+
+## Real Image Analysis / Photo Classification
+- SafeScope Real Image Analysis / Photo Classification v1 added.
+- Implements a governed, deterministic contract for image-derived safety signals.
+- Detects visual hazards such as missing guards, damaged cords, blocked exits, and PPE gaps based on simulated vision findings and metadata.
+- Automatically identifies consistency conflicts between written observations and visual findings.
+- Adjusts assessment confidence based on visual support levels (Supports, Conflicts, Adds New Concern, Uncertain).

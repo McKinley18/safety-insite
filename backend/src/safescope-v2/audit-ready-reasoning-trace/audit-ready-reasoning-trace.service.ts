@@ -27,6 +27,7 @@ export class AuditReadyReasoningTraceService {
 
     // Optional fields from retrieval output that might not be in the direct input types yet
     const semantic = (input as any).semanticSynonymExpansion;
+    const realImage = (input as any).realImageAnalysis;
 
     const traceId = `trace-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const generatedAt = new Date().toISOString();
@@ -64,6 +65,9 @@ export class AuditReadyReasoningTraceService {
     if (semantic && semantic.semanticConfidenceScore > 0) {
         confidenceModifiers.push(`Semantic match boost: +${(semantic.semanticConfidenceScore * 0.1).toFixed(2)}`);
     }
+    if (realImage && realImage.visualConfidenceImpact !== 'neutral') {
+        confidenceModifiers.push(`Vision impact: ${realImage.visualConfidenceImpact}`);
+    }
 
     const humanReviewGates: string[] = [];
     if (jurisdictionApplicability.humanReviewRequired) humanReviewGates.push('Jurisdiction ambiguity requiring manual confirmation.');
@@ -82,6 +86,9 @@ export class AuditReadyReasoningTraceService {
     if (semantic) {
         reviewerChecklist.push(...semantic.reviewerQuestions);
     }
+    if (realImage) {
+        reviewerChecklist.push(...realImage.recommendedPhotoFollowups);
+    }
 
     return {
       traceVersion: 'v1',
@@ -91,9 +98,13 @@ export class AuditReadyReasoningTraceService {
       primaryDecisionPath,
       supportingEvidence: [
           ...evidenceWeighting.supportingSignals,
-          ...(semantic?.expandedSignals || [])
+          ...(semantic?.expandedSignals || []),
+          ...(realImage?.visualSignals?.filter((s: any) => s.support === 'supports_observation').map((s: any) => s.signal) || [])
       ],
-      weakeningEvidence: evidenceWeighting.weakeningSignals,
+      weakeningEvidence: [
+          ...evidenceWeighting.weakeningSignals,
+          ...(realImage?.visualSignals?.filter((s: any) => s.support === 'conflicts_with_observation').map((s: any) => s.signal) || [])
+      ],
       missingCriticalFacts: evidenceWeighting.missingCriticalFacts,
       detectedContradictions: evidenceWeighting.detectedContradictions,
       jurisdictionReasoning: jurisdictionApplicability.reasoningSummary,

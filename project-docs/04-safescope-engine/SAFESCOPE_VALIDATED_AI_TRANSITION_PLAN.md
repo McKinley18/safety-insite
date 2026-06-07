@@ -37,3 +37,5 @@ This document tracks the systematic transition of SafeScope from a collection of
 - Visual evidence reasoning implemented, establishing the foundation for future Image AI integration by reasoning over metadata and field notes.
 
 - Visual evidence API and UI wiring implemented, enabling field-captured photo metadata to drive safety reasoning.
+
+- Real image analysis and photo classification implemented, establishing the governed contract for future Image AI integration.

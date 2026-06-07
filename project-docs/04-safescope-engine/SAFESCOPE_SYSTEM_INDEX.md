@@ -59,3 +59,4 @@
 
 | Visual Evidence | Metadata-based evidence analyzer | backend/src/safescope-v2/visual-evidence-reasoning/ | N/A | backend/scripts/validate-safescope-visual-evidence-reasoning-v1.ts | Visual evidence reasoning v1 | Active | Metadata reasoning layer |
 | Visual API Wiring | Frontend-Backend visual integration | backend/src/safescope-v2/visual-evidence-reasoning/ | backend/src/safescope-v2/safescope-v2.controller.ts | backend/scripts/validate-safescope-visual-evidence-api-ui-wiring-v1.ts | Visual wiring v1 | Active | Metadata connectivity |
+| Real Image Analysis | Image-derived signal classifier | backend/src/safescope-v2/real-image-analysis/ | N/A | backend/scripts/validate-safescope-real-image-analysis-v1.ts | Real image analysis v1 | Active | Vision signal layer |
