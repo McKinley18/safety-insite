@@ -57,6 +57,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-field-output-composer-v1.ts'],
   },
   {
+    label: 'Field evidence weighting v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-field-evidence-weighting-v1.ts'],
+  },
+  {
     label: 'Approved knowledge retrieval matching v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-approved-knowledge-population-and-retrieval-matching-v1.ts'],

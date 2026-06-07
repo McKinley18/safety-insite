@@ -1,3 +1,5 @@
+import { EvidenceWeightingResult } from '../field-evidence-weighting/field-evidence-weighting.types';
+
 export interface RetrievalOutput {
   version: string;
   observationSummary: string;
@@ -6,6 +8,7 @@ export interface RetrievalOutput {
   scenarioMatches: any[];
   evaluatedScenarios: any[];
   topScenario?: any;
+  evidenceWeighting: EvidenceWeightingResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;

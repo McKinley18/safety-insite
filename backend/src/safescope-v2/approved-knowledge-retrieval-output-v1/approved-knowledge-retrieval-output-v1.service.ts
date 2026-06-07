@@ -4,6 +4,7 @@ import { HazardTaxonomyCoverageService } from '../hazard-taxonomy-coverage/hazar
 import { ApprovedKnowledgeRegistrySearchService } from '../approved-knowledge-registry/approved-knowledge-registry-search.service';
 import { ScenarioExpansionService } from '../scenario-expansion/scenario-expansion.service';
 import { ScenarioEvaluationService } from '../scenario-evaluation/scenario-evaluation.service';
+import { FieldEvidenceWeightingService } from '../field-evidence-weighting/field-evidence-weighting.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -11,6 +12,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private searchService = new ApprovedKnowledgeRegistrySearchService();
   private scenarioService = new ScenarioExpansionService();
   private evaluationService = new ScenarioEvaluationService();
+  private evidenceWeightingService = new FieldEvidenceWeightingService();
 
   async retrieve(
     observationText: string,
@@ -30,6 +32,14 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
     
     const evaluation = await this.evaluationService.evaluate(observationText, scenarioMatches, context);
     
+    const evidenceWeighting = this.evidenceWeightingService.evaluate({
+        observationText,
+        taxonomyRoute,
+        approvedKnowledgeMatches: approvedMatches,
+        evaluatedScenarioMatches: evaluation.evaluatedScenarios,
+        context
+    });
+
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -42,12 +52,20 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       scenarioMatches: scenarioMatches,
       evaluatedScenarios: evaluation.evaluatedScenarios,
       topScenario: evaluation.topScenario,
+      evidenceWeighting: evidenceWeighting,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
-      confidence: taxonomyRoute.confidence,
-      evidenceGaps: approvedMatches.length === 0 ? ['Insufficient evidence for definitive assessment.'] : [],
+      confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)),
+      evidenceGaps: [
+          ...evidenceWeighting.missingCriticalFacts,
+          ...(approvedMatches.length === 0 ? ['Insufficient evidence for definitive assessment.'] : [])
+      ],
       advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],
-      recommendedReviewerActions: ['Verify categorization', 'Review evidence sufficiency'],
+      recommendedReviewerActions: [
+          ...evidenceWeighting.reviewerQuestions,
+          'Verify categorization', 
+          'Review evidence sufficiency'
+      ],
       fieldOutputNotes: 'Output generated as advisory, source-backed analysis.'
     };
   }

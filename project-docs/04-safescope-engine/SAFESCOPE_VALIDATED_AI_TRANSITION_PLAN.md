@@ -543,3 +543,5 @@ SafeScope can be called a validated, defensible safety AI only when:
 - Scenario expansion pack v1 added, improving domain-specific hazard reasoning.
 
 - Scenario expansion pack v1 added, improving domain-specific hazard reasoning.
+
+- Field evidence weighting and contradiction handling implemented, improving defensive reasoning when field data is inconsistent.

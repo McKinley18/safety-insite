@@ -1340,3 +1340,9 @@ Check git status:
 - Covers 15+ safety domains, improving practical hazard reasoning.
 - Scenario-level data supplements approved knowledge matches, enhancing field output summaries.
 - Master validation includes the scenario expansion pack validator.
+
+## Field Evidence Weighting + Contradiction Handling
+- SafeScope Field Evidence Weighting + Contradiction Handling added.
+- Automatically detects conflicting facts (e.g. energized vs de-energized) and missing critical facts (e.g. exposure status).
+- Downgrades assessment confidence and generates reviewer questions when evidence is weak or conflicting.
+- Fully integrated into retrieval and field output composer pipelines.

@@ -28,3 +28,5 @@
 | Scenario Expansion Pack | Domain-specific scenario logic | safescope-data/scenario-expansion/ | N/A | backend/scripts/validate-safescope-scenario-expansion-pack-v1.ts | Scenario expansion pack v1 | Active | Expanded domain reasoning |
 
 | Scenario Expansion Pack | Domain-specific scenario logic | safescope-data/scenario-expansion/ | N/A | backend/scripts/validate-safescope-scenario-expansion-pack-v1.ts | Scenario expansion pack v1 | Active | Expanded domain reasoning |
+
+| Field Evidence Weighting | Intent-aware evidence analysis | backend/src/safescope-v2/field-evidence-weighting/ | N/A | backend/scripts/validate-safescope-field-evidence-weighting-v1.ts | Field evidence weighting v1 | Active | Defensive reasoning layer |
