@@ -1435,3 +1435,10 @@ Check git status:
 - Implements governed synonym groups for 9+ critical safety domains including Machine Guarding, LOTO, Electrical, and Fall Protection.
 - Features deterministic matching with length-priority resolution and substring safety guards (e.g., preventing "guarded" from matching inside "unguarded").
 - Fully integrated into retrieval, field output, and audit traces to improve assessment precision and explainability.
+
+## Visual Evidence Reasoning
+- SafeScope Visual Evidence Reasoning v1 added.
+- Implements deterministic reasoning over inspection attachments, photo metadata, and field notes.
+- Identifies missing visual evidence required for specific hazard domains (e.g., close-up views for machine guarding).
+- Detects consistency conflicts between written observations and attached evidence notes (e.g., "unguarded" in text vs "guarded" in photo caption).
+- Adjusts assessment confidence based on visual support levels (Supportive, Partially Supportive, Insufficient, Conflicting).

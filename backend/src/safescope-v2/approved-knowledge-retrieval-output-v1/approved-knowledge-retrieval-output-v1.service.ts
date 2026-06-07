@@ -16,6 +16,7 @@ import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-ap
 import { AuditReadyReasoningTraceService } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.service';
 import { ReviewerCandidateConsoleService } from '../reviewer-candidate-console/reviewer-candidate-console.service';
 import { SemanticSynonymExpansionService } from '../semantic-synonym-expansion/semantic-synonym-expansion.service';
+import { VisualEvidenceReasoningService } from '../visual-evidence-reasoning/visual-evidence-reasoning.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -35,6 +36,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private traceService = new AuditReadyReasoningTraceService();
   private consoleService = new ReviewerCandidateConsoleService();
   private semanticService = new SemanticSynonymExpansionService();
+  private visualService = new VisualEvidenceReasoningService();
 
   async retrieve(
     observationText: string,
@@ -128,6 +130,16 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         multiHazardAnalysis: multiHazardDecomposition
     });
 
+    const visualEvidenceReasoning = this.visualService.evaluate({
+        observationText,
+        taxonomyRoute,
+        evidenceWeighting,
+        multiHazardAnalysis: multiHazardDecomposition,
+        semanticSynonymExpansion,
+        attachments: context.attachments || [],
+        context
+    });
+
     let reviewFeedback = undefined;
     if (context.humanReview) {
         reviewFeedback = this.feedbackService.processReview({
@@ -166,8 +178,8 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         sourceFreshness: sourceFreshnessGovernanceResults,
         jurisdictionApplicability,
         context,
-        // Optional extension
-        semanticSynonymExpansion: semanticSynonymExpansion as any
+        semanticSynonymExpansion: semanticSynonymExpansion as any,
+        visualEvidenceReasoning: visualEvidenceReasoning as any
     } as any);
 
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
@@ -179,6 +191,12 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
     Object.values(sourceFreshnessGovernanceResults).forEach((res: any) => {
         freshnessConfidenceImpact += res.confidenceImpact;
     });
+
+    // Calculate visual impact
+    let visualConfidenceModifier = 0;
+    if (visualEvidenceReasoning.confidenceImpact === 'boost') visualConfidenceModifier = 0.1;
+    if (visualEvidenceReasoning.confidenceImpact === 'downgrade') visualConfidenceModifier = -0.1;
+    if (visualEvidenceReasoning.confidenceImpact === 'block_confident_language') visualConfidenceModifier = -0.3;
 
     return {
       version: 'v1',
@@ -198,6 +216,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       jurisdictionApplicability,
       auditReadyReasoningTrace,
       semanticSynonymExpansion,
+      visualEvidenceReasoning,
       pendingReviewerCandidates,
       reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
@@ -206,12 +225,14 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)) + 
         riskVerification.confidenceAdjustment + 
         freshnessConfidenceImpact +
-        (semanticSynonymExpansion.semanticConfidenceScore * 0.1) // Slight boost for semantic matches
+        (semanticSynonymExpansion.semanticConfidenceScore * 0.1) +
+        visualConfidenceModifier
       )),
       evidenceGaps: [
           ...evidenceWeighting.missingCriticalFacts,
           ...riskVerification.residualRiskReasons,
           ...jurisdictionApplicability.missingJurisdictionFacts,
+          ...visualEvidenceReasoning.missingVisualEvidence,
           ...(approvedMatches.length === 0 ? ['Insufficient evidence for definitive assessment.'] : [])
       ],
       advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],
@@ -221,6 +242,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
           ...riskVerification.reviewerQuestions,
           ...jurisdictionApplicability.reviewerQuestions,
           ...semanticSynonymExpansion.reviewerQuestions,
+          ...visualEvidenceReasoning.reviewerQuestions,
           'Verify categorization', 
           'Review evidence sufficiency'
       ],

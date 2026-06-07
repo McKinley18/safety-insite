@@ -21,7 +21,7 @@ export class FieldOutputComposerV1Service {
     const freshness = retrieval.sourceFreshnessGovernanceResults;
     const jurisdiction = retrieval.jurisdictionApplicability;
     const trace = retrieval.auditReadyReasoningTrace;
-    const semantic = retrieval.semanticSynonymExpansion;
+    const visual = retrieval.visualEvidenceReasoning;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
@@ -47,28 +47,35 @@ export class FieldOutputComposerV1Service {
         assessment += ' [NOTICE: Assessment based on company policy only.]';
     }
 
-    // 4. Add Feedback Learning Disposition if present
+    // 4. Add Visual Evidence Status
+    if (visual.visualSupportLevel === 'conflicting') {
+        assessment += ' [VISUAL CONFLICT DETECTED: Attached evidence contradicts observation text.]';
+    } else if (visual.visualSupportLevel === 'insufficient' && visual.evidencePresence !== 'none') {
+        assessment += ' [NOTICE: Attached evidence provides insufficient support for this hazard type.]';
+    }
+
+    // 5. Add Feedback Learning Disposition if present
     if (feedback) {
         assessment += ` [Review Result: ${feedback.learningDisposition}]`;
     }
     
-    // 5. Audit Trace Summary for transparency
+    // 6. Audit Trace Summary
     assessment += ` (Trace ID: ${trace.traceId})`;
 
-    // 6. Source Freshness Warnings
+    // 7. Source Freshness Warnings
     const freshnessWarnings: string[] = [];
     Object.values(freshness).forEach((res: any) => {
         freshnessWarnings.push(...res.sourceWarnings);
     });
 
-    // 7. Determine actions based on strategy and verification
+    // 8. Determine actions based on strategy and verification
     const immediateActions = [
         ...strategy.immediateControls.map(a => a.actionText),
         ...verification.additionalControlsNeeded
     ];
 
     if (immediateActions.length === 0) {
-        if (isConflicting || isInsufficient) {
+        if (isConflicting || isInsufficient || visual.visualSupportLevel === 'conflicting') {
             immediateActions.push('Clarify observation facts', 'Restrict access if unsafe');
         } else {
             immediateActions.push('Review hazard information', 'Assess area safety');
@@ -90,7 +97,7 @@ export class FieldOutputComposerV1Service {
         ...verification.reviewerQuestions,
         ...verification.verificationSteps,
         ...jurisdiction.reviewerQuestions,
-        ...semantic.reviewerQuestions,
+        ...visual.reviewerQuestions,
         ...trace.reviewerChecklist
     ];
 
@@ -102,12 +109,12 @@ export class FieldOutputComposerV1Service {
         supervisorQuestions.push('Has this been evaluated by a competent person?');
     }
 
-    // 8. Add Warnings
+    // 9. Add Warnings
     const warnings = [
         ...retrieval.draftKnowledgeWarnings,
         ...verification.weakActionWarnings,
         ...freshnessWarnings,
-        ...semantic.governanceWarnings
+        ...visual.visualConsistencyFlags
     ];
 
     return {
@@ -120,8 +127,7 @@ export class FieldOutputComposerV1Service {
       likelyMechanisms: [...new Set([
           ...(retrieval.taxonomyRoute?.matchedSignals || []), 
           ...(retrieval.topScenario?.matchedSignals || []),
-          ...causalChain.plausibleInjuryMechanisms,
-          ...semantic.matchedCanonicalTerms
+          ...causalChain.plausibleInjuryMechanisms
       ])],
       immediateActions: [...new Set(immediateActions)],
       durableCorrectiveActions: [...new Set(durableActions)],
@@ -129,7 +135,8 @@ export class FieldOutputComposerV1Service {
           ...retrieval.evidenceGaps,
           ...causalChain.missingCausalFacts,
           ...verification.residualRiskReasons,
-          ...jurisdiction.missingJurisdictionFacts
+          ...jurisdiction.missingJurisdictionFacts,
+          ...visual.missingVisualEvidence
       ],
       supervisorQuestions: [...new Set(supervisorQuestions)],
       approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches.filter(m => !jurisdiction.blockedKnowledgeScopes.includes(m.recordId)),
@@ -141,7 +148,7 @@ export class FieldOutputComposerV1Service {
           verification.advisoryBoundary,
           jurisdiction.advisoryBoundary,
           trace.advisoryBoundary,
-          semantic.advisoryBoundary
+          visual.advisoryBoundary
       ],
       reviewerRequired: true,
       cannotDeclareViolation: true,

@@ -10,6 +10,7 @@ import { JurisdictionApplicabilityResult } from '../jurisdiction-applicability-d
 import { AuditReadyReasoningTraceResult } from '../audit-ready-reasoning-trace/audit-ready-reasoning-trace.types';
 import { ReviewerCandidate } from '../reviewer-candidate-console/reviewer-candidate-console.types';
 import { SemanticSynonymExpansionResult } from '../semantic-synonym-expansion/semantic-synonym-expansion.types';
+import { VisualEvidenceReasoningResult } from '../visual-evidence-reasoning/visual-evidence-reasoning.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -29,6 +30,7 @@ export interface RetrievalOutput {
   jurisdictionApplicability: JurisdictionApplicabilityResult;
   auditReadyReasoningTrace: AuditReadyReasoningTraceResult;
   semanticSynonymExpansion: SemanticSynonymExpansionResult;
+  visualEvidenceReasoning: VisualEvidenceReasoningResult;
   pendingReviewerCandidates?: ReviewerCandidate[];
   reviewFeedback?: HumanReviewFeedbackResult;
   draftKnowledgeWarnings: string[];
