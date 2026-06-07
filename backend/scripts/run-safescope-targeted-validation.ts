@@ -14,7 +14,8 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-approved-knowledge-registry-io.ts',
         'validate-safescope-approved-knowledge-search.ts',
-        'validate-safescope-approved-knowledge-registry-schema.ts'
+        'validate-safescope-approved-knowledge-registry-schema.ts',
+        'validate-safescope-source-freshness-governance-v1.ts'
     ],
     output: [
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
@@ -26,6 +27,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-corrective-action-strategy-ranking-v1.ts',
         'validate-safescope-risk-verification-residual-risk-v1.ts',
         'validate-safescope-human-review-feedback-loop-v1.ts',
+        'validate-safescope-source-freshness-governance-v1.ts',
         'validate-safescope-field-output-contract.ts'
     ],
     orchestrator: [
@@ -38,6 +40,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-corrective-action-strategy-ranking-v1.ts',
         'validate-safescope-risk-verification-residual-risk-v1.ts',
         'validate-safescope-human-review-feedback-loop-v1.ts',
+        'validate-safescope-source-freshness-governance-v1.ts',
         'validate-safescope-main-output-observation-understanding.ts',
         'validate-safescope-observation-trace-snapshot.ts'
     ],
@@ -51,6 +54,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-source-backed-applicability-governance.ts',
         'validate-safescope-human-review-learning-governance.ts',
         'validate-safescope-human-review-feedback-loop-v1.ts',
+        'validate-safescope-source-freshness-governance-v1.ts',
         'validate-safescope-output-policy.ts',
         'validate-safescope-confidence-governance.ts'
     ],
@@ -69,6 +73,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-corrective-action-strategy-ranking-v1.ts',
         'validate-safescope-risk-verification-residual-risk-v1.ts',
         'validate-safescope-human-review-feedback-loop-v1.ts',
+        'validate-safescope-source-freshness-governance-v1.ts',
         'validate-safescope-approved-knowledge-retrieval-output-v1.ts',
         'validate-safescope-field-output-composer-v1.ts',
         'validate-safescope-orchestrator-field-output-wiring.ts',

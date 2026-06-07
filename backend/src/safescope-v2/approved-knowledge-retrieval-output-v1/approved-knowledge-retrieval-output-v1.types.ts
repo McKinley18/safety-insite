@@ -5,6 +5,7 @@ import { CrossDomainCausalChainResult } from '../cross-domain-causal-chain/cross
 import { CorrectiveActionStrategyResult } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.types';
 import { RiskVerificationResidualRiskResult } from '../risk-verification-residual-risk/risk-verification-residual-risk.types';
 import { HumanReviewFeedbackResult } from '../human-review-feedback-loop/human-review-feedback-loop.types';
+import { SourceFreshnessGovernanceResult } from '../source-freshness-governance/source-freshness-governance.types';
 
 export interface RetrievalOutput {
   version: string;
@@ -20,6 +21,7 @@ export interface RetrievalOutput {
   crossDomainCausalChain: CrossDomainCausalChainResult;
   correctiveActionStrategy: CorrectiveActionStrategyResult;
   riskVerification: RiskVerificationResidualRiskResult;
+  sourceFreshnessGovernanceResults: Record<string, SourceFreshnessGovernanceResult>;
   reviewFeedback?: HumanReviewFeedbackResult;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;

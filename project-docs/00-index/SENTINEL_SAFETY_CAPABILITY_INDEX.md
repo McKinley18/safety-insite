@@ -1387,3 +1387,10 @@ Check git status:
 - Prevents direct pollution of approved knowledge by creating reviewed learning candidates.
 - Includes reliability scoring for feedback based on reviewer role and source linkage.
 - Automatically blocks feedback containing prohibited legal or enforcement language.
+
+## Source Freshness + Regulation Update Governance
+- SafeScope Source Freshness + Regulation Update Governance v1 added.
+- Automatically governs whether approved knowledge, draft candidates, and source-backed reasoning are current enough for field use.
+- Identifies stale, superseded, or missing-date source records and applies usage restrictions (Allowed, Caution, Review Required, Blocked).
+- Evaluates authority tiers (Primary Regulation, Official Guidance, Consensus Standard, Company Policy) to ensure legal and best-practice distinction.
+- Fully integrated into retrieval and field output composer pipelines for automated currency warnings.

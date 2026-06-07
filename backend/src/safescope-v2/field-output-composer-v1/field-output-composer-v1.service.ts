@@ -18,6 +18,7 @@ export class FieldOutputComposerV1Service {
     const strategy = retrieval.correctiveActionStrategy;
     const verification = retrieval.riskVerification;
     const feedback = retrieval.reviewFeedback;
+    const freshness = retrieval.sourceFreshnessGovernanceResults;
 
     const isConflicting = weighting.evidenceGrade === 'conflicting';
     const isInsufficient = weighting.evidenceGrade === 'insufficient' || weighting.evidenceGrade === 'weak';
@@ -41,7 +42,13 @@ export class FieldOutputComposerV1Service {
         assessment += ` [Review Result: ${feedback.learningDisposition}]`;
     }
 
-    // 4. Determine actions based on strategy and verification
+    // 4. Source Freshness Warnings
+    const freshnessWarnings: string[] = [];
+    Object.values(freshness).forEach(res => {
+        freshnessWarnings.push(...res.sourceWarnings);
+    });
+
+    // 5. Determine actions based on strategy and verification
     const immediateActions = [
         ...strategy.immediateControls.map(a => a.actionText),
         ...verification.additionalControlsNeeded
@@ -71,14 +78,19 @@ export class FieldOutputComposerV1Service {
         ...verification.verificationSteps
     ];
 
+    Object.values(freshness).forEach(res => {
+        supervisorQuestions.push(...res.updateQuestions);
+    });
+
     if (supervisorQuestions.length === 0) {
         supervisorQuestions.push('Has this been evaluated by a competent person?');
     }
 
-    // 5. Add Weak Action Warnings
+    // 6. Add Warnings
     const warnings = [
         ...retrieval.draftKnowledgeWarnings,
-        ...verification.weakActionWarnings
+        ...verification.weakActionWarnings,
+        ...freshnessWarnings
     ];
 
     return {

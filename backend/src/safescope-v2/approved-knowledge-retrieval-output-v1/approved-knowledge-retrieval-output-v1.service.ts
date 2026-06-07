@@ -11,6 +11,7 @@ import { CrossDomainCausalChainService } from '../cross-domain-causal-chain/cros
 import { CorrectiveActionStrategyRankingService } from '../corrective-action-strategy-ranking/corrective-action-strategy-ranking.service';
 import { RiskVerificationResidualRiskService } from '../risk-verification-residual-risk/risk-verification-residual-risk.service';
 import { HumanReviewFeedbackLoopService } from '../human-review-feedback-loop/human-review-feedback-loop.service';
+import { SourceFreshnessGovernanceService } from '../source-freshness-governance/source-freshness-governance.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
@@ -25,6 +26,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
   private strategyService = new CorrectiveActionStrategyRankingService();
   private riskVerificationService = new RiskVerificationResidualRiskService();
   private feedbackService = new HumanReviewFeedbackLoopService();
+  private freshnessService = new SourceFreshnessGovernanceService();
 
   async retrieve(
     observationText: string,
@@ -96,6 +98,11 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         context
     });
 
+    const sourceFreshnessGovernanceResults: Record<string, any> = {};
+    approvedMatches.forEach(match => {
+        sourceFreshnessGovernanceResults[match.recordId] = this.freshnessService.evaluate(match.authority);
+    });
+
     let reviewFeedback = undefined;
     if (context.humanReview) {
         reviewFeedback = this.feedbackService.processReview({
@@ -118,6 +125,12 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         ? ['No approved matches found. Information requires human review.'] 
         : [];
 
+    // Calculate freshness impact
+    let freshnessConfidenceImpact = 0;
+    Object.values(sourceFreshnessGovernanceResults).forEach(res => {
+        freshnessConfidenceImpact += res.confidenceImpact;
+    });
+
     return {
       version: 'v1',
       observationSummary: observationText,
@@ -132,10 +145,15 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       crossDomainCausalChain: crossDomainCausalChain,
       correctiveActionStrategy: correctiveActionStrategy,
       riskVerification: riskVerification,
+      sourceFreshnessGovernanceResults,
       reviewFeedback,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
-      confidence: Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)) + riskVerification.confidenceAdjustment,
+      confidence: Math.max(0, Math.min(1.0, 
+        Math.min(taxonomyRoute.confidence, (evidenceWeighting.finalEvidenceConfidence / 10)) + 
+        riskVerification.confidenceAdjustment + 
+        freshnessConfidenceImpact
+      )),
       evidenceGaps: [
           ...evidenceWeighting.missingCriticalFacts,
           ...riskVerification.residualRiskReasons,

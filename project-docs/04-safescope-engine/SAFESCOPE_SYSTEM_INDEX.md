@@ -42,3 +42,5 @@
 | Risk Verification | Action quality and residual risk analysis | backend/src/safescope-v2/risk-verification-residual-risk/ | N/A | backend/scripts/validate-safescope-risk-verification-residual-risk-v1.ts | Risk verification v1 | Active | Effectiveness logic |
 
 | Human Review Feedback Loop | Controlled expert learning loop | backend/src/safescope-v2/human-review-feedback-loop/ | N/A | backend/scripts/validate-safescope-human-review-feedback-loop-v1.ts | Human review feedback loop v1 | Active | Governed learning mechanism |
+
+| Source Freshness Governance | Source currency and authority monitor | backend/src/safescope-v2/source-freshness-governance/ | N/A | backend/scripts/validate-safescope-source-freshness-governance-v1.ts | Source freshness v1 | Active | Currency reasoning layer |
