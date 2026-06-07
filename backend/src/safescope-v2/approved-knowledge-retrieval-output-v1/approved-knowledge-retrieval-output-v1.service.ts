@@ -3,12 +3,14 @@ import { RetrievalOutput } from './approved-knowledge-retrieval-output-v1.types'
 import { HazardTaxonomyCoverageService } from '../hazard-taxonomy-coverage/hazard-taxonomy-coverage.service';
 import { ApprovedKnowledgeRegistrySearchService } from '../approved-knowledge-registry/approved-knowledge-registry-search.service';
 import { ScenarioExpansionService } from '../scenario-expansion/scenario-expansion.service';
+import { ScenarioEvaluationService } from '../scenario-evaluation/scenario-evaluation.service';
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
   private taxonomyService = new HazardTaxonomyCoverageService();
   private searchService = new ApprovedKnowledgeRegistrySearchService();
   private scenarioService = new ScenarioExpansionService();
+  private evaluationService = new ScenarioEvaluationService();
 
   async retrieve(
     observationText: string,
@@ -26,6 +28,8 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
         text: observationText
     });
     
+    const evaluation = await this.evaluationService.evaluate(observationText, scenarioMatches, context);
+    
     const draftKnowledgeWarnings = approvedMatches.length === 0 && taxonomyRoute.requiresHumanReview 
         ? ['No approved matches found. Information requires human review.'] 
         : [];
@@ -35,7 +39,9 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       observationSummary: observationText,
       taxonomyRoute: taxonomyRoute,
       approvedKnowledgeMatches: approvedMatches,
-      // scenarioMatches are included as supplement
+      scenarioMatches: scenarioMatches,
+      evaluatedScenarios: evaluation.evaluatedScenarios,
+      topScenario: evaluation.topScenario,
       draftKnowledgeWarnings: draftKnowledgeWarnings,
       applicabilityAssessment: approvedMatches.length > 0 ? 'supported' : 'advisory_only',
       confidence: taxonomyRoute.confidence,

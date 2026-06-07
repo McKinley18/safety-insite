@@ -17,19 +17,17 @@ export class FieldOutputComposerV1Service {
       observationSummary: observationText,
       primaryDomain: retrieval.taxonomyRoute?.domainId || 'unknown',
       confidence: retrieval.confidence,
-      fieldAssessment: retrieval.approvedKnowledgeMatches.length > 0 
-        ? `Matches found in approved knowledge for: ${retrieval.approvedKnowledgeMatches.map(m => m.authority.title).join(', ')}` 
+      fieldAssessment: retrieval.topScenario 
+        ? `Scenario identified: ${retrieval.topScenario.title}`
         : 'Observation indicates potential hazard. Review recommended.',
-      whyItMatters: 'Hazard awareness is necessary for safety.',
+      whyItMatters: retrieval.topScenario?.reasoningSummary || 'Hazard awareness is necessary for safety.',
       likelyMechanisms: [...(retrieval.taxonomyRoute?.matchedSignals || []), 
-                         ...(retrieval.approvedKnowledgeMatches.map(m => m.mapping.mechanisms).flat())],
+                         ...(retrieval.topScenario?.matchedSignals || [])],
       immediateActions: [...new Set(['Review hazard information', 'Assess area safety', 
-                                    ...(retrieval.approvedKnowledgeMatches.map(m => m.applicability.plainLanguageSummary).flat())])],
-      durableCorrectiveActions: [...new Set([...retrieval.approvedKnowledgeMatches.map(m => m.correctiveActionLinks.preferredControlFamilies).flat()])],
+                                    ...(retrieval.topScenario?.recommendedReviewerQuestions || [])])],
+      durableCorrectiveActions: [...new Set([...(retrieval.approvedKnowledgeMatches.map(m => m.correctiveActionLinks.preferredControlFamilies).flat())])],
       evidenceGaps: retrieval.evidenceGaps,
-      supervisorQuestions: retrieval.approvedKnowledgeMatches.length > 0 
-        ? retrieval.approvedKnowledgeMatches.map(m => m.mapping.evidenceQuestions).flat()
-        : ['Has this been evaluated by a competent person?'],
+      supervisorQuestions: retrieval.topScenario?.recommendedReviewerQuestions || ['Has this been evaluated by a competent person?'],
       approvedKnowledgeReferences: retrieval.approvedKnowledgeMatches,
       draftKnowledgeWarnings: retrieval.draftKnowledgeWarnings,
       advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],

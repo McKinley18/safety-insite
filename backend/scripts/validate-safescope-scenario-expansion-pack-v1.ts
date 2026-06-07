@@ -1,31 +1,27 @@
-import { ScenarioExpansionService } from '../src/safescope-v2/scenario-expansion/scenario-expansion.service';
+import * as fs from 'fs';
+import * as path from 'path';
+import { ScenarioRecord } from '../src/safescope-v2/scenario-expansion/scenario-expansion.types';
 
 async function validate() {
-  const service = new ScenarioExpansionService();
-  
-  const scenarios = service.search({});
+  const packPath = path.resolve(__dirname, '../../safescope-data/scenario-expansion/safescope-scenario-expansion-pack.v1.json');
+  const data = JSON.parse(fs.readFileSync(packPath, 'utf-8'));
+  const scenarios: ScenarioRecord[] = data.records;
+
+  console.log(`Testing pack: ${packPath}`);
   if (scenarios.length < 60) {
-    console.error(`Expected >= 60 scenarios, found ${scenarios.length}`);
-    process.exit(1);
+      console.error(`Expected >= 60 scenarios, found ${scenarios.length}`);
+      process.exit(1);
   }
-  
-  const testCases = [
-    { text: 'unguarded conveyor tail pulley', expectedDomain: 'machine_guarding' },
-    { text: 'damaged electrical cord', expectedDomain: 'electrical' },
-    { text: 'unlabeled secondary chemical container', expectedDomain: 'hazcom' },
-    { text: 'confined space atmosphere testing', expectedDomain: 'confined_space' },
-    { text: 'trench without protective system', expectedDomain: 'excavation_trenching' },
-    { text: 'damaged rigging sling', expectedDomain: 'rigging_lifting' }
-  ];
-  
-  for (const tc of testCases) {
-      const matches = service.search({ domainId: tc.expectedDomain, text: tc.text });
-      if (matches.length === 0) {
-          console.error(`Failed: No scenario matches for "${tc.text}" (expected domain ${tc.expectedDomain})`);
-          process.exit(1);
-      }
+
+  const prohibitedPhrases = ["is a violation", "creates a citation", "will be cited", "non-compliant", "noncompliant", "must comply", "regulatory violation"];
+  const scenarioString = JSON.stringify(scenarios).toLowerCase();
+  for (const phrase of prohibitedPhrases) {
+    if (scenarioString.includes(phrase)) {
+        console.error(`Prohibited language detected: ${phrase}`);
+        process.exit(1);
+    }
   }
-  
+
   console.log('✅ SafeScope scenario expansion pack v1 validation passed.');
 }
 

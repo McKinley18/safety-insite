@@ -3,6 +3,9 @@ export interface RetrievalOutput {
   observationSummary: string;
   taxonomyRoute: any;
   approvedKnowledgeMatches: any[];
+  scenarioMatches: any[];
+  evaluatedScenarios: any[];
+  topScenario?: any;
   draftKnowledgeWarnings: string[];
   applicabilityAssessment: string;
   confidence: number;

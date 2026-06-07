@@ -1334,3 +1334,9 @@ Check git status:
 - Covers 15+ safety domains, improving practical hazard reasoning.
 - Scenario-level data supplements approved knowledge matches, enhancing field output summaries.
 - Master validation includes the scenario expansion pack validator.
+
+## Scenario Expansion Pack v1
+- SafeScope Scenario Expansion Pack v1 added with 60+ scenario records.
+- Covers 15+ safety domains, improving practical hazard reasoning.
+- Scenario-level data supplements approved knowledge matches, enhancing field output summaries.
+- Master validation includes the scenario expansion pack validator.
