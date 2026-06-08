@@ -1506,6 +1506,12 @@ Check git status:
 - Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
 - Establishes the foundation for production-ready, multi-tenant safety-AI governance.
 
+## Live Regulatory Source Connectors
+- SafeScope Live Regulatory Source Connectors Hardening v1 implemented.
+- Established a secure `RegulatoryLiveFetchService` to govern network access to official endpoints.
+- Live fetching is strictly opt-in via environment variables, keeping default validation deterministic.
+- Live content is firmly gated; it becomes staged reviewer candidates, never automatically approved.
+
 ## Regulatory Source Audit + Differential Ingestion
 - SafeScope Regulatory Source Audit and Differential Ingestion Engine v1 implemented.
 - Automatically audits existing local knowledge and compares it against official source connectors (OSHA, MSHA eCFR).

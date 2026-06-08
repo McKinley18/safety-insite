@@ -75,3 +75,4 @@
 | Project Audit | Project organization and coverage register | N/A | project-docs/04-safescope-engine/ | backend/scripts/validate-safescope-project-organization-audit-v1.ts | Audit v1 | Active | Governance layer |
 | Full Hazard Coverage | 35+ hazard family coverage expansion | N/A | project-docs/04-safescope-engine/ | backend/scripts/validate-safescope-full-hazard-coverage-expansion-v1.ts | Expansion v1 | Active | Intelligence breadth |
 | Failure Calibration | Adversarial edge-case dataset | safescope-data/field-test-scenarios/ | project-docs/04-safescope-engine/ | backend/scripts/validate-safescope-failure-mode-calibration-v1.ts | Calibration v1 | Active | Reliability layer |
+| Live Source Connectors | Secure live fetching abstraction | backend/src/safescope-v2/regulatory-source-audit/connectors/ | N/A | backend/scripts/validate-safescope-live-regulatory-connectors-v1.ts | Live v1 | Active | Network boundary |

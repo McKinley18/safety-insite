@@ -62,3 +62,5 @@ This document tracks the systematic transition of SafeScope from a collection of
 - SafeScope Project Organization and Coverage Readiness Audit v1 completed, establishing canonical taxonomies and mapping current coverage gaps.
 - SafeScope Full Hazard Coverage Expansion v1 completed, verifying reasoning across 35+ acute safety and chronic health hazard families.
 - SafeScope Failure-Mode Calibration Pack v1 completed, hardening the engine against overconfidence and keyword traps.
+
+- SafeScope Live Regulatory Connector Hardening v1 completed, adding secure network boundaries for live source fetching.

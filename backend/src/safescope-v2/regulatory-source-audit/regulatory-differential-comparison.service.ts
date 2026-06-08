@@ -18,6 +18,11 @@ export interface DifferentialComparisonResult {
   classification: ComparisonClassification;
   matchedRecordIds: string[];
   reasons: string[];
+  metadata?: {
+      liveFetchUsed: boolean;
+      sourceRunId: string;
+      createdAt: string;
+  };
 }
 
 @Injectable()
@@ -39,7 +44,12 @@ export class RegulatoryDifferentialComparisonService {
       candidate,
       classification: 'missing_from_safescope',
       matchedRecordIds: [],
-      reasons: []
+      reasons: [],
+      metadata: {
+          liveFetchUsed: candidate.liveFetchUsed || false,
+          sourceRunId: `run-${Date.now()}`,
+          createdAt: new Date().toISOString()
+      }
     };
 
     if (candidate.agency === 'UNKNOWN' || candidate.jurisdiction === 'unknown') {
