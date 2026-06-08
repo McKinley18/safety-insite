@@ -1,0 +1,146 @@
+{
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "unseen-001",
+      "text": "Technician using a manual parts washer with unknown solvent. No lid on the tank and fumes are very strong.",
+      "expectedHazardFamily": "hazcom_chemical_exposure",
+      "expectedEnergyOrAgent": "chemical_agent",
+      "expectedMechanism": "inhalation_toxicity",
+      "isHealthHazard": true
+    },
+    {
+      "id": "unseen-002",
+      "text": "Conveyor belt is rubbing against a seized idler roller, producing sparks near a pile of fine coal dust.",
+      "expectedHazardFamily": "fire_prevention_hot_work",
+      "expectedEnergyOrAgent": "thermal_fire",
+      "expectedMechanism": "property_damage",
+      "expectedAdditionalHazard": "combustibles"
+    },
+    {
+      "id": "unseen-003",
+      "text": "Employee working from a step ladder on the very top cap to reach a high valve.",
+      "expectedHazardFamily": "fall_protection",
+      "expectedEnergyOrAgent": "gravity",
+      "expectedMechanism": "fall_to_lower_level"
+    },
+    {
+      "id": "unseen-004",
+      "text": "Nitrogen cylinders stored in a small, unventilated closet without any signage.",
+      "expectedHazardFamily": "confined_space",
+      "expectedEnergyOrAgent": "atmospheric_hazard",
+      "expectedMechanism": "asphyxiation"
+    },
+    {
+      "id": "unseen-005",
+      "text": "Grinding wheel on a bench grinder is worn down to half its original size, and the tool rest is 2 inches away from the wheel.",
+      "expectedHazardFamily": "machine_guarding",
+      "expectedEnergyOrAgent": "mechanical_rotation",
+      "expectedMechanism": "amputation"
+    },
+    {
+      "id": "unseen-006",
+      "text": "Worker cutting concrete with a handheld saw. Thick white clouds of dust are blowing into the occupied workspace.",
+      "expectedHazardFamily": "respiratory_dust_fume_exposure",
+      "expectedEnergyOrAgent": "airborne_particulates",
+      "expectedMechanism": "chronic_lung_disease"
+    },
+    {
+      "id": "unseen-007",
+      "text": "Hydraulic hose on a jumbo drill has a small pinhole leak spraying fluid under high pressure.",
+      "expectedHazardFamily": "pressure_hydraulic_pneumatic_energy",
+      "expectedEnergyOrAgent": "hydraulic",
+      "expectedMechanism": "injection_injury"
+    },
+    {
+      "id": "unseen-008",
+      "text": "Extension cord has a missing ground pin on the plug end.",
+      "expectedHazardFamily": "electrical",
+      "expectedEnergyOrAgent": "electrical",
+      "expectedMechanism": "shock"
+    },
+    {
+      "id": "unseen-009",
+      "text": "Pallet of batteries is leaking clear liquid onto the floor in the warehouse.",
+      "expectedHazardFamily": "hazcom_chemical_exposure",
+      "expectedEnergyOrAgent": "chemical_agent",
+      "expectedMechanism": "chemical_burn"
+    },
+    {
+      "id": "unseen-010",
+      "text": "Personnel lift is missing its annual inspection sticker and the safety gate is tied open with wire.",
+      "expectedHazardFamily": "fall_protection",
+      "expectedEnergyOrAgent": "gravity",
+      "expectedMechanism": "fall_to_lower_level"
+    },
+    {
+      "id": "unseen-011",
+      "text": "Heavy rain has caused a small portion of the excavation wall to slough off onto the floor of the trench.",
+      "expectedHazardFamily": "excavation_trenching_ground_control",
+      "expectedEnergyOrAgent": "soil_collapse",
+      "expectedMechanism": "caught_in_cave_in"
+    },
+    {
+      "id": "unseen-012",
+      "text": "Lifting chain has a deep gouge in one of the links near the hook.",
+      "expectedHazardFamily": "cranes_rigging_suspended_loads",
+      "expectedEnergyOrAgent": "gravity",
+      "expectedMechanism": "struck_by"
+    },
+    {
+      "id": "unseen-013",
+      "text": "Employee is using compressed air at 90 psi to blow dust off their clothes.",
+      "expectedHazardFamily": "pressure_hydraulic_pneumatic_energy",
+      "expectedEnergyOrAgent": "pneumatic",
+      "expectedMechanism": "injection_injury"
+    },
+    {
+      "id": "unseen-014",
+      "text": "Safety shower is blocked by several empty 55-gallon drums.",
+      "expectedHazardFamily": "emergency_egress_response",
+      "expectedEnergyOrAgent": "chemical_agent",
+      "expectedMechanism": "burn"
+    },
+    {
+      "id": "unseen-015",
+      "text": "Maintenance shop is very noisy, requiring shouting to be heard from 2 feet away. No hearing protection is visible.",
+      "expectedHazardFamily": "noise_hearing_conservation",
+      "expectedEnergyOrAgent": "noise",
+      "expectedMechanism": "hearing_loss"
+    },
+    {
+      "id": "unseen-016",
+      "text": "Forklift driver is looking at their phone while driving through a high-pedestrian area.",
+      "expectedHazardFamily": "mobile_equipment",
+      "expectedEnergyOrAgent": "kinetic_mobile_equipment",
+      "expectedMechanism": "struck_by"
+    },
+    {
+      "id": "unseen-017",
+      "text": "Employees are working outside in 100-degree heat without a designated rest area or water available.",
+      "expectedHazardFamily": "heat_cold_stress",
+      "expectedEnergyOrAgent": "thermal_heat",
+      "expectedMechanism": "heat_stroke"
+    },
+    {
+      "id": "unseen-018",
+      "text": "Mezzanine level is stacked with heavy parts but has no load rating sign posted.",
+      "expectedHazardFamily": "walking_working_surfaces",
+      "expectedEnergyOrAgent": "gravity",
+      "expectedMechanism": "structural_collapse"
+    },
+    {
+      "id": "unseen-019",
+      "text": "Something seems risky in the crusher area.",
+      "expectedHazardFamily": "unknown",
+      "isAmbiguous": true
+    },
+    {
+      "id": "unseen-020",
+      "text": "Contractor is performing welding on a fuel tank that was recently drained but not purged or tested.",
+      "expectedHazardFamily": "fire_prevention_hot_work",
+      "expectedEnergyOrAgent": "thermal_fire",
+      "expectedMechanism": "blast_injury"
+    }
+  ]
+}
