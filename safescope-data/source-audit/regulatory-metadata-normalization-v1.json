@@ -1,14 +1,14 @@
 {
   "reportVersion": "1.0.0",
-  "generatedAt": "2026-06-08T12:53:58.271Z",
+  "generatedAt": "2026-06-08T14:48:57.053Z",
   "summary": {
-    "totalRecordsProcessed": 120,
+    "totalRecordsProcessed": 123,
     "totalUnknownMetadataFound": 98,
     "suggestionsGenerated": 63,
-    "readyForReviewerCount": 5,
+    "readyForReviewerCount": 0,
     "needsSourceLookupCount": 63,
-    "duplicateOverlapCount": 0,
-    "unsafeToPromoteCount": 19,
+    "duplicateOverlapCount": 7,
+    "unsafeToPromoteCount": 20,
     "insufficientMetadataCount": 33
   },
   "candidates": [
@@ -383,32 +383,6 @@
       "governanceWarnings": []
     },
     {
-      "recordId": "rec-osha-gi-1910-23",
-      "title": "Ladders",
-      "originalAgency": "OSHA",
-      "originalJurisdiction": "osha_general_industry",
-      "originalCitation": "1910.23",
-      "originalHazardFamilies": [
-        "fall_protection"
-      ],
-      "suggestion": null,
-      "promotionReadiness": "ready_for_reviewer",
-      "governanceWarnings": []
-    },
-    {
-      "recordId": "rec-msha-30-56-12",
-      "title": "Electrical",
-      "originalAgency": "MSHA",
-      "originalJurisdiction": "msha",
-      "originalCitation": "30 CFR 56.12",
-      "originalHazardFamilies": [
-        "electrical"
-      ],
-      "suggestion": null,
-      "promotionReadiness": "ready_for_reviewer",
-      "governanceWarnings": []
-    },
-    {
       "recordId": "rec-osha-gi-1910-134",
       "title": "Respiratory protection",
       "originalAgency": "OSHA",
@@ -418,7 +392,7 @@
         "respiratory_protection"
       ],
       "suggestion": null,
-      "promotionReadiness": "ready_for_reviewer",
+      "promotionReadiness": "duplicate_or_overlap",
       "governanceWarnings": []
     },
     {
@@ -431,7 +405,7 @@
         "mobile_equipment"
       ],
       "suggestion": null,
-      "promotionReadiness": "ready_for_reviewer",
+      "promotionReadiness": "duplicate_or_overlap",
       "governanceWarnings": []
     },
     {
@@ -444,7 +418,59 @@
         "electrical"
       ],
       "suggestion": null,
-      "promotionReadiness": "ready_for_reviewer",
+      "promotionReadiness": "duplicate_or_overlap",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-msha-30-56-12",
+      "title": "Electrical",
+      "originalAgency": "MSHA",
+      "originalJurisdiction": "msha",
+      "originalCitation": "30 CFR 56.12",
+      "originalHazardFamilies": [
+        "electrical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "duplicate_or_overlap",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-osha-gi-1910-134",
+      "title": "Respiratory protection",
+      "originalAgency": "OSHA",
+      "originalJurisdiction": "osha_general_industry",
+      "originalCitation": "1910.134",
+      "originalHazardFamilies": [
+        "respiratory_protection"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "duplicate_or_overlap",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-osha-gi-1910-178",
+      "title": "Powered industrial trucks",
+      "originalAgency": "OSHA",
+      "originalJurisdiction": "osha_general_industry",
+      "originalCitation": "1910.178",
+      "originalHazardFamilies": [
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "duplicate_or_overlap",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-osha-gi-1910-303",
+      "title": "General requirements",
+      "originalAgency": "OSHA",
+      "originalJurisdiction": "osha_general_industry",
+      "originalCitation": "1910.303",
+      "originalHazardFamilies": [
+        "electrical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "duplicate_or_overlap",
       "governanceWarnings": []
     },
     {

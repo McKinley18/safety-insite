@@ -1,34 +1,34 @@
 {
   "reportVersion": "1.0.0",
-  "generatedAt": "2026-06-08T12:54:40.022Z",
+  "generatedAt": "2026-06-08T14:48:57.757Z",
   "summary": {
-    "totalApprovedRecords": 19,
-    "totalDraftRecords": 101,
+    "totalApprovedRecords": 20,
+    "totalDraftRecords": 103,
     "byAgency": {
-      "OSHA": 19,
-      "MSHA": 3,
+      "OSHA": 21,
+      "MSHA": 4,
       "UNKNOWN": 98
     },
     "byJurisdiction": {
-      "osha_general_industry": 19,
-      "msha": 3,
+      "osha_general_industry": 21,
+      "msha": 4,
       "unknown": 98
     },
     "byAuthorityTier": {
-      "primary_regulation": 22,
+      "primary_regulation": 25,
       "unknown": 98
     },
     "hazardFamilyCoverage": {
       "mechanical": 16,
-      "electrical": 17,
+      "electrical": 19,
       "hazard_communication": 15,
       "chemical": 16,
       "confined_space": 15,
       "atmospheric_hazard": 6,
       "excavation": 15,
       "cave_in": 3,
-      "fall_protection": 16,
-      "mobile_equipment": 17,
+      "fall_protection": 15,
+      "mobile_equipment": 18,
       "struck_by": 7,
       "fire": 1,
       "egress": 1,
@@ -39,7 +39,7 @@
       "chemical_exposure": 2,
       "fire_explosion": 2,
       "engulfment": 1,
-      "respiratory_protection": 1,
+      "respiratory_protection": 2,
       "energized_equipment": 4,
       "access_clearance": 2,
       "temporary_wiring": 2,
@@ -244,6 +244,22 @@
         "revisionDate": "",
         "hazardFamilies": [
           "struck_by"
+        ]
+      },
+      {
+        "recordId": "rec-msha-30-56-12",
+        "status": "approved",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "authorityTier": "primary_regulation",
+        "citation": "30 CFR 56.12",
+        "normalizedCitation": "56.12",
+        "title": "Electrical",
+        "sourceUrl": "https://www.ecfr.gov/current/title-30/part-56/subpart-K",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2024-01-01",
+        "hazardFamilies": [
+          "electrical"
         ]
       },
       {
@@ -594,19 +610,51 @@
         ]
       },
       {
-        "recordId": "rec-osha-gi-1910-23",
+        "recordId": "rec-osha-gi-1910-134",
         "status": "draft",
         "agency": "OSHA",
         "jurisdiction": "osha_general_industry",
         "authorityTier": "primary_regulation",
-        "citation": "1910.23",
-        "normalizedCitation": "1910.23",
-        "title": "Ladders",
-        "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.23",
+        "citation": "1910.134",
+        "normalizedCitation": "1910.134",
+        "title": "Respiratory protection",
+        "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.134",
         "effectiveDate": "2026-01-01",
         "revisionDate": "2024-01-01",
         "hazardFamilies": [
-          "fall_protection"
+          "respiratory_protection"
+        ]
+      },
+      {
+        "recordId": "rec-osha-gi-1910-178",
+        "status": "draft",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "citation": "1910.178",
+        "normalizedCitation": "1910.178",
+        "title": "Powered industrial trucks",
+        "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.178",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2024-01-01",
+        "hazardFamilies": [
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-osha-gi-1910-303",
+        "status": "draft",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "citation": "1910.303",
+        "normalizedCitation": "1910.303",
+        "title": "General requirements",
+        "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.303",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2024-01-01",
+        "hazardFamilies": [
+          "electrical"
         ]
       },
       {
@@ -2479,6 +2527,10 @@
     "1910.133": [
       "app-ppe-01"
     ],
+    "56.12": [
+      "rec-msha-30-56-12",
+      "rec-msha-30-56-12"
+    ],
     "1910.147": [
       "app-loto-01"
     ],
@@ -2494,19 +2546,16 @@
     "1910.132": [
       "app-ppe-02"
     ],
-    "1910.23": [
-      "rec-osha-gi-1910-23"
-    ],
-    "56.12": [
-      "rec-msha-30-56-12"
-    ],
     "1910.134": [
+      "rec-osha-gi-1910-134",
       "rec-osha-gi-1910-134"
     ],
     "1910.178": [
+      "rec-osha-gi-1910-178",
       "rec-osha-gi-1910-178"
     ],
     "1910.303": [
+      "rec-osha-gi-1910-303",
       "rec-osha-gi-1910-303"
     ]
   }

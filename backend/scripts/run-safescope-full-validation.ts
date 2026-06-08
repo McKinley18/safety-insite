@@ -222,6 +222,11 @@ const steps: ValidationStep[] = [
     args: ["ts-node", "scripts/validate-safescope-core-regulatory-expansion-v1.ts"],
   },
   {
+    label: "Core regulatory draft promotion v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-core-regulatory-draft-promotion-workflow-v1.ts"],
+  },
+  {
     label: "Site policy isolation v1",
     command: "npx",
     args: ["ts-node", "scripts/validate-safescope-site-policy-isolation-v1.ts"],
