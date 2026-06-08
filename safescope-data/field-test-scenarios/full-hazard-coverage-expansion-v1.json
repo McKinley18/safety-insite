@@ -1,0 +1,434 @@
+{
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "HC-001",
+      "observation": "Worker using a handheld masonry saw to cut concrete blocks without water suppression. Visible white dust is blowing across the sidewalk where other people are walking.",
+      "expectedHazardFamilies": ["silica_respirable_dust", "respiratory_protection"],
+      "expectedEnergyOrAgent": "respirable_silica_dust",
+      "expectedExposurePathways": ["inhalation"],
+      "expectedMechanisms": ["silicosis"],
+      "expectedReviewTriggers": ["visible_dust_in_uncontrolled_area"],
+      "expectedControlPrinciples": ["suppress_with_water", "collect_at_source"],
+      "weakControlsThatMustNotBePrimary": ["retrain employees", "wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true,
+        "shouldAvoidViolationLanguage": true,
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true,
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-002",
+      "observation": "Welding being performed on galvanized steel in an indoor maintenance shop. No local exhaust ventilation is present, and a thick plume of blue-white smoke is accumulating near the ceiling.",
+      "expectedHazardFamilies": ["welding_fumes", "respiratory_protection"],
+      "expectedEnergyOrAgent": "toxic_metal_fumes",
+      "expectedExposurePathways": ["inhalation"],
+      "expectedMechanisms": ["metal_fume_fever"],
+      "expectedReviewTriggers": ["welding_on_stainless/galvanized"],
+      "expectedControlPrinciples": ["extract_at_source", "ventilate_area"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe", "follow procedure"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true,
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-003",
+      "observation": "Employees working on a roof installing solar panels. The temperature is 98 degrees with high humidity. No water is provided on the roof, and workers have been up there for 4 hours straight without a break.",
+      "expectedHazardFamilies": ["heat_stress"],
+      "expectedEnergyOrAgent": "thermal_ambient_heat",
+      "expectedExposurePathways": ["skin"],
+      "expectedMechanisms": ["heat_exhaustion"],
+      "expectedReviewTriggers": ["extreme_heat_above_100f"],
+      "expectedControlPrinciples": ["water", "rest", "shade"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true,
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-004",
+      "observation": "A 55-gallon drum of cleaning solvent has a small leak at the bottom bung. The liquid is pooling on the floor, and the SDS is not available in the immediate area.",
+      "expectedHazardFamilies": ["hazcom_chemical_exposure", "chemical_inhalation_contact"],
+      "expectedEnergyOrAgent": "chemical_agent",
+      "expectedExposurePathways": ["skin_contact", "inhalation"],
+      "expectedMechanisms": ["chemical_burn", "systemic_toxicity"],
+      "expectedReviewTriggers": ["missing_sampling_records"],
+      "expectedControlPrinciples": ["contain_spills", "label", "ventilate"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true
+      }
+    },
+    {
+      "id": "HC-005",
+      "observation": "Employee lifting 60lb boxes from a floor-level pallet to a chest-high conveyor belt, performing this task approximately 4 times per minute for the entire shift.",
+      "expectedHazardFamilies": ["ergonomic_strain"],
+      "expectedEnergyOrAgent": "biomechanical_force",
+      "expectedExposurePathways": ["spine"],
+      "expectedMechanisms": ["musculoskeletal_disorder"],
+      "expectedReviewTriggers": ["repetitive_heavy_lifting_above_50lbs"],
+      "expectedControlPrinciples": ["use_mechanical_lift", "reduce_force"],
+      "weakControlsThatMustNotBePrimary": ["retrain employees"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-006",
+      "observation": "Oxygen and acetylene cylinders stored together in the corner of the shop. They are not secured to the wall and do not have valve protection caps installed.",
+      "expectedHazardFamilies": ["fire_explosion", "pressure_systems"],
+      "expectedEnergyOrAgent": "stored_pressure_energy",
+      "expectedExposurePathways": ["line_of_fire"],
+      "expectedMechanisms": ["blast", "struck_by_flying_parts"],
+      "expectedReviewTriggers": ["unsecured_compressed_gas_cylinders"],
+      "expectedControlPrinciples": ["relieve_pressure", "restrain_hoses"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-007",
+      "observation": "A technician is cleaning a hydraulic cylinder. The engine is off, but the cylinder is still under tension and no blocks are installed to prevent it from moving if a hose is disconnected.",
+      "expectedHazardFamilies": ["lockout_tagout", "pressure_systems"],
+      "expectedEnergyOrAgent": "hydraulic",
+      "expectedExposurePathways": ["body_in_machine"],
+      "expectedMechanisms": ["crushing", "injection_injury"],
+      "expectedReviewTriggers": ["high_pressure_leaks"],
+      "expectedControlPrinciples": ["relieve_pressure", "energy_isolation_physical_lock"],
+      "weakControlsThatMustNotBePrimary": ["follow procedure"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true
+      }
+    },
+    {
+      "id": "HC-008",
+      "observation": "Crane lifting a heavy motor over a walkway used by contractors. No barricades are present to keep people out of the lift path, and the rigger is using a wire rope sling that has visible kinking.",
+      "expectedHazardFamilies": ["cranes_hoists_rigging", "suspended_loads", "contractor_coordination"],
+      "expectedEnergyOrAgent": "gravity_suspended_load",
+      "expectedExposurePathways": ["under_load"],
+      "expectedMechanisms": ["struck_by", "crushing"],
+      "expectedReviewTriggers": ["critical_lift", "damaged_lifting_hardware"],
+      "expectedControlPrinciples": ["secure_perimeter", "inspect_rigging"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-009",
+      "observation": "The secondary emergency exit in the warehouse is blocked by four empty pallets. The exit sign above the door is not illuminated.",
+      "expectedHazardFamilies": ["emergency_egress", "illumination_visibility"],
+      "expectedEnergyOrAgent": "restricted_motion_emergency",
+      "expectedExposurePathways": ["exit_route"],
+      "expectedMechanisms": ["entrapment"],
+      "expectedReviewTriggers": ["blocked_primary_egress"],
+      "expectedControlPrinciples": ["clear_obstructions", "ensure_marking"],
+      "weakControlsThatMustNotBePrimary": ["follow procedure"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-010",
+      "observation": "Excavation spoil pile is located 6 inches from the edge of a 6-foot deep trench where an employee is working on a pipe. No trench box or sloping is visible.",
+      "expectedHazardFamilies": ["excavation_trenching_ground_control"],
+      "expectedEnergyOrAgent": "soil_pressure",
+      "expectedExposurePathways": ["inside_trench"],
+      "expectedMechanisms": ["engulfment"],
+      "expectedReviewTriggers": ["trench_deeper_than_5ft_unprotected"],
+      "expectedControlPrinciples": ["slope_it", "shore_it", "shield_it"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true,
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-011",
+      "observation": "Worker entering a large mixing vat that previously held flammable resin. No atmospheric testing has been performed, and there is no attendant stationed outside the vat.",
+      "expectedHazardFamilies": ["confined_space", "fire_explosion"],
+      "expectedEnergyOrAgent": "atmospheric_hazard",
+      "expectedExposurePathways": ["inhalation"],
+      "expectedMechanisms": ["asphyxiation", "toxic_exposure"],
+      "expectedReviewTriggers": ["idlh_atmospheres"],
+      "expectedControlPrinciples": ["test_before_entry", "ventilate"],
+      "weakControlsThatMustNotBePrimary": ["follow procedure"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true,
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-012",
+      "observation": "Pneumatic air line has a fitting that looks loose and is making a loud whistling sound. No whip checks are installed on any of the couplings in this area.",
+      "expectedHazardFamilies": ["pressure_systems"],
+      "expectedEnergyOrAgent": "pneumatic",
+      "expectedExposurePathways": ["line_of_fire"],
+      "expectedMechanisms": ["struck_by_flying_parts"],
+      "expectedReviewTriggers": ["high_pressure_leaks"],
+      "expectedControlPrinciples": ["relieve_pressure", "whip_checks"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-013",
+      "observation": "Emergency eyewash station is dusty and looks like it has not been flushed in months. Several drums of acid are stored within 5 feet of the station.",
+      "expectedHazardFamilies": ["emergency_equipment", "hazcom_chemical_exposure"],
+      "expectedEnergyOrAgent": "chemical_agent",
+      "expectedExposurePathways": ["emergency_access"],
+      "expectedMechanisms": ["delayed_medical_response"],
+      "expectedReviewTriggers": ["inoperative_emergency_showers"],
+      "expectedControlPrinciples": ["maintain_readiness", "clear_access"],
+      "weakControlsThatMustNotBePrimary": ["conduct inspection"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true
+      }
+    },
+    {
+      "id": "HC-014",
+      "observation": "Contractor performing hot work on a conveyor system. No fire watch is assigned, and sparks are falling onto a lower level where cardboard boxes are stored.",
+      "expectedHazardFamilies": ["hot_work", "fire_explosion", "contractor_coordination"],
+      "expectedEnergyOrAgent": "thermal_fire",
+      "expectedExposurePathways": ["flame_spread"],
+      "expectedMechanisms": ["burn", "property_damage"],
+      "expectedReviewTriggers": ["near_fuel_tanks"],
+      "expectedControlPrinciples": ["clear_combustibles", "assign_watch"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-015",
+      "observation": "Outdoor storage yard has several burnt-out lights, leaving the area near the haul road almost completely dark at night. Haul trucks are actively moving through this zone.",
+      "expectedHazardFamilies": ["illumination_visibility", "mobile_equipment", "powered_haulage"],
+      "expectedEnergyOrAgent": "visual_information_loss",
+      "expectedExposurePathways": ["walking_surface"],
+      "expectedMechanisms": ["struck_by", "trips"],
+      "expectedReviewTriggers": ["total_darkness_in_egress_path"],
+      "expectedControlPrinciples": ["add_fixtures", "replace_bulbs"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-016",
+      "observation": "Visible accumulation of fine coal dust on the overhead beams and cable trays in the transfer tower, exceeding 1/4 inch in some areas. Electrical enclosures in this area are not explosion-proof.",
+      "expectedHazardFamilies": ["combustible_dust", "fire_explosion", "electrical"],
+      "expectedEnergyOrAgent": "dust_combustion_energy",
+      "expectedExposurePathways": ["accumulated_layer"],
+      "expectedMechanisms": ["dust_explosion"],
+      "expectedReviewTriggers": ["dust_accumulation_exceeding_1/8_inch"],
+      "expectedControlPrinciples": ["prevent_accumulation", "eliminate_ignition"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-017",
+      "observation": "Employee working near a raw sewage leak from a broken main pipe. They are wearing regular work boots and gloves but no other specialized protection, and are actively stepping in the effluent.",
+      "expectedHazardFamilies": ["biological_exposure", "personal_protective_equipment"],
+      "expectedEnergyOrAgent": "biological_pathogens",
+      "expectedExposurePathways": ["contact"],
+      "expectedMechanisms": ["infection"],
+      "expectedReviewTriggers": ["raw_sewage_leak"],
+      "expectedControlPrinciples": ["isolate_pathogen", "decontaminate"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-018",
+      "observation": "Forklift entering a high-pedestrian warehouse aisle from a side entrance. The forklift does not have a blue safety light or an audible travel alarm, and the driver's view is obstructed by a tall load.",
+      "expectedHazardFamilies": ["mobile_equipment"],
+      "expectedEnergyOrAgent": "kinetic_mobile_equipment",
+      "expectedExposurePathways": ["blind_spot"],
+      "expectedMechanisms": ["struck_by"],
+      "expectedReviewTriggers": ["mixed_traffic"],
+      "expectedControlPrinciples": ["segregate", "govern_speed"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-019",
+      "observation": "Employee using a portable ladder that has a cracked side rail. The ladder is being used on an uneven dirt surface to reach a height of 10 feet.",
+      "expectedHazardFamilies": ["fall_protection", "walking_working_surfaces"],
+      "expectedEnergyOrAgent": "gravity",
+      "expectedExposurePathways": ["unstable_surface"],
+      "expectedMechanisms": ["fall_to_lower_level"],
+      "expectedReviewTriggers": ["unusual_heights"],
+      "expectedControlPrinciples": ["eliminate_hazard", "prevent_fall"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true
+      }
+    },
+    {
+      "id": "HC-020",
+      "observation": "Chemical transfer pump has a leaking mechanical seal, spraying a fine mist of corrosive liquid into the containment area. A nearby employee is using a standard face shield but no respirator.",
+      "expectedHazardFamilies": ["chemical_transfer", "hazcom_chemical_exposure", "respiratory_protection"],
+      "expectedEnergyOrAgent": "chemical_reactive_agent",
+      "expectedExposurePathways": ["respiratory"],
+      "expectedMechanisms": ["chemical_burn", "inhalation_toxicity"],
+      "expectedReviewTriggers": ["leaking_high_toxicity_chemicals"],
+      "expectedControlPrinciples": ["enclose_process", "ventilate"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-021",
+      "observation": "A large pallet of metal parts is stacked unevenly and is leaning approximately 10 degrees into the main forklift aisle. The parts are not shrink-wrapped or banded.",
+      "expectedHazardFamilies": ["material_handling_storage", "walking_working_surfaces"],
+      "expectedEnergyOrAgent": "gravity_stored_potential",
+      "expectedExposurePathways": ["aisles"],
+      "expectedMechanisms": ["struck_by_falling_object"],
+      "expectedReviewTriggers": ["unstable_hazardous_materials"],
+      "expectedControlPrinciples": ["secure_loads", "limit_heights"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-022",
+      "observation": "Maintenance shop is extremely loud due to a nearby air compressor. Workers are not wearing earplugs and are shouting to communicate at a distance of 2 feet.",
+      "expectedHazardFamilies": ["noise_exposure"],
+      "expectedEnergyOrAgent": "acoustic_energy",
+      "expectedExposurePathways": ["ear_canal"],
+      "expectedMechanisms": ["hearing_loss"],
+      "expectedReviewTriggers": ["noise_levels_above_85db_without_control_program"],
+      "expectedControlPrinciples": ["enclose_source", "dampen_vibration"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe", "retrain employees"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true,
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-023",
+      "observation": "An employee is working in a sub-freezing walk-in freezer for over an hour. They are wearing a light jacket and regular cotton gloves, and have stated they can no longer feel their fingers.",
+      "expectedHazardFamilies": ["cold_stress"],
+      "expectedEnergyOrAgent": "thermal_cold",
+      "expectedExposurePathways": ["skin"],
+      "expectedMechanisms": ["frostbite"],
+      "expectedReviewTriggers": ["visible_signs_of_frostbite"],
+      "expectedControlPrinciples": ["warm_up", "stay_dry"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-024",
+      "observation": "Observation of a contractor orientation session. The orientation does not cover the site-specific LOTO requirements or the locations of IDLH confined spaces.",
+      "expectedHazardFamilies": ["contractor_coordination", "training_procedure_supervision"],
+      "expectedEnergyOrAgent": "behavioral_risk",
+      "expectedExposurePathways": ["multi_employer_worksite"],
+      "expectedMechanisms": ["various_acute_injuries"],
+      "expectedReviewTriggers": ["high_risk_tasks_performed_by_unvetted_contractors"],
+      "expectedControlPrinciples": ["coordinate_activities", "verify_competency"],
+      "weakControlsThatMustNotBePrimary": ["follow procedure"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true
+      }
+    },
+    {
+      "id": "HC-025",
+      "observation": "The corrective action for a previous machine guarding violation was closed as 'Completed', but the new guard is held in place with duct tape and does not meet the 4-inch reach-in distance requirement.",
+      "expectedHazardFamilies": ["corrective_action_verification_failure", "machine_guarding"],
+      "expectedEnergyOrAgent": "uncontrolled_legacy_hazards",
+      "expectedExposurePathways": ["unverified_work_zones"],
+      "expectedMechanisms": ["systemic_safety_failure"],
+      "expectedReviewTriggers": ["hazard_recurs_within_30_days_of_closure"],
+      "expectedControlPrinciples": ["inspect_the_fix", "document_verification"],
+      "weakControlsThatMustNotBePrimary": ["conduct inspection"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-026",
+      "observation": "Pressure vessel relief valve is painted over and appears to be stuck in the closed position. The vessel is actively under 300 psi of steam pressure.",
+      "expectedHazardFamilies": ["pressure_systems", "fire_explosion"],
+      "expectedEnergyOrAgent": "stored_pressure_energy",
+      "expectedExposurePathways": ["line_of_fire"],
+      "expectedMechanisms": ["blast"],
+      "expectedReviewTriggers": ["high_pressure_leaks"],
+      "expectedControlPrinciples": ["relieve_pressure", "pressure_relief_devices"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-027",
+      "observation": "Manual transfer of flammable solvent using a plastic bucket. No grounding or bonding straps are used between the drum and the bucket.",
+      "expectedHazardFamilies": ["chemical_transfer", "fire_explosion"],
+      "expectedEnergyOrAgent": "static_electricity",
+      "expectedExposurePathways": ["flame_spread"],
+      "expectedMechanisms": ["static_ignition"],
+      "expectedReviewTriggers": ["transferring_flammables_without_bonding"],
+      "expectedControlPrinciples": ["bond_and_ground", "contain_spills"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-028",
+      "observation": "A pile of loose metal scraps and oily rags is located at the top of a dark stairwell where the light fixture has been removed. Workers frequently use this stairwell during the night shift.",
+      "expectedHazardFamilies": ["walking_working_surfaces", "illumination_visibility", "fire_prevention_hot_work"],
+      "expectedEnergyOrAgent": "visual_information_loss",
+      "expectedExposurePathways": ["walking_surface"],
+      "expectedMechanisms": ["trips"],
+      "expectedReviewTriggers": ["total_darkness_in_egress_path"],
+      "expectedControlPrinciples": ["add_fixtures", "clear_path"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldPreferEngineeringOrIsolationWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-029",
+      "observation": "Spray paint booth exhaust fan is making a grinding noise and moving very little air. A strong smell of paint thinner is noticeable 20 feet away from the booth.",
+      "expectedHazardFamilies": ["ventilation_air_quality", "chemical_inhalation_contact", "fire_explosion"],
+      "expectedEnergyOrAgent": "atmospheric_composition",
+      "expectedExposurePathways": ["inhalation"],
+      "expectedMechanisms": ["toxic_contaminant_buildup"],
+      "expectedReviewTriggers": ["toxic_contaminant_buildup"],
+      "expectedControlPrinciples": ["supply_fresh_air", "exhaust_contaminants"],
+      "weakControlsThatMustNotBePrimary": ["wear ppe"],
+      "expectedOutputBehavior": {
+        "shouldAskEvidenceQuestions": true,
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    },
+    {
+      "id": "HC-030",
+      "observation": "Technician handling concentrated nitric acid wearing regular latex surgical gloves and a paper face mask. Splashes are visible on the workbench.",
+      "expectedHazardFamilies": ["personal_protective_equipment", "chemical_inhalation_contact"],
+      "expectedEnergyOrAgent": "chemical_reactive_agent",
+      "expectedExposurePathways": ["skin", "eyes"],
+      "expectedMechanisms": ["chemical_burn"],
+      "expectedReviewTriggers": ["leaking_high_toxicity_chemicals"],
+      "expectedControlPrinciples": ["select_appropriate_gear", "enclose_process"],
+      "weakControlsThatMustNotBePrimary": ["be careful"],
+      "expectedOutputBehavior": {
+        "shouldRequireHumanReviewWhenApplicable": true
+      }
+    }
+  ]
+}

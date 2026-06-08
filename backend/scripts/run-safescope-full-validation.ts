@@ -182,6 +182,16 @@ const steps: ValidationStep[] = [
     args: ["ts-node", "scripts/validate-safescope-failure-mode-calibration-v1.ts"],
   },
   {
+    label: "Full hazard coverage expansion v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-full-hazard-coverage-expansion-v1.ts"],
+  },
+  {
+    label: "Response appropriateness audit v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-response-appropriateness-v1.ts"],
+  },
+  {
     label: "Field test scenario packs v1",
     command: "npx",
     args: ["ts-node", "scripts/validate-safescope-field-test-scenario-packs-v1.ts"],

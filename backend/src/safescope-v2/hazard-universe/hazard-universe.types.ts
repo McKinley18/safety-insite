@@ -1,3 +1,9 @@
+export type HazardType = 
+  | 'acute_safety' 
+  | 'chronic_health' 
+  | 'mixed' 
+  | 'emergency_readiness';
+
 export type HazardFamily = 
   | 'machine_guarding'
   | 'lockout_tagout'
@@ -9,19 +15,31 @@ export type HazardFamily =
   | 'powered_haulage'
   | 'traffic_control'
   | 'material_handling_storage'
-  | 'cranes_rigging_suspended_loads'
+  | 'cranes_hoists_rigging'
+  | 'suspended_loads'
   | 'excavation_trenching_ground_control'
   | 'confined_space'
-  | 'hazcom_chemical_exposure'
-  | 'respiratory_dust_fume_exposure'
-  | 'noise_hearing_conservation'
-  | 'heat_cold_stress'
-  | 'fire_prevention_hot_work'
+  | 'fire_explosion'
+  | 'hot_work'
   | 'combustible_dust'
-  | 'emergency_egress_response'
-  | 'ppe'
-  | 'ergonomics'
-  | 'pressure_hydraulic_pneumatic_energy'
+  | 'pressure_systems'
+  | 'compressed_gas'
+  | 'hydraulic_pneumatic_energy'
+  | 'chemical_transfer'
+  | 'emergency_egress'
+  | 'emergency_equipment'
+  | 'personal_protective_equipment'
+  | 'silica_respirable_dust'
+  | 'welding_fumes'
+  | 'noise_exposure'
+  | 'heat_stress'
+  | 'cold_stress'
+  | 'chemical_inhalation_contact'
+  | 'respiratory_protection'
+  | 'ergonomic_strain'
+  | 'biological_exposure'
+  | 'illumination_visibility'
+  | 'ventilation_air_quality'
   | 'contractor_coordination'
   | 'training_procedure_supervision'
   | 'corrective_action_verification_failure'
@@ -29,17 +47,21 @@ export type HazardFamily =
 
 export interface HazardDefinition {
   hazardFamily: HazardFamily;
+  displayName: string;
+  hazardType: HazardType;
   hazardSubtypes: string[];
   mechanismOfHarm: string[];
   hazardousEnergyOrAgent: string[];
   exposurePathways: string[];
+  commonFieldIndicators: string[];
   commonControlFailures: string[];
   preferredControlFamilies: string[];
   weakOrInsufficientControls: string[];
-  evidenceRequired: string[];
+  evidenceNeeded: string[];
   relatedJurisdictions: string[];
   relatedStandardFamilies: string[];
   correctiveActionPrinciples: string[];
   verificationEvidence: string[];
-  humanReviewTriggers: string[];
+  mandatoryReviewTriggers: string[];
+  antiRegurgitationGuidance: string;
 }

@@ -71,4 +71,5 @@
 | Generalization Audit | Unseen observation reasoning verification | N/A | safescope-data/field-test-scenarios/ | backend/scripts/validate-safescope-generalization-intelligence-v1.ts | Audit v1 | Active | Reasoning validator |
 | Staging Deployment Readiness | Staging environment pre-flight verification | N/A | project-docs/05-deployment/ | backend/scripts/validate-safescope-staging-deployment-readiness-v1.ts | Readiness v1 | Active | Pre-flight layer |
 | Staging Hardening | Environment-gated demo and secure defaults | N/A | N/A | backend/scripts/validate-safescope-staging-hardening-v1.ts | Hardening v1 | Active | Security layer |
+| Full Hazard Coverage | 35+ hazard family coverage expansion | N/A | project-docs/04-safescope-engine/ | backend/scripts/validate-safescope-full-hazard-coverage-expansion-v1.ts | Expansion v1 | Active | Intelligence breadth |
 | Failure Calibration | Adversarial edge-case dataset | safescope-data/field-test-scenarios/ | project-docs/04-safescope-engine/ | backend/scripts/validate-safescope-failure-mode-calibration-v1.ts | Calibration v1 | Active | Reliability layer |
