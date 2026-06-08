@@ -1506,6 +1506,12 @@ Check git status:
 - Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
 - Establishes the foundation for production-ready, multi-tenant safety-AI governance.
 
+## Regulatory Coverage Matrix
+- SafeScope Regulatory Coverage Matrix v1 implemented.
+- Generates a deterministic audit of current knowledge coverage against a predefined list of core OSHA/MSHA standards.
+- Classifies standards as approved, draft, or missing, providing a clear map for future ingestion.
+- Surfaces records with unknown or incomplete metadata for remediation.
+
 ## Live Regulatory Source Connectors
 - SafeScope Live Regulatory Source Connectors Hardening v1 implemented.
 - Established a secure `RegulatoryLiveFetchService` to govern network access to official endpoints.

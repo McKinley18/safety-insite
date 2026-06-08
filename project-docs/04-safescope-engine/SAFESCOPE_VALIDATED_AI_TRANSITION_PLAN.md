@@ -64,3 +64,4 @@ This document tracks the systematic transition of SafeScope from a collection of
 - SafeScope Failure-Mode Calibration Pack v1 completed, hardening the engine against overconfidence and keyword traps.
 
 - SafeScope Live Regulatory Connector Hardening v1 completed, adding secure network boundaries for live source fetching.
+- SafeScope Regulatory Coverage Matrix v1 completed, providing a deterministic audit of core standard coverage.

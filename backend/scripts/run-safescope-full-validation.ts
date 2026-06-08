@@ -207,6 +207,11 @@ const steps: ValidationStep[] = [
     args: ["ts-node", "scripts/validate-safescope-live-regulatory-connectors-v1.ts"],
   },
   {
+    label: "Regulatory coverage matrix v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-regulatory-coverage-matrix-v1.ts"],
+  },
+  {
     label: "Field test scenario packs v1",
     command: "npx",
     args: ["ts-node", "scripts/validate-safescope-field-test-scenario-packs-v1.ts"],

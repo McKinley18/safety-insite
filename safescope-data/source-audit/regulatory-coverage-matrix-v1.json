@@ -1,0 +1,4080 @@
+{
+  "reportVersion": "1.0.0",
+  "generatedAt": "2026-06-08T11:11:02.862Z",
+  "summary": {
+    "totalCoreStandards": 32,
+    "approvedCoreStandards": 12,
+    "draftCoreStandards": 0,
+    "missingCoreStandards": 20,
+    "totalApprovedRecords": 19,
+    "totalDraftRecords": 96,
+    "unknownMetadataRecords": 98
+  },
+  "coverageByAgency": {
+    "OSHA": 15,
+    "MSHA": 2,
+    "UNKNOWN": 98
+  },
+  "coverageByJurisdiction": {
+    "osha_general_industry": 15,
+    "msha": 2,
+    "unknown": 98
+  },
+  "coverageByAuthorityTier": {
+    "primary_regulation": 17,
+    "unknown": 98
+  },
+  "coverageByHazardFamily": {
+    "mechanical": 16,
+    "electrical": 15,
+    "hazard_communication": 15,
+    "chemical": 16,
+    "confined_space": 15,
+    "atmospheric_hazard": 6,
+    "excavation": 15,
+    "cave_in": 3,
+    "fall_protection": 15,
+    "mobile_equipment": 16,
+    "struck_by": 7,
+    "fire": 1,
+    "egress": 1,
+    "ppe": 2,
+    "energy": 10,
+    "slips_trips_falls": 1,
+    "housekeeping": 1,
+    "chemical_exposure": 2,
+    "fire_explosion": 2,
+    "engulfment": 1,
+    "energized_equipment": 4,
+    "access_clearance": 2,
+    "temporary_wiring": 2,
+    "arc_flash": 1,
+    "ground_control": 6,
+    "walking_working_surfaces": 3
+  },
+  "coreStandardsCoverage": [
+    {
+      "requirement": {
+        "id": "osha_gi_wws",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.22"
+        ],
+        "description": "Walking-working surfaces / housekeeping"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-fall-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.22",
+          "normalizedCitation": "1910.22",
+          "title": "Walking-Working Surfaces Standard",
+          "sourceUrl": "http://osha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "fall_protection"
+          ]
+        },
+        {
+          "recordId": "app-wws-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.22",
+          "normalizedCitation": "1910.22",
+          "title": "General requirements for walking-working surfaces",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.22",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "slips_trips_falls"
+          ]
+        },
+        {
+          "recordId": "app-stfh-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.22(a)(1)",
+          "normalizedCitation": "1910.22(a)(1)",
+          "title": "Housekeeping - Walking-Working Surfaces",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.22",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "housekeeping"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_ladders",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.23"
+        ],
+        "description": "Ladders"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_fall",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.28"
+        ],
+        "description": "Fall protection"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-fall-02",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.28",
+          "normalizedCitation": "1910.28",
+          "title": "Duty to have fall protection and falling object protection",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.28",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "fall_protection"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_exit",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.37"
+        ],
+        "description": "Emergency exit routes"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-egress-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.37",
+          "normalizedCitation": "1910.37",
+          "title": "Exit Routes Standard",
+          "sourceUrl": "http://osha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "egress"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_noise",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.95"
+        ],
+        "description": "Occupational noise"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_hazcom",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.1200"
+        ],
+        "description": "Hazard communication"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-haz-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.1200",
+          "normalizedCitation": "1910.1200",
+          "title": "HazCom Standard",
+          "sourceUrl": "http://osha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "hazard_communication",
+            "chemical"
+          ]
+        },
+        {
+          "recordId": "app-hazcom-02",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.1200",
+          "normalizedCitation": "1910.1200",
+          "title": "Hazard Communication",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1200",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "chemical"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_ppe",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.132"
+        ],
+        "description": "PPE"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-ppe-02",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.132",
+          "normalizedCitation": "1910.132",
+          "title": "Personal Protective Equipment - General Requirements",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.132",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "ppe"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_respiratory",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.134"
+        ],
+        "description": "Respiratory protection"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_confined",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.146"
+        ],
+        "description": "Permit-required confined spaces"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-cs-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.146",
+          "normalizedCitation": "1910.146",
+          "title": "Confined Space Standard",
+          "sourceUrl": "http://osha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "confined_space",
+            "atmospheric_hazard"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_loto",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.147"
+        ],
+        "description": "Lockout/tagout"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-loto-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.147",
+          "normalizedCitation": "1910.147",
+          "title": "Control of hazardous energy (lockout/tagout)",
+          "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "energy"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_fire",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.157"
+        ],
+        "description": "Portable fire extinguishers"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-fire-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.157",
+          "normalizedCitation": "1910.157",
+          "title": "Fire Protection Standard",
+          "sourceUrl": "http://osha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "fire"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_pit",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.178"
+        ],
+        "description": "Powered industrial trucks"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_guarding",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.212"
+        ],
+        "description": "Machine guarding"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-mg-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.212",
+          "normalizedCitation": "1910.212",
+          "title": "Machine Guarding Standard",
+          "sourceUrl": "http://osha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "mechanical"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_elec_general",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.303"
+        ],
+        "description": "Electrical general requirements"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_gi_elec_wiring",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "expectedCitationPrefixes": [
+          "1910.305"
+        ],
+        "description": "Wiring methods"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-elec-01",
+          "status": "approved",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.305",
+          "normalizedCitation": "1910.305",
+          "title": "Electrical Standard",
+          "sourceUrl": "http://osha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "electrical"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "osha_const_fall",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926 Subpart M",
+          "1926.501",
+          "1926.502",
+          "1926.503"
+        ],
+        "description": "Fall protection"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_const_excavations",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926 Subpart P",
+          "1926.651",
+          "1926.652"
+        ],
+        "description": "Excavations"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_const_elec",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926 Subpart K",
+          "1926.403",
+          "1926.404",
+          "1926.405"
+        ],
+        "description": "Electrical"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_const_ladders",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926 Subpart X",
+          "1926.1051",
+          "1926.1052",
+          "1926.1053"
+        ],
+        "description": "Stairways/ladders"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_const_cranes",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926 Subpart CC",
+          "1926.1400"
+        ],
+        "description": "Cranes/derricks"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_const_ppe",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926 Subpart E",
+          "1926.95"
+        ],
+        "description": "PPE"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_const_health",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926 Subpart D",
+          "1926.55"
+        ],
+        "description": "Health hazards"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "osha_const_hazcom",
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "expectedCitationPrefixes": [
+          "1926.59"
+        ],
+        "description": "Hazard communication"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "msha_mobile",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.9",
+          "57.9"
+        ],
+        "description": "Mobile equipment / traffic control"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-mob-01",
+          "status": "approved",
+          "agency": "MSHA",
+          "jurisdiction": "msha",
+          "authorityTier": "primary_regulation",
+          "citation": "56.9100",
+          "normalizedCitation": "56.9100",
+          "title": "Mobile Equipment Standard",
+          "sourceUrl": "http://msha.gov",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "mobile_equipment",
+            "struck_by"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "msha_guarding",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.14",
+          "57.14"
+        ],
+        "description": "Guarding"
+      },
+      "status": "approved",
+      "matchedRecords": [
+        {
+          "recordId": "app-haul-01",
+          "status": "approved",
+          "agency": "MSHA",
+          "jurisdiction": "msha",
+          "authorityTier": "primary_regulation",
+          "citation": "56.14107",
+          "normalizedCitation": "56.14107",
+          "title": "Moving machine parts",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/section-56.14107",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2026-01-01",
+          "hazardFamilies": [
+            "mechanical"
+          ]
+        }
+      ]
+    },
+    {
+      "requirement": {
+        "id": "msha_elec",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.12",
+          "57.12"
+        ],
+        "description": "Electrical"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "msha_ground",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.3",
+          "57.3"
+        ],
+        "description": "Ground control"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "msha_explosives",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.6",
+          "57.6"
+        ],
+        "description": "Explosives"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "msha_ppe",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.15",
+          "57.15"
+        ],
+        "description": "PPE"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "msha_fire",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.4",
+          "57.4"
+        ],
+        "description": "Fire prevention"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "msha_berms",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.93",
+          "57.93"
+        ],
+        "description": "Berms, dumping, haul roads"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    },
+    {
+      "requirement": {
+        "id": "msha_ladders",
+        "agency": "MSHA",
+        "jurisdiction": "msha",
+        "expectedCitationPrefixes": [
+          "56.11",
+          "57.11"
+        ],
+        "description": "Ladders, travelways, platforms"
+      },
+      "status": "missing",
+      "matchedRecords": []
+    }
+  ],
+  "unknownMetadataRecords": [
+    {
+      "recordId": "app-rig-01",
+      "status": "approved",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "placeholder_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Safe Rigging Practices",
+      "sourceUrl": "placeholder_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "struck_by"
+      ]
+    },
+    {
+      "recordId": "app-mat-01",
+      "status": "approved",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "placeholder_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Material Storage Standard",
+      "sourceUrl": "placeholder_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "struck_by"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space entry atmosphere not tested draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space oxygen deficiency potential draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space toxic atmosphere potential draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "chemical_exposure"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-04",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space flammable atmosphere potential draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "fire_explosion"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-05",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space ventilation not verified draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-06",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space attendant not verified draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-07",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space rescue plan not verified draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-08",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space entry permit status unclear draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-09",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Tank vessel entry atmospheric hazard draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-10",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Pit vault entry engulfment or atmospheric risk draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "engulfment"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-11",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Sewer or manway entry hazard unknown draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-12",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space hot work atmospheric risk draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "fire_explosion"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-13",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Confined space line breaking or chemical residue risk draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space",
+        "chemical_exposure"
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-14",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Ambiguous confined space observation evidence needed draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "confined_space"
+      ]
+    },
+    {
+      "recordId": "rec-elec-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Damaged extension cord insulation exposure draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-elec-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Electrical cord wet location exposure draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-elec-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Missing electrical panel cover draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-elec-04",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Open electrical panel energized parts unclear draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-elec-05",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Blocked electrical panel access draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "access_clearance"
+      ]
+    },
+    {
+      "recordId": "rec-elec-06",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Electrical disconnect label not legible draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical"
+      ]
+    },
+    {
+      "recordId": "rec-elec-07",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Temporary wiring routing damage exposure draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "temporary_wiring"
+      ]
+    },
+    {
+      "recordId": "rec-elec-08",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Extension cord used as permanent wiring draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "temporary_wiring"
+      ]
+    },
+    {
+      "recordId": "rec-elec-09",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Junction box open cover missing draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical"
+      ]
+    },
+    {
+      "recordId": "rec-elec-10",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Energized work boundary or authorization unclear draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "arc_flash"
+      ]
+    },
+    {
+      "recordId": "rec-elec-11",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Electrical room storage clearance issue draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical",
+        "access_clearance"
+      ]
+    },
+    {
+      "recordId": "rec-elec-12",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Damaged plug ground pin missing draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical"
+      ]
+    },
+    {
+      "recordId": "rec-elec-13",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "GFCI protection status unverified draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical"
+      ]
+    },
+    {
+      "recordId": "rec-elec-14",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Ambiguous electrical observation evidence needed draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "electrical"
+      ]
+    },
+    {
+      "recordId": "rec-exc-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Trench wall cave-in exposure draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "cave_in"
+      ]
+    },
+    {
+      "recordId": "rec-exc-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Excavation protective-system ambiguity draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation"
+      ]
+    },
+    {
+      "recordId": "rec-exc-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Trench depth / soil condition review need draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "ground_control"
+      ]
+    },
+    {
+      "recordId": "rec-exc-04",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Spoil pile too close to excavation edge draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "ground_control"
+      ]
+    },
+    {
+      "recordId": "rec-exc-05",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Water accumulation in excavation draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "ground_control"
+      ]
+    },
+    {
+      "recordId": "rec-exc-06",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Missing or unclear access egress draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation"
+      ]
+    },
+    {
+      "recordId": "rec-exc-07",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Employees working below grade near unsupported sidewall draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "cave_in"
+      ]
+    },
+    {
+      "recordId": "rec-exc-08",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Mobile equipment operating near excavation edge draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "mobile_equipment",
+        "struck_by"
+      ]
+    },
+    {
+      "recordId": "rec-exc-09",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Surcharge loads near trench edge draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "ground_control"
+      ]
+    },
+    {
+      "recordId": "rec-exc-10",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Underground utility strike potential draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation"
+      ]
+    },
+    {
+      "recordId": "rec-exc-11",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Fall exposure at excavation edge draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection",
+        "excavation"
+      ]
+    },
+    {
+      "recordId": "rec-exc-12",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Hazardous atmosphere in excavation draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "atmospheric_hazard"
+      ]
+    },
+    {
+      "recordId": "rec-exc-13",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Competent person inspection review need draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "ground_control"
+      ]
+    },
+    {
+      "recordId": "rec-exc-14",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Changing conditions observation draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "excavation",
+        "ground_control"
+      ]
+    },
+    {
+      "recordId": "rec-fall-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Open-sided platform edge exposure during working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection",
+        "walking_working_surfaces"
+      ]
+    },
+    {
+      "recordId": "rec-fall-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Missing guardrail during working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Damaged guardrail during working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-04",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Floor opening unprotected working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "walking_working_surfaces"
+      ]
+    },
+    {
+      "recordId": "rec-fall-05",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Unsecured floor opening cover during working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "walking_working_surfaces"
+      ]
+    },
+    {
+      "recordId": "rec-fall-06",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Ladder access fall exposure working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-07",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Improper ladder setup working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-08",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Elevated work near leading edge working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-09",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Scaffold platform missing guardrail working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-10",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Scaffold access issue working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-11",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Aerial lift fall protection tie-off uncertainty working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-12",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Roof edge work exposure working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-13",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Falling object exposure working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-fall-14",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Ambiguous fall protection observation evidence needed working at height draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "fall_protection"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Unlabeled secondary_container draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Illegible chemical container label draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Missing product identifier draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-04",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Missing hazard warning pictogram signal draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-05",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Missing manufacturer supplier information draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-06",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Missing or unavailable SDS draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-07",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "SDS not accessible to employees draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-08",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Chemical transferred to temporary container draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-09",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Unknown chemical exposure potential draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-10",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Incompatible chemical storage draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-11",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Damaged/leaking chemical container draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-12",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Corrosive chemical handling draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-13",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Flammable chemical storage near ignition source draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-hazcom-14",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Ambiguous chemical exposure observation evidence needed draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-nip-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor nip-point guarding draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-nip-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor head-pulley guard draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-nip-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor return roller guard draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-loto-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor maintenance lockout draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-loto-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor jam clearing lockout draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-loto-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor tracking adjustment draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor cleanup exposure draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor cleanup guard removed draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor cleanup exposure uncertainty draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor emergency stop draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor walkway crossover draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor stored energy gravity draft",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-nip-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor nip-point guarding draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mobile_equipment",
+        "struck_by"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-nip-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor head-pulley guard draft for pedestrian traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mobile_equipment",
+        "struck_by"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-nip-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor return roller guard draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mobile_equipment",
+        "struck_by"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-loto-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor maintenance lockout draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-loto-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor jam clearing lockout draft for pedestrian traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-loto-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor tracking adjustment draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor cleanup exposure draft for pedestrian traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor cleanup guard removed draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor cleanup exposure uncertainty draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-01",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor emergency stop draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-02",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor walkway crossover draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-03",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor stored energy gravity draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-04",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor power source draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ]
+    },
+    {
+      "recordId": "rec-conveyor-extra-05",
+      "status": "draft",
+      "agency": "UNKNOWN",
+      "jurisdiction": "unknown",
+      "authorityTier": "unknown",
+      "citation": "source_review_required",
+      "normalizedCitation": "placeholder_review_required",
+      "title": "Conveyor belt tracking draft for mobile equipment traffic",
+      "sourceUrl": "source_review_required",
+      "effectiveDate": "",
+      "revisionDate": "",
+      "hazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ]
+    }
+  ],
+  "duplicateOverlapCandidates": {
+    "1910.1200": [
+      {
+        "recordId": "app-haz-01",
+        "status": "approved",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "citation": "1910.1200",
+        "normalizedCitation": "1910.1200",
+        "title": "HazCom Standard",
+        "sourceUrl": "http://osha.gov",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "app-hazcom-02",
+        "status": "approved",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "citation": "1910.1200",
+        "normalizedCitation": "1910.1200",
+        "title": "Hazard Communication",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.1200",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "hazardFamilies": [
+          "chemical"
+        ]
+      }
+    ],
+    "1910.22": [
+      {
+        "recordId": "app-fall-01",
+        "status": "approved",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "citation": "1910.22",
+        "normalizedCitation": "1910.22",
+        "title": "Walking-Working Surfaces Standard",
+        "sourceUrl": "http://osha.gov",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "app-wws-01",
+        "status": "approved",
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "citation": "1910.22",
+        "normalizedCitation": "1910.22",
+        "title": "General requirements for walking-working surfaces",
+        "sourceUrl": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.22",
+        "effectiveDate": "2026-01-01",
+        "revisionDate": "2026-01-01",
+        "hazardFamilies": [
+          "slips_trips_falls"
+        ]
+      }
+    ],
+    "placeholder_review_required": [
+      {
+        "recordId": "app-rig-01",
+        "status": "approved",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "placeholder_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Safe Rigging Practices",
+        "sourceUrl": "placeholder_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "struck_by"
+        ]
+      },
+      {
+        "recordId": "app-mat-01",
+        "status": "approved",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "placeholder_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Material Storage Standard",
+        "sourceUrl": "placeholder_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "struck_by"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space entry atmosphere not tested draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space oxygen deficiency potential draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space toxic atmosphere potential draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-04",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space flammable atmosphere potential draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "fire_explosion"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-05",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space ventilation not verified draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-06",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space attendant not verified draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-07",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space rescue plan not verified draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-08",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space entry permit status unclear draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-09",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Tank vessel entry atmospheric hazard draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-10",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Pit vault entry engulfment or atmospheric risk draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "engulfment"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-11",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Sewer or manway entry hazard unknown draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-12",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space hot work atmospheric risk draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "fire_explosion"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-13",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Confined space line breaking or chemical residue risk draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ]
+      },
+      {
+        "recordId": "rec-cs-atm-14",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Ambiguous confined space observation evidence needed draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "confined_space"
+        ]
+      },
+      {
+        "recordId": "rec-elec-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Damaged extension cord insulation exposure draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-elec-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Electrical cord wet location exposure draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-elec-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Missing electrical panel cover draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-elec-04",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Open electrical panel energized parts unclear draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-elec-05",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Blocked electrical panel access draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "access_clearance"
+        ]
+      },
+      {
+        "recordId": "rec-elec-06",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Electrical disconnect label not legible draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical"
+        ]
+      },
+      {
+        "recordId": "rec-elec-07",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Temporary wiring routing damage exposure draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "temporary_wiring"
+        ]
+      },
+      {
+        "recordId": "rec-elec-08",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Extension cord used as permanent wiring draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "temporary_wiring"
+        ]
+      },
+      {
+        "recordId": "rec-elec-09",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Junction box open cover missing draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical"
+        ]
+      },
+      {
+        "recordId": "rec-elec-10",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Energized work boundary or authorization unclear draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "arc_flash"
+        ]
+      },
+      {
+        "recordId": "rec-elec-11",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Electrical room storage clearance issue draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical",
+          "access_clearance"
+        ]
+      },
+      {
+        "recordId": "rec-elec-12",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Damaged plug ground pin missing draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical"
+        ]
+      },
+      {
+        "recordId": "rec-elec-13",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "GFCI protection status unverified draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical"
+        ]
+      },
+      {
+        "recordId": "rec-elec-14",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Ambiguous electrical observation evidence needed draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "electrical"
+        ]
+      },
+      {
+        "recordId": "rec-exc-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Trench wall cave-in exposure draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "cave_in"
+        ]
+      },
+      {
+        "recordId": "rec-exc-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Excavation protective-system ambiguity draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation"
+        ]
+      },
+      {
+        "recordId": "rec-exc-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Trench depth / soil condition review need draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ]
+      },
+      {
+        "recordId": "rec-exc-04",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Spoil pile too close to excavation edge draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ]
+      },
+      {
+        "recordId": "rec-exc-05",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Water accumulation in excavation draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ]
+      },
+      {
+        "recordId": "rec-exc-06",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Missing or unclear access egress draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation"
+        ]
+      },
+      {
+        "recordId": "rec-exc-07",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Employees working below grade near unsupported sidewall draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "cave_in"
+        ]
+      },
+      {
+        "recordId": "rec-exc-08",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Mobile equipment operating near excavation edge draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "mobile_equipment",
+          "struck_by"
+        ]
+      },
+      {
+        "recordId": "rec-exc-09",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Surcharge loads near trench edge draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ]
+      },
+      {
+        "recordId": "rec-exc-10",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Underground utility strike potential draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation"
+        ]
+      },
+      {
+        "recordId": "rec-exc-11",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Fall exposure at excavation edge draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection",
+          "excavation"
+        ]
+      },
+      {
+        "recordId": "rec-exc-12",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Hazardous atmosphere in excavation draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "atmospheric_hazard"
+        ]
+      },
+      {
+        "recordId": "rec-exc-13",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Competent person inspection review need draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ]
+      },
+      {
+        "recordId": "rec-exc-14",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Changing conditions observation draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ]
+      },
+      {
+        "recordId": "rec-fall-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Open-sided platform edge exposure during working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection",
+          "walking_working_surfaces"
+        ]
+      },
+      {
+        "recordId": "rec-fall-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Missing guardrail during working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Damaged guardrail during working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-04",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Floor opening unprotected working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "walking_working_surfaces"
+        ]
+      },
+      {
+        "recordId": "rec-fall-05",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Unsecured floor opening cover during working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "walking_working_surfaces"
+        ]
+      },
+      {
+        "recordId": "rec-fall-06",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Ladder access fall exposure working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-07",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Improper ladder setup working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-08",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Elevated work near leading edge working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-09",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Scaffold platform missing guardrail working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-10",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Scaffold access issue working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-11",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Aerial lift fall protection tie-off uncertainty working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-12",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Roof edge work exposure working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-13",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Falling object exposure working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-fall-14",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Ambiguous fall protection observation evidence needed working at height draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "fall_protection"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Unlabeled secondary_container draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Illegible chemical container label draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Missing product identifier draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-04",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Missing hazard warning pictogram signal draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-05",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Missing manufacturer supplier information draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-06",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Missing or unavailable SDS draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-07",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "SDS not accessible to employees draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-08",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Chemical transferred to temporary container draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-09",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Unknown chemical exposure potential draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-10",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Incompatible chemical storage draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-11",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Damaged/leaking chemical container draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-12",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Corrosive chemical handling draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-13",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Flammable chemical storage near ignition source draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-hazcom-14",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Ambiguous chemical exposure observation evidence needed draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-nip-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor nip-point guarding draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-nip-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor head-pulley guard draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-nip-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor return roller guard draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-loto-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor maintenance lockout draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-loto-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor jam clearing lockout draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-loto-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor tracking adjustment draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-cleanup-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor cleanup exposure draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-cleanup-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor cleanup guard removed draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-cleanup-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor cleanup exposure uncertainty draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor emergency stop draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor walkway crossover draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor stored energy gravity draft",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-nip-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor nip-point guarding draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mobile_equipment",
+          "struck_by"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-nip-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor head-pulley guard draft for pedestrian traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mobile_equipment",
+          "struck_by"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-nip-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor return roller guard draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mobile_equipment",
+          "struck_by"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-loto-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor maintenance lockout draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-loto-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor jam clearing lockout draft for pedestrian traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-loto-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor tracking adjustment draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-cleanup-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor cleanup exposure draft for pedestrian traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-cleanup-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor cleanup guard removed draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-cleanup-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor cleanup exposure uncertainty draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-01",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor emergency stop draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-02",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor walkway crossover draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-03",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor stored energy gravity draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-04",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor power source draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "energy",
+          "mobile_equipment"
+        ]
+      },
+      {
+        "recordId": "rec-conveyor-extra-05",
+        "status": "draft",
+        "agency": "UNKNOWN",
+        "jurisdiction": "unknown",
+        "authorityTier": "unknown",
+        "citation": "source_review_required",
+        "normalizedCitation": "placeholder_review_required",
+        "title": "Conveyor belt tracking draft for mobile equipment traffic",
+        "sourceUrl": "source_review_required",
+        "effectiveDate": "",
+        "revisionDate": "",
+        "hazardFamilies": [
+          "mechanical",
+          "mobile_equipment"
+        ]
+      }
+    ]
+  }
+}
