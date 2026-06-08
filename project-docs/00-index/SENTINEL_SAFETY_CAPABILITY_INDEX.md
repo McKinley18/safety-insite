@@ -1506,6 +1506,11 @@ Check git status:
 - Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
 - Establishes the foundation for production-ready, multi-tenant safety-AI governance.
 
+## Regulatory Metadata Normalization
+- SafeScope Regulatory Metadata Normalization v1 implemented.
+- Deterministically analyzes draft records with missing or unknown metadata to suggest correct agencies, jurisdictions, and citations.
+- Calculates promotion readiness for reviewers without enabling auto-promotion.
+
 ## Regulatory Coverage Matrix
 - SafeScope Regulatory Coverage Matrix v1 implemented.
 - Generates a deterministic audit of current knowledge coverage against a predefined list of core OSHA/MSHA standards.

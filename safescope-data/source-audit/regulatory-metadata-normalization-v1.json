@@ -1,0 +1,2025 @@
+{
+  "reportVersion": "1.0.0",
+  "generatedAt": "2026-06-08T11:55:23.002Z",
+  "summary": {
+    "totalRecordsProcessed": 115,
+    "totalUnknownMetadataFound": 98,
+    "suggestionsGenerated": 63,
+    "readyForReviewerCount": 0,
+    "needsSourceLookupCount": 63,
+    "duplicateOverlapCount": 0,
+    "unsafeToPromoteCount": 19,
+    "insufficientMetadataCount": 33
+  },
+  "candidates": [
+    {
+      "recordId": "app-rig-01",
+      "title": "Safe Rigging Practices",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "placeholder_review_required",
+      "originalHazardFamilies": [
+        "struck_by"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "unsafe_to_promote",
+      "governanceWarnings": [
+        "Record is already approved."
+      ]
+    },
+    {
+      "recordId": "app-mat-01",
+      "title": "Material Storage Standard",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "placeholder_review_required",
+      "originalHazardFamilies": [
+        "struck_by"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "unsafe_to_promote",
+      "governanceWarnings": [
+        "Record is already approved."
+      ]
+    },
+    {
+      "recordId": "rec-cs-atm-01",
+      "title": "Confined space entry atmosphere not tested draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-02",
+      "title": "Confined space oxygen deficiency potential draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-03",
+      "title": "Confined space toxic atmosphere potential draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "chemical_exposure"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-04",
+      "title": "Confined space flammable atmosphere potential draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "fire_explosion"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "fire_explosion"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-05",
+      "title": "Confined space ventilation not verified draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-06",
+      "title": "Confined space attendant not verified draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-07",
+      "title": "Confined space rescue plan not verified draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-08",
+      "title": "Confined space entry permit status unclear draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-09",
+      "title": "Tank vessel entry atmospheric hazard draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-10",
+      "title": "Pit vault entry engulfment or atmospheric risk draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "engulfment"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "engulfment"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-11",
+      "title": "Sewer or manway entry hazard unknown draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "atmospheric_hazard"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "atmospheric_hazard"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-12",
+      "title": "Confined space hot work atmospheric risk draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "fire_explosion"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "fire_explosion"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-13",
+      "title": "Confined space line breaking or chemical residue risk draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space",
+        "chemical_exposure"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space",
+          "chemical_exposure"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-cs-atm-14",
+      "title": "Ambiguous confined space observation evidence needed draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "confined_space"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.146",
+        "hazardFamilies": [
+          "confined_space"
+        ],
+        "confidence": "medium",
+        "reason": "Confined space typically maps to OSHA 1910.146 unless construction context is explicit."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-01",
+      "title": "Damaged extension cord insulation exposure draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-02",
+      "title": "Electrical cord wet location exposure draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-03",
+      "title": "Missing electrical panel cover draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-04",
+      "title": "Open electrical panel energized parts unclear draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "energized_equipment"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "energized_equipment"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-05",
+      "title": "Blocked electrical panel access draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "access_clearance"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "access_clearance"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-06",
+      "title": "Electrical disconnect label not legible draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-07",
+      "title": "Temporary wiring routing damage exposure draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "temporary_wiring"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "temporary_wiring"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-08",
+      "title": "Extension cord used as permanent wiring draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "temporary_wiring"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "temporary_wiring"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-09",
+      "title": "Junction box open cover missing draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-10",
+      "title": "Energized work boundary or authorization unclear draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "arc_flash"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "arc_flash"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-11",
+      "title": "Electrical room storage clearance issue draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical",
+        "access_clearance"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical",
+          "access_clearance"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-12",
+      "title": "Damaged plug ground pin missing draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-13",
+      "title": "GFCI protection status unverified draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-elec-14",
+      "title": "Ambiguous electrical observation evidence needed draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "electrical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910 Subpart S (1910.303 / .305 / .333)",
+        "hazardFamilies": [
+          "electrical"
+        ],
+        "confidence": "medium",
+        "reason": "Electrical hazards typically map to OSHA 1910 Subpart S."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-01",
+      "title": "Trench wall cave-in exposure draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "cave_in"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation",
+          "cave_in"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-02",
+      "title": "Excavation protective-system ambiguity draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-03",
+      "title": "Trench depth / soil condition review need draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "ground_control"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-04",
+      "title": "Spoil pile too close to excavation edge draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "ground_control"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-05",
+      "title": "Water accumulation in excavation draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "ground_control"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-06",
+      "title": "Missing or unclear access egress draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-07",
+      "title": "Employees working below grade near unsupported sidewall draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "cave_in"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-08",
+      "title": "Mobile equipment operating near excavation edge draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "mobile_equipment",
+        "struck_by"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation",
+          "mobile_equipment",
+          "struck_by"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-09",
+      "title": "Surcharge loads near trench edge draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "ground_control"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation",
+          "ground_control"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-10",
+      "title": "Underground utility strike potential draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-11",
+      "title": "Fall exposure at excavation edge draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection",
+        "excavation"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "fall_protection",
+          "excavation"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-12",
+      "title": "Hazardous atmosphere in excavation draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "atmospheric_hazard"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926.651 / 1926.652",
+        "hazardFamilies": [
+          "excavation",
+          "atmospheric_hazard"
+        ],
+        "confidence": "high",
+        "reason": "Excavation terminology strongly maps to OSHA Construction Subpart P."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-13",
+      "title": "Competent person inspection review need draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "ground_control"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-exc-14",
+      "title": "Changing conditions observation draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "excavation",
+        "ground_control"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-01",
+      "title": "Open-sided platform edge exposure during working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection",
+        "walking_working_surfaces"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection",
+          "walking_working_surfaces"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-02",
+      "title": "Missing guardrail during working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-03",
+      "title": "Damaged guardrail during working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-04",
+      "title": "Floor opening unprotected working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "walking_working_surfaces"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-05",
+      "title": "Unsecured floor opening cover during working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "walking_working_surfaces"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-06",
+      "title": "Ladder access fall exposure working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-07",
+      "title": "Improper ladder setup working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-08",
+      "title": "Elevated work near leading edge working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-09",
+      "title": "Scaffold platform missing guardrail working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926 Subpart L / CC (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "medium",
+        "reason": "Equipment type often maps to Construction, but may apply to General Industry."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-10",
+      "title": "Scaffold access issue working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926 Subpart L / CC (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "medium",
+        "reason": "Equipment type often maps to Construction, but may apply to General Industry."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-11",
+      "title": "Aerial lift fall protection tie-off uncertainty working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_construction",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1926 Subpart L / CC (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "medium",
+        "reason": "Equipment type often maps to Construction, but may apply to General Industry."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-12",
+      "title": "Roof edge work exposure working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-13",
+      "title": "Falling object exposure working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-fall-14",
+      "title": "Ambiguous fall protection observation evidence needed working at height draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "fall_protection"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.28 / 1926 Subpart M (Review Required)",
+        "hazardFamilies": [
+          "fall_protection"
+        ],
+        "confidence": "low",
+        "reason": "Fall protection requires explicit jurisdiction context (GI vs Construction)."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-01",
+      "title": "Unlabeled secondary_container draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-02",
+      "title": "Illegible chemical container label draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-03",
+      "title": "Missing product identifier draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-04",
+      "title": "Missing hazard warning pictogram signal draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-05",
+      "title": "Missing manufacturer supplier information draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-06",
+      "title": "Missing or unavailable SDS draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-07",
+      "title": "SDS not accessible to employees draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-08",
+      "title": "Chemical transferred to temporary container draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-09",
+      "title": "Unknown chemical exposure potential draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-10",
+      "title": "Incompatible chemical storage draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-11",
+      "title": "Damaged/leaking chemical container draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-12",
+      "title": "Corrosive chemical handling draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-13",
+      "title": "Flammable chemical storage near ignition source draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-hazcom-14",
+      "title": "Ambiguous chemical exposure observation evidence needed draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "hazard_communication",
+        "chemical"
+      ],
+      "suggestion": {
+        "agency": "OSHA",
+        "jurisdiction": "osha_general_industry",
+        "authorityTier": "primary_regulation",
+        "normalizedCitation": "1910.1200",
+        "hazardFamilies": [
+          "hazard_communication",
+          "chemical"
+        ],
+        "confidence": "high",
+        "reason": "HazCom strictly maps to OSHA 1910.1200 globally."
+      },
+      "promotionReadiness": "needs_source_lookup",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-nip-01",
+      "title": "Conveyor nip-point guarding draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-nip-02",
+      "title": "Conveyor head-pulley guard draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-nip-03",
+      "title": "Conveyor return roller guard draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-loto-01",
+      "title": "Conveyor maintenance lockout draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-loto-02",
+      "title": "Conveyor jam clearing lockout draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-loto-03",
+      "title": "Conveyor tracking adjustment draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-01",
+      "title": "Conveyor cleanup exposure draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-02",
+      "title": "Conveyor cleanup guard removed draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-03",
+      "title": "Conveyor cleanup exposure uncertainty draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-01",
+      "title": "Conveyor emergency stop draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-02",
+      "title": "Conveyor walkway crossover draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-03",
+      "title": "Conveyor stored energy gravity draft",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-nip-01",
+      "title": "Conveyor nip-point guarding draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mobile_equipment",
+        "struck_by"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-nip-02",
+      "title": "Conveyor head-pulley guard draft for pedestrian traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mobile_equipment",
+        "struck_by"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-nip-03",
+      "title": "Conveyor return roller guard draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mobile_equipment",
+        "struck_by"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-loto-01",
+      "title": "Conveyor maintenance lockout draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-loto-02",
+      "title": "Conveyor jam clearing lockout draft for pedestrian traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-loto-03",
+      "title": "Conveyor tracking adjustment draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-01",
+      "title": "Conveyor cleanup exposure draft for pedestrian traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-02",
+      "title": "Conveyor cleanup guard removed draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-cleanup-03",
+      "title": "Conveyor cleanup exposure uncertainty draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-01",
+      "title": "Conveyor emergency stop draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-02",
+      "title": "Conveyor walkway crossover draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-03",
+      "title": "Conveyor stored energy gravity draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-04",
+      "title": "Conveyor power source draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "energy",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    },
+    {
+      "recordId": "rec-conveyor-extra-05",
+      "title": "Conveyor belt tracking draft for mobile equipment traffic",
+      "originalAgency": "UNKNOWN",
+      "originalJurisdiction": "unknown",
+      "originalCitation": "source_review_required",
+      "originalHazardFamilies": [
+        "mechanical",
+        "mobile_equipment"
+      ],
+      "suggestion": null,
+      "promotionReadiness": "insufficient_metadata",
+      "governanceWarnings": []
+    }
+  ]
+}

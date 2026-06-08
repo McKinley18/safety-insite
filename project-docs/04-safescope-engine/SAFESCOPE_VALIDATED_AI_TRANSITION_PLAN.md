@@ -65,3 +65,4 @@ This document tracks the systematic transition of SafeScope from a collection of
 
 - SafeScope Live Regulatory Connector Hardening v1 completed, adding secure network boundaries for live source fetching.
 - SafeScope Regulatory Coverage Matrix v1 completed, providing a deterministic audit of core standard coverage.
+- SafeScope Regulatory Metadata Normalization v1 completed, enabling secure, deterministic mapping of draft records.
