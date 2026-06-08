@@ -1,4 +1,5 @@
 import { spawnSync } from 'child_process';
+import * as fs from 'fs';
 import * as path from 'path';
 
 type ValidationStep = {
@@ -8,6 +9,44 @@ type ValidationStep = {
 };
 
 const backendRoot = path.resolve(__dirname, '..');
+
+const repoRoot = path.resolve(backendRoot, '..');
+
+const trackedGeneratedValidationFiles = [
+  'safescope-data/benchmarks/safescope-precision-batch-001-results.v1.json',
+  'safescope-data/benchmarks/safescope-precision-batch-002-results.v1.json',
+  'safescope-data/benchmarks/safescope-precision-batch-003-results.v1.json',
+  'safescope-data/reviewer-candidates/candidates.json',
+  'safescope-data/source-audit/regulatory-source-inventory-v1.json',
+  'safescope-data/source-audit/regulatory-coverage-matrix-v1.json',
+  'safescope-data/source-audit/regulatory-metadata-normalization-v1.json',
+];
+
+const generatedValidationTempFiles = [
+  'safescope-data/persistence/audit_records.json',
+  'safescope-data/approved-knowledge/draft-candidates/core-expansion-v1-temp.json',
+];
+
+function restoreTrackedGeneratedFiles(): void {
+  const result = spawnSync('git', ['restore', ...trackedGeneratedValidationFiles], {
+    cwd: repoRoot,
+    stdio: 'inherit',
+    shell: process.platform === 'win32',
+  });
+
+  if (result.status !== 0) {
+    console.warn('⚠️ Generated validation file cleanup did not fully complete.');
+  }
+
+  for (const relativePath of generatedValidationTempFiles) {
+    const absolutePath = path.join(repoRoot, relativePath);
+    if (fs.existsSync(absolutePath)) {
+      fs.unlinkSync(absolutePath);
+    }
+  }
+}
+
+
 
 const steps: ValidationStep[] = [
   {
@@ -458,6 +497,8 @@ function main(): void {
   console.log('--- Starting SafeScope Full Validation Suite ---');
 
   steps.forEach(runStep);
+
+  restoreTrackedGeneratedFiles();
 
   console.log('');
   console.log(`✅ ${steps.length}/${steps.length} validation steps passed.`);
