@@ -192,6 +192,11 @@ const steps: ValidationStep[] = [
     args: ["ts-node", "scripts/validate-safescope-response-appropriateness-v1.ts"],
   },
   {
+    label: "Project organization audit v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-project-organization-audit-v1.ts"],
+  },
+  {
     label: "Field test scenario packs v1",
     command: "npx",
     args: ["ts-node", "scripts/validate-safescope-field-test-scenario-packs-v1.ts"],

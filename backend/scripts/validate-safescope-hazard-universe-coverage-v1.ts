@@ -10,10 +10,10 @@ async function validate() {
     'electrical',
     'fall_protection',
     'mobile_equipment',
-    'hazcom_chemical_exposure',
+    'silica_respirable_dust',
     'confined_space',
-    'respiratory_dust_fume_exposure',
-    'fire_prevention_hot_work'
+    'welding_fumes',
+    'hot_work'
   ];
 
   const coveredFamilies = HAZARD_UNIVERSE_REGISTRY.map((h: any) => h.hazardFamily);
