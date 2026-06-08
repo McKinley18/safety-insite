@@ -1,40 +1,40 @@
 {
   "reportVersion": "1.0.0",
-  "generatedAt": "2026-06-08T12:19:15.867Z",
+  "generatedAt": "2026-06-08T12:54:40.023Z",
   "summary": {
     "totalCoreStandards": 32,
     "approvedCoreStandards": 12,
-    "draftCoreStandards": 0,
-    "missingCoreStandards": 20,
+    "draftCoreStandards": 5,
+    "missingCoreStandards": 15,
     "totalApprovedRecords": 19,
-    "totalDraftRecords": 96,
+    "totalDraftRecords": 101,
     "unknownMetadataRecords": 98
   },
   "coverageByAgency": {
-    "OSHA": 15,
-    "MSHA": 2,
+    "OSHA": 19,
+    "MSHA": 3,
     "UNKNOWN": 98
   },
   "coverageByJurisdiction": {
-    "osha_general_industry": 15,
-    "msha": 2,
+    "osha_general_industry": 19,
+    "msha": 3,
     "unknown": 98
   },
   "coverageByAuthorityTier": {
-    "primary_regulation": 17,
+    "primary_regulation": 22,
     "unknown": 98
   },
   "coverageByHazardFamily": {
     "mechanical": 16,
-    "electrical": 15,
+    "electrical": 17,
     "hazard_communication": 15,
     "chemical": 16,
     "confined_space": 15,
     "atmospheric_hazard": 6,
     "excavation": 15,
     "cave_in": 3,
-    "fall_protection": 15,
-    "mobile_equipment": 16,
+    "fall_protection": 16,
+    "mobile_equipment": 17,
     "struck_by": 7,
     "fire": 1,
     "egress": 1,
@@ -45,6 +45,7 @@
     "chemical_exposure": 2,
     "fire_explosion": 2,
     "engulfment": 1,
+    "respiratory_protection": 1,
     "energized_equipment": 4,
     "access_clearance": 2,
     "temporary_wiring": 2,
@@ -125,8 +126,25 @@
         ],
         "description": "Ladders"
       },
-      "status": "missing",
-      "matchedRecords": []
+      "status": "draft",
+      "matchedRecords": [
+        {
+          "recordId": "rec-osha-gi-1910-23",
+          "status": "draft",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.23",
+          "normalizedCitation": "1910.23",
+          "title": "Ladders",
+          "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.23",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2024-01-01",
+          "hazardFamilies": [
+            "fall_protection"
+          ]
+        }
+      ]
     },
     {
       "requirement": {
@@ -288,8 +306,25 @@
         ],
         "description": "Respiratory protection"
       },
-      "status": "missing",
-      "matchedRecords": []
+      "status": "draft",
+      "matchedRecords": [
+        {
+          "recordId": "rec-osha-gi-1910-134",
+          "status": "draft",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.134",
+          "normalizedCitation": "1910.134",
+          "title": "Respiratory protection",
+          "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.134",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2024-01-01",
+          "hazardFamilies": [
+            "respiratory_protection"
+          ]
+        }
+      ]
     },
     {
       "requirement": {
@@ -392,8 +427,25 @@
         ],
         "description": "Powered industrial trucks"
       },
-      "status": "missing",
-      "matchedRecords": []
+      "status": "draft",
+      "matchedRecords": [
+        {
+          "recordId": "rec-osha-gi-1910-178",
+          "status": "draft",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.178",
+          "normalizedCitation": "1910.178",
+          "title": "Powered industrial trucks",
+          "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.178",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2024-01-01",
+          "hazardFamilies": [
+            "mobile_equipment"
+          ]
+        }
+      ]
     },
     {
       "requirement": {
@@ -435,8 +487,25 @@
         ],
         "description": "Electrical general requirements"
       },
-      "status": "missing",
-      "matchedRecords": []
+      "status": "draft",
+      "matchedRecords": [
+        {
+          "recordId": "rec-osha-gi-1910-303",
+          "status": "draft",
+          "agency": "OSHA",
+          "jurisdiction": "osha_general_industry",
+          "authorityTier": "primary_regulation",
+          "citation": "1910.303",
+          "normalizedCitation": "1910.303",
+          "title": "General requirements",
+          "sourceUrl": "https://www.ecfr.gov/current/title-29/section-1910.303",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2024-01-01",
+          "hazardFamilies": [
+            "electrical"
+          ]
+        }
+      ]
     },
     {
       "requirement": {
@@ -660,8 +729,25 @@
         ],
         "description": "Electrical"
       },
-      "status": "missing",
-      "matchedRecords": []
+      "status": "draft",
+      "matchedRecords": [
+        {
+          "recordId": "rec-msha-30-56-12",
+          "status": "draft",
+          "agency": "MSHA",
+          "jurisdiction": "msha",
+          "authorityTier": "primary_regulation",
+          "citation": "30 CFR 56.12",
+          "normalizedCitation": "56.12",
+          "title": "Electrical",
+          "sourceUrl": "https://www.ecfr.gov/current/title-30/part-56/subpart-K",
+          "effectiveDate": "2026-01-01",
+          "revisionDate": "2024-01-01",
+          "hazardFamilies": [
+            "electrical"
+          ]
+        }
+      ]
     },
     {
       "requirement": {

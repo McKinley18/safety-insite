@@ -1512,6 +1512,12 @@ Check git status:
 - Implements governance checks to prevent policies from overriding regulatory requirements or introducing prohibited legal language.
 - Provides ranking and resolution logic for specific vs workspace-wide policy application.
 
+## Core Regulatory Expansion
+- SafeScope Core Regulatory Expansion Pack v1 implemented.
+- Bridges critical coverage gaps in OSHA and MSHA standards identified by the regulatory coverage matrix.
+- Introduces source-backed, normalized knowledge records into the staging pipeline.
+- Strictly maintains role-based reviewer gates for all new content.
+
 ## Regulatory Metadata Normalization
 - SafeScope Regulatory Metadata Normalization v1 implemented.
 - Deterministically analyzes draft records with missing or unknown metadata to suggest correct agencies, jurisdictions, and citations.

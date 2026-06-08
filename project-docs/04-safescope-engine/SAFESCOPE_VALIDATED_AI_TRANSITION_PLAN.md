@@ -67,3 +67,4 @@ This document tracks the systematic transition of SafeScope from a collection of
 - SafeScope Regulatory Coverage Matrix v1 completed, providing a deterministic audit of core standard coverage.
 - SafeScope Regulatory Metadata Normalization v1 completed, enabling secure, deterministic mapping of draft records.
 - SafeScope Site Policy Isolation v1 completed, enabling secure, scoped application of customer-specific safety mandates.
+- SafeScope Core Regulatory Expansion Pack v1 completed, successfully reducing regulatory coverage gaps.
