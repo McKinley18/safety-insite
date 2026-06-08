@@ -1506,6 +1506,12 @@ Check git status:
 - Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
 - Establishes the foundation for production-ready, multi-tenant safety-AI governance.
 
+## Site Policy Isolation
+- SafeScope Site Policy Isolation v1 implemented.
+- Enforces strict workspace-based isolation for customer-specific safety rules.
+- Implements governance checks to prevent policies from overriding regulatory requirements or introducing prohibited legal language.
+- Provides ranking and resolution logic for specific vs workspace-wide policy application.
+
 ## Regulatory Metadata Normalization
 - SafeScope Regulatory Metadata Normalization v1 implemented.
 - Deterministically analyzes draft records with missing or unknown metadata to suggest correct agencies, jurisdictions, and citations.

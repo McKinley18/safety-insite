@@ -29,6 +29,7 @@ This document tracks current coverage areas and identified gaps in SafeScope's r
 ### Functional Gaps
 | Area | Description | Priority |
 | :--- | :--- | :--- |
+| **Site Policy Isolation** | Implemented v1; scoped application of customer policies. | P1 |
 | **Regulatory Metadata Normalization** | Implemented v1; analyzes unknown draft metadata deterministically. | P1 |
 | **Regulatory Coverage Matrix** | Implemented v1; deterministic audit of core standards. | P1 |
 | **Regulatory Source Live Sync** | Implemented v1; live network boundaries and abstraction active. | P1 |
