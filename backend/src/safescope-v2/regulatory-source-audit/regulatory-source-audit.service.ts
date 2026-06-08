@@ -7,9 +7,9 @@ import { ApprovedKnowledgeRecord } from '../approved-knowledge-registry/approved
 
 @Injectable()
 export class RegulatorySourceAuditService {
-  private readonly registryPath = path.resolve(__dirname, '../../../../../safescope-data/approved-knowledge/registry');
-  private readonly draftPath = path.resolve(__dirname, '../../../../../safescope-data/approved-knowledge/draft-candidates');
-  private readonly outputPath = path.resolve(__dirname, '../../../../../safescope-data/source-audit/regulatory-source-inventory-v1.json');
+  private readonly registryPath = path.resolve(__dirname, '../../../../safescope-data/approved-knowledge/registry');
+  private readonly draftPath = path.resolve(__dirname, '../../../../safescope-data/approved-knowledge/draft-candidates');
+  private readonly outputPath = path.resolve(__dirname, '../../../../safescope-data/source-audit/regulatory-source-inventory-v1.json');
 
   constructor(private readonly normalizationService: ApprovedKnowledgeCitationNormalizationService) {}
 
@@ -88,7 +88,7 @@ export class RegulatorySourceAuditService {
     files.forEach((file) => {
       try {
         const data = JSON.parse(fs.readFileSync(path.join(this.registryPath, file), 'utf-8'));
-        const array = Array.isArray(data) ? data : [data];
+        const array = Array.isArray(data) ? data : (data.records || [data]);
         array.forEach((item: ApprovedKnowledgeRecord) => {
           if (item.recordId) {
             records.push({
@@ -124,7 +124,7 @@ export class RegulatorySourceAuditService {
         const data = JSON.parse(fs.readFileSync(path.join(this.draftPath, file), 'utf-8'));
         // Drafts might have a different shape depending on implementation, 
         // but often they mirror ApprovedKnowledgeRecord or close to it.
-        const array = Array.isArray(data) ? data : [data];
+        const array = Array.isArray(data) ? data : (data.records || [data]);
         array.forEach((item: any) => {
           if (item.candidateId || item.recordId) {
             const auth = item.authority || item.normalizedSource;

@@ -30,11 +30,25 @@ async function validate() {
   // 1. Audit Existing Inventory
   const inventory = await auditService.generateInventoryReport();
   if (inventory.summary.totalApprovedRecords === 0 && inventory.summary.totalDraftRecords === 0) {
-      // It's possible the test runs in an environment with no records, but usually there are some.
-      console.warn('[WARN] No approved or draft records found in local inventory.');
-  } else {
-      console.log(`[PASS] Inventory generated. Approved: ${inventory.summary.totalApprovedRecords}, Drafts: ${inventory.summary.totalDraftRecords}`);
+      throw new Error('SafeScope local inventory is unexpectedly empty. Scanner failed to load approved or draft records.');
   }
+
+  console.log(`[PASS] Inventory generated. Approved: ${inventory.summary.totalApprovedRecords}, Drafts: ${inventory.summary.totalDraftRecords}`);
+
+  // Add coverage assertions
+  if (!inventory.summary.byAgency['OSHA']) {
+      throw new Error('Failed to detect OSHA records in inventory.');
+  }
+  
+  console.log('Hazard Family Coverage:', Object.keys(inventory.summary.hazardFamilyCoverage));
+  if (Object.keys(inventory.summary.hazardFamilyCoverage).length === 0) {
+      throw new Error('Failed to detect any hazard family coverage in inventory.');
+  }
+  
+  if (Object.keys(inventory.citationMap).length === 0) {
+      throw new Error('Failed to generate normalized citation map.');
+  }
+  console.log('[PASS] Inventory coverage assertions verified.');
 
   // 2. Fetch from Connectors (Fixtures)
   const ecfrConnector = new ECfrRegulatorySourceConnector();
