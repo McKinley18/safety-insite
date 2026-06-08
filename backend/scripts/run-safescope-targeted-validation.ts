@@ -38,6 +38,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-full-hazard-coverage-expansion-v1.ts',
         'validate-safescope-response-appropriateness-v1.ts',
         'validate-safescope-project-organization-audit-v1.ts',
+        'validate-safescope-regulatory-source-audit-ingestion-v1.ts',
         'validate-safescope-field-test-scenario-packs-v1.ts'
     ],
     output: [

@@ -29,6 +29,7 @@ This document tracks current coverage areas and identified gaps in SafeScope's r
 ### Functional Gaps
 | Area | Description | Priority |
 | :--- | :--- | :--- |
+| **Regulatory Source Live Sync** | Replace local snapshot fixtures with live API connectors to eCFR and OSHA/MSHA portals. | P1 |
 | **Verification Evidence** | Automated validation of multi-photo "repaired" states. | P0 |
 | **Offline Sync** | Automatic conflict resolution when syncing multi-user offline traces. | P0 |
 | **Policy Isolation** | Sandboxed workspace-specific policy enforcement. | P1 |

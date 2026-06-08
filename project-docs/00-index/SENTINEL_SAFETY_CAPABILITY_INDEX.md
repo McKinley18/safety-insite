@@ -1506,6 +1506,12 @@ Check git status:
 - Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
 - Establishes the foundation for production-ready, multi-tenant safety-AI governance.
 
+## Regulatory Source Audit + Differential Ingestion
+- SafeScope Regulatory Source Audit and Differential Ingestion Engine v1 implemented.
+- Automatically audits existing local knowledge and compares it against official source connectors (OSHA, MSHA eCFR).
+- Generates governed reviewer candidates for missing or updated citations without creating duplicates.
+- Ensures all new regulatory content passes through Role-Based Approval Gates.
+
 ## Project Organization + Coverage Audit
 - SafeScope Project Organization and Coverage Readiness Audit v1 implemented.
 - Canonical taxonomy map defined to prevent hazard-family naming drift.
