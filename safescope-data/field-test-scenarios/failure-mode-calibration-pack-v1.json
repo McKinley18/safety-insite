@@ -1,0 +1,200 @@
+{
+  "version": "1.0.0",
+  "scenarios": [
+    {
+      "id": "FM-VAGUE-001",
+      "category": "Vague observation",
+      "text": "unsafe condition near conveyor",
+      "expectedBehavior": {
+        "confidenceBand": "low",
+        "humanReviewRequired": true,
+        "requiresSupervisorQuestions": true
+      }
+    },
+    {
+      "id": "FM-VAGUE-002",
+      "category": "Vague observation",
+      "text": "worker looked exposed",
+      "expectedBehavior": {
+        "confidenceBand": "low",
+        "humanReviewRequired": true
+      }
+    },
+    {
+      "id": "FM-VAGUE-003",
+      "category": "Vague observation",
+      "text": "something wrong with electrical panel",
+      "expectedBehavior": {
+        "confidenceBand": "low",
+        "humanReviewRequired": true
+      }
+    },
+    {
+      "id": "FM-KEYWORD-001",
+      "category": "Keyword trap / false positive",
+      "text": "guardrail stored near conveyor",
+      "expectedBehavior": {
+        "primaryDomainNot": "machine_guarding",
+        "semanticRouting": "correct"
+      }
+    },
+    {
+      "id": "FM-KEYWORD-002",
+      "category": "Keyword trap / false positive",
+      "text": "fire extinguisher label faded",
+      "expectedBehavior": {
+        "primaryDomainNot": "hazcom_chemical_exposure",
+        "primaryDomain": "emergency_egress_response"
+      }
+    },
+    {
+      "id": "FM-KEYWORD-003",
+      "category": "Keyword trap / false positive",
+      "text": "employee guarded the area",
+      "expectedBehavior": {
+        "primaryDomainNot": "machine_guarding"
+      }
+    },
+    {
+      "id": "FM-CONFLICT-001",
+      "category": "Conflicting facts",
+      "text": "The coupling is missing its guard.",
+      "attachments": [
+        {
+          "id": "photo-1",
+          "type": "photo",
+          "caption": "Guard installed and secure"
+        }
+      ],
+      "expectedBehavior": {
+        "confidenceDowngrade": true,
+        "humanReviewRequired": true,
+        "conflictSurfaced": true
+      }
+    },
+    {
+      "id": "FM-CONFLICT-002",
+      "category": "Conflicting facts",
+      "text": "Machine is locked out.",
+      "evidenceTexts": ["Observed machine running during inspection."],
+      "expectedBehavior": {
+        "confidenceDowngrade": true,
+        "humanReviewRequired": true
+      }
+    },
+    {
+      "id": "FM-CONFLICT-003",
+      "category": "Conflicting facts",
+      "text": "Observation: no exposure to moving parts.",
+      "attachments": [
+        {
+          "id": "photo-2",
+          "type": "photo",
+          "caption": "Employee working within reach of unguarded pulley"
+        }
+      ],
+      "expectedBehavior": {
+        "confidenceDowngrade": true,
+        "humanReviewRequired": true
+      }
+    },
+    {
+      "id": "FM-JURISDICTION-001",
+      "category": "Wrong jurisdiction hints",
+      "text": "Warehouse forklift operating near loading dock, MSHA inspection required.",
+      "expectedBehavior": {
+        "jurisdictionCaution": true,
+        "noViolationDeclaration": true
+      }
+    },
+    {
+      "id": "FM-JURISDICTION-002",
+      "category": "Wrong jurisdiction hints",
+      "text": "Aggregate mine conveyor tail pulley, OSHA 1910.212 violation.",
+      "expectedBehavior": {
+        "jurisdictionCaution": true,
+        "noViolationDeclaration": true
+      }
+    },
+    {
+      "id": "FM-MULTI-001",
+      "category": "Multi-hazard ambiguity",
+      "text": "Wet floor next to damaged electrical cord.",
+      "expectedBehavior": {
+        "multiHazardDecomposition": true
+      }
+    },
+    {
+      "id": "FM-MULTI-002",
+      "category": "Multi-hazard ambiguity",
+      "text": "Blocked fire exit and stored flammable liquids in the hallway.",
+      "expectedBehavior": {
+        "multiHazardDecomposition": true
+      }
+    },
+    {
+      "id": "FM-MULTI-003",
+      "category": "Multi-hazard ambiguity",
+      "text": "Forklift blind spot at corner of designated pedestrian walkway.",
+      "expectedBehavior": {
+        "multiHazardDecomposition": true
+      }
+    },
+    {
+      "id": "FM-WEAK-001",
+      "category": "Weak corrective action trap",
+      "text": "Unguarded nip point on feed conveyor.",
+      "proposedActions": ["retrain employees"],
+      "expectedBehavior": {
+        "weakControlPenalty": true,
+        "preferEngineering": true
+      }
+    },
+    {
+      "id": "FM-WEAK-002",
+      "category": "Weak corrective action trap",
+      "text": "Damaged electrical cord with exposed wires.",
+      "proposedActions": ["tell workers to be careful"],
+      "expectedBehavior": {
+        "weakControlPenalty": true,
+        "preferIsolation": true
+      }
+    },
+    {
+      "id": "FM-WEAK-003",
+      "category": "Weak corrective action trap",
+      "text": "Open edge on elevated platform, 12 foot fall hazard.",
+      "proposedActions": ["post warning sign"],
+      "expectedBehavior": {
+        "weakControlPenalty": true,
+        "preferGuarding": true
+      }
+    },
+    {
+      "id": "FM-HEALTH-001",
+      "category": "Health exposure ambiguity",
+      "text": "Thick dust cloud observed during rock crushing, workers in the area.",
+      "expectedBehavior": {
+        "healthExposureReviewRequired": true,
+        "evidenceGaps": ["sampling_data"]
+      }
+    },
+    {
+      "id": "FM-HEALTH-002",
+      "category": "Health exposure ambiguity",
+      "text": "Maintenance shop is extremely loud, no hearing protection visible.",
+      "expectedBehavior": {
+        "healthExposureReviewRequired": true,
+        "evidenceGaps": ["noise_levels"]
+      }
+    },
+    {
+      "id": "FM-HEALTH-003",
+      "category": "Health exposure ambiguity",
+      "text": "Welding operations being performed in confined area with no mechanical ventilation.",
+      "expectedBehavior": {
+        "healthExposureReviewRequired": true
+      }
+    }
+  ]
+}

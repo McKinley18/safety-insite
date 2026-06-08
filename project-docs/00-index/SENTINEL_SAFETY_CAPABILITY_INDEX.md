@@ -1506,6 +1506,12 @@ Check git status:
 - Fully integrated into candidate management, source ingestion, and audit trail retrieval workflows.
 - Establishes the foundation for production-ready, multi-tenant safety-AI governance.
 
+## Failure-Mode Calibration
+- SafeScope Failure-Mode Calibration Pack v1 implemented.
+- 20+ adversarial scenarios covering vague observations, keyword traps, and conflicting facts.
+- Proved resistance to overconfidence and generic corrective action traps.
+- Established mandatory human review gates for high-ambiguity field data.
+
 ## Hazard Universe + Generalization Intelligence
 - SafeScope Hazard Universe and Generalization Audit v1 implemented.
 - Formally mapped 25+ hazard families including health hazards (respiratory, noise, heat).
