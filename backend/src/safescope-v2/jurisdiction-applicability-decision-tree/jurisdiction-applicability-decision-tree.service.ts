@@ -11,25 +11,42 @@ import {
 export class JurisdictionApplicabilityDecisionTreeService {
 
   evaluate(input: JurisdictionApplicabilityInput): JurisdictionApplicabilityResult {
-    const { observationText } = input;
+    const { observationText, scenarioFamily } = input;
     const lowerText = observationText.toLowerCase();
+
+    // Explicit high-authority mapping from scenarioFamily to canonical jurisdiction
+    const scenarioFamilyMap: Record<string, Jurisdiction> = {
+      'conveyor_cleanup': 'msha',
+      'rotating_shaft_guarding': 'msha',
+      'unguarded_conveyor_pulley': 'msha',
+      'fall_protection_unprotected_edge': 'osha_construction',
+      'chemical_label_sds_gap': 'osha_general_industry',
+      'damaged_cord_wet_location': 'osha_general_industry',
+      'electrical_panel_access': 'osha_general_industry',
+      'housekeeping_slip_trip': 'osha_general_industry',
+      'mobile_equipment_pedestrian_interaction': 'osha_general_industry',
+      'point_of_operation_guarding': 'osha_general_industry'
+    };
     
     const mshaSignals = [
-        'mine', 'quarry', 'pit', 'plant', 'crusher', 'screen', 'conveyor at mine', 
+        'mine', 'quarry', 'pit', 'crusher', 'screen', 'conveyor at mine', 
         'haul truck', 'loader at mine', 'miner', 'stockpile', 'scale house', 
-        'mill', 'processing plant', 'aggregate', 'sand and gravel', 'surface mine', 'underground mine'
+        'mill', 'processing plant', 'aggregate', 'sand and gravel', 'surface mine', 'underground mine',
+        'tail pulley', 'head pulley', 'feed conveyor', 'coal spillage', 'loose coal', 'unbolted'
     ];
 
     const oshaConstructionSignals = [
         'excavation', 'trench', 'scaffold', 'framing', 'roofing', 'demolition', 
         'construction site', 'temporary work platform', 'concrete placement', 
-        'steel erection', 'ladder during construction', 'formwork', 'jobsite'
+        'steel erection', 'ladder during construction', 'formwork', 'jobsite',
+        'toe board', 'walk plank'
     ];
 
     const oshaGeneralIndustrySignals = [
         'warehouse', 'manufacturing', 'shop', 'maintenance shop', 'forklift aisle', 
         'powered industrial truck', 'machine shop', 'production floor', 
-        'loading dock', 'facility'
+        'loading dock', 'facility', 'table saw', 'blade guard', 'wood cutting',
+        'breaker panel', 'electrical breaker', 'extension cord', 'chemical container', 'workbench'
     ];
 
     const companyPolicySignals = [
@@ -37,10 +54,20 @@ export class JurisdictionApplicabilityDecisionTreeService {
         'visitor policy', 'ppe policy', 'owner requirement'
     ];
 
+    const calOshaSignals = [
+        'california', 'cal/osha', 'cal-osha', 'title 8', 'california state plan'
+    ];
+
+    const waDoshSignals = [
+        'washington state', 'wa dosh', 'wisha', 'washington state plan', 'chapter 296'
+    ];
+
     const matchedMSHA = mshaSignals.filter(s => lowerText.includes(s));
     const matchedOSHAConst = oshaConstructionSignals.filter(s => lowerText.includes(s));
     const matchedOSHAGen = oshaGeneralIndustrySignals.filter(s => lowerText.includes(s));
     const matchedPolicy = companyPolicySignals.filter(s => lowerText.includes(s));
+    const matchedCalOsha = calOshaSignals.filter(s => lowerText.includes(s));
+    const matchedWaDosh = waDoshSignals.filter(s => lowerText.includes(s));
 
     let primaryJurisdiction: Jurisdiction = 'unclear';
     const secondaryJurisdictions: Jurisdiction[] = [];
@@ -53,43 +80,83 @@ export class JurisdictionApplicabilityDecisionTreeService {
     const blockedKnowledgeScopes: string[] = [];
     const reviewerQuestions: string[] = [];
 
+    // Pre-populate based on high-authority scenario mapping
+    const normalizedScenario = scenarioFamily ? scenarioFamily.replace(/-/g, '_') : undefined;
+    if (normalizedScenario && scenarioFamilyMap[normalizedScenario]) {
+      primaryJurisdiction = scenarioFamilyMap[normalizedScenario];
+    }
+
     // Scoring and selection
     if (matchedMSHA.length > 0) {
         matchedJurisdictionSignals.push(...matchedMSHA);
-        if (primaryJurisdiction === 'unclear') {
-            primaryJurisdiction = 'msha';
+        if (!allowedKnowledgeScopes.includes('msha')) {
             allowedKnowledgeScopes.push('msha');
-        } else {
-            primaryJurisdiction = 'mixed';
-            secondaryJurisdictions.push('msha');
         }
     }
 
     if (matchedOSHAConst.length > 0) {
         matchedJurisdictionSignals.push(...matchedOSHAConst);
-        if (primaryJurisdiction === 'unclear') {
-            primaryJurisdiction = 'osha_construction';
+        if (!allowedKnowledgeScopes.includes('osha_construction')) {
             allowedKnowledgeScopes.push('osha_construction');
-        } else if (primaryJurisdiction === 'msha') {
-            primaryJurisdiction = 'mixed';
-            conflictingJurisdictionSignals.push('MSHA vs OSHA Construction');
-            secondaryJurisdictions.push('osha_construction');
-        } else {
-            secondaryJurisdictions.push('osha_construction');
         }
     }
 
     if (matchedOSHAGen.length > 0) {
         matchedJurisdictionSignals.push(...matchedOSHAGen);
-        if (primaryJurisdiction === 'unclear') {
-            primaryJurisdiction = 'osha_general_industry';
+        if (!allowedKnowledgeScopes.includes('osha_general_industry')) {
             allowedKnowledgeScopes.push('osha_general_industry');
-        } else if (primaryJurisdiction === 'msha') {
+        }
+    }
+
+    // Apply keyword-based fallback only if primaryJurisdiction is still unclear
+    if (primaryJurisdiction === 'unclear') {
+        let matchedCount = 0;
+        let selectedJurisdiction: Jurisdiction = 'unclear';
+
+        if (matchedMSHA.length > 0) {
+            matchedCount++;
+            selectedJurisdiction = 'msha';
+        }
+        if (matchedOSHAConst.length > 0) {
+            matchedCount++;
+            selectedJurisdiction = 'osha_construction';
+        }
+        if (matchedOSHAGen.length > 0) {
+            matchedCount++;
+            selectedJurisdiction = 'osha_general_industry';
+        }
+
+        if (matchedCount > 1) {
             primaryJurisdiction = 'mixed';
-            conflictingJurisdictionSignals.push('MSHA vs OSHA General Industry');
-            secondaryJurisdictions.push('osha_general_industry');
+            conflictingJurisdictionSignals.push('Multiple jurisdiction signals matched in text');
+        } else if (matchedCount === 1) {
+            primaryJurisdiction = selectedJurisdiction;
+        }
+    }
+
+    if (primaryJurisdiction !== 'unclear' && primaryJurisdiction !== 'mixed' && !allowedKnowledgeScopes.includes(primaryJurisdiction)) {
+        allowedKnowledgeScopes.push(primaryJurisdiction);
+    }
+
+    if (matchedCalOsha.length > 0) {
+        matchedJurisdictionSignals.push(...matchedCalOsha);
+        if (primaryJurisdiction === 'unclear' || primaryJurisdiction === 'osha_general_industry' || primaryJurisdiction === 'osha_construction') {
+            primaryJurisdiction = 'cal_osha';
+            allowedKnowledgeScopes.push('cal_osha');
         } else {
-            secondaryJurisdictions.push('osha_general_industry');
+            primaryJurisdiction = 'mixed';
+            secondaryJurisdictions.push('cal_osha');
+        }
+    }
+
+    if (matchedWaDosh.length > 0) {
+        matchedJurisdictionSignals.push(...matchedWaDosh);
+        if (primaryJurisdiction === 'unclear' || primaryJurisdiction === 'osha_general_industry' || primaryJurisdiction === 'osha_construction') {
+            primaryJurisdiction = 'wa_dosh';
+            allowedKnowledgeScopes.push('wa_dosh');
+        } else {
+            primaryJurisdiction = 'mixed';
+            secondaryJurisdictions.push('wa_dosh');
         }
     }
 

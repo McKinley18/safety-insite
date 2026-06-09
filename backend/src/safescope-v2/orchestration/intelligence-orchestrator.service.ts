@@ -22,6 +22,7 @@ import { ConfidenceIntelligenceService } from '../confidence/confidence-intellig
 
 import { TrendIntelligenceService } from '../trend-intelligence/trend-intelligence.service';
 import { OperationalReasoningService } from '../reasoning/operational-reasoning.service';
+import { MultidisciplinaryExpertService } from '../multidisciplinary-expert/multidisciplinary-expert.service';
 import { ControlIntelligenceService } from '../control-intelligence/control-intelligence.service';
 import { DecisionExplainabilityService } from '../explainability/decision-explainability.service';
 import { EvidenceQualityService } from '../evidence-quality/evidence-quality.service';
@@ -66,6 +67,7 @@ import { SafeScopePersistenceService } from '../persistence/persistence.service'
 import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role-based-approval-gates.service';
 import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
 import { CalibrationMeta } from '../types/safescope-intelligence.types';
+import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
 
 export type SafeScopeIntelligenceOrchestratorInput = {
   fusedText: string;
@@ -91,6 +93,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private governanceEngine = new ConfidenceGovernanceService();
   private trendEngine = new TrendIntelligenceService();
   private reasoningEngine = new OperationalReasoningService();
+  private multidisciplinaryExpertEngine = new MultidisciplinaryExpertService();
   private controlEngine = new ControlIntelligenceService();
   private explainabilityEngine = new DecisionExplainabilityService();
   private evidenceQualityEngine = new EvidenceQualityService();
@@ -148,6 +151,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private evgEngine = new EvidenceQuestionGenerationService();
   private controlMapEngine = new CorrectiveActionControlMapService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
+  private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
 
   constructor(
     @Optional()
@@ -388,22 +392,19 @@ export class SafeScopeIntelligenceOrchestrator {
         fusedText
     );
 
-    const detectedJurisdiction = (observationContext.detectedJurisdictionSignals && observationContext.detectedJurisdictionSignals.length > 0) 
-        ? observationContext.detectedJurisdictionSignals[0].toLowerCase()
-        : 'unclear';
-        
-    let jurisdiction = 'unclear';
-    if (detectedJurisdiction.includes('msha')) jurisdiction = 'msha';
-    else if (detectedJurisdiction.includes('osha_construction')) jurisdiction = 'osha_construction';
-    else if (detectedJurisdiction.includes('osha')) jurisdiction = 'osha_general_industry';
-
     const understandingTopScenario = observationUnderstanding.scenarioUnderstanding?.topScenario;
     const understandingTopMechanism = observationUnderstanding.mechanismCandidates?.[0];
 
     const understandingScenarioFamily =
-      understandingTopScenario?.scenarioId && (understandingTopScenario as any).confidence >= 0.55
+      understandingTopScenario?.scenarioId && (understandingTopScenario as any).confidence >= 0.40
         ? understandingTopScenario.scenarioId
         : undefined;
+
+    const jurisdictionResult = this.jurisdictionService.evaluate({ 
+      observationText: fusedText,
+      scenarioFamily: understandingScenarioFamily
+    });
+    let jurisdiction = jurisdictionResult.primaryJurisdiction;
 
     const scenarioSpecificMechanismOverrides = [
       'electrical_panel_access',
@@ -414,7 +415,7 @@ export class SafeScopeIntelligenceOrchestrator {
       understandingTopScenario?.mechanism &&
       understandingTopScenario.mechanism !== 'unknown' &&
       (
-        (understandingTopScenario as any).confidence >= 0.55 ||
+        (understandingTopScenario as any).confidence >= 0.40 ||
         scenarioSpecificMechanismOverrides.includes(understandingTopScenario.scenarioId)
       )
         ? understandingTopScenario.mechanism
@@ -423,22 +424,32 @@ export class SafeScopeIntelligenceOrchestrator {
     const understandingMechanism =
       understandingTopMechanism?.mechanism &&
       understandingTopMechanism.mechanism !== 'unknown' &&
-      (understandingTopMechanism as any).confidence >= 0.7
+      (understandingTopMechanism as any).confidence >= 0.40
         ? understandingTopMechanism.mechanism
         : undefined;
 
     const understandingHazardFamily =
-      understandingTopScenario?.hazardFamily && (understandingTopScenario as any).confidence >= 0.55
+      understandingTopScenario?.hazardFamily && (understandingTopScenario as any).confidence >= 0.40
         ? understandingTopScenario.hazardFamily
         : undefined;
 
+    const normScenarioFamilyForStd = understandingScenarioFamily ? understandingScenarioFamily.replace(/-/g, '_') : undefined;
+
     const understandingStandardFamily =
-      understandingScenarioFamily === 'fall_protection_unprotected_edge' ? 'fall_protection' :
-      understandingScenarioFamily === 'unexpected_startup_energy_isolation' ? 'lockout_tagout' :
-      understandingScenarioFamily === 'chemical_label_sds_gap' ? 'hazard_communication' :
-      understandingScenarioFamily === 'permit_required_confined_space_entry' ? 'confined_space' :
-      understandingScenarioFamily === 'suspended_load_line_of_fire' ? 'cranes_rigging' :
-      understandingScenarioFamily === 'pressurized_hose_failure' ? 'compressed_air_stored_energy' :
+      normScenarioFamilyForStd === 'conveyor_cleanup' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'rotating_shaft_guarding' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'unguarded_conveyor_pulley' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'point_of_operation_guarding' ? 'machine_guarding' :
+      normScenarioFamilyForStd === 'fall_protection_unprotected_edge' ? 'fall_protection' :
+      normScenarioFamilyForStd === 'chemical_label_sds_gap' ? 'hazard_communication' :
+      normScenarioFamilyForStd === 'damaged_cord_wet_location' ? 'electrical' :
+      normScenarioFamilyForStd === 'electrical_panel_access' ? 'electrical' :
+      normScenarioFamilyForStd === 'housekeeping_slip_trip' ? 'walking_working_surfaces' :
+      normScenarioFamilyForStd === 'mobile_equipment_pedestrian_interaction' ? 'powered_industrial_trucks' :
+      normScenarioFamilyForStd === 'unexpected_startup_energy_isolation' ? 'lockout_tagout' :
+      normScenarioFamilyForStd === 'permit_required_confined_space_entry' ? 'confined_space' :
+      normScenarioFamilyForStd === 'suspended_load_line_of_fire' ? 'cranes_rigging' :
+      normScenarioFamilyForStd === 'pressurized_hose_failure' ? 'compressed_air_stored_energy' :
       undefined;
 
     const understandingRiskBand =
@@ -744,6 +755,14 @@ export class SafeScopeIntelligenceOrchestrator {
       domainIntelligence,
     });
 
+    const multidisciplinaryExpertSynthesis = this.multidisciplinaryExpertEngine.evaluate({
+      classification: promotedPrimary.classification,
+      observationText: fusedText,
+      causalRiskReasoning,
+      exposurePathIntelligence,
+      siteMemory,
+    });
+
     return {
       intelligenceMetadata: {
         engineName: 'SafeScope Intelligence Orchestrator',
@@ -845,6 +864,7 @@ export class SafeScopeIntelligenceOrchestrator {
       siteMemory,
       confidenceCalibration,
       reasoningDrift,
+      multidisciplinaryExpertSynthesis,
     };
   }
 }

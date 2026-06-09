@@ -192,7 +192,7 @@ export class ObservationUnderstandingService {
     if (conveyorNipPointSignal && hasMissingOrFailedGuard) {
       candidates.push({
         mechanism: 'rotating_equipment_nip_point',
-        confidence: input.workerExposed === true ? 0.9 : 0.72,
+        confidence: shaftEntanglementSignal ? 0.74 : (input.workerExposed === true ? 0.9 : 0.78),
         reasons: [
           'Conveyor pulley, belt, roller, or in-running nip-point signal detected.',
           'Guarding failure detected.',
@@ -209,7 +209,7 @@ export class ObservationUnderstandingService {
     ) {
       candidates.push({
         mechanism: 'rotating_equipment_entanglement',
-        confidence: conveyorNipPointSignal ? 0.76 : 0.88,
+        confidence: 0.88,
         reasons: [
           'Rotating shaft, coupling, keyway, pump motor, or motor-coupling language detected.',
           'Guarding failure detected.'

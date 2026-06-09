@@ -1,4 +1,4 @@
-export type Jurisdiction = 'msha' | 'osha_general_industry' | 'osha_construction' | 'company_policy_only' | 'unclear' | 'mixed';
+export type Jurisdiction = 'msha' | 'osha_general_industry' | 'osha_construction' | 'company_policy_only' | 'unclear' | 'mixed' | 'cal_osha' | 'wa_dosh';
 export type ApplicabilityConfidence = 'high' | 'moderate' | 'low' | 'insufficient';
 export type ApplicabilityStatus = 'applicable' | 'likely_applicable' | 'possibly_applicable' | 'not_enough_information' | 'jurisdiction_conflict' | 'company_policy_only';
 
@@ -12,6 +12,7 @@ export interface JurisdictionApplicabilityInput {
   approvedKnowledgeMatches?: any[];
   sourceFreshnessResults?: any;
   context?: any;
+  scenarioFamily?: string;
 }
 
 export interface JurisdictionApplicabilityResult {
