@@ -1,7 +1,7 @@
 {
   "benchmark": "SafeScope Field Realism Pack v2",
   "version": "v1",
-  "generatedAt": "2026-06-05T16:33:44.942Z",
+  "generatedAt": "2026-06-09T21:42:58.597Z",
   "totalCases": 100,
   "passCount": 100,
   "failCount": 0,
@@ -25,11 +25,12 @@
     "emergency_preparedness": 2,
     "excavation_trenching": 3,
     "ground_control": 1,
-    "health_exposure": 3,
+    "health_exposure": 2,
     "environmental_exposure": 1,
     "slip_trip_fall": 3,
     "material_handling": 1,
-    "tools_equipment": 3
+    "tools_equipment": 3,
+    "bloodborne_pathogens": 1
   },
   "jurisdictionDistribution": {
     "msha": 32,
@@ -783,7 +784,7 @@
     {
       "id": "FIELD-V2-OSHA-GI-BLOODBORNE-SHARPS-001",
       "title": "discarded sharp found in restroom",
-      "domain": "health_exposure",
+      "domain": "bloodborne_pathogens",
       "jurisdiction": "osha_general_industry",
       "confidenceLevel": "moderate",
       "status": "pass"

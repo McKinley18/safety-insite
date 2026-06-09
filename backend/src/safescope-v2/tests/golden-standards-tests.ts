@@ -1,17 +1,21 @@
+import 'dotenv/config';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Standard } from '../../standards/entities/standard.entity';
 import { ApplicableStandardsService } from '../../applicable-standards/applicable-standards.service';
 
+const databaseUrl = process.env.DATABASE_URL;
+
 const ds = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'mckinley',
-  password: '',
-  database: 'sentinel_safety',
+  url: databaseUrl || undefined,
+  host: databaseUrl ? undefined : process.env.DB_HOST || 'localhost',
+  port: databaseUrl ? undefined : Number(process.env.DB_PORT || 5432),
+  username: databaseUrl ? undefined : process.env.DB_USERNAME || 'user',
+  password: databaseUrl ? undefined : process.env.DB_PASSWORD || 'password',
+  database: databaseUrl ? undefined : process.env.DB_NAME || 'safescope',
   entities: [Standard],
-  synchronize: false,
+  synchronize: true,
 });
 
 async function run() {
@@ -69,6 +73,16 @@ async function run() {
       console.log(`   Expected: ${test.expectedCitation}`);
       console.log(`   Received: ${matches.map((m) => m.citation).join(', ') || 'no matches'}`);
     }
+  }
+
+  // Verify that cylinder standards are NOT matched for mechanical guarding hazards
+  const mechanicalMatches = await service.suggest('tail pulley missing guard', undefined, 'OSHA_GENERAL_INDUSTRY', 5);
+  const matchedCylinder = mechanicalMatches.some(m => /1910\.253|1910\.101/i.test(m.citation));
+  if (matchedCylinder) {
+    console.log(`❌ Fail: Mechanical hazard matched a cylinder/oxygen standard! Matches: ${mechanicalMatches.map(m => m.citation).join(', ')}`);
+    failed += 1;
+  } else {
+    console.log(`✅ Success: Mechanical hazard does not match cylinder/oxygen standards.`);
   }
 
   console.log('');

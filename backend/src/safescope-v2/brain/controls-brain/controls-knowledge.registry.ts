@@ -310,7 +310,7 @@ export const SAFESCOPE_CONTROLS_BRAIN_REGISTRY: SafeScopeControlBrainRecord[] = 
   {
     controlId: 'control-health-bloodborne-sharps',
     hierarchyLevel: 'engineering' as any,
-    hazardDomains: ['health_exposure'],
+    hazardDomains: ['health_exposure', 'bloodborne_pathogens'],
     mechanisms: ['bloodborne_pathogen_exposure'],
     immediateControl: 'Stop unsafe handling of sharps or contaminated materials and provide proper sharps disposal and PPE.',
     permanentControl: 'Implement exposure control procedures, training, PPE, cleanup supplies, and compliant sharps disposal.',

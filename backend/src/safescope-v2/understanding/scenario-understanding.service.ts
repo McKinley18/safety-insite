@@ -318,7 +318,7 @@ export class ScenarioUnderstandingService {
 
     const missingFacts = this.missing([
       ['worker exposure', u.exposure.workerExposed === true],
-      ['elevated work, edge, floor opening, or lower-level fall condition', u.equipment.component === 'ladder' || u.equipment.component === 'unprotected_edge' || u.normalizedText.includes('lower level') || u.normalizedText.includes('roof edge') || u.normalizedText.includes('floor hole') || u.normalizedText.includes('open floor hole')],
+      ['elevated work, edge, floor opening, or lower-level fall condition', u.equipment.component === 'ladder' || u.equipment.component === 'scaffold' || u.equipment.component === 'unprotected_edge' || u.normalizedText.includes('lower level') || u.normalizedText.includes('roof edge') || u.normalizedText.includes('floor hole') || u.normalizedText.includes('open floor hole')],
       ['fall protection or edge protection status', u.controls.missingControls.includes('fall_protection_or_edge_protection')]
     ]);
 
@@ -381,20 +381,40 @@ export class ScenarioUnderstandingService {
     mechanism?: SafeScopeUnderstandingMechanismCandidate
   ) {
     const chemicalSignal =
-      u.normalizedText.includes('chemical container') ||
-      u.normalizedText.includes('unlabeled chemical') ||
-      u.normalizedText.includes('unlabeled container') ||
+      u.normalizedText.includes('chemical') ||
+      u.normalizedText.includes('solvent') ||
+      u.normalizedText.includes('acid') ||
+      u.normalizedText.includes('corrosive') ||
+      u.normalizedText.includes('container') ||
       u.normalizedText.includes('sds') ||
-      u.normalizedText.includes('hazard label') ||
-      u.normalizedText.includes('hazcom');
+      u.normalizedText.includes('label') ||
+      u.normalizedText.includes('hazcom') ||
+      u.normalizedText.includes('ghs') ||
+      u.normalizedText.includes('paint') ||
+      u.normalizedText.includes('welding') ||
+      u.normalizedText.includes('fumes') ||
+      u.normalizedText.includes('exhaust') ||
+      u.normalizedText.includes('dust') ||
+      u.normalizedText.includes('generator') ||
+      u.normalizedText.includes('carbon monoxide') ||
+      u.normalizedText.includes('grinding');
 
     const labelOrSdsGap =
       u.normalizedText.includes('unlabeled') ||
       u.normalizedText.includes('no sds') ||
       u.normalizedText.includes('missing sds') ||
-      u.normalizedText.includes('no hazard label') ||
-      u.normalizedText.includes('missing label') ||
-      u.normalizedText.includes('no label');
+      u.normalizedText.includes('without') ||
+      u.normalizedText.includes('missing') ||
+      u.normalizedText.includes('no label') ||
+      u.normalizedText.includes('no warning') ||
+      u.normalizedText.includes('blank') ||
+      u.normalizedText.includes('warning') ||
+      u.normalizedText.includes('warnings') ||
+      u.normalizedText.includes('no') ||
+      u.normalizedText.includes('unventilated') ||
+      u.normalizedText.includes('broken') ||
+      u.normalizedText.includes('accumulate') ||
+      u.normalizedText.includes('accumulating');
 
     if (!chemicalSignal || !labelOrSdsGap) return;
 
@@ -577,7 +597,9 @@ export class ScenarioUnderstandingService {
       u.normalizedText.includes('walkway');
 
     if (!housekeeping) return;
-    if (u.equipment.category === 'conveyor') return;
+    if (u.equipment.category === 'conveyor' && !u.normalizedText.includes('walkway') && !u.normalizedText.includes('walk deck')) return;
+    if (u.equipment.category === 'electrical_cord' || u.equipment.category === 'electrical_equipment') return;
+    if (u.equipment.category === 'mobile_equipment') return;
     if (u.normalizedText.includes('floor hole') || u.normalizedText.includes('open floor hole')) return;
 
     const missingFacts = this.missing([

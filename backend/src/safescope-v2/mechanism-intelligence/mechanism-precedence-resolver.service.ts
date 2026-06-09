@@ -43,6 +43,28 @@ export class SafeScopeMechanismPrecedenceResolverService {
     }
 
     /*
+     * P1C: Disambiguate mobile equipment (e.g. telehandler, loader, haul truck, forklift)
+     * from machine guarding or LOTO. Struck-by or pedestrian-strike mobile equipment mechanisms
+     * must outrank generic machinery guarding or LOTO when mobile vehicles and vehicle-traffic/visibility/edge
+     * hazards are central.
+     */
+    if (
+      input.hazardDomain === 'mobile_equipment' &&
+      includesAny(text, ['loader', 'haul truck', 'telehandler', 'forklift', 'skid steer', 'backhoe']) &&
+      (includesAny(text, ['guard', 'guarding', 'lockout', 'loto', 'energy control']) ||
+       input.currentMechanismId === 'unexpected_startup' ||
+       input.currentMechanismId === 'rotating_equipment')
+    ) {
+      reasonCodes.push('mobile-equipment-versus-stationary-guarding-disambiguation-precedence');
+      return {
+        mechanismId: includesAny(text, ['pedestrian', 'pedestrians', 'foot']) ? 'pedestrian_strike' : 'struck_by',
+        reasonCodes,
+        confidenceImpact: 'increase',
+        humanReviewRecommended: true,
+      };
+    }
+
+    /*
      * Escapeway / emergency egress obstructions must outrank generic
      * housekeeping, storage, or unexpected-startup interpretations.
      */

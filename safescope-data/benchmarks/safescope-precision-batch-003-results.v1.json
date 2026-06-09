@@ -1,7 +1,7 @@
 {
   "version": "v1",
   "batch": "003",
-  "generatedAt": "2026-06-08T01:08:03.413Z",
+  "generatedAt": "2026-06-09T22:02:35.619Z",
   "summary": {
     "total": 10,
     "metrics": {
@@ -79,10 +79,11 @@
       },
       "confidence": 0.47,
       "scenarioReasoning": [
-        "Matched against scenario family: Exposed rotating shaft"
+        "Matched against scenario family: Unsafe ladder setup or access"
       ],
       "evidenceGaps": [
-        "access control"
+        "ladder securement",
+        "extension height"
       ]
     },
     {
@@ -454,10 +455,12 @@
       },
       "confidence": 0.46,
       "scenarioReasoning": [
-        "Matched against scenario family: Exposed rotating shaft"
+        "Inferred from fused operational reasoning and observation."
       ],
       "evidenceGaps": [
-        "access control"
+        "No photo evidence is attached.",
+        "No supplemental evidence notes are available.",
+        "Location or equipment context is limited."
       ]
     },
     {
@@ -561,12 +564,10 @@
       },
       "confidence": 0.47,
       "scenarioReasoning": [
-        "Inferred from fused operational reasoning and observation."
+        "Matched against scenario family: Exposed rotating shaft"
       ],
       "evidenceGaps": [
-        "No photo evidence is attached.",
-        "No supplemental evidence notes are available.",
-        "Location or equipment context is limited."
+        "access control"
       ]
     }
   ]

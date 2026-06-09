@@ -6169,15 +6169,15 @@
       "mechanism": "bloodborne_pathogen_exposure"
     },
     "native": {
-      "domain": "health_exposure",
+      "domain": "bloodborne_pathogens",
       "citation": "29 CFR 1910.1030",
       "mechanism": "bloodborne_pathogen_exposure"
     },
     "brain": {
       "citation": "29 CFR 1910.1030",
       "mechanism": "bloodborne_pathogen_exposure",
-      "evidenceQuestionCount": 4,
-      "controlCount": 12,
+      "evidenceQuestionCount": 1,
+      "controlCount": 5,
       "alignmentNotes": [
         "Brain snapshot is read-only situational awareness.",
         "Brain snapshot does not create citations, declare violations, override regulations, or bypass qualified review."
@@ -6196,13 +6196,12 @@
           "compartment": "regulatory_brain",
           "topRecordId": "reg-osha-1910-1030-bloodborne",
           "topLabel": "29 CFR 1910.1030",
-          "topScore": 174,
+          "topScore": 144,
           "matchCount": 5,
           "reasonCodes": [
             "jurisdiction-match",
             "industry-scope-match",
             "mine-scope-match",
-            "hazard-domain-match",
             "mechanism-match",
             "citation-exact-match",
             "trigger:blood",
@@ -6214,11 +6213,10 @@
           "compartment": "mechanism_brain",
           "topRecordId": "bloodborne_pathogen_exposure",
           "topLabel": "Bloodborne pathogen exposure",
-          "topScore": 201,
+          "topScore": 176,
           "matchCount": 5,
           "reasonCodes": [
             "exact-mechanism-id-match",
-            "hazard-domain-match",
             "mechanism-label-text-match",
             "trigger-term-match:blood|sharps|cleanup kit",
             "evidence-question-context-match"
@@ -6229,7 +6227,7 @@
           "topRecordId": "control-health-bloodborne-sharps",
           "topLabel": "Stop unsafe handling of sharps or contaminated materials and provide proper sharps disposal and PPE.",
           "topScore": 130,
-          "matchCount": 4,
+          "matchCount": 1,
           "reasonCodes": [
             "hazard-domain-match",
             "mechanism-match",
@@ -6240,13 +6238,14 @@
           "compartment": "evidence_brain",
           "topRecordId": "evidence-health-bloodborne-sharps",
           "topLabel": "What sharps, blood/bodily fluid exposure, exposure control plan, PPE, disposal, and training evidence support the finding?",
-          "topScore": 104,
+          "topScore": 110,
           "matchCount": 5,
           "reasonCodes": [
             "hazard-domain-match",
             "mechanism-match",
             "critical-evidence-priority",
             "text-match-health_exposure",
+            "text-match-bloodborne_pathogens",
             "text-match-bloodborne_pathogen_exposure",
             "semantic-evidence-text-match"
           ]
@@ -6266,11 +6265,10 @@
           "compartment": "evidence_gap_intelligence",
           "topRecordId": "chemical-identity-and-sds-confirmation",
           "topLabel": "Chemical identity and SDS confirmation",
-          "topScore": 55,
+          "topScore": 25,
           "matchCount": 5,
           "reasonCodes": [
             "jurisdiction-match",
-            "hazard-domain-match",
             "trigger:container",
             "missing-evidence:container"
           ]
@@ -6312,9 +6310,10 @@
       "confidence": "low",
       "humanReviewRecommended": true
     },
-    "score": 100,
-    "result": "pass",
+    "score": 85,
+    "result": "review",
     "notes": [
+      "Native domain mismatch: expected health_exposure, got bloodborne_pathogens.",
       "No scenario disambiguation selection was returned."
     ]
   },

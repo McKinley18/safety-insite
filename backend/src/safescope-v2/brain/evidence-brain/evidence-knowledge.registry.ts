@@ -297,7 +297,7 @@ export const SAFESCOPE_EVIDENCE_BRAIN_REGISTRY: SafeScopeEvidenceBrainRecord[] =
   },
   {
     evidenceId: 'evidence-health-bloodborne-sharps',
-    hazardDomains: ['health_exposure'],
+    hazardDomains: ['health_exposure', 'bloodborne_pathogens'],
     mechanisms: ['bloodborne_pathogen_exposure'],
     question: 'What sharps, blood/bodily fluid exposure, exposure control plan, PPE, disposal, and training evidence support the finding?',
     importance: 'critical',

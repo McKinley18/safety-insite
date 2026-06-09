@@ -12,6 +12,7 @@
 
 | Domain | Count |
 |---|---:|
+| bloodborne_pathogens | 1 |
 | confined_space | 2 |
 | cranes_rigging_hoisting | 4 |
 | electrical | 5 |
@@ -22,7 +23,7 @@
 | fire_protection | 1 |
 | ground_control | 1 |
 | hazardous_materials | 6 |
-| health_exposure | 3 |
+| health_exposure | 2 |
 | health_respiratory | 4 |
 | machine_guarding | 8 |
 | machine_guarding_loto | 5 |
@@ -154,7 +155,7 @@ No failed or weak cases identified.
 | FIELD-V2-OSHA-GI-ROBOT-CELL-GATE-BYPASS-001 | robot cell gate bypass rumor without confirmation | unknown | osha_general_industry | high | pass |  |
 | FIELD-V2-OSHA-GI-ERGONOMICS-REPETITIVE-LIFT-001 | repetitive lifting complaint with missing weight data | unknown | osha_general_industry | moderate | pass |  |
 | FIELD-V2-OSHA-GI-RESPIRATOR-VOLUNTARY-USE-001 | voluntary respirator use with unclear exposure basis | slip_trip_fall | osha_general_industry | high | pass |  |
-| FIELD-V2-OSHA-GI-BLOODBORNE-SHARPS-001 | discarded sharp found in restroom | health_exposure | osha_general_industry | moderate | pass |  |
+| FIELD-V2-OSHA-GI-BLOODBORNE-SHARPS-001 | discarded sharp found in restroom | bloodborne_pathogens | osha_general_industry | moderate | pass |  |
 | FIELD-V2-OSHA-GI-POWERED-DOOR-CRUSH-POINT-001 | powered overhead door crush point uncertainty | machine_guarding | osha_general_industry | high | pass |  |
 | FIELD-V2-JURISDICTION-RAIL-SPUR-MINE-PLANT-001 | rail spur near mine plant with jurisdiction uncertainty | unknown | msha | moderate | pass |  |
 | FIELD-V2-JURISDICTION-PUBLIC-ROAD-HAUL-TRUCK-001 | haul truck crossing public road with jurisdiction uncertainty | mobile_equipment | msha | moderate | pass |  |

@@ -32,6 +32,13 @@ export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
   },
   {
     jurisdiction: 'osha_general_industry',
+    domain: 'bloodborne_pathogens' as SafeScopeReasoningDomain,
+    primaryCitation: '29 CFR 1910.1030',
+    acceptableCitations: ['29 CFR 1910.1030'],
+    rationale: 'Bloodborne pathogen exposure control requirements for sharps or bodily-fluid exposure.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
     domain: 'material_handling',
     primaryCitation: '29 CFR 1910.101(b)',
     acceptableCitations: ['29 CFR 1910.101(b)', '29 CFR 1910.101'],

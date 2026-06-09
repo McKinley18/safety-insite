@@ -264,5 +264,17 @@ export const SAFESCOPE_HAZARD_UNIVERSE_REGISTRY: SafeScopeHazardUniverseRecord[]
     expectedEvidenceThemes: ['noise measurements', 'duration', 'hearing protection use', 'audiometric/program records'],
     typicalScenarioExamples: ['high-noise crusher area', 'jackhammer operation', 'uncontrolled noise exposure'],
     notes: ['Needs measurement/evidence-heavy reasoning.']
+  },
+  {
+    hazardUniverseId: 'bloodborne-pathogens-sharps',
+    label: 'Bloodborne pathogens and contaminated sharps exposure',
+    domain: 'bloodborne_pathogens',
+    priority: 'high',
+    expectedMechanisms: ['needlestick', 'contact_with_blood_opim'],
+    expectedRegulatoryFamilies: ['OSHA bloodborne pathogens'],
+    expectedControlThemes: ['sharps container', 'PPE', 'trained cleanup', 'exposure control plan', 'disinfect/decontaminate'],
+    expectedEvidenceThemes: ['contaminated needle/sharp', 'cleanup kit available', 'puncture-resistant containers', 'trained staff assigned'],
+    typicalScenarioExamples: ['used/discarded needle found in public area or restroom'],
+    notes: ['Critical OSHA general industry compliance and field realism pack focus.']
   }
 ];

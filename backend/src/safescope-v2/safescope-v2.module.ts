@@ -18,6 +18,7 @@ import { SupervisorValidationController } from "./validation/supervisor-validati
 import { SafeScopeAuditRecordEntity } from "./persistence/audit-record.entity";
 import { SafeScopePersistenceService } from "./persistence/persistence.service";
 import { SafeScopePersistenceController } from "./persistence/persistence.controller";
+import { CryptographicAuditService } from "./persistence/cryptographic-audit.service";
 import { SafeScopeKnowledgeModule } from "../safescope-knowledge/safescope-knowledge.module";
 import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
 import { Standard } from "../standards/entities/standard.entity";
@@ -38,6 +39,7 @@ import { SourceFreshnessGovernanceService } from "./source-freshness-governance/
 import { JurisdictionApplicabilityDecisionTreeService } from "./jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service";
 import { AuditReadyReasoningTraceService } from "./audit-ready-reasoning-trace/audit-ready-reasoning-trace.service";
 import { SemanticSynonymExpansionService } from "./semantic-synonym-expansion/semantic-synonym-expansion.service";
+import { SemanticVectorSearchService } from "./semantic-vector-search/semantic-vector-search.service";
 import { VisualEvidenceReasoningService } from "./visual-evidence-reasoning/visual-evidence-reasoning.service";
 import { RealImageAnalysisService } from "./real-image-analysis/real-image-analysis.service";
 import { ApprovedKnowledgeRetrievalOutputV1Service } from "./approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service";
@@ -49,6 +51,7 @@ import { SourceIngestionApprovedUpdateWorkflowService } from "./source-ingestion
 import { RoleBasedApprovalGatesService } from "./role-based-approval-gates/role-based-approval-gates.service";
 import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/workspace-governance-access.service";
 import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.service";
+import { RegulatoryCrawlerService } from "./regulatory-crawler/regulatory-crawler.service";
 
 // SafeScope Intelligence Orchestrator and dependencies
 import { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
@@ -56,6 +59,7 @@ import { ConfidenceIntelligenceService } from "./confidence/confidence-intellige
 import { ConfidenceGovernanceService } from "./confidence-governance/confidence-governance.service";
 import { TrendIntelligenceService } from "./trend-intelligence/trend-intelligence.service";
 import { OperationalReasoningService } from "./reasoning/operational-reasoning.service";
+import { MultidisciplinaryExpertService } from "./multidisciplinary-expert/multidisciplinary-expert.service";
 import { ControlIntelligenceService } from "./control-intelligence/control-intelligence.service";
 import { DecisionExplainabilityService } from "./explainability/decision-explainability.service";
 import { EvidenceQualityService } from "./evidence-quality/evidence-quality.service";
@@ -144,6 +148,7 @@ import { ExecutiveJudgmentService } from "./executive-judgment/executive-judgmen
     SupervisorValidationService,
     ReviewerCandidateConsoleService,
     SafeScopePersistenceService,
+    CryptographicAuditService,
     HazardTaxonomyCoverageService,
     ApprovedKnowledgeRegistrySearchService,
     ScenarioExpansionService,
@@ -159,6 +164,7 @@ import { ExecutiveJudgmentService } from "./executive-judgment/executive-judgmen
     JurisdictionApplicabilityDecisionTreeService,
     AuditReadyReasoningTraceService,
     SemanticSynonymExpansionService,
+    SemanticVectorSearchService,
     VisualEvidenceReasoningService,
     RealImageAnalysisService,
     ApprovedKnowledgeRetrievalOutputV1Service,
@@ -166,11 +172,13 @@ import { ExecutiveJudgmentService } from "./executive-judgment/executive-judgmen
     RoleBasedApprovalGatesService,
     WorkspaceGovernanceAccessService,
     OfflineReasoningMobileResilienceService,
+    RegulatoryCrawlerService,
     SafeScopeIntelligenceOrchestrator,
     ConfidenceIntelligenceService,
     ConfidenceGovernanceService,
     TrendIntelligenceService,
     OperationalReasoningService,
+    MultidisciplinaryExpertService,
     ControlIntelligenceService,
     DecisionExplainabilityService,
     EvidenceQualityService,

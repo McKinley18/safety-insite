@@ -112,6 +112,7 @@ export default function ReviewerCandidateConsole() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
+  const [reviewerNotes, setReviewerNotes] = useState<string>('');
   
   // Hardened Auth State
   const [currentUserRole, setCurrentUserRole] = useState<SafeScopeRole>('admin');
@@ -339,7 +340,7 @@ export default function ReviewerCandidateConsole() {
                 <EmptyState title="No candidates found" description="No candidates match selected filters." />
                 ) : (
                 filteredCandidates.map(c => (
-                    <div key={c.candidateId} onClick={() => setSelectedCandidate(c)}>
+                    <div key={c.candidateId} onClick={() => { setSelectedCandidate(c); setReviewerNotes(''); }}>
                     <SentinelCard 
                         interactive 
                         className={`p-4 border-l-4 ${selectedCandidate?.candidateId === c.candidateId ? 'border-l-blue-600 bg-blue-50/50' : 'border-l-transparent'}`}
@@ -399,25 +400,36 @@ export default function ReviewerCandidateConsole() {
                     </div>
                     </div>
 
+                    <div className="mb-8">
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Reviewer Notes / Rationale</h4>
+                        <textarea
+                          className="w-full text-sm p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-slate-800"
+                          placeholder="Provide professional notes or rationale for this action..."
+                          rows={3}
+                          value={reviewerNotes}
+                          onChange={(e) => setReviewerNotes(e.target.value)}
+                        />
+                    </div>
+
                     <div className="flex gap-3 pt-6 border-t border-slate-100">
                     <AppButton 
                         variant="primary" 
                         disabled={!canPromote || selectedCandidate.status === 'approved_for_promotion' || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
-                        onClick={() => handleAction(selectedCandidate.candidateId, 'approve')}
+                        onClick={() => { handleAction(selectedCandidate.candidateId, 'approve', reviewerNotes); setReviewerNotes(''); }}
                     >
                         Approve & Promote
                     </AppButton>
                     <AppButton 
                         variant="secondary"
                         disabled={!canManage || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
-                        onClick={() => handleAction(selectedCandidate.candidateId, 'request-info', 'Reviewer requested more info.')}
+                        onClick={() => { handleAction(selectedCandidate.candidateId, 'request-info', reviewerNotes || 'Reviewer requested more info.'); setReviewerNotes(''); }}
                     >
                         Request Info
                     </AppButton>
                     <AppButton 
                         variant="danger"
                         disabled={!canManage || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
-                        onClick={() => handleAction(selectedCandidate.candidateId, 'block', 'Reviewer blocked for safety/compliance.')}
+                        onClick={() => { handleAction(selectedCandidate.candidateId, 'block', reviewerNotes || 'Reviewer blocked for safety/compliance.'); setReviewerNotes(''); }}
                     >
                         Block
                     </AppButton>

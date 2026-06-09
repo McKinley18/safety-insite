@@ -27,6 +27,7 @@ export type SafeScopeReasoningDomain =
   | 'ventilation'
   | 'roof_rib_control'
   | 'health_exposure'
+  | 'bloodborne_pathogens'
   | 'environmental_exposure'
   | 'ergonomics'
   | 'health_respiratory'

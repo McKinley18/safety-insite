@@ -3674,7 +3674,6 @@
         "photo/observation of correct PPE use",
         "training or supervisor verification",
         "Gather additional facts and assign qualified review.",
-        "Perform exposure sampling or equivalent exposure monitoring before making high-confidence health-exposure conclusions.",
         "What exposure requires PPE, what PPE is required, what PPE is worn or missing, and are higher-level controls also needed?"
       ],
       "evidenceGaps": [
@@ -4168,28 +4167,14 @@
         "sharps container photo",
         "exposure control plan",
         "training record",
-        "Restrict dust-generating work until exposure controls are verified.",
-        "Use wet methods, dust collection, exposure control methods, respiratory protection where required, and employee training.",
-        "silica control verification",
-        "exposure control method documentation",
-        "respiratory protection evaluation where required",
-        "Move affected workers to recovery, provide cooling or warming support, and adjust work based on symptoms and exposure conditions.",
-        "Measure environmental stressors, implement work/rest cycles, acclimatization or warming/cooling plans, hydration or dry clothing provisions, supervisor monitoring, and emergency response.",
         "Gather additional facts and assign qualified review.",
-        "Perform exposure sampling or equivalent exposure monitoring before making high-confidence health-exposure conclusions.",
-        "What sharps, blood/bodily fluid exposure, exposure control plan, PPE, disposal, and training evidence support the finding?",
-        "What task generates dust, what material is involved, what engineering controls are used, and are exposure measurements or Table 1/control-method details available?",
-        "What temperature, humidity/WBGT, wind chill, workload, PPE burden, exposure duration, acclimatization, recovery controls, and symptoms are present?",
-        "What noise source, measured sound level or dose, exposure duration, employee proximity, hearing protection, and hearing conservation program status are known?"
+        "What sharps, blood/bodily fluid exposure, exposure control plan, PPE, disposal, and training evidence support the finding?"
       ],
       "evidenceGaps": [
         "What sharps, blood/bodily fluid exposure, exposure control plan, PPE, disposal, and training evidence support the finding?",
-        "What task generates dust, what material is involved, what engineering controls are used, and are exposure measurements or Table 1/control-method details available?",
-        "What temperature, humidity/WBGT, wind chill, workload, PPE burden, exposure duration, acclimatization, recovery controls, and symptoms are present?",
-        "What noise source, measured sound level or dose, exposure duration, employee proximity, hearing protection, and hearing conservation program status are known?",
         "What chemical is involved, is the container labeled, is an SDS available, and what hazard class or exposure route applies?",
-        "What contaminant is suspected, how are employees exposed, what ventilation or respiratory controls are present, and are measurements or sampling available?",
         "What emergency equipment or egress path is affected, how is access blocked or limited, and is the equipment inspected and immediately usable?",
+        "What contaminant is suspected, how are employees exposed, what ventilation or respiratory controls are present, and are measurements or sampling available?",
         "What moving part is exposed, how can employees access it during normal work, and is the guard missing, damaged, or inadequate?",
         "What task was being performed, what energy sources were present, were they locked out, and was zero-energy verification completed?"
       ],
@@ -4204,7 +4189,7 @@
       }
     },
     "native": {
-      "hazardFamily": "health_exposure",
+      "hazardFamily": "bloodborne_pathogens",
       "hazardMechanism": "bloodborne_pathogen_exposure",
       "primaryCitation": "29 CFR 1910.1030",
       "confidence": "moderate"
@@ -4218,20 +4203,10 @@
         "Implement exposure control procedures, training, PPE, cleanup supplies, and compliant sharps disposal.",
         "sharps container photo",
         "exposure control plan",
-        "training record",
-        "Restrict dust-generating work until exposure controls are verified.",
-        "Use wet methods, dust collection, exposure control methods, respiratory protection where required, and employee training.",
-        "silica control verification",
-        "exposure control method documentation",
-        "respiratory protection evaluation where required",
-        "Move affected workers to recovery, provide cooling or warming support, and adjust work based on symptoms and exposure conditions.",
-        "Measure environmental stressors, implement work/rest cycles, acclimatization or warming/cooling plans, hydration or dry clothing provisions, supervisor monitoring, and emergency response."
+        "training record"
       ],
       "criticalEvidenceQuestions": [
-        "What sharps, blood/bodily fluid exposure, exposure control plan, PPE, disposal, and training evidence support the finding?",
-        "What task generates dust, what material is involved, what engineering controls are used, and are exposure measurements or Table 1/control-method details available?",
-        "What temperature, humidity/WBGT, wind chill, workload, PPE burden, exposure duration, acclimatization, recovery controls, and symptoms are present?",
-        "What noise source, measured sound level or dose, exposure duration, employee proximity, hearing protection, and hearing conservation program status are known?"
+        "What sharps, blood/bodily fluid exposure, exposure control plan, PPE, disposal, and training evidence support the finding?"
       ],
       "evidenceGapDisposition": "hold_for_critical_evidence",
       "evidenceGapHighestSeverity": "critical",

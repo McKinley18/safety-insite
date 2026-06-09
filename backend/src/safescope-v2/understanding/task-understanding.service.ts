@@ -8,7 +8,7 @@ export class TaskUnderstandingService {
     let workerRole = 'unknown';
 
     const taskMap: Array<{ type: SafeScopeTaskType; activity: string; terms: string[] }> = [
-      { type: 'cleanup', activity: 'cleanup', terms: ['cleanup', 'cleaning', 'shoveling', 'clearing spillage', 'clear spillage', 'spilled material', 'housekeeping'] },
+      { type: 'cleanup', activity: 'cleanup', terms: ['cleanup', 'cleaning', 'shoveling', 'shovel', 'shovels', 'clearing', 'clear', 'scraper', 'scraping', 'spillage', 'spilled', 'muck', 'housekeeping'] },
       { type: 'maintenance', activity: 'maintenance', terms: ['maintenance', 'repair', 'servicing', 'adjusting', 'clearing jam', 'jammed'] },
       { type: 'inspection', activity: 'inspection', terms: ['inspection', 'inspecting', 'examining', 'walkaround'] },
       { type: 'operation', activity: 'operation', terms: ['operation', 'operating', 'operator', 'running equipment'] },

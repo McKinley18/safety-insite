@@ -1,16 +1,20 @@
+import 'dotenv/config';
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Standard } from '../../standards/entities/standard.entity';
 
+const databaseUrl = process.env.DATABASE_URL;
+
 const ds = new DataSource({
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'mckinley',
-  password: '',
-  database: 'sentinel_safety',
+  url: databaseUrl || undefined,
+  host: databaseUrl ? undefined : process.env.DB_HOST || 'localhost',
+  port: databaseUrl ? undefined : Number(process.env.DB_PORT || 5432),
+  username: databaseUrl ? undefined : process.env.DB_USERNAME || 'user',
+  password: databaseUrl ? undefined : process.env.DB_PASSWORD || 'password',
+  database: databaseUrl ? undefined : process.env.DB_NAME || 'safescope',
   entities: [Standard],
-  synchronize: false,
+  synchronize: true,
 });
 
 const standards: Partial<Standard>[] = [

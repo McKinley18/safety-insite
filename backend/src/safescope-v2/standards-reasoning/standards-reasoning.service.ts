@@ -1,4 +1,10 @@
+import { Injectable } from '@nestjs/common';
+import { ReputableSourceGuidanceResolver } from './reputable-source-guidance.resolver';
+
+@Injectable()
 export class StandardsReasoningService {
+  private readonly reputableResolver = new ReputableSourceGuidanceResolver();
+
   evaluate(input: {
     classification: string;
     standards?: any[];
@@ -33,12 +39,26 @@ export class StandardsReasoningService {
       );
 
       defensibilityScore += domainBoost;
+
+      // Dynamic Reputable Sources Integration
+      const supplement = this.reputableResolver.resolve(
+        standard.citation || '',
+        input.classification,
+      );
+
+      let reputableReasoning = '';
+      if (supplement) {
+        defensibilityScore += 0.06; // Boost score for reputable support
+        reputableReasoning = ` (Supported by high-authority consensus standard: ${supplement.agency} - ${supplement.standard})`;
+      }
+
       defensibilityScore = Math.min(0.99, Number(defensibilityScore.toFixed(2)));
 
       return {
         ...standard,
         defensibilityScore,
         domainBoost,
+        reputableSupplement: supplement || undefined,
         applicabilityConfidence:
           defensibilityScore >= 0.85
             ? "high"
@@ -46,9 +66,9 @@ export class StandardsReasoningService {
               ? "medium"
               : "low",
         reasoning:
-          domainBoost > 0
+          (domainBoost > 0
             ? `Standard matched using operational context plus specialized domain intelligence.`
-            : `Standard matched using hazard classification, operational context, exposure pathways, and contextual risk indicators.`,
+            : `Standard matched using hazard classification, operational context, exposure pathways, and contextual risk indicators.`) + reputableReasoning,
       };
     });
 
@@ -60,7 +80,7 @@ export class StandardsReasoningService {
       topDefensible,
       summary:
         topDefensible.length
-          ? "Standards ranked using operational defensibility analysis."
+          ? "Standards ranked using operational defensibility analysis backed by reputable sources."
           : "No defensible standards identified.",
     };
   }

@@ -195,7 +195,7 @@ export class SafeScopeReasoningOrchestratorService {
     }
 
     if (
-      hazardClassification.primaryDomain === 'health_exposure' &&
+      (hazardClassification.primaryDomain === 'health_exposure' || hazardClassification.primaryDomain === 'bloodborne_pathogens') &&
       includesAny(normalized(combined), [
         'bloodborne',
         'blood borne',
@@ -618,6 +618,11 @@ export class SafeScopeReasoningOrchestratorService {
 
   private assessJurisdiction(text: string): SafeScopeReasoningResult['jurisdictionAssessment'] {
     const reasons: string[] = [];
+    const holdReason = this.getJurisdictionHoldReason(text);
+
+    if (holdReason) {
+      reasons.push(`Jurisdiction hold: ${holdReason}`);
+    }
 
     if (includesAny(text, ['mine', 'quarry', 'pit', 'plant', 'crusher', 'screening plant', 'haul truck', 'highwall', 'berm'])) {
       reasons.push('Mining or aggregate-site terms were detected.');
@@ -1208,7 +1213,7 @@ export class SafeScopeReasoningOrchestratorService {
         'cleanup kit',
       ])
     ) {
-      return 'health_exposure';
+      return 'bloodborne_pathogens';
     }
 
     // remaining-failures hardening domain guard
@@ -1558,7 +1563,7 @@ export class SafeScopeReasoningOrchestratorService {
     ].join(' '));
 
     if (
-      domain === 'health_exposure' &&
+      (domain === 'health_exposure' || domain === 'bloodborne_pathogens') &&
       includesAny(healthExposureText, [
         'bloodborne',
         'blood borne',

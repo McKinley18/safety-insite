@@ -111,7 +111,47 @@ export class SafescopeV2Service {
       ]);
       const fusedText = evidenceFusion.combinedNarrative;
       const result = this.classifier.classify(fusedText);
-      const promotedPrimary = result;
+      const promotedPrimary = result as any;
+
+      // Calculate risk using the risk engine
+      const risk = evaluateRisk({
+        text: fusedText,
+        classification: promotedPrimary.classification,
+        riskProfileId: riskProfileId || "standard_5x5",
+      });
+      promotedPrimary.risk = risk;
+
+      // Suggest standards using the applicable standards service
+      const source = this.scopeToSource(scopes);
+      const suggestedStandards = await this.applicableStandards.suggest(
+        fusedText,
+        promotedPrimary.classification,
+        source,
+        5,
+      );
+
+      // Generate corrective actions using the action engine
+      const actionInput: any = {
+        id: "safescope-v2-eval-" + Date.now(),
+        category: promotedPrimary.classification || "General",
+        description: fusedText,
+        riskScore: risk?.riskScore || 0,
+        riskLevel: (risk?.riskBand || "LOW") as any,
+        confidence: promotedPrimary.confidence || 0.5,
+        patterns: [],
+        location: "Field Location",
+        override: false,
+        safeScope: {
+          classification: promotedPrimary.classification,
+          riskBand: (risk?.riskBand || "Low") as any,
+          requiresShutdown: risk?.requiresShutdown,
+          imminentDanger: risk?.imminentDanger,
+          fatalityPotential: risk?.fatalityPotential ? "high" : "low",
+          reasoning: risk?.reasoning || [],
+          standards: suggestedStandards.map(s => ({ citation: s.citation, rationale: s.matchingReasons?.join(", ") })),
+        }
+      };
+      const generatedActions = await this.actionEngine.generateActionsFromReport(actionInput);
 
       const intelligence = await this.intelligenceOrchestrator.evaluate({
         fusedText,
@@ -120,8 +160,8 @@ export class SafescopeV2Service {
         evidenceTexts,
         visualAttachments,
         expandedContext: {},
-        primaryStandardsResult: { suggestedStandards: [] },
-        generatedActions: [],
+        primaryStandardsResult: { suggestedStandards },
+        generatedActions,
         additionalHazards: [],
         priorFindings,
         workspaceId: workspaceId || user?.workspaceId,
@@ -131,6 +171,8 @@ export class SafescopeV2Service {
       return {
           ...promotedPrimary,
           ...intelligence,
+          suggestedStandards,
+          generatedActions,
           fieldOutput: (intelligence as any).fieldOutput,
           semanticUnderstanding: (intelligence as any).semanticUnderstanding,
           semanticRouting: (intelligence as any).semanticRouting,
@@ -146,6 +188,69 @@ export class SafescopeV2Service {
       return undefined;
     if (scopes.includes("msha_mnm_surface")) return "MSHA_MNM_SURFACE";
     if (scopes.includes("msha_mnm_underground")) return "MSHA_MNM_UNDERGROUND";
+    if (scopes.includes("msha_coal_underground")) return "MSHA_COAL_UNDERGROUND";
+    if (scopes.includes("msha_coal_surface")) return "MSHA_COAL_SURFACE";
+    if (scopes.includes("osha_general")) return "OSHA_GENERAL_INDUSTRY";
+    if (scopes.includes("osha_construction")) return "OSHA_CONSTRUCTION";
     return undefined;
+  }
+
+  applyStandardsScopeFit(standards: any[], scopes: string[]) {
+    return standards.map(standard => {
+      const citation = standard.citation || '';
+      let scopeFit = 'neutral';
+      let scopeFitAdjustment = 0;
+      const reasons = [...(standard.matchingReasons || [])];
+
+      if (scopes.includes('msha_mnm_surface')) {
+        if (citation.startsWith('30 CFR 56.')) {
+          scopeFit = 'preferred';
+          scopeFitAdjustment = 50;
+          reasons.push('preferred MSHA Part 56');
+        } else if (citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
+          scopeFit = 'mismatch';
+          scopeFitAdjustment = -100;
+          reasons.push('MSHA Part mismatch');
+        }
+      } else if (scopes.includes('msha_mnm_underground')) {
+        if (citation.startsWith('30 CFR 57.')) {
+          scopeFit = 'preferred';
+          scopeFitAdjustment = 50;
+          reasons.push('preferred MSHA Part 57');
+        } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
+          scopeFit = 'mismatch';
+          scopeFitAdjustment = -100;
+          reasons.push('MSHA Part mismatch');
+        }
+      } else if (scopes.includes('msha_coal_underground')) {
+        if (citation.startsWith('30 CFR 75.')) {
+          scopeFit = 'preferred';
+          scopeFitAdjustment = 50;
+          reasons.push('preferred MSHA Part 75');
+        } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 77.')) {
+          scopeFit = 'mismatch';
+          scopeFitAdjustment = -100;
+          reasons.push('MSHA Part mismatch');
+        }
+      } else if (scopes.includes('msha_coal_surface')) {
+        if (citation.startsWith('30 CFR 77.')) {
+          scopeFit = 'preferred';
+          scopeFitAdjustment = 50;
+          reasons.push('preferred MSHA Part 77');
+        } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 75.')) {
+          scopeFit = 'mismatch';
+          scopeFitAdjustment = -100;
+          reasons.push('MSHA Part mismatch');
+        }
+      }
+
+      return {
+        ...standard,
+        score: (standard.score || 0) + scopeFitAdjustment,
+        scopeFit,
+        scopeFitAdjustment,
+        matchingReasons: reasons
+      };
+    });
   }
 }

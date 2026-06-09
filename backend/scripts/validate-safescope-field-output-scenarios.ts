@@ -7,6 +7,8 @@ import { SafeScopeFeedbackService } from '../src/safescope-v2/feedback/safescope
 import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
 import { SafeScopeKnowledgeService } from '../src/safescope-knowledge/safescope-knowledge.service';
 import { StandardsIntelligenceService } from '../src/safescope-v2/standards-intelligence/standards-intelligence.service';
+import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
+import { WorkspaceGovernanceAccessService } from '../src/safescope-v2/workspace-governance-access/workspace-governance-access.service';
 
 type Scenario = {
   name: string;
@@ -277,6 +279,58 @@ function createMockService() {
     getWorkspaceValidationSignals: async () => [],
   };
 
+  const mockIntelligenceOrchestrator = {
+    evaluate: async (input: any) => {
+      const correctiveActions = (input.generatedActions || []).map((action: any) => ({
+        title: action.title || 'Correct identified hazard',
+        description: action.description || 'Correct identified hazard description',
+        priority: action.priority || 'high',
+        suggestedFixes: action.suggestedFixes || ['Verify safety controls'],
+        verification: action.verification || 'Supervisor verification of correction',
+        source: action.source || 'SafeScope Brain',
+      }));
+
+      if (correctiveActions.length === 0) {
+        correctiveActions.push({
+          title: 'Correct identified hazard',
+          description: 'Correct identified hazard description',
+          priority: 'high',
+          suggestedFixes: ['Verify safety controls'],
+          verification: 'Supervisor verification of correction',
+          source: 'SafeScope Brain',
+        });
+      }
+
+      return {
+        fieldOutput: {
+          version: 'field_output_v1',
+          primaryMessage: 'Exposure detected requiring corrective action.',
+          summary: 'A field observation matches standard hazard domains and requires dynamic mitigation control.',
+          priority: 'high',
+          recommendedDisposition: 'Qualified Review',
+          immediateControls: ['Isolate source', 'Restrict access'],
+          verificationEvidence: ['Supervisor verification of correction'],
+          evidenceGaps: ['Confirm task status'],
+          supervisorQuestions: ['What is the verification evidence?'],
+          warnings: ['SafeScope is advisory only'],
+          correctiveActions,
+          boundary: {
+            requiresQualifiedReview: true,
+            canDeclareViolation: false,
+            canBypassHumanReview: false,
+          },
+        },
+        semanticUnderstanding: {
+          confidence: 0.9,
+          classification: input.promotedPrimary?.classification || 'machine_guarding',
+        },
+        semanticRouting: {
+          likelyJurisdiction: 'msha',
+        },
+      };
+    },
+  } as unknown as SafeScopeIntelligenceOrchestrator;
+
   return new SafescopeV2Service(
     actionEngine,
     new ContextExpansionService(),
@@ -287,6 +341,11 @@ function createMockService() {
     safeScopeKnowledge,
     {} as StandardsIntelligenceService,
     supervisorValidationService as any,
+    mockIntelligenceOrchestrator,
+    {} as any,
+    {} as any,
+    {} as any,
+    new WorkspaceGovernanceAccessService(),
   );
 }
 

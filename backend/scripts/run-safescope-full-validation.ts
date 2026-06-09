@@ -112,6 +112,11 @@ const steps: ValidationStep[] = [
     args: ['ts-node', 'scripts/validate-safescope-semantic-synonym-expansion-v1.ts'],
   },
   {
+    label: 'Semantic vector search prototype v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-semantic-vector-search.ts'],
+  },
+  {
     label: 'Visual evidence reasoning v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-visual-evidence-reasoning-v1.ts'],
@@ -130,6 +135,11 @@ const steps: ValidationStep[] = [
     label: 'Production persistence and audit storage v1',
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-production-persistence-audit-storage-v1.ts'],
+  },
+  {
+    label: 'Cryptographic immutable audit trail v1',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-cryptographic-audit-trail.ts'],
   },
   {
     label: 'Full regulatory knowledge expansion v1',
@@ -225,6 +235,26 @@ const steps: ValidationStep[] = [
     label: "Site policy isolation v1",
     command: "npx",
     args: ["ts-node", "scripts/validate-safescope-site-policy-isolation-v1.ts"],
+  },
+  {
+    label: "Temporal hazard memory v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-site-memory-temporal.ts"],
+  },
+  {
+    label: "State plans and regulatory crawler v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-state-plan-and-crawler.ts"],
+  },
+  {
+    label: "Reputable sources guidance engine v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-reputable-sources.ts"],
+  },
+  {
+    label: "Multidisciplinary expert synthesis v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-multidisciplinary-expert.ts"],
   },
   {
     label: "Field test scenario packs v1",

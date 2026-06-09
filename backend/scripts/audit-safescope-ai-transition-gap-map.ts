@@ -20,7 +20,7 @@ async function audit() {
     draftCandidateRecordTotal += pack.records.length;
     
     // Find associated validator: validate-safescope-[packId].ts
-    const packName = file.replace('.v1.json', '');
+    const packName = file.replace('.v1.json', '').replace('.json', '');
     const validatorName = `validate-safescope-${packName}.ts`;
     
     // Some packs have specific validator names not directly mapping to the packId.
@@ -32,7 +32,8 @@ async function audit() {
         'fall-protection-working-at-height-draft-candidates': 'validate-safescope-fall-protection-working-at-height-draft-pack.ts',
         'hazcom-chemical-labeling-sds-draft-candidates': 'validate-safescope-hazcom-chemical-labeling-sds-draft-pack.ts',
         'machine-guarding-conveyor-loto-draft-candidates': 'validate-safescope-machine-guarding-conveyor-loto-draft-pack.ts',
-        'mobile-equipment-pedestrian-traffic-control-draft-candidates': 'validate-safescope-mobile-equipment-pedestrian-draft-pack.ts'
+        'mobile-equipment-pedestrian-traffic-control-draft-candidates': 'validate-safescope-mobile-equipment-pedestrian-draft-pack.ts',
+        'core-expansion-v1': 'validate-safescope-core-regulatory-expansion-v1.ts'
     };
     
     const finalValidatorName = knownMappings[packName] || validatorName;

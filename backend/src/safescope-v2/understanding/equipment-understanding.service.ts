@@ -86,14 +86,16 @@ export class EquipmentUnderstandingService {
 
     if (
       !shaftOrCouplingMachineSignal &&
-      this.hasAny(normalizedText, ['ladder', 'step ladder', 'extension ladder', 'platform', 'elevated work platform', 'unprotected edge'])
+      this.hasAny(normalizedText, ['ladder', 'step ladder', 'extension ladder', 'platform', 'elevated work platform', 'unprotected edge', 'scaffold', 'scaffolding', 'beam', 'steel beam', 'wall plate', 'harness', 'lanyard', 'roof', 'catwalk'])
     ) {
       category = 'fall_protection';
-      specificEquipment = this.firstPresent(normalizedText, ['extension ladder', 'step ladder', 'ladder', 'elevated work platform', 'platform', 'unprotected edge']);
+      specificEquipment = this.firstPresent(normalizedText, ['extension ladder', 'step ladder', 'ladder', 'elevated work platform', 'platform', 'unprotected edge', 'scaffold', 'scaffolding', 'beam', 'steel beam', 'wall plate', 'harness', 'lanyard', 'roof', 'catwalk']);
       component = this.hasAny(normalizedText, ['unprotected edge', 'edge']) ? 'unprotected_edge' : component;
       component = this.hasAny(normalizedText, ['ladder']) ? 'ladder' : component;
-      operationalState = this.hasAny(normalizedText, ['working from', 'climbing', 'standing on', 'near unprotected edge']) ? 'elevated_work' : operationalState;
-      evidence.push('Fall exposure, ladder, platform, or unprotected edge language detected.');
+      component = this.hasAny(normalizedText, ['scaffold', 'scaffolding']) ? 'scaffold' : component;
+      component = this.hasAny(normalizedText, ['harness', 'lanyard']) ? 'personal_fall_arrest' : component;
+      operationalState = this.hasAny(normalizedText, ['working from', 'climbing', 'standing on', 'near unprotected edge', 'feet up', 'lanyard']) ? 'elevated_work' : operationalState;
+      evidence.push('Fall exposure, ladder, platform, scaffold, beam, harness, roof, or unprotected edge language detected.');
     }
 
     if (this.hasAny(normalizedText, ['fire extinguisher', 'extinguisher'])) {

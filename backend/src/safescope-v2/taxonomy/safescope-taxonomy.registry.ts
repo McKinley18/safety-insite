@@ -154,6 +154,25 @@ export const SAFESCOPE_TAXONOMY_REGISTRY: Record<string, TaxonomyEntry> = {
     ],
     description: 'Hazard communication and hazardous material labeling/exposure hazards.'
   },
+  bloodborne_pathogens: {
+    canonical: 'bloodborne_pathogens',
+    aliases: [
+      'bloodborne',
+      'blood borne',
+      'bloodborne pathogens',
+      'blood',
+      'sharps',
+      'sharp',
+      'needle',
+      'discarded needle',
+      'used needle',
+      'needlestick',
+      'exposure control plan',
+      'contaminated materials',
+      'opim'
+    ],
+    description: 'Bloodborne pathogens and contaminated sharps exposure hazards.'
+  },
   confined_space: {
     canonical: 'confined_space',
     aliases: [

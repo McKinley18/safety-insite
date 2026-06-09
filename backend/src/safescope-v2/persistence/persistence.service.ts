@@ -10,11 +10,13 @@ import {
 } from './persistence.types';
 import { SafeScopeAuditRecordEntity } from './audit-record.entity';
 import { UserGovernanceContext } from '../workspace-governance-access/workspace-governance.types';
+import { CryptographicAuditService } from './cryptographic-audit.service';
 
 @Injectable()
 export class SafeScopePersistenceService {
   private readonly persistenceMode: 'file' | 'database';
   private readonly dataPath = path.resolve(__dirname, '../../../../../safescope-data/persistence/audit_records.json');
+  private readonly cryptoSigner = new CryptographicAuditService();
 
   constructor(
     @Optional()
@@ -65,7 +67,16 @@ export class SafeScopePersistenceService {
     if (this.repository && this.persistenceMode === 'database') {
       const entity = this.repository.create(record as any) as any;
       const saved = await this.repository.save(entity);
-      return this.mapEntityToType(saved);
+      const mapped = this.mapEntityToType(saved);
+      
+      // Cryptographically sign the record
+      this.cryptoSigner.signRecord(mapped);
+      
+      // Update entity with signature metadata
+      entity.metadata = mapped.metadata;
+      await this.repository.save(entity);
+      
+      return mapped;
     }
 
     const records = this.loadFromFile();
@@ -75,6 +86,10 @@ export class SafeScopePersistenceService {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
+
+    // Cryptographically sign before writing to file
+    this.cryptoSigner.signRecord(newRecord);
+
     records.push(newRecord);
     this.saveToFile(records);
     return newRecord;
@@ -86,6 +101,8 @@ export class SafeScopePersistenceService {
     }
     const effectiveWorkspaceId = user?.workspaceId || filter.workspaceId;
 
+    let results: SafeScopeAuditRecord[] = [];
+
     if (this.repository && this.persistenceMode === 'database') {
       const query = this.repository.createQueryBuilder('record');
       if (filter.type) query.andWhere('record.type = :type', { type: filter.type });
@@ -96,19 +113,23 @@ export class SafeScopePersistenceService {
       if (filter.status) query.andWhere('record.status = :status', { status: filter.status });
       
       const entities = await query.getMany();
-      return entities.map(e => this.mapEntityToType(e));
+      results = entities.map(e => this.mapEntityToType(e));
+    } else {
+      let records = this.loadFromFile();
+      results = records.filter(r => {
+        if (filter.type && r.type !== filter.type) return false;
+        if (effectiveWorkspaceId && r.workspaceId !== effectiveWorkspaceId) return false;
+        if (filter.inspectionId && r.inspectionId !== filter.inspectionId) return false;
+        if (filter.observationId && r.observationId !== filter.observationId) return false;
+        if (filter.traceId && r.traceId !== filter.traceId) return false;
+        if (filter.status && r.status !== filter.status) return false;
+        return true;
+      });
     }
 
-    let records = this.loadFromFile();
-    return records.filter(r => {
-      if (filter.type && r.type !== filter.type) return false;
-      if (effectiveWorkspaceId && r.workspaceId !== effectiveWorkspaceId) return false;
-      if (filter.inspectionId && r.inspectionId !== filter.inspectionId) return false;
-      if (filter.observationId && r.observationId !== filter.observationId) return false;
-      if (filter.traceId && r.traceId !== filter.traceId) return false;
-      if (filter.status && r.status !== filter.status) return false;
-      return true;
-    });
+    // Verify cryptographic signature of all retrieved records
+    results.forEach(r => this.cryptoSigner.verifyRecord(r));
+    return results;
   }
 
   async getById(id: string, user?: UserGovernanceContext): Promise<SafeScopeAuditRecord | undefined> {
@@ -125,6 +146,12 @@ export class SafeScopePersistenceService {
     if (record && user && record.workspaceId && record.workspaceId !== user.workspaceId) {
         throw new ForbiddenException('Cross-workspace access is blocked.');
     }
+
+    // Verify cryptographic signature if loaded successfully
+    if (record) {
+      this.cryptoSigner.verifyRecord(record);
+    }
+
     return record;
   }
 
@@ -137,6 +164,12 @@ export class SafeScopePersistenceService {
         }
         entity.status = status;
         entity.metadata = { ...entity.metadata, ...metadataUpdate };
+        
+        const mapped = this.mapEntityToType(entity);
+        // Recalculate and sign the updated state
+        this.cryptoSigner.signRecord(mapped);
+        
+        entity.metadata = mapped.metadata;
         const saved = await this.repository.save(entity);
         return this.mapEntityToType(saved);
       }
@@ -151,6 +184,10 @@ export class SafeScopePersistenceService {
       }
       records[index].status = status;
       records[index].metadata = { ...records[index].metadata, ...metadataUpdate };
+      
+      // Recalculate and sign the updated state
+      this.cryptoSigner.signRecord(records[index]);
+      
       records[index].updatedAt = new Date().toISOString();
       this.saveToFile(records);
       return records[index];

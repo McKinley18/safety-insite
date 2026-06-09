@@ -1,10 +1,10 @@
 # SafeScope Brain Alignment Audit Results
 
 - Total cases: 50
-- Pass: 40
-- Review: 9
+- Pass: 39
+- Review: 10
 - Fail: 1
-- Average alignment score: 93.70
+- Average alignment score: 93.40
 
 | ID | Expected Citation | Native Citation | Brain Citation | Expected Mechanism | Native Mechanism | Brain Mechanism | Scenario | Scenario Confidence | Evidence Qs | Controls | Score | Result | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | ---: | ---: | ---: | :--- | :--- |
@@ -47,7 +47,7 @@
 | OSHA-GI-HEAT-STRESS-001 | OSHA/NIOSH Heat and Cold Stress Guidance | OSHA/NIOSH Heat and Cold Stress Guidance | OSHA/NIOSH Heat and Cold Stress Guidance | heat_illness | heat_illness | heat_illness | N/A | low | 1 | 6 | 100 | pass | No scenario disambiguation selection was returned. |
 | OSHA-GI-COLD-STRESS-001 | OSHA/NIOSH Heat and Cold Stress Guidance | OSHA/NIOSH Heat and Cold Stress Guidance | OSHA/NIOSH Heat and Cold Stress Guidance | cold_stress | cold_stress | cold_stress | N/A | low | 1 | 6 | 100 | pass | No scenario disambiguation selection was returned. |
 | OSHA-GI-NOISE-001 | 29 CFR 1910.95 | 29 CFR 1910.95 | 29 CFR 1910.95 | noise_induced_hearing_loss | noise_induced_hearing_loss | noise_induced_hearing_loss | N/A | low | 4 | 12 | 100 | pass | No scenario disambiguation selection was returned. |
-| OSHA-GI-BLOODBORNE-001 | 29 CFR 1910.1030 | 29 CFR 1910.1030 | 29 CFR 1910.1030 | bloodborne_pathogen_exposure | bloodborne_pathogen_exposure | bloodborne_pathogen_exposure | N/A | low | 4 | 12 | 100 | pass | No scenario disambiguation selection was returned. |
+| OSHA-GI-BLOODBORNE-001 | 29 CFR 1910.1030 | 29 CFR 1910.1030 | 29 CFR 1910.1030 | bloodborne_pathogen_exposure | bloodborne_pathogen_exposure | bloodborne_pathogen_exposure | N/A | low | 1 | 5 | 85 | review | Native domain mismatch: expected health_exposure, got bloodborne_pathogens.; No scenario disambiguation selection was returned. |
 | OSHA-GI-CHEM-STORAGE-001 | 29 CFR 1910.1200 | 29 CFR 1910.1200 | 29 CFR 1910.1200 | chemical_exposure | chemical_exposure | chemical_exposure | general-industry-material-falling-object-storage | moderate | 1 | 7 | 88 | review | Native domain mismatch: expected hazcom, got hazardous_materials. |
 | OSHA-GI-EYEWASH-001 | 29 CFR 1910.151(c) | 29 CFR 1910.151(c) | 29 CFR 1910.151(c) | emergency_equipment_access_failure | unknown | emergency_equipment_access_failure | N/A | low | 3 | 10 | 75 | review | Native domain mismatch: expected emergency_preparedness, got machine_guarding_loto.; Native mechanism mismatch: expected emergency_equipment_access_failure, got unknown.; No scenario disambiguation selection was returned. |
 | OSHA-GI-COMPRESSED-GAS-001 | 29 CFR 1910.101(b) | 29 CFR 1910.101(b) | 29 CFR 1910.101(b) | compressed_gas_cylinder_release | unknown | compressed_gas_cylinder_release | compressed-gas-cylinder-release | moderate | 5 | 12 | 78 | review | Native domain mismatch: expected material_handling, got machine_guarding.; Native mechanism mismatch: expected compressed_gas_cylinder_release, got unknown. |

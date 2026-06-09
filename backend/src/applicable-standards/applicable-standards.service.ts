@@ -369,6 +369,17 @@ export class ApplicableStandardsService {
       }
     }
 
+    // 13. Compressed Gas / Cylinder / Oxygen standard vs Machine Guarding
+    // Guardrail: Compressed gas and cylinder standards require explicit cylinder/gas terms and should be disqualified/penalized if purely mechanical/machine guarding terms are present without any cylinder terms.
+    const isCylinderCitation = /1910\.253|1910\.252|1910\.101|1926\.350|56\.16005|56\.16006|57\.16005|57\.16006/i.test(citation);
+    if (isCylinderCitation) {
+      const hasCylinderTerms = /(cylinder|oxygen|acetylene|gas tank|compressed gas|welding cylinder|manifold|valve cap)/i.test(observation);
+      if (!hasCylinderTerms) {
+        score -= 100;
+        matchingReasons.push("guardrail: cylinder standard requires explicit cylinder/gas terms");
+      }
+    }
+
     return {
       id: chunk.id,
       citation,
@@ -881,6 +892,17 @@ export class ApplicableStandardsService {
             if (isWalkingWorkingSurfaceCitation) {
               score -= 100;
               matchingReasons.push("applied safety shower access standard penalty");
+            }
+          }
+
+          // 13. Compressed Gas / Cylinder / Oxygen standard vs Machine Guarding
+          // Guardrail: Compressed gas and cylinder standards require explicit cylinder/gas terms and should be disqualified/penalized if purely mechanical/machine guarding terms are present without any cylinder terms.
+          const isCylinderCitation = /1910\.253|1910\.252|1910\.101|1926\.350|56\.16005|56\.16006|57\.16005|57\.16006/i.test(citation);
+          if (isCylinderCitation) {
+            const hasCylinderTerms = /(cylinder|oxygen|acetylene|gas tank|compressed gas|welding cylinder|manifold|valve cap)/i.test(observation);
+            if (!hasCylinderTerms) {
+              score -= 100;
+              matchingReasons.push("guardrail: cylinder standard requires explicit cylinder/gas terms");
             }
           }
 
