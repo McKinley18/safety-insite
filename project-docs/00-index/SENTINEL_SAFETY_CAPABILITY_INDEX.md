@@ -1523,7 +1523,14 @@ Check git status:
 - Deterministically analyzes draft records with missing or unknown metadata to suggest correct agencies, jurisdictions, and citations.
 - Calculates promotion readiness for reviewers without enabling auto-promotion.
 
-## Regulatory Coverage Matrix
+## Core Regulatory Draft Promotion
+- SafeScope Core Regulatory Draft Promotion Workflow v1 implemented.
+- Enforces a reviewer-gated, governed path for promoting verified regulatory drafts to approved status.
+- Implements role-based access, metadata integrity checks, and citation deduplication as strict promotion prerequisites.
+- Ensures deterministic re-generation of audit/matrix reports immediately upon record promotion.
+
+## Core Regulatory Expansion
+
 - SafeScope Regulatory Coverage Matrix v1 implemented.
 - Generates a deterministic audit of current knowledge coverage against a predefined list of core OSHA/MSHA standards.
 - Classifies standards as approved, draft, or missing, providing a clear map for future ingestion.

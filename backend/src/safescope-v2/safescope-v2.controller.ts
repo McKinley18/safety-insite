@@ -27,6 +27,25 @@ export class SafescopeV2Controller {
           'VIEWER': 'viewer'
       };
 
+      const localDevAuthBypassEnabled =
+          process.env.DEV_AUTH_BYPASS === 'true' &&
+          process.env.NODE_ENV !== 'production';
+
+      const mappedRole = user ? roleMap[user.role] || 'viewer' : 'viewer';
+
+      // Local/dev bypass should behave like an operational test user so the UI can exercise SafeScope.
+      // Production and normal unauthenticated requests remain fail-safe as viewer.
+      if (localDevAuthBypassEnabled && (!user || mappedRole === 'viewer')) {
+          return {
+              userId: user?.id || 'dev-local-user',
+              workspaceId: user?.organizationId || user?.workspaceId || 'dev-local-workspace',
+              role: 'safety_manager',
+              planTier: 'company',
+              jurisdictionScopes: ['msha', 'osha_general_industry', 'osha_construction'],
+              reviewerQualifications: ['local_development']
+          };
+      }
+
       // Fail-safe defaults for missing context
       if (!user) {
           return {
@@ -42,7 +61,7 @@ export class SafescopeV2Controller {
       return {
           userId: user.id || 'anonymous',
           workspaceId: user.organizationId || user.workspaceId || 'default',
-          role: roleMap[user.role] || 'viewer',
+          role: mappedRole,
           planTier: user.planTier || 'individual',
           jurisdictionScopes: [],
           reviewerQualifications: []

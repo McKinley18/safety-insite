@@ -45,6 +45,7 @@ const validatorGroups: Record<string, string[]> = {
         'validate-safescope-regulatory-coverage-matrix-v1.ts',
         'validate-safescope-regulatory-metadata-normalization-v1.ts',
         'validate-safescope-core-regulatory-expansion-v1.ts',
+        'validate-safescope-core-regulatory-draft-promotion-workflow-v1.ts',
         'validate-safescope-site-policy-isolation-v1.ts',
         'validate-safescope-site-memory-temporal.ts',
         'validate-safescope-state-plan-and-crawler.ts',
