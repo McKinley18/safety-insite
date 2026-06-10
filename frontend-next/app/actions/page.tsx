@@ -12,6 +12,11 @@ import { getReports } from "@/lib/reportStorage";
 import { createActionId, getStoredActions, saveStoredActions } from "@/lib/actionStorage";
 import { addActivityEvent } from "@/lib/activityStorage";
 import { fetchCloudActions, updateCloudActionStatus } from "@/lib/cloudActions";
+import {
+  getStoredPlanCode,
+  hasPlanEntitlement,
+  type PlanCode,
+} from "@/lib/planEntitlements";
 
 type ActionItem = {
   id: string;
@@ -85,6 +90,7 @@ export default function ActionsPage() {
   const [cloudActions, setCloudActions] = useState<ActionItem[]>([]);
   const [cloudActionStatus, setCloudActionStatus] = useState<"idle" | "loading" | "loaded" | "error">("idle");
   const [cloudActionMessage, setCloudActionMessage] = useState("");
+  const [planCode, setPlanCode] = useState<PlanCode>("basic");
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
   const [due, setDue] = useState("");
@@ -93,13 +99,30 @@ export default function ActionsPage() {
   const [filterSource, setFilterSource] = useState("");
   const [filterOverdueOnly, setFilterOverdueOnly] = useState(false);
 
+  const canUseWorkspaceActions = hasPlanEntitlement("correctiveActionAssignments", planCode);
+
   useEffect(() => {
     async function loadActions() {
+      const storedPlan = getStoredPlanCode();
+      const workspaceActionsAllowed = hasPlanEntitlement(
+        "correctiveActionAssignments",
+        storedPlan,
+      );
+
+      setPlanCode(storedPlan);
+
       const savedReports = await getReports<Report>();
       setReports(Array.isArray(savedReports) ? savedReports : []);
 
       const savedManualActions = await getStoredActions();
       setManualActions(savedManualActions);
+
+      if (!workspaceActionsAllowed) {
+        setCloudActions([]);
+        setCloudActionStatus("idle");
+        setCloudActionMessage("");
+        return;
+      }
 
       try {
         setCloudActionStatus("loading");
@@ -315,7 +338,7 @@ export default function ActionsPage() {
         description="Track corrective actions created from inspections, SafeScope recommendations, and user-entered work."
       />
 
-      {cloudActionMessage && (
+      {canUseWorkspaceActions && cloudActionMessage && (
         <AppPanel
           padding="sm"
           className={
@@ -329,6 +352,17 @@ export default function ActionsPage() {
           </p>
           <p className="mt-1 text-sm font-bold text-slate-700">
             {cloudActionMessage}
+          </p>
+        </AppPanel>
+      )}
+
+      {!canUseWorkspaceActions && (
+        <AppPanel padding="sm" className="border-slate-200 bg-white">
+          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+            Personal Action Tracker
+          </p>
+          <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
+            Basic and Pro plans can track local and report-generated corrective actions. Company workspaces add shared action sync, team assignment, and organization-wide accountability.
           </p>
         </AppPanel>
       )}
