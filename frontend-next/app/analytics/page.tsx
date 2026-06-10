@@ -534,21 +534,13 @@ export default function AnalyticsPage() {
               )}
             </div>
 
-            <details className="mt-2 rounded-lg border border-slate-200 bg-white/85 shadow-sm">
-              <summary className="cursor-pointer px-2.5 py-1.5 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
-                Why it matters
-              </summary>
-              <p className="border-t border-slate-200 px-2.5 py-2 text-[11px] font-semibold leading-4 text-slate-600">
-                This brief turns saved inspection and action data into a quick decision view so the user can see risk, overdue work, weak report quality, and repeat patterns before reviewing the deeper analytics.
-              </p>
-            </details>
           </section>
 
 
 
 
 
-      <section className="grid gap-3 xl:grid-cols-3">
+      <section className="grid gap-3 lg:grid-cols-2">
         <div className="rounded-xl border border-blue-300 bg-blue-100 px-3 py-3 shadow-md">
           <div className="border-b border-blue-300 pb-2">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
@@ -639,61 +631,7 @@ export default function AnalyticsPage() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-indigo-300 bg-indigo-100 px-3 py-3 shadow-md">
-          <div className="border-b border-indigo-300 pb-2">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-indigo-800">
-              Report Defensibility
-            </p>
-            <h2 className="mt-0.5 text-base font-black text-slate-900">
-              Evidence, standards, and review quality
-            </h2>
-          </div>
 
-          <div className="mt-3 grid gap-2">
-            {[
-              [
-                analytics.evidenceCoverage === null ? "—" : `${analytics.evidenceCoverage}%`,
-                "Evidence Coverage",
-                "Findings supported by captured evidence",
-              ],
-              [
-                analytics.standardsCoverage === null ? "—" : `${analytics.standardsCoverage}%`,
-                "Standards Coverage",
-                "Findings tied to standards or requirements",
-              ],
-              [
-                analytics.safeScopeCoverage === null ? "—" : `${analytics.safeScopeCoverage}%`,
-                "SafeScope Review",
-                "Findings reviewed with intelligence support",
-              ],
-              [
-                String(analytics.lowConfidenceFindings),
-                "Low Confidence",
-                "Findings that may need more evidence or review",
-              ],
-            ].map(([value, label, detail]) => (
-              <div
-                key={label}
-                className="rounded-lg border border-indigo-200 bg-white px-3 py-2 shadow-sm"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-xs font-black leading-tight text-slate-900">
-                      {label}
-                    </p>
-                    <p className="mt-0.5 line-clamp-1 text-[10px] font-semibold leading-4 text-slate-500">
-                      {detail}
-                    </p>
-                  </div>
-
-                  <p className="shrink-0 text-lg font-black leading-none tracking-tight text-slate-900">
-                    {value}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section className="grid gap-3 lg:grid-cols-2">
@@ -735,17 +673,6 @@ export default function AnalyticsPage() {
             )}
           </div>
 
-          <details className="mt-2 rounded-lg border border-slate-200 bg-white/85 shadow-sm">
-            <summary className="cursor-pointer px-2.5 py-1.5 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
-              Why it matters
-            </summary>
-            <p className="border-t border-slate-200 px-2.5 py-2 text-[11px] font-semibold leading-4 text-slate-600">
-              Repeated hazard categories may point to training gaps, failed
-              controls, supervision drift, or recurring exposure patterns. Use
-              this to target corrective plans, toolbox talks, focused audits, or
-              engineering fixes.
-            </p>
-          </details>
         </div>
 
         <div className="rounded-xl border border-sky-300 bg-sky-100 px-3 py-3 shadow-md">
@@ -786,17 +713,6 @@ export default function AnalyticsPage() {
             )}
           </div>
 
-          <details className="mt-2 rounded-lg border border-slate-200 bg-white/85 shadow-sm">
-            <summary className="cursor-pointer px-2.5 py-1.5 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
-              Why it matters
-            </summary>
-            <p className="border-t border-slate-200 px-2.5 py-2 text-[11px] font-semibold leading-4 text-slate-600">
-              Repeated locations may show where equipment, work practices, or
-              conditions are creating recurring risk. Use this to target
-              inspections, assign ownership, and compare facilities or work
-              areas.
-            </p>
-          </details>
         </div>
       </section>
 

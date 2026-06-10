@@ -242,27 +242,16 @@ export default function InspectionsPage() {
                   className="flex w-full items-center justify-between gap-3 px-3 py-3 text-left sm:px-4"
                 >
                   <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-col items-start gap-1">
                       <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8]">
                         {workflow.eyebrow}
                       </p>
 
-                      <Badge
-                        tone={
-                          allowed
-                            ? selected
-                              ? "blue"
-                              : "green"
-                            : "slate"
-                        }
-                        className="text-[9px]"
-                      >
-                        {allowed
-                          ? selected
-                            ? "Selected"
-                            : workflow.tierLabel
-                          : workflow.tierLabel}
-                      </Badge>
+                      {selected && (
+                        <span className="inline-flex w-fit items-center justify-center rounded-full bg-[#1D72B8] px-2 py-0.5 text-[8px] font-black uppercase tracking-wide text-white">
+                          Selected
+                        </span>
+                      )}
                     </div>
 
                     <h3 className="mt-1 text-base font-black leading-tight text-slate-900">
@@ -301,27 +290,29 @@ export default function InspectionsPage() {
                       </p>
                     )}
 
-                    {allowed ? (
-                      <AppLinkButton
-                        href={workflow.route}
-                        onClick={() => {
-                          setSelectedWorkflow(workflow);
-                          startInspection(workflow);
-                        }}
-                        variant="accent"
-                        className="mx-auto mt-3 w-full max-w-xs shadow-sm"
-                      >
-                        Start {workflow.title}
-                      </AppLinkButton>
-                    ) : (
-                      <AppLinkButton
-                        href="/pricing"
-                        variant="accent"
-                        className="mx-auto mt-3 w-full max-w-xs shadow-sm"
-                      >
-                        Unlock This Workflow
-                      </AppLinkButton>
-                    )}
+                    <div className="mt-3 flex justify-center">
+                      {allowed ? (
+                        <AppLinkButton
+                          href={workflow.route}
+                          onClick={() => {
+                            setSelectedWorkflow(workflow);
+                            startInspection(workflow);
+                          }}
+                          variant="accent"
+                          className="inline-flex w-auto items-center justify-center rounded-full px-6 py-2.5 text-center !text-white shadow-sm"
+                        >
+                          Start Inspection
+                        </AppLinkButton>
+                      ) : (
+                        <AppLinkButton
+                          href="/pricing"
+                          variant="accent"
+                          className="inline-flex w-auto items-center justify-center rounded-full px-6 py-2.5 text-center !text-white shadow-sm"
+                        >
+                          Unlock This Workflow
+                        </AppLinkButton>
+                      )}
+                    </div>
                   </div>
                 )}
               </article>
