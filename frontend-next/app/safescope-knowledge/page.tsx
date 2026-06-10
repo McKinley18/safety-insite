@@ -6,6 +6,7 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { Badge } from "@/components/ui/Badge";
+import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
 import {
   listSafeScopeKnowledgeDocuments,
   searchSafeScopeKnowledge,
@@ -121,24 +122,18 @@ export default function SafeScopeKnowledgePage() {
 
   if (!canAccessKnowledgeLibrary) {
     return (
-      <section className="space-y-5">
-        <PageHeader
-          title="SafeScope Knowledge Library"
-          description="The SafeScope Knowledge Library is available with the Company plan for controlled review of approved reference intelligence."
-        />
-
-        <AppPanel as="section" variant="dashed" padding="md" className="bg-white p-5 text-center sm:p-5">
-          <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Company Plan Required
-          </p>
-          <h2 className="mt-1 text-xl font-black text-slate-900">
-            Protected knowledge governance.
-          </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
-            This page exposes the approved SafeScope reference library and retrieval behavior. It is restricted to Company workspaces so knowledge governance, audit support, and reference review remain controlled.
-          </p>
-        </AppPanel>
-      </section>
+      <LockedFeatureCard
+        eyebrow="Company Knowledge Library"
+        title="SafeScope Knowledge Library is Company-only."
+        description="The approved knowledge library controls governed reference intelligence, source review, and retrieval behavior used to support SafeScope outputs."
+        requiredPlan="Company"
+        bullets={[
+          "View approved reference records and source authority levels.",
+          "Protect source-backed regulatory reasoning behind Company inspections.",
+          "Keep knowledge governance separate from Basic and Pro field workflows.",
+        ]}
+        ctaLabel="View Company Plan"
+      />
     );
   }
 

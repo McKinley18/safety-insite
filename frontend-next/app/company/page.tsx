@@ -6,6 +6,7 @@ import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
+import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
   getStoredPlanCode,
@@ -405,70 +406,18 @@ export default function CompanyControlCenterPage() {
 
   if (!companyAccess) {
     return (
-      <section className="space-y-5">
-        <HeroPanel align="center">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-            Company Control Center
-          </p>
-          <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
-            Account leadership workspace.
-          </h1>
-          <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-            Manage users, seats, roles, assignments, inspections, follow-ups,
-            corrective work, and company-wide accountability.
-          </p>
-        </HeroPanel>
-
-        <AppPanel variant="dashed" padding="lg" className="text-center">
-          <SectionHeader
-            eyebrow="Company Plan Required"
-            title="Unlock team operations."
-            description="Basic and Pro users still keep access to Workspace Settings for locations, security, report defaults, risk matrix, and regulatory defaults. The Company Control Center adds account leadership tools: users, roles, seats, assigned inspections, corrective actions, follow-ups, reviews, and company data filters."
-          />
-
-          <div className="mt-4 grid gap-3 text-left md:grid-cols-3">
-            {[
-              [
-                "Users & Roles",
-                "Add employees and assign Owner, Manager, Auditor, or Viewer access.",
-              ],
-              [
-                "Assigned Work",
-                "Assign inspections, corrective actions, follow-ups, and reviews.",
-              ],
-              [
-                "Company Visibility",
-                "Filter work by owner, type, status, facility, and due date.",
-              ],
-            ].map(([title, body]) => (
-              <div
-                key={title}
-                className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
-              >
-                <p className="text-sm font-black text-slate-900">{title}</p>
-                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                  {body}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
-            <AppLinkButton href="/pricing" variant="accent">
-              Upgrade to Company
-            </AppLinkButton>
-
-            <AppLinkButton
-              href="/settings/workspace"
-              variant="ghost"
-              className="border-[#1D72B8] text-[#102A43] hover:bg-[#E8F4FF]"
-            >
-              Workspace Settings
-            </AppLinkButton>
-
-          </div>
-        </AppPanel>
-      </section>
+      <LockedFeatureCard
+        eyebrow="Company Control Center"
+        title="Company tools are available on the Company plan."
+        description="The Company Control Center manages users, seats, assigned inspections, corrective actions, follow-ups, supervisor reviews, and organization-wide accountability."
+        requiredPlan="Company"
+        bullets={[
+          "Add team members and assign roles.",
+          "Assign inspections, corrective actions, follow-ups, and review tasks.",
+          "Filter company work by owner, location, status, priority, and overdue work.",
+        ]}
+        ctaLabel="Upgrade to Company"
+      />
     );
   }
 
