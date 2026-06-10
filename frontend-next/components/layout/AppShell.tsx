@@ -183,7 +183,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen flex-col bg-transparent text-slate-900">
-      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320]/95 px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320] px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={isPublicPage ? "/" : "/command-center"}
@@ -301,7 +301,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A]">
+      <footer className="mt-auto hidden w-full border-t border-slate-800 bg-[#0F172A] lg:block">
         <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link

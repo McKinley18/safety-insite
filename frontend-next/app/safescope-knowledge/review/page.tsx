@@ -8,8 +8,10 @@ import MetricBlock from '../../../components/ui/MetricBlock';
 import { AppButton } from '../../../components/ui/AppButton';
 import { AppPanel } from '../../../components/ui/AppPanel';
 import EmptyState from '../../../components/ui/EmptyState';
+import LockedFeatureCard from '../../../components/ui/LockedFeatureCard';
 import { API_BASE_URL } from '../../../lib/safescope';
 import { authHeaders } from '../../../lib/auth';
+import { canAccessProtectedArea, getStoredPlanCode, requiredPlanForArea, type PlanCode } from '../../../lib/planEntitlements';
 
 // Types (Mirrored from Backend)
 type CandidateStatus = 
@@ -117,6 +119,7 @@ export default function ReviewerCandidateConsole() {
   // Hardened Auth State
   const [currentUserRole, setCurrentUserRole] = useState<SafeScopeRole>('admin');
   const [userPlanTier, setUserPlanTier] = useState<'individual' | 'team' | 'company'>('company');
+  const [planCode, setPlanCode] = useState<PlanCode>("basic");
 
   const fetchCandidates = async () => {
     setIsLoading(true);
@@ -151,6 +154,10 @@ export default function ReviewerCandidateConsole() {
 
   useEffect(() => {
     fetchCandidates();
+  }, []);
+
+  useEffect(() => {
+    setPlanCode(getStoredPlanCode());
   }, []);
 
   const canManage = ['owner', 'admin', 'safety_manager', 'compliance_admin'].includes(currentUserRole);
@@ -229,6 +236,23 @@ export default function ReviewerCandidateConsole() {
         alert('Action unavailable: System is disconnected and Demo Fallback is disabled.');
     }
   };
+
+  if (!canAccessProtectedArea("knowledge_library", planCode)) {
+    return (
+      <LockedFeatureCard
+        eyebrow="Company Knowledge Governance"
+        title="SafeScope knowledge review is Company-only."
+        description="The review console controls source-backed knowledge candidates, approval decisions, and governed promotion into the SafeScope knowledge base."
+        requiredPlan={requiredPlanForArea("knowledge_library")}
+        bullets={[
+          "Review proposed source-backed knowledge before it can influence future SafeScope output.",
+          "Protect regulatory mappings with qualified approval and audit history.",
+          "Keep Company knowledge governance separate from Basic and Pro field workflows.",
+        ]}
+        ctaLabel="View Company Plan"
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">

@@ -15,6 +15,7 @@ import {
 } from "@/lib/inspectionProgramStorage";
 import {
   EntitlementKey,
+  getPlanDisplayName,
   getStoredPlanCode,
   hasPlanEntitlement,
   type PlanCode,
@@ -91,9 +92,7 @@ function getProgramStatus(programs: InspectionProgramRecord[]) {
 }
 
 function planLabel(planCode: PlanCode) {
-  if (planCode === "company") return "Company";
-  if (planCode === "plus") return "Pro";
-  return "Basic";
+  return getPlanDisplayName(planCode);
 }
 
 export default function InspectionsPage() {
