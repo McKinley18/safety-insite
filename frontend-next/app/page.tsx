@@ -111,16 +111,16 @@ export default function MarketingPage() {
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+      <div className="rounded-[28px] border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-400">
           The problem
         </p>
 
-        <h2 className="mt-2 text-3xl font-black text-slate-900">
+        <h2 className="mt-2 text-3xl font-black text-slate-900 dark:text-slate-100">
           Safety documentation is too often scattered, inconsistent, and hard to defend.
         </h2>
 
-        <p className="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600">
+        <p className="mt-3 max-w-4xl text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
           Field observations, photos, standards, risk levels, corrective actions,
           and final reports are commonly handled in separate tools. Sentinel
           Safety is being built to bring those pieces into one structured,
@@ -129,11 +129,11 @@ export default function MarketingPage() {
       </div>
 
       <div>
-        <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-400">
           Platform Workflow
         </p>
 
-        <h2 className="mb-5 text-3xl font-black text-slate-900">
+        <h2 className="mb-5 text-3xl font-black text-slate-900 dark:text-slate-100">
           From hazard capture to report-ready action.
         </h2>
 
@@ -141,15 +141,15 @@ export default function MarketingPage() {
           {outcomes.map((item) => (
             <div
               key={item.title}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-5 shadow-sm"
             >
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8] dark:text-sky-400">
                 {item.label}
               </p>
-              <h3 className="mt-2 text-lg font-black text-slate-900">
+              <h3 className="mt-2 text-lg font-black text-slate-900 dark:text-slate-100">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
                 {item.text}
               </p>
             </div>
@@ -157,25 +157,25 @@ export default function MarketingPage() {
         </div>
       </div>
 
-      <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="rounded-[28px] border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-sm">
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-400">
               SafeScope Intelligence
             </p>
 
-            <h2 className="mt-2 text-3xl font-black text-slate-900">
+            <h2 className="mt-2 text-3xl font-black text-slate-900 dark:text-slate-100">
               Safety intelligence designed for real inspection decisions.
             </h2>
 
-            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
+            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
               SafeScope is the intelligence layer inside Sentinel Safety. It is
               being developed to help organize observations, classify hazards,
               connect applicable standards, identify risk themes, and recommend
               corrective action focus areas.
             </p>
 
-            <p className="mt-3 rounded-2xl bg-slate-50 px-4 py-3 text-xs font-bold leading-5 text-slate-500">
+            <p className="mt-3 rounded-2xl bg-slate-50 dark:bg-slate-950 px-4 py-3 text-xs font-bold leading-5 text-slate-500 dark:text-slate-400">
               SafeScope supports qualified safety judgment. It does not replace
               competent-person review, professional responsibility, or employer
               compliance obligations.
@@ -186,7 +186,7 @@ export default function MarketingPage() {
             {capabilities.map((item) => (
               <div
                 key={item}
-                className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-800"
+                className="rounded-xl border border-slate-200 bg-slate-50 dark:bg-slate-950 dark:border-slate-800 px-4 py-3 text-sm font-black text-slate-800 dark:text-slate-300"
               >
                 {item}
               </div>
@@ -196,12 +196,12 @@ export default function MarketingPage() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+        <div className="rounded-[28px] border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-400">
             Built For
           </p>
 
-          <h2 className="mt-2 text-2xl font-black text-slate-900">
+          <h2 className="mt-2 text-2xl font-black text-slate-900 dark:text-slate-100">
             Serious safety operations.
           </h2>
 
@@ -209,7 +209,7 @@ export default function MarketingPage() {
             {audience.map((item) => (
               <div
                 key={item}
-                className="rounded-xl bg-slate-50 px-4 py-3 text-sm font-black text-slate-800"
+                className="rounded-xl bg-slate-50 dark:bg-slate-950 px-4 py-3 text-sm font-black text-slate-800 dark:text-slate-300"
               >
                 {item}
               </div>
@@ -217,20 +217,20 @@ export default function MarketingPage() {
           </div>
         </div>
 
-        <div className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+        <div className="rounded-[28px] border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-sm">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-400">
             Trust Layer
           </p>
 
-          <h2 className="mt-2 text-2xl font-black text-slate-900">
+          <h2 className="mt-2 text-2xl font-black text-slate-900 dark:text-slate-100">
             Reviewable. Explainable. Report-ready.
           </h2>
 
-          <div className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
+          <div className="mt-5 divide-y divide-slate-200 dark:divide-slate-800 border-y border-slate-200 dark:border-slate-800">
             {trustPoints.map((item) => (
               <div
                 key={item}
-                className="flex items-start gap-3 py-3 text-sm font-bold leading-6 text-slate-700"
+                className="flex items-start gap-3 py-3 text-sm font-bold leading-6 text-slate-700 dark:text-slate-300"
               >
                 <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#1D72B8]" />
                 <span>{item}</span>

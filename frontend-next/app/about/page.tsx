@@ -91,12 +91,12 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="rounded-[32px] border border-slate-200 bg-white px-6 py-12 text-center shadow-sm sm:px-10 md:py-16">
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+      <div className="rounded-[32px] border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-6 py-12 text-center shadow-sm sm:px-10 md:py-16">
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8] dark:text-sky-400">
           The Real Problem
         </p>
 
-        <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-5xl">
+        <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 dark:text-slate-100 md:text-5xl">
           Safety teams do not need more forms. They need findings that turn into action.
         </h2>
 
@@ -104,7 +104,7 @@ export default function AboutPage() {
           {painPoints.map((item) => (
             <div
               key={item}
-              className="rounded-2xl bg-slate-50 px-5 py-4 text-left text-sm font-bold leading-6 text-slate-700 ring-1 ring-slate-200"
+              className="rounded-2xl bg-slate-50 dark:bg-slate-950 px-5 py-4 text-left text-sm font-bold leading-6 text-slate-700 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-800"
             >
               {item}
             </div>
@@ -116,13 +116,13 @@ export default function AboutPage() {
         {benefits.map((item) => (
           <div
             key={item.title}
-            className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm"
+            className="rounded-[28px] border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-6 shadow-sm"
           >
-            <h3 className="text-2xl font-black text-slate-950">
+            <h3 className="text-2xl font-black text-slate-950 dark:text-slate-100">
               {item.title}
             </h3>
 
-            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
+            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-400">
               {item.text}
             </p>
           </div>
@@ -149,7 +149,7 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-[28px] bg-white/10 p-6 ring-1 ring-white/10">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-200">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
               Why it matters
             </p>
 
@@ -166,12 +166,12 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="rounded-[32px] border border-slate-200 bg-white px-6 py-12 shadow-sm sm:px-10 md:py-16">
-        <p className="text-center text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+      <div className="rounded-[32px] border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-6 py-12 shadow-sm sm:px-10 md:py-16">
+        <p className="text-center text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8] dark:text-sky-400">
           Why Teams Choose It
         </p>
 
-        <h2 className="mx-auto mt-5 max-w-4xl text-center text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-5xl">
+        <h2 className="mx-auto mt-5 max-w-4xl text-center text-4xl font-black leading-tight tracking-tight text-slate-950 dark:text-slate-100 md:text-5xl">
           Built for safety professionals who need more than a notes app.
         </h2>
 
@@ -179,7 +179,7 @@ export default function AboutPage() {
           {proofPoints.map((item) => (
             <div
               key={item}
-              className="rounded-2xl bg-slate-50 px-5 py-4 text-center text-sm font-black text-slate-800 ring-1 ring-slate-200"
+              className="rounded-2xl bg-slate-50 dark:bg-slate-950 px-5 py-4 text-center text-sm font-black text-slate-800 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-800"
             >
               {item}
             </div>
