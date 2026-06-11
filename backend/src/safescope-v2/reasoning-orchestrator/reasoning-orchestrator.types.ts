@@ -61,6 +61,8 @@ export type SafeScopeReasoningRequest = {
   employeeExposureKnown?: boolean;
   equipmentInvolved?: string;
   enableApprovedKnowledgeContext?: boolean;
+  workspaceId?: string;
+  siteId?: string;
 };
 
 export type SafeScopeReasoningEvidenceGap = {
@@ -140,6 +142,7 @@ export type SafeScopeReasoningResult = {
   missingEvidence: SafeScopeReasoningEvidenceGap[];
   safetyCalculations?: any;
   contradictionIntelligence?: any;
+  companyPolicies?: any[];
   confidence: {
     level: SafeScopeReasoningConfidence;
     reasons: string[];

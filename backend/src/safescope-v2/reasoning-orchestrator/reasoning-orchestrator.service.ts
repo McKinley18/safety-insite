@@ -12,6 +12,8 @@ import { SafeScopeTaskContext } from '../equipment-knowledge/equipment-task-mech
 import { hasAnyNonNegatedTerm } from './negation-context.util';
 import { SafeScopeSafetyCalculationsService } from '../safety-calculations/safety-calculations.service';
 import { ContradictionIntelligenceService } from '../contradiction-intelligence/contradiction-intelligence.service';
+import { SitePolicyIsolationService } from '../site-policy-isolation/site-policy-isolation.service';
+import { SitePolicyGovernanceService } from '../site-policy-isolation/site-policy-governance.service';
 import {
   SafeScopeApplicabilitySignal,
   SafeScopeJurisdiction,
@@ -46,6 +48,7 @@ export class SafeScopeReasoningOrchestratorService {
     private readonly brainSnapshotBuilderService = new SafeScopeBrainSnapshotBuilderService(),
     private readonly safetyCalculationsService = new SafeScopeSafetyCalculationsService(),
     private readonly contradictionIntelligenceService = new ContradictionIntelligenceService(),
+    private readonly sitePolicyIsolationService = new SitePolicyIsolationService(new SitePolicyGovernanceService()),
   ) {}
 
   reason(request: SafeScopeReasoningRequest): SafeScopeReasoningResult {
@@ -116,6 +119,15 @@ export class SafeScopeReasoningOrchestratorService {
     const contradictionIntelligence = this.contradictionIntelligenceService.evaluate({
       text: combined,
     });
+
+    const companyPolicies = request.workspaceId ? this.sitePolicyIsolationService.resolvePolicies(
+      { workspaceId: request.workspaceId, siteId: request.siteId },
+      { 
+        hazardFamilies: [hazardClassification.primaryDomain], 
+        taskContexts: [normalizedTaskContext || ''], 
+        equipmentTypes: [request.equipmentInvolved || ''] 
+      }
+    ) : [];
 
     const confidence = this.calculateConfidence(
       jurisdictionAssessment.likelyJurisdiction,
@@ -504,6 +516,7 @@ export class SafeScopeReasoningOrchestratorService {
       missingEvidence,
       safetyCalculations,
       contradictionIntelligence,
+      companyPolicies,
       confidence,
       conclusionBoundary: {
         advisoryOnly: confidence.level !== 'high',
