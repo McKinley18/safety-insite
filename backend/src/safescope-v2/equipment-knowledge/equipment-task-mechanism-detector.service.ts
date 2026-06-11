@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import {
   SafeScopeEquipmentComponentMechanism,
   SafeScopeEquipmentFailureMode,
@@ -692,7 +693,34 @@ function containsTerm(normalizedDescription: string, rawTerm: string): boolean {
     return false;
   }
 
-  return normalizedDescription.includes(normalizedTerm);
+  if (normalizedDescription.includes(normalizedTerm)) {
+    return true;
+  }
+
+  // Use NLP stemming for semantic matching
+  const tokenizer = new natural.WordTokenizer();
+  const haystackTokens = tokenizer.tokenize(normalizedDescription) || [];
+  const stemmedHaystack = haystackTokens.map(t => natural.PorterStemmer.stem(t));
+
+  const termTokens = tokenizer.tokenize(normalizedTerm) || [];
+  if (termTokens.length === 0) return false;
+
+  // Single word semantic match
+  if (termTokens.length === 1) {
+    const stemmedTerm = natural.PorterStemmer.stem(termTokens[0]);
+    return stemmedHaystack.includes(stemmedTerm);
+  }
+
+  // For multi-word terms, we fallback to strict inclusion or token overlap
+  // This prevents false positives from single-word overlaps in complex terms
+  const stemmedTermTokens = termTokens.map(t => natural.PorterStemmer.stem(t));
+  let matchedCount = 0;
+  for (const st of stemmedTermTokens) {
+     if (stemmedHaystack.includes(st)) {
+         matchedCount++;
+     }
+  }
+  return matchedCount === stemmedTermTokens.length;
 }
 
 function normalizeText(value: string): string {

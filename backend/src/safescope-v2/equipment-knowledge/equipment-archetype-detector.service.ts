@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import {
   SafeScopeEquipmentArchetypeId,
   SafeScopeEquipmentArchetypeRecord,
@@ -222,7 +223,32 @@ function containsTerm(text: string, rawTerm: string): boolean {
     return false;
   }
 
-  return text.includes(term);
+  if (text.includes(term)) {
+    return true;
+  }
+
+  // Use NLP stemming for semantic matching
+  const tokenizer = new natural.WordTokenizer();
+  const haystackTokens = tokenizer.tokenize(text) || [];
+  const stemmedHaystack = haystackTokens.map(t => natural.PorterStemmer.stem(t));
+
+  const termTokens = tokenizer.tokenize(term) || [];
+  if (termTokens.length === 0) return false;
+
+  // Single word semantic match
+  if (termTokens.length === 1) {
+    const stemmedTerm = natural.PorterStemmer.stem(termTokens[0]);
+    return stemmedHaystack.includes(stemmedTerm);
+  }
+
+  const stemmedTermTokens = termTokens.map(t => natural.PorterStemmer.stem(t));
+  let matchedCount = 0;
+  for (const st of stemmedTermTokens) {
+     if (stemmedHaystack.includes(st)) {
+         matchedCount++;
+     }
+  }
+  return matchedCount === stemmedTermTokens.length;
 }
 
 function normalizeText(value: string): string {
