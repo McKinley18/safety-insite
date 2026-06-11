@@ -516,7 +516,7 @@ export default function AnalyticsPage() {
             </h2>
           </div>
 
-          <div className="mt-3 grid gap-2">
+          <div className="mt-3 grid gap-3">
             {[
               [
                 analytics.averageRiskScore === null
@@ -524,11 +524,15 @@ export default function AnalyticsPage() {
                   : String(analytics.averageRiskScore),
                 "Average Risk",
                 "Overall risk level across findings",
+                "μ_R = Σ(L_i × S_i) / N",
+                "Establishes baseline workspace hazard severity, allowing comparison of risk-density patterns over consecutive inspection cycles."
               ],
               [
                 analytics.highRiskRate === null ? "—" : `${analytics.highRiskRate}%`,
                 "High-Risk Rate",
                 "High and Critical findings",
+                "R_H = (N_H + N_C) / N × 100",
+                "Measures the proportion of severe structural hazards that present high potential for immediate harm or regulatory citation."
               ],
               [
                 analytics.actionCoverage === null
@@ -536,6 +540,8 @@ export default function AnalyticsPage() {
                   : `${analytics.actionCoverage}%`,
                 "Action Coverage",
                 "Findings converted into corrective work",
+                "C_A = N_A / N × 100",
+                "Defines the program's leading mitigation coefficient. Low coverage rates highlight a failure to translate observation to field closure."
               ],
               [
                 analytics.averageConfidence === null
@@ -543,26 +549,35 @@ export default function AnalyticsPage() {
                   : `${analytics.averageConfidence}%`,
                 "Confidence",
                 "Average SafeScope confidence level",
+                "C_avg = Σ(Confidence_i) / N",
+                "Reflects the mathematical accuracy of automated hazard classification, ensuring high-confidence standards identification across findings."
               ],
-            ].map(([value, label, detail]) => (
+            ].map(([value, label, detail, formula, justification]) => (
               <div
                 key={label}
-                className="rounded-lg border border-blue-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
+                className="rounded-xl border border-blue-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-4 shadow-sm"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-xs font-black leading-tight text-slate-900 dark:text-slate-100">
+                    <p className="text-sm font-black leading-tight text-slate-900 dark:text-slate-100">
                       {label}
                     </p>
-                    <p className="mt-0.5 line-clamp-1 text-[10px] font-semibold leading-4 text-slate-500 dark:text-slate-400">
+                    <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
                       {detail}
                     </p>
+                    <div className="mt-2.5 inline-block rounded bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 px-2 py-0.5 text-[10px] font-mono text-blue-600 dark:text-sky-400">
+                      Formula: {formula}
+                    </div>
                   </div>
 
-                  <p className="shrink-0 text-lg font-black leading-none tracking-tight text-slate-900 dark:text-slate-100">
+                  <p className="shrink-0 text-xl font-black leading-none tracking-tight text-slate-900 dark:text-slate-100">
                     {value}
                   </p>
                 </div>
+
+                <p className="mt-3 border-t border-slate-100 dark:border-slate-800/60 pt-2.5 text-[10px] italic font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
+                  {justification}
+                </p>
               </div>
             ))}
           </div>
