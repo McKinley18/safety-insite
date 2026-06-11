@@ -13,6 +13,11 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
+import {
+  getStoredPlanCode,
+  hasPlanEntitlement,
+  type PlanCode,
+} from "@/lib/planEntitlements";
 
 type Report = {
   id: string;
@@ -251,6 +256,9 @@ export default function ReportsPage() {
   const [reportSortOrder, setReportSortOrder] = useState<"newest" | "oldest">("newest");
   const [cloudLoadStatus, setCloudLoadStatus] = useState<"idle" | "loading" | "loaded" | "error">("idle");
   const [cloudLoadMessage, setCloudLoadMessage] = useState("");
+  const [planCode, setPlanCode] = useState<PlanCode>("basic");
+
+  const canUseWorkspaceReports = hasPlanEntitlement("sharedReports", planCode);
 
   useEffect(() => {
     async function loadReports() {
@@ -291,6 +299,17 @@ export default function ReportsPage() {
       }
 
       setReports(localMerged);
+
+      const storedPlan = getStoredPlanCode();
+      const workspaceReportsAllowed = hasPlanEntitlement("sharedReports", storedPlan);
+
+      setPlanCode(storedPlan);
+
+      if (!workspaceReportsAllowed) {
+        setCloudLoadStatus("idle");
+        setCloudLoadMessage("");
+        return;
+      }
 
       try {
         setCloudLoadStatus("loading");
@@ -430,7 +449,7 @@ export default function ReportsPage() {
 
     const cloudReportId = reportToDelete?.cloudReportId;
 
-    if (cloudReportId) {
+    if (cloudReportId && canUseWorkspaceReports) {
       try {
         await archiveCloudReport(cloudReportId);
       } catch (error) {
@@ -551,7 +570,7 @@ export default function ReportsPage() {
       </HeroPanel>
 
 
-      {cloudLoadMessage && (
+      {canUseWorkspaceReports && cloudLoadMessage && (
         <AppPanel
           padding="sm"
           className={
@@ -573,6 +592,17 @@ export default function ReportsPage() {
               retry the next time this page loads.
             </p>
           )}
+        </AppPanel>
+      )}
+
+      {!canUseWorkspaceReports && (
+        <AppPanel padding="sm" className="border-slate-200 bg-white">
+          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+            Local Report Vault
+          </p>
+          <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
+            Basic and Pro plans can view, edit, review, and export local inspection reports. Company workspaces add shared report sync and organization-wide report visibility.
+          </p>
         </AppPanel>
       )}
 
