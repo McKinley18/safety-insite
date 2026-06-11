@@ -1,5 +1,7 @@
 "use client";
 
+import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
+
 import { useEffect, useRef, useState } from "react";
 
 type CurrentHazardCardProps = {
@@ -127,11 +129,15 @@ export default function CurrentHazardCard({
     confidenceValue !== null ? `${confidenceValue}%` : "Pending";
 
   const topStandard =
-    selectedStandards?.[0]?.citation ||
-    safeScopeResult?.suggestedStandards?.[0]?.citation ||
-    safeScopeResult?.standardsReasoning?.topDefensible?.[0]?.citation ||
-    safeScopeResult?.applicabilityIntelligence?.primaryApplicableStandards?.[0]?.citation ||
-    "Pending";
+    selectedStandards?.[0]
+      ? formatStandardDisplay(selectedStandards[0])
+      : safeScopeResult?.suggestedStandards?.[0]
+        ? formatStandardDisplay(safeScopeResult.suggestedStandards[0])
+        : safeScopeResult?.standardsReasoning?.topDefensible?.[0]
+          ? formatStandardDisplay(safeScopeResult.standardsReasoning.topDefensible[0])
+          : safeScopeResult?.applicabilityIntelligence?.primaryApplicableStandards?.[0]
+            ? formatStandardDisplay(safeScopeResult.applicabilityIntelligence.primaryApplicableStandards[0])
+            : "Pending";
 
   const riskTone =
     String(riskLabel).toLowerCase() === "critical"

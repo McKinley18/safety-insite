@@ -1,3 +1,5 @@
+import { formatStandardDisplay, getStandardCitation, getStandardSummary } from "@/lib/inspection/standardDisplay";
+
 type Props = {
   safeScopeResult: any;
   feedbackNotes: string;
@@ -65,10 +67,10 @@ export default function SafeScopeStandardsSection({
         <div className="mt-3 flex flex-wrap gap-2">
           {standards.slice(0, 3).map((standard: any) => (
             <span
-              key={standard.citation}
+              key={getStandardCitation(standard) || formatStandardDisplay(standard)}
               className="rounded-full bg-[#E8F4FF] px-2.5 py-1 text-[10px] font-black text-[#1D72B8]"
             >
-              {standard.citation}
+              {formatStandardDisplay(standard)}
             </span>
           ))}
           {standards.length > 3 && (
@@ -99,7 +101,7 @@ export default function SafeScopeStandardsSection({
 
             return (
               <div
-                key={standard.citation}
+                key={getStandardCitation(standard) || formatStandardDisplay(standard)}
                 className={`mb-3 rounded-2xl border border-slate-200 px-3 py-3 transition ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
@@ -108,7 +110,7 @@ export default function SafeScopeStandardsSection({
               >
                 <div className="flex flex-wrap items-center gap-2">
                   <div className="font-black text-[#1D72B8]">
-                    {standard.citation}
+                    {formatStandardDisplay(standard)}
                   </div>
 
                   {selected && (
@@ -125,10 +127,7 @@ export default function SafeScopeStandardsSection({
                 </div>
 
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-                  {standard.rationale ||
-                    standard.summary ||
-                    standard.heading ||
-                    "No summary available."}
+                  {getStandardSummary(standard) || "No summary available."}
                 </p>
 
                 {!!standard.matchingReasons?.length && (

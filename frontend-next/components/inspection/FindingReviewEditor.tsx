@@ -1,5 +1,7 @@
 "use client";
 
+import { formatStandardDisplay, getStandardCitation, getStandardSummary } from "@/lib/inspection/standardDisplay";
+
 import CorrectiveActionsSection from "@/components/inspection/CorrectiveActionsSection";
 import RiskReviewSection from "@/components/inspection/RiskReviewSection";
 
@@ -123,7 +125,7 @@ export default function FindingReviewEditor({
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="text-sm font-black text-[#1D72B8]">
-                      {standard.citation || "Suggested standard"}
+                      {formatStandardDisplay(standard)}
                     </p>
                     <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
                       {standard.rationale ||

@@ -1,5 +1,7 @@
 "use client";
 
+import { formatStandardDisplay, getStandardCitation, getStandardSummary } from "@/lib/inspection/standardDisplay";
+
 type SafeScopeStandardsReasoningProps = {
   safeScopeResult: any;
 };
@@ -23,12 +25,12 @@ export default function SafeScopeStandardsReasoning({
               .slice(0, 3)
               .map((standard: any) => (
                 <div
-                  key={standard.citation}
+                  key={getStandardCitation(standard) || formatStandardDisplay(standard)}
                   className="rounded-xl bg-slate-50 px-3 py-2"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="text-sm font-black text-slate-900">
-                      {standard.citation}
+                      {formatStandardDisplay(standard)}
                     </p>
                     <span className="rounded-full bg-[#E8F4FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                       {Math.round((standard.defensibilityScore || 0) * 100)}%
@@ -36,7 +38,7 @@ export default function SafeScopeStandardsReasoning({
                     </span>
                   </div>
                   <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
-                    {standard.reasoning}
+                    {getStandardSummary(standard) || standard.reasoning || "No reasoning summary available."}
                   </p>
                 </div>
               ))}

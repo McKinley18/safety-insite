@@ -16,6 +16,7 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
 
 function getReportPersistenceKey(report: any) {
   return String(report?.cloudReportId || report?.id || "");
@@ -79,7 +80,7 @@ function getActionTitle(action: any) {
 }
 
 function getStandardCitation(standard: any) {
-  return standard?.citation || standard?.standard || standard;
+  return formatStandardDisplay(standard);
 }
 
 function getReportPackageLabel(mode?: string) {

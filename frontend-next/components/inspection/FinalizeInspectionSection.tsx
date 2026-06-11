@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
 
 type Props = {
   currentStep: number;
