@@ -139,15 +139,16 @@ export type SafeScopeReasoningResult = {
   brainSnapshot: SafeScopeBrainSnapshot;
   missingEvidence: SafeScopeReasoningEvidenceGap[];
   safetyCalculations?: any;
+  contradictionIntelligence?: any;
   confidence: {
     level: SafeScopeReasoningConfidence;
     reasons: string[];
   };
   conclusionBoundary: {
-    advisoryOnly: true;
-    doesNotDeclareViolation: true;
-    doesNotCreateCitation: true;
-    requiresQualifiedReview: true;
+    advisoryOnly: boolean;
+    doesNotDeclareViolation: boolean;
+    doesNotCreateCitation: boolean;
+    requiresQualifiedReview: boolean;
   };
   recommendedNextQuestions: string[];
 };

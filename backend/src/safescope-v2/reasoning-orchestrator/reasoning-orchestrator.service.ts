@@ -11,6 +11,7 @@ import { SafeScopeBrainSnapshotBuilderService } from '../brain/snapshot-builder/
 import { SafeScopeTaskContext } from '../equipment-knowledge/equipment-task-mechanism.types';
 import { hasAnyNonNegatedTerm } from './negation-context.util';
 import { SafeScopeSafetyCalculationsService } from '../safety-calculations/safety-calculations.service';
+import { ContradictionIntelligenceService } from '../contradiction-intelligence/contradiction-intelligence.service';
 import {
   SafeScopeApplicabilitySignal,
   SafeScopeJurisdiction,
@@ -44,6 +45,7 @@ export class SafeScopeReasoningOrchestratorService {
     private readonly mechanismPrecedenceResolverService = new SafeScopeMechanismPrecedenceResolverService(),
     private readonly brainSnapshotBuilderService = new SafeScopeBrainSnapshotBuilderService(),
     private readonly safetyCalculationsService = new SafeScopeSafetyCalculationsService(),
+    private readonly contradictionIntelligenceService = new ContradictionIntelligenceService(),
   ) {}
 
   reason(request: SafeScopeReasoningRequest): SafeScopeReasoningResult {
@@ -111,11 +113,16 @@ export class SafeScopeReasoningOrchestratorService {
       equipmentArchetypeContext,
     );
 
+    const contradictionIntelligence = this.contradictionIntelligenceService.evaluate({
+      text: combined,
+    });
+
     const confidence = this.calculateConfidence(
       jurisdictionAssessment.likelyJurisdiction,
       hazardClassification.primaryDomain,
       missingEvidence,
       applicabilitySignals,
+      contradictionIntelligence,
     );
 
     if (this.isCraneRiggingContext(combined)) {
@@ -496,12 +503,13 @@ export class SafeScopeReasoningOrchestratorService {
       brainSnapshot,
       missingEvidence,
       safetyCalculations,
+      contradictionIntelligence,
       confidence,
       conclusionBoundary: {
-        advisoryOnly: true,
-        doesNotDeclareViolation: true,
-        doesNotCreateCitation: true,
-        requiresQualifiedReview: true,
+        advisoryOnly: confidence.level !== 'high',
+        doesNotDeclareViolation: confidence.level !== 'high',
+        doesNotCreateCitation: confidence.level !== 'high' || !primaryCitation,
+        requiresQualifiedReview: confidence.level !== 'high' || contradictionIntelligence?.contradictionsDetected === true || missingEvidence.length > 0,
       },
       recommendedNextQuestions: this.recommendedQuestions(jurisdictionAssessment.likelyJurisdiction, hazardClassification.primaryDomain, missingEvidence),
     };
@@ -1341,6 +1349,40 @@ export class SafeScopeReasoningOrchestratorService {
 
     if (
       includesAny(normalizedText, [
+        'fire extinguisher',
+        'extinguisher',
+        'fire protection',
+        'fire suppression',
+        'blocked extinguisher',
+        'fire alarm',
+        'emergency exit blocked',
+        'flammable storage',
+        'hot work fire watch',
+        'fire watch',
+        'ignition source',
+      ])
+    ) {
+      return 'fire_protection';
+    }
+
+    if (
+      includesAny(normalizedText, [
+        'scaffold',
+        'scaffolding',
+        'base plate',
+        'mudsill',
+        'cross brace',
+        'planking',
+        'scaffold access',
+        'tubular welded',
+        'baker scaffold',
+      ])
+    ) {
+      return 'scaffolds';
+    }
+
+    if (
+      includesAny(normalizedText, [
         'silica',
         'respirable crystalline silica',
         'silica dust',
@@ -1662,6 +1704,24 @@ export class SafeScopeReasoningOrchestratorService {
         reason: 'Ergonomic reviews require load weight, repetitive lift frequency, lift height, postures, duration of work, and availability of mechanical lifting aids to evaluate musculoskeletal risks.',
         importance: 'high',
       });
+    } else if (domain === 'excavation_trenching') {
+      gaps.push({
+        field: 'excavationTrenchingFacts',
+        reason: 'Excavation reviews require trench depth, soil type classification, competent person inspection records, and details of any protective systems (sloping, shoring, shielding) used.',
+        importance: 'high',
+      });
+    } else if (domain === 'scaffolds') {
+      gaps.push({
+        field: 'scaffoldFacts',
+        reason: 'Scaffold reviews require working height, base plate/mudsill verification, guardrail completeness, access method, and competent person daily inspection documentation.',
+        importance: 'high',
+      });
+    } else if (domain === 'fire_protection') {
+      gaps.push({
+        field: 'fireProtectionFacts',
+        reason: 'Fire protection reviews require extinguisher types, mounting height, monthly/annual inspection tags, accessibility/blockage status, and distance to hazard.',
+        importance: 'high',
+      });
     } else if (domain === 'health_exposure' && request.measurementsAvailable !== true) {
       gaps.push({
         field: 'measurementsAvailable',
@@ -1732,6 +1792,7 @@ export class SafeScopeReasoningOrchestratorService {
     domain: SafeScopeReasoningDomain,
     gaps: SafeScopeReasoningEvidenceGap[],
     signals: SafeScopeApplicabilitySignal[],
+    contradictionIntelligence?: any,
   ): { level: SafeScopeReasoningConfidence; reasons: string[] } {
     const reasons: string[] = [];
     let score = 0;
@@ -1755,7 +1816,17 @@ export class SafeScopeReasoningOrchestratorService {
     const highGaps = gaps.filter((gap) => gap.importance === 'high').length;
     score -= highGaps;
 
-    if (score >= 5 && highGaps === 0) {
+    if (contradictionIntelligence?.contradictionsDetected) {
+      score -= 3;
+      reasons.push('Confidence downgraded due to internal contradictions detected in the hazard description.');
+    }
+
+    if (contradictionIntelligence?.ambiguities?.length > 0) {
+      score -= 1;
+      reasons.push('Confidence adjusted due to semantic ambiguities in the observation.');
+    }
+
+    if (score >= 5 && highGaps === 0 && !contradictionIntelligence?.contradictionsDetected) {
       return { level: 'high', reasons };
     }
 

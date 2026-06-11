@@ -372,23 +372,49 @@ export async function runSafeScopeV2Offline(input: {
   offlineKnowledgePackVersion?: string;
   workspaceId?: string;
 }) {
-  const requestUrl = API_BASE_URL + '/safescope-v2/offline/evaluate';
-  const response = await apiFetch(requestUrl, {
-    method: 'POST',
-    headers: authHeaders(),
-    body: JSON.stringify(input),
-  });
+  try {
+    const fallbackResult = buildOfflineSafeScopeFallback({
+      text: input.observationText,
+      scopes: ["all"],
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error('Offline reasoning failed:', errorText);
+    return {
+      engine: "safescope_reasoning_orchestrator_v1",
+      mode: "deterministic_offline",
+      classification: fallbackResult.classification,
+      confidence: {
+        level: fallbackResult.confidenceBand === "offline_reference" ? "moderate" : "low",
+        reasons: fallbackResult.confidenceIntelligence.strengths,
+      },
+      missingEvidence: fallbackResult.confidenceIntelligence.missingCriticalInformation.map(gap => ({
+        field: "offlineEvidenceGap",
+        reason: gap,
+        importance: "high"
+      })),
+      conclusionBoundary: {
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        doesNotCreateCitation: true,
+        requiresQualifiedReview: true,
+      },
+      offlineFallback: true,
+      offlineTraceId: `local-${input.localObservationId}-${Date.now()}`,
+      suggestedStandards: fallbackResult.knowledgeBrain.supportingReferences?.map(ref => ({
+         citation: ref.citation,
+         description: ref.title,
+         rationale: ref.reason
+      })) || [],
+      recommendedNextQuestions: fallbackResult.confidenceIntelligence.missingCriticalInformation,
+    };
+  } catch (err) {
+    console.error('Offline reasoning failed:', err);
     return {
         mode: 'offline_limited_advisory',
         offlineAvailable: true,
         confidenceCeiling: 0.1,
-        advisorySummary: 'Network error during offline assessment. Observation cached for sync.',
+        advisorySummary: 'Error during offline assessment. Observation cached for sync.',
         likelyHazardDomains: [],
-        evidenceGaps: ['Connectivity lost during assessment.'],
+        evidenceGaps: ['Assessment failed to process locally.'],
         requiredSyncActions: ['Sync once online'],
         supervisorQuestions: [],
         offlineRestrictions: ['Real-time assessment unavailable'],
@@ -398,9 +424,7 @@ export async function runSafeScopeV2Offline(input: {
         doesNotDeclareViolation: true,
         doesNotCreateCitation: true,
         cannotPromoteKnowledge: true,
-        advisoryBoundary: 'Offline network fallback.'
+        advisoryBoundary: 'Offline local failure.'
     };
   }
-
-  return response.json();
 }
