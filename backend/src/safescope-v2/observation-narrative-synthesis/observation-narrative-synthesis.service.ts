@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import { Injectable } from '@nestjs/common';
 import { ObservationNarrativeSynthesisInput, ObservationNarrativeSynthesisResult } from './observation-narrative-synthesis.types';
 
@@ -10,6 +11,12 @@ export class ObservationNarrativeSynthesisService {
     const version = 'v1';
     const advisoryBoundary = 'SafeScope provides advisory information only. Requires human verification.';
     
+    // NLP Keyword extraction
+    const tfidf = new natural.TfIdf();
+    tfidf.addDocument((observationText || '').toLowerCase());
+    const topKeywords = tfidf.listTerms(0).slice(0, 3).map(t => t.term).join(', ');
+    const contextStr = topKeywords ? ` involving ${topKeywords}` : '';
+
     // 1. Determine Confidence Label
     let confidenceLabel = '';
     switch (evidenceWeighting.evidenceGrade) {
@@ -34,15 +41,15 @@ export class ObservationNarrativeSynthesisService {
 
     // 2. Primary and Secondary Concerns
     const hazards = multiHazardAnalysis.hazards;
-    const primaryConcern = hazards.length > 0 ? `Potential hazard in ${hazards[0].domainId} domain.` : 'Unknown hazard domain.';
+    const primaryConcern = hazards.length > 0 ? `Potential hazard in ${hazards[0].domainId} domain${contextStr}.` : 'Unknown hazard domain.';
     const secondaryConcerns = hazards.slice(1).map(h => `Additional potential hazard in ${h.domainId} domain.`);
 
     // 3. Narrative Summary
     let narrativeSummary = '';
     if (multiHazardAnalysis.isMultiHazard) {
-      narrativeSummary = `Multiple potential hazards were identified: ${hazards.map(h => h.domainId).join(', ')}. `;
+      narrativeSummary = `Multiple potential hazards were identified${contextStr}: ${hazards.map(h => h.domainId).join(', ')}. `;
     } else if (hazards.length > 0) {
-      narrativeSummary = `A potential ${hazards[0].domainId} hazard was identified. `;
+      narrativeSummary = `A potential ${hazards[0].domainId} hazard was identified${contextStr}. `;
     } else {
       narrativeSummary = `An observation was analyzed but no specific hazard domain could be definitively mapped. `;
     }
