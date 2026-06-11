@@ -16,7 +16,7 @@ import {
 } from "@/lib/pinSecurity";
 import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
 
-const publicRoutes = [
+const authPublicRoutes = [
   "/",
   "/login",
   "/register",
@@ -24,6 +24,9 @@ const publicRoutes = [
   "/forgot-password",
   "/reset-password",
   "/unlock",
+];
+
+const marketingRoutes = [
   "/about",
   "/legal",
   "/security",
@@ -80,14 +83,31 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [profileOpen, setProfileOpen] = useState(false);
+  const [hasAuthSession, setHasAuthSession] = useState(false);
 
   const profileMenuRef = useRef<HTMLDivElement | null>(null);
   const profileButtonRef = useRef<HTMLButtonElement | null>(null);
   const [securityLabel, setSecurityLabel] = useState("Standard Mode");
 
-  const isPublicPage = publicRoutes.some(
+  const isAuthPublicPage = authPublicRoutes.some(
     (route) => pathname === route || pathname.startsWith(route + "/"),
   );
+
+  const isMarketingPage = marketingRoutes.some(
+    (route) => pathname === route || pathname.startsWith(route + "/"),
+  );
+
+  const isPublicPage = isAuthPublicPage || (isMarketingPage && !hasAuthSession);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const token =
+      window.localStorage.getItem("sentinel_auth_token") ||
+      window.localStorage.getItem("token");
+
+    setHasAuthSession(Boolean(token) || DISABLE_AUTH_FOR_LOCAL_DEV);
+  }, [pathname]);
 
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent) {
@@ -301,7 +321,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="mt-auto hidden w-full border-t border-slate-800 bg-[#0F172A] lg:block">
+      <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A]">
         <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
