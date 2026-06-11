@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 
 const painPoints = [
@@ -32,6 +35,16 @@ const proofPoints = [
 ];
 
 export default function AboutPage() {
+  const [hasAuthSession, setHasAuthSession] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const token =
+      window.localStorage.getItem("sentinel_auth_token") ||
+      window.localStorage.getItem("token");
+    setHasAuthSession(Boolean(token));
+  }, []);
+
   return (
     <section className="mx-auto max-w-6xl space-y-6">
       <div className="rounded-[36px] bg-[#050B14] px-6 py-16 text-center text-white shadow-sm sm:px-10 md:px-16 md:py-24">
@@ -50,20 +63,31 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <AppLinkButton
-            href="/register"
-            className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
-          >
-            Start Free
-          </AppLinkButton>
+          {hasAuthSession ? (
+            <AppLinkButton
+              href="/command-center"
+              className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
+            >
+              Go to Dashboard
+            </AppLinkButton>
+          ) : (
+            <>
+              <AppLinkButton
+                href="/register"
+                className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
+              >
+                Start Free
+              </AppLinkButton>
 
-          <AppLinkButton
-            href="/login"
-            variant="secondary"
-            className="rounded-full bg-white px-7 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
-          >
-            Sign In
-          </AppLinkButton>
+              <AppLinkButton
+                href="/login"
+                variant="secondary"
+                className="rounded-full bg-white px-7 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
+              >
+                Sign In
+              </AppLinkButton>
+            </>
+          )}
         </div>
       </div>
 
@@ -125,7 +149,7 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-[28px] bg-white/10 p-6 ring-1 ring-white/10">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-200">
               Why it matters
             </p>
 
@@ -178,20 +202,31 @@ export default function AboutPage() {
         </p>
 
         <div className="mt-9 flex flex-wrap justify-center gap-3">
-          <AppLinkButton
-            href="/register"
-            className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
-          >
-            Start Free
-          </AppLinkButton>
+          {hasAuthSession ? (
+            <AppLinkButton
+              href="/command-center"
+              className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
+            >
+              Go to Dashboard
+            </AppLinkButton>
+          ) : (
+            <>
+              <AppLinkButton
+                href="/register"
+                className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
+              >
+                Start Free
+              </AppLinkButton>
 
-          <AppLinkButton
-            href="/"
-            variant="secondary"
-            className="rounded-full bg-white px-7 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
-          >
-            Back to Home
-          </AppLinkButton>
+              <AppLinkButton
+                href="/"
+                variant="secondary"
+                className="rounded-full bg-white px-7 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
+              >
+                Back to Home
+              </AppLinkButton>
+            </>
+          )}
         </div>
       </div>
     </section>
