@@ -1034,7 +1034,7 @@ export default function SettingsPage() {
         </AppPanel>
       </div>
 
-      <section className="sticky bottom-20 z-30 mx-auto flex w-fit justify-center rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-[0_12px_30px_rgba(15,23,42,0.14)] backdrop-blur lg:bottom-4">
+      <section className="mx-auto flex w-fit justify-center rounded-2xl border border-slate-200 bg-white/95 p-2 shadow-[0_12px_30px_rgba(15,23,42,0.14)] backdrop-blur lg:sticky lg:bottom-4 lg:z-30">
         <AppButton
           type="button"
           onClick={saveSettings}

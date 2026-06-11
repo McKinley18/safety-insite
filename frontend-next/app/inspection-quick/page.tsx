@@ -534,7 +534,7 @@ export default function QuickInspectionPage() {
         </div>
       </AppPanel>
 
-      <section className="sticky bottom-20 z-30 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:bottom-4">
+      <section className="rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:sticky lg:bottom-4 lg:z-30">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <AppButton
             type="button"
