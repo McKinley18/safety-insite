@@ -19,6 +19,21 @@ function compactText(value: string, fallback: string) {
   return value?.trim() ? value.trim() : fallback;
 }
 
+function normalizeConfidencePercent(value: unknown) {
+  if (value === undefined || value === null || value === "") return null;
+
+  const raw =
+    typeof value === "string"
+      ? Number(value.replace("%", "").trim())
+      : Number(value);
+
+  if (!Number.isFinite(raw)) return null;
+
+  const percent = raw <= 1 ? Math.round(raw * 100) : Math.round(raw);
+
+  return Math.max(0, Math.min(100, percent));
+}
+
 export default function CurrentHazardCard({
   currentStep,
   description,
@@ -103,12 +118,10 @@ export default function CurrentHazardCard({
     safeScopeResult?.risk?.operationalRisk?.matrixBand ||
     "Not rated";
 
-  const confidenceValue =
-    typeof safeScopeResult?.confidenceIntelligence?.overallConfidence === "number"
-      ? safeScopeResult.confidenceIntelligence.overallConfidence
-      : typeof safeScopeResult?.confidence === "number"
-        ? Math.round(safeScopeResult.confidence * 100)
-        : null;
+  const confidenceValue = normalizeConfidencePercent(
+    safeScopeResult?.confidenceIntelligence?.overallConfidence ??
+      safeScopeResult?.confidence,
+  );
 
   const confidenceLabel =
     confidenceValue !== null ? `${confidenceValue}%` : "Pending";

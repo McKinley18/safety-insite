@@ -37,24 +37,31 @@ const hazardCategoryOptions = [
 function inferCategory(text: string) {
   const value = text.toLowerCase();
 
-  if (value.includes("guard") || value.includes("conveyor") || value.includes("belt") || value.includes("pulley")) {
-    return "Machine Guarding";
+  const hasElectricalContext =
+    /\b(electrical|electric|disconnect|breaker|panel|mcc|switchgear|switch|cord|wire|wiring|conduit|junction|receptacle|outlet|energized|voltage|arc flash|transformer)\b/.test(value);
+
+  const hasBlockedElectricalAccess =
+    hasElectricalContext &&
+    /\b(blocked|obstructed|inaccessible|access|clearance|clearances|stored|pallet|material|equipment)\b/.test(value);
+
+  if (hasBlockedElectricalAccess || hasElectricalContext) {
+    return "Electrical";
   }
 
-  if (value.includes("wire") || value.includes("electrical") || value.includes("panel") || value.includes("cord")) {
-    return "Electrical";
+  if (value.includes("guard") || value.includes("conveyor") || value.includes("belt") || value.includes("pulley")) {
+    return "Machine Guarding";
   }
 
   if (value.includes("fall") || value.includes("edge") || value.includes("rail") || value.includes("ladder")) {
     return "Fall Protection";
   }
 
-  if (value.includes("slip") || value.includes("trip") || value.includes("walkway") || value.includes("floor")) {
-    return "Walking/Working Surfaces";
-  }
-
   if (value.includes("lockout") || value.includes("loto") || value.includes("energized")) {
     return "Lockout/Tagout";
+  }
+
+  if (value.includes("slip") || value.includes("trip") || value.includes("walkway") || value.includes("floor")) {
+    return "Walking/Working Surfaces";
   }
 
   if (value.includes("ppe") || value.includes("glasses") || value.includes("gloves") || value.includes("hard hat")) {
