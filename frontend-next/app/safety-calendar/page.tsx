@@ -13,6 +13,11 @@ import {
   toDateKey,
 } from "@/lib/safetyCalendar";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
+import {
+  getStoredPlanCode,
+  hasPlanEntitlement,
+  type PlanCode,
+} from "@/lib/planEntitlements";
 
 type CalendarView = "month" | "week" | "day";
 
@@ -137,9 +142,14 @@ export default function SafetyCalendarPage() {
   const [typeFilter, setTypeFilter] = useState("");
   const [ownerFilter, setOwnerFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [planCode, setPlanCode] = useState<PlanCode>("basic");
+
+  const canUseCompanyCalendar = hasPlanEntitlement("inspectionAssignments", planCode);
 
   useEffect(() => {
     async function loadEvents() {
+      setPlanCode(getStoredPlanCode());
+
       const loaded = await getSafetyCalendarEvents();
       setEvents(loaded);
     }
@@ -150,12 +160,12 @@ export default function SafetyCalendarPage() {
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {
       const matchesType = !typeFilter || event.type === typeFilter;
-      const matchesOwner = !ownerFilter || event.owner === ownerFilter;
+      const matchesOwner = !canUseCompanyCalendar || !ownerFilter || event.owner === ownerFilter;
       const matchesStatus = !statusFilter || event.status === statusFilter;
 
       return matchesType && matchesOwner && matchesStatus;
     });
-  }, [events, ownerFilter, statusFilter, typeFilter]);
+  }, [canUseCompanyCalendar, events, ownerFilter, statusFilter, typeFilter]);
 
   const ownerOptions = useMemo(() => {
     return Array.from(new Set(events.map((event) => event.owner).filter(Boolean))).sort();
@@ -205,9 +215,9 @@ export default function SafetyCalendarPage() {
       ["Overdue", overdue],
       ["Due Today", dueToday],
       ["Due This Week", dueThisWeek],
-      ["Unassigned", unassigned],
+      ...(canUseCompanyCalendar ? ([["Unassigned", unassigned]] as const) : []),
     ] as const;
-  }, [filteredEvents]);
+  }, [canUseCompanyCalendar, filteredEvents]);
 
   const monthDays = useMemo(() => {
     const first = startOfMonth(anchorDate);
@@ -293,7 +303,9 @@ export default function SafetyCalendarPage() {
           Organize inspections, actions, follow-ups, and review work.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Basic and Pro users can manage personal safety work. Company accounts can expand this into team assignments, owner filters, and organization-wide workload visibility.
+          {canUseCompanyCalendar
+            ? "Manage team inspections, corrective actions, follow-ups, review work, owners, and organization-wide workload visibility."
+            : "Manage your personal safety work, inspections, corrective actions, follow-ups, and review reminders."}
         </p>
 
         <div className="mx-auto mt-5 grid max-w-3xl grid-cols-2 gap-3 lg:grid-cols-4">
@@ -312,6 +324,17 @@ export default function SafetyCalendarPage() {
           ))}
         </div>
       </HeroPanel>
+
+      {!canUseCompanyCalendar && (
+        <AppPanel padding="sm" className="border-slate-200 bg-white">
+          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+            Personal Safety Calendar
+          </p>
+          <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
+            Basic and Pro plans show personal safety work. Company workspaces add owner filters, team assignments, unassigned work visibility, and organization-wide workload planning.
+          </p>
+        </AppPanel>
+      )}
 
       <AppPanel padding="sm" className="px-3 py-3 sm:px-3 sm:py-3">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
@@ -356,14 +379,16 @@ export default function SafetyCalendarPage() {
             <option value="custom">⬛ Custom Tasks</option>
           </AppSelect>
 
-          <AppSelect value={ownerFilter} onChange={(event) => setOwnerFilter(event.target.value)} fieldSize="sm">
-            <option value="">All owners</option>
-            {ownerOptions.map((owner) => (
-              <option key={owner} value={owner}>
-                {owner}
-              </option>
-            ))}
-          </AppSelect>
+          {canUseCompanyCalendar && (
+            <AppSelect value={ownerFilter} onChange={(event) => setOwnerFilter(event.target.value)} fieldSize="sm">
+              <option value="">All owners</option>
+              {ownerOptions.map((owner) => (
+                <option key={owner} value={owner}>
+                  {owner}
+                </option>
+              ))}
+            </AppSelect>
+          )}
 
           <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm">
             <option value="">All statuses</option>
