@@ -1155,6 +1155,7 @@ export default function InspectionPage() {
         saveFinding={saveFinding}
         addNewFinding={addNewFinding}
         generateReport={generateReport}
+        returnToReportInProgress={() => setCurrentStep(1)}
         description={description}
         hazardCategory={hazardCategory}
         location={location}
