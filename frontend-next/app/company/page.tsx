@@ -441,7 +441,7 @@ export default function CompanyControlCenterPage() {
           </span>
         </div>
 
-        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
           {[
             [`${usedSeats}/${companySeats}`, "Seats"],
             [String(workSummary.active), "Active"],

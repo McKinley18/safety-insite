@@ -344,7 +344,7 @@ export default function ActionsPage() {
           Manage actions created from inspections, SafeScope recommendations, reports, and user-entered work.
         </p>
 
-        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
           {[
             [String(actionSummary.total), "Total"],
             [String(actionSummary.open), "Open"],

@@ -150,7 +150,7 @@ export default function SafeScopeKnowledgePage() {
           Review the approved reference brain behind SafeScope hazard recognition, standards reasoning, incident learning, and mitigation support.
         </p>
 
-        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
           {[
             [String(metrics.total), "Documents"],
             [String(metrics.approved), "Approved"],
