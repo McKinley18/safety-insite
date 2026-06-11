@@ -11,6 +11,41 @@ export type StandardsApplicabilityEntry = {
 export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
   {
     jurisdiction: 'osha_general_industry',
+    domain: 'fire_protection',
+    primaryCitation: '29 CFR 1910.157(c)(1)',
+    acceptableCitations: ['29 CFR 1910.157(c)(1)', '29 CFR 1910.157'],
+    rationale: 'OSHA general industry portable fire extinguisher availability, mounting, and access requirements.'
+  },
+  {
+    jurisdiction: 'osha_construction',
+    domain: 'fire_protection',
+    primaryCitation: '29 CFR 1926.150(a)(1)',
+    acceptableCitations: ['29 CFR 1926.150(a)(1)', '29 CFR 1926.150'],
+    rationale: 'OSHA construction fire protection program and equipment availability requirements.'
+  },
+  {
+    jurisdiction: 'osha_construction',
+    domain: 'scaffolds',
+    primaryCitation: '29 CFR 1926.451(g)(1)',
+    acceptableCitations: ['29 CFR 1926.451(g)(1)', '29 CFR 1926.451'],
+    rationale: 'OSHA construction scaffold fall protection and structural integrity requirements.'
+  },
+  {
+    jurisdiction: 'osha_construction',
+    domain: 'excavation_trenching',
+    primaryCitation: '29 CFR 1926.652(a)(1)',
+    acceptableCitations: ['29 CFR 1926.652(a)(1)', '29 CFR 1926.652', '29 CFR 1926.651'],
+    rationale: 'OSHA construction excavation protective systems (shoring, shielding, sloping) requirements.'
+  },
+  {
+    jurisdiction: 'msha',
+    domain: 'fire_protection',
+    primaryCitation: '30 CFR 56.4201',
+    acceptableCitations: ['30 CFR 56.4201', '30 CFR 57.4201'],
+    rationale: 'MSHA surface and underground metal/nonmetal fire protection, extinguisher, and hot work requirements.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
     domain: 'emergency_preparedness',
     primaryCitation: '29 CFR 1910.151(c)',
     acceptableCitations: ['29 CFR 1910.151(c)', '29 CFR 1910.151'],

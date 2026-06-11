@@ -80,6 +80,12 @@ const navItems = [
     activeRoots: ["/company"],
   },
   {
+    href: "/safescope-knowledge/review",
+    label: "Review",
+    icon: "✓",
+    activeRoots: ["/safescope-knowledge/review"],
+  },
+  {
     href: "/settings",
     label: "Settings",
     icon: "⚙️",
