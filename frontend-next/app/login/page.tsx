@@ -155,14 +155,16 @@ export default function LoginPage() {
                 </div>
               </label>
 
-              <AppButton
-                type="submit"
-                disabled={loading}
-                size="lg"
-                className="mx-auto px-8 shadow-sm active:scale-[0.98]"
-              >
-                {loading ? "Signing In..." : "Sign In"}
-              </AppButton>
+              <div className="flex justify-center">
+                <AppButton
+                  type="submit"
+                  disabled={loading}
+                  size="lg"
+                  className="px-8 shadow-sm active:scale-[0.98]"
+                >
+                  {loading ? "Signing In..." : "Sign In"}
+                </AppButton>
+              </div>
 
               <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-1">
                 <AppTextLink href="/register">
