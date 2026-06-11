@@ -506,12 +506,12 @@ export default function AnalyticsPage() {
 
 
       <section className="grid gap-3 lg:grid-cols-2">
-        <div className="rounded-xl border border-blue-300 bg-blue-100 px-3 py-3 shadow-md">
-          <div className="border-b border-blue-300 pb-2">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+        <div className="rounded-xl border border-blue-300 bg-blue-100 dark:border-blue-900/30 dark:bg-blue-950/20 px-3 py-3 shadow-md">
+          <div className="border-b border-blue-300 dark:border-blue-900/40 pb-2">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-sky-400">
               Risk Profile
             </p>
-            <h2 className="mt-0.5 text-base font-black text-slate-900">
+            <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
               Severity, action coverage, and review quality
             </h2>
           </div>
@@ -547,19 +547,19 @@ export default function AnalyticsPage() {
             ].map(([value, label, detail]) => (
               <div
                 key={label}
-                className="rounded-lg border border-blue-200 bg-white px-3 py-2 shadow-sm"
+                className="rounded-lg border border-blue-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-xs font-black leading-tight text-slate-900">
+                    <p className="text-xs font-black leading-tight text-slate-900 dark:text-slate-100">
                       {label}
                     </p>
-                    <p className="mt-0.5 line-clamp-1 text-[10px] font-semibold leading-4 text-slate-500">
+                    <p className="mt-0.5 line-clamp-1 text-[10px] font-semibold leading-4 text-slate-500 dark:text-slate-400">
                       {detail}
                     </p>
                   </div>
 
-                  <p className="shrink-0 text-lg font-black leading-none tracking-tight text-slate-900">
+                  <p className="shrink-0 text-lg font-black leading-none tracking-tight text-slate-900 dark:text-slate-100">
                     {value}
                   </p>
                 </div>
@@ -568,12 +568,12 @@ export default function AnalyticsPage() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-emerald-300 bg-emerald-100 px-3 py-3 shadow-md">
-          <div className="border-b border-emerald-300 pb-2">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-800">
+        <div className="rounded-xl border border-emerald-300 bg-emerald-100 dark:border-emerald-900/30 dark:bg-emerald-950/20 px-3 py-3 shadow-md">
+          <div className="border-b border-emerald-300 dark:border-emerald-900/40 pb-2">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-800 dark:text-emerald-400">
               Corrective Action Performance
             </p>
-            <h2 className="mt-0.5 text-base font-black text-slate-900">
+            <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
               Closure, overdue work, and workload
             </h2>
           </div>
@@ -587,10 +587,10 @@ export default function AnalyticsPage() {
             ].map(([value, label]) => (
               <div
                 key={label}
-                className="flex items-center justify-between rounded-lg border border-emerald-200 bg-white px-3 py-2 shadow-sm"
+                className="flex items-center justify-between rounded-lg border border-emerald-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
               >
-                <p className="text-xs font-black text-slate-900">{label}</p>
-                <p className="text-xs font-black text-slate-700">{value}</p>
+                <p className="text-xs font-black text-slate-900 dark:text-slate-100">{label}</p>
+                <p className="text-xs font-black text-slate-700 dark:text-slate-300">{value}</p>
               </div>
             ))}
           </div>
@@ -600,18 +600,18 @@ export default function AnalyticsPage() {
       </section>
 
       <section className="grid gap-3 lg:grid-cols-2">
-        <div className="rounded-xl border border-orange-300 bg-orange-100 px-3 py-3 shadow-md">
-          <div className="flex items-start justify-between gap-3 border-b border-orange-300 pb-2">
+        <div className="rounded-xl border border-orange-300 bg-orange-100 dark:border-orange-900/30 dark:bg-orange-950/20 px-3 py-3 shadow-md">
+          <div className="flex items-start justify-between gap-3 border-b border-orange-300 dark:border-orange-900/40 pb-2">
             <div className="min-w-0">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-700">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-700 dark:text-orange-400">
                 Repeat Hazards
               </p>
-              <h2 className="mt-0.5 text-base font-black text-slate-900">
+              <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
                 Recurring hazard themes
               </h2>
             </div>
 
-            <span className="shrink-0 rounded-full bg-orange-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700">
+            <span className="shrink-0 rounded-full bg-orange-50 dark:bg-orange-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:text-orange-300">
               {analytics.repeatHazardThemes.length} repeat
             </span>
           </div>
@@ -621,18 +621,18 @@ export default function AnalyticsPage() {
               analytics.allHazardThemes.slice(0, 5).map(([label, value]) => (
                 <div
                   key={label}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm"
+                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
                 >
-                  <p className="min-w-0 truncate text-xs font-black text-slate-900">
+                  <p className="min-w-0 truncate text-xs font-black text-slate-900 dark:text-slate-100">
                     {label}
                   </p>
-                  <p className="shrink-0 text-sm font-black text-slate-700">
+                  <p className="shrink-0 text-sm font-black text-slate-700 dark:text-slate-300">
                     {value}
                   </p>
                 </div>
               ))
             ) : (
-              <p className="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+              <p className="rounded-lg border border-dashed border-slate-300 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
                 No hazard themes available yet.
               </p>
             )}
@@ -640,18 +640,18 @@ export default function AnalyticsPage() {
 
         </div>
 
-        <div className="rounded-xl border border-sky-300 bg-sky-100 px-3 py-3 shadow-md">
-          <div className="flex items-start justify-between gap-3 border-b border-sky-300 pb-2">
+        <div className="rounded-xl border border-sky-300 bg-sky-100 dark:border-sky-900/30 dark:bg-sky-950/20 px-3 py-3 shadow-md">
+          <div className="flex items-start justify-between gap-3 border-b border-sky-300 dark:border-sky-900/40 pb-2">
             <div className="min-w-0">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-sky-700">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-sky-700 dark:text-sky-400">
                 Repeat Locations
               </p>
-              <h2 className="mt-0.5 text-base font-black text-slate-900">
+              <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
                 Recurring locations and exposure areas
               </h2>
             </div>
 
-            <span className="shrink-0 rounded-full bg-orange-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700">
+            <span className="shrink-0 rounded-full bg-orange-50 dark:bg-orange-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:text-orange-300">
               {analytics.repeatLocations.length} repeat
             </span>
           </div>
@@ -661,12 +661,12 @@ export default function AnalyticsPage() {
               analytics.allLocations.slice(0, 5).map(([label, value]) => (
                 <div
                   key={label}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 shadow-sm"
+                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
                 >
-                  <p className="min-w-0 truncate text-xs font-black text-slate-900">
+                  <p className="min-w-0 truncate text-xs font-black text-slate-900 dark:text-slate-100">
                     {label}
                   </p>
-                  <p className="shrink-0 text-sm font-black text-slate-700">
+                  <p className="shrink-0 text-sm font-black text-slate-700 dark:text-slate-300">
                     {value}
                   </p>
                 </div>
