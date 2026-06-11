@@ -17,6 +17,11 @@ const tests: GoldenHazardTest[] = [
     expectedConfidenceBand: "high",
   },
   {
+    name: "Blocked electrical disconnect classifies as Electrical",
+    text: "electrical disconnect blocked",
+    expectedClassification: "Electrical",
+  },
+  {
     name: "Exposed live wire classifies as Electrical",
     text: "Live wire hanging from open junction box with exposed conductor near work area.",
     expectedClassification: "Electrical",

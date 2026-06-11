@@ -55,6 +55,40 @@ function confidenceFromScore(score: number, margin: number): {
   return { confidence: 0.25, confidenceBand: "low" };
 }
 
+function getSemanticArbitrationSignals(normalizedText: string) {
+  const hasBlockedOrAccessIssue =
+    /\b(blocked|obstructed|inaccessible|access blocked|blocked access|clearance|clearances|stored|storage|pallet|material|equipment|covered|buried)\b/i.test(normalizedText);
+
+  const electricalObject =
+    /\b(electrical|electric|disconnect|breaker|panel|mcc|switchgear|switch|cord|wire|wiring|conduit|junction|receptacle|outlet|energized|voltage|arc flash|transformer|fuse|cabinet)\b/i.test(normalizedText);
+
+  const emergencyEgressObject =
+    /\b(emergency exit|exit route|exit door|egress|means of egress|fire exit|escape route)\b/i.test(normalizedText);
+
+  const fireProtectionObject =
+    /\b(fire extinguisher|extinguisher|fire hose|fire alarm|sprinkler|fire suppression|hydrant)\b/i.test(normalizedText);
+
+  const machineSafetyControlObject =
+    /\b(emergency stop|e-stop|estop|pull cord|stop cord|kill switch|interlock|machine guard|guard)\b/i.test(normalizedText);
+
+  const travelPathObject =
+    /\b(walkway|aisle|aisleway|travelway|passageway|floor|walking surface|walking-working surface|stairs|platform)\b/i.test(normalizedText);
+
+  return {
+    electricalAccessIssue: electricalObject && hasBlockedOrAccessIssue,
+    emergencyEgressAccessIssue: emergencyEgressObject && hasBlockedOrAccessIssue,
+    fireProtectionAccessIssue: fireProtectionObject && hasBlockedOrAccessIssue,
+    machineSafetyControlAccessIssue: machineSafetyControlObject && hasBlockedOrAccessIssue,
+    walkingSurfaceAccessIssue:
+      travelPathObject &&
+      hasBlockedOrAccessIssue &&
+      !electricalObject &&
+      !emergencyEgressObject &&
+      !fireProtectionObject &&
+      !machineSafetyControlObject,
+  };
+}
+
 export class WeightedClassifierService {
   classify(text: string) {
     const normalizedText = normalize(text);
@@ -222,6 +256,36 @@ export class WeightedClassifierService {
         ) {
           score -= 120;
         }
+      }
+
+      // Semantic hazard arbitration.
+      // Generic words like "blocked" are not enough by themselves; SafeScope should
+      // identify the safety-critical object being blocked, then classify by the
+      // primary hazard domain/function affected.
+      const semantic = getSemanticArbitrationSignals(normalizedText);
+
+      if (semantic.electricalAccessIssue) {
+        if (profile.id === "electrical") score += 70;
+        if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") score -= 55;
+      }
+
+      if (semantic.emergencyEgressAccessIssue) {
+        if (profile.id === "emergency_egress") score += 70;
+        if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") score -= 35;
+      }
+
+      if (semantic.fireProtectionAccessIssue) {
+        if (profile.id === "fire_explosion" || profile.id === "fire_protection") score += 55;
+        if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") score -= 25;
+      }
+
+      if (semantic.machineSafetyControlAccessIssue) {
+        if (profile.id === "machine_guarding") score += 45;
+        if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") score -= 25;
+      }
+
+      if (semantic.walkingSurfaceAccessIssue) {
+        if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") score += 35;
       }
 
       // 9. Safety Shower / Eye Wash vs Walking/Working Surfaces Guardrail

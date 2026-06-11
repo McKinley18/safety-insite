@@ -27,10 +27,15 @@ function getSafeScopeAuthHeaders() {
 function runBasicSafeScopeFallback(text: string, payload: any) {
   const lower = text.toLowerCase();
 
+  const hasElectricalContext =
+    /\b(electrical|electric|disconnect|breaker|panel|mcc|switchgear|switch|cord|wire|wiring|conduit|junction|receptacle|outlet|energized|voltage|arc flash|transformer|fuse|cabinet)\b/i.test(lower);
+
+  const hasElectricalAccessIssue =
+    hasElectricalContext &&
+    /\b(blocked|obstructed|inaccessible|access|clearance|clearances|stored|pallet|material|equipment|covered|buried)\b/i.test(lower);
+
   const classification =
-    lower.includes("electrical") ||
-    lower.includes("wire") ||
-    lower.includes("energized")
+    hasElectricalAccessIssue || hasElectricalContext
       ? "Electrical"
       : lower.includes("guard") ||
           lower.includes("conveyor") ||
@@ -68,7 +73,7 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
     additionalHazards: [],
     risk: null,
     confidenceIntelligence: {
-      overallConfidence: 0.45,
+      overallConfidence: 45,
       confidenceBand: "basic_review",
       strengths: ["Basic hazard category assistance was provided."],
       missingCriticalInformation: [
