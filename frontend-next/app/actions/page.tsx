@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import PageHeader from "@/components/ui/PageHeader";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
+import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import EmptyState from "@/components/ui/EmptyState";
 import OperationalRow from "@/components/ui/OperationalRow";
@@ -332,11 +332,39 @@ export default function ActionsPage() {
   }
 
   return (
-    <section className="space-y-6">
-      <PageHeader
-        title="Corrective Actions"
-        description="Track corrective actions created from inspections, SafeScope recommendations, and user-entered work."
-      />
+    <section className="space-y-5">
+      <HeroPanel align="center">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          Corrective Actions
+        </p>
+        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          Track corrective work.
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Manage actions created from inspections, SafeScope recommendations, reports, and user-entered work.
+        </p>
+
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
+          {[
+            [String(actionSummary.total), "Total"],
+            [String(actionSummary.open), "Open"],
+            [String(actionSummary.overdue), "Overdue"],
+            [String(actionSummary.blocked), "Blocked"],
+          ].map(([value, label]) => (
+            <div
+              key={label}
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+            >
+              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
+                {value}
+              </p>
+              <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </HeroPanel>
 
       {canUseWorkspaceActions && cloudActionMessage && (
         <AppPanel
@@ -406,25 +434,6 @@ export default function ActionsPage() {
             </AppButton>
           </div>
         </div>
-      </section>
-
-      <section className="grid gap-3 sm:grid-cols-4">
-        {[
-          [String(actionSummary.total), "Total"],
-          [String(actionSummary.open), "Open"],
-          [String(actionSummary.overdue), "Overdue"],
-          [String(actionSummary.blocked), "Blocked"],
-        ].map(([value, label]) => (
-          <div
-            key={label}
-            className="rounded-xl border border-slate-200 bg-white px-3 py-3 shadow-sm"
-          >
-            <p className="text-2xl font-black text-slate-900">{value}</p>
-            <p className="mt-1 text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-              {label}
-            </p>
-          </div>
-        ))}
       </section>
 
       <AppPanel padding="sm" className="p-3">
