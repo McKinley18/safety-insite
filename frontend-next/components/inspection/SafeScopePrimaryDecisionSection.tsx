@@ -1,3 +1,5 @@
+import { formatStandardDisplay, getStandardSummary } from "@/lib/inspection/standardDisplay";
+
 type Props = {
   safeScopeResult: any;
 };
@@ -56,11 +58,12 @@ export default function SafeScopePrimaryDecisionSection({
 
   const topStandard = safeScopeResult.suggestedStandards?.[0];
 
-  const topStandardLabel = topStandard?.citation || "No standard selected";
+  const topStandardLabel = topStandard
+    ? formatStandardDisplay(topStandard)
+    : "No standard selected";
 
   const standardReason =
-    topStandard?.rationale ||
-    topStandard?.matchingReasons?.[0] ||
+    getStandardSummary(topStandard) ||
     safeScopeResult.standardsReasoning?.summary ||
     "SafeScope did not identify a primary standard for automatic selection.";
 

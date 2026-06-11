@@ -397,16 +397,23 @@ export class WeightedClassifierService {
       requiredControls: primary.matchedControls,
       score: primary.score,
       scoreMargin,
-      additionalHazards: sorted.slice(1, 4).map((candidate) => ({
-        classification: candidate.classification,
-        confidence:
-          primary.score > 0
-            ? Math.max(0.1, Math.min(0.8, candidate.score / primary.score))
-            : 0.1,
-        confidenceBand: candidate.score >= 10 ? "medium" : "low",
-        evidenceTokens: candidate.evidenceTokens,
-        score: candidate.score,
-      })),
+      additionalHazards: sorted
+        .slice(1)
+        .filter((candidate) => {
+          const candidateMargin = primary.score - candidate.score;
+          const hasMeaningfulEvidence = candidate.evidenceTokens.length >= 2;
+          const isCloseCompetingHazard = candidate.score >= 7 && candidateMargin <= 6;
+
+          return hasMeaningfulEvidence && isCloseCompetingHazard;
+        })
+        .slice(0, 3)
+        .map((candidate) => ({
+          classification: candidate.classification,
+          confidence: confidenceFromScore(candidate.score, 0).confidence,
+          confidenceBand: confidenceFromScore(candidate.score, 0).confidenceBand,
+          evidenceTokens: candidate.evidenceTokens,
+          explanation: candidate.explanation,
+        })),
       excludedHazards: candidates
         .filter((candidate) => candidate.id !== primary.id)
         .map((candidate) => ({
