@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import { VectorDocument, VectorSearchResult } from './semantic-vector-search.types';
 
 export class LocalVectorStore {
@@ -33,24 +34,15 @@ export class LocalVectorStore {
     if (!text) return [];
     
     // Normalize punctuation and lower case
-    const cleaned = text
-      .toLowerCase()
-      .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?"']/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
+    const cleaned = text.toLowerCase();
     
-    const unigrams = cleaned.split(' ').filter(word => word.length > 2);
+    const tokenizer = new natural.WordTokenizer();
+    const tokens = tokenizer.tokenize(cleaned) || [];
     
-    // Stem unigrams by stripping common suffixes for plurals, gerunds, etc.
-    const stemmedUnigrams = unigrams.map(word => {
-      if (word.length <= 3) return word;
-      let stemmed = word;
-      if (stemmed.endsWith('s') && !stemmed.endsWith('ss')) stemmed = stemmed.slice(0, -1);
-      if (stemmed.endsWith('ing')) stemmed = stemmed.slice(0, -3);
-      if (stemmed.endsWith('ed')) stemmed = stemmed.slice(0, -2);
-      if (stemmed.endsWith('ly')) stemmed = stemmed.slice(0, -2);
-      return stemmed;
-    });
+    const unigrams = tokens.filter(word => word.length > 2);
+    
+    // Stem unigrams using NLP Porter Stemmer
+    const stemmedUnigrams = unigrams.map(word => natural.PorterStemmer.stem(word));
 
     // Extract bigrams for phrase matching support
     const bigrams: string[] = [];

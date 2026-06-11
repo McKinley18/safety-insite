@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import { Injectable } from '@nestjs/common';
 import { 
   SemanticSynonymExpansionInput, 
@@ -131,22 +132,43 @@ export class SemanticSynonymExpansionService {
     const possibleAmbiguities: string[] = [];
     const reviewerQuestions: string[] = [];
     
-    // Sort all synonyms by length descending to match longest phrases first
+    // NLP Tokenization and Stemming
+    const tokenizer = new natural.WordTokenizer();
+    const observationTokens = tokenizer.tokenize(normalizedText) || [];
+    const stemmedObservation = observationTokens.map(t => natural.PorterStemmer.stem(t));
+
     const allSynonyms = this.synonymGroups.flatMap(group => 
       group.synonyms.map(syn => ({ ...group, synonym: syn }))
     ).sort((a, b) => b.synonym.length - a.synonym.length);
 
-    let tempText = normalizedText;
     allSynonyms.forEach(item => {
-      const synNorm = item.synonym.toLowerCase().replace(/-/g, " ");
-      const regex = new RegExp(`\\b${this.escapeRegExp(synNorm)}\\b`, 'g');
-      if (regex.test(tempText)) {
+      const synNorm = this.normalize(item.synonym);
+      const synTokens = tokenizer.tokenize(synNorm) || [];
+      const stemmedSynTokens = synTokens.map(t => natural.PorterStemmer.stem(t));
+
+      let isMatch = false;
+
+      // Direct inclusion match
+      if (normalizedText.includes(synNorm)) {
+        isMatch = true;
+      } else if (stemmedSynTokens.length > 0) {
+        // Fallback to Stemmed multi-token overlap
+        let matchCount = 0;
+        for (const st of stemmedSynTokens) {
+          if (stemmedObservation.includes(st)) {
+            matchCount++;
+          }
+        }
+        if (matchCount === stemmedSynTokens.length) {
+          isMatch = true;
+        }
+      }
+
+      if (isMatch) {
         expandedSignals.push(item.synonym);
         detectedSynonymGroups.push(`${item.family}:${item.canonical}`);
         primarySemanticFamilies.push(item.family);
         matchedCanonicalTerms.push(item.canonical);
-        
-        tempText = tempText.replace(regex, ' [MATCHED] ');
       }
     });
 
@@ -177,7 +199,7 @@ export class SemanticSynonymExpansionService {
       possibleAmbiguities,
       governanceWarnings: [],
       reviewerQuestions,
-      advisoryBoundary: 'SafeScope semantic expansion is advisory only and utilizes deterministic mapping.'
+      advisoryBoundary: 'SafeScope semantic expansion is advisory only and utilizes NLP stemming and deterministic mapping.'
     };
   }
 
