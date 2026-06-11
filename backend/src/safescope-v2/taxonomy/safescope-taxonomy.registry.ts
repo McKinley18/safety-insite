@@ -173,6 +173,49 @@ export const SAFESCOPE_TAXONOMY_REGISTRY: Record<string, TaxonomyEntry> = {
     ],
     description: 'Bloodborne pathogens and contaminated sharps exposure hazards.'
   },
+  industrial_hygiene: {
+    canonical: 'industrial_hygiene',
+    aliases: [
+      'industrial hygiene',
+      'atmospheric contaminant',
+      'air contaminants',
+      'air quality',
+      'vocs',
+      'gas exposure',
+      'multi-contaminant',
+      'contaminants',
+      'chemical vapors',
+      'solvent vapors',
+      'respirable particulates',
+      'dust concentration',
+      'lead exposure',
+      'hexavalent chromium',
+      'toxic substance'
+    ],
+    description: 'Industrial hygiene and environmental health monitoring hazards, including multi-contaminant atmospheric, toxic dusts, and chemical vapor exposure.'
+  },
+  ergonomics: {
+    canonical: 'ergonomics',
+    aliases: [
+      'ergonomics',
+      'musculoskeletal',
+      'manual lifting',
+      'heavy lifting',
+      'repetitive strain',
+      'lifting hazard',
+      'musculoskeletal disorder',
+      'msd',
+      'improper lift',
+      'repetitive lifting',
+      'lifting assist',
+      'hoist',
+      'manipulator',
+      'loader assist',
+      'back strain',
+      'forceful exertion'
+    ],
+    description: 'Ergonomic hazards and musculoskeletal strain risks during lifting, forceful exertion, or highly repetitive manual material handling tasks.'
+  },
   confined_space: {
     canonical: 'confined_space',
     aliases: [

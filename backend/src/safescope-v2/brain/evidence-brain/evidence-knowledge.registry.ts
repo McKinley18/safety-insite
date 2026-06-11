@@ -355,5 +355,25 @@ export const SAFESCOPE_EVIDENCE_BRAIN_REGISTRY: SafeScopeEvidenceBrainRecord[] =
     acceptableEvidenceTypes: ['photo', 'measurement', 'employee_statement', 'inspection_observation', 'document_review', 'qualified_person_review', 'equipment_record'],
     defensibilityImpact: 'Missing evidence may reduce confidence, require qualified review, or prevent closure until the condition is verified.',
   },
+  {
+    evidenceId: 'evidence-industrial-hygiene-local-exhaust',
+    hazardDomains: ['industrial_hygiene'],
+    mechanisms: ['chemical_vapors_inhalation', 'toxic_gas_inhalation'],
+    question: 'What air quality sampling concentration, local exhaust ventilation status, employee respiratory protection, and duration evidence support the finding?',
+    importance: 'critical',
+    whyItMatters: 'This evidence is needed to support defensible hazard classification, air contaminants compliance, and qualified review.',
+    acceptableEvidenceTypes: ['photo', 'measurement', 'employee_statement', 'inspection_observation', 'document_review', 'qualified_person_review', 'equipment_record'],
+    defensibilityImpact: 'Missing evidence may reduce confidence, require qualified review, or prevent closure until the condition is verified.',
+  },
+  {
+    evidenceId: 'evidence-ergonomics-lift-assist',
+    hazardDomains: ['ergonomics'],
+    mechanisms: ['lifting_musculoskeletal_strain'],
+    question: 'What load weight, manual handling frequency, forceful exertion, worker posture, and availability of lift-assist mechanical devices evidence support the finding?',
+    importance: 'critical',
+    whyItMatters: 'This evidence is needed to support defensible hazard classification, ergonomics strain mitigation, and qualified review.',
+    acceptableEvidenceTypes: ['photo', 'measurement', 'employee_statement', 'inspection_observation', 'document_review', 'qualified_person_review', 'equipment_record'],
+    defensibilityImpact: 'Missing evidence may reduce confidence, require qualified review, or prevent closure until the condition is verified.',
+  },
 
 ];

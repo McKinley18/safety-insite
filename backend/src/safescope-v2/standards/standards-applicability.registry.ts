@@ -39,6 +39,34 @@ export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
   },
   {
     jurisdiction: 'osha_general_industry',
+    domain: 'industrial_hygiene' as SafeScopeReasoningDomain,
+    primaryCitation: '29 CFR 1910.1000',
+    acceptableCitations: ['29 CFR 1910.1000', '29 CFR 1910.1000(a)'],
+    rationale: 'OSHA air contaminants standards governing exposure limits for toxic substances, dusts, gases, or vapors.'
+  },
+  {
+    jurisdiction: 'msha',
+    domain: 'industrial_hygiene' as SafeScopeReasoningDomain,
+    primaryCitation: '30 CFR 56.5001',
+    acceptableCitations: ['30 CFR 56.5001', '30 CFR 57.5001'],
+    rationale: 'MSHA air contaminants limits and monitoring requirements for toxic gases, dusts, and chemical vapors.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
+    domain: 'ergonomics' as SafeScopeReasoningDomain,
+    primaryCitation: '29 CFR 1910.176(b)',
+    acceptableCitations: ['29 CFR 1910.176(b)', '29 CFR 1910.176'],
+    rationale: 'Secure storage and ergonomic handling guidelines to prevent lifting and materials handling strain injuries.'
+  },
+  {
+    jurisdiction: 'msha',
+    domain: 'ergonomics' as SafeScopeReasoningDomain,
+    primaryCitation: '30 CFR 56.16007',
+    acceptableCitations: ['30 CFR 56.16007', '30 CFR 57.16007'],
+    rationale: 'MSHA safe materials handling guidelines to prevent physical strain injuries during manual handling.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
     domain: 'material_handling',
     primaryCitation: '29 CFR 1910.101(b)',
     acceptableCitations: ['29 CFR 1910.101(b)', '29 CFR 1910.101'],

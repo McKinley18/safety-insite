@@ -34,6 +34,7 @@ async function audit() {
         'machine-guarding-conveyor-loto-draft-candidates': 'validate-safescope-machine-guarding-conveyor-loto-draft-pack.ts',
         'mobile-equipment-pedestrian-traffic-control-draft-candidates': 'validate-safescope-mobile-equipment-pedestrian-draft-pack.ts',
         'core-expansion-v1.json': 'validate-safescope-core-regulatory-expansion-v1.ts',
+        'core-expansion-v1': 'validate-safescope-core-regulatory-expansion-v1.ts',
         'core-regulatory-expansion-v1': 'validate-safescope-core-regulatory-expansion-v1.ts'
     };
     

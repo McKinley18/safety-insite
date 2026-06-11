@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../../corrective-actions/corrective-action-template.registry';
 import {
   CorrectiveActionReasoningInput,
@@ -44,6 +45,12 @@ export class SafeScopeCorrectiveActionReasoningService {
   private buildRecommendations(input: CorrectiveActionReasoningInput): CorrectiveActionRecommendation[] {
     const recommendations: CorrectiveActionRecommendation[] = [];
     
+    // Extract situational context using TF-IDF NLP
+    const tfidf = new natural.TfIdf();
+    tfidf.addDocument(normalize(input.hazardObservation));
+    const topTerms = tfidf.listTerms(0).slice(0, 3).map(t => t.term).join(', ');
+    const contextStr = topTerms ? ` involving ${topTerms}` : '';
+    
     // Find template
     const template = CORRECTIVE_ACTION_TEMPLATE_REGISTRY.find(t => t.domain === input.hazardDomain);
     
@@ -52,7 +59,7 @@ export class SafeScopeCorrectiveActionReasoningService {
             controlLevel: 'administrative' as ControlLevel,
             priority: 'immediate' as CorrectiveActionPriority,
             action: el,
-            rationale: 'Immediate risk mitigation.',
+            rationale: `Immediate risk mitigation${contextStr}.`,
             verificationEvidence: [],
             cautions: []
         }));
@@ -60,7 +67,7 @@ export class SafeScopeCorrectiveActionReasoningService {
             controlLevel: 'engineering' as ControlLevel,
             priority: 'high' as CorrectiveActionPriority,
             action: el,
-            rationale: 'Permanent abatement.',
+            rationale: `Permanent abatement${contextStr}.`,
             verificationEvidence: [],
             cautions: []
         }));
@@ -69,7 +76,7 @@ export class SafeScopeCorrectiveActionReasoningService {
             controlLevel: 'verification' as ControlLevel,
             priority: 'medium' as CorrectiveActionPriority,
             action: el,
-            rationale: 'Verification of abatement.',
+            rationale: `Verification of abatement${contextStr}.`,
             verificationEvidence: [],
             cautions: []
         }));
@@ -79,10 +86,30 @@ export class SafeScopeCorrectiveActionReasoningService {
             controlLevel: 'verification' as ControlLevel,
             priority: 'medium' as CorrectiveActionPriority,
             action: 'Gather additional facts and assign qualified review.',
-            rationale: 'Domain unknown.',
+            rationale: `Domain unknown, requires situational analysis${contextStr}.`,
             verificationEvidence: [],
             cautions: []
         });
+    }
+
+    // AI-Driven Dynamic Evidence Gaps
+    if (input.applicabilityAnalysis && input.applicabilityAnalysis.recordAnalyses) {
+      input.applicabilityAnalysis.recordAnalyses.forEach(record => {
+        if (record.missingEvidenceNeeded && record.missingEvidenceNeeded.length > 0) {
+          record.missingEvidenceNeeded.forEach(evidence => {
+            if (!recommendations.some(r => r.action.includes(evidence))) {
+              recommendations.push({
+                controlLevel: 'verification' as ControlLevel,
+                priority: 'medium' as CorrectiveActionPriority,
+                action: `Verify presence of: ${evidence}`,
+                rationale: `AI identified this as critical missing evidence for ${record.citation || 'regulatory compliance'}.`,
+                verificationEvidence: [evidence],
+                cautions: [`Without ${evidence}, finding cannot be definitively closed.`]
+              });
+            }
+          });
+        }
+      });
     }
 
     if (input.hazardDomain === 'health_exposure') {

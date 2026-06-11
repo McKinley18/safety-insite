@@ -495,6 +495,21 @@ const steps: ValidationStep[] = [
     command: 'npx',
     args: ['ts-node', 'scripts/validate-safescope-field-output-contract.ts'],
   },
+  {
+    label: 'Verification evidence validation (P0)',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-verification-evidence-validation.ts'],
+  },
+  {
+    label: 'Offline trace sync conflict resolution (P0)',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-offline-sync-conflict-resolution.ts'],
+  },
+  {
+    label: 'P1 knowledge expansion (Industrial Hygiene & Ergonomics)',
+    command: 'npx',
+    args: ['ts-node', 'scripts/validate-safescope-p1-knowledge-expansion.ts'],
+  },
 ];
 
 function runStep(step: ValidationStep, index: number): void {

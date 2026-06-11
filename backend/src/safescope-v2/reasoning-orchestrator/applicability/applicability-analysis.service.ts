@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import { KnowledgeRecord } from '../../knowledge-intake/knowledge-intake.types';
 import {
   ApplicabilityAnalysisInput,
@@ -21,12 +22,36 @@ function includesMeaningfulText(haystack: string, needle: string): boolean {
 
   if (words.length === 0) return false;
 
-  return words.some((word) => haystack.includes(word));
+  const haystackTokens = natural.WordTokenizer ? new natural.WordTokenizer().tokenize(haystack) : haystack.split(/[^a-z0-9.]+/i);
+  const stemmedHaystack = haystackTokens.map(t => natural.PorterStemmer.stem(t));
+
+  return words.some((word) => {
+    const stemmedWord = natural.PorterStemmer.stem(word);
+    return haystack.includes(word) || stemmedHaystack.includes(stemmedWord);
+  });
 }
 
 export class SafeScopeApplicabilityAnalysisService {
   analyze(input: ApplicabilityAnalysisInput): ApplicabilityAnalysisResult {
-    const recordAnalyses = input.approvedRecords.map((record) => this.analyzeRecord(input, record));
+    const classifier = new natural.BayesClassifier();
+    
+    input.approvedRecords.forEach((record) => {
+      record.applicabilityTriggers.forEach(t => classifier.addDocument(t, record.recordId));
+      record.evidenceNeeded.forEach(e => classifier.addDocument(e, record.recordId));
+      if (record.title) classifier.addDocument(record.title, record.recordId);
+    });
+    
+    if (input.approvedRecords.length > 0) {
+      classifier.train();
+    }
+
+    const observation = normalize(input.hazardObservation);
+    const contextualMatches = input.approvedRecords.length > 0 ? classifier.getClassifications(observation) : [];
+
+    const recordAnalyses = input.approvedRecords.map((record) => {
+      const aiContextScore = contextualMatches.find(c => c.label === record.recordId)?.value || 0;
+      return this.analyzeRecord(input, record, aiContextScore);
+    });
 
     const summary = {
       likelyApplicableCount: recordAnalyses.filter((item) => item.status === 'likely_applicable').length,
@@ -52,7 +77,7 @@ export class SafeScopeApplicabilityAnalysisService {
     };
   }
 
-  private analyzeRecord(input: ApplicabilityAnalysisInput, record: KnowledgeRecord): ApplicabilityRecordAnalysis {
+  private analyzeRecord(input: ApplicabilityAnalysisInput, record: KnowledgeRecord, aiContextScore: number = 0): ApplicabilityRecordAnalysis {
     const observation = normalize(input.hazardObservation);
     const reasoning: string[] = [];
 
@@ -84,6 +109,13 @@ export class SafeScopeApplicabilityAnalysisService {
       reasoning.push('Some expected evidence terms were present in the hazard observation.');
     } else {
       reasoning.push('Expected evidence terms were not clearly present in the hazard observation.');
+    }
+
+    // AI Semantic Context Boost
+    if (aiContextScore > 0.05) {
+      const boost = Math.min(25, Math.round(aiContextScore * 100));
+      confidenceScore += boost;
+      reasoning.push(`SafeScope NLP context learning matched situational relevance (Boost: +${boost}).`);
     }
 
     if (record.sourceBoundary === 'mandatory') {

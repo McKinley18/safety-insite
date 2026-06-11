@@ -10,6 +10,7 @@ import { SafeScopeMechanismPrecedenceResolverService } from '../mechanism-intell
 import { SafeScopeBrainSnapshotBuilderService } from '../brain/snapshot-builder/brain-snapshot-builder.service';
 import { SafeScopeTaskContext } from '../equipment-knowledge/equipment-task-mechanism.types';
 import { hasAnyNonNegatedTerm } from './negation-context.util';
+import { SafeScopeSafetyCalculationsService } from '../safety-calculations/safety-calculations.service';
 import {
   SafeScopeApplicabilitySignal,
   SafeScopeJurisdiction,
@@ -42,6 +43,7 @@ export class SafeScopeReasoningOrchestratorService {
     private readonly equipmentArchetypeDetectorService = new SafeScopeEquipmentArchetypeDetectorService(),
     private readonly mechanismPrecedenceResolverService = new SafeScopeMechanismPrecedenceResolverService(),
     private readonly brainSnapshotBuilderService = new SafeScopeBrainSnapshotBuilderService(),
+    private readonly safetyCalculationsService = new SafeScopeSafetyCalculationsService(),
   ) {}
 
   reason(request: SafeScopeReasoningRequest): SafeScopeReasoningResult {
@@ -367,6 +369,26 @@ export class SafeScopeReasoningOrchestratorService {
       } as any;
     }
 
+    if (
+      hazardClassification.primaryDomain === 'industrial_hygiene' &&
+      includesAny(normalized(combined), ['industrial hygiene', 'contaminant', 'vapors', 'gas', 'air quality', 'vocs', 'shop welding'])
+    ) {
+      equipmentTaskMechanismContext.primaryMatch = {
+        ...(equipmentTaskMechanismContext.primaryMatch || {}),
+        failureModeLabel: 'chemical_vapors_inhalation',
+      } as any;
+    }
+
+    if (
+      hazardClassification.primaryDomain === 'ergonomics' &&
+      includesAny(normalized(combined), ['ergonomics', 'lifting', 'musculoskeletal', 'manual lifting', 'strain', 'repetitive'])
+    ) {
+      equipmentTaskMechanismContext.primaryMatch = {
+        ...(equipmentTaskMechanismContext.primaryMatch || {}),
+        failureModeLabel: 'lifting_musculoskeletal_strain',
+      } as any;
+    }
+
     const mechanismPrecedence = this.mechanismPrecedenceResolverService.resolve({
       normalizedText: combined,
       jurisdiction: jurisdictionAssessment.likelyJurisdiction,
@@ -448,6 +470,8 @@ export class SafeScopeReasoningOrchestratorService {
       primaryCitation,
     });
 
+    const safetyCalculations = this.safetyCalculationsService.analyze(combined);
+
     return {
       engine: 'safescope_reasoning_orchestrator_v1',
       mode: 'deterministic_test_only_advisory',
@@ -471,6 +495,7 @@ export class SafeScopeReasoningOrchestratorService {
       resolvedMechanism,
       brainSnapshot,
       missingEvidence,
+      safetyCalculations,
       confidence,
       conclusionBoundary: {
         advisoryOnly: true,
@@ -642,7 +667,7 @@ export class SafeScopeReasoningOrchestratorService {
       };
     }
 
-    if (includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'shop floor'])) {
+    if (includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'shop floor', 'shop', 'factory'])) {
       reasons.push('General industry facility terms were detected.');
       return {
         likelyJurisdiction: 'osha_general_industry',
@@ -1278,6 +1303,44 @@ export class SafeScopeReasoningOrchestratorService {
 
     if (
       includesAny(normalizedText, [
+        'industrial hygiene',
+        'atmospheric contaminant',
+        'air contaminants',
+        'vocs',
+        'chemical vapors',
+        'solvent vapors',
+        'toxic gas',
+        'gas exposure',
+        'multi-contaminant',
+      ])
+    ) {
+      return 'industrial_hygiene';
+    }
+
+    if (
+      includesAny(normalizedText, [
+        'ergonomics',
+        'musculoskeletal',
+        'manual lifting',
+        'manually lifting',
+        'heavy lifting',
+        'lifting hazard',
+        'lifting',
+        'heavy',
+        'repetitive',
+        'repetitively',
+        'musculoskeletal disorder',
+        'msd',
+        'repetitive lifting',
+        'lifting assist',
+        'forceful exertion',
+      ])
+    ) {
+      return 'ergonomics';
+    }
+
+    if (
+      includesAny(normalizedText, [
         'silica',
         'respirable crystalline silica',
         'silica dust',
@@ -1585,6 +1648,18 @@ export class SafeScopeReasoningOrchestratorService {
       gaps.push({
         field: 'bloodborneSharpsExposureFacts',
         reason: 'Bloodborne/sharps review needs confirmation of needlestick or contact exposure, blood/OPIM presence, cleanup procedure, PPE, sharps container availability, area restriction, and exposure-control plan status.',
+        importance: 'high',
+      });
+    } else if (domain === 'industrial_hygiene') {
+      gaps.push({
+        field: 'industrialHygieneAtmosphericFacts',
+        reason: 'Industrial hygiene reviews require air sampling measurements, ventilation checks, local exhaust status, and respirator usage records to evaluate exposure levels.',
+        importance: 'high',
+      });
+    } else if (domain === 'ergonomics') {
+      gaps.push({
+        field: 'ergonomicsLiftingFacts',
+        reason: 'Ergonomic reviews require load weight, repetitive lift frequency, lift height, postures, duration of work, and availability of mechanical lifting aids to evaluate musculoskeletal risks.',
         importance: 'high',
       });
     } else if (domain === 'health_exposure' && request.measurementsAvailable !== true) {

@@ -373,5 +373,27 @@ export const SAFESCOPE_CONTROLS_BRAIN_REGISTRY: SafeScopeControlBrainRecord[] = 
     failureModesIfNotVerified: ['airflow remains reduced', 'contaminants not evaluated', 'work resumes before ventilation restored'],
     notes: ['MNM underground ventilation and contaminant control.'],
   },
+  {
+    controlId: 'control-industrial-hygiene-local-exhaust',
+    hierarchyLevel: 'engineering' as any,
+    hazardDomains: ['industrial_hygiene'],
+    mechanisms: ['chemical_vapors_inhalation', 'toxic_gas_inhalation'],
+    immediateControl: 'Shut down operations emitting contaminants and use auxiliary exhaust fans or personal respirators.',
+    permanentControl: 'Install local exhaust ventilation, conduct air monitoring, and implement a written respiratory protection program.',
+    verificationEvidence: ['local exhaust photo', 'air monitoring log', 'respirator training records'],
+    failureModesIfNotVerified: ['contaminants accumulate', 'employees lack protective respiratory equipment'],
+    notes: ['Industrial hygiene ventilation and exhaust controls.'],
+  },
+  {
+    controlId: 'control-ergonomics-lift-assist',
+    hierarchyLevel: 'engineering' as any,
+    hazardDomains: ['ergonomics'],
+    mechanisms: ['lifting_musculoskeletal_strain'],
+    immediateControl: 'Stop manual lift task, reduce load weight, or assign multiple workers for a team lift.',
+    permanentControl: 'Provide mechanical lifting aids, such as hoists, lift tables, vacuum lifters, or manipulators.',
+    verificationEvidence: ['lift assist equipment photo', 'load limit checks', 'lifting technique training logs'],
+    failureModesIfNotVerified: ['workers continue manually lifting heavy weights', 'repetitive strain continues unmitigated'],
+    notes: ['Ergonomics lift assist and musculoskeletal strain controls.'],
+  },
 
 ];

@@ -276,5 +276,17 @@ export const SAFESCOPE_HAZARD_UNIVERSE_REGISTRY: SafeScopeHazardUniverseRecord[]
     expectedEvidenceThemes: ['contaminated needle/sharp', 'cleanup kit available', 'puncture-resistant containers', 'trained staff assigned'],
     typicalScenarioExamples: ['used/discarded needle found in public area or restroom'],
     notes: ['Critical OSHA general industry compliance and field realism pack focus.']
+  },
+  {
+    hazardUniverseId: 'industrial-hygiene-vapors',
+    label: 'Industrial hygiene and multi-contaminant atmospheric exposure',
+    domain: 'industrial_hygiene',
+    priority: 'high',
+    expectedMechanisms: ['chemical_vapors_inhalation', 'toxic_gas_inhalation'],
+    expectedRegulatoryFamilies: ['OSHA air contaminants'],
+    expectedControlThemes: ['ventilation system', 'local exhaust', 'respiratory protection', 'air monitoring', 'chemical isolation'],
+    expectedEvidenceThemes: ['air monitoring results', 'contaminant concentrations', 'ventilation checks', 'respirators used'],
+    typicalScenarioExamples: ['welding in enclosed shop with welding fumes buildup', 'solvent tank emitting VOCs without exhaust'],
+    notes: ['Critical P1 industrial hygiene atmospheric reasoning.']
   }
 ];

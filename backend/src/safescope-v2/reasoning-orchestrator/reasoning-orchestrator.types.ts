@@ -28,6 +28,7 @@ export type SafeScopeReasoningDomain =
   | 'roof_rib_control'
   | 'health_exposure'
   | 'bloodborne_pathogens'
+  | 'industrial_hygiene'
   | 'environmental_exposure'
   | 'ergonomics'
   | 'health_respiratory'
@@ -137,6 +138,7 @@ export type SafeScopeReasoningResult = {
   resolvedMechanism: SafeScopeResolvedMechanism;
   brainSnapshot: SafeScopeBrainSnapshot;
   missingEvidence: SafeScopeReasoningEvidenceGap[];
+  safetyCalculations?: any;
   confidence: {
     level: SafeScopeReasoningConfidence;
     reasons: string[];
