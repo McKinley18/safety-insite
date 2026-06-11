@@ -34,6 +34,14 @@ const marketingRoutes = [
   "/pricing",
 ];
 
+const publicNavItems = [
+  { href: "/about", label: "About" },
+  { href: "/legal", label: "Legal" },
+  { href: "/safescope", label: "SafeScope" },
+  { href: "/login", label: "Sign In" },
+  { href: "/register", label: "Create Account" },
+];
+
 const navItems = [
   {
     href: "/command-center",
@@ -98,6 +106,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   );
 
   const isPublicPage = isAuthPublicPage || (isMarketingPage && !hasAuthSession);
+  const showPublicMarketingNav = isMarketingPage && !hasAuthSession;
+  const showAppNav = !isPublicPage;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -206,7 +216,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320] px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
-            href={isPublicPage ? "/" : "/command-center"}
+            href={showAppNav ? "/command-center" : "/"}
             className="flex min-w-0 items-center gap-3"
           >
             <img
@@ -216,7 +226,31 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             />
           </Link>
 
-          {!isPublicPage && (
+          {showPublicMarketingNav && (
+            <nav className="flex flex-wrap items-center justify-end gap-2">
+              {publicNavItems.map((item) => {
+                const active =
+                  pathname === item.href || pathname.startsWith(item.href + "/");
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={[
+                      "rounded-full px-3 py-2 text-xs font-black tracking-tight transition sm:px-4 sm:text-sm",
+                      active
+                        ? "bg-[#1D72B8] text-[#F4F6F8] shadow-md shadow-blue-900/20"
+                        : "text-[#B8C0CC] hover:bg-white/10 hover:text-[#E2E6EA]",
+                    ].join(" ")}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          )}
+
+          {showAppNav && (
             <>
               <nav className="hidden items-center gap-2 lg:flex">
                 {navItems.map((item) => {
@@ -316,7 +350,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main
-        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${isPublicPage ? "pb-6" : "pb-52 lg:pb-10"}`}
+        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${showAppNav ? "pb-52 lg:pb-10" : "pb-6"}`}
       >
         {children}
       </main>
@@ -360,7 +394,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </footer>
 
-      {!isPublicPage && <MobileTabBar />}
+      {showAppNav && <MobileTabBar />}
     </div>
   );
 }

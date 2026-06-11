@@ -45,9 +45,21 @@ export default function LegalPage() {
         ))}
       </div>
 
-      <AppTextLink href="/login" className="mt-[18px] block text-center">
-        Return to Sign In
-      </AppTextLink>
+      <div className="mt-[18px] flex flex-wrap justify-center gap-3">
+        <AppTextLink
+          href="/login"
+          className="rounded-full bg-white px-6 py-2.5 text-sm font-black !text-[#102A43] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+        >
+          Sign In
+        </AppTextLink>
+
+        <AppTextLink
+          href="/register"
+          className="rounded-full bg-[#1D72B8] px-6 py-2.5 text-sm font-black !text-white shadow-sm hover:bg-[#2B86D1]"
+        >
+          Create Account
+        </AppTextLink>
+      </div>
     </section>
   );
 }
