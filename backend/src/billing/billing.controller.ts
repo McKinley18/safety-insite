@@ -21,4 +21,9 @@ export class BillingController {
   ) {
     return this.billingService.createCheckoutSession(req.user, body.planCode);
   }
+
+  @Post('webhook')
+  handleWebhook(@Body() body: any) {
+    return this.billingService.handleStripeWebhook(body);
+  }
 }

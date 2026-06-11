@@ -59,6 +59,58 @@ export class BillingService {
     });
   }
 
+  async handleStripeWebhook(payload: any) {
+    const eventType = payload?.type;
+    const session = payload?.data?.object || {};
+
+    if (eventType !== 'checkout.session.completed') {
+      return { received: true, ignored: eventType || 'unknown' };
+    }
+
+    const planCode = normalizeBillingPlan(session?.metadata?.planCode);
+    const organizationId = String(session?.metadata?.organizationId || '').trim();
+    const userId = Number(session?.metadata?.userId || 0);
+
+    if (planCode === 'basic') {
+      throw new BadRequestException('Checkout completed without a paid plan.');
+    }
+
+    if (organizationId) {
+      const org = await this.applyPlanToOrganization(organizationId, planCode);
+      if (org) {
+        return {
+          received: true,
+          applied: true,
+          organizationId,
+          planCode,
+        };
+      }
+    }
+
+    if (userId) {
+      const user = await this.userRepo.findOne({ where: { id: userId } });
+      if (user) {
+        user.planCode = planCode;
+        user.subscriptionStatus = 'active';
+        await this.userRepo.save(user);
+
+        if (user.organizationId) {
+          await this.applyPlanToOrganization(user.organizationId, planCode);
+        }
+
+        return {
+          received: true,
+          applied: true,
+          userId,
+          organizationId: user.organizationId || null,
+          planCode,
+        };
+      }
+    }
+
+    throw new BadRequestException('Checkout metadata did not identify an account or organization.');
+  }
+
   async applyPlanToOrganization(organizationId: string, planCode: string) {
     const normalized = normalizeBillingPlan(planCode);
     const org = await this.orgRepo.findOne({ where: { id: organizationId } });

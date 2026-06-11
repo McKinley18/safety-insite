@@ -12,6 +12,7 @@ type Props = {
   saveFinding: () => void | Promise<void>;
   addNewFinding: () => void | Promise<void>;
   generateReport: () => void | Promise<void>;
+  returnToReportInProgress?: () => void;
 
   description: string;
   hazardCategory: string;
@@ -62,6 +63,7 @@ export default function FinalizeInspectionSection({
   saveFinding,
   addNewFinding,
   generateReport,
+  returnToReportInProgress,
   description,
   hazardCategory,
   location,
@@ -170,37 +172,85 @@ export default function FinalizeInspectionSection({
 
       {hasCurrentEntry && !currentFindingSaved && (
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 shadow-sm">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-700">
-                Unsaved Finding
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-700">
+              Unsaved Finding Preview
+            </p>
+            <h3 className="mt-1 text-base font-black text-slate-900">
+              Review this finding before saving
+            </h3>
+            <p className="mt-1 text-sm font-semibold leading-6 text-amber-900">
+              This finding has not been saved yet. Review the card below, then
+              save it so it is included in the report.
+            </p>
+          </div>
+
+          <div className="mt-4 rounded-xl border border-amber-200 bg-white px-3 py-3 shadow-sm">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                  Current finding
+                </p>
+                <h4 className="mt-1 text-base font-black text-slate-900">
+                  {currentTitle}
+                </h4>
+              </div>
+
+              <span className="rounded-full bg-amber-100 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-amber-800">
+                Draft
+              </span>
+            </div>
+
+            <div className="mt-3 grid gap-2 text-xs font-bold leading-5 text-slate-600 sm:grid-cols-2">
+              <p>
+                <span className="font-black text-slate-800">Location:</span>{" "}
+                {location || "Not entered"}
               </p>
-              <h3 className="mt-1 text-base font-black text-slate-900">
-                {currentTitle}
-              </h3>
-              <p className="mt-1 text-sm font-semibold leading-6 text-amber-900">
-                Save the current finding before generating the report so it is
-                included in the findings list.
+              <p>
+                <span className="font-black text-slate-800">Risk:</span>{" "}
+                {riskScore || safeScopeResult?.risk?.riskBand || safeScopeResult?.risk?.operationalRisk?.matrixBand || "Not rated"}
+              </p>
+              <p>
+                <span className="font-black text-slate-800">Standards:</span>{" "}
+                {selectedStandards.length || safeScopeResult?.suggestedStandards?.length || 0}
+              </p>
+              <p>
+                <span className="font-black text-slate-800">Photos:</span>{" "}
+                {photos.length}
               </p>
             </div>
 
-            <div className="flex shrink-0 flex-wrap justify-center gap-2 sm:min-w-[300px]">
-              <button
-                type="button"
-                onClick={saveFinding}
-                className="flex h-10 w-[146px] items-center justify-center rounded-xl bg-[#102A43] px-3 text-center text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98]"
-              >
-                {saveButtonLabel}
-              </button>
+            {(description || safeScopeResult?.classification) && (
+              <p className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-sm font-semibold leading-6 text-slate-700">
+                {description || safeScopeResult?.classification}
+              </p>
+            )}
+          </div>
 
-              <button
-                type="button"
-                onClick={addNewFinding}
-                className="flex h-10 w-[146px] items-center justify-center rounded-xl border border-amber-200 bg-white px-3 text-center text-xs font-black leading-tight text-amber-800 shadow-sm transition hover:bg-amber-100 active:scale-[0.98]"
-              >
-                Save & Add New Finding
-              </button>
-            </div>
+          <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-end">
+            <button
+              type="button"
+              onClick={saveFinding}
+              className="flex h-10 w-[146px] items-center justify-center rounded-xl bg-[#102A43] px-3 text-center text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98]"
+            >
+              {saveButtonLabel}
+            </button>
+
+            <button
+              type="button"
+              onClick={addNewFinding}
+              className="flex h-10 w-[146px] items-center justify-center rounded-xl border border-amber-200 bg-white px-3 text-center text-xs font-black leading-tight text-amber-800 shadow-sm transition hover:bg-amber-100 active:scale-[0.98]"
+            >
+              Save & Add New Finding
+            </button>
+
+            <button
+              type="button"
+              onClick={returnToReportInProgress}
+              className="flex h-10 w-[190px] items-center justify-center rounded-xl border border-slate-200 bg-white px-3 text-center text-xs font-black leading-tight text-slate-700 shadow-sm transition hover:bg-slate-100 active:scale-[0.98]"
+            >
+              Return to Report in Progress
+            </button>
           </div>
         </div>
       )}

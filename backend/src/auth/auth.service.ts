@@ -42,7 +42,9 @@ export class AuthService {
 
     let organizationId = null;
     let role = 'Auditor';
-    let finalType = employerProPromoApplied ? 'pro' : type;
+    // Public self-registration must not grant paid Company access.
+    // Paid plans are applied by billing webhook; invite tokens inherit Company workspace access.
+    let finalType = employerProPromoApplied ? 'pro' : 'individual';
 
     // 🔷 HANDSHAKE: IF INVITE TOKEN PROVIDED
     if (inviteToken) {
