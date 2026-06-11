@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import PageHeader from "@/components/ui/PageHeader";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
+import { HeroPanel } from "@/components/ui/HeroPanel";
 import { Badge } from "@/components/ui/Badge";
 import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
 import {
@@ -138,32 +138,39 @@ export default function SafeScopeKnowledgePage() {
   }
 
   return (
-    <section className="space-y-6">
-      <PageHeader
-        title="SafeScope Knowledge Library"
-        description="Review the local reference brain behind SafeScope hazard recognition, standards reasoning, incident learning, and mitigation support."
-      />
+    <section className="space-y-5">
+      <HeroPanel align="center">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          SafeScope Knowledge
+        </p>
+        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          Governed reference intelligence.
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Review the approved reference brain behind SafeScope hazard recognition, standards reasoning, incident learning, and mitigation support.
+        </p>
 
-      <section className="grid gap-3 md:grid-cols-4">
-        {[
-          ["Knowledge Documents", metrics.total],
-          ["Approved References", metrics.approved],
-          ["Agencies", metrics.agencies],
-          ["Source Types", metrics.sourceTypes],
-        ].map(([label, value]) => (
-          <AppPanel
-            key={label}
-            as="div"
-            padding="sm"
-            className="p-4"
-          >
-            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
-              {label}
-            </p>
-            <p className="mt-2 text-2xl font-black text-slate-900">{value}</p>
-          </AppPanel>
-        ))}
-      </section>
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
+          {[
+            [String(metrics.total), "Documents"],
+            [String(metrics.approved), "Approved"],
+            [String(metrics.agencies), "Agencies"],
+            [String(metrics.sourceTypes), "Source Types"],
+          ].map(([value, label]) => (
+            <div
+              key={label}
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+            >
+              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
+                {value}
+              </p>
+              <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
+                {label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </HeroPanel>
 
       <AppPanel padding="md" className="rounded-[24px] p-5 sm:p-5">
         <div className="flex flex-wrap items-start justify-between gap-3 border-b border-slate-200 pb-4">
