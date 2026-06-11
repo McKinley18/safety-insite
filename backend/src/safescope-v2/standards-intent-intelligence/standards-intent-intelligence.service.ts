@@ -1,3 +1,4 @@
+import * as natural from 'natural';
 import {
   SafeScopeStandardsIntentConfidence,
   SafeScopeStandardsIntentInput,
@@ -15,7 +16,29 @@ function unique(items: string[]): string[] {
 
 function includesAny(text: string, terms: string[]): boolean {
   const lower = text.toLowerCase();
-  return terms.some((term) => lower.includes(term.toLowerCase()));
+  
+  const tokenizer = new natural.WordTokenizer();
+  const textTokens = tokenizer.tokenize(lower) || [];
+  const stemmedText = textTokens.map(t => natural.PorterStemmer.stem(t));
+
+  return terms.some((term) => {
+    const termLower = term.toLowerCase();
+    if (lower.includes(termLower)) return true;
+    
+    const termTokens = tokenizer.tokenize(termLower) || [];
+    if (termTokens.length === 1) {
+       return stemmedText.includes(natural.PorterStemmer.stem(termTokens[0]));
+    }
+    
+    const stemmedTermTokens = termTokens.map(t => natural.PorterStemmer.stem(t));
+    let matchedCount = 0;
+    for (const st of stemmedTermTokens) {
+       if (stemmedText.includes(st)) {
+           matchedCount++;
+       }
+    }
+    return matchedCount === stemmedTermTokens.length;
+  });
 }
 
 function normalizeCitation(value: any): string {
