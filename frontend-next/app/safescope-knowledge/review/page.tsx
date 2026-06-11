@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import PageHeader from '../../../components/ui/PageHeader';
 import SentinelCard from '../../../components/ui/SentinelCard';
 import StatusBadge from '../../../components/ui/StatusBadge';
 import MetricBlock from '../../../components/ui/MetricBlock';
 import { AppButton } from '../../../components/ui/AppButton';
 import { AppPanel } from '../../../components/ui/AppPanel';
+import { HeroPanel } from '../../../components/ui/HeroPanel';
 import EmptyState from '../../../components/ui/EmptyState';
 import LockedFeatureCard from '../../../components/ui/LockedFeatureCard';
 import { API_BASE_URL } from '../../../lib/safescope';
@@ -255,52 +255,62 @@ export default function ReviewerCandidateConsole() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <div className="bg-white border-b border-slate-200">
-        <AppPanel className="py-4">
-          <PageHeader 
-            title="Reviewer Candidate Console"
-            description="Staged candidates for qualified human review before promotion to approved SafeScope knowledge."
-          />
-          <div className="flex flex-wrap items-center gap-4 mt-[-10px] pb-4 px-4 sm:px-5">
-              <div className="flex items-center gap-2">
-                  <div className={`w-2 h-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
-                  <span className="text-[10px] font-black uppercase text-slate-400">
-                    {isBackendConnected ? 'Live Connection' : 'Demo Fallback'}
-                  </span>
-              </div>
-              <div className="h-4 w-[1px] bg-slate-200" />
-              <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-black uppercase text-slate-400">Role:</span>
-                  <select 
-                    value={currentUserRole}
-                    onChange={(e) => setCurrentUserRole(e.target.value as SafeScopeRole)}
-                    className="text-[10px] font-black uppercase text-blue-600 bg-transparent border-none p-0 focus:ring-0 cursor-pointer"
-                  >
-                      <option value="owner">Owner</option>
-                      <option value="admin">Admin</option>
-                      <option value="compliance_admin">Compliance Admin</option>
-                      <option value="safety_manager">Safety Manager</option>
-                      <option value="field_inspector">Field Inspector</option>
-                      <option value="viewer">Viewer</option>
-                  </select>
-              </div>
-              <div className="h-4 w-[1px] bg-slate-200" />
-              <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-black uppercase text-slate-400">Plan:</span>
-                  <select 
-                    value={userPlanTier}
-                    onChange={(e) => setUserPlanTier(e.target.value as any)}
-                    className="text-[10px] font-black uppercase text-blue-600 bg-transparent border-none p-0 focus:ring-0 cursor-pointer"
-                  >
-                      <option value="company">Company</option>
-                      <option value="team">Team</option>
-                      <option value="individual">Individual</option>
-                  </select>
-              </div>
+    <section className="space-y-5">
+      <HeroPanel align="center">
+        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
+          SafeScope Governance
+        </p>
+        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          Reviewer candidate console.
+        </h1>
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+          Review staged source-backed knowledge candidates before they are promoted into approved SafeScope intelligence.
+        </p>
+      </HeroPanel>
+
+      <AppPanel padding="sm" className="border-slate-200 bg-white px-3 py-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-2">
+            <div className={`h-2 w-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
+            <span className="text-[10px] font-black uppercase text-slate-500">
+              {isBackendConnected ? 'Live Connection' : 'Demo Fallback'}
+            </span>
           </div>
-        </AppPanel>
-      </div>
+
+          <div className="h-4 w-px bg-slate-200" />
+
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-black uppercase text-slate-500">Role:</span>
+            <select
+              value={currentUserRole}
+              onChange={(e) => setCurrentUserRole(e.target.value as SafeScopeRole)}
+              className="bg-transparent p-0 text-[10px] font-black uppercase text-blue-600 outline-none"
+            >
+              <option value="owner">Owner</option>
+              <option value="admin">Admin</option>
+              <option value="compliance_admin">Compliance Admin</option>
+              <option value="safety_manager">Safety Manager</option>
+              <option value="field_inspector">Field Inspector</option>
+              <option value="viewer">Viewer</option>
+            </select>
+          </div>
+
+          <div className="h-4 w-px bg-slate-200" />
+
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-black uppercase text-slate-500">Plan:</span>
+            <select
+              value={userPlanTier}
+              onChange={(e) => setUserPlanTier(e.target.value as any)}
+              className="bg-transparent p-0 text-[10px] font-black uppercase text-blue-600 outline-none"
+            >
+              <option value="company">Company</option>
+              <option value="team">Team</option>
+              <option value="individual">Individual</option>
+            </select>
+          </div>
+        </div>
+      </AppPanel>
 
       <AppPanel className="py-8">
         {!canManage && (
@@ -479,6 +489,6 @@ export default function ReviewerCandidateConsole() {
         </>
         )}
       </AppPanel>
-    </div>
+    </section>
   );
 }
