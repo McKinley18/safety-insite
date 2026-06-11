@@ -5,10 +5,9 @@ import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 import { getStoredPlanCode, hasPlanEntitlement, type PlanCode } from "@/lib/planEntitlements";
 import { AppSelect } from "@/components/ui/AppInput";
-import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
-import { Badge } from "@/components/ui/Badge";
 import { HeroPanel } from "@/components/ui/HeroPanel";
+import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
 
 type AnalyticsReport = {
   id?: string;
@@ -422,49 +421,18 @@ export default function AnalyticsPage() {
       )}
 
       {!canViewProInsights && hasData && (
-        <HeroPanel align="center" className="rounded-[1.5rem] p-5 sm:p-5">
-          <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-            Analytics Intelligence
-          </p>
-          <h2 className="mx-auto mt-2 max-w-2xl text-2xl font-black tracking-tight">
-            Unlock safety-program trends.
-          </h2>
-          <p className="mx-auto mt-2 max-w-3xl text-sm font-semibold leading-6 text-slate-300">
-            Your Basic snapshot shows activity counts. Pro Insights helps show
-            whether inspections are creating real improvement: fewer repeat
-            hazards, faster action closure, stronger evidence, better standards
-            coverage, and clearer SafeScope confidence.
-          </p>
-
-          <div className="mx-auto mt-4 grid max-w-4xl grid-cols-2 gap-3 lg:grid-cols-4">
-            {[
-              ["Repeat Hazards", "Find recurring control failures"],
-              ["Closure Health", "Track overdue corrective work"],
-              ["Evidence Quality", "Improve inspection defensibility"],
-              ["Standards Coverage", "Strengthen compliance support"],
-            ].map(([label, detail]) => (
-              <div
-                key={label}
-                className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3"
-              >
-                <p className="text-sm font-black text-white">{label}</p>
-                <p className="mt-1 text-[11px] font-semibold leading-4 text-slate-300">
-                  {detail}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 flex justify-center">
-            <AppLinkButton
-              href="/pricing"
-              variant="accent"
-              className="shadow-sm"
-            >
-              Unlock Pro Insights
-            </AppLinkButton>
-          </div>
-        </HeroPanel>
+        <LockedFeatureCard
+          eyebrow="Analytics Intelligence"
+          title="Unlock safety-program trends."
+          description="Your Basic snapshot shows activity counts. Pro Insights helps show whether inspections are creating real improvement through repeat hazard trends, action closure, evidence quality, standards coverage, and SafeScope confidence."
+          requiredPlan="Pro"
+          bullets={[
+            "Find recurring hazard themes and control failures.",
+            "Track overdue corrective work and closure health.",
+            "Review evidence quality, standards coverage, and SafeScope confidence.",
+          ]}
+          ctaLabel="Unlock Pro Insights"
+        />
       )}
 
       {canViewCompanyInsights && (
@@ -483,9 +451,6 @@ export default function AnalyticsPage() {
               </p>
             </div>
 
-            <Badge tone="green">
-              Company
-            </Badge>
           </div>
 
           {canUseWorkspaceFilters ? (
