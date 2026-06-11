@@ -6,6 +6,9 @@ import Link from "next/link";
 import MobileTabBar from "@/components/layout/MobileTabBar";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useNetworkStatus } from "@/hooks/useNetworkStatus";
+import { ToastContainer } from "@/components/ui/Toast";
+import { Wifi, WifiOff, Moon, Sun } from "lucide-react";
 import {
   getAutoLockMinutes,
   getProtectedModeLabel,
@@ -98,6 +101,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [profileOpen, setProfileOpen] = useState(false);
   const [hasAuthSession, setHasAuthSession] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+  const isOnline = useNetworkStatus();
 
   const profileMenuRef = useRef<HTMLDivElement | null>(null);
   const profileButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -217,8 +222,26 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     };
   }, [isPublicPage, pathname, router]);
 
+  useEffect(() => {
+    const saved = localStorage.getItem("sentinel_dark_mode");
+    if (saved === "false") {
+      setDarkMode(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("sentinel_dark_mode", "true");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("sentinel_dark_mode", "false");
+    }
+  }, [darkMode]);
+
   return (
-    <div className="flex min-h-screen flex-col bg-transparent text-slate-900">
+    <div className="flex min-h-screen flex-col bg-transparent text-slate-900 dark:text-slate-100 transition-colors">
+      <ToastContainer />
       <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320] px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
@@ -282,12 +305,25 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 })}
               </nav>
 
-              <div className="flex shrink-0 items-center gap-2">
+              <div className="flex shrink-0 items-center gap-4">
+                {!isOnline && (
+                  <div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-3 py-1 ring-1 ring-orange-500/20" title="Offline Mode: Using local SafeScope AI Brain">
+                    <WifiOff className="h-3.5 w-3.5 text-orange-400" />
+                    <span className="text-xs font-black text-orange-400 hidden sm:inline-block">Offline</span>
+                  </div>
+                )}
+                {isOnline && (
+                  <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 ring-1 ring-emerald-500/20 hidden lg:flex" title="Connected">
+                    <Wifi className="h-3.5 w-3.5 text-emerald-400" />
+                    <span className="text-xs font-black text-emerald-400">Live</span>
+                  </div>
+                )}
+
                 <div className="relative">
                   <button
                     type="button"
                     onClick={() => setProfileOpen((open) => !open)}
-                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#102A43] ring-1 ring-blue-100 transition hover:bg-white"
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E8F4FF] text-sm font-black text-[#102A43] ring-2 ring-blue-100 transition hover:bg-white active:scale-95"
                     aria-label="Open profile menu"
                   >
                     CM
@@ -296,13 +332,22 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   {profileOpen && (
                     <div
                       ref={profileMenuRef}
-                      className="absolute right-0 top-12 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl"
+                      className="absolute right-0 top-14 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 shadow-xl"
                     >
-                      <div className="border-b border-slate-100 px-4 py-3">
+                      <div className="border-b border-slate-100 dark:border-slate-800 px-4 py-3">
                         <p className="text-xs font-black text-[#AEB6C2]">
                           {securityLabel}
                         </p>
                       </div>
+
+                      <button
+                        type="button"
+                        onClick={() => setDarkMode(!darkMode)}
+                        className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      >
+                        {darkMode ? 'Light Mode' : 'Dark Mode'}
+                        {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                      </button>
 
                       {isPinRequired() && (
                         <button
@@ -312,7 +357,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                             setProfileOpen(false);
                             router.push("/unlock");
                           }}
-                          className="block w-full px-4 py-3 text-left text-sm font-black text-[#102A43] hover:bg-slate-50"
+                          className="block w-full min-h-[48px] px-4 py-4 text-left text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                         >
                           Lock App
                         </button>
@@ -321,7 +366,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/profile"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 text-sm font-black text-[#102A43] hover:bg-slate-50"
+                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                       >
                         User Profile
                       </Link>
@@ -329,7 +374,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/settings"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 text-sm font-black text-[#102A43] hover:bg-slate-50"
+                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                       >
                         Settings
                       </Link>
@@ -342,7 +387,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                           window.localStorage.removeItem("sentinel_auth_user");
                           window.location.href = "/login";
                         }}
-                        className="block w-full px-4 py-4 text-left text-sm font-black text-red-700 hover:bg-red-50"
+                        className="block w-full min-h-[48px] px-4 py-4 text-left text-sm font-black text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                       >
                         Sign Out
                       </button>

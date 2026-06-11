@@ -17,6 +17,19 @@
   --danger: #DC2626;
 }
 
+.dark {
+  --background: #020617;
+  --foreground: #F8FAFC;
+
+  --surface: #0F172A;
+  --surface-muted: #1E293B;
+
+  --primary: #38BDF8;
+  --primary-dark: #020617;
+
+  --border: #1E293B;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -39,6 +52,14 @@ body {
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 35%),
+    radial-gradient(circle at top right, rgba(15,23,42,0.8), transparent 40%),
+    linear-gradient(to bottom, #0F172A, #020617);
+  color: var(--foreground);
 }
 
 body {

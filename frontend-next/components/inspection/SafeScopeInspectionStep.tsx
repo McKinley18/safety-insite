@@ -2,6 +2,7 @@
 
 import { hazardCategoryOptions } from "@/lib/inspection/inspectionConstants";
 
+import { Skeleton } from "@/components/ui/Skeleton";
 import SafeScopeControlsSection from "@/components/inspection/SafeScopeControlsSection";
 import SafeScopeReasoningPanel from "@/components/inspection/SafeScopeReasoningPanel";
 import SafeScopeResultHeaderSection from "@/components/inspection/SafeScopeResultHeaderSection";
@@ -88,6 +89,14 @@ export default function SafeScopeInspectionStep({
         safeScopeStatus={safeScopeStatus}
         safeScopeResult={safeScopeResult}
       />
+
+      {safeScopeStatus && !safeScopeResult && (
+        <div className="mb-4 border-y border-slate-200 py-4 space-y-4">
+           <Skeleton className="h-8 w-1/3" />
+           <Skeleton className="h-24 w-full" />
+           <Skeleton className="h-32 w-full" />
+        </div>
+      )}
 
       {safeScopeResult && (
         <div className="mb-4 border-y border-slate-200 py-4">

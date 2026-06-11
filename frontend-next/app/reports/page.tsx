@@ -615,14 +615,14 @@ export default function ReportsPage() {
           className="w-full max-w-xs"
         />
 
-        <label className="flex w-fit items-center gap-2 rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-black text-slate-600 shadow-sm">
+        <label className="flex w-fit items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 min-h-[48px] text-xs font-black text-slate-600 shadow-sm">
           Sort
           <select
             value={reportSortOrder}
             onChange={(event) =>
               setReportSortOrder(event.target.value as "newest" | "oldest")
             }
-            className="bg-transparent text-xs font-black text-slate-900 outline-none"
+            className="bg-transparent text-sm font-black text-slate-900 outline-none w-full min-h-[48px]"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>

@@ -578,6 +578,74 @@ export default function DashboardPage() {
      </section>
 
       <section className="grid gap-4 lg:grid-cols-2">
+        <AppPanel padding="md">
+          <SectionHeader
+            eyebrow="Activity"
+            title="Recent safety activity"
+            description="The most recent safety audits, actions, and events in this workspace."
+          />
+          <div className="mt-4 space-y-2">
+            {dashboard.recentActivity.length ? (
+              dashboard.recentActivity.map((activity) => (
+                <div
+                  key={activity.id}
+                  className="rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-4 shadow-sm"
+                >
+                  <p className="text-xs font-black uppercase tracking-wide text-slate-400">
+                    {activity.type}
+                  </p>
+                  <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
+                    {activity.title}
+                  </p>
+                  <p className="mt-0.5 text-xs font-semibold text-slate-500">
+                    {activity.detail}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-500 text-center">
+                No recent activity recorded.
+              </p>
+            )}
+          </div>
+        </AppPanel>
+
+        <AppPanel padding="md">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <SectionHeader
+              eyebrow="Priorities"
+              title="High priority actions"
+              description="Critical and high priority tasks needing immediate attention."
+            />
+          </div>
+          <div className="mt-4 space-y-2">
+            {dashboard.highPriorityActions.length ? (
+              dashboard.highPriorityActions.map((action) => (
+                <AppLinkButton
+                  key={action.id}
+                  href="/actions"
+                  variant="ghost"
+                  className="block w-full rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-4 py-3 text-left shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                >
+                  <span className="block min-w-0">
+                    <span className="block text-sm font-black leading-5 text-slate-900 dark:text-slate-100">
+                      {action.title}
+                    </span>
+                    <span className="mt-1 flex flex-wrap items-center gap-1.5 text-xs font-semibold leading-5 text-slate-500">
+                      <span>Priority: <span className="font-black text-orange-600">{action.priority}</span></span>
+                      <span>·</span>
+                      <span>Status: <span className="font-black text-blue-600">{action.status}</span></span>
+                    </span>
+                  </span>
+                </AppLinkButton>
+              ))
+            ) : (
+              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-500 text-center">
+                No high-priority actions found.
+              </p>
+            )}
+          </div>
+        </AppPanel>
       </section>
     </section>
   );

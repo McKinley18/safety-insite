@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { Skeleton } from '@/components/ui/Skeleton';
 import SentinelCard from '../../../components/ui/SentinelCard';
 import StatusBadge from '../../../components/ui/StatusBadge';
 import MetricBlock from '../../../components/ui/MetricBlock';
@@ -337,11 +338,11 @@ export default function ReviewerCandidateConsole() {
         )}
 
         {isLoading ? (
-            <div className="flex items-center justify-center py-24">
-                <div className="text-center">
-                    <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Loading Candidates...</p>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full" />
+                <Skeleton className="h-24 w-full" />
             </div>
         ) : (
         <>
@@ -354,10 +355,10 @@ export default function ReviewerCandidateConsole() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-4">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
                 <h2 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Candidates</h2>
                 <select 
-                    className="text-xs border rounded p-1"
+                    className="text-sm font-bold border border-slate-300 bg-white rounded-xl px-4 min-h-[48px] outline-none focus:border-[#1D72B8] w-full sm:w-auto"
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
                 >
