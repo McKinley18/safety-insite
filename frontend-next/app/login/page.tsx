@@ -28,6 +28,32 @@ export default function LoginPage() {
       setStatusType("idle");
       setStatus("");
 
+      const disableAuthForLocalDev =
+        process.env.NEXT_PUBLIC_DISABLE_AUTH === "true";
+
+      if (disableAuthForLocalDev) {
+        const localUser = {
+          firstName: "Christopher",
+          lastName: "McKinley",
+          name: "Christopher McKinley",
+          email: email.trim() || "mckinley.christopherd@gmail.com",
+          role: "admin",
+          type: "pro",
+        };
+
+        window.localStorage.setItem("sentinel_auth_token", "local-dev-token");
+        window.localStorage.setItem("token", "local-dev-token");
+        window.localStorage.setItem(
+          "sentinel_auth_user",
+          JSON.stringify(localUser),
+        );
+
+        setStatusType("success");
+        setStatus("Signed in locally.");
+        router.push("/command-center");
+        return;
+      }
+
       const response = await apiFetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

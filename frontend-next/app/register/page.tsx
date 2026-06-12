@@ -100,23 +100,13 @@ export default function RegisterPage() {
         return;
       }
 
-      const data = await response.json();
-
-      if (data.token) {
-        window.localStorage.setItem("sentinel_auth_token", data.token);
-        window.localStorage.setItem("token", data.token);
-      }
-
-      if (data.user) {
-        window.localStorage.setItem("sentinel_auth_user", JSON.stringify(data.user));
-      }
+      await response.json().catch(() => null);
 
       setStatusType("success");
       setStatus("Account created successfully. Redirecting to sign in...");
 
       window.localStorage.removeItem("sentinel_auth_token");
       window.localStorage.removeItem("token");
-      window.localStorage.removeItem("sentinel_auth_user");
 
       setTimeout(() => {
         router.push("/login");
