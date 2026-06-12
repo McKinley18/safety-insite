@@ -172,6 +172,49 @@ export class SafescopeV2Service {
       };
       const generatedActions = await this.actionEngine.generateActionsFromReport(actionInput);
 
+      const historicalReferenceCount = Array.isArray(priorFindings)
+        ? priorFindings.length
+        : 0;
+
+      const reasoningSourceHierarchy = {
+        primaryBasis: [
+          "SafeScope governed classifier and reasoning brain",
+          "approved knowledge and source governance",
+          "regulatory scope filtering",
+          "standards applicability service",
+          "scenario, equipment, task, mechanism, and evidence reasoning",
+        ],
+        secondaryReferenceOnly: [
+          "prior saved findings",
+          "workspace learning",
+          "site memory",
+          "trend intelligence",
+          "correlation intelligence",
+          "reviewer feedback history",
+        ],
+        prohibitedHistoricalInfluence: [
+          "prior findings cannot create a standard match by themselves",
+          "prior findings cannot override approved knowledge or source governance",
+          "prior findings cannot remove high-risk review requirements",
+          "prior findings cannot finalize compliance or violation decisions",
+        ],
+      };
+
+      const reasoningBasis = {
+        primaryReasoningSource: "safescope_governed_brain",
+        standardsMatchPrimarySource: "approved_applicability_and_scope_filtered_standards",
+        workspaceHistoryRole: "supporting_reference_only",
+        priorFindingsUsed: historicalReferenceCount > 0,
+        priorFindingReferenceCount: historicalReferenceCount,
+        priorFindingsCanCreateStandards: false,
+        priorFindingsCanOverrideGovernance: false,
+        sourceHierarchyEnforced: true,
+        advisoryOnly: true,
+        requiresQualifiedReview: true,
+        explanation:
+          "SafeScope generates classifications, standards candidates, risk reasoning, and corrective actions from its governed brain and approved/source-governed applicability logic first. Prior saved findings and workspace history may support context, trend awareness, confidence tuning, evidence questions, and review priority, but they cannot create or override standards matches.",
+      };
+
       const intelligence = await this.intelligenceOrchestrator.evaluate({
         fusedText,
         promotedPrimary,
@@ -193,12 +236,16 @@ export class SafescopeV2Service {
           suggestedStandards,
           excludedStandards,
           generatedActions,
+          reasoningSourceHierarchy,
+          reasoningBasis,
           fieldOutput: (intelligence as any).fieldOutput,
           semanticUnderstanding: (intelligence as any).semanticUnderstanding,
           semanticRouting: (intelligence as any).semanticRouting,
           decisionSupportMetadata: {
               semanticUnderstanding: (intelligence as any).semanticUnderstanding,
               semanticRouting: (intelligence as any).semanticRouting,
+              reasoningSourceHierarchy,
+              reasoningBasis,
           }
       };
   }

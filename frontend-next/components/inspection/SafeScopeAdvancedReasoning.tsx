@@ -16,6 +16,7 @@ import SafeScopeHumanAndContradiction from "@/components/inspection/SafeScopeHum
 import SafeScopeMemoryAndDomain from "@/components/inspection/SafeScopeMemoryAndDomain";
 import SafeScopeOperationalReasoning from "@/components/inspection/SafeScopeOperationalReasoning";
 import SafeScopeReliabilitySection from "@/components/inspection/SafeScopeReliabilitySection";
+import SafeScopeReasoningBasisSection from "@/components/inspection/SafeScopeReasoningBasisSection";
 import SafeScopeStandardsReasoning from "@/components/inspection/SafeScopeStandardsReasoning";
 import SafeScopeTrendIntelligence from "@/components/inspection/SafeScopeTrendIntelligence";
 
@@ -28,6 +29,8 @@ export default function SafeScopeAdvancedReasoning({
 }: SafeScopeAdvancedReasoningProps) {
   return (
     <div className="mt-3 space-y-3 border-t border-slate-200 pt-3">
+      <SafeScopeReasoningBasisSection safeScopeResult={safeScopeResult} />
+
       <SafeScopeConfidenceReasonCodes safeScopeResult={safeScopeResult} />
 
       <SafeScopeTrendIntelligence safeScopeResult={safeScopeResult} />
