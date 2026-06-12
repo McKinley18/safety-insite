@@ -230,12 +230,26 @@ export class SafescopeV2Service {
         supervisorValidations: [],
       });
 
+      const enhancedGeneratedActions = this.buildEnhancedGeneratedActions(
+        generatedActions,
+        intelligence,
+        actionInput.id,
+      );
+
       return {
           ...promotedPrimary,
           ...intelligence,
           suggestedStandards,
           excludedStandards,
-          generatedActions,
+          generatedActions: enhancedGeneratedActions,
+          baseGeneratedActions: generatedActions,
+          generatedActionsEnrichment: {
+            applied: true,
+            source: "safescope_v2_dca_corrective_action_brain",
+            usesDca: Boolean((intelligence as any).dca),
+            usesCorrectiveActionReasoning: Boolean((intelligence as any).correctiveActionReasoning),
+            preservesBaseActionEngineOutput: true,
+          },
           reasoningSourceHierarchy,
           reasoningBasis,
           fieldOutput: (intelligence as any).fieldOutput,
@@ -248,6 +262,108 @@ export class SafescopeV2Service {
               reasoningBasis,
           }
       };
+  }
+
+
+  private buildEnhancedGeneratedActions(baseActions: any[], intelligence: any, reportId: string) {
+    const safeArray = (value: any) => Array.isArray(value) ? value : [];
+    const base = safeArray(baseActions);
+    const primary = base[0] || {};
+
+    const dca = intelligence?.dca || {};
+    const correctiveActionReasoning = intelligence?.correctiveActionReasoning || {};
+    const riskReasoning = intelligence?.riskReasoning || {};
+    const scenarioIntelligence = intelligence?.scenarioIntelligence || {};
+    const evidenceGapQuestions = safeArray(intelligence?.evidenceGapQuestions);
+
+    const dcaFixes = [
+      ...safeArray(dca.immediateActions).map((item: any) => item?.action || item?.title || String(item)),
+      ...safeArray(dca.interimControls).map((item: any) => item?.action || item?.title || String(item)),
+      ...safeArray(dca.permanentCorrectiveActions).map((item: any) => item?.action || item?.title || String(item)),
+      ...safeArray(dca.verificationActions).map((item: any) => item?.action || item?.title || String(item)),
+    ].filter(Boolean);
+
+    const brainFixes = [
+      ...safeArray(correctiveActionReasoning.immediateActions),
+      ...safeArray(correctiveActionReasoning.interimControls),
+      ...safeArray(correctiveActionReasoning.permanentCorrections),
+      ...safeArray(correctiveActionReasoning.administrativeFollowUps),
+      ...safeArray(correctiveActionReasoning.verificationSteps),
+    ].filter(Boolean);
+
+    const reviewerQuestions = [
+      ...safeArray(dca.reviewerQuestions),
+      ...safeArray(evidenceGapQuestions).map((item: any) =>
+        typeof item === "string" ? item : item?.question || item?.prompt || "",
+      ),
+    ].filter(Boolean);
+
+    const suggestedFixes = Array.from(new Set([
+      ...dcaFixes,
+      ...brainFixes,
+      ...safeArray(primary.suggestedFixes),
+    ].map((item) => String(item).trim()).filter(Boolean))).slice(0, 12);
+
+    const descriptionParts = [
+      primary.description,
+      dca.actionRationale ? `DCA rationale: ${dca.actionRationale}` : "",
+      correctiveActionReasoning.immediateActionNarrative
+        ? `Immediate: ${correctiveActionReasoning.immediateActionNarrative}`
+        : "",
+      correctiveActionReasoning.permanentCorrectionNarrative
+        ? `Permanent correction: ${correctiveActionReasoning.permanentCorrectionNarrative}`
+        : "",
+      correctiveActionReasoning.verificationNarrative
+        ? `Verification: ${correctiveActionReasoning.verificationNarrative}`
+        : "",
+      riskReasoning.riskNarrative || riskReasoning.summary
+        ? `Risk reasoning: ${riskReasoning.riskNarrative || riskReasoning.summary}`
+        : "",
+      reviewerQuestions.length
+        ? `Reviewer questions before closure: ${reviewerQuestions.slice(0, 4).join("; ")}`
+        : "",
+    ].filter(Boolean);
+
+    const title =
+      dca.immediateActions?.[0]?.title ||
+      dca.immediateActions?.[0]?.action ||
+      correctiveActionReasoning.immediateActions?.[0] ||
+      primary.title ||
+      "Review and control SafeScope-identified hazard";
+
+    const priority =
+      primary.priority ||
+      (correctiveActionReasoning.urgencyLevel === "critical" ? "CRITICAL" :
+       correctiveActionReasoning.urgencyLevel === "high" ? "HIGH" :
+       correctiveActionReasoning.urgencyLevel === "moderate" ? "MEDIUM" :
+       "LOW");
+
+    const enhancedPrimary = {
+      ...primary,
+      title: String(title),
+      description: descriptionParts.join(" "),
+      priority,
+      source: primary.source || "AI_ENGINE",
+      reportId: primary.reportId || reportId,
+      suggestedFixes,
+      originalSuggestion: {
+        ...(primary.originalSuggestion || {}),
+        source: "safescope_v2_enriched_corrective_action",
+        baseActionEngineSuggestion: primary.originalSuggestion || null,
+        dca,
+        correctiveActionReasoning,
+        riskReasoning,
+        scenarioIntelligence,
+        evidenceGapQuestions,
+        reviewerQuestions,
+        enrichmentApplied: true,
+      },
+    };
+
+    return [
+      enhancedPrimary,
+      ...base.slice(1),
+    ];
   }
 
   private normalizeScopes(scopes?: string[], text?: string) {
