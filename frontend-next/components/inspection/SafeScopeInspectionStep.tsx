@@ -19,9 +19,10 @@ type SafeScopeInspectionStepProps = {
   setSafeScopeHelpOpen: ToggleSetter;
   agencyMode: string;
   riskProfileId: "standard_5x5" | "simple_4x4" | "advanced_6x6";
-  handleRunSafeScope: () => void;
+  handleRunSafeScope: (forceOffline?: boolean) => void;
   safeScopeStatus: string;
   safeScopeResult: any;
+  setIsOfflineMode?: (value: boolean) => void;
   hazardCategory: string;
   setHazardCategory: (value: string) => void;
   submitSafeScopeValidation: (
@@ -59,6 +60,7 @@ export default function SafeScopeInspectionStep({
   handleRunSafeScope,
   safeScopeStatus,
   safeScopeResult,
+  setIsOfflineMode,
   hazardCategory,
   setHazardCategory,
   submitSafeScopeValidation,
@@ -90,11 +92,50 @@ export default function SafeScopeInspectionStep({
         safeScopeResult={safeScopeResult}
       />
 
-      {safeScopeStatus && !safeScopeResult && (
+      {safeScopeStatus && !safeScopeResult && safeScopeStatus.includes("Running") && (
         <div className="mb-4 border-y border-slate-200 py-4 space-y-4">
            <Skeleton className="h-8 w-1/3" />
            <Skeleton className="h-24 w-full" />
            <Skeleton className="h-32 w-full" />
+        </div>
+      )}
+
+      {safeScopeStatus && !safeScopeResult && !safeScopeStatus.includes("Running") && (
+        <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-900/30 p-4">
+          <div className="flex items-start gap-3">
+            <span className="text-xl">⚠️</span>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-black uppercase tracking-wide text-red-800 dark:text-red-400">
+                SafeScope Match Failed
+              </p>
+              <p className="mt-1 text-xs font-semibold leading-relaxed text-red-700 dark:text-red-300">
+                {safeScopeStatus}
+              </p>
+              
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (setIsOfflineMode) {
+                      setIsOfflineMode(true);
+                    }
+                    handleRunSafeScope(true);
+                  }}
+                  className="rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
+                >
+                  Run in Offline Fallback Mode
+                </button>
+                
+                <button
+                  type="button"
+                  onClick={() => handleRunSafeScope(false)}
+                  className="rounded-xl border border-slate-300 bg-white dark:bg-slate-900 dark:text-slate-100 text-slate-800 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
+                >
+                  Retry Connection
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
 

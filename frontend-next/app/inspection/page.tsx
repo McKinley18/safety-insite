@@ -357,13 +357,16 @@ export default function InspectionPage() {
     return labelMap[mode] || mode.toUpperCase();
   }
 
-  async function handleRunSafeScope() {
+  async function handleRunSafeScope(forceOffline: boolean = false) {
     try {
       const safeScopeScopes = getSafeScopeScopesForAgencyMode(agencyMode);
       const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
 
       setSafeScopeStatus("Running SafeScope match...");
-      if (isOfflineMode) {
+      if (isOfflineMode || forceOffline) {
+        if (forceOffline) {
+          setIsOfflineMode(true);
+        }
         const result = await runSafeScopeV2Offline({
           observationText: description,
           localInspectionId: "local-ins-" + Date.now(),
@@ -1112,6 +1115,7 @@ export default function InspectionPage() {
         handleRunSafeScope={handleRunSafeScope}
         safeScopeStatus={safeScopeStatus}
         safeScopeResult={safeScopeResult}
+        setIsOfflineMode={setIsOfflineMode}
         submitSafeScopeValidation={submitSafeScopeValidation}
         safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
         setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}

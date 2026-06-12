@@ -121,9 +121,10 @@ type InspectionStepRendererProps = {
   setSafeScopeHelpOpen: ToggleSetter;
   agencyMode: string;
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
-  handleRunSafeScope: () => void;
+  handleRunSafeScope: (forceOffline?: boolean) => void;
   safeScopeStatus: string;
   safeScopeResult: any;
+  setIsOfflineMode?: (value: boolean) => void;
   submitSafeScopeValidation: (
     decision:
       | "accepted"
@@ -201,6 +202,7 @@ export default function InspectionStepRenderer({
   handleRunSafeScope,
   safeScopeStatus,
   safeScopeResult,
+  setIsOfflineMode,
   submitSafeScopeValidation,
   safeScopeCompactDetailsOpen,
   setSafeScopeCompactDetailsOpen,
@@ -271,6 +273,7 @@ export default function InspectionStepRenderer({
           handleRunSafeScope={handleRunSafeScope}
           safeScopeStatus={safeScopeStatus}
           safeScopeResult={safeScopeResult}
+          setIsOfflineMode={setIsOfflineMode}
           submitSafeScopeValidation={submitSafeScopeValidation}
           safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}
           setSafeScopeCompactDetailsOpen={setSafeScopeCompactDetailsOpen}
