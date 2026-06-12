@@ -1,4 +1,5 @@
 import { Injectable, Optional } from '@nestjs/common';
+import { MultiHazardDecompositionService } from '../multi-hazard-decomposition/multi-hazard-decomposition.service';
 import { ConfidenceGovernanceService } from '../confidence-governance/confidence-governance.service';
 import { CausalRiskService } from '../causal-risk/causal-risk.service';
 import { EvidenceSufficiencyService } from '../evidence-sufficiency-core/evidence-sufficiency.service';
@@ -152,6 +153,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private controlMapEngine = new CorrectiveActionControlMapService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
   private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
+  private multiHazardEngine = new MultiHazardDecompositionService();
 
   constructor(
     @Optional()
@@ -189,6 +191,7 @@ export class SafeScopeIntelligenceOrchestrator {
 
     const observationContext = this.observationContextEngine.normalize(fusedText);
     const observationUnderstanding = this.observationUnderstandingEngine.evaluate(fusedText);
+    const multiHazardDecomposition = this.multiHazardEngine.decompose(fusedText);
     const combined = fusedText + ' ' + observationContext.normalizedText;
 
     const photosAttached = (evidenceTexts || []).some((item) =>
@@ -684,6 +687,7 @@ export class SafeScopeIntelligenceOrchestrator {
 
     const crossDomainInteraction = this.crossDomainEngine.evaluate({
       domainIntelligence,
+      text: fusedText,
     });
 
     const workspaceLearning = this.workspaceLearningEngine.evaluate({
@@ -812,6 +816,7 @@ export class SafeScopeIntelligenceOrchestrator {
       narrative,
       domainIntelligence,
       scenarioIntelligence,
+      multiHazardDecomposition,
       riskReasoning,
       causalRiskReasoning,
       evidenceSufficiency,

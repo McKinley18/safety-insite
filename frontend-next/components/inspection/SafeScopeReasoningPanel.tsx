@@ -2,6 +2,7 @@
 
 import SafeScopeAdvancedReasoning from "@/components/inspection/SafeScopeAdvancedReasoning";
 import SafeScopeCompactReasoning from "@/components/inspection/SafeScopeCompactReasoning";
+import SafeScopeRationaleVisualizer from "@/components/inspection/SafeScopeRationaleVisualizer";
 import { SafeScopeIntelligencePanel } from "@/components/safescope/panels/IntelligencePanel";
 import { createDisplayAdapter } from "@/lib/safescope/adapters/intelligence-display.adapter";
 import { Accordion } from "@/components/ui/Accordion";
@@ -40,6 +41,7 @@ export default function SafeScopeReasoningPanel({
 
         {safeScopeAdvancedOpen && (
           <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+            <SafeScopeRationaleVisualizer safeScopeResult={safeScopeResult} />
             <SafeScopeAdvancedReasoning safeScopeResult={safeScopeResult} />
             {adapter && <SafeScopeIntelligencePanel adapter={adapter} />}
           </div>

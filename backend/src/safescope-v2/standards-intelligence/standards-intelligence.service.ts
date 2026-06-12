@@ -5,6 +5,7 @@ import { Standard } from "../../standards/entities/standard.entity";
 import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { hasAnyNonNegatedTerm } from '../reasoning-orchestrator/negation-context.util';
 
 export interface StandardsIntelligenceMatch {
   standard: StandardsIntelligenceRecord;
@@ -94,29 +95,7 @@ function citationKey(value: string) {
 }
 
 function hasAny(text: string, terms: string[]) {
-  const lower = normalize(text);
-  const tokenizer = new natural.WordTokenizer();
-  const textTokens = tokenizer.tokenize(lower) || [];
-  const stemmedText = textTokens.map((t) => natural.PorterStemmer.stem(t));
-
-  return terms.some((term) => {
-    const termLower = normalize(term);
-    if (lower.includes(termLower)) return true;
-    
-    const termTokens = tokenizer.tokenize(termLower) || [];
-    if (termTokens.length === 1) {
-       return stemmedText.includes(natural.PorterStemmer.stem(termTokens[0]));
-    }
-    
-    const stemmedTermTokens = termTokens.map((t) => natural.PorterStemmer.stem(t));
-    let matchedCount = 0;
-    for (const st of stemmedTermTokens) {
-       if (stemmedText.includes(st)) {
-           matchedCount++;
-       }
-    }
-    return matchedCount === stemmedTermTokens.length;
-  });
+  return hasAnyNonNegatedTerm(text, terms);
 }
 
 function isAllScope(scopes: string[]) {

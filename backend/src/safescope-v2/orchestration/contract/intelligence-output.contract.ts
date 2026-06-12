@@ -18,6 +18,7 @@ export type SafeScopeIntelligenceOutputContract = {
   jurisdictionAssessment?: any;
   scenarioIntelligence?: ScenarioIntelligence;
   scenarioFamilyMatches?: string[];
+  multiHazardDecomposition?: any;
   standardFamilyReviewCandidates?: StandardFamilyCandidateRecord[];
   citationLevelReviewCandidates?: CitationLevelCandidateReview[];
   correctiveActionReasoning?: CorrectiveActionReasoning;

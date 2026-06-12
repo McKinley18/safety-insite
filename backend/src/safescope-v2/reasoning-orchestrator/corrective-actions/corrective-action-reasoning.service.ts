@@ -1,5 +1,6 @@
 import * as natural from 'natural';
 import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../../corrective-actions/corrective-action-template.registry';
+import { extractTargetEntity, tailorAction } from '../../../action-engine/contextual-control.engine';
 import {
   CorrectiveActionReasoningInput,
   CorrectiveActionReasoningResult,
@@ -53,39 +54,50 @@ export class SafeScopeCorrectiveActionReasoningService {
     
     // Find template
     const template = CORRECTIVE_ACTION_TEMPLATE_REGISTRY.find(t => t.domain === input.hazardDomain);
+    const targetEntity = extractTargetEntity(input.hazardObservation, input.equipmentInvolved);
     
     if (template) {
-        template.immediateControlElements.forEach((el: string) => recommendations.push({
+        template.immediateControlElements.forEach((el: string) => {
+          const action = tailorAction(el, targetEntity);
+          recommendations.push({
             controlLevel: 'administrative' as ControlLevel,
             priority: 'immediate' as CorrectiveActionPriority,
-            action: el,
+            action,
             rationale: `Immediate risk mitigation${contextStr}.`,
             verificationEvidence: [],
             cautions: []
-        }));
-        template.permanentCorrectionElements.forEach((el: string) => recommendations.push({
+          });
+        });
+        template.permanentCorrectionElements.forEach((el: string) => {
+          const action = tailorAction(el, targetEntity);
+          recommendations.push({
             controlLevel: 'engineering' as ControlLevel,
             priority: 'high' as CorrectiveActionPriority,
-            action: el,
+            action,
             rationale: `Permanent abatement${contextStr}.`,
             verificationEvidence: [],
             cautions: []
-        }));
+          });
+        });
         // Include verification evidence as recommendations
-        template.verificationEvidence.forEach((el: string) => recommendations.push({
+        template.verificationEvidence.forEach((el: string) => {
+          const action = tailorAction(el, targetEntity);
+          recommendations.push({
             controlLevel: 'verification' as ControlLevel,
             priority: 'medium' as CorrectiveActionPriority,
-            action: el,
+            action,
             rationale: `Verification of abatement${contextStr}.`,
             verificationEvidence: [],
             cautions: []
-        }));
+          });
+        });
     } else {
         // Fallback for unknown
+        const action = tailorAction('Gather additional facts and assign qualified review.', targetEntity);
         recommendations.push({
             controlLevel: 'verification' as ControlLevel,
             priority: 'medium' as CorrectiveActionPriority,
-            action: 'Gather additional facts and assign qualified review.',
+            action,
             rationale: `Domain unknown, requires situational analysis${contextStr}.`,
             verificationEvidence: [],
             cautions: []

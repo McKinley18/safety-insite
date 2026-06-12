@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Standard } from "../standards/entities/standard.entity";
 import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
+import { hasNonNegatedTerm } from "../safescope-v2/reasoning-orchestrator/negation-context.util";
 
 @Injectable()
 export class ApplicableStandardsService {
@@ -104,7 +105,7 @@ export class ApplicableStandardsService {
     ];
 
     for (const term of importantTerms) {
-      if (observation.includes(term) && text.includes(term)) {
+      if (hasNonNegatedTerm(observation, term) && text.includes(term)) {
         score += 8;
         matchingReasons.push(`term: ${term}`);
       }

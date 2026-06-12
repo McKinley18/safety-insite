@@ -107,7 +107,8 @@ export class ActionEngineService {
 
     // 🔷 4. INTELLIGENCE LOOKUP: Find Best Match for Fixes
     const reference = this.hazardFixService.findBestMatch(
-      report.description || report.safeScope?.classification || report.category
+      report.description || report.safeScope?.classification || report.category,
+      report.safeScope?.classification || report.category
     );
 
     // 🔷 5. FEEDBACK LOOP: Integrate Learned Fixes

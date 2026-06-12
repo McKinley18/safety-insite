@@ -26,6 +26,10 @@ assert(
   machineGuarding.recommendations.some((item) => item.controlLevel === 'engineering' && item.action.toLowerCase().includes('guard')),
   'Expected guarding-related engineering recommendation.',
 );
+assert(
+  machineGuarding.recommendations.some((item) => item.action.toLowerCase().includes('conveyor tail pulley')),
+  'Expected machine guarding recommendation to be tailored with conveyor tail pulley context.',
+);
 assert(machineGuarding.reasoningBoundary.advisoryOnly === true, 'Corrective action reasoning must be advisory only.');
 assert(machineGuarding.reasoningBoundary.doesNotDeclareViolation === true, 'Corrective action reasoning must not declare violations.');
 assert(machineGuarding.reasoningBoundary.doesNotGuaranteeAbatement === true, 'Corrective action reasoning must not guarantee abatement.');
