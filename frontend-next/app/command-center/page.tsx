@@ -1,5 +1,45 @@
 "use client";
 
+type CommandAssignment = {
+  id: string;
+  title: string;
+  type: string;
+  owner: string;
+  dueDate: string;
+  priority: string;
+  status: string;
+  createdAt: string;
+};
+
+const assignmentTypes = [
+  "Corrective Action",
+  "Inspection",
+  "Follow-Up",
+  "Review Task",
+];
+
+const assignmentPriorities = ["Low", "Medium", "High", "Critical"];
+
+function loadCommandAssignments(): CommandAssignment[] {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const raw = window.localStorage.getItem("sentinel_command_center_assignments");
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveCommandAssignments(assignments: CommandAssignment[]) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(
+    "sentinel_command_center_assignments",
+    JSON.stringify(assignments),
+  );
+}
+
+
 import { useEffect, useMemo, useState } from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
@@ -194,7 +234,113 @@ function uniqueCalendarEvents(events: SafetyCalendarEvent[]) {
   return Array.from(new Map(events.map((event) => [event.id, event])).values());
 }
 
+
+function getStoredCommandUser() {
+  if (typeof window === "undefined") return {};
+  try {
+    return JSON.parse(window.localStorage.getItem("sentinel_auth_user") || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function isCompanyAccountOwner(planCode: string, user: any) {
+  const normalizedPlan = String(
+    user?.organizationPlanCode ||
+      user?.effectivePlanCode ||
+      user?.planCode ||
+      user?.type ||
+      planCode ||
+      "",
+  ).toLowerCase();
+
+  const normalizedRole = String(
+    user?.role ||
+      user?.accountRole ||
+      user?.organizationRole ||
+      "",
+  ).toLowerCase();
+
+  const companyPlan =
+    normalizedPlan === "company" ||
+    normalizedPlan === "team" ||
+    normalizedPlan === "enterprise";
+
+  const ownerRole =
+    normalizedRole === "owner" ||
+    normalizedRole === "org_owner" ||
+    normalizedRole === "account_owner" ||
+    normalizedRole === "admin" ||
+    normalizedRole === "super_admin";
+
+  return companyPlan && ownerRole;
+}
+
 export default function DashboardPage() {
+
+  const [assignments, setAssignments] = useState<CommandAssignment[]>([]);
+  const [canAssignWork, setCanAssignWork] = useState(false);
+  const [assignmentTitle, setAssignmentTitle] = useState("");
+  const [assignmentOwner, setAssignmentOwner] = useState("");
+  const [assignmentType, setAssignmentType] = useState("Corrective Action");
+  const [assignmentPriority, setAssignmentPriority] = useState("Medium");
+  const [assignmentDueDate, setAssignmentDueDate] = useState("");
+  const [assignmentStatus, setAssignmentStatus] = useState("");
+
+  useEffect(() => {
+    const storedUser = getStoredCommandUser();
+    const storedPlan =
+      window.localStorage.getItem("sentinel_plan_code") ||
+      window.localStorage.getItem("sentinel_effective_plan_code") ||
+      "";
+
+    setCanAssignWork(isCompanyAccountOwner(storedPlan, storedUser));
+    setAssignments(loadCommandAssignments());
+  }, []);
+
+  function addCommandAssignment() {
+    if (!canAssignWork) {
+      setAssignmentStatus("Assign Work is available only to Company account owners.");
+      return;
+    }
+
+    if (!assignmentTitle.trim()) {
+      setAssignmentStatus("Enter a work title before assigning.");
+      return;
+    }
+
+    const assignment: CommandAssignment = {
+      id: "assignment-" + Date.now(),
+      title: assignmentTitle.trim(),
+      type: assignmentType,
+      owner: assignmentOwner.trim() || "Unassigned",
+      dueDate: assignmentDueDate || "No due date",
+      priority: assignmentPriority,
+      status: "Open",
+      createdAt: new Date().toISOString(),
+    };
+
+    const next = [assignment, ...assignments];
+    setAssignments(next);
+    saveCommandAssignments(next);
+
+    setAssignmentTitle("");
+    setAssignmentOwner("");
+    setAssignmentDueDate("");
+    setAssignmentPriority("Medium");
+    setAssignmentType("Corrective Action");
+    setAssignmentStatus("Work assigned.");
+  }
+
+  function closeCommandAssignment(id: string) {
+    const next = assignments.map((assignment) =>
+      assignment.id === id ? { ...assignment, status: "Closed" } : assignment,
+    );
+    setAssignments(next);
+    saveCommandAssignments(next);
+  }
+
+
   const [reports, setReports] = useState<DashboardReport[]>([]);
   const [storedActions, setStoredActions] = useState<StoredAction[]>([]);
   const [activityEvents, setActivityEvents] = useState<ActivityEvent[]>([]);
@@ -384,6 +530,155 @@ export default function DashboardPage() {
           ))}
         </div>
       </HeroPanel>
+
+
+      {canAssignWork && (
+      <AppPanel padding="md">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Command Center
+            </p>
+            <h2 className="mt-1 text-xl font-black text-slate-950">
+              Assign Work
+            </h2>
+            <p className="mt-1 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+              Assign corrective actions, inspections, follow-ups, and review tasks from the operational home screen.
+            </p>
+          </div>
+
+          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600">
+            {assignments.filter((assignment) => assignment.status !== "Closed").length} open
+          </span>
+        </div>
+
+        <div className="mt-4 grid gap-3 lg:grid-cols-[1.2fr_0.8fr_0.7fr_0.7fr_auto]">
+          <label>
+            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              Work Title
+            </span>
+            <input
+              value={assignmentTitle}
+              onChange={(event) => setAssignmentTitle(event.target.value)}
+              placeholder="Example: Verify guard installed on tail pulley"
+              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
+            />
+          </label>
+
+          <label>
+            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              Owner
+            </span>
+            <input
+              value={assignmentOwner}
+              onChange={(event) => setAssignmentOwner(event.target.value)}
+              placeholder="Name or role"
+              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
+            />
+          </label>
+
+          <label>
+            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              Type
+            </span>
+            <select
+              value={assignmentType}
+              onChange={(event) => setAssignmentType(event.target.value)}
+              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
+            >
+              {assignmentTypes.map((type) => (
+                <option key={type}>{type}</option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              Priority
+            </span>
+            <select
+              value={assignmentPriority}
+              onChange={(event) => setAssignmentPriority(event.target.value)}
+              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
+            >
+              {assignmentPriorities.map((priority) => (
+                <option key={priority}>{priority}</option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              Due
+            </span>
+            <input
+              type="date"
+              value={assignmentDueDate}
+              onChange={(event) => setAssignmentDueDate(event.target.value)}
+              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
+            />
+          </label>
+        </div>
+
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-xs font-black text-slate-500">
+            {assignmentStatus}
+          </p>
+
+          <button
+            type="button"
+            onClick={addCommandAssignment}
+            className="rounded-xl bg-[#102A43] px-5 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+          >
+            Assign Work
+          </button>
+        </div>
+
+        <div className="mt-4 border-t border-slate-200 pt-3">
+          {assignments.length ? (
+            <div className="space-y-2">
+              {assignments.slice(0, 5).map((assignment) => (
+                <div
+                  key={assignment.id}
+                  className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <p className="text-sm font-black text-slate-950">
+                      {assignment.title}
+                    </p>
+                    <p className="mt-1 text-xs font-semibold text-slate-500">
+                      {assignment.type} · {assignment.owner} · {assignment.priority} priority · Due {assignment.dueDate}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
+                      {assignment.status}
+                    </span>
+
+                    {assignment.status !== "Closed" && (
+                      <button
+                        type="button"
+                        onClick={() => closeCommandAssignment(assignment.id)}
+                        className="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700"
+                      >
+                        Close
+                      </button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+              No work has been assigned from Command Center yet.
+            </p>
+          )}
+        </div>
+      </AppPanel>
+      )}
+
+
 
       <AppPanel padding="md">
         <div className="flex items-start justify-between gap-3">

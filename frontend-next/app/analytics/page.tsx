@@ -9,6 +9,25 @@ import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
 
+
+function CalculationDisclosure({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <details className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+      <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+        How is this calculated?
+      </summary>
+      <div className="mt-2 text-xs font-semibold leading-5 text-slate-600">
+        {children}
+      </div>
+    </details>
+  );
+}
+
+
 type AnalyticsReport = {
   id?: string;
   title?: string;
@@ -342,6 +361,7 @@ export default function AnalyticsPage() {
   const canViewProInsights = hasPlanEntitlement("analytics", planCode);
   const canViewCompanyInsights = hasPlanEntitlement("companyAnalytics", planCode);
   const canUseWorkspaceFilters = hasPlanEntitlement("workspaceFiltering", planCode);
+  const canViewAssignedUserFilter = canViewCompanyInsights || hasPlanEntitlement("teamMembers", planCode);
 
   const programHealthNotes = [
     analytics.highRiskRate !== null && analytics.highRiskRate >= 30
@@ -565,9 +585,6 @@ export default function AnalyticsPage() {
                     <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
                       {detail}
                     </p>
-                    <div className="mt-2.5 inline-block rounded bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 px-2 py-0.5 text-[10px] font-mono text-blue-600 dark:text-sky-400">
-                      Formula: {formula}
-                    </div>
                   </div>
 
                   <p className="shrink-0 text-xl font-black leading-none tracking-tight text-slate-900 dark:text-slate-100">
@@ -575,9 +592,14 @@ export default function AnalyticsPage() {
                   </p>
                 </div>
 
-                <p className="mt-3 border-t border-slate-100 dark:border-slate-800/60 pt-2.5 text-[10px] italic font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
-                  {justification}
-                </p>
+                <CalculationDisclosure>
+                  <p className="font-mono text-[#1D72B8] dark:text-sky-400">
+                    Formula: {formula}
+                  </p>
+                  <p className="mt-2 border-t border-slate-200 pt-2 italic text-slate-500 dark:border-slate-700 dark:text-slate-400">
+                    {justification}
+                  </p>
+                </CalculationDisclosure>
               </div>
             ))}
           </div>

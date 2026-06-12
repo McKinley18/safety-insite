@@ -42,6 +42,7 @@ const publicNavItems = [
   { href: "/about", label: "About" },
   { href: "/legal", label: "Legal" },
   { href: "/safescope", label: "SafeScope" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/login", label: "Sign In" },
   { href: "/register", label: "Create Account" },
 ];

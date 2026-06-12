@@ -1,5 +1,6 @@
 "use client";
 
+import { Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppButton } from "@/components/ui/AppButton";
@@ -107,20 +108,22 @@ export default function ProfilePage() {
       </HeroPanel>
 
       <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <AppPanel padding="md">
+        <AppPanel padding="md" className="relative">
           <SectionHeader
             eyebrow="Account Details"
             title={displayName}
             description="Review the personal identity details connected to this account."
             action={
               !identityEditing ? (
-                <AppButton
+                <button
                   type="button"
                   onClick={() => setIdentityEditing(true)}
-                  className="mx-auto w-44 sm:mx-0"
+                  aria-label="Edit account details"
+                  title="Edit account details"
+                  className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#102A43] text-white shadow-sm transition hover:bg-[#1D72B8]"
                 >
-                  Edit Account
-                </AppButton>
+                  <Pencil className="h-4 w-4" aria-hidden="true" />
+                </button>
               ) : null
             }
           />
@@ -230,19 +233,30 @@ export default function ProfilePage() {
 
           <AppPanel padding="md">
             <SectionHeader
-              eyebrow="Account Actions"
-              title="Session and account controls"
+              eyebrow="Session"
+              title="Session controls"
+              description="Sign out of this device when you are finished using Sentinel Safety."
             />
 
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
+            <div className="mt-4 flex justify-center">
               <AppButton
                 type="button"
                 onClick={signOut}
-                className="w-44"
+                className="w-44 bg-[#102A43] hover:bg-[#1D72B8]"
               >
                 Sign Out
               </AppButton>
+            </div>
+          </AppPanel>
 
+          <AppPanel padding="md" className="border-red-200 bg-red-50">
+            <SectionHeader
+              eyebrow="Danger Zone"
+              title="Delete account"
+              description="Account deletion should permanently remove personal account access and should require confirmation before completion."
+            />
+
+            <div className="mt-4 flex justify-center">
               <AppButton
                 type="button"
                 variant="danger"

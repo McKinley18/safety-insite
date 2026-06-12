@@ -8,16 +8,97 @@ import { AppPanel } from "@/components/ui/AppPanel";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
-import SummaryRow from "@/components/ui/SummaryRow";
 
 type StorageMode = "local" | "cloud" | "ask";
+type RiskProfileId = "simple_4x4" | "standard_5x5" | "advanced_6x6";
+type RegulatoryScope = "all" | "msha" | "osha_general" | "osha_construction";
+
+const storageModes = [
+  ["local", "Private Local Vault", "Keep reports on this device unless exported."],
+  ["cloud", "Company Cloud", "Sync reports to the shared company workspace."],
+  ["ask", "Ask Each Report", "Choose local or cloud when finalizing each report."],
+] as const;
+
+const riskProfiles = [
+  ["simple_4x4", "Simple 4x4", "Fast scoring for simpler programs."],
+  ["standard_5x5", "Standard 5x5", "Recommended default for most operations."],
+  ["advanced_6x6", "Advanced 6x6", "More detail for mature safety programs."],
+] as const;
+
+const regulatoryScopes = [
+  ["all", "Let SafeScope Evaluate", "SafeScope decides the likely agency context."],
+  ["msha", "MSHA", "Mining operations and 30 CFR review."],
+  ["osha_general", "OSHA General Industry", "General industry and 29 CFR 1910 review."],
+  ["osha_construction", "OSHA Construction", "Construction and 29 CFR 1926 review."],
+] as const;
+
+function SelectorCard({
+  selected,
+  label,
+  description,
+  onClick,
+}: {
+  selected: boolean;
+  label: string;
+  description: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={[
+        "rounded-2xl border px-4 py-3 text-left transition",
+        selected
+          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-sm"
+          : "border-slate-200 bg-white hover:bg-slate-50",
+      ].join(" ")}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-sm font-black text-slate-950">{label}</p>
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+            {description}
+          </p>
+        </div>
+
+        <span
+          className={[
+            "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-black",
+            selected
+              ? "border-[#1D72B8] bg-[#1D72B8] text-white"
+              : "border-slate-300 bg-white text-transparent",
+          ].join(" ")}
+        >
+          ✓
+        </span>
+      </div>
+    </button>
+  );
+}
+
+function OverviewItem({
+  label,
+  value,
+}: {
+  label: string;
+  value: string | number;
+}) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+        {label}
+      </p>
+      <p className="mt-1 truncate text-sm font-black text-slate-950">{value}</p>
+    </div>
+  );
+}
 
 export default function SettingsHubPage() {
-  const [organizationName, setOrganizationName] = useState(
-    "Sentinel Safety Workspace",
-  );
-  const [riskProfileId, setRiskProfileId] = useState("standard_5x5");
+  const [organizationName, setOrganizationName] = useState("Sentinel Safety Workspace");
+  const [riskProfileId, setRiskProfileId] = useState<RiskProfileId>("standard_5x5");
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
+  const [regulatoryScope, setRegulatoryScope] = useState<RegulatoryScope>("all");
   const [planCode, setPlanCode] = useState("basic");
   const [facilityCount, setFacilityCount] = useState(0);
 
@@ -28,15 +109,24 @@ export default function SettingsHubPage() {
       setFacilityCount(getFacilities().length);
 
       setStorageMode(
-        (window.localStorage.getItem(
-          "sentinel_report_storage_mode",
-        ) as StorageMode | null) || "local",
+        (window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) ||
+          "local",
+      );
+
+      setRegulatoryScope(
+        (window.localStorage.getItem("sentinel_regulatory_scope") as RegulatoryScope | null) ||
+          "all",
       );
 
       try {
         const settings = await getOrganizationSettings();
         setOrganizationName(settings.name || "Sentinel Safety Workspace");
-        setRiskProfileId(settings.riskProfileId || "standard_5x5");
+        setRiskProfileId((settings.riskProfileId || "standard_5x5") as RiskProfileId);
+        setRegulatoryScope(
+          (settings.regulatoryScope ||
+            window.localStorage.getItem("sentinel_regulatory_scope") ||
+            "all") as RegulatoryScope,
+        );
       } catch {
         setOrganizationName("Sentinel Safety Workspace");
       }
@@ -45,19 +135,30 @@ export default function SettingsHubPage() {
     loadSummary();
   }, []);
 
+  function updateStorageMode(value: StorageMode) {
+    setStorageMode(value);
+    window.localStorage.setItem("sentinel_report_storage_mode", value);
+  }
+
+  function updateRiskProfile(value: RiskProfileId) {
+    setRiskProfileId(value);
+    window.localStorage.setItem("sentinel_company_risk_profile", value);
+  }
+
+  function updateRegulatoryScope(value: RegulatoryScope) {
+    setRegulatoryScope(value);
+    window.localStorage.setItem("sentinel_regulatory_scope", value);
+  }
+
   const storageLabel =
-    storageMode === "cloud"
-      ? "Company Cloud Workspace"
-      : storageMode === "ask"
-        ? "Ask Every Report"
-        : "Private Local Vault";
+    storageModes.find(([id]) => id === storageMode)?.[1] || "Private Local Vault";
 
   const riskLabel =
-    riskProfileId === "simple_4x4"
-      ? "Simple 4x4"
-      : riskProfileId === "advanced_6x6"
-        ? "Advanced 6x6"
-        : "Standard 5x5";
+    riskProfiles.find(([id]) => id === riskProfileId)?.[1] || "Standard 5x5";
+
+  const scopeLabel =
+    regulatoryScopes.find(([id]) => id === regulatoryScope)?.[1] ||
+    "Let SafeScope Evaluate";
 
   const isCompany = hasPlanEntitlement("teamMembers", planCode);
 
@@ -71,99 +172,96 @@ export default function SettingsHubPage() {
           Account preferences.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Manage sign-in preferences, app security, storage behavior, report
-          defaults, and workspace controls.
+          Manage workspace defaults, report behavior, storage, security, and
+          company controls from one place.
         </p>
       </HeroPanel>
 
-      <section className="grid gap-4 lg:grid-cols-[1fr_1fr]">
+      <AppPanel padding="md">
+        <SectionHeader
+          eyebrow="Workspace Overview"
+          title={organizationName}
+          description="A quick snapshot of the settings currently applied to this workspace."
+        />
+
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <OverviewItem label="Plan" value={planCode} />
+          <OverviewItem label="Storage" value={storageLabel} />
+          <OverviewItem label="Risk Matrix" value={riskLabel} />
+          <OverviewItem label="SafeScope Scope" value={scopeLabel} />
+          <OverviewItem label="Locations" value={facilityCount} />
+        </div>
+      </AppPanel>
+
+      <section className="grid gap-4 xl:grid-cols-2">
         <AppPanel padding="md">
           <SectionHeader
-            eyebrow="App Preferences"
-            title="Workflow defaults"
-            description="Manage inspection defaults, app behavior, workspace setup, and report preferences."
+            eyebrow="Quick Selectors"
+            title="Report storage"
+            description="Choose where new reports should be saved by default."
           />
 
-          <div className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-slate-50">
-            <div className="px-3 py-3">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <h3 className="text-sm font-black text-slate-900">
-                    Inspection Defaults
-                  </h3>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                    Configure cover pages, regulatory defaults, risk matrix, and report package behavior.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="px-3 py-3">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <h3 className="text-sm font-black text-slate-900">
-                    Locations & Workspace
-                  </h3>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                    Manage saved facilities, work areas, and workspace preferences.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="px-3 py-3">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <h3 className="text-sm font-black text-slate-900">
-                    Workspace Setup
-                  </h3>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                    Open the full workspace settings page for detailed configuration.
-                  </p>
-                </div>
-
-                <div className="flex justify-center sm:justify-end">
-                  <AppLinkButton href="/settings/workspace" className="w-44">
-                    Workspace Setup
-                  </AppLinkButton>
-                </div>
-              </div>
-            </div>
+          <div className="mt-4 grid gap-3">
+            {storageModes.map(([id, label, description]) => (
+              <SelectorCard
+                key={id}
+                selected={storageMode === id}
+                label={label}
+                description={description}
+                onClick={() => updateStorageMode(id)}
+              />
+            ))}
           </div>
         </AppPanel>
+
         <AppPanel padding="md">
           <SectionHeader
-            eyebrow="Storage & Report Security"
-            title={storageLabel}
-            description="Manage storage preferences, confidentiality defaults, report package behavior, and evidence handling."
+            eyebrow="Quick Selectors"
+            title="Risk matrix"
+            description="Set the default severity and likelihood scale for new inspections."
           />
 
-          <div className="mt-4 grid gap-2 text-sm font-semibold text-slate-600">
-            <SummaryRow label="Local vault" value="Enabled" valueClassName="text-emerald-700" />
-            <SummaryRow label="Cloud sync" value={storageMode === "cloud" ? "On" : "Off"} />
-            <SummaryRow label="Data control" value="User selected" last />
-          </div>
-
-          <div className="mt-5 flex justify-center">
-            <AppLinkButton href="/settings/workspace" className="w-44">
-              Change Storage
-            </AppLinkButton>
+          <div className="mt-4 grid gap-3">
+            {riskProfiles.map(([id, label, description]) => (
+              <SelectorCard
+                key={id}
+                selected={riskProfileId === id}
+                label={label}
+                description={description}
+                onClick={() => updateRiskProfile(id)}
+              />
+            ))}
           </div>
         </AppPanel>
       </section>
 
+      <AppPanel padding="md">
+        <SectionHeader
+          eyebrow="SafeScope Defaults"
+          title="Default regulatory scope"
+          description="Set the default agency context SafeScope should use during inspection review."
+        />
+
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          {regulatoryScopes.map(([id, label, description]) => (
+            <SelectorCard
+              key={id}
+              selected={regulatoryScope === id}
+              label={label}
+              description={description}
+              onClick={() => updateRegulatoryScope(id)}
+            />
+          ))}
+        </div>
+      </AppPanel>
+
       <section className="grid gap-4 lg:grid-cols-2">
         <AppPanel padding="md">
           <SectionHeader
-            eyebrow="Workspace Preferences"
-            title={organizationName}
+            eyebrow="Detailed Setup"
+            title="Workspace setup"
+            description="Open the full workspace settings page for report defaults, logo, security, locations, and team controls."
           />
-
-          <div className="mt-4 grid gap-2 text-sm font-semibold text-slate-600">
-            <SummaryRow label="Plan" value={planCode} valueClassName="capitalize text-slate-900" />
-            <SummaryRow label="Locations saved" value={facilityCount} />
-            <SummaryRow label="Risk matrix" value={riskLabel} last />
-          </div>
 
           <div className="mt-5 flex justify-center">
             <AppLinkButton href="/settings/workspace" className="w-44">
@@ -177,7 +275,7 @@ export default function SettingsHubPage() {
             <SectionHeader
               eyebrow="Company Settings"
               title="Team and operational controls"
-              description="Manage seats, roles, users, locations, inspections, follow-ups, corrective actions, and company-level task assignment."
+              description="Manage seats, roles, users, inspections, follow-ups, corrective actions, and company-level task assignment."
             />
 
             <div className="mt-5 flex justify-center">
@@ -191,12 +289,12 @@ export default function SettingsHubPage() {
             <SectionHeader
               eyebrow="Company Settings"
               title="Available on Company plan"
-              description="Company settings unlock team management, seat controls, role assignment, company locations, assigned inspections, and assigned corrective work."
+              description="Company settings unlock team management, seat controls, role assignment, shared locations, assigned inspections, and assigned corrective work."
             />
 
             <div className="mt-5 flex justify-center">
-              <AppLinkButton href="/pricing" variant="accent" className="w-44">
-                View Company
+              <AppLinkButton href="/pricing" className="w-44">
+                View Plans
               </AppLinkButton>
             </div>
           </AppPanel>
