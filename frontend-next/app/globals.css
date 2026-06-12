@@ -92,3 +92,11 @@ body.sentinel-keyboard-open .sentinel-keyboard-unpin {
   bottom: auto !important;
   box-shadow: none !important;
 }
+
+/* Hide signed-in mobile app chrome while the phone keyboard is open. */
+body.sentinel-keyboard-open .sentinel-mobile-chrome,
+body.sentinel-keyboard-open .sentinel-keyboard-hide {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

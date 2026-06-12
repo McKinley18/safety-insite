@@ -26,7 +26,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
       setStatusType("idle");
-      setStatus("Signing in — waking secure workspace...");
+      setStatus("");
 
       const response = await apiFetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",

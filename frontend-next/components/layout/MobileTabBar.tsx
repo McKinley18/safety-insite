@@ -68,7 +68,13 @@ export default function MobileTabBar() {
       const heightDelta = initialHeight - currentHeight;
 
       const likelyKeyboardOpen =
-        focusedEditable && heightDelta > 120 && window.innerWidth < 1024;
+        window.innerWidth < 1024 &&
+        focusedEditable &&
+        (
+          heightDelta > 60 ||
+          currentHeight < initialHeight * 0.86 ||
+          currentHeight < window.innerHeight * 0.86
+        );
 
       setKeyboardOpen(likelyKeyboardOpen);
       document.body.classList.toggle("sentinel-keyboard-open", likelyKeyboardOpen);

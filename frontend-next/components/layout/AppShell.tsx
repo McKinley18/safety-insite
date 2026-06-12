@@ -123,9 +123,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const showPublicMarketingNav = isMarketingPage && !hasAuthSession;
   const showAppNav = !isPublicPage;
 
-  // Public/auth/marketing pages show the site footer.
-  // Signed-in app pages use app navigation instead of the marketing footer.
-  const showPublicFooter = !showAppNav;
+  // Public/auth/marketing pages show the marketing footer.
+  // Signed-in app pages use app navigation only.
+  const showPublicFooter = isPublicPage;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -409,6 +409,30 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                         className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                       >
                         Settings
+                      </Link>
+
+                      <Link
+                        href="/about"
+                        onClick={() => setProfileOpen(false)}
+                        className="block border-t border-slate-100 px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:border-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      >
+                        About
+                      </Link>
+
+                      <Link
+                        href="/legal"
+                        onClick={() => setProfileOpen(false)}
+                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      >
+                        Legal
+                      </Link>
+
+                      <Link
+                        href="/safescope"
+                        onClick={() => setProfileOpen(false)}
+                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      >
+                        SafeScope
                       </Link>
 
                       <button
