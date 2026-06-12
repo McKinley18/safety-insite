@@ -277,6 +277,8 @@ export class SafeScopeIntelligenceOrchestrator {
       energyTransferIntelligence,
       barrierIntelligence,
       humanFactors,
+      photosAttached,
+      evidenceTexts,
     });
 
     const actionEffectiveness = this.actionEffectivenessEngine.evaluate({

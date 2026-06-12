@@ -85,7 +85,7 @@ export default function SafeScopePrimaryDecisionSection({
     : fallbackConfirmationItems;
 
   return (
-    <section className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <section className="mb-4 rounded-2xl border-l-4 border-l-[#1D72B8] border-y border-r border-slate-200/60 bg-white/95 p-5 shadow-sm transition-all duration-300 ease-out hover:shadow-md hover:border-sky-500/50 hover:scale-[1.01]">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">

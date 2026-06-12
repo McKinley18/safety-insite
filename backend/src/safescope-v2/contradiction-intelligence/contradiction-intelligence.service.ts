@@ -7,6 +7,8 @@ export class ContradictionIntelligenceService {
     energyTransferIntelligence?: any;
     barrierIntelligence?: any;
     humanFactors?: any;
+    photosAttached?: boolean;
+    evidenceTexts?: string[];
   }) {
     const text = String(input.text || "").toLowerCase();
     const contradictions: string[] = [];
@@ -55,6 +57,25 @@ export class ContradictionIntelligenceService {
     
     if (isTiedOff && isNoAnchor) {
       contradictions.push("Fall protection usage language conflicts with missing anchor point language.");
+    }
+
+    // --- Multi-Source Conflicting Evidence Arbitration Agent ---
+    const evidenceTextsLower = (input.evidenceTexts || []).map(t => String(t || '').toLowerCase());
+    
+    const isEvidenceEnergized = evidenceTextsLower.some(t => 
+      /(live|running|energized|active|moving|rotating|power on|during operation)/i.test(t)
+    );
+
+    if (isDeenergized && isEvidenceEnergized) {
+      contradictions.push("MULTI-SOURCE ARBITRATION CONFLICT: Written narrative asserts de-energized LOTO status, but attached physical file/photo evidence descriptions describe active equipment operation.");
+    }
+
+    const isEvidenceUnguarded = evidenceTextsLower.some(t => 
+      /(unguarded|missing guard|removed|exposed part|bare|open)/i.test(t)
+    );
+
+    if (isGuarded && isEvidenceUnguarded) {
+      contradictions.push("MULTI-SOURCE ARBITRATION CONFLICT: Written narrative asserts equipment is guarded or covered, but attached physical file/photo evidence explicitly details exposed component hazards.");
     }
 
     // AI ambiguity detection based on missing subjects or unclear modifiers

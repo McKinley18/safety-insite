@@ -20,9 +20,9 @@ export default function SafeScopeCriticalAlerts({
       )}
 
       {safeScopeResult.risk?.requiresShutdown && (
-        <p className="mt-4 rounded-xl bg-red-50 px-3 py-2 text-sm font-black text-red-700">
+        <div className="mt-4 border-l-4 border-red-500 bg-red-50 px-3 py-2 text-sm font-black text-red-700">
           Shutdown / immediate control recommended.
-        </p>
+        </div>
       )}
     </>
   );
