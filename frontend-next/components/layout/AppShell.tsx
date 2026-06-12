@@ -18,6 +18,7 @@ import {
   lockSession,
 } from "@/lib/pinSecurity";
 import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
+import { getStoredPlanCode, type PlanCode } from "@/lib/planEntitlements";
 
 const authPublicRoutes = [
   "/",
@@ -102,6 +103,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [hasAuthSession, setHasAuthSession] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  const [planCode, setPlanCode] = useState<string>("basic");
   const isOnline = useNetworkStatus();
 
   const profileMenuRef = useRef<HTMLDivElement | null>(null);
@@ -128,6 +130,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       window.localStorage.getItem("token");
 
     setHasAuthSession(Boolean(token) || DISABLE_AUTH_FOR_LOCAL_DEV);
+    setPlanCode(getStoredPlanCode());
   }, [pathname]);
 
   useEffect(() => {
@@ -334,10 +337,34 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       ref={profileMenuRef}
                       className="absolute right-0 top-14 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 shadow-xl"
                     >
-                      <div className="border-b border-slate-100 dark:border-slate-800 px-4 py-3">
+                      <div className="border-b border-slate-100 dark:border-slate-800 px-4 py-3 bg-slate-50/50 dark:bg-slate-950/20">
                         <p className="text-xs font-black text-[#AEB6C2]">
                           {securityLabel}
                         </p>
+                        <div className="mt-1.5 flex items-center gap-1.5">
+                          {planCode === "company" ? (
+                            <span className="rounded bg-blue-500/10 border border-blue-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-blue-500 dark:text-sky-400">
+                              Company Tier
+                            </span>
+                          ) : planCode === "pro" || planCode === "plus" ? (
+                            <span className="rounded bg-orange-500/10 border border-orange-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-orange-500 dark:text-orange-400">
+                              Pro Tier
+                            </span>
+                          ) : (
+                            <div className="flex items-center gap-1.5">
+                              <span className="rounded bg-slate-500/10 border border-slate-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-slate-500">
+                                Basic Tier
+                              </span>
+                              <Link
+                                href="/settings"
+                                className="text-[10px] font-black text-[#1D72B8] hover:underline"
+                                onClick={() => setProfileOpen(false)}
+                              >
+                                Upgrade
+                              </Link>
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       <button

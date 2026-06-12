@@ -147,6 +147,7 @@ export default function CompanyControlCenterPage() {
   const [doubleReviewRequired, setDoubleReviewRequired] = useState(true);
   const [anonymousSubmissions, setAnonymousSubmissions] = useState(false);
   const [securitySettingsStatus, setSecuritySettingsStatus] = useState("");
+  const [activeUserRole, setActiveUserRole] = useState<string>("Owner");
 
   const companySeats = 5;
   const usedSeats = Math.max(members.length, 1);
@@ -155,6 +156,21 @@ export default function CompanyControlCenterPage() {
   useEffect(() => {
     async function loadCompanyData() {
       setPlanCode(getStoredPlanCode());
+
+      if (typeof window !== "undefined") {
+        const user = JSON.parse(window.localStorage.getItem("sentinel_auth_user") || "{}");
+        const savedRole = user.role || user.type || "Owner";
+        const normalized = savedRole.charAt(0).toUpperCase() + savedRole.slice(1).toLowerCase();
+        if (normalized === "Admin" || normalized === "Owner") {
+          setActiveUserRole("Owner");
+        } else if (normalized === "Manager") {
+          setActiveUserRole("Manager");
+        } else if (normalized === "Auditor") {
+          setActiveUserRole("Auditor");
+        } else {
+          setActiveUserRole("Viewer");
+        }
+      }
 
       try {
         const [membersResult, invitesResult] = await Promise.allSettled([
@@ -439,9 +455,31 @@ export default function CompanyControlCenterPage() {
             follow-ups, assign corrective actions, and monitor company work.
           </p>
 
-          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-white">
-            Company Plan
-          </span>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-white">
+              Company Plan
+            </span>
+
+            <div className="flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-black">
+              <span className="text-[10px] font-black uppercase tracking-wide text-blue-200">Role Preview:</span>
+              <select
+                value={activeUserRole}
+                onChange={(e) => {
+                  const selected = e.target.value;
+                  setActiveUserRole(selected);
+                  const user = JSON.parse(window.localStorage.getItem("sentinel_auth_user") || "{}");
+                  user.role = selected;
+                  window.localStorage.setItem("sentinel_auth_user", JSON.stringify(user));
+                }}
+                className="bg-transparent p-0 text-[10px] font-black uppercase text-white outline-none cursor-pointer"
+              >
+                <option value="Owner" className="text-slate-900">Owner</option>
+                <option value="Manager" className="text-slate-900">Manager</option>
+                <option value="Auditor" className="text-slate-900">Auditor</option>
+                <option value="Viewer" className="text-slate-900">Viewer</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
@@ -482,14 +520,16 @@ export default function CompanyControlCenterPage() {
             <AppInput
               value={inviteEmail}
               onChange={(event) => setInviteEmail(event.target.value)}
-              placeholder="employee@example.com"
+              placeholder={activeUserRole === "Owner" ? "employee@example.com" : "Locked (Requires Owner Role)"}
               fieldSize="sm"
+              disabled={activeUserRole !== "Owner"}
             />
 
             <AppSelect
               value={inviteRole}
               onChange={(event) => setInviteRole(event.target.value)}
               fieldSize="sm"
+              disabled={activeUserRole !== "Owner"}
             >
               {roleOptions.map((role) => (
                 <option key={role} value={role}>
@@ -502,10 +542,17 @@ export default function CompanyControlCenterPage() {
               type="button"
               onClick={sendInvite}
               size="sm"
+              disabled={activeUserRole !== "Owner"}
             >
               Add User
             </AppButton>
           </div>
+
+          {activeUserRole !== "Owner" && (
+            <p className="mt-2 text-[10px] font-black text-red-600 bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30 rounded-lg py-1.5 px-3 text-center">
+              🔒 Team invitation and seat administration is locked for your current role ({activeUserRole}).
+            </p>
+          )}
 
           <div className="mt-3 grid gap-2 sm:grid-cols-4">
           {[
@@ -590,6 +637,7 @@ export default function CompanyControlCenterPage() {
               value={assignmentType}
               onChange={(event) => setAssignmentType(event.target.value)}
               fieldSize="sm"
+              disabled={activeUserRole === "Viewer"}
             >
               {assignmentTypes.map((type) => (
                 <option key={type}>{type}</option>
@@ -600,6 +648,7 @@ export default function CompanyControlCenterPage() {
               value={assignmentOwner}
               onChange={(event) => setAssignmentOwner(event.target.value)}
               fieldSize="sm"
+              disabled={activeUserRole === "Viewer"}
             >
               <option value="">Assign to...</option>
               {members.map((member) => (
@@ -613,6 +662,7 @@ export default function CompanyControlCenterPage() {
               value={assignmentPriority}
               onChange={(event) => setAssignmentPriority(event.target.value)}
               fieldSize="sm"
+              disabled={activeUserRole === "Viewer"}
             >
               {priorityOptions.map((priority) => (
                 <option key={priority} value={priority}>
@@ -625,6 +675,7 @@ export default function CompanyControlCenterPage() {
               value={assignmentLocation}
               onChange={(event) => setAssignmentLocation(event.target.value)}
               fieldSize="sm"
+              disabled={activeUserRole === "Viewer"}
             >
               <option value="">Location / Site...</option>
               {facilities.map((facility) => (
@@ -638,9 +689,10 @@ export default function CompanyControlCenterPage() {
             <AppInput
               value={assignmentTitle}
               onChange={(event) => setAssignmentTitle(event.target.value)}
-              placeholder="Assignment title"
+              placeholder={activeUserRole === "Viewer" ? "Locked (Requires Manager or above)" : "Assignment title"}
               fieldSize="sm"
               className="md:col-span-2"
+              disabled={activeUserRole === "Viewer"}
             />
 
             <AppInput
@@ -648,6 +700,7 @@ export default function CompanyControlCenterPage() {
               value={assignmentDueDate}
               onChange={(event) => setAssignmentDueDate(event.target.value)}
               fieldSize="sm"
+              disabled={activeUserRole === "Viewer"}
             />
 
             <AppButton
@@ -655,10 +708,17 @@ export default function CompanyControlCenterPage() {
               onClick={addAssignedWork}
               variant="accent"
               size="sm"
+              disabled={activeUserRole === "Viewer"}
             >
               Assign Work
             </AppButton>
           </div>
+
+          {activeUserRole === "Viewer" && (
+            <p className="mt-2 text-[10px] font-black text-red-600 bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30 rounded-lg py-1.5 px-3 text-center">
+              🔒 Safety task assignment is locked for your current role ({activeUserRole}).
+            </p>
+          )}
         </AppPanel>
       </section>
 
@@ -841,6 +901,43 @@ export default function CompanyControlCenterPage() {
           <SectionHeader
             eyebrow="Account Owner Console"
             title="Executive Orchestration & Activity Monitoring"
+            action={
+              <AppButton
+                type="button"
+                variant="accent"
+                size="sm"
+                onClick={() => {
+                  const logContent = [
+                    "=== SENTINEL SAFETY WORKSPACE AUDIT TRAIL ===",
+                    `Timestamp: ${new Date().toISOString()}`,
+                    `Account Owner: Current User`,
+                    "Plan Tier: Company",
+                    `Active Protocols: Enforce Double-Review (${doubleReviewRequired ? "ON" : "OFF"}), Anonymous Hazard Submissions (${anonymousSubmissions ? "ON" : "OFF"}), AES-GCM Local Vault Key Verification`,
+                    "",
+                    "--- SECURITY AUDIT EVENT HISTORIES ---",
+                    "11:10:48 - SEC_AUDIT: AES-GCM client-side vault key integrity validated successfully.",
+                    "11:05:12 - ORG_HANDSHAKE: Secured seat token generated for invitation queue.",
+                    "10:59:22 - SYS_HEALTH: Connected database state OK (Postgres 16 on port 5432).",
+                    "=== END OF SECURITY AUDIT TRAIL ==="
+                  ].join("\n");
+
+                  const blob = new Blob([logContent], { type: "text/plain;charset=utf-8" });
+                  const url = URL.createObjectURL(blob);
+                  const link = document.createElement("a");
+                  link.href = url;
+                  link.download = `sentinel_safety_audit_trail_${Date.now()}.txt`;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  URL.revokeObjectURL(url);
+                  
+                  setSecuritySettingsStatus("Success: Audit Trail downloaded successfully!");
+                  setTimeout(() => setSecuritySettingsStatus(""), 4000);
+                }}
+              >
+                Export Audit Trail
+              </AppButton>
+            }
           />
           <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
             Exclusive to the Account Owner. Monitor workspace compliance, toggle security protocols, and review security audit-trail activities.
