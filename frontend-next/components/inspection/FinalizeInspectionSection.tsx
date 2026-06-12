@@ -395,10 +395,7 @@ export default function FinalizeInspectionSection({
                                 }
                                 className="rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-black text-blue-700"
                               >
-                                {standard.citation ||
-                                  standard.standard ||
-                                  standard.title ||
-                                  "Selected standard"}
+                                {formatStandardDisplay(standard)}
                               </span>
                             ))}
                           </div>

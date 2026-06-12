@@ -89,7 +89,7 @@ export default function CurrentHazardCard({
       <button
         type="button"
         onClick={() => setHidden(false)}
-        className="fixed bottom-28 left-1/2 z-40 -translate-x-1/2 rounded-full border border-slate-200 bg-white/95 px-4 py-2 text-xs font-black text-[#102A43] shadow-lg backdrop-blur transition hover:bg-blue-50 lg:bottom-16"
+        className="sentinel-keyboard-hide fixed bottom-28 left-1/2 z-40 -translate-x-1/2 rounded-full border border-slate-200 bg-white/95 px-4 py-2 text-xs font-black text-[#102A43] shadow-lg backdrop-blur transition hover:bg-blue-50 lg:bottom-16"
       >
         Show Finding Builder
       </button>
@@ -157,7 +157,7 @@ export default function CurrentHazardCard({
   return (
     <section
       ref={cardRef}
-      className="fixed inset-x-0 bottom-28 z-40 mx-auto w-[calc(100%-1rem)] max-w-3xl rounded-[1.05rem] border border-slate-200 bg-white/95 shadow-[0_10px_24px_rgba(15,23,42,0.18)] backdrop-blur lg:bottom-16"
+      className="sentinel-keyboard-hide fixed inset-x-0 bottom-28 z-40 mx-auto w-[calc(100%-1rem)] max-w-3xl rounded-[1.05rem] border border-slate-200 bg-white/95 shadow-[0_10px_24px_rgba(15,23,42,0.18)] backdrop-blur lg:bottom-16"
     >
       <button
         type="button"

@@ -121,14 +121,33 @@ export class SafescopeV2Service {
       });
       promotedPrimary.risk = risk;
 
-      // Suggest standards using the applicable standards service
-      const source = this.scopeToSource(scopes);
-      const suggestedStandards = await this.applicableStandards.suggest(
+      // Suggest standards using the applicable standards service, then enforce selected jurisdiction scope.
+      const normalizedScopes = this.normalizeScopes(scopes, fusedText);
+      const source = this.scopeToSource(normalizedScopes);
+      const rawSuggestedStandards = await this.applicableStandards.suggest(
         fusedText,
         promotedPrimary.classification,
         source,
-        5,
+        10,
       );
+
+      const scopedStandards = this.applyStandardsScopeFit(
+        rawSuggestedStandards,
+        normalizedScopes,
+      ).sort((a, b) => (b.score || 0) - (a.score || 0));
+
+      const suggestedStandards = scopedStandards
+        .filter((standard) => standard.scopeFit !== "mismatch")
+        .slice(0, 5);
+
+      const excludedStandards = scopedStandards
+        .filter((standard) => standard.scopeFit === "mismatch")
+        .map((standard) => ({
+          ...standard,
+          exclusionReason:
+            standard.scopeExclusionReason ||
+            "Excluded by selected regulatory scope.",
+        }));
 
       // Generate corrective actions using the action engine
       const actionInput: any = {
@@ -172,6 +191,7 @@ export class SafescopeV2Service {
           ...promotedPrimary,
           ...intelligence,
           suggestedStandards,
+          excludedStandards,
           generatedActions,
           fieldOutput: (intelligence as any).fieldOutput,
           semanticUnderstanding: (intelligence as any).semanticUnderstanding,
@@ -183,9 +203,33 @@ export class SafescopeV2Service {
       };
   }
 
+  private normalizeScopes(scopes?: string[], text?: string) {
+    const requested = Array.isArray(scopes)
+      ? scopes.map((scope) => String(scope || "").trim()).filter(Boolean)
+      : [];
+
+    if (!requested.length || requested.includes("all")) return requested;
+
+    const combined = String(text || "").toLowerCase();
+    const hasCoalContext = /\b(coal|surface coal|underground coal|longwall|continuous miner|coal mine)\b/.test(combined);
+    const hasUndergroundContext = /\b(underground|shaft|slope|drift|stope|portal|subsurface)\b/.test(combined);
+
+    return requested.flatMap((scope) => {
+      if (scope === "msha") {
+        if (hasCoalContext && hasUndergroundContext) return ["msha_coal_underground"];
+        if (hasCoalContext) return ["msha_coal_surface"];
+        if (hasUndergroundContext) return ["msha_mnm_underground"];
+        return ["msha_mnm_surface"];
+      }
+
+      return [scope];
+    });
+  }
+
   private scopeToSource(scopes?: string[]) {
     if (!scopes || scopes.length === 0 || scopes.includes("all"))
       return undefined;
+    if (scopes.includes("msha")) return "MSHA_MNM_SURFACE";
     if (scopes.includes("msha_mnm_surface")) return "MSHA_MNM_SURFACE";
     if (scopes.includes("msha_mnm_underground")) return "MSHA_MNM_UNDERGROUND";
     if (scopes.includes("msha_coal_underground")) return "MSHA_COAL_UNDERGROUND";
@@ -206,11 +250,19 @@ export class SafescopeV2Service {
         if (citation.startsWith('30 CFR 56.')) {
           scopeFit = 'preferred';
           scopeFitAdjustment = 50;
-          reasons.push('preferred MSHA Part 56');
-        } else if (citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
+          reasons.push('Preferred for MSHA surface metal/nonmetal scope.');
+        } else if (citation.startsWith('30 CFR 57.')) {
           scopeFit = 'mismatch';
           scopeFitAdjustment = -100;
-          reasons.push('MSHA Part mismatch');
+          reasons.push('Excluded: Part 57 applies to underground metal/nonmetal, not selected surface scope.');
+        } else if (citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
+          scopeFit = 'mismatch';
+          scopeFitAdjustment = -100;
+          reasons.push('Excluded: coal standard does not match selected metal/nonmetal scope.');
+        } else if (citation.startsWith('29 CFR') || citation.startsWith('1910.') || citation.startsWith('1926.')) {
+          scopeFit = 'mismatch';
+          scopeFitAdjustment = -100;
+          reasons.push('Excluded: OSHA standard is outside selected MSHA scope.');
         }
       } else if (scopes.includes('msha_mnm_underground')) {
         if (citation.startsWith('30 CFR 57.')) {

@@ -128,10 +128,7 @@ export default function FindingReviewEditor({
                       {formatStandardDisplay(standard)}
                     </p>
                     <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
-                      {standard.rationale ||
-                        standard.summary ||
-                        standard.heading ||
-                        "No summary available."}
+                      {getStandardSummary(standard) || "No summary available."}
                     </p>
                   </div>
 

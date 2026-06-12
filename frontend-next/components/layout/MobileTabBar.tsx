@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const navItems = [
   {
@@ -37,11 +38,68 @@ const navItems = [
   },
 ];
 
-export default function MobileTabBar() {
-  const pathname = usePathname();
+function isEditableElement(element: Element | null) {
+  if (!element) return false;
+
+  const tag = element.tagName.toLowerCase();
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[999999] lg:hidden">
+    tag === "input" ||
+    tag === "textarea" ||
+    tag === "select" ||
+    element.getAttribute("contenteditable") === "true"
+  );
+}
+
+export default function MobileTabBar() {
+  const pathname = usePathname();
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const initialHeight = window.visualViewport?.height || window.innerHeight;
+
+    function syncKeyboardState() {
+      const activeElement = document.activeElement;
+      const focusedEditable = isEditableElement(activeElement);
+
+      const currentHeight = window.visualViewport?.height || window.innerHeight;
+      const heightDelta = initialHeight - currentHeight;
+
+      const likelyKeyboardOpen =
+        focusedEditable && heightDelta > 120 && window.innerWidth < 1024;
+
+      setKeyboardOpen(likelyKeyboardOpen);
+      document.body.classList.toggle("sentinel-keyboard-open", likelyKeyboardOpen);
+    }
+
+    const viewport = window.visualViewport;
+
+    viewport?.addEventListener("resize", syncKeyboardState);
+    viewport?.addEventListener("scroll", syncKeyboardState);
+    window.addEventListener("resize", syncKeyboardState);
+    document.addEventListener("focusin", syncKeyboardState);
+    document.addEventListener("focusout", syncKeyboardState);
+
+    syncKeyboardState();
+
+    return () => {
+      viewport?.removeEventListener("resize", syncKeyboardState);
+      viewport?.removeEventListener("scroll", syncKeyboardState);
+      window.removeEventListener("resize", syncKeyboardState);
+      document.removeEventListener("focusin", syncKeyboardState);
+      document.removeEventListener("focusout", syncKeyboardState);
+      document.body.classList.remove("sentinel-keyboard-open");
+    };
+  }, [pathname]);
+
+  if (keyboardOpen) {
+    return null;
+  }
+
+  return (
+    <div className="sentinel-mobile-chrome fixed inset-x-0 bottom-0 z-[999999] lg:hidden">
       <nav className="border-t border-white/10 bg-[#0F172A] px-3 pt-2 shadow-2xl shadow-slate-950/30">
         <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
           {navItems.map((item) => {

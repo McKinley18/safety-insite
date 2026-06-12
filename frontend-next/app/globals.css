@@ -78,3 +78,17 @@ button {
 ::selection {
   background: rgba(29, 114, 184, 0.18);
 }
+
+/* Mobile keyboard handling:
+   When the virtual keyboard is open, hide fixed bottom app chrome instead of
+   letting it float above the keyboard and cover form fields. */
+body.sentinel-keyboard-open .sentinel-mobile-chrome,
+body.sentinel-keyboard-open .sentinel-keyboard-hide {
+  display: none !important;
+}
+
+body.sentinel-keyboard-open .sentinel-keyboard-unpin {
+  position: static !important;
+  bottom: auto !important;
+  box-shadow: none !important;
+}
