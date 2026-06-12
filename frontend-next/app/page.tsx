@@ -67,22 +67,6 @@ export default function MarketingPage() {
               workflow.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <AppLinkButton
-                href="/register"
-                className="rounded-full bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
-              >
-                Create an Account
-              </AppLinkButton>
-
-              <AppLinkButton
-                href="/login"
-                variant="secondary"
-                className="rounded-full border-white/20 bg-white px-6 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
-              >
-                Sign In
-              </AppLinkButton>
-            </div>
           </div>
 
           <div className="rounded-[28px] border border-white/10 bg-white/10 p-5 shadow-sm">
@@ -263,11 +247,11 @@ export default function MarketingPage() {
           </AppLinkButton>
 
           <AppLinkButton
-            href="/safescope"
+            href="/login"
             variant="secondary"
             className="rounded-full border-white/20 bg-white px-6 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
           >
-            Learn About SafeScope
+            Sign In
           </AppLinkButton>
         </div>
       </div>
