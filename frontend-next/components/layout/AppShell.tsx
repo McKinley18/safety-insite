@@ -122,6 +122,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const showPublicMarketingNav = isMarketingPage && !hasAuthSession;
   const showAppNav = !isPublicPage;
 
+  // Public/auth/marketing pages show the site footer.
+  // Signed-in app pages use app navigation instead of the marketing footer.
+  const showPublicFooter = !showAppNav;
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -433,6 +437,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
+      {showPublicFooter && (
       <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A]">
         <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -471,6 +476,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           </p>
         </div>
       </footer>
+      )}
 
       {showAppNav && <MobileTabBar />}
     </div>
