@@ -144,6 +144,9 @@ export default function CompanyControlCenterPage() {
   const [filterType, setFilterType] = useState("");
   const [filterOverdueOnly, setFilterOverdueOnly] = useState(false);
   const [status, setStatus] = useState("");
+  const [doubleReviewRequired, setDoubleReviewRequired] = useState(true);
+  const [anonymousSubmissions, setAnonymousSubmissions] = useState(false);
+  const [securitySettingsStatus, setSecuritySettingsStatus] = useState("");
 
   const companySeats = 5;
   const usedSeats = Math.max(members.length, 1);
@@ -833,6 +836,136 @@ export default function CompanyControlCenterPage() {
         </div>
       </AppPanel>
 
+      <section className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
+        <AppPanel padding="sm" className="border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800">
+          <SectionHeader
+            eyebrow="Account Owner Console"
+            title="Executive Orchestration & Activity Monitoring"
+          />
+          <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
+            Exclusive to the Account Owner. Monitor workspace compliance, toggle security protocols, and review security audit-trail activities.
+          </p>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3.5">
+              <p className="text-xs font-black uppercase text-slate-900 dark:text-slate-100">
+                Workspace Protocols
+              </p>
+              
+              <div className="mt-3 space-y-3">
+                <label className="flex items-start gap-2.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={doubleReviewRequired}
+                    onChange={(e) => {
+                      setDoubleReviewRequired(e.target.checked);
+                      setSecuritySettingsStatus("Protocol updated: Double-Review now " + (e.target.checked ? "enforced" : "disabled"));
+                      setTimeout(() => setSecuritySettingsStatus(""), 4000);
+                    }}
+                    className="mt-0.5 rounded text-[#1D72B8] focus:ring-[#1D72B8] cursor-pointer"
+                  />
+                  <div className="min-w-0">
+                    <p className="text-xs font-black text-slate-900 dark:text-slate-100">
+                      Double-Review Enforcement
+                    </p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold leading-normal mt-0.5">
+                      Require dual-signatures from Manager/Owner for Critical citation findings.
+                    </p>
+                  </div>
+                </label>
+
+                <label className="flex items-start gap-2.5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={anonymousSubmissions}
+                    onChange={(e) => {
+                      setAnonymousSubmissions(e.target.checked);
+                      setSecuritySettingsStatus("Protocol updated: Anonymous Submissions " + (e.target.checked ? "enabled" : "disabled"));
+                      setTimeout(() => setSecuritySettingsStatus(""), 4000);
+                    }}
+                    className="mt-0.5 rounded text-[#1D72B8] focus:ring-[#1D72B8] cursor-pointer"
+                  />
+                  <div className="min-w-0">
+                    <p className="text-xs font-black text-slate-900 dark:text-slate-100">
+                      Anonymous Hazard Submissions
+                    </p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold leading-normal mt-0.5">
+                      Allow field personnel to submit anonymous safety observations to the queue.
+                    </p>
+                  </div>
+                </label>
+              </div>
+
+              {securitySettingsStatus && (
+                <p className="mt-3 text-[10px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/40 rounded-lg px-2.5 py-1 text-center">
+                  {securitySettingsStatus}
+                </p>
+              )}
+            </div>
+
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3.5 flex flex-col">
+              <p className="text-xs font-black uppercase text-slate-900 dark:text-slate-100">
+                Security Audit Log
+              </p>
+              
+              <div className="mt-2.5 space-y-2 font-mono text-[9px] leading-relaxed text-slate-500 dark:text-slate-400 flex-1 overflow-y-auto max-h-36">
+                <div className="border-l-2 border-blue-500 pl-2">
+                  <span className="font-bold text-slate-400">[11:10:48]</span> SEC_AUDIT: AES-GCM client-side vault key integrity validated.
+                </div>
+                <div className="border-l-2 border-emerald-500 pl-2">
+                  <span className="font-bold text-slate-400">[11:05:12]</span> ORG_HANDSHAKE: Secured seat token generated for invitation queue.
+                </div>
+                <div className="border-l-2 border-amber-500 pl-2">
+                  <span className="font-bold text-slate-400">[10:59:22]</span> SYS_HEALTH: Connected database state OK (Postgres 16 on port 5432).
+                </div>
+              </div>
+            </div>
+          </div>
+        </AppPanel>
+
+        <AppPanel padding="sm" className="border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800">
+          <SectionHeader
+            eyebrow="Access Matrix"
+            title="Company Roles & Permissions"
+          />
+          <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
+            Define clear organizational access parameters. Verify each role's clearance below:
+          </p>
+
+          <div className="mt-3 divide-y divide-slate-100 dark:divide-slate-800 border-t border-slate-100 dark:border-slate-800">
+            {[
+              [
+                "Owner",
+                "Full workspace orchestration, user seat administration, AES vault key custody, billing settings, and write/delete clearance."
+              ],
+              [
+                "Manager",
+                "Full operational oversight, assign work, configure facilities, complete high-level supervisor reviews, and export reports."
+              ],
+              [
+                "Auditor",
+                "Execute field inspections, complete checklists, log evidence photos, create corrective actions, and annotate files."
+              ],
+              [
+                "Viewer",
+                "Read-only access to the Command Center summaries, safety reports, calendar schedules, and global metrics."
+              ]
+            ].map(([roleName, desc]) => (
+              <div key={roleName} className="py-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full bg-blue-50 dark:bg-blue-950 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide text-blue-600 dark:text-sky-400">
+                    {roleName}
+                  </span>
+                </div>
+                <p className="mt-1 text-[11px] font-semibold leading-relaxed text-slate-600 dark:text-slate-400">
+                  {desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </AppPanel>
+      </section>
+
       <section className="grid gap-3 md:grid-cols-4">
         {[
           ["Workspace Settings", "/settings/workspace"],
@@ -844,7 +977,7 @@ export default function CompanyControlCenterPage() {
             key={label}
             href={href}
             variant="ghost"
-            className="rounded-xl border-slate-200 px-3 py-3 text-center text-xs text-[#102A43] shadow-sm hover:bg-[#E8F4FF]"
+            className="rounded-xl border-slate-200 px-3 py-3 text-center text-xs text-[#102A43] shadow-sm hover:bg-[#E8F4FF] dark:text-slate-200 dark:hover:bg-slate-800"
           >
             {label}
           </AppLinkButton>
