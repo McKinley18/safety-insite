@@ -236,11 +236,62 @@ export class SafescopeV2Service {
         actionInput.id,
       );
 
+      const standardsTraceability = {
+        primaryMatcher: "ApplicableStandardsService",
+        primaryMatcherRole:
+          "Produces the initial suggested standards from approved knowledge chunks or the active standards repository.",
+        scopeFilter: "SafescopeV2Service.applyStandardsScopeFit",
+        scopeFilterRole:
+          "Promotes standards matching the selected jurisdiction and excludes mismatched MSHA/OSHA scopes.",
+        defensibilityRanker: "StandardsReasoningService",
+        defensibilityRankerRole:
+          "Ranks already-suggested standards for operational defensibility using context, exposure, risk, and reputable-source support.",
+        scenarioStandardMapper: "StandardFamilyMapperService",
+        scenarioStandardMapperRole:
+          "Maps scenario intelligence to standard families for review and supporting context.",
+        citationReview: "CitationReviewBrainService",
+        citationReviewRole:
+          "Reviews citation-level candidates and evidence gaps for advisory applicability support.",
+        sourceBackedGovernance: "SourceBackedApplicabilityGovernanceService",
+        sourceBackedGovernanceRole:
+          "Evaluates whether source-backed applicability is sufficiently supported and what reviewer limits apply.",
+        approvedKnowledgeRetrieval: "ApprovedKnowledgeRetrievalOutputV1Service",
+        approvedKnowledgeRetrievalRole:
+          "Retrieves approved knowledge records for supporting field output and source context where available.",
+        priorFindingsRole: "reference_only",
+        priorFindingsCanCreateStandards: false,
+        priorFindingsCanOverrideStandards: false,
+        finalSuggestedStandardsSource:
+          "applicable_standards_scope_filtered_then_v2_reasoning_context",
+        selectedScopes: normalizedScopes,
+        sourceMode: source || "auto_or_unspecified",
+        rawCandidateCount: rawSuggestedStandards.length,
+        scopeFilteredCandidateCount: suggestedStandards.length,
+        excludedCandidateCount: excludedStandards.length,
+        suggestedCitations: suggestedStandards.map((standard: any) => standard.citation).filter(Boolean),
+        excludedCitations: excludedStandards.map((standard: any) => standard.citation).filter(Boolean),
+        v2ContextAvailable: {
+          standardsReasoning: Boolean((intelligence as any).standardsReasoning),
+          standardFamilyCandidates: Boolean((intelligence as any).standardFamilyCandidates),
+          citationLevelCandidates: Boolean((intelligence as any).citationLevelCandidates),
+          sourceBackedApplicability: Boolean((intelligence as any).sbag),
+          approvedKnowledgeRetrieval: Boolean((intelligence as any).retrieval),
+        },
+        advisoryGuardrails: {
+          advisoryOnly: true,
+          doesNotDeclareViolation: true,
+          doesNotCreateCitation: true,
+          requiresQualifiedReview: true,
+          finalComplianceDecisionByHuman: true,
+        },
+      };
+
       return {
           ...promotedPrimary,
           ...intelligence,
           suggestedStandards,
           excludedStandards,
+          standardsTraceability,
           generatedActions: enhancedGeneratedActions,
           baseGeneratedActions: generatedActions,
           generatedActionsEnrichment: {
@@ -260,6 +311,7 @@ export class SafescopeV2Service {
               semanticRouting: (intelligence as any).semanticRouting,
               reasoningSourceHierarchy,
               reasoningBasis,
+              standardsTraceability,
           }
       };
   }

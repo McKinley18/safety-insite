@@ -18,6 +18,7 @@ import SafeScopeOperationalReasoning from "@/components/inspection/SafeScopeOper
 import SafeScopeReliabilitySection from "@/components/inspection/SafeScopeReliabilitySection";
 import SafeScopeReasoningBasisSection from "@/components/inspection/SafeScopeReasoningBasisSection";
 import SafeScopeStandardsReasoning from "@/components/inspection/SafeScopeStandardsReasoning";
+import SafeScopeStandardsTraceabilitySection from "@/components/inspection/SafeScopeStandardsTraceabilitySection";
 import SafeScopeTrendIntelligence from "@/components/inspection/SafeScopeTrendIntelligence";
 
 type SafeScopeAdvancedReasoningProps = {
@@ -38,6 +39,8 @@ export default function SafeScopeAdvancedReasoning({
       <SafeScopeEvidenceQuality safeScopeResult={safeScopeResult} />
 
       <SafeScopeStandardsReasoning safeScopeResult={safeScopeResult} />
+
+      <SafeScopeStandardsTraceabilitySection safeScopeResult={safeScopeResult} />
 
       <SafeScopeEventOperationalState safeScopeResult={safeScopeResult} />
 
