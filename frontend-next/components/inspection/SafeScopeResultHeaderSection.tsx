@@ -88,6 +88,7 @@ export default function SafeScopeResultHeaderSection({
     fieldOutput?.recommendedDisposition,
   );
 
+
   async function loadSnapshotSummary() {
     if (!safeScopeResult.reasoningSnapshotId) {
       setSnapshotStatus("No reasoning snapshot ID is available.");
@@ -105,13 +106,25 @@ export default function SafeScopeResultHeaderSection({
       setSnapshotStatus(
         error instanceof Error
           ? error.message
-          : "SafeScope reasoning snapshot could not be loaded.",
+          : "Unable to load reasoning snapshot.",
       );
     }
   }
 
   return (
     <>
+      {safeScopeResult.error && (
+        <div className="mb-4 rounded-xl bg-red-50 px-3 py-3 ring-1 ring-red-200">
+          <p className="text-sm font-black text-red-800">
+            SafeScope full intelligence was unavailable.
+          </p>
+          <p className="mt-1 text-xs font-semibold leading-5 text-red-700">
+            {safeScopeResult.message || "Review backend status before relying on this result."}
+            {safeScopeResult.status && ` (Backend status: ${safeScopeResult.status})`}
+          </p>
+        </div>
+      )}
+
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">

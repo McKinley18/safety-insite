@@ -17,11 +17,18 @@ function getSafeScopeAuthHeaders() {
   const token =
     window.localStorage.getItem("sentinel_auth_token") ||
     window.localStorage.getItem("token");
-
-  return {
+  
+  const headers: Record<string, string> = {
     "Content-Type": "application/json",
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
   };
+
+  // Add dev bypass header if in local development mode
+  if (process.env.NODE_ENV !== 'production') {
+    headers['x-dev-organization-id'] = 'dev-local-workspace';
+  }
+
+  return headers;
 }
 
 function runBasicSafeScopeFallback(text: string, payload: any) {
@@ -248,17 +255,22 @@ export async function runSafeScopeV2Classify(input: {
     const responseText = await response.text();
 
     if (!response.ok) {
-      if (response.status === 401 || response.status === 403) {
-        throw new Error(
-          `SafeScope authentication failed (${response.status}). Sign out, sign back in, and try again.`,
-        );
+      const errorMsg = responseText || `SafeScope backend error ${response.status}`;
+      
+      if (typeof window !== "undefined") {
+        console.error("[SafeScope] classify error", {
+          status: response.status,
+          message: errorMsg
+        });
       }
 
-      throw new Error(
-        `SafeScope backend error ${response.status}: ${
-          responseText || "No response body returned."
-        }`,
-      );
+      // Return a structured error response
+      return {
+        error: true,
+        status: response.status,
+        message: errorMsg,
+        fallbackTriggered: false // Do not trigger fallback automatically
+      };
     }
 
     const result = responseText ? JSON.parse(responseText) : null;
@@ -287,7 +299,12 @@ export async function runSafeScopeV2Classify(input: {
       });
     }
 
-    throw new Error(`SafeScope live request failed: ${message}`);
+    // Return a structured error response for network/unexpected errors
+    return {
+      error: true,
+      message: message,
+      fallbackTriggered: false
+    };
   }
 }
 
