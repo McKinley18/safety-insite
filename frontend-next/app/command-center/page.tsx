@@ -504,23 +504,23 @@ export default function DashboardPage() {
           <div className="absolute right-0 top-0 -z-10 h-40 w-40 rounded-full bg-blue-400/20 blur-3xl" />
 
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <div>
-              <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-blue-100">
+            <div className="text-center lg:text-left">
+              <p className="text-center text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF] lg:text-left">
                 Sentinel Command Center
               </p>
 
-              <h1 className="mt-4 max-w-3xl text-4xl font-black tracking-[-0.055em] text-white sm:text-5xl">
-                Safety work snapshot.
+              <h1 className="mx-auto mt-4 max-w-3xl text-center text-4xl font-black tracking-[-0.055em] text-white sm:text-5xl lg:mx-0 lg:text-left">
+                Safety Snapshot
               </h1>
 
-              <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
+              <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-semibold leading-6 text-slate-300 sm:text-base lg:mx-0 lg:text-left">
                 Monitor inspections, findings, corrective actions, scheduled work, and critical signals from one operational home screen.
               </p>
 
 
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="mx-auto grid max-w-[300px] grid-cols-2 gap-2 lg:mx-0 lg:max-w-[360px]">
               {[
                 [String(dashboard.reportCount), "Reports", "Inspection packages"],
                 [String(dashboard.findingCount), "Findings", "Captured observations"],
@@ -529,9 +529,9 @@ export default function DashboardPage() {
               ].map(([value, label, detail]) => (
                 <div
                   key={label}
-                  className="rounded-2xl border border-white/10 bg-white/10 p-4 shadow-sm backdrop-blur"
+                  className="rounded-xl border border-white/10 bg-white/10 px-2.5 py-2 text-center shadow-sm backdrop-blur"
                 >
-                  <p className="text-3xl font-black tracking-[-0.05em] text-white">
+                  <p className="text-center text-xl font-black tracking-[-0.05em] text-white sm:text-2xl">
                     {value}
                   </p>
                   <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-blue-100">

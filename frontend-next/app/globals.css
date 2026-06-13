@@ -66,6 +66,14 @@ body {
 
 body {
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
 }
 
 a {
@@ -304,17 +312,42 @@ body {
 
 @media (max-width: 768px) {
   .sentinel-page-shell {
-    width: min(100% - 1rem, 1180px);
-    padding: 1rem 0 0.75rem;
+    width: min(100% - 0.75rem, 1180px);
+    padding: 0.5rem 0 0.5rem;
+  }
+
+  .sentinel-page-header {
+    margin-bottom: 0.9rem;
   }
 
   .sentinel-page-title {
-    font-size: clamp(1.8rem, 10vw, 2.55rem);
+    font-size: clamp(1.65rem, 9vw, 2.35rem);
+    line-height: 1;
+  }
+
+  .sentinel-page-subtitle {
+    margin-top: 0.55rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 
   .sentinel-card,
   .sentinel-card-strong,
   .sentinel-card-muted {
     border-radius: 1rem;
+  }
+
+  .sentinel-card,
+  .sentinel-card-strong {
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.055);
+  }
+
+  .sentinel-metric-card {
+    padding: 0.85rem;
+    border-radius: 1rem;
+  }
+
+  .sentinel-metric-value {
+    font-size: 1.65rem;
   }
 }

@@ -236,9 +236,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [darkMode]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-transparent text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="flex min-h-dvh flex-col bg-transparent text-slate-900 dark:text-slate-100 transition-colors">
       <ToastContainer />
-      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320] px-4 py-3 shadow-lg shadow-slate-950/10 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
@@ -247,7 +247,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <img
               src="/logo.png"
               alt="Sentinel Safety"
-              className="h-20 w-auto object-contain sm:h-24"
+              className="h-14 w-auto object-contain sm:h-20 lg:h-24"
             />
           </Link>
 
@@ -295,7 +295,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   <button
                     type="button"
                     onClick={() => setProfileOpen((open) => !open)}
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E8F4FF] text-sm font-black text-[#102A43] ring-2 ring-blue-100 transition hover:bg-white active:scale-95"
+                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#102A43] ring-2 ring-blue-100 transition hover:bg-white active:scale-95 sm:h-12 sm:w-12 sm:text-sm"
                     aria-label="Open profile menu"
                   >
                     CM
@@ -389,7 +389,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main
-        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${showAppNav ? "pb-20 lg:pb-6" : "pb-6"}`}
+        className={`mx-auto w-full max-w-[1200px] flex-1 px-3 pt-3 sm:px-5 sm:pt-5 md:px-6 md:pt-6 ${showAppNav ? "pb-[calc(var(--sentinel-mobile-tabbar-height)+0.75rem)] lg:pb-6" : "pb-4 sm:pb-6"}`}
       >
         {children}
       </main>
