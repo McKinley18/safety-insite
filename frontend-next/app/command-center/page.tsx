@@ -56,6 +56,7 @@ import {
   toDateKey,
 } from "@/lib/safetyCalendar";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
+import { getAuthUser } from "@/lib/auth";
 
 type DashboardReport = {
   id?: string;
@@ -238,7 +239,7 @@ function uniqueCalendarEvents(events: SafetyCalendarEvent[]) {
 function getStoredCommandUser() {
   if (typeof window === "undefined") return {};
   try {
-    return JSON.parse(window.localStorage.getItem("sentinel_auth_user") || "{}");
+    return getAuthUser();
   } catch {
     return {};
   }

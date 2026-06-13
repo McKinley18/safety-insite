@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_BASE_URL } from "@/lib/safescope";
+import { clearAuthSession } from "@/lib/auth";
 import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
@@ -105,8 +106,7 @@ export default function RegisterPage() {
       setStatusType("success");
       setStatus("Account created successfully. Redirecting to sign in...");
 
-      window.localStorage.removeItem("sentinel_auth_token");
-      window.localStorage.removeItem("token");
+      clearAuthSession();
 
       setTimeout(() => {
         router.push("/login");

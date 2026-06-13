@@ -1,6 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { AppTextLink } from "@/components/ui/AppTextLink";
 import { HeroPanel } from "@/components/ui/HeroPanel";
+import { hasAuthToken } from "@/lib/auth";
 
 const sections = [
   {
@@ -22,6 +26,13 @@ const sections = [
 ];
 
 export default function SafeScopePage() {
+  const [hasAuthSession, setHasAuthSession] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setHasAuthSession(hasAuthToken());
+  }, []);
+
   return (
     <section className="space-y-5">
       <HeroPanel align="left" className="mb-[22px] p-6 sm:p-6">
@@ -43,14 +54,16 @@ export default function SafeScopePage() {
         ))}
       </AppPanel>
 
-      <div className="mt-5 flex justify-center">
-        <AppTextLink
-          href="/login"
-          className="rounded-full bg-white px-6 py-2.5 text-sm font-black !text-[#102A43] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
-        >
-          Return to Sign In
-        </AppTextLink>
-      </div>
+      {!hasAuthSession && (
+        <div className="mt-5 flex justify-center">
+          <AppTextLink
+            href="/login"
+            className="rounded-full bg-white px-6 py-2.5 text-sm font-black !text-[#102A43] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+          >
+            Return to Sign In
+          </AppTextLink>
+        </div>
+      )}
     </section>
   );
 }

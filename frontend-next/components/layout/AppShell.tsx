@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useNetworkStatus } from "@/hooks/useNetworkStatus";
 import { ToastContainer } from "@/components/ui/Toast";
-import { Wifi, WifiOff, Moon, Sun } from "lucide-react";
+import { Moon, Sun, Wifi, WifiOff } from "lucide-react";
 import {
   getAutoLockMinutes,
   getProtectedModeLabel,
@@ -19,6 +19,7 @@ import {
 } from "@/lib/pinSecurity";
 import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
 import { getStoredPlanCode, type PlanCode } from "@/lib/planEntitlements";
+import { clearAuthSession, hasAuthToken } from "@/lib/auth";
 
 const authPublicRoutes = [
   "/",
@@ -38,14 +39,6 @@ const marketingRoutes = [
   "/pricing",
 ];
 
-const publicNavItems = [
-  { href: "/about", label: "About" },
-  { href: "/legal", label: "Legal" },
-  { href: "/safescope", label: "SafeScope" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/login", label: "Sign In" },
-  { href: "/register", label: "Create Account" },
-];
 
 const navItems = [
   {
@@ -119,8 +112,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     (route) => pathname === route || pathname.startsWith(route + "/"),
   );
 
+  // Marketing pages are public only when there is no real stored auth token.
+  // Local dev auth bypass protects app routes, but should not make signed-out users appear signed in.
   const isPublicPage = isAuthPublicPage || (isMarketingPage && !hasAuthSession);
-  const showPublicMarketingNav = isMarketingPage && !hasAuthSession;
   const showAppNav = !isPublicPage;
 
   // Public/auth/marketing pages show the marketing footer.
@@ -130,11 +124,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const token =
-      window.localStorage.getItem("sentinel_auth_token") ||
-      window.localStorage.getItem("token");
-
-    setHasAuthSession(Boolean(token) || DISABLE_AUTH_FOR_LOCAL_DEV);
+    // Local dev auth bypass should prevent protected-route redirects,
+    // but it should not make public marketing pages render as signed-in.
+    setHasAuthSession(hasAuthToken());
     setPlanCode(getStoredPlanCode());
   }, [pathname]);
 
@@ -168,11 +160,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
     if (DISABLE_AUTH_FOR_LOCAL_DEV || isPublicPage || pathname === "/unlock") return;
 
-    const token =
-      window.localStorage.getItem("sentinel_auth_token") ||
-      window.localStorage.getItem("token");
-
-    if (!token) {
+    if (!hasAuthToken()) {
       router.replace("/login");
       return;
     }
@@ -259,33 +247,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <img
               src="/logo.png"
               alt="Sentinel Safety"
-              className="h-14 w-auto object-contain sm:h-16"
+              className="h-20 w-auto object-contain sm:h-24"
             />
           </Link>
-
-          {showPublicMarketingNav && (
-            <nav className="flex flex-wrap items-center justify-end gap-2">
-              {publicNavItems.map((item) => {
-                const active =
-                  pathname === item.href || pathname.startsWith(item.href + "/");
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={[
-                      "rounded-full px-3 py-2 text-xs font-black tracking-tight transition sm:px-4 sm:text-sm",
-                      active
-                        ? "bg-[#1D72B8] text-[#F4F6F8] shadow-md shadow-blue-900/20"
-                        : "text-[#B8C0CC] hover:bg-white/10 hover:text-[#E2E6EA]",
-                    ].join(" ")}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-          )}
 
           {showAppNav && (
             <>
@@ -342,36 +306,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       ref={profileMenuRef}
                       className="absolute right-0 top-14 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 shadow-xl"
                     >
-                      <div className="border-b border-slate-100 dark:border-slate-800 px-4 py-3 bg-slate-50/50 dark:bg-slate-950/20">
-                        <p className="text-xs font-black text-[#AEB6C2]">
-                          {securityLabel}
-                        </p>
-                        <div className="mt-1.5 flex items-center gap-1.5">
-                          {planCode === "company" ? (
-                            <span className="rounded bg-blue-500/10 border border-blue-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-blue-500 dark:text-sky-400">
-                              Company Tier
-                            </span>
-                          ) : planCode === "pro" || planCode === "plus" ? (
-                            <span className="rounded bg-orange-500/10 border border-orange-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-orange-500 dark:text-orange-400">
-                              Pro Tier
-                            </span>
-                          ) : (
-                            <div className="flex items-center gap-1.5">
-                              <span className="rounded bg-slate-500/10 border border-slate-500/20 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide text-slate-500">
-                                Basic Tier
-                              </span>
-                              <Link
-                                href="/settings"
-                                className="text-[10px] font-black text-[#1D72B8] hover:underline"
-                                onClick={() => setProfileOpen(false)}
-                              >
-                                Upgrade
-                              </Link>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
                       <button
                         type="button"
                         onClick={() => setDarkMode(!darkMode)}
@@ -438,9 +372,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <button
                         type="button"
                         onClick={() => {
-                          window.localStorage.removeItem("token");
-                          window.localStorage.removeItem("sentinel_auth_token");
-                          window.localStorage.removeItem("sentinel_auth_user");
+                          clearAuthSession();
                           window.location.href = "/login";
                         }}
                         className="block w-full min-h-[48px] px-4 py-4 text-left text-sm font-black text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"

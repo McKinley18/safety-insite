@@ -1,5 +1,9 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { AppTextLink } from "@/components/ui/AppTextLink";
+import { hasAuthToken } from "@/lib/auth";
 
 const sections = [
   {
@@ -25,6 +29,13 @@ const sections = [
 ];
 
 export default function LegalPage() {
+  const [hasAuthSession, setHasAuthSession] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    setHasAuthSession(hasAuthToken());
+  }, []);
+
   return (
     <section>
       <div className="mb-6 border-l-[5px] border-red-800 pl-4">
@@ -45,14 +56,16 @@ export default function LegalPage() {
         ))}
       </div>
 
-      <div className="mt-5 flex justify-center">
-        <AppTextLink
-          href="/login"
-          className="rounded-full bg-white px-6 py-2.5 text-sm font-black !text-[#102A43] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
-        >
-          Return to Sign In
-        </AppTextLink>
-      </div>
+      {!hasAuthSession && (
+        <div className="mt-5 flex justify-center">
+          <AppTextLink
+            href="/login"
+            className="rounded-full bg-white px-6 py-2.5 text-sm font-black !text-[#102A43] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+          >
+            Return to Sign In
+          </AppTextLink>
+        </div>
+      )}
     </section>
   );
 }

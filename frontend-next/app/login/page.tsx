@@ -7,6 +7,7 @@ import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppTextLink } from "@/components/ui/AppTextLink";
+import { isLocalDevAuthBypassEnabled, LOCAL_DEV_AUTH_TOKEN, setAuthSession } from "@/lib/auth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -28,10 +29,7 @@ export default function LoginPage() {
       setStatusType("idle");
       setStatus("");
 
-      const disableAuthForLocalDev =
-        process.env.NEXT_PUBLIC_DISABLE_AUTH === "true";
-
-      if (disableAuthForLocalDev) {
+      if (isLocalDevAuthBypassEnabled()) {
         const localUser = {
           firstName: "Christopher",
           lastName: "McKinley",
@@ -41,12 +39,7 @@ export default function LoginPage() {
           type: "pro",
         };
 
-        window.localStorage.setItem("sentinel_auth_token", "local-dev-token");
-        window.localStorage.setItem("token", "local-dev-token");
-        window.localStorage.setItem(
-          "sentinel_auth_user",
-          JSON.stringify(localUser),
-        );
+        setAuthSession(LOCAL_DEV_AUTH_TOKEN, localUser);
 
         setStatusType("success");
         setStatus("Signed in locally.");
@@ -69,15 +62,7 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (data.token) {
-        window.localStorage.setItem("sentinel_auth_token", data.token);
-        window.localStorage.setItem("token", data.token);
-      }
-
-      if (data.user) {
-        window.localStorage.setItem(
-          "sentinel_auth_user",
-          JSON.stringify(data.user),
-        );
+        setAuthSession(data.token, data.user);
       }
 
       setStatusType("success");

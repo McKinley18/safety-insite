@@ -3,6 +3,7 @@
 import { Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { clearAuthSession, getAuthUser, setAuthUser } from "@/lib/auth";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
@@ -31,8 +32,7 @@ export default function ProfilePage() {
 
   function loadUserProfile() {
     try {
-      const raw = window.localStorage.getItem("sentinel_auth_user");
-      const parsed = raw ? JSON.parse(raw) : {};
+      const parsed = getAuthUser();
 
       const nameParts = String(parsed.name || "")
         .trim()
@@ -53,8 +53,7 @@ export default function ProfilePage() {
   }, []);
 
   function saveAccountIdentity() {
-    const raw = window.localStorage.getItem("sentinel_auth_user") || "{}";
-    const existing = JSON.parse(raw);
+    const existing = getAuthUser();
 
     const updated = {
       ...existing,
@@ -64,7 +63,7 @@ export default function ProfilePage() {
       name: [firstName, lastName].filter(Boolean).join(" ").trim(),
     };
 
-    window.localStorage.setItem("sentinel_auth_user", JSON.stringify(updated));
+    setAuthUser(updated);
     setUser(updated);
     setIdentityEditing(false);
     setStatus("Profile updated locally.");
@@ -76,9 +75,7 @@ export default function ProfilePage() {
   }
 
   function signOut() {
-    window.localStorage.removeItem("token");
-    window.localStorage.removeItem("sentinel_auth_token");
-    window.localStorage.removeItem("sentinel_auth_user");
+    clearAuthSession();
     router.push("/login");
   }
 

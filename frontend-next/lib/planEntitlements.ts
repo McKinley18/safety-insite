@@ -1,3 +1,4 @@
+import { getAuthUser } from "./auth";
 export type PlanCode = "basic" | "plus" | "pro" | "company";
 
 export const PLAN_ENTITLEMENTS = {
@@ -118,7 +119,12 @@ export function getStoredPlanCode(): PlanCode {
   if (typeof window === "undefined") return normalizePlanCode(localDevDefault);
 
   try {
-    const user = JSON.parse(window.localStorage.getItem("sentinel_auth_user") || "{}");
+    const user = getAuthUser<{
+      planCode?: string;
+      type?: string;
+      plan?: string;
+      subscriptionTier?: string;
+    }>();
 
     return normalizePlanCode(
       user.planCode ||

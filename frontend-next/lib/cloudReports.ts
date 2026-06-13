@@ -1,15 +1,7 @@
+import { getAuthToken } from "./auth";
 import { apiFetch } from "./apiFetch";
 import { API_BASE_URL } from "./safescope";
 
-function getAuthToken() {
-  if (typeof window === "undefined") return "";
-
-  return (
-    window.localStorage.getItem("sentinel_auth_token") ||
-    window.localStorage.getItem("token") ||
-    ""
-  );
-}
 
 function getDevOrganizationId() {
   if (typeof window === "undefined") return "";

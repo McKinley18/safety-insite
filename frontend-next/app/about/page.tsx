@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
+import { hasAuthToken } from "@/lib/auth";
 
 const benefits = [
   {
@@ -33,11 +34,7 @@ export default function AboutPage() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const token =
-      window.localStorage.getItem("sentinel_auth_token") ||
-      window.localStorage.getItem("token");
-
-    setHasAuthSession(Boolean(token));
+    setHasAuthSession(hasAuthToken());
   }, []);
 
   return (
