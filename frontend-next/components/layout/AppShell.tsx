@@ -389,7 +389,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main
-        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${showAppNav ? "pb-52 lg:pb-10" : "pb-6"}`}
+        className={`mx-auto w-full max-w-[1200px] flex-1 px-4 pt-5 sm:px-6 md:pt-7 ${showAppNav ? "pb-20 lg:pb-6" : "pb-6"}`}
       >
         {children}
       </main>

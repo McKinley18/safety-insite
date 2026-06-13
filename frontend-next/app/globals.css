@@ -298,7 +298,7 @@ body {
 @media (max-width: 768px) {
   .sentinel-page-shell {
     width: min(100% - 1rem, 1180px);
-    padding: 1.25rem 0 5rem;
+    padding: 1rem 0 0.75rem;
   }
 
   .sentinel-page-title {
