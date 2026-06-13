@@ -145,14 +145,14 @@ export default function InspectionsPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center" className="text-white">
         <div className="flex flex-col items-center gap-5 text-center lg:text-left">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Inspections
             </p>
-            <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+            <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
               Start field work.
             </h1>
             <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -175,9 +175,9 @@ export default function InspectionsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
             >
-              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
+              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
               </p>
               <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
@@ -188,7 +188,7 @@ export default function InspectionsPage() {
         </div>
       </HeroPanel>
 
-      <AppPanel padding="md">
+      <AppPanel padding="lg" className="overflow-hidden">
         <SectionHeader
           eyebrow="Choose Workflow"
           title="What kind of inspection are you doing?"
@@ -226,10 +226,10 @@ export default function InspectionsPage() {
             return (
               <article
                 key={workflow.id}
-                className={`overflow-hidden rounded-2xl border shadow-sm transition ${
+                className={`overflow-hidden rounded-3xl border shadow-sm transition hover:-translate-y-0.5 ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
-                    : "border-slate-200 bg-white hover:border-slate-300"
+                    : "border-slate-200 bg-white/90 hover:border-blue-200 hover:bg-white"
                 }`}
               >
                 <button
@@ -267,7 +267,7 @@ export default function InspectionsPage() {
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200 bg-white px-3 py-3 sm:px-4">
+                  <div className="border-t border-slate-200 bg-white/85 px-4 py-4 sm:px-5">
                     <p className="text-xs font-semibold leading-5 text-slate-600">
                       {workflow.details}
                     </p>
@@ -276,7 +276,7 @@ export default function InspectionsPage() {
                       {featureRows.map((feature) => (
                         <div
                           key={feature}
-                          className="rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-2 text-[11px] font-black leading-4 text-slate-600"
+                          className="rounded-2xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-sm"
                         >
                           {feature}
                         </div>

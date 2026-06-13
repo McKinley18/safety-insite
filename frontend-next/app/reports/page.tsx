@@ -536,12 +536,12 @@ export default function ReportsPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Reports
         </p>
-        <h2 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+        <h2 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
           Safety Records
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -556,9 +556,9 @@ export default function ReportsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
             >
-              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
+              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
               </p>
               <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
@@ -606,7 +606,8 @@ export default function ReportsPage() {
         </AppPanel>
       )}
 
-      <div className="flex flex-wrap items-center gap-2">
+      <AppPanel padding="sm" className="p-3">
+        <div className="flex flex-wrap items-center gap-2">
         <AppInput
           value={reportSearch}
           onChange={(event) => setReportSearch(event.target.value)}
@@ -628,7 +629,8 @@ export default function ReportsPage() {
             <option value="oldest">Oldest</option>
           </select>
         </label>
-      </div>
+        </div>
+      </AppPanel>
 
       {sortedReports.length === 0 ? (
         <EmptyState
@@ -640,7 +642,7 @@ export default function ReportsPage() {
           }
         />
       ) : (
-        <div className="space-y-1.5">
+        <div className="space-y-3">
           {sortedReports.map((report) => {
             const risk = getRiskLabel(report);
             const firstPhoto = report.findings?.flatMap(
@@ -690,7 +692,7 @@ export default function ReportsPage() {
                   onClick={() =>
                     setExpandedReportId(expanded ? null : report.id)
                   }
-                  className="relative flex w-full items-start gap-3 px-3 py-2 pr-[5rem] text-left"
+                  className="relative flex w-full items-start gap-3 px-4 py-4 pr-[5.5rem] text-left transition hover:bg-slate-50/80"
                 >
                   <div className="min-w-0">
                     <div className="flex w-fit max-w-full flex-wrap items-center gap-1.5">
@@ -715,7 +717,7 @@ export default function ReportsPage() {
                       </span>
                     </div>
 
-                    <h3 className="mt-1 text-sm font-black leading-tight text-slate-900">
+                    <h3 className="mt-2 text-base font-black leading-tight tracking-[-0.025em] text-slate-900">
                       {getReportTitle(report)}
                     </h3>
 
@@ -730,7 +732,7 @@ export default function ReportsPage() {
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200 px-3 py-2.5">
+                  <div className="border-t border-slate-200 bg-slate-50/45 px-4 py-4">
                     {editing ? (
                       <div className="grid gap-3 md:grid-cols-2">
                         <AppInput
@@ -782,7 +784,7 @@ export default function ReportsPage() {
                         )}
 
                         <div className="min-w-0">
-                          <div className="rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm">
+                          <div className="rounded-2xl border border-slate-200 bg-white/95 px-4 py-4 shadow-sm">
                             <div className="flex items-start justify-between gap-3 border-b border-slate-200 pb-2">
                               <div className="min-w-0">
                                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8]">
@@ -811,7 +813,7 @@ export default function ReportsPage() {
                               ].map(([value, label]) => (
                                 <div
                                   key={label}
-                                  className="min-w-0 rounded-lg bg-slate-50 px-2 py-1 text-center"
+                                  className="min-w-0 rounded-xl border border-slate-200 bg-slate-50 px-2 py-2 text-center"
                                 >
                                   <p className="text-center text-xs font-black leading-none text-slate-900">
                                     {value}
@@ -823,7 +825,7 @@ export default function ReportsPage() {
                               ))}
                             </div>
 
-                            <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2 text-[11px] font-semibold leading-4 text-slate-600">
+                            <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-[11px] font-semibold leading-4 text-slate-600">
                               <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                                 Record details
                               </p>

@@ -332,12 +332,12 @@ export default function ActionsPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Corrective Actions
         </p>
-        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+        <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
           Track corrective work.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -353,9 +353,9 @@ export default function ActionsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
             >
-              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
+              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
               </p>
               <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
@@ -395,7 +395,7 @@ export default function ActionsPage() {
         </AppPanel>
       )}
 
-      <section className="border-y border-slate-200 py-4">
+      <AppPanel padding="lg">
         <SectionHeader
           eyebrow="Add Action"
           title="Create a corrective action"
@@ -434,7 +434,7 @@ export default function ActionsPage() {
             </AppButton>
           </div>
         </div>
-      </section>
+      </AppPanel>
 
       <AppPanel padding="sm" className="p-3">
         <div className="flex flex-wrap items-center gap-2">
@@ -504,7 +504,7 @@ export default function ActionsPage() {
         </div>
       </AppPanel>
 
-      <section className="border-y border-slate-200">
+      <AppPanel padding="sm" className="overflow-hidden p-0 sm:p-0">
         {actions.length ? (
           actions.map((action, index) => {
             const storedAction = manualActions.some((manualAction) => manualAction.id === action.id);
@@ -556,7 +556,7 @@ export default function ActionsPage() {
             description={manualActions.length || reportActions.length ? "Clear filters to view all corrective actions." : "Actions created manually or generated from reports will appear here."}
           />
         )}
-      </section>
+      </AppPanel>
     </section>
   );
 }
