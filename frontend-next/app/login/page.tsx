@@ -43,7 +43,7 @@ export default function LoginPage() {
 
         setStatusType("success");
         setStatus("Signed in locally.");
-        router.push("/command-center");
+        router.replace("/command-center");
         return;
       }
 
@@ -67,7 +67,7 @@ export default function LoginPage() {
 
       setStatusType("success");
       setStatus("Signed in successfully.");
-      router.push("/command-center");
+      router.replace("/command-center");
     } catch {
       setStatusType("error");
       setStatus("Server is waking up. Please try again in a moment.");
