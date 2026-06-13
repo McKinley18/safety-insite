@@ -302,14 +302,14 @@ export default function QuickInspectionPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Quick Capture
             </p>
-            <h1 className="mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+            <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
               Capture the hazard fast.
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -338,9 +338,9 @@ export default function QuickInspectionPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center"
+              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
             >
-              <p className="text-2xl font-black tracking-tight text-white">
+              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
               </p>
               <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
@@ -351,7 +351,7 @@ export default function QuickInspectionPage() {
         </div>
       </HeroPanel>
 
-      <AppPanel>
+      <AppPanel padding="lg">
         <SectionHeader
           eyebrow="Field Details"
           title="Basic finding information"
@@ -367,7 +367,7 @@ export default function QuickInspectionPage() {
               value={hazardCategory}
               onChange={(event) => setHazardCategory(event.target.value)}
               placeholder="Let SafeScope suggest or type one"
-              className="mt-2 bg-slate-50 focus:bg-white"
+              className="mt-2 bg-white/90 focus:bg-white"
             />
             <datalist id="quick-hazard-category-options">
               {hazardCategoryOptions.map((category) => (
@@ -384,7 +384,7 @@ export default function QuickInspectionPage() {
               value={location}
               onChange={(event) => setLocation(event.target.value)}
               placeholder="Example: Conveyor 3, north catwalk"
-              className="mt-2 bg-slate-50 focus:bg-white"
+              className="mt-2 bg-white/90 focus:bg-white"
             />
           </label>
         </div>
@@ -397,7 +397,7 @@ export default function QuickInspectionPage() {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
             placeholder="What is wrong and who may be exposed?"
-            className="mt-2 min-h-24 bg-slate-50 font-semibold focus:bg-white"
+            className="mt-2 min-h-24 bg-white/90 font-semibold focus:bg-white"
           />
         </label>
 
@@ -437,7 +437,7 @@ export default function QuickInspectionPage() {
         </div>
       </AppPanel>
 
-      <AppPanel>
+      <AppPanel padding="lg">
         <SectionHeader
           eyebrow="SafeScope Quick Review"
           title="Limited safety intelligence preview"
@@ -455,7 +455,7 @@ export default function QuickInspectionPage() {
         />
 
         {safeScopeQuickResult ? (
-          <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
@@ -475,7 +475,7 @@ export default function QuickInspectionPage() {
               </span>
             </div>
 
-            <div className="mt-3 rounded-xl bg-white px-3 py-3">
+            <div className="mt-3 rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
               <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                 Suggested Immediate Action
               </p>
@@ -506,7 +506,7 @@ export default function QuickInspectionPage() {
         )}
       </AppPanel>
 
-      <AppPanel>
+      <AppPanel padding="lg">
         <SectionHeader
           eyebrow="Corrective Action"
           title="Optional action planning"

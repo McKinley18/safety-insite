@@ -84,12 +84,12 @@ export default function InspectionCoverPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Inspection Start
         </p>
-        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+        <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
           Start Field Inspection
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -98,7 +98,7 @@ export default function InspectionCoverPage() {
         </p>
       </HeroPanel>
 
-      <AppPanel variant="subtle">
+      <AppPanel variant="subtle" padding="lg">
         <SectionHeader
           eyebrow="Field-first workflow"
           title="Capture observations before final report assembly."
@@ -106,7 +106,7 @@ export default function InspectionCoverPage() {
         />
       </AppPanel>
 
-      <AppPanel>
+      <AppPanel padding="lg">
         <SectionHeader title="Inspection Team" />
 
         <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700">
@@ -116,7 +116,7 @@ export default function InspectionCoverPage() {
           value={leadInspector}
           onChange={(event) => setLeadInspector(event.target.value)}
           placeholder="Inspector name"
-          className="bg-slate-50"
+          className="bg-white/90"
         />
 
         <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700">
@@ -133,7 +133,7 @@ export default function InspectionCoverPage() {
                 setAdditionalInspectors(next);
               }}
               placeholder={`Additional inspector ${index + 1}`}
-              className="min-w-0 flex-1 bg-slate-50"
+              className="min-w-0 flex-1 bg-white/90"
             />
 
             <AppButton
@@ -161,13 +161,13 @@ export default function InspectionCoverPage() {
         </AppButton>
       </AppPanel>
 
-      <AppPanel>
+      <AppPanel padding="lg">
         <SectionHeader title="Report Options" />
 
         <button
           type="button"
           onClick={() => setIncludeCoverPage(!includeCoverPage)}
-          className="mt-4 flex w-full gap-2.5 rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-3 text-left"
+          className="mt-4 flex w-full gap-2.5 rounded-2xl border border-slate-200 bg-white/90 shadow-sm px-3.5 py-3 text-left"
         >
           <span
             className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-[#1D72B8] text-[13px] font-black text-white ${

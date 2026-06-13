@@ -731,7 +731,7 @@ export default function InspectionReviewPage() {
 
   if (!report) {
     return (
-      <section className="space-y-5">
+      <section className="sentinel-page-shell space-y-6">
 
         <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500">
           No finalized report found.
@@ -870,7 +870,7 @@ export default function InspectionReviewPage() {
         description="Toggle the items that should appear in the final PDF."
       />
 
-      <AppPanel padding="md">
+      <AppPanel padding="lg">
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {[
             [
