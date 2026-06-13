@@ -20,28 +20,6 @@ export default function LoginPage() {
   );
   const [loading, setLoading] = useState(false);
 
-  function handleGuestLogin() {
-    if (loading) return;
-
-    const guestUser = {
-      firstName: "Guest",
-      lastName: "User",
-      name: "Guest User",
-      email: "guest@sentinelsafety.local",
-      role: "guest",
-      type: "pro",
-      planCode: "pro",
-      plan: "pro",
-      subscriptionTier: "pro",
-      isGuest: true,
-    };
-
-    setAuthSession("sentinel-guest-token", guestUser);
-    setStatusType("success");
-    setStatus("Continuing as Guest with temporary Pro access.");
-    router.replace("/command-center");
-  }
-
   async function handleLogin(event: React.FormEvent) {
     event.preventDefault();
     if (loading) return;
@@ -188,30 +166,15 @@ export default function LoginPage() {
                 </div>
               </label>
 
-              <div className="grid gap-3">
-                <div className="flex justify-center">
-                  <AppButton
-                    type="submit"
-                    disabled={loading}
-                    size="lg"
-                    className="px-8 shadow-sm active:scale-[0.98]"
-                  >
-                    {loading ? "Signing In..." : "Sign In"}
-                  </AppButton>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={handleGuestLogin}
+              <div className="flex justify-center">
+                <AppButton
+                  type="submit"
                   disabled={loading}
-                  className="mx-auto inline-flex w-fit items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-black uppercase tracking-[0.16em] text-slate-700 shadow-sm transition hover:border-[#1D72B8] hover:text-[#1D72B8] disabled:cursor-not-allowed disabled:opacity-60"
+                  size="lg"
+                  className="px-8 shadow-sm active:scale-[0.98]"
                 >
-                  Continue as Guest
-                </button>
-
-                <p className="text-center text-xs font-semibold leading-5 text-slate-500">
-                  Temporary guest mode uses Pro access. Company filters, team tools, and workspace management stay locked.
-                </p>
+                  {loading ? "Signing In..." : "Sign In"}
+                </AppButton>
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-1">
