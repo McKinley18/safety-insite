@@ -118,9 +118,9 @@ body.sentinel-keyboard-open .sentinel-keyboard-hide {
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.10), transparent 32rem),
-    radial-gradient(circle at top right, rgba(14, 165, 233, 0.08), transparent 28rem),
-    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.11), transparent 32rem),
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.09), transparent 28rem),
+    linear-gradient(180deg, #eef2f7 0%, #e2e8f0 100%);
   color: #0f172a;
 }
 

@@ -10,23 +10,6 @@ import { HeroPanel } from "@/components/ui/HeroPanel";
 import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
 
 
-function CalculationDisclosure({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <details className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
-      <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-        How is this calculated?
-      </summary>
-      <div className="mt-2 text-xs font-semibold leading-5 text-slate-600">
-        {children}
-      </div>
-    </details>
-  );
-}
-
 
 type AnalyticsReport = {
   id?: string;
@@ -80,29 +63,6 @@ function getRiskBand(finding: any): RiskBand {
   return "Unrated";
 }
 
-function getConfidence(finding: any) {
-  const raw =
-    finding.safeScopeResult?.confidenceIntelligence?.overallConfidence ??
-    finding.safeScopeResult?.confidence ??
-    NaN;
-
-  const value = Number(raw);
-
-  if (!Number.isFinite(value)) return null;
-
-  return value > 1 ? value / 100 : value;
-}
-
-function getFindingStandards(finding: any) {
-  return (
-    finding.selectedStandards ||
-    finding.standards ||
-    finding.safeScopeResult?.suggestedStandards ||
-    finding.safeScopeResult?.standards ||
-    []
-  );
-}
-
 function getFindingActions(finding: any) {
   return (
     finding.correctiveActions || [
@@ -143,7 +103,9 @@ function InsightBar({
   maxValue: number;
 }) {
   const width =
-    maxValue > 0 ? Math.max(8, Math.min(100, (value / maxValue) * 100)) : 0;
+    maxValue > 0 && value > 0
+      ? Math.max(8, Math.min(100, (value / maxValue) * 100))
+      : 0;
 
   return (
     <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
@@ -260,36 +222,8 @@ export default function AnalyticsPage() {
     const closureRate = percent(completedActions.length, actions.length);
     const overdueRate = percent(overdueActions.length, openActions.length);
 
-    const findingsWithEvidence = findings.filter(
-      (finding) => (finding.photos || []).length > 0,
-    ).length;
-
-    const findingsWithStandards = findings.filter(
-      (finding) => getFindingStandards(finding).length > 0,
-    ).length;
-
     const findingsWithActions = findings.filter(
       (finding) => getFindingActions(finding).length > 0,
-    ).length;
-
-    const safeScopeReviewed = findings.filter(
-      (finding) => finding.safeScopeResult,
-    ).length;
-
-    const confidenceValues = findings
-      .map((finding) => getConfidence(finding))
-      .filter((value): value is number => value !== null);
-
-    const averageConfidence = confidenceValues.length
-      ? Math.round(
-          (confidenceValues.reduce((sum, value) => sum + value, 0) /
-            confidenceValues.length) *
-            100,
-        )
-      : null;
-
-    const lowConfidenceFindings = confidenceValues.filter(
-      (confidence) => confidence < 0.7,
     ).length;
 
     const categoryMap = findings.reduce<Record<string, number>>((acc, finding) => {
@@ -337,12 +271,7 @@ export default function AnalyticsPage() {
       closureRate,
       overdueRate,
 
-      evidenceCoverage: percent(findingsWithEvidence, findings.length),
-      standardsCoverage: percent(findingsWithStandards, findings.length),
       actionCoverage: percent(findingsWithActions, findings.length),
-      safeScopeCoverage: percent(safeScopeReviewed, findings.length),
-      averageConfidence,
-      lowConfidenceFindings,
 
       repeatHazardThemes,
       repeatLocations,
@@ -350,6 +279,15 @@ export default function AnalyticsPage() {
       allLocations,
       maxHazardThemeCount: Math.max(0, ...allHazardThemes.map(([, value]) => value)),
       maxLocationCount: Math.max(0, ...allLocations.map(([, value]) => value)),
+      topHazardConcentration: percent(allHazardThemes[0]?.[1] || 0, findings.length),
+      topLocationConcentration: percent(allLocations[0]?.[1] || 0, findings.length),
+      riskLoad: riskScores.reduce((sum, score) => sum + score, 0),
+      openActionsPerInspection: reports.length
+        ? Math.round((openActions.length / reports.length) * 10) / 10
+        : null,
+      overdueActionsPerInspection: reports.length
+        ? Math.round((overdueActions.length / reports.length) * 10) / 10
+        : null,
       recentReports,
     };
   }, [reports, actions]);
@@ -370,15 +308,6 @@ export default function AnalyticsPage() {
     analytics.overdueRate !== null && analytics.overdueRate >= 25
       ? "Overdue corrective action burden is elevated. Review ownership and due-date follow-through."
       : null,
-    analytics.standardsCoverage !== null && analytics.standardsCoverage < 70
-      ? "Standards coverage is below target. Strengthen standards selection before finalizing reports."
-      : null,
-    analytics.evidenceCoverage !== null && analytics.evidenceCoverage < 70
-      ? "Evidence coverage is below target. Encourage photo/document capture during inspections."
-      : null,
-    analytics.lowConfidenceFindings > 0
-      ? "Some SafeScope results have lower confidence. These findings may need more evidence or supervisor review."
-      : null,
   ].filter(Boolean);
 
   return (
@@ -394,7 +323,7 @@ export default function AnalyticsPage() {
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
               Track whether your safety program is reducing repeat hazards,
-              improving corrective action closure, strengthening evidence quality,
+              improving corrective action closure, reducing repeat hazards,
               and supporting better standards-backed decisions.
             </p>
           </div>
@@ -444,12 +373,12 @@ export default function AnalyticsPage() {
         <LockedFeatureCard
           eyebrow="Analytics Intelligence"
           title="Unlock safety-program trends."
-          description="Your Basic snapshot shows activity counts. Pro Insights helps show whether inspections are creating real improvement through repeat hazard trends, action closure, evidence quality, standards coverage, and SafeScope confidence."
+          description="Your Basic snapshot shows activity counts. Pro Insights adds risk distribution, corrective action performance, recurring hazard trends, and recurring exposure areas."
           requiredPlan="Pro"
           bullets={[
             "Find recurring hazard themes and control failures.",
             "Track overdue corrective work and closure health.",
-            "Review evidence quality, standards coverage, and SafeScope confidence.",
+            "Track risk distribution, corrective action performance, and repeat hazard patterns.",
           ]}
           ctaLabel="Unlock Pro Insights"
         />
@@ -492,233 +421,289 @@ export default function AnalyticsPage() {
 
       {canViewProInsights && (
         <>
-          <section className="rounded-xl border border-amber-200 bg-amber-50/50 px-3 py-3 shadow-sm">
-            <div className="border-b border-amber-200 pb-2">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-700">
-                Safety Brief
-              </p>
-              <h2 className="mt-0.5 text-base font-black text-slate-900">
-                What needs attention first
-              </h2>
-            </div>
-
-            <div className="mt-3 grid gap-2">
-              {programHealthNotes.length ? (
-                programHealthNotes.slice(0, 4).map((note) => (
-                  <div
-                    key={note}
-                    className="rounded-lg border border-orange-100 bg-orange-50 px-3 py-2 text-xs font-black leading-5 text-orange-800"
-                  >
-                    {note}
-                  </div>
-                ))
-              ) : (
-                <p className="rounded-lg border border-emerald-100 bg-emerald-50 px-3 py-2 text-xs font-black leading-5 text-emerald-700">
-                  No major concern signals detected from the currently saved data.
+          <section className="sentinel-card p-4">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-sky-300">
+                  Statistical Indicators
                 </p>
-              )}
+                <h2 className="mt-1 text-base font-black tracking-[-0.03em] text-slate-950 dark:text-slate-100">
+                  Program math summary
+                </h2>
+              </div>
+
+              <span className="w-fit rounded-full bg-slate-100 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+                Pro analytics
+              </span>
             </div>
 
+            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                [
+                  analytics.findingsPerInspection === null
+                    ? "—"
+                    : String(analytics.findingsPerInspection),
+                  "Findings / Inspection",
+                ],
+                [
+                  analytics.criticalRate === null ? "—" : `${analytics.criticalRate}%`,
+                  "Critical Rate",
+                ],
+                [
+                  analytics.highRiskRate === null ? "—" : `${analytics.highRiskRate}%`,
+                  "High-Risk Rate",
+                ],
+                [
+                  analytics.actionCoverage === null
+                    ? "—"
+                    : `${analytics.actionCoverage}%`,
+                  "Action Conversion",
+                ],
+                [
+                  analytics.closureRate === null ? "—" : `${analytics.closureRate}%`,
+                  "Closure Rate",
+                ],
+                [
+                  analytics.overdueRate === null ? "—" : `${analytics.overdueRate}%`,
+                  "Overdue Rate",
+                ],
+                [
+                  String(analytics.riskLoad),
+                  "Risk Load",
+                ],
+
+              ].map(([value, label]) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 shadow-sm dark:border-slate-800 dark:bg-slate-950/45"
+                >
+                  <p className="text-xl font-black tracking-[-0.055em] text-slate-950 dark:text-slate-100">
+                    {value}
+                  </p>
+                  <p className="mt-0.5 text-[9px] font-black uppercase tracking-[0.12em] text-[#1D72B8] dark:text-sky-300">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-2 grid gap-2 lg:grid-cols-2">
+              <div className="rounded-2xl border border-orange-100 bg-orange-50/70 px-3 py-2.5 shadow-sm dark:border-orange-900/50 dark:bg-orange-950/25">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[9px] font-black uppercase tracking-[0.12em] text-orange-700 dark:text-orange-300">
+                      Top Hazard
+                    </p>
+                    <p className="truncate text-xs font-black text-slate-950 dark:text-slate-100">
+                      {analytics.allHazardThemes[0]?.[0] || "No hazard theme yet"}
+                    </p>
+                  </div>
+                  <p className="shrink-0 text-lg font-black tracking-[-0.055em] text-orange-700 dark:text-orange-200">
+                    {analytics.topHazardConcentration === null
+                      ? "—"
+                      : `${analytics.topHazardConcentration}%`}
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-sky-100 bg-sky-50/70 px-3 py-2.5 shadow-sm dark:border-sky-900/50 dark:bg-sky-950/25">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[9px] font-black uppercase tracking-[0.12em] text-sky-700 dark:text-sky-300">
+                      Top Exposure Area
+                    </p>
+                    <p className="truncate text-xs font-black text-slate-950 dark:text-slate-100">
+                      {analytics.allLocations[0]?.[0] || "No location trend yet"}
+                    </p>
+                  </div>
+                  <p className="shrink-0 text-lg font-black tracking-[-0.055em] text-sky-700 dark:text-sky-200">
+                    {analytics.topLocationConcentration === null
+                      ? "—"
+                      : `${analytics.topLocationConcentration}%`}
+                  </p>
+                </div>
+              </div>
+            </div>
           </section>
 
-
-
-
-
-      <section className="grid gap-3 lg:grid-cols-2">
-        <div className="rounded-xl border border-blue-300 bg-blue-100 dark:border-blue-900/30 dark:bg-blue-950/20 px-3 py-3 shadow-md">
-          <div className="border-b border-blue-300 dark:border-blue-900/40 pb-2">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-sky-400">
-              Risk Profile
-            </p>
-            <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
-              Severity, action coverage, and review quality
-            </h2>
-          </div>
-
-          <div className="mt-3 grid gap-3">
-            {[
-              [
-                analytics.averageRiskScore === null
-                  ? "—"
-                  : String(analytics.averageRiskScore),
-                "Average Risk",
-                "Overall risk level across findings",
-                "μ_R = Σ(L_i × S_i) / N",
-                "Establishes baseline workspace hazard severity, allowing comparison of risk-density patterns over consecutive inspection cycles."
-              ],
-              [
-                analytics.highRiskRate === null ? "—" : `${analytics.highRiskRate}%`,
-                "High-Risk Rate",
-                "High and Critical findings",
-                "R_H = (N_H + N_C) / N × 100",
-                "Measures the proportion of severe structural hazards that present high potential for immediate harm or regulatory citation."
-              ],
-              [
-                analytics.actionCoverage === null
-                  ? "—"
-                  : `${analytics.actionCoverage}%`,
-                "Action Coverage",
-                "Findings converted into corrective work",
-                "C_A = N_A / N × 100",
-                "Defines the program's leading mitigation coefficient. Low coverage rates highlight a failure to translate observation to field closure."
-              ],
-              [
-                analytics.averageConfidence === null
-                  ? "—"
-                  : `${analytics.averageConfidence}%`,
-                "Confidence",
-                "Average SafeScope confidence level",
-                "C_avg = Σ(Confidence_i) / N",
-                "Reflects the mathematical accuracy of automated hazard classification, ensuring high-confidence standards identification across findings."
-              ],
-            ].map(([value, label, detail, formula, justification]) => (
-              <div
-                key={label}
-                className="rounded-xl border border-blue-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-4 shadow-sm"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-sm font-black leading-tight text-slate-900 dark:text-slate-100">
-                      {label}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
-                      {detail}
-                    </p>
-                  </div>
-
-                  <p className="shrink-0 text-xl font-black leading-none tracking-tight text-slate-900 dark:text-slate-100">
-                    {value}
-                  </p>
-                </div>
-
-                <CalculationDisclosure>
-                  <p className="font-mono text-[#1D72B8] dark:text-sky-400">
-                    Formula: {formula}
-                  </p>
-                  <p className="mt-2 border-t border-slate-200 pt-2 italic text-slate-500 dark:border-slate-700 dark:text-slate-400">
-                    {justification}
-                  </p>
-                </CalculationDisclosure>
+          <section className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="sentinel-card p-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300">
+                  Priority Signals
+                </p>
+                <span className="rounded-full bg-orange-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:bg-orange-950/40 dark:text-orange-200">
+                  {programHealthNotes.length || 0}
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="rounded-xl border border-emerald-300 bg-emerald-100 dark:border-emerald-900/30 dark:bg-emerald-950/20 px-3 py-3 shadow-md">
-          <div className="border-b border-emerald-300 dark:border-emerald-900/40 pb-2">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-emerald-800 dark:text-emerald-400">
-              Corrective Action Performance
-            </p>
-            <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
-              Closure, overdue work, and workload
-            </h2>
-          </div>
-
-          <div className="mt-3 grid gap-2">
-            {[
-              [String(analytics.totalActions), "Total Actions"],
-              [String(analytics.openActions), "Open Actions"],
-              [String(analytics.completedActions), "Completed Actions"],
-              [String(analytics.overdueActions), "Overdue Actions"],
-            ].map(([value, label]) => (
-              <div
-                key={label}
-                className="flex items-center justify-between rounded-lg border border-emerald-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
-              >
-                <p className="text-xs font-black text-slate-900 dark:text-slate-100">{label}</p>
-                <p className="text-xs font-black text-slate-700 dark:text-slate-300">{value}</p>
+              <div className="mt-2 space-y-1.5">
+                {programHealthNotes.length ? (
+                  programHealthNotes.slice(0, 2).map((note) => (
+                    <div
+                      key={note}
+                      className="rounded-xl border border-orange-100 bg-orange-50/80 px-3 py-2 text-[11px] font-black leading-4 text-orange-800 shadow-sm dark:border-orange-900/50 dark:bg-orange-950/30 dark:text-orange-200"
+                    >
+                      {note}
+                    </div>
+                  ))
+                ) : (
+                  <p className="rounded-xl border border-emerald-100 bg-emerald-50/80 px-3 py-2 text-[11px] font-black leading-4 text-emerald-700 shadow-sm dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-200">
+                    No major concern signals detected.
+                  </p>
+                )}
               </div>
-            ))}
-          </div>
-        </div>
-
-
-      </section>
-
-      <section className="grid gap-3 lg:grid-cols-2">
-        <div className="rounded-xl border border-orange-300 bg-orange-100 dark:border-orange-900/30 dark:bg-orange-950/20 px-3 py-3 shadow-md">
-          <div className="flex items-start justify-between gap-3 border-b border-orange-300 dark:border-orange-900/40 pb-2">
-            <div className="min-w-0">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-700 dark:text-orange-400">
-                Repeat Hazards
-              </p>
-              <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
-                Recurring hazard themes
-              </h2>
             </div>
 
-            <span className="shrink-0 rounded-full bg-orange-50 dark:bg-orange-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:text-orange-300">
-              {analytics.repeatHazardThemes.length} repeat
-            </span>
-          </div>
+            <div className="sentinel-card p-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-300">
+                  Risk Distribution
+                </p>
+                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+                  Avg {analytics.averageRiskScore === null ? "—" : analytics.averageRiskScore}
+                </span>
+              </div>
 
-          <div className="mt-3 grid gap-2">
-            {analytics.allHazardThemes.length ? (
-              analytics.allHazardThemes.slice(0, 5).map(([label, value]) => (
-                <div
-                  key={label}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
-                >
-                  <p className="min-w-0 truncate text-xs font-black text-slate-900 dark:text-slate-100">
-                    {label}
-                  </p>
-                  <p className="shrink-0 text-sm font-black text-slate-700 dark:text-slate-300">
-                    {value}
-                  </p>
-                </div>
-              ))
-            ) : (
-              <p className="rounded-lg border border-dashed border-slate-300 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-                No hazard themes available yet.
+              <div className="mt-2 grid gap-1.5">
+                {[
+                  ["Critical", analytics.riskBands.Critical, "bg-red-500"],
+                  ["High", analytics.riskBands.High, "bg-orange-500"],
+                  ["Moderate", analytics.riskBands.Moderate, "bg-amber-400"],
+                  ["Low", analytics.riskBands.Low, "bg-emerald-500"],
+                  ["Unrated", analytics.riskBands.Unrated, "bg-slate-400"],
+                ].map(([label, value, barClass]) => {
+                  const width =
+                    analytics.totalFindings > 0 && Number(value) > 0
+                      ? Math.max(4, Math.round((Number(value) / analytics.totalFindings) * 100))
+                      : 0;
+
+                  return (
+                    <div
+                      key={label}
+                      className="grid grid-cols-[5rem_1fr_2rem] items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-1.5 dark:border-slate-800 dark:bg-slate-950/40"
+                    >
+                      <p className="text-[11px] font-black text-slate-900 dark:text-slate-100">
+                        {label}
+                      </p>
+                      <div className="h-1.5 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
+                        <div
+                          className={`h-full rounded-full ${barClass}`}
+                          style={{ width: `${width}%` }}
+                        />
+                      </div>
+                      <p className="text-right text-[11px] font-black text-slate-500 dark:text-slate-300">
+                        {value}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section className="sentinel-card p-4">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-300">
+                Corrective Actions
               </p>
-            )}
-          </div>
-
-        </div>
-
-        <div className="rounded-xl border border-sky-300 bg-sky-100 dark:border-sky-900/30 dark:bg-sky-950/20 px-3 py-3 shadow-md">
-          <div className="flex items-start justify-between gap-3 border-b border-sky-300 dark:border-sky-900/40 pb-2">
-            <div className="min-w-0">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-sky-700 dark:text-sky-400">
-                Repeat Locations
-              </p>
-              <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
-                Recurring locations and exposure areas
-              </h2>
+              <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-200">
+                Closure {analytics.closureRate === null ? "—" : `${analytics.closureRate}%`}
+              </span>
             </div>
 
-            <span className="shrink-0 rounded-full bg-orange-50 dark:bg-orange-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:text-orange-300">
-              {analytics.repeatLocations.length} repeat
-            </span>
-          </div>
-
-          <div className="mt-3 grid gap-2">
-            {analytics.allLocations.length ? (
-              analytics.allLocations.slice(0, 5).map(([label, value]) => (
+            <div className="mt-2 grid grid-cols-4 gap-1.5">
+              {[
+                [String(analytics.totalActions), "Total"],
+                [String(analytics.openActions), "Open"],
+                [String(analytics.completedActions), "Done"],
+                [String(analytics.overdueActions), "Late"],
+              ].map(([value, label]) => (
                 <div
                   key={label}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-3 py-2 shadow-sm"
+                  className="rounded-xl border border-emerald-100 bg-emerald-50/60 px-2 py-2 text-center shadow-sm dark:border-emerald-900/50 dark:bg-emerald-950/25"
                 >
-                  <p className="min-w-0 truncate text-xs font-black text-slate-900 dark:text-slate-100">
-                    {label}
-                  </p>
-                  <p className="shrink-0 text-sm font-black text-slate-700 dark:text-slate-300">
+                  <p className="text-lg font-black tracking-[-0.05em] text-slate-950 dark:text-slate-100">
                     {value}
                   </p>
+                  <p className="mt-0.5 text-[8px] font-black uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+                    {label}
+                  </p>
                 </div>
-              ))
-            ) : (
-              <p className="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
-                No location trends available yet.
-              </p>
-            )}
-          </div>
+              ))}
+            </div>
 
-        </div>
-      </section>
+            <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
+              <InsightBar
+                label="Closure"
+                value={analytics.closureRate || 0}
+                maxValue={100}
+              />
+              <InsightBar
+                label="Overdue"
+                value={analytics.overdueRate || 0}
+                maxValue={100}
+              />
+            </div>
+          </section>
 
+          <section className="grid gap-4 lg:grid-cols-2">
+            <div className="sentinel-card p-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300">
+                  Recurring Hazards
+                </p>
+                <span className="rounded-full bg-orange-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:bg-orange-950/40 dark:text-orange-200">
+                  {analytics.repeatHazardThemes.length}
+                </span>
+              </div>
 
+              <div className="mt-2 grid gap-1.5">
+                {analytics.allHazardThemes.length ? (
+                  analytics.allHazardThemes.slice(0, 3).map(([label, value]) => (
+                    <InsightBar
+                      key={label}
+                      label={label}
+                      value={value}
+                      maxValue={analytics.maxHazardThemeCount}
+                    />
+                  ))
+                ) : (
+                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-950/40 dark:text-slate-400">
+                    No hazard themes available yet.
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="sentinel-card p-4">
+              <div className="flex items-center justify-between gap-3">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
+                  Recurring Locations
+                </p>
+                <span className="rounded-full bg-sky-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-sky-700 dark:bg-sky-950/40 dark:text-sky-200">
+                  {analytics.repeatLocations.length}
+                </span>
+              </div>
+
+              <div className="mt-2 grid gap-1.5">
+                {analytics.allLocations.length ? (
+                  analytics.allLocations.slice(0, 3).map(([label, value]) => (
+                    <InsightBar
+                      key={label}
+                      label={label}
+                      value={value}
+                      maxValue={analytics.maxLocationCount}
+                    />
+                  ))
+                ) : (
+                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-950/40 dark:text-slate-400">
+                    No location trends available yet.
+                  </p>
+                )}
+              </div>
+            </div>
+          </section>
         </>
       )}
     </section>
