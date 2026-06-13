@@ -517,30 +517,7 @@ export default function DashboardPage() {
                 Monitor inspections, findings, corrective actions, scheduled work, and critical signals from one operational home screen.
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                <AppLinkButton
-                  href="/inspection-cover"
-                  className="sentinel-primary-button !px-4 !py-2.5 !text-sm"
-                >
-                  Start Inspection
-                </AppLinkButton>
 
-                <AppLinkButton
-                  href="/reports"
-                  variant="ghost"
-                  className="!inline-flex !w-fit rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-black !text-white hover:bg-white/15"
-                >
-                  View Reports
-                </AppLinkButton>
-
-                <AppLinkButton
-                  href="/safety-calendar"
-                  variant="ghost"
-                  className="!inline-flex !w-fit rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-black !text-white hover:bg-white/15"
-                >
-                  Calendar
-                </AppLinkButton>
-              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -725,7 +702,7 @@ export default function DashboardPage() {
           <AppLinkButton
             href="/safety-calendar"
             size="sm"
-            className="sentinel-secondary-button !inline-flex !w-fit shrink-0 self-start px-3 py-2 text-[11px]"
+            className="!inline-flex !w-fit shrink-0 self-start rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-sm ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8] dark:bg-[#1D72B8] dark:hover:bg-[#5DB7FF] dark:hover:!text-[#0B1320]"
           >
             Open Calendar
           </AppLinkButton>
@@ -886,15 +863,15 @@ export default function DashboardPage() {
 
           <div className="mt-4 grid grid-cols-2 gap-3">
             {[
-              [String(dashboard.criticalFindings), "Critical Findings"],
-              [String(dashboard.safeScopeReviewed), "SafeScope Reviewed"],
-            ].map(([value, label]) => (
+              [String(dashboard.criticalFindings), "Critical Findings", "border-red-100 bg-red-50/80 text-red-700 dark:border-red-900/50 dark:bg-red-950/35 dark:text-red-200"],
+              [String(dashboard.safeScopeReviewed), "SafeScope Reviewed", "border-blue-100 bg-blue-50/80 text-[#102A43] dark:border-blue-900/50 dark:bg-blue-950/35 dark:text-blue-100"],
+            ].map(([value, label, tone]) => (
               <div
                 key={label}
-                className="sentinel-metric-card text-center"
+                className={`rounded-3xl border px-4 py-4 text-center shadow-sm ${tone}`}
               >
-                <p className="text-2xl font-black tracking-[-0.04em] text-slate-900">{value}</p>
-                <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
+                <p className="text-3xl font-black tracking-[-0.06em]">{value}</p>
+                <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] opacity-75">
                   {label}
                 </p>
               </div>
@@ -905,29 +882,44 @@ export default function DashboardPage() {
         <div className="sentinel-card p-5 sm:p-6">
           <SectionHeader
             eyebrow="Activity"
-            title="Recent safety activity"
-            description="The most recent safety audits, actions, and events in this workspace."
+            title="Recent activity"
+            description="A simplified timeline of the latest workspace movement."
           />
-          <div className="mt-4 space-y-2">
+          <div className="mt-4">
             {dashboard.recentActivity.length ? (
-              dashboard.recentActivity.map((activity) => (
-                <div
-                  key={activity.id}
-                  className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm"
-                >
-                  <p className="text-xs font-black uppercase tracking-wide text-slate-400">
-                    {activity.type}
-                  </p>
-                  <p className="mt-1 text-sm font-black text-slate-900">
-                    {activity.title}
-                  </p>
-                  <p className="mt-0.5 text-xs font-semibold text-slate-500">
-                    {activity.detail}
-                  </p>
-                </div>
-              ))
+              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/80 shadow-sm dark:border-slate-800 dark:bg-slate-950/40">
+                {dashboard.recentActivity.map((activity, index) => (
+                  <div
+                    key={activity.id}
+                    className={`flex gap-3 px-4 py-4 ${
+                      index > 0 ? "border-t border-slate-200 dark:border-slate-800" : ""
+                    }`}
+                  >
+                    <span className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-2xl bg-[#E8F4FF] text-[10px] font-black uppercase text-[#1D72B8] ring-1 ring-blue-100 dark:bg-blue-950/50 dark:text-blue-100 dark:ring-blue-900/60">
+                      {index + 1}
+                    </span>
+
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-sm font-black leading-5 text-slate-950 dark:text-slate-100">
+                          {activity.title}
+                        </p>
+                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+                          {activity.type}
+                        </span>
+                      </div>
+
+                      {activity.detail && (
+                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+                          {activity.detail}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             ) : (
-              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm font-semibold text-slate-500">
+              <p className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-5 text-center text-sm font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-950/40 dark:text-slate-400">
                 No recent activity recorded.
               </p>
             )}
@@ -946,7 +938,7 @@ export default function DashboardPage() {
           <AppLinkButton
             href="/actions"
             size="sm"
-            className="sentinel-secondary-button !inline-flex !w-fit shrink-0 self-start px-3 py-2 text-[11px]"
+            className="!inline-flex !w-fit shrink-0 self-start rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-sm ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8] dark:bg-[#1D72B8] dark:hover:bg-[#5DB7FF] dark:hover:!text-[#0B1320]"
           >
             Open Actions
           </AppLinkButton>

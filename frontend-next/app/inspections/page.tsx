@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { AppTextLink } from "@/components/ui/AppTextLink";
-import { Badge } from "@/components/ui/Badge";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { clearActiveInspectionDraft } from "@/lib/inspectionDraft";
@@ -161,9 +160,6 @@ export default function InspectionsPage() {
             </p>
           </div>
 
-          <Badge tone="white">
-            {planLabel(planCode)} Plan
-          </Badge>
         </div>
 
         <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
@@ -246,11 +242,6 @@ export default function InspectionsPage() {
                         {workflow.eyebrow}
                       </p>
 
-                      {selected && (
-                        <span className="inline-flex w-fit items-center justify-center rounded-full bg-[#1D72B8] px-2 py-0.5 text-[8px] font-black uppercase tracking-wide text-white">
-                          Selected
-                        </span>
-                      )}
                     </div>
 
                     <h3 className="mt-1 text-base font-black leading-tight text-slate-900">
