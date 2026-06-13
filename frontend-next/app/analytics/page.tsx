@@ -382,14 +382,14 @@ export default function AnalyticsPage() {
   ].filter(Boolean);
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Insights
             </p>
-            <h1 className="mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+            <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
               Safety intelligence trends.
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -413,9 +413,9 @@ export default function AnalyticsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
             >
-              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
+              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
               </p>
               <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">

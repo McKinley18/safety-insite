@@ -51,7 +51,7 @@ function SelectorCard({
         "rounded-2xl border px-4 py-3 text-left transition",
         selected
           ? "border-[#1D72B8] bg-[#E8F4FF] shadow-sm"
-          : "border-slate-200 bg-white hover:bg-slate-50",
+          : "border-slate-200 bg-white/90 shadow-sm hover:border-blue-200 hover:bg-white",
       ].join(" ")}
     >
       <div className="flex items-start justify-between gap-3">
@@ -85,7 +85,7 @@ function OverviewItem({
   value: string | number;
 }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-center">
+    <div className="sentinel-metric-card text-center">
       <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
         {label}
       </p>
@@ -163,12 +163,12 @@ export default function SettingsHubPage() {
   const isCompany = hasPlanEntitlement("teamMembers", planCode);
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Settings
         </p>
-        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+        <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
           Account preferences.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -177,7 +177,7 @@ export default function SettingsHubPage() {
         </p>
       </HeroPanel>
 
-      <AppPanel padding="md">
+      <AppPanel padding="lg">
         <SectionHeader
           eyebrow="Workspace Overview"
           title={organizationName}
@@ -194,7 +194,7 @@ export default function SettingsHubPage() {
       </AppPanel>
 
       <section className="grid gap-4 xl:grid-cols-2">
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             eyebrow="Quick Selectors"
             title="Report storage"
@@ -214,7 +214,7 @@ export default function SettingsHubPage() {
           </div>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             eyebrow="Quick Selectors"
             title="Risk matrix"
@@ -235,7 +235,7 @@ export default function SettingsHubPage() {
         </AppPanel>
       </section>
 
-      <AppPanel padding="md">
+      <AppPanel padding="lg">
         <SectionHeader
           eyebrow="SafeScope Defaults"
           title="Default regulatory scope"
@@ -256,7 +256,7 @@ export default function SettingsHubPage() {
       </AppPanel>
 
       <section className="grid gap-4 lg:grid-cols-2">
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             eyebrow="Detailed Setup"
             title="Workspace setup"
@@ -271,7 +271,7 @@ export default function SettingsHubPage() {
         </AppPanel>
 
         {isCompany ? (
-          <AppPanel padding="md">
+          <AppPanel padding="lg">
             <SectionHeader
               eyebrow="Company Settings"
               title="Team and operational controls"

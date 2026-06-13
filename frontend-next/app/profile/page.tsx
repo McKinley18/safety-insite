@@ -91,12 +91,12 @@ export default function ProfilePage() {
   const planLabel = String(user.type || "basic");
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           User Profile
         </p>
-        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+        <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
           Personal account.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -209,7 +209,7 @@ export default function ProfilePage() {
         </AppPanel>
 
         <section className="space-y-4">
-          <AppPanel padding="md">
+          <AppPanel padding="lg">
             <SectionHeader
               eyebrow="Plan Access"
               title={`${planLabel} plan`}
@@ -228,7 +228,7 @@ export default function ProfilePage() {
             </div>
           </AppPanel>
 
-          <AppPanel padding="md">
+          <AppPanel padding="lg">
             <SectionHeader
               eyebrow="Session"
               title="Session controls"

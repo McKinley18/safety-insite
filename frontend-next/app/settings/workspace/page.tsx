@@ -389,7 +389,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="left">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Workspace Settings
@@ -402,7 +402,7 @@ export default function SettingsPage() {
         </p>
       </HeroPanel>
 
-      <AppPanel padding="md">
+      <AppPanel padding="lg">
         <SectionHeader
           eyebrow="Quick View"
           title="Workspace summary"
@@ -435,7 +435,7 @@ export default function SettingsPage() {
       </AppPanel>
 
       <div className="grid gap-5 xl:grid-cols-[1fr_1fr]">
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             eyebrow="SafeScope Defaults"
             title="Default Regulatory Scope"
@@ -473,7 +473,7 @@ export default function SettingsPage() {
           </div>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             title="Organization"
             description="Company information used on reports and cover pages."
@@ -541,7 +541,7 @@ export default function SettingsPage() {
           </div>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             title="Inspection Report Defaults"
             description="These defaults simplify the inspection start screen. Users can still override them for individual reports."
@@ -581,7 +581,7 @@ export default function SettingsPage() {
           </label>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             title="Risk Matrix"
             description="Set the default severity and likelihood scale for new inspections."
@@ -627,7 +627,7 @@ export default function SettingsPage() {
           </div>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             title="Storage"
             description="Choose how completed reports and evidence should be stored."
@@ -673,7 +673,7 @@ export default function SettingsPage() {
           </div>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             title="Locations"
             description="Save common facilities, sites, or work areas for faster inspections."
@@ -739,7 +739,7 @@ export default function SettingsPage() {
           </div>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             title="Security"
             description="Choose local unlock and auto-lock preferences."
@@ -772,7 +772,7 @@ export default function SettingsPage() {
           </label>
         </AppPanel>
 
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             title="Team"
             description="Company plan tools for members and invitations."

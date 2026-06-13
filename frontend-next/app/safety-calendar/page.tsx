@@ -294,12 +294,12 @@ export default function SafetyCalendarPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Safety Calendar
         </p>
-        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+        <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
           Organize inspections, actions, follow-ups, and review work.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -315,8 +315,8 @@ export default function SafetyCalendarPage() {
             [String(calendarSummary.overdue), "Overdue"],
             [String(calendarSummary.criticalHigh), "Critical / High"],
           ].map(([value, label]) => (
-            <div key={label} className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center">
-              <p className="text-lg font-black text-white">{value}</p>
+            <div key={label} className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur">
+              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">{value}</p>
               <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
                 {label}
               </p>
@@ -404,7 +404,7 @@ export default function SafetyCalendarPage() {
       <div className="grid gap-5 xl:grid-cols-[1fr_340px]">
         <div>
       {view === "month" && (
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-black uppercase tracking-wide text-slate-400">
             {WEEKDAY_LABELS.map((day) => (
               <div key={day}>{day}</div>
@@ -522,7 +522,7 @@ export default function SafetyCalendarPage() {
       )}
 
       {view === "week" && (
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <div className="grid gap-3 lg:grid-cols-7">
             {weekDays.map((day) => {
               const dateKey = toDateKey(day);
@@ -565,7 +565,7 @@ export default function SafetyCalendarPage() {
       )}
 
       {view === "day" && (
-        <AppPanel padding="md">
+        <AppPanel padding="lg">
           <SectionHeader
             eyebrow="Day Agenda"
             title={formatFullDate(parseLocalCalendarDate(selectedDateKey) || anchorDate)}

@@ -441,13 +441,13 @@ export default function CompanyControlCenterPage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="sentinel-page-shell space-y-6">
       <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-center text-white shadow-sm sm:p-6">
         <div className="flex flex-col items-center gap-3">
           <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
             Company Control Center
           </p>
-          <h1 className="max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
+          <h1 className="max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
             Lead the safety operation.
           </h1>
           <p className="max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -491,9 +491,9 @@ export default function CompanyControlCenterPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
             >
-              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
+              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
               </p>
               <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
