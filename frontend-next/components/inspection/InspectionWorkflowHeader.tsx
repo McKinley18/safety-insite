@@ -65,7 +65,7 @@ export default function InspectionWorkflowHeader({
 
   return (
     <>
-      <div className="sticky top-[100px] z-30 -mx-4 -mt-5 mb-3 border-b border-blue-100 bg-white/95 px-4 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.08)] backdrop-blur-sm sm:-mx-6 sm:px-6">
+      <div className="sticky top-[80px] z-30 -mx-4 -mt-5 mb-3 border-b border-blue-100 bg-white/95 px-4 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.08)] backdrop-blur-sm sm:-mx-6 sm:px-6">
         <div className="flex items-center justify-between gap-2">
           <div className="flex w-20 shrink-0 justify-start">
             <button

@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 
-type AppPanelVariant = "default" | "subtle" | "dashed" | "dark";
-type AppPanelPadding = "sm" | "md" | "lg";
+type AppPanelVariant = "default" | "subtle" | "dashed" | "dark" | "strong";
+type AppPanelPadding = "sm" | "md" | "lg" | "xl";
 
 type AppPanelProps = HTMLAttributes<HTMLElement> & {
   children: ReactNode;
@@ -11,16 +11,18 @@ type AppPanelProps = HTMLAttributes<HTMLElement> & {
 };
 
 const variantClasses: Record<AppPanelVariant, string> = {
-  default: "border border-slate-200 bg-white shadow-sm",
-  subtle: "border border-slate-200 bg-slate-50 shadow-sm",
-  dashed: "border border-dashed border-slate-300 bg-slate-50 shadow-sm",
-  dark: "bg-[#0B1320] text-white shadow-sm",
+  default: "sentinel-card",
+  subtle: "sentinel-card-muted",
+  dashed: "border border-dashed border-slate-300 bg-slate-50/90 shadow-sm",
+  dark: "border border-white/10 bg-[#0B1320] text-white shadow-[0_18px_45px_rgba(15,23,42,0.16)]",
+  strong: "sentinel-card-strong",
 };
 
 const paddingClasses: Record<AppPanelPadding, string> = {
   sm: "p-3",
   md: "p-4 sm:p-5",
   lg: "p-5 sm:p-6",
+  xl: "p-6 sm:p-8",
 };
 
 export function AppPanel({

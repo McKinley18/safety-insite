@@ -12,11 +12,11 @@ type AppLinkButtonProps = ComponentProps<typeof Link> & {
 };
 
 const variantClasses: Record<AppLinkButtonVariant, string> = {
-  primary: "bg-[#102A43] !text-white hover:bg-[#1D72B8]",
-  secondary: "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
-  accent: "bg-[#F97316] text-black hover:bg-[#EA580C]",
+  primary: "sentinel-primary-button !text-white",
+  secondary: "sentinel-secondary-button",
+  accent: "bg-orange-500 text-white shadow-sm hover:bg-orange-600",
   danger: "border border-red-100 bg-red-50 text-red-700 hover:bg-red-100",
-  ghost: "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50",
+  ghost: "border border-slate-200 bg-white/85 text-slate-700 shadow-sm hover:border-blue-200 hover:bg-blue-50/60",
 };
 
 const sizeClasses: Record<AppLinkButtonSize, string> = {

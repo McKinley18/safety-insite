@@ -20,7 +20,7 @@ export default function SectionHeader({
           </p>
         )}
 
-        <h2 className="mt-1 text-xl font-black text-slate-900">
+        <h2 className="mt-1 text-xl font-black tracking-[-0.035em] text-slate-900">
           {title}
         </h2>
 

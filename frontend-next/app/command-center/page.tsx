@@ -497,208 +497,241 @@ export default function DashboardPage() {
   }, [calendarEvents, selectedWeekDateKey]);
 
   return (
-    <section className="space-y-5">
-      <HeroPanel align="center">
-        <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-          Sentinel Command Center
-        </p>
-        <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
-          Safety work snapshot.
-        </h1>
-        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          A quick view of inspections, findings, corrective actions, and items
-          that need attention.
-        </p>
+    <section className="sentinel-page-shell space-y-6">
+      <div className="sentinel-card-strong overflow-hidden">
+        <div className="relative isolate px-5 py-6 sm:px-7 sm:py-8">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.16),transparent_34rem),linear-gradient(135deg,rgba(15,23,42,0.98),rgba(30,41,59,0.94))]" />
+          <div className="absolute right-0 top-0 -z-10 h-40 w-40 rounded-full bg-blue-400/20 blur-3xl" />
 
-        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
-          {[
-            [String(dashboard.reportCount), "Reports"],
-            [String(dashboard.findingCount), "Findings"],
-            [String(dashboard.openActions), "Open Actions"],
-            [String(dashboard.overdueActions), "Overdue"],
-          ].map(([value, label]) => (
-            <div
-              key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
-            >
-              <p className="text-lg font-black tracking-tight text-white sm:text-xl">
-                {value}
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <div>
+              <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-blue-100">
+                Sentinel Command Center
               </p>
-              <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
-                {label}
+
+              <h1 className="mt-4 max-w-3xl text-4xl font-black tracking-[-0.055em] text-white sm:text-5xl">
+                Safety work snapshot.
+              </h1>
+
+              <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
+                Monitor inspections, findings, corrective actions, scheduled work, and critical signals from one operational home screen.
               </p>
-            </div>
-          ))}
-        </div>
-      </HeroPanel>
 
-
-      {canAssignWork && (
-      <AppPanel padding="md">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-              Command Center
-            </p>
-            <h2 className="mt-1 text-xl font-black text-slate-950">
-              Assign Work
-            </h2>
-            <p className="mt-1 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
-              Assign corrective actions, inspections, follow-ups, and review tasks from the operational home screen.
-            </p>
-          </div>
-
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-600">
-            {assignments.filter((assignment) => assignment.status !== "Closed").length} open
-          </span>
-        </div>
-
-        <div className="mt-4 grid gap-3 lg:grid-cols-[1.2fr_0.8fr_0.7fr_0.7fr_auto]">
-          <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Work Title
-            </span>
-            <input
-              value={assignmentTitle}
-              onChange={(event) => setAssignmentTitle(event.target.value)}
-              placeholder="Example: Verify guard installed on tail pulley"
-              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
-            />
-          </label>
-
-          <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Owner
-            </span>
-            <input
-              value={assignmentOwner}
-              onChange={(event) => setAssignmentOwner(event.target.value)}
-              placeholder="Name or role"
-              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
-            />
-          </label>
-
-          <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Type
-            </span>
-            <select
-              value={assignmentType}
-              onChange={(event) => setAssignmentType(event.target.value)}
-              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
-            >
-              {assignmentTypes.map((type) => (
-                <option key={type}>{type}</option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Priority
-            </span>
-            <select
-              value={assignmentPriority}
-              onChange={(event) => setAssignmentPriority(event.target.value)}
-              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
-            >
-              {assignmentPriorities.map((priority) => (
-                <option key={priority}>{priority}</option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-              Due
-            </span>
-            <input
-              type="date"
-              value={assignmentDueDate}
-              onChange={(event) => setAssignmentDueDate(event.target.value)}
-              className="mt-2 min-h-[44px] w-full rounded-xl border border-slate-300 bg-white px-3 text-sm font-bold text-slate-900 outline-none focus:border-[#1D72B8]"
-            />
-          </label>
-        </div>
-
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-xs font-black text-slate-500">
-            {assignmentStatus}
-          </p>
-
-          <button
-            type="button"
-            onClick={addCommandAssignment}
-            className="rounded-xl bg-[#102A43] px-5 py-2.5 text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
-          >
-            Assign Work
-          </button>
-        </div>
-
-        <div className="mt-4 border-t border-slate-200 pt-3">
-          {assignments.length ? (
-            <div className="space-y-2">
-              {assignments.slice(0, 5).map((assignment) => (
-                <div
-                  key={assignment.id}
-                  className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 sm:flex-row sm:items-center sm:justify-between"
+              <div className="mt-5 flex flex-wrap gap-2">
+                <AppLinkButton
+                  href="/inspection-cover"
+                  className="sentinel-primary-button !px-4 !py-2.5 !text-sm"
                 >
-                  <div>
-                    <p className="text-sm font-black text-slate-950">
-                      {assignment.title}
-                    </p>
-                    <p className="mt-1 text-xs font-semibold text-slate-500">
-                      {assignment.type} · {assignment.owner} · {assignment.priority} priority · Due {assignment.dueDate}
-                    </p>
-                  </div>
+                  Start Inspection
+                </AppLinkButton>
 
-                  <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
-                      {assignment.status}
-                    </span>
+                <AppLinkButton
+                  href="/reports"
+                  variant="ghost"
+                  className="!inline-flex !w-fit rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-black !text-white hover:bg-white/15"
+                >
+                  View Reports
+                </AppLinkButton>
 
-                    {assignment.status !== "Closed" && (
-                      <button
-                        type="button"
-                        onClick={() => closeCommandAssignment(assignment.id)}
-                        className="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700"
-                      >
-                        Close
-                      </button>
-                    )}
-                  </div>
+                <AppLinkButton
+                  href="/safety-calendar"
+                  variant="ghost"
+                  className="!inline-flex !w-fit rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-black !text-white hover:bg-white/15"
+                >
+                  Calendar
+                </AppLinkButton>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                [String(dashboard.reportCount), "Reports", "Inspection packages"],
+                [String(dashboard.findingCount), "Findings", "Captured observations"],
+                [String(dashboard.openActions), "Open Actions", "Active follow-up work"],
+                [String(dashboard.overdueActions), "Overdue", "Needs attention"],
+              ].map(([value, label, detail]) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border border-white/10 bg-white/10 p-4 shadow-sm backdrop-blur"
+                >
+                  <p className="text-3xl font-black tracking-[-0.05em] text-white">
+                    {value}
+                  </p>
+                  <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-blue-100">
+                    {label}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-300">
+                    {detail}
+                  </p>
                 </div>
               ))}
             </div>
-          ) : (
-            <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
-              No work has been assigned from Command Center yet.
-            </p>
-          )}
+          </div>
         </div>
-      </AppPanel>
+      </div>
+
+      {canAssignWork && (
+        <div className="sentinel-card p-5 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="sentinel-eyebrow">Company Command</p>
+              <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-slate-950">
+                Assign Work
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+                Assign corrective actions, inspections, follow-ups, and review tasks from the operational home screen.
+              </p>
+            </div>
+
+            <span className="sentinel-status-pill">
+              {assignments.filter((assignment) => assignment.status !== "Closed").length} open
+            </span>
+          </div>
+
+          <div className="mt-5 grid gap-3 lg:grid-cols-[1.2fr_0.8fr_0.7fr_0.7fr_auto]">
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Work Title
+              </span>
+              <input
+                value={assignmentTitle}
+                onChange={(event) => setAssignmentTitle(event.target.value)}
+                placeholder="Example: Verify guard installed on tail pulley"
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              />
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Owner
+              </span>
+              <input
+                value={assignmentOwner}
+                onChange={(event) => setAssignmentOwner(event.target.value)}
+                placeholder="Name or role"
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              />
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Type
+              </span>
+              <select
+                value={assignmentType}
+                onChange={(event) => setAssignmentType(event.target.value)}
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              >
+                {assignmentTypes.map((type) => (
+                  <option key={type}>{type}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Priority
+              </span>
+              <select
+                value={assignmentPriority}
+                onChange={(event) => setAssignmentPriority(event.target.value)}
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              >
+                {assignmentPriorities.map((priority) => (
+                  <option key={priority}>{priority}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Due
+              </span>
+              <input
+                type="date"
+                value={assignmentDueDate}
+                onChange={(event) => setAssignmentDueDate(event.target.value)}
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              />
+            </label>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs font-black text-slate-500">
+              {assignmentStatus}
+            </p>
+
+            <button
+              type="button"
+              onClick={addCommandAssignment}
+              className="sentinel-primary-button px-5 py-2.5 text-sm"
+            >
+              Assign Work
+            </button>
+          </div>
+
+          <div className="mt-5 border-t border-slate-200 pt-4">
+            {assignments.length ? (
+              <div className="space-y-2">
+                {assignments.slice(0, 5).map((assignment) => (
+                  <div
+                    key={assignment.id}
+                    className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 shadow-sm sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div>
+                      <p className="text-sm font-black text-slate-950">
+                        {assignment.title}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold text-slate-500">
+                        {assignment.type} · {assignment.owner} · {assignment.priority} priority · Due {assignment.dueDate}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="sentinel-status-pill bg-white">
+                        {assignment.status}
+                      </span>
+
+                      {assignment.status !== "Closed" && (
+                        <button
+                          type="button"
+                          onClick={() => closeCommandAssignment(assignment.id)}
+                          className="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700"
+                        >
+                          Close
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-500">
+                No work has been assigned from Command Center yet.
+              </p>
+            )}
+          </div>
+        </div>
       )}
 
-
-
-      <AppPanel padding="md">
+      <div className="sentinel-card p-5 sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <SectionHeader
             eyebrow="Week at a Glance"
             title="Upcoming safety work"
-            description="A quick seven-day snapshot of scheduled inspections, actions, follow-ups, and reviews."
+            description="A seven-day operational snapshot of scheduled inspections, corrective actions, follow-ups, and reviews."
           />
 
           <AppLinkButton
             href="/safety-calendar"
             size="sm"
-            className="!inline-flex !w-fit shrink-0 self-start rounded-lg bg-[#102A43] px-2.5 py-1 text-[10px] !text-white hover:bg-[#1D72B8]"
+            className="sentinel-secondary-button !inline-flex !w-fit shrink-0 self-start px-3 py-2 text-[11px]"
           >
             Open Calendar
           </AppLinkButton>
         </div>
 
-        <div className="mt-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-slate-700">
+        <div className="mt-4 rounded-full border border-slate-200 bg-slate-50/90 px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-slate-700 shadow-sm">
           {formatCalendarMonthLabel(weekAtGlance[0]?.dateKey || getTodayDateKey())}
         </div>
 
@@ -708,7 +741,7 @@ export default function DashboardPage() {
               key={dateKey}
               type="button"
               onClick={() => setSelectedWeekDateKey(dateKey)}
-              className={`relative aspect-square min-h-0 rounded-xl border p-1.5 text-left shadow-sm transition hover:border-[#1D72B8] sm:p-2 ${
+              className={`relative aspect-square min-h-0 rounded-2xl border p-1.5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-[#1D72B8] sm:p-2 ${
                 selectedWeekDateKey === dateKey
                   ? "ring-2 ring-[#1D72B8]"
                   : ""
@@ -727,7 +760,7 @@ export default function DashboardPage() {
 
               {events.length > 0 && (
                 <span
-                  className={`absolute bottom-1.5 left-1/2 flex h-6 min-w-8 -translate-x-1/2 items-center justify-center rounded-full px-2 text-[11px] font-black leading-none sm:bottom-2 sm:h-7 sm:min-w-9 sm:text-xs ${getWeekBadgeTone(
+                  className={`absolute bottom-1.5 left-1/2 flex h-6 min-w-8 -translate-x-1/2 items-center justify-center rounded-full px-2 text-[11px] font-black leading-none shadow-sm sm:bottom-2 sm:h-7 sm:min-w-9 sm:text-xs ${getWeekBadgeTone(
                     events,
                   )}`}
                   title={`${events.length} scheduled item${events.length === 1 ? "" : "s"}`}
@@ -738,17 +771,15 @@ export default function DashboardPage() {
             </button>
           ))}
         </div>
-      </AppPanel>
+      </div>
 
-      <section className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <AppPanel padding="md">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <SectionHeader
-              eyebrow="Tasks"
-              title={formatCalendarDateLabel(selectedWeekDateKey)}
-              description="Selected-day safety work from the week snapshot."
-            />
-          </div>
+      <section className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="sentinel-card p-5 sm:p-6">
+          <SectionHeader
+            eyebrow="Tasks"
+            title={formatCalendarDateLabel(selectedWeekDateKey)}
+            description="Selected-day safety work from the week snapshot."
+          />
 
           <div className="mt-4 space-y-2">
             {selectedDayTasks.length ? (
@@ -757,7 +788,7 @@ export default function DashboardPage() {
                   key={event.id}
                   href="/safety-calendar"
                   variant="ghost"
-                  className={`block w-full rounded-2xl border px-3 py-3 text-left shadow-sm ${getCalendarEventTone(
+                  className={`block w-full rounded-2xl border px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 ${getCalendarEventTone(
                     event,
                   )}`}
                 >
@@ -775,14 +806,14 @@ export default function DashboardPage() {
                 </AppLinkButton>
               ))
             ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-500">
                 No safety work is scheduled for this day.
               </p>
             )}
           </div>
-        </AppPanel>
+        </div>
 
-        <AppPanel padding="md">
+        <div className="sentinel-card p-5 sm:p-6">
           <SectionHeader
             eyebrow="Upcoming"
             title="Next scheduled tasks"
@@ -796,11 +827,11 @@ export default function DashboardPage() {
                   key={event.id}
                   href="/safety-calendar"
                   variant="ghost"
-                  className={`relative block w-full rounded-2xl border px-3 pb-3 pt-9 text-left shadow-sm ${getCalendarEventTone(
+                  className={`relative block w-full rounded-2xl border px-4 pb-3 pt-9 text-left shadow-sm transition hover:-translate-y-0.5 ${getCalendarEventTone(
                     event,
                   )}`}
                 >
-                  <span className="absolute left-3 top-2 text-[10px] font-black uppercase tracking-wide">
+                  <span className="absolute left-4 top-2 text-[10px] font-black uppercase tracking-wide">
                     {parseLocalCalendarDate(event.date)?.toLocaleDateString("en-US", {
                       weekday: "short",
                     })}{" "}
@@ -821,16 +852,16 @@ export default function DashboardPage() {
                 </AppLinkButton>
               ))
             ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-500">
                 No upcoming safety work is scheduled.
               </p>
             )}
           </div>
-        </AppPanel>
+        </div>
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-        <AppPanel padding="md">
+      <section className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="sentinel-card p-5 sm:p-6">
           <SectionHeader
             eyebrow="Needs Attention"
             title="Today’s priority"
@@ -841,40 +872,37 @@ export default function DashboardPage() {
               {attentionItems.map((item) => (
                 <div
                   key={item}
-                  className="rounded-xl border border-orange-100 bg-orange-50 px-3 py-3 text-sm font-black text-orange-800"
+                  className="rounded-2xl border border-orange-100 bg-orange-50 px-4 py-3 text-sm font-black text-orange-800 shadow-sm"
                 >
                   {item}
                 </div>
               ))}
             </div>
           ) : (
-            <p className="mt-4 rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-3 text-sm font-black text-emerald-700">
+            <p className="mt-4 rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-4 text-sm font-black text-emerald-700 shadow-sm">
               No urgent signals in the current local workspace.
             </p>
           )}
 
-          <div className="mt-4 grid grid-cols-2 gap-2">
+          <div className="mt-4 grid grid-cols-2 gap-3">
             {[
               [String(dashboard.criticalFindings), "Critical Findings"],
               [String(dashboard.safeScopeReviewed), "SafeScope Reviewed"],
             ].map(([value, label]) => (
               <div
                 key={label}
-                className="rounded-xl bg-slate-50 px-3 py-3 text-center"
+                className="sentinel-metric-card text-center"
               >
-                <p className="text-xl font-black text-slate-900">{value}</p>
+                <p className="text-2xl font-black tracking-[-0.04em] text-slate-900">{value}</p>
                 <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-400">
                   {label}
                 </p>
               </div>
             ))}
           </div>
-        </AppPanel>
+        </div>
 
-     </section>
-
-      <section className="grid gap-4 lg:grid-cols-2">
-        <AppPanel padding="md">
+        <div className="sentinel-card p-5 sm:p-6">
           <SectionHeader
             eyebrow="Activity"
             title="Recent safety activity"
@@ -885,12 +913,12 @@ export default function DashboardPage() {
               dashboard.recentActivity.map((activity) => (
                 <div
                   key={activity.id}
-                  className="rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 p-4 shadow-sm"
+                  className="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm"
                 >
                   <p className="text-xs font-black uppercase tracking-wide text-slate-400">
                     {activity.type}
                   </p>
-                  <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
+                  <p className="mt-1 text-sm font-black text-slate-900">
                     {activity.title}
                   </p>
                   <p className="mt-0.5 text-xs font-semibold text-slate-500">
@@ -899,49 +927,58 @@ export default function DashboardPage() {
                 </div>
               ))
             ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-500 text-center">
+              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm font-semibold text-slate-500">
                 No recent activity recorded.
               </p>
             )}
           </div>
-        </AppPanel>
+        </div>
+      </section>
 
-        <AppPanel padding="md">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <SectionHeader
-              eyebrow="Priorities"
-              title="High priority actions"
-              description="Critical and high priority tasks needing immediate attention."
-            />
-          </div>
-          <div className="mt-4 space-y-2">
-            {dashboard.highPriorityActions.length ? (
-              dashboard.highPriorityActions.map((action) => (
-                <AppLinkButton
-                  key={action.id}
-                  href="/actions"
-                  variant="ghost"
-                  className="block w-full rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 px-4 py-3 text-left shadow-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-                >
-                  <span className="block min-w-0">
-                    <span className="block text-sm font-black leading-5 text-slate-900 dark:text-slate-100">
-                      {action.title}
-                    </span>
-                    <span className="mt-1 flex flex-wrap items-center gap-1.5 text-xs font-semibold leading-5 text-slate-500">
-                      <span>Priority: <span className="font-black text-orange-600">{action.priority}</span></span>
-                      <span>·</span>
-                      <span>Status: <span className="font-black text-blue-600">{action.status}</span></span>
-                    </span>
+      <section className="sentinel-card p-5 sm:p-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <SectionHeader
+            eyebrow="Priorities"
+            title="High priority actions"
+            description="Critical and high priority tasks needing immediate attention."
+          />
+
+          <AppLinkButton
+            href="/actions"
+            size="sm"
+            className="sentinel-secondary-button !inline-flex !w-fit shrink-0 self-start px-3 py-2 text-[11px]"
+          >
+            Open Actions
+          </AppLinkButton>
+        </div>
+
+        <div className="mt-4 space-y-2">
+          {dashboard.highPriorityActions.length ? (
+            dashboard.highPriorityActions.map((action) => (
+              <AppLinkButton
+                key={action.id}
+                href="/actions"
+                variant="ghost"
+                className="block w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
+              >
+                <span className="block min-w-0">
+                  <span className="block text-sm font-black leading-5 text-slate-900">
+                    {action.title}
                   </span>
-                </AppLinkButton>
-              ))
-            ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-semibold text-slate-500 text-center">
-                No high-priority actions found.
-              </p>
-            )}
-          </div>
-        </AppPanel>
+                  <span className="mt-1 flex flex-wrap items-center gap-1.5 text-xs font-semibold leading-5 text-slate-500">
+                    <span>Priority: <span className="font-black text-orange-600">{action.priority}</span></span>
+                    <span>·</span>
+                    <span>Status: <span className="font-black text-blue-600">{action.status}</span></span>
+                  </span>
+                </span>
+              </AppLinkButton>
+            ))
+          ) : (
+            <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm font-semibold text-slate-500">
+              No high-priority actions found.
+            </p>
+          )}
+        </div>
       </section>
     </section>
   );
