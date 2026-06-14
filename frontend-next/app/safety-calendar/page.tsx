@@ -70,11 +70,11 @@ function eventTypeLabel(type: SafetyCalendarEvent["type"]) {
 }
 
 function eventTone(event: SafetyCalendarEvent) {
-  if (event.status === "Completed") return "border-emerald-100 bg-emerald-50 text-emerald-800";
-  if (event.status === "Overdue" || event.priority === "Critical") return "border-red-100 bg-red-50 text-red-800";
-  if (event.priority === "High") return "border-orange-100 bg-orange-50 text-orange-800";
-  if (event.type === "inspection") return "border-blue-100 bg-blue-50 text-blue-800";
-  return "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300";
+  if (event.status === "Completed") return "app-surface-muted";
+  if (event.status === "Overdue" || event.priority === "Critical") return "border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/50 dark:text-red-200";
+  if (event.priority === "High") return "border-orange-200 bg-orange-50 text-orange-800 dark:border-orange-900 dark:bg-orange-950/50 dark:text-orange-200";
+  if (event.type === "inspection") return "border-blue-200 bg-blue-50 text-blue-800 dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-200";
+  return "app-surface";
 }
 
 function sameDateKey(date: Date, dateKey: string) {
@@ -83,7 +83,6 @@ function sameDateKey(date: Date, dateKey: string) {
 
 function getDayCardTone(day: Date, dayEvents: SafetyCalendarEvent[]) {
   const todayKey = getTodayDateKey();
-  const dayKey = toDateKey(day);
   const soonKey = toDateKey(addDays(parseLocalCalendarDate(todayKey) || new Date(), 3));
 
   const hasOverdue = dayEvents.some(
@@ -91,7 +90,7 @@ function getDayCardTone(day: Date, dayEvents: SafetyCalendarEvent[]) {
   );
 
   if (hasOverdue) {
-    return "border-red-400 bg-red-50 ring-2 ring-red-100";
+    return "border-red-400 bg-red-50 dark:bg-red-950/20";
   }
 
   const hasDueSoon = dayEvents.some(
@@ -102,14 +101,14 @@ function getDayCardTone(day: Date, dayEvents: SafetyCalendarEvent[]) {
   );
 
   if (hasDueSoon) {
-    return "border-amber-400 bg-amber-50 ring-2 ring-amber-100";
+    return "border-amber-400 bg-amber-50 dark:bg-amber-950/20";
   }
 
   if (sameDateKey(day, todayKey)) {
-    return "border-[#1D72B8] bg-[#E8F4FF]";
+    return "border-app-primary bg-app-primary/10";
   }
 
-  return "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900";
+  return "app-surface";
 }
 
 function getDayWorkSummary(dayEvents: SafetyCalendarEvent[]) {
@@ -326,11 +325,11 @@ export default function SafetyCalendarPage() {
       </HeroPanel>
 
       {!canUseCompanyCalendar && (
-        <AppPanel padding="sm" className="border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <AppPanel padding="sm" className="app-card">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Personal Safety Calendar
           </p>
-          <p className="mt-1 text-sm font-bold leading-6 text-slate-600 dark:text-slate-300">
+          <p className="mt-1 text-sm font-bold leading-6 text-app-text-muted">
             Basic and Pro plans show personal safety work. Company workspaces add owner filters, team assignments, unassigned work visibility, and organization-wide workload planning.
           </p>
         </AppPanel>
@@ -342,7 +341,7 @@ export default function SafetyCalendarPage() {
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
               Calendar Controls
             </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900 dark:text-slate-100">
+            <h2 className="mt-1 text-xl font-black text-app-text">
               {view === "month" ? formatMonthLabel(anchorDate) : formatFullDate(anchorDate)}
             </h2>
           </div>
@@ -405,7 +404,7 @@ export default function SafetyCalendarPage() {
         <div>
       {view === "month" && (
         <AppPanel padding="lg">
-          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-black uppercase tracking-wide text-slate-400">
+          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-black uppercase tracking-wide text-app-text-muted">
             {WEEKDAY_LABELS.map((day) => (
               <div key={day}>{day}</div>
             ))}
@@ -433,12 +432,12 @@ export default function SafetyCalendarPage() {
                     }`}
                   >
                     <div className="flex w-full items-start justify-between gap-3">
-                      <span className="block self-start text-xs font-black leading-none text-slate-900 dark:text-slate-100">
+                      <span className="block self-start text-xs font-black leading-none text-app-text">
                         {day.getDate()}
                       </span>
 
                       {expanded && (
-                        <span className="rounded-full bg-white/80 dark:bg-slate-900/75 px-2 py-1 text-[10px] font-black text-slate-600 dark:text-slate-300">
+                        <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">
                           Collapse
                         </span>
                       )}
@@ -464,10 +463,10 @@ export default function SafetyCalendarPage() {
                     {expanded && (
                       <div className="mt-4 w-full space-y-2">
                         <div className="flex items-center justify-between gap-3">
-                          <p className="text-sm font-black text-slate-900 dark:text-slate-100">
+                          <p className="text-sm font-black text-app-text">
                             {formatFullDate(day)}
                           </p>
-                          <span className="rounded-full bg-white/80 dark:bg-slate-900/75 px-2 py-1 text-[10px] font-black text-slate-600 dark:text-slate-300">
+                          <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">
                             {workSummary.total} item{workSummary.total === 1 ? "" : "s"}
                           </span>
                         </div>
@@ -478,16 +477,16 @@ export default function SafetyCalendarPage() {
                               key={event.id}
                               className={`rounded-lg border px-3 py-2 ${eventTone(event)}`}
                             >
-                              <p className="text-xs font-black">
+                              <p className="text-xs font-black text-app-text">
                                 {event.title}
                               </p>
-                              <p className="mt-1 text-[11px] font-semibold">
+                              <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
                                 {eventTypeLabel(event.type)} · {event.owner} · {event.status}
                               </p>
                             </div>
                           ))
                         ) : (
-                          <p className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/65 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                          <p className="app-card app-text-soft rounded-lg border border-dashed px-3 py-2 text-xs font-semibold">
                             No safety work is scheduled for this day.
                           </p>
                         )}
@@ -529,7 +528,7 @@ export default function SafetyCalendarPage() {
               const dayEvents = eventsByDate[dateKey] || [];
 
               return (
-                <div key={dateKey} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
+                <div key={dateKey} className="app-surface px-3 py-3">
                   <button
                     type="button"
                     onClick={() => selectDate(day)}
@@ -538,7 +537,7 @@ export default function SafetyCalendarPage() {
                     <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                       {WEEKDAY_LABELS[day.getDay()]}
                     </p>
-                    <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
+                    <p className="mt-1 text-lg font-black text-app-text">
                       {day.getDate()}
                     </p>
                   </button>
@@ -547,12 +546,12 @@ export default function SafetyCalendarPage() {
                     {dayEvents.length ? (
                       dayEvents.map((event) => (
                         <div key={event.id} className={`rounded-lg border px-2 py-2 text-xs font-bold ${eventTone(event)}`}>
-                          <p className="font-black">{event.title}</p>
-                          <p className="mt-1 text-[11px]">{event.owner} · {event.status}</p>
+                          <p className="font-black text-app-text">{event.title}</p>
+                          <p className="mt-1 text-[11px] text-app-text-muted">{event.owner} · {event.status}</p>
                         </div>
                       ))
                     ) : (
-                      <p className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-2 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                      <p className="app-card app-text-soft rounded-lg border border-dashed px-2 py-2 text-xs font-semibold">
                         No work.
                       </p>
                     )}
@@ -578,28 +577,28 @@ export default function SafetyCalendarPage() {
                 <div key={event.id} className={`rounded-xl border px-4 py-3 ${eventTone(event)}`}>
                   <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
                     <div>
-                      <p className="text-[10px] font-black uppercase tracking-wide">
+                      <p className="text-[10px] font-black uppercase tracking-wide text-app-text-muted">
                         {eventTypeLabel(event.type)} · {event.priority}
                       </p>
-                      <h3 className="mt-1 text-base font-black">{event.title}</h3>
-                      <p className="mt-1 text-xs font-semibold">
+                      <h3 className="mt-1 text-base font-black text-app-text">{event.title}</h3>
+                      <p className="mt-1 text-xs font-semibold text-app-text-muted">
                         Owner: {event.owner} · Location: {event.location}
                       </p>
                       {event.findingTitle && (
-                        <p className="mt-1 text-xs font-semibold">
+                        <p className="mt-1 text-xs font-semibold text-app-text-muted">
                           Finding: {event.findingTitle}
                         </p>
                       )}
                     </div>
 
-                    <div className="rounded-lg bg-white/70 dark:bg-slate-900/65 px-3 py-2 text-xs font-black">
+                    <div className="rounded-lg bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">
                       {event.status}
                     </div>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-4 py-4 text-sm font-bold text-slate-500 dark:text-slate-400">
+              <p className="app-card app-text-soft rounded-xl border border-dashed px-4 py-4 text-sm font-bold">
                 No safety work is scheduled for this day.
               </p>
             )}
@@ -622,7 +621,7 @@ export default function SafetyCalendarPage() {
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
                     {groupLabel}
                   </p>
-                  <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-black text-slate-600 dark:text-slate-300">
+                  <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">
                     {groupEvents.length}
                   </span>
                 </div>
@@ -636,16 +635,16 @@ export default function SafetyCalendarPage() {
                         onClick={() => openEventDay(event)}
                         className={`w-full rounded-xl border px-3 py-2 text-left transition hover:border-[#1D72B8] ${eventTone(event)}`}
                       >
-                        <p className="text-xs font-black">
+                        <p className="text-xs font-black text-app-text">
                           {event.title}
                         </p>
-                        <p className="mt-1 text-[11px] font-semibold">
+                        <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
                           {eventTypeLabel(event.type)} · {event.owner} · {event.date}
                         </p>
                       </button>
                     ))
                   ) : (
-                    <p className="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                    <p className="app-card app-text-soft rounded-xl border border-dashed px-3 py-2 text-xs font-semibold">
                       Nothing here.
                     </p>
                   )}

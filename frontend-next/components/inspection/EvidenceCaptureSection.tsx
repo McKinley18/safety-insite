@@ -47,7 +47,7 @@ export default function EvidenceCaptureSection({
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
-          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl bg-white dark:bg-slate-900 px-4 py-2 text-center text-xs font-black text-[#102A43] shadow-sm transition hover:bg-blue-50">
+          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl app-surface px-4 py-2 text-center text-xs font-black app-text shadow-sm transition hover:bg-blue-50">
             Take Photo
             <input
               type="file"
@@ -225,7 +225,7 @@ export default function EvidenceCaptureSection({
         </div>
 
         <textarea
-          className="min-h-28 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-slate-50 dark:focus:bg-slate-900 dark:bg-slate-950"
+          className="app-input min-h-28 px-3 py-3 text-sm font-semibold leading-6 transition placeholder:text-slate-400"
           placeholder="Example: Missing guard on rotating shaft near crusher drive."
           value={description}
           onChange={(event) => setDescription(event.target.value)}

@@ -11,11 +11,11 @@ type AppPanelProps = HTMLAttributes<HTMLElement> & {
 };
 
 const variantClasses: Record<AppPanelVariant, string> = {
-  default: "sentinel-card",
-  subtle: "sentinel-card-muted",
-  dashed: "border border-dashed border-slate-300 bg-slate-50/90 shadow-sm dark:border-slate-700 dark:bg-slate-950/70 dark:text-slate-300",
-  dark: "border border-white/10 bg-[#0B1320] text-white shadow-[0_18px_45px_rgba(15,23,42,0.16)]",
-  strong: "sentinel-card-strong",
+  default: "app-card",
+  subtle: "app-surface-muted p-4 rounded-xl",
+  dashed: "app-border border-dashed bg-app-bg-soft",
+  dark: "bg-app-primary-hover text-white border-white/10",
+  strong: "app-surface-strong app-border p-6 rounded-2xl",
 };
 
 const paddingClasses: Record<AppPanelPadding, string> = {

@@ -22,11 +22,7 @@ type AppTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
 export function AppInput({ className = "", fieldSize = "md", ...props }: AppInputProps) {
   return (
     <input
-      className={[
-        "w-full rounded-xl border border-slate-300 bg-white font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-[#5DB7FF]",
-        sizeClasses[fieldSize],
-        className,
-      ]
+      className={["app-input font-bold", sizeClasses[fieldSize], className]
         .filter(Boolean)
         .join(" ")}
       {...props}
@@ -37,11 +33,7 @@ export function AppInput({ className = "", fieldSize = "md", ...props }: AppInpu
 export function AppSelect({ className = "", fieldSize = "md", children, ...props }: AppSelectProps) {
   return (
     <select
-      className={[
-        "w-full rounded-xl border border-slate-300 bg-white font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-[#5DB7FF]",
-        sizeClasses[fieldSize],
-        className,
-      ]
+      className={["app-input font-bold", sizeClasses[fieldSize], className]
         .filter(Boolean)
         .join(" ")}
       {...props}
@@ -54,11 +46,7 @@ export function AppSelect({ className = "", fieldSize = "md", children, ...props
 export function AppTextarea({ className = "", fieldSize = "md", ...props }: AppTextareaProps) {
   return (
     <textarea
-      className={[
-        "w-full rounded-xl border border-slate-300 bg-white font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-[#5DB7FF]",
-        sizeClasses[fieldSize],
-        className,
-      ]
+      className={["app-input font-bold", sizeClasses[fieldSize], className]
         .filter(Boolean)
         .join(" ")}
       {...props}
