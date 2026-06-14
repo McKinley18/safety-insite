@@ -10,6 +10,15 @@ import { NotificationsService } from '../notifications/notifications.service';
 import { FixFeedbackService } from '../intelligence/fix-feedback.service';
 import { OutcomeService } from '../outcomes/outcome.service';
 
+function toPositiveInt(value: unknown, fallback: number): number {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 1) {
+    return fallback;
+  }
+  return Math.floor(parsed);
+}
+
+
 @Injectable()
 export class CorrectiveActionsService {
   constructor(
@@ -95,10 +104,13 @@ export class CorrectiveActionsService {
 
   async findAll(
     authHeader: string,
-    options: { page: number; limit: number; statusCode?: string; priorityCode?: string; assignedToMe?: boolean; devOrganizationId?: string },
+    options: { page?: number | string; limit?: number | string; statusCode?: string; priorityCode?: string; assignedToMe?: boolean; devOrganizationId?: string },
   ): Promise<{ data: CorrectiveAction[], meta: { total: number, page: number, limit: number } }> {
     const auth = this.getAuthContext(authHeader, options.devOrganizationId);
-    const { page, limit, statusCode, priorityCode, assignedToMe } = options;
+    const page = toPositiveInt(options.page, 1);
+    const limit = Math.min(toPositiveInt(options.limit, 20), 100);
+    const skip = (page - 1) * limit;
+    const { statusCode, priorityCode, assignedToMe } = options;
     const where = this.buildFilter(
       statusCode,
       priorityCode,
@@ -109,7 +121,7 @@ export class CorrectiveActionsService {
 
     const [data, total] = await this.actionRepo.findAndCount({
       where,
-      skip: (page - 1) * limit,
+      skip,
       take: limit,
       order: { createdAt: 'DESC' },
     });

@@ -131,12 +131,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
-    function handleOutsideClick(event: MouseEvent) {
+    function handleOutsideClick(event: MouseEvent | TouchEvent) {
       if (!profileOpen) return;
 
-      const target = event.target as Node;
+      const target = event.target;
 
       if (
+        target instanceof Node &&
         profileMenuRef.current &&
         !profileMenuRef.current.contains(target) &&
         profileButtonRef.current &&
@@ -146,10 +147,20 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       }
     }
 
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setProfileOpen(false);
+      }
+    }
+
     document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick, { passive: true });
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [profileOpen]);
 
@@ -291,6 +302,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
                 <div className="relative">
                   <button
+                    ref={profileButtonRef}
                     type="button"
                     onClick={() => setProfileOpen((open) => !open)}
                     className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#102A43] ring-2 ring-blue-100 transition hover:bg-white active:scale-95 sm:h-12 sm:w-12 sm:text-sm"
