@@ -13,7 +13,7 @@ type Props = {
   safeScopeResult: any;
 };
 
-export default function ReviewCoreRationaleVisualizer({ safeScopeResult }: Props) {
+export default function SafeScopeRationaleVisualizer({ safeScopeResult }: Props) {
   if (!safeScopeResult) return null;
 
   // Extract variables
@@ -196,7 +196,7 @@ export default function ReviewCoreRationaleVisualizer({ safeScopeResult }: Props
             Interactive AI Decision Path Trace
           </h4>
           <p className="text-xs text-slate-500 mt-0.5">
-            Visualize how ReviewCore processed your input step-by-step
+            Visualize how SafeScope processed your input step-by-step
           </p>
         </div>
         <span className="rounded-full bg-[#E8F4FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">

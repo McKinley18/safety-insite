@@ -127,7 +127,7 @@ export default function SafeScopeStandardsTraceabilitySection({
 
         {trace.advisoryGuardrails && (
           <p className="rounded-xl bg-blue-50 px-3 py-3 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
-            SafeScope standards output is advisory, does not declare a violation,
+            ReviewCore standards output is advisory, does not declare a violation,
             does not create a citation, and requires qualified review before final
             compliance reliance.
           </p>

@@ -112,7 +112,7 @@ function formatReviewDate(value?: string) {
   });
 }
 
-function getSafeScopeValidationStatus(finding: any) {
+function getReviewCoreValidationStatus(finding: any) {
   const status =
     finding?.safeScopeResult?.validationStatus ||
     finding?.safeScopeResult?.snapshotSummary?.validationStatus ||
@@ -126,7 +126,7 @@ function getSafeScopeValidationStatus(finding: any) {
   return "manual";
 }
 
-function formatSafeScopeValidationStatus(status: any) {
+function formatReviewCoreValidationStatus(status: any) {
   const value = String(status || "manual");
 
   const labels: Record<string, string> = {
@@ -144,20 +144,20 @@ function formatSafeScopeValidationStatus(status: any) {
   return labels[value] || value.replace(/_/g, " ");
 }
 
-function isSafeScopeValidationComplete(status: any) {
+function isReviewCoreValidationComplete(status: any) {
   return ["validated_accepted", "validated_modified", "validated_rejected"].includes(
     String(status || ""),
   );
 }
 
-function getSafeScopeReviewSummary(findings: any[]) {
+function getReviewCoreReviewSummary(findings: any[]) {
   const safeScopeFindings = findings.filter((finding) => finding.safeScopeResult);
   const unvalidated = safeScopeFindings.filter(
-    (finding) => !isSafeScopeValidationComplete(getSafeScopeValidationStatus(finding)),
+    (finding) => !isReviewCoreValidationComplete(getReviewCoreValidationStatus(finding)),
   );
   const escalated = safeScopeFindings.filter((finding) =>
     ["requires_escalation", "requires_more_evidence", "requires_review"].includes(
-      getSafeScopeValidationStatus(finding),
+      getReviewCoreValidationStatus(finding),
     ),
   );
 
@@ -265,7 +265,7 @@ function formatEquipmentReasoningMode(value: any) {
   return labels[mode] || mode.replace(/_/g, " ");
 }
 
-function SafeScopeOfflineNotice({ safeScopeResult }: { safeScopeResult: any }) {
+function ReviewCoreOfflineNotice({ safeScopeResult }: { safeScopeResult: any }) {
   if (safeScopeResult?.mode !== "offline_limited_advisory") return null;
 
   return (
@@ -289,7 +289,7 @@ function SafeScopeOfflineNotice({ safeScopeResult }: { safeScopeResult: any }) {
   );
 }
 
-function SafeScopeRealImageAnalysisAppendix({
+function ReviewCoreRealImageAnalysisAppendix({
   safeScopeResult,
 }: {
   safeScopeResult: any;
@@ -340,7 +340,7 @@ function SafeScopeRealImageAnalysisAppendix({
   );
 }
 
-function SafeScopeVisualEvidenceAppendix({
+function ReviewCoreVisualEvidenceAppendix({
   safeScopeResult,
 }: {
   safeScopeResult: any;
@@ -390,7 +390,7 @@ function SafeScopeVisualEvidenceAppendix({
   );
 }
 
-function SafeScopeEquipmentReasoningAppendix({
+function ReviewCoreEquipmentReasoningAppendix({
   safeScopeResult,
 }: {
   safeScopeResult: any;
@@ -585,7 +585,7 @@ export default function InspectionReviewPage() {
     if (!report) return;
 
     const currentFindings = report.findings || [];
-    const safeScopeReviewSummary = getSafeScopeReviewSummary(currentFindings);
+    const safeScopeReviewSummary = getReviewCoreReviewSummary(currentFindings);
 
     if (!humanReviewConfirmed) {
       setExportWarning(
@@ -624,19 +624,19 @@ export default function InspectionReviewPage() {
       ),
       photos:
         report.includePhotosInReport === false ? [] : finding.photos || [],
-      safeScopeValidationStatus: getSafeScopeValidationStatus(finding),
-      safeScopeValidationStatusLabel: formatSafeScopeValidationStatus(
-        getSafeScopeValidationStatus(finding),
+      safeScopeValidationStatus: getReviewCoreValidationStatus(finding),
+      safeScopeValidationStatusLabel: formatReviewCoreValidationStatus(
+        getReviewCoreValidationStatus(finding),
       ),
       safeScopeResult:
-        report.includeSafeScopeNotesInReport === false
+        report.includeReviewCoreNotesInReport === false
           ? null
           : finding.safeScopeResult
             ? {
                 ...finding.safeScopeResult,
-                validationStatus: getSafeScopeValidationStatus(finding),
-                validationStatusLabel: formatSafeScopeValidationStatus(
-                  getSafeScopeValidationStatus(finding),
+                validationStatus: getReviewCoreValidationStatus(finding),
+                validationStatusLabel: formatReviewCoreValidationStatus(
+                  getReviewCoreValidationStatus(finding),
                 ),
               }
             : null,
@@ -889,9 +889,9 @@ export default function InspectionReviewPage() {
               report.includePhotosInReport !== false,
             ],
             [
-              "includeSafeScopeNotesInReport",
+              "includeReviewCoreNotesInReport",
               "ReviewCore Notes",
-              Boolean(report.includeSafeScopeNotesInReport),
+              Boolean(report.includeReviewCoreNotesInReport),
             ],
           ].map(([key, label, checked]: any) => (
             <button
@@ -922,16 +922,16 @@ export default function InspectionReviewPage() {
         </div>
       </AppPanel>
 
-      {getSafeScopeReviewSummary(findings).total > 0 && (
+      {getReviewCoreReviewSummary(findings).total > 0 && (
         <AppPanel padding="md" className="border-amber-200 bg-amber-50/60">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-700">
-                SafeScope Review Governance
+                ReviewCore Review Governance
               </p>
               <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
-                {getSafeScopeReviewSummary(findings).unvalidated
-                  ? `${getSafeScopeReviewSummary(findings).unvalidated} ReviewCore finding(s) need validation`
+                {getReviewCoreReviewSummary(findings).unvalidated
+                  ? `${getReviewCoreReviewSummary(findings).unvalidated} ReviewCore finding(s) need validation`
                   : "All ReviewCore findings show reviewed status"}
               </h3>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
@@ -942,15 +942,15 @@ export default function InspectionReviewPage() {
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
                 <p className="text-[10px] font-black uppercase text-slate-400">ReviewCore</p>
-                <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getSafeScopeReviewSummary(findings).total}</p>
+                <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getReviewCoreReviewSummary(findings).total}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
                 <p className="text-[10px] font-black uppercase text-slate-400">Open</p>
-                <p className="text-lg font-black text-amber-700">{getSafeScopeReviewSummary(findings).unvalidated}</p>
+                <p className="text-lg font-black text-amber-700">{getReviewCoreReviewSummary(findings).unvalidated}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
                 <p className="text-[10px] font-black uppercase text-slate-400">Escalated</p>
-                <p className="text-lg font-black text-red-700">{getSafeScopeReviewSummary(findings).escalated}</p>
+                <p className="text-lg font-black text-red-700">{getReviewCoreReviewSummary(findings).escalated}</p>
               </div>
             </div>
           </div>
@@ -1053,12 +1053,12 @@ export default function InspectionReviewPage() {
                   ?.overallConfidence ?? finding.safeScopeResult?.confidence;
 
               const safeScopeValidationStatus =
-                getSafeScopeValidationStatus(finding);
-              const safeScopeValidationLabel = formatSafeScopeValidationStatus(
+                getReviewCoreValidationStatus(finding);
+              const safeScopeValidationLabel = formatReviewCoreValidationStatus(
                 safeScopeValidationStatus,
               );
               const safeScopeValidationComplete =
-                isSafeScopeValidationComplete(safeScopeValidationStatus);
+                isReviewCoreValidationComplete(safeScopeValidationStatus);
 
               const traceabilityAvailable = Boolean(
                 finding.safeScopeResult?.reasoningSnapshotId ||
@@ -1277,16 +1277,16 @@ export default function InspectionReviewPage() {
                             </p>
                           )}
 
-                        <SafeScopeOfflineNotice safeScopeResult={finding.safeScopeResult} />
-                        <SafeScopeRealImageAnalysisAppendix
+                        <ReviewCoreOfflineNotice safeScopeResult={finding.safeScopeResult} />
+                        <ReviewCoreRealImageAnalysisAppendix
                           safeScopeResult={finding.safeScopeResult}
                         />
 
-                        <SafeScopeVisualEvidenceAppendix
+                        <ReviewCoreVisualEvidenceAppendix
                           safeScopeResult={finding.safeScopeResult}
                         />
 
-                        <SafeScopeEquipmentReasoningAppendix
+                        <ReviewCoreEquipmentReasoningAppendix
                           safeScopeResult={finding.safeScopeResult}
                         />
 

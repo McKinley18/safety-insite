@@ -136,7 +136,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         </h1>
 
         <p className="mx-auto mt-5 max-w-3xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
-          Free helps users try the workflow. Pro unlocks SafeScope intelligence.
+          Free helps users try the workflow. Pro unlocks ReviewCore intelligence.
           Company gives safety teams shared accountability, assignments, and
           workspace-level visibility.
         </p>
@@ -242,7 +242,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
           </h2>
 
           <p className="mx-auto mt-4 max-w-3xl text-sm font-semibold leading-6 text-slate-600">
-            Pro is built around SafeScope: hazard review, standards support,
+            Pro is built around ReviewCore: hazard review, standards support,
             evidence gaps, risk signals, corrective action reasoning, and
             professional reporting safeguards.
           </p>

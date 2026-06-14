@@ -9,7 +9,7 @@ type Props = {
   manualActions: any[];
   currentFindingSaved: boolean;
   goToInspectionStep: (step: number) => void;
-  handleRunSafeScope: () => void;
+  handleRunReviewCore: () => void;
   saveFinding: () => void;
   generateReport: () => void;
 };
@@ -23,7 +23,7 @@ export default function InspectionStepActionBar({
   manualActions,
   currentFindingSaved,
   goToInspectionStep,
-  handleRunSafeScope,
+  handleRunReviewCore,
   saveFinding,
   generateReport,
 }: Props) {
@@ -48,7 +48,7 @@ export default function InspectionStepActionBar({
             onClick={() => goToInspectionStep(2)}
             className="mt-3 rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
           >
-            Continue to SafeScope
+            Continue to ReviewCore
           </button>
         </div>
       </div>
@@ -61,7 +61,7 @@ export default function InspectionStepActionBar({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-              SafeScope Review
+              ReviewCore Review
             </p>
             <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
               {safeScopeResult
@@ -73,7 +73,7 @@ export default function InspectionStepActionBar({
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
-              onClick={handleRunSafeScope}
+              onClick={handleRunReviewCore}
               className="rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
             >
               {safeScopeResult ? "Rerun ReviewCore" : "Run ReviewCore"}

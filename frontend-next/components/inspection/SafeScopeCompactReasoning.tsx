@@ -60,8 +60,8 @@ export default function SafeScopeCompactReasoning({
           className="text-sm font-black text-[#1D72B8] hover:underline"
         >
           {safeScopeAdvancedOpen
-            ? "Hide detailed ReviewCore reasoning"
-            : "Show detailed ReviewCore reasoning"}
+            ? "Hide detailed SafeScope reasoning"
+            : "Show detailed SafeScope reasoning"}
         </button>
         <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
           Optional technical details for deeper review.

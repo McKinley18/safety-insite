@@ -46,7 +46,7 @@ export default function SafeScopeControlsSection({
         ? "OSHA General Industry"
         : agencyMode === "osha_construction"
           ? "OSHA Construction"
-          : "Company default / ReviewCore";
+          : "Company default / SafeScope";
 
   const riskMatrixLabel =
     riskProfileId === "simple_4x4"
@@ -60,13 +60,13 @@ export default function SafeScopeControlsSection({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
-            SafeScope Review
+            ReviewCore Review
           </p>
           <h2 className="mt-1 text-2xl font-black text-white">
             Analyze this finding
           </h2>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-blue-100">
-            SafeScope will classify the hazard, suggest standards, score risk,
+            ReviewCore will classify the hazard, suggest standards, score risk,
             and identify corrective action focus.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function SafeScopeControlsSection({
           type="button"
           onClick={() => setSafeScopeHelpOpen((open: boolean) => !open)}
           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 text-xs font-black text-white"
-          aria-label="Explain ReviewCore decision-support mode"
+          aria-label="Explain SafeScope decision-support mode"
         >
           ?
         </button>
@@ -83,7 +83,7 @@ export default function SafeScopeControlsSection({
 
       {safeScopeHelpOpen && (
         <p className="mt-3 rounded-xl bg-slate-50 px-3 py-2 text-xs font-semibold leading-5 text-blue-100">
-          SafeScope provides decision support only. Final compliance decisions
+          ReviewCore provides decision support only. Final compliance decisions
           remain with qualified personnel. Agency scope and risk matrix are
           pulled from workspace settings.
         </p>
@@ -95,7 +95,7 @@ export default function SafeScopeControlsSection({
           onClick={handleRunSafeScope}
           className="w-full rounded-xl bg-[#F97316] px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-950/20 ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98]"
         >
-          Run SafeScope Review
+          Run ReviewCore Review
         </button>
 
         <p className="mt-2 text-center text-[11px] font-bold leading-5 text-blue-100">

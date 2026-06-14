@@ -40,7 +40,7 @@ export default function SafeScopeKnowledgeBrainSection({
           </p>
 
           <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
-            SafeScope Knowledge Brain
+            ReviewCore Knowledge Brain
           </h3>
 
           <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">

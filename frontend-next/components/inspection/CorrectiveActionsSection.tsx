@@ -163,7 +163,7 @@ export default function CorrectiveActionsSection({
 
       {!generatedActions.length && (
         <p className="mt-4 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
-          No generated actions are available yet. Run SafeScope or add a custom
+          No generated actions are available yet. Run ReviewCore or add a custom
           action.
         </p>
       )}

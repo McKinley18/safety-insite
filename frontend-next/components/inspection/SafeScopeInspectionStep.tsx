@@ -106,7 +106,7 @@ export default function SafeScopeInspectionStep({
             <span className="text-xl">⚠️</span>
             <div className="min-w-0 flex-1">
               <p className="text-xs font-black uppercase tracking-wide text-red-800 dark:text-red-400">
-                SafeScope Match Failed
+                ReviewCore Match Failed
               </p>
               <p className="mt-1 text-xs font-semibold leading-relaxed text-red-700 dark:text-red-300">
                 {safeScopeStatus}
@@ -157,7 +157,7 @@ export default function SafeScopeInspectionStep({
                   Hazard Category
                 </p>
                 <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
-                  {hazardCategory || safeScopeResult?.classification || "Let ReviewCore suggest"}
+                  {hazardCategory || safeScopeResult?.classification || "Let SafeScope suggest"}
                 </p>
               </div>
 
@@ -182,7 +182,7 @@ export default function SafeScopeInspectionStep({
                 onChange={(event) => setHazardCategory(event.target.value)}
                 className="mt-2 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
               >
-                <option value="">Use ReviewCore suggestion</option>
+                <option value="">Use SafeScope suggestion</option>
                 {hazardCategoryOptions.map((category) => (
                   <option key={category} value={category}>
                     {category}

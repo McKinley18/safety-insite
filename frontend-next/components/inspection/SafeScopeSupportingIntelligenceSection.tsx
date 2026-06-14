@@ -65,7 +65,7 @@ export default function SafeScopeSupportingIntelligenceSection({
       >
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Advanced SafeScope Checks
+            Advanced ReviewCore Checks
           </p>
           <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
             {safeScopeDetailsOpen

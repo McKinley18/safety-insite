@@ -13,7 +13,7 @@ function formatValue(value: any) {
   return String(value).replaceAll("_", " ");
 }
 
-export default function ReviewCoreReasoningBasisSection({
+export default function SafeScopeReasoningBasisSection({
   safeScopeResult,
 }: SafeScopeReasoningBasisSectionProps) {
   const basis = safeScopeResult?.reasoningBasis;
@@ -24,7 +24,7 @@ export default function ReviewCoreReasoningBasisSection({
   return (
     <SafeScopeDrawer
       title="Reasoning Basis"
-      summary="ReviewCore brain is primary; workspace history is reference only"
+      summary="SafeScope brain is primary; workspace history is reference only"
       badge={basis?.sourceHierarchyEnforced ? "Hierarchy enforced" : "Review"}
     >
       <div className="space-y-3">
