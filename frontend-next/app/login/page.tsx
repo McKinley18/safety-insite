@@ -78,12 +78,8 @@ export default function LoginPage() {
 
   return (
     <section className="mx-auto flex max-w-6xl items-center justify-center px-2 py-6">
-      <div className="grid w-full overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-xl shadow-slate-200/70 lg:grid-cols-[0.95fr_1.05fr]">
+      <div className="grid w-full overflow-hidden rounded-[32px] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 shadow-xl shadow-slate-200/70 lg:grid-cols-[0.95fr_1.05fr]">
         <div className="bg-[#0B1320] p-6 text-white sm:p-8 lg:p-10">
-          <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
-            Sentinel Safety
-          </p>
-
           <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight md:text-5xl">
             Welcome back.
           </h1>
@@ -103,7 +99,7 @@ export default function LoginPage() {
                 key={item}
                 className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/10"
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-xs font-black text-[#102A43]">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-xs font-black text-[#102A43]">
                   ✓
                 </span>
                 <span className="text-sm font-black text-white">{item}</span>
@@ -114,21 +110,17 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin} className="p-6 sm:p-8 lg:p-10">
           <div className="mx-auto max-w-md">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-              Sign In
-            </p>
-
-            <h2 className="mt-2 text-3xl font-black text-slate-900">
+            <h2 className="mt-2 text-3xl font-black text-slate-900 dark:text-slate-100">
               Access your workspace
             </h2>
 
-            <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
               Enter your email and password to continue.
             </p>
 
             <div className="mt-6 space-y-4">
               <label className="block">
-                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   Email
                 </span>
                 <AppInput
@@ -137,12 +129,12 @@ export default function LoginPage() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="bg-slate-50 px-3 placeholder:text-slate-400 focus:bg-white"
+                  className="bg-slate-50 dark:bg-slate-950 px-3 placeholder:text-slate-400 focus:bg-white dark:focus:bg-slate-900"
                 />
               </label>
 
               <label className="block">
-                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   Password
                 </span>
 
@@ -153,7 +145,7 @@ export default function LoginPage() {
                     onChange={(event) => setPassword(event.target.value)}
                     placeholder="Enter your password"
                     type={showPassword ? "text" : "password"}
-                    className="bg-slate-50 px-3 pr-20 placeholder:text-slate-400 focus:bg-white"
+                    className="bg-slate-50 dark:bg-slate-950 px-3 pr-20 placeholder:text-slate-400 focus:bg-white dark:focus:bg-slate-900"
                   />
 
                   <button
@@ -194,7 +186,7 @@ export default function LoginPage() {
                       ? "bg-red-50 text-red-700"
                       : statusType === "success"
                         ? "bg-emerald-50 text-emerald-700"
-                        : "bg-slate-50 text-slate-600"
+                        : "bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-300"
                   }`}
                 >
                   {status}

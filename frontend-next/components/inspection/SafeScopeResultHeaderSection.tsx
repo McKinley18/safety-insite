@@ -130,7 +130,7 @@ export default function SafeScopeResultHeaderSection({
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Analysis Complete
           </p>
-          <p className="mt-1 text-sm font-semibold text-slate-500">
+          <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-slate-400">
             Review the result, then continue to actions.
           </p>
         </div>
@@ -143,10 +143,10 @@ export default function SafeScopeResultHeaderSection({
       {(safeScopeResult.basicPlanMode ||
         safeScopeResult.upgradeRequiredForFullSafeScope) && (
         <div className="mb-4 rounded-xl bg-[#E8F4FF] px-3 py-3">
-          <p className="text-sm font-black text-slate-900">
+          <p className="text-sm font-black text-slate-900 dark:text-slate-100">
             Limited Basic hazard assistance
           </p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
             Plus or Company unlocks full standards matching, reasoning, evidence
             quality review, and traceability.
           </p>
@@ -154,35 +154,35 @@ export default function SafeScopeResultHeaderSection({
       )}
 
       {fieldOutput && (
-        <div className="mb-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
+        <div className="mb-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Field Output
               </p>
-              <p className="mt-1 text-sm font-black text-slate-900">
+              <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
                 {fieldOutput.primaryMessage || "SafeScope field guidance ready"}
               </p>
             </div>
             {fieldDisposition && (
-              <span className="rounded-full bg-white px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600 ring-1 ring-slate-200">
+              <span className="rounded-full bg-white dark:bg-slate-900 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-800">
                 {fieldDisposition}
               </span>
             )}
           </div>
 
           {!!fieldOutput.summary && (
-            <p className="mt-2 text-xs font-semibold leading-5 text-slate-600">
+            <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
               {fieldOutput.summary}
             </p>
           )}
 
           {!!fieldEvidenceGaps.length && (
-            <div className="mt-3 rounded-xl bg-white px-3 py-2 ring-1 ring-slate-200">
+            <div className="mt-3 rounded-xl bg-white dark:bg-slate-900 px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-800">
               <p className="text-[10px] font-black uppercase tracking-wide text-amber-700">
                 Evidence needed
               </p>
-              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-600">
+              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                 {fieldEvidenceGaps.slice(0, 4).map((gap) => (
                   <li key={gap}>{gap}</li>
                 ))}
@@ -191,11 +191,11 @@ export default function SafeScopeResultHeaderSection({
           )}
 
           {!!fieldSupervisorQuestions.length && (
-            <div className="mt-3 rounded-xl bg-white px-3 py-2 ring-1 ring-slate-200">
-              <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+            <div className="mt-3 rounded-xl bg-white dark:bg-slate-900 px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-800">
+              <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Supervisor questions
               </p>
-              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-600">
+              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                 {fieldSupervisorQuestions.slice(0, 3).map((question) => (
                   <li key={question}>{question}</li>
                 ))}
@@ -212,12 +212,12 @@ export default function SafeScopeResultHeaderSection({
       )}
 
       {safeScopeResult.reasoningSnapshotId && (
-        <details className="mb-3 rounded-xl bg-slate-50 px-3 py-2">
-          <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-600">
+        <details className="mb-3 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
+          <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Supervisor validation
           </summary>
 
-          <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+          <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
             Validate this reasoning snapshot for audit history and future
             learning.
           </p>
@@ -234,7 +234,7 @@ export default function SafeScopeResultHeaderSection({
                 key={decision}
                 type="button"
                 onClick={() => submitSafeScopeValidation(decision as any)}
-                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-100"
+                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 {label}
               </button>

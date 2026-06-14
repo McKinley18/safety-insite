@@ -139,9 +139,9 @@ export default function RegisterPage() {
         </div>
       </AppPanel>
 
-      <form onSubmit={handleRegister} className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
-        <h1 className="text-3xl font-black text-slate-900">Create an Account</h1>
-        <p className="mt-2 text-sm font-semibold text-slate-500">
+      <form onSubmit={handleRegister} className="rounded-[28px] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 p-6 shadow-sm">
+        <h1 className="text-3xl font-black text-slate-900 dark:text-slate-100">Create an Account</h1>
+        <p className="mt-2 text-sm font-semibold text-slate-500 dark:text-slate-400">
           Create your Sentinel Safety workspace account.
         </p>
 
@@ -164,11 +164,11 @@ export default function RegisterPage() {
             onChange={(e) => setPromoCode(e.target.value)}
             placeholder="Promo Code"
           />
-          <p className="text-xs font-semibold leading-5 text-slate-500">
+          <p className="text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
             Enter an approved employer promo code for free Pro access.
           </p>
 
-          <div className="rounded-xl bg-slate-50 p-4 text-xs font-bold text-slate-600">
+          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 p-4 text-xs font-bold text-slate-600 dark:text-slate-300">
             <p className="mb-2 font-black text-slate-800">Password Requirements</p>
             <p>{checks.length ? "✓" : "○"} At least 8 characters</p>
             <p>{checks.uppercase ? "✓" : "○"} One uppercase letter</p>
@@ -178,7 +178,7 @@ export default function RegisterPage() {
             <p>{passwordsMatch ? "✓" : "○"} Passwords match</p>
           </div>
 
-          <label className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs font-semibold leading-5 text-slate-600">
+          <label className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 p-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
             <input
               type="checkbox"
               checked={acceptedTerms}
@@ -198,7 +198,7 @@ export default function RegisterPage() {
             <p className={`rounded-xl p-3 text-sm font-bold ${
               statusType === "error" ? "bg-red-50 text-red-700" :
               statusType === "success" ? "bg-emerald-50 text-emerald-700" :
-              "bg-slate-50 text-slate-600"
+              "bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-300"
             }`}>
               {status}
             </p>

@@ -159,7 +159,7 @@ export default function SafeScopeKnowledgePage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-2 py-2 text-center"
+              className="w-full rounded-xl border border-white/10 bg-white dark:bg-slate-900/10 px-2 py-2 text-center"
             >
               <p className="text-lg font-black tracking-tight text-white sm:text-xl">
                 {value}
@@ -178,10 +178,10 @@ export default function SafeScopeKnowledgePage() {
             <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#F97316]">
               Brain Search
             </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
+            <h2 className="mt-1 text-xl font-black text-slate-900 dark:text-slate-100">
               Test Reference Retrieval
             </h2>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
               Search the approved local knowledge database the same way
               SafeScope retrieves supporting references during inspections.
             </p>
@@ -245,14 +245,14 @@ export default function SafeScopeKnowledgePage() {
               searchResult.matches.map((match: any, index: number) => (
                 <div
                   key={match.chunkId || index}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                  className="rounded-2xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 p-4"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>
-                      <p className="text-base font-black text-slate-900">
+                      <p className="text-base font-black text-slate-900 dark:text-slate-100">
                         {match.title || "Knowledge Reference"}
                       </p>
-                      <p className="mt-1 text-xs font-bold text-slate-500">
+                      <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">
                         {match.agency || "Reference"} ·{" "}
                         {String(match.sourceType || "source").replaceAll(
                           "_",
@@ -273,13 +273,13 @@ export default function SafeScopeKnowledgePage() {
                   )}
 
                   {match.reason && (
-                    <p className="mt-2 text-xs font-bold leading-5 text-slate-600">
+                    <p className="mt-2 text-xs font-bold leading-5 text-slate-600 dark:text-slate-300">
                       Why matched: {match.reason}
                     </p>
                   )}
 
                   {match.excerpt && (
-                    <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
+                    <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
                       {match.excerpt}
                     </p>
                   )}
@@ -293,7 +293,7 @@ export default function SafeScopeKnowledgePage() {
                       ]
                         .slice(0, 8)
                         .map((tag: string) => (
-                          <Badge key={tag} tone="white" className="text-slate-500">
+                          <Badge key={tag} tone="white" className="text-slate-500 dark:text-slate-400">
                             {tag}
                           </Badge>
                         ))}
@@ -302,7 +302,7 @@ export default function SafeScopeKnowledgePage() {
                 </div>
               ))
             ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm font-bold text-slate-500">
+              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950 p-4 text-sm font-bold text-slate-500 dark:text-slate-400">
                 No approved knowledge matches found.
               </p>
             )}
@@ -331,13 +331,13 @@ export default function SafeScopeKnowledgePage() {
           <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
             Approved Library
           </p>
-          <h2 className="mt-1 text-xl font-black text-slate-900">
+          <h2 className="mt-1 text-xl font-black text-slate-900 dark:text-slate-100">
             Knowledge Documents
           </h2>
         </div>
 
         {documentsLoading ? (
-          <p className="mt-4 text-sm font-bold text-slate-500">
+          <p className="mt-4 text-sm font-bold text-slate-500 dark:text-slate-400">
             Loading knowledge documents...
           </p>
         ) : documentsError ? (
@@ -350,10 +350,10 @@ export default function SafeScopeKnowledgePage() {
               <div key={document.id} className="py-4">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="font-black text-slate-900">
+                    <p className="font-black text-slate-900 dark:text-slate-100">
                       {document.title}
                     </p>
-                    <p className="mt-1 text-xs font-bold text-slate-500">
+                    <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">
                       {document.agency} ·{" "}
                       {String(document.sourceType || "source").replaceAll(
                         "_",
@@ -375,7 +375,7 @@ export default function SafeScopeKnowledgePage() {
                 )}
 
                 {document.summary && (
-                  <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                  <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
                     {document.summary}
                   </p>
                 )}
@@ -383,7 +383,7 @@ export default function SafeScopeKnowledgePage() {
             ))}
 
             {!documents.length && (
-              <p className="py-4 text-sm font-bold text-slate-500">
+              <p className="py-4 text-sm font-bold text-slate-500 dark:text-slate-400">
                 No knowledge documents found. Run the backend seed script to
                 load starter references.
               </p>

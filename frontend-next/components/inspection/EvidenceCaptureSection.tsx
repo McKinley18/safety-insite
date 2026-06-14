@@ -47,7 +47,7 @@ export default function EvidenceCaptureSection({
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center">
-          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl bg-white px-4 py-2 text-center text-xs font-black text-[#102A43] shadow-sm transition hover:bg-blue-50">
+          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl bg-white dark:bg-slate-900 px-4 py-2 text-center text-xs font-black text-[#102A43] shadow-sm transition hover:bg-blue-50">
             Take Photo
             <input
               type="file"
@@ -58,7 +58,7 @@ export default function EvidenceCaptureSection({
             />
           </label>
 
-          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-center text-xs font-black text-white shadow-sm transition hover:bg-white/20">
+          <label className="flex h-10 min-w-[132px] cursor-pointer items-center justify-center rounded-xl border border-white/20 bg-white/10 dark:bg-white/10 px-4 py-2 text-center text-xs font-black text-white shadow-sm transition hover:bg-white/20 dark:hover:bg-white/20">
             Upload
             <input
               type="file"
@@ -72,15 +72,15 @@ export default function EvidenceCaptureSection({
       </div>
 
       {photos.length > 0 ? (
-        <div className="mb-4 divide-y divide-slate-200 border-y border-slate-200">
+        <div className="mb-4 divide-y divide-slate-200 dark:divide-slate-800 border-y border-slate-200 dark:border-slate-800">
           {photos.map((photo, index) => (
             <div key={photo.id} className="py-4">
               <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-black text-slate-900">
+                  <p className="truncate text-sm font-black text-slate-900 dark:text-slate-100">
                     {photo.name || `Evidence photo ${index + 1}`}
                   </p>
-                  <p className="mt-1 text-xs font-semibold text-slate-500">
+                  <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
                     {(photo.annotations || []).length} annotation(s)
                   </p>
                 </div>
@@ -92,7 +92,7 @@ export default function EvidenceCaptureSection({
                       setAnnotatingPhotoIndex(index);
                       setAnnotationExpanded(true);
                     }}
-                    className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                    className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                   >
                     Annotate
                   </button>
@@ -112,7 +112,7 @@ export default function EvidenceCaptureSection({
                     <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">Caption / Label</label>
                     <input 
                       type="text" 
-                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-bold"
+                      className="w-full rounded-lg border border-slate-200 dark:border-slate-800 p-2 text-xs font-bold"
                       placeholder="e.g. Missing guard on shaft"
                       value={photo.caption || ''}
                       onChange={(e) => {
@@ -125,7 +125,7 @@ export default function EvidenceCaptureSection({
                   <div>
                     <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">View Type</label>
                     <select 
-                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-bold"
+                      className="w-full rounded-lg border border-slate-200 dark:border-slate-800 p-2 text-xs font-bold"
                       value={photo.viewType || 'unknown'}
                       onChange={(e) => {
                           const next = [...photos];
@@ -145,7 +145,7 @@ export default function EvidenceCaptureSection({
                   <div className="md:col-span-2">
                     <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">Field Notes</label>
                     <textarea 
-                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-semibold"
+                      className="w-full rounded-lg border border-slate-200 dark:border-slate-800 p-2 text-xs font-semibold"
                       placeholder="Additional details about what this photo represents..."
                       rows={2}
                       value={photo.fieldNotes || ''}
@@ -174,15 +174,15 @@ export default function EvidenceCaptureSection({
 
               {annotatingPhotoIndex === index && annotationExpanded && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-3">
-                  <div className="max-h-[96vh] w-full max-w-6xl overflow-auto rounded-2xl bg-white p-3">
+                  <div className="max-h-[96vh] w-full max-w-6xl overflow-auto rounded-2xl bg-white dark:bg-slate-900 p-3">
                     <div className="mb-2 flex items-center justify-between">
-                      <h3 className="text-base font-black text-slate-900">
+                      <h3 className="text-base font-black text-slate-900 dark:text-slate-100">
                         Photo Annotation
                       </h3>
                       <button
                         type="button"
                         onClick={() => setAnnotationExpanded(false)}
-                        className="rounded-full bg-slate-300 px-4 py-2 text-xs font-black text-slate-900"
+                        className="rounded-full bg-slate-300 px-4 py-2 text-xs font-black text-slate-900 dark:text-slate-100"
                       >
                         Collapse
                       </button>
@@ -209,34 +209,34 @@ export default function EvidenceCaptureSection({
           ))}
         </div>
       ) : (
-        <p className="mb-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 leading-6 text-sm font-semibold text-slate-500">
+        <p className="mb-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 leading-6 text-sm font-semibold text-slate-500 dark:text-slate-400">
           No photos attached yet.
         </p>
       )}
 
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
         <div className="mb-3">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Observed Condition
           </p>
-          <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
             Keep it short. SafeScope will organize the details.
           </p>
         </div>
 
         <textarea
-          className="min-h-28 w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold leading-6 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-slate-50"
+          className="min-h-28 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-6 text-slate-900 dark:text-slate-100 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-slate-50 dark:focus:bg-slate-900 dark:bg-slate-950"
           placeholder="Example: Missing guard on rotating shaft near crusher drive."
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
 
         <div className="mt-3">
-          <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+          <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Location
           </label>
           <input
-            className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-3 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white"
+            className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white dark:focus:bg-slate-900"
             placeholder="Example: Crusher deck, west platform"
             value={location}
             onChange={(event) => setLocation(event.target.value)}

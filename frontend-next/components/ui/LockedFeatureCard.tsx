@@ -21,7 +21,7 @@ export default function LockedFeatureCard({
   ctaLabel = "Upgrade Access",
 }: LockedFeatureCardProps) {
   return (
-    <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm">
+    <section className="rounded-[1.5rem] border border-slate-200 bg-white px-4 py-5 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100">
       <div className="mx-auto max-w-xl">
         <div className="flex justify-center">
           <Badge tone="slate">{requiredPlan} Plan</Badge>
@@ -44,7 +44,7 @@ export default function LockedFeatureCard({
             {bullets.map((bullet) => (
               <div
                 key={bullet}
-                className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold leading-5 text-slate-700"
+                className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold leading-5 text-slate-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300"
               >
                 {bullet}
               </div>

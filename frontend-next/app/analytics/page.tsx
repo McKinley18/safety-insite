@@ -108,8 +108,8 @@ function InsightBar({
       : 0;
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3">
-      <div className="mb-2 flex items-center justify-between gap-3 text-xs font-black text-slate-700">
+    <div className="rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 px-3 py-3">
+      <div className="mb-2 flex items-center justify-between gap-3 text-xs font-black text-slate-700 dark:text-slate-300">
         <span className="truncate">{label}</span>
         <span>{value}</span>
       </div>
@@ -141,15 +141,15 @@ function MetricCard({
         ? "border-amber-100 bg-amber-50"
         : tone === "good"
           ? "border-emerald-100 bg-emerald-50"
-          : "border-slate-200 bg-white";
+          : "border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900";
 
   return (
     <div className={`rounded-xl border px-3 py-2.5 shadow-sm ${toneClass}`}>
-      <p className="text-2xl font-black text-slate-900">{value}</p>
+      <p className="text-2xl font-black text-slate-900 dark:text-slate-100">{value}</p>
       <p className="mt-1 text-xs font-black uppercase tracking-wide text-[#1D72B8]">
         {label}
       </p>
-      <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
+      <p className="mt-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
         {description}
       </p>
     </div>
@@ -342,7 +342,7 @@ export default function AnalyticsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
+              className="w-full rounded-2xl border border-white/10 bg-white dark:bg-slate-900/10 px-3 py-3 text-center shadow-sm backdrop-blur"
             >
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
@@ -359,10 +359,10 @@ export default function AnalyticsPage() {
 
       {!hasData && (
         <AppPanel as="section" variant="dashed" padding="md" className="p-5 sm:p-5">
-          <p className="text-xs font-black text-slate-900">
+          <p className="text-xs font-black text-slate-900 dark:text-slate-100">
             Insights will populate as records are created.
           </p>
-          <p className="mt-0.5 text-xs font-semibold leading-5 text-slate-500">
+          <p className="mt-0.5 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
             Complete inspections, generate reports, and track corrective actions
             to build safety-program intelligence.
           </p>
@@ -391,10 +391,10 @@ export default function AnalyticsPage() {
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
                 Company Filters
               </p>
-              <h2 className="mt-0.5 text-base font-black text-slate-900">
+              <h2 className="mt-0.5 text-base font-black text-slate-900 dark:text-slate-100">
                 Workspace analytics view
               </h2>
-              <p className="mt-0.5 text-xs font-semibold leading-5 text-slate-500">
+              <p className="mt-0.5 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                 Company plan insights can be filtered by facility, user,
                 inspection status, risk, date, agency, and corrective action status.
               </p>
@@ -408,7 +408,7 @@ export default function AnalyticsPage() {
                 <AppSelect
                   key={label}
                   fieldSize="sm"
-                  className="bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-700 focus:bg-white"
+                  className="bg-slate-50 dark:bg-slate-950 px-3 py-2.5 text-sm font-bold text-slate-700 dark:text-slate-300 focus:bg-white dark:focus:bg-slate-900"
                   defaultValue=""
                 >
                   <option value="">{label}: All</option>
@@ -432,7 +432,7 @@ export default function AnalyticsPage() {
                 </h2>
               </div>
 
-              <span className="w-fit rounded-full bg-slate-100 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+              <span className="w-fit rounded-full bg-slate-100 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400 dark:bg-slate-800 dark:text-slate-300">
                 Pro analytics
               </span>
             </div>
@@ -475,7 +475,7 @@ export default function AnalyticsPage() {
               ].map(([value, label]) => (
                 <div
                   key={label}
-                  className="rounded-2xl border border-slate-200 bg-white/85 px-3 py-2.5 shadow-sm dark:border-slate-800 dark:bg-slate-950/45"
+                  className="rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900/85 px-3 py-2.5 shadow-sm"
                 >
                   <p className="text-xl font-black tracking-[-0.055em] text-slate-950 dark:text-slate-100">
                     {value}
@@ -560,7 +560,7 @@ export default function AnalyticsPage() {
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-300">
                   Risk Distribution
                 </p>
-                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400 dark:bg-slate-800 dark:text-slate-300">
                   Avg {analytics.averageRiskScore === null ? "—" : analytics.averageRiskScore}
                 </span>
               </div>
@@ -581,7 +581,7 @@ export default function AnalyticsPage() {
                   return (
                     <div
                       key={label}
-                      className="grid grid-cols-[5rem_1fr_2rem] items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-1.5 dark:border-slate-800 dark:bg-slate-950/40"
+                      className="grid grid-cols-[5rem_1fr_2rem] items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950/80 px-3 py-1.5"
                     >
                       <p className="text-[11px] font-black text-slate-900 dark:text-slate-100">
                         {label}
@@ -592,7 +592,7 @@ export default function AnalyticsPage() {
                           style={{ width: `${width}%` }}
                         />
                       </div>
-                      <p className="text-right text-[11px] font-black text-slate-500 dark:text-slate-300">
+                      <p className="text-right text-[11px] font-black text-slate-500 dark:text-slate-400 dark:text-slate-300">
                         {value}
                       </p>
                     </div>
@@ -669,7 +669,7 @@ export default function AnalyticsPage() {
                     />
                   ))
                 ) : (
-                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-950/40 dark:text-slate-400">
+                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950/40 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
                     No hazard themes available yet.
                   </p>
                 )}
@@ -697,7 +697,7 @@ export default function AnalyticsPage() {
                     />
                   ))
                 ) : (
-                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-950/40 dark:text-slate-400">
+                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-950/40 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
                     No location trends available yet.
                   </p>
                 )}

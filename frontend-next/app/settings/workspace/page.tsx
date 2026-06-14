@@ -92,13 +92,13 @@ function RiskMatrixPreview({
   return (
     <div>
       <div
-        className="grid overflow-hidden rounded-xl border border-slate-300 bg-white"
+        className="grid overflow-hidden rounded-xl border border-slate-300 dark:border-slate-700 bg-white"
         style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}
       >
         {cells.map((cell) => (
           <div
             key={`${cell.severity}-${cell.likelihood}`}
-            className={`aspect-square border border-white/60 ${getRiskColor(cell.score, size)} flex items-center justify-center text-[10px] font-black text-slate-900`}
+            className={`aspect-square border border-white/60 ${getRiskColor(cell.score, size)} flex items-center justify-center text-[10px] font-black text-slate-900 dark:text-slate-100`}
           >
             {cell.score}
           </div>
@@ -424,9 +424,9 @@ export default function SettingsPage() {
             ],
             [`${usedSeats}/${companySeats}`, "Company Seats"],
           ].map(([value, label]) => (
-            <div key={label} className="border-l-4 border-[#1D72B8] bg-slate-50 px-4 py-3">
-              <p className="truncate text-sm font-black text-slate-950">{value}</p>
-              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-500">
+            <div key={label} className="border-l-4 border-[#1D72B8] bg-slate-50 dark:bg-slate-950 px-4 py-3">
+              <p className="truncate text-sm font-black text-slate-950 dark:text-slate-100">{value}</p>
+              <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 {label}
               </p>
             </div>
@@ -442,7 +442,7 @@ export default function SettingsPage() {
             description="SafeScope uses this as the default agency context during inspection review. Users can still override hazard category during review."
           />
 
-          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
+          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200 dark:border-slate-800">
             {regulatoryScopes.map(([id, label, description]) => (
               <button
                 key={id}
@@ -451,10 +451,10 @@ export default function SettingsPage() {
                 className="flex w-full items-center justify-between gap-4 px-1 py-4 text-left"
               >
                 <span>
-                  <span className="block text-sm font-black text-slate-950">
+                  <span className="block text-sm font-black text-slate-950 dark:text-slate-100">
                     {label}
                   </span>
-                  <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+                  <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                     {description}
                   </span>
                 </span>
@@ -463,7 +463,7 @@ export default function SettingsPage() {
                   className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 text-xs font-black ${
                     regulatoryScope === id
                       ? "border-[#1D72B8] bg-[#1D72B8] text-white"
-                      : "border-slate-300 bg-white text-transparent"
+                      : "border-slate-300 dark:border-slate-700 bg-white text-transparent"
                   }`}
                 >
                   ✓
@@ -481,7 +481,7 @@ export default function SettingsPage() {
 
           <div className="mt-4 grid gap-5 md:grid-cols-[1fr_220px]">
             <label className="block">
-              <span className="text-sm font-black text-slate-700">
+              <span className="text-sm font-black text-slate-700 dark:text-slate-300">
                 Organization Name
               </span>
               <AppInput
@@ -492,8 +492,8 @@ export default function SettingsPage() {
             </label>
 
             <div>
-              <p className="text-sm font-black text-slate-700">Logo</p>
-              <div className="mt-2 flex min-h-24 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 p-3">
+              <p className="text-sm font-black text-slate-700 dark:text-slate-300">Logo</p>
+              <div className="mt-2 flex min-h-24 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
                 {companyLogo ? (
                   <img
                     src={companyLogo}
@@ -531,7 +531,7 @@ export default function SettingsPage() {
             )}
           </div>
 
-          <div className="mt-5 border-y border-slate-200">
+          <div className="mt-5 border-y border-slate-200 dark:border-slate-800">
             <ToggleSwitch
               checked={includeLogoOnCover}
               onChange={() => setIncludeLogoOnCover(!includeLogoOnCover)}
@@ -547,7 +547,7 @@ export default function SettingsPage() {
             description="These defaults simplify the inspection start screen. Users can still override them for individual reports."
           />
 
-          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
+          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200 dark:border-slate-800">
             <ToggleSwitch
               checked={defaultIncludeCoverPage}
               onChange={() => setDefaultIncludeCoverPage(!defaultIncludeCoverPage)}
@@ -564,7 +564,7 @@ export default function SettingsPage() {
           </div>
 
           <label className="mt-4 block">
-            <span className="text-sm font-black text-slate-700">
+            <span className="text-sm font-black text-slate-700 dark:text-slate-300">
               Confidentiality Marker Text
             </span>
             <AppSelect
@@ -588,7 +588,7 @@ export default function SettingsPage() {
           />
 
           <div className="mt-4 grid gap-4 md:grid-cols-[1fr_180px]">
-            <div className="divide-y divide-slate-200 border-y border-slate-200">
+            <div className="divide-y divide-slate-200 border-y border-slate-200 dark:border-slate-800">
               {riskProfiles.map(([id, label, description]) => (
                 <button
                   key={id}
@@ -597,10 +597,10 @@ export default function SettingsPage() {
                   className="flex w-full items-center justify-between gap-4 px-1 py-4 text-left"
                 >
                   <span>
-                    <span className="block text-sm font-black text-slate-950">
+                    <span className="block text-sm font-black text-slate-950 dark:text-slate-100">
                       {label}
                     </span>
-                    <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+                    <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                       {description}
                     </span>
                   </span>
@@ -609,7 +609,7 @@ export default function SettingsPage() {
                     className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 text-xs font-black ${
                       riskProfileId === id
                         ? "border-[#1D72B8] bg-[#1D72B8] text-white"
-                        : "border-slate-300 bg-white text-transparent"
+                        : "border-slate-300 dark:border-slate-700 bg-white text-transparent"
                     }`}
                   >
                     ✓
@@ -619,7 +619,7 @@ export default function SettingsPage() {
             </div>
 
             <div>
-              <p className="mb-2 text-xs font-black uppercase tracking-wide text-slate-500">
+              <p className="mb-2 text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 {selectedMatrixLabel}
               </p>
               <RiskMatrixPreview riskProfileId={riskProfileId} />
@@ -633,7 +633,7 @@ export default function SettingsPage() {
             description="Choose how completed reports and evidence should be stored."
           />
 
-          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
+          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200 dark:border-slate-800">
             {storageModes.map(([id, label, description]) => {
               const disabled = id === "cloud" && !hasPlanEntitlement("cloudReports", planCode);
 
@@ -648,10 +648,10 @@ export default function SettingsPage() {
                   }`}
                 >
                   <span>
-                    <span className="block text-sm font-black text-slate-950">
+                    <span className="block text-sm font-black text-slate-950 dark:text-slate-100">
                       {label}
                     </span>
-                    <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+                    <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                       {disabled
                         ? `${description} Company plan required.`
                         : description}
@@ -662,7 +662,7 @@ export default function SettingsPage() {
                     className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 text-xs font-black ${
                       storageMode === id
                         ? "border-[#1D72B8] bg-[#1D72B8] text-white"
-                        : "border-slate-300 bg-white text-transparent"
+                        : "border-slate-300 dark:border-slate-700 bg-white text-transparent"
                     }`}
                   >
                     ✓
@@ -703,7 +703,7 @@ export default function SettingsPage() {
             </AppButton>
           </div>
 
-          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
+          <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200 dark:border-slate-800">
             {facilities.length ? (
               facilities.map((facility) => (
                 <div
@@ -711,10 +711,10 @@ export default function SettingsPage() {
                   className="flex items-center justify-between gap-3 px-1 py-3"
                 >
                   <div>
-                    <p className="text-sm font-black text-slate-950">
+                    <p className="text-sm font-black text-slate-950 dark:text-slate-100">
                       {facility.name}
                     </p>
-                    <p className="text-xs font-semibold text-slate-500">
+                    <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                       {facility.siteType || "No type entered"}
                     </p>
                     <p className="text-xs font-bold text-slate-400">
@@ -732,7 +732,7 @@ export default function SettingsPage() {
                 </div>
               ))
             ) : (
-              <p className="px-1 py-4 text-sm font-semibold text-slate-500">
+              <p className="px-1 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
                 No saved facilities yet.
               </p>
             )}
@@ -745,7 +745,7 @@ export default function SettingsPage() {
             description="Choose local unlock and auto-lock preferences."
           />
 
-          <div className="mt-4 border-y border-slate-200">
+          <div className="mt-4 border-y border-slate-200 dark:border-slate-800">
             <ToggleSwitch
               checked={requirePinUnlock}
               onChange={() => setRequirePinUnlock(!requirePinUnlock)}
@@ -755,7 +755,7 @@ export default function SettingsPage() {
           </div>
 
           <label className="mt-4 block">
-            <span className="text-sm font-black text-slate-700">
+            <span className="text-sm font-black text-slate-700 dark:text-slate-300">
               Auto-lock Timer
             </span>
             <AppSelect
@@ -801,8 +801,8 @@ export default function SettingsPage() {
                 </AppButton>
               </div>
 
-              <div className="mt-4 border-y border-slate-200">
-                <div className="border-b border-slate-200 px-1 py-3">
+              <div className="mt-4 border-y border-slate-200 dark:border-slate-800">
+                <div className="border-b border-slate-200 dark:border-slate-800 px-1 py-3">
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">
                     Active Accounts
                   </p>
@@ -815,13 +815,13 @@ export default function SettingsPage() {
                     return (
                       <div
                         key={identifier}
-                        className="flex items-center justify-between gap-3 border-b border-slate-200 px-1 py-3 last:border-b-0"
+                        className="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 px-1 py-3 last:border-b-0"
                       >
                         <div>
-                          <p className="text-sm font-black text-slate-950">
+                          <p className="text-sm font-black text-slate-950 dark:text-slate-100">
                             {member.email || member.name || "Team member"}
                           </p>
-                          <p className="text-xs font-semibold text-slate-500">
+                          <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                             {member.role || "Member"}
                           </p>
                         </div>
@@ -837,12 +837,12 @@ export default function SettingsPage() {
                     );
                   })
                 ) : (
-                  <p className="px-1 py-4 text-sm font-semibold text-slate-500">
+                  <p className="px-1 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
                     No active team members loaded.
                   </p>
                 )}
 
-                <div className="border-y border-slate-200 px-1 py-3">
+                <div className="border-y border-slate-200 dark:border-slate-800 px-1 py-3">
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">
                     Pending Invites
                   </p>
@@ -855,13 +855,13 @@ export default function SettingsPage() {
                     return (
                       <div
                         key={identifier}
-                        className="flex items-center justify-between gap-3 border-b border-slate-200 px-1 py-3 last:border-b-0"
+                        className="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 px-1 py-3 last:border-b-0"
                       >
                         <div>
-                          <p className="text-sm font-black text-slate-950">
+                          <p className="text-sm font-black text-slate-950 dark:text-slate-100">
                             {invite.email || "Pending invite"}
                           </p>
-                          <p className="text-xs font-semibold text-slate-500">
+                          <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                             {invite.role || invite.status || "Pending"}
                           </p>
                         </div>
@@ -877,18 +877,18 @@ export default function SettingsPage() {
                     );
                   })
                 ) : (
-                  <p className="px-1 py-4 text-sm font-semibold text-slate-500">
+                  <p className="px-1 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
                     No pending invites.
                   </p>
                 )}
               </div>
             </>
           ) : (
-            <div className="mt-4 border-y border-slate-200 py-4">
-              <p className="text-sm font-black text-slate-950">
+            <div className="mt-4 border-y border-slate-200 dark:border-slate-800 py-4">
+              <p className="text-sm font-black text-slate-950 dark:text-slate-100">
                 Company plan required
               </p>
-              <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">
+              <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
                 Team members, seats, and role controls are available on the Company plan.
               </p>
             </div>
@@ -903,7 +903,7 @@ export default function SettingsPage() {
               ? "bg-emerald-50 text-emerald-700"
               : statusType === "error"
                 ? "bg-red-50 text-red-700"
-                : "bg-slate-100 text-slate-700"
+                : "bg-slate-100 text-slate-700 dark:text-slate-300"
           }`}
         >
           {status}

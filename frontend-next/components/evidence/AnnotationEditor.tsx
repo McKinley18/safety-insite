@@ -397,7 +397,7 @@ export default function AnnotationEditor({
 
   return (
     <div
-      className={`rounded-2xl border-2 border-[#1D72B8] bg-white p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}
+      className={`rounded-2xl border-2 border-[#1D72B8] bg-white dark:bg-slate-900 p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}
     >
       <div className={expanded ? "mx-auto max-w-5xl" : ""}>
         <div className="overflow-hidden rounded-xl bg-slate-200">
@@ -616,14 +616,14 @@ export default function AnnotationEditor({
 
       <div
         ref={toolbarRef}
-        className="mt-3 rounded-2xl border border-slate-200 bg-white shadow-sm"
+        className="mt-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm"
       >
         <div className="overflow-visible">
           <div className="flex min-w-max items-center">
             <button
               type="button"
               onClick={undoLast}
-              className="flex h-11 w-10 items-center justify-center border-r border-slate-200 text-slate-700 transition hover:bg-slate-50 disabled:opacity-35"
+              className="flex h-11 w-10 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-35"
               aria-label="Undo last annotation"
               title="Undo"
               disabled={!localAnnotations.length}
@@ -634,7 +634,7 @@ export default function AnnotationEditor({
             <button
               type="button"
               onClick={redoLast}
-              className="flex h-11 w-10 items-center justify-center border-r border-slate-200 text-slate-700 transition hover:bg-slate-50 disabled:opacity-35"
+              className="flex h-11 w-10 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-35"
               aria-label="Redo last annotation"
               title="Redo"
               disabled={!redoStack.length}
@@ -642,7 +642,7 @@ export default function AnnotationEditor({
               <span className="text-xl font-black leading-none">↪</span>
             </button>
 
-            <div className="relative border-r border-slate-200">
+            <div className="relative border-r border-slate-200 dark:border-slate-800">
               <button
                 type="button"
                 onClick={() => {
@@ -650,7 +650,7 @@ export default function AnnotationEditor({
                   setColorOpen(false);
                   setTextColorOpen(false);
                 }}
-                className="flex h-11 items-center gap-2 px-3 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                className="flex h-11 items-center gap-2 px-3 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Open shape tools"
                 title="Shape tools"
               >
@@ -658,7 +658,7 @@ export default function AnnotationEditor({
               </button>
 
               {shapeMenuOpen && (
-                <div className="absolute left-0 top-12 z-[80] w-40 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl">
+                <div className="absolute left-0 top-12 z-[80] w-40 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl">
                   {[
                     ["rect", "□", "Box"],
                     ["circle", "○", "Circle"],
@@ -678,10 +678,10 @@ export default function AnnotationEditor({
 
                         addShape(tool as "rect" | "circle" | "arrow" | "text");
                       }}
-                      className={`flex w-full items-center gap-3 px-3 py-2 text-left text-xs font-black transition hover:bg-slate-50 ${
+                      className={`flex w-full items-center gap-3 px-3 py-2 text-left text-xs font-black transition hover:bg-slate-50 dark:hover:bg-slate-800 ${
                         tool === "draw" && drawMode
                           ? "bg-[#E8F4FF] text-[#1D72B8]"
-                          : "text-slate-700"
+                          : "text-slate-700 dark:text-slate-300"
                       }`}
                     >
                       <span className="flex w-5 justify-center text-base leading-none">
@@ -694,7 +694,7 @@ export default function AnnotationEditor({
               )}
             </div>
 
-            <div className="relative flex h-11 border-r border-slate-200">
+            <div className="relative flex h-11 border-r border-slate-200 dark:border-slate-800">
               <button
                 type="button"
                 onClick={() => {
@@ -702,7 +702,7 @@ export default function AnnotationEditor({
                   setColorOpen(false);
                   setShapeMenuOpen(false);
                 }}
-                className="flex h-11 w-11 flex-col items-center justify-center gap-1 text-slate-700 transition hover:bg-slate-50"
+                className="flex h-11 w-11 flex-col items-center justify-center gap-1 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Open text color palette"
                 title="Text color"
               >
@@ -710,19 +710,19 @@ export default function AnnotationEditor({
                   T
                 </span>
                 <span
-                  className="block h-1.5 w-6 rounded-full border border-slate-300"
+                  className="block h-1.5 w-6 rounded-full border border-slate-300 dark:border-slate-700"
                   style={{ backgroundColor: selectedColor }}
                 />
               </button>
 
               {textColorOpen && (
-                <div className="absolute left-0 top-12 z-[80] grid w-[112px] grid-cols-4 gap-1 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+                <div className="absolute left-0 top-12 z-[80] grid w-[112px] grid-cols-4 gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-xl">
                   {COLORS.map((color) => (
                     <button
                       key={color}
                       type="button"
                       onClick={() => applyTextColor(color)}
-                      className="h-5 w-5 rounded border border-slate-300"
+                      className="h-5 w-5 rounded border border-slate-300 dark:border-slate-700"
                       style={{ backgroundColor: color }}
                       aria-label={`Select text color ${color}`}
                     />
@@ -731,7 +731,7 @@ export default function AnnotationEditor({
               )}
             </div>
 
-            <div className="relative flex h-11 border-r border-slate-200">
+            <div className="relative flex h-11 border-r border-slate-200 dark:border-slate-800">
               <button
                 type="button"
                 onClick={() => {
@@ -739,7 +739,7 @@ export default function AnnotationEditor({
                   setTextColorOpen(false);
                   setShapeMenuOpen(false);
                 }}
-                className="flex h-11 w-11 flex-col items-center justify-center gap-1 text-slate-700 transition hover:bg-slate-50"
+                className="flex h-11 w-11 flex-col items-center justify-center gap-1 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Open shape color palette"
                 title="Shape color"
               >
@@ -760,19 +760,19 @@ export default function AnnotationEditor({
                   </svg>
                 </span>
                 <span
-                  className="block h-1.5 w-6 rounded-full border border-slate-300"
+                  className="block h-1.5 w-6 rounded-full border border-slate-300 dark:border-slate-700"
                   style={{ backgroundColor: selectedColor }}
                 />
               </button>
 
               {colorOpen && (
-                <div className="absolute left-0 top-12 z-[80] grid w-[112px] grid-cols-4 gap-1 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
+                <div className="absolute left-0 top-12 z-[80] grid w-[112px] grid-cols-4 gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-xl">
                   {COLORS.map((color) => (
                     <button
                       key={color}
                       type="button"
                       onClick={() => applyColor(color)}
-                      className="h-5 w-5 rounded border border-slate-300"
+                      className="h-5 w-5 rounded border border-slate-300 dark:border-slate-700"
                       style={{ backgroundColor: color }}
                       aria-label={`Select shape color ${color}`}
                     />
@@ -781,7 +781,7 @@ export default function AnnotationEditor({
               )}
             </div>
 
-            <div className="flex h-11 shrink-0 items-center border-r border-slate-200">
+            <div className="flex h-11 shrink-0 items-center border-r border-slate-200 dark:border-slate-800">
               <button
                 type="button"
                 onClick={() =>
@@ -792,7 +792,7 @@ export default function AnnotationEditor({
                     ),
                   )
                 }
-                className="flex h-11 w-10 items-center justify-center border-r border-slate-200 text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                className="flex h-11 w-10 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Decrease text size"
                 title="Decrease text size"
               >
@@ -809,7 +809,7 @@ export default function AnnotationEditor({
                     ),
                   )
                 }
-                className="flex h-11 w-10 items-center justify-center text-xs font-black text-slate-700 transition hover:bg-slate-50"
+                className="flex h-11 w-10 items-center justify-center text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Increase text size"
                 title="Increase text size"
               >
@@ -817,7 +817,7 @@ export default function AnnotationEditor({
               </button>
             </div>
 
-            <div className="flex h-11 w-24 shrink-0 items-center gap-1 border-r border-slate-200 px-2">
+            <div className="flex h-11 w-24 shrink-0 items-center gap-1 border-r border-slate-200 dark:border-slate-800 px-2">
               <input
                 type="range"
                 min="1"
@@ -828,7 +828,7 @@ export default function AnnotationEditor({
                 className="w-14 shrink-0 accent-[#1D72B8]"
                 aria-label="Annotation zoom"
               />
-              <span className="w-8 text-right text-[10px] font-black text-slate-500">
+              <span className="w-8 text-right text-[10px] font-black text-slate-500 dark:text-slate-400">
                 {Math.round(zoom * 100)}%
               </span>
             </div>
@@ -836,7 +836,7 @@ export default function AnnotationEditor({
         </div>
       </div>
 
-      <p className="mt-2 text-xs font-bold text-slate-500">
+      <p className="mt-2 text-xs font-bold text-slate-500 dark:text-slate-400">
         Use Shape &gt; Text to add labels. Double-click text to edit words. Use
         A↓ and A↑ to adjust selected text size.
       </p>
@@ -845,7 +845,7 @@ export default function AnnotationEditor({
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-xl bg-slate-200 px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-300"
+          className="rounded-xl bg-slate-200 px-4 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-300"
         >
           Cancel
         </button>

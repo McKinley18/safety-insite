@@ -9,8 +9,8 @@ type AppTextLinkProps = ComponentProps<typeof Link> & {
 };
 
 const toneClasses: Record<AppTextLinkTone, string> = {
-  blue: "text-[#1D72B8] hover:underline",
-  slate: "text-slate-500 hover:text-[#1D72B8] hover:underline",
+  blue: "text-[#1D72B8] underline-offset-4 hover:underline dark:text-[#5DB7FF]",
+  slate: "text-[#102A43] underline-offset-4 hover:text-[#1D72B8] hover:underline dark:text-slate-100 dark:hover:text-[#5DB7FF]",
 };
 
 export function AppTextLink({

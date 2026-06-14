@@ -11,11 +11,11 @@ type AppButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variantClasses: Record<AppButtonVariant, string> = {
-  primary: "bg-[#102A43] text-white hover:bg-[#1D72B8]",
-  secondary: "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50",
-  accent: "bg-[#F97316] text-black hover:bg-[#EA580C]",
-  danger: "border border-red-100 bg-red-50 text-red-700 hover:bg-red-100",
-  ghost: "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50",
+  primary: "bg-[#102A43] text-white hover:bg-[#1D72B8] dark:bg-[#1D72B8] dark:hover:bg-[#38BDF8] dark:text-[#0B1320]",
+  secondary: "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800",
+  accent: "bg-[#F97316] text-black hover:bg-[#EA580C] dark:bg-[#F97316] dark:text-black dark:hover:bg-[#EA580C]",
+  danger: "border border-red-100 bg-red-50 text-red-700 hover:bg-red-100 dark:border-red-900/50 dark:bg-red-950/50 dark:text-red-400 dark:hover:bg-red-900/50",
+  ghost: "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800",
 };
 
 const sizeClasses: Record<AppButtonSize, string> = {

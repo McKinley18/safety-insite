@@ -225,7 +225,7 @@ export default function InspectionsPage() {
                 className={`overflow-hidden rounded-3xl border shadow-sm transition hover:-translate-y-0.5 ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
-                    : "border-slate-200 bg-white/90 hover:border-blue-200 hover:bg-white"
+                    : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-blue-200 hover:bg-white"
                 }`}
               >
                 <button
@@ -244,22 +244,22 @@ export default function InspectionsPage() {
 
                     </div>
 
-                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900">
+                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900 dark:text-slate-100">
                       {workflow.title}
                     </h3>
-                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                       {workflow.description}
                     </p>
                   </div>
 
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-lg font-black text-[#102A43] shadow-sm transition">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-lg font-black text-[#102A43] shadow-sm transition">
                     {expanded ? "−" : "+"}
                   </span>
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200 bg-white/85 px-4 py-4 sm:px-5">
-                    <p className="text-xs font-semibold leading-5 text-slate-600">
+                  <div className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/85 px-4 py-4 sm:px-5">
+                    <p className="text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                       {workflow.details}
                     </p>
 
@@ -267,7 +267,7 @@ export default function InspectionsPage() {
                       {featureRows.map((feature) => (
                         <div
                           key={feature}
-                          className="rounded-2xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-sm"
+                          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 dark:text-slate-300 shadow-sm"
                         >
                           {feature}
                         </div>
@@ -311,7 +311,7 @@ export default function InspectionsPage() {
         </div>
 
 
-        <p className="mt-4 text-center text-xs font-semibold leading-5 text-slate-500">
+        <p className="mt-4 text-center text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
           SafeScope uses the default regulatory agency from{" "}
           <AppTextLink
             href="/settings/workspace"
@@ -321,7 +321,7 @@ export default function InspectionsPage() {
             Workspace Settings
           </AppTextLink>
           . Current default:{" "}
-          <span className="font-black text-slate-700">
+          <span className="font-black text-slate-700 dark:text-slate-300">
             {regulatoryScope === "msha"
               ? "MSHA"
               : regulatoryScope === "osha_general"

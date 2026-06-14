@@ -58,7 +58,7 @@ function getRiskTone(value: string) {
     return "bg-amber-100 text-amber-700";
   }
 
-  return "bg-slate-100 text-slate-700";
+  return "bg-slate-100 text-slate-700 dark:text-slate-300";
 }
 
 function getFindingTitle(finding: any) {
@@ -278,7 +278,7 @@ function SafeScopeOfflineNotice({ safeScopeResult }: { safeScopeResult: any }) {
       </p>
       <div className="mt-2 space-y-1">
         <p className="text-[10px] font-black uppercase text-amber-600">Required Sync Actions:</p>
-        <ul className="list-inside list-disc text-[10px] font-semibold text-slate-600">
+        <ul className="list-inside list-disc text-[10px] font-semibold text-slate-600 dark:text-slate-300">
           {safeScopeResult.requiredSyncActions.map((a: string) => <li key={a}>{a}</li>)}
         </ul>
       </div>
@@ -318,7 +318,7 @@ function SafeScopeRealImageAnalysisAppendix({
                   ({sig.support.replace(/_/g, " ")})
                 </span>
               </p>
-              <p className="text-[10px] text-slate-500">Basis: {sig.basis.join(', ')}</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400">Basis: {sig.basis.join(', ')}</p>
             </div>
           </div>
         ))}
@@ -383,7 +383,7 @@ function SafeScopeVisualEvidenceAppendix({
         </div>
       )}
 
-      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 italic">
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 dark:text-slate-400 italic">
         {visual.advisoryBoundary}
       </p>
     </div>
@@ -423,7 +423,7 @@ function SafeScopeEquipmentReasoningAppendix({
   const rankingReasons = asReviewList(summary?.rankingReasons).slice(0, 3);
 
   return (
-    <div className="rounded-xl bg-slate-50 px-3 py-2 ring-1 ring-slate-200">
+    <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2 ring-1 ring-slate-200">
       <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
         Equipment reasoning
       </p>
@@ -486,7 +486,7 @@ function SafeScopeEquipmentReasoningAppendix({
         </p>
       )}
 
-      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500">
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 dark:text-slate-400">
         Equipment reasoning is context-only and requires qualified review. It
         does not declare violations, create citations, or override regulations.
       </p>
@@ -733,7 +733,7 @@ export default function InspectionReviewPage() {
     return (
       <section className="sentinel-page-shell space-y-6">
 
-        <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500">
+        <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500 dark:text-slate-400">
           No finalized report found.
         </AppPanel>
       </section>
@@ -805,7 +805,7 @@ export default function InspectionReviewPage() {
           title="Edit report details"
           variant="ghost"
           size="sm"
-          className="absolute right-3 top-3 h-8 w-8 rounded-full px-0 py-0 text-slate-600 shadow-sm hover:text-[#1D72B8]"
+          className="absolute right-3 top-3 h-8 w-8 rounded-full px-0 py-0 text-slate-600 dark:text-slate-300 shadow-sm hover:text-[#1D72B8]"
         >
           <svg
             aria-hidden="true"
@@ -822,7 +822,7 @@ export default function InspectionReviewPage() {
           </svg>
         </AppButton>
 
-        <h3 className="truncate pr-10 text-sm font-black tracking-tight text-slate-900">
+        <h3 className="truncate pr-10 text-sm font-black tracking-tight text-slate-900 dark:text-slate-100">
           {report.organizationName || "Organization"} · {report.siteLocation || "Field Inspection"}
         </h3>
 
@@ -851,7 +851,7 @@ export default function InspectionReviewPage() {
           ].map(([label, value]) => (
             <div
               key={label}
-              className="flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 px-3 text-center"
+              className="flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-950 px-3 text-center"
             >
               <p className="text-[9px] font-black uppercase tracking-wide text-[#1D72B8]">
                 {label}
@@ -901,10 +901,10 @@ export default function InspectionReviewPage() {
               className={`flex h-11 items-center justify-between rounded-xl border px-3 text-left transition ${
                 checked
                   ? "border-[#1D72B8] bg-[#E8F4FF]"
-                  : "border-slate-200 bg-slate-50 hover:bg-white"
+                  : "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:bg-white"
               }`}
             >
-              <span className="truncate text-sm font-black text-slate-900">
+              <span className="truncate text-sm font-black text-slate-900 dark:text-slate-100">
                 {label}
               </span>
 
@@ -912,7 +912,7 @@ export default function InspectionReviewPage() {
                 className={`ml-3 flex h-5 min-w-10 items-center justify-center rounded-full px-2 text-[10px] font-black uppercase tracking-wide ${
                   checked
                     ? "bg-[#1D72B8] text-white"
-                    : "bg-slate-200 text-slate-500"
+                    : "bg-slate-200 text-slate-500 dark:text-slate-400"
                 }`}
               >
                 {checked ? "On" : "Off"}
@@ -929,12 +929,12 @@ export default function InspectionReviewPage() {
               <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-700">
                 SafeScope Review Governance
               </p>
-              <h3 className="mt-1 text-base font-black text-slate-900">
+              <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
                 {getSafeScopeReviewSummary(findings).unvalidated
                   ? `${getSafeScopeReviewSummary(findings).unvalidated} SafeScope finding(s) need validation`
                   : "All SafeScope findings show reviewed status"}
               </h3>
-              <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+              <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
                 Snapshot validation status is included in the review page and PDF export.
                 Qualified-person review is still required before final use.
               </p>
@@ -942,7 +942,7 @@ export default function InspectionReviewPage() {
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
                 <p className="text-[10px] font-black uppercase text-slate-400">SafeScope</p>
-                <p className="text-lg font-black text-slate-900">{getSafeScopeReviewSummary(findings).total}</p>
+                <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getSafeScopeReviewSummary(findings).total}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
                 <p className="text-[10px] font-black uppercase text-slate-400">Open</p>
@@ -958,16 +958,16 @@ export default function InspectionReviewPage() {
       )}
 
 
-      <AppPanel padding="md" className="border-slate-200 bg-white">
+      <AppPanel padding="md" className="border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Cloud Persistence
             </p>
-            <h3 className="mt-1 text-base font-black text-slate-900">
+            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
               Save this report package to the backend
             </h3>
-            <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
               Local encrypted storage remains active. Cloud save creates a backend
               report record with findings and the full review package JSON for
               cross-device access and production persistence.
@@ -979,7 +979,7 @@ export default function InspectionReviewPage() {
                     ? "text-red-700"
                     : cloudSaveStatus === "saved"
                       ? "text-emerald-700"
-                      : "text-slate-600"
+                      : "text-slate-600 dark:text-slate-300"
                 }`}
               >
                 {cloudSaveMessage}
@@ -1018,7 +1018,7 @@ export default function InspectionReviewPage() {
         />
 
         {!findings.length ? (
-          <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500">
+          <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500 dark:text-slate-400">
             No findings are attached to this report.
           </AppPanel>
         ) : (
@@ -1084,7 +1084,7 @@ export default function InspectionReviewPage() {
               return (
                 <details
                   key={finding.id || index}
-                  className="group rounded-xl border border-slate-200 bg-white px-3 py-2.5 shadow-sm"
+                  className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2.5 shadow-sm"
                   open={index === 0}
                 >
                   <summary className="cursor-pointer list-none">
@@ -1096,11 +1096,11 @@ export default function InspectionReviewPage() {
                         <h3 className="mt-0.5 text-base font-black leading-tight text-[#102A43]">
                           {getFindingTitle(finding)}
                         </h3>
-                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600">
+                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                           {finding.description || "No description provided."}
                         </p>
 
-                        <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] font-bold text-slate-500">
+                        <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] font-bold text-slate-500 dark:text-slate-400">
                           <span>{finding.location || "No location"}</span>
                           <span>•</span>
                           <span>{photos.length} photo(s)</span>
@@ -1112,10 +1112,10 @@ export default function InspectionReviewPage() {
                       </div>
 
                       <div className="flex shrink-0 flex-col items-end gap-2">
-                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-black text-slate-700 group-open:hidden">
+                        <span className="rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-2.5 py-1 text-xs font-black text-slate-700 dark:text-slate-300 group-open:hidden">
                           +
                         </span>
-                        <span className="hidden rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-black text-slate-700 group-open:inline-flex">
+                        <span className="hidden rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-2.5 py-1 text-xs font-black text-slate-700 dark:text-slate-300 group-open:inline-flex">
                           −
                         </span>
 
@@ -1130,13 +1130,13 @@ export default function InspectionReviewPage() {
                     </div>
                   </summary>
 
-                  <div className="mt-3 border-t border-slate-200 pt-3">
+                  <div className="mt-3 border-t border-slate-200 dark:border-slate-800 pt-3">
                     <div className="grid gap-3 sm:grid-cols-3">
                       <div>
                         <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                           Selected Standards
                         </p>
-                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                           {standards.length
                             ? standards
                                 .map((standard: any) =>
@@ -1151,7 +1151,7 @@ export default function InspectionReviewPage() {
                         <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                           Corrective Actions
                         </p>
-                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                           {actions.length
                             ? actions
                                 .slice(0, 3)
@@ -1165,7 +1165,7 @@ export default function InspectionReviewPage() {
                         <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                           Review
                         </p>
-                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                           {reportPackage.includesConfidence
                             ? confidence !== undefined && confidence !== null
                               ? `${formatReviewConfidence(confidence) || "SafeScope"} confidence`
@@ -1191,7 +1191,7 @@ export default function InspectionReviewPage() {
                     </div>
 
                     {!!actions.length && (
-                      <div className="mt-3 rounded-xl bg-slate-50 px-3 py-2">
+                      <div className="mt-3 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
                         <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                           Action Details
                         </p>
@@ -1199,7 +1199,7 @@ export default function InspectionReviewPage() {
                           {actions.slice(0, 3).map((action: any, actionIndex: number) => (
                             <p
                               key={actionIndex}
-                              className="text-xs font-semibold leading-5 text-slate-600"
+                              className="text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300"
                             >
                               <span className="font-black text-slate-800">
                                 {getActionTitle(action)}
@@ -1219,12 +1219,12 @@ export default function InspectionReviewPage() {
                       reportPackage.includesEvidenceGaps ||
                       reportPackage.includesConfidence ||
                       reportPackage.includesRepeatIntelligence) && (
-                    <details className="mt-3 rounded-xl border border-slate-200 bg-white">
-                      <summary className="cursor-pointer px-3 py-2 text-[10px] font-black uppercase tracking-wide text-slate-500">
+                    <details className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                      <summary className="cursor-pointer px-3 py-2 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                         SafeScope appendix
                       </summary>
 
-                      <div className="space-y-2 border-t border-slate-200 px-3 py-3 text-xs font-semibold leading-5 text-slate-600">
+                      <div className="space-y-2 border-t border-slate-200 dark:border-slate-800 px-3 py-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                         {finding.safeScopeResult?.reasoningSnapshotId && (
                           <p>
                             Reasoning snapshot:{" "}
@@ -1324,10 +1324,10 @@ export default function InspectionReviewPage() {
           </span>
 
           <span>
-            <span className="block text-sm font-black text-slate-900">
+            <span className="block text-sm font-black text-slate-900 dark:text-slate-100">
               I confirm this report has been reviewed by a qualified person.
             </span>
-            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+            <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
               SafeScope outputs, standards, risk ratings, corrective actions,
               and report language have been independently reviewed before export.
               Use of this report remains subject to the Sentinel Safety legal terms.
@@ -1359,7 +1359,7 @@ export default function InspectionReviewPage() {
         </AppButton>
 
         {!humanReviewConfirmed && (
-          <p className="mt-2 text-[11px] font-bold text-slate-500">
+          <p className="mt-2 text-[11px] font-bold text-slate-500 dark:text-slate-400">
             Confirm qualified-person review to enable export.
           </p>
         )}

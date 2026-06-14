@@ -28,16 +28,16 @@ export default function SafeScopeReasoningBasisSection({
       badge={basis?.sourceHierarchyEnforced ? "Hierarchy enforced" : "Review"}
     >
       <div className="space-y-3">
-        <div className="rounded-xl bg-slate-50 px-3 py-3">
+        <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Primary reasoning source
           </p>
-          <p className="mt-1 text-sm font-black text-slate-900">
+          <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
             {formatValue(basis?.primaryReasoningSource || "safescope_governed_brain")}
           </p>
-          <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
+          <p className="mt-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
             Standards source:{" "}
-            <span className="font-black text-slate-700">
+            <span className="font-black text-slate-700 dark:text-slate-300">
               {formatValue(
                 basis?.standardsMatchPrimarySource ||
                   "approved_applicability_and_scope_filtered_standards",
@@ -47,20 +47,20 @@ export default function SafeScopeReasoningBasisSection({
         </div>
 
         <div className="grid gap-2 sm:grid-cols-2">
-          <div className="rounded-xl border border-slate-200 bg-white px-3 py-3">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
             <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
               Workspace history role
             </p>
-            <p className="mt-1 text-sm font-black text-slate-900">
+            <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
               {formatValue(basis?.workspaceHistoryRole || "supporting_reference_only")}
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white px-3 py-3">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
             <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
               Prior findings used
             </p>
-            <p className="mt-1 text-sm font-black text-slate-900">
+            <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
               {formatValue(basis?.priorFindingsUsed)}
               {typeof basis?.priorFindingReferenceCount === "number"
                 ? ` (${basis.priorFindingReferenceCount})`
@@ -68,7 +68,7 @@ export default function SafeScopeReasoningBasisSection({
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white px-3 py-3">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
             <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
               Prior findings can create standards
             </p>
@@ -77,7 +77,7 @@ export default function SafeScopeReasoningBasisSection({
             </p>
           </div>
 
-          <div className="rounded-xl border border-slate-200 bg-white px-3 py-3">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
             <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
               Prior findings can override governance
             </p>
@@ -88,17 +88,17 @@ export default function SafeScopeReasoningBasisSection({
         </div>
 
         {basis?.explanation && (
-          <p className="rounded-xl bg-blue-50 px-3 py-3 text-xs font-semibold leading-5 text-slate-700">
+          <p className="rounded-xl bg-blue-50 px-3 py-3 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
             {basis.explanation}
           </p>
         )}
 
         {!!hierarchy?.primaryBasis?.length && (
           <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Primary basis
             </p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
               {hierarchy.primaryBasis.slice(0, 6).map((item: string) => (
                 <li key={item}>{item}</li>
               ))}
@@ -108,10 +108,10 @@ export default function SafeScopeReasoningBasisSection({
 
         {!!hierarchy?.secondaryReferenceOnly?.length && (
           <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Reference only
             </p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
               {hierarchy.secondaryReferenceOnly.slice(0, 6).map((item: string) => (
                 <li key={item}>{item}</li>
               ))}

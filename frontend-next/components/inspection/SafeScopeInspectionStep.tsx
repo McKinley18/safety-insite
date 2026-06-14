@@ -93,7 +93,7 @@ export default function SafeScopeInspectionStep({
       />
 
       {safeScopeStatus && !safeScopeResult && safeScopeStatus.includes("Running") && (
-        <div className="mb-4 border-y border-slate-200 py-4 space-y-4">
+        <div className="mb-4 border-y border-slate-200 dark:border-slate-800 py-4 space-y-4">
            <Skeleton className="h-8 w-1/3" />
            <Skeleton className="h-24 w-full" />
            <Skeleton className="h-32 w-full" />
@@ -121,7 +121,7 @@ export default function SafeScopeInspectionStep({
                     }
                     handleRunSafeScope(true);
                   }}
-                  className="rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
+                  className="rounded-xl bg-slate-900 text-white dark:bg-white dark:bg-slate-900 dark:text-slate-900 dark:text-slate-100 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
                 >
                   Run in Offline Fallback Mode
                 </button>
@@ -129,7 +129,7 @@ export default function SafeScopeInspectionStep({
                 <button
                   type="button"
                   onClick={() => handleRunSafeScope(false)}
-                  className="rounded-xl border border-slate-300 bg-white dark:bg-slate-900 dark:text-slate-100 text-slate-800 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
+                  className="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 dark:text-slate-100 text-slate-800 dark:text-slate-200 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
                 >
                   Retry Connection
                 </button>
@@ -140,7 +140,7 @@ export default function SafeScopeInspectionStep({
       )}
 
       {safeScopeResult && (
-        <div className="mb-4 border-y border-slate-200 py-4">
+        <div className="mb-4 border-y border-slate-200 dark:border-slate-800 py-4">
           <SafeScopeResultHeaderSection
             safeScopeResult={safeScopeResult}
             submitSafeScopeValidation={submitSafeScopeValidation}
@@ -150,13 +150,13 @@ export default function SafeScopeInspectionStep({
 
           <SafeScopeEquipmentReasoningSection safeScopeResult={safeScopeResult} />
 
-          <div className="mb-4 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+          <div className="mb-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
                   Hazard Category
                 </p>
-                <p className="mt-1 text-sm font-black text-slate-900">
+                <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
                   {hazardCategory || safeScopeResult?.classification || "Let SafeScope suggest"}
                 </p>
               </div>
@@ -173,14 +173,14 @@ export default function SafeScopeInspectionStep({
             </div>
 
             <details className="mt-3">
-              <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-500">
+              <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Change category
               </summary>
 
               <select
                 value={hazardCategory}
                 onChange={(event) => setHazardCategory(event.target.value)}
-                className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+                className="mt-2 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
               >
                 <option value="">Use SafeScope suggestion</option>
                 {hazardCategoryOptions.map((category) => (
@@ -194,7 +194,7 @@ export default function SafeScopeInspectionStep({
                 value={hazardCategory}
                 onChange={(event) => setHazardCategory(event.target.value)}
                 placeholder="Or enter custom category"
-                className="mt-2 w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8] focus:bg-white"
+                className="mt-2 w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-2.5 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8] focus:bg-white dark:focus:bg-slate-900"
               />
             </details>
           </div>

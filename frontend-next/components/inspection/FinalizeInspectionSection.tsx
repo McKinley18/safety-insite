@@ -135,7 +135,7 @@ export default function FinalizeInspectionSection({
         </p>
 
         <div className="mt-5 grid grid-cols-3 gap-2 text-center">
-          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
+          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white dark:bg-slate-900/10 px-3 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Findings
             </p>
@@ -144,7 +144,7 @@ export default function FinalizeInspectionSection({
             </p>
           </div>
 
-          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
+          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white dark:bg-slate-900/10 px-3 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Current
             </p>
@@ -153,7 +153,7 @@ export default function FinalizeInspectionSection({
             </p>
           </div>
 
-          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
+          <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white dark:bg-slate-900/10 px-3 py-3 text-center ring-1 ring-white/15">
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               Next
             </p>
@@ -176,7 +176,7 @@ export default function FinalizeInspectionSection({
             <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-700">
               Unsaved Finding Preview
             </p>
-            <h3 className="mt-1 text-base font-black text-slate-900">
+            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
               Review this finding before saving
             </h3>
             <p className="mt-1 text-sm font-semibold leading-6 text-amber-900">
@@ -185,13 +185,13 @@ export default function FinalizeInspectionSection({
             </p>
           </div>
 
-          <div className="mt-4 rounded-xl border border-amber-200 bg-white px-3 py-3 shadow-sm">
+          <div className="mt-4 rounded-xl border border-amber-200 bg-white dark:bg-slate-900 px-3 py-3 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   Current finding
                 </p>
-                <h4 className="mt-1 text-base font-black text-slate-900">
+                <h4 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
                   {currentTitle}
                 </h4>
               </div>
@@ -201,27 +201,27 @@ export default function FinalizeInspectionSection({
               </span>
             </div>
 
-            <div className="mt-3 grid gap-2 text-xs font-bold leading-5 text-slate-600 sm:grid-cols-2">
+            <div className="mt-3 grid gap-2 text-xs font-bold leading-5 text-slate-600 dark:text-slate-300 sm:grid-cols-2">
               <p>
-                <span className="font-black text-slate-800">Location:</span>{" "}
+                <span className="font-black text-slate-800 dark:text-slate-200">Location:</span>{" "}
                 {location || "Not entered"}
               </p>
               <p>
-                <span className="font-black text-slate-800">Risk:</span>{" "}
+                <span className="font-black text-slate-800 dark:text-slate-200">Risk:</span>{" "}
                 {riskScore || safeScopeResult?.risk?.riskBand || safeScopeResult?.risk?.operationalRisk?.matrixBand || "Not rated"}
               </p>
               <p>
-                <span className="font-black text-slate-800">Standards:</span>{" "}
+                <span className="font-black text-slate-800 dark:text-slate-200">Standards:</span>{" "}
                 {selectedStandards.length || safeScopeResult?.suggestedStandards?.length || 0}
               </p>
               <p>
-                <span className="font-black text-slate-800">Photos:</span>{" "}
+                <span className="font-black text-slate-800 dark:text-slate-200">Photos:</span>{" "}
                 {photos.length}
               </p>
             </div>
 
             {(description || safeScopeResult?.classification) && (
-              <p className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-sm font-semibold leading-6 text-slate-700">
+              <p className="mt-3 rounded-lg bg-slate-50 dark:bg-slate-950 px-3 py-2 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
                 {description || safeScopeResult?.classification}
               </p>
             )}
@@ -239,7 +239,7 @@ export default function FinalizeInspectionSection({
             <button
               type="button"
               onClick={addNewFinding}
-              className="flex h-10 w-[146px] items-center justify-center rounded-xl border border-amber-200 bg-white px-3 text-center text-xs font-black leading-tight text-amber-800 shadow-sm transition hover:bg-amber-100 active:scale-[0.98]"
+              className="flex h-10 w-[146px] items-center justify-center rounded-xl border border-amber-200 bg-white dark:bg-slate-900 px-3 text-center text-xs font-black leading-tight text-amber-800 shadow-sm transition hover:bg-amber-100 active:scale-[0.98]"
             >
               Save & Add New Finding
             </button>
@@ -247,7 +247,7 @@ export default function FinalizeInspectionSection({
             <button
               type="button"
               onClick={returnToReportInProgress}
-              className="flex h-10 w-[190px] items-center justify-center rounded-xl border border-slate-200 bg-white px-3 text-center text-xs font-black leading-tight text-slate-700 shadow-sm transition hover:bg-slate-100 active:scale-[0.98]"
+              className="flex h-10 w-[190px] items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 text-center text-xs font-black leading-tight text-slate-700 dark:text-slate-300 shadow-sm transition hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-[0.98]"
             >
               Return to Report in Progress
             </button>
@@ -255,18 +255,18 @@ export default function FinalizeInspectionSection({
         </div>
       )}
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
         <div className="flex items-start justify-between gap-3">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Findings Review
             </p>
-            <h3 className="mt-1 text-base font-black text-slate-900">
+            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
               {visibleFindings.length
                 ? `${visibleFindings.length} finding(s) ready for report`
                 : "No saved findings yet"}
             </h3>
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
               Use the +/- control to expand details. Edit any finding before
               generating the final report.
             </p>
@@ -282,7 +282,7 @@ export default function FinalizeInspectionSection({
               return (
                 <div
                   key={finding.id || `finding-${index}`}
-                  className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3"
+                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-3"
                 >
                   <div className="flex items-start gap-3">
                     <button
@@ -293,7 +293,7 @@ export default function FinalizeInspectionSection({
                           ? `Collapse finding ${index + 1}`
                           : `Expand finding ${index + 1}`
                       }
-                      className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-lg font-black text-[#102A43] shadow-sm transition hover:bg-blue-50 active:scale-[0.96]"
+                      className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-900 text-lg font-black text-[#102A43] shadow-sm transition hover:bg-blue-50 active:scale-[0.96]"
                     >
                       {isExpanded ? "−" : "+"}
                     </button>
@@ -302,10 +302,10 @@ export default function FinalizeInspectionSection({
                       <p className="text-[11px] font-black uppercase tracking-wide text-slate-400">
                         Finding {index + 1}
                       </p>
-                      <h4 className="mt-0.5 text-sm font-black text-slate-900">
+                      <h4 className="mt-0.5 text-sm font-black text-slate-900 dark:text-slate-100">
                         {getFindingTitle(finding)}
                       </h4>
-                      <p className="mt-1 text-xs font-bold leading-5 text-slate-500">
+                      <p className="mt-1 text-xs font-bold leading-5 text-slate-500 dark:text-slate-400">
                         {statusText([
                           `${finding.photos?.length || 0} photo(s)`,
                           finding.location || "No location",
@@ -315,7 +315,7 @@ export default function FinalizeInspectionSection({
                       </p>
 
                       {!isExpanded && (
-                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">
+                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                           {finding.description || "No description provided."}
                         </p>
                       )}
@@ -325,7 +325,7 @@ export default function FinalizeInspectionSection({
                       <button
                         type="button"
                         onClick={() => editFinding(index)}
-                        className="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] font-black text-slate-700 shadow-sm transition hover:bg-slate-50"
+                        className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-[10px] font-black text-slate-700 dark:text-slate-300 shadow-sm transition hover:bg-slate-50 dark:hover:bg-slate-800"
                       >
                         Edit
                       </button>
@@ -341,40 +341,40 @@ export default function FinalizeInspectionSection({
                   </div>
 
                   {isExpanded && (
-                    <div className="mt-3 space-y-3 rounded-xl border border-slate-200 bg-white p-3">
+                    <div className="mt-3 space-y-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3">
                       <div>
                         <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                           Observed condition
                         </p>
-                        <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
+                        <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
                           {finding.description || "No description provided."}
                         </p>
                       </div>
 
                       <div className="grid gap-3 md:grid-cols-3">
-                        <div className="rounded-xl bg-slate-50 px-3 py-2">
+                        <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
                           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                             Location
                           </p>
-                          <p className="mt-1 text-xs font-black text-slate-800">
+                          <p className="mt-1 text-xs font-black text-slate-800 dark:text-slate-200">
                             {finding.location || "Not specified"}
                           </p>
                         </div>
 
-                        <div className="rounded-xl bg-slate-50 px-3 py-2">
+                        <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
                           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                             Hazard Category
                           </p>
-                          <p className="mt-1 text-xs font-black text-slate-800">
+                          <p className="mt-1 text-xs font-black text-slate-800 dark:text-slate-200">
                             {finding.hazardCategory || "Not specified"}
                           </p>
                         </div>
 
-                        <div className="rounded-xl bg-slate-50 px-3 py-2">
+                        <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
                           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                             Risk
                           </p>
-                          <p className="mt-1 text-xs font-black text-slate-800">
+                          <p className="mt-1 text-xs font-black text-slate-800 dark:text-slate-200">
                             {getFindingRisk(finding)}
                           </p>
                         </div>
@@ -400,7 +400,7 @@ export default function FinalizeInspectionSection({
                             ))}
                           </div>
                         ) : (
-                          <p className="mt-1 text-xs font-semibold text-slate-500">
+                          <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
                             No standards selected for this finding.
                           </p>
                         )}
@@ -411,7 +411,7 @@ export default function FinalizeInspectionSection({
                           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                             SafeScope intelligence
                           </p>
-                          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
+                          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
                             {finding.safeScopeResult.summary ||
                               finding.safeScopeResult.recommendation ||
                               finding.safeScopeResult.correctiveAction ||
@@ -426,7 +426,7 @@ export default function FinalizeInspectionSection({
             })}
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold leading-5 text-slate-500">
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
             Save at least one finding before generating the final report.
           </p>
         )}

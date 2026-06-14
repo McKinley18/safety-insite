@@ -51,13 +51,13 @@ function SelectorCard({
         "rounded-2xl border px-4 py-3 text-left transition",
         selected
           ? "border-[#1D72B8] bg-[#E8F4FF] shadow-sm"
-          : "border-slate-200 bg-white/90 shadow-sm hover:border-blue-200 hover:bg-white",
+          : "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-sm hover:border-blue-200 hover:bg-white",
       ].join(" ")}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-black text-slate-950">{label}</p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+          <p className="text-sm font-black text-slate-950 dark:text-slate-100">{label}</p>
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
             {description}
           </p>
         </div>
@@ -67,7 +67,7 @@ function SelectorCard({
             "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-black",
             selected
               ? "border-[#1D72B8] bg-[#1D72B8] text-white"
-              : "border-slate-300 bg-white text-transparent",
+              : "border-slate-300 dark:border-slate-700 bg-white text-transparent",
           ].join(" ")}
         >
           ✓
@@ -89,7 +89,7 @@ function OverviewItem({
       <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
         {label}
       </p>
-      <p className="mt-1 truncate text-sm font-black text-slate-950">{value}</p>
+      <p className="mt-1 truncate text-sm font-black text-slate-950 dark:text-slate-100">{value}</p>
     </div>
   );
 }

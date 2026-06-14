@@ -173,7 +173,7 @@ function getWeekDayTone(dateKey: string, events: SafetyCalendarEvent[]) {
     return "border-[#1D72B8] bg-[#E8F4FF]";
   }
 
-  return "border-slate-200 bg-white";
+  return "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900";
 }
 
 function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
@@ -199,7 +199,7 @@ function getCalendarEventTone(event: SafetyCalendarEvent) {
   if (event.status === "Overdue" || event.priority === "Critical") return "border-red-100 bg-red-50 text-red-800";
   if (event.priority === "High") return "border-orange-100 bg-orange-50 text-orange-800";
   if (event.type === "inspection") return "border-blue-100 bg-blue-50 text-blue-800";
-  return "border-slate-200 bg-slate-50 text-slate-700";
+  return "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300";
 }
 
 function getCalendarEventTypeLabel(type: SafetyCalendarEvent["type"]) {
@@ -552,10 +552,10 @@ export default function DashboardPage() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="sentinel-eyebrow">Company Command</p>
-              <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-slate-950">
+              <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-slate-950 dark:text-slate-100">
                 Assign Work
               </h2>
-              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
                 Assign corrective actions, inspections, follow-ups, and review tasks from the operational home screen.
               </p>
             </div>
@@ -567,7 +567,7 @@ export default function DashboardPage() {
 
           <div className="mt-5 grid gap-3 lg:grid-cols-[1.2fr_0.8fr_0.7fr_0.7fr_auto]">
             <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Work Title
               </span>
               <input
@@ -579,7 +579,7 @@ export default function DashboardPage() {
             </label>
 
             <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Owner
               </span>
               <input
@@ -591,7 +591,7 @@ export default function DashboardPage() {
             </label>
 
             <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Type
               </span>
               <select
@@ -606,7 +606,7 @@ export default function DashboardPage() {
             </label>
 
             <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Priority
               </span>
               <select
@@ -621,7 +621,7 @@ export default function DashboardPage() {
             </label>
 
             <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Due
               </span>
               <input
@@ -634,7 +634,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs font-black text-slate-500">
+            <p className="text-xs font-black text-slate-500 dark:text-slate-400">
               {assignmentStatus}
             </p>
 
@@ -647,19 +647,19 @@ export default function DashboardPage() {
             </button>
           </div>
 
-          <div className="mt-5 border-t border-slate-200 pt-4">
+          <div className="mt-5 border-t border-slate-200 dark:border-slate-800 pt-4">
             {assignments.length ? (
               <div className="space-y-2">
                 {assignments.slice(0, 5).map((assignment) => (
                   <div
                     key={assignment.id}
-                    className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 shadow-sm sm:flex-row sm:items-center sm:justify-between"
+                    className="flex flex-col gap-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 px-4 py-3 shadow-sm sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div>
-                      <p className="text-sm font-black text-slate-950">
+                      <p className="text-sm font-black text-slate-950 dark:text-slate-100">
                         {assignment.title}
                       </p>
-                      <p className="mt-1 text-xs font-semibold text-slate-500">
+                      <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
                         {assignment.type} · {assignment.owner} · {assignment.priority} priority · Due {assignment.dueDate}
                       </p>
                     </div>
@@ -683,7 +683,7 @@ export default function DashboardPage() {
                 ))}
               </div>
             ) : (
-              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-500">
+              <p className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-4 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
                 No work has been assigned from Command Center yet.
               </p>
             )}
@@ -708,7 +708,7 @@ export default function DashboardPage() {
           </AppLinkButton>
         </div>
 
-        <div className="mt-4 rounded-full border border-slate-200 bg-slate-50/90 px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-slate-700 shadow-sm">
+        <div className="mt-4 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/90 px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300 shadow-sm">
           {formatCalendarMonthLabel(weekAtGlance[0]?.dateKey || getTodayDateKey())}
         </div>
 
@@ -727,11 +727,11 @@ export default function DashboardPage() {
                 events,
               )}`}
             >
-              <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-500 sm:left-2 sm:top-2 sm:text-[10px]">
+              <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-500 dark:text-slate-400 sm:left-2 sm:top-2 sm:text-[10px]">
                 {date.toLocaleDateString("en-US", { weekday: "short" })}
               </span>
 
-              <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 sm:right-2 sm:top-2 sm:text-[10px]">
+              <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-slate-100 sm:right-2 sm:top-2 sm:text-[10px]">
                 {date.getDate()}
               </span>
 
@@ -775,7 +775,7 @@ export default function DashboardPage() {
                     </span>
                     <span className="mt-1 flex flex-wrap items-center gap-1.5 text-xs font-semibold leading-5">
                       <span>{getCalendarEventTypeLabel(event.type)} · {event.owner}</span>
-                      <span className="rounded-full bg-white/75 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide">
+                      <span className="rounded-full bg-white/75 dark:bg-slate-900/70 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide">
                         {event.status}
                       </span>
                     </span>
@@ -783,7 +783,7 @@ export default function DashboardPage() {
                 </AppLinkButton>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-500">
+              <p className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-4 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
                 No safety work is scheduled for this day.
               </p>
             )}
@@ -821,7 +821,7 @@ export default function DashboardPage() {
                     </span>
                     <span className="mt-1 flex flex-wrap items-center gap-1.5 text-xs font-semibold leading-5">
                       <span>{getCalendarEventTypeLabel(event.type)} · {event.owner}</span>
-                      <span className="rounded-full bg-white/75 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide">
+                      <span className="rounded-full bg-white/75 dark:bg-slate-900/70 px-2 py-0.5 text-[10px] font-black uppercase tracking-wide">
                         {event.status}
                       </span>
                     </span>
@@ -829,7 +829,7 @@ export default function DashboardPage() {
                 </AppLinkButton>
               ))
             ) : (
-              <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-500">
+              <p className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-4 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
                 No upcoming safety work is scheduled.
               </p>
             )}
@@ -887,7 +887,7 @@ export default function DashboardPage() {
           />
           <div className="mt-4">
             {dashboard.recentActivity.length ? (
-              <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white/80 shadow-sm dark:border-slate-800 dark:bg-slate-950/40">
+              <div className="overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/80 shadow-sm">
                 {dashboard.recentActivity.map((activity, index) => (
                   <div
                     key={activity.id}
@@ -904,7 +904,7 @@ export default function DashboardPage() {
                         <p className="text-sm font-black leading-5 text-slate-950 dark:text-slate-100">
                           {activity.title}
                         </p>
-                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400 dark:bg-slate-800 dark:text-slate-300">
                           {activity.type}
                         </span>
                       </div>
@@ -919,7 +919,7 @@ export default function DashboardPage() {
                 ))}
               </div>
             ) : (
-              <p className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-5 text-center text-sm font-semibold text-slate-500 dark:border-slate-700 dark:bg-slate-950/40 dark:text-slate-400">
+              <p className="rounded-3xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950/40 p-5 text-center text-sm font-semibold text-slate-500 dark:text-slate-400">
                 No recent activity recorded.
               </p>
             )}
@@ -951,13 +951,13 @@ export default function DashboardPage() {
                 key={action.id}
                 href="/actions"
                 variant="ghost"
-                className="block w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
+                className="block w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50 dark:hover:bg-slate-800"
               >
                 <span className="block min-w-0">
-                  <span className="block text-sm font-black leading-5 text-slate-900">
+                  <span className="block text-sm font-black leading-5 text-slate-900 dark:text-slate-100">
                     {action.title}
                   </span>
-                  <span className="mt-1 flex flex-wrap items-center gap-1.5 text-xs font-semibold leading-5 text-slate-500">
+                  <span className="mt-1 flex flex-wrap items-center gap-1.5 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                     <span>Priority: <span className="font-black text-orange-600">{action.priority}</span></span>
                     <span>·</span>
                     <span>Status: <span className="font-black text-blue-600">{action.status}</span></span>
@@ -966,7 +966,7 @@ export default function DashboardPage() {
               </AppLinkButton>
             ))
           ) : (
-            <p className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-center text-sm font-semibold text-slate-500">
+            <p className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 p-4 text-center text-sm font-semibold text-slate-500 dark:text-slate-400">
               No high-priority actions found.
             </p>
           )}

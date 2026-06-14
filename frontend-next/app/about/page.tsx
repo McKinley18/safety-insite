@@ -39,18 +39,18 @@ export default function AboutPage() {
 
   return (
     <section className="mx-auto max-w-6xl px-3 py-3 sm:px-4 lg:py-5">
-      <div className="overflow-hidden rounded-[30px] bg-white shadow-sm ring-1 ring-slate-200">
+      <div className="overflow-hidden rounded-[30px] bg-white dark:bg-slate-900 shadow-sm ring-1 ring-slate-200">
         <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
             <p className="text-xs font-black uppercase tracking-[0.26em] text-[#1D72B8]">
               Sentinel Safety
             </p>
 
-            <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.055em] text-slate-950 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.055em] text-slate-950 dark:text-slate-100 sm:text-5xl lg:text-6xl">
               Safety findings should become action.
             </h1>
 
-            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600">
+            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600 dark:text-slate-300">
               Sentinel Safety helps teams capture hazards, organize evidence,
               review risk, connect standards, assign corrective actions, and
               generate professional inspection records from one focused workflow.
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 {proofPoints.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3 text-sm font-black ring-1 ring-white/10"
+                    className="flex items-center justify-between rounded-2xl bg-white dark:bg-slate-900/10 px-4 py-3 text-sm font-black ring-1 ring-white/10"
                   >
                     <span>{item}</span>
                     <span className="text-blue-200">→</span>
@@ -83,13 +83,13 @@ export default function AboutPage() {
         {benefits.map((item) => (
           <div
             key={item.title}
-            className="rounded-[26px] border border-slate-200 bg-white p-5 shadow-sm"
+            className="rounded-[26px] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 p-5 shadow-sm"
           >
-            <h2 className="text-2xl font-black leading-tight tracking-tight text-slate-950">
+            <h2 className="text-2xl font-black leading-tight tracking-tight text-slate-950 dark:text-slate-100">
               {item.title}
             </h2>
 
-            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">
+            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
               {item.text}
             </p>
           </div>
@@ -103,12 +103,12 @@ export default function AboutPage() {
               SafeScope
             </p>
 
-            <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-slate-950 sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-slate-950 dark:text-slate-100 sm:text-4xl">
               Intelligence for what the inspector actually saw.
             </h2>
           </div>
 
-          <p className="text-base font-semibold leading-7 text-slate-600">
+          <p className="text-base font-semibold leading-7 text-slate-600 dark:text-slate-300">
             SafeScope is designed to support qualified safety judgment by
             organizing hazard classification, risk signals, evidence gaps,
             standards review, and corrective action reasoning. It is advisory
@@ -147,7 +147,7 @@ export default function AboutPage() {
               <AppLinkButton
                 href="/register"
                 variant="secondary"
-                className="rounded-full bg-white px-7 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
+                className="rounded-full bg-white dark:bg-slate-900 px-7 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
               >
                 Create Account
               </AppLinkButton>

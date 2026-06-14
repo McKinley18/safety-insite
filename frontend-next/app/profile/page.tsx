@@ -126,7 +126,7 @@ export default function ProfilePage() {
           />
 
           {!identityEditing ? (
-            <div className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-slate-50">
+            <div className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
               <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
                 <SummaryRow label="First Name" value={firstName || "Not provided"} />
               </div>
@@ -147,7 +147,7 @@ export default function ProfilePage() {
             <>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <label>
-                  <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                     First Name
                   </span>
                   <AppInput
@@ -158,7 +158,7 @@ export default function ProfilePage() {
                 </label>
 
                 <label>
-                  <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                     Last Name
                   </span>
                   <AppInput
@@ -169,7 +169,7 @@ export default function ProfilePage() {
                 </label>
 
                 <label className="sm:col-span-2">
-                  <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
                     Email Address
                   </span>
                   <AppInput

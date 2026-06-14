@@ -37,11 +37,11 @@ function renderSafeScopeValue(value: any): React.ReactNode {
         if (!rendered) return null;
 
         return (
-          <div key={key} className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2">
+          <div key={key} className="rounded-xl border border-slate-100 bg-slate-50 dark:bg-slate-950 px-3 py-2">
             <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
               {key.replace(/([A-Z])/g, " $1").trim()}
             </p>
-            <div className="mt-1 text-sm font-semibold text-slate-700">
+            <div className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
               {rendered}
             </div>
           </div>
@@ -64,11 +64,11 @@ export const SafeScopeSection = ({ section }: { section: DisplaySection }) => {
   if (!rendered) return null;
 
   return (
-    <div className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h3 className="mb-2 text-sm font-black uppercase tracking-tight text-slate-800">
+    <div className="mb-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+      <h3 className="mb-2 text-sm font-black uppercase tracking-tight text-slate-800 dark:text-slate-200">
         {section.title}
       </h3>
-      <div className="text-sm text-slate-600">
+      <div className="text-sm text-slate-600 dark:text-slate-300">
         {rendered}
       </div>
     </div>
@@ -79,7 +79,7 @@ export const SafeScopeIntelligencePanel = ({ adapter }: { adapter: SafeScopeDisp
   const [showFeedback, setShowFeedback] = useState(false);
 
   return (
-    <div className="rounded-2xl bg-slate-50 p-4">
+    <div className="rounded-2xl bg-slate-50 dark:bg-slate-950 p-4">
       <SafeScopeSection section={adapter.summary} />
       <SafeScopeSection section={adapter.scenario} />
       <SafeScopeSection section={adapter.evidence} />
@@ -89,11 +89,11 @@ export const SafeScopeIntelligencePanel = ({ adapter }: { adapter: SafeScopeDisp
       <SafeScopeSection section={adapter.guardrails} />
 
       {adapter.narrative && (
-        <div className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <h3 className="mb-2 text-sm font-black uppercase tracking-tight text-slate-800">
+        <div className="mb-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+          <h3 className="mb-2 text-sm font-black uppercase tracking-tight text-slate-800 dark:text-slate-200">
             Narrative
           </h3>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-slate-600 dark:text-slate-300">
             {adapter.narrative.findingSummary}
           </p>
         </div>

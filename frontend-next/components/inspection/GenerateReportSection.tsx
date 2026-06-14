@@ -27,15 +27,15 @@ function ReportOptionRow({
     <button
       type="button"
       onClick={onToggle}
-      className="flex h-10 w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-3 text-left transition hover:bg-slate-100 active:scale-[0.99]"
+      className="flex h-10 w-full items-center justify-between rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-left transition hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-[0.99]"
     >
-      <span className="truncate text-sm font-black text-slate-900">
+      <span className="truncate text-sm font-black text-slate-900 dark:text-slate-100">
         {label}
       </span>
 
       <span
         className={`ml-3 shrink-0 rounded-full px-2.5 py-1 text-[10px] font-black uppercase leading-none tracking-wide ${
-          enabled ? "bg-[#1D72B8] text-white" : "bg-slate-200 text-slate-500"
+          enabled ? "bg-[#1D72B8] text-white" : "bg-slate-200 text-slate-500 dark:text-slate-400"
         }`}
       >
         {enabled ? "On" : "Off"}
@@ -52,7 +52,7 @@ function SummaryBox({
   value: string | number;
 }) {
   return (
-    <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15">
+    <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white dark:bg-slate-900/10 px-3 py-3 text-center ring-1 ring-white/15">
       <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
         {label}
       </p>
@@ -114,16 +114,16 @@ export default function GenerateReportSection({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Report Settings Review
             </p>
-            <h3 className="mt-1 text-base font-black text-slate-900">
+            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
               Confirm final report options
             </h3>
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
               These options control what is included in the generated report.
             </p>
           </div>
@@ -168,66 +168,66 @@ export default function GenerateReportSection({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Report Contents
         </p>
 
-        <h3 className="mt-1 text-base font-black text-slate-900">
+        <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
           Package summary
         </h3>
 
         <div className="mt-4 grid grid-cols-2 gap-2">
-          <div className="rounded-xl bg-slate-50 px-3 py-3 text-center">
+          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
             <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
               Total Findings
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900">
+            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
               {findings.length}
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 px-3 py-3 text-center">
+          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
             <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
               With Standards
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900">
+            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
               {findingsWithStandards}
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 px-3 py-3 text-center">
+          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
             <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
               With Actions
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900">
+            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
               {findingsWithActions}
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 px-3 py-3 text-center">
+          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
             <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
               With Photos
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900">
+            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
               {findingsWithPhotos}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Final Output
             </p>
 
-            <h3 className="mt-1 text-base font-black text-slate-900">
+            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
               Generate completed inspection report
             </h3>
 
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
               Create the final report using the saved findings and selected
               report package options.
             </p>

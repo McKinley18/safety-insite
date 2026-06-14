@@ -75,16 +75,16 @@ export default function CorrectiveActionsSection({
   const generatedActions = normalizeFieldOutputActions(safeScopeResult);
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <section className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Corrective Actions
           </p>
-          <h3 className="mt-1 text-lg font-black text-slate-900">
+          <h3 className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
             Actions for this finding
           </h3>
-          <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
             Include generated actions or add your own.
           </p>
         </div>
@@ -114,12 +114,12 @@ export default function CorrectiveActionsSection({
                 className={`w-full rounded-xl border px-3 py-3 text-left transition ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
-                    : "border-slate-200 bg-slate-50 hover:bg-white"
+                    : "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:bg-white dark:hover:bg-slate-900"
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-sm font-black text-slate-900">
+                    <p className="text-sm font-black text-slate-900 dark:text-slate-100">
                       {action.title ||
                         action.description ||
                         action.suggestedFixes?.[0] ||
@@ -127,13 +127,13 @@ export default function CorrectiveActionsSection({
                     </p>
 
                     {!!action.suggestedFixes?.length && (
-                      <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600">
+                      <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                         {action.suggestedFixes.slice(0, 2).join(" • ")}
                       </p>
                     )}
 
                     {(action.priority || action.assignedRole || action.dueDate) && (
-                      <p className="mt-1 text-[11px] font-bold leading-5 text-slate-500">
+                      <p className="mt-1 text-[11px] font-bold leading-5 text-slate-500 dark:text-slate-400">
                         {[
                           action.priority ? `Priority: ${action.priority}` : "",
                           action.assignedRole ? `Owner: ${action.assignedRole}` : "",
@@ -149,7 +149,7 @@ export default function CorrectiveActionsSection({
                     className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide ${
                       selected
                         ? "bg-[#1D72B8] text-white"
-                        : "bg-white text-slate-500"
+                        : "bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400"
                     }`}
                   >
                     {selected ? "Included" : "Add"}
@@ -162,15 +162,15 @@ export default function CorrectiveActionsSection({
       )}
 
       {!generatedActions.length && (
-        <p className="mt-4 rounded-xl bg-slate-50 px-3 py-3 text-sm font-semibold leading-5 text-slate-500">
+        <p className="mt-4 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
           No generated actions are available yet. Run SafeScope or add a custom
           action.
         </p>
       )}
 
       {!!manualActions.length && (
-        <div className="mt-4 border-t border-slate-200 pt-3">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+        <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-3">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Added Actions
           </p>
 
@@ -178,14 +178,14 @@ export default function CorrectiveActionsSection({
             {manualActions.map((action: any, index: number) => (
               <div
                 key={`${action.title || "manual-action"}-${index}`}
-                className="rounded-xl border border-slate-200 bg-white px-3 py-3"
+                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-sm font-black text-slate-900">
+                    <p className="text-sm font-black text-slate-900 dark:text-slate-100">
                       {action.title || action.description || "Manual action"}
                     </p>
-                    <p className="mt-1 text-[11px] font-bold text-slate-500">
+                    <p className="mt-1 text-[11px] font-bold text-slate-500 dark:text-slate-400">
                       {[
                         action.priority ? `Priority: ${action.priority}` : "",
                         action.due ? `Due: ${action.due}` : "",
@@ -213,8 +213,8 @@ export default function CorrectiveActionsSection({
       )}
 
       {addActionOpen && (
-        <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-3">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+        <div className="mt-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Add Custom Action
           </p>
 
@@ -223,14 +223,14 @@ export default function CorrectiveActionsSection({
               value={manualActionTitle}
               onChange={(event) => setManualActionTitle(event.target.value)}
               placeholder="Example: Install fixed guard and verify before restart"
-              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+              className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
             />
 
             <div className="grid gap-2 sm:grid-cols-3">
               <select
                 value={manualActionPriority}
                 onChange={(event) => setManualActionPriority(event.target.value)}
-                className="rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+                className="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
               >
                 <option>Low</option>
                 <option>Medium</option>
@@ -242,7 +242,7 @@ export default function CorrectiveActionsSection({
                 type="date"
                 value={manualActionDue}
                 onChange={(event) => setManualActionDue(event.target.value)}
-                className="rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+                className="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
               />
 
               <select
@@ -250,7 +250,7 @@ export default function CorrectiveActionsSection({
                 onChange={(event) =>
                   setManualActionClosureEvidence(event.target.value)
                 }
-                className="rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm font-bold text-slate-900 outline-none transition focus:border-[#1D72B8]"
+                className="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
               >
                 <option>Photo</option>
                 <option>Work order</option>

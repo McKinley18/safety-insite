@@ -26,7 +26,7 @@ export default function ToggleSwitch({
         "flex w-full items-center justify-between gap-4 rounded-xl border px-4 py-3 text-left transition",
         checked
           ? "border-[#1D72B8] bg-[#E8F4FF]"
-          : "border-slate-200 bg-white hover:bg-slate-50",
+          : "border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800",
         disabled ? "cursor-not-allowed opacity-60" : "",
       ].join(" ")}
     >

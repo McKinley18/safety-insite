@@ -74,7 +74,7 @@ function eventTone(event: SafetyCalendarEvent) {
   if (event.status === "Overdue" || event.priority === "Critical") return "border-red-100 bg-red-50 text-red-800";
   if (event.priority === "High") return "border-orange-100 bg-orange-50 text-orange-800";
   if (event.type === "inspection") return "border-blue-100 bg-blue-50 text-blue-800";
-  return "border-slate-200 bg-slate-50 text-slate-700";
+  return "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300";
 }
 
 function sameDateKey(date: Date, dateKey: string) {
@@ -109,7 +109,7 @@ function getDayCardTone(day: Date, dayEvents: SafetyCalendarEvent[]) {
     return "border-[#1D72B8] bg-[#E8F4FF]";
   }
 
-  return "border-slate-200 bg-white";
+  return "border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900";
 }
 
 function getDayWorkSummary(dayEvents: SafetyCalendarEvent[]) {
@@ -326,11 +326,11 @@ export default function SafetyCalendarPage() {
       </HeroPanel>
 
       {!canUseCompanyCalendar && (
-        <AppPanel padding="sm" className="border-slate-200 bg-white">
+        <AppPanel padding="sm" className="border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Personal Safety Calendar
           </p>
-          <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
+          <p className="mt-1 text-sm font-bold leading-6 text-slate-600 dark:text-slate-300">
             Basic and Pro plans show personal safety work. Company workspaces add owner filters, team assignments, unassigned work visibility, and organization-wide workload planning.
           </p>
         </AppPanel>
@@ -342,7 +342,7 @@ export default function SafetyCalendarPage() {
             <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
               Calendar Controls
             </p>
-            <h2 className="mt-1 text-xl font-black text-slate-900">
+            <h2 className="mt-1 text-xl font-black text-slate-900 dark:text-slate-100">
               {view === "month" ? formatMonthLabel(anchorDate) : formatFullDate(anchorDate)}
             </h2>
           </div>
@@ -433,12 +433,12 @@ export default function SafetyCalendarPage() {
                     }`}
                   >
                     <div className="flex w-full items-start justify-between gap-3">
-                      <span className="block self-start text-xs font-black leading-none text-slate-900">
+                      <span className="block self-start text-xs font-black leading-none text-slate-900 dark:text-slate-100">
                         {day.getDate()}
                       </span>
 
                       {expanded && (
-                        <span className="rounded-full bg-white/80 px-2 py-1 text-[10px] font-black text-slate-600">
+                        <span className="rounded-full bg-white/80 dark:bg-slate-900/75 px-2 py-1 text-[10px] font-black text-slate-600 dark:text-slate-300">
                           Collapse
                         </span>
                       )}
@@ -464,10 +464,10 @@ export default function SafetyCalendarPage() {
                     {expanded && (
                       <div className="mt-4 w-full space-y-2">
                         <div className="flex items-center justify-between gap-3">
-                          <p className="text-sm font-black text-slate-900">
+                          <p className="text-sm font-black text-slate-900 dark:text-slate-100">
                             {formatFullDate(day)}
                           </p>
-                          <span className="rounded-full bg-white/80 px-2 py-1 text-[10px] font-black text-slate-600">
+                          <span className="rounded-full bg-white/80 dark:bg-slate-900/75 px-2 py-1 text-[10px] font-black text-slate-600 dark:text-slate-300">
                             {workSummary.total} item{workSummary.total === 1 ? "" : "s"}
                           </span>
                         </div>
@@ -487,7 +487,7 @@ export default function SafetyCalendarPage() {
                             </div>
                           ))
                         ) : (
-                          <p className="rounded-lg border border-dashed border-slate-300 bg-white/70 px-3 py-2 text-xs font-semibold text-slate-500">
+                          <p className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-900/65 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
                             No safety work is scheduled for this day.
                           </p>
                         )}
@@ -529,7 +529,7 @@ export default function SafetyCalendarPage() {
               const dayEvents = eventsByDate[dateKey] || [];
 
               return (
-                <div key={dateKey} className="rounded-xl border border-slate-200 bg-white px-3 py-3">
+                <div key={dateKey} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
                   <button
                     type="button"
                     onClick={() => selectDate(day)}
@@ -538,7 +538,7 @@ export default function SafetyCalendarPage() {
                     <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                       {WEEKDAY_LABELS[day.getDay()]}
                     </p>
-                    <p className="mt-1 text-lg font-black text-slate-900">
+                    <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
                       {day.getDate()}
                     </p>
                   </button>
@@ -552,7 +552,7 @@ export default function SafetyCalendarPage() {
                         </div>
                       ))
                     ) : (
-                      <p className="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-2 py-2 text-xs font-semibold text-slate-500">
+                      <p className="rounded-lg border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-2 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
                         No work.
                       </p>
                     )}
@@ -592,14 +592,14 @@ export default function SafetyCalendarPage() {
                       )}
                     </div>
 
-                    <div className="rounded-lg bg-white/70 px-3 py-2 text-xs font-black">
+                    <div className="rounded-lg bg-white/70 dark:bg-slate-900/65 px-3 py-2 text-xs font-black">
                       {event.status}
                     </div>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-4 text-sm font-bold text-slate-500">
+              <p className="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-4 py-4 text-sm font-bold text-slate-500 dark:text-slate-400">
                 No safety work is scheduled for this day.
               </p>
             )}
@@ -622,7 +622,7 @@ export default function SafetyCalendarPage() {
                   <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
                     {groupLabel}
                   </p>
-                  <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-black text-slate-600">
+                  <span className="rounded-full bg-slate-100 px-2 py-1 text-[10px] font-black text-slate-600 dark:text-slate-300">
                     {groupEvents.length}
                   </span>
                 </div>
@@ -645,7 +645,7 @@ export default function SafetyCalendarPage() {
                       </button>
                     ))
                   ) : (
-                    <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <p className="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
                       Nothing here.
                     </p>
                   )}

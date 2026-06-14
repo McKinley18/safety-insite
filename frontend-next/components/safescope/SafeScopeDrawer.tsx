@@ -14,19 +14,19 @@ export default function SafeScopeDrawer({
   children,
 }: SafeScopeDrawerProps) {
   return (
-    <details className="mt-3 rounded-2xl border border-slate-200 bg-white px-4 py-3">
+    <details className="mt-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3">
       <summary className="flex cursor-pointer list-none items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-black text-slate-900">{title}</p>
+          <p className="text-sm font-black text-slate-900 dark:text-slate-100">{title}</p>
           {summary && (
-            <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
               {summary}
             </p>
           )}
         </div>
 
         {badge && (
-          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600">
+          <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             {badge}
           </span>
         )}

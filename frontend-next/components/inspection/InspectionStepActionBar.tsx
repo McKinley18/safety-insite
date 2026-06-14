@@ -31,13 +31,13 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 1) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="text-center">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Capture Finding
           </p>
 
-          <p className="mx-auto mt-1 max-w-sm text-xs font-semibold leading-5 text-slate-600">
+          <p className="mx-auto mt-1 max-w-sm text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
             {hasCurrentFindingData
               ? "Ready for SafeScope review."
               : "You can continue now, or add details first for a stronger review."}
@@ -57,13 +57,13 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 2) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               SafeScope Review
             </p>
-            <p className="mt-1 text-sm font-semibold text-slate-600">
+            <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
               {safeScopeResult
                 ? `${safeScopeResult.classification || "Finding reviewed"} · ${safeScopeResult.suggestedStandards?.length || 0} suggested standard(s)`
                 : "Run SafeScope to classify the hazard, assess risk, and suggest standards."}
@@ -95,13 +95,13 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 3) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Review & Validate
             </p>
-            <p className="mt-1 text-sm font-semibold text-slate-600">
+            <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
               {selectedStandards.length} selected standard(s) · {actionCount} action(s) ready.
             </p>
           </div>
@@ -130,13 +130,13 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 4) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Finalize Findings
             </p>
-            <p className="mt-1 text-sm font-semibold text-slate-600">
+            <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
               Save, review, and edit findings before choosing report options.
             </p>
           </div>
@@ -155,13 +155,13 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 5) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Generate Report
             </p>
-            <p className="mt-1 text-sm font-semibold text-slate-600">
+            <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
               Confirm report options and generate the final inspection report.
             </p>
           </div>

@@ -13,8 +13,8 @@ export default function SafeScopeDisclaimer({
       : tone === "dark"
         ? "border-white/15 bg-white/10 text-white"
         : tone === "notice"
-          ? "border-slate-200 bg-white text-slate-700"
-          : "border-slate-200 bg-slate-50 text-slate-700";
+          ? "border-slate-200 bg-white text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+          : "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300";
 
   return (
     <section className={`rounded-xl border px-3 py-2 ${toneClass}`}>

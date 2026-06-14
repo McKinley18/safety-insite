@@ -359,7 +359,7 @@ export default function QuickInspectionPage() {
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+            <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Hazard Category
             </span>
             <AppInput
@@ -367,7 +367,7 @@ export default function QuickInspectionPage() {
               value={hazardCategory}
               onChange={(event) => setHazardCategory(event.target.value)}
               placeholder="Let SafeScope suggest or type one"
-              className="mt-2 bg-white/90 focus:bg-white"
+              className="mt-2 bg-white/90 dark:bg-slate-900/85 focus:bg-white"
             />
             <datalist id="quick-hazard-category-options">
               {hazardCategoryOptions.map((category) => (
@@ -377,32 +377,32 @@ export default function QuickInspectionPage() {
           </label>
 
           <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+            <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Location
             </span>
             <AppInput
               value={location}
               onChange={(event) => setLocation(event.target.value)}
               placeholder="Example: Conveyor 3, north catwalk"
-              className="mt-2 bg-white/90 focus:bg-white"
+              className="mt-2 bg-white/90 dark:bg-slate-900/85 focus:bg-white"
             />
           </label>
         </div>
 
         <label className="mt-4 block">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+          <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Observed Condition
           </span>
           <AppTextarea
             value={description}
             onChange={(event) => setDescription(event.target.value)}
             placeholder="What is wrong and who may be exposed?"
-            className="mt-2 min-h-24 bg-white/90 font-semibold focus:bg-white"
+            className="mt-2 min-h-24 bg-white/90 dark:bg-slate-900/85 font-semibold focus:bg-white"
           />
         </label>
 
-        <div className="mt-4 border-t border-slate-200 pt-4">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+        <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-4">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
             Photo
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
@@ -417,7 +417,7 @@ export default function QuickInspectionPage() {
               />
             </label>
 
-            <label className="cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50">
+            <label className="cursor-pointer rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800">
               Upload
               <input
                 type="file"
@@ -430,7 +430,7 @@ export default function QuickInspectionPage() {
           </div>
 
           {!!photos.length && (
-            <p className="mt-2 text-xs font-black text-slate-500">
+            <p className="mt-2 text-xs font-black text-slate-500 dark:text-slate-400">
               {photos.length} photo(s) attached.
             </p>
           )}
@@ -455,7 +455,7 @@ export default function QuickInspectionPage() {
         />
 
         {safeScopeQuickResult ? (
-          <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm">
+          <div className="mt-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 p-5 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
@@ -475,11 +475,11 @@ export default function QuickInspectionPage() {
               </span>
             </div>
 
-            <div className="mt-3 rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
+            <div className="mt-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 shadow-sm">
               <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                 Suggested Immediate Action
               </p>
-              <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
+              <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
                 {safeScopeQuickResult.generatedActions?.[0]?.title}
               </p>
             </div>
@@ -499,7 +499,7 @@ export default function QuickInspectionPage() {
             </div>
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold text-slate-500 dark:text-slate-400">
             Run SafeScope Quick Review after adding a photo, category, or observed
             condition.
           </p>
@@ -518,13 +518,13 @@ export default function QuickInspectionPage() {
             value={actionTitle}
             onChange={(event) => setActionTitle(event.target.value)}
             placeholder="Action to take"
-            className="bg-slate-50 focus:bg-white"
+            className="bg-slate-50 dark:bg-slate-950 focus:bg-white"
           />
 
           <AppSelect
             value={priority}
             onChange={(event) => setPriority(event.target.value)}
-            className="bg-slate-50 focus:bg-white"
+            className="bg-slate-50 dark:bg-slate-950 focus:bg-white"
           >
             <option>Low</option>
             <option>Medium</option>
@@ -536,12 +536,12 @@ export default function QuickInspectionPage() {
             type="date"
             value={due}
             onChange={(event) => setDue(event.target.value)}
-            className="bg-slate-50 focus:bg-white"
+            className="bg-slate-50 dark:bg-slate-950 focus:bg-white"
           />
         </div>
       </AppPanel>
 
-      <section className="rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:sticky lg:bottom-4 lg:z-30">
+      <section className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:sticky lg:bottom-4 lg:z-30">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <AppButton
             type="button"
@@ -563,7 +563,7 @@ export default function QuickInspectionPage() {
           </AppLinkButton>
 
           {status && (
-            <p className="text-sm font-black text-slate-600">{status}</p>
+            <p className="text-sm font-black text-slate-600 dark:text-slate-300">{status}</p>
           )}
         </div>
       </section>

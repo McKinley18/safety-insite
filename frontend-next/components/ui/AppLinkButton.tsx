@@ -16,7 +16,7 @@ const variantClasses: Record<AppLinkButtonVariant, string> = {
   secondary: "sentinel-secondary-button",
   accent: "bg-orange-500 text-white shadow-sm hover:bg-orange-600",
   danger: "border border-red-100 bg-red-50 text-red-700 hover:bg-red-100",
-  ghost: "border border-slate-200 bg-white/85 text-slate-700 shadow-sm hover:border-blue-200 hover:bg-blue-50/60",
+  ghost: "border border-slate-200 bg-white/85 text-slate-700 shadow-sm hover:border-blue-200 hover:bg-blue-50/60 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-200 dark:hover:bg-slate-800",
 };
 
 const sizeClasses: Record<AppLinkButtonSize, string> = {

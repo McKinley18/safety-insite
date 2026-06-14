@@ -89,7 +89,7 @@ export default function CurrentHazardCard({
       <button
         type="button"
         onClick={() => setHidden(false)}
-        className="sentinel-keyboard-hide fixed bottom-28 left-1/2 z-40 -translate-x-1/2 rounded-full border border-slate-200 bg-white/95 px-4 py-2 text-xs font-black text-[#102A43] shadow-lg backdrop-blur transition hover:bg-blue-50 lg:bottom-16"
+        className="sentinel-keyboard-hide fixed bottom-28 left-1/2 z-40 -translate-x-1/2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 px-4 py-2 text-xs font-black text-[#102A43] shadow-lg backdrop-blur transition hover:bg-blue-50 lg:bottom-16"
       >
         Show Finding Builder
       </button>
@@ -146,7 +146,7 @@ export default function CurrentHazardCard({
         ? "bg-orange-50 text-orange-700 ring-orange-100"
         : String(riskLabel).toLowerCase() === "moderate"
           ? "bg-amber-50 text-amber-700 ring-amber-100"
-          : "bg-slate-50 text-slate-700 ring-slate-100";
+          : "bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 ring-slate-100 dark:ring-slate-800";
 
   const primaryLine = location || "Location not added";
   const secondaryLine = compactText(
@@ -161,7 +161,7 @@ export default function CurrentHazardCard({
     >
       <section
         ref={cardRef}
-        className="pointer-events-auto mx-auto w-full max-w-3xl rounded-t-2xl border border-slate-200 bg-white/95 shadow-[0_-10px_24px_rgba(15,23,42,0.1)] backdrop-blur lg:rounded-2xl"
+        className="pointer-events-auto mx-auto w-full max-w-3xl rounded-t-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 shadow-[0_-10px_24px_rgba(15,23,42,0.1)] backdrop-blur lg:rounded-2xl"
       >
         <button
           type="button"
@@ -190,11 +190,11 @@ export default function CurrentHazardCard({
                 </span>
               </div>
 
-              <h2 className="mt-0.5 truncate text-[13px] font-black leading-4 text-slate-900">
+              <h2 className="mt-0.5 truncate text-[13px] font-black leading-4 text-slate-900 dark:text-slate-100">
                 {category}
               </h2>
 
-              <p className="truncate text-[10px] font-bold leading-4 text-slate-500">
+              <p className="truncate text-[10px] font-bold leading-4 text-slate-500 dark:text-slate-400">
                 {primaryLine} · {categorySource}
               </p>
 
@@ -209,14 +209,14 @@ export default function CurrentHazardCard({
                   {confidenceLabel} Confidence
                 </span>
 
-                <span className="max-w-[150px] truncate rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black tracking-wide text-slate-700 ring-1 ring-slate-200">
+                <span className="max-w-[150px] truncate rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black tracking-wide text-slate-700 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-800">
                   {topStandard}
                 </span>
               </div>
             </div>
 
             <div className="shrink-0 text-right">
-              <p className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-sm font-black leading-none text-slate-600">
+              <p className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-sm font-black leading-none text-slate-600 dark:text-slate-300">
                 {expanded ? "⌄" : "⌃"}
               </p>
 
@@ -236,7 +236,7 @@ export default function CurrentHazardCard({
                     setHidden(true);
                   }
                 }}
-                className="mt-1 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500"
+                className="mt-1 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400"
               >
                 Hide
               </span>
@@ -244,17 +244,17 @@ export default function CurrentHazardCard({
           </div>
 
           {expanded && (
-            <div className="mt-2 border-t border-slate-200 pt-2">
-              <p className="line-clamp-2 text-xs font-semibold leading-5 text-slate-700">
+            <div className="mt-2 border-t border-slate-200 dark:border-slate-800 pt-2">
+              <p className="line-clamp-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
                 {secondaryLine}
               </p>
 
-              <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-600">
-                <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+              <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-600 dark:text-slate-300">
+                <div className="rounded-lg bg-slate-50 dark:bg-slate-950 px-2 py-1.5">
                   <p className="text-[8px] uppercase tracking-wide text-slate-400">
                     Photos
                   </p>
-                  <p className="text-slate-900">{photos.length}</p>
+                  <p className="text-slate-900 dark:text-slate-100">{photos.length}</p>
                 </div>
 
                 <div className={`rounded-lg px-2 py-1.5 ring-1 ${riskTone}`}>
@@ -264,22 +264,22 @@ export default function CurrentHazardCard({
                   <p className="truncate">{riskLabel}</p>
                 </div>
 
-                <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+                <div className="rounded-lg bg-slate-50 dark:bg-slate-950 px-2 py-1.5">
                   <p className="text-[8px] uppercase tracking-wide text-slate-400">
                     Standard
                   </p>
-                  <p className="truncate text-slate-900">
+                  <p className="truncate text-slate-900 dark:text-slate-100">
                     {topStandard !== "Pending"
                       ? topStandard
                       : `${selectedCount}/${suggestedStandardsCount}`}
                   </p>
                 </div>
 
-                <div className="rounded-lg bg-slate-50 px-2 py-1.5">
+                <div className="rounded-lg bg-slate-50 dark:bg-slate-950 px-2 py-1.5">
                   <p className="text-[8px] uppercase tracking-wide text-slate-400">
                     Actions
                   </p>
-                  <p className="text-slate-900">{actionCount}</p>
+                  <p className="text-slate-900 dark:text-slate-100">{actionCount}</p>
                 </div>
               </div>
             </div>

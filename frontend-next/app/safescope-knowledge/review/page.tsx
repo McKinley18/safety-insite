@@ -269,11 +269,11 @@ export default function ReviewerCandidateConsole() {
         </p>
       </HeroPanel>
 
-      <AppPanel padding="sm" className="border-slate-200 bg-white px-3 py-3">
+      <AppPanel padding="sm" className="border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 px-3 py-3">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2">
             <div className={`h-2 w-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
-            <span className="text-[10px] font-black uppercase text-slate-500">
+            <span className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
               {isBackendConnected ? 'Live Connection' : 'Demo Fallback'}
             </span>
           </div>
@@ -281,7 +281,7 @@ export default function ReviewerCandidateConsole() {
           <div className="h-4 w-px bg-slate-200" />
 
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase text-slate-500">Role:</span>
+            <span className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">Role:</span>
             <select
               value={currentUserRole}
               onChange={(e) => setCurrentUserRole(e.target.value as SafeScopeRole)}
@@ -299,7 +299,7 @@ export default function ReviewerCandidateConsole() {
           <div className="h-4 w-px bg-slate-200" />
 
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase text-slate-500">Plan:</span>
+            <span className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">Plan:</span>
             <select
               value={userPlanTier}
               onChange={(e) => setUserPlanTier(e.target.value as any)}
@@ -356,9 +356,9 @@ export default function ReviewerCandidateConsole() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 space-y-4">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
-                <h2 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Candidates</h2>
+                <h2 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Candidates</h2>
                 <select 
-                    className="text-sm font-bold border border-slate-300 bg-white rounded-xl px-4 min-h-[48px] outline-none focus:border-[#1D72B8] w-full sm:w-auto"
+                    className="text-sm font-bold border border-slate-300 bg-white dark:bg-slate-900 rounded-xl px-4 min-h-[48px] outline-none focus:border-[#1D72B8] w-full sm:w-auto"
                     value={filterStatus}
                     onChange={(e) => setFilterStatus(e.target.value)}
                 >
@@ -386,9 +386,9 @@ export default function ReviewerCandidateConsole() {
                         </StatusBadge>
                         <span className="text-[10px] text-slate-400 font-mono">{c.candidateId}</span>
                         </div>
-                        <p className="text-sm font-bold text-slate-900 mb-1 line-clamp-2">{c.summary}</p>
+                        <p className="text-sm font-bold text-slate-900 dark:text-slate-100 mb-1 line-clamp-2">{c.summary}</p>
                         <div className="flex gap-2 mt-2">
-                        <span className="text-[10px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded font-medium">{c.candidateType.replace(/_/g, ' ')}</span>
+                        <span className="text-[10px] bg-slate-200 text-slate-700 dark:text-slate-300 px-1.5 py-0.5 rounded font-medium">{c.candidateType.replace(/_/g, ' ')}</span>
                         </div>
                     </SentinelCard>
                     </div>
@@ -401,8 +401,8 @@ export default function ReviewerCandidateConsole() {
                 <SentinelCard className="p-8">
                     <div className="flex justify-between items-center mb-6">
                     <div>
-                        <h3 className="text-xl font-black text-slate-900">{selectedCandidate.summary}</h3>
-                        <p className="text-sm text-slate-500">Source System: {selectedCandidate.sourceSystem}</p>
+                        <h3 className="text-xl font-black text-slate-900 dark:text-slate-100">{selectedCandidate.summary}</h3>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">Source System: {selectedCandidate.sourceSystem}</p>
                     </div>
                     <div className="text-right">
                         <StatusBadge tone={

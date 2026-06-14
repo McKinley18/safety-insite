@@ -96,7 +96,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [profileOpen, setProfileOpen] = useState(false);
   const [hasAuthSession, setHasAuthSession] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [planCode, setPlanCode] = useState<string>("basic");
   const isOnline = useNetworkStatus();
 
@@ -220,9 +220,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("sentinel_dark_mode");
-    if (saved === "false") {
-      setDarkMode(false);
-    }
+    setDarkMode(saved === "true");
   }, []);
 
   useEffect(() => {

@@ -16,7 +16,7 @@ export default function SentinelCard({
       className={[
         dark
           ? "rounded-2xl border border-white/10 bg-white/[0.04] shadow-xl shadow-black/20"
-          : "rounded-2xl border border-slate-200 bg-white shadow-sm",
+          : "rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100",
         interactive ? "transition hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]" : "",
         className,
       ].join(" ")}

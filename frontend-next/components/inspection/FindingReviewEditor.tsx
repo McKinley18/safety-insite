@@ -92,18 +92,18 @@ export default function FindingReviewEditor({
 
   return (
     <section className="space-y-4">
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Standards Confirmation
         </p>
 
-        <h3 className="mt-1 text-base font-black text-slate-900">
+        <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
           {selectedStandards.length
             ? `${selectedStandards.length} standard(s) selected in Step 2`
             : "No standards selected yet"}
         </h3>
 
-        <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+        <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
           Standards are selected in the SafeScope Review step. This step is for final risk and corrective action confirmation.
         </p>
 
@@ -127,7 +127,7 @@ export default function FindingReviewEditor({
                     <p className="text-sm font-black text-[#1D72B8]">
                       {formatStandardDisplay(standard)}
                     </p>
-                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                       {getStandardSummary(standard) || "No summary available."}
                     </p>
                   </div>
@@ -154,7 +154,7 @@ export default function FindingReviewEditor({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Risk
         </p>
