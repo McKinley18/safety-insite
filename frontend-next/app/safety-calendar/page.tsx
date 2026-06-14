@@ -293,12 +293,12 @@ export default function SafetyCalendarPage() {
   }
 
   return (
-    <section className="sentinel-page-shell space-y-4">
+    <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Safety Calendar
         </p>
-        <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
+        <h1 className="mx-auto mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] sm:text-4xl">
           Organize inspections, actions, follow-ups, and review work.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">

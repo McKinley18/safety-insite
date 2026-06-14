@@ -15,8 +15,8 @@ export function HeroPanel({
 }: HeroPanelProps) {
   const toneClass =
     tone === "light"
-      ? "sentinel-card-strong text-slate-950"
-      : "relative isolate overflow-hidden bg-[#0B1320] text-white shadow-none before:absolute before:inset-0 before:-z-10 before:bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.20),transparent_32rem),linear-gradient(135deg,rgba(15,23,42,0.98),rgba(30,41,59,0.94))]";
+      ? "border border-slate-200/80 bg-white text-slate-950"
+      : "relative isolate overflow-hidden border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_58%,#0B1320_100%)] text-white";
 
   return (
     <section

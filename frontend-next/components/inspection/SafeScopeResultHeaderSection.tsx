@@ -116,7 +116,7 @@ export default function SafeScopeResultHeaderSection({
       {safeScopeResult.error && (
         <div className="mb-4 rounded-xl bg-red-50 px-3 py-3 ring-1 ring-red-200">
           <p className="text-sm font-black text-red-800">
-            SafeScope full intelligence was unavailable.
+            ReviewCore full intelligence was unavailable.
           </p>
           <p className="mt-1 text-xs font-semibold leading-5 text-red-700">
             {safeScopeResult.message || "Review backend status before relying on this result."}
@@ -161,7 +161,7 @@ export default function SafeScopeResultHeaderSection({
                 Field Output
               </p>
               <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
-                {fieldOutput.primaryMessage || "SafeScope field guidance ready"}
+                {fieldOutput.primaryMessage || "ReviewCore field guidance ready"}
               </p>
             </div>
             {fieldDisposition && (

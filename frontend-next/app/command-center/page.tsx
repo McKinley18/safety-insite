@@ -504,7 +504,7 @@ export default function DashboardPage() {
 
   return (
     <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] text-white shadow-none shadow-slate-950/10 ring-1 ring-white/10">
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] text-white shadow-none ">
         <div className="relative isolate px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9">
           <div className="pointer-events-none absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-[#1D72B8]/25 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 left-10 -z-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
@@ -515,7 +515,7 @@ export default function DashboardPage() {
                 Sentinel Safety Home
               </p>
 
-              <h1 className="mx-auto mt-4 max-w-3xl text-center text-4xl font-black leading-[0.96] tracking-[-0.06em] text-white sm:text-5xl lg:mx-0 lg:text-left">
+              <h1 className="mx-auto mt-4 max-w-3xl text-center text-3xl font-black leading-tight tracking-[-0.045em] text-white sm:text-4xl lg:mx-0 lg:text-left">
                 Home
               </h1>
 
@@ -554,7 +554,7 @@ export default function DashboardPage() {
       </div>
 
       {canAssignWork && (
-        <div className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+        <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="sentinel-eyebrow">Company Command</p>
@@ -697,7 +697,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <SectionHeader
             eyebrow="Week at a Glance"
@@ -756,7 +756,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <section className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
         <SectionHeader
           eyebrow="Scheduled Work"
           title="Tasks and upcoming work"
@@ -859,7 +859,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <section className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
         <SectionHeader
           eyebrow="Operational Focus"
           title="Today’s priority and recent activity"
@@ -971,7 +971,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <section className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <SectionHeader
             eyebrow="Priorities"

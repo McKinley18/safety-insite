@@ -318,7 +318,7 @@ export default function AnalyticsPage() {
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Insights
             </p>
-            <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
+            <h1 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] sm:text-4xl">
               Safety intelligence trends.
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
@@ -420,152 +420,99 @@ export default function AnalyticsPage() {
       )}
 
       {canViewProInsights && (
-        <>
-          <section className="sentinel-card p-4">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8] dark:text-sky-300">
-                  Statistical Indicators
-                </p>
-                <h2 className="mt-1 text-base font-black tracking-[-0.03em] text-slate-950">
-                  Program math summary
-                </h2>
-              </div>
+        <section className="border border-slate-200/80 bg-white px-4 py-4">
+          <div className="border-b border-slate-200/80 pb-3">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
+              Pro Insights
+            </p>
+            <h2 className="mt-1 text-base font-black tracking-[-0.03em] text-slate-950">
+              Executive safety brief
+            </h2>
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+              A cleaner summary of program health, risk, corrective actions, and recurring patterns.
+            </p>
+          </div>
 
-              <span className="w-fit rounded-full bg-slate-100 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800">
-                Pro analytics
+          <div className="grid border-b border-slate-200/80 py-3 sm:grid-cols-4 sm:divide-x sm:divide-slate-200/80">
+            {[
+              [String(analytics.totalReports), "Reports"],
+              [String(analytics.totalFindings), "Findings"],
+              [String(analytics.openActions), "Open Actions"],
+              [analytics.closureRate === null ? "—" : `${analytics.closureRate}%`, "Closure"],
+            ].map(([value, label]) => (
+              <div key={label} className="border-b border-slate-200/80 py-3 last:border-b-0 sm:border-b-0 sm:px-3">
+                <p className="text-2xl font-black tracking-[-0.045em] text-slate-950">
+                  {value}
+                </p>
+                <p className="mt-0.5 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="border-b border-slate-200/80 py-4">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">
+                  Attention Needed
+                </p>
+                <h3 className="mt-1 text-sm font-black text-slate-950">
+                  Priority review list
+                </h3>
+              </div>
+              <span className="text-lg font-black text-orange-700">
+                {programHealthNotes.length || 0}
               </span>
             </div>
 
-            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                [
-                  analytics.findingsPerInspection === null
-                    ? "—"
-                    : String(analytics.findingsPerInspection),
-                  "Findings / Inspection",
-                ],
-                [
-                  analytics.criticalRate === null ? "—" : `${analytics.criticalRate}%`,
-                  "Critical Rate",
-                ],
-                [
-                  analytics.highRiskRate === null ? "—" : `${analytics.highRiskRate}%`,
-                  "High-Risk Rate",
-                ],
-                [
-                  analytics.actionCoverage === null
-                    ? "—"
-                    : `${analytics.actionCoverage}%`,
-                  "Action Conversion",
-                ],
-                [
-                  analytics.closureRate === null ? "—" : `${analytics.closureRate}%`,
-                  "Closure Rate",
-                ],
-                [
-                  analytics.overdueRate === null ? "—" : `${analytics.overdueRate}%`,
-                  "Overdue Rate",
-                ],
-                [
-                  String(analytics.riskLoad),
-                  "Risk Load",
-                ],
-
-              ].map(([value, label]) => (
-                <div
-                  key={label}
-                  className="rounded-xl border border-slate-200/80 bg-white/85 px-3 py-2.5 shadow-none"
-                >
-                  <p className="text-xl font-black tracking-[-0.055em] text-slate-950">
-                    {value}
+            <div className="mt-3 divide-y divide-slate-200/80 border-y border-slate-200/80">
+              {programHealthNotes.length ? (
+                programHealthNotes.slice(0, 3).map((note) => (
+                  <p key={note} className="py-2.5 text-xs font-bold leading-5 text-orange-800">
+                    {note}
                   </p>
-                  <p className="mt-0.5 text-[9px] font-black uppercase tracking-[0.12em] text-[#1D72B8] dark:text-sky-300">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-2 grid gap-2 lg:grid-cols-2">
-              <div className="rounded-xl border border-orange-100 bg-orange-50/70 px-3 py-2.5 shadow-none dark:border-orange-900/50 dark:bg-orange-950/25">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-[9px] font-black uppercase tracking-[0.12em] text-orange-700 dark:text-orange-300">
-                      Top Hazard
-                    </p>
-                    <p className="truncate text-xs font-black text-slate-950">
-                      {analytics.allHazardThemes[0]?.[0] || "No hazard theme yet"}
-                    </p>
-                  </div>
-                  <p className="shrink-0 text-lg font-black tracking-[-0.055em] text-orange-700 dark:text-orange-200">
-                    {analytics.topHazardConcentration === null
-                      ? "—"
-                      : `${analytics.topHazardConcentration}%`}
-                  </p>
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-sky-100 bg-sky-50/70 px-3 py-2.5 shadow-none dark:border-sky-900/50 dark:bg-sky-950/25">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-[9px] font-black uppercase tracking-[0.12em] text-sky-700 dark:text-sky-300">
-                      Top Exposure Area
-                    </p>
-                    <p className="truncate text-xs font-black text-slate-950">
-                      {analytics.allLocations[0]?.[0] || "No location trend yet"}
-                    </p>
-                  </div>
-                  <p className="shrink-0 text-lg font-black tracking-[-0.055em] text-sky-700 dark:text-sky-200">
-                    {analytics.topLocationConcentration === null
-                      ? "—"
-                      : `${analytics.topLocationConcentration}%`}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="sentinel-phone-stack sm:grid sm:gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="sentinel-card p-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300">
-                  Priority Signals
+                ))
+              ) : (
+                <p className="py-2.5 text-xs font-bold leading-5 text-emerald-700">
+                  No major concern signals detected.
                 </p>
-                <span className="rounded-full bg-orange-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:bg-orange-950/40 dark:text-orange-200">
-                  {programHealthNotes.length || 0}
-                </span>
+              )}
+
+              <div className="py-2.5">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                  Top Hazard Theme
+                </p>
+                <p className="mt-0.5 text-xs font-black text-slate-950">
+                  {analytics.allHazardThemes[0]?.[0] || "No hazard theme yet"}
+                  {analytics.topHazardConcentration !== null
+                    ? ` · ${analytics.topHazardConcentration}% concentration`
+                    : ""}
+                </p>
               </div>
 
-              <div className="mt-2 space-y-1.5">
-                {programHealthNotes.length ? (
-                  programHealthNotes.slice(0, 2).map((note) => (
-                    <div
-                      key={note}
-                      className="rounded-xl border border-orange-100 bg-orange-50/80 px-3 py-2 text-[11px] font-black leading-4 text-orange-800 shadow-none dark:border-orange-900/50 dark:bg-orange-950/30 dark:text-orange-200"
-                    >
-                      {note}
-                    </div>
-                  ))
-                ) : (
-                  <p className="rounded-xl border border-emerald-100 bg-emerald-50/80 px-3 py-2 text-[11px] font-black leading-4 text-emerald-700 shadow-none dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-200">
-                    No major concern signals detected.
-                  </p>
-                )}
+              <div className="py-2.5">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                  Top Exposure Area
+                </p>
+                <p className="mt-0.5 text-xs font-black text-slate-950">
+                  {analytics.allLocations[0]?.[0] || "No location trend yet"}
+                  {analytics.topLocationConcentration !== null
+                    ? ` · ${analytics.topLocationConcentration}% concentration`
+                    : ""}
+                </p>
               </div>
             </div>
+          </div>
 
-            <div className="sentinel-card p-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8] dark:text-sky-300">
-                  Risk Distribution
-                </p>
-                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:bg-slate-800">
-                  Avg {analytics.averageRiskScore === null ? "—" : analytics.averageRiskScore}
-                </span>
-              </div>
+          <div className="divide-y divide-slate-200/80">
+            <details className="group py-3" open>
+              <summary className="cursor-pointer list-none text-sm font-black text-slate-950">
+                Risk Distribution
+                <span className="float-right text-xs font-black text-slate-400 group-open:rotate-180">⌄</span>
+              </summary>
 
-              <div className="mt-2 grid gap-1.5">
+              <div className="mt-3 divide-y divide-slate-200/80 border-y border-slate-200/80">
                 {[
                   ["Critical", analytics.riskBands.Critical, "bg-red-500"],
                   ["High", analytics.riskBands.High, "bg-orange-500"],
@@ -579,88 +526,55 @@ export default function AnalyticsPage() {
                       : 0;
 
                   return (
-                    <div
-                      key={label}
-                      className="grid grid-cols-[5rem_1fr_2rem] items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-1.5"
-                    >
-                      <p className="text-[11px] font-black text-slate-900">
-                        {label}
-                      </p>
-                      <div className="h-1.5 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800">
-                        <div
-                          className={`h-full rounded-full ${barClass}`}
-                          style={{ width: `${width}%` }}
-                        />
+                    <div key={label} className="grid grid-cols-[5rem_1fr_2rem] items-center gap-2 py-2">
+                      <p className="text-[11px] font-black text-slate-900">{label}</p>
+                      <div className="h-1.5 overflow-hidden bg-slate-200">
+                        <div className={`h-full ${barClass}`} style={{ width: `${width}%` }} />
                       </div>
-                      <p className="text-right text-[11px] font-black text-slate-500">
-                        {value}
-                      </p>
+                      <p className="text-right text-[11px] font-black text-slate-500">{value}</p>
                     </div>
                   );
                 })}
               </div>
-            </div>
-          </section>
+            </details>
 
-          <section className="sentinel-card p-4">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-700 dark:text-emerald-300">
+            <details className="group py-3">
+              <summary className="cursor-pointer list-none text-sm font-black text-slate-950">
                 Corrective Actions
-              </p>
-              <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-200">
-                Closure {analytics.closureRate === null ? "—" : `${analytics.closureRate}%`}
-              </span>
-            </div>
+                <span className="float-right text-xs font-black text-slate-400 group-open:rotate-180">⌄</span>
+              </summary>
 
-            <div className="mt-2 grid grid-cols-4 gap-1.5">
-              {[
-                [String(analytics.totalActions), "Total"],
-                [String(analytics.openActions), "Open"],
-                [String(analytics.completedActions), "Done"],
-                [String(analytics.overdueActions), "Late"],
-              ].map(([value, label]) => (
-                <div
-                  key={label}
-                  className="rounded-xl border border-emerald-100 bg-emerald-50/60 px-2 py-2 text-center shadow-none dark:border-emerald-900/50 dark:bg-emerald-950/25"
-                >
-                  <p className="text-lg font-black tracking-[-0.05em] text-slate-950">
-                    {value}
-                  </p>
-                  <p className="mt-0.5 text-[8px] font-black uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-2 grid gap-1.5 sm:grid-cols-2">
-              <InsightBar
-                label="Closure"
-                value={analytics.closureRate || 0}
-                maxValue={100}
-              />
-              <InsightBar
-                label="Overdue"
-                value={analytics.overdueRate || 0}
-                maxValue={100}
-              />
-            </div>
-          </section>
-
-          <section className="sentinel-phone-stack sm:grid sm:gap-4 lg:grid-cols-2">
-            <div className="sentinel-card p-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-orange-700 dark:text-orange-300">
-                  Recurring Hazards
-                </p>
-                <span className="rounded-full bg-orange-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-orange-700 dark:bg-orange-950/40 dark:text-orange-200">
-                  {analytics.repeatHazardThemes.length}
-                </span>
+              <div className="mt-3 grid grid-cols-4 divide-x divide-slate-200/80 border-y border-slate-200/80">
+                {[
+                  [String(analytics.totalActions), "Total"],
+                  [String(analytics.openActions), "Open"],
+                  [String(analytics.completedActions), "Done"],
+                  [String(analytics.overdueActions), "Late"],
+                ].map(([value, label]) => (
+                  <div key={label} className="px-2 py-3 text-center">
+                    <p className="text-lg font-black tracking-[-0.045em] text-slate-950">{value}</p>
+                    <p className="mt-0.5 text-[9px] font-black uppercase tracking-wide text-emerald-700">
+                      {label}
+                    </p>
+                  </div>
+                ))}
               </div>
 
-              <div className="mt-2 grid gap-1.5">
+              <div className="mt-3 divide-y divide-slate-200/80 border-y border-slate-200/80">
+                <InsightBar label="Closure" value={analytics.closureRate || 0} maxValue={100} />
+                <InsightBar label="Overdue" value={analytics.overdueRate || 0} maxValue={100} />
+              </div>
+            </details>
+
+            <details className="group py-3">
+              <summary className="cursor-pointer list-none text-sm font-black text-slate-950">
+                Recurring Hazards
+                <span className="float-right text-xs font-black text-slate-400 group-open:rotate-180">⌄</span>
+              </summary>
+
+              <div className="mt-3 divide-y divide-slate-200/80 border-y border-slate-200/80">
                 {analytics.allHazardThemes.length ? (
-                  analytics.allHazardThemes.slice(0, 3).map(([label, value]) => (
+                  analytics.allHazardThemes.slice(0, 5).map(([label, value]) => (
                     <InsightBar
                       key={label}
                       label={label}
@@ -669,26 +583,22 @@ export default function AnalyticsPage() {
                     />
                   ))
                 ) : (
-                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50/40 px-3 py-2 text-xs font-semibold text-slate-500">
+                  <p className="py-3 text-xs font-semibold text-slate-500">
                     No hazard themes available yet.
                   </p>
                 )}
               </div>
-            </div>
+            </details>
 
-            <div className="sentinel-card p-4">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-sky-700 dark:text-sky-300">
-                  Recurring Locations
-                </p>
-                <span className="rounded-full bg-sky-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-sky-700 dark:bg-sky-950/40 dark:text-sky-200">
-                  {analytics.repeatLocations.length}
-                </span>
-              </div>
+            <details className="group py-3">
+              <summary className="cursor-pointer list-none text-sm font-black text-slate-950">
+                Recurring Locations
+                <span className="float-right text-xs font-black text-slate-400 group-open:rotate-180">⌄</span>
+              </summary>
 
-              <div className="mt-2 grid gap-1.5">
+              <div className="mt-3 divide-y divide-slate-200/80 border-y border-slate-200/80">
                 {analytics.allLocations.length ? (
-                  analytics.allLocations.slice(0, 3).map(([label, value]) => (
+                  analytics.allLocations.slice(0, 5).map(([label, value]) => (
                     <InsightBar
                       key={label}
                       label={label}
@@ -697,14 +607,14 @@ export default function AnalyticsPage() {
                     />
                   ))
                 ) : (
-                  <p className="rounded-xl border border-dashed border-slate-300 bg-slate-50/40 px-3 py-2 text-xs font-semibold text-slate-500">
+                  <p className="py-3 text-xs font-semibold text-slate-500">
                     No location trends available yet.
                   </p>
                 )}
               </div>
-            </div>
-          </section>
-        </>
+            </details>
+          </div>
+        </section>
       )}
     </section>
   );

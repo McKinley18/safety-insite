@@ -37,7 +37,7 @@ export default function SafeScopePage() {
         <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-[#1D72B8]/10 blur-3xl" />
 
         <div className="relative border-b border-slate-200/80 pb-6 sm:pb-8">
-          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] p-5 text-white shadow-none shadow-slate-950/10 ring-1 ring-white/10 sm:p-7 lg:p-8">
+          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] p-5 text-white shadow-none  sm:p-7 lg:p-8">
             <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#1D72B8]/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-20 left-8 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
 

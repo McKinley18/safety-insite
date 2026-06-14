@@ -36,7 +36,7 @@ const outcomes = [
 export default function HomePage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
-      <section className="overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] text-white shadow-xl shadow-slate-950/10 ring-1 ring-white/10">
+      <section className="overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] text-white shadow-none">
         <div className="relative p-6 sm:p-9 lg:p-12">
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#1D72B8]/25 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-28 left-10 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
@@ -74,7 +74,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="rounded-[26px] border border-white/15 bg-white/10 p-5 backdrop-blur-xl sm:p-6">
+            <div className="rounded-[26px] border border-white/15 bg-white/10 p-5  sm:p-6">
               <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-100">
                 ReviewCore
               </p>
@@ -104,7 +104,7 @@ export default function HomePage() {
         {workflow.map((item, index) => (
           <div
             key={item.title}
-            className="rounded-[24px] border border-white/70 bg-white/82 p-5 shadow-sm ring-1 ring-slate-200/70 backdrop-blur-xl"
+            className="rounded-[24px] border border-white/70 bg-white p-5 shadow-sm  "
           >
             <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#1D72B8] text-sm font-black text-white">
               {index + 1}
@@ -120,7 +120,7 @@ export default function HomePage() {
       </section>
 
       <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-        <div className="rounded-[28px] border border-slate-200/80 bg-white/78 p-6 shadow-sm ring-1 ring-white/70 backdrop-blur-xl sm:p-8">
+        <div className="rounded-[28px] border border-slate-200/80 bg-white p-6 shadow-sm   sm:p-8">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
             Platform capabilities
           </p>
@@ -136,7 +136,7 @@ export default function HomePage() {
           {capabilities.map((item) => (
             <div
               key={item}
-              className="rounded-2xl border border-slate-200/80 bg-white/82 px-4 py-4 text-sm font-black text-slate-800 shadow-sm ring-1 ring-white/70 backdrop-blur-xl"
+              className="rounded-2xl border border-slate-200/80 bg-white px-4 py-4 text-sm font-black text-slate-800 shadow-sm  "
             >
               {item}
             </div>
@@ -144,7 +144,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mt-8 rounded-[28px] border border-slate-200/80 bg-white/78 p-6 shadow-sm ring-1 ring-white/70 backdrop-blur-xl sm:p-8">
+      <section className="mt-8 rounded-[28px] border border-slate-200/80 bg-white p-6 shadow-sm   sm:p-8">
         <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
           Why it matters
         </p>

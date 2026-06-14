@@ -46,7 +46,7 @@ export default function SafeScopeControlsSection({
         ? "OSHA General Industry"
         : agencyMode === "osha_construction"
           ? "OSHA Construction"
-          : "Company default / SafeScope";
+          : "Company default / ReviewCore";
 
   const riskMatrixLabel =
     riskProfileId === "simple_4x4"
@@ -75,7 +75,7 @@ export default function SafeScopeControlsSection({
           type="button"
           onClick={() => setSafeScopeHelpOpen((open: boolean) => !open)}
           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 text-xs font-black text-white"
-          aria-label="Explain SafeScope decision-support mode"
+          aria-label="Explain ReviewCore decision-support mode"
         >
           ?
         </button>

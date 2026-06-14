@@ -151,7 +151,7 @@ export default function InspectionsPage() {
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Inspections
             </p>
-            <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
+            <h1 className="mx-auto mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] sm:text-4xl">
               Start field work.
             </h1>
             <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">

@@ -108,7 +108,7 @@ export default function SafeScopeEquipmentReasoningSection({
           </h3>
           <p className="mt-1 text-sm font-semibold leading-5 text-slate-600 dark:text-slate-300">
             {summary?.primaryMechanismOrArchetype ||
-              "SafeScope needs more equipment, component, or task detail."}
+              "ReviewCore needs more equipment, component, or task detail."}
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function SafeScopeEquipmentReasoningSection({
 
       <div className="mt-3 grid gap-2 md:grid-cols-2">
         <DetailList
-          title="Why SafeScope ranked it this way"
+          title="Why ReviewCore ranked it this way"
           items={asList(summary?.rankingReasons)}
           limit={4}
         />
