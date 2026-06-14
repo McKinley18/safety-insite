@@ -313,6 +313,66 @@ export default function ReviewerCandidateConsole() {
         </div>
       </AppPanel>
 
+
+      <AppPanel padding="sm" className="border-blue-200 bg-blue-50 px-3 py-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
+              Governed Approval Queue
+            </p>
+            <p className="mt-1 text-sm font-black text-slate-900">
+              These review actions are simulated local UI state until backend persistence is wired.
+            </p>
+            <p className="mt-1 text-xs font-bold leading-5 text-slate-600">
+              Advisory only · Does not declare violations · Does not create citations · Requires qualified review · Unapproved records do not affect active retrieval.
+            </p>
+          </div>
+
+          <div className="grid min-w-[240px] gap-2 text-[10px] font-black uppercase text-slate-700 sm:grid-cols-2">
+            <span className="rounded-lg bg-white px-2 py-1">Draft: not eligible</span>
+            <span className="rounded-lg bg-white px-2 py-1">Needs Review: blocked</span>
+            <span className="rounded-lg bg-white px-2 py-1">Approved: eligible</span>
+            <span className="rounded-lg bg-white px-2 py-1">Superseded: excluded</span>
+          </div>
+        </div>
+
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full min-w-[720px] border-collapse text-left text-xs">
+            <thead>
+              <tr className="border-b border-blue-200 text-[10px] font-black uppercase tracking-wide text-slate-500">
+                <th className="py-2 pr-3">Title</th>
+                <th className="py-2 pr-3">Authority tier</th>
+                <th className="py-2 pr-3">Status</th>
+                <th className="py-2 pr-3">Domain tags</th>
+                <th className="py-2 pr-3">Approval blockers</th>
+                <th className="py-2 pr-3">Duplicate candidates</th>
+                <th className="py-2 pr-3">Recommended decision</th>
+                <th className="py-2 pr-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-blue-100 font-bold text-slate-700">
+                <td className="py-2 pr-3">Conveyor nip-point guarding summary</td>
+                <td className="py-2 pr-3">Primary regulation</td>
+                <td className="py-2 pr-3">Needs Review</td>
+                <td className="py-2 pr-3">Machine guarding</td>
+                <td className="py-2 pr-3">Confirm citation and duplicate status</td>
+                <td className="py-2 pr-3">1 possible match</td>
+                <td className="py-2 pr-3">Needs More Info</td>
+                <td className="py-2 pr-3">
+                  <div className="flex flex-wrap gap-1">
+                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Approve</button>
+                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Needs More Info</button>
+                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Reject</button>
+                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Supersede</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </AppPanel>
+
       <AppPanel className="py-8">
         {!canManage && (
             <div className="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
