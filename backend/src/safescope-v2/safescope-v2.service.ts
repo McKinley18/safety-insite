@@ -17,6 +17,7 @@ import { getCorrectiveActionIntelligence } from "./intelligence/corrective-actio
 import { SupervisorValidationService } from "./validation/supervisor-validation.service";
 import { SafeScopeNativeReasoningService } from "./native-reasoning/native-reasoning.service";
 import { SafeScopeReasoningOrchestratorService } from "./reasoning-orchestrator/reasoning-orchestrator.service";
+import { SafeScopeReasoningRequest } from "./reasoning-orchestrator/reasoning-orchestrator.types";
 import { VisualEvidenceReasoningService } from "./visual-evidence-reasoning/visual-evidence-reasoning.service";
 import { VisualEvidenceReasoningInput, Attachment } from "./visual-evidence-reasoning/visual-evidence-reasoning.types";
 import { RealImageAnalysisService } from "./real-image-analysis/real-image-analysis.service";

@@ -14,6 +14,7 @@ import { SafeScopeSafetyCalculationsService } from '../safety-calculations/safet
 import { ContradictionIntelligenceService } from '../contradiction-intelligence/contradiction-intelligence.service';
 import { SitePolicyIsolationService } from '../site-policy-isolation/site-policy-isolation.service';
 import { SitePolicyGovernanceService } from '../site-policy-isolation/site-policy-governance.service';
+import { ReviewCoreKnowledgeRetrievalService } from '../knowledge-architecture/reviewcore-knowledge-retrieval.service';
 import {
   SafeScopeApplicabilitySignal,
   SafeScopeJurisdiction,
@@ -49,6 +50,7 @@ export class SafeScopeReasoningOrchestratorService {
     private readonly safetyCalculationsService = new SafeScopeSafetyCalculationsService(),
     private readonly contradictionIntelligenceService = new ContradictionIntelligenceService(),
     private readonly sitePolicyIsolationService = new SitePolicyIsolationService(new SitePolicyGovernanceService()),
+    private readonly knowledgeRetrievalService = new ReviewCoreKnowledgeRetrievalService(),
   ) {}
 
   reason(request: SafeScopeReasoningRequest): SafeScopeReasoningResult {
@@ -491,11 +493,42 @@ export class SafeScopeReasoningOrchestratorService {
 
     const safetyCalculations = this.safetyCalculationsService.analyze(combined);
 
+    const knowledgeRetrieval = this.knowledgeRetrievalService.retrieveForObservation({
+      query: request.hazardObservation,
+      facets: [hazardClassification.primaryDomain],
+    });
+
+    const governedKnowledgeRetrieval = {
+      enabled: true,
+      matchedRecordIds: knowledgeRetrieval.map(r => r.id),
+      matchedRecordTitles: knowledgeRetrieval.map(r => r.title),
+      retrievalFacets: { facets: [hazardClassification.primaryDomain] },
+      matchReasons: knowledgeRetrieval.map(r => this.knowledgeRetrievalService.explainMatch(r, [hazardClassification.primaryDomain])),
+      evidenceNeeds: knowledgeRetrieval.length === 0 
+        ? ["No governed knowledge records matched for this hazard domain. Review requires qualified safety verification."] 
+        : [],
+      authoritySummary: knowledgeRetrieval.length > 0 ? "Governed knowledge records identified." : "No governed knowledge records identified.",
+      advisoryLimitations: ["Governed knowledge is advisory only."],
+      guardrails: {
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        doesNotCreateCitation: true,
+        doesNotFinalizeApplicability: true,
+        requiresQualifiedReview: true,
+        doesNotOverrideRegulation: true,
+      } as const,
+    };
+
+    if (knowledgeRetrieval.length === 0) {
+      governedKnowledgeRetrieval.evidenceNeeds = ["No matches found. Reviewer must verify physical condition against safety standards."];
+    }
+
     return {
       engine: 'safescope_reasoning_orchestrator_v1',
       mode: 'deterministic_test_only_advisory',
       productionReasoningModified: false,
       primaryCitation,
+      governedKnowledgeRetrieval,
       requestSummary: {
         hazardObservation: request.hazardObservation,
         siteType: request.siteType,

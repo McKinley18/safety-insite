@@ -110,11 +110,31 @@ export type SafeScopeResolvedMechanism = {
   humanReviewRecommended: boolean;
 };
 
+export type GovernedKnowledgeRetrieval = {
+  enabled: boolean;
+  matchedRecordIds: string[];
+  matchedRecordTitles: string[];
+  retrievalFacets: unknown;
+  matchReasons: unknown;
+  evidenceNeeds: string[];
+  authoritySummary: unknown;
+  advisoryLimitations: string[];
+  guardrails: {
+    advisoryOnly: true;
+    doesNotDeclareViolation: true;
+    doesNotCreateCitation: true;
+    doesNotFinalizeApplicability: true;
+    requiresQualifiedReview: true;
+    doesNotOverrideRegulation: true;
+  };
+};
+
 export type SafeScopeReasoningResult = {
   engine: 'safescope_reasoning_orchestrator_v1';
   mode: 'deterministic_test_only_advisory';
   productionReasoningModified: false;
   primaryCitation?: string; // Add this field
+  governedKnowledgeRetrieval?: GovernedKnowledgeRetrieval; // Add this field
   requestSummary: {
     hazardObservation: string;
     siteType?: string;
