@@ -210,6 +210,10 @@ export class SafeScopeStandardsIntentIntelligenceService {
       return this.electricalProfile(citation, standardTitle, agencyOrAuthority, input);
     }
 
+    if (this.isTrenchingExcavation(text)) {
+      return this.trenchingExcavationProfile(citation, standardTitle, agencyOrAuthority, input);
+    }
+
     if (this.isFallProtection(text)) {
       return this.fallProtectionProfile(citation, standardTitle, agencyOrAuthority, input);
     }
@@ -220,6 +224,18 @@ export class SafeScopeStandardsIntentIntelligenceService {
 
     if (this.isHazcom(text)) {
       return this.hazcomProfile(citation, standardTitle, agencyOrAuthority, input);
+    }
+
+    if (this.isCranesRiggingHoisting(text)) {
+      return this.cranesRiggingHoistingProfile(citation, standardTitle, agencyOrAuthority, input);
+    }
+
+    if (this.isBloodbornePathogens(text)) {
+      return this.bloodbornePathogensProfile(citation, standardTitle, agencyOrAuthority, input);
+    }
+
+    if (this.isErgonomics(text)) {
+      return this.ergonomicsProfile(citation, standardTitle, agencyOrAuthority, input);
     }
 
     if (this.isSilicaDustHealth(text)) {
@@ -576,6 +592,155 @@ export class SafeScopeStandardsIntentIntelligenceService {
     };
   }
 
+
+  private cranesRiggingHoistingProfile(citation: string, standardTitle: string, agencyOrAuthority: string, input: any): SafeScopeStandardIntentProfile {
+    return {
+      citation,
+      standardTitle,
+      agencyOrAuthority,
+      likelyRegulatoryIntent: [
+        'Prevent struck-by, crushed-by, caught-between, dropped-load, rigging-failure, and crane-tipover events during lifting and hoisting work.',
+        'Ensure the load, rigging, lift path, communication method, ground/support condition, and exposed-person controls are verified before and during the lift.',
+      ],
+      protectedPersons: ['Riggers.', 'Signal persons.', 'Operators.', 'Maintenance workers.', 'Pedestrians or employees near the lift path.'],
+      preventedEvents: ['Dropped load.', 'Suspended-load struck-by event.', 'Crane or hoist tipover.', 'Rigging failure.', 'Caught-between load and structure.'],
+      hazardMechanismsAddressed: ['gravity', 'kinetic_energy', 'stored_energy', 'struck_by', 'crush', 'caught_in_or_between'],
+      applicabilityEvidenceNeeded: [
+        'Document load weight, rated capacity, lift radius, rigging configuration, sling angle, and hardware condition.',
+        'Document whether employees are under or inside the drop/swing radius of the load.',
+        'Document lift plan, signal/communication method, exclusion zone, and competent or qualified review where needed.',
+        'For mobile cranes, document outrigger setup, matting/cribbing, ground condition, slope, and stability controls.',
+      ],
+      nonApplicabilityQuestions: [
+        'Was the load landed, supported, or no longer suspended?',
+        'Were employees fully excluded from the lift path and swing/drop zone?',
+        'Is another more specific mobile-equipment, material-handling, or construction crane rule controlling the condition?',
+      ],
+      minimumControlIntent: [
+        'Stop or pause the lift when employees are exposed to the suspended-load line of fire.',
+        'Remove defective rigging from service.',
+        'Verify load weight, rated capacity, rigging configuration, lift path, communication, and ground/support stability.',
+        'Use engineered or supervisor-approved controls before relying on verbal warnings or PPE.',
+      ],
+      strongComplianceIndicators: ['Lift plan verified.', 'Rigging inspected and rated.', 'Exclusion zone maintained.', 'Qualified/competent review documented.', 'Outrigger/ground support verified.'],
+      weakOrInsufficientIndicators: ['Unknown load weight.', 'Damaged rigging.', 'Employees under suspended load.', 'No exclusion zone.', 'No signal communication.', 'Unverified ground support.'],
+      relatedHazardsToCheck: ['Material Handling', 'Mobile Equipment', 'Fall Protection', 'Struck-by / Line of Fire', 'Traffic Control'],
+      verificationEvidence: ['Lift plan.', 'Rigging inspection record.', 'Load rating documentation.', 'Exclusion zone photo.', 'Signal/communication plan.', 'Outrigger or mat setup photo.'],
+      closureCautions: [
+        'Do not close if workers can still enter the drop or swing zone.',
+        'Do not close if load weight, rigging condition, capacity, or ground stability remain unknown.',
+      ],
+      confidence: this.profileConfidence(input, 4),
+    };
+  }
+
+  private bloodbornePathogensProfile(citation: string, standardTitle: string, agencyOrAuthority: string, input: any): SafeScopeStandardIntentProfile {
+    return {
+      citation,
+      standardTitle,
+      agencyOrAuthority,
+      likelyRegulatoryIntent: [
+        'Prevent occupational exposure to blood, body fluids, sharps, contaminated materials, and other potentially infectious materials.',
+        'Ensure cleanup, disposal, PPE, decontamination, exposure evaluation, and exposure-control procedures are handled by trained personnel.',
+      ],
+      protectedPersons: ['Cleanup personnel.', 'First aid responders.', 'Housekeeping staff.', 'Employees who may contact contaminated sharps or fluids.'],
+      preventedEvents: ['Needlestick or sharps injury.', 'Skin or mucous membrane exposure.', 'Contaminated material handling exposure.', 'Secondary exposure during cleanup.'],
+      hazardMechanismsAddressed: ['biological_exposure', 'laceration', 'skin_absorption', 'blood_or_body_fluid_contact'],
+      applicabilityEvidenceNeeded: [
+        'Document the material involved, location, employee exposure potential, and whether a sharp or body fluid is present.',
+        'Document PPE, sharps container, cleanup method, trained-person assignment, decontamination method, and disposal route.',
+        'Document whether exposure incident evaluation or follow-up is required by the employer procedure.',
+      ],
+      nonApplicabilityQuestions: [
+        'Is the material confirmed not to be blood, body fluid, contaminated sharp, or potentially infectious material?',
+        'Has the material already been removed and the area decontaminated by trained personnel?',
+        'Is the condition better handled as general housekeeping without biological exposure potential?',
+      ],
+      minimumControlIntent: [
+        'Restrict access until cleanup is complete.',
+        'Use trained cleanup personnel, appropriate PPE, approved sharps containers, decontamination, and disposal procedures.',
+        'Document exposure evaluation and follow-up when contact or injury may have occurred.',
+      ],
+      strongComplianceIndicators: ['Sharps container used.', 'Trained cleanup documented.', 'Area decontaminated.', 'PPE verified.', 'Exposure evaluation completed where applicable.'],
+      weakOrInsufficientIndicators: ['Bare-hand cleanup.', 'Regular trash disposal of sharps.', 'No decontamination record.', 'Unknown exposure status.', 'No trained-person involvement.'],
+      relatedHazardsToCheck: ['PPE', 'Housekeeping', 'Medical / First Aid', 'Waste Disposal', 'Training and Procedure Gap'],
+      verificationEvidence: ['Sharps container photo.', 'Cleanup/decontamination record.', 'PPE verification.', 'Exposure-control procedure reference.', 'Supervisor review note.'],
+      closureCautions: ['Do not close if exposure status, decontamination, disposal method, or trained cleanup is unknown.'],
+      confidence: this.profileConfidence(input, 4),
+    };
+  }
+
+  private ergonomicsProfile(citation: string, standardTitle: string, agencyOrAuthority: string, input: any): SafeScopeStandardIntentProfile {
+    return {
+      citation,
+      standardTitle,
+      agencyOrAuthority,
+      likelyRegulatoryIntent: [
+        'Prevent musculoskeletal strain, sprain, overexertion, cumulative trauma, and fatigue from forceful, repetitive, awkward, or sustained work.',
+        'Promote task design, mechanical assistance, workstation fit, and exposure reduction before relying on training or rotation alone.',
+      ],
+      protectedPersons: ['Employees performing repetitive work.', 'Material handlers.', 'Maintenance workers.', 'Assembly or workstation users.'],
+      preventedEvents: ['Sprain or strain.', 'Overexertion injury.', 'Cumulative trauma disorder.', 'Fatigue-related error or injury.'],
+      hazardMechanismsAddressed: ['ergonomic_force', 'biomechanical_load', 'overexertion', 'sprain_strain'],
+      applicabilityEvidenceNeeded: [
+        'Document task frequency, duration, force, load weight, posture, reach distance, repetition, and recovery time.',
+        'Document workstation height/layout, mechanical-assist availability, worker feedback, and prior discomfort/injury signals where available.',
+      ],
+      nonApplicabilityQuestions: [
+        'Is the task rare, short-duration, or already mechanically assisted?',
+        'Has force, posture, repetition, and duration been reduced by design?',
+        'Is another acute hazard more immediate than ergonomic exposure?',
+      ],
+      minimumControlIntent: [
+        'Reduce force, repetition, awkward reach, and sustained posture through job or workstation redesign.',
+        'Use mechanical assists, lift aids, adjustable work heights, improved layout, and reduced manual handling.',
+        'Use rotation or training only as supporting controls, not the sole durable fix for high-force/repetitive exposure.',
+      ],
+      strongComplianceIndicators: ['Mechanical assist provided.', 'Reach/height redesigned.', 'Load weight reduced.', 'Frequency/duration reduced.', 'Worker feedback monitored.'],
+      weakOrInsufficientIndicators: ['Training only.', 'Lift with your legs only.', 'Rotation without design change.', 'No task frequency or load data.', 'No workstation assessment.'],
+      relatedHazardsToCheck: ['Material Handling', 'Tools / Equipment', 'Housekeeping', 'PPE', 'Fatigue'],
+      verificationEvidence: ['Task observation.', 'Load weight data.', 'Before/after workstation photo.', 'Mechanical-assist verification.', 'Worker feedback or exposure reassessment.'],
+      closureCautions: ['Do not close if force, posture, repetition, duration, or exposure reduction has not been verified.'],
+      confidence: this.profileConfidence(input, 4),
+    };
+  }
+
+  private trenchingExcavationProfile(citation: string, standardTitle: string, agencyOrAuthority: string, input: any): SafeScopeStandardIntentProfile {
+    return {
+      citation,
+      standardTitle,
+      agencyOrAuthority,
+      likelyRegulatoryIntent: [
+        'Prevent cave-in, engulfment, struck-by, falls into excavation, hazardous atmosphere, water accumulation, and unsafe access/egress.',
+        'Require competent-person review, protective systems, spoil/material setback, safe access, and changing-condition inspections where applicable.',
+      ],
+      protectedPersons: ['Employees inside excavations.', 'Competent persons.', 'Operators near excavation edges.', 'Nearby workers.'],
+      preventedEvents: ['Cave-in.', 'Engulfment.', 'Struck-by falling material.', 'Fall into excavation.', 'Atmospheric or water hazard exposure.'],
+      hazardMechanismsAddressed: ['engulfment', 'crush', 'gravity', 'struck_by', 'asphyxiation'],
+      applicabilityEvidenceNeeded: [
+        'Document excavation depth, soil/rock condition, water, weather, vibration, spoil setback, access/egress, and employee location.',
+        'Document protective system type, competent-person inspection, adjacent loads, utilities, and atmosphere concerns where applicable.',
+      ],
+      nonApplicabilityQuestions: [
+        'Are employees prohibited from entry and protected from the excavation edge?',
+        'Is the depth/condition below the threshold or otherwise not exposing employees?',
+        'Is ground control or mining highwall/rib control more applicable than excavation/trenching controls?',
+      ],
+      minimumControlIntent: [
+        'Stop entry when protective-system adequacy is unknown.',
+        'Provide sloping, benching, shoring, shielding, or equivalent protection where required.',
+        'Verify competent-person inspection, safe access/egress, spoil setback, water control, and changing-condition review.',
+      ],
+      strongComplianceIndicators: ['Protective system installed.', 'Competent-person inspection documented.', 'Safe access/egress provided.', 'Spoil setback verified.', 'Water/atmosphere addressed.'],
+      weakOrInsufficientIndicators: ['No protective system.', 'No competent-person review.', 'Spoil at edge.', 'Water accumulation.', 'No ladder/access.', 'Workers in trench with unclear depth.'],
+      relatedHazardsToCheck: ['Ground Control', 'Mobile Equipment', 'Utilities / Electrical', 'Confined Space / Atmosphere', 'Fall Protection'],
+      verificationEvidence: ['Trench photos.', 'Protective system photo.', 'Competent-person inspection record.', 'Access/egress photo.', 'Spoil setback photo.', 'Water/atmosphere notes.'],
+      closureCautions: ['Do not close if depth, soil/rock condition, protective system, access, or competent-person review remains unknown.'],
+      confidence: this.profileConfidence(input, 4),
+    };
+  }
+
+
   private genericProfile(citation: string, standardTitle: string, agencyOrAuthority: string, input: any): SafeScopeStandardIntentProfile {
     const matrix = input.matrix || {};
     const domain = input.domain || {};
@@ -695,5 +860,21 @@ export class SafeScopeStandardsIntentIntelligenceService {
 
   private isMobileEquipment(text: string): boolean {
     return includesAny(text, ['mobile equipment', 'powered haulage', 'haul truck', 'forklift', 'loader', 'traffic', 'pedestrian', 'backing', 'berm']);
+  }
+
+  private isCranesRiggingHoisting(text: string): boolean {
+    return includesAny(text, ['cranes_rigging_hoisting', 'crane', 'rigging', 'hoist', 'suspended load', 'sling', 'shackle', 'outrigger', 'lift plan', 'load radius']);
+  }
+
+  private isBloodbornePathogens(text: string): boolean {
+    return includesAny(text, ['bloodborne_pathogens', 'bloodborne', 'sharps', 'needle', 'body fluid', 'potentially infectious', 'decontamination', 'sharps container']);
+  }
+
+  private isErgonomics(text: string): boolean {
+    return includesAny(text, ['ergonomics', 'ergonomic', 'repetition', 'awkward posture', 'manual material handling', 'overexertion', 'sprain', 'strain', 'biomechanical']);
+  }
+
+  private isTrenchingExcavation(text: string): boolean {
+    return includesAny(text, ['trenching_and_excavation', 'trenching', 'excavation', 'trench', 'protective system', 'shoring', 'shielding', 'sloping', 'benching', 'competent person']);
   }
 }

@@ -22,6 +22,28 @@ function unique<T>(items: T[]): T[] {
   return Array.from(new Set(items.filter(Boolean)));
 }
 
+
+const REVIEWCORE_P3_MECHANISM_AUDIT_COVERAGE = {
+  bloodborne_pathogens: {
+    energySources: ['biological_exposure'],
+    injuryMechanisms: ['laceration', 'skin_absorption'],
+    crediblePathways: [
+      'Needlestick or sharps contact creates a biological exposure pathway.',
+      'Blood or body fluid cleanup without trained personnel, PPE, decontamination, and disposal controls can expose employees.',
+    ],
+    evidenceNeeded: ['material identity', 'sharp condition', 'PPE status', 'trained cleanup personnel', 'decontamination method', 'disposal method', 'exposure evaluation need'],
+  },
+  industrial_hygiene: {
+    energySources: ['atmospheric_hazard', 'noise_vibration', 'thermal_energy', 'chemical_energy'],
+    injuryMechanisms: ['inhalation_exposure', 'noise_induced_hearing_loss', 'heat_illness', 'silica_or_dust_disease'],
+    crediblePathways: [
+      'Airborne contaminant, fume, dust, vapor, noise, or heat exposure causes acute or chronic occupational illness when source controls or exposure assessment are missing.',
+      'Industrial hygiene uncertainty requires task, duration, frequency, control, sampling, and PPE program verification.',
+    ],
+    evidenceNeeded: ['agent or stressor', 'task duration', 'exposed employees', 'ventilation or wet method', 'sampling or measurement basis', 'PPE program evidence', 'qualified IH review need'],
+  },
+} as const;
+
 const MECHANISM_DOMAINS: MechanismDomain[] = [
   // ... existing domains ...
   {
