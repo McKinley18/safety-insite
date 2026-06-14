@@ -5,3 +5,4 @@ export * from './reviewcore-governed-seed-records';
 export * from './reviewcore-knowledge-retrieval.service';
 export { ReviewCoreKnowledgeIngestionService } from './reviewcore-knowledge-ingestion.service';
 export { ReviewCoreKnowledgeApprovalService } from './reviewcore-knowledge-approval.service';
+export { ReviewCoreKnowledgeReviewQueueService } from './reviewcore-knowledge-review-queue.service';
