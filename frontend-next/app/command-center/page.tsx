@@ -173,7 +173,7 @@ function getWeekDayTone(dateKey: string, events: SafetyCalendarEvent[]) {
     return "border-[#1D72B8] bg-[#E8F4FF]";
   }
 
-  return "border-slate-200 bg-white";
+  return "border-slate-200/80 bg-white";
 }
 
 function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
@@ -503,8 +503,8 @@ export default function DashboardPage() {
   }
 
   return (
-    <section className="sentinel-mobile-page space-y-5 sm:space-y-6">
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] text-white shadow-xl shadow-slate-950/10 ring-1 ring-white/10">
+    <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] text-white shadow-none shadow-slate-950/10 ring-1 ring-white/10">
         <div className="relative isolate px-5 py-6 sm:px-7 sm:py-8 lg:px-9 lg:py-9">
           <div className="pointer-events-none absolute -right-20 -top-20 -z-10 h-64 w-64 rounded-full bg-[#1D72B8]/25 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 left-10 -z-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
@@ -535,7 +535,7 @@ export default function DashboardPage() {
               ].map(([value, label, detail]) => (
                 <div
                   key={label}
-                  className="rounded-xl border border-white/12 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
+                  className="rounded-xl border border-white/12 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
                 >
                   <p className="text-center text-2xl font-black tracking-[-0.06em] text-white sm:text-3xl">
                     {value}
@@ -554,7 +554,7 @@ export default function DashboardPage() {
       </div>
 
       {canAssignWork && (
-        <div className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-sm ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+        <div className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="sentinel-eyebrow">Company Command</p>
@@ -659,7 +659,7 @@ export default function DashboardPage() {
                 {assignments.slice(0, 5).map((assignment) => (
                   <div
                     key={assignment.id}
-                    className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 shadow-sm sm:flex-row sm:items-center sm:justify-between"
+                    className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 shadow-none sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div>
                       <p className="text-sm font-black text-slate-950">
@@ -697,7 +697,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-sm ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <div className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <SectionHeader
             eyebrow="Week at a Glance"
@@ -708,13 +708,13 @@ export default function DashboardPage() {
           <AppLinkButton
             href="/safety-calendar"
             size="sm"
-            className="!inline-flex !w-fit shrink-0 self-start rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-sm ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8]"
+            className="!inline-flex !w-fit shrink-0 self-start rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-none ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8]"
           >
             Open Calendar
           </AppLinkButton>
         </div>
 
-        <div className="mt-4 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-white shadow-sm ring-1 ring-slate-900/10">
+        <div className="mt-4 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-white shadow-none ring-1 ring-slate-900/10">
           {formatCalendarMonthLabel(weekAtGlance[0]?.dateKey || getTodayDateKey())}
         </div>
 
@@ -724,7 +724,7 @@ export default function DashboardPage() {
               key={dateKey}
               type="button"
               onClick={() => setSelectedWeekDateKey(dateKey)}
-              className={`relative aspect-square min-h-0 rounded-xl border p-1.5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-[#1D72B8] sm:p-2 ${
+              className={`relative aspect-square min-h-0 rounded-xl border p-1.5 text-left shadow-none transition hover:-translate-y-0.5 hover:border-[#1D72B8] sm:p-2 ${
                 selectedWeekDateKey === dateKey
                   ? "ring-2 ring-[#1D72B8]"
                   : ""
@@ -743,7 +743,7 @@ export default function DashboardPage() {
 
               {events.length > 0 && (
                 <span
-                  className={`absolute bottom-1.5 left-1/2 flex h-6 min-w-8 -translate-x-1/2 items-center justify-center rounded-full px-2 text-[11px] font-black leading-none shadow-sm sm:bottom-2 sm:h-7 sm:min-w-9 sm:text-xs ${getWeekBadgeTone(
+                  className={`absolute bottom-1.5 left-1/2 flex h-6 min-w-8 -translate-x-1/2 items-center justify-center rounded-full px-2 text-[11px] font-black leading-none shadow-none sm:bottom-2 sm:h-7 sm:min-w-9 sm:text-xs ${getWeekBadgeTone(
                     events,
                   )}`}
                   title={`${events.length} scheduled item${events.length === 1 ? "" : "s"}`}
@@ -756,7 +756,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-sm ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
         <SectionHeader
           eyebrow="Scheduled Work"
           title="Tasks and upcoming work"
@@ -783,7 +783,7 @@ export default function DashboardPage() {
                     key={event.id}
                     href="/safety-calendar"
                     variant="ghost"
-                    className={`block w-full rounded-xl border px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 ${getCalendarEventTone(
+                    className={`block w-full rounded-xl border px-4 py-3 text-left shadow-none transition hover:-translate-y-0.5 ${getCalendarEventTone(
                       event,
                     )}`}
                   >
@@ -825,7 +825,7 @@ export default function DashboardPage() {
                     key={event.id}
                     href="/safety-calendar"
                     variant="ghost"
-                    className={`relative block w-full rounded-xl border px-4 pb-3 pt-9 text-left shadow-sm transition hover:-translate-y-0.5 ${getCalendarEventTone(
+                    className={`relative block w-full rounded-xl border px-4 pb-3 pt-9 text-left shadow-none transition hover:-translate-y-0.5 ${getCalendarEventTone(
                       event,
                     )}`}
                   >
@@ -859,7 +859,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-sm ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
         <SectionHeader
           eyebrow="Operational Focus"
           title="Today’s priority and recent activity"
@@ -880,7 +880,7 @@ export default function DashboardPage() {
                 {attentionItems.map((item) => (
                   <div
                     key={item}
-                    className="rounded-xl border border-orange-100 bg-orange-50 px-4 py-3 text-sm font-black text-orange-800 shadow-sm"
+                    className="rounded-xl border border-orange-100 bg-orange-50 px-4 py-3 text-sm font-black text-orange-800 shadow-none"
                   >
                     {item}
                   </div>
@@ -899,7 +899,7 @@ export default function DashboardPage() {
               ].map(([value, label, tone]) => (
                 <div
                   key={label}
-                  className={`rounded-xl border px-4 py-3 text-center shadow-sm ${tone}`}
+                  className={`rounded-xl border px-4 py-3 text-center shadow-none ${tone}`}
                 >
                   <p className="text-2xl font-black tracking-[-0.06em]">{value}</p>
                   <p className="mt-1 text-[9px] font-black uppercase tracking-[0.16em] opacity-75">
@@ -971,7 +971,7 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-sm ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
+      <section className="rounded-xl border border-slate-200/80 bg-white/78 p-4 sm:p-5 shadow-none ring-1 ring-white/70 backdrop-blur-xl sm:p-4 sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <SectionHeader
             eyebrow="Priorities"
@@ -982,7 +982,7 @@ export default function DashboardPage() {
           <AppLinkButton
             href="/actions"
             size="sm"
-            className="!inline-flex !w-fit shrink-0 self-start rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-sm ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8]"
+            className="!inline-flex !w-fit shrink-0 self-start rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-none ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8]"
           >
             Open Actions
           </AppLinkButton>
@@ -995,7 +995,7 @@ export default function DashboardPage() {
                 key={action.id}
                 href="/actions"
                 variant="ghost"
-                className="block w-full rounded-xl border border-slate-200 bg-white/90 px-4 py-3 text-left shadow-sm transition hover:-translate-y-0.5 hover:bg-slate-50"
+                className="block w-full rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-left shadow-none transition hover:-translate-y-0.5 hover:bg-slate-50"
               >
                 <span className="block min-w-0">
                   <span className="block text-sm font-black leading-5 text-slate-900">

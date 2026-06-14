@@ -256,7 +256,7 @@ export default function ReviewerCandidateConsole() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           ReviewCore Governance
@@ -269,7 +269,7 @@ export default function ReviewerCandidateConsole() {
         </p>
       </HeroPanel>
 
-      <AppPanel padding="sm" className="border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 px-3 py-3">
+      <AppPanel padding="sm" className="border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900 px-3 py-3">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2">
             <div className={`h-2 w-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
@@ -315,7 +315,7 @@ export default function ReviewerCandidateConsole() {
 
       <AppPanel className="py-8">
         {!canManage && (
-            <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
+            <div className="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
                 <span className="text-xl">🚫</span>
                 <div>
                     <p className="text-xs font-black text-red-900 uppercase">ReadOnly Access</p>
@@ -325,7 +325,7 @@ export default function ReviewerCandidateConsole() {
         )}
 
         {error && (
-             <div className="mb-8 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
+             <div className="mb-5 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
                 <span className="text-xl">⚠️</span>
                 <div>
                     <p className="text-xs font-black text-amber-900 uppercase">Connection Issue</p>
@@ -338,7 +338,7 @@ export default function ReviewerCandidateConsole() {
         )}
 
         {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5">
                 <Skeleton className="h-24 w-full" />
                 <Skeleton className="h-24 w-full" />
                 <Skeleton className="h-24 w-full" />
@@ -346,7 +346,7 @@ export default function ReviewerCandidateConsole() {
             </div>
         ) : (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5">
                 <MetricBlock label="Pending" value={pendingCount} />
                 <MetricBlock label="Needs Info" value={needsInfoCount} />
                 <MetricBlock label="Approved" value={approvedCount} />
@@ -415,7 +415,7 @@ export default function ReviewerCandidateConsole() {
                     </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-8 mb-8">
+                    <div className="grid grid-cols-2 gap-8 mb-5">
                     <div>
                         <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Jurisdiction</h4>
                         <p className="text-sm font-medium">{selectedCandidate.jurisdiction.replace(/_/g, ' ')}</p>
@@ -426,7 +426,7 @@ export default function ReviewerCandidateConsole() {
                     </div>
                     </div>
 
-                    <div className="space-y-6 mb-8">
+                    <div className="space-y-4 mb-5">
                     <div>
                         <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Proposed Knowledge</h4>
                         <div className="bg-slate-900 text-slate-100 p-4 rounded-xl text-sm font-mono whitespace-pre-wrap">
@@ -435,7 +435,7 @@ export default function ReviewerCandidateConsole() {
                     </div>
                     </div>
 
-                    <div className="mb-8">
+                    <div className="mb-5">
                         <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Reviewer Notes / Rationale</h4>
                         <textarea
                           className="w-full text-sm p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-slate-800"
@@ -481,7 +481,7 @@ export default function ReviewerCandidateConsole() {
                     </div>
                 </SentinelCard>
                 ) : (
-                <div className="h-full flex items-center justify-center border-2 border-dashed border-slate-200 rounded-2xl p-12 text-center text-slate-400">
+                <div className="h-full flex items-center justify-center border-2 border-dashed border-slate-200 rounded-xl p-12 text-center text-slate-400">
                     <p className="text-lg font-bold">Select a candidate to review details.</p>
                 </div>
                 )}

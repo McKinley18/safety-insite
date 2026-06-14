@@ -48,10 +48,10 @@ function SelectorCard({
       type="button"
       onClick={onClick}
       className={[
-        "rounded-2xl border px-4 py-3 text-left transition",
+        "rounded-xl border px-4 py-3 text-left transition",
         selected
-          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-sm"
-          : "border-slate-200 bg-white/90 shadow-sm hover:border-blue-200 hover:bg-white",
+          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none"
+          : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white",
       ].join(" ")}
     >
       <div className="flex items-start justify-between gap-3">
@@ -163,7 +163,7 @@ export default function SettingsHubPage() {
   const isCompany = hasPlanEntitlement("teamMembers", planCode);
 
   return (
-    <section className="sentinel-page-shell space-y-6">
+    <section className="sentinel-page-shell space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Settings

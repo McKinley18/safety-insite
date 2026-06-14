@@ -293,7 +293,7 @@ export default function SafetyCalendarPage() {
   }
 
   return (
-    <section className="sentinel-page-shell space-y-6">
+    <section className="sentinel-page-shell space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Safety Calendar
@@ -307,14 +307,14 @@ export default function SafetyCalendarPage() {
             : "Manage your personal safety work, inspections, corrective actions, follow-ups, and review reminders."}
         </p>
 
-        <div className="mx-auto mt-5 grid max-w-3xl grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
           {[
             [String(calendarSummary.total), "Events"],
             [String(calendarSummary.open), "Open"],
             [String(calendarSummary.overdue), "Overdue"],
             [String(calendarSummary.criticalHigh), "Critical / High"],
           ].map(([value, label]) => (
-            <div key={label} className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur">
+            <div key={label} className="rounded-lg border border-white/10 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur">
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">{value}</p>
               <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
                 {label}
@@ -368,7 +368,7 @@ export default function SafetyCalendarPage() {
           </div>
         </div>
 
-        <div className="mt-3 grid gap-2 md:grid-cols-3">
+        <div className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-3">
           <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm">
             <option value="">▣ All work types</option>
             <option value="inspection">🟦 Inspections</option>
@@ -400,17 +400,17 @@ export default function SafetyCalendarPage() {
         </div>
       </AppPanel>
 
-      <div className="grid gap-5 xl:grid-cols-[1fr_340px]">
+      <div className="grid gap-4 xl:grid-cols-[1fr_340px]">
         <div>
       {view === "month" && (
         <AppPanel padding="lg">
-          <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-black uppercase tracking-wide text-app-text-muted">
+          <div className="grid grid-cols-7 gap-0.5 text-center text-[10px] font-black uppercase tracking-wide text-app-text-muted sm:gap-1">
             {WEEKDAY_LABELS.map((day) => (
               <div key={day}>{day}</div>
             ))}
           </div>
 
-          <div className="mt-2 grid grid-cols-7 gap-1">
+          <div className="mt-2 grid grid-cols-7 gap-0.5 sm:gap-1">
             {monthDays.days.map((day) => {
               const dateKey = toDateKey(day);
               const dayEvents = eventsByDate[dateKey] || [];
@@ -427,8 +427,8 @@ export default function SafetyCalendarPage() {
                   <button
                     type="button"
                     onClick={() => selectDate(day)}
-                    className={`flex w-full flex-col items-start justify-start rounded-xl border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${
-                      expanded ? "min-h-48 p-4 shadow-lg" : "aspect-square p-1.5 sm:p-2"
+                    className={`flex w-full flex-col items-start justify-start rounded-lg border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${
+                      expanded ? "min-h-48 p-4 shadow-none" : "aspect-square p-1.5 sm:p-2"
                     }`}
                   >
                     <div className="flex w-full items-start justify-between gap-3">
@@ -574,7 +574,7 @@ export default function SafetyCalendarPage() {
           <div className="mt-4 space-y-3">
             {selectedEvents.length ? (
               selectedEvents.map((event) => (
-                <div key={event.id} className={`rounded-xl border px-4 py-3 ${eventTone(event)}`}>
+                <div key={event.id} className={`rounded-lg border px-4 py-3 ${eventTone(event)}`}>
                   <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
                     <div>
                       <p className="text-[10px] font-black uppercase tracking-wide text-app-text-muted">
@@ -598,7 +598,7 @@ export default function SafetyCalendarPage() {
                 </div>
               ))
             ) : (
-              <p className="app-card app-text-soft rounded-xl border border-dashed px-4 py-4 text-sm font-bold">
+              <p className="app-card app-text-soft rounded-lg border border-dashed px-4 py-4 text-sm font-bold">
                 No safety work is scheduled for this day.
               </p>
             )}
@@ -633,7 +633,7 @@ export default function SafetyCalendarPage() {
                         key={`${groupLabel}-${event.id}`}
                         type="button"
                         onClick={() => openEventDay(event)}
-                        className={`w-full rounded-xl border px-3 py-2 text-left transition hover:border-[#1D72B8] ${eventTone(event)}`}
+                        className={`w-full rounded-lg border px-3 py-2 text-left transition hover:border-[#1D72B8] ${eventTone(event)}`}
                       >
                         <p className="text-xs font-black text-app-text">
                           {event.title}
@@ -644,7 +644,7 @@ export default function SafetyCalendarPage() {
                       </button>
                     ))
                   ) : (
-                    <p className="app-card app-text-soft rounded-xl border border-dashed px-3 py-2 text-xs font-semibold">
+                    <p className="app-card app-text-soft rounded-lg border border-dashed px-3 py-2 text-xs font-semibold">
                       Nothing here.
                     </p>
                   )}

@@ -797,17 +797,42 @@ body.sentinel-keyboard-open {
   overflow-x: hidden;
 }
 
-.sentinel-keyboard-open .mobile-tab-bar {
-  transform: translateY(120%) !important;
-  pointer-events: none !important;
-}
 
 @media (max-width: 1023px) {
   .mobile-tab-bar {
     will-change: transform;
   }
 
-  .sentinel-keyboard-open .mobile-tab-bar {
-    display: none !important;
+  }
+
+/* Keep mobile navigation anchored to the bottom of the viewport */
+.mobile-tab-bar {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Global card reduction guardrails */
+.sentinel-mobile-page :where(section, article, aside, div)[class*="shadow-"] {
+  box-shadow: none !important;
+}
+
+.sentinel-mobile-page :where(section, article, aside, div)[class*="rounded-"]:not([class*="rounded-full"]) {
+  border-radius: 0.75rem !important;
+}
+
+@media (max-width: 640px) {
+  .sentinel-mobile-page :where(section, article, aside)[class*="border"] {
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+  }
+
+  .sentinel-mobile-page :where(section, article, aside, div)[class*="rounded-"]:not([class*="rounded-full"]) {
+    border-radius: 0.625rem !important;
+  }
+
+  .sentinel-mobile-page :where(section, article, aside)[class*="bg-white"] {
+    background-color: #ffffff !important;
   }
 }

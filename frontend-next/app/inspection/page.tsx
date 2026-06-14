@@ -1071,7 +1071,7 @@ export default function InspectionPage() {
   }
 
   return (
-    <div className="sentinel-mobile-page space-y-5 pb-32 lg:pb-24">
+    <div className="sentinel-mobile-page space-y-4 pb-32 lg:pb-24">
       <InspectionWorkflowHeader
         currentStep={currentStep}
         steps={steps}

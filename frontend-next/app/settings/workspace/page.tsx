@@ -389,7 +389,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <section className="sentinel-page-shell space-y-6">
+    <section className="sentinel-page-shell space-y-4">
       <HeroPanel align="left">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Workspace Settings
@@ -434,7 +434,7 @@ export default function SettingsPage() {
         </div>
       </AppPanel>
 
-      <div className="grid gap-5 xl:grid-cols-[1fr_1fr]">
+      <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">
         <AppPanel padding="lg">
           <SectionHeader
             eyebrow="ReviewCore Defaults"
@@ -479,7 +479,7 @@ export default function SettingsPage() {
             description="Company information used on reports and cover pages."
           />
 
-          <div className="mt-4 grid gap-5 md:grid-cols-[1fr_220px]">
+          <div className="mt-4 grid gap-4 md:grid-cols-[1fr_220px]">
             <label className="block">
               <span className="text-sm font-black text-slate-700 dark:text-slate-300">
                 Organization Name

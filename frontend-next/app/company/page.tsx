@@ -441,8 +441,8 @@ export default function CompanyControlCenterPage() {
   }
 
   return (
-    <section className="sentinel-page-shell space-y-6">
-      <section className="overflow-hidden rounded-[1.75rem] bg-[#0B1320] p-5 text-center text-white shadow-sm sm:p-6">
+    <section className="sentinel-page-shell space-y-4">
+      <section className="overflow-hidden rounded-xl bg-[#0B1320] p-5 text-center text-white shadow-none sm:p-6">
         <div className="flex flex-col items-center gap-3">
           <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
             Company Control Center
@@ -491,7 +491,7 @@ export default function CompanyControlCenterPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-2xl border border-white/10 bg-white dark:bg-slate-900/10 px-3 py-3 text-center shadow-sm backdrop-blur"
+              className="w-full rounded-xl border border-white/10 bg-white dark:bg-slate-900/10 px-3 py-3 text-center shadow-none backdrop-blur"
             >
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
@@ -897,7 +897,7 @@ export default function CompanyControlCenterPage() {
       </AppPanel>
 
       <section className="grid gap-3 lg:grid-cols-[1.15fr_0.85fr]">
-        <AppPanel padding="sm" className="border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+        <AppPanel padding="sm" className="border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900">
           <SectionHeader
             eyebrow="Account Owner Console"
             title="Executive Orchestration & Activity Monitoring"
@@ -1020,7 +1020,7 @@ export default function CompanyControlCenterPage() {
           </div>
         </AppPanel>
 
-        <AppPanel padding="sm" className="border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+        <AppPanel padding="sm" className="border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900">
           <SectionHeader
             eyebrow="Access Matrix"
             title="Company Roles & Permissions"
@@ -1074,7 +1074,7 @@ export default function CompanyControlCenterPage() {
             key={label}
             href={href}
             variant="ghost"
-            className="rounded-xl border-slate-200 px-3 py-3 text-center text-xs text-[#102A43] shadow-sm hover:bg-[#E8F4FF] dark:text-slate-200 dark:hover:bg-slate-800"
+            className="rounded-xl border-slate-200 px-3 py-3 text-center text-xs text-[#102A43] shadow-none hover:bg-[#E8F4FF] dark:text-slate-200 dark:hover:bg-slate-800"
           >
             {label}
           </AppLinkButton>

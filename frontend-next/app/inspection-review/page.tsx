@@ -731,7 +731,7 @@ export default function InspectionReviewPage() {
 
   if (!report) {
     return (
-      <section className="sentinel-page-shell space-y-6">
+      <section className="sentinel-page-shell space-y-4">
 
         <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500 dark:text-slate-400">
           No finalized report found.
@@ -750,10 +750,10 @@ export default function InspectionReviewPage() {
   ).length;
 
   return (
-    <section className="space-y-5">
+    <section className="space-y-4">
 
       <HeroPanel>
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Step 5: Final Review
@@ -779,7 +779,7 @@ export default function InspectionReviewPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center"
+              className="rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center"
             >
               <p className="text-lg font-black tracking-tight text-white">
                 {value}
@@ -805,7 +805,7 @@ export default function InspectionReviewPage() {
           title="Edit report details"
           variant="ghost"
           size="sm"
-          className="absolute right-3 top-3 h-8 w-8 rounded-full px-0 py-0 text-slate-600 dark:text-slate-300 shadow-sm hover:text-[#1D72B8]"
+          className="absolute right-3 top-3 h-8 w-8 rounded-full px-0 py-0 text-slate-600 dark:text-slate-300 shadow-none hover:text-[#1D72B8]"
         >
           <svg
             aria-hidden="true"
@@ -993,7 +993,7 @@ export default function InspectionReviewPage() {
             variant="accent"
             size="sm"
             disabled={cloudSaveStatus === "saving"}
-            className="shadow-sm"
+            className="shadow-none"
           >
             {cloudSaveStatus === "saving" ? "Saving..." : "Save to Cloud"}
           </AppButton>
@@ -1010,7 +1010,7 @@ export default function InspectionReviewPage() {
               onClick={addFindingToReport}
               variant="accent"
               size="sm"
-              className="shadow-sm"
+              className="shadow-none"
             >
               Add Finding
             </AppButton>
@@ -1084,7 +1084,7 @@ export default function InspectionReviewPage() {
               return (
                 <details
                   key={finding.id || index}
-                  className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2.5 shadow-sm"
+                  className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2.5 shadow-none"
                   open={index === 0}
                 >
                   <summary className="cursor-pointer list-none">

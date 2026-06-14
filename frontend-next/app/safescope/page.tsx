@@ -37,11 +37,11 @@ export default function SafeScopePage() {
         <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-[#1D72B8]/10 blur-3xl" />
 
         <div className="relative border-b border-slate-200/80 pb-6 sm:pb-8">
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] p-5 text-white shadow-lg shadow-slate-950/10 ring-1 ring-white/10 sm:p-7 lg:p-8">
+          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] p-5 text-white shadow-none shadow-slate-950/10 ring-1 ring-white/10 sm:p-7 lg:p-8">
             <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#1D72B8]/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-20 left-8 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
 
-            <div className="relative grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div className="relative grid gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
                   Safety intelligence reimagined
@@ -72,7 +72,7 @@ export default function SafeScopePage() {
           {sections.map((section) => (
             <div
               key={section.title}
-              className="grid gap-2 py-5 sm:grid-cols-[0.34fr_0.66fr] sm:gap-6"
+              className="grid gap-2 py-5 sm:grid-cols-[0.34fr_0.66fr] sm:gap-4"
             >
               <h2 className="text-lg font-black tracking-tight text-slate-950">
                 {section.title}
@@ -97,7 +97,7 @@ export default function SafeScopePage() {
           <div className="flex flex-wrap justify-center gap-3">
             <AppLinkButton
               href="/login"
-              className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
+              className="bg-[#1D72B8] px-6 py-3 text-white shadow-none hover:bg-[#0B1320]"
             >
               Return to sign in
             </AppLinkButton>
@@ -105,7 +105,7 @@ export default function SafeScopePage() {
             <AppLinkButton
               href="/register"
               variant="secondary"
-              className="bg-white px-6 py-3 !text-[#0B1320] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+              className="bg-white px-6 py-3 !text-[#0B1320] shadow-none ring-1 ring-slate-200 hover:bg-blue-50"
             >
               Create account
             </AppLinkButton>

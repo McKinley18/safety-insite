@@ -536,7 +536,7 @@ export default function ReportsPage() {
   }
 
   return (
-    <section className="sentinel-mobile-page space-y-5 sm:space-y-6">
+    <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
       <HeroPanel align="center" className="rounded-xl px-4 py-5 sm:px-6 sm:py-6">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Reports
@@ -556,7 +556,7 @@ export default function ReportsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-center shadow-sm backdrop-blur"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-center shadow-none backdrop-blur"
             >
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
@@ -572,7 +572,7 @@ export default function ReportsPage() {
 
       {canUseWorkspaceReports && cloudLoadMessage && (
         <div
-          className={`rounded-xl border px-4 py-3 shadow-sm ${
+          className={`rounded-xl border px-4 py-3 shadow-none ${
             cloudLoadStatus === "error"
               ? "border-amber-200 bg-amber-50"
               : "border-blue-100 bg-blue-50/60"
@@ -595,7 +595,7 @@ export default function ReportsPage() {
       )}
 
       {!canUseWorkspaceReports && (
-        <div className="rounded-xl border border-slate-200 bg-white/70 px-4 py-3 shadow-sm ring-1 ring-white/70 backdrop-blur-xl">
+        <div className="rounded-xl border border-slate-200/80 bg-white px-4 py-3 shadow-none ring-1 ring-white/70 backdrop-blur-xl">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Local Report Vault
           </p>
@@ -615,7 +615,7 @@ export default function ReportsPage() {
           className="w-full sm:max-w-xs"
         />
 
-        <label className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 min-h-[44px] text-xs font-black text-slate-600 shadow-sm sm:w-fit">
+        <label className="flex w-full items-center gap-2 rounded-xl border border-slate-200/80 bg-white px-3 min-h-[44px] text-xs font-black text-slate-600 shadow-none sm:w-fit">
           Sort
           <select
             value={reportSortOrder}
@@ -656,7 +656,7 @@ export default function ReportsPage() {
                 key={report.id}
                 as="article"
                 padding="sm"
-                className="relative overflow-hidden rounded-xl border border-slate-200/80 bg-white/70 p-0 shadow-none sm:p-0"
+                className="relative overflow-hidden rounded-xl border border-slate-200/80 bg-white p-0 shadow-none sm:p-0"
               >
                 <div className="absolute right-2 top-2 z-10 flex items-center gap-1">
                   <button
@@ -665,7 +665,7 @@ export default function ReportsPage() {
                       event.stopPropagation();
                       beginInlineEdit(report);
                     }}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-xs font-black text-[#102A43] shadow-sm hover:border-[#1D72B8]"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200/80 bg-white text-xs font-black text-[#102A43] shadow-none hover:border-[#1D72B8]"
                     aria-label="Edit report"
                     title="Edit report"
                   >
@@ -678,7 +678,7 @@ export default function ReportsPage() {
                       event.stopPropagation();
                       deleteReport(report.id);
                     }}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-red-100 bg-white text-xs font-black text-red-700 shadow-sm hover:bg-red-50"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-red-100 bg-white text-xs font-black text-red-700 shadow-none hover:bg-red-50"
                     aria-label="Delete report"
                     title="Delete report"
                   >
@@ -725,7 +725,7 @@ export default function ReportsPage() {
                     </p>
                   </div>
 
-                  <span className="mt-2 inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8] shadow-sm sm:absolute sm:bottom-1.5 sm:right-3 sm:mt-0">
+                  <span className="mt-2 inline-flex items-center gap-1 rounded-lg border border-slate-200/80 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8] shadow-none sm:absolute sm:bottom-1.5 sm:right-3 sm:mt-0">
                     {expanded ? "Hide details ▲" : "View details ▼"}
                   </span>
                 </button>
@@ -783,7 +783,7 @@ export default function ReportsPage() {
                         )}
 
                         <div className="min-w-0">
-                          <div className="rounded-xl border border-slate-200 bg-white/95 px-4 py-4 shadow-sm">
+                          <div className="rounded-xl border border-slate-200/80 bg-white/95 px-4 py-4 shadow-none">
                             <div className="flex items-start justify-between gap-3 border-b border-slate-200 pb-2">
                               <div className="min-w-0">
                                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8]">

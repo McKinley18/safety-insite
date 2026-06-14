@@ -138,7 +138,7 @@ export default function SafeScopeKnowledgePage() {
   }
 
   return (
-    <section className="space-y-5">
+    <section className="space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           ReviewCore Knowledge
@@ -245,7 +245,7 @@ export default function SafeScopeKnowledgePage() {
               searchResult.matches.map((match: any, index: number) => (
                 <div
                   key={match.chunkId || index}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 p-4"
+                  className="rounded-xl border border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950 p-4"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>

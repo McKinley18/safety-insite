@@ -144,7 +144,7 @@ export default function InspectionsPage() {
   }
 
   return (
-    <section className="sentinel-mobile-page space-y-5 sm:space-y-6">
+    <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
       <HeroPanel align="center" className="text-white">
         <div className="flex flex-col items-center gap-4 sm:p-5 text-center lg:text-left">
           <div>
@@ -171,7 +171,7 @@ export default function InspectionsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
             >
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
@@ -222,10 +222,10 @@ export default function InspectionsPage() {
             return (
               <article
                 key={workflow.id}
-                className={`overflow-hidden rounded-xl border shadow-sm transition hover:-translate-y-0.5 ${
+                className={`overflow-hidden rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
-                    : "border-slate-200 bg-white/90 hover:border-blue-200 hover:bg-white"
+                    : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white"
                 }`}
               >
                 <button
@@ -252,13 +252,13 @@ export default function InspectionsPage() {
                     </p>
                   </div>
 
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-lg font-black text-[#102A43] shadow-sm transition">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-lg font-black text-[#102A43] shadow-none transition">
                     {expanded ? "−" : "+"}
                   </span>
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200 bg-white/85 px-4 py-4 sm:px-5">
+                  <div className="border-t border-slate-200/80 bg-white/85 px-4 py-4 sm:px-5">
                     <p className="text-xs font-semibold leading-5 text-slate-600">
                       {workflow.details}
                     </p>
@@ -267,7 +267,7 @@ export default function InspectionsPage() {
                       {featureRows.map((feature) => (
                         <div
                           key={feature}
-                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-sm"
+                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-none"
                         >
                           {feature}
                         </div>
@@ -289,7 +289,7 @@ export default function InspectionsPage() {
                             startInspection(workflow);
                           }}
                           variant="accent"
-                          className="inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-center !text-white shadow-sm sm:w-auto sm:px-6"
+                          className="inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-center !text-white shadow-none sm:w-auto sm:px-6"
                         >
                           Start Inspection
                         </AppLinkButton>
@@ -297,7 +297,7 @@ export default function InspectionsPage() {
                         <AppLinkButton
                           href="/pricing"
                           variant="accent"
-                          className="inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-center !text-white shadow-sm sm:w-auto sm:px-6"
+                          className="inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-center !text-white shadow-none sm:w-auto sm:px-6"
                         >
                           Unlock This Workflow
                         </AppLinkButton>

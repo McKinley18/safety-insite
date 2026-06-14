@@ -302,9 +302,9 @@ export default function QuickInspectionPage() {
   }
 
   return (
-    <section className="sentinel-page-shell space-y-6">
+    <section className="sentinel-page-shell space-y-4">
       <HeroPanel>
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
               Quick Capture
@@ -338,7 +338,7 @@ export default function QuickInspectionPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
             >
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
@@ -367,7 +367,7 @@ export default function QuickInspectionPage() {
               value={hazardCategory}
               onChange={(event) => setHazardCategory(event.target.value)}
               placeholder="Let ReviewCore suggest or type one"
-              className="mt-2 bg-white/90 dark:bg-slate-900/85 focus:bg-white"
+              className="mt-2 bg-white dark:bg-slate-900/85 focus:bg-white"
             />
             <datalist id="quick-hazard-category-options">
               {hazardCategoryOptions.map((category) => (
@@ -384,7 +384,7 @@ export default function QuickInspectionPage() {
               value={location}
               onChange={(event) => setLocation(event.target.value)}
               placeholder="Example: Conveyor 3, north catwalk"
-              className="mt-2 bg-white/90 dark:bg-slate-900/85 focus:bg-white"
+              className="mt-2 bg-white dark:bg-slate-900/85 focus:bg-white"
             />
           </label>
         </div>
@@ -397,7 +397,7 @@ export default function QuickInspectionPage() {
             value={description}
             onChange={(event) => setDescription(event.target.value)}
             placeholder="What is wrong and who may be exposed?"
-            className="mt-2 min-h-24 bg-white/90 dark:bg-slate-900/85 font-semibold focus:bg-white"
+            className="mt-2 min-h-24 bg-white dark:bg-slate-900/85 font-semibold focus:bg-white"
           />
         </label>
 
@@ -455,7 +455,7 @@ export default function QuickInspectionPage() {
         />
 
         {safeScopeQuickResult ? (
-          <div className="mt-4 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 p-5 shadow-sm">
+          <div className="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 p-5 shadow-none">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
@@ -475,7 +475,7 @@ export default function QuickInspectionPage() {
               </span>
             </div>
 
-            <div className="mt-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 shadow-sm">
+            <div className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 shadow-none">
               <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                 Suggested Immediate Action
               </p>
@@ -541,7 +541,7 @@ export default function QuickInspectionPage() {
         </div>
       </AppPanel>
 
-      <section className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:sticky lg:bottom-4 lg:z-30">
+      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:sticky lg:bottom-4 lg:z-30">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
           <AppButton
             type="button"

@@ -332,7 +332,7 @@ export default function ActionsPage() {
   }
 
   return (
-    <section className="sentinel-page-shell space-y-6">
+    <section className="sentinel-page-shell space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Corrective Actions
@@ -353,7 +353,7 @@ export default function ActionsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-2xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
             >
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
@@ -385,7 +385,7 @@ export default function ActionsPage() {
       )}
 
       {!canUseWorkspaceActions && (
-        <AppPanel padding="sm" className="border-slate-200 bg-white">
+        <AppPanel padding="sm" className="border-slate-200/80 bg-white">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Personal Action Tracker
           </p>

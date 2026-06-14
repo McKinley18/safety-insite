@@ -141,10 +141,10 @@ function MetricCard({
         ? "border-amber-100 bg-amber-50"
         : tone === "good"
           ? "border-emerald-100 bg-emerald-50"
-          : "border-slate-200 bg-white";
+          : "border-slate-200/80 bg-white";
 
   return (
-    <div className={`rounded-xl border px-3 py-2.5 shadow-sm ${toneClass}`}>
+    <div className={`rounded-xl border px-3 py-2.5 shadow-none ${toneClass}`}>
       <p className="text-2xl font-black text-slate-900">{value}</p>
       <p className="mt-1 text-xs font-black uppercase tracking-wide text-[#1D72B8]">
         {label}
@@ -311,7 +311,7 @@ export default function AnalyticsPage() {
   ].filter(Boolean);
 
   return (
-    <section className="sentinel-mobile-page space-y-5 sm:space-y-6">
+    <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
       <HeroPanel align="center">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <div>
@@ -342,7 +342,7 @@ export default function AnalyticsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm backdrop-blur"
+              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
             >
               <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
                 {value}
@@ -475,7 +475,7 @@ export default function AnalyticsPage() {
               ].map(([value, label]) => (
                 <div
                   key={label}
-                  className="rounded-xl border border-slate-200 bg-white/85 px-3 py-2.5 shadow-sm"
+                  className="rounded-xl border border-slate-200/80 bg-white/85 px-3 py-2.5 shadow-none"
                 >
                   <p className="text-xl font-black tracking-[-0.055em] text-slate-950">
                     {value}
@@ -488,7 +488,7 @@ export default function AnalyticsPage() {
             </div>
 
             <div className="mt-2 grid gap-2 lg:grid-cols-2">
-              <div className="rounded-xl border border-orange-100 bg-orange-50/70 px-3 py-2.5 shadow-sm dark:border-orange-900/50 dark:bg-orange-950/25">
+              <div className="rounded-xl border border-orange-100 bg-orange-50/70 px-3 py-2.5 shadow-none dark:border-orange-900/50 dark:bg-orange-950/25">
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <p className="text-[9px] font-black uppercase tracking-[0.12em] text-orange-700 dark:text-orange-300">
@@ -506,7 +506,7 @@ export default function AnalyticsPage() {
                 </div>
               </div>
 
-              <div className="rounded-xl border border-sky-100 bg-sky-50/70 px-3 py-2.5 shadow-sm dark:border-sky-900/50 dark:bg-sky-950/25">
+              <div className="rounded-xl border border-sky-100 bg-sky-50/70 px-3 py-2.5 shadow-none dark:border-sky-900/50 dark:bg-sky-950/25">
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <p className="text-[9px] font-black uppercase tracking-[0.12em] text-sky-700 dark:text-sky-300">
@@ -542,13 +542,13 @@ export default function AnalyticsPage() {
                   programHealthNotes.slice(0, 2).map((note) => (
                     <div
                       key={note}
-                      className="rounded-xl border border-orange-100 bg-orange-50/80 px-3 py-2 text-[11px] font-black leading-4 text-orange-800 shadow-sm dark:border-orange-900/50 dark:bg-orange-950/30 dark:text-orange-200"
+                      className="rounded-xl border border-orange-100 bg-orange-50/80 px-3 py-2 text-[11px] font-black leading-4 text-orange-800 shadow-none dark:border-orange-900/50 dark:bg-orange-950/30 dark:text-orange-200"
                     >
                       {note}
                     </div>
                   ))
                 ) : (
-                  <p className="rounded-xl border border-emerald-100 bg-emerald-50/80 px-3 py-2 text-[11px] font-black leading-4 text-emerald-700 shadow-sm dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-200">
+                  <p className="rounded-xl border border-emerald-100 bg-emerald-50/80 px-3 py-2 text-[11px] font-black leading-4 text-emerald-700 shadow-none dark:border-emerald-900/50 dark:bg-emerald-950/30 dark:text-emerald-200">
                     No major concern signals detected.
                   </p>
                 )}
@@ -621,7 +621,7 @@ export default function AnalyticsPage() {
               ].map(([value, label]) => (
                 <div
                   key={label}
-                  className="rounded-xl border border-emerald-100 bg-emerald-50/60 px-2 py-2 text-center shadow-sm dark:border-emerald-900/50 dark:bg-emerald-950/25"
+                  className="rounded-xl border border-emerald-100 bg-emerald-50/60 px-2 py-2 text-center shadow-none dark:border-emerald-900/50 dark:bg-emerald-950/25"
                 >
                   <p className="text-lg font-black tracking-[-0.05em] text-slate-950">
                     {value}
