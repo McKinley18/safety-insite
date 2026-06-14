@@ -244,5 +244,29 @@ export const CORRECTIVE_ACTION_TEMPLATE_REGISTRY: CorrectiveActionTemplate[] = [
       'document atmospheric testing',
       'verify entry permit and attendant controls'
     ]
+  },
+  {
+    domain: 'cranes_rigging_hoisting',
+    immediateControlElements: ['stop lifting operation', 'restrict access to area under load'],
+    permanentCorrectionElements: ['inspect rigging for defects', 'use certified rigging components', 'establish load path control', 'ensure crane capacity is verified'],
+    verificationEvidence: ['verify load chart', 'document pre-lift inspection', 'competent person sign-off']
+  },
+  {
+    domain: 'bloodborne_pathogens',
+    immediateControlElements: ['restrict access to contaminated area', 'use appropriate PPE'],
+    permanentCorrectionElements: ['clean and disinfect', 'use sharps containers', 'provide hepatitis B vaccination program', 'follow exposure control plan'],
+    verificationEvidence: ['document cleaning record', 'verify sharps container availability', 'document employee training']
+  },
+  {
+    domain: 'industrial_hygiene',
+    immediateControlElements: ['restrict exposure area', 'use respiratory protection if required'],
+    permanentCorrectionElements: ['implement engineering controls for dust/fumes', 'conduct personal exposure monitoring', 'use localized exhaust ventilation'],
+    verificationEvidence: ['document exposure assessment', 'verify ventilation performance', 'document employee notification']
+  },
+  {
+    domain: 'ergonomics',
+    immediateControlElements: ['modify workstation setup', 'rotate employee tasks'],
+    permanentCorrectionElements: ['implement adjustable workstation', 'provide ergonomic tools', 'improve task design to reduce strain'],
+    verificationEvidence: ['conduct ergonomic assessment', 'document workstation modification', 'verify employee comfort/strain reduction']
   }
 ];
