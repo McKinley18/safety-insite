@@ -4,51 +4,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const navItems = [
-  {
-    href: "/command-center",
-    label: "Home",
-    icon: "🏠",
-    activeRoots: ["/command-center", "/dashboard"],
-  },
-  {
-    href: "/inspections",
-    label: "Inspect",
-    icon: "📋",
-    activeRoots: [
-      "/inspections",
-      "/inspection",
-      "/inspection-cover",
-      "/inspection-review",
-      "/inspection-walkthrough",
-    ],
-  },
-  { href: "/reports", label: "Reports", icon: "🗂", activeRoots: ["/reports"] },
-  {
-    href: "/analytics",
-    label: "Insights",
-    icon: "📈",
-    activeRoots: ["/analytics"],
-  },
-  {
-    href: "/safety-calendar",
-    label: "Calendar",
-    icon: "📅",
-    activeRoots: ["/safety-calendar"],
-  },
+const tabs = [
+  { href: "/command-center", label: "Home", icon: "🏠" },
+  { href: "/inspections", label: "Inspection", icon: "📋" },
+  { href: "/reports", label: "Report", icon: "🗂" },
+  { href: "/safety-calendar", label: "Calendar", icon: "📅" },
+  { href: "/analytics", label: "Insights", icon: "📈" },
 ];
 
-function isEditableElement(element: Element | null) {
-  if (!element) return false;
+function isMobileKeyboardLikelyOpen() {
+  if (typeof window === "undefined") return false;
 
-  const tag = element.tagName.toLowerCase();
+  const visualViewport = window.visualViewport;
+  if (!visualViewport) return false;
 
-  return (
-    tag === "input" ||
-    tag === "textarea" ||
-    tag === "select" ||
-    element.getAttribute("contenteditable") === "true"
-  );
+  const viewportLoss = window.innerHeight - visualViewport.height;
+  return viewportLoss > 140;
 }
 
 export default function MobileTabBar() {
@@ -56,80 +27,61 @@ export default function MobileTabBar() {
   const [keyboardOpen, setKeyboardOpen] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    function updateKeyboardState() {
+      const open = isMobileKeyboardLikelyOpen();
 
-    const initialHeight = window.visualViewport?.height || window.innerHeight;
-
-    function syncKeyboardState() {
-      const activeElement = document.activeElement;
-      const focusedEditable = isEditableElement(activeElement);
-
-      const currentHeight = window.visualViewport?.height || window.innerHeight;
-      const heightDelta = initialHeight - currentHeight;
-
-      const likelyKeyboardOpen =
-        window.innerWidth < 1024 &&
-        focusedEditable &&
-        (
-          heightDelta > 60 ||
-          currentHeight < initialHeight * 0.86 ||
-          currentHeight < window.innerHeight * 0.86
-        );
-
-      setKeyboardOpen(likelyKeyboardOpen);
-      document.body.classList.toggle("sentinel-keyboard-open", likelyKeyboardOpen);
+      setKeyboardOpen(open);
+      document.documentElement.classList.toggle("sentinel-keyboard-open", open);
+      document.body.classList.toggle("sentinel-keyboard-open", open);
     }
 
-    const viewport = window.visualViewport;
+    updateKeyboardState();
 
-    viewport?.addEventListener("resize", syncKeyboardState);
-    viewport?.addEventListener("scroll", syncKeyboardState);
-    window.addEventListener("resize", syncKeyboardState);
-    document.addEventListener("focusin", syncKeyboardState);
-    document.addEventListener("focusout", syncKeyboardState);
-
-    syncKeyboardState();
+    window.visualViewport?.addEventListener("resize", updateKeyboardState);
+    window.visualViewport?.addEventListener("scroll", updateKeyboardState);
+    window.addEventListener("resize", updateKeyboardState);
+    window.addEventListener("orientationchange", updateKeyboardState);
 
     return () => {
-      viewport?.removeEventListener("resize", syncKeyboardState);
-      viewport?.removeEventListener("scroll", syncKeyboardState);
-      window.removeEventListener("resize", syncKeyboardState);
-      document.removeEventListener("focusin", syncKeyboardState);
-      document.removeEventListener("focusout", syncKeyboardState);
+      window.visualViewport?.removeEventListener("resize", updateKeyboardState);
+      window.visualViewport?.removeEventListener("scroll", updateKeyboardState);
+      window.removeEventListener("resize", updateKeyboardState);
+      window.removeEventListener("orientationchange", updateKeyboardState);
+      document.documentElement.classList.remove("sentinel-keyboard-open");
       document.body.classList.remove("sentinel-keyboard-open");
     };
-  }, [pathname]);
-
-  if (keyboardOpen) {
-    return null;
-  }
+  });
 
   return (
-    <div className="sentinel-mobile-chrome fixed inset-x-0 bottom-0 z-[999999] lg:hidden">
-      <nav className="border-t border-white/10 bg-[#0F172A] px-3 pb-[calc(env(safe-area-inset-bottom)+8px)] pt-2 shadow-2xl shadow-slate-950/30">
-        <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
-          {navItems.map((item) => {
-            const active = item.activeRoots.some(
-              (root) => pathname === root || pathname.startsWith(root + "/"),
-            );
+    <nav
+      aria-label="Mobile primary navigation"
+      data-keyboard-open={keyboardOpen ? "true" : "false"}
+      className="mobile-tab-bar fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-[#0B1320]/96 px-2 pb-[max(env(safe-area-inset-bottom),0.45rem)] pt-2 shadow-[0_-8px_24px_rgba(15,23,42,0.16)] backdrop-blur-xl transition-transform duration-150 lg:hidden"
+    >
+      <div className="mx-auto grid max-w-md grid-cols-5 gap-1.5">
+        {tabs.map((tab) => {
+          const active =
+            pathname === tab.href ||
+            (tab.href !== "/command-center" && pathname?.startsWith(tab.href));
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={[
-                  "flex h-[52px] flex-col items-center justify-center rounded-xl px-1 text-[10px] font-black",
-                  active ? "bg-[#1D72B8] !text-white" : "!text-white/80",
-                ].join(" ")}
-              >
-                <span className="text-[18px] leading-none">{item.icon}</span>
-                <span className="mt-1 tracking-tight">{item.label}</span>
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
-
-    </div>
+          return (
+            <Link
+              key={tab.href}
+              href={tab.href}
+              className={`flex min-h-[48px] flex-col items-center justify-center rounded-xl px-1 text-center transition ${
+                active
+                  ? "bg-[#1D72B8] text-white shadow-sm shadow-blue-950/30"
+                  : "text-white hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <span className="text-base leading-none text-white">{tab.icon}</span>
+              <span className="mt-1 text-[9px] font-black uppercase tracking-wide text-white">
+                {tab.label}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
   );
 }

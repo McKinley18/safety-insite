@@ -414,46 +414,28 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       >
         {children}
       </main>
-
       {showPublicFooter && (
-      <footer className="mt-auto w-full border-t border-slate-800 bg-[#0F172A]">
-        <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-2 px-5 py-3">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/about"
-              style={{ color: "#FFFFFF" }}
-              className="text-sm font-black !text-white hover:opacity-80"
-            >
-              About
-            </Link>
+        <footer className="mt-auto w-full bg-[#0B1320] text-white">
+          <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-black">
+              <Link href="/about" className="text-slate-200 transition hover:text-[#5DB7FF]">
+                About
+              </Link>
+              <Link href="/legal" className="text-slate-200 transition hover:text-[#5DB7FF]">
+                Legal
+              </Link>
+              <Link href="/safescope" className="text-slate-200 transition hover:text-[#5DB7FF]">
+                ReviewCore
+              </Link>
+            </div>
 
-            <span className="h-4 w-px bg-[#6F7782]" />
-
-            <Link
-              href="/legal"
-              style={{ color: "#FFFFFF" }}
-              className="text-sm font-black !text-white hover:opacity-80"
-            >
-              Legal
-            </Link>
-
-            <span className="h-4 w-px bg-[#6F7782]" />
-
-            <Link
-              href="/safescope"
-              style={{ color: "#FFFFFF" }}
-              className="text-sm font-black !text-white hover:opacity-80"
-            >
-              ReviewCore
-              <span className="ml-[1px] align-super text-[9px]">TM</span>
-            </Link>
+            <div className="mt-5 border-t border-white/10 pt-4 text-center">
+              <p className="text-xs font-semibold leading-5 text-slate-400">
+                © {new Date().getFullYear()} Sentinel Safety. Professional safety review tools for field teams.
+              </p>
+            </div>
           </div>
-
-          <p className="m-0 text-center text-[13px] !text-white/80">
-            © {new Date().getFullYear()} Sentinel Safety. All rights reserved.
-          </p>
-        </div>
-      </footer>
+        </footer>
       )}
 
       {showAppNav && <MobileTabBar />}

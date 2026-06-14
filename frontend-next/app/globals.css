@@ -789,3 +789,25 @@ body {
     padding: 0.75rem !important;
   }
 }
+
+/* Mobile keyboard behavior: do not let the keyboard push the bottom nav upward */
+html.sentinel-keyboard-open,
+body.sentinel-keyboard-open {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.sentinel-keyboard-open .mobile-tab-bar {
+  transform: translateY(120%) !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1023px) {
+  .mobile-tab-bar {
+    will-change: transform;
+  }
+
+  .sentinel-keyboard-open .mobile-tab-bar {
+    display: none !important;
+  }
+}
