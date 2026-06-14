@@ -236,6 +236,153 @@ export class SafescopeV2Service {
         actionInput.id,
       );
 
+      const aiEvidenceContract = {
+        inputsUsed: [
+          "hazard_observation_text",
+          ...(evidenceTexts?.length ? ["evidence_texts"] : []),
+          ...(visualAttachments?.length ? ["visual_attachments"] : []),
+          ...(priorFindings?.length ? ["prior_findings_reference_only"] : []),
+        ],
+        standardsSourcesUsed: suggestedStandards
+          .map((standard: any) => standard.citation || standard.standard || standard.id)
+          .filter(Boolean),
+        missingInputs: [
+          ...(fusedText.toLowerCase().includes("location") ? [] : ["specific_location"]),
+          ...(evidenceTexts?.length || visualAttachments?.length ? [] : ["supporting_photo_or_evidence_note"]),
+        ],
+        unsupportedClaims: [],
+        reviewTriggers: [
+          "qualified_review_required",
+          ...(risk?.requiresShutdown ? ["shutdown_or_immediate_control_review"] : []),
+          ...(excludedStandards.length ? ["standards_scope_filter_review"] : []),
+        ],
+        canFinalizeWithoutHumanReview: false,
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        doesNotCreateCitation: true,
+        requiresQualifiedReview: true,
+      };
+
+      const aiReadiness = {
+        readyForDecisionSupport: true,
+        readyForAutonomousComplianceDecision: false,
+        marketingPosition: "AI-assisted safety review and decision-support engine",
+        advisoryOnly: true,
+        requiresQualifiedReview: true,
+        limitations: [
+          "Does not declare violations.",
+          "Does not create citations.",
+          "Does not replace qualified safety or regulatory review.",
+          "Standards applicability depends on confirmed jurisdiction, task, exposure, and evidence.",
+        ],
+      };
+
+      const aiCapabilityProfile = {
+        classification: "AI-assisted safety review engine",
+        capabilities: [
+          "hazard classification",
+          "risk reasoning",
+          "standards candidate support",
+          "evidence gap identification",
+          "corrective action recommendation",
+          "source-governed advisory reasoning",
+        ],
+        missingForValidatedAi: [
+          "independent third-party validation",
+          "production-scale field accuracy study",
+          "live source update governance approval workflow",
+        ],
+      };
+
+      const nativeReasoning = {
+        enabled: true,
+        mode: "offline_capable",
+        engine: "safescope_native",
+        mechanismIntelligence: {
+          enabled: true,
+          engine: "safescope_mechanism_intelligence",
+          source: "scenario_equipment_task_mechanism_reasoning",
+          primaryEnergySources: [
+            "mechanical_motion",
+            "gravity",
+            "electrical_energy",
+            "mobile_equipment_kinetic_energy",
+          ],
+          injuryMechanisms: [
+            "caught_in_or_between",
+            "struck_by",
+            "fall_to_lower_level",
+            "electrical_contact",
+            "exposure",
+          ],
+          credibleAccidentPathways: [
+            "employee exposure to uncontrolled hazardous energy or motion",
+            "failed or missing barrier allows contact with hazard source",
+            "unclear task/equipment state requires qualified verification",
+          ],
+          canInventCitations: false,
+          canOverrideStandards: false,
+          canReduceHumanReview: false,
+          sourceBoundary:
+            "Mechanism intelligence explains plausible harm pathways only; it cannot invent citations, override standards, or reduce qualified human review.",
+          advisoryOnly: true,
+          requiresQualifiedReview: true,
+        },
+        evidenceGapReasoning: {
+          enabled: true,
+          source: "evidence_gap_questions_and_field_output",
+          advisoryOnly: true,
+          requiresQualifiedReview: true,
+        },
+        correctiveActionReasoning: {
+          enabled: true,
+          source: "dca_corrective_action_brain",
+          advisoryOnly: true,
+          doesNotGuaranteeAbatement: true,
+          requiresQualifiedReview: true,
+        },
+        standardsReasoning: {
+          enabled: true,
+          source: "scope_filtered_applicability_and_traceability",
+          advisoryOnly: true,
+          doesNotCreateCitation: true,
+          requiresQualifiedReview: true,
+        },
+      };
+
+      const learningMemory = {
+        engine: "safescope_learning_memory",
+        canSelfModifyRules: false,
+        canOverrideStandards: false,
+        canReduceHumanReview: false,
+        memoryBoundary:
+          "Learning memory may preserve reviewer patterns and confidence signals for future review support, but it cannot self-modify rules, override standards, invent citations, or reduce qualified human review.",
+      };
+
+      const learningGovernance = {
+        allowedInfluence: [
+          "adjust_confidence",
+          "surface_review_patterns",
+          "suggest_evidence_questions",
+          "prioritize_human_review",
+        ],
+        prohibitedInfluence: [
+          "create_citations",
+          "invented_citations",
+          "auto_finalize_compliance_decisions",
+          "invent_citations",
+          "declare_violations",
+          "override_regulations",
+          "remove_qualified_review_requirement",
+        ],
+        advisoryOnly: true,
+        requiresQualifiedReview: true,
+        finalGovernanceRule:
+          "ReviewCore may support classification, risk reasoning, standards review, evidence questions, and corrective action recommendations, but it must not invent citations, declare violations, finalize compliance decisions, or remove qualified human review.",
+      };
+
+      const requiresHumanReview = true;
+
       const standardsTraceability = {
         primaryMatcher: "ApplicableStandardsService",
         primaryMatcherRole:
@@ -306,12 +453,28 @@ export class SafescopeV2Service {
           fieldOutput: (intelligence as any).fieldOutput,
           semanticUnderstanding: (intelligence as any).semanticUnderstanding,
           semanticRouting: (intelligence as any).semanticRouting,
+          aiReadiness,
+          aiEvidenceContract,
+          aiCapabilityProfile,
+          nativeReasoning,
+          learningGovernance,
+          learningMemory,
+          requiresHumanReview,
+          knowledgeBrain: (intelligence as any).knowledgeBrain || (intelligence as any).retrieval || {},
+          sourceAwareAnalysis: (intelligence as any).sourceAwareAnalysis || (intelligence as any).sbag || {},
+          reasoningSnapshotId: (intelligence as any).reasoningSnapshotId || `local-reasoning-${Date.now()}`,
           decisionSupportMetadata: {
               semanticUnderstanding: (intelligence as any).semanticUnderstanding,
               semanticRouting: (intelligence as any).semanticRouting,
               reasoningSourceHierarchy,
               reasoningBasis,
               standardsTraceability,
+              aiEvidenceContract,
+              aiReadiness,
+              aiCapabilityProfile,
+              nativeReasoning,
+              learningGovernance,
+              learningMemory,
           }
       };
   }

@@ -7,6 +7,7 @@ import { SafeScopeFeedbackService } from '../src/safescope-v2/feedback/safescope
 import { ReasoningSnapshotService } from '../src/safescope-v2/snapshots/reasoning-snapshot.service';
 import { SafeScopeKnowledgeService } from '../src/safescope-knowledge/safescope-knowledge.service';
 import { StandardsIntelligenceService } from '../src/safescope-v2/standards-intelligence/standards-intelligence.service';
+import { SafeScopeIntelligenceOrchestrator } from '../src/safescope-v2/orchestration/intelligence-orchestrator.service';
 
 function assert(condition: unknown, message: string) {
   if (!condition) {
@@ -87,6 +88,24 @@ function createMockService() {
 
   const standardsIntelligenceService = {} as StandardsIntelligenceService;
 
+  const intelligenceOrchestrator = new SafeScopeIntelligenceOrchestrator();
+
+  const visualService = {
+    evaluate: async () => ({})
+  } as any;
+
+  const imageAnalysisService = {
+    evaluate: async () => ({})
+  } as any;
+
+  const offlineService = {
+    evaluate: () => ({ offlineTraceId: 'test-offline-trace-id' })
+  } as any;
+
+  const access = {
+    can: () => ({ allowed: true })
+  } as any;
+
   return new SafescopeV2Service(
     actionEngine,
     contextExpansion,
@@ -97,6 +116,11 @@ function createMockService() {
     safeScopeKnowledge,
     standardsIntelligenceService,
     supervisorValidationService as any,
+    intelligenceOrchestrator,
+    visualService,
+    imageAnalysisService,
+    offlineService,
+    access,
   );
 }
 

@@ -519,10 +519,10 @@ export class SafeScopeReasoningOrchestratorService {
       companyPolicies,
       confidence,
       conclusionBoundary: {
-        advisoryOnly: confidence.level !== 'high',
-        doesNotDeclareViolation: confidence.level !== 'high',
-        doesNotCreateCitation: confidence.level !== 'high' || !primaryCitation,
-        requiresQualifiedReview: confidence.level !== 'high' || contradictionIntelligence?.contradictionsDetected === true || missingEvidence.length > 0,
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        doesNotCreateCitation: true,
+        requiresQualifiedReview: true,
       },
       recommendedNextQuestions: this.recommendedQuestions(jurisdictionAssessment.likelyJurisdiction, hazardClassification.primaryDomain, missingEvidence),
     };

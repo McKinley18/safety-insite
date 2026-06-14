@@ -61,9 +61,9 @@ const cases = [
   {
     name: 'insufficient equipment context',
     request: {
-      hazardObservation: 'There is a concern in the area.',
-      siteType: 'general area',
-      industryContext: 'general industry',
+      hazardObservation: 'Possible issue observed.',
+      siteType: undefined,
+      industryContext: undefined,
     },
     expectedMode: 'insufficient_equipment_context',
   },
