@@ -268,5 +268,19 @@ export const CORRECTIVE_ACTION_TEMPLATE_REGISTRY: CorrectiveActionTemplate[] = [
     immediateControlElements: ['modify workstation setup', 'rotate employee tasks'],
     permanentCorrectionElements: ['implement adjustable workstation', 'provide ergonomic tools', 'improve task design to reduce strain'],
     verificationEvidence: ['conduct ergonomic assessment', 'document workstation modification', 'verify employee comfort/strain reduction']
-  }
+  },
+
+  {
+    domain: 'ppe',
+    immediateControlElements: ['stop exposed task until correct PPE is available', 'remove damaged PPE from service', 'restrict exposure where PPE is missing or incorrect'],
+    permanentCorrectionElements: ['complete PPE hazard assessment', 'select PPE matched to the exposure', 'replace damaged PPE', 'verify fit/use limitations', 'train affected employees on correct use and care'],
+    verificationEvidence: ['PPE hazard assessment', 'PPE rating or compatibility confirmation', 'before/after task photo', 'training or supervisor verification']
+  },
+  {
+    domain: 'fire_protection',
+    immediateControlElements: ['clear access to fire protection equipment', 'pause hot work until fire controls are verified', 'remove or control combustibles'],
+    permanentCorrectionElements: ['restore extinguisher access and inspection status', 'establish hot work permit/fire watch where needed', 'maintain sprinkler/alarm/fire equipment clearance', 'correct flammable storage or ignition-source controls'],
+    verificationEvidence: ['extinguisher access photo', 'inspection tag photo', 'hot work permit or fire watch record', 'combustible clearance photo']
+  },
+
 ];
