@@ -7,7 +7,6 @@ import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppTextLink } from "@/components/ui/AppTextLink";
-import { SENTINEL_BUILD_STAMP } from "@/lib/buildStamp";
 import { isLocalDevAuthBypassEnabled, LOCAL_DEV_AUTH_TOKEN, setAuthSession } from "@/lib/auth";
 
 export default function LoginPage() {
@@ -179,10 +178,6 @@ export default function LoginPage() {
                   Forgot password?
                 </AppTextLink>
               </div>
-
-              <p className="mt-4 text-center text-[10px] font-black uppercase tracking-wide text-slate-400 dark:text-slate-500">
-                {SENTINEL_BUILD_STAMP}
-              </p>
 
               {status && (
                 <p
