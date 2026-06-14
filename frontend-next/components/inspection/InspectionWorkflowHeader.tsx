@@ -65,33 +65,33 @@ export default function InspectionWorkflowHeader({
 
   return (
     <>
-      <div className="sticky top-[80px] z-30 -mx-4 -mt-5 mb-3 border-b border-blue-100 bg-white dark:bg-slate-900/90 px-4 py-2.5 shadow-[0_8px_18px_rgba(15,23,42,0.08)] backdrop-blur-sm sm:-mx-6 sm:px-6">
+      <div className="sticky top-[68px] z-30 mb-4 overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2.5 sm:px-4 sm:py-3 text-white shadow-sm ring-1 ring-white/10 backdrop-blur-xl sm:px-5">
         <div className="flex items-center justify-between gap-2">
-          <div className="flex w-20 shrink-0 justify-start">
+          <div className="flex w-24 shrink-0 justify-start">
             <button
               type="button"
               onClick={handleBack}
-              className="rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-1.5 text-[11px] font-black text-slate-700 dark:text-slate-300 shadow-sm transition hover:bg-slate-50 dark:hover:bg-slate-800"
+              className="rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-black text-white shadow-sm transition hover:bg-white hover:text-[#0B1320]"
             >
               ← Back
             </button>
           </div>
 
           <div className="min-w-0 flex-1 text-center">
-            <p className="truncate text-[9px] font-black uppercase tracking-[0.16em] text-[#1D72B8]">
-              {workflowLabel} · Step {visibleStepIndex} of {steps.length}
+            <p className="truncate text-[9px] font-black uppercase tracking-[0.18em] text-blue-200">
+              Inspection · {workflowLabel} · Step {visibleStepIndex} of {steps.length}
             </p>
-            <h1 className="mt-0.5 truncate text-base font-black leading-tight text-slate-900 dark:text-slate-100 sm:text-lg">
+            <h1 className="mt-0.5 truncate text-base font-black leading-tight text-white sm:text-lg">
               {currentStepTitle}
             </h1>
           </div>
 
-          <div className="flex w-20 shrink-0 justify-end">
+          <div className="flex w-24 shrink-0 justify-end">
             {currentStep < steps.length && (
               <button
                 type="button"
                 onClick={handleNext}
-                className="rounded-full bg-[#102A43] px-3.5 py-1.5 text-[11px] font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+                className="rounded-full bg-[#1D72B8] px-3.5 py-1.5 text-[11px] font-black text-white shadow-sm transition hover:bg-white hover:text-[#0B1320]"
               >
                 {nextButtonLabel} →
               </button>
@@ -99,9 +99,9 @@ export default function InspectionWorkflowHeader({
           </div>
         </div>
 
-        <div className="mt-2 h-1 rounded-full bg-slate-200">
+        <div className="mt-2.5 h-1 rounded-full bg-white/15">
           <div
-            className="h-1 rounded-full bg-[#1D72B8] transition-all duration-300"
+            className="h-1 rounded-full bg-[#5DB7FF] transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
           />
         </div>

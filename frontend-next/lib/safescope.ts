@@ -66,9 +66,9 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
     basicPlanMode: true,
     upgradeRequiredForFullSafeScope: true,
     explanation:
-      "Basic SafeScope provides limited hazard assistance. Upgrade to Plus or Company for full SafeScope reasoning, standards matching, evidence quality review, exposure-path intelligence, and corrective action recommendations.",
+      "Basic ReviewCore provides limited hazard assistance. Upgrade to Plus or Company for full ReviewCore reasoning, standards matching, evidence quality review, exposure-path intelligence, and corrective action recommendations.",
     ambiguityWarnings: [
-      "Full SafeScope intelligence is not available on the Basic plan.",
+      "Full ReviewCore intelligence is not available on the Basic plan.",
       "Review classification, risk, standards, and corrective actions manually.",
     ],
     evidenceTokens: [],
@@ -84,7 +84,7 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
       confidenceBand: "basic_review",
       strengths: ["Basic hazard category assistance was provided."],
       missingCriticalInformation: [
-        "Full SafeScope intelligence requires Plus or Company.",
+        "Full ReviewCore intelligence requires Plus or Company.",
       ],
       conflictingSignals: [],
       recommendedFollowup: [
@@ -129,13 +129,13 @@ function buildOfflineSafeScopeFallback(input: {
       : "review_required",
     evidenceTokens: [],
     ambiguityWarnings: [
-      "SafeScope is using the approved offline Knowledge Brain because the online engine was unavailable.",
-      input.errorMessage || "Online SafeScope request failed.",
+      "ReviewCore is using the approved offline Knowledge Brain because the online engine was unavailable.",
+      input.errorMessage || "Online ReviewCore request failed.",
     ],
     requiresHumanReview: true,
     explanation: topMatch
       ? `Offline SafeScope found supporting approved reference intelligence for: ${topMatch.title}.`
-      : "Offline SafeScope could not find a strong approved reference match. Manual review is required.",
+      : "Offline ReviewCore could not find a strong approved reference match. Manual review is required.",
     commonConsequences: [],
     requiredControls: [],
     score: topMatch?.score || 0,
@@ -150,7 +150,7 @@ function buildOfflineSafeScopeFallback(input: {
       imminentDanger: false,
       fatalityPotential: false,
       reasoning: [
-        "Offline fallback does not replace the full SafeScope risk engine.",
+        "Offline fallback does not replace the full ReviewCore risk engine.",
         "Use qualified review before final classification, standards selection, or corrective action decisions.",
       ],
     },
@@ -174,11 +174,11 @@ function buildOfflineSafeScopeFallback(input: {
           ]
         : [],
       missingCriticalInformation: offlineSearch.reasoning?.evidenceGaps || [
-        "Online SafeScope intelligence unavailable.",
+        "Online ReviewCore intelligence unavailable.",
       ],
       conflictingSignals: [],
       recommendedFollowup: [
-        "Reconnect and rerun full SafeScope review when available.",
+        "Reconnect and rerun full ReviewCore review when available.",
         "Supervisor review required before final report use.",
       ],
       reviewTriggers: ["Offline fallback mode"],
@@ -234,7 +234,7 @@ export async function runSafeScopeV2Classify(input: {
   const headers = getSafeScopeAuthHeaders();
 
   if (typeof window !== "undefined") {
-    console.info("[SafeScope] direct classify request", {
+    console.info("[ReviewCore] direct classify request", {
       requestUrl,
       hasAuthHeader: Boolean((headers as any).Authorization),
       textLength: safePayload.text.length,
@@ -258,7 +258,7 @@ export async function runSafeScopeV2Classify(input: {
       const errorMsg = responseText || `SafeScope backend error ${response.status}`;
       
       if (typeof window !== "undefined") {
-        console.error("[SafeScope] classify error", {
+        console.error("[ReviewCore] classify error", {
           status: response.status,
           message: errorMsg
         });
@@ -276,7 +276,7 @@ export async function runSafeScopeV2Classify(input: {
     const result = responseText ? JSON.parse(responseText) : null;
 
     if (typeof window !== "undefined") {
-      console.info("[SafeScope] direct classify response", {
+      console.info("[ReviewCore] direct classify response", {
         classification: result?.classification,
         confidence: result?.confidence,
         confidenceBand: result?.confidenceBand,
@@ -288,7 +288,7 @@ export async function runSafeScopeV2Classify(input: {
     return result;
   } catch (error) {
     const message =
-      error instanceof Error ? error.message : "SafeScope request failed.";
+      error instanceof Error ? error.message : "ReviewCore request failed.";
 
     if (typeof navigator !== "undefined" && !navigator.onLine) {
       return buildOfflineSafeScopeFallback({
@@ -316,7 +316,7 @@ export async function sendSafeScopeFeedback(payload: any) {
   });
 
   if (!response.ok) {
-    throw new Error("SafeScope feedback failed.");
+    throw new Error("ReviewCore feedback failed.");
   }
 
   return response.json();
@@ -328,7 +328,7 @@ export async function getSafeScopeReasoningSnapshot(snapshotId: string) {
   );
 
   if (!response.ok) {
-    throw new Error("SafeScope reasoning snapshot could not be loaded.");
+    throw new Error("ReviewCore reasoning snapshot could not be loaded.");
   }
 
   return response.json();

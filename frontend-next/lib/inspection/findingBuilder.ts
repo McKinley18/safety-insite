@@ -14,7 +14,7 @@ function normalizeFieldOutputActions(input: {
       const title =
         typeof action === "string"
           ? action
-          : action.title || action.description || "SafeScope field action";
+          : action.title || action.description || "ReviewCore field action";
 
       const verification =
         typeof action === "string"
@@ -50,7 +50,7 @@ function normalizeFieldOutputActions(input: {
         source:
           typeof action === "object" && action.source
             ? action.source
-            : "SafeScope field output",
+            : "ReviewCore field output",
         createdAt:
           typeof action === "object" && action.createdAt
             ? action.createdAt
@@ -99,10 +99,10 @@ export function buildFinding(input: {
     source:
       action.source ||
       (index < input.selectedGeneratedActions.length
-        ? "SafeScope"
+        ? "ReviewCore"
         : input.selectedGeneratedActions.length || input.manualActions.length
           ? "User"
-          : "SafeScope field output"),
+          : "ReviewCore field output"),
     createdAt: action.createdAt || new Date().toISOString(),
   }));
 

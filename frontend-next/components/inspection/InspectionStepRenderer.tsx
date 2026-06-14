@@ -18,7 +18,7 @@ function NavyStepHeader({
   stats: Array<{ label: string; value: string | number }>;
 }) {
   return (
-    <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
+    <div className="sentinel-hero-card p-4 sm:p-5">
       <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
         {step}
       </p>
@@ -33,7 +33,7 @@ function NavyStepHeader({
         {stats.map((item) => (
           <div
             key={item.label}
-            className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15"
+            className="flex min-h-[72px] flex-col items-center justify-center rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm ring-1 ring-white/10"
           >
             <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
               {item.label}
@@ -58,7 +58,7 @@ function StepHeroCard({
   stats?: Array<{ label: string; value: string | number }>;
 }) {
   return (
-    <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
+    <div className="sentinel-hero-card p-4 sm:p-5">
       <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
         {step}
       </p>
@@ -74,7 +74,7 @@ function StepHeroCard({
           {stats.map((item) => (
             <div
               key={item.label}
-              className="flex min-h-[76px] flex-col items-center justify-center rounded-xl bg-white/10 px-3 py-3 text-center ring-1 ring-white/15"
+              className="flex min-h-[76px] flex-col items-center justify-center rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-sm ring-1 ring-white/10"
             >
               <p className="text-center text-[9px] font-black uppercase tracking-wide text-blue-100">
                 {item.label}

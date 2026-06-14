@@ -1,71 +1,97 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AppPanel } from "@/components/ui/AppPanel";
-import { AppTextLink } from "@/components/ui/AppTextLink";
-import { hasAuthToken } from "@/lib/auth";
+import React from "react";
+import { AppLinkButton } from "@/components/ui/AppLinkButton";
 
 const sections = [
   {
-    title: "General Disclaimer",
-    body: "Sentinel Safety is a decision-support platform. It does not replace professional judgment, site-specific safety evaluation, legal advice, regulatory interpretation, or qualified safety oversight.",
+    title: "Proprietary platform",
+    body: "Sentinel Safety reserves rights in its platform, software, source code, workflows, user interface, reports, content, databases, taxonomies, classifications, reasoning systems, generated structures, logos, branding, and related materials to the extent permitted by law.",
   },
   {
-    title: "Statistical and Analytical Data",
-    body: "Analytics, SPC concepts, RPN scoring, dashboards, and predictive indicators are advisory tools only. Users are responsible for validating all conclusions before making operational decisions.",
+    title: "ReviewCore",
+    body: "ReviewCore is proprietary decision-support intelligence within Sentinel Safety. It is designed to help organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
   },
   {
-    title: "SafeScope AI Content",
-    body: "SafeScope-generated classifications, standards suggestions, summaries, and corrective action recommendations must be reviewed and verified by a qualified human professional.",
+    title: "No affiliation or endorsement",
+    body: "All third-party trademarks, trade names, service marks, company names, product names, and logos are the property of their respective owners. Use of Sentinel Safety or ReviewCore does not imply affiliation with, endorsement by, or sponsorship from any other company or organization using similar names.",
   },
   {
-    title: "Liability and Indemnification",
-    body: "Users accept responsibility for how the platform is used and agree that Sentinel Safety and its developers are not liable for damages, citations, injuries, losses, or decisions arising from misuse or unverified outputs.",
+    title: "Professional review required",
+    body: "Sentinel Safety and ReviewCore do not replace qualified safety professionals, legal counsel, regulatory agencies, company policy, site-specific evaluation, or professional judgment. All outputs must be reviewed and verified by qualified personnel before use.",
   },
   {
-    title: "User Responsibility",
-    body: "The quality of any output depends on the accuracy, completeness, and context of user-provided information, photos, descriptions, and site details.",
+    title: "No compliance determination",
+    body: "ReviewCore does not declare violations, create citations, determine legal compliance, issue regulatory interpretations, or override MSHA, OSHA, company, site, or legal requirements.",
+  },
+  {
+    title: "User responsibility",
+    body: "Users are responsible for the accuracy and completeness of the information they enter, including photos, descriptions, locations, task context, and site conditions. Final safety, operational, legal, regulatory, and corrective action decisions remain the responsibility of the user and their organization.",
   },
 ];
 
 export default function LegalPage() {
-  const [hasAuthSession, setHasAuthSession] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    setHasAuthSession(hasAuthToken());
-  }, []);
-
   return (
-    <section>
-      <div className="mb-6 border-l-[5px] border-red-800 pl-4">
-        <h1 className="mb-2.5 text-[30px] font-black text-slate-900">
-          Legal Disclaimer
-        </h1>
-        <p className="text-[15px] font-black leading-[23px] text-red-800">
-          Use of Sentinel Safety is at your own risk. All outputs require professional human verification.
-        </p>
-      </div>
+    <section className="mx-auto max-w-5xl px-4 py-4 sm:px-5 lg:py-7">
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-[#1D72B8]/10 blur-3xl" />
 
-      <div className="space-y-3">
-        {sections.map((section) => (
-          <AppPanel key={section.title} padding="md">
-            <h2 className="mb-2 text-[19px] font-black text-slate-900">{section.title}</h2>
-            <p className="text-[15px] leading-[23px] text-slate-500">{section.body}</p>
-          </AppPanel>
-        ))}
-      </div>
+        <div className="relative border-b border-slate-200/80 pb-7 sm:pb-9">
+          <h1 className="max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.06em] text-slate-950 sm:text-5xl">
+            Legal disclaimer.
+          </h1>
 
-      {!hasAuthSession && (
-        <div className="mt-5 flex justify-center">
-          <AppTextLink
-            href="/login"
-            className="rounded-full bg-white px-6 py-2.5 text-sm font-black !text-[#102A43] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
-          >
-            Return to Sign In
-          </AppTextLink>
+          <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
+            Sentinel Safety is a proprietary field safety inspection and corrective action platform. ReviewCore is proprietary decision-support intelligence within the platform. Neither replaces qualified professional judgment, legal advice, regulatory interpretation, or site-specific safety review.
+          </p>
         </div>
-      )}
+
+        <div className="divide-y divide-slate-200/80 border-b border-slate-200/80">
+          {sections.map((section) => (
+            <div
+              key={section.title}
+              className="grid gap-2 py-5 sm:grid-cols-[0.34fr_0.66fr] sm:gap-6"
+            >
+              <h2 className="text-lg font-black tracking-tight text-slate-950">
+                {section.title}
+              </h2>
+
+              <p className="text-sm font-semibold leading-6 text-slate-600">
+                {section.body}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="border-b border-slate-200/80 py-6">
+          <p className="max-w-3xl text-sm font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+            Important
+          </p>
+
+          <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-slate-700">
+            Do not rely on Sentinel Safety or ReviewCore as the sole basis for safety, compliance, disciplinary, legal, medical, engineering, emergency-response, or operational decisions.
+          </p>
+        </div>
+
+        <div className="py-7 text-center sm:py-8">
+          <div className="flex flex-wrap justify-center gap-3">
+            <AppLinkButton
+              href="/login"
+              className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
+            >
+              Return to sign in
+            </AppLinkButton>
+
+            <AppLinkButton
+              href="/register"
+              variant="secondary"
+              className="bg-white px-6 py-3 !text-[#0B1320] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+            >
+              Create account
+            </AppLinkButton>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

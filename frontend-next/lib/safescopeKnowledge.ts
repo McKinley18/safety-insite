@@ -11,7 +11,7 @@ export async function listSafeScopeKnowledgeDocuments() {
   );
 
   if (!response.ok) {
-    throw new Error("Unable to load SafeScope knowledge documents.");
+    throw new Error("Unable to load ReviewCore knowledge documents.");
   }
 
   return response.json();
@@ -37,7 +37,7 @@ export async function searchSafeScopeKnowledge(input: {
   );
 
   if (!response.ok) {
-    throw new Error("Unable to search SafeScope Knowledge Brain.");
+    throw new Error("Unable to search ReviewCore Knowledge Brain.");
   }
 
   return response.json();

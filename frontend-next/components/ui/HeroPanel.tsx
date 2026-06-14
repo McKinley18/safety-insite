@@ -21,7 +21,7 @@ export function HeroPanel({
   return (
     <section
       className={[
-        "overflow-hidden rounded-[1.75rem] p-5 sm:p-7",
+        "overflow-hidden rounded-[1.75rem] p-4 sm:p-5 sm:p-7",
         toneClass,
         align === "center" ? "text-center" : "",
         className,

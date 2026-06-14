@@ -362,7 +362,7 @@ export default function InspectionPage() {
       const safeScopeScopes = getSafeScopeScopesForAgencyMode(agencyMode);
       const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
 
-      setSafeScopeStatus("Running SafeScope match...");
+      setSafeScopeStatus("Running ReviewCore match...");
       if (isOfflineMode || forceOffline) {
         if (forceOffline) {
           setIsOfflineMode(true);
@@ -428,7 +428,7 @@ export default function InspectionPage() {
       const autoSelectedActions = Array.isArray(result?.generatedActions)
         ? result.generatedActions.slice(0, 1).map((action: any) => ({
             ...action,
-            source: "SafeScope",
+            source: "ReviewCore",
           }))
         : [];
 
@@ -436,7 +436,7 @@ export default function InspectionPage() {
       setSelectedGeneratedActions(autoSelectedActions);
 
       setSafeScopeStatus(
-        `SafeScope v2: ${result.classification} (${
+        `ReviewCore: ${result.classification} (${
           result.confidenceBand === "high"
             ? "high classification match"
             : result.confidenceBand === "medium"
@@ -448,7 +448,7 @@ export default function InspectionPage() {
       );
     } catch (error) {
       setSafeScopeStatus(
-        error instanceof Error ? error.message : "SafeScope request failed.",
+        error instanceof Error ? error.message : "ReviewCore request failed.",
       );
     }
   }
@@ -553,7 +553,7 @@ export default function InspectionPage() {
   ) {
     if (!safeScopeResult?.reasoningSnapshotId) {
       setSafeScopeStatus(
-        "No SafeScope reasoning snapshot is available to validate.",
+        "No ReviewCore reasoning snapshot is available to validate.",
       );
       return;
     }
@@ -602,7 +602,7 @@ export default function InspectionPage() {
         ...current,
         {
           ...action,
-          source: "SafeScope",
+          source: "ReviewCore",
         },
       ];
     });
@@ -743,11 +743,11 @@ export default function InspectionPage() {
         (safeScopeGeneratedActionCount > 0 && selectedGeneratedActions.length === 0 && manualActions.length === 0))
     ) {
       const confirmed = window.confirm(
-        "SafeScope found recommended standards or corrective actions that are not selected for this finding. Save anyway?",
+        "ReviewCore found recommended standards or corrective actions that are not selected for this finding. Save anyway?",
       );
 
       if (!confirmed) {
-        setFindingSaveMessage("Review SafeScope standards/actions before saving.");
+        setFindingSaveMessage("Review ReviewCore standards/actions before saving.");
         return;
       }
     }
@@ -1071,7 +1071,7 @@ export default function InspectionPage() {
   }
 
   return (
-    <div className="pb-32 lg:pb-24">
+    <div className="sentinel-mobile-page space-y-5 pb-32 lg:pb-24">
       <InspectionWorkflowHeader
         currentStep={currentStep}
         steps={steps}

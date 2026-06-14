@@ -410,7 +410,15 @@ body {
 /* Sentinel Safety centralized theme compatibility layer.
    Non-destructive: keeps the existing visual system while adding reusable app-* utilities. */
 :root {
-  --app-bg: #eef2f7;
+  /* Core Brand Colors */
+  --brand-navy: #0B1320;
+  --brand-blue: #1D72B8;
+  --brand-shell-gradient: linear-gradient(135deg, #0B1320 0%, #102A43 52%, #0B1320 100%);
+  --text-primary: #0F172A;
+  --text-body: #334155;
+  --text-muted: #475569;
+
+  --app-bg: #e6edf5;
   --app-bg-soft: #f7fafd;
   --app-surface: rgba(255, 255, 255, 0.94);
   --app-surface-muted: rgba(248, 250, 252, 0.94);
@@ -531,4 +539,253 @@ body {
   background: var(--app-surface-muted);
   color: var(--app-text-soft);
   border-radius: 1rem;
+}
+
+/* Sentinel modern shell background */
+.sentinel-modern-shell {
+  position: relative;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(29, 114, 184, 0.13), transparent 28rem),
+    radial-gradient(circle at 86% 18%, rgba(16, 42, 67, 0.10), transparent 24rem),
+    linear-gradient(180deg, #dfe8f2 0%, #e8eef6 48%, #f3f7fb 100%);
+}
+
+.sentinel-modern-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.26;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 72%);
+  z-index: 0;
+}
+
+.sentinel-modern-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Sentinel unified card system */
+.sentinel-hero-card {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: linear-gradient(135deg, #0B1320 0%, #102A43 52%, #0B1320 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.sentinel-content-card {
+  border-radius: 14px;
+  border: 1px solid rgba(203, 213, 225, 0.72);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(12px);
+}
+
+.sentinel-list-row {
+  border-radius: 12px;
+  border: 1px solid rgba(226, 232, 240, 0.90);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.035);
+}
+
+.sentinel-empty-text {
+  color: #94A3B8;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.sentinel-compact-primary {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #102A43;
+  padding: 0.625rem 1.25rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+
+.sentinel-compact-primary:hover {
+  background: #1D72B8;
+}
+
+.sentinel-compact-secondary {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgba(203, 213, 225, 0.95);
+  background: rgba(255, 255, 255, 0.88);
+  padding: 0.625rem 1.25rem;
+  color: #102A43;
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.sentinel-compact-secondary:hover {
+  border-color: #1D72B8;
+  background: #EFF6FF;
+}
+
+
+/* Mobile page rhythm */
+.sentinel-mobile-page {
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .sentinel-mobile-page {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sentinel-mobile-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.sentinel-mobile-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 639px) {
+  .sentinel-mobile-toolbar > * {
+    width: 100%;
+    max-width: none;
+  }
+
+  .sentinel-mobile-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .sentinel-mobile-actions > * {
+    width: 100%;
+  }
+
+  .sentinel-compact-primary,
+  .sentinel-compact-secondary {
+    min-height: 42px;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* Force squared/minimized app card corners while preserving buttons and pills */
+.sentinel-mobile-page :where(div, section, article, header, aside)[class*="rounded-"]:not([class*="rounded-full"]) {
+  border-radius: 12px !important;
+}
+
+.sentinel-mobile-page :where(div, section, article, header, aside).sentinel-hero-card,
+.sentinel-mobile-page :where(div, section, article, header, aside).sentinel-content-card,
+.sentinel-mobile-page :where(div, section, article, header, aside).sentinel-list-row {
+  border-radius: 12px !important;
+}
+
+.sentinel-mobile-page :where(button, a, label)[class*="rounded-full"],
+.sentinel-mobile-page .sentinel-compact-primary,
+.sentinel-mobile-page .sentinel-compact-secondary {
+  border-radius: 9999px !important;
+}
+
+/* Phone optimization for app pages */
+@media (max-width: 639px) {
+  .sentinel-mobile-page {
+    padding-left: 0.875rem !important;
+    padding-right: 0.875rem !important;
+    padding-top: 0.875rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .sentinel-mobile-page h1,
+  .sentinel-mobile-page h2 {
+    font-size: 1.65rem !important;
+    line-height: 1.9rem !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .sentinel-mobile-page h3 {
+    font-size: 0.98rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  .sentinel-mobile-page p {
+    max-width: 100%;
+  }
+
+  .sentinel-mobile-page :where(.sentinel-hero-card, .sentinel-content-card, article, section)[class*="p-"] {
+    padding: 0.875rem !important;
+  }
+
+  .sentinel-mobile-page input,
+  .sentinel-mobile-page select,
+  .sentinel-mobile-page textarea {
+    min-height: 44px;
+    font-size: 16px !important;
+  }
+
+  .sentinel-mobile-page button,
+  .sentinel-mobile-page a,
+  .sentinel-mobile-page label {
+    min-height: 40px;
+  }
+
+  .sentinel-mobile-page .sentinel-phone-stack {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.625rem !important;
+  }
+
+  .sentinel-mobile-page .sentinel-phone-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .sentinel-mobile-page .sentinel-phone-actions > * {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .sentinel-mobile-page .sentinel-phone-toolbar {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .sentinel-mobile-page .sentinel-phone-toolbar > * {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .sentinel-mobile-page .sentinel-phone-hide {
+    display: none !important;
+  }
+
+  .sentinel-mobile-page .sentinel-phone-row {
+    padding: 0.75rem !important;
+  }
 }

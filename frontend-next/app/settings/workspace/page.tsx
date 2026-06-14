@@ -28,7 +28,7 @@ const riskProfiles = [
 ] as const;
 
 const regulatoryScopes = [
-  ["all", "Let SafeScope evaluate", "Use when the app should decide the likely applicable agency."],
+  ["all", "Let ReviewCore evaluate", "Use when the app should decide the likely applicable agency."],
   ["msha", "MSHA", "Mining operations and 30 CFR matching."],
   ["osha_general", "OSHA General Industry", "General industry and 29 CFR 1910 matching."],
   ["osha_construction", "OSHA Construction", "Construction and 29 CFR 1926 matching."],
@@ -413,7 +413,7 @@ export default function SettingsPage() {
           {[
             [
               regulatoryScopes.find(([id]) => id === regulatoryScope)?.[1] ||
-                "Let SafeScope evaluate",
+                "Let ReviewCore evaluate",
               "Regulatory Scope",
             ],
             [selectedMatrixLabel, "Risk Matrix"],
@@ -437,9 +437,9 @@ export default function SettingsPage() {
       <div className="grid gap-5 xl:grid-cols-[1fr_1fr]">
         <AppPanel padding="lg">
           <SectionHeader
-            eyebrow="SafeScope Defaults"
+            eyebrow="ReviewCore Defaults"
             title="Default Regulatory Scope"
-            description="SafeScope uses this as the default agency context during inspection review. Users can still override hazard category during review."
+            description="ReviewCore uses this as the default agency context during inspection review. Users can still override hazard category during review."
           />
 
           <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200 dark:border-slate-800">

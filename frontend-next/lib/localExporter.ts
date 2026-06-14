@@ -7,7 +7,7 @@ function getReportPackageExportNote(input: any) {
 }
 
 
-const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Sentinel Safety / SafeScope. SafeScope outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
+const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Sentinel Safety / ReviewCore. ReviewCore outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
 
 function normalizePdfPercent(value: any) {
   const numeric = Number(value);
@@ -41,7 +41,7 @@ function getFieldOutputActionsForPdf(f: any) {
         closureEvidence:
           f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
           "Supervisor verification",
-        source: "SafeScope field output",
+        source: "ReviewCore field output",
       };
     }
 
@@ -57,7 +57,7 @@ function getFieldOutputActionsForPdf(f: any) {
         action.verification ||
         f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
         "Supervisor verification",
-      source: action.source || "SafeScope field output",
+      source: action.source || "ReviewCore field output",
     };
   });
 }
@@ -126,13 +126,13 @@ function formatSafeScopeValidationStatusForPdf(status: any) {
   const value = String(status || "manual");
   const labels: Record<string, string> = {
     manual: "Manual finding",
-    local_unvalidated: "SafeScope local review needed",
-    generated: "SafeScope generated - review needed",
-    requires_review: "SafeScope review required",
-    validated_accepted: "SafeScope accepted by reviewer",
-    validated_modified: "SafeScope modified by reviewer",
-    validated_rejected: "SafeScope rejected by reviewer",
-    requires_escalation: "SafeScope escalated",
+    local_unvalidated: "ReviewCore local review needed",
+    generated: "ReviewCore generated - review needed",
+    requires_review: "ReviewCore review required",
+    validated_accepted: "ReviewCore accepted by reviewer",
+    validated_modified: "ReviewCore modified by reviewer",
+    validated_rejected: "ReviewCore rejected by reviewer",
+    requires_escalation: "ReviewCore escalated",
     requires_more_evidence: "More evidence required",
   };
   return labels[value] || value.replace(/_/g, " ");
@@ -865,7 +865,7 @@ export const localExporter = {
       }
     }
 
-    // --- SafeScope Reasoning Audit Trace Appendix ---
+    // --- ReviewCore Reasoning Audit Trace Appendix ---
     if (reportPackage.includesSafeScopeTraceability) {
       const findingsWithTrace = findings.filter(
         (f) =>
@@ -881,7 +881,7 @@ export const localExporter = {
         doc.setTextColor(15, 23, 42); // Navy
         doc.setFontSize(22);
         doc.setFont("helvetica", "bold");
-        doc.text("SafeScope Reasoning Audit Trace", 20, appendixY);
+        doc.text("ReviewCore Reasoning Audit Trace", 20, appendixY);
         
         doc.setFontSize(10);
         doc.setFont("helvetica", "normal");

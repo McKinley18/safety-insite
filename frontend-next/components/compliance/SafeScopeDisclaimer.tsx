@@ -1,12 +1,12 @@
-type SafeScopeDisclaimerProps = {
+type ReviewCoreDisclaimerProps = {
   compact?: boolean;
   tone?: "default" | "warning" | "dark" | "notice";
 };
 
-export default function SafeScopeDisclaimer({
+export default function ReviewCoreDisclaimer({
   compact = false,
   tone = "default",
-}: SafeScopeDisclaimerProps) {
+}: ReviewCoreDisclaimerProps) {
   const toneClass =
     tone === "warning"
       ? "border-amber-200 bg-amber-50 text-amber-950"
@@ -26,7 +26,7 @@ export default function SafeScopeDisclaimer({
               compact ? "text-xs" : "text-sm"
             } ${tone === "dark" ? "text-white" : "text-slate-900"}`}
           >
-            SafeScope is decision-support intelligence.
+            ReviewCore is decision-support intelligence.
           </p>
           <p
             className={`mt-1 font-semibold leading-5 ${
@@ -35,7 +35,7 @@ export default function SafeScopeDisclaimer({
           >
             All findings, standards, risk ratings, corrective actions, and
             report content must be reviewed and confirmed by a qualified person
-            before use. SafeScope does not replace employer responsibility,
+            before use. ReviewCore does not replace employer responsibility,
             competent-person review, regulatory interpretation, engineering
             judgment, legal advice, or site-specific safety decision-making.
           </p>

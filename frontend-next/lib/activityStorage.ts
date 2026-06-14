@@ -37,3 +37,9 @@ export async function addActivityEvent(event: Omit<ActivityEvent, "id" | "create
 
   return nextEvent;
 }
+
+
+export function clearActivityEvents() {
+  if (typeof window === "undefined") return;
+  window.localStorage.removeItem(ACTIVITY_KEY);
+}

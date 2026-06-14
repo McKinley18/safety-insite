@@ -29,7 +29,7 @@ const tiers = [
       {
         title: "Limitations",
         items: [
-          "Limited SafeScope preview only",
+          "Limited ReviewCore preview only",
           "No full standards reasoning",
           "No advanced corrective action intelligence",
           "Limited report intelligence",
@@ -42,7 +42,7 @@ const tiers = [
     price: "$9.99",
     cadence: "/month",
     audience: "For individual safety professionals who need more than documentation.",
-    position: "Unlock SafeScope intelligence, stronger reports, and better corrective actions.",
+    position: "Unlock ReviewCore intelligence, stronger reports, and better corrective actions.",
     cta: "Choose Pro",
     publicHref: "/register?plan=pro",
     upgradeHref: "/profile?upgrade=pro",
@@ -50,9 +50,9 @@ const tiers = [
     badge: "Best value",
     sections: [
       {
-        title: "SafeScope Intelligence",
+        title: "ReviewCore Intelligence",
         items: [
-          "Full SafeScope hazard review",
+          "Full ReviewCore hazard review",
           "MSHA / OSHA standards suggestions",
           "Risk and confidence support",
           "Evidence gap prompts",
@@ -109,7 +109,7 @@ const tiers = [
 const comparisonRows = [
   ["Basic findings, photos, and notes", "Yes", "Yes", "Yes"],
   ["Simple report creation", "Yes", "Yes", "Yes"],
-  ["Full SafeScope hazard intelligence", "Preview only", "Yes", "Yes"],
+  ["Full ReviewCore hazard intelligence", "Preview only", "Yes", "Yes"],
   ["Suggested MSHA / OSHA standards", "Limited", "Yes", "Yes"],
   ["Evidence gap prompts", "No", "Yes", "Yes"],
   ["Corrective action reasoning", "Manual only", "Yes", "Yes"],

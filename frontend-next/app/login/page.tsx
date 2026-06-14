@@ -77,19 +77,26 @@ export default function LoginPage() {
   }
 
   return (
-    <section className="mx-auto flex max-w-6xl items-center justify-center px-2 py-6">
-      <div className="grid w-full overflow-hidden rounded-[32px] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 shadow-xl shadow-slate-200/70 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="bg-[#0B1320] p-6 text-white sm:p-8 lg:p-10">
-          <h1 className="mt-4 text-4xl font-black leading-tight tracking-tight md:text-5xl">
+    <section className="mx-auto flex min-h-[calc(100dvh-150px)] max-w-6xl items-center justify-center px-0 py-0 sm:px-4 sm:py-6">
+      <div className="grid w-full overflow-hidden bg-white shadow-none sm:rounded-[32px] sm:border sm:border-slate-200 sm:shadow-2xl sm:shadow-slate-300/40 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1320] via-[#102A43] to-[#0B1320] p-5 text-white sm:p-8 lg:p-10">
+          <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#1D72B8]/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 left-8 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
+
+          <div className="relative inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-blue-100 ring-1 ring-white/15">
+            Secure safety workspace
+          </div>
+
+          <h1 className="relative mt-5 text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl">
             Welcome back.
           </h1>
 
-          <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-slate-300">
+          <p className="relative mt-4 max-w-xl text-sm font-semibold leading-6 text-slate-300">
             Access your command center, inspections, reports, corrective actions,
-            and SafeScope intelligence from one secure workspace.
+            and ReviewCore intelligence from one secure workspace.
           </p>
 
-          <div className="mt-8 grid gap-3">
+          <div className="relative mt-5 grid gap-2.5 sm:mt-8 sm:gap-3">
             {[
               "Protected workspace access",
               "Audit-ready safety records",
@@ -97,7 +104,7 @@ export default function LoginPage() {
             ].map((item) => (
               <div
                 key={item}
-                className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-white/10"
+                className="flex items-center gap-3 rounded-xl bg-white/10 px-3.5 py-2.5 ring-1 ring-white/10 sm:rounded-2xl sm:px-4 sm:py-3"
               >
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-xs font-black text-[#102A43]">
                   ✓
@@ -108,19 +115,19 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <form onSubmit={handleLogin} className="p-6 sm:p-8 lg:p-10">
+        <form onSubmit={handleLogin} className="bg-gradient-to-b from-white to-slate-50/80 p-5 sm:p-8 lg:p-10">
           <div className="mx-auto max-w-md">
-            <h2 className="mt-2 text-3xl font-black text-slate-900 dark:text-slate-100">
+            <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
               Access your workspace
             </h2>
 
-            <p className="mt-2 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
+            <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
               Enter your email and password to continue.
             </p>
 
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 space-y-4 sm:mt-6">
               <label className="block">
-                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
                   Email
                 </span>
                 <AppInput
@@ -129,12 +136,12 @@ export default function LoginPage() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="bg-slate-50 dark:bg-slate-950 px-3 placeholder:text-slate-400 focus:bg-white dark:focus:bg-slate-900"
+                  className="bg-slate-50 px-3 placeholder:text-slate-500 focus:bg-white"
                 />
               </label>
 
               <label className="block">
-                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <span className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
                   Password
                 </span>
 
@@ -145,7 +152,7 @@ export default function LoginPage() {
                     onChange={(event) => setPassword(event.target.value)}
                     placeholder="Enter your password"
                     type={showPassword ? "text" : "password"}
-                    className="bg-slate-50 dark:bg-slate-950 px-3 pr-20 placeholder:text-slate-400 focus:bg-white dark:focus:bg-slate-900"
+                    className="bg-slate-50 px-3 pr-20 placeholder:text-slate-500 focus:bg-white"
                   />
 
                   <button
@@ -163,13 +170,13 @@ export default function LoginPage() {
                   type="submit"
                   disabled={loading}
                   size="lg"
-                  className="px-8 shadow-sm active:scale-[0.98]"
+                  className="w-full bg-[#1D72B8] px-8 text-white shadow-sm hover:bg-[#0B1320] active:scale-[0.98] sm:w-auto"
                 >
                   {loading ? "Signing In..." : "Sign In"}
                 </AppButton>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 pt-1">
+              <div className="mt-2 border-t border-slate-200 pt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
                 <AppTextLink href="/register">
                   Create an account
                 </AppTextLink>
@@ -186,7 +193,7 @@ export default function LoginPage() {
                       ? "bg-red-50 text-red-700"
                       : statusType === "success"
                         ? "bg-emerald-50 text-emerald-700"
-                        : "bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-300"
+                        : "bg-slate-50 text-slate-600"
                   }`}
                 >
                   {status}

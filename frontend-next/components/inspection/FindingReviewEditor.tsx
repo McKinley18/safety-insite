@@ -104,7 +104,7 @@ export default function FindingReviewEditor({
         </h3>
 
         <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
-          Standards are selected in the SafeScope Review step. This step is for final risk and corrective action confirmation.
+          Standards are selected in the ReviewCore Review step. This step is for final risk and corrective action confirmation.
         </p>
 
         <div className="mt-3 space-y-2">
@@ -148,7 +148,7 @@ export default function FindingReviewEditor({
 
           {!selectedStandards.length && !suggestedStandards.length && (
             <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-center text-xs font-black text-red-700">
-              No SafeScope standards are available yet. Return to Step 2 and run SafeScope before finalizing.
+              No ReviewCore standards are available yet. Return to Step 2 and run ReviewCore before finalizing.
             </div>
           )}
         </div>

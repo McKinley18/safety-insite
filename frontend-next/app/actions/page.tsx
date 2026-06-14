@@ -161,7 +161,7 @@ export default function ActionsPage() {
           priority: action.priority || "Medium",
           status: action.status || "Open",
           due: action.dueDate || action.due || "",
-          source: action.source || (action.generatedBy === "SafeScope" ? "SafeScope" : "User"),
+          source: action.source || (action.generatedBy === "ReviewCore" ? "ReviewCore" : "User"),
           location: finding.location || "Field Inspection",
           findingTitle:
             finding.hazardCategory ||
@@ -341,7 +341,7 @@ export default function ActionsPage() {
           Track corrective work.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Manage actions created from inspections, SafeScope recommendations, reports, and user-entered work.
+          Manage actions created from inspections, ReviewCore recommendations, reports, and user-entered work.
         </p>
 
         <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
@@ -378,18 +378,18 @@ export default function ActionsPage() {
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Workspace Action Sync
           </p>
-          <p className="mt-1 text-sm font-bold text-slate-700 dark:text-slate-300">
+          <p className="mt-1 text-sm font-bold text-slate-700">
             {cloudActionMessage}
           </p>
         </AppPanel>
       )}
 
       {!canUseWorkspaceActions && (
-        <AppPanel padding="sm" className="border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <AppPanel padding="sm" className="border-slate-200 bg-white">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Personal Action Tracker
           </p>
-          <p className="mt-1 text-sm font-bold leading-6 text-slate-600 dark:text-slate-300">
+          <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
             Basic and Pro plans can track local and report-generated corrective actions. Company workspaces add shared action sync, team assignment, and organization-wide accountability.
           </p>
         </AppPanel>
@@ -442,7 +442,7 @@ export default function ActionsPage() {
             value={filterStatus}
             onChange={(event) => setFilterStatus(event.target.value)}
             fieldSize="sm"
-            className="bg-slate-50 dark:bg-slate-950 text-xs font-black text-slate-700 dark:text-slate-300"
+            className="bg-slate-50 text-xs font-black text-slate-700"
           >
             <option value="">Status: All</option>
             {["Open", "In Progress", "Blocked", "Completed", "Overdue"].map((item) => (
@@ -456,7 +456,7 @@ export default function ActionsPage() {
             value={filterPriority}
             onChange={(event) => setFilterPriority(event.target.value)}
             fieldSize="sm"
-            className="bg-slate-50 dark:bg-slate-950 text-xs font-black text-slate-700 dark:text-slate-300"
+            className="bg-slate-50 text-xs font-black text-slate-700"
           >
             <option value="">Priority: All</option>
             {priorityOptions.map((item) => (
@@ -470,7 +470,7 @@ export default function ActionsPage() {
             value={filterSource}
             onChange={(event) => setFilterSource(event.target.value)}
             fieldSize="sm"
-            className="bg-slate-50 dark:bg-slate-950 text-xs font-black text-slate-700 dark:text-slate-300"
+            className="bg-slate-50 text-xs font-black text-slate-700"
           >
             <option value="">Source: All</option>
             {sourceOptions.map((item) => (
@@ -486,7 +486,7 @@ export default function ActionsPage() {
             className={`rounded-xl border px-3 py-2 text-xs font-black transition ${
               filterOverdueOnly
                 ? "border-red-200 bg-red-50 text-red-700"
-                : "border-slate-300 dark:border-slate-700 bg-white text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:bg-slate-950"
+                : "border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
             }`}
           >
             Overdue Only
@@ -534,7 +534,7 @@ export default function ActionsPage() {
                         )
                       }
                       fieldSize="sm"
-                      className="text-xs font-black text-slate-700 dark:text-slate-300"
+                      className="text-xs font-black text-slate-700"
                     >
                       <option>Open</option>
                       <option>In Progress</option>

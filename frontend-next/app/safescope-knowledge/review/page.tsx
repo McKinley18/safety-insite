@@ -142,10 +142,10 @@ export default function ReviewerCandidateConsole() {
       
       // Staging Hardening: Only allow mock data if explicitly enabled
       if (process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK === 'true') {
-          console.log('SafeScope Review Demo Fallback enabled.');
+          console.log('ReviewCore Review Demo Fallback enabled.');
           setCandidates(MOCK_CANDIDATES);
       } else {
-          setError('Unable to connect to the SafeScope governance engine. Staging/Production mode: Demo data disabled.');
+          setError('Unable to connect to the ReviewCore governance engine. Staging/Production mode: Demo data disabled.');
           setCandidates([]);
       }
     } finally {
@@ -242,11 +242,11 @@ export default function ReviewerCandidateConsole() {
     return (
       <LockedFeatureCard
         eyebrow="Company Knowledge Governance"
-        title="SafeScope knowledge review is Company-only."
-        description="The review console controls source-backed knowledge candidates, approval decisions, and governed promotion into the SafeScope knowledge base."
+        title="ReviewCore knowledge review is Company-only."
+        description="The review console controls source-backed knowledge candidates, approval decisions, and governed promotion into the ReviewCore knowledge base."
         requiredPlan={requiredPlanForArea("knowledge_library")}
         bullets={[
-          "Review proposed source-backed knowledge before it can influence future SafeScope output.",
+          "Review proposed source-backed knowledge before it can influence future ReviewCore output.",
           "Protect regulatory mappings with qualified approval and audit history.",
           "Keep Company knowledge governance separate from Basic and Pro field workflows.",
         ]}
@@ -259,13 +259,13 @@ export default function ReviewerCandidateConsole() {
     <section className="space-y-5">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-          SafeScope Governance
+          ReviewCore Governance
         </p>
         <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
           Reviewer candidate console.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Review staged source-backed knowledge candidates before they are promoted into approved SafeScope intelligence.
+          Review staged source-backed knowledge candidates before they are promoted into approved ReviewCore intelligence.
         </p>
       </HeroPanel>
 
@@ -477,7 +477,7 @@ export default function ReviewerCandidateConsole() {
                     )}
 
                     <div className="mt-12 text-[10px] text-slate-400 border-t border-slate-100 pt-4">
-                    <p>⚖️ GOVERNANCE NOTICE: Candidates are staged for human review. Do not promote to approved knowledge without source verification. SafeScope remains an advisory system.</p>
+                    <p>⚖️ GOVERNANCE NOTICE: Candidates are staged for human review. Do not promote to approved knowledge without source verification. ReviewCore remains an advisory system.</p>
                     </div>
                 </SentinelCard>
                 ) : (

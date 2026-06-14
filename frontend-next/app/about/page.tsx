@@ -1,158 +1,208 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
-import { hasAuthToken } from "@/lib/auth";
 
-const benefits = [
+const capabilities = [
   {
-    title: "Capture the finding.",
-    text: "Photos, location, notes, risk, standards, and actions stay connected from the start.",
+    title: "Mobile inspection capture",
+    highlight: "Capture the full field picture.",
+    text: "Document findings with photos, notes, locations, risk details, and task context while the observation is still fresh.",
   },
   {
-    title: "Understand the exposure.",
-    text: "SafeScope helps organize the hazard, task context, likely mechanisms, and review needs.",
+    title: "Risk and exposure review",
+    highlight: "Understand what makes the finding serious.",
+    text: "Organize severity, likelihood, exposure, evidence gaps, and review needs so findings are easier to evaluate.",
   },
   {
-    title: "Turn it into action.",
-    text: "Create assigned corrective actions and produce cleaner report-ready records.",
+    title: "Standards-aware support",
+    highlight: "Keep evidence and standards connected.",
+    text: "Support MSHA and OSHA review by tying standards, reasoning, and inspection evidence back to the original finding.",
+  },
+  {
+    title: "Corrective action tracking",
+    highlight: "Turn findings into assigned work.",
+    text: "Create follow-ups, assign responsibility, track status, and keep accountability connected to the inspection record.",
+  },
+  {
+    title: "Professional records",
+    highlight: "Create cleaner inspection documentation.",
+    text: "Build inspection-ready records that are easier to review, communicate, and use for operational follow-through.",
   },
 ];
 
-const proofPoints = [
-  "Inspection workflow",
-  "Photo evidence",
-  "Risk review",
-  "MSHA / OSHA support",
-  "Corrective actions",
-  "Report-ready records",
+const outcomes = [
+  "Less scattered documentation",
+  "Clearer inspection review",
+  "Stronger corrective action follow-through",
 ];
 
 export default function AboutPage() {
-  const [hasAuthSession, setHasAuthSession] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    setHasAuthSession(hasAuthToken());
-  }, []);
-
   return (
-    <section className="mx-auto max-w-6xl px-3 py-3 sm:px-4 lg:py-5">
-      <div className="overflow-hidden rounded-[30px] bg-white dark:bg-slate-900 shadow-sm ring-1 ring-slate-200">
-        <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
-            <p className="text-xs font-black uppercase tracking-[0.26em] text-[#1D72B8]">
-              Sentinel Safety
-            </p>
+    <section className="mx-auto max-w-6xl px-4 py-4 sm:px-5 lg:py-7">
+      <div className="relative overflow-hidden">
+        <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-[#1D72B8]/10 blur-3xl" />
+        <div className="pointer-events-none absolute -left-24 top-52 h-64 w-64 rounded-full bg-[#0B1320]/5 blur-3xl" />
 
-            <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.055em] text-slate-950 dark:text-slate-100 sm:text-5xl lg:text-6xl">
-              Safety findings should become action.
-            </h1>
+        <div className="relative border-b border-slate-200/80 pb-7 sm:pb-10">
+          <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <h1 className="max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.06em] text-slate-950 sm:text-5xl lg:text-6xl">
+                Safety inspections, built for action.
+              </h1>
 
-            <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600 dark:text-slate-300">
-              Sentinel Safety helps teams capture hazards, organize evidence,
-              review risk, connect standards, assign corrective actions, and
-              generate professional inspection records from one focused workflow.
-            </p>
+              <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                Sentinel Safety helps teams turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
+              </p>
+            </div>
+
+            <div className="border-l-4 border-[#1D72B8] pl-4">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+                Built for clarity
+              </p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                A cleaner way to manage inspection details, evidence, follow-ups, and records that need to hold up later.
+              </p>
+            </div>
           </div>
 
-          <div className="bg-[#F5F9FD] px-5 py-6 sm:px-8 lg:px-8 lg:py-10">
-            <div className="rounded-[26px] bg-[#0B1320] p-5 text-white shadow-sm">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-200">
-                Built for the field
-              </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {outcomes.map((item) => (
+              <div
+                key={item}
+                className="border-l-2 border-[#1D72B8]/40 pl-3"
+              >
+                <p className="text-sm font-black leading-5 text-slate-800">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-              <div className="mt-4 grid gap-2">
-                {proofPoints.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center justify-between rounded-2xl bg-white dark:bg-slate-900/10 px-4 py-3 text-sm font-black ring-1 ring-white/10"
-                  >
-                    <span>{item}</span>
-                    <span className="text-blue-200">→</span>
+        <div className="relative border-b border-slate-200/80 py-7 sm:py-9">
+          <div className="grid gap-5 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+                Capabilities
+              </p>
+              <h2 className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
+                One connected workflow from observation to follow-through.
+              </h2>
+              <p className="mt-3 max-w-md text-sm font-semibold leading-6 text-slate-600">
+                Designed for teams that need faster capture, cleaner review, and stronger accountability.
+              </p>
+            </div>
+
+            <div className="divide-y divide-slate-200 border-y border-slate-200/80">
+              {capabilities.map((item) => (
+                <div
+                  key={item.title}
+                  className="grid gap-2 py-4 sm:grid-cols-[0.38fr_0.62fr] sm:gap-5"
+                >
+                  <div>
+                    <h3 className="text-lg font-black tracking-tight text-slate-950">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-[#1D72B8]">
+                      {item.highlight}
+                    </p>
                   </div>
-                ))}
+
+                  <p className="text-sm font-semibold leading-6 text-slate-600">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative border-b border-slate-200/80 py-7 sm:py-9">
+          <div className="grid gap-5 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+                ReviewCore
+              </p>
+              <h2 className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
+                Intelligence that supports the reviewer.
+              </h2>
+            </div>
+
+            <div className="border-l border-slate-200/80 pl-4 text-base font-semibold leading-7 text-slate-600">
+              <p>
+                ReviewCore helps organize hazard context, risk signals, evidence gaps, standards review, and corrective action reasoning so findings are easier to understand, review, and act on.
+              </p>
+              <p className="mt-3 text-sm leading-6 text-slate-500">
+                ReviewCore is advisory decision support. It does not replace professional judgment, declare violations, create citations, or override regulatory requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-5 border-b border-slate-200/80 py-7 sm:py-9 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
+              Why it matters
+            </p>
+            <h2 className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
+              Better records. Better follow-through.
+            </h2>
+          </div>
+
+          <div className="border-l border-slate-200/80 pl-4">
+            <p className="text-base font-semibold leading-7 text-slate-600">
+              A safety finding should not disappear into a notebook, photo gallery, spreadsheet, or email chain. Sentinel Safety keeps the finding, evidence, review, and action connected so teams can move faster, communicate clearly, and follow through with confidence.
+            </p>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="border-t border-slate-200/80 pt-3">
+                <p className="text-sm font-black text-slate-950">Capture</p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                  Record the condition clearly.
+                </p>
+              </div>
+              <div className="border-t border-slate-200/80 pt-3">
+                <p className="text-sm font-black text-slate-950">Review</p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                  Understand risk and context.
+                </p>
+              </div>
+              <div className="border-t border-slate-200/80 pt-3">
+                <p className="text-sm font-black text-slate-950">Act</p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+                  Assign and track correction.
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-3 grid gap-3 md:grid-cols-3">
-        {benefits.map((item) => (
-          <div
-            key={item.title}
-            className="rounded-[26px] border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 p-5 shadow-sm"
-          >
-            <h2 className="text-2xl font-black leading-tight tracking-tight text-slate-950 dark:text-slate-100">
-              {item.title}
-            </h2>
+        <div className="py-7 text-center sm:py-9">
+          <h2 className="mx-auto max-w-3xl text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
+            Capture the finding. Review the risk. Drive the action.
+          </h2>
 
-            <p className="mt-3 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
-              {item.text}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-3 rounded-[30px] bg-[#F5F9FD] px-5 py-7 ring-1 ring-slate-200 sm:px-8 lg:px-10">
-        <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
-              SafeScope
-            </p>
-
-            <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] text-slate-950 dark:text-slate-100 sm:text-4xl">
-              Intelligence for what the inspector actually saw.
-            </h2>
-          </div>
-
-          <p className="text-base font-semibold leading-7 text-slate-600 dark:text-slate-300">
-            SafeScope is designed to support qualified safety judgment by
-            organizing hazard classification, risk signals, evidence gaps,
-            standards review, and corrective action reasoning. It is advisory
-            decision support, not a replacement for professional review.
+          <p className="mx-auto mt-3 max-w-xl text-sm font-semibold leading-6 text-slate-600">
+            Start with a cleaner inspection workflow built for real field safety work.
           </p>
-        </div>
-      </div>
 
-      <div className="mt-3 rounded-[30px] bg-[#0B1320] px-5 py-7 text-center text-white shadow-sm sm:px-8 lg:px-10">
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
-          Get Started
-        </p>
-
-        <h2 className="mx-auto mt-3 max-w-3xl text-3xl font-black leading-tight tracking-[-0.04em] sm:text-4xl">
-          Make every inspection easier to capture, easier to review, and easier
-          to act on.
-        </h2>
-
-        <div className="mt-5 flex flex-wrap justify-center gap-2">
-          {hasAuthSession ? (
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
             <AppLinkButton
-              href="/command-center"
-              className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
+              href="/login"
+              className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
             >
-              Go to Dashboard
+              Return to sign in
             </AppLinkButton>
-          ) : (
-            <>
-              <AppLinkButton
-                href="/login"
-                className="rounded-full bg-[#1D72B8] px-7 py-3 text-white shadow-sm hover:bg-[#2B86D1]"
-              >
-                Sign In
-              </AppLinkButton>
 
-              <AppLinkButton
-                href="/register"
-                variant="secondary"
-                className="rounded-full bg-white dark:bg-slate-900 px-7 py-3 !text-[#0B1320] shadow-sm hover:bg-blue-50"
-              >
-                Create Account
-              </AppLinkButton>
-            </>
-          )}
+            <AppLinkButton
+              href="/register"
+              variant="secondary"
+              className="bg-white px-6 py-3 !text-[#0B1320] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+            >
+              Create account
+            </AppLinkButton>
+          </div>
         </div>
       </div>
     </section>

@@ -112,9 +112,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     (route) => pathname === route || pathname.startsWith(route + "/"),
   );
 
-  // Marketing pages are public only when there is no real stored auth token.
-  // Local dev auth bypass protects app routes, but should not make signed-out users appear signed in.
-  const isPublicPage = isAuthPublicPage || (isMarketingPage && !hasAuthSession);
+  // Auth and marketing pages should keep the public layout.
+  // A stale local token should not make public pages show the signed-in profile badge.
+  const isPublicPage = isAuthPublicPage || isMarketingPage;
   const showAppNav = !isPublicPage;
 
   // Public/auth/marketing pages show the marketing footer.
@@ -256,9 +256,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [darkMode]);
 
   return (
-    <div className="flex min-h-dvh flex-col bg-transparent text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="sentinel-modern-shell flex min-h-dvh flex-col text-slate-900 dark:text-slate-100 transition-colors">
       <ToastContainer />
-      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#0B1320] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
+      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
@@ -288,7 +288,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                         "rounded-full px-4 py-2 text-sm font-black tracking-tight transition",
                         active
                           ? "bg-[#1D72B8] text-[#F4F6F8] shadow-md shadow-blue-900/20"
-                          : "text-[#B8C0CC] hover:bg-white/10 hover:text-[#E2E6EA]",
+                          : "text-[#D1D5DB] hover:bg-white/10 hover:text-[#E2E6EA]",
                       ].join(" ")}
                     >
                       {item.label}
@@ -299,15 +299,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
               <div className="flex shrink-0 items-center gap-4">
                 {!isOnline && (
-                  <div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-3 py-1 ring-1 ring-orange-500/20" title="Offline Mode: Using local SafeScope AI Brain">
-                    <WifiOff className="h-3.5 w-3.5 text-orange-400" />
-                    <span className="text-xs font-black text-orange-400 hidden sm:inline-block">Offline</span>
+                  <div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-3 py-1 ring-1 ring-orange-500/20" title="Offline Mode: Using local ReviewCore AI Brain">
+                    <WifiOff className="h-3.5 w-3.5 text-orange-700" />
+                    <span className="text-xs font-black text-orange-800 hidden sm:inline-block">Offline</span>
                   </div>
                 )}
                 {isOnline && (
                   <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 ring-1 ring-emerald-500/20 hidden lg:flex" title="Connected">
-                    <Wifi className="h-3.5 w-3.5 text-emerald-400" />
-                    <span className="text-xs font-black text-emerald-400">Live</span>
+                    <Wifi className="h-3.5 w-3.5 text-emerald-700" />
+                    <span className="text-xs font-black text-emerald-800">Live</span>
                   </div>
                 )}
 
@@ -387,7 +387,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                         onClick={() => setProfileOpen(false)}
                         className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                       >
-                        SafeScope
+                        ReviewCore
                       </Link>
 
                       <button
@@ -444,7 +444,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               style={{ color: "#FFFFFF" }}
               className="text-sm font-black !text-white hover:opacity-80"
             >
-              SafeScope
+              ReviewCore
               <span className="ml-[1px] align-super text-[9px]">TM</span>
             </Link>
           </div>

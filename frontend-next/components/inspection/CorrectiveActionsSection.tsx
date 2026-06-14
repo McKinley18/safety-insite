@@ -37,7 +37,7 @@ function normalizeFieldOutputActions(safeScopeResult: any) {
         title: action,
         description: action,
         priority: safeScopeResult?.fieldOutput?.priority || "Medium",
-        source: "SafeScope field output",
+        source: "ReviewCore field output",
       };
     }
 
@@ -50,7 +50,7 @@ function normalizeFieldOutputActions(safeScopeResult: any) {
         action.priority ||
         safeScopeResult?.fieldOutput?.priority ||
         "Medium",
-      source: action.source || "SafeScope field output",
+      source: action.source || "ReviewCore field output",
     };
   });
 }

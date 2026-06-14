@@ -131,13 +131,13 @@ function formatSafeScopeValidationStatus(status: any) {
 
   const labels: Record<string, string> = {
     manual: "Manual finding",
-    local_unvalidated: "SafeScope local review needed",
-    generated: "SafeScope generated — review needed",
-    requires_review: "SafeScope review required",
-    validated_accepted: "SafeScope accepted by reviewer",
-    validated_modified: "SafeScope modified by reviewer",
-    validated_rejected: "SafeScope rejected by reviewer",
-    requires_escalation: "SafeScope escalated",
+    local_unvalidated: "ReviewCore local review needed",
+    generated: "ReviewCore generated — review needed",
+    requires_review: "ReviewCore review required",
+    validated_accepted: "ReviewCore accepted by reviewer",
+    validated_modified: "ReviewCore modified by reviewer",
+    validated_rejected: "ReviewCore rejected by reviewer",
+    requires_escalation: "ReviewCore escalated",
     requires_more_evidence: "More evidence required",
   };
 
@@ -192,7 +192,7 @@ function getFieldOutputActions(finding: any): any[] {
           closureEvidence:
             finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
             "Supervisor verification",
-          source: "SafeScope field output",
+          source: "ReviewCore field output",
         };
       }
 
@@ -202,12 +202,12 @@ function getFieldOutputActions(finding: any): any[] {
           action.title ||
           action.description ||
           action.suggestedFixes?.[0] ||
-          `SafeScope corrective action ${index + 1}`,
+          `ReviewCore corrective action ${index + 1}`,
         description:
           action.description ||
           action.suggestedFixes?.[0] ||
           action.title ||
-          "SafeScope field-output corrective action.",
+          "ReviewCore field-output corrective action.",
         priority:
           action.priority ||
           finding?.safeScopeResult?.fieldOutput?.priority ||
@@ -217,7 +217,7 @@ function getFieldOutputActions(finding: any): any[] {
           action.verification ||
           finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
           "Supervisor verification",
-        source: action.source || "SafeScope field output",
+        source: action.source || "ReviewCore field output",
       };
     });
 }
@@ -596,7 +596,7 @@ export default function InspectionReviewPage() {
 
     if (safeScopeReviewSummary.unvalidated > 0) {
       setExportWarning(
-        `${safeScopeReviewSummary.unvalidated} SafeScope finding(s) still need snapshot validation. Export will continue only after you confirm qualified-person review.`,
+        `${safeScopeReviewSummary.unvalidated} ReviewCore finding(s) still need snapshot validation. Export will continue only after you confirm qualified-person review.`,
       );
     } else {
       setExportWarning("");
@@ -890,7 +890,7 @@ export default function InspectionReviewPage() {
             ],
             [
               "includeSafeScopeNotesInReport",
-              "SafeScope Notes",
+              "ReviewCore Notes",
               Boolean(report.includeSafeScopeNotesInReport),
             ],
           ].map(([key, label, checked]: any) => (
@@ -931,8 +931,8 @@ export default function InspectionReviewPage() {
               </p>
               <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
                 {getSafeScopeReviewSummary(findings).unvalidated
-                  ? `${getSafeScopeReviewSummary(findings).unvalidated} SafeScope finding(s) need validation`
-                  : "All SafeScope findings show reviewed status"}
+                  ? `${getSafeScopeReviewSummary(findings).unvalidated} ReviewCore finding(s) need validation`
+                  : "All ReviewCore findings show reviewed status"}
               </h3>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
                 Snapshot validation status is included in the review page and PDF export.
@@ -941,7 +941,7 @@ export default function InspectionReviewPage() {
             </div>
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
-                <p className="text-[10px] font-black uppercase text-slate-400">SafeScope</p>
+                <p className="text-[10px] font-black uppercase text-slate-400">ReviewCore</p>
                 <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getSafeScopeReviewSummary(findings).total}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
@@ -1168,12 +1168,12 @@ export default function InspectionReviewPage() {
                         <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                           {reportPackage.includesConfidence
                             ? confidence !== undefined && confidence !== null
-                              ? `${formatReviewConfidence(confidence) || "SafeScope"} confidence`
+                              ? `${formatReviewConfidence(confidence) || "ReviewCore"} confidence`
                               : finding.safeScopeResult
-                                ? "SafeScope reviewed"
+                                ? "ReviewCore reviewed"
                                 : "Manual"
                             : finding.safeScopeResult
-                              ? "SafeScope reviewed"
+                              ? "ReviewCore reviewed"
                               : "Manual"}
                         </p>
                         {finding.safeScopeResult && (
@@ -1215,13 +1215,13 @@ export default function InspectionReviewPage() {
                   </div>
 
                   {traceabilityAvailable &&
-                    (reportPackage.includesSafeScopeTraceability ||
+                    (reportPackage.includesReviewCoreTraceability ||
                       reportPackage.includesEvidenceGaps ||
                       reportPackage.includesConfidence ||
                       reportPackage.includesRepeatIntelligence) && (
                     <details className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                       <summary className="cursor-pointer px-3 py-2 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                        SafeScope appendix
+                        ReviewCore appendix
                       </summary>
 
                       <div className="space-y-2 border-t border-slate-200 dark:border-slate-800 px-3 py-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
@@ -1328,7 +1328,7 @@ export default function InspectionReviewPage() {
               I confirm this report has been reviewed by a qualified person.
             </span>
             <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
-              SafeScope outputs, standards, risk ratings, corrective actions,
+              ReviewCore outputs, standards, risk ratings, corrective actions,
               and report language have been independently reviewed before export.
               Use of this report remains subject to the Sentinel Safety legal terms.
             </span>

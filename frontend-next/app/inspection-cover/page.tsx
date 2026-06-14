@@ -102,7 +102,7 @@ export default function InspectionCoverPage() {
         <SectionHeader
           eyebrow="Field-first workflow"
           title="Capture observations before final report assembly."
-          description="Start with inspector names and report options. The inspection itself begins with photo capture and observed condition — SafeScope can help classify the hazard after capture."
+          description="Start with inspector names and report options. The inspection itself begins with photo capture and observed condition — ReviewCore can help classify the hazard after capture."
         />
       </AppPanel>
 

@@ -39,7 +39,7 @@ export default function InspectionStepActionBar({
 
           <p className="mx-auto mt-1 max-w-sm text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
             {hasCurrentFindingData
-              ? "Ready for SafeScope review."
+              ? "Ready for ReviewCore review."
               : "You can continue now, or add details first for a stronger review."}
           </p>
 
@@ -66,7 +66,7 @@ export default function InspectionStepActionBar({
             <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
               {safeScopeResult
                 ? `${safeScopeResult.classification || "Finding reviewed"} · ${safeScopeResult.suggestedStandards?.length || 0} suggested standard(s)`
-                : "Run SafeScope to classify the hazard, assess risk, and suggest standards."}
+                : "Run ReviewCore to classify the hazard, assess risk, and suggest standards."}
             </p>
           </div>
 
@@ -76,7 +76,7 @@ export default function InspectionStepActionBar({
               onClick={handleRunSafeScope}
               className="rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
             >
-              {safeScopeResult ? "Rerun SafeScope" : "Run SafeScope"}
+              {safeScopeResult ? "Rerun ReviewCore" : "Run ReviewCore"}
             </button>
 
             <button

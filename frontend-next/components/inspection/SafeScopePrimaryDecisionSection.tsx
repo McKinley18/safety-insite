@@ -48,7 +48,7 @@ export default function SafeScopePrimaryDecisionSection({
   const primaryReason =
     safeScopeResult.decisionExplainability?.decisionSummary ||
     safeScopeResult.explanation ||
-    "SafeScope identified a condition requiring review.";
+    "ReviewCore identified a condition requiring review.";
 
   const recommendedAction =
     safeScopeResult.generatedActions?.[0]?.title ||
@@ -65,7 +65,7 @@ export default function SafeScopePrimaryDecisionSection({
   const standardReason =
     getStandardSummary(topStandard) ||
     safeScopeResult.standardsReasoning?.summary ||
-    "SafeScope did not identify a primary standard for automatic selection.";
+    "ReviewCore did not identify a primary standard for automatic selection.";
 
   const confirmationItems = uniqueItems([
     safeScopeResult.knowledgeBrain?.evidenceGaps || [],

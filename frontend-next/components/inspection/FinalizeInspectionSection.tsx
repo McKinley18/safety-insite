@@ -415,7 +415,7 @@ export default function FinalizeInspectionSection({
                             {finding.safeScopeResult.summary ||
                               finding.safeScopeResult.recommendation ||
                               finding.safeScopeResult.correctiveAction ||
-                              "SafeScope result captured for this finding."}
+                              "ReviewCore result captured for this finding."}
                           </p>
                         </div>
                       )}

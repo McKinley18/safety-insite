@@ -11,8 +11,8 @@ export type ReportPackageConfig = {
   shortLabel: string;
   description: string;
   includesExecutiveSummary: boolean;
-  includesSafeScopeSummary: boolean;
-  includesSafeScopeTraceability: boolean;
+  includesReviewCoreSummary: boolean;
+  includesReviewCoreTraceability: boolean;
   includesEvidenceGaps: boolean;
   includesConfidence: boolean;
   includesRepeatIntelligence: boolean;
@@ -30,10 +30,10 @@ export function getReportPackageForPlan(
       label: "Company Compliance Package",
       shortLabel: "Company",
       description:
-        "Management-ready compliance package with company metadata, team accountability, assigned corrective actions, trend intelligence, repeat-finding history, and full SafeScope traceability.",
+        "Management-ready compliance package with company metadata, team accountability, assigned corrective actions, trend intelligence, repeat-finding history, and full ReviewCore traceability.",
       includesExecutiveSummary: true,
-      includesSafeScopeSummary: true,
-      includesSafeScopeTraceability: true,
+      includesReviewCoreSummary: true,
+      includesReviewCoreTraceability: true,
       includesEvidenceGaps: true,
       includesConfidence: true,
       includesRepeatIntelligence: true,
@@ -49,10 +49,10 @@ export function getReportPackageForPlan(
       label: "Professional Report",
       shortLabel: "Pro",
       description:
-        "Professional single-inspection report with executive summary, SafeScope confidence, evidence gaps, standards rationale, corrective action context, and supervisor review signals.",
+        "Professional single-inspection report with executive summary, ReviewCore confidence, evidence gaps, standards rationale, corrective action context, and supervisor review signals.",
       includesExecutiveSummary: true,
-      includesSafeScopeSummary: true,
-      includesSafeScopeTraceability: false,
+      includesReviewCoreSummary: true,
+      includesReviewCoreTraceability: false,
       includesEvidenceGaps: true,
       includesConfidence: true,
       includesRepeatIntelligence: false,
@@ -69,8 +69,8 @@ export function getReportPackageForPlan(
     description:
       "Clean field inspection record with findings, locations, risk ratings, selected standards, corrective actions, photos, and human-review notice.",
     includesExecutiveSummary: false,
-    includesSafeScopeSummary: false,
-    includesSafeScopeTraceability: false,
+    includesReviewCoreSummary: false,
+    includesReviewCoreTraceability: false,
     includesEvidenceGaps: false,
     includesConfidence: false,
     includesRepeatIntelligence: false,

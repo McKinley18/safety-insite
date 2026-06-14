@@ -125,7 +125,7 @@ export default function QuickCaptureSection({
             value={hazardCategory}
             onChange={(event) => setHazardCategory(event.target.value)}
           >
-            <option value="">Let SafeScope classify</option>
+            <option value="">Let ReviewCore classify</option>
             {hazardCategoryOptions.map((category) => (
               <option key={category} value={category}>
                 {category}
@@ -237,7 +237,7 @@ export default function QuickCaptureSection({
         Photos {photos.length} ·{" "}
         {description ? "Condition described" : "No description"} ·{" "}
         {location ? "Location added" : "No location"} ·{" "}
-        {hazardCategory ? `Category: ${hazardCategory}` : "Category: SafeScope"}
+        {hazardCategory ? `Category: ${hazardCategory}` : "Category: ReviewCore"}
       </div>
     </>
   );

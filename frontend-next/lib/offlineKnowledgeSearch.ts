@@ -180,7 +180,7 @@ function evidenceGaps(query: string, matches: any[]) {
 
   if (!matches.length) {
     gaps.push(
-      "No approved offline reference matched strongly. Run online SafeScope review when available.",
+      "No approved offline reference matched strongly. Run online ReviewCore review when available.",
     );
   }
 
@@ -208,7 +208,7 @@ export function searchOfflineKnowledgeBrain(input: {
       reasoning: {
         evidenceGaps: ["Offline brain bundle is not available."],
         caution:
-          "SafeScope could not access the approved local knowledge bundle.",
+          "ReviewCore could not access the approved local knowledge bundle.",
       },
     };
   }
@@ -278,7 +278,7 @@ export function searchOfflineKnowledgeBrain(input: {
     reasoning: {
       evidenceGaps: evidenceGaps(query, matches),
       caution:
-        "Offline SafeScope references the last approved local brain bundle. Final compliance decisions require qualified review.",
+        "Offline ReviewCore references the last approved local brain bundle. Final compliance decisions require qualified review.",
     },
   };
 }
