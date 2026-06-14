@@ -5,12 +5,14 @@ export class ReviewCoreKnowledgeNormalizerService {
   normalizeRecord(raw: any): ReviewCoreKnowledgeRecord {
     return {
       ...raw,
-      title: raw.title.trim(),
-      content: raw.content.trim(),
+      title: (raw.title || '').trim(),
+      content: (raw.content || '').trim(),
+      domain: raw.domain || 'unknown',
+      tags: raw.tags || [],
       status: raw.status || ReviewCoreKnowledgeRecordStatus.DRAFT,
       authorityTier: raw.authorityTier || ReviewCoreKnowledgeAuthorityTier.EXPERIMENTAL,
       updatedAt: new Date(),
-    };
+    } as ReviewCoreKnowledgeRecord;
   }
 
   classifyDraft(record: ReviewCoreKnowledgeRecord): string {
