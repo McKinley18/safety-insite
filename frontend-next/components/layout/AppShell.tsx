@@ -230,6 +230,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [isPublicPage, pathname, router]);
 
   useEffect(() => {
+    const themeVersion = "theme-reset-2026-06-13-v1";
+    const savedThemeVersion = localStorage.getItem("sentinel_theme_version");
+
+    if (savedThemeVersion !== themeVersion) {
+      localStorage.setItem("sentinel_theme_version", themeVersion);
+      localStorage.setItem("sentinel_dark_mode", "false");
+      document.documentElement.classList.remove("dark");
+      setDarkMode(false);
+      return;
+    }
+
     const saved = localStorage.getItem("sentinel_dark_mode");
     setDarkMode(saved === "true");
   }, []);
