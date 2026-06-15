@@ -5,6 +5,7 @@ const DISABLE_AUTH_FOR_LOCAL_DEV = process.env.NEXT_PUBLIC_DISABLE_AUTH === "tru
 import Link from "next/link";
 import MobileTabBar from "@/components/layout/MobileTabBar";
 import { usePathname, useRouter } from "next/navigation";
+import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { useNetworkStatus } from "@/hooks/useNetworkStatus";
 import { ToastContainer } from "@/components/ui/Toast";
@@ -95,6 +96,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [profileOpen, setProfileOpen] = useState(false);
+  const [portalMounted, setPortalMounted] = useState(false);
   const [hasAuthSession, setHasAuthSession] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [planCode, setPlanCode] = useState<string>("basic");
@@ -129,6 +131,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     setHasAuthSession(hasAuthToken());
     setPlanCode(getStoredPlanCode());
   }, [pathname]);
+
+  useEffect(() => {
+    setPortalMounted(true);
+  }, []);
 
   useEffect(() => {
     function handleOutsideClick(event: MouseEvent | TouchEvent) {
@@ -258,7 +264,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="sentinel-modern-shell flex min-h-dvh flex-col text-slate-900 dark:text-slate-100 transition-colors">
       <ToastContainer />
-      <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
+      <header className="sticky top-0 z-[900] w-full overflow-visible border-b border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
@@ -311,7 +317,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   </div>
                 )}
 
-                <div className="relative">
+                <div className="relative z-[950] overflow-visible">
                   <button
                     ref={profileButtonRef}
                     type="button"
@@ -322,11 +328,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     CM
                   </button>
 
-                  {profileOpen && (
-                    <div
-                      ref={profileMenuRef}
-                      className="absolute right-0 top-14 z-50 w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:bg-slate-900 dark:border-slate-800 shadow-xl"
-                    >
+                  {profileOpen && portalMounted &&
+                    createPortal(
+                      <div
+                        ref={profileMenuRef}
+                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 shadow-2xl shadow-slate-950/30 sm:right-4 sm:top-[82px]"
+                      >
                       <button
                         type="button"
                         onClick={() => setDarkMode(!darkMode)}
@@ -400,8 +407,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       >
                         Sign Out
                       </button>
-                    </div>
-                  )}
+                      </div>,
+                      document.body,
+                    )}
                 </div>
               </div>
             </>
