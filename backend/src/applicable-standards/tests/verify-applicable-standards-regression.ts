@@ -91,7 +91,11 @@ async function run() {
   console.log("\nAll applicable standards regression checks passed.");
 }
 
-run().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+void (async () => {
+  try {
+    await run();
+  } catch (error: unknown) {
+    console.error(error);
+    process.exit(1);
+  }
+})();

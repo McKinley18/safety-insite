@@ -43,6 +43,7 @@ import { SemanticVectorSearchService } from "./semantic-vector-search/semantic-v
 import { VisualEvidenceReasoningService } from "./visual-evidence-reasoning/visual-evidence-reasoning.service";
 import { RealImageAnalysisService } from "./real-image-analysis/real-image-analysis.service";
 import { ApprovedKnowledgeRetrievalOutputV1Service } from "./approved-knowledge-retrieval-output-v1/approved-knowledge-retrieval-output-v1.service";
+import { ReviewCoreKnowledgeReviewQueueModule } from "./knowledge-architecture/reviewcore-knowledge-review-queue.module";
 
 // SafeScope v2 Management Services
 import { ReviewerCandidateConsoleService } from "./reviewer-candidate-console/reviewer-candidate-console.service";
@@ -122,6 +123,7 @@ import { ExecutiveJudgmentService } from "./executive-judgment/executive-judgmen
     ActionEngineModule,
     ApplicableStandardsModule,
     SafeScopeKnowledgeModule,
+    ReviewCoreKnowledgeReviewQueueModule,
     TypeOrmModule.forFeature([
       SafeScopeFeedback,
       SafeScopeReasoningSnapshot,

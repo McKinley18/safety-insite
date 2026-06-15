@@ -4,7 +4,18 @@ import { ReviewCoreKnowledgeReviewQueueProvider } from './reviewcore-knowledge-r
 
 type ActorCarrier = {
   actor?: Partial<ReviewCoreQueueActor>;
+  actorId?: string;
+  role?: ReviewCoreQueueActor["role"];
+  planTier?: ReviewCoreQueueActor["planTier"];
 };
+
+function actorFromCarrier(input: ActorCarrier = {}): Partial<ReviewCoreQueueActor> | undefined {
+  return input.actor ?? {
+    actorId: input.actorId,
+    role: input.role,
+    planTier: input.planTier,
+  };
+}
 
 @Controller('reviewcore/knowledge-queue')
 export class ReviewCoreKnowledgeReviewQueueHttpController {
@@ -12,12 +23,12 @@ export class ReviewCoreKnowledgeReviewQueueHttpController {
 
   @Get('queue')
   listQueue(@Query() query: ActorCarrier = {}) {
-    return this.provider.listQueue(query.actor);
+    return this.provider.listQueue(actorFromCarrier(query));
   }
 
   @Get('queue/:recordId')
   getQueueItem(@Param('recordId') recordId: string, @Query() query: ActorCarrier = {}) {
-    return this.provider.getQueueItem(recordId, query.actor);
+    return this.provider.getQueueItem(recordId, actorFromCarrier(query));
   }
 
   @Post('drafts')
@@ -47,16 +58,16 @@ export class ReviewCoreKnowledgeReviewQueueHttpController {
 
   @Get('active-retrieval')
   listActiveRetrievalRecords(@Query() query: ActorCarrier = {}) {
-    return this.provider.listActiveRetrievalRecords(query.actor);
+    return this.provider.listActiveRetrievalRecords(actorFromCarrier(query));
   }
 
   @Get('snapshot')
   exportQueueSnapshot(@Query() query: ActorCarrier = {}) {
-    return this.provider.exportQueueSnapshot(query.actor);
+    return this.provider.exportQueueSnapshot(actorFromCarrier(query));
   }
 
   @Get('persistence-readiness')
   persistenceReadiness(@Query() query: ActorCarrier = {}) {
-    return this.provider.persistenceReadiness(query.actor);
+    return this.provider.persistenceReadiness(actorFromCarrier(query));
   }
 }

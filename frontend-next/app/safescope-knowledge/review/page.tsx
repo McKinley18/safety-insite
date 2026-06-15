@@ -1,244 +1,291 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { Skeleton } from '@/components/ui/Skeleton';
-import SentinelCard from '../../../components/ui/SentinelCard';
-import StatusBadge from '../../../components/ui/StatusBadge';
-import MetricBlock from '../../../components/ui/MetricBlock';
-import { AppButton } from '../../../components/ui/AppButton';
-import { AppPanel } from '../../../components/ui/AppPanel';
-import { HeroPanel } from '../../../components/ui/HeroPanel';
-import EmptyState from '../../../components/ui/EmptyState';
-import LockedFeatureCard from '../../../components/ui/LockedFeatureCard';
-import { API_BASE_URL } from '../../../lib/safescope';
-import { authHeaders } from '../../../lib/auth';
-import { canAccessProtectedArea, getStoredPlanCode, requiredPlanForArea, type PlanCode } from '../../../lib/planEntitlements';
+import { useEffect, useMemo, useState } from "react";
+import { AppButton } from "@/components/ui/AppButton";
+import { AppInput, AppSelect } from "@/components/ui/AppInput";
+import { AppPanel } from "@/components/ui/AppPanel";
+import { HeroPanel } from "@/components/ui/HeroPanel";
+import { Badge } from "@/components/ui/Badge";
+import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
+import {
+  approveReviewCoreKnowledgeRecord,
+  createReviewCoreKnowledgeDraft,
+  getReviewCorePersistenceReadiness,
+  listReviewCoreActiveRetrievalRecords,
+  listReviewCoreKnowledgeQueue,
+  rejectReviewCoreKnowledgeRecord,
+  requestMoreInfoForReviewCoreKnowledgeRecord,
+  type ReviewCoreQueueActor,
+} from "@/lib/safescopeKnowledge";
+import {
+  canAccessProtectedArea,
+  getStoredPlanCode,
+  requiredPlanForArea,
+  type PlanCode,
+} from "@/lib/planEntitlements";
 
-// Types (Mirrored from Backend)
-type CandidateStatus = 
-  | 'pending_review' 
-  | 'needs_more_information' 
-  | 'approved_for_promotion' 
-  | 'rejected' 
-  | 'blocked' 
-  | 'archived';
+type QueueRecord = {
+  id?: string;
+  title?: string;
+  content?: string;
+  domain?: string;
+  tags?: string[];
+  authorityTier?: string;
+  status?: string;
+  primaryCitation?: string | null;
+  citation?: string | null;
+  sourceReferences?: string[];
+  createdBy?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  guardrails?: Record<string, any>;
+  originalPayload?: string;
+};
 
-type CandidateType = 'human_review_learning' | 'source_ingestion' | 'draft_candidate' | 'reasoning_candidate';
-
-interface CandidateAuditEntry {
-  action: string;
-  timestamp: string;
-  actor: string;
-  role: string;
-  notes?: string;
-}
-
-interface ReviewerCandidate {
-  candidateId: string;
-  candidateType: CandidateType;
-  sourceSystem: string;
-  createdAt: string;
-  status: CandidateStatus;
-  priority: 'critical' | 'high' | 'medium' | 'low';
-  domainIds: string[];
-  hazardFamilies: string[];
-  mechanisms: string[];
-  jurisdiction: string;
-  authorityTier: string;
-  sourceReferences: string[];
-  summary: string;
-  proposedKnowledgeText?: string;
-  proposedChange?: any;
-  evidenceBasis: string;
-  governanceFlags: string[];
-  requiredReviewSteps: string[];
-  reviewerDecision?: string;
-  reviewerRationale?: string;
-  auditTrail: CandidateAuditEntry[];
-}
-
-// Roles for access demonstration
-type SafeScopeRole = 'owner' | 'admin' | 'safety_manager' | 'compliance_admin' | 'field_inspector' | 'viewer';
-
-// Mock Data
-const MOCK_CANDIDATES: ReviewerCandidate[] = [
-  {
-    candidateId: 'demo-001',
-    candidateType: 'human_review_learning',
-    sourceSystem: 'human_review_feedback_loop',
-    createdAt: new Date().toISOString(),
-    status: 'pending_review',
-    priority: 'high',
-    domainIds: ['machine_guarding'],
-    hazardFamilies: ['mechanical'],
-    mechanisms: ['nip_point'],
-    jurisdiction: 'osha_general_industry',
-    authorityTier: 'primary_regulation',
-    sourceReferences: ['OSHA 1910.212'],
-    summary: 'Correction: Machine guarding nip points must be verified during active cleanup.',
-    proposedKnowledgeText: 'Proposed update to machine guarding applicability rules.',
-    evidenceBasis: 'Safety Manager review of observation #10293',
-    governanceFlags: ['RELIABILITY_BOOSTED'],
-    requiredReviewSteps: ['Verify against OSHA 1910.212(a)(1)'],
-    auditTrail: [
-      { action: 'created', timestamp: new Date().toISOString(), actor: 'System', role: 'System', notes: 'Initial capture' }
-    ]
-  },
-  {
-    candidateId: 'demo-002',
-    candidateType: 'source_ingestion',
-    sourceSystem: 'source_ingestion_workflow',
-    createdAt: new Date().toISOString(),
-    status: 'needs_more_information',
-    priority: 'medium',
-    domainIds: ['electrical'],
-    hazardFamilies: ['electrical'],
-    mechanisms: ['shock'],
-    jurisdiction: 'osha_construction',
-    authorityTier: 'primary_regulation',
-    sourceReferences: ['http://osha.gov/electrical'],
-    summary: 'Ingested source: 1926.405(a)(2)(ii)(I)',
-    proposedKnowledgeText: 'New electrical isolation standards for temporary constructions.',
-    evidenceBasis: 'Official source document ingestion',
-    governanceFlags: ['MISSING_EFFECTIVE_DATE'],
-    requiredReviewSteps: ['Confirm effective date', 'Verify jurisdiction mapping'],
-    auditTrail: [
-      { action: 'created', timestamp: new Date().toISOString(), actor: 'System', role: 'System', notes: 'Source ingested' }
-    ]
-  }
-];
-
-export default function ReviewerCandidateConsole() {
-  const [candidates, setCandidates] = useState<ReviewerCandidate[]>([]);
-  const [selectedCandidate, setSelectedCandidate] = useState<ReviewerCandidate | null>(null);
-  const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isBackendConnected, setIsBackendConnected] = useState<boolean>(false);
-  const [reviewerNotes, setReviewerNotes] = useState<string>('');
-  
-  // Hardened Auth State
-  const [currentUserRole, setCurrentUserRole] = useState<SafeScopeRole>('admin');
-  const [userPlanTier, setUserPlanTier] = useState<'individual' | 'team' | 'company'>('company');
-  const [planCode, setPlanCode] = useState<PlanCode>("basic");
-
-  const fetchCandidates = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(API_BASE_URL + '/safescope/reviewer-candidates', {
-        headers: authHeaders()
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setCandidates(data);
-        setIsBackendConnected(true);
-      } else {
-        throw new Error('Backend failed to respond correctly.');
-      }
-    } catch (e) {
-      console.warn('Backend connection failed.');
-      setIsBackendConnected(false);
-      
-      // Staging Hardening: Only allow mock data if explicitly enabled
-      if (process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK === 'true') {
-          console.log('ReviewCore Review Demo Fallback enabled.');
-          setCandidates(MOCK_CANDIDATES);
-      } else {
-          setError('Unable to connect to the ReviewCore governance engine. Staging/Production mode: Demo data disabled.');
-          setCandidates([]);
-      }
-    } finally {
-      setIsLoading(false);
-    }
+type QueueItem = {
+  record?: QueueRecord;
+  id?: string;
+  recordId?: string;
+  title?: string;
+  status?: string;
+  authorityTier?: string;
+  domain?: string;
+  approvalReadiness?: {
+    ready?: boolean;
+    blockers?: string[];
   };
+  duplicateCandidates?: string[];
+  reviewChecklist?: string[];
+};
 
-  useEffect(() => {
-    fetchCandidates();
-  }, []);
+const DEFAULT_ACTOR: ReviewCoreQueueActor = {
+  actorId: "local-reviewer",
+  role: "admin",
+  planTier: "company",
+};
+
+function asArray(value: any): any[] {
+  return Array.isArray(value) ? value : [];
+}
+
+function unwrapQueueItems(payload: any): QueueItem[] {
+  return asArray(
+    payload?.data?.result?.queueItems ??
+      payload?.result?.queueItems ??
+      payload?.data?.queueItems ??
+      payload?.queueItems,
+  );
+}
+
+function unwrapCounts(payload: any) {
+  return (
+    payload?.data?.result?.lifecycleCounts ??
+    payload?.result?.lifecycleCounts ??
+    payload?.data?.lifecycleCounts ??
+    payload?.lifecycleCounts ??
+    {}
+  );
+}
+
+function itemRecord(item: QueueItem): QueueRecord {
+  return item.record ?? item;
+}
+
+function recordId(item: QueueItem | QueueRecord | null | undefined) {
+  if (!item) return "";
+  return String((item as QueueItem).record?.id ?? (item as QueueItem).recordId ?? item.id ?? "");
+}
+
+function readableStatus(value: any) {
+  const raw = String(value || "unknown").toLowerCase().replaceAll("_", " ");
+  return raw.replace(/\b\w/g, (match) => match.toUpperCase());
+}
+
+function statusTone(value: any) {
+  const status = String(value || "").toLowerCase();
+  if (status.includes("governed") || status.includes("approved")) return "green";
+  if (status.includes("reject") || status.includes("blocked")) return "red";
+  if (status.includes("pending") || status.includes("review")) return "amber";
+  if (status.includes("draft")) return "blue";
+  return "white";
+}
+
+function guardrailLabels(record: QueueRecord) {
+  const guardrails = record.guardrails ?? {};
+  const labels = [
+    ["advisoryOnly", "Advisory only"],
+    ["doesNotDeclareViolation", "No violation declaration"],
+    ["doesNotCreateCitation", "No citation creation"],
+    ["requiresQualifiedReview", "Qualified review required"],
+    ["cannotOverrideRegulation", "Cannot override regulation"],
+    ["prohibitedLanguage", "Prohibited language flagged"],
+    ["confidentialData", "Confidential data flagged"],
+    ["isDuplicate", "Duplicate flagged"],
+  ];
+
+  return labels
+    .filter(([key]) => guardrails[key] === true)
+    .map(([, label]) => label);
+}
+
+function parseOriginalPayload(record: QueueRecord) {
+  if (!record.originalPayload) return null;
+
+  try {
+    return JSON.parse(record.originalPayload);
+  } catch {
+    return null;
+  }
+}
+
+export default function ReviewCoreKnowledgeReviewPage() {
+  const [planCode, setPlanCode] = useState<PlanCode>("basic");
+  const [actorRole, setActorRole] = useState<NonNullable<ReviewCoreQueueActor["role"]>>("admin");
+  const [actorPlan, setActorPlan] = useState<NonNullable<ReviewCoreQueueActor["planTier"]>>("company");
+
+  const [queuePayload, setQueuePayload] = useState<any>(null);
+  const [activePayload, setActivePayload] = useState<any>(null);
+  const [readinessPayload, setReadinessPayload] = useState<any>(null);
+  const [selectedId, setSelectedId] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [reviewNote, setReviewNote] = useState("");
+  const [newDraftTitle, setNewDraftTitle] = useState("Machine guarding cleanup exposure");
+  const [newDraftContent, setNewDraftContent] = useState(
+    "During cleanup near moving conveyor or machinery components, verify guarding, isolation, task controls, and exposure before relying on a general housekeeping classification.",
+  );
+  const [newDraftCitation, setNewDraftCitation] = useState("Internal governed review required before retrieval activation.");
+  const [newDraftDomain, setNewDraftDomain] = useState("machine_guarding");
+
+  const [loading, setLoading] = useState(true);
+  const [actionBusy, setActionBusy] = useState("");
+  const [error, setError] = useState("");
+
+  const actor: ReviewCoreQueueActor = useMemo(
+    () => ({
+      ...DEFAULT_ACTOR,
+      role: actorRole,
+      planTier: actorPlan,
+    }),
+    [actorRole, actorPlan],
+  );
+
+  async function loadQueue() {
+    try {
+      setLoading(true);
+      setError("");
+
+      const [queue, active, readiness] = await Promise.all([
+        listReviewCoreKnowledgeQueue(actor),
+        listReviewCoreActiveRetrievalRecords(actor),
+        getReviewCorePersistenceReadiness(actor),
+      ]);
+
+      setQueuePayload(queue);
+      setActivePayload(active);
+      setReadinessPayload(readiness);
+
+      const items = unwrapQueueItems(queue);
+      if (!selectedId && items.length > 0) {
+        setSelectedId(recordId(items[0]));
+      }
+    } catch (caught) {
+      setError(
+        caught instanceof Error
+          ? caught.message
+          : "Unable to load ReviewCore knowledge queue.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
     setPlanCode(getStoredPlanCode());
   }, []);
 
-  const canManage = ['owner', 'admin', 'safety_manager', 'compliance_admin'].includes(currentUserRole);
-  const canPromote = ['owner', 'admin', 'compliance_admin'].includes(currentUserRole) && userPlanTier !== 'individual';
+  useEffect(() => {
+    loadQueue();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actorRole, actorPlan]);
 
-  const pendingCount = candidates.filter(c => c.status === 'pending_review').length;
-  const needsInfoCount = candidates.filter(c => c.status === 'needs_more_information').length;
-  const approvedCount = candidates.filter(c => c.status === 'approved_for_promotion').length;
-  const rejectedCount = candidates.filter(c => c.status === 'rejected' || c.status === 'blocked').length;
+  const queueItems = useMemo(() => unwrapQueueItems(queuePayload), [queuePayload]);
+  const lifecycleCounts = useMemo(() => unwrapCounts(queuePayload), [queuePayload]);
+  const activeRecords = useMemo(
+    () =>
+      asArray(
+        activePayload?.data?.result?.records ??
+          activePayload?.result?.records ??
+          activePayload?.records,
+      ),
+    [activePayload],
+  );
 
-  const filteredCandidates = filterStatus === 'all' 
-    ? candidates 
-    : candidates.filter(c => c.status === filterStatus);
+  const filteredItems = useMemo(() => {
+    if (filterStatus === "all") return queueItems;
 
-  const handleAction = async (id: string, actionType: 'approve' | 'reject' | 'request-info' | 'block' | 'archive', notes?: string) => {
-    if (!canManage) {
-        alert('Unauthorized: Your role does not have permission to manage candidates.');
-        return;
+    return queueItems.filter((item) => {
+      const record = itemRecord(item);
+      return String(record.status ?? item.status ?? "").toLowerCase() === filterStatus;
+    });
+  }, [filterStatus, queueItems]);
+
+  const selectedItem = useMemo(
+    () => queueItems.find((item) => recordId(item) === selectedId) ?? null,
+    [queueItems, selectedId],
+  );
+  const selectedRecord = selectedItem ? itemRecord(selectedItem) : null;
+  const selectedOriginal = selectedRecord ? parseOriginalPayload(selectedRecord) : null;
+
+  async function runAction(label: string, action: () => Promise<any>) {
+    try {
+      setActionBusy(label);
+      setError("");
+      await action();
+      await loadQueue();
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "ReviewCore action failed.");
+    } finally {
+      setActionBusy("");
+    }
+  }
+
+  async function createDraft() {
+    if (!newDraftTitle.trim() || !newDraftContent.trim()) {
+      setError("Draft title and content are required.");
+      return;
     }
 
-    if (actionType === 'approve' && !canPromote) {
-        alert('Unauthorized: Knowledge promotion requires Admin/Compliance role and a Team/Company plan.');
-        return;
-    }
+    await runAction("create", async () => {
+      await createReviewCoreKnowledgeDraft(
+        {
+          title: newDraftTitle.trim(),
+          content: newDraftContent.trim(),
+          domain: newDraftDomain.trim() || "uncategorized",
+          authorityTier: "SUPPORTING",
+          citation: newDraftCitation.trim(),
+          tags: newDraftDomain
+            .split(/[,\s]+/)
+            .map((tag) => tag.trim())
+            .filter(Boolean),
+          guardrails: {
+            advisoryOnly: true,
+            doesNotDeclareViolation: true,
+            doesNotCreateCitation: true,
+            requiresQualifiedReview: true,
+            cannotOverrideRegulation: true,
+          },
+        },
+        actor,
+      );
+    });
+  }
 
-    if (isBackendConnected && !id.startsWith('demo-')) {
-        try {
-            const response = await fetch(API_BASE_URL + '/safescope/reviewer-candidates/' + id + '/' + actionType, {
-                method: 'POST',
-                headers: authHeaders(),
-                body: JSON.stringify({ 
-                    name: 'Current User', 
-                    role: currentUserRole, 
-                    notes: notes || 'Action: ' + actionType
-                })
-            });
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message || 'Action ' + actionType + ' failed.');
-            }
-            
-            const updatedCandidate = await response.json();
-            setCandidates(prev => prev.map(c => c.candidateId === id ? updatedCandidate : c));
-            if (selectedCandidate?.candidateId === id) setSelectedCandidate(updatedCandidate);
-            return;
-        } catch (e) {
-            console.error(e);
-            alert('Error: ' + (e instanceof Error ? e.message : 'Action failed'));
-        }
-    } else if (process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK === 'true') {
-        // Local fallback only in demo mode
-        const statusMap: Record<string, CandidateStatus> = {
-            'approve': 'approved_for_promotion',
-            'reject': 'rejected',
-            'request-info': 'needs_more_information',
-            'block': 'blocked',
-            'archive': 'archived'
-        };
+  const canUseKnowledgeReview = canAccessProtectedArea("knowledge_library", planCode);
+  const canApprove =
+    ["owner", "admin", "compliance_admin"].includes(actorRole) &&
+    ["team", "company"].includes(actorPlan);
 
-        setCandidates(prev => prev.map(c => {
-          if (c.candidateId === id) {
-            const updated = {
-              ...c,
-              status: statusMap[actionType],
-              auditTrail: [
-                ...c.auditTrail,
-                { action: actionType, timestamp: new Date().toISOString(), actor: 'Current User', role: currentUserRole, notes }
-              ]
-            } as ReviewerCandidate;
-            if (selectedCandidate?.candidateId === id) setSelectedCandidate(updated);
-            return updated;
-          }
-          return c;
-        }));
-    } else {
-        alert('Action unavailable: System is disconnected and Demo Fallback is disabled.');
-    }
-  };
-
-  if (!canAccessProtectedArea("knowledge_library", planCode)) {
+  if (!canUseKnowledgeReview) {
     return (
       <LockedFeatureCard
         eyebrow="Company Knowledge Governance"
@@ -262,294 +309,380 @@ export default function ReviewerCandidateConsole() {
           ReviewCore Governance
         </p>
         <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
-          Reviewer candidate console.
+          Governed knowledge review queue.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Review staged source-backed knowledge candidates before they are promoted into approved ReviewCore intelligence.
+          Review, approve, reject, or request more information before knowledge can become active retrieval intelligence.
         </p>
       </HeroPanel>
 
-      <AppPanel padding="sm" className="border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900 px-3 py-3">
-        <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2">
-            <div className={`h-2 w-2 rounded-full ${isBackendConnected ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`} />
-            <span className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">
-              {isBackendConnected ? 'Live Connection' : 'Demo Fallback'}
-            </span>
-          </div>
-
-          <div className="h-4 w-px bg-slate-200" />
-
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">Role:</span>
-            <select
-              value={currentUserRole}
-              onChange={(e) => setCurrentUserRole(e.target.value as SafeScopeRole)}
-              className="bg-transparent p-0 text-[10px] font-black uppercase text-blue-600 outline-none"
-            >
-              <option value="owner">Owner</option>
-              <option value="admin">Admin</option>
-              <option value="compliance_admin">Compliance Admin</option>
-              <option value="safety_manager">Safety Manager</option>
-              <option value="field_inspector">Field Inspector</option>
-              <option value="viewer">Viewer</option>
-            </select>
-          </div>
-
-          <div className="h-4 w-px bg-slate-200" />
-
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase text-slate-500 dark:text-slate-400">Plan:</span>
-            <select
-              value={userPlanTier}
-              onChange={(e) => setUserPlanTier(e.target.value as any)}
-              className="bg-transparent p-0 text-[10px] font-black uppercase text-blue-600 outline-none"
-            >
-              <option value="company">Company</option>
-              <option value="team">Team</option>
-              <option value="individual">Individual</option>
-            </select>
-          </div>
-        </div>
-      </AppPanel>
-
-
-      <AppPanel padding="sm" className="border-blue-200 bg-blue-50 px-3 py-3">
-        <div className="flex flex-wrap items-start justify-between gap-3">
+      <AppPanel padding="md" className="rounded-[24px] p-4 sm:p-5">
+        <div className="grid gap-3 md:grid-cols-[1fr_auto_auto] md:items-center">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
-              Governed Approval Queue
+            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+              Live Queue Connection
             </p>
-            <p className="mt-1 text-sm font-black text-slate-900">
-              These review actions are simulated local UI state until backend persistence is wired.
-            </p>
-            <p className="mt-1 text-xs font-bold leading-5 text-slate-600">
-              Advisory only · Does not declare violations · Does not create citations · Requires qualified review · Unapproved records do not affect active retrieval.
+            <h2 className="mt-1 text-xl font-black text-slate-900 dark:text-slate-100">
+              ReviewCore route: /reviewcore/knowledge-queue
+            </h2>
+            <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
+              Active retrieval remains locked until approval readiness and governance guardrails pass.
             </p>
           </div>
 
-          <div className="grid min-w-[240px] gap-2 text-[10px] font-black uppercase text-slate-700 sm:grid-cols-2">
-            <span className="rounded-lg bg-white px-2 py-1">Draft: not eligible</span>
-            <span className="rounded-lg bg-white px-2 py-1">Needs Review: blocked</span>
-            <span className="rounded-lg bg-white px-2 py-1">Approved: eligible</span>
-            <span className="rounded-lg bg-white px-2 py-1">Superseded: excluded</span>
-          </div>
+          <AppSelect
+            value={actorRole}
+            onChange={(event) => setActorRole(event.target.value as any)}
+            fieldSize="sm"
+            className="min-h-11 font-black"
+          >
+            <option value="owner">Owner</option>
+            <option value="admin">Admin</option>
+            <option value="compliance_admin">Compliance Admin</option>
+            <option value="safety_manager">Safety Manager</option>
+            <option value="field_inspector">Field Inspector</option>
+            <option value="viewer">Viewer</option>
+          </AppSelect>
+
+          <AppSelect
+            value={actorPlan}
+            onChange={(event) => setActorPlan(event.target.value as any)}
+            fieldSize="sm"
+            className="min-h-11 font-black"
+          >
+            <option value="company">Company</option>
+            <option value="team">Team</option>
+            <option value="individual">Individual</option>
+          </AppSelect>
         </div>
 
-        <div className="mt-3 overflow-x-auto">
-          <table className="w-full min-w-[720px] border-collapse text-left text-xs">
-            <thead>
-              <tr className="border-b border-blue-200 text-[10px] font-black uppercase tracking-wide text-slate-500">
-                <th className="py-2 pr-3">Title</th>
-                <th className="py-2 pr-3">Authority tier</th>
-                <th className="py-2 pr-3">Status</th>
-                <th className="py-2 pr-3">Domain tags</th>
-                <th className="py-2 pr-3">Approval blockers</th>
-                <th className="py-2 pr-3">Duplicate candidates</th>
-                <th className="py-2 pr-3">Recommended decision</th>
-                <th className="py-2 pr-3">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b border-blue-100 font-bold text-slate-700">
-                <td className="py-2 pr-3">Conveyor nip-point guarding summary</td>
-                <td className="py-2 pr-3">Primary regulation</td>
-                <td className="py-2 pr-3">Needs Review</td>
-                <td className="py-2 pr-3">Machine guarding</td>
-                <td className="py-2 pr-3">Confirm citation and duplicate status</td>
-                <td className="py-2 pr-3">1 possible match</td>
-                <td className="py-2 pr-3">Needs More Info</td>
-                <td className="py-2 pr-3">
-                  <div className="flex flex-wrap gap-1">
-                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Approve</button>
-                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Needs More Info</button>
-                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Reject</button>
-                    <button type="button" className="rounded-md bg-white px-2 py-1 text-[10px] font-black text-blue-700">Supersede</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </AppPanel>
-
-      <AppPanel className="py-8">
-        {!canManage && (
-            <div className="mb-5 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
-                <span className="text-xl">🚫</span>
-                <div>
-                    <p className="text-xs font-black text-red-900 uppercase">ReadOnly Access</p>
-                    <p className="text-[10px] font-bold text-red-700">Your current role ({currentUserRole.toUpperCase()}) does not have permission to manage candidates.</p>
-                </div>
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-6">
+          {[
+            ["Draft", lifecycleCounts.draft ?? 0],
+            ["Needs Review", lifecycleCounts.needs_review ?? 0],
+            ["Approved", lifecycleCounts.approved ?? 0],
+            ["Rejected", lifecycleCounts.rejected ?? 0],
+            ["Superseded", lifecycleCounts.superseded ?? 0],
+            ["Active", activeRecords.length],
+          ].map(([label, value]) => (
+            <div key={String(label)} className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-center dark:border-slate-800 dark:bg-slate-950">
+              <p className="text-2xl font-black text-[#1D72B8]">{String(value)}</p>
+              <p className="mt-1 text-[9px] font-black uppercase tracking-wide text-slate-500">
+                {String(label)}
+              </p>
             </div>
-        )}
+          ))}
+        </div>
 
         {error && (
-             <div className="mb-5 p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
-                <span className="text-xl">⚠️</span>
-                <div>
-                    <p className="text-xs font-black text-amber-900 uppercase">Connection Issue</p>
-                    <p className="text-[10px] font-bold text-amber-700">{error}</p>
-                    <button onClick={fetchCandidates} className="text-[10px] text-blue-600 font-black uppercase hover:underline mt-1">
-                        Retry Connection
-                    </button>
-                </div>
-            </div>
-        )}
-
-        {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5">
-                <Skeleton className="h-24 w-full" />
-                <Skeleton className="h-24 w-full" />
-                <Skeleton className="h-24 w-full" />
-                <Skeleton className="h-24 w-full" />
-            </div>
-        ) : (
-        <>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5">
-                <MetricBlock label="Pending" value={pendingCount} />
-                <MetricBlock label="Needs Info" value={needsInfoCount} />
-                <MetricBlock label="Approved" value={approvedCount} />
-                <MetricBlock label="Rejected / Blocked" value={rejectedCount} />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-1 space-y-4">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
-                <h2 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Candidates</h2>
-                <select 
-                    className="text-sm font-bold border border-slate-300 bg-white dark:bg-slate-900 rounded-xl px-4 min-h-[48px] outline-none focus:border-[#1D72B8] w-full sm:w-auto"
-                    value={filterStatus}
-                    onChange={(e) => setFilterStatus(e.target.value)}
-                >
-                    <option value="all">All Statuses</option>
-                    <option value="pending_review">Pending Review</option>
-                    <option value="needs_more_information">Needs Info</option>
-                    <option value="approved_for_promotion">Approved</option>
-                    <option value="rejected">Rejected</option>
-                    <option value="blocked">Blocked</option>
-                </select>
-                </div>
-
-                {filteredCandidates.length === 0 ? (
-                <EmptyState title="No candidates found" description="No candidates match selected filters." />
-                ) : (
-                filteredCandidates.map(c => (
-                    <div key={c.candidateId} onClick={() => { setSelectedCandidate(c); setReviewerNotes(''); }}>
-                    <SentinelCard 
-                        interactive 
-                        className={`p-4 border-l-4 ${selectedCandidate?.candidateId === c.candidateId ? 'border-l-blue-600 bg-blue-50/50' : 'border-l-transparent'}`}
-                    >
-                        <div className="flex justify-between items-start mb-2">
-                        <StatusBadge tone={c.priority === 'critical' ? 'critical' : c.priority === 'high' ? 'high' : 'medium'}>
-                            {c.priority.toUpperCase()}
-                        </StatusBadge>
-                        <span className="text-[10px] text-slate-400 font-mono">{c.candidateId}</span>
-                        </div>
-                        <p className="text-sm font-bold text-slate-900 dark:text-slate-100 mb-1 line-clamp-2">{c.summary}</p>
-                        <div className="flex gap-2 mt-2">
-                        <span className="text-[10px] bg-slate-200 text-slate-700 dark:text-slate-300 px-1.5 py-0.5 rounded font-medium">{c.candidateType.replace(/_/g, ' ')}</span>
-                        </div>
-                    </SentinelCard>
-                    </div>
-                ))
-                )}
-            </div>
-
-            <div className="lg:col-span-2">
-                {selectedCandidate ? (
-                <SentinelCard className="p-8">
-                    <div className="flex justify-between items-center mb-6">
-                    <div>
-                        <h3 className="text-xl font-black text-slate-900 dark:text-slate-100">{selectedCandidate.summary}</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">Source System: {selectedCandidate.sourceSystem}</p>
-                    </div>
-                    <div className="text-right">
-                        <StatusBadge tone={
-                        selectedCandidate.status === 'approved_for_promotion' ? 'success' : 
-                        selectedCandidate.status === 'pending_review' ? 'blue' : 
-                        selectedCandidate.status === 'blocked' ? 'critical' : 'slate'
-                        }>
-                        {selectedCandidate.status.toUpperCase().replace(/_/g, ' ')}
-                        </StatusBadge>
-                    </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-8 mb-5">
-                    <div>
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Jurisdiction</h4>
-                        <p className="text-sm font-medium">{selectedCandidate.jurisdiction.replace(/_/g, ' ')}</p>
-                    </div>
-                    <div>
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Authority Tier</h4>
-                        <p className="text-sm font-medium">{selectedCandidate.authorityTier.replace(/_/g, ' ')}</p>
-                    </div>
-                    </div>
-
-                    <div className="space-y-4 mb-5">
-                    <div>
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Proposed Knowledge</h4>
-                        <div className="bg-slate-900 text-slate-100 p-4 rounded-xl text-sm font-mono whitespace-pre-wrap">
-                        {selectedCandidate.proposedKnowledgeText}
-                        </div>
-                    </div>
-                    </div>
-
-                    <div className="mb-5">
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 mb-2 tracking-tighter">Reviewer Notes / Rationale</h4>
-                        <textarea
-                          className="w-full text-sm p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-slate-800"
-                          placeholder="Provide professional notes or rationale for this action..."
-                          rows={3}
-                          value={reviewerNotes}
-                          onChange={(e) => setReviewerNotes(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="flex gap-3 pt-6 border-t border-slate-100">
-                    <AppButton 
-                        variant="primary" 
-                        disabled={!canPromote || selectedCandidate.status === 'approved_for_promotion' || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
-                        onClick={() => { handleAction(selectedCandidate.candidateId, 'approve', reviewerNotes); setReviewerNotes(''); }}
-                    >
-                        Approve & Promote
-                    </AppButton>
-                    <AppButton 
-                        variant="secondary"
-                        disabled={!canManage || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
-                        onClick={() => { handleAction(selectedCandidate.candidateId, 'request-info', reviewerNotes || 'Reviewer requested more info.'); setReviewerNotes(''); }}
-                    >
-                        Request Info
-                    </AppButton>
-                    <AppButton 
-                        variant="danger"
-                        disabled={!canManage || !isBackendConnected && process.env.NEXT_PUBLIC_SAFESCOPE_REVIEW_DEMO_FALLBACK !== 'true'}
-                        onClick={() => { handleAction(selectedCandidate.candidateId, 'block', reviewerNotes || 'Reviewer blocked for safety/compliance.'); setReviewerNotes(''); }}
-                    >
-                        Block
-                    </AppButton>
-                    </div>
-
-                    {!canPromote && canManage && (
-                        <p className="mt-4 text-[10px] font-bold text-amber-600 italic">
-                            ⚠️ Promotion requires Compliance Admin role and Team/Company plan.
-                        </p>
-                    )}
-
-                    <div className="mt-12 text-[10px] text-slate-400 border-t border-slate-100 pt-4">
-                    <p>⚖️ GOVERNANCE NOTICE: Candidates are staged for human review. Do not promote to approved knowledge without source verification. ReviewCore remains an advisory system.</p>
-                    </div>
-                </SentinelCard>
-                ) : (
-                <div className="h-full flex items-center justify-center border-2 border-dashed border-slate-200 rounded-xl p-12 text-center text-slate-400">
-                    <p className="text-lg font-bold">Select a candidate to review details.</p>
-                </div>
-                )}
-            </div>
-            </div>
-        </>
+          <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm font-black text-red-700">
+            {error}
+          </p>
         )}
       </AppPanel>
+
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <AppPanel padding="md" className="rounded-[24px] p-4 sm:p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3 dark:border-slate-800">
+            <div>
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#F97316]">
+                Queue
+              </p>
+              <h2 className="text-lg font-black text-slate-900 dark:text-slate-100">
+                Pending knowledge records
+              </h2>
+            </div>
+
+            <AppSelect
+              value={filterStatus}
+              onChange={(event) => setFilterStatus(event.target.value)}
+              fieldSize="sm"
+              className="min-h-10 font-black"
+            >
+              <option value="all">All</option>
+              <option value="draft">Draft</option>
+              <option value="pending_validation">Pending Validation</option>
+              <option value="governed">Governed</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+              <option value="superseded">Superseded</option>
+            </AppSelect>
+          </div>
+
+          {loading ? (
+            <p className="mt-4 rounded-xl bg-slate-50 px-3 py-3 text-sm font-black text-slate-500">
+              Loading ReviewCore queue...
+            </p>
+          ) : filteredItems.length === 0 ? (
+            <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-sm font-bold text-slate-500 dark:border-slate-800 dark:bg-slate-950">
+              No queue records found. Create a draft below to validate the review workflow.
+            </div>
+          ) : (
+            <div className="mt-4 space-y-3">
+              {filteredItems.map((item) => {
+                const record = itemRecord(item);
+                const id = recordId(item);
+                const isSelected = id === selectedId;
+
+                return (
+                  <button
+                    key={id || record.title}
+                    type="button"
+                    onClick={() => setSelectedId(id)}
+                    className={`w-full rounded-2xl border p-4 text-left transition ${
+                      isSelected
+                        ? "border-[#1D72B8] bg-[#E8F4FF]"
+                        : "border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-950"
+                    }`}
+                  >
+                    <div className="flex flex-wrap items-start justify-between gap-2">
+                      <div>
+                        <p className="text-sm font-black text-slate-900 dark:text-slate-100">
+                          {record.title || "Untitled knowledge record"}
+                        </p>
+                        <p className="mt-1 text-[11px] font-bold text-slate-500">
+                          {record.domain || "uncategorized"} · {record.authorityTier || "SUPPORTING"}
+                        </p>
+                      </div>
+                      <Badge tone={statusTone(record.status) as any}>
+                        {readableStatus(record.status)}
+                      </Badge>
+                    </div>
+
+                    <p className="mt-3 line-clamp-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+                      {record.content || selectedOriginal?.content || "No content summary available."}
+                    </p>
+
+                    {!!record.primaryCitation && (
+                      <p className="mt-2 text-[11px] font-black text-[#1D72B8]">
+                        {record.primaryCitation}
+                      </p>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </AppPanel>
+
+        <div className="space-y-4">
+          <AppPanel padding="md" className="rounded-[24px] p-4 sm:p-5">
+            <div className="border-b border-slate-200 pb-3 dark:border-slate-800">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
+                Review Detail
+              </p>
+              <h2 className="text-lg font-black text-slate-900 dark:text-slate-100">
+                {selectedRecord?.title || "Select a record"}
+              </h2>
+            </div>
+
+            {selectedRecord ? (
+              <div className="mt-4 space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  <Badge tone={statusTone(selectedRecord.status) as any}>
+                    {readableStatus(selectedRecord.status)}
+                  </Badge>
+                  <Badge tone="white">{selectedRecord.domain || "uncategorized"}</Badge>
+                  <Badge tone="white">{selectedRecord.authorityTier || "SUPPORTING"}</Badge>
+                </div>
+
+                <p className="rounded-2xl bg-slate-50 p-4 text-sm font-semibold leading-6 text-slate-700 dark:bg-slate-950 dark:text-slate-300">
+                  {selectedRecord.content || selectedOriginal?.content || "No record content available."}
+                </p>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-slate-200 p-4 dark:border-slate-800">
+                    <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                      Citation / Source
+                    </p>
+                    <p className="mt-2 text-sm font-black text-slate-900 dark:text-slate-100">
+                      {selectedRecord.primaryCitation ||
+                        selectedRecord.citation ||
+                        selectedOriginal?.citation ||
+                        "No citation supplied"}
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-slate-200 p-4 dark:border-slate-800">
+                    <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                      Active Retrieval
+                    </p>
+                    <p className="mt-2 text-sm font-black text-slate-900 dark:text-slate-100">
+                      {activeRecords.some((record) => record.id === selectedRecord.id)
+                        ? "Eligible"
+                        : "Locked until governed approval"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+                  <p className="text-[10px] font-black uppercase tracking-wide text-amber-700">
+                    Governance Guardrails
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {guardrailLabels(selectedRecord).length ? (
+                      guardrailLabels(selectedRecord).map((label) => (
+                        <Badge key={label} tone="white" className="text-amber-700">
+                          {label}
+                        </Badge>
+                      ))
+                    ) : (
+                      <p className="text-sm font-bold text-amber-800">
+                        No explicit guardrail flags were stored on this row.
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                    Reviewer Note
+                  </label>
+                  <textarea
+                    value={reviewNote}
+                    onChange={(event) => setReviewNote(event.target.value)}
+                    className="mt-2 min-h-24 w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-800 outline-none focus:border-[#1D72B8] dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                    placeholder="Add rationale for rejection or request for more information..."
+                  />
+                </div>
+
+                <div className="grid gap-2 sm:grid-cols-3">
+                  <AppButton
+                    disabled={!canApprove || !!actionBusy}
+                    onClick={() =>
+                      runAction("approve", () =>
+                        approveReviewCoreKnowledgeRecord(recordId(selectedRecord), actor),
+                      )
+                    }
+                    className="min-h-11"
+                  >
+                    {actionBusy === "approve" ? "Approving..." : "Approve"}
+                  </AppButton>
+
+                  <AppButton
+                    variant="secondary"
+                    disabled={!!actionBusy}
+                    onClick={() =>
+                      runAction("more-info", () =>
+                        requestMoreInfoForReviewCoreKnowledgeRecord(
+                          recordId(selectedRecord),
+                          reviewNote.trim() || "More information required before governed approval.",
+                          actor,
+                        ),
+                      )
+                    }
+                    className="min-h-11"
+                  >
+                    More Info
+                  </AppButton>
+
+                  <AppButton
+                    variant="secondary"
+                    disabled={!!actionBusy}
+                    onClick={() =>
+                      runAction("reject", () =>
+                        rejectReviewCoreKnowledgeRecord(
+                          recordId(selectedRecord),
+                          reviewNote.trim() || "Rejected during governed ReviewCore review.",
+                          actor,
+                        ),
+                      )
+                    }
+                    className="min-h-11"
+                  >
+                    Reject
+                  </AppButton>
+                </div>
+
+                {!canApprove && (
+                  <p className="rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-slate-500">
+                    Approval requires owner/admin/compliance admin role and Team or Company plan.
+                  </p>
+                )}
+              </div>
+            ) : (
+              <p className="mt-4 rounded-xl bg-slate-50 px-3 py-3 text-sm font-black text-slate-500">
+                Select a queue record to review details and governance actions.
+              </p>
+            )}
+          </AppPanel>
+
+          <AppPanel padding="md" className="rounded-[24px] p-4 sm:p-5">
+            <div className="border-b border-slate-200 pb-3 dark:border-slate-800">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#F97316]">
+                Create Draft
+              </p>
+              <h2 className="text-lg font-black text-slate-900 dark:text-slate-100">
+                Stage new governed knowledge
+              </h2>
+            </div>
+
+            <div className="mt-4 grid gap-3">
+              <AppInput
+                value={newDraftTitle}
+                onChange={(event) => setNewDraftTitle(event.target.value)}
+                fieldSize="sm"
+                className="min-h-11 font-semibold"
+                placeholder="Draft title"
+              />
+
+              <AppInput
+                value={newDraftDomain}
+                onChange={(event) => setNewDraftDomain(event.target.value)}
+                fieldSize="sm"
+                className="min-h-11 font-semibold"
+                placeholder="Domain, example: machine_guarding"
+              />
+
+              <AppInput
+                value={newDraftCitation}
+                onChange={(event) => setNewDraftCitation(event.target.value)}
+                fieldSize="sm"
+                className="min-h-11 font-semibold"
+                placeholder="Citation or source reference"
+              />
+
+              <textarea
+                value={newDraftContent}
+                onChange={(event) => setNewDraftContent(event.target.value)}
+                className="min-h-28 w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-800 outline-none focus:border-[#1D72B8] dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                placeholder="Proposed knowledge text"
+              />
+
+              <AppButton
+                onClick={createDraft}
+                disabled={!!actionBusy}
+                className="min-h-11"
+              >
+                {actionBusy === "create" ? "Creating..." : "Create Review Draft"}
+              </AppButton>
+            </div>
+          </AppPanel>
+
+          <AppPanel padding="md" className="rounded-[24px] p-4 sm:p-5">
+            <p className="text-[11px] font-black uppercase tracking-[0.18em] text-slate-500">
+              Persistence Readiness
+            </p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              {Object.entries(
+                readinessPayload?.data?.result ??
+                  readinessPayload?.result ??
+                  readinessPayload?.data ??
+                  {},
+              ).map(([key, value]) => (
+                <div key={key} className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-950">
+                  <p className="text-[10px] font-black uppercase tracking-wide text-slate-500">
+                    {key.replaceAll(/([A-Z])/g, " $1")}
+                  </p>
+                  <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
+                    {String(value)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </AppPanel>
+        </div>
+      </div>
     </section>
   );
 }
