@@ -52,7 +52,7 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Sentinel Safety helps teams turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
+                SightSignal helps teams turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
               </p>
             </div>
 
@@ -122,7 +122,7 @@ export default function AboutPage() {
           <div className="grid gap-5 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.24em] text-[#1D72B8]">
-                ReviewCore
+                HazLenz AI
               </p>
               <h2 className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.045em] text-slate-950 sm:text-4xl">
                 Intelligence that supports the reviewer.
@@ -131,10 +131,10 @@ export default function AboutPage() {
 
             <div className="border-l border-slate-200/80 pl-4 text-base font-semibold leading-7 text-slate-600">
               <p>
-                ReviewCore helps organize hazard context, risk signals, evidence gaps, standards review, and corrective action reasoning so findings are easier to understand, review, and act on.
+                HazLenz AI helps organize hazard context, risk signals, evidence gaps, standards review, and corrective action reasoning so findings are easier to understand, review, and act on.
               </p>
               <p className="mt-3 text-sm leading-6 text-slate-500">
-                ReviewCore is advisory decision support. It does not replace professional judgment, declare violations, create citations, or override regulatory requirements.
+                HazLenz AI is advisory decision support. It does not replace professional judgment, declare violations, create citations, or override regulatory requirements.
               </p>
             </div>
           </div>
@@ -152,7 +152,7 @@ export default function AboutPage() {
 
           <div className="border-l border-slate-200/80 pl-4">
             <p className="text-base font-semibold leading-7 text-slate-600">
-              A safety finding should not disappear into a notebook, photo gallery, spreadsheet, or email chain. Sentinel Safety keeps the finding, evidence, review, and action connected so teams can move faster, communicate clearly, and follow through with confidence.
+              A safety finding should not disappear into a notebook, photo gallery, spreadsheet, or email chain. SightSignal keeps the finding, evidence, review, and action connected so teams can move faster, communicate clearly, and follow through with confidence.
             </p>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">

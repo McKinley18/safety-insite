@@ -161,7 +161,7 @@ export default function ActionsPage() {
           priority: action.priority || "Medium",
           status: action.status || "Open",
           due: action.dueDate || action.due || "",
-          source: action.source || (action.generatedBy === "ReviewCore" ? "ReviewCore" : "User"),
+          source: action.source || (action.generatedBy === "HazLenz AI" ? "HazLenz AI" : "User"),
           location: finding.location || "Field Inspection",
           findingTitle:
             finding.hazardCategory ||
@@ -341,7 +341,7 @@ export default function ActionsPage() {
           Track corrective work.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Manage actions created from inspections, ReviewCore recommendations, reports, and user-entered work.
+          Manage actions created from inspections, HazLenz AI recommendations, reports, and user-entered work.
         </p>
 
         <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">

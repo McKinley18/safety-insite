@@ -6,23 +6,23 @@ import { AppLinkButton } from "@/components/ui/AppLinkButton";
 const sections = [
   {
     title: "Proprietary platform",
-    body: "Sentinel Safety reserves rights in its platform, software, source code, workflows, user interface, reports, content, databases, taxonomies, classifications, reasoning systems, generated structures, logos, branding, and related materials to the extent permitted by law.",
+    body: "SightSignal reserves rights in its platform, software, source code, workflows, user interface, reports, content, databases, taxonomies, classifications, reasoning systems, generated structures, logos, branding, and related materials to the extent permitted by law.",
   },
   {
-    title: "ReviewCore",
-    body: "ReviewCore is proprietary decision-support intelligence within Sentinel Safety. It is designed to help organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
+    title: "HazLenz AI",
+    body: "HazLenz AI is proprietary decision-support intelligence within SightSignal. It is designed to help organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
   },
   {
     title: "No affiliation or endorsement",
-    body: "All third-party trademarks, trade names, service marks, company names, product names, and logos are the property of their respective owners. Use of Sentinel Safety or ReviewCore does not imply affiliation with, endorsement by, or sponsorship from any other company or organization using similar names.",
+    body: "All third-party trademarks, trade names, service marks, company names, product names, and logos are the property of their respective owners. Use of SightSignal or HazLenz AI does not imply affiliation with, endorsement by, or sponsorship from any other company or organization using similar names.",
   },
   {
     title: "Professional review required",
-    body: "Sentinel Safety and ReviewCore do not replace qualified safety professionals, legal counsel, regulatory agencies, company policy, site-specific evaluation, or professional judgment. All outputs must be reviewed and verified by qualified personnel before use.",
+    body: "SightSignal and HazLenz AI do not replace qualified safety professionals, legal counsel, regulatory agencies, company policy, site-specific evaluation, or professional judgment. All outputs must be reviewed and verified by qualified personnel before use.",
   },
   {
     title: "No compliance determination",
-    body: "ReviewCore does not declare violations, create citations, determine legal compliance, issue regulatory interpretations, or override MSHA, OSHA, company, site, or legal requirements.",
+    body: "HazLenz AI does not declare violations, create citations, determine legal compliance, issue regulatory interpretations, or override MSHA, OSHA, company, site, or legal requirements.",
   },
   {
     title: "User responsibility",
@@ -42,7 +42,7 @@ export default function LegalPage() {
           </h1>
 
           <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
-            Sentinel Safety is a proprietary field safety inspection and corrective action platform. ReviewCore is proprietary decision-support intelligence within the platform. Neither replaces qualified professional judgment, legal advice, regulatory interpretation, or site-specific safety review.
+            SightSignal is a proprietary field safety inspection and corrective action platform. HazLenz AI is proprietary decision-support intelligence within the platform. Neither replaces qualified professional judgment, legal advice, regulatory interpretation, or site-specific safety review.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function LegalPage() {
           </p>
 
           <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-slate-700">
-            Do not rely on Sentinel Safety or ReviewCore as the sole basis for safety, compliance, disciplinary, legal, medical, engineering, emergency-response, or operational decisions.
+            Do not rely on SightSignal or HazLenz AI as the sole basis for safety, compliance, disciplinary, legal, medical, engineering, emergency-response, or operational decisions.
           </p>
         </div>
 

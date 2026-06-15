@@ -362,7 +362,7 @@ export default function InspectionPage() {
       const safeScopeScopes = getSafeScopeScopesForAgencyMode(agencyMode);
       const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
 
-      setSafeScopeStatus("Running ReviewCore match...");
+      setSafeScopeStatus("Running HazLenz AI match...");
       if (isOfflineMode || forceOffline) {
         if (forceOffline) {
           setIsOfflineMode(true);
@@ -428,7 +428,7 @@ export default function InspectionPage() {
       const autoSelectedActions = Array.isArray(result?.generatedActions)
         ? result.generatedActions.slice(0, 1).map((action: any) => ({
             ...action,
-            source: "ReviewCore",
+            source: "HazLenz AI",
           }))
         : [];
 
@@ -436,7 +436,7 @@ export default function InspectionPage() {
       setSelectedGeneratedActions(autoSelectedActions);
 
       setSafeScopeStatus(
-        `ReviewCore: ${result.classification} (${
+        `HazLenz AI: ${result.classification} (${
           result.confidenceBand === "high"
             ? "high classification match"
             : result.confidenceBand === "medium"
@@ -448,7 +448,7 @@ export default function InspectionPage() {
       );
     } catch (error) {
       setSafeScopeStatus(
-        error instanceof Error ? error.message : "ReviewCore request failed.",
+        error instanceof Error ? error.message : "HazLenz AI request failed.",
       );
     }
   }
@@ -553,7 +553,7 @@ export default function InspectionPage() {
   ) {
     if (!safeScopeResult?.reasoningSnapshotId) {
       setSafeScopeStatus(
-        "No ReviewCore reasoning snapshot is available to validate.",
+        "No HazLenz AI reasoning snapshot is available to validate.",
       );
       return;
     }
@@ -602,7 +602,7 @@ export default function InspectionPage() {
         ...current,
         {
           ...action,
-          source: "ReviewCore",
+          source: "HazLenz AI",
         },
       ];
     });
@@ -743,11 +743,11 @@ export default function InspectionPage() {
         (safeScopeGeneratedActionCount > 0 && selectedGeneratedActions.length === 0 && manualActions.length === 0))
     ) {
       const confirmed = window.confirm(
-        "ReviewCore found recommended standards or corrective actions that are not selected for this finding. Save anyway?",
+        "HazLenz AI found recommended standards or corrective actions that are not selected for this finding. Save anyway?",
       );
 
       if (!confirmed) {
-        setFindingSaveMessage("Review ReviewCore standards/actions before saving.");
+        setFindingSaveMessage("Review HazLenz AI standards/actions before saving.");
         return;
       }
     }

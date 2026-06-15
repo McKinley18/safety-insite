@@ -6,27 +6,27 @@ import { AppLinkButton } from "@/components/ui/AppLinkButton";
 const sections = [
   {
     title: "Proprietary review intelligence",
-    body: "ReviewCore is proprietary decision-support intelligence within Sentinel Safety. It helps organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
+    body: "HazLenz AI is proprietary decision-support intelligence within SightSignal. It helps organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
   },
   {
     title: "Built for safety findings",
-    body: "ReviewCore is designed around the inspection workflow: field observations, documented findings, risk review, standards support, corrective action, and inspection-ready records.",
+    body: "HazLenz AI is designed around the inspection workflow: field observations, documented findings, risk review, standards support, corrective action, and inspection-ready records.",
   },
   {
     title: "Standards support",
-    body: "ReviewCore can help connect observed conditions to relevant MSHA, OSHA, and safety management concepts. Suggestions must always be verified by qualified personnel before use.",
+    body: "HazLenz AI can help connect observed conditions to relevant MSHA, OSHA, and safety management concepts. Suggestions must always be verified by qualified personnel before use.",
   },
   {
     title: "Evidence gaps",
-    body: "ReviewCore can help identify missing context, unclear details, or follow-up questions that may be needed before a finding is finalized.",
+    body: "HazLenz AI can help identify missing context, unclear details, or follow-up questions that may be needed before a finding is finalized.",
   },
   {
     title: "Corrective action reasoning",
-    body: "ReviewCore supports more relevant corrective action development by considering hazard context, exposure, task conditions, and review needs.",
+    body: "HazLenz AI supports more relevant corrective action development by considering hazard context, exposure, task conditions, and review needs.",
   },
   {
     title: "Professional review required",
-    body: "ReviewCore does not replace qualified safety professionals, declare violations, create citations, determine compliance, or override regulatory requirements.",
+    body: "HazLenz AI does not replace qualified safety professionals, declare violations, create citations, determine compliance, or override regulatory requirements.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function SafeScopePage() {
                 </p>
 
                 <h1 className="mt-3 max-w-3xl text-4xl font-black leading-[0.96] tracking-[-0.06em] text-white sm:text-5xl">
-                  ReviewCore.
+                  HazLenz AI.
                 </h1>
 
                 <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-200 sm:text-lg sm:leading-8">
@@ -61,7 +61,7 @@ export default function SafeScopePage() {
                   Qualified review required
                 </p>
                 <p className="mt-2 text-sm font-semibold leading-6 text-slate-200">
-                  ReviewCore supports professional judgment. It does not replace qualified safety review, determine compliance, or make final decisions.
+                  HazLenz AI supports professional judgment. It does not replace qualified safety review, determine compliance, or make final decisions.
                 </p>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function SafeScopePage() {
 
         <div className="py-7 text-center sm:py-8">
           <p className="mx-auto mb-5 max-w-2xl text-sm font-semibold leading-6 text-slate-600">
-            ReviewCore supports qualified professional review. See the{" "}
+            HazLenz AI supports qualified professional review. See the{" "}
             <a href="/legal" className="border-b-2 border-[#1D72B8] font-black text-[#1D72B8] hover:border-[#0B1320] hover:text-[#0B1320]">
               legal disclaimer
             </a>

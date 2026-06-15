@@ -180,7 +180,7 @@ function evidenceGaps(query: string, matches: any[]) {
 
   if (!matches.length) {
     gaps.push(
-      "No approved offline reference matched strongly. Run online ReviewCore review when available.",
+      "No approved offline reference matched strongly. Run online HazLenz AI review when available.",
     );
   }
 
@@ -208,7 +208,7 @@ export function searchOfflineKnowledgeBrain(input: {
       reasoning: {
         evidenceGaps: ["Offline brain bundle is not available."],
         caution:
-          "ReviewCore could not access the approved local knowledge bundle.",
+          "HazLenz AI could not access the approved local knowledge bundle.",
       },
     };
   }
@@ -278,7 +278,7 @@ export function searchOfflineKnowledgeBrain(input: {
     reasoning: {
       evidenceGaps: evidenceGaps(query, matches),
       caution:
-        "Offline ReviewCore references the last approved local brain bundle. Final compliance decisions require qualified review.",
+        "Offline HazLenz AI references the last approved local brain bundle. Final compliance decisions require qualified review.",
     },
   };
 }

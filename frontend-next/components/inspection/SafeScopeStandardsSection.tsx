@@ -133,7 +133,7 @@ export default function SafeScopeStandardsSection({
                 {!!standard.matchingReasons?.length && (
                   <details className="mt-2 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
                     <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                      Why ReviewCore matched this
+                      Why HazLenz AI matched this
                     </summary>
 
                     <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">

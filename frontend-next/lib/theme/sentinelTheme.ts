@@ -1,7 +1,7 @@
 export const sentinelTheme = {
   brand: {
-    name: "Sentinel Safety",
-    engine: "ReviewCore",
+    name: "SightSignal",
+    engine: "HazLenz AI",
     navy: "#0f172a",
     headerNavy: "#102A43",
     blue: "#2563eb",

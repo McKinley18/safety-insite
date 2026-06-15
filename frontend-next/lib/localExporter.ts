@@ -7,7 +7,7 @@ function getReportPackageExportNote(input: any) {
 }
 
 
-const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Sentinel Safety / ReviewCore. ReviewCore outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
+const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with SightSignal / HazLenz AI. HazLenz AI outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
 
 function normalizePdfPercent(value: any) {
   const numeric = Number(value);
@@ -41,7 +41,7 @@ function getFieldOutputActionsForPdf(f: any) {
         closureEvidence:
           f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
           "Supervisor verification",
-        source: "ReviewCore field output",
+        source: "HazLenz AI field output",
       };
     }
 
@@ -57,7 +57,7 @@ function getFieldOutputActionsForPdf(f: any) {
         action.verification ||
         f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
         "Supervisor verification",
-      source: action.source || "ReviewCore field output",
+      source: action.source || "HazLenz AI field output",
     };
   });
 }
@@ -126,13 +126,13 @@ function formatSafeScopeValidationStatusForPdf(status: any) {
   const value = String(status || "manual");
   const labels: Record<string, string> = {
     manual: "Manual finding",
-    local_unvalidated: "ReviewCore local review needed",
-    generated: "ReviewCore generated - review needed",
-    requires_review: "ReviewCore review required",
-    validated_accepted: "ReviewCore accepted by reviewer",
-    validated_modified: "ReviewCore modified by reviewer",
-    validated_rejected: "ReviewCore rejected by reviewer",
-    requires_escalation: "ReviewCore escalated",
+    local_unvalidated: "HazLenz AI local review needed",
+    generated: "HazLenz AI generated - review needed",
+    requires_review: "HazLenz AI review required",
+    validated_accepted: "HazLenz AI accepted by reviewer",
+    validated_modified: "HazLenz AI modified by reviewer",
+    validated_rejected: "HazLenz AI rejected by reviewer",
+    requires_escalation: "HazLenz AI escalated",
     requires_more_evidence: "More evidence required",
   };
   return labels[value] || value.replace(/_/g, " ");
@@ -719,7 +719,7 @@ export const localExporter = {
         );
         safeScopeNotes.push(`Risk: ${riskBand}`);
         safeScopeNotes.push(
-          `SafeScope review status: ${formatSafeScopeValidationStatusForPdf(getSafeScopeValidationStatusForPdf(f))}`,
+          `HazLenz AI review status: ${formatSafeScopeValidationStatusForPdf(getSafeScopeValidationStatusForPdf(f))}`,
         );
         if (reportPackage.includesConfidence && confidence !== null) {
           safeScopeNotes.push(`Confidence: ${confidence}%`);
@@ -775,7 +775,7 @@ export const localExporter = {
           f.safeScopeResult.explanation;
 
         if (reportPackage.includesSafeScopeSummary && decisionSummary) {
-          safeScopeNotes.push(`SafeScope summary: ${decisionSummary}`);
+          safeScopeNotes.push(`HazLenz AI summary: ${decisionSummary}`);
         }
 
         if (reportPackage.includesRepeatIntelligence) {
@@ -865,7 +865,7 @@ export const localExporter = {
       }
     }
 
-    // --- ReviewCore Reasoning Audit Trace Appendix ---
+    // --- HazLenz AI Reasoning Audit Trace Appendix ---
     if (reportPackage.includesSafeScopeTraceability) {
       const findingsWithTrace = findings.filter(
         (f) =>
@@ -881,7 +881,7 @@ export const localExporter = {
         doc.setTextColor(15, 23, 42); // Navy
         doc.setFontSize(22);
         doc.setFont("helvetica", "bold");
-        doc.text("ReviewCore Reasoning Audit Trace", 20, appendixY);
+        doc.text("HazLenz AI Reasoning Audit Trace", 20, appendixY);
         
         doc.setFontSize(10);
         doc.setFont("helvetica", "normal");
@@ -1071,7 +1071,7 @@ export const localExporter = {
             boundaryParts.push(`Advisory Boundary: ${trace.advisoryBoundary}`);
           }
           if (Array.isArray(trace.safeScopeLimitations) && trace.safeScopeLimitations.length) {
-            boundaryParts.push(`SafeScope Limitations: ${trace.safeScopeLimitations.join("; ")}`);
+            boundaryParts.push(`HazLenz AI Limitations: ${trace.safeScopeLimitations.join("; ")}`);
           }
 
           const boundaryLines = doc.splitTextToSize(boundaryParts.join("\n"), pageWidth - 40);

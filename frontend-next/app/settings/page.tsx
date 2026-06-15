@@ -26,7 +26,7 @@ const riskProfiles = [
 ] as const;
 
 const regulatoryScopes = [
-  ["all", "Let ReviewCore Evaluate", "ReviewCore decides the likely agency context."],
+  ["all", "Let HazLenz AI Evaluate", "HazLenz AI decides the likely agency context."],
   ["msha", "MSHA", "Mining operations and 30 CFR review."],
   ["osha_general", "OSHA General Industry", "General industry and 29 CFR 1910 review."],
   ["osha_construction", "OSHA Construction", "Construction and 29 CFR 1926 review."],
@@ -95,7 +95,7 @@ function OverviewItem({
 }
 
 export default function SettingsHubPage() {
-  const [organizationName, setOrganizationName] = useState("Sentinel Safety Workspace");
+  const [organizationName, setOrganizationName] = useState("SightSignal Workspace");
   const [riskProfileId, setRiskProfileId] = useState<RiskProfileId>("standard_5x5");
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
   const [regulatoryScope, setRegulatoryScope] = useState<RegulatoryScope>("all");
@@ -120,7 +120,7 @@ export default function SettingsHubPage() {
 
       try {
         const settings = await getOrganizationSettings();
-        setOrganizationName(settings.name || "Sentinel Safety Workspace");
+        setOrganizationName(settings.name || "SightSignal Workspace");
         setRiskProfileId((settings.riskProfileId || "standard_5x5") as RiskProfileId);
         setRegulatoryScope(
           (settings.regulatoryScope ||
@@ -128,7 +128,7 @@ export default function SettingsHubPage() {
             "all") as RegulatoryScope,
         );
       } catch {
-        setOrganizationName("Sentinel Safety Workspace");
+        setOrganizationName("SightSignal Workspace");
       }
     }
 
@@ -158,7 +158,7 @@ export default function SettingsHubPage() {
 
   const scopeLabel =
     regulatoryScopes.find(([id]) => id === regulatoryScope)?.[1] ||
-    "Let ReviewCore Evaluate";
+    "Let HazLenz AI Evaluate";
 
   const isCompany = hasPlanEntitlement("teamMembers", planCode);
 
@@ -188,7 +188,7 @@ export default function SettingsHubPage() {
           <OverviewItem label="Plan" value={planCode} />
           <OverviewItem label="Storage" value={storageLabel} />
           <OverviewItem label="Risk Matrix" value={riskLabel} />
-          <OverviewItem label="ReviewCore Scope" value={scopeLabel} />
+          <OverviewItem label="HazLenz AI Scope" value={scopeLabel} />
           <OverviewItem label="Locations" value={facilityCount} />
         </div>
       </AppPanel>
@@ -237,9 +237,9 @@ export default function SettingsHubPage() {
 
       <AppPanel padding="lg">
         <SectionHeader
-          eyebrow="ReviewCore Defaults"
+          eyebrow="HazLenz AI Defaults"
           title="Default regulatory scope"
-          description="Set the default agency context ReviewCore should use during inspection review."
+          description="Set the default agency context HazLenz AI should use during inspection review."
         />
 
         <div className="mt-4 grid gap-3 md:grid-cols-2">

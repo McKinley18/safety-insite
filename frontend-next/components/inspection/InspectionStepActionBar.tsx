@@ -39,7 +39,7 @@ export default function InspectionStepActionBar({
 
           <p className="mx-auto mt-1 max-w-sm text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
             {hasCurrentFindingData
-              ? "Ready for ReviewCore review."
+              ? "Ready for HazLenz AI review."
               : "You can continue now, or add details first for a stronger review."}
           </p>
 
@@ -48,7 +48,7 @@ export default function InspectionStepActionBar({
             onClick={() => goToInspectionStep(2)}
             className="mt-3 rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
           >
-            Continue to ReviewCore
+            Continue to HazLenz AI
           </button>
         </div>
       </div>
@@ -61,12 +61,12 @@ export default function InspectionStepActionBar({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-              ReviewCore Review
+              HazLenz AI Review
             </p>
             <p className="mt-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
               {safeScopeResult
                 ? `${safeScopeResult.classification || "Finding reviewed"} · ${safeScopeResult.suggestedStandards?.length || 0} suggested standard(s)`
-                : "Run ReviewCore to classify the hazard, assess risk, and suggest standards."}
+                : "Run HazLenz AI to classify the hazard, assess risk, and suggest standards."}
             </p>
           </div>
 
@@ -76,7 +76,7 @@ export default function InspectionStepActionBar({
               onClick={handleRunReviewCore}
               className="rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
             >
-              {safeScopeResult ? "Rerun ReviewCore" : "Run ReviewCore"}
+              {safeScopeResult ? "Rerun HazLenz AI" : "Run HazLenz AI"}
             </button>
 
             <button

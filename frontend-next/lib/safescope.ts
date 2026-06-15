@@ -66,9 +66,9 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
     basicPlanMode: true,
     upgradeRequiredForFullSafeScope: true,
     explanation:
-      "Basic ReviewCore provides limited hazard assistance. Upgrade to Plus or Company for full ReviewCore reasoning, standards matching, evidence quality review, exposure-path intelligence, and corrective action recommendations.",
+      "Basic HazLenz AI provides limited hazard assistance. Upgrade to Plus or Company for full HazLenz AI reasoning, standards matching, evidence quality review, exposure-path intelligence, and corrective action recommendations.",
     ambiguityWarnings: [
-      "Full ReviewCore intelligence is not available on the Basic plan.",
+      "Full HazLenz AI intelligence is not available on the Basic plan.",
       "Review classification, risk, standards, and corrective actions manually.",
     ],
     evidenceTokens: [],
@@ -84,7 +84,7 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
       confidenceBand: "basic_review",
       strengths: ["Basic hazard category assistance was provided."],
       missingCriticalInformation: [
-        "Full ReviewCore intelligence requires Plus or Company.",
+        "Full HazLenz AI intelligence requires Plus or Company.",
       ],
       conflictingSignals: [],
       recommendedFollowup: [
@@ -129,13 +129,13 @@ function buildOfflineSafeScopeFallback(input: {
       : "review_required",
     evidenceTokens: [],
     ambiguityWarnings: [
-      "ReviewCore is using the approved offline Knowledge Brain because the online engine was unavailable.",
-      input.errorMessage || "Online ReviewCore request failed.",
+      "HazLenz AI is using the approved offline Knowledge Brain because the online engine was unavailable.",
+      input.errorMessage || "Online HazLenz AI request failed.",
     ],
     requiresHumanReview: true,
     explanation: topMatch
-      ? `Offline SafeScope found supporting approved reference intelligence for: ${topMatch.title}.`
-      : "Offline ReviewCore could not find a strong approved reference match. Manual review is required.",
+      ? `Offline HazLenz AI found supporting approved reference intelligence for: ${topMatch.title}.`
+      : "Offline HazLenz AI could not find a strong approved reference match. Manual review is required.",
     commonConsequences: [],
     requiredControls: [],
     score: topMatch?.score || 0,
@@ -150,7 +150,7 @@ function buildOfflineSafeScopeFallback(input: {
       imminentDanger: false,
       fatalityPotential: false,
       reasoning: [
-        "Offline fallback does not replace the full ReviewCore risk engine.",
+        "Offline fallback does not replace the full HazLenz AI risk engine.",
         "Use qualified review before final classification, standards selection, or corrective action decisions.",
       ],
     },
@@ -174,11 +174,11 @@ function buildOfflineSafeScopeFallback(input: {
           ]
         : [],
       missingCriticalInformation: offlineSearch.reasoning?.evidenceGaps || [
-        "Online ReviewCore intelligence unavailable.",
+        "Online HazLenz AI intelligence unavailable.",
       ],
       conflictingSignals: [],
       recommendedFollowup: [
-        "Reconnect and rerun full ReviewCore review when available.",
+        "Reconnect and rerun full HazLenz AI review when available.",
         "Supervisor review required before final report use.",
       ],
       reviewTriggers: ["Offline fallback mode"],
@@ -234,7 +234,7 @@ export async function runSafeScopeV2Classify(input: {
   const headers = getSafeScopeAuthHeaders();
 
   if (typeof window !== "undefined") {
-    console.info("[ReviewCore] direct classify request", {
+    console.info("[HazLenz AI] direct classify request", {
       requestUrl,
       hasAuthHeader: Boolean((headers as any).Authorization),
       textLength: safePayload.text.length,
@@ -255,10 +255,10 @@ export async function runSafeScopeV2Classify(input: {
     const responseText = await response.text();
 
     if (!response.ok) {
-      const errorMsg = responseText || `SafeScope backend error ${response.status}`;
+      const errorMsg = responseText || `HazLenz AI backend error ${response.status}`;
       
       if (typeof window !== "undefined") {
-        console.error("[ReviewCore] classify error", {
+        console.error("[HazLenz AI] classify error", {
           status: response.status,
           message: errorMsg
         });
@@ -276,7 +276,7 @@ export async function runSafeScopeV2Classify(input: {
     const result = responseText ? JSON.parse(responseText) : null;
 
     if (typeof window !== "undefined") {
-      console.info("[ReviewCore] direct classify response", {
+      console.info("[HazLenz AI] direct classify response", {
         classification: result?.classification,
         confidence: result?.confidence,
         confidenceBand: result?.confidenceBand,
@@ -288,7 +288,7 @@ export async function runSafeScopeV2Classify(input: {
     return result;
   } catch (error) {
     const message =
-      error instanceof Error ? error.message : "ReviewCore request failed.";
+      error instanceof Error ? error.message : "HazLenz AI request failed.";
 
     if (typeof navigator !== "undefined" && !navigator.onLine) {
       return buildOfflineSafeScopeFallback({
@@ -316,7 +316,7 @@ export async function sendSafeScopeFeedback(payload: any) {
   });
 
   if (!response.ok) {
-    throw new Error("ReviewCore feedback failed.");
+    throw new Error("HazLenz AI feedback failed.");
   }
 
   return response.json();
@@ -328,7 +328,7 @@ export async function getSafeScopeReasoningSnapshot(snapshotId: string) {
   );
 
   if (!response.ok) {
-    throw new Error("ReviewCore reasoning snapshot could not be loaded.");
+    throw new Error("HazLenz AI reasoning snapshot could not be loaded.");
   }
 
   return response.json();

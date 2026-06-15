@@ -11,7 +11,7 @@ export async function listSafeScopeKnowledgeDocuments() {
   );
 
   if (!response.ok) {
-    throw new Error("Unable to load ReviewCore knowledge documents.");
+    throw new Error("Unable to load HazLenz AI knowledge documents.");
   }
 
   return response.json();
@@ -37,7 +37,7 @@ export async function searchSafeScopeKnowledge(input: {
   );
 
   if (!response.ok) {
-    throw new Error("Unable to search ReviewCore Knowledge Brain.");
+    throw new Error("Unable to search HazLenz AI Knowledge Brain.");
   }
 
   return response.json();
@@ -93,7 +93,7 @@ async function reviewCoreRequest(path: string, options: RequestInit = {}) {
       detail = "";
     }
 
-    throw new Error(detail || "ReviewCore knowledge queue request failed.");
+    throw new Error(detail || "HazLenz AI knowledge queue request failed.");
   }
 
   return response.json();

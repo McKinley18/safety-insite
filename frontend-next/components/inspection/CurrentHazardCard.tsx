@@ -108,7 +108,7 @@ export default function CurrentHazardCard({
   const categorySource = hazardCategory
     ? "User selected"
     : safeScopeResult?.classification
-      ? "ReviewCore suggested"
+      ? "HazLenz AI suggested"
       : "Not classified";
 
   const actionCount = selectedGeneratedActions.length + manualActions.length;

@@ -48,7 +48,7 @@ export default function SafeScopePrimaryDecisionSection({
   const primaryReason =
     safeScopeResult.decisionExplainability?.decisionSummary ||
     safeScopeResult.explanation ||
-    "ReviewCore identified a condition requiring review.";
+    "HazLenz AI identified a condition requiring review.";
 
   const recommendedAction =
     safeScopeResult.generatedActions?.[0]?.title ||
@@ -65,7 +65,7 @@ export default function SafeScopePrimaryDecisionSection({
   const standardReason =
     getStandardSummary(topStandard) ||
     safeScopeResult.standardsReasoning?.summary ||
-    "ReviewCore did not identify a primary standard for automatic selection.";
+    "HazLenz AI did not identify a primary standard for automatic selection.";
 
   const confirmationItems = uniqueItems([
     safeScopeResult.knowledgeBrain?.evidenceGaps || [],
@@ -89,7 +89,7 @@ export default function SafeScopePrimaryDecisionSection({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
-            ReviewCore Decision
+            HazLenz AI Decision
           </p>
 
           <h3 className="mt-1 text-xl font-black leading-7 text-slate-900 dark:text-slate-100">
@@ -129,7 +129,7 @@ export default function SafeScopePrimaryDecisionSection({
       <div className="mt-4 space-y-3">
         <div>
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
-            Why ReviewCore selected this
+            Why HazLenz AI selected this
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
             {primaryReason}

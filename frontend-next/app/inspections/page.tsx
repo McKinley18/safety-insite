@@ -40,7 +40,7 @@ const workflowOptions: {
     description:
       "Document a hazard fast with photo, location, and observed condition.",
     details:
-      "Best for quick field documentation and fast ReviewCore summary support.",
+      "Best for quick field documentation and fast HazLenz AI summary support.",
     route: "/inspection-quick",
     entitlement: "quickCapture",
     tierLabel: "Included",
@@ -51,7 +51,7 @@ const workflowOptions: {
     title: "Guided Inspection",
     eyebrow: "Pro",
     description:
-      "Use the structured workflow for evidence, ReviewCore review, risk, standards, actions, and report options.",
+      "Use the structured workflow for evidence, HazLenz AI review, risk, standards, actions, and report options.",
     details:
       "Best for routine safety inspections and professional individual reporting.",
     route: "/inspection-cover",
@@ -201,14 +201,14 @@ export default function InspectionsPage() {
               workflow.id === "quick"
                 ? [
                     "Photo + location + condition",
-                    "ReviewCore quick preview",
+                    "HazLenz AI quick preview",
                     "Risk signal",
                     "One suggested action",
                   ]
                 : workflow.id === "guided"
                   ? [
                       "Evidence workflow",
-                      "Full ReviewCore review",
+                      "Full HazLenz AI review",
                       "Standards suggestions",
                       "Report options",
                     ]
@@ -312,7 +312,7 @@ export default function InspectionsPage() {
 
 
         <p className="mx-auto mt-4 max-w-sm text-center text-xs font-semibold leading-5 text-slate-500">
-          ReviewCore uses the default regulatory agency from{" "}
+          HazLenz AI uses the default regulatory agency from{" "}
           <AppTextLink
             href="/settings/workspace"
             className="!text-xs !leading-5 font-black"
@@ -328,7 +328,7 @@ export default function InspectionsPage() {
                 ? "OSHA General Industry"
                 : regulatoryScope === "osha_construction"
                   ? "OSHA Construction"
-                  : "Let ReviewCore evaluate"}
+                  : "Let HazLenz AI evaluate"}
           </span>
           .
         </p>

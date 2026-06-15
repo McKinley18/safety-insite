@@ -50,7 +50,7 @@ export default function RiskReviewSection({
       {safeScopeResult?.risk?.operationalRisk && (
         <div className="mb-4 border-l-4 border-[#1D72B8] bg-[#E8F4FF] px-3 py-2">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-            ReviewCore Suggested Risk
+            HazLenz AI Suggested Risk
           </p>
           <p className="mt-1 text-sm font-bold text-slate-700">
             Severity {safeScopeResult.risk.operationalRisk.severity} × Likelihood {safeScopeResult.risk.operationalRisk.likelihood} = {safeScopeResult.risk.operationalRisk.matrixScore} {safeScopeResult.risk.operationalRisk.matrixBand}

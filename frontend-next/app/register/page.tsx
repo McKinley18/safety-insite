@@ -135,14 +135,14 @@ export default function RegisterPage() {
           </h1>
 
           <p className="relative mt-3 max-w-xl text-sm font-semibold leading-6 text-slate-300 sm:mt-4">
-            Start a modern workspace for inspections, corrective actions, audit-ready records, and ReviewCore decision support.
+            Start a modern workspace for inspections, corrective actions, audit-ready records, and HazLenz AI decision support.
           </p>
 
           <div className="relative mt-5 grid gap-2.5 sm:mt-8 sm:gap-3">
             {[
               "Role-based workspace access",
               "Secure inspection evidence",
-              "ReviewCore intelligence support",
+              "HazLenz AI intelligence support",
             ].map((item) => (
               <div
                 key={item}
@@ -160,7 +160,7 @@ export default function RegisterPage() {
         <form onSubmit={handleRegister} className="bg-gradient-to-b from-white to-slate-50/80 p-5 sm:p-8 lg:p-10">
         <h1 className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Create an Account</h1>
         <p className="mt-2 text-sm font-semibold text-slate-500">
-          Create your Sentinel Safety workspace account.
+          Create your SightSignal workspace account.
         </p>
 
         <div className="mt-5 space-y-3">
@@ -252,7 +252,7 @@ export default function RegisterPage() {
               className="mt-1 h-4 w-4 shrink-0"
             />
             <span>
-              I understand Sentinel Safety and ReviewCore provide decision-support only. Final safety, compliance, and corrective action decisions remain the responsibility of qualified personnel and the user organization.
+              I understand SightSignal and HazLenz AI provide decision-support only. Final safety, compliance, and corrective action decisions remain the responsibility of qualified personnel and the user organization.
             </span>
           </label>
 

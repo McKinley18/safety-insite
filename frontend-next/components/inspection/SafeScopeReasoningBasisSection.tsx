@@ -24,7 +24,7 @@ export default function SafeScopeReasoningBasisSection({
   return (
     <SafeScopeDrawer
       title="Reasoning Basis"
-      summary="ReviewCore engine is primary; workspace history is reference only"
+      summary="HazLenz AI engine is primary; workspace history is reference only"
       badge={basis?.sourceHierarchyEnforced ? "Hierarchy enforced" : "Review"}
     >
       <div className="space-y-3">

@@ -409,13 +409,13 @@ export default function FinalizeInspectionSection({
                       {finding.safeScopeResult && (
                         <div>
                           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
-                            ReviewCore intelligence
+                            HazLenz AI intelligence
                           </p>
                           <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
                             {finding.safeScopeResult.summary ||
                               finding.safeScopeResult.recommendation ||
                               finding.safeScopeResult.correctiveAction ||
-                              "ReviewCore result captured for this finding."}
+                              "HazLenz AI result captured for this finding."}
                           </p>
                         </div>
                       )}

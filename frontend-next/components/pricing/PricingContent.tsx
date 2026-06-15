@@ -9,7 +9,7 @@ const tiers = [
     name: "Free",
     price: "$0",
     cadence: "/month",
-    audience: "For trying Sentinel Safety and creating basic inspection records.",
+    audience: "For trying SightSignal and creating basic inspection records.",
     position: "Start documenting findings without committing to a paid plan.",
     cta: "Create Free Account",
     publicHref: "/register?plan=free",
@@ -29,7 +29,7 @@ const tiers = [
       {
         title: "Limitations",
         items: [
-          "Limited ReviewCore preview only",
+          "Limited HazLenz AI preview only",
           "No full standards reasoning",
           "No advanced corrective action intelligence",
           "Limited report intelligence",
@@ -42,7 +42,7 @@ const tiers = [
     price: "$9.99",
     cadence: "/month",
     audience: "For individual safety professionals who need more than documentation.",
-    position: "Unlock ReviewCore intelligence, stronger reports, and better corrective actions.",
+    position: "Unlock HazLenz AI intelligence, stronger reports, and better corrective actions.",
     cta: "Choose Pro",
     publicHref: "/register?plan=pro",
     upgradeHref: "/profile?upgrade=pro",
@@ -50,9 +50,9 @@ const tiers = [
     badge: "Best value",
     sections: [
       {
-        title: "ReviewCore Intelligence",
+        title: "HazLenz AI Intelligence",
         items: [
-          "Full ReviewCore hazard review",
+          "Full HazLenz AI hazard review",
           "MSHA / OSHA standards suggestions",
           "Risk and confidence support",
           "Evidence gap prompts",
@@ -109,7 +109,7 @@ const tiers = [
 const comparisonRows = [
   ["Basic findings, photos, and notes", "Yes", "Yes", "Yes"],
   ["Simple report creation", "Yes", "Yes", "Yes"],
-  ["Full ReviewCore hazard intelligence", "Preview only", "Yes", "Yes"],
+  ["Full HazLenz AI hazard intelligence", "Preview only", "Yes", "Yes"],
   ["Suggested MSHA / OSHA standards", "Limited", "Yes", "Yes"],
   ["Evidence gap prompts", "No", "Yes", "Yes"],
   ["Corrective action reasoning", "Manual only", "Yes", "Yes"],
@@ -126,7 +126,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
     <section className="mx-auto max-w-6xl space-y-7 px-1">
       <div className="rounded-[32px] bg-[#0B1320] px-5 py-10 text-center text-white shadow-sm sm:px-8 md:py-12">
         <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
-          {isUpgrade ? "Upgrade Sentinel Safety" : "Sentinel Safety Pricing"}
+          {isUpgrade ? "Upgrade SightSignal" : "SightSignal Pricing"}
         </p>
 
         <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight sm:text-5xl md:text-6xl">
@@ -136,7 +136,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         </h1>
 
         <p className="mx-auto mt-5 max-w-3xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
-          Free helps users try the workflow. Pro unlocks ReviewCore intelligence.
+          Free helps users try the workflow. Pro unlocks HazLenz AI intelligence.
           Company gives safety teams shared accountability, assignments, and
           workspace-level visibility.
         </p>
@@ -237,12 +237,12 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
           </p>
 
           <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-4xl">
-            Basic audit apps document the issue. Sentinel Safety helps explain
+            Basic audit apps document the issue. SightSignal helps explain
             what it means and what should happen next.
           </h2>
 
           <p className="mx-auto mt-4 max-w-3xl text-sm font-semibold leading-6 text-slate-600">
-            Pro is built around ReviewCore: hazard review, standards support,
+            Pro is built around HazLenz AI: hazard review, standards support,
             evidence gaps, risk signals, corrective action reasoning, and
             professional reporting safeguards.
           </p>
@@ -282,7 +282,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         </h2>
 
         <p className="mx-auto mt-3 max-w-2xl text-sm font-bold leading-6 text-slate-700">
-          Sentinel Safety is designed for safety professionals who need stronger
+          SightSignal is designed for safety professionals who need stronger
           findings, clearer corrective actions, and records that support real
           accountability.
         </p>

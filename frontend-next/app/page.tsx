@@ -10,7 +10,7 @@ const workflow = [
   },
   {
     title: "Review",
-    body: "Use ReviewCore to organize risk signals, evidence gaps, standards support, and corrective action reasoning.",
+    body: "Use HazLenz AI to organize risk signals, evidence gaps, standards support, and corrective action reasoning.",
   },
   {
     title: "Act",
@@ -52,7 +52,7 @@ export default function HomePage() {
               </h1>
 
               <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                Sentinel Safety helps teams turn field observations into documented findings, risk review, standards support, corrective actions, and inspection-ready records.
+                SightSignal helps teams turn field observations into documented findings, risk review, standards support, corrective actions, and inspection-ready records.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -76,7 +76,7 @@ export default function HomePage() {
 
             <div className="rounded-[26px] border border-white/15 bg-white/10 p-5  sm:p-6">
               <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-100">
-                ReviewCore
+                HazLenz AI
               </p>
 
               <p className="mt-3 text-2xl font-black leading-tight tracking-[-0.04em] text-white">
@@ -84,7 +84,7 @@ export default function HomePage() {
               </p>
 
               <p className="mt-4 text-sm font-semibold leading-6 text-slate-200">
-                ReviewCore helps organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified professional review.
+                HazLenz AI helps organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified professional review.
               </p>
 
               <div className="mt-5 border-t border-white/15 pt-5">

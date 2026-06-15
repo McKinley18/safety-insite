@@ -17,14 +17,14 @@ export async function downloadSafeScopeBrainBundle() {
   );
 
   if (!response.ok) {
-    throw new Error("Unable to download ReviewCore offline brain bundle.");
+    throw new Error("Unable to download HazLenz AI offline brain bundle.");
   }
 
   const bundle = (await response.json()) as SafeScopeOfflineBrainBundle;
 
   if (bundle.approvedOnly !== true) {
     throw new Error(
-      "Rejected ReviewCore brain bundle because it is not approved-only.",
+      "Rejected HazLenz AI brain bundle because it is not approved-only.",
     );
   }
 

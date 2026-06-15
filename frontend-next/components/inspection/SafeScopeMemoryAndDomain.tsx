@@ -41,7 +41,7 @@ export default function SafeScopeMemoryAndDomain({
           summary="Specialized operational domain analysis"
         >
           <p className="text-sm font-semibold leading-6 text-slate-600">
-            ReviewCore checked specialized safety domains for deeper operational context.
+            HazLenz AI checked specialized safety domains for deeper operational context.
           </p>
 
           <div className="mt-3 space-y-3">

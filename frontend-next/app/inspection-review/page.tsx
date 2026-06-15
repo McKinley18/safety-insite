@@ -131,13 +131,13 @@ function formatReviewCoreValidationStatus(status: any) {
 
   const labels: Record<string, string> = {
     manual: "Manual finding",
-    local_unvalidated: "ReviewCore local review needed",
-    generated: "ReviewCore generated — review needed",
-    requires_review: "ReviewCore review required",
-    validated_accepted: "ReviewCore accepted by reviewer",
-    validated_modified: "ReviewCore modified by reviewer",
-    validated_rejected: "ReviewCore rejected by reviewer",
-    requires_escalation: "ReviewCore escalated",
+    local_unvalidated: "HazLenz AI local review needed",
+    generated: "HazLenz AI generated — review needed",
+    requires_review: "HazLenz AI review required",
+    validated_accepted: "HazLenz AI accepted by reviewer",
+    validated_modified: "HazLenz AI modified by reviewer",
+    validated_rejected: "HazLenz AI rejected by reviewer",
+    requires_escalation: "HazLenz AI escalated",
     requires_more_evidence: "More evidence required",
   };
 
@@ -192,7 +192,7 @@ function getFieldOutputActions(finding: any): any[] {
           closureEvidence:
             finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
             "Supervisor verification",
-          source: "ReviewCore field output",
+          source: "HazLenz AI field output",
         };
       }
 
@@ -202,12 +202,12 @@ function getFieldOutputActions(finding: any): any[] {
           action.title ||
           action.description ||
           action.suggestedFixes?.[0] ||
-          `ReviewCore corrective action ${index + 1}`,
+          `HazLenz AI corrective action ${index + 1}`,
         description:
           action.description ||
           action.suggestedFixes?.[0] ||
           action.title ||
-          "ReviewCore field-output corrective action.",
+          "HazLenz AI field-output corrective action.",
         priority:
           action.priority ||
           finding?.safeScopeResult?.fieldOutput?.priority ||
@@ -217,7 +217,7 @@ function getFieldOutputActions(finding: any): any[] {
           action.verification ||
           finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
           "Supervisor verification",
-        source: action.source || "ReviewCore field output",
+        source: action.source || "HazLenz AI field output",
       };
     });
 }
@@ -596,7 +596,7 @@ export default function InspectionReviewPage() {
 
     if (safeScopeReviewSummary.unvalidated > 0) {
       setExportWarning(
-        `${safeScopeReviewSummary.unvalidated} ReviewCore finding(s) still need snapshot validation. Export will continue only after you confirm qualified-person review.`,
+        `${safeScopeReviewSummary.unvalidated} HazLenz AI finding(s) still need snapshot validation. Export will continue only after you confirm qualified-person review.`,
       );
     } else {
       setExportWarning("");
@@ -890,7 +890,7 @@ export default function InspectionReviewPage() {
             ],
             [
               "includeReviewCoreNotesInReport",
-              "ReviewCore Notes",
+              "HazLenz AI Notes",
               Boolean(report.includeReviewCoreNotesInReport),
             ],
           ].map(([key, label, checked]: any) => (
@@ -927,12 +927,12 @@ export default function InspectionReviewPage() {
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-700">
-                ReviewCore Review Governance
+                HazLenz AI Review Governance
               </p>
               <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
                 {getReviewCoreReviewSummary(findings).unvalidated
-                  ? `${getReviewCoreReviewSummary(findings).unvalidated} ReviewCore finding(s) need validation`
-                  : "All ReviewCore findings show reviewed status"}
+                  ? `${getReviewCoreReviewSummary(findings).unvalidated} HazLenz AI finding(s) need validation`
+                  : "All HazLenz AI findings show reviewed status"}
               </h3>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
                 Snapshot validation status is included in the review page and PDF export.
@@ -941,7 +941,7 @@ export default function InspectionReviewPage() {
             </div>
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
-                <p className="text-[10px] font-black uppercase text-slate-400">ReviewCore</p>
+                <p className="text-[10px] font-black uppercase text-slate-400">HazLenz AI</p>
                 <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getReviewCoreReviewSummary(findings).total}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
@@ -1168,12 +1168,12 @@ export default function InspectionReviewPage() {
                         <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                           {reportPackage.includesConfidence
                             ? confidence !== undefined && confidence !== null
-                              ? `${formatReviewConfidence(confidence) || "ReviewCore"} confidence`
+                              ? `${formatReviewConfidence(confidence) || "HazLenz AI"} confidence`
                               : finding.safeScopeResult
-                                ? "ReviewCore reviewed"
+                                ? "HazLenz AI reviewed"
                                 : "Manual"
                             : finding.safeScopeResult
-                              ? "ReviewCore reviewed"
+                              ? "HazLenz AI reviewed"
                               : "Manual"}
                         </p>
                         {finding.safeScopeResult && (
@@ -1221,7 +1221,7 @@ export default function InspectionReviewPage() {
                       reportPackage.includesRepeatIntelligence) && (
                     <details className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                       <summary className="cursor-pointer px-3 py-2 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                        ReviewCore appendix
+                        HazLenz AI appendix
                       </summary>
 
                       <div className="space-y-2 border-t border-slate-200 dark:border-slate-800 px-3 py-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
@@ -1328,9 +1328,9 @@ export default function InspectionReviewPage() {
               I confirm this report has been reviewed by a qualified person.
             </span>
             <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
-              ReviewCore outputs, standards, risk ratings, corrective actions,
+              HazLenz AI outputs, standards, risk ratings, corrective actions,
               and report language have been independently reviewed before export.
-              Use of this report remains subject to the Sentinel Safety legal terms.
+              Use of this report remains subject to the SightSignal legal terms.
             </span>
 
             <a

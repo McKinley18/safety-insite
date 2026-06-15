@@ -220,7 +220,7 @@ export default function EvidenceCaptureSection({
             Observed Condition
           </p>
           <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
-            Keep it short. ReviewCore will organize the details.
+            Keep it short. HazLenz AI will organize the details.
           </p>
         </div>
 

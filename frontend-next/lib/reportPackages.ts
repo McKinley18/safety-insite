@@ -30,7 +30,7 @@ export function getReportPackageForPlan(
       label: "Company Compliance Package",
       shortLabel: "Company",
       description:
-        "Management-ready compliance package with company metadata, team accountability, assigned corrective actions, trend intelligence, repeat-finding history, and full ReviewCore traceability.",
+        "Management-ready compliance package with company metadata, team accountability, assigned corrective actions, trend intelligence, repeat-finding history, and full HazLenz AI traceability.",
       includesExecutiveSummary: true,
       includesReviewCoreSummary: true,
       includesReviewCoreTraceability: true,
@@ -49,7 +49,7 @@ export function getReportPackageForPlan(
       label: "Professional Report",
       shortLabel: "Pro",
       description:
-        "Professional single-inspection report with executive summary, ReviewCore confidence, evidence gaps, standards rationale, corrective action context, and supervisor review signals.",
+        "Professional single-inspection report with executive summary, HazLenz AI confidence, evidence gaps, standards rationale, corrective action context, and supervisor review signals.",
       includesExecutiveSummary: true,
       includesReviewCoreSummary: true,
       includesReviewCoreTraceability: false,

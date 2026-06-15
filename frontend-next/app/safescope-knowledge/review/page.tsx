@@ -200,7 +200,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
       setError(
         caught instanceof Error
           ? caught.message
-          : "Unable to load ReviewCore knowledge queue.",
+          : "Unable to load HazLenz AI knowledge queue.",
       );
     } finally {
       setLoading(false);
@@ -256,7 +256,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
       await action();
       await loadQueue();
     } catch (caught) {
-      setError(caught instanceof Error ? caught.message : "ReviewCore action failed.");
+      setError(caught instanceof Error ? caught.message : "HazLenz AI action failed.");
     } finally {
       setActionBusy("");
     }
@@ -302,11 +302,11 @@ export default function ReviewCoreKnowledgeReviewPage() {
     return (
       <LockedFeatureCard
         eyebrow="Company Knowledge Governance"
-        title="ReviewCore knowledge review is Company-only."
-        description="The review console controls source-backed knowledge candidates, approval decisions, and governed promotion into the ReviewCore knowledge base."
+        title="HazLenz AI knowledge review is Company-only."
+        description="The review console controls source-backed knowledge candidates, approval decisions, and governed promotion into the HazLenz AI knowledge base."
         requiredPlan={requiredPlanForArea("knowledge_library")}
         bullets={[
-          "Review proposed source-backed knowledge before it can influence future ReviewCore output.",
+          "Review proposed source-backed knowledge before it can influence future HazLenz AI output.",
           "Protect regulatory mappings with qualified approval and audit history.",
           "Keep Company knowledge governance separate from Basic and Pro field workflows.",
         ]}
@@ -319,7 +319,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
     <section className="space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-          ReviewCore Governance
+          HazLenz AI Governance
         </p>
         <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
           Governed knowledge review queue.
@@ -336,7 +336,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
               Live Queue Connection
             </p>
             <h2 className="mt-1 text-xl font-black text-slate-900 dark:text-slate-100">
-              ReviewCore route: /reviewcore/knowledge-queue
+              HazLenz AI route: /reviewcore/knowledge-queue
             </h2>
             <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
               Active retrieval remains locked until approval readiness and governance guardrails pass.
@@ -424,7 +424,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
 
           {loading ? (
             <p className="mt-4 rounded-xl bg-slate-50 px-3 py-3 text-sm font-black text-slate-500">
-              Loading ReviewCore queue...
+              Loading HazLenz AI queue...
             </p>
           ) : filteredItems.length === 0 ? (
             <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-sm font-bold text-slate-500 dark:border-slate-800 dark:bg-slate-950">
@@ -596,7 +596,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
                       runAction("reject", () =>
                         rejectReviewCoreKnowledgeRecord(
                           recordId(selectedRecord),
-                          reviewNote.trim() || "Rejected during governed ReviewCore review.",
+                          reviewNote.trim() || "Rejected during governed HazLenz AI review.",
                           actor,
                         ),
                       )

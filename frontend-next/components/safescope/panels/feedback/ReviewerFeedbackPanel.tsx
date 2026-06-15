@@ -21,7 +21,7 @@ export const ReviewerFeedbackPanel: React.FC<FeedbackProps> = ({ onCancel, onSub
   return (
     <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mt-4">
       <h3 className="text-lg font-black text-slate-900 mb-4">Provide Reviewer Feedback</h3>
-      <p className="text-xs text-slate-500 mb-4">Your feedback is queued for review by safety professionals and does not automatically modify ReviewCore intelligence.</p>
+      <p className="text-xs text-slate-500 mb-4">Your feedback is queued for review by safety professionals and does not automatically modify HazLenz AI intelligence.</p>
       
       <div className="mb-4">
         <label className="text-xs font-black text-slate-800 uppercase mb-2 block">Feedback Type</label>

@@ -155,7 +155,7 @@ function getFieldOutputActions(finding: any): any[] {
         closureEvidence:
           finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
           "Supervisor verification",
-        source: "ReviewCore field output",
+        source: "HazLenz AI field output",
       };
     }
 
@@ -171,7 +171,7 @@ function getFieldOutputActions(finding: any): any[] {
         action.verification ||
         finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
         "Supervisor verification",
-      source: action.source || "ReviewCore field output",
+      source: action.source || "HazLenz AI field output",
     };
   });
 }

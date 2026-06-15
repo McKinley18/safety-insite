@@ -50,7 +50,7 @@ export const likelihoodScale = [
 
 export const inspectionSteps = [
   { title: "Step 1: Hazard Details", desc: "Document the observed condition." },
-  { title: "Step 2: ReviewCore Review", desc: "Review intelligence and risk signals." },
+  { title: "Step 2: HazLenz AI Review", desc: "Review intelligence and risk signals." },
   { title: "Step 3: Standards & Actions", desc: "Confirm standards and corrective actions." },
   { title: "Step 4: Finalize Findings", desc: "Save, edit, and review findings." },
   { title: "Step 5: Generate Report", desc: "Confirm report options and create output." },

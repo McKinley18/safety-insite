@@ -512,7 +512,7 @@ export default function DashboardPage() {
           <div className="grid gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
             <div className="text-center lg:text-left">
               <p className="text-center text-xs font-black uppercase tracking-[0.28em] text-blue-200 lg:text-left">
-                Sentinel Safety Home
+                SightSignal Home
               </p>
 
               <h1 className="mx-auto mt-4 max-w-3xl text-center text-3xl font-black leading-tight tracking-[-0.045em] text-white sm:text-4xl lg:mx-0 lg:text-left">
@@ -520,7 +520,7 @@ export default function DashboardPage() {
               </h1>
 
               <p className="mx-auto mt-4 max-w-2xl text-center text-sm font-semibold leading-6 text-slate-200 sm:text-base lg:mx-0 lg:text-left">
-                Monitor inspections, findings, corrective actions, scheduled work, and ReviewCore-supported safety review from one operational home screen.
+                Monitor inspections, findings, corrective actions, scheduled work, and HazLenz AI-supported safety review from one operational home screen.
               </p>
 
 
@@ -895,7 +895,7 @@ export default function DashboardPage() {
             <div className="mt-5 grid grid-cols-2 gap-2 sm:gap-3 border-t border-slate-200 pt-5">
               {[
                 [String(dashboard.criticalFindings), "Critical Findings", "border-red-100 bg-red-50/80 text-red-700"],
-                [String(dashboard.safeScopeReviewed), "ReviewCore Reviewed", "border-blue-100 bg-blue-50/80 text-[#102A43]"],
+                [String(dashboard.safeScopeReviewed), "HazLenz AI Reviewed", "border-blue-100 bg-blue-50/80 text-[#102A43]"],
               ].map(([value, label, tone]) => (
                 <div
                   key={label}

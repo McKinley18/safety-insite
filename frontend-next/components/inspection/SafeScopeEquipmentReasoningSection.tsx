@@ -108,7 +108,7 @@ export default function SafeScopeEquipmentReasoningSection({
           </h3>
           <p className="mt-1 text-sm font-semibold leading-5 text-slate-600 dark:text-slate-300">
             {summary?.primaryMechanismOrArchetype ||
-              "ReviewCore needs more equipment, component, or task detail."}
+              "HazLenz AI needs more equipment, component, or task detail."}
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function SafeScopeEquipmentReasoningSection({
 
       <div className="mt-3 grid gap-2 md:grid-cols-2">
         <DetailList
-          title="Why ReviewCore ranked it this way"
+          title="Why HazLenz AI ranked it this way"
           items={asList(summary?.rankingReasons)}
           limit={4}
         />
@@ -181,7 +181,7 @@ export default function SafeScopeEquipmentReasoningSection({
       )}
 
       <p className="mt-3 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs font-bold leading-5 text-slate-600 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-800">
-        ReviewCore equipment reasoning is context-only and advisory. It does not
+        HazLenz AI equipment reasoning is context-only and advisory. It does not
         declare violations, create citations, override regulations, or replace
         qualified review.
       </p>

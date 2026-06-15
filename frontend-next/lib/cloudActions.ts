@@ -107,7 +107,7 @@ export async function updateCloudActionStatus(actionId: string, status: string) 
         statusCode: toBackendStatus(status),
         closureNotes:
           status === "Completed"
-            ? "Closed from Sentinel Safety corrective action tracker."
+            ? "Closed from SightSignal corrective action tracker."
             : undefined,
       }),
     },

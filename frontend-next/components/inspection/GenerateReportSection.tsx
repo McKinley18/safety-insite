@@ -145,7 +145,7 @@ export default function GenerateReportSection({
           />
 
           <ReportOptionRow
-            label="ReviewCore Narrative"
+            label="HazLenz AI Narrative"
             enabled={includeSafeScopeNotesInReport}
             onToggle={() =>
               setIncludeSafeScopeNotesInReport(!includeSafeScopeNotesInReport)
@@ -159,7 +159,7 @@ export default function GenerateReportSection({
           />
 
           <ReportOptionRow
-            label="ReviewCore notes"
+            label="HazLenz AI notes"
             enabled={includeSafeScopeNotesInReport}
             onToggle={() =>
               setIncludeSafeScopeNotesInReport(!includeSafeScopeNotesInReport)

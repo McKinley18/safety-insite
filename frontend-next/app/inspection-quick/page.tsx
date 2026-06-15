@@ -177,7 +177,7 @@ export default function QuickInspectionPage() {
 
   function runSafeScopeQuickReview() {
     if (!canRunSafeScope) {
-      setStatus("Add a photo, category, or observed condition before running ReviewCore Quick Review.");
+      setStatus("Add a photo, category, or observed condition before running HazLenz AI Quick Review.");
       return;
     }
 
@@ -201,7 +201,7 @@ export default function QuickInspectionPage() {
           title: suggestedAction,
           priority: riskSignal === "High" ? "High" : riskSignal === "Medium" ? "Medium" : "Low",
           closureEvidence: "Photo",
-          source: "ReviewCore Quick Review",
+          source: "HazLenz AI Quick Review",
         },
       ],
       upgradePrompt:
@@ -215,12 +215,12 @@ export default function QuickInspectionPage() {
     if (riskSignal === "High") setPriority("High");
     if (riskSignal === "Low") setPriority("Low");
 
-    setStatus("ReviewCore Quick Review generated.");
+    setStatus("HazLenz AI Quick Review generated.");
   }
 
   async function saveQuickCapture() {
     if (!canSave) {
-      setStatus("Add a category, location, description, photo, ReviewCore review, or action before saving.");
+      setStatus("Add a category, location, description, photo, HazLenz AI review, or action before saving.");
       return;
     }
 
@@ -240,7 +240,7 @@ export default function QuickInspectionPage() {
             "Medium",
           status: "Open",
           due,
-          source: safeScopeQuickResult ? "ReviewCore Quick Review" : "Quick Capture",
+          source: safeScopeQuickResult ? "HazLenz AI Quick Review" : "Quick Capture",
           createdAt: now,
         }
       : null;
@@ -313,7 +313,7 @@ export default function QuickInspectionPage() {
               Capture the hazard fast.
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-              Add a photo, location, and observed condition. ReviewCore Quick
+              Add a photo, location, and observed condition. HazLenz AI Quick
               Review gives a limited preview while full standards and traceability
               stay available in Guided Inspection.
             </p>
@@ -334,7 +334,7 @@ export default function QuickInspectionPage() {
             [String(photos.length), "Photos"],
             [location ? "Yes" : "No", "Location"],
             [description ? "Yes" : "No", "Condition"],
-            [safeScopeQuickResult ? "Ready" : "Preview", "ReviewCore"],
+            [safeScopeQuickResult ? "Ready" : "Preview", "HazLenz AI"],
           ].map(([value, label]) => (
             <div
               key={label}
@@ -366,7 +366,7 @@ export default function QuickInspectionPage() {
               list="quick-hazard-category-options"
               value={hazardCategory}
               onChange={(event) => setHazardCategory(event.target.value)}
-              placeholder="Let ReviewCore suggest or type one"
+              placeholder="Let HazLenz AI suggest or type one"
               className="mt-2 bg-white dark:bg-slate-900/85 focus:bg-white"
             />
             <datalist id="quick-hazard-category-options">
@@ -439,7 +439,7 @@ export default function QuickInspectionPage() {
 
       <AppPanel padding="lg">
         <SectionHeader
-          eyebrow="ReviewCore Quick Review"
+          eyebrow="HazLenz AI Quick Review"
           title="Limited safety intelligence preview"
           description="Quick Review suggests a category, risk signal, and one corrective action. Guided Inspection unlocks standards, confidence, and full review detail."
           action={
@@ -489,7 +489,7 @@ export default function QuickInspectionPage() {
                 Pro unlock
               </p>
               <p className="mt-1 text-sm font-semibold leading-6 text-amber-900">
-                Full ReviewCore review includes applicable standards, confidence,
+                Full HazLenz AI review includes applicable standards, confidence,
                 evidence gaps, selected corrective actions, and polished report
                 packaging.
               </p>
@@ -500,7 +500,7 @@ export default function QuickInspectionPage() {
           </div>
         ) : (
           <p className="mt-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold text-slate-500 dark:text-slate-400">
-            Run ReviewCore Quick Review after adding a photo, category, or observed
+            Run HazLenz AI Quick Review after adding a photo, category, or observed
             condition.
           </p>
         )}
@@ -510,7 +510,7 @@ export default function QuickInspectionPage() {
         <SectionHeader
           eyebrow="Corrective Action"
           title="Optional action planning"
-          description="ReviewCore Quick Review can prefill this, or you can enter one manually."
+          description="HazLenz AI Quick Review can prefill this, or you can enter one manually."
         />
 
         <div className="mt-3 grid gap-3 md:grid-cols-[1fr_150px_150px]">

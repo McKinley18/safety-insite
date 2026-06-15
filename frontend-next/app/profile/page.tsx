@@ -232,7 +232,7 @@ export default function ProfilePage() {
             <SectionHeader
               eyebrow="Session"
               title="Session controls"
-              description="Sign out of this device when you are finished using Sentinel Safety."
+              description="Sign out of this device when you are finished using SightSignal."
             />
 
             <div className="mt-4 flex justify-center">

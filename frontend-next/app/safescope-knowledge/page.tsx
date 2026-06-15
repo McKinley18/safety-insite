@@ -59,7 +59,7 @@ export default function SafeScopeKnowledgePage() {
         setDocumentsError(
           error instanceof Error
             ? error.message
-            : "Unable to load ReviewCore Knowledge Brain.",
+            : "Unable to load HazLenz AI Knowledge Brain.",
         );
       } finally {
         setDocumentsLoading(false);
@@ -111,7 +111,7 @@ export default function SafeScopeKnowledgePage() {
       setSearchError(
         error instanceof Error
           ? error.message
-          : "ReviewCore Knowledge Brain search failed.",
+          : "HazLenz AI Knowledge Brain search failed.",
       );
     } finally {
       setSearchLoading(false);
@@ -124,8 +124,8 @@ export default function SafeScopeKnowledgePage() {
     return (
       <LockedFeatureCard
         eyebrow="Company Knowledge Library"
-        title="ReviewCore Knowledge Library is Company-only."
-        description="The approved knowledge library controls governed reference intelligence, source review, and retrieval behavior used to support ReviewCore outputs."
+        title="HazLenz AI Knowledge Library is Company-only."
+        description="The approved knowledge library controls governed reference intelligence, source review, and retrieval behavior used to support HazLenz AI outputs."
         requiredPlan="Company"
         bullets={[
           "View approved reference records and source authority levels.",
@@ -141,13 +141,13 @@ export default function SafeScopeKnowledgePage() {
     <section className="space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-          ReviewCore Knowledge
+          HazLenz AI Knowledge
         </p>
         <h1 className="mx-auto mt-2 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl">
           Governed reference intelligence.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Review the approved reference brain behind ReviewCore hazard recognition, standards reasoning, incident learning, and mitigation support.
+          Review the approved reference brain behind HazLenz AI hazard recognition, standards reasoning, incident learning, and mitigation support.
         </p>
 
         <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
@@ -205,7 +205,7 @@ export default function SafeScopeKnowledgePage() {
             </h2>
             <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
               Search the approved local knowledge database the same way
-              ReviewCore retrieves supporting references during inspections.
+              HazLenz AI retrieves supporting references during inspections.
             </p>
           </div>
 
