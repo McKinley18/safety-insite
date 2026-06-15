@@ -7,10 +7,11 @@ import { ReviewCoreKnowledgeReviewQueuePersistenceAdapter } from './reviewcore-k
 import { ReviewCoreKnowledgeReviewQueueRouteScaffold } from './reviewcore-knowledge-review-queue.route-scaffold';
 import { ReviewCoreKnowledgeReviewQueueService } from './reviewcore-knowledge-review-queue.service';
 import { ReviewCoreKnowledgeReviewQueueStore } from './reviewcore-knowledge-review-queue.store';
+import { SEED_RECORDS } from './reviewcore-governed-seed-records';
 
 @Injectable()
 export class ReviewCoreKnowledgeReviewQueueProvider {
-  private readonly store = new ReviewCoreKnowledgeReviewQueueStore();
+  private readonly store = new ReviewCoreKnowledgeReviewQueueStore(SEED_RECORDS);
   private readonly service = new ReviewCoreKnowledgeReviewQueueService();
   private readonly scaffold = new ReviewCoreKnowledgeReviewQueueRouteScaffold(this.store, this.service);
 

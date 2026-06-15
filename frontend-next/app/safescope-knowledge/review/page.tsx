@@ -185,8 +185,16 @@ export default function ReviewCoreKnowledgeReviewPage() {
       setReadinessPayload(readiness);
 
       const items = unwrapQueueItems(queue);
-      if (!selectedId && items.length > 0) {
-        setSelectedId(recordId(items[0]));
+      const activeItems = asArray(
+        active?.data?.result?.records ??
+          active?.result?.records ??
+          active?.records,
+      ).map((record) => ({ record }));
+
+      const visibleItems = items.length > 0 ? items : activeItems;
+
+      if (!selectedId && visibleItems.length > 0) {
+        setSelectedId(recordId(visibleItems[0]));
       }
     } catch (caught) {
       setError(
@@ -220,18 +228,23 @@ export default function ReviewCoreKnowledgeReviewPage() {
     [activePayload],
   );
 
-  const filteredItems = useMemo(() => {
-    if (filterStatus === "all") return queueItems;
+  const displayedItems = useMemo(() => {
+    if (queueItems.length > 0) return queueItems;
+    return activeRecords.map((record) => ({ record }));
+  }, [activeRecords, queueItems]);
 
-    return queueItems.filter((item) => {
+  const filteredItems = useMemo(() => {
+    if (filterStatus === "all") return displayedItems;
+
+    return displayedItems.filter((item) => {
       const record = itemRecord(item);
-      return String(record.status ?? item.status ?? "").toLowerCase() === filterStatus;
+      return String(record.status ?? "").toLowerCase() === filterStatus;
     });
-  }, [filterStatus, queueItems]);
+  }, [displayedItems, filterStatus]);
 
   const selectedItem = useMemo(
-    () => queueItems.find((item) => recordId(item) === selectedId) ?? null,
-    [queueItems, selectedId],
+    () => displayedItems.find((item) => recordId(item) === selectedId) ?? null,
+    [displayedItems, selectedId],
   );
   const selectedRecord = selectedItem ? itemRecord(selectedItem) : null;
   const selectedOriginal = selectedRecord ? parseOriginalPayload(selectedRecord) : null;
@@ -389,7 +402,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
                 Queue
               </p>
               <h2 className="text-lg font-black text-slate-900 dark:text-slate-100">
-                Pending knowledge records
+                Pending and governed knowledge records
               </h2>
             </div>
 
@@ -415,7 +428,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
             </p>
           ) : filteredItems.length === 0 ? (
             <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-sm font-bold text-slate-500 dark:border-slate-800 dark:bg-slate-950">
-              No queue records found. Create a draft below to validate the review workflow.
+              No pending or governed records found. Create a draft below to validate the review workflow.
             </div>
           ) : (
             <div className="mt-4 space-y-3">
