@@ -20,6 +20,7 @@ type CompanyAssignedWork = {
 };
 
 const COMPANY_ASSIGNED_WORK_KEY = "sentinel_company_assigned_work";
+const PERSONAL_CALENDAR_EVENTS_KEY = "sightsignal_personal_calendar_events";
 
 export function parseLocalCalendarDate(value?: string) {
   if (!value || value === "No due date" || value === "Not set") return null;
@@ -97,6 +98,60 @@ function getCompanyAssignedWork(): CompanyAssignedWork[] {
   }
 }
 
+export function getPersonalCalendarEvents(): SafetyCalendarEvent[] {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const parsed = JSON.parse(
+      window.localStorage.getItem(PERSONAL_CALENDAR_EVENTS_KEY) || "[]",
+    );
+
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function savePersonalCalendarEvents(events: SafetyCalendarEvent[]) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(PERSONAL_CALENDAR_EVENTS_KEY, JSON.stringify(events));
+}
+
+export function createPersonalCalendarTask(input: {
+  title: string;
+  date: string;
+  priority: SafetyCalendarPriority;
+  status?: SafetyCalendarEventStatus;
+  location?: string;
+}) {
+  const date = parseLocalCalendarDate(input.date);
+  if (!date) {
+    throw new Error("Choose a valid task date.");
+  }
+
+  const dateKey = toDateKey(date);
+  const status = normalizeStatus(input.status || "Open");
+
+  const task: SafetyCalendarEvent = {
+    id: `personal-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    type: "custom",
+    title: input.title.trim() || "Personal safety task",
+    date: dateKey,
+    owner: "Current user",
+    location: input.location?.trim() || "Personal task",
+    priority: normalizePriority(input.priority),
+    status: isPastDue(dateKey, status) ? "Overdue" : status,
+    source: "personal_task",
+    sourceId: `personal-${Date.now()}`,
+    sourceLabel: "Personal Task",
+    createdAt: new Date().toISOString(),
+  };
+
+  const next = [task, ...getPersonalCalendarEvents()];
+  savePersonalCalendarEvents(next);
+  return task;
+}
+
 function companyAssignmentToCalendarEvent(
   item: CompanyAssignedWork,
 ): SafetyCalendarEvent | null {
@@ -167,7 +222,9 @@ export async function getSafetyCalendarEvents() {
         ),
     );
 
-  return [...manualAssignments, ...actionEvents].sort((a, b) => {
+  const personalEvents = getPersonalCalendarEvents();
+
+  return [...personalEvents, ...manualAssignments, ...actionEvents].sort((a, b) => {
     if (a.date !== b.date) return a.date.localeCompare(b.date);
 
     const priorityRank = { Critical: 0, High: 1, Medium: 2, Low: 3 };

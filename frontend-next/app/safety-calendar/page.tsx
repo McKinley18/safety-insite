@@ -4,9 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
-import { AppSelect } from "@/components/ui/AppInput";
+import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
+  createPersonalCalendarTask,
   getSafetyCalendarEvents,
   getTodayDateKey,
   parseLocalCalendarDate,
@@ -142,6 +143,11 @@ export default function SafetyCalendarPage() {
   const [ownerFilter, setOwnerFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
+  const [taskTitle, setTaskTitle] = useState("");
+  const [taskDate, setTaskDate] = useState(getTodayDateKey());
+  const [taskPriority, setTaskPriority] = useState("Medium");
+  const [taskLocation, setTaskLocation] = useState("");
+  const [taskMessage, setTaskMessage] = useState("");
 
   const canUseCompanyCalendar = hasPlanEntitlement("inspectionAssignments", planCode);
 
@@ -222,10 +228,15 @@ export default function SafetyCalendarPage() {
     const first = startOfMonth(anchorDate);
     const last = endOfMonth(anchorDate);
     const gridStart = startOfWeek(first);
+    const gridEnd = addDays(startOfWeek(last), 6);
     const days: Date[] = [];
 
-    for (let index = 0; index < 42; index += 1) {
-      days.push(addDays(gridStart, index));
+    for (
+      let cursor = new Date(gridStart);
+      cursor.getTime() <= gridEnd.getTime();
+      cursor = addDays(cursor, 1)
+    ) {
+      days.push(new Date(cursor));
     }
 
     return { first, last, days };
@@ -284,12 +295,52 @@ export default function SafetyCalendarPage() {
     setView("day");
   }
 
+  async function refreshCalendarEvents() {
+    const loaded = await getSafetyCalendarEvents();
+    setEvents(loaded);
+  }
+
   function openDateInDayView(dateKey: string) {
     const date = parseLocalCalendarDate(dateKey);
     if (date) setAnchorDate(date);
     setSelectedDateKey(dateKey);
     setExpandedMonthDateKey("");
     setView("day");
+  }
+
+  async function schedulePersonalTask() {
+    setTaskMessage("");
+
+    if (!taskTitle.trim()) {
+      setTaskMessage("Add a task title before scheduling.");
+      return;
+    }
+
+    try {
+      const task = createPersonalCalendarTask({
+        title: taskTitle,
+        date: taskDate,
+        priority: taskPriority as SafetyCalendarEvent["priority"],
+        status: "Open",
+        location: taskLocation,
+      });
+
+      await refreshCalendarEvents();
+
+      const taskDateObject = parseLocalCalendarDate(task.date);
+      if (taskDateObject) setAnchorDate(taskDateObject);
+      setSelectedDateKey(task.date);
+      setExpandedMonthDateKey(task.date);
+      setView("day");
+
+      setTaskTitle("");
+      setTaskLocation("");
+      setTaskPriority("Medium");
+      setTaskDate(getTodayDateKey());
+      setTaskMessage("Personal task scheduled.");
+    } catch (error) {
+      setTaskMessage(error instanceof Error ? error.message : "Unable to schedule task.");
+    }
   }
 
   return (
@@ -334,6 +385,61 @@ export default function SafetyCalendarPage() {
           </p>
         </AppPanel>
       )}
+
+      <AppPanel padding="md" className="app-card">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+              Schedule My Task
+            </p>
+            <h2 className="mt-1 text-lg font-black text-app-text">
+              Add personal safety work
+            </h2>
+            <p className="mt-1 text-sm font-bold leading-6 text-app-text-muted">
+              Schedule a personal inspection reminder, follow-up, review, or safety task for yourself.
+            </p>
+          </div>
+          {taskMessage && (
+            <p className="rounded-xl bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">
+              {taskMessage}
+            </p>
+          )}
+        </div>
+
+        <div className="mt-4 grid gap-2 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
+          <AppInput
+            value={taskTitle}
+            onChange={(event) => setTaskTitle(event.target.value)}
+            placeholder="Task title"
+            fieldSize="sm"
+          />
+          <AppInput
+            type="date"
+            value={taskDate}
+            onChange={(event) => setTaskDate(event.target.value)}
+            fieldSize="sm"
+          />
+          <AppSelect
+            value={taskPriority}
+            onChange={(event) => setTaskPriority(event.target.value)}
+            fieldSize="sm"
+          >
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </AppSelect>
+          <AppInput
+            value={taskLocation}
+            onChange={(event) => setTaskLocation(event.target.value)}
+            placeholder="Location / note"
+            fieldSize="sm"
+          />
+          <AppButton type="button" size="sm" onClick={schedulePersonalTask}>
+            Schedule
+          </AppButton>
+        </div>
+      </AppPanel>
 
       <AppPanel padding="sm" className="px-3 py-3 sm:px-3 sm:py-3">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">

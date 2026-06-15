@@ -25,7 +25,7 @@ export type SafetyCalendarEvent = {
   location: string;
   priority: SafetyCalendarPriority;
   status: SafetyCalendarEventStatus;
-  source: "company_assignment" | "corrective_action";
+  source: "company_assignment" | "corrective_action" | "personal_task";
   sourceId: string;
   sourceLabel: string;
   findingTitle?: string;
