@@ -13,6 +13,7 @@ export type EvidenceGapQuestionRecord = {
   answerType: 'text' | 'boolean' | 'multiple-choice' | 'photo';
   examplesOfUsefulEvidence: string[];
   confidenceImpact: string;
+  factsToConfirm?: string[];
   humanReviewTrigger: boolean;
   advisoryGuardrails: {
     advisoryOnly: boolean;

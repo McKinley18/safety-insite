@@ -16,6 +16,11 @@ export type StandardFamilyCandidateRecord = {
   confidenceReducers: string[];
   humanReviewTriggers: string[];
   reasoningNotes: string[];
+  whyItMayApply?: string;
+  factsSupportingApplicability?: string[];
+  factsStillMissing?: string[];
+  sourceAuthorityTier?: 'primary' | 'secondary' | 'advisory';
+  confidenceBand?: 'low' | 'medium' | 'high';
   advisoryGuardrails: {
     advisoryOnly: boolean;
     doesNotDeclareViolation: boolean;

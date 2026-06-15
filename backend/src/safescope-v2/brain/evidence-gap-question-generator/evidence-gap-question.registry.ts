@@ -16,6 +16,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['photo of lock', 'tag details'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -34,6 +35,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['photo of guard'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -52,6 +54,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['test log'],
     confidenceImpact: 'medium',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -70,6 +73,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'text',
     examplesOfUsefulEvidence: ['clearance measurements'],
     confidenceImpact: 'medium',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -88,6 +92,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['LOTO audit'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -106,6 +111,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['photo of barriers'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -124,6 +130,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'text',
     examplesOfUsefulEvidence: ['height measurement'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -142,6 +149,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'text',
     examplesOfUsefulEvidence: ['SDS document', 'container label'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -160,6 +168,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['LOTO status report'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -178,6 +187,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['photo of exit path'],
     confidenceImpact: 'medium',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -196,6 +206,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['certification tag'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -214,6 +225,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'text',
     examplesOfUsefulEvidence: ['ground analysis report'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -232,6 +244,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['test log'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -250,6 +263,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['photo of barriers'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -268,6 +282,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['container status'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -286,6 +301,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['PPE verification'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -304,6 +320,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['container status'],
     confidenceImpact: 'medium',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -322,6 +339,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['assessment report'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -340,6 +358,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['lifting aid check'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -358,6 +377,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'text',
     examplesOfUsefulEvidence: ['layout photo'],
     confidenceImpact: 'medium',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -376,6 +396,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'text',
     examplesOfUsefulEvidence: ['dust measurement'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -394,6 +415,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['ventilation test'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -412,6 +434,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['noise survey report'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -430,6 +453,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'boolean',
     examplesOfUsefulEvidence: ['water station photo'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -449,6 +473,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['exit route photo', 'alarm or light test record', 'emergency equipment access photo'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -467,6 +492,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['task photo', 'PPE label/rating photo', 'PPE condition photo', 'hazard assessment note'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -485,6 +511,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['container label photo', 'SDS reference', 'storage layout photo', 'containment photo'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -503,6 +530,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'text',
     examplesOfUsefulEvidence: ['exposure assessment', 'respirator type photo', 'fit test record', 'cartridge selection note'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -521,6 +549,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['ground condition photo', 'barricade photo', 'scaling record', 'qualified exam note'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -539,6 +568,7 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['extinguisher access photo', 'inspection tag photo', 'hot work permit', 'fire watch assignment'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   },
@@ -557,8 +587,47 @@ export const EVIDENCE_GAP_QUESTION_REGISTRY: EvidenceGapQuestionRecord[] = [
     answerType: 'photo',
     examplesOfUsefulEvidence: ['ventilation control photo', 'airflow measurement', 'smoke capture observation', 'exam record'],
     confidenceImpact: 'high',
+    factsToConfirm: ['Confirm exposure', 'Confirm controls'],
     humanReviewTrigger: true,
     advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
   }
-
+  ,
+  {
+    id: 'gap-trench-depth',
+    scenarioFamilyId: 'trenching_and_excavation_cavein_gap',
+    hazardDomain: 'excavation_trenching',
+    evidenceGapId: 'trench depth',
+    question: 'Is the trench 5 feet (1.5 meters) or more in depth?',
+    reasonForQuestion: 'Trenches 5 feet or deeper require a protective system unless made entirely in stable rock.',
+    relatedMechanismOfInjury: 'caught_in_cave_in',
+    relatedExposurePathway: 'worker in trench',
+    relatedMissingControl: 'shoring',
+    relatedStandardFamilyCandidate: 'candidate-excavation-trenching',
+    priority: 'critical',
+    answerType: 'boolean',
+    examplesOfUsefulEvidence: ['depth measurement', 'photo with scale'],
+    confidenceImpact: 'high',
+    factsToConfirm: ['exact depth in feet/meters', 'soil type classification'],
+    humanReviewTrigger: true,
+    advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
+  },
+  {
+    id: 'gap-confined-space-permit',
+    scenarioFamilyId: 'confined_space_atmosphere_gap',
+    hazardDomain: 'confined_space',
+    evidenceGapId: 'permit status',
+    question: 'Was a confined space entry permit completed and posted prior to entry?',
+    reasonForQuestion: 'Permit-required confined spaces need formal assessment and atmospheric testing prior to entry.',
+    relatedMechanismOfInjury: 'asphyxiation',
+    relatedExposurePathway: 'entrant',
+    relatedMissingControl: 'permit',
+    relatedStandardFamilyCandidate: 'candidate-confined-space',
+    priority: 'critical',
+    answerType: 'boolean',
+    examplesOfUsefulEvidence: ['photo of posted permit', 'air test log'],
+    confidenceImpact: 'high',
+    factsToConfirm: ['permit posted', 'atmosphere tested'],
+    humanReviewTrigger: true,
+    advisoryGuardrails: { advisoryOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true }
+  }
 ];
