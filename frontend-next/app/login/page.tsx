@@ -8,6 +8,7 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppTextLink } from "@/components/ui/AppTextLink";
 import { isLocalDevAuthBypassEnabled, LOCAL_DEV_AUTH_TOKEN, setAuthSession } from "@/lib/auth";
+import { AI_ENGINE_NAME, APP_DESCRIPTION, APP_NAME, APP_TAGLINE, BRAND_LOGIN_LOGO } from "@/lib/brand";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -83,8 +84,16 @@ export default function LoginPage() {
           <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#1D72B8]/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-20 left-8 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
 
-          <div className="relative inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-blue-100 ring-1 ring-white/15">
-            Secure safety workspace
+          <div className="relative -mx-1 flex justify-center sm:justify-start">
+            <img
+              src={BRAND_LOGIN_LOGO}
+              alt={`${APP_NAME} powered by ${AI_ENGINE_NAME}`}
+              className="h-auto w-full max-w-[760px] object-contain drop-shadow-[0_26px_52px_rgba(0,0,0,0.38)]"
+            />
+          </div>
+
+          <div className="relative mt-5 inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-blue-100 ring-1 ring-white/15">
+            {APP_TAGLINE}
           </div>
 
           <h1 className="relative mt-5 text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl">
@@ -92,15 +101,14 @@ export default function LoginPage() {
           </h1>
 
           <p className="relative mt-4 max-w-xl text-sm font-semibold leading-6 text-slate-300">
-            Access your command center, inspections, reports, corrective actions,
-            and ReviewCore intelligence from one secure workspace.
+            {APP_DESCRIPTION}
           </p>
 
           <div className="relative mt-5 grid gap-2.5 sm:mt-8 sm:gap-3">
             {[
               "Protected workspace access",
               "Audit-ready safety records",
-              "Operational risk intelligence",
+              `Powered by ${AI_ENGINE_NAME}`,
             ].map((item) => (
               <div
                 key={item}
@@ -118,11 +126,11 @@ export default function LoginPage() {
         <form onSubmit={handleLogin} className="bg-gradient-to-b from-white to-slate-50/80 p-5 sm:p-8 lg:p-10">
           <div className="mx-auto max-w-md">
             <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
-              Access your workspace
+              Access SightSignal
             </h2>
 
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
-              Enter your email and password to continue.
+              Enter your email and password to continue to SightSignal.
             </p>
 
             <div className="mt-5 space-y-4 sm:mt-6">

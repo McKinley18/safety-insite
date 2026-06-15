@@ -19,6 +19,7 @@ import {
   lockSession,
 } from "@/lib/pinSecurity";
 import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
+import { AI_ENGINE_NAME, APP_NAME, BRAND_HEADER_LOGO } from "@/lib/brand";
 import { getStoredPlanCode, type PlanCode } from "@/lib/planEntitlements";
 import { clearAuthSession, hasAuthToken } from "@/lib/auth";
 
@@ -271,9 +272,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             className="flex min-w-0 items-center gap-3"
           >
             <img
-              src="/logo.png"
-              alt="Sentinel Safety"
-              className="h-14 w-auto object-contain sm:h-20 lg:h-24"
+              src={BRAND_HEADER_LOGO}
+              alt={`${APP_NAME} powered by ${AI_ENGINE_NAME}`}
+              className="h-20 w-auto object-contain sm:h-24 lg:h-28"
             />
           </Link>
 
@@ -305,7 +306,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
               <div className="flex shrink-0 items-center gap-4">
                 {!isOnline && (
-                  <div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-3 py-1 ring-1 ring-orange-500/20" title="Offline Mode: Using local ReviewCore AI Brain">
+                  <div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-3 py-1 ring-1 ring-orange-500/20" title="Offline Mode: Using local HazLenz AI Brain">
                     <WifiOff className="h-3.5 w-3.5 text-orange-700" />
                     <span className="text-xs font-black text-orange-800 hidden sm:inline-block">Offline</span>
                   </div>
@@ -394,7 +395,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                         onClick={() => setProfileOpen(false)}
                         className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                       >
-                        ReviewCore
+                        HazLenz AI
                       </Link>
 
                       <button
@@ -433,13 +434,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 Legal
               </Link>
               <Link href="/safescope" className="text-slate-200 transition hover:text-[#5DB7FF]">
-                ReviewCore
+                HazLenz AI
               </Link>
             </div>
 
             <div className="mt-5 border-t border-white/10 pt-4 text-center">
               <p className="text-xs font-semibold leading-5 text-slate-400">
-                © {new Date().getFullYear()} Sentinel Safety. Professional safety review tools for field teams.
+                © {new Date().getFullYear()} {APP_NAME}. Field safety intelligence powered by {AI_ENGINE_NAME}.
               </p>
             </div>
           </div>

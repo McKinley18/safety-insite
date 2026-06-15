@@ -1,0 +1,40 @@
+<svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SightSignal site signal concept">
+  <defs>
+    <radialGradient id="pinLens" cx="50%" cy="48%" r="60%">
+      <stop offset="0" stop-color="#E0F2FE"/>
+      <stop offset="0.32" stop-color="#5DB7FF"/>
+      <stop offset="0.72" stop-color="#1D72B8"/>
+      <stop offset="1" stop-color="#0B1320"/>
+    </radialGradient>
+    <linearGradient id="pinSilver" x1="63" y1="26" x2="196" y2="235" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.35" stop-color="#CBD5E1"/>
+      <stop offset="0.62" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#64748B"/>
+    </linearGradient>
+    <linearGradient id="pinSweep" x1="130" y1="103" x2="190" y2="57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F97316" stop-opacity="0.88"/>
+      <stop offset="0.62" stop-color="#FDBA74" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#FDBA74" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="260" height="260" rx="58" fill="#0B1320"/>
+  <path d="M130 236C130 236 55 158 55 101C55 57 88 25 130 25C172 25 205 57 205 101C205 158 130 236 130 236Z" fill="url(#pinSilver)"/>
+  <path d="M130 215C130 215 73 152 73 104C73 70 97 45 130 45C163 45 187 70 187 104C187 152 130 215 130 215Z" fill="#0B1320"/>
+  <circle cx="130" cy="104" r="58" fill="url(#pinLens)"/>
+
+  <circle cx="130" cy="104" r="14" fill="none" stroke="#E0F2FE" stroke-width="1.8" opacity="0.85"/>
+  <circle cx="130" cy="104" r="28" fill="none" stroke="#E0F2FE" stroke-width="1.5" opacity="0.58"/>
+  <circle cx="130" cy="104" r="42" fill="none" stroke="#E0F2FE" stroke-width="1.2" opacity="0.34"/>
+  <path d="M130 62V146" stroke="#E0F2FE" stroke-width="1.2" opacity="0.28"/>
+  <path d="M88 104H172" stroke="#E0F2FE" stroke-width="1.2" opacity="0.28"/>
+
+  <path d="M130 104L183 63C190 79 193 96 188 114Z" fill="url(#pinSweep)"/>
+  <path d="M130 104L183 63" stroke="#F97316" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="183" cy="63" r="6" fill="#F97316"/>
+  <circle cx="163" cy="78" r="4" fill="#FDBA74"/>
+  <circle cx="112" cy="124" r="3.2" fill="#E0F2FE"/>
+  <circle cx="145" cy="135" r="2.8" fill="#E0F2FE" opacity="0.82"/>
+  <circle cx="130" cy="104" r="7" fill="#F8FAFC"/>
+</svg>

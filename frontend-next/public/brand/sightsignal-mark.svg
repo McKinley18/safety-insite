@@ -1,0 +1,29 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SightSignal">
+  <defs>
+    <linearGradient id="bg" x1="22" y1="18" x2="218" y2="222" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1320"/>
+      <stop offset="1" stop-color="#102A43"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="100" y1="62" x2="160" y2="175" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5DB7FF"/>
+      <stop offset="1" stop-color="#1D72B8"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="162" y1="66" x2="220" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDBA74"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="52" fill="url(#bg)"/>
+  <path d="M24 120C55 70 102 51 147 63C177 71 200 94 212 120C200 146 177 169 147 177C102 189 55 170 24 120Z" fill="white"/>
+  <path d="M39 120C66 84 104 72 139 80C162 85 181 101 194 120C181 139 162 155 139 160C104 168 66 156 39 120Z" fill="#0B1320"/>
+  <path d="M52 120C77 92 108 84 135 90C154 94 169 106 180 120C169 134 154 146 135 150C108 156 77 148 52 120Z" fill="white"/>
+  <circle cx="120" cy="120" r="48" fill="#0B1320"/>
+  <circle cx="120" cy="120" r="39" fill="url(#blue)"/>
+  <circle cx="120" cy="120" r="28" fill="#0B1320"/>
+  <circle cx="120" cy="120" r="18" fill="#5DB7FF"/>
+  <circle cx="120" cy="120" r="8" fill="#F8FAFC"/>
+  <path d="M120 120L170 88" stroke="#F97316" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="170" cy="88" r="6.5" fill="#F97316"/>
+  <path d="M169 76C184 88 194 104 198 120C194 136 184 152 169 164" stroke="url(#signal)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M188 60C211 77 225 99 231 120C225 141 211 163 188 180" stroke="url(#signal)" stroke-width="8" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,49 @@
+<svg width="960" height="220" viewBox="0 0 960 220" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SightSignal powered by HazLenz AI">
+  <defs>
+    <linearGradient id="blue" x1="80" y1="30" x2="176" y2="126" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8FD3FF"/>
+      <stop offset="0.45" stop-color="#5DB7FF"/>
+      <stop offset="1" stop-color="#1D72B8"/>
+    </linearGradient>
+    <clipPath id="loginIrisClip">
+      <circle cx="128" cy="78" r="48"/>
+    </clipPath>
+  </defs>
+
+  <g transform="translate(8 12) scale(1.18)">
+    <path d="M10 78C45 20 98 0 148 13C181 22 207 47 222 78C207 109 181 134 148 143C98 156 45 136 10 78Z" fill="#050B14" stroke="#FFFFFF" stroke-width="4.2" stroke-linejoin="round"/>
+    <path d="M26 78C58 31 102 15 143 24C171 31 194 51 208 78C194 105 171 125 143 132C102 141 58 125 26 78Z" fill="#F8FAFC"/>
+
+    <circle cx="128" cy="78" r="56" fill="#0B1320"/>
+    <circle cx="128" cy="78" r="48" fill="url(#blue)"/>
+
+    <g clip-path="url(#loginIrisClip)">
+      <circle cx="128" cy="78" r="48" fill="#1D72B8"/>
+
+      <circle cx="128" cy="78" r="39" fill="none" stroke="#DFF3FF" stroke-width="1.9" opacity="0.72"/>
+      <circle cx="128" cy="78" r="28" fill="none" stroke="#DFF3FF" stroke-width="1.65" opacity="0.56"/>
+      <circle cx="128" cy="78" r="16" fill="none" stroke="#DFF3FF" stroke-width="1.35" opacity="0.44"/>
+
+      <path d="M128 30V126" stroke="#06111F" stroke-width="5.2" opacity="0.88"/>
+      <path d="M80 78H176" stroke="#06111F" stroke-width="5.2" opacity="0.88"/>
+
+      <path d="M128 78L169 45C178 61 180 78 174 94Z" fill="#F97316" opacity="0.28"/>
+      <path d="M128 78L170 44" stroke="#F97316" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="164" cy="49" r="4.8" fill="#FDBA74"/>
+
+      <circle cx="128" cy="78" r="10.3" fill="#F8FAFC"/>
+      <circle cx="128" cy="78" r="4.9" fill="#06111F" opacity="0.72"/>
+    </g>
+    <circle cx="128" cy="78" r="48" fill="none" stroke="#5DB7FF" stroke-width="3.2" opacity="0.95"/>
+  </g>
+
+  <g transform="translate(305 42)">
+    <text x="0" y="70" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="90" font-weight="900" letter-spacing="-5.1">
+      <tspan fill="#FFFFFF">Sight</tspan><tspan fill="#5DB7FF">Signal</tspan>
+    </text>
+    <line x1="3" y1="119" x2="130" y2="119" stroke="#64748B" stroke-width="2" opacity="0.8"/>
+    <text x="150" y="132" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="33" font-weight="900" letter-spacing="2.6" fill="#C0C7D2">
+      <tspan>POWERED BY</tspan><tspan dx="10">HAZLENZ AI</tspan>
+    </text>
+  </g>
+</svg>
