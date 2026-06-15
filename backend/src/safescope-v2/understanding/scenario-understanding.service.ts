@@ -67,7 +67,7 @@ export class ScenarioUnderstandingService {
       u.normalizedText.includes('employees pass') ||
       u.normalizedText.includes('walk past');
 
-    if (explicitTravelOnly && !u.normalizedText.includes('cleaning') && !u.normalizedText.includes('cleanup')) return;
+    if (explicitTravelOnly && u.task.taskType !== 'cleanup' && !u.normalizedText.includes('cleaning') && !u.normalizedText.includes('cleanup')) return;
 
     const missingFacts = this.missing([
       ['worker exposure', u.exposure.workerExposed === true],
@@ -107,7 +107,7 @@ export class ScenarioUnderstandingService {
     candidates.push({
       scenarioId: 'unguarded_conveyor_pulley',
       hazardFamily: 'machine_guarding',
-      mechanism: mechanism?.mechanism || 'rotating_equipment_nip_point',
+      mechanism: mechanism?.mechanism || 'rotating_equipment_entanglement',
       confidence: this.score(0.6, missingFacts, mechanism?.confidence || 0.5),
       reasons: [
         'Conveyor pulley/roller component detected.',
@@ -154,7 +154,14 @@ export class ScenarioUnderstandingService {
       u.normalizedText.includes('point of operation') ||
       u.normalizedText.includes('blade') ||
       u.normalizedText.includes('press brake') ||
-      u.normalizedText.includes('closing die');
+      u.normalizedText.includes('closing die') ||
+      u.normalizedText.includes('drill press') ||
+      u.normalizedText.includes('lathe') ||
+      u.normalizedText.includes('grinder') ||
+      u.normalizedText.includes('spindle') ||
+      u.normalizedText.includes('chuck') ||
+      u.normalizedText.includes('shear') ||
+      u.normalizedText.includes('punch');
 
     if (!pointOfOperation) return;
 
@@ -223,7 +230,16 @@ export class ScenarioUnderstandingService {
       u.controls.failedControls.includes('access_control') ||
       u.controls.failedControls.includes('electrical_working_clearance') ||
       u.normalizedText.includes('blocked') ||
-      u.normalizedText.includes('working clearance');
+      u.normalizedText.includes('working clearance') ||
+      u.normalizedText.includes('open') ||
+      u.normalizedText.includes('swinging') ||
+      u.normalizedText.includes('missing cover') ||
+      u.normalizedText.includes('cover plates') ||
+      u.normalizedText.includes('exposed breaker') ||
+      u.normalizedText.includes('breaker slots') ||
+      u.normalizedText.includes('broken') ||
+      u.normalizedText.includes('exposing') ||
+      u.normalizedText.includes('exposed');
 
     if (!accessIssue) return;
 
@@ -593,17 +609,30 @@ export class ScenarioUnderstandingService {
       u.task.taskType === 'cleanup' ||
       u.normalizedText.includes('housekeeping') ||
       u.normalizedText.includes('spill') ||
+      u.normalizedText.includes('spillage') ||
       u.normalizedText.includes('debris') ||
-      u.normalizedText.includes('walkway');
+      u.normalizedText.includes('walkway') ||
+      u.normalizedText.includes('walk deck') ||
+      u.normalizedText.includes('deck') ||
+      u.normalizedText.includes('floor') ||
+      u.normalizedText.includes('leak') ||
+      u.normalizedText.includes('pooled') ||
+      u.normalizedText.includes('slip') ||
+      u.normalizedText.includes('trip') ||
+      u.normalizedText.includes('puddle') ||
+      u.normalizedText.replace(/soil/g, '').includes('oil') ||
+      u.normalizedText.includes('grease') ||
+      u.normalizedText.includes('fluid');
 
     if (!housekeeping) return;
+    if (u.equipment.category === 'fall_protection' && !u.normalizedText.includes('spill') && !u.normalizedText.includes('leak') && !u.normalizedText.includes('pooled') && !u.normalizedText.includes('grease') && !u.normalizedText.replace(/soil/g, '').includes('oil') && !u.normalizedText.includes('slip') && !u.normalizedText.includes('trip')) return;
     if (u.equipment.category === 'conveyor' && !u.normalizedText.includes('walkway') && !u.normalizedText.includes('walk deck')) return;
     if (u.equipment.category === 'electrical_cord' || u.equipment.category === 'electrical_equipment') return;
     if (u.equipment.category === 'mobile_equipment') return;
     if (u.normalizedText.includes('floor hole') || u.normalizedText.includes('open floor hole')) return;
 
     const missingFacts = this.missing([
-      ['walking/working surface condition', u.normalizedText.includes('floor') || u.normalizedText.includes('walkway') || u.normalizedText.includes('spill')],
+      ['walking/working surface condition', u.normalizedText.includes('floor') || u.normalizedText.includes('walkway') || u.normalizedText.includes('spill') || u.normalizedText.includes('spillage') || u.normalizedText.includes('leak') || u.normalizedText.includes('pooled') || u.normalizedText.includes('puddle') || u.normalizedText.replace(/soil/g, '').includes('oil') || u.normalizedText.includes('grease') || u.normalizedText.includes('fluid')],
       ['pedestrian exposure', u.exposure.workerExposed === true]
     ]);
 

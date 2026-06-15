@@ -51,13 +51,43 @@ export class ControlUnderstandingService {
         'coupling guard is removed',
         'coupling guard removed',
         'no coupling guard is installed',
-        'no coupling guard installed'
+        'no coupling guard installed',
+        'completely missing',
+        'is completely missing',
+        'unbolted',
+        'unbolted and removed',
+        'is unbolted',
+        'was unbolted',
+        'taken off',
+        'was taken off',
+        'taken off and not replaced',
+        'side guards removed',
+        'side guard was taken off',
+        'side guard was taken',
+        'protective side guards',
+        'missing its protective side guards',
+        'without its protective side guards',
+        'missing its cage guard',
+        'cage guard',
+        'missing its safety guard',
+        'safety guard',
+        'no safety wheel guard',
+        'wheel guard',
+        'missing its tongue guard',
+        'tongue guard',
+        'missing its spark shield',
+        'spark shield',
+        'without the protective interlocked guard',
+        'interlocked guard',
+        'not secured',
+        'is not secured',
+        'not bolted'
       ])
     ) {
       addMissing('guarding', 'Missing or removed guarding signal detected.');
     }
 
-    if (this.hasAny(normalizedText, ['inadequate guard', 'damaged guard', 'guard not secured'])) {
+    if (this.hasAny(normalizedText, ['inadequate guard', 'damaged guard', 'guard not secured', 'cracked'])) {
       addFailed('guarding', 'Failed or inadequate guarding signal detected.');
     }
 

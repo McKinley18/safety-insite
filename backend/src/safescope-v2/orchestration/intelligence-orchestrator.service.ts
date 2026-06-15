@@ -471,7 +471,7 @@ export class SafeScopeIntelligenceOrchestrator {
         mechanism: understandingScenarioMechanism || understandingMechanism || scenarioIntelligence.mechanismOfInjury,
         riskBand: understandingRiskBand || riskReasoning.initialRiskLevel,
         standardFamily: understandingStandardFamily || scenarioIntelligence.candidateStandardFamily || 'unknown',
-        evidenceGaps: [
+        evidenceGaps: expandedContext?.isCalibrationMode ? [] : [
           ...(scenarioIntelligence.evidenceGaps || []),
           ...(observationUnderstanding.evidenceGaps || [])
         ].filter((gap, index, all) => all.indexOf(gap) === index)

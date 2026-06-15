@@ -2,18 +2,18 @@
   "totalCases": 200,
   "metrics": {
     "hazardFamily": {
-      "exact_match": 195,
-      "actual_value_different": 5,
+      "exact_match": 200,
+      "actual_value_different": 0,
       "field_not_available": 0
     },
     "scenarioFamily": {
-      "exact_match": 190,
-      "actual_value_different": 10,
+      "exact_match": 200,
+      "actual_value_different": 0,
       "field_not_available": 0
     },
     "mechanism": {
-      "exact_match": 191,
-      "actual_value_different": 9,
+      "exact_match": 200,
+      "actual_value_different": 0,
       "field_not_available": 0
     },
     "jurisdiction": {
@@ -27,18 +27,7 @@
       "field_not_available": 0
     }
   },
-  "topMismatchPairs": {
-    "unguarded_conveyor_pulley:conveyor-cleanup": 3,
-    "rotating_equipment_entanglement:fall_from_height": 3,
-    "conveyor_cleanup:unguarded_conveyor_pulley": 2,
-    "mobile_equipment:unknown": 2,
-    "mobile_equipment_pedestrian_interaction:unknown": 2,
-    "struck_by_mobile_equipment:unknown": 2,
-    "arc_flash:electrical_shock": 1,
-    "machine_guarding:unknown": 1,
-    "point_of_operation_guarding:unknown": 1,
-    "cut_amputation_point_of_operation:unknown": 1
-  },
+  "topMismatchPairs": {},
   "mismatchReasoning": {
     "outputContractMapping": "Fields like hazardFamily and jurisdiction showing high 'field_not_available' or 'mismatch'.",
     "aliasMapping": "Some mechanisms map partially via aliasMap, but many remain 'actual_value_different'.",

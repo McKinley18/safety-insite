@@ -84,7 +84,7 @@ async function run() {
                     confidenceBand: 'high',
                     ambiguityWarnings: []
                 } as any,
-                expandedContext: {} as any,
+                expandedContext: { isCalibrationMode: true } as any,
                 primaryStandardsResult: { suggestedStandards: [] } as any,
                 generatedActions: [],
                 additionalHazards: [],

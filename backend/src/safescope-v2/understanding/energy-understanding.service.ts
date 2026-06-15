@@ -10,7 +10,7 @@ export class EnergyUnderstandingService {
       reasons.push(reason);
     };
 
-    if (this.hasAny(normalizedText, ['rotating', 'tail pulley', 'head pulley', 'roller', 'belt', 'shaft', 'nip point'])) {
+    if (this.hasAny(normalizedText, ['rotating', 'tail pulley', 'head pulley', 'return pulley', 'pulley', 'roller', 'belt', 'shaft', 'nip point'])) {
       add('mechanical_rotation', 'Mechanical rotation signal detected.');
     }
 
@@ -22,7 +22,10 @@ export class EnergyUnderstandingService {
       add('electrical', 'Electrical energy signal detected.');
     }
 
-    if (this.hasAny(normalizedText, ['trench', 'excavation', 'cave-in', 'collapse', 'vertical wall', 'soil'])) {
+    if (
+      this.hasAny(normalizedText, ['trench', 'excavation', 'cave-in', 'collapse', 'vertical wall']) ||
+      (normalizedText.includes('soil') && !normalizedText.includes('ladder') && !normalizedText.includes('scaffold'))
+    ) {
       add('soil_collapse', 'Soil collapse or excavation energy signal detected.');
       add('gravity', 'Gravity energy signal detected.');
     }

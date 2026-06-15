@@ -5,18 +5,18 @@
     "runErrors": 0,
     "metrics": {
       "hazardFamily": {
-        "exact_match": 195,
-        "actual_value_different": 5,
+        "exact_match": 200,
+        "actual_value_different": 0,
         "field_not_available": 0
       },
       "scenarioFamily": {
-        "exact_match": 190,
-        "actual_value_different": 10,
+        "exact_match": 200,
+        "actual_value_different": 0,
         "field_not_available": 0
       },
       "mechanism": {
-        "exact_match": 191,
-        "actual_value_different": 9,
+        "exact_match": 200,
+        "actual_value_different": 0,
         "field_not_available": 0
       },
       "jurisdiction": {
@@ -167,7 +167,7 @@
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "arc_flash",
+          "actual": "electrical_shock_arc_flash_access_clearance",
           "status": "exact_match"
         },
         "jurisdiction": {
@@ -327,7 +327,7 @@
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "high",
+          "actual": "moderate",
           "status": "exact_match"
         }
       }
@@ -642,7 +642,7 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "conveyor-cleanup",
+          "actual": "conveyor_cleanup",
           "status": "exact_match"
         },
         "mechanism": {
@@ -677,7 +677,7 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_entanglement",
           "status": "exact_match"
         },
         "jurisdiction": {
@@ -867,7 +867,7 @@
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "high",
+          "actual": "moderate",
           "status": "exact_match"
         }
       }
@@ -922,7 +922,7 @@
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
@@ -977,7 +977,7 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_entanglement",
           "status": "exact_match"
         },
         "jurisdiction": {
@@ -1067,12 +1067,12 @@
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "arc_flash",
+          "actual": "electrical_shock_arc_flash_access_clearance",
           "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
@@ -1572,13 +1572,13 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor-cleanup",
-          "status": "actual_value_different"
+          "actual": "unguarded_conveyor_pulley",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "fall_from_height",
-          "status": "actual_value_different"
+          "actual": "rotating_equipment_entanglement",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "msha",
@@ -1842,8 +1842,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded_conveyor_pulley",
-          "status": "actual_value_different"
+          "actual": "conveyor_cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
@@ -1967,12 +1967,12 @@
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "electrical_shock",
-          "status": "actual_value_different"
+          "actual": "electrical_shock_arc_flash_access_clearance",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
@@ -2142,7 +2142,7 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "conveyor-cleanup",
+          "actual": "conveyor_cleanup",
           "status": "exact_match"
         },
         "mechanism": {
@@ -2152,7 +2152,7 @@
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
+          "actual": "msha",
           "status": "exact_match"
         },
         "riskBand": {
@@ -2177,7 +2177,7 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_entanglement",
           "status": "exact_match"
         },
         "jurisdiction": {
@@ -2227,18 +2227,18 @@
       "scoring": {
         "hazardFamily": {
           "expected": "machine_guarding",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "machine_guarding",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "point_of_operation_guarding",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "point_of_operation_guarding",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "cut_amputation_point_of_operation",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "cut_amputation_point_of_operation",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
@@ -2247,7 +2247,7 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
+          "actual": "high",
           "status": "exact_match"
         }
       }
@@ -2427,7 +2427,7 @@
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "high",
+          "actual": "moderate",
           "status": "exact_match"
         }
       }
@@ -2472,17 +2472,17 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor-cleanup",
-          "status": "actual_value_different"
+          "actual": "unguarded_conveyor_pulley",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "fall_from_height",
-          "status": "actual_value_different"
+          "actual": "rotating_equipment_nip_point",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "msha",
-          "actual": "unclear",
+          "actual": "msha",
           "status": "exact_match"
         },
         "riskBand": {
@@ -2567,12 +2567,12 @@
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "arc_flash",
+          "actual": "electrical_shock_arc_flash_access_clearance",
           "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
@@ -2777,8 +2777,8 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "fall_from_height",
-          "status": "actual_value_different"
+          "actual": "rotating_equipment_nip_point",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "msha",
@@ -2967,7 +2967,7 @@
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "high",
+          "actual": "moderate",
           "status": "exact_match"
         }
       }
@@ -3072,12 +3072,12 @@
         },
         "scenarioFamily": {
           "expected": "unguarded_conveyor_pulley",
-          "actual": "conveyor-cleanup",
-          "status": "actual_value_different"
+          "actual": "unguarded_conveyor_pulley",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_entanglement",
-          "actual": "rotating_equipment_nip_point",
+          "actual": "rotating_equipment_entanglement",
           "status": "exact_match"
         },
         "jurisdiction": {
@@ -3297,7 +3297,7 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
+          "actual": "high",
           "status": "exact_match"
         }
       }
@@ -3442,7 +3442,7 @@
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
@@ -3597,7 +3597,7 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
+          "actual": "high",
           "status": "exact_match"
         }
       }
@@ -3757,27 +3757,27 @@
       "scoring": {
         "hazardFamily": {
           "expected": "electrical",
-          "actual": "machine_guarding",
-          "status": "actual_value_different"
+          "actual": "electrical",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "electrical_panel_access",
-          "actual": "rotating_shaft_guarding",
-          "status": "actual_value_different"
+          "actual": "electrical_panel_access",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "arc_flash",
+          "actual": "electrical_shock_arc_flash_access_clearance",
           "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "high",
+          "actual": "moderate",
           "status": "exact_match"
         }
       }
@@ -3947,8 +3947,8 @@
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
-          "actual": "slip_trip_fall_same_level",
-          "status": "actual_value_different"
+          "actual": "rotating_equipment_nip_point",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "msha",
@@ -4197,7 +4197,7 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
+          "actual": "high",
           "status": "exact_match"
         }
       }
@@ -4242,8 +4242,8 @@
         },
         "scenarioFamily": {
           "expected": "conveyor_cleanup",
-          "actual": "unguarded_conveyor_pulley",
-          "status": "actual_value_different"
+          "actual": "conveyor_cleanup",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "rotating_equipment_nip_point",
@@ -4367,7 +4367,7 @@
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "arc_flash",
+          "actual": "electrical_shock_arc_flash_access_clearance",
           "status": "exact_match"
         },
         "jurisdiction": {
@@ -4477,18 +4477,18 @@
       "scoring": {
         "hazardFamily": {
           "expected": "mobile_equipment",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "mobile_equipment",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "mobile_equipment_pedestrian_interaction",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "mobile_equipment_pedestrian_interaction",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "struck_by_mobile_equipment",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "struck_by_mobile_equipment",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
@@ -4497,7 +4497,7 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
+          "actual": "high",
           "status": "exact_match"
         }
       }
@@ -4527,7 +4527,7 @@
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "high",
+          "actual": "moderate",
           "status": "exact_match"
         }
       }
@@ -4642,7 +4642,7 @@
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
@@ -4967,7 +4967,7 @@
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "arc_flash",
+          "actual": "electrical_shock_arc_flash_access_clearance",
           "status": "exact_match"
         },
         "jurisdiction": {
@@ -5027,8 +5027,8 @@
         },
         "mechanism": {
           "expected": "fall_from_height",
-          "actual": "caught_in_cave_in",
-          "status": "actual_value_different"
+          "actual": "fall_from_height",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_construction",
@@ -5677,18 +5677,18 @@
       "scoring": {
         "hazardFamily": {
           "expected": "mobile_equipment",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "mobile_equipment",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "mobile_equipment_pedestrian_interaction",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "mobile_equipment_pedestrian_interaction",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "struck_by_mobile_equipment",
-          "actual": "unknown",
-          "status": "actual_value_different"
+          "actual": "struck_by_mobile_equipment",
+          "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
@@ -5697,7 +5697,7 @@
         },
         "riskBand": {
           "expected": "high",
-          "actual": "moderate",
+          "actual": "high",
           "status": "exact_match"
         }
       }
@@ -5707,13 +5707,13 @@
       "scoring": {
         "hazardFamily": {
           "expected": "slip_trip_fall",
-          "actual": "machine_guarding",
-          "status": "actual_value_different"
+          "actual": "slip_trip_fall",
+          "status": "exact_match"
         },
         "scenarioFamily": {
           "expected": "housekeeping_slip_trip",
-          "actual": "rotating_shaft_guarding",
-          "status": "actual_value_different"
+          "actual": "housekeeping_slip_trip",
+          "status": "exact_match"
         },
         "mechanism": {
           "expected": "slip_trip_fall_same_level",
@@ -5722,12 +5722,12 @@
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {
           "expected": "moderate",
-          "actual": "high",
+          "actual": "moderate",
           "status": "exact_match"
         }
       }
@@ -5867,12 +5867,12 @@
         },
         "mechanism": {
           "expected": "arc_flash",
-          "actual": "arc_flash",
+          "actual": "electrical_shock_arc_flash_access_clearance",
           "status": "exact_match"
         },
         "jurisdiction": {
           "expected": "osha_general_industry",
-          "actual": "unclear",
+          "actual": "osha_general_industry",
           "status": "exact_match"
         },
         "riskBand": {

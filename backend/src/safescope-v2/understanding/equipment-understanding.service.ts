@@ -86,6 +86,7 @@ export class EquipmentUnderstandingService {
 
     if (
       !shaftOrCouplingMachineSignal &&
+      category === 'unknown' &&
       this.hasAny(normalizedText, ['ladder', 'step ladder', 'extension ladder', 'platform', 'elevated work platform', 'unprotected edge', 'scaffold', 'scaffolding', 'beam', 'steel beam', 'wall plate', 'harness', 'lanyard', 'roof', 'catwalk'])
     ) {
       category = 'fall_protection';

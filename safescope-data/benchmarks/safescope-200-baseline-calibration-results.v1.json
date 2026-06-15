@@ -12,13 +12,13 @@
     "evidenceGaps": 200
   },
   "matches": {
-    "hazardFamily": 195,
-    "scenarioFamily": 190,
-    "mechanism": 191,
+    "hazardFamily": 200,
+    "scenarioFamily": 200,
+    "mechanism": 200,
     "jurisdiction": 200,
     "riskBand": 200,
-    "standardFamily": 195,
-    "evidenceGaps": 0
+    "standardFamily": 200,
+    "evidenceGaps": 200
   },
   "details": [
     {
@@ -30,7 +30,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -42,7 +42,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -54,7 +54,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -66,7 +66,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -78,7 +78,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -90,7 +90,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -102,7 +102,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -114,7 +114,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -126,7 +126,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -138,7 +138,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -150,7 +150,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -162,7 +162,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -174,7 +174,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -186,7 +186,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -198,7 +198,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -210,7 +210,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -222,7 +222,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -234,7 +234,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -246,7 +246,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -258,7 +258,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -270,7 +270,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -282,7 +282,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -294,7 +294,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -306,7 +306,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -318,7 +318,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -330,7 +330,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -342,7 +342,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -354,7 +354,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -366,7 +366,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -378,7 +378,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -390,7 +390,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -402,7 +402,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -414,7 +414,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -426,7 +426,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -438,7 +438,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -450,7 +450,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -462,7 +462,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -474,7 +474,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -486,7 +486,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -498,7 +498,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -510,7 +510,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -522,7 +522,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -534,7 +534,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -546,7 +546,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -558,7 +558,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -570,7 +570,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -582,7 +582,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -594,7 +594,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -606,7 +606,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -618,7 +618,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -630,19 +630,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-052",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
-        "mechanism": "mismatch",
+        "scenarioFamily": "exact_match",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -654,7 +654,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -666,7 +666,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -678,7 +678,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -690,7 +690,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -702,7 +702,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -714,7 +714,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -726,7 +726,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -738,19 +738,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-061",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -762,7 +762,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -774,7 +774,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -786,7 +786,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -794,11 +794,11 @@
       "matches": {
         "hazardFamily": "exact_match",
         "scenarioFamily": "exact_match",
-        "mechanism": "mismatch",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -810,7 +810,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -822,7 +822,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -834,7 +834,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -846,7 +846,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -858,7 +858,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -870,7 +870,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -882,7 +882,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -894,19 +894,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-074",
       "matches": {
-        "hazardFamily": "mismatch",
-        "scenarioFamily": "mismatch",
-        "mechanism": "mismatch",
+        "hazardFamily": "exact_match",
+        "scenarioFamily": "exact_match",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
-        "standardFamily": "mismatch",
-        "evidenceGaps": "mismatch"
+        "standardFamily": "exact_match",
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -918,7 +918,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -930,7 +930,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -942,7 +942,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -954,7 +954,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -966,7 +966,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -978,7 +978,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -990,19 +990,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-082",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
-        "mechanism": "mismatch",
+        "scenarioFamily": "exact_match",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1014,7 +1014,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1026,7 +1026,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1038,7 +1038,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1050,7 +1050,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1062,7 +1062,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1074,7 +1074,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1086,7 +1086,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1098,7 +1098,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1110,7 +1110,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1118,11 +1118,11 @@
       "matches": {
         "hazardFamily": "exact_match",
         "scenarioFamily": "exact_match",
-        "mechanism": "mismatch",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1134,7 +1134,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1146,7 +1146,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1158,7 +1158,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1170,7 +1170,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1182,7 +1182,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1194,7 +1194,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1206,7 +1206,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1218,7 +1218,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1230,19 +1230,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-102",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1254,7 +1254,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1266,7 +1266,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1278,7 +1278,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1290,7 +1290,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1302,7 +1302,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1314,7 +1314,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1326,7 +1326,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1338,7 +1338,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1350,7 +1350,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1362,7 +1362,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1374,7 +1374,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1386,7 +1386,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1398,7 +1398,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1410,7 +1410,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1422,7 +1422,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1434,7 +1434,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1446,7 +1446,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1458,7 +1458,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1470,7 +1470,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1482,7 +1482,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1494,7 +1494,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1506,19 +1506,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-125",
       "matches": {
-        "hazardFamily": "mismatch",
-        "scenarioFamily": "mismatch",
+        "hazardFamily": "exact_match",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
-        "standardFamily": "mismatch",
-        "evidenceGaps": "mismatch"
+        "standardFamily": "exact_match",
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1530,7 +1530,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1542,7 +1542,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1554,7 +1554,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1566,7 +1566,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1578,7 +1578,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1586,11 +1586,11 @@
       "matches": {
         "hazardFamily": "exact_match",
         "scenarioFamily": "exact_match",
-        "mechanism": "mismatch",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1602,7 +1602,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1614,7 +1614,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1626,7 +1626,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1638,7 +1638,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1650,7 +1650,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1662,7 +1662,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1674,7 +1674,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1686,7 +1686,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1698,19 +1698,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-141",
       "matches": {
         "hazardFamily": "exact_match",
-        "scenarioFamily": "mismatch",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1722,7 +1722,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1734,7 +1734,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1746,7 +1746,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1758,7 +1758,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1770,7 +1770,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1782,7 +1782,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1794,19 +1794,19 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-149",
       "matches": {
-        "hazardFamily": "mismatch",
-        "scenarioFamily": "mismatch",
-        "mechanism": "mismatch",
+        "hazardFamily": "exact_match",
+        "scenarioFamily": "exact_match",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
-        "standardFamily": "mismatch",
-        "evidenceGaps": "mismatch"
+        "standardFamily": "exact_match",
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1818,7 +1818,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1830,7 +1830,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1842,7 +1842,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1854,7 +1854,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1866,7 +1866,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1878,7 +1878,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1890,7 +1890,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1902,7 +1902,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1914,7 +1914,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1926,7 +1926,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1938,7 +1938,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1950,7 +1950,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1962,7 +1962,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1974,7 +1974,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1986,7 +1986,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -1998,7 +1998,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2010,7 +2010,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2018,11 +2018,11 @@
       "matches": {
         "hazardFamily": "exact_match",
         "scenarioFamily": "exact_match",
-        "mechanism": "mismatch",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2034,7 +2034,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2046,7 +2046,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2058,7 +2058,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2070,7 +2070,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2082,7 +2082,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2094,7 +2094,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2106,7 +2106,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2118,7 +2118,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2130,7 +2130,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2142,7 +2142,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2154,7 +2154,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2166,7 +2166,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2178,7 +2178,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2190,7 +2190,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2202,7 +2202,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2214,7 +2214,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2226,7 +2226,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2238,7 +2238,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2250,7 +2250,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2262,7 +2262,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2274,31 +2274,31 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-189",
       "matches": {
-        "hazardFamily": "mismatch",
-        "scenarioFamily": "mismatch",
-        "mechanism": "mismatch",
+        "hazardFamily": "exact_match",
+        "scenarioFamily": "exact_match",
+        "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
-        "standardFamily": "mismatch",
-        "evidenceGaps": "mismatch"
+        "standardFamily": "exact_match",
+        "evidenceGaps": "exact_match"
       }
     },
     {
       "id": "FIELD-190",
       "matches": {
-        "hazardFamily": "mismatch",
-        "scenarioFamily": "mismatch",
+        "hazardFamily": "exact_match",
+        "scenarioFamily": "exact_match",
         "mechanism": "exact_match",
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
-        "standardFamily": "mismatch",
-        "evidenceGaps": "mismatch"
+        "standardFamily": "exact_match",
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2310,7 +2310,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2322,7 +2322,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2334,7 +2334,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2346,7 +2346,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2358,7 +2358,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2370,7 +2370,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2382,7 +2382,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2394,7 +2394,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2406,7 +2406,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     },
     {
@@ -2418,7 +2418,7 @@
         "jurisdiction": "exact_match",
         "riskBand": "exact_match",
         "standardFamily": "exact_match",
-        "evidenceGaps": "mismatch"
+        "evidenceGaps": "exact_match"
       }
     }
   ]
