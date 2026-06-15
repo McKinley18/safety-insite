@@ -16,7 +16,9 @@
   --warning: #F97316;
   --danger: #DC2626;
 
-  --sentinel-mobile-tabbar-height: calc(68px + env(safe-area-inset-bottom));
+  --sentinel-mobile-tabbar-height: calc(76px + env(safe-area-inset-bottom, 0px));
+  --sentinel-mobile-bottom-safe-space: calc(var(--sentinel-mobile-tabbar-height) + 2.25rem);
+  --sentinel-inspection-bottom-safe-space: calc(var(--sentinel-mobile-bottom-safe-space) + 4.5rem);
 }
 
 .dark {

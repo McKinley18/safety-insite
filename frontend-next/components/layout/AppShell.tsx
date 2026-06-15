@@ -418,7 +418,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main
-        className={`mx-auto w-full max-w-[1200px] flex-1 px-3 pt-3 sm:px-5 sm:pt-5 md:px-6 md:pt-6 ${showAppNav ? "pb-[calc(var(--sentinel-mobile-tabbar-height)+0.75rem)] lg:pb-6" : "pb-4 sm:pb-6"}`}
+        className={`sentinel-app-main mx-auto w-full max-w-[1200px] flex-1 px-3 pt-3 sm:px-5 sm:pt-5 md:px-6 md:pt-6 ${showAppNav ? "" : "pb-4 sm:pb-6"}`}
       >
         {children}
       </main>
