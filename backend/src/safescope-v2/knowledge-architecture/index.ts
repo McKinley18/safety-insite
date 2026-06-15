@@ -8,3 +8,8 @@ export { ReviewCoreKnowledgeApprovalService } from './reviewcore-knowledge-appro
 export { ReviewCoreKnowledgeReviewQueueService } from './reviewcore-knowledge-review-queue.service';
 export { ReviewCoreKnowledgeReviewQueueStore } from './reviewcore-knowledge-review-queue.store';
 export { ReviewCoreKnowledgeReviewQueueController } from './reviewcore-knowledge-review-queue.controller';
+
+export * from './reviewcore-knowledge-review-queue.api-types';
+export { ReviewCoreKnowledgeReviewQueueAudit } from './reviewcore-knowledge-review-queue.audit';
+export { ReviewCoreKnowledgeReviewQueueGuard } from './reviewcore-knowledge-review-queue.guard';
+export { ReviewCoreKnowledgeReviewQueueRouteScaffold } from './reviewcore-knowledge-review-queue.route-scaffold';
