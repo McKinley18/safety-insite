@@ -644,6 +644,44 @@ body {
 }
 
 
+
+
+.sentinel-mobile-tab-spacer {
+  height: calc(4.75rem + env(safe-area-inset-bottom));
+  flex: 0 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .sentinel-mobile-tab-spacer {
+    display: none;
+  }
+}
+
+/* Mobile fixed-tab safe space */
+:root {
+  --sentinel-mobile-tab-height: 3.65rem;
+}
+
+.sentinel-app-main-with-tabs {
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 1023px) {
+  .sentinel-app-main-with-tabs {
+    padding-bottom: calc(var(--sentinel-mobile-tab-height) + env(safe-area-inset-bottom) + 1.25rem);
+  }
+
+  .sentinel-mobile-page {
+    padding-bottom: calc(var(--sentinel-mobile-tab-height) + env(safe-area-inset-bottom) + 1.25rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sentinel-app-main-with-tabs {
+    padding-bottom: 1.5rem;
+  }
+}
+
 /* Mobile page rhythm */
 .sentinel-mobile-page {
   width: 100%;

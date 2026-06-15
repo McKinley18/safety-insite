@@ -56,9 +56,9 @@ export default function MobileTabBar() {
     <nav
       aria-label="Mobile primary navigation"
       data-keyboard-open={keyboardOpen ? "true" : "false"}
-      className="mobile-tab-bar fixed inset-x-0 bottom-0 z-[800] border-t border-slate-200 bg-[#0B1320]/96 px-2 pb-[max(env(safe-area-inset-bottom),0.55rem)] pt-2 shadow-[0_-8px_24px_rgba(15,23,42,0.16)] backdrop-blur-xl transition-transform duration-150 lg:hidden"
+      className="mobile-tab-bar fixed inset-x-0 bottom-0 z-[800] border-t border-slate-200 bg-[#0B1320]/96 px-2 pb-[max(env(safe-area-inset-bottom),0.25rem)] pt-1 shadow-[0_-8px_24px_rgba(15,23,42,0.16)] backdrop-blur-xl transition-transform duration-150 lg:hidden"
     >
-      <div className="mx-auto grid max-w-md grid-cols-5 gap-1.5">
+      <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
         {tabs.map((tab) => {
           const active =
             pathname === tab.href ||
@@ -68,14 +68,14 @@ export default function MobileTabBar() {
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex min-h-[48px] flex-col items-center justify-center rounded-xl px-1 text-center transition ${
+              className={`flex min-h-[36px] flex-col items-center justify-center rounded-lg px-1 text-center transition ${
                 active
                   ? "bg-[#1D72B8] text-white shadow-sm shadow-blue-950/30"
                   : "text-white hover:bg-white/10 hover:text-white"
               }`}
             >
-              <span className="text-base leading-none text-white">{tab.icon}</span>
-              <span className="mt-1 text-[9px] font-black uppercase tracking-wide text-white">
+              <span className="text-[13px] leading-none text-white">{tab.icon}</span>
+              <span className="mt-0.5 text-[8px] font-black uppercase tracking-wide text-white">
                 {tab.label}
               </span>
             </Link>
