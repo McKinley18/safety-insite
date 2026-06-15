@@ -19,3 +19,9 @@ export * from './reviewcore-knowledge-review-queue.module';
 export { ReviewCoreKnowledgeReviewQueueProvider } from './reviewcore-knowledge-review-queue.provider';
 export { ReviewCoreKnowledgeReviewQueueHttpController } from './reviewcore-knowledge-review-queue.http-controller';
 export { ReviewCoreKnowledgeReviewQueueModule, ReviewCoreKnowledgeReviewQueueModuleDefinition } from './reviewcore-knowledge-review-queue.module';
+
+export { ReviewCoreKnowledgeReviewQueueRecordEntity } from './reviewcore-knowledge-review-queue.record.entity';
+export { ReviewCoreKnowledgeReviewQueueAuditEntity } from './reviewcore-knowledge-review-queue.audit.entity';
+export { InMemoryReviewCoreKnowledgeReviewQueuePersistenceRepository, ReviewCoreKnowledgeReviewQueuePersistenceRepositoryPort } from './reviewcore-knowledge-review-queue.repository';
+export { ReviewCoreKnowledgeReviewQueuePersistenceAdapter } from './reviewcore-knowledge-review-queue.persistence-adapter';
+export type { ReviewCoreQueueRecordRow, ReviewCoreQueueAuditEventRow, ReviewCoreQueuePersistenceSnapshot, ReviewCoreQueuePersistenceLayerReadiness, ReviewCoreQueuePersistRecordMetadata, ReviewCoreQueuePersistenceAdapterPort } from './reviewcore-knowledge-review-queue.persistence-types';
