@@ -5,6 +5,7 @@ import FindingReviewEditor from "@/components/inspection/FindingReviewEditor";
 import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
 import InspectionStepOne from "./steps/InspectionStepOne";
 import InspectionStepTwo from "./steps/InspectionStepTwo";
+import InspectionStepThree from "./steps/InspectionStepThree";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -290,22 +291,12 @@ export default function InspectionStepRenderer({
         />
       )}
       {currentStep === 3 && (
-        <div className="space-y-3">
-          <StepHeroCard
-            step="Step 3"
-            title="Standards & Actions"
-            description="Confirm selected standards, validate risk, and prepare corrective actions for the finding."
-            stats={[
-              { label: "Standards", value: selectedStandards.length },
-              {
-                label: "Actions",
-                value: selectedGeneratedActions.length + manualActions.length,
-              },
-              { label: "Risk", value: severity && likelihood ? "Set" : "Open" },
-            ]}
-          />
-
-          <FindingReviewEditor
+        <InspectionStepThree
+          selectedStandards={selectedStandards}
+          selectedGeneratedActions={selectedGeneratedActions}
+          manualActions={manualActions}
+          severity={severity}
+          likelihood={likelihood}
           description={description}
           setDescription={setDescription}
           location={location}
@@ -316,15 +307,11 @@ export default function InspectionStepRenderer({
           setHazardCategory={setHazardCategory}
           photos={photos}
           safeScopeResult={safeScopeResult}
-          selectedStandards={selectedStandards}
           getStandardKey={getStandardKey}
           toggleSelectedStandard={toggleSelectedStandard}
           activeRiskScale={activeRiskScale}
-          severity={severity}
           setSeverity={setSeverity}
-          likelihood={likelihood}
           setLikelihood={setLikelihood}
-          selectedGeneratedActions={selectedGeneratedActions}
           toggleGeneratedAction={toggleGeneratedAction}
           manualActionTitle={manualActionTitle}
           setManualActionTitle={setManualActionTitle}
@@ -334,11 +321,9 @@ export default function InspectionStepRenderer({
           setManualActionDue={setManualActionDue}
           manualActionClosureEvidence={manualActionClosureEvidence}
           setManualActionClosureEvidence={setManualActionClosureEvidence}
-          manualActions={manualActions}
           addManualAction={addManualAction}
           removeManualAction={removeManualAction}
         />
-        </div>
       )}
 
     </div>
