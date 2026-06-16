@@ -460,18 +460,18 @@ export default function SafetyCalendarPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </AppButton>
-            </div>
-
-            <div className="mt-2 grid grid-cols-7 gap-0.5 text-center text-[8px] font-black uppercase tracking-wide text-blue-300">
+          </div>
+          
+          <div className="mt-2 grid grid-cols-7 gap-0.5 text-center text-[8px] font-black uppercase tracking-wide text-blue-300">
             {WEEKDAY_LABELS.map((day) => (
               <div key={day}>{day}</div>
             ))}
-            </div>
-            </div>
+          </div>
+        </div>
 
-            {/* View Switcher Row */}
-            <div className="flex items-center gap-1 border-b border-slate-200 bg-slate-50 px-2 py-1 dark:border-slate-800 dark:bg-slate-950">
-            {(["month", "week", "day"] as CalendarView[]).map((item) => (
+        {/* View Switcher and Filters Row */}
+        <div className="flex items-center gap-1 border-b border-slate-200 bg-slate-50 px-2 py-1 dark:border-slate-800 dark:bg-slate-950">
+          {(["month", "week", "day"] as CalendarView[]).map((item) => (
             <AppButton
               key={item}
               type="button"
@@ -482,37 +482,21 @@ export default function SafetyCalendarPage() {
             >
               {item[0].toUpperCase() + item.slice(1)}
             </AppButton>
-            ))}
-            </div>
-
-        <div className="mt-2 grid gap-1 px-2 pb-2 sm:grid-cols-2 md:grid-cols-3">
-          <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm">
-            <option value="">▣ All work types</option>
-            <option value="inspection">🟦 Inspections</option>
-            <option value="corrective_action">🟥 Corrective Actions</option>
-            <option value="follow_up">🟨 Follow-ups</option>
-            <option value="supervisor_review">🟪 Reviews</option>
-            <option value="custom">⬛ Custom Tasks</option>
-          </AppSelect>
+          ))}
           
-          {canUseCompanyCalendar && (
-            <AppSelect value={ownerFilter} onChange={(event) => setOwnerFilter(event.target.value)} fieldSize="sm">
-              <option value="">All owners</option>
-              {ownerOptions.map((owner) => (
-                <option key={owner} value={owner}>
-                  {owner}
-                </option>
-              ))}
-            </AppSelect>
-          )}
+          <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="flex-1">
+            <option value="">▣ All</option>
+            <option value="inspection">🟦 Insp</option>
+            <option value="corrective_action">🟥 CA</option>
+            <option value="follow_up">🟨 Follow</option>
+            <option value="supervisor_review">🟪 Review</option>
+          </AppSelect>
 
-          <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm">
-            <option value="">All statuses</option>
+          <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="flex-1">
+            <option value="">All</option>
             <option value="Open">Open</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Blocked">Blocked</option>
-            <option value="Completed">Completed</option>
-            <option value="Overdue">Overdue</option>
+            <option value="In Progress">Prog</option>
+            <option value="Completed">Done</option>
           </AppSelect>
         </div>
       </AppPanel>
