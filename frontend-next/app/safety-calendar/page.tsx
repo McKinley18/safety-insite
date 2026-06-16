@@ -443,41 +443,40 @@ export default function SafetyCalendarPage() {
 
       <AppPanel padding="sm" className="px-3 py-3 sm:px-3 sm:py-3">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-col gap-3">
-            {/* Navigation Row */}
-            <div className="flex items-center justify-between">
-              <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("previous")}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </AppButton>
+      <div className="rounded-t-2xl border border-[#102A43] bg-[#102A43] p-4 text-white">
+        <div className="flex items-center justify-between">
+          <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("previous")}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </AppButton>
 
-              <h2 className="text-xl font-black text-app-text">
-                {view === "month" ? formatMonthLabel(anchorDate) : formatFullDate(anchorDate)}
-              </h2>
+          <h2 className="text-xl font-black">
+            {view === "month" ? formatMonthLabel(anchorDate) : formatFullDate(anchorDate)}
+          </h2>
 
-              <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("next")}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </AppButton>
-            </div>
+          <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("next")}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </AppButton>
+        </div>
 
-            {/* View Switcher Row */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {(["month", "week", "day"] as CalendarView[]).map((item) => (
-                <AppButton
-                  key={item}
-                  type="button"
-                  variant={view === item ? "primary" : "secondary"}
-                  size="sm"
-                  onClick={() => setView(item)}
-                >
-                  {item[0].toUpperCase() + item.slice(1)}
-                </AppButton>
-              ))}
-            </div>
-          </div>
+        {/* View Switcher Row */}
+        <div className="mt-3 flex flex-wrap gap-2 justify-center">
+          {(["month", "week", "day"] as CalendarView[]).map((item) => (
+            <AppButton
+              key={item}
+              type="button"
+              variant={view === item ? "primary" : "secondary"}
+              size="sm"
+              onClick={() => setView(item)}
+            >
+              {item[0].toUpperCase() + item.slice(1)}
+            </AppButton>
+          ))}
+        </div>
+      </div>
         </div>
 
         <div className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-3">
