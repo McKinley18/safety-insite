@@ -876,3 +876,21 @@ body.sentinel-keyboard-open {
     background-color: #ffffff !important;
   }
 }
+
+/* Keep tab/page content above the fixed mobile tab bar, footer, and device safe area. */
+.sentinel-app-main {
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+  scroll-padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .sentinel-app-main {
+    padding-bottom: 4.5rem;
+    scroll-padding-bottom: 4.5rem;
+  }
+}
+
+.sentinel-mobile-content-safe {
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+}
+
