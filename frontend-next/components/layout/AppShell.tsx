@@ -274,7 +274,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <img
               src={BRAND_HEADER_LOGO}
               alt={`${APP_NAME} powered by ${AI_ENGINE_NAME}`}
-              className="h-20 w-auto object-contain sm:h-24 lg:h-28"
+              className="h-12 w-auto max-w-[280px] object-contain sm:h-14 sm:max-w-[340px] lg:h-16 lg:max-w-[390px]"
             />
           </Link>
 

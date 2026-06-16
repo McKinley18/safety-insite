@@ -1,31 +1,43 @@
 <svg width="780" height="190" viewBox="0 0 780 190" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">AuditAlly powered by HazLenz AI</title>
-  <desc id="desc">AuditAlly wordmark with a stylized blue A and green checkmark.</desc>
+  <desc id="desc">AuditAlly wordmark with a slim blue A mark and green checkmark.</desc>
 
   <defs>
-    <linearGradient id="aBlue" x1="72" y1="18" x2="150" y2="142" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#1D72B8"/>
-      <stop offset="0.55" stop-color="#0F5FBC"/>
-      <stop offset="1" stop-color="#0B1320"/>
+    <linearGradient id="aBlue" x1="54" y1="34" x2="158" y2="144" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5DB7FF"/>
+      <stop offset="0.58" stop-color="#1D72B8"/>
+      <stop offset="1" stop-color="#0F5FBC"/>
     </linearGradient>
-    <linearGradient id="checkGreen" x1="145" y1="88" x2="218" y2="126" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#66C24A"/>
+    <linearGradient id="checkGreen" x1="108" y1="98" x2="197" y2="139" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7CE35B"/>
       <stop offset="1" stop-color="#3FA43B"/>
     </linearGradient>
   </defs>
 
-  <!-- Stylized A icon -->
-  <g transform="translate(28 20)">
-    <path d="M86.5 9.5C93.8 -2.8 111.8 -2.8 119.1 9.5L187.5 125.8C193.7 136.4 186.1 149.8 173.8 149.8H150.6C144.8 149.8 139.5 146.7 136.6 141.7L102.8 83.4L69.1 141.7C66.2 146.7 60.8 149.8 55.1 149.8H31.8C19.5 149.8 11.9 136.4 18.1 125.8L86.5 9.5Z" fill="url(#aBlue)"/>
-    <path d="M87.2 112.6L104.1 128.6L153.5 78.2C158.4 73.2 166.4 73.1 171.4 78C176.4 82.9 176.5 90.9 171.6 95.9L113.5 155.2C108.7 160.1 100.9 160.3 95.8 155.6L69.5 130.7C64.4 125.9 64.2 117.9 69 112.8C73.8 107.7 82.1 107.7 87.2 112.6Z" fill="url(#checkGreen)"/>
+  <!-- Slim open A icon, no horizontal crossbar -->
+  <g transform="translate(48 24)">
+    <path
+      d="M34 136 L89 30 C93 22 105 22 109 30 L164 136"
+      stroke="url(#aBlue)"
+      stroke-width="19"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M82 108 L113 138 L184 66"
+      stroke="url(#checkGreen)"
+      stroke-width="19"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
   </g>
 
-  <!-- Wordmark -->
+  <!-- High-contrast wordmark for dark header -->
   <text x="244" y="90" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="62" font-weight="900" letter-spacing="-3">
-    <tspan fill="#0B1320">Audit</tspan><tspan fill="#1D72B8">Ally</tspan>
+    <tspan fill="#FFFFFF">Audit</tspan><tspan fill="#5DB7FF">Ally</tspan>
   </text>
 
-  <text x="248" y="128" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="700" letter-spacing="-0.2">
-    <tspan fill="#0B1320">Powered by </tspan><tspan fill="#1D72B8">HazLenz AI</tspan>
+  <text x="248" y="128" font-family="Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="21" font-weight="800" letter-spacing="-0.2">
+    <tspan fill="#D8ECFF">Powered by </tspan><tspan fill="#7CE35B">HazLenz AI</tspan>
   </text>
 </svg>

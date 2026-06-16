@@ -7,7 +7,7 @@ function getReportPackageExportNote(input: any) {
 }
 
 
-const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with SightSignal / HazLenz AI. HazLenz AI outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
+const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with AuditAlly / HazLenz AI. HazLenz AI outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
 
 function normalizePdfPercent(value: any) {
   const numeric = Number(value);

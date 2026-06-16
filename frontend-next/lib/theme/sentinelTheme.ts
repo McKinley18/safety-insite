@@ -1,6 +1,6 @@
 export const sentinelTheme = {
   brand: {
-    name: "SightSignal",
+    name: "AuditAlly",
     engine: "HazLenz AI",
     navy: "#0f172a",
     headerNavy: "#102A43",

@@ -20,7 +20,7 @@ type CompanyAssignedWork = {
 };
 
 const COMPANY_ASSIGNED_WORK_KEY = "sentinel_company_assigned_work";
-const PERSONAL_CALENDAR_EVENTS_KEY = "sightsignal_personal_calendar_events";
+const PERSONAL_CALENDAR_EVENTS_KEY = "auditally_personal_calendar_events";
 
 export function parseLocalCalendarDate(value?: string) {
   if (!value || value === "No due date" || value === "Not set") return null;
