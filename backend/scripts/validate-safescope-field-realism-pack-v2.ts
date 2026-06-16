@@ -17,6 +17,9 @@ function textOf(value: unknown): string {
 }
 
 function generatedDecisionText(result: any): string {
+  // Keep this focused on active decision output. Do not include passive registry,
+  // evidence-bank, or background knowledge fields that may contain terms for
+  // contrastive reasoning but are not presented as HazLenz's decision.
   return textOf({
     hazardClassification: result.hazardClassification,
     jurisdictionAssessment: result.jurisdictionAssessment,
@@ -27,9 +30,7 @@ function generatedDecisionText(result: any): string {
     correctiveActionRecommendations: result.correctiveActionReasoning?.recommendations,
     correctiveActionReasoningBoundary: result.correctiveActionReasoning?.reasoningBoundary,
     equipmentReasoningSummary: result.equipmentReasoningSummary,
-    missingEvidence: result.missingEvidence,
     confidence: result.confidence,
-    recommendedNextQuestions: result.recommendedNextQuestions,
     brainSummary: result.brainSnapshot?.situationalAwarenessPacket?.summary
       ? {
           likelyCitation: result.brainSnapshot.situationalAwarenessPacket.summary.likelyCitation,
@@ -37,18 +38,12 @@ function generatedDecisionText(result: any): string {
           selectedScenarioId: result.brainSnapshot.situationalAwarenessPacket.summary.selectedScenarioId,
           selectedScenarioLabel: result.brainSnapshot.situationalAwarenessPacket.summary.selectedScenarioLabel,
           scenarioConfidence: result.brainSnapshot.situationalAwarenessPacket.summary.scenarioConfidence,
-          evidenceGapDisposition: result.brainSnapshot.situationalAwarenessPacket.summary.evidenceGapDisposition,
-          evidenceGapHighestSeverity: result.brainSnapshot.situationalAwarenessPacket.summary.evidenceGapHighestSeverity,
-          evidenceGapCriticalQuestions: result.brainSnapshot.situationalAwarenessPacket.summary.evidenceGapCriticalQuestions,
           decisionConfidenceLevel: result.brainSnapshot.situationalAwarenessPacket.summary.decisionConfidenceLevel,
           defensibilityScore: result.brainSnapshot.situationalAwarenessPacket.summary.defensibilityScore,
           decisionRecommendedDisposition: result.brainSnapshot.situationalAwarenessPacket.summary.decisionRecommendedDisposition,
           decisionWarnings: result.brainSnapshot.situationalAwarenessPacket.summary.decisionWarnings,
-          likelyControls: result.brainSnapshot.situationalAwarenessPacket.summary.likelyControls,
-          criticalEvidenceQuestions: result.brainSnapshot.situationalAwarenessPacket.summary.criticalEvidenceQuestions,
         }
       : undefined,
-    brainAlignment: result.brainSnapshot?.alignment,
     brainBoundary: result.brainSnapshot?.boundary,
   }).toLowerCase();
 }
