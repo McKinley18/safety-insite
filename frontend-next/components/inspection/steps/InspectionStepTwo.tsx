@@ -30,7 +30,7 @@ interface InspectionStepTwoProps {
 
 export default function InspectionStepTwo(props: InspectionStepTwoProps) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       <SafeScopeInspectionStep {...props} />
     </div>
   );

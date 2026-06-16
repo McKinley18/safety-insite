@@ -93,7 +93,7 @@ export default function SafeScopeInspectionStep({
       />
 
       {safeScopeStatus && !safeScopeResult && safeScopeStatus.includes("Running") && (
-        <div className="mb-4 border-y border-slate-200 dark:border-slate-800 py-4 space-y-4">
+        <div className="mb-2 border-y border-slate-200 dark:border-slate-800 py-3 space-y-2">
            <Skeleton className="h-8 w-1/3" />
            <Skeleton className="h-24 w-full" />
            <Skeleton className="h-32 w-full" />
@@ -101,7 +101,7 @@ export default function SafeScopeInspectionStep({
       )}
 
       {safeScopeStatus && !safeScopeResult && !safeScopeStatus.includes("Running") && (
-        <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-900/30 p-4">
+        <div className="mb-2 rounded-2xl border border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-900/30 p-3">
           <div className="flex items-start gap-3">
             <span className="text-xl">⚠️</span>
             <div className="min-w-0 flex-1">
@@ -150,7 +150,7 @@ export default function SafeScopeInspectionStep({
 
           <SafeScopeEquipmentReasoningSection safeScopeResult={safeScopeResult} />
 
-          <div className="mb-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 shadow-sm">
+          <div className="mb-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
