@@ -134,30 +134,30 @@ export default function FinalizeInspectionSection({
           any finding card to verify details before continuing.
         </p>
 
-        <div className="mt-5 flex h-20 w-full items-start justify-center gap-2 text-center">
-          <div className="sentinel-step-four-stat-box flex h-16 w-1/3 flex-col items-center justify-start rounded-xl px-2 py-2 text-center">
-            <p className="sentinel-step-four-stat-label text-[9px] font-black uppercase tracking-wide">
+        <div className="mt-5 flex h-16 w-full items-start justify-center gap-1.5 text-center">
+          <div className="flex h-16 w-1/3 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
+            <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
               Findings
             </p>
-            <p className="mt-0.5 text-base font-black text-white">
+            <p className="mt-0.5 text-sm font-black text-white">
               {visibleFindings.length}
             </p>
           </div>
 
-          <div className="sentinel-step-four-stat-box flex h-16 w-1/3 flex-col items-center justify-start rounded-xl px-2 py-2 text-center">
-            <p className="sentinel-step-four-stat-label text-[9px] font-black uppercase tracking-wide">
+          <div className="flex h-16 w-1/3 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
+            <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
               Current
             </p>
-            <p className="mt-0.5 text-base font-black text-white">
+            <p className="mt-0.5 text-sm font-black text-white">
               {currentStatus === "Not started" ? "-" : currentStatus}
             </p>
           </div>
 
-          <div className="sentinel-step-four-stat-box flex h-16 w-1/3 flex-col items-center justify-start rounded-xl px-2 py-2 text-center">
-            <p className="sentinel-step-four-stat-label text-[9px] font-black uppercase tracking-wide">
+          <div className="flex h-16 w-1/3 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
+            <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
               Next
             </p>
-            <p className="mt-0.5 text-base font-black text-white">
+            <p className="mt-0.5 text-sm font-black text-white">
               Report
             </p>
           </div>
