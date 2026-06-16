@@ -168,12 +168,12 @@ export default function GenerateReportSection({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+      <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
           Report Contents
         </p>
 
-        <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
+        <h3 className="mt-1 text-base font-black text-white">
           Package summary
         </h3>
 
