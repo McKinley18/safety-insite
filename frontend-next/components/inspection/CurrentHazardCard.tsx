@@ -64,6 +64,11 @@ export default function CurrentHazardCard({
   );
 
   useEffect(() => {
+    setExpanded(false);
+    setHidden(false);
+  }, [currentStep]);
+
+  useEffect(() => {
     if (!expanded) return;
 
     function handlePointerDown(event: MouseEvent | TouchEvent) {
@@ -75,12 +80,20 @@ export default function CurrentHazardCard({
       }
     }
 
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setExpanded(false);
+      }
+    }
+
     document.addEventListener("mousedown", handlePointerDown);
     document.addEventListener("touchstart", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("touchstart", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [expanded]);
 
@@ -89,14 +102,12 @@ export default function CurrentHazardCard({
       <button
         type="button"
         onClick={() => setHidden(false)}
-        className="sentinel-keyboard-hide fixed bottom-28 left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-xs font-black text-white shadow-xl shadow-slate-950/15 ring-1 ring-white/10 backdrop-blur transition hover:bg-[#1D72B8] lg:bottom-16"
+        className="sentinel-keyboard-hide fixed bottom-[calc(var(--sentinel-mobile-tabbar-height)-1.1rem)] left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-xs font-black text-white shadow-xl shadow-slate-950/15 ring-1 ring-white/10 backdrop-blur transition hover:bg-[#1D72B8] lg:bottom-16"
       >
         Show Finding Builder
       </button>
     );
   }
-
-  void hasData;
 
   const category =
     hazardCategory ||
@@ -154,99 +165,95 @@ export default function CurrentHazardCard({
     "Add photos, location, and notes to build this finding.",
   );
 
+  const detailsId = `finding-builder-details-${currentStep}`;
+
   return (
     <>
       <div className="sentinel-finding-builder-scroll-spacer sentinel-keyboard-hide" aria-hidden="true" />
-      <div
-      className="sentinel-keyboard-hide fixed inset-x-0 bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] z-[999998] px-3 pb-2 pointer-events-none lg:static lg:px-0"
-      style={{ bottom: "var(--sentinel-mobile-tabbar-height)" }}
-    >
-      <section
-        ref={cardRef}
-        className="pointer-events-auto mx-auto w-full max-w-3xl rounded-t-[24px] border border-white/10 bg-white/92 shadow-sm ring-1 ring-white/70 backdrop-blur-xl lg:rounded-xl"
-      >
-        <button
-          type="button"
-          onClick={() => setExpanded((open) => !open)}
-          className="block w-full px-3 py-2 text-left"
-        >
-          <div className="flex min-w-0 items-center gap-2">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#0B1320] text-xs font-black text-white shadow-sm">
-              {currentStep}
-            </div>
 
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-1.5">
-                <p className="truncate text-[9px] font-black uppercase tracking-[0.16em] text-[#1D72B8]">
-                  Finding Builder
+      <div
+        className="sentinel-keyboard-hide fixed inset-x-0 bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] z-[999998] px-3 pb-0 pointer-events-none lg:static lg:px-0"
+        style={{ bottom: "calc(var(--sentinel-mobile-tabbar-height) - 1.65rem)" }}
+      >
+        <section
+          ref={cardRef}
+          className="pointer-events-auto mx-auto w-full max-w-3xl rounded-t-[18px] border border-white/10 bg-white/92 shadow-sm ring-1 ring-white/70 backdrop-blur-xl lg:rounded-xl"
+          aria-label="Finding Builder"
+        >
+          <div className="flex min-w-0 items-center gap-2 px-3 py-1.5">
+            <button
+              type="button"
+              onClick={() => setExpanded((open) => !open)}
+              className="flex min-w-0 flex-1 items-center gap-2 text-left"
+              aria-expanded={expanded}
+              aria-controls={detailsId}
+              aria-label={hasData ? "Toggle current finding builder" : "Toggle empty finding builder"}
+            >
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#0B1320] text-[11px] font-black text-white shadow-sm">
+                {currentStep}
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5">
+                  <p className="truncate text-[8px] font-black uppercase tracking-[0.14em] text-[#1D72B8]">
+                    Finding Builder
+                  </p>
+
+                  <span
+                    className={`shrink-0 rounded-full px-1.5 py-[1px] text-[7px] font-black uppercase tracking-wide ${
+                      currentFindingSaved
+                        ? "bg-emerald-50 text-emerald-700"
+                        : "bg-amber-50 text-amber-700"
+                    }`}
+                  >
+                    {currentFindingSaved ? "Saved" : "Draft"}
+                  </span>
+                </div>
+
+                <h2 className="truncate text-[12px] font-black leading-3 text-slate-950">
+                  {category}
+                </h2>
+
+                <p className="truncate text-[9px] font-semibold leading-3 text-slate-500">
+                  {primaryLine} · {categorySource}
                 </p>
 
-                <span
-                  className={`shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wide ${
-                    currentFindingSaved
-                      ? "bg-emerald-50 text-emerald-700"
-                      : "bg-amber-50 text-amber-700"
-                  }`}
-                >
-                  {currentFindingSaved ? "Saved" : "Draft"}
-                </span>
+                <div className="mt-0.5 flex flex-wrap items-center gap-1">
+                  <span
+                    className={`rounded-full px-1.5 py-[1px] text-[8px] font-black uppercase tracking-wide ring-1 ${riskTone}`}
+                  >
+                    {riskLabel}
+                  </span>
+
+                  <span className="rounded-full bg-blue-50 px-1.5 py-[1px] text-[8px] font-black uppercase tracking-wide text-blue-700 ring-1 ring-blue-100">
+                    {confidenceLabel} Confidence
+                  </span>
+
+                  <span className="max-w-[135px] truncate rounded-full bg-slate-100 px-1.5 py-[1px] text-[8px] font-black tracking-wide text-slate-700 ring-1 ring-slate-200">
+                    {topStandard}
+                  </span>
+                </div>
               </div>
 
-              <h2 className="mt-0.5 truncate text-[13px] font-black leading-4 text-slate-950">
-                {category}
-              </h2>
-
-              <p className="truncate text-[10px] font-semibold leading-4 text-slate-500">
-                {primaryLine} · {categorySource}
-              </p>
-
-              <div className="mt-1 flex flex-wrap items-center gap-1.5">
-                <span
-                  className={`rounded-full px-2 py-0.5 text-[9px] font-black uppercase tracking-wide ring-1 ${riskTone}`}
-                >
-                  {riskLabel}
-                </span>
-
-                <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-blue-700 ring-1 ring-blue-100">
-                  {confidenceLabel} Confidence
-                </span>
-
-                <span className="max-w-[150px] truncate rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black tracking-wide text-slate-700 ring-1 ring-slate-200">
-                  {topStandard}
-                </span>
-              </div>
-            </div>
-
-            <div className="shrink-0 text-right">
-              <p className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-sm font-black leading-none text-slate-600">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black leading-none text-slate-600">
                 {expanded ? "⌄" : "⌃"}
-              </p>
-
-              <span
-                role="button"
-                tabIndex={0}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  setExpanded(false);
-                  setHidden(true);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    setExpanded(false);
-                    setHidden(true);
-                  }
-                }}
-                className="mt-1 inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500 transition hover:bg-slate-200 hover:text-slate-700"
-              >
-                Hide
               </span>
-            </div>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setExpanded(false);
+                setHidden(true);
+              }}
+              className="shrink-0 rounded-full bg-slate-100 px-1.5 py-[1px] text-[8px] font-black uppercase tracking-wide text-slate-500 transition hover:bg-slate-200 hover:text-slate-700"
+            >
+              Hide
+            </button>
           </div>
 
           {expanded && (
-            <div className="mt-2 border-t border-slate-200 pt-2">
+            <div id={detailsId} className="border-t border-slate-200 px-3 pb-2 pt-2">
               <p className="line-clamp-2 text-xs font-semibold leading-5 text-slate-600">
                 {secondaryLine}
               </p>
@@ -286,9 +293,8 @@ export default function CurrentHazardCard({
               </div>
             </div>
           )}
-        </button>
-      </section>
-    </div>
+        </section>
+      </div>
     </>
   );
 }
