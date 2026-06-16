@@ -134,30 +134,30 @@ export default function FinalizeInspectionSection({
           any finding card to verify details before continuing.
         </p>
 
-        <div className="mt-5 grid grid-cols-3 gap-2 text-center">
-          <div className="sentinel-step-four-stat-box flex min-h-[72px] flex-col items-center justify-center rounded-xl px-3 py-3 text-center">
+        <div className="mt-5 flex items-start justify-center gap-2 text-center">
+          <div className="sentinel-step-four-stat-box flex h-16 w-1/3 flex-col items-center justify-center rounded-xl px-2 py-2 text-center">
             <p className="sentinel-step-four-stat-label text-[9px] font-black uppercase tracking-wide">
               Findings
             </p>
-            <p className="mt-1 text-lg font-black text-white">
+            <p className="mt-0.5 text-base font-black text-white">
               {visibleFindings.length}
             </p>
           </div>
 
-          <div className="sentinel-step-four-stat-box flex min-h-[72px] flex-col items-center justify-center rounded-xl px-3 py-3 text-center">
+          <div className="sentinel-step-four-stat-box flex h-16 w-1/3 flex-col items-center justify-center rounded-xl px-2 py-2 text-center">
             <p className="sentinel-step-four-stat-label text-[9px] font-black uppercase tracking-wide">
               Current
             </p>
-            <p className="mt-1 text-lg font-black text-white">
+            <p className="mt-0.5 text-base font-black text-white">
               {currentStatus}
             </p>
           </div>
 
-          <div className="sentinel-step-four-stat-box flex min-h-[72px] flex-col items-center justify-center rounded-xl px-3 py-3 text-center">
+          <div className="sentinel-step-four-stat-box flex h-16 w-1/3 flex-col items-center justify-center rounded-xl px-2 py-2 text-center">
             <p className="sentinel-step-four-stat-label text-[9px] font-black uppercase tracking-wide">
               Next
             </p>
-            <p className="mt-1 text-lg font-black text-white">
+            <p className="mt-0.5 text-base font-black text-white">
               Report
             </p>
           </div>
