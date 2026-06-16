@@ -155,8 +155,10 @@ export default function CurrentHazardCard({
   );
 
   return (
-    <div
-      className="sentinel-keyboard-hide fixed inset-x-0 z-[999998] px-3 pb-2 pointer-events-none lg:static lg:px-0"
+    <>
+      <div className="sentinel-finding-builder-scroll-spacer sentinel-keyboard-hide" aria-hidden="true" />
+      <div
+      className="sentinel-keyboard-hide fixed inset-x-0 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] z-[999998] px-3 pb-2 pointer-events-none lg:static lg:px-0"
       style={{ bottom: "var(--sentinel-mobile-tabbar-height)" }}
     >
       <section
@@ -287,5 +289,6 @@ export default function CurrentHazardCard({
         </button>
       </section>
     </div>
+    </>
   );
 }

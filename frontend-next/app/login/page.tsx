@@ -8,7 +8,7 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppTextLink } from "@/components/ui/AppTextLink";
 import { isLocalDevAuthBypassEnabled, LOCAL_DEV_AUTH_TOKEN, setAuthSession } from "@/lib/auth";
-import { AI_ENGINE_NAME, APP_DESCRIPTION, APP_NAME, APP_TAGLINE } from "@/lib/brand";
+import { AI_ENGINE_NAME, APP_DESCRIPTION, APP_NAME } from "@/lib/brand";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -83,11 +83,6 @@ export default function LoginPage() {
         <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1320] via-[#102A43] to-[#0B1320] p-5 text-white sm:p-8 lg:p-10">
           <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#1D72B8]/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-20 left-8 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
-
-          <div className="relative mt-5 inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-blue-100 ring-1 ring-white/15">
-            {APP_TAGLINE}
-          </div>
-
           <h1 className="relative mt-5 text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl">
             Welcome back.
           </h1>

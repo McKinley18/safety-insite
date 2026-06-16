@@ -18,14 +18,6 @@ const workflow = [
   },
 ];
 
-const capabilities = [
-  "Mobile inspection capture",
-  "Risk and exposure review",
-  "MSHA and OSHA standards support",
-  "Corrective action tracking",
-  "Inspection-ready records",
-  "Professional review workflow",
-];
 
 const outcomes = [
   ["Less scattered evidence", "Keep findings, photos, notes, standards support, and actions connected."],
@@ -132,16 +124,6 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          {capabilities.map((item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-slate-200/80 bg-white px-4 py-4 text-sm font-black text-slate-800 shadow-sm  "
-            >
-              {item}
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className="mt-8 rounded-[28px] border border-slate-200/80 bg-white p-6 shadow-sm   sm:p-8">

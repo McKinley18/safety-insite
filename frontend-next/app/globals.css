@@ -896,13 +896,15 @@ body.sentinel-keyboard-open {
 
 /* Inspection workflow: keep content clear of sticky step controls and the fixed finding builder. */
 .sentinel-inspection-page {
-  padding-bottom: calc(15rem + env(safe-area-inset-bottom, 0px));
-  scroll-padding-bottom: calc(15rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(22rem + env(safe-area-inset-bottom, 0px)) !important;
+  scroll-padding-bottom: calc(22rem + env(safe-area-inset-bottom, 0px));
   scroll-padding-top: calc(6rem + env(safe-area-inset-top, 0px));
 }
 
 .sentinel-inspection-workflow-header {
-  top: calc(4.85rem + env(safe-area-inset-top, 0px));
+  top: calc(3.5rem + env(safe-area-inset-top, 0px));
+  margin-inline: -0.5rem;
+  width: calc(100% + 1rem);
 }
 
 .sentinel-inspection-workflow-header-label,
@@ -927,13 +929,27 @@ body.sentinel-keyboard-open {
 
 @media (min-width: 768px) {
   .sentinel-inspection-page {
-    padding-bottom: 10rem;
-    scroll-padding-bottom: 10rem;
+    padding-bottom: 14rem !important;
+    scroll-padding-bottom: 14rem;
     scroll-padding-top: 7rem;
   }
 
   .sentinel-inspection-workflow-header {
-    top: 5.5rem;
+    top: 4.75rem;
+    margin-inline: 0;
+    width: 100%;
   }
 }
 
+
+
+/* Spacer placed before the fixed Finding Builder so final step content can scroll above it. */
+.sentinel-finding-builder-scroll-spacer {
+  height: calc(18rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .sentinel-finding-builder-scroll-spacer {
+    height: 10rem;
+  }
+}
