@@ -375,16 +375,7 @@ export default function SafetyCalendarPage() {
         </div>
       </HeroPanel>
 
-      {!canUseCompanyCalendar && (
-        <AppPanel padding="sm" className="app-card">
-          <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-            Personal Safety Calendar
-          </p>
-          <p className="mt-1 text-sm font-bold leading-6 text-app-text-muted">
-            Basic and Pro plans show personal safety work. Company workspaces add owner filters, team assignments, unassigned work visibility, and organization-wide workload planning.
-          </p>
-        </AppPanel>
-      )}
+      {/* Personal safety calendar card removed */}
 
       <AppPanel padding="md" className="app-card">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
@@ -442,36 +433,48 @@ export default function SafetyCalendarPage() {
       </AppPanel>
 
       <AppPanel padding="sm" className="px-3 py-3 sm:px-3 sm:py-3">
-        <div className="flex flex-wrap items-center gap-2">
+        <p className="mb-3 text-[10px] font-black uppercase tracking-widest text-slate-500">
+          Calendar Controls & Filters
+        </p>
+        
+        <div className="flex flex-wrap items-center gap-4">
           {/* View Switchers */}
-          {(["month", "week", "day"] as CalendarView[]).map((item) => (
-            <AppButton
-              key={item}
-              type="button"
-              variant={view === item ? "primary" : "secondary"}
-              size="sm"
-              onClick={() => setView(item)}
-              className={view === item ? "ring-2 ring-blue-400" : ""}
-            >
-              {item[0].toUpperCase() + item.slice(1)}
-            </AppButton>
-          ))}
+          <div className="flex gap-1">
+            {(["month", "week", "day"] as CalendarView[]).map((item) => (
+              <AppButton
+                key={item}
+                type="button"
+                variant={view === item ? "primary" : "secondary"}
+                size="sm"
+                onClick={() => setView(item)}
+                className={`px-3 ${view === item ? "ring-2 ring-blue-400" : ""}`}
+              >
+                {item[0].toUpperCase() + item.slice(1)}
+              </AppButton>
+            ))}
+          </div>
           
-          <div className="flex flex-1 gap-2">
-            <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="flex-1 text-xs">
-              <option value="">▣ All</option>
-              <option value="inspection">🟦 Insp</option>
-              <option value="corrective_action">🟥 CA</option>
-              <option value="follow_up">🟨 Follow</option>
-              <option value="supervisor_review">🟪 Review</option>
-            </AppSelect>
+          <div className="flex flex-1 flex-wrap gap-2">
+            <div className="flex-1">
+              <label className="mb-0.5 block text-[9px] font-black uppercase text-slate-400">Type</label>
+              <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="w-full text-xs">
+                <option value="">▣ All types</option>
+                <option value="inspection">🟦 Insp</option>
+                <option value="corrective_action">🟥 CA</option>
+                <option value="follow_up">🟨 Follow</option>
+                <option value="supervisor_review">🟪 Review</option>
+              </AppSelect>
+            </div>
 
-            <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="flex-1 text-xs">
-              <option value="">All status</option>
-              <option value="Open">Open</option>
-              <option value="In Progress">Prog</option>
-              <option value="Completed">Done</option>
-            </AppSelect>
+            <div className="flex-1">
+              <label className="mb-0.5 block text-[9px] font-black uppercase text-slate-400">Status</label>
+              <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="w-full text-xs">
+                <option value="">All statuses</option>
+                <option value="Open">Open</option>
+                <option value="In Progress">Prog</option>
+                <option value="Completed">Done</option>
+              </AppSelect>
+            </div>
           </div>
         </div>
       </AppPanel>
