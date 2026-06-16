@@ -22,11 +22,11 @@ export function StepHeroCard({
       </p>
 
       {!!stats?.length && (
-        <div className="mt-2 grid grid-cols-3 gap-1.5 text-center">
+        <div className="mt-2 flex h-16 w-full items-start justify-center gap-1.5 text-center">
           {stats.map((item) => (
             <div
               key={item.label}
-              className="flex min-h-[50px] flex-col items-center justify-center rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10"
+              className="flex h-16 w-1/3 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10"
             >
               <p className="text-center text-[8px] font-black uppercase tracking-wide text-blue-100">
                 {item.label}
