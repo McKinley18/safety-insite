@@ -229,9 +229,9 @@ export default function GenerateReportSection({
             type="button"
             onClick={generateReport}
             disabled={!findings.length}
-            className="rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="rounded-xl bg-[#F97316] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300"
           >
-            Generate Report
+            Generate
           </button>
         </div>
       </div>
