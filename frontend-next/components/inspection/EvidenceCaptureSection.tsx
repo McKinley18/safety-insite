@@ -243,6 +243,11 @@ export default function EvidenceCaptureSection({
           placeholder="Example: Missing guard on rotating shaft near crusher drive."
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+          onFocus={(event) => {
+            setTimeout(() => {
+              event.target.scrollIntoView({ block: "center", behavior: "smooth" });
+            }, 300);
+          }}
         />
 
         <div className="mt-1">
