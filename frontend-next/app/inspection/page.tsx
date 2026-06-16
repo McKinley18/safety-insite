@@ -1072,6 +1072,8 @@ export default function InspectionPage() {
 
   return (
     <div className="sentinel-mobile-page sentinel-inspection-page space-y-4">
+      <div className="sentinel-inspection-before-header-gap" aria-hidden="true" />
+
       <InspectionWorkflowHeader
         currentStep={currentStep}
         steps={steps}
@@ -1085,7 +1087,8 @@ export default function InspectionPage() {
         goToCoverPage={() => router.push("/inspection-cover")}
       />
 
-      <InspectionStepRenderer
+      <div className="sentinel-inspection-after-header-gap">
+        <InspectionStepRenderer
         currentStep={currentStep}
         isAdvancedMode={isAdvancedMode}
         inspectionContext={inspectionContext}
@@ -1185,6 +1188,8 @@ export default function InspectionPage() {
         setIncludeSafeScopeNotesInReport={setIncludeSafeScopeNotesInReport}
         generateReport={generateReport}
       />
+
+      </div>
 
       {currentStep < 4 && (
         <CurrentHazardCard

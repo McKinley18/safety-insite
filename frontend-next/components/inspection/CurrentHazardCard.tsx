@@ -158,7 +158,7 @@ export default function CurrentHazardCard({
     <>
       <div className="sentinel-finding-builder-scroll-spacer sentinel-keyboard-hide" aria-hidden="true" />
       <div
-      className="sentinel-keyboard-hide fixed inset-x-0 bottom-[calc(5.75rem+env(safe-area-inset-bottom,0px))] z-[999998] px-3 pb-2 pointer-events-none lg:static lg:px-0"
+      className="sentinel-keyboard-hide fixed inset-x-0 bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] z-[999998] px-3 pb-2 pointer-events-none lg:static lg:px-0"
       style={{ bottom: "var(--sentinel-mobile-tabbar-height)" }}
     >
       <section

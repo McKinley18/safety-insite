@@ -323,9 +323,9 @@ export default function QuickInspectionPage() {
             href="/inspections"
             variant="ghost"
             size="sm"
-            className="border-white/20 bg-white/10 text-white hover:bg-white/20"
+            className="border-white bg-white text-[#0B1320] shadow-sm hover:bg-blue-50"
           >
-            Change Workflow
+            Change
           </AppLinkButton>
         </div>
 

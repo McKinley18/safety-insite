@@ -896,13 +896,14 @@ body.sentinel-keyboard-open {
 
 /* Inspection workflow: keep content clear of sticky step controls and the fixed finding builder. */
 .sentinel-inspection-page {
-  padding-bottom: calc(22rem + env(safe-area-inset-bottom, 0px)) !important;
-  scroll-padding-bottom: calc(22rem + env(safe-area-inset-bottom, 0px));
-  scroll-padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(10rem + env(safe-area-inset-bottom, 0px)) !important;
+  scroll-padding-bottom: calc(10rem + env(safe-area-inset-bottom, 0px));
+  scroll-padding-top: calc(3.25rem + env(safe-area-inset-top, 0px));
 }
 
 .sentinel-inspection-workflow-header {
-  top: calc(3.5rem + env(safe-area-inset-top, 0px));
+  position: sticky !important;
+  top: calc(0.35rem + env(safe-area-inset-top, 0px));
   margin-inline: -0.5rem;
   width: calc(100% + 1rem);
 }
@@ -929,13 +930,17 @@ body.sentinel-keyboard-open {
 
 @media (min-width: 768px) {
   .sentinel-inspection-page {
-    padding-bottom: 14rem !important;
-    scroll-padding-bottom: 14rem;
+    padding-top: 0;
+    padding-bottom: 8rem !important;
+    scroll-padding-bottom: 8rem;
     scroll-padding-top: 7rem;
   }
 
   .sentinel-inspection-workflow-header {
-    top: 4.75rem;
+    position: sticky !important;
+    top: 1rem;
+    left: auto;
+    right: auto;
     margin-inline: 0;
     width: 100%;
   }
@@ -945,11 +950,91 @@ body.sentinel-keyboard-open {
 
 /* Spacer placed before the fixed Finding Builder so final step content can scroll above it. */
 .sentinel-finding-builder-scroll-spacer {
-  height: calc(18rem + env(safe-area-inset-bottom, 0px));
+  height: calc(22rem + env(safe-area-inset-bottom, 0px));
 }
 
 @media (min-width: 768px) {
   .sentinel-finding-builder-scroll-spacer {
     height: 10rem;
+  }
+}
+
+
+/* Step 4 sits below the fixed inspection step banner on mobile. */
+.sentinel-step-four-clearance {
+  padding-top: 1.25rem;
+}
+
+.sentinel-step-four-stat-box {
+  border: 1px solid rgba(29, 114, 184, 0.45);
+  background: linear-gradient(135deg, #0B1320 0%, #102A43 62%, #123B63 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+}
+
+.sentinel-step-four-stat-label {
+  color: #BFDBFE;
+}
+
+.sentinel-step-four-stat-value {
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .sentinel-step-four-clearance {
+    padding-top: 0;
+  }
+}
+
+
+
+.sentinel-step-four-stat-box {
+  border: 1px solid rgba(147, 197, 253, 0.75);
+  background: linear-gradient(135deg, #020617 0%, #0B1320 50%, #102A43 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.2);
+}
+
+.sentinel-step-four-stat-label {
+  color: #BFDBFE !important;
+}
+
+.sentinel-step-four-stat-value {
+  color: #ffffff !important;
+}
+
+
+
+/* Normal-flow gap below the sticky inspection step banner. */
+.sentinel-inspection-after-header-gap {
+  padding-top: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  .sentinel-inspection-after-header-gap {
+    padding-top: 0.35rem;
+  }
+}
+
+
+/* Resting space above the sticky inspection banner; the viewport catches the banner on scroll. */
+.sentinel-inspection-before-header-gap {
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Tight normal-flow gap below the sticky inspection banner. */
+.sentinel-inspection-after-header-gap {
+  padding-top: 0.2rem;
+}
+
+@media (min-width: 768px) {
+  .sentinel-inspection-before-header-gap {
+    height: 0;
+  }
+
+  .sentinel-inspection-after-header-gap {
+    padding-top: 0.35rem;
   }
 }
