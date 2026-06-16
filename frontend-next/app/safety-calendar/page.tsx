@@ -458,16 +458,16 @@ export default function SafetyCalendarPage() {
           ))}
           
           <div className="flex flex-1 gap-2">
-            <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="flex-1">
-              <option value="">▣ All types</option>
+            <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="flex-1 text-xs">
+              <option value="">▣ All</option>
               <option value="inspection">🟦 Insp</option>
               <option value="corrective_action">🟥 CA</option>
               <option value="follow_up">🟨 Follow</option>
               <option value="supervisor_review">🟪 Review</option>
             </AppSelect>
 
-            <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="flex-1">
-              <option value="">All statuses</option>
+            <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="flex-1 text-xs">
+              <option value="">All status</option>
               <option value="Open">Open</option>
               <option value="In Progress">Prog</option>
               <option value="Completed">Done</option>
