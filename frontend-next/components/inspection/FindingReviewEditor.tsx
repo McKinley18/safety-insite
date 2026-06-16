@@ -91,8 +91,8 @@ export default function FindingReviewEditor({
   const suggestedStandards = safeScopeResult?.suggestedStandards || [];
 
   return (
-    <section className="space-y-4">
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+    <section className="space-y-2">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Standards Confirmation
         </p>
@@ -107,7 +107,7 @@ export default function FindingReviewEditor({
           Standards are selected in the HazLenz AI Review step. This step is for final risk and corrective action confirmation.
         </p>
 
-        <div className="mt-3 space-y-2">
+        <div className="mt-2 space-y-2">
           {(selectedStandards.length ? selectedStandards : suggestedStandards.slice(0, 2)).map((standard: any) => {
             const included = selectedStandards.some(
               (item) => getStandardKey(item) === getStandardKey(standard),
@@ -154,12 +154,12 @@ export default function FindingReviewEditor({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3 shadow-sm">
         <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Risk
         </p>
 
-        <div className="mt-3">
+        <div className="mt-2">
           <RiskReviewSection
             activeRiskScale={activeRiskScale}
             safeScopeResult={safeScopeResult}

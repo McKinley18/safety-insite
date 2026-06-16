@@ -37,7 +37,7 @@ interface InspectionStepThreeProps {
 
 export default function InspectionStepThree(props: InspectionStepThreeProps) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       <StepHeroCard
         step="Step 3"
         title="Standards & Actions"
