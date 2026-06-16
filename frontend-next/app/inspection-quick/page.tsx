@@ -340,7 +340,7 @@ export default function QuickInspectionPage() {
               key={label}
               className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
             >
-              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
+              <p className="text-base font-black tracking-[-0.05em] text-white sm:text-xl">
                 {value}
               </p>
               <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-300">
@@ -461,7 +461,7 @@ export default function QuickInspectionPage() {
                 <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                   Likely Issue
                 </p>
-                <h3 className="mt-1 text-lg font-black text-[#102A43]">
+                <h3 className="mt-1 text-sm font-black text-[#102A43] sm:text-lg">
                   {safeScopeQuickResult.classification}
                 </h3>
               </div>

@@ -333,12 +333,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     createPortal(
                       <div
                         ref={profileMenuRef}
-                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#F0F8FF_0%,#FFFFFF_45%,#F8FAFC_100%)] dark:border-slate-800 dark:bg-[linear-gradient(180deg,#102A43_0%,#0F172A_55%,#020617_100%)] shadow-2xl shadow-slate-950/30 sm:right-4 sm:top-[82px]"
+                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#F0F8FF_0%,#FFFFFF_45%,#F8FAFC_100%)] text-[#102A43] shadow-2xl shadow-slate-950/30 sm:right-4 sm:top-[82px]"
                       >
                       <button
                         type="button"
                         onClick={() => setDarkMode(!darkMode)}
-                        className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-[#E8F4FF] dark:hover:bg-slate-800 transition-colors"
+                        className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                       >
                         {darkMode ? 'Light Mode' : 'Dark Mode'}
                         {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -352,7 +352,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                             setProfileOpen(false);
                             router.push("/unlock");
                           }}
-                          className="block w-full min-h-[48px] px-4 py-4 text-left text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-[#E8F4FF] dark:hover:bg-slate-800 transition-colors"
+                          className="block w-full min-h-[48px] px-4 py-4 text-left text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                         >
                           Lock App
                         </button>
@@ -361,7 +361,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/profile"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-[#E8F4FF] dark:hover:bg-slate-800 transition-colors"
+                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                       >
                         User Profile
                       </Link>
@@ -369,7 +369,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/settings"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-[#E8F4FF] dark:hover:bg-slate-800 transition-colors"
+                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                       >
                         Settings
                       </Link>
@@ -377,7 +377,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/about"
                         onClick={() => setProfileOpen(false)}
-                        className="block border-t border-slate-100 px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:border-slate-800 dark:text-slate-200 hover:bg-[#E8F4FF] dark:hover:bg-slate-800 transition-colors"
+                        className="block border-t border-slate-100 px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                       >
                         About
                       </Link>
@@ -385,7 +385,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/legal"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-[#E8F4FF] dark:hover:bg-slate-800 transition-colors"
+                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                       >
                         Legal
                       </Link>
@@ -393,7 +393,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/safescope"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] dark:text-slate-200 hover:bg-[#E8F4FF] dark:hover:bg-slate-800 transition-colors"
+                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                       >
                         HazLenz AI
                       </Link>
@@ -404,7 +404,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                           clearAuthSession();
                           window.location.href = "/login";
                         }}
-                        className="block w-full min-h-[48px] border-t border-blue-100 px-4 py-4 text-left text-sm font-black text-red-600 hover:bg-red-50 dark:border-slate-800 dark:hover:bg-red-900/20 transition-colors"
+                        className="block w-full min-h-[48px] border-t border-blue-100 px-4 py-4 text-left text-sm font-black text-red-600 hover:bg-red-50  transition-colors"
                       >
                         Sign Out
                       </button>
