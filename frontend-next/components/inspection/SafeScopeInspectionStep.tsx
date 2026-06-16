@@ -140,7 +140,7 @@ export default function SafeScopeInspectionStep({
       )}
 
       {safeScopeResult && (
-        <div className="mb-4 border-y border-slate-200 dark:border-slate-800 py-4">
+        <div className="mb-2 border-y border-slate-200 dark:border-slate-800 py-2">
           <SafeScopeResultHeaderSection
             safeScopeResult={safeScopeResult}
             submitSafeScopeValidation={submitSafeScopeValidation}
