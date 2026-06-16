@@ -157,14 +157,6 @@ export default function GenerateReportSection({
             enabled={includePhotosInReport}
             onToggle={() => setIncludePhotosInReport(!includePhotosInReport)}
           />
-
-          <ReportOptionRow
-            label="HazLenz AI notes"
-            enabled={includeSafeScopeNotesInReport}
-            onToggle={() =>
-              setIncludeSafeScopeNotesInReport(!includeSafeScopeNotesInReport)
-            }
-          />
         </div>
       </div>
 
