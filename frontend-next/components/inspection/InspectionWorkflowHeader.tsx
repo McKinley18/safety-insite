@@ -81,7 +81,7 @@ export default function InspectionWorkflowHeader({
             <p className="truncate text-[8px] font-black uppercase tracking-[0.18em] text-blue-200">
               Step {visibleStepIndex}
             </p>
-            <h1 className="mt-0.5 truncate text-sm font-black leading-tight text-white">
+            <h1 className="sentinel-workflow-header-title mt-0.5 truncate text-xs font-black leading-tight text-white">
               {currentStepTitle}
             </h1>
           </div>

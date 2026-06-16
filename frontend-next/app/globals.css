@@ -762,8 +762,7 @@ body {
     padding-bottom: 1.25rem !important;
   }
 
-  .sentinel-mobile-page h1,
-  .sentinel-mobile-page h2 {
+  .sentinel-mobile-page :where(h1, h2):not(.sentinel-workflow-header-title):not(.sentinel-finding-builder-title) {
     font-size: 1.65rem !important;
     line-height: 1.9rem !important;
     letter-spacing: -0.04em !important;
