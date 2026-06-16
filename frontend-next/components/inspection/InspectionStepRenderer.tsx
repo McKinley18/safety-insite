@@ -4,6 +4,7 @@ import EvidenceCaptureSection from "@/components/inspection/EvidenceCaptureSecti
 import FindingReviewEditor from "@/components/inspection/FindingReviewEditor";
 import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
 import InspectionStepOne from "./steps/InspectionStepOne";
+import InspectionStepTwo from "./steps/InspectionStepTwo";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -260,8 +261,7 @@ export default function InspectionStepRenderer({
       )}
 
       {currentStep === 2 && (
-        <div className="space-y-3">
-          <SafeScopeInspectionStep
+        <InspectionStepTwo
           hazardCategory={hazardCategory}
           setHazardCategory={setHazardCategory}
           safeScopeHelpOpen={safeScopeHelpOpen}
@@ -288,7 +288,6 @@ export default function InspectionStepRenderer({
           safeScopeStandardsOpen={safeScopeStandardsOpen}
           setSafeScopeStandardsOpen={setSafeScopeStandardsOpen}
         />
-        </div>
       )}
       {currentStep === 3 && (
         <div className="space-y-3">
