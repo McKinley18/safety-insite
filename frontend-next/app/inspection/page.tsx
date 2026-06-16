@@ -1207,7 +1207,7 @@ export default function InspectionPage() {
       )}
 
       {reportValidationMessage && (
-        <div className="mt-5 rounded-xl bg-red-50 p-4 text-sm font-black text-red-700">
+        <div className="mt-4 rounded-xl bg-red-50 p-4 text-sm font-black text-red-700">
           {reportValidationMessage}
         </div>
       )}

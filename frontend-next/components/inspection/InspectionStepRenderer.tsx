@@ -18,7 +18,7 @@ function NavyStepHeader({
   stats: Array<{ label: string; value: string | number }>;
 }) {
   return (
-    <div className="sentinel-hero-card p-4 sm:p-5">
+    <div className="sentinel-hero-card p-4 sm:p-4">
       <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
         {step}
       </p>
@@ -29,7 +29,7 @@ function NavyStepHeader({
         {description}
       </p>
 
-      <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+      <div className="mt-2 sm:mt-4 grid grid-cols-3 gap-2 text-center">
         {stats.map((item) => (
           <div
             key={item.label}
@@ -58,7 +58,7 @@ function StepHeroCard({
   stats?: Array<{ label: string; value: string | number }>;
 }) {
   return (
-    <div className="sentinel-hero-card p-4 sm:p-5">
+    <div className="sentinel-hero-card p-4 sm:p-4">
       <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
         {step}
       </p>
@@ -70,7 +70,7 @@ function StepHeroCard({
       </p>
 
       {!!stats?.length && (
-        <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+        <div className="mt-2 sm:mt-4 grid grid-cols-3 gap-2 text-center">
           {stats.map((item) => (
             <div
               key={item.label}
@@ -240,7 +240,7 @@ export default function InspectionStepRenderer({
   return (
     <div className="px-1 py-1 sm:px-2">
       {currentStep === 1 && (
-        <div className="space-y-4">
+        <div className="space-y-3">
           <EvidenceCaptureSection
             photos={photos}
             setPhotos={setPhotos}
@@ -262,7 +262,7 @@ export default function InspectionStepRenderer({
       )}
 
       {currentStep === 2 && (
-        <div className="space-y-4">
+        <div className="space-y-3">
           <SafeScopeInspectionStep
           hazardCategory={hazardCategory}
           setHazardCategory={setHazardCategory}
@@ -293,7 +293,7 @@ export default function InspectionStepRenderer({
         </div>
       )}
       {currentStep === 3 && (
-        <div className="space-y-4">
+        <div className="space-y-3">
           <StepHeroCard
             step="Step 3"
             title="Standards & Actions"

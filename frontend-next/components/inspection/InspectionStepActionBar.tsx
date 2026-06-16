@@ -31,7 +31,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 1) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="text-center">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Capture Finding
@@ -57,7 +57,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 2) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
@@ -95,7 +95,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 3) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
@@ -130,7 +130,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 4) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
@@ -155,7 +155,7 @@ export default function InspectionStepActionBar({
 
   if (currentStep === 5) {
     return (
-      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
+      <div className="sentinel-keyboard-unpin sticky bottom-20 z-30 lg:bottom-6 mt-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-3 shadow-xl backdrop-blur">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">

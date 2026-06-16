@@ -103,6 +103,7 @@ export default function CurrentHazardCard({
         type="button"
         onClick={() => setHidden(false)}
         className="sentinel-keyboard-hide fixed bottom-[calc(var(--sentinel-mobile-tabbar-height)-1.1rem)] left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-xs font-black text-white shadow-xl shadow-slate-950/15 ring-1 ring-white/10 backdrop-blur transition hover:bg-[#1D72B8] lg:bottom-16"
+        style={{ bottom: "var(--sentinel-finding-builder-show-bottom)" }}
       >
         Show Finding Builder
       </button>
@@ -173,7 +174,7 @@ export default function CurrentHazardCard({
 
       <div
         className="sentinel-keyboard-hide fixed inset-x-0 bottom-[calc(4.75rem+env(safe-area-inset-bottom,0px))] z-[999998] px-3 pb-0 pointer-events-none lg:static lg:px-0"
-        style={{ bottom: "calc(var(--sentinel-mobile-tabbar-height) - 1.65rem)" }}
+        style={{ bottom: "var(--sentinel-finding-builder-bottom)" }}
       >
         <section
           ref={cardRef}
