@@ -441,17 +441,16 @@ export default function SafetyCalendarPage() {
         </div>
       </AppPanel>
 
-      <AppPanel padding="sm" className="px-3 py-3 sm:px-3 sm:py-3">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-      <div className="rounded-t-2xl border border-[#102A43] bg-[#102A43] p-4 text-white">
-        <div className="flex items-center justify-between">
+      <AppPanel padding="sm" className="px-0 py-0 sm:px-0 sm:py-0 overflow-hidden">
+        {/* Compact Calendar Header */}
+        <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-800 dark:bg-slate-950">
           <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("previous")}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </AppButton>
 
-          <h2 className="text-xl font-black">
+          <h2 className="text-sm font-black text-slate-900 dark:text-slate-100">
             {view === "month" ? formatMonthLabel(anchorDate) : formatFullDate(anchorDate)}
           </h2>
 
@@ -463,7 +462,7 @@ export default function SafetyCalendarPage() {
         </div>
 
         {/* View Switcher Row */}
-        <div className="mt-3 flex flex-wrap gap-2 justify-center">
+        <div className="flex items-center justify-between gap-2 px-3 py-2 border-b border-slate-200 dark:border-slate-800">
           {(["month", "week", "day"] as CalendarView[]).map((item) => (
             <AppButton
               key={item}
@@ -471,15 +470,14 @@ export default function SafetyCalendarPage() {
               variant={view === item ? "primary" : "secondary"}
               size="sm"
               onClick={() => setView(item)}
+              className="flex-1"
             >
               {item[0].toUpperCase() + item.slice(1)}
             </AppButton>
           ))}
         </div>
-      </div>
-        </div>
 
-        <div className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-3 grid gap-2 px-3 pb-3 sm:grid-cols-2 md:grid-cols-3">
           <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm">
             <option value="">▣ All work types</option>
             <option value="inspection">🟦 Inspections</option>
@@ -488,7 +486,7 @@ export default function SafetyCalendarPage() {
             <option value="supervisor_review">🟪 Reviews</option>
             <option value="custom">⬛ Custom Tasks</option>
           </AppSelect>
-
+          
           {canUseCompanyCalendar && (
             <AppSelect value={ownerFilter} onChange={(event) => setOwnerFilter(event.target.value)} fieldSize="sm">
               <option value="">All owners</option>
