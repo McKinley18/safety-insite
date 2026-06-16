@@ -432,14 +432,12 @@ export default function SafetyCalendarPage() {
         </div>
       </AppPanel>
 
-      <AppPanel padding="sm" className="px-3 py-3 sm:px-3 sm:py-3">
-        <p className="mb-3 text-[10px] font-black uppercase tracking-widest text-slate-500">
-          Calendar Controls & Filters
-        </p>
-        
-        <div className="flex flex-wrap items-center gap-4">
-          {/* View Switchers */}
-          <div className="flex gap-1">
+      <AppPanel padding="sm" className="space-y-4 px-3 py-4 sm:px-4 sm:py-4">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">
+            Calendar View
+          </p>
+          <div className="flex gap-1.5">
             {(["month", "week", "day"] as CalendarView[]).map((item) => (
               <AppButton
                 key={item}
@@ -447,34 +445,38 @@ export default function SafetyCalendarPage() {
                 variant={view === item ? "primary" : "secondary"}
                 size="sm"
                 onClick={() => setView(item)}
-                className={`px-3 ${view === item ? "ring-2 ring-blue-400" : ""}`}
+                className={`flex-1 ${view === item ? "ring-2 ring-blue-400" : ""}`}
               >
                 {item[0].toUpperCase() + item.slice(1)}
               </AppButton>
             ))}
           </div>
-          
-          <div className="flex flex-1 flex-wrap gap-2">
-            <div className="flex-1">
-              <label className="mb-0.5 block text-[9px] font-black uppercase text-slate-400">Type</label>
-              <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="w-full text-xs">
-                <option value="">▣ All types</option>
-                <option value="inspection">🟦 Insp</option>
-                <option value="corrective_action">🟥 CA</option>
-                <option value="follow_up">🟨 Follow</option>
-                <option value="supervisor_review">🟪 Review</option>
-              </AppSelect>
-            </div>
+        </div>
 
-            <div className="flex-1">
-              <label className="mb-0.5 block text-[9px] font-black uppercase text-slate-400">Status</label>
-              <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="w-full text-xs">
-                <option value="">All statuses</option>
-                <option value="Open">Open</option>
-                <option value="In Progress">Prog</option>
-                <option value="Completed">Done</option>
-              </AppSelect>
-            </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="mb-1 block text-[10px] font-black uppercase text-slate-500">
+              Work Type
+            </label>
+            <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="w-full">
+              <option value="">▣ All types</option>
+              <option value="inspection">🟦 Inspections</option>
+              <option value="corrective_action">🟥 CA</option>
+              <option value="follow_up">🟨 Follow-ups</option>
+              <option value="supervisor_review">🟪 Reviews</option>
+            </AppSelect>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">
+              Status
+            </label>
+            <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="w-full">
+              <option value="">All statuses</option>
+              <option value="Open">Open</option>
+              <option value="In Progress">Prog</option>
+              <option value="Completed">Done</option>
+            </AppSelect>
           </div>
         </div>
       </AppPanel>
