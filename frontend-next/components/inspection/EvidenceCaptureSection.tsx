@@ -35,7 +35,7 @@ export default function EvidenceCaptureSection({
 }: Props) {
   return (
     <>
-      <div className="mb-3 sentinel-hero-card rounded-xl px-4 py-4 sm:px-5">
+      <div className="mb-2 sentinel-hero-card rounded-xl px-4 py-3 sm:px-5 sm:py-4">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
             Capture Evidence
@@ -46,7 +46,7 @@ export default function EvidenceCaptureSection({
           </p>
         </div>
 
-        <div className="sentinel-phone-actions mt-4 sm:flex sm:flex-wrap sm:justify-center">
+        <div className="sentinel-phone-actions mt-3 sm:flex sm:flex-wrap sm:justify-center">
           <label className="sentinel-compact-secondary w-full cursor-pointer sm:w-[148px]">
             Take Photo
             <input
