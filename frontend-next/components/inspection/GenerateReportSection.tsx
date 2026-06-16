@@ -177,39 +177,39 @@ export default function GenerateReportSection({
           Package summary
         </h3>
 
-        <div className="mt-4 grid grid-cols-2 gap-2">
-          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              Total Findings
+        <div className="mt-4 flex h-16 w-full items-start justify-center gap-1.5 text-center">
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-2 py-1.5 text-center shadow-sm">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+              Total
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-slate-100">
               {findings.length}
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              With Standards
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-2 py-1.5 text-center shadow-sm">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+              Standards
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-slate-100">
               {findingsWithStandards}
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              With Actions
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-2 py-1.5 text-center shadow-sm">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+              Actions
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-slate-100">
               {findingsWithActions}
             </p>
           </div>
 
-          <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-center">
-            <p className="text-[9px] font-black uppercase tracking-wide text-slate-400">
-              With Photos
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-2 py-1.5 text-center shadow-sm">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+              Photos
             </p>
-            <p className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-slate-100">
               {findingsWithPhotos}
             </p>
           </div>
