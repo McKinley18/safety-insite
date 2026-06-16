@@ -216,18 +216,18 @@ export default function GenerateReportSection({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+      <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
               Final Output
             </p>
 
-            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
+            <h3 className="mt-1 text-base font-black text-white">
               Generate completed inspection report
             </h3>
 
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
+            <p className="mt-1 text-sm font-semibold leading-5 text-blue-100">
               Create the final report using the saved findings and selected
               report package options.
             </p>
