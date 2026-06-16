@@ -533,6 +533,7 @@ export default function SafetyCalendarPage() {
                   <button
                     type="button"
                     onClick={() => selectDate(day)}
+                    style={{ borderRadius: 0 }}
                     className={`sentinel-calendar-day flex w-full flex-col items-start justify-start rounded-none border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${
                       expanded ? "min-h-48 p-4 shadow-none" : "aspect-square p-1.5 sm:p-2"
                     }`}
