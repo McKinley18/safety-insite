@@ -52,11 +52,11 @@ function SummaryBox({
   value: string | number;
 }) {
   return (
-    <div className="flex min-h-[72px] flex-col items-center justify-center rounded-xl bg-white dark:bg-slate-900/10 px-3 py-3 text-center ring-1 ring-white/15">
-      <p className="text-[9px] font-black uppercase tracking-wide text-blue-100">
+    <div className="flex h-16 w-1/3 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
+      <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
         {label}
       </p>
-      <p className="mt-1 text-lg font-black text-white">{value}</p>
+      <p className="mt-0.5 text-sm font-black text-white">{value}</p>
     </div>
   );
 }
@@ -107,7 +107,7 @@ export default function GenerateReportSection({
           and generate the completed inspection report.
         </p>
 
-        <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+        <div className="mt-5 flex h-16 w-full items-start justify-center gap-1.5 text-center">
           <SummaryBox label="Findings" value={findings.length} />
           <SummaryBox label="Standards" value={findingsWithStandards} />
           <SummaryBox label="Actions" value={findingsWithActions} />
