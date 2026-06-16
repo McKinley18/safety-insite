@@ -17,9 +17,6 @@ function textOf(value: unknown): string {
 }
 
 function generatedDecisionText(result: any): string {
-  // Keep this focused on active decision output. Do not include passive registry,
-  // evidence-bank, or background knowledge fields that may contain terms for
-  // contrastive reasoning but are not presented as HazLenz's decision.
   return textOf({
     hazardClassification: result.hazardClassification,
     jurisdictionAssessment: result.jurisdictionAssessment,
@@ -29,8 +26,9 @@ function generatedDecisionText(result: any): string {
     correctiveActionReasoningSummary: result.correctiveActionReasoning?.summary,
     correctiveActionRecommendations: result.correctiveActionReasoning?.recommendations,
     correctiveActionReasoningBoundary: result.correctiveActionReasoning?.reasoningBoundary,
-    equipmentReasoningSummary: result.equipmentReasoningSummary,
+    missingEvidence: result.missingEvidence,
     confidence: result.confidence,
+    recommendedNextQuestions: result.recommendedNextQuestions,
     brainSummary: result.brainSnapshot?.situationalAwarenessPacket?.summary
       ? {
           likelyCitation: result.brainSnapshot.situationalAwarenessPacket.summary.likelyCitation,
@@ -38,11 +36,22 @@ function generatedDecisionText(result: any): string {
           selectedScenarioId: result.brainSnapshot.situationalAwarenessPacket.summary.selectedScenarioId,
           selectedScenarioLabel: result.brainSnapshot.situationalAwarenessPacket.summary.selectedScenarioLabel,
           scenarioConfidence: result.brainSnapshot.situationalAwarenessPacket.summary.scenarioConfidence,
+          evidenceGapDisposition: result.brainSnapshot.situationalAwarenessPacket.summary.evidenceGapDisposition,
+          evidenceGapHighestSeverity: result.brainSnapshot.situationalAwarenessPacket.summary.evidenceGapHighestSeverity,
+          evidenceGapCriticalQuestions: result.brainSnapshot.situationalAwarenessPacket.summary.evidenceGapCriticalQuestions,
           decisionConfidenceLevel: result.brainSnapshot.situationalAwarenessPacket.summary.decisionConfidenceLevel,
           defensibilityScore: result.brainSnapshot.situationalAwarenessPacket.summary.defensibilityScore,
           decisionRecommendedDisposition: result.brainSnapshot.situationalAwarenessPacket.summary.decisionRecommendedDisposition,
           decisionWarnings: result.brainSnapshot.situationalAwarenessPacket.summary.decisionWarnings,
+          likelyControls: result.brainSnapshot.situationalAwarenessPacket.summary.likelyControls,
+          criticalEvidenceQuestions: result.brainSnapshot.situationalAwarenessPacket.summary.criticalEvidenceQuestions,
         }
+      : undefined,
+    brainAlignment: result.brainSnapshot?.alignment
+      ? JSON.parse(
+          JSON.stringify(result.brainSnapshot.alignment),
+          (key, val) => (key === 'aliases' ? undefined : val),
+        )
       : undefined,
     brainBoundary: result.brainSnapshot?.boundary,
   }).toLowerCase();
@@ -210,8 +219,9 @@ async function main() {
   const resultRows: FieldRealismPackV2ResultRow[] = [];
 
   for (const testCase of cases) {
+    let result: any = undefined;
     try {
-      const result: any = service.reason({
+      result = service.reason({
         hazardObservation: testCase.hazardObservation,
         siteType: testCase.siteType,
         industryContext: testCase.industryContext,
@@ -243,6 +253,8 @@ async function main() {
         equipmentArchetypeContext: result.equipmentArchetypeContext,
         equipmentReasoningSummary: result.equipmentReasoningSummary,
         brainSummary: result.brainSnapshot?.situationalAwarenessPacket?.summary,
+        alignment: result.brainSnapshot?.alignment,
+        primaryCitation: result.primaryCitation,
         missingEvidence: result.missingEvidence,
         confidence: result.confidence,
         recommendedNextQuestions: result.recommendedNextQuestions,
@@ -317,7 +329,7 @@ async function main() {
         jurisdiction: 'unknown',
         confidenceLevel: 'unknown',
         status: 'fail',
-        failureReason,
+        failureReason: failureReason,
       });
     }
   }

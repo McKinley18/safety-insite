@@ -375,5 +375,15 @@ export const SAFESCOPE_EVIDENCE_BRAIN_REGISTRY: SafeScopeEvidenceBrainRecord[] =
     acceptableEvidenceTypes: ['photo', 'measurement', 'employee_statement', 'inspection_observation', 'document_review', 'qualified_person_review', 'equipment_record'],
     defensibilityImpact: 'Missing evidence may reduce confidence, require qualified review, or prevent closure until the condition is verified.',
   },
+  {
+    evidenceId: 'evidence-excavation-access-egress',
+    hazardDomains: ['excavation_trenching'],
+    mechanisms: ['excavation_cave_in_or_entrapment'],
+    question: 'Do employees enter the trench, is the excavation 4 feet or more in depth, are stairways, ladders, or ramps provided, and is the lateral travel distance to safe egress within 25 feet?',
+    importance: 'critical',
+    whyItMatters: 'Excavation egress is critical to prevent entrapment during trench cave-ins, collapses, or flooding. Safe egress must be immediately available for employees working in trenches 4 feet or more in depth.',
+    acceptableEvidenceTypes: ['photo', 'measurement', 'employee_statement', 'inspection_observation', 'document_review', 'qualified_person_review', 'equipment_record'],
+    defensibilityImpact: 'Without confirming trench depth, employee entry, and actual lateral egress distance, SafeScope should withhold a high-confidence advisory conclusion and require qualified review.',
+  },
 
 ];

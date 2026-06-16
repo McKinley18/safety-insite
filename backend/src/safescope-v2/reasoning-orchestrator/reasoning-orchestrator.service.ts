@@ -116,7 +116,6 @@ export class SafeScopeReasoningOrchestratorService {
     let equipmentReasoningSummary = this.buildEquipmentReasoningSummary(
       equipmentTaskMechanismContext,
       equipmentArchetypeContext,
-      '',
     );
 
     const contradictionIntelligence = this.contradictionIntelligenceService.evaluate({
@@ -312,7 +311,6 @@ export class SafeScopeReasoningOrchestratorService {
       equipmentReasoningSummary = this.buildEquipmentReasoningSummary(
         equipmentTaskMechanismContext,
         equipmentArchetypeContext,
-        combined,
       );
     }
 
@@ -460,7 +458,6 @@ export class SafeScopeReasoningOrchestratorService {
       equipmentReasoningSummary = this.buildEquipmentReasoningSummary(
         equipmentTaskMechanismContext,
         equipmentArchetypeContext,
-        combined,
       );
     }
 
@@ -567,7 +564,6 @@ export class SafeScopeReasoningOrchestratorService {
   private buildEquipmentReasoningSummary(
     equipmentTaskMechanismContext: SafeScopeReasoningResult['equipmentTaskMechanismContext'],
     equipmentArchetypeContext: SafeScopeReasoningResult['equipmentArchetypeContext'],
-    hazardObservation = '',
   ): SafeScopeEquipmentReasoningSummary {
     const specific = equipmentTaskMechanismContext.primaryMatch;
     const archetype = equipmentArchetypeContext.primaryMatch;
@@ -592,8 +588,7 @@ export class SafeScopeReasoningOrchestratorService {
           `Archetype score: ${archetype.score}.`,
           ...equipmentTaskMechanismContext.matches
             .slice(1, 3)
-            .map((match) => this.formatSecondarySpecificContext(match, hazardObservation))
-            .filter((context): context is string => Boolean(context)),
+            .map((match) => `Secondary specific context: ${match.equipmentLabel} / ${match.componentLabel} / ${match.failureModeLabel}.`),
         ],
         rankingReasons: [
           'A specific equipment/component/failure-mode match was available, so it is primary.',
@@ -614,8 +609,7 @@ export class SafeScopeReasoningOrchestratorService {
         primaryMechanismOrArchetype: specific.failureModeLabel,
         supportingContext: equipmentTaskMechanismContext.matches
           .slice(1, 4)
-          .map((match) => this.formatSecondarySpecificContext(match, hazardObservation))
-            .filter((context): context is string => Boolean(context)),
+          .map((match) => `Secondary specific context: ${match.equipmentLabel} / ${match.componentLabel} / ${match.failureModeLabel}.`),
         rankingReasons: [
           'A specific equipment/component/failure-mode match was available.',
           'No supporting archetype match exceeded the detection threshold.',
@@ -1145,6 +1139,27 @@ export class SafeScopeReasoningOrchestratorService {
       return '29 CFR 1926.1053(b)(1)';
     }
 
+    const rawIncludesAny = (t: string, terms: string[]) => terms.some((term) => t.includes(term));
+
+    if (
+      jurisdiction === 'osha_construction' &&
+      (domain === 'excavation_trenching' || includesAny(normalizedText, ['trench', 'excavation'])) &&
+      rawIncludesAny(normalizedText, [
+        'ladder',
+        'egress',
+        'ramp',
+        'stairway',
+        'stairs',
+        'lateral travel',
+        'exit',
+      ]) &&
+      !normalizedText.includes('shoring') &&
+      !normalizedText.includes('shielding') &&
+      !normalizedText.includes('sloping')
+    ) {
+      return '29 CFR 1926.651(c)(2)';
+    }
+
     return STANDARDS_APPLICABILITY_REGISTRY.find(
       (s) => s.jurisdiction === jurisdiction && s.domain === domain,
     )?.primaryCitation;
@@ -1256,6 +1271,10 @@ export class SafeScopeReasoningOrchestratorService {
 
   private determineDomain(text: string): SafeScopeReasoningDomain {
     const normalizedText = normalized(text);
+
+    if (normalizedText.includes('scaffold') || normalizedText.includes('scaffolding')) {
+      return 'scaffolds';
+    }
 
     // P1C: mobile equipment / fixed equipment disambiguation.
     // Telehandler/forklift visibility with travel, load, spotter, traffic, or pedestrian context is mobile equipment,
@@ -1616,6 +1635,9 @@ export class SafeScopeReasoningOrchestratorService {
     // 2. Registry-Based Taxonomy Mapping
     for (const entry of Object.values(SAFESCOPE_TAXONOMY_REGISTRY)) {
       if (entry.aliases.some(alias => text.includes(alias))) {
+        if (text.includes('field-v2-osha-trench-egress-missing-001') || text.includes('trench egress') || text.includes('trench-egress') || text.includes('trench_egress')) {
+          console.log("[DIAGNOSTIC determineDomain] matched entry canonical:", entry.canonical, "on alias:", entry.aliases.find(alias => text.includes(alias)));
+        }
         return entry.canonical;
       }
     }
@@ -2184,7 +2206,7 @@ export class SafeScopeReasoningOrchestratorService {
     }
 
     if (
-      hasAny(['cold stress', 'cold exposure', 'hypothermia', 'frostbite', 'wind chill', 'freezing temperature', 'cold weather', 'cold work', 'freezing conditions']) &&
+      hasAny(['cold stress', 'cold exposure', 'hypothermia', 'frostbite', 'wind chill', 'freezing temperature', 'cold weather', 'cold work', 'freezing conditions', 'freezing', 'freezing rain']) &&
       hasAny(['worker', 'employee', 'exposure', 'outdoor', 'prolonged', 'glove', 'gloves', 'hands', 'feet', 'symptom', 'warming', 'warm up', 'wet clothing', 'cold injury'])
     ) {
       reasonCodes.push('medium-priority-cold-stress-environmental-exposure');
@@ -2464,29 +2486,5 @@ export class SafeScopeReasoningOrchestratorService {
 
     return { reasonCodes };
   }
-
-
-  private formatSecondarySpecificContext(match: any, hazardObservation: string): string | null {
-    const normalized = String(hazardObservation || '').toLowerCase();
-    const failureModeLabel = String(match.failureModeLabel || '');
-
-    const panelClosed =
-      /\bpanel\b[^.]*\b(closed|shut|secured)\b/.test(normalized) ||
-      /\b(closed|shut|secured)\b[^.]*\bpanel\b/.test(normalized);
-
-    const explicitExposedElectrical =
-      /\b(exposed live parts|live parts exposed|open electrical panel|missing dead front|missing cover|open panel|energized troubleshooting)\b/.test(normalized);
-
-    if (
-      panelClosed &&
-      !explicitExposedElectrical &&
-      failureModeLabel.toLowerCase().includes('exposed live parts')
-    ) {
-      return null;
-    }
-
-    return `Secondary specific context: ${match.equipmentLabel} / ${match.componentLabel} / ${match.failureModeLabel}.`;
-  }
-
 
 }

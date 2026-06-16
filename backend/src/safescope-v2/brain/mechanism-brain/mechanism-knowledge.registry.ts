@@ -1090,5 +1090,27 @@ export const SAFESCOPE_MECHANISM_BRAIN_REGISTRY: SafeScopeMechanismBrainRecord[]
     immediateControls: ['restrict affected work area if airflow is inadequate', 'repair or reconnect ventilation controls', 'verify airflow and air quality before normal work resumes'],
     verificationEvidence: ['ventilation repair photo', 'airflow measurement', 'air quality or gas check record']
   },
+  {
+    mechanismId: 'excavation_cave_in_or_entrapment',
+    label: 'Excavation cave-in or egress entrapment',
+    hazardDomains: ['excavation_trenching'],
+    energyType: 'gravity',
+    exposurePathway: 'Trench collapse, side-wall cave-in, flooding, or accumulation of water can trap or suffocate workers if safe stairway, ladder, ramp, or other safe egress is absent, blocked, or located too far laterally.',
+    commonTriggerTerms: ['trench access', 'excavation ladder', 'trench egress', 'lateral travel distance', 'excavation egress', 'trench ladder', 'trench ramp', 'ladder', 'egress', 'ramp', 'stairway', 'stairs', 'trench egress', 'excavation egress', 'access'],
+    competingMechanisms: ['collapse', 'fall_from_height', 'asphyxiation'],
+    precedenceNotes: [
+      'Use when the hazard is missing, deficient, unstable, or distant access and egress inside excavations or trenches.',
+      'Use collapse when the primary structural hazard is missing protective systems (shoring, shielding, sloping) without egress details.',
+      'If the excavation creates atmospheric hazards (gases, lack of oxygen), evaluate asphyxiation as a competing or secondary mechanism.'
+    ],
+    evidenceQuestions: [
+      'Is the excavation 4 feet or more in depth?',
+      'Is a stairway, ladder, ramp, or other safe egress provided?',
+      'Does employee travel exceed 25 feet of lateral distance to reach egress?',
+      'Is the egress located within the boundaries of the protective shoring system?'
+    ],
+    immediateControls: ['restrict trench entry until safe egress is provided', 'install a stable stairway, ladder, or ramp', 'ensure egress is positioned within protected shoring limits'],
+    verificationEvidence: ['photo of stairway ladder or ramp inside trench', 'lateral travel measurement verification', 'competent person ramp structural design approval']
+  },
 
 ];

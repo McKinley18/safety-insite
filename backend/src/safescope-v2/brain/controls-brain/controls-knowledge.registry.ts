@@ -395,5 +395,19 @@ export const SAFESCOPE_CONTROLS_BRAIN_REGISTRY: SafeScopeControlBrainRecord[] = 
     failureModesIfNotVerified: ['workers continue manually lifting heavy weights', 'repetitive strain continues unmitigated'],
     notes: ['Ergonomics lift assist and musculoskeletal strain controls.'],
   },
+  {
+    controlId: 'control-excavation-access-egress',
+    hazardDomains: ['excavation_trenching'],
+    mechanisms: ['excavation_cave_in_or_entrapment'],
+    hierarchyLevel: 'engineering_control' as any,
+    immediateControl: 'Provide a safe, stable stairway, ladder, ramp, or other safe egress immediately for excavations 4 feet or deeper, restricting worker entry until egress is present.',
+    permanentControl: 'Locate safe means of egress (stairway, ladder, ramp, or other safe egress) so that employees do not need to travel more than 25 feet laterally. Ensure ramps are designed/approved by a competent person.',
+    verificationEvidence: ['photo of stairway ladder or ramp inside protective system', 'lateral travel measurement verification', 'competent person ramp structural design approval'],
+    failureModesIfNotVerified: ['trench cave-in with delayed or blocked escape', 'ladder located outside shoring protective boundary', 'worker must travel more than 25 lateral feet', 'unstable ramp collapsing under worker weight'],
+    notes: [
+      'Egress must be located within the boundaries of the shoring or trench box system to ensure workers remain protected during egress.',
+      'Do not over-prescribe ladders; ramps, stairways, or other safe means of egress are fully acceptable and valid when designed/constructed in accordance with 1926.651.',
+    ],
+  },
 
 ];

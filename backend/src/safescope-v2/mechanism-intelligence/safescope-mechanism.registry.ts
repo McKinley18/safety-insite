@@ -302,5 +302,10 @@ export const SAFESCOPE_MECHANISM_REGISTRY: MechanismEntry[] = [
     id: 'air_quality_contaminant_buildup',
     description: 'Air quality contaminant buildup from damaged, disconnected, or ineffective underground ventilation',
     keywords: ['ventilation tubing', 'reduced airflow', 'air quality', 'contaminant buildup', 'underground ventilation', 'damaged ventilation']
+  },
+  {
+    id: 'excavation_cave_in_or_entrapment',
+    description: 'Excavation cave-in or egress entrapment',
+    keywords: ['egress', 'ladder', 'ramp', 'trench egress', 'excavation access', 'stairway', 'stairs', 'lateral travel']
   }
 ];

@@ -38,6 +38,13 @@ export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
     rationale: 'OSHA construction excavation protective systems (shoring, shielding, sloping) requirements.'
   },
   {
+    jurisdiction: 'osha_construction',
+    domain: 'excavation_trenching',
+    primaryCitation: '29 CFR 1926.651(c)(2)',
+    acceptableCitations: ['29 CFR 1926.651(c)(2)', '29 CFR 1926.651(c)', '29 CFR 1926.651'],
+    rationale: 'OSHA construction excavation access and egress stairway, ladder, ramp, or other safe means requirements for excavations 4 feet or more in depth.'
+  },
+  {
     jurisdiction: 'msha',
     domain: 'fire_protection',
     primaryCitation: '30 CFR 56.4201',

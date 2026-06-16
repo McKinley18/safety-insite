@@ -1838,5 +1838,176 @@
       "task"
     ],
     "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-TRENCH-EGRESS-MISSING-001",
+    "title": "OSHA construction trench missing safe egress",
+    "hazardObservation": "Employees were observed laying pipe inside a 5-foot deep trench excavation. No stairway, ladder, ramp, or other safe means of egress was visible or provided inside the trench.",
+    "siteType": "roadway work zone",
+    "industryContext": "osha_construction",
+    "taskContext": "excavation pipe laying",
+    "equipmentInvolved": "excavation trench",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "ladder",
+      "egress",
+      "excavation_trenching",
+      "29 cfr 1926.651"
+    ],
+    "forbiddenTerms": [
+      "scaffold",
+      "confined space"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-TRENCH-SHALLOW-NO-ENTRY-001",
+    "title": "trench under 4ft deep and no employee entry",
+    "hazardObservation": "A shallow trench, measured at 3 feet deep, was excavated along the perimeter. No employees entered the excavation, and no work tasks were being performed inside the trench.",
+    "siteType": "utility work zone",
+    "industryContext": "osha_construction",
+    "taskContext": "perimeter trenching",
+    "equipmentInvolved": "excavation trench",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "evidence",
+      "exposure",
+      "entry"
+    ],
+    "forbiddenTerms": [
+      "missing egress",
+      "no ladder"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-TRENCH-EGRESS-COMPLIANT-001",
+    "title": "trench 5ft deep with ladder present within 25ft",
+    "hazardObservation": "A worker was working in a 5-foot deep excavation trench. A structural extension ladder was secured inside the shoring box directly next to the worker, requiring less than 5 feet of lateral travel to egress.",
+    "siteType": "commercial construction site",
+    "industryContext": "osha_construction",
+    "taskContext": "electrical conduit laying",
+    "equipmentInvolved": "excavation trench",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "ladder",
+      "egress"
+    ],
+    "forbiddenTerms": [
+      "missing egress",
+      "unprotected trench",
+      "no ladder"
+    ],
+    "shouldHaveMissingEvidence": false
+  },
+  {
+    "id": "FIELD-V2-OSHA-TRENCH-EXPOSURE-UNKNOWN-001",
+    "title": "trench described but employee entry exposure unknown",
+    "hazardObservation": "An open trench excavation was observed near the sidewalk, estimated at 6 feet in depth with shoring in place. The report does not document if any employees have entered or will enter the trench.",
+    "siteType": "municipal roadway",
+    "industryContext": "osha_construction",
+    "taskContext": "roadway excavation",
+    "equipmentInvolved": "excavation trench",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "exposure",
+      "confirm",
+      "entry"
+    ],
+    "forbiddenTerms": [
+      "missing egress"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-TRENCH-RAMP-UNCONFIRMED-001",
+    "title": "trench with ramp but competent person design unconfirmed",
+    "hazardObservation": "A worker was inside a 6-foot deep excavation. A dirt ramp was present at one end for egress, but the design, slope stability, and competent-person structural approval are not documented.",
+    "siteType": "roadway work zone",
+    "industryContext": "osha_construction",
+    "taskContext": "excavation pipe laying",
+    "equipmentInvolved": "excavation trench",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "ramp",
+      "design",
+      "competent person",
+      "hold"
+    ],
+    "forbiddenTerms": [
+      "missing egress"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-FALSE-TRENCH-LADDER-PLATFORM-001",
+    "title": "missing ladder on elevated platform not a trench",
+    "hazardObservation": "An employee was working on an elevated platform 12 feet high. The access ladder was missing, requiring workers to climb the structural scaffolding framing to reach the platform. No trench or excavation was involved.",
+    "siteType": "commercial construction site",
+    "industryContext": "osha_construction",
+    "taskContext": "equipment access",
+    "equipmentInvolved": "scaffold platform",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "scaffold",
+      "ladder",
+      "29 cfr 1926.451"
+    ],
+    "forbiddenTerms": [
+      "29 cfr 1926.651",
+      "29 cfr 1926.652",
+      "excavation_trenching"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-FALSE-TRENCH-RAMP-WAREHOUSE-001",
+    "title": "blocked egress ramp in warehouse not excavation",
+    "hazardObservation": "In the warehouse shipping department, the pedestrian egress ramp was blocked by stacked wooden pallets, preventing emergency evacuation access. No excavation or construction work was present.",
+    "siteType": "warehouse loading dock",
+    "industryContext": "osha_general_industry",
+    "taskContext": "warehouse storage",
+    "equipmentInvolved": "pedestrian ramp",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "egress",
+      "ramp",
+      "pallets",
+      "emergency_preparedness"
+    ],
+    "forbiddenTerms": [
+      "29 cfr 1926.651",
+      "excavation_trenching"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-FALSE-TRENCH-ACCESS-ROAD-001",
+    "title": "excavator access ramp with shoring no trench entry",
+    "hazardObservation": "An excavator access ramp leading down into the construction site was steep and un-barricaded. Heavy equipment operated on the road, but no employee foot traffic or trench entry was present. Shoring was loose on the retaining wall near the road, requiring engineering review.",
+    "siteType": "construction site roadway",
+    "industryContext": "osha_construction",
+    "taskContext": "excavator access",
+    "equipmentInvolved": "retaining wall shoring",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "shoring",
+      "excavator",
+      "roadway",
+      "29 cfr 1926.652"
+    ],
+    "forbiddenTerms": [
+      "29 cfr 1926.651(c)(2)",
+      "egress entrapment"
+    ],
+    "shouldHaveMissingEvidence": true
   }
 ]
