@@ -737,7 +737,7 @@ body {
 }
 
 /* Force squared/minimized app card corners while preserving buttons and pills */
-.sentinel-mobile-page :where(div, section, article, header, aside)[class*="rounded-"]:not([class*="rounded-full"]) {
+.sentinel-mobile-page :where(div, section, article, header, aside)[class*="rounded-"]:not([class*="rounded-full"]):not(.sentinel-calendar-day) {
   border-radius: 12px !important;
 }
 
