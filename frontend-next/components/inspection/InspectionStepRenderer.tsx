@@ -3,6 +3,7 @@
 import EvidenceCaptureSection from "@/components/inspection/EvidenceCaptureSection";
 import FindingReviewEditor from "@/components/inspection/FindingReviewEditor";
 import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspectionStep";
+import InspectionStepOne from "./steps/InspectionStepOne";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -240,25 +241,22 @@ export default function InspectionStepRenderer({
   return (
     <div className="px-1 py-1 sm:px-2">
       {currentStep === 1 && (
-        <div className="space-y-3">
-          <EvidenceCaptureSection
-            photos={photos}
-            setPhotos={setPhotos}
-            description={description}
-            setDescription={setDescription}
-            location={location}
-            setLocation={setLocation}
-            evidenceNotes={evidenceNotes}
-            setEvidenceNotes={setEvidenceNotes}
-            annotatingPhotoIndex={annotatingPhotoIndex}
-            setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
-            annotationExpanded={annotationExpanded}
-            setAnnotationExpanded={setAnnotationExpanded}
-            handlePhotoUpload={handlePhotoUpload}
-            removePhoto={removePhoto}
-          />
-
-        </div>
+        <InspectionStepOne
+          photos={photos}
+          setPhotos={setPhotos}
+          description={description}
+          setDescription={setDescription}
+          location={location}
+          setLocation={setLocation}
+          evidenceNotes={evidenceNotes}
+          setEvidenceNotes={setEvidenceNotes}
+          annotatingPhotoIndex={annotatingPhotoIndex}
+          setAnnotatingPhotoIndex={setAnnotatingPhotoIndex}
+          annotationExpanded={annotationExpanded}
+          setAnnotationExpanded={setAnnotationExpanded}
+          handlePhotoUpload={handlePhotoUpload}
+          removePhoto={removePhoto}
+        />
       )}
 
       {currentStep === 2 && (
