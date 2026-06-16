@@ -952,7 +952,7 @@ body.sentinel-keyboard-open {
 
 /* Spacer placed before the fixed Finding Builder so final step content can scroll above it. */
 .sentinel-finding-builder-scroll-spacer {
-  height: calc(22rem + env(safe-area-inset-bottom, 0px));
+  height: 0;
 }
 
 @media (min-width: 768px) {

@@ -78,10 +78,10 @@ export default function InspectionWorkflowHeader({
           </div>
 
           <div className="min-w-0 flex-1 text-center px-1">
-            <p className="truncate text-[9px] font-black uppercase tracking-[0.18em] text-blue-200">
-              Inspection · {workflowLabel} · Step {visibleStepIndex} of {steps.length}
+            <p className="truncate text-[8px] font-black uppercase tracking-[0.18em] text-blue-200">
+              Step {visibleStepIndex}
             </p>
-            <h1 className="mt-0.5 truncate text-base font-black leading-tight text-white sm:text-lg">
+            <h1 className="mt-0.5 truncate text-sm font-black leading-tight text-white">
               {currentStepTitle}
             </h1>
           </div>

@@ -1071,7 +1071,7 @@ export default function InspectionPage() {
   }
 
   return (
-    <div className="sentinel-mobile-page sentinel-inspection-page space-y-4">
+    <div className="sentinel-mobile-page sentinel-inspection-page space-y-2">
       <div className="sentinel-inspection-before-header-gap" aria-hidden="true" />
 
       <InspectionWorkflowHeader
