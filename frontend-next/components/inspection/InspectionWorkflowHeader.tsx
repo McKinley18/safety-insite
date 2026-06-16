@@ -65,7 +65,7 @@ export default function InspectionWorkflowHeader({
 
   return (
     <>
-      <div className="sticky top-[68px] z-30 mb-4 overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2.5 sm:px-4 sm:py-3 text-white shadow-sm ring-1 ring-white/10 backdrop-blur-xl sm:px-5">
+      <div className="sentinel-inspection-workflow-header sticky z-50 mb-4 overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-2.5 py-2 text-white shadow-sm ring-1 ring-white/10 backdrop-blur-xl sm:px-4 sm:py-3">
         <div className="flex items-center justify-between gap-2">
           <div className="flex w-24 shrink-0 justify-start">
             <button
@@ -77,7 +77,7 @@ export default function InspectionWorkflowHeader({
             </button>
           </div>
 
-          <div className="min-w-0 flex-1 text-center">
+          <div className="min-w-0 flex-1 text-center px-1">
             <p className="truncate text-[9px] font-black uppercase tracking-[0.18em] text-blue-200">
               Inspection · {workflowLabel} · Step {visibleStepIndex} of {steps.length}
             </p>

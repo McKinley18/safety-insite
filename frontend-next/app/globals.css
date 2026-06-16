@@ -894,3 +894,46 @@ body.sentinel-keyboard-open {
   padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
 }
 
+/* Inspection workflow: keep content clear of sticky step controls and the fixed finding builder. */
+.sentinel-inspection-page {
+  padding-bottom: calc(15rem + env(safe-area-inset-bottom, 0px));
+  scroll-padding-bottom: calc(15rem + env(safe-area-inset-bottom, 0px));
+  scroll-padding-top: calc(6rem + env(safe-area-inset-top, 0px));
+}
+
+.sentinel-inspection-workflow-header {
+  top: calc(4.85rem + env(safe-area-inset-top, 0px));
+}
+
+.sentinel-inspection-workflow-header-label,
+.sentinel-inspection-workflow-header-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sentinel-inspection-workflow-header-label {
+  white-space: nowrap;
+  font-size: clamp(0.55rem, 2.1vw, 0.68rem);
+  line-height: 1.1;
+  letter-spacing: 0.14em;
+}
+
+.sentinel-inspection-workflow-header-title {
+  white-space: nowrap;
+  font-size: clamp(0.82rem, 3.2vw, 1rem);
+  line-height: 1.15;
+}
+
+@media (min-width: 768px) {
+  .sentinel-inspection-page {
+    padding-bottom: 10rem;
+    scroll-padding-bottom: 10rem;
+    scroll-padding-top: 7rem;
+  }
+
+  .sentinel-inspection-workflow-header {
+    top: 5.5rem;
+  }
+}
+
