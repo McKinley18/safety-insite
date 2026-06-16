@@ -441,36 +441,9 @@ export default function SafetyCalendarPage() {
         </div>
       </AppPanel>
 
-      <AppPanel padding="sm" className="px-0 py-0 overflow-hidden">
-        {/* Unified Blue Header Banner */}
-        <div className="bg-[#102A43] p-2 text-white">
-          <div className="flex items-center justify-between">
-            <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("previous")}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </AppButton>
-
-            <h2 className="text-[11px] font-black uppercase tracking-widest text-blue-200">
-              {formatMonthLabel(anchorDate)}
-            </h2>
-
-            <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("next")}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </AppButton>
-          </div>
-          
-          <div className="mt-2 grid grid-cols-7 gap-0.5 text-center text-[8px] font-black uppercase tracking-wide text-blue-300">
-            {WEEKDAY_LABELS.map((day) => (
-              <div key={day}>{day}</div>
-            ))}
-          </div>
-        </div>
-
-        {/* View Switcher and Filters Row */}
-        <div className="flex items-center gap-1 border-b border-slate-200 bg-slate-50 px-2 py-1 dark:border-slate-800 dark:bg-slate-950">
+      <AppPanel padding="sm" className="px-3 py-3 sm:px-3 sm:py-3">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* View Switchers */}
           {(["month", "week", "day"] as CalendarView[]).map((item) => (
             <AppButton
               key={item}
@@ -478,26 +451,28 @@ export default function SafetyCalendarPage() {
               variant={view === item ? "primary" : "secondary"}
               size="sm"
               onClick={() => setView(item)}
-              className="flex-1"
+              className={view === item ? "ring-2 ring-blue-400" : ""}
             >
               {item[0].toUpperCase() + item.slice(1)}
             </AppButton>
           ))}
           
-          <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="flex-1">
-            <option value="">▣ All</option>
-            <option value="inspection">🟦 Insp</option>
-            <option value="corrective_action">🟥 CA</option>
-            <option value="follow_up">🟨 Follow</option>
-            <option value="supervisor_review">🟪 Review</option>
-          </AppSelect>
+          <div className="flex flex-1 gap-2">
+            <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="flex-1">
+              <option value="">▣ All types</option>
+              <option value="inspection">🟦 Insp</option>
+              <option value="corrective_action">🟥 CA</option>
+              <option value="follow_up">🟨 Follow</option>
+              <option value="supervisor_review">🟪 Review</option>
+            </AppSelect>
 
-          <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="flex-1">
-            <option value="">All</option>
-            <option value="Open">Open</option>
-            <option value="In Progress">Prog</option>
-            <option value="Completed">Done</option>
-          </AppSelect>
+            <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="flex-1">
+              <option value="">All statuses</option>
+              <option value="Open">Open</option>
+              <option value="In Progress">Prog</option>
+              <option value="Completed">Done</option>
+            </AppSelect>
+          </div>
         </div>
       </AppPanel>
 
