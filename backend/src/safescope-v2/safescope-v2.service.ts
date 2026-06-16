@@ -629,7 +629,7 @@ export class SafescopeV2Service {
         if (citation.startsWith('30 CFR 56.')) {
           scopeFit = 'preferred';
           scopeFitAdjustment = 50;
-          reasons.push('Preferred for MSHA surface metal/nonmetal scope.');
+          reasons.push('preferred MSHA Part 56 surface metal/nonmetal scope');
         } else if (citation.startsWith('30 CFR 57.')) {
           scopeFit = 'mismatch';
           scopeFitAdjustment = -100;
