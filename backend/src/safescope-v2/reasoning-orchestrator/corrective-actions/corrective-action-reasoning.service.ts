@@ -15,7 +15,10 @@ function normalize(value: unknown): string {
 
 export class SafeScopeCorrectiveActionReasoningService {
   reason(input: CorrectiveActionReasoningInput): CorrectiveActionReasoningResult {
-    const recommendations = this.buildRecommendations(input);
+    const recommendations = this.filterUnsupportedRecommendations(
+      this.buildRecommendations(input),
+      input.hazardObservation,
+    );
     const summary = {
       totalRecommendations: recommendations.length,
       immediateCount: recommendations.filter((item) => item.priority === 'immediate').length,
@@ -41,6 +44,35 @@ export class SafeScopeCorrectiveActionReasoningService {
         requiresSiteSpecificValidation: true,
       },
     };
+  }
+
+
+  private filterUnsupportedRecommendations(
+    recommendations: CorrectiveActionRecommendation[],
+    hazardObservation: string,
+  ): CorrectiveActionRecommendation[] {
+    const normalized = normalize(hazardObservation);
+
+    const hotWorkNegated =
+      /\bno\b[^.]*\b(welding|cutting|brazing|grinding|hot work)\b/.test(normalized) ||
+      /\b(welding|cutting|brazing|grinding|hot work)\b[^.]*\b(was not|were not|not occurring|not taking place|not observed)\b/.test(normalized);
+
+    if (!hotWorkNegated) {
+      return recommendations;
+    }
+
+    return recommendations.filter((recommendation) => {
+      const decisionText = [
+        recommendation.action,
+        recommendation.rationale,
+        ...(recommendation.verificationEvidence || []),
+        ...(recommendation.cautions || []),
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      return !decisionText.includes('hot work') && !decisionText.includes('welding');
+    });
   }
 
   private buildRecommendations(input: CorrectiveActionReasoningInput): CorrectiveActionRecommendation[] {

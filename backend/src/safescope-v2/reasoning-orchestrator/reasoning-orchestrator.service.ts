@@ -116,6 +116,7 @@ export class SafeScopeReasoningOrchestratorService {
     let equipmentReasoningSummary = this.buildEquipmentReasoningSummary(
       equipmentTaskMechanismContext,
       equipmentArchetypeContext,
+      '',
     );
 
     const contradictionIntelligence = this.contradictionIntelligenceService.evaluate({
@@ -311,6 +312,7 @@ export class SafeScopeReasoningOrchestratorService {
       equipmentReasoningSummary = this.buildEquipmentReasoningSummary(
         equipmentTaskMechanismContext,
         equipmentArchetypeContext,
+        combined,
       );
     }
 
@@ -458,6 +460,7 @@ export class SafeScopeReasoningOrchestratorService {
       equipmentReasoningSummary = this.buildEquipmentReasoningSummary(
         equipmentTaskMechanismContext,
         equipmentArchetypeContext,
+        combined,
       );
     }
 
@@ -564,6 +567,7 @@ export class SafeScopeReasoningOrchestratorService {
   private buildEquipmentReasoningSummary(
     equipmentTaskMechanismContext: SafeScopeReasoningResult['equipmentTaskMechanismContext'],
     equipmentArchetypeContext: SafeScopeReasoningResult['equipmentArchetypeContext'],
+    hazardObservation = '',
   ): SafeScopeEquipmentReasoningSummary {
     const specific = equipmentTaskMechanismContext.primaryMatch;
     const archetype = equipmentArchetypeContext.primaryMatch;
@@ -588,7 +592,8 @@ export class SafeScopeReasoningOrchestratorService {
           `Archetype score: ${archetype.score}.`,
           ...equipmentTaskMechanismContext.matches
             .slice(1, 3)
-            .map((match) => `Secondary specific context: ${match.equipmentLabel} / ${match.componentLabel} / ${match.failureModeLabel}.`),
+            .map((match) => this.formatSecondarySpecificContext(match, hazardObservation))
+            .filter((context): context is string => Boolean(context)),
         ],
         rankingReasons: [
           'A specific equipment/component/failure-mode match was available, so it is primary.',
@@ -609,7 +614,8 @@ export class SafeScopeReasoningOrchestratorService {
         primaryMechanismOrArchetype: specific.failureModeLabel,
         supportingContext: equipmentTaskMechanismContext.matches
           .slice(1, 4)
-          .map((match) => `Secondary specific context: ${match.equipmentLabel} / ${match.componentLabel} / ${match.failureModeLabel}.`),
+          .map((match) => this.formatSecondarySpecificContext(match, hazardObservation))
+            .filter((context): context is string => Boolean(context)),
         rankingReasons: [
           'A specific equipment/component/failure-mode match was available.',
           'No supporting archetype match exceeded the detection threshold.',
@@ -2458,5 +2464,29 @@ export class SafeScopeReasoningOrchestratorService {
 
     return { reasonCodes };
   }
+
+
+  private formatSecondarySpecificContext(match: any, hazardObservation: string): string | null {
+    const normalized = String(hazardObservation || '').toLowerCase();
+    const failureModeLabel = String(match.failureModeLabel || '');
+
+    const panelClosed =
+      /\bpanel\b[^.]*\b(closed|shut|secured)\b/.test(normalized) ||
+      /\b(closed|shut|secured)\b[^.]*\bpanel\b/.test(normalized);
+
+    const explicitExposedElectrical =
+      /\b(exposed live parts|live parts exposed|open electrical panel|missing dead front|missing cover|open panel|energized troubleshooting)\b/.test(normalized);
+
+    if (
+      panelClosed &&
+      !explicitExposedElectrical &&
+      failureModeLabel.toLowerCase().includes('exposed live parts')
+    ) {
+      return null;
+    }
+
+    return `Secondary specific context: ${match.equipmentLabel} / ${match.componentLabel} / ${match.failureModeLabel}.`;
+  }
+
 
 }
