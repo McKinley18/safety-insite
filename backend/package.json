@@ -25,8 +25,7 @@
     "validate:safescope:targeted:orchestrator": "ts-node scripts/run-safescope-targeted-validation.ts --area=orchestrator",
     "validate:safescope:targeted:governance": "ts-node scripts/run-safescope-targeted-validation.ts --area=governance",
     "validate:safescope:targeted:precision": "ts-node scripts/run-safescope-targeted-validation.ts --area=precision",
-    "validate:safescope:targeted:core": "ts-node scripts/run-safescope-targeted-validation.ts --area=core"
-,
+    "validate:safescope:targeted:core": "ts-node scripts/run-safescope-targeted-validation.ts --area=core",
     "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
     "migration:run": "typeorm-ts-node-commonjs -d src/database/data-source.ts migration:run",
     "seed:safescope-knowledge": "ts-node src/safescope-knowledge/seed/safescope-knowledge.seed.ts",
@@ -88,7 +87,8 @@
     "calibrate:safescope-200:triage": "ts-node scripts/run-safescope-200-baseline-calibration-triage.ts",
     "analyze:safescope-200:mismatches": "ts-node scripts/analyze-safescope-calibration-mismatches.ts",
     "diagnose:safescope-200:scenario": "ts-node scripts/diagnose-scenario-mismatches.ts",
-    "safescope:benchmark": "npm run validate:safescope-field-dataset && npm run validate:safescope-field-taxonomy && npm run validate:safescope-field-uniqueness && npm run calibrate:safescope-200 && npm run calibrate:safescope-200:triage && npm run analyze:safescope-200:mismatches && npm run diagnose:safescope-200:scenario"
+    "safescope:benchmark": "npm run validate:safescope-field-dataset && npm run validate:safescope-field-taxonomy && npm run validate:safescope-field-uniqueness && npm run calibrate:safescope-200 && npm run calibrate:safescope-200:triage && npm run analyze:safescope-200:mismatches && npm run diagnose:safescope-200:scenario",
+    "validate:hazlenz": "bash ../scripts/validate-hazlenz-ai.sh"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
