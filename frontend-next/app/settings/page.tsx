@@ -95,7 +95,7 @@ function OverviewItem({
 }
 
 export default function SettingsHubPage() {
-  const [organizationName, setOrganizationName] = useState("SightSignal Workspace");
+  const [organizationName, setOrganizationName] = useState("AuditAlly Workspace");
   const [riskProfileId, setRiskProfileId] = useState<RiskProfileId>("standard_5x5");
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
   const [regulatoryScope, setRegulatoryScope] = useState<RegulatoryScope>("all");
@@ -120,7 +120,7 @@ export default function SettingsHubPage() {
 
       try {
         const settings = await getOrganizationSettings();
-        setOrganizationName(settings.name || "SightSignal Workspace");
+        setOrganizationName(settings.name || "AuditAlly Workspace");
         setRiskProfileId((settings.riskProfileId || "standard_5x5") as RiskProfileId);
         setRegulatoryScope(
           (settings.regulatoryScope ||
@@ -128,7 +128,7 @@ export default function SettingsHubPage() {
             "all") as RegulatoryScope,
         );
       } catch {
-        setOrganizationName("SightSignal Workspace");
+        setOrganizationName("AuditAlly Workspace");
       }
     }
 

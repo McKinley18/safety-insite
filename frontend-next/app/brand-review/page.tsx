@@ -1,17 +1,17 @@
 const concepts = [
   {
     title: "Current Eye Radar",
-    src: "/brand/sightsignal-header-logo.svg",
+    src: "/brand/auditally-header-logo.svg",
     notes: "Keeps the Sight/Site eye concept, now with a radar iris.",
   },
   {
     title: "Technical Radar Lens",
-    src: "/brand/sightsignal-radar-lens.svg",
+    src: "/brand/auditally-app-icon.svg",
     notes: "Less eye/surveillance feel. More polished instrument, sensor, and AI lens.",
   },
   {
     title: "Site Signal Pin",
-    src: "/brand/sightsignal-site-pin.svg",
+    src: "/brand/auditally-app-icon.svg",
     notes: "More field/site oriented. Suggests location-based findings and risk signals.",
   },
 ];
@@ -21,7 +21,7 @@ export default function BrandReviewPage() {
     <main className="mx-auto max-w-6xl space-y-8 px-4 py-8">
       <section className="rounded-[2rem] bg-[#0B1320] p-6 text-white shadow-2xl">
         <p className="text-xs font-black uppercase tracking-[0.24em] text-[#5DB7FF]">
-          SightSignal Brand Review
+          AuditAlly Brand Review
         </p>
         <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
           Compare logo directions
@@ -51,7 +51,7 @@ export default function BrandReviewPage() {
         <h2 className="text-lg font-black text-slate-900">My recommendation</h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
           If the eye feels too surveillance-like, move to Technical Radar Lens. It keeps
-          SightSignal’s meaning while feeling more like field intelligence, scanning, and
+          AuditAlly’s meaning while feeling more like trusted audit support, field review, and
           hazard detection.
         </p>
       </section>

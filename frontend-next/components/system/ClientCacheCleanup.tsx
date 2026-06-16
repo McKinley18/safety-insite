@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const CLEANUP_VERSION_KEY = "sightsignal_cache_cleanup_version";
+const CLEANUP_VERSION_KEY = "auditally_cache_cleanup_version";
 const CLEANUP_VERSION = "cleanup-2026-06-16-v1";
 
 export default function ClientCacheCleanup() {

@@ -44,7 +44,7 @@ export default function HomePage() {
               </h1>
 
               <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                SightSignal helps teams turn field observations into documented findings, risk review, standards support, corrective actions, and inspection-ready records.
+                AuditAlly helps teams turn field observations into documented findings, risk review, standards support, corrective actions, and inspection-ready records.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">

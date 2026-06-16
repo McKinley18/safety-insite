@@ -512,7 +512,7 @@ export default function DashboardPage() {
           <div className="grid gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
             <div className="text-center lg:text-left">
               <p className="text-center text-xs font-black uppercase tracking-[0.28em] text-blue-200 lg:text-left">
-                SightSignal Home
+                AuditAlly Home
               </p>
 
               <h1 className="mx-auto mt-4 max-w-3xl text-center text-3xl font-black leading-tight tracking-[-0.045em] text-white sm:text-4xl lg:mx-0 lg:text-left">

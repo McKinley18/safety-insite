@@ -6,7 +6,7 @@ import { AppLinkButton } from "@/components/ui/AppLinkButton";
 const sections = [
   {
     title: "Proprietary review intelligence",
-    body: "HazLenz AI is proprietary decision-support intelligence within SightSignal. It helps organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
+    body: "HazLenz AI is proprietary decision-support intelligence within AuditAlly. It helps organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
   },
   {
     title: "Built for safety findings",

@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AuditAlly app icon</title>
+  <desc id="desc">A blue rounded square app icon with a stylized white A and green checkmark.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="430" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1D72B8"/>
+      <stop offset="0.55" stop-color="#0F5FBC"/>
+      <stop offset="1" stop-color="#0B1320"/>
+    </linearGradient>
+    <linearGradient id="check" x1="270" y1="255" x2="420" y2="340" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#66C24A"/>
+      <stop offset="1" stop-color="#3FA43B"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="48" y="48" width="416" height="416" rx="96" fill="url(#bg)"/>
+  <path d="M235.4 123.7C244.6 108.2 267.4 108.2 276.6 123.7L374.8 289.4C382.7 302.7 373.1 319.5 357.6 319.5H321.1C313.9 319.5 307.3 315.7 303.6 309.5L256 228.2L208.4 309.5C204.7 315.7 198.1 319.5 190.9 319.5H154.4C138.9 319.5 129.3 302.7 137.2 289.4L235.4 123.7Z" fill="white"/>
+  <path d="M237.5 324.7L272.7 358L396.6 231.4C407.1 220.7 424.2 220.5 434.9 231C445.6 241.5 445.8 258.6 435.3 269.3L292.7 414.9C282.5 425.3 265.9 425.6 255.3 415.5L200.3 363.5C189.4 353.2 188.9 336.1 199.2 325.2C209.5 314.4 226.7 314.4 237.5 324.7Z" fill="url(#check)"/>
+</svg>
