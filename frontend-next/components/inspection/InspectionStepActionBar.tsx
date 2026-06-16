@@ -167,11 +167,11 @@ export default function InspectionStepActionBar({
           </div>
 
           <button
-            type="button"
-            onClick={generateReport}
-            className="rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
+           type="button"
+           onClick={generateReport}
+           className="rounded-xl bg-[#F97316] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
           >
-            Generate Report
+           Generate
           </button>
         </div>
       </div>
