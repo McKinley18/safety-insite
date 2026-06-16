@@ -210,11 +210,11 @@ export default function CurrentHazardCard({
                   </span>
                 </div>
 
-                <h2 className="sentinel-finding-builder-title truncate text-[11px] font-black leading-4 text-slate-950">
+                <h2 className="sentinel-finding-builder-title truncate text-xs font-black leading-4 text-slate-950">
                   {category}
                 </h2>
 
-                <p className="truncate text-[8px] font-semibold leading-4 text-slate-500">
+                <p className="truncate text-[10px] font-semibold leading-4 text-slate-500">
                   {primaryLine} · {categorySource}
                 </p>
 
