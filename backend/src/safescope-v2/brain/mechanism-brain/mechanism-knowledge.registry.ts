@@ -1112,5 +1112,45 @@ export const SAFESCOPE_MECHANISM_BRAIN_REGISTRY: SafeScopeMechanismBrainRecord[]
     immediateControls: ['restrict trench entry until safe egress is provided', 'install a stable stairway, ladder, or ramp', 'ensure egress is positioned within protected shoring limits'],
     verificationEvidence: ['photo of stairway ladder or ramp inside trench', 'lateral travel measurement verification', 'competent person ramp structural design approval']
   },
+  {
+    mechanismId: 'ground_fault_shock_pathway',
+    label: 'Ground-fault wet-enclosure shock pathway',
+    hazardDomains: ['electrical'],
+    energyType: 'electrical',
+    exposurePathway: 'Moisture ingress, outdoor temporary power setups, or standing water near open or damaged electrical enclosures can establish a low-resistance path to ground, delivering a fatal shock to workers when contact is made.',
+    commonTriggerTerms: ['temporary construction power', 'missing gfci', 'outdoor extension cord', 'generator outlets', 'gfci missing', 'ground fault protection', 'wet electrical', 'wet panel', 'puddle near electrical'],
+    competingMechanisms: ['shock', 'shock_arc_flash'],
+    precedenceNotes: [
+      'Use when the electrical hazard is specifically combined with wet conditions, outdoor temporary wiring, or missing GFCI protection.',
+      'If the panel is dry and closed, do not trigger this pathway. Hold for evidence instead.',
+    ],
+    evidenceQuestions: [
+      'Is temporary wiring or are portable extension cords in wet locations?',
+      'Is GFCI protection missing or unverified?',
+      'Has water entered the electrical enclosure?',
+    ],
+    immediateControls: ['disconnect cords from wet areas', 'install plug-in GFCI devices', 'verify GFCI breaker functionality'],
+    verificationEvidence: ['photo of dry GFCI plug-in device', 'GFCI breaker verification photo', 'assured grounding testing log'],
+  },
+  {
+    mechanismId: 'energized_contact',
+    label: 'Energized electrical contact',
+    hazardDomains: ['electrical'],
+    energyType: 'electrical',
+    exposurePathway: 'Direct physical contact with exposed live busbars, uninsulated conductors, bare copper wires, or open terminals provides an immediate path for electrical current through the human body, causing severe burns, nerve damage, or cardiac arrest.',
+    commonTriggerTerms: ['exposed live parts', 'bare copper', 'missing dead-front', 'exposed busbars', 'uncovered electrical panel', 'exposed live wiring', 'exposed energized wiring', 'voltage testing', 'energized troubleshooting'],
+    competingMechanisms: ['shock', 'shock_arc_flash'],
+    precedenceNotes: [
+      'Use when unqualified persons are exposed to uncovered energized terminals or missing dead-front covers.',
+      'If the technician is qualified and wearing NFPA 70E PPE, classify as a procedural safety practice under 1910.333, bypassing automatic shock exposure alarms.',
+    ],
+    evidenceQuestions: [
+      'Are live busbars or terminals completely exposed to direct contact?',
+      'Is the system verified as energized, de-energized, or locked out?',
+      'Are unqualified employees exposed within the shock boundaries?',
+    ],
+    immediateControls: ['apply temporary physical barrier or lock', 'de-energize circuits and verify absence of voltage', 'install Dead-Front cover'],
+    verificationEvidence: ['photo of installedDead-Front inner cover', 'electrical lock verification photo', 'electrical repair record log'],
+  },
 
 ];

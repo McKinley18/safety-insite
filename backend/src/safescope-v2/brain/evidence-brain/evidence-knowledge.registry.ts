@@ -385,5 +385,25 @@ export const SAFESCOPE_EVIDENCE_BRAIN_REGISTRY: SafeScopeEvidenceBrainRecord[] =
     acceptableEvidenceTypes: ['photo', 'measurement', 'employee_statement', 'inspection_observation', 'document_review', 'qualified_person_review', 'equipment_record'],
     defensibilityImpact: 'Without confirming trench depth, employee entry, and actual lateral egress distance, SafeScope should withhold a high-confidence advisory conclusion and require qualified review.',
   },
+  {
+    evidenceId: 'evidence-electrical-dead-front',
+    hazardDomains: ['electrical'],
+    mechanisms: ['shock', 'shock_arc_flash'],
+    question: 'Is the outer electrical cabinet door open, is the interior dead-front protective cover missing, are live busbars or terminals exposed, and are unqualified workers exposed?',
+    importance: 'critical',
+    whyItMatters: 'Dead-front covers prevent accidental contact with live electrical parts when cabinet doors are opened by operators. A missing dead-front cover exposes technicians and workers to immediate high-voltage shock and arc flash potential.',
+    acceptableEvidenceTypes: ['photo', 'employee_statement', 'inspection_observation', 'qualified_person_review'],
+    defensibilityImpact: 'Without confirming whether the dead-front interior cover is in place inside an open cabinet, SafeScope must hold the advisory conclusion and require qualified review to maintain high confidence.',
+  },
+  {
+    evidenceId: 'evidence-electrical-grounding-gfci',
+    hazardDomains: ['electrical'],
+    mechanisms: ['ground_fault_shock_pathway', 'shock'],
+    question: 'Is temporary wiring or are portable extension cords in use, are they located in damp/wet areas, and is GFCI protection or an assured grounding log verified?',
+    importance: 'critical',
+    whyItMatters: 'Temporary power cords on construction sites are subject to severe wear and mud/water exposure. GFCI protection shuts off power immediately during ground faults to prevent electrocution.',
+    acceptableEvidenceTypes: ['photo', 'document_review', 'inspection_observation', 'equipment_record'],
+    defensibilityImpact: 'Without confirming GFCI breaker operation or an assured grounding log, temporary power findings should require qualified review to preserve defensibility and confidence.',
+  },
 
 ];

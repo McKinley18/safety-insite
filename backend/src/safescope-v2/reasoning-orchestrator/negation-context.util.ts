@@ -11,15 +11,20 @@ export function hasNonNegatedTerm(text: string, term: string): boolean {
   let index = value.indexOf(target);
 
   while (index !== -1) {
-    const before = value.slice(Math.max(0, index - 45), index);
-    const after = value.slice(index + target.length, index + target.length + 35);
+    const isWordBoundaryBefore = index === 0 || !/[a-z0-9_]/i.test(value[index - 1]);
+    const isWordBoundaryAfter = index + target.length === value.length || !/[a-z0-9_]/i.test(value[index + target.length]);
 
-    const negatedBefore = /\b(no|not|none|without|never|neither|nor|wasn't|weren't|isn't|aren't|was not|were not|is not|are not|no evidence of|not observed|not present|not occurring|was not occurring|were not occurring)\b[\w\s,;:-]*$/i.test(before);
+    if (isWordBoundaryBefore && isWordBoundaryAfter) {
+      const before = value.slice(Math.max(0, index - 45), index);
+      const after = value.slice(index + target.length, index + target.length + 35);
 
-    const negatedAfter = /^[\w\s,;:-]*\b(not present|not observed|not occurring|was not occurring|were not occurring|absent|ruled out)\b/i.test(after);
+      const negatedBefore = /\b(no|not|none|without|never|neither|nor|wasn't|weren't|isn't|aren't|was not|were not|is not|are not|no evidence of|not observed|not present|not occurring|was not occurring|were not occurring)\b[\w\s,;:-]*$/i.test(before);
 
-    if (!negatedBefore && ! negatedAfter) {
-      return true;
+      const negatedAfter = /^[\w\s,;:-]*\b(not present|not observed|not occurring|was not occurring|were not occurring|absent|ruled out)\b/i.test(after);
+
+      if (!negatedBefore && ! negatedAfter) {
+        return true;
+      }
     }
 
     index = value.indexOf(target, index + target.length);

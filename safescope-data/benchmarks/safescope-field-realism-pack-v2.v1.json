@@ -2009,5 +2009,185 @@
       "egress entrapment"
     ],
     "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-EXPOSED-LIVE-PARTS-001",
+    "title": "open electrical panel with missing dead-front and live busbars",
+    "hazardObservation": "An electrical distribution panel in the maintenance bay had its outer door open. The interior dead-front safety cover was missing, exposing fully energized 480V copper busbars to direct contact.",
+    "siteType": "maintenance bay",
+    "industryContext": "osha_general_industry",
+    "taskContext": "ordinary facility inspection",
+    "equipmentInvolved": "electrical panel",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "exposed",
+      "live",
+      "dead-front",
+      "29 cfr 1910.305"
+    ],
+    "forbiddenTerms": [
+      "closed panel"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-CORD-DAMAGED-001",
+    "title": "temporary extension cord with split inner insulation exposing bare copper",
+    "hazardObservation": "A temporary heavy-duty extension cord in use on the fabrication floor was severely damaged. The outer jacket was sliced and the inner conductor insulation was split, exposing bare copper copper wiring.",
+    "siteType": "fabrication floor",
+    "industryContext": "osha_general_industry",
+    "taskContext": "welding setup",
+    "equipmentInvolved": "extension cord",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "conductor",
+      "damaged cord",
+      "insulation",
+      "29 cfr 1910.305"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-TROUBLESHOOTING-001",
+    "title": "energized voltage testing by qualified electrician with Category 4 PPE",
+    "hazardObservation": "A qualified electrical technician was performing voltage testing on an open, energized motor control center. The technician was wearing certified Category 4 arc flash PPE and using insulated probes under a hot work permit.",
+    "siteType": "electrical room",
+    "industryContext": "osha_general_industry",
+    "taskContext": "energized troubleshooting",
+    "equipmentInvolved": "motor control center",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "qualified",
+      "testing",
+      "permit",
+      "29 cfr 1910.333"
+    ],
+    "forbiddenTerms": [
+      "unprotected exposure"
+    ],
+    "shouldHaveMissingEvidence": false
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-WET-EQUIPMENT-001",
+    "title": "open disconnect switch exposed to active roof leak water",
+    "hazardObservation": "Water from an active roof leak was dripping directly onto an open 240V disconnect switch box on the production floor. The cover was hanging loose, allowing moisture accumulation.",
+    "siteType": "production floor",
+    "industryContext": "osha_general_industry",
+    "taskContext": "ordinary facility inspection",
+    "equipmentInvolved": "disconnect switch",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "wet",
+      "dripping",
+      "disconnect",
+      "29 cfr 1910.303"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-TEMPORARY-POWER-GFCI-001",
+    "title": "temporary construction power without GFCI evidence",
+    "hazardObservation": "Temporary portable extension cords and lighting strings were in use outdoor in wet weather. No ground fault circuit interrupter (GFCI) protection devices or assured grounding program records were provided.",
+    "siteType": "outdoor work zone",
+    "industryContext": "osha_construction",
+    "taskContext": "temporary power",
+    "equipmentInvolved": "extension cord",
+    "photosAvailable": true,
+    "employeeExposureKnown": true,
+    "expectedTerms": [
+      "temporary power",
+      "gfci",
+      "29 cfr 1926.404"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-FALSE-CLOSED-PANEL-001",
+    "title": "closed panel door and no exposed parts nearby",
+    "hazardObservation": "An electrical panel was located in the office hallway. The panel door was fully closed, latched, undamaged, and there were no exposed wires, sparks, heat, or moisture present.",
+    "siteType": "office hallway",
+    "industryContext": "osha_general_industry",
+    "taskContext": "facility inspection",
+    "equipmentInvolved": "electrical panel",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "evidence",
+      "confirm"
+    ],
+    "forbiddenTerms": [
+      "exposed live parts",
+      "29 cfr 1910.303(g)(2)(i)",
+      "shock hazard"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-FALSE-BLOCKED-ACCESS-001",
+    "title": "electrical panel access blocked but panel closed and intact",
+    "hazardObservation": "Three plastic storage bins were stacked in front of an office electrical panel, blocking clear working space clearance access. The panel outer door was closed, latched, and completely intact with no damaged parts or wiring.",
+    "siteType": "office storage",
+    "industryContext": "osha_general_industry",
+    "taskContext": "housekeeping audit",
+    "equipmentInvolved": "electrical panel",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "working space",
+      "clearance",
+      "bins",
+      "29 cfr 1910.303(g)(1)"
+    ],
+    "forbiddenTerms": [
+      "exposed live parts",
+      "bare conductor"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-HOLD-WET-FLOOR-CLOSED-001",
+    "title": "wet floor near closed panel requires evidence confirmation",
+    "hazardObservation": "A small puddle of water was observed on the concrete floor about 4 feet away from a closed, undamaged electrical cabinet. The report does not document whether the moisture has entered the enclosure.",
+    "siteType": "compressor room",
+    "industryContext": "osha_general_industry",
+    "taskContext": "facility audit",
+    "equipmentInvolved": "electrical cabinet",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "hold",
+      "evidence",
+      "confirm",
+      "enclosure"
+    ],
+    "forbiddenTerms": [
+      "unprotected shock exposure",
+      "exposed live parts"
+    ],
+    "shouldHaveMissingEvidence": true
+  },
+  {
+    "id": "FIELD-V2-OSHA-ELECTRICAL-FALSE-GENERIC-NEARBY-001",
+    "title": "generic electrical panel nearby note must not overroute",
+    "hazardObservation": "A generic note states 'there was an electrical panel nearby while we were sweeping the floor'. No damaged, open, blocked, or wet conditions are described.",
+    "siteType": "shop floor",
+    "industryContext": "osha_general_industry",
+    "taskContext": "floor sweeping",
+    "equipmentInvolved": "electrical panel",
+    "photosAvailable": true,
+    "employeeExposureKnown": false,
+    "expectedTerms": [
+      "evidence",
+      "sweeping"
+    ],
+    "forbiddenTerms": [
+      "29 cfr 1910.303(g)(2)(i)",
+      "exposed live parts"
+    ],
+    "shouldHaveMissingEvidence": true
   }
 ]

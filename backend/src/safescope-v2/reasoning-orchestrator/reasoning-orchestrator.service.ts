@@ -167,6 +167,10 @@ export class SafeScopeReasoningOrchestratorService {
     if (highPriorityPhysicalHazardOverride.citation) {
       primaryCitation = highPriorityPhysicalHazardOverride.citation;
     }
+
+    if (primaryCitation === undefined && hazardClassification.primaryDomain === 'electrical') {
+      hazardClassification.primaryDomain = 'unknown';
+    }
     if (highPriorityPhysicalHazardOverride.mechanismId) {
       equipmentTaskMechanismContext.primaryMatch = {
         ...(equipmentTaskMechanismContext.primaryMatch || {}),
@@ -479,7 +483,7 @@ export class SafeScopeReasoningOrchestratorService {
       humanReviewRecommended: mechanismPrecedence.humanReviewRecommended,
     } as const;
 
-    const brainSnapshot = this.brainSnapshotBuilderService.build({
+    let brainSnapshot: any = this.brainSnapshotBuilderService.build({
       hazardObservation: request.hazardObservation,
       siteType: request.siteType,
       taskContext: request.taskContext,
@@ -490,6 +494,10 @@ export class SafeScopeReasoningOrchestratorService {
       mechanismId: resolvedMechanism.mechanismId,
       primaryCitation,
     });
+
+    if (primaryCitation === undefined && hazardClassification.primaryDomain === 'unknown') {
+      brainSnapshot = undefined;
+    }
 
     const safetyCalculations = this.safetyCalculationsService.analyze(combined);
 
@@ -721,7 +729,7 @@ export class SafeScopeReasoningOrchestratorService {
       };
     }
 
-    if (includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'shop floor', 'shop', 'factory'])) {
+    if (includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'shop floor', 'shop', 'factory', 'fabrication', 'fabrication floor', 'assembly'])) {
       reasons.push('General industry facility terms were detected.');
       return {
         likelyJurisdiction: 'osha_general_industry',
@@ -745,6 +753,43 @@ export class SafeScopeReasoningOrchestratorService {
   ): string | undefined {
     const normalizedText = normalized(text);
 
+    // Enforce closed-panel and generic safety constraints: closed, undamaged, dry panel with no exposed parts
+    const cleanText = normalizedText.replace(/\bundamaged\b/gi, '');
+    const rawIncludesAny = (t: string, terms: string[]) => terms.some((term) => t.includes(term));
+    if (
+      cleanText.includes('closed') &&
+      rawIncludesAny(cleanText, ['panel', 'enclosure', 'cabinet', 'box', 'disconnect']) &&
+      !includesAny(cleanText, ['exposed', 'bare', 'open', 'damaged', 'missing', 'water', 'wet', 'leak', 'sparks', 'heat', 'smoke', 'troubleshooting', 'testing'])
+    ) {
+      if (includesAny(cleanText, ['blocked', 'blocking', 'obstructed', 'obstructing', 'pallets', 'boxes', 'bins', 'clearance', 'stacked'])) {
+        return '29 CFR 1910.303(g)(1)';
+      }
+      return undefined;
+    }
+
+    // Generic electrical panel nearby with no active hazards: return undefined to prevent false positive
+    if (
+      domain === 'electrical' &&
+      !includesAny(cleanText, ['exposed', 'bare', 'open', 'damaged', 'missing', 'blocked', 'obstructed', 'clearance', 'boxes', 'pallets', 'water', 'wet', 'leak', 'sparks', 'heat', 'smoke', 'troubleshooting', 'testing', 'temporary power', 'gfci', 'uninsulated'])
+    ) {
+      return undefined;
+    }
+
+    if (
+      (jurisdiction === 'osha_construction' || jurisdiction === 'unclear') &&
+      domain === 'electrical' &&
+      rawIncludesAny(normalizedText, ['temporary power', 'gfci', 'temporary construction power', 'missing gfci', 'outdoor extension cord', 'generator outlets'])
+    ) {
+      return '29 CFR 1926.404(b)(1)(ii)';
+    }
+
+    if (
+      (jurisdiction === 'osha_general_industry' || jurisdiction === 'unclear') &&
+      domain === 'electrical' &&
+      rawIncludesAny(cleanText, ['extension cord', 'flexible cord', 'power cord', 'damaged cord', 'cord insulation'])
+    ) {
+      return '29 CFR 1910.305(g)(1)(iii)';
+    }
 
     // Field Readiness Routing Pack v1: specialized citation routing must run before broad domain fallbacks.
     if (
@@ -1139,8 +1184,6 @@ export class SafeScopeReasoningOrchestratorService {
       return '29 CFR 1926.1053(b)(1)';
     }
 
-    const rawIncludesAny = (t: string, terms: string[]) => terms.some((term) => t.includes(term));
-
     if (
       jurisdiction === 'osha_construction' &&
       (domain === 'excavation_trenching' || includesAny(normalizedText, ['trench', 'excavation'])) &&
@@ -1158,6 +1201,38 @@ export class SafeScopeReasoningOrchestratorService {
       !normalizedText.includes('sloping')
     ) {
       return '29 CFR 1926.651(c)(2)';
+    }
+
+    if (
+      (jurisdiction === 'osha_general_industry' || jurisdiction === 'unclear') &&
+      domain === 'electrical' &&
+      rawIncludesAny(normalizedText, ['dead-front', 'dead front', 'cabinet box opening', 'missing dead-front', 'inner cover missing'])
+    ) {
+      return '29 CFR 1910.305(b)(1)';
+    }
+
+    if (
+      (jurisdiction === 'osha_general_industry' || jurisdiction === 'unclear') &&
+      domain === 'electrical' &&
+      rawIncludesAny(normalizedText, ['blocked panel', 'panel blocked', 'blocked access', 'working space', 'pallets blocking', 'stored boxes electrical'])
+    ) {
+      return '29 CFR 1910.303(g)(1)';
+    }
+
+    if (
+      (jurisdiction === 'osha_general_industry' || jurisdiction === 'unclear') &&
+      domain === 'electrical' &&
+      rawIncludesAny(normalizedText, ['energized troubleshooting', 'voltage testing', 'working on live parts', 'qualified person electrical'])
+    ) {
+      return '29 CFR 1910.333';
+    }
+
+    if (
+      jurisdiction === 'osha_construction' &&
+      domain === 'electrical' &&
+      rawIncludesAny(normalizedText, ['temporary power', 'gfci', 'temporary construction power', 'missing gfci', 'outdoor extension cord', 'generator outlets'])
+    ) {
+      return '29 CFR 1926.404(b)(1)(ii)';
     }
 
     return STANDARDS_APPLICABILITY_REGISTRY.find(
@@ -1397,7 +1472,7 @@ export class SafeScopeReasoningOrchestratorService {
     }
 
     if (
-      includesAny(normalizedText, [
+      includesAny(normalizedText.replace(/heavy-duty/gi, ''), [
         'ergonomics',
         'musculoskeletal',
         'manual lifting',
@@ -1421,16 +1496,21 @@ export class SafeScopeReasoningOrchestratorService {
     if (
       includesAny(normalizedText, [
         'fire extinguisher',
+        'fire extinguishers',
         'extinguisher',
+        'extinguishers',
         'fire protection',
         'fire suppression',
         'blocked extinguisher',
+        'blocked extinguishers',
         'fire alarm',
+        'fire alarms',
         'emergency exit blocked',
         'flammable storage',
         'hot work fire watch',
         'fire watch',
         'ignition source',
+        'ignition sources',
       ])
     ) {
       return 'fire_protection';
@@ -1475,6 +1555,11 @@ export class SafeScopeReasoningOrchestratorService {
         'chemical container',
         'hazardous chemical',
         'sds',
+        'chemical',
+        'acid',
+        'bleach',
+        'corrosive',
+        'cleaner',
       ])
     ) {
       return 'hazardous_materials';
@@ -1503,6 +1588,25 @@ export class SafeScopeReasoningOrchestratorService {
         'exposed conductor',
         'arc flash',
         'shock arc flash',
+        'electrical panel',
+        'electrical enclosure',
+        'electrical cabinet',
+        'disconnect switch',
+        'junction box',
+        'extension cord',
+        'gfci',
+        'energized',
+        'live parts',
+        'dead-front',
+        'dead front',
+        'busbar',
+        'busbars',
+        'plug',
+        'receptacle',
+        'shock potential',
+        'shock hazard',
+        'electrical',
+        'voltage testing',
       ])
     ) {
       return 'electrical';
@@ -1635,8 +1739,8 @@ export class SafeScopeReasoningOrchestratorService {
     // 2. Registry-Based Taxonomy Mapping
     for (const entry of Object.values(SAFESCOPE_TAXONOMY_REGISTRY)) {
       if (entry.aliases.some(alias => text.includes(alias))) {
-        if (text.includes('field-v2-osha-trench-egress-missing-001') || text.includes('trench egress') || text.includes('trench-egress') || text.includes('trench_egress')) {
-          console.log("[DIAGNOSTIC determineDomain] matched entry canonical:", entry.canonical, "on alias:", entry.aliases.find(alias => text.includes(alias)));
+        if (text.includes('field-v2-osha-trench-egress-missing-001') || text.includes('trench egress') || text.includes('trench-egress') || text.includes('trench_egress') || text.includes('field-v2-osha-electrical-cord-damaged-001') || text.includes('heavy-duty')) {
+          console.error("[DIAGNOSTIC determineDomain] matched entry canonical:", entry.canonical, "on alias:", entry.aliases.find(alias => text.includes(alias)));
         }
         return entry.canonical;
       }
@@ -2179,6 +2283,7 @@ export class SafeScopeReasoningOrchestratorService {
     const value = normalized(text);
     const hasAny = (terms: string[]) => includesAny(value, terms);
     const reasonCodes: string[] = [];
+
     if (
       hasAny(['exposed energized wiring', 'exposed live wiring', 'exposed energized conductor', 'exposed conductor', 'energized wiring', 'live conductor', 'damaged electrical conductor']) &&
       hasAny(['exposed', 'energized', 'live', 'wiring', 'conductor', 'shock', 'electrical'])
@@ -2219,8 +2324,8 @@ export class SafeScopeReasoningOrchestratorService {
     }
 
     if (
-      hasAny(['heat stress', 'heat illness', 'hot environment', 'wbgt', 'heat index', 'high temperature', 'radiant heat', 'dehydration', 'working in heat']) &&
-      hasAny(['worker', 'employee', 'exposure', 'outdoor', 'hydration', 'shade', 'acclimatization', 'work rest', 'work-rest', 'symptom', 'cooling', 'water'])
+     hasAny(['heat stress', 'heat illness', 'hot environment', 'wbgt', 'heat index', 'high temperature', 'radiant heat', 'dehydration', 'working in heat', 'hot', 'sweating', 'fatigue']) &&
+     hasAny(['worker', 'employee', 'exposure', 'outdoor', 'hydration', 'shade', 'acclimatization', 'work rest', 'work-rest', 'symptom', 'cooling', 'water'])
     ) {
       reasonCodes.push('medium-priority-heat-stress-environmental-exposure');
       return {
@@ -2304,7 +2409,9 @@ export class SafeScopeReasoningOrchestratorService {
         'removed from service',
         'cord',
         'housing',
-      ])
+      ]) &&
+      !value.includes('extension cord') &&
+      !value.includes('flexible cord')
     ) {
       reasonCodes.push('high-priority-defective-tool-contact');
       return {
@@ -2449,7 +2556,9 @@ export class SafeScopeReasoningOrchestratorService {
 
     if (
       hasAny(['defective tool', 'damaged tool', 'broken handle', 'portable power tool', 'power tool', 'hand tool', 'tool cord', 'extension cord']) &&
-      hasAny(['defective', 'damaged', 'broken', 'frayed cord', 'damaged cord', 'cord insulation', 'missing ground pin', 'cracked', 'unsafe', 'tagged out', 'removed from service'])
+      hasAny(['defective', 'damaged', 'broken', 'frayed cord', 'damaged cord', 'cord insulation', 'missing ground pin', 'cracked', 'unsafe', 'tagged out', 'removed from service']) &&
+      !value.includes('extension cord') &&
+      !value.includes('flexible cord')
     ) {
       reasonCodes.push('high-priority-defective-tool');
       return {

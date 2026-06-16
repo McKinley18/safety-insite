@@ -409,5 +409,33 @@ export const SAFESCOPE_CONTROLS_BRAIN_REGISTRY: SafeScopeControlBrainRecord[] = 
       'Do not over-prescribe ladders; ramps, stairways, or other safe means of egress are fully acceptable and valid when designed/constructed in accordance with 1926.651.',
     ],
   },
+  {
+    controlId: 'control-electrical-dead-front',
+    hazardDomains: ['electrical'],
+    mechanisms: ['shock', 'shock_arc_flash'],
+    hierarchyLevel: 'engineering_control' as any,
+    immediateControl: 'Apply a temporary barricade to restrict access to the open panel, de-energize circuits, or wear high-voltage protective gloves/PPE.',
+    permanentControl: 'Install and secure a complete, structural dead-front cover inside the electrical enclosure to isolate all live terminals and busbars.',
+    verificationEvidence: ['photo of secured interior dead-front cover', 'qualified electrical work verification log', 'electrical panel door secured photo'],
+    failureModesIfNotVerified: ['accidental shock during cabinet use', 'arc flash blast exposure to operator', 'unauthorized worker entry into open cabinet'],
+    notes: [
+      'Do not prescribe controls beyond available evidence.',
+      'Ensure unqualified persons are excluded from the area.',
+    ],
+  },
+  {
+    controlId: 'control-electrical-temporary-gfci',
+    hazardDomains: ['electrical'],
+    mechanisms: ['ground_fault_shock_pathway', 'shock'],
+    hierarchyLevel: 'engineering_control' as any,
+    immediateControl: 'Disconnect power cords from unprotected outlets and verify GFCI trip/reset function.',
+    permanentControl: 'Install inline GFCI protection devices at temporary outlets or implement a certified assured equipment grounding conductor test program.',
+    verificationEvidence: ['photo of plug-in GFCI device', 'assured grounding test program log book', 'GFCI outlet circuit test photo'],
+    failureModesIfNotVerified: ['severe shock or electrocution under wet ground fault', 'extension cord insulation breakdown', 'generator grounding circuit fail'],
+    notes: [
+      'Enforce temporary wiring GFCI protection constraints.',
+      'Do not over-prescribe or assume GFCI failure when cords are stored or not in wet service.',
+    ],
+  },
 
 ];

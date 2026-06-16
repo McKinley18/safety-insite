@@ -321,6 +321,7 @@ async function main() {
       );
     } catch (error) {
       const failureReason = error instanceof Error ? error.message : String(error);
+      console.log(`\n[DIAGNOSTIC FAIL] Case ${testCase.id} failed. NativePrimaryCitation is:`, (result as any)?.primaryCitation);
       failures.push(`${testCase.id}: ${failureReason}`);
       resultRows.push({
         id: testCase.id,

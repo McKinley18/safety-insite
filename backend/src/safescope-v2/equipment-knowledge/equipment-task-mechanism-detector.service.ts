@@ -104,6 +104,9 @@ export class SafeScopeEquipmentTaskMechanismDetectorService {
           this.scoreMechanismSignals(normalizedDescription, failureMode, candidate);
 
           if (candidate.score >= CONFIDENCE_THRESHOLDS.low && this.hasSpecificEquipmentOrComponentSignal(candidate)) {
+            if (normalizedDescription.includes('acid jug')) {
+              console.error(`[DIAGNOSTIC gauntlet] candidate for acid jug: ${candidate.record.equipmentId} score: ${candidate.score} matchedTerms: ${Array.from(candidate.matchedTerms).join(',')}`);
+            }
             candidates.push(candidate);
           }
         }
@@ -708,6 +711,10 @@ function containsTerm(normalizedDescription: string, rawTerm: string): boolean {
   // Single word semantic match
   if (termTokens.length === 1) {
     const stemmedTerm = natural.PorterStemmer.stem(termTokens[0]);
+    const lowerRawTerm = rawTerm.toLowerCase();
+    if ((lowerRawTerm === 'generator' || lowerRawTerm === 'generators' || stemmedTerm === 'generat' || stemmedTerm === 'gener') && !normalizedDescription.includes('generator')) {
+      return false;
+    }
     return stemmedHaystack.includes(stemmedTerm);
   }
 
@@ -716,6 +723,9 @@ function containsTerm(normalizedDescription: string, rawTerm: string): boolean {
   const stemmedTermTokens = termTokens.map(t => natural.PorterStemmer.stem(t));
   let matchedCount = 0;
   for (const st of stemmedTermTokens) {
+     if ((st === 'generat' || st === 'gener') && !normalizedDescription.includes('generator')) {
+         continue;
+     }
      if (stemmedHaystack.includes(st)) {
          matchedCount++;
      }

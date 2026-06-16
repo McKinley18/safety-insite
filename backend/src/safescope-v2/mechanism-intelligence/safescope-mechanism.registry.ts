@@ -307,5 +307,15 @@ export const SAFESCOPE_MECHANISM_REGISTRY: MechanismEntry[] = [
     id: 'excavation_cave_in_or_entrapment',
     description: 'Excavation cave-in or egress entrapment',
     keywords: ['egress', 'ladder', 'ramp', 'trench egress', 'excavation access', 'stairway', 'stairs', 'lateral travel']
+  },
+  {
+    id: 'ground_fault_shock_pathway',
+    description: 'Ground-fault wet-enclosure shock pathway',
+    keywords: ['temporary construction power', 'missing gfci', 'outdoor extension cord', 'generator outlets', 'gfci missing', 'ground fault protection', 'wet electrical', 'wet panel', 'puddle near electrical']
+  },
+  {
+    id: 'energized_contact',
+    description: 'Energized electrical contact',
+    keywords: ['exposed live parts', 'bare copper', 'missing dead-front', 'exposed busbars', 'uncovered electrical panel', 'exposed live wiring', 'exposed energized wiring', 'voltage testing', 'energized troubleshooting']
   }
 ];

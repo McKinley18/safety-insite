@@ -262,6 +262,13 @@ export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
     rationale: 'Guarding of live parts for electrical equipment.'
   },
   {
+    jurisdiction: 'osha_general_industry',
+    domain: 'electrical',
+    primaryCitation: '29 CFR 1910.305(g)(1)(iii)',
+    acceptableCitations: ['29 CFR 1910.305(g)(1)(iii)', '29 CFR 1910.305(g)', '29 CFR 1910.305'],
+    rationale: 'OSHA general industry flexible cords and cables prohibited uses and damage protection.'
+  },
+  {
     jurisdiction: 'msha',
     domain: 'fall_protection',
     primaryCitation: '30 CFR 56.15005',
@@ -302,5 +309,33 @@ export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
     primaryCitation: '29 CFR 1910.22(a)(2)',
     acceptableCitations: ['29 CFR 1910.22(a)(2)', '29 CFR 1910.22(a)'],
     rationale: 'OSHA general industry walking-working surface housekeeping and clean/dry surface requirements.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
+    domain: 'electrical',
+    primaryCitation: '29 CFR 1910.303(g)(1)',
+    acceptableCitations: ['29 CFR 1910.303(g)(1)', '29 CFR 1910.303(g)'],
+    rationale: 'OSHA general industry workspace clearance and working space around electrical equipment.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
+    domain: 'electrical',
+    primaryCitation: '29 CFR 1910.305(b)(1)',
+    acceptableCitations: ['29 CFR 1910.305(b)(1)', '29 CFR 1910.305(b)', '29 CFR 1910.305'],
+    rationale: 'OSHA general industry dead-front integrity, inner covers, and enclosure opening requirements.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
+    domain: 'electrical',
+    primaryCitation: '29 CFR 1910.333',
+    acceptableCitations: ['29 CFR 1910.333', '29 CFR 1910.333(a)'],
+    rationale: 'OSHA safety-related work practices, energized troubleshooting, and electrical isolation/testing.'
+  },
+  {
+    jurisdiction: 'osha_construction',
+    domain: 'electrical',
+    primaryCitation: '29 CFR 1926.404(b)(1)(ii)',
+    acceptableCitations: ['29 CFR 1926.404(b)(1)(ii)', '29 CFR 1926.404(b)', '29 CFR 1926.404'],
+    rationale: 'OSHA construction temporary wiring ground-fault protection (GFCI) or assured equipment grounding.'
   }
 ];
