@@ -18,6 +18,10 @@ const suites: Suite[] = [
   {
     name: "Corrective Action Intelligence Benchmark",
     scriptPath: "src/safescope-v2/tests/corrective-action-benchmark.ts"
+  },
+  {
+    name: "Mobile Equipment Standards Benchmark",
+    scriptPath: "src/safescope-v2/tests/mobile-standards-benchmark.ts"
   }
 ];
 

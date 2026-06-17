@@ -358,5 +358,47 @@ export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
     primaryCitation: '30 CFR 56.15006',
     acceptableCitations: ['30 CFR 56.15006'],
     rationale: 'MSHA surface metal/nonmetal special protective equipment and protective clothing requirements.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
+    domain: 'mobile_equipment',
+    primaryCitation: '29 CFR 1910.178(p)(1)',
+    acceptableCitations: ['29 CFR 1910.178(p)(1)'],
+    rationale: 'OSHA general industry powered industrial truck unsafe equipment removal and repair requirements.'
+  },
+  {
+    jurisdiction: 'osha_construction',
+    domain: 'mobile_equipment',
+    primaryCitation: '29 CFR 1926.602(a)(9)(ii)',
+    acceptableCitations: ['29 CFR 1926.602(a)(9)(ii)'],
+    rationale: 'OSHA construction earthmoving equipment reverse signal alarm and spotter requirements.'
+  },
+  {
+    jurisdiction: 'msha',
+    domain: 'mobile_equipment',
+    primaryCitation: '30 CFR 56.9100(a)',
+    acceptableCitations: ['30 CFR 56.9100(a)'],
+    rationale: 'MSHA rules of the road surface mine traffic safety and rules of movement requirements.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
+    domain: 'powered_haulage',
+    primaryCitation: '29 CFR 1910.178(p)(1)',
+    acceptableCitations: ['29 CFR 1910.178(p)(1)'],
+    rationale: 'OSHA general industry powered industrial truck unsafe equipment removal and repair requirements.'
+  },
+  {
+    jurisdiction: 'osha_construction',
+    domain: 'powered_haulage',
+    primaryCitation: '29 CFR 1926.602(a)(9)(ii)',
+    acceptableCitations: ['29 CFR 1926.602(a)(9)(ii)'],
+    rationale: 'OSHA construction earthmoving equipment reverse signal alarm and spotter requirements.'
+  },
+  {
+    jurisdiction: 'msha',
+    domain: 'powered_haulage',
+    primaryCitation: '30 CFR 56.9100(a)',
+    acceptableCitations: ['30 CFR 56.9100(a)'],
+    rationale: 'MSHA rules of the road surface mine traffic safety and rules of movement requirements.'
   }
 ];

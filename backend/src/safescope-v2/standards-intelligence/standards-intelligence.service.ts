@@ -444,6 +444,39 @@ export class StandardsIntelligenceService {
       "leading edge",
       "opening",
     ]);
+    const hasForkliftDefects = hasAny(lower, [
+      "forklift",
+      "forklifts",
+      "powered industrial truck",
+      "leaking",
+      "hydraulic",
+      "defective",
+      "unsafe truck",
+      "leaking fluid",
+      "hydraulic fluid",
+    ]);
+    const hasMshaTraffic = hasAny(lower, [
+      "haul truck",
+      "haul trucks",
+      "mine road",
+      "mine roads",
+      "congested",
+      "speed limit",
+      "right-of-way",
+      "traffic sign",
+      "rules of the road",
+    ]);
+    const hasConstructionBacking = hasAny(lower, [
+      "loader",
+      "loaders",
+      "backing",
+      "backing up",
+      "reverse",
+      "obstructed view",
+      "backup alarm",
+      "reverse alarm",
+      "spotter",
+    ]);
 
     return matches.map((match) => {
       const citation = citationKey(match.standard.citation);
@@ -515,6 +548,51 @@ export class StandardsIntelligenceService {
         makeSupporting(
           "Demoted: machine guarding standard is not primary for electrical finding",
         );
+      }
+
+      // PIT (forklift defects)
+      if (
+        selected === "osha-general" &&
+        hasForkliftDefects &&
+        ["1910.178(p)(1)", "1910.178"].includes(citation)
+      ) {
+        makePrimary("Direct OSHA powered industrial truck scenario match");
+      }
+
+      if (
+        selected === "osha-general" &&
+        hasForkliftDefects &&
+        ["1910.212(a)(1)", "1910.212"].includes(citation)
+      ) {
+        makeSupporting("Demoted: machine guarding is not primary for vehicle defects");
+        score -= 50;
+      }
+
+      // Construction backing
+      if (
+        selected === "osha-construction" &&
+        hasConstructionBacking &&
+        ["1926.602(a)(9)(ii)", "1926.602"].includes(citation)
+      ) {
+        makePrimary("Direct OSHA construction earthmoving backing scenario match");
+      }
+
+      // MSHA Traffic Control
+      if (
+        selected === "msha" &&
+        hasMshaTraffic &&
+        ["56.9100(a)", "56.9100"].includes(citation)
+      ) {
+        makePrimary("Direct MSHA traffic control rules-of-the-road scenario match");
+      }
+
+      if (
+        selected === "msha" &&
+        hasMshaTraffic &&
+        ["56.14107(a)", "56.14107"].includes(citation)
+      ) {
+        makeSupporting("Demoted: machine guarding is not primary for roadway traffic control");
+        score -= 50;
       }
 
       return {
