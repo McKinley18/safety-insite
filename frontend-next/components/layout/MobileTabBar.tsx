@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 
 const tabs = [
   { href: "/command-center", label: "Home", icon: "🏠" },
-  { href: "/inspections", label: "Inspection", icon: "📋" },
-  { href: "/reports", label: "Report", icon: "🗂" },
+  { href: "/inspections", label: "Inspect", icon: "📋" },
+  { href: "/reports", label: "Reports", icon: "🗂" },
   { href: "/safety-calendar", label: "Calendar", icon: "📅" },
-  { href: "/analytics", label: "Insights", icon: "📈" },
+  { href: "/actions", label: "Actions", icon: "✓" },
 ];
 
 function isMobileKeyboardLikelyOpen() {

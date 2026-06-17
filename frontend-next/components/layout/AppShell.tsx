@@ -68,22 +68,10 @@ const navItems = [
     activeRoots: ["/safety-calendar"],
   },
   {
-    href: "/analytics",
-    label: "Insights",
-    icon: "📈",
-    activeRoots: ["/analytics"],
-  },
-  {
-    href: "/company",
-    label: "Company",
-    icon: "🏢",
-    activeRoots: ["/company"],
-  },
-  {
-    href: "/safescope-knowledge/review",
-    label: "Review",
+    href: "/actions",
+    label: "Actions",
     icon: "✓",
-    activeRoots: ["/safescope-knowledge/review"],
+    activeRoots: ["/actions"],
   },
   {
     href: "/settings",
