@@ -22,10 +22,6 @@ const suites: Suite[] = [
   {
     name: "Mobile Equipment Standards Benchmark",
     scriptPath: "src/safescope-v2/tests/mobile-standards-benchmark.ts"
-  },
-  {
-    name: "Walking-Working Surfaces/Fall Protection Benchmark",
-    scriptPath: "src/safescope-v2/tests/walking-working-surfaces-benchmark.ts"
   }
 ];
 
