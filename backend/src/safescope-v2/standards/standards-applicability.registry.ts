@@ -337,5 +337,26 @@ export const STANDARDS_APPLICABILITY_REGISTRY: StandardsApplicabilityEntry[] = [
     primaryCitation: '29 CFR 1926.404(b)(1)(ii)',
     acceptableCitations: ['29 CFR 1926.404(b)(1)(ii)', '29 CFR 1926.404(b)', '29 CFR 1926.404'],
     rationale: 'OSHA construction temporary wiring ground-fault protection (GFCI) or assured equipment grounding.'
+  },
+  {
+    jurisdiction: 'osha_general_industry',
+    domain: 'ppe',
+    primaryCitation: '29 CFR 1910.132(a)',
+    acceptableCitations: ['29 CFR 1910.132(a)', '29 CFR 1910.133(a)(1)'],
+    rationale: 'OSHA general industry personal protective equipment provision, use, and maintenance requirements.'
+  },
+  {
+    jurisdiction: 'osha_construction',
+    domain: 'ppe',
+    primaryCitation: '29 CFR 1926.95(a)',
+    acceptableCitations: ['29 CFR 1926.95(a)', '29 CFR 1926.102(a)(1)'],
+    rationale: 'OSHA construction personal protective equipment provision, use, and criteria requirements.'
+  },
+  {
+    jurisdiction: 'msha',
+    domain: 'ppe',
+    primaryCitation: '30 CFR 56.15006',
+    acceptableCitations: ['30 CFR 56.15006'],
+    rationale: 'MSHA surface metal/nonmetal special protective equipment and protective clothing requirements.'
   }
 ];
