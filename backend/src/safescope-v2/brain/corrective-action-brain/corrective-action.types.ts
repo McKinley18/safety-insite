@@ -1,5 +1,9 @@
 import { HierarchyLevel } from '../scenario-family-knowledge/scenario-family.types';
 
+/**
+ * Represents structured corrective action reasoning generated dynamically by HazLenz AI
+ * supporting optional structured observationUnderstanding variables.
+ */
 export type CorrectiveActionReasoning = {
   scenarioFamilyId: string;
   hazardDomain: string;

@@ -381,7 +381,8 @@ export class SafeScopeIntelligenceOrchestrator {
 
     const correctiveActionReasoning = this.correctiveActionEngine.evaluate(
         scenarioIntelligence,
-        evidenceQuality.gaps || []
+        evidenceQuality.gaps || [],
+        observationUnderstanding
     );
 
     const riskReasoning = this.riskEngine.evaluate(
