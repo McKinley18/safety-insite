@@ -169,11 +169,10 @@ export default function SettingsHubPage() {
           Settings
         </p>
         <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
-          Account preferences.
+          Settings.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Manage workspace defaults, report behavior, storage, security, and
-          company controls from one place.
+          Set your report storage, risk matrix, HazLenz AI scope, and workspace preferences.
         </p>
       </HeroPanel>
 
@@ -196,9 +195,9 @@ export default function SettingsHubPage() {
       <section className="grid gap-4 xl:grid-cols-2">
         <AppPanel padding="lg">
           <SectionHeader
-            eyebrow="Quick Selectors"
+            eyebrow="Reports"
             title="Report storage"
-            description="Choose where new reports should be saved by default."
+            description="Choose where new reports are saved."
           />
 
           <div className="mt-4 grid gap-3">
@@ -216,9 +215,9 @@ export default function SettingsHubPage() {
 
         <AppPanel padding="lg">
           <SectionHeader
-            eyebrow="Quick Selectors"
+            eyebrow="Risk"
             title="Risk matrix"
-            description="Set the default severity and likelihood scale for new inspections."
+            description="Set the default severity and likelihood scale."
           />
 
           <div className="mt-4 grid gap-3">
@@ -258,9 +257,9 @@ export default function SettingsHubPage() {
       <section className="grid gap-4 lg:grid-cols-2">
         <AppPanel padding="lg">
           <SectionHeader
-            eyebrow="Detailed Setup"
+            eyebrow="Setup"
             title="Workspace setup"
-            description="Open the full workspace settings page for report defaults, logo, security, locations, and team controls."
+            description="Open full settings for report defaults, logo, security, and locations."
           />
 
           <div className="mt-5 flex justify-center">
@@ -273,9 +272,9 @@ export default function SettingsHubPage() {
         {isCompany ? (
           <AppPanel padding="lg">
             <SectionHeader
-              eyebrow="Company Settings"
-              title="Team and operational controls"
-              description="Manage seats, roles, users, inspections, follow-ups, corrective actions, and company-level task assignment."
+              eyebrow="Company"
+              title="Team controls"
+              description="Manage users, roles, shared work, and assigned follow-up."
             />
 
             <div className="mt-5 flex justify-center">
@@ -287,9 +286,9 @@ export default function SettingsHubPage() {
         ) : (
           <AppPanel variant="dashed" padding="md">
             <SectionHeader
-              eyebrow="Company Settings"
+              eyebrow="Company"
               title="Available on Company plan"
-              description="Company settings unlock team management, seat controls, role assignment, shared locations, assigned inspections, and assigned corrective work."
+              description="Add team management, shared locations, assigned inspections, and assigned corrective work."
             />
 
             <div className="mt-5 flex justify-center">
