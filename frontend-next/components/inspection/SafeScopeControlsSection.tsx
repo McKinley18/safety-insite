@@ -92,11 +92,20 @@ export default function SafeScopeControlsSection({
       <div className="mt-4">
         <button
           type="button"
-          onClick={handleRunSafeScope}
+          onClick={() => {
+            console.log("[HazLenz AI] Button clicked");
+            handleRunSafeScope();
+          }}
           className="w-full rounded-xl bg-[#F97316] px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-950/20 ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98]"
         >
           Run HazLenz AI Review
         </button>
+
+        {safeScopeStatus && (
+          <p className="mt-2 text-center text-xs font-bold leading-5 text-amber-200">
+            {safeScopeStatus}
+          </p>
+        )}
 
         <p className="mt-2 text-center text-[11px] font-bold leading-5 text-blue-100">
           Using {scopeLabel} · {riskMatrixLabel}

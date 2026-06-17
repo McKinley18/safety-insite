@@ -358,9 +358,22 @@ export default function InspectionPage() {
   }
 
   async function handleRunSafeScope(forceOffline: boolean = false) {
+    console.log("[HazLenz AI] handleRunSafeScope entered");
+    
+    // 1. Validation
+    if (!description || description.trim().length === 0) {
+      setSafeScopeStatus("Add an observation description before running HazLenz AI.");
+      return;
+    }
+
     try {
       const safeScopeScopes = getSafeScopeScopesForAgencyMode(agencyMode);
       const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
+
+      setSafeScopeStatus("Starting HazLenz AI review...");
+      
+      // Allow for a brief moment for status to update
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       setSafeScopeStatus("Running HazLenz AI match...");
 
@@ -375,9 +388,10 @@ export default function InspectionPage() {
           offlineKnowledgePackVersion: "v1.0.0-seed"
         });
         setSafeScopeResult(result);
-        setSafeScopeStatus(""); // Clear status on success
+        setSafeScopeStatus("HazLenz AI review complete.");
         return;
       }
+      
       const result = await runSafeScopeV2Classify({
         text: [
           `Hazard category: ${hazardCategory || "Unspecified"}`,
@@ -435,20 +449,10 @@ export default function InspectionPage() {
       setSelectedStandards(autoSelectedStandards);
       setSelectedGeneratedActions(autoSelectedActions);
 
-      setSafeScopeStatus(
-        `HazLenz AI: ${result.classification} (${
-          result.confidenceBand === "high"
-            ? "high classification match"
-            : result.confidenceBand === "medium"
-              ? "supervisor review recommended"
-              : result.confidenceBand === "low"
-                ? "supervisor review required"
-                : `${result.confidenceBand} confidence`
-        })`,
-      );
+      setSafeScopeStatus("HazLenz AI review complete.");
     } catch (error: any) {
       console.error("[HazLenz AI] Review failed", error);
-      setSafeScopeStatus(`HazLenz AI review failed: ${error.message || "Unknown error"}. Check backend connection.`);
+      setSafeScopeStatus("HazLenz AI review failed. Check backend connection or API configuration.");
     }
   }
 
