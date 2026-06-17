@@ -35,12 +35,12 @@ const workflowOptions: {
 }[] = [
   {
     id: "quick",
-    title: "Quick Capture",
+    title: "Quick Inspection",
     eyebrow: "Basic",
     description:
-      "Document a hazard fast with photo, location, and observed condition.",
+      "Capture a hazard quickly with photo, location, and observed condition.",
     details:
-      "Best for quick field documentation and fast HazLenz AI summary support.",
+      "Best when you need to document one issue quickly and keep moving.",
     route: "/inspection-quick",
     entitlement: "quickCapture",
     tierLabel: "Included",
@@ -48,12 +48,12 @@ const workflowOptions: {
   },
   {
     id: "guided",
-    title: "Guided Inspection",
+    title: "Full Inspection",
     eyebrow: "Pro",
     description:
-      "Use the structured workflow for evidence, HazLenz AI review, risk, standards, actions, and report options.",
+      "Walk through evidence, HazLenz AI review, risk, standards, actions, and report options.",
     details:
-      "Best for routine safety inspections and professional individual reporting.",
+      "Best for normal safety inspections and complete reports.",
     route: "/inspection-cover",
     entitlement: "guidedInspection",
     tierLabel: "Pro",
@@ -61,12 +61,12 @@ const workflowOptions: {
   },
   {
     id: "advanced",
-    title: "Advanced Review",
+    title: "Audit Review",
     eyebrow: "Company",
     description:
-      "Build an audit-ready record with deeper validation, traceability, review triggers, and company workflow support.",
+      "Build a deeper review record with validation, traceability, and review triggers.",
     details:
-      "Best for formal audits, complex findings, team accountability, and defensible compliance records.",
+      "Best for formal audits, complex findings, and defensible records.",
     route: "/inspection-cover",
     entitlement: "advancedReview",
     tierLabel: "Company",
@@ -155,8 +155,7 @@ export default function InspectionsPage() {
               Start field work.
             </h1>
             <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-              Choose the right inspection depth for the work: quick capture,
-              guided inspection, or advanced audit-ready review.
+              Start a quick issue capture, complete a full inspection, or use a deeper audit review when the work requires it.
             </p>
           </div>
 
@@ -186,9 +185,9 @@ export default function InspectionsPage() {
 
       <AppPanel padding="lg" className="overflow-hidden">
         <SectionHeader
-          eyebrow="Choose Workflow"
-          title="What kind of inspection are you doing?"
-          description="Each option creates the same report structure, but changes how much detail is required from the user."
+          eyebrow="Start"
+          title="Choose inspection type"
+          description="Pick the amount of detail needed for the work in front of you."
         />
 
         <div className="mt-4 space-y-2">
@@ -200,23 +199,23 @@ export default function InspectionsPage() {
             const featureRows =
               workflow.id === "quick"
                 ? [
-                    "Photo + location + condition",
-                    "HazLenz AI quick preview",
-                    "Risk signal",
-                    "One suggested action",
+                    "Photo",
+                    "Location",
+                    "Observed condition",
+                    "Quick action",
                   ]
                 : workflow.id === "guided"
                   ? [
-                      "Evidence workflow",
-                      "Full HazLenz AI review",
-                      "Standards suggestions",
+                      "Evidence",
+                      "HazLenz AI review",
+                      "Standards",
                       "Report options",
                     ]
                   : [
-                      "Audit validation",
-                      "Traceability appendix",
+                      "Validation",
+                      "Traceability",
                       "Review triggers",
-                      "Team accountability",
+                      "Audit record",
                     ];
 
             return (
@@ -276,7 +275,7 @@ export default function InspectionsPage() {
 
                     {!allowed && (
                       <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-xs font-black leading-5 text-amber-800">
-                        {workflow.title} requires the {workflow.tierLabel} plan.
+                        {workflow.title} is available on the {workflow.tierLabel} plan.
                       </p>
                     )}
 
