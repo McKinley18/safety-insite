@@ -242,7 +242,7 @@ export async function runSafeScopeV2Classify(input: {
   });
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
+  const timeoutId = setTimeout(() => controller.abort(), 45000); // 45s timeout for full HazLenz AI reasoning payloads
 
   try {
     const response = await fetch(requestUrl, {

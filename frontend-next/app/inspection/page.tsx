@@ -452,7 +452,15 @@ export default function InspectionPage() {
       setSafeScopeStatus("HazLenz AI review complete.");
     } catch (error: any) {
       console.error("[HazLenz AI] Review failed", error);
-      setSafeScopeStatus("HazLenz AI review failed. Check backend connection or API configuration.");
+
+      const errorMessage =
+        error instanceof Error && error.message
+          ? error.message
+          : typeof error?.message === "string"
+            ? error.message
+            : "Unknown HazLenz AI error.";
+
+      setSafeScopeStatus(`HazLenz AI review failed: ${errorMessage}`);
     }
   }
 

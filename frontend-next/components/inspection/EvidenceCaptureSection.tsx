@@ -1,4 +1,5 @@
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
+import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 
 type Props = {
   photos: any[];
@@ -79,7 +80,7 @@ export default function EvidenceCaptureSection({
           <div className="divide-y divide-slate-200/80 border-t border-slate-200/80">
             {photos.map((photo, index) => (
               <div key={photo.id} className="py-2">
-                <div className="mb-2 flex -wrap items-center justify-between gap-2">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-black text-slate-900">
                       {photo.name || `Evidence photo ${index + 1}`}
@@ -89,7 +90,7 @@ export default function EvidenceCaptureSection({
                     </p>
                   </div>
 
-                  <div className="flex -wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={() => {
@@ -168,24 +169,17 @@ export default function EvidenceCaptureSection({
                   </div>
                 </div>
 
-                <AnnotationEditor
-                  photoUrl={photo.url}
-                  annotations={photo.annotations || []}
-                  onSave={(annotations) => {
-                    const next = [...photos];
-                    next[index] = { ...photo, annotations };
-                    setPhotos(next);
-                  }}
-                  onCancel={() => {
-                    setAnnotatingPhotoIndex(null);
-                    setAnnotationExpanded(false);
-                  }}
-                />
+                <div className="mb-3 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                  <AnnotationPreview
+                    photoUrl={photo.url}
+                    annotations={photo.annotations || []}
+                  />
+                </div>
 
                 {annotatingPhotoIndex === index && annotationExpanded && (
-                  <div className="fixed inset-0 z-50 items-center justify-center bg-slate-950/90 p-3">
-                    <div className="max-h-[96vh] max-w-6xl overflow-auto rounded-xl bg-white p-3">
-                      <div className="mb-2 items-center justify-between">
+                  <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/90 p-2 sm:p-3">
+                    <div className="w-full max-h-[96vh] max-w-6xl overflow-auto rounded-xl bg-white p-2 sm:p-3">
+                      <div className="mb-2 flex items-center justify-between gap-2">
                         <h3 className="text-base font-black text-slate-900">
                           Photo Annotation
                         </h3>

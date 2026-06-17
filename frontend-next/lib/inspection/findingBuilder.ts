@@ -1,3 +1,26 @@
+function normalizeFindingPhotos(photos: any[] = []) {
+  return photos.filter(Boolean).map((photo) => {
+    const {
+      file,
+      ...safePhoto
+    } = photo || {};
+
+    return {
+      ...safePhoto,
+      id: safePhoto.id,
+      name: safePhoto.name || "Evidence photo",
+      encryptedAt: safePhoto.encryptedAt || new Date().toISOString(),
+      mimeType: safePhoto.mimeType || safePhoto.type || "image/jpeg",
+      caption: safePhoto.caption || "",
+      fieldNotes: safePhoto.fieldNotes || "",
+      viewType: safePhoto.viewType || "unknown",
+      annotations: Array.isArray(safePhoto.annotations)
+        ? safePhoto.annotations
+        : [],
+    };
+  });
+}
+
 function normalizeFieldOutputActions(input: {
   safeScopeResult: any;
   findingId: string | number;
@@ -115,7 +138,7 @@ export function buildFinding(input: {
     description: input.description,
     location: input.location,
     evidenceNotes: input.evidenceNotes,
-    photos: input.photos,
+    photos: normalizeFindingPhotos(input.photos),
     safeScopeResult: input.safeScopeResult,
     selectedStandards: input.selectedStandards,
     selectedGeneratedActions: input.selectedGeneratedActions,

@@ -5,6 +5,12 @@ export type StoredEvidencePhoto = {
   name: string;
   encryptedAt: string;
   annotations?: any[];
+  caption?: string;
+  fieldNotes?: string;
+  viewType?: string;
+  mimeType?: string;
+  imageUri?: string;
+  cloudImageUri?: string;
 };
 
 const PREFIX = "sentinel_encrypted_photo_";

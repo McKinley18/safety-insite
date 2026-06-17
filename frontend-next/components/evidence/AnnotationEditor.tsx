@@ -397,7 +397,7 @@ export default function AnnotationEditor({
 
   return (
     <div
-      className={`rounded-2xl border-2 border-[#1D72B8] bg-white dark:bg-slate-900 p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}
+      className={`w-full max-w-full overflow-hidden rounded-2xl border-2 border-[#1D72B8] bg-white dark:bg-slate-900 p-2 sm:p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}
     >
       <div className={expanded ? "mx-auto max-w-5xl" : ""}>
         <div className="overflow-hidden rounded-xl bg-slate-200">
@@ -618,8 +618,8 @@ export default function AnnotationEditor({
         ref={toolbarRef}
         className="mt-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm"
       >
-        <div className="overflow-visible">
-          <div className="flex min-w-max items-center">
+        <div className="w-full max-w-full overflow-x-auto overflow-y-visible">
+          <div className="flex w-max min-w-full items-center">
             <button
               type="button"
               onClick={undoLast}
@@ -817,7 +817,7 @@ export default function AnnotationEditor({
               </button>
             </div>
 
-            <div className="flex h-11 w-24 shrink-0 items-center gap-1 border-r border-slate-200 dark:border-slate-800 px-2">
+            <div className="flex h-11 w-[112px] shrink-0 items-center gap-1 border-r border-slate-200 dark:border-slate-800 px-2">
               <input
                 type="range"
                 min="1"
@@ -825,7 +825,7 @@ export default function AnnotationEditor({
                 step="0.25"
                 value={zoom}
                 onChange={(event) => setZoom(Number(event.target.value))}
-                className="w-14 shrink-0 accent-[#1D72B8]"
+                className="w-16 min-w-0 shrink accent-[#1D72B8]"
                 aria-label="Annotation zoom"
               />
               <span className="w-8 text-right text-[10px] font-black text-slate-500 dark:text-slate-400">
@@ -841,7 +841,7 @@ export default function AnnotationEditor({
         A↓ and A↑ to adjust selected text size.
       </p>
 
-      <div className="mt-3 flex justify-end gap-2">
+      <div className="mt-3 flex flex-wrap justify-end gap-2">
         <button
           type="button"
           onClick={onCancel}
