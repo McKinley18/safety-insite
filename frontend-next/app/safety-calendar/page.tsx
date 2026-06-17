@@ -377,61 +377,6 @@ export default function SafetyCalendarPage() {
 
       {/* Personal safety calendar card removed */}
 
-      <AppPanel padding="md" className="app-card">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-              Schedule My Task
-            </p>
-            <h2 className="mt-1 text-lg font-black text-app-text">
-              Add personal safety work
-            </h2>
-            <p className="mt-1 text-sm font-bold leading-6 text-app-text-muted">
-              Schedule a personal inspection reminder, follow-up, review, or safety task for yourself.
-            </p>
-          </div>
-          {taskMessage && (
-            <p className="rounded-xl bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">
-              {taskMessage}
-            </p>
-          )}
-        </div>
-
-        <div className="mt-4 grid gap-2 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
-          <AppInput
-            value={taskTitle}
-            onChange={(event) => setTaskTitle(event.target.value)}
-            placeholder="Task title"
-            fieldSize="sm"
-          />
-          <AppInput
-            type="date"
-            value={taskDate}
-            onChange={(event) => setTaskDate(event.target.value)}
-            fieldSize="sm"
-          />
-          <AppSelect
-            value={taskPriority}
-            onChange={(event) => setTaskPriority(event.target.value)}
-            fieldSize="sm"
-          >
-            <option value="Critical">Critical</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </AppSelect>
-          <AppInput
-            value={taskLocation}
-            onChange={(event) => setTaskLocation(event.target.value)}
-            placeholder="Location / note"
-            fieldSize="sm"
-          />
-          <AppButton type="button" size="sm" onClick={schedulePersonalTask}>
-            Schedule
-          </AppButton>
-        </div>
-      </AppPanel>
-
       <AppPanel padding="sm" className="space-y-2 px-2 py-2 sm:px-3 sm:py-3">
         <h2 className="text-lg font-black text-app-text">Calendar Controls</h2>
         <div className="inline-flex w-fit gap-1 rounded-full bg-slate-100 p-1">
@@ -746,6 +691,62 @@ export default function SafetyCalendarPage() {
           </div>
         </AppPanel>
       </div>
+
+      <AppPanel padding="md" className="app-card">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
+              Schedule My Task
+            </p>
+            <h2 className="mt-1 text-lg font-black text-app-text">
+              Add personal safety work
+            </h2>
+            <p className="mt-1 text-sm font-bold leading-6 text-app-text-muted">
+              Schedule a personal inspection reminder, follow-up, review, or safety task for yourself.
+            </p>
+          </div>
+          {taskMessage && (
+            <p className="rounded-xl bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">
+              {taskMessage}
+            </p>
+          )}
+        </div>
+
+        <div className="mt-4 grid gap-2 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
+          <AppInput
+            value={taskTitle}
+            onChange={(event) => setTaskTitle(event.target.value)}
+            placeholder="Task title"
+            fieldSize="sm"
+          />
+          <AppInput
+            type="date"
+            value={taskDate}
+            onChange={(event) => setTaskDate(event.target.value)}
+            fieldSize="sm"
+          />
+          <AppSelect
+            value={taskPriority}
+            onChange={(event) => setTaskPriority(event.target.value)}
+            fieldSize="sm"
+          >
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </AppSelect>
+          <AppInput
+            value={taskLocation}
+            onChange={(event) => setTaskLocation(event.target.value)}
+            placeholder="Location / note"
+            fieldSize="sm"
+          />
+          <AppButton type="button" size="sm" onClick={schedulePersonalTask}>
+            Schedule
+          </AppButton>
+        </div>
+      </AppPanel>
+
     </section>
   );
 }
