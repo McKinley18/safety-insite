@@ -600,10 +600,10 @@ export default function ReportsPage() {
       {!canUseWorkspaceReports && (
         <div className="rounded-xl border border-slate-200/80 bg-white px-4 py-3 shadow-none ring-1 ring-white/70 backdrop-blur-xl">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-            Local Report Vault
+            Saved Reports
           </p>
           <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
-            Basic and Pro plans can view, edit, review, and export local inspection reports. Company workspaces add shared report sync and organization-wide report visibility.
+            View, edit, review, and export saved inspection reports. Company workspaces add shared report sync.
           </p>
         </div>
       )}
@@ -640,7 +640,7 @@ export default function ReportsPage() {
           description={
             reports.length
               ? "Try a different report title, location, finding, or record ID."
-              : "Completed inspection reports will appear here."
+              : "Start an inspection to create your first saved report."
           }
         />
       ) : (
@@ -793,7 +793,7 @@ export default function ReportsPage() {
                                   Report Contents
                                 </p>
                                 <h4 className="mt-0.5 text-sm font-black text-slate-900">
-                                  Inspection record package
+                                  Inspection report
                                 </h4>
                               </div>
 
@@ -829,7 +829,7 @@ export default function ReportsPage() {
 
                             <div className="mt-3 rounded-lg border border-slate-200/80 bg-slate-50/70 px-3 py-2.5 text-[11px] font-semibold leading-4 text-slate-600">
                               <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
-                                Record details
+                                Report details
                               </p>
                               <p className="mt-1">
                                 Created {formatDate(report.createdAt)}.
