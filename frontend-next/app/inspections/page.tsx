@@ -34,39 +34,39 @@ const workflowOptions: {
   inspectionType: string;
 }[] = [
   {
-    id: "quick",
-    title: "Quick Inspection",
-    eyebrow: "Basic",
-    description:
-      "Capture a hazard quickly with photo, location, and observed condition.",
-    details:
-      "Best when you need to document one issue quickly and keep moving.",
-    route: "/inspection-quick",
-    entitlement: "quickCapture",
-    tierLabel: "Included",
-    inspectionType: "quick_hazard_capture",
-  },
-  {
     id: "guided",
     title: "Full Inspection",
-    eyebrow: "Pro",
+    eyebrow: "Recommended",
     description:
-      "Walk through evidence, HazLenz AI review, risk, standards, actions, and report options.",
+      "Complete a guided inspection with HazLenz AI review, risk scoring, standards support, corrective actions, and report generation.",
     details:
-      "Best for normal safety inspections and complete reports.",
+      "Best when you need a complete inspection record that can become a professional report.",
     route: "/inspection-cover",
     entitlement: "guidedInspection",
     tierLabel: "Pro",
     inspectionType: "guided_inspection",
   },
   {
+    id: "quick",
+    title: "Quick Inspection",
+    eyebrow: "Fast Capture",
+    description:
+      "Capture a single hazard quickly with a short note, optional photo, and corrective action.",
+    details:
+      "Best when you see one issue and need to document it quickly without a full inspection workflow.",
+    route: "/inspection-quick",
+    entitlement: "quickCapture",
+    tierLabel: "Included",
+    inspectionType: "quick_hazard_capture",
+  },
+  {
     id: "advanced",
     title: "Audit Review",
-    eyebrow: "Advanced",
+    eyebrow: "Review",
     description:
-      "Build a deeper review record with validation, traceability, and review triggers.",
+      "Review findings, evidence, standards, HazLenz AI reasoning, and corrective actions before finalizing a report.",
     details:
-      "Best for formal audits, complex findings, and defensible records.",
+      "Best when you need to verify the inspection record before relying on it for leadership, internal review, or regulatory readiness.",
     route: "/inspection-cover",
     entitlement: "advancedReview",
     tierLabel: "Advanced",
@@ -99,7 +99,7 @@ export default function InspectionsPage() {
     InspectionProgramRecord[]
   >([]);
   const [selectedWorkflow, setSelectedWorkflow] = useState(workflowOptions[0]);
-  const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>("quick");
+  const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>("guided");
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
   const [regulatoryScope, setRegulatoryScope] = useState("all");
 
@@ -155,7 +155,7 @@ export default function InspectionsPage() {
               Start field work.
             </h1>
             <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-              Start a quick issue capture, complete a full inspection, or use a deeper audit review when the work requires it.
+              Choose the inspection workflow that fits the work: full documentation, fast hazard capture, or final review.
             </p>
           </div>
 
@@ -187,7 +187,7 @@ export default function InspectionsPage() {
         <SectionHeader
           eyebrow="Start"
           title="Choose inspection type"
-          description="Pick the amount of detail needed for the work in front of you."
+          description="Full Inspection is recommended for most work. Quick Inspection is for fast capture. Audit Review is for final verification."
         />
 
         <div className="mt-4 space-y-2">
@@ -199,23 +199,23 @@ export default function InspectionsPage() {
             const featureRows =
               workflow.id === "quick"
                 ? [
-                    "Photo",
-                    "Location",
-                    "Observed condition",
+                    "Single issue",
+                    "Optional photo",
+                    "Short note",
                     "Quick action",
                   ]
                 : workflow.id === "guided"
                   ? [
-                      "Evidence",
+                      "Guided evidence",
                       "HazLenz AI review",
-                      "Standards",
-                      "Report options",
+                      "Risk + standards",
+                      "Report ready",
                     ]
                   : [
-                      "Validation",
-                      "Traceability",
-                      "Review triggers",
-                      "Audit record",
+                      "Finding review",
+                      "Evidence check",
+                      "Standards review",
+                      "Final validation",
                     ];
 
             return (
@@ -290,7 +290,7 @@ export default function InspectionsPage() {
                           variant="accent"
                           className="inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-center !text-white shadow-none sm:w-auto sm:px-6"
                         >
-                          Start Inspection
+                          Start {workflow.title}
                         </AppLinkButton>
                       ) : (
                         <AppLinkButton
