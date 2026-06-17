@@ -4,9 +4,11 @@ import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  runSafeScopeV2Classify,
-  runSafeScopeV2Offline,
-  sendSafeScopeFeedback,
+  runHazLenzClassify,
+  runHazLenzOffline,
+  sendHazLenzFeedback,
+} from "@/lib/hazlenz";
+import {
   submitSupervisorValidation,
 } from "@/lib/safescope";
 import {
@@ -381,7 +383,7 @@ export default function InspectionPage() {
         if (forceOffline) {
           setIsOfflineMode(true);
         }
-        const result = await runSafeScopeV2Offline({
+        const result = await runHazLenzOffline({
           observationText: description,
           localInspectionId: "local-ins-" + Date.now(),
           localObservationId: "local-obs-" + Date.now(),
@@ -392,7 +394,7 @@ export default function InspectionPage() {
         return;
       }
       
-      const result = await runSafeScopeV2Classify({
+      const result = await runHazLenzClassify({
         text: [
           `Hazard category: ${hazardCategory || "Unspecified"}`,
           `Observed condition: ${description || "No description provided"}`,
@@ -513,7 +515,7 @@ export default function InspectionPage() {
     try {
       setSafeScopeStatus(`Submitting ${action} feedback...`);
 
-      await sendSafeScopeFeedback({
+      await sendHazLenzFeedback({
         text: buildSafeScopeText(),
         category:
           safeScopeResult?.classification || hazardCategory || "General",
