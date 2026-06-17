@@ -19,19 +19,32 @@ export class SafescopeV2Controller {
       const user = req.user;
       const roleMap: Record<string, SafeScopeRole> = {
           'ORG_OWNER': 'owner',
+          'OWNER': 'owner',
           'SUPER_ADMIN': 'admin',
+          'ADMIN': 'admin',
           'SAFETY_DIRECTOR': 'safety_manager',
+          'SAFETY_MANAGER': 'safety_manager',
           'SUPERVISOR': 'safety_manager',
           'AUDITOR': 'compliance_admin',
+          'COMPLIANCE_ADMIN': 'compliance_admin',
           'WORKER': 'field_inspector',
+          'FIELD_INSPECTOR': 'field_inspector',
           'VIEWER': 'viewer'
       };
+
+      const normalizeRole = (value?: string) =>
+          String(value || '')
+              .trim()
+              .replace(/([a-z])([A-Z])/g, '$1_$2')
+              .replace(/[\s-]+/g, '_')
+              .toUpperCase();
 
       const localDevAuthBypassEnabled =
           process.env.DEV_AUTH_BYPASS === 'true' &&
           process.env.NODE_ENV !== 'production';
 
-      const mappedRole = user ? roleMap[user.role] || 'viewer' : 'viewer';
+      const normalizedRole = user ? normalizeRole(user.role) : '';
+      const mappedRole = user ? roleMap[normalizedRole] || 'viewer' : 'viewer';
 
       // Local/dev bypass should behave like an operational test user so the UI can exercise SafeScope.
       // Production and normal unauthenticated requests remain fail-safe as viewer.
@@ -59,10 +72,10 @@ export class SafescopeV2Controller {
       }
 
       return {
-          userId: user.id || 'anonymous',
+          userId: user.userId || user.id || 'anonymous',
           workspaceId: user.organizationId || user.workspaceId || 'default',
           role: mappedRole,
-          planTier: user.planTier || 'individual',
+          planTier: user.planTier || user.planCode || user.organizationPlanCode || 'individual',
           jurisdictionScopes: [],
           reviewerQualifications: []
       };
