@@ -1,5 +1,6 @@
 "use client";
 
+import SafeScopeObservationUnderstandingSection from "@/components/inspection/SafeScopeObservationUnderstandingSection";
 import SafeScopeActionEffectivenessSection from "@/components/inspection/SafeScopeActionEffectivenessSection";
 import SafeScopeConfidenceReasonCodes from "@/components/inspection/SafeScopeConfidenceReasonCodes";
 import SafeScopeBarrierSection from "@/components/inspection/SafeScopeBarrierSection";
@@ -30,6 +31,8 @@ export default function SafeScopeAdvancedReasoning({
 }: SafeScopeAdvancedReasoningProps) {
   return (
     <div className="mt-3 space-y-3 border-t border-slate-200 pt-3">
+      <SafeScopeObservationUnderstandingSection safeScopeResult={safeScopeResult} />
+
       <SafeScopeReasoningBasisSection safeScopeResult={safeScopeResult} />
 
       <SafeScopeConfidenceReasonCodes safeScopeResult={safeScopeResult} />
