@@ -147,7 +147,7 @@ export default function SafeScopeResultHeaderSection({
             Limited Basic hazard assistance
           </p>
           <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
-            Plus or Company unlocks full standards matching, reasoning, evidence
+            Upgrade unlocks full standards matching, reasoning, evidence
             quality review, and traceability.
           </p>
         </div>

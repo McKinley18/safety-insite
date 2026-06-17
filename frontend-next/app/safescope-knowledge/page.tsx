@@ -123,16 +123,16 @@ export default function SafeScopeKnowledgePage() {
   if (!canAccessKnowledgeLibrary) {
     return (
       <LockedFeatureCard
-        eyebrow="Company Knowledge Library"
-        title="HazLenz AI Knowledge Library is Company-only."
+        eyebrow="Knowledge Library"
+        title="HazLenz AI Knowledge Library is currently unavailable."
         description="The approved knowledge library controls governed reference intelligence, source review, and retrieval behavior used to support HazLenz AI outputs."
-        requiredPlan="Company"
+        requiredPlan="Advanced"
         bullets={[
           "View approved reference records and source authority levels.",
-          "Protect source-backed regulatory reasoning behind Company inspections.",
+          "Protect source-backed regulatory reasoning behind inspections.",
           "Keep knowledge governance separate from Basic and Pro field workflows.",
         ]}
-        ctaLabel="View Company Plan"
+        ctaLabel="View Plans"
       />
     );
   }

@@ -14,15 +14,15 @@ const sections = [
   },
   {
     title: "No affiliation or endorsement",
-    body: "All third-party trademarks, trade names, service marks, company names, product names, and logos are the property of their respective owners. Use of InSite or HazLenz AI does not imply affiliation with, endorsement by, or sponsorship from any other company or organization using similar names.",
+    body: "All third-party trademarks, trade names, service marks, organization names, product names, and logos are the property of their respective owners. Use of InSite or HazLenz AI does not imply affiliation with, endorsement by, or sponsorship from any other organization using similar names.",
   },
   {
     title: "Professional review required",
-    body: "InSite and HazLenz AI do not replace qualified safety professionals, legal counsel, regulatory agencies, company policy, site-specific evaluation, or professional judgment. All outputs must be reviewed and verified by qualified personnel before use.",
+    body: "InSite and HazLenz AI do not replace qualified safety professionals, legal counsel, regulatory agencies, site policy, site-specific evaluation, or professional judgment. All outputs must be reviewed and verified by qualified personnel before use.",
   },
   {
     title: "No compliance determination",
-    body: "HazLenz AI does not declare violations, create citations, determine legal compliance, issue regulatory interpretations, or override MSHA, OSHA, company, site, or legal requirements.",
+    body: "HazLenz AI does not declare violations, create citations, determine legal compliance, issue regulatory interpretations, or override MSHA, OSHA, site or legal requirements.",
   },
   {
     title: "User responsibility",

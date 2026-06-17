@@ -302,7 +302,7 @@ export default function DashboardPage() {
 
   function addCommandAssignment() {
     if (!canAssignWork) {
-      setAssignmentStatus("Assign Work is available only to Company account owners.");
+      setAssignmentStatus("Work assignment is currently disabled.");
       return;
     }
 
@@ -888,16 +888,16 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      {canAssignWork && (
+      {false && canAssignWork && (
         <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
-              <p className="sentinel-eyebrow">Company Command</p>
+              <p className="sentinel-eyebrow">Work Assignment</p>
               <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-slate-950">
                 Assign Work
               </h2>
               <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
-                Assign corrective actions, inspections, follow-ups, and review tasks from the operational home screen.
+                Create corrective actions, inspection follow-ups, and review tasks from the operational home screen.
               </p>
             </div>
 

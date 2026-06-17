@@ -44,7 +44,7 @@ export default function RiskReviewSection({
   return (
     <>
       <p className="mb-4 text-sm font-semibold leading-6 text-slate-500">
-        Company matrix: <span className="font-black text-slate-700">{activeRiskScale.label}</span>. Select one cell to confirm severity and likelihood.
+        Risk matrix: <span className="font-black text-slate-700">{activeRiskScale.label}</span>. Select one cell to confirm severity and likelihood.
       </p>
 
       {safeScopeResult?.risk?.operationalRisk && (

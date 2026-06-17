@@ -42,8 +42,8 @@ const storageModes = [
   ],
   [
     "cloud",
-    "Company Cloud Workspace",
-    "Reports sync to the shared company workspace.",
+    "Cloud Workspace",
+    "Reports sync to a shared workspace.",
   ],
   [
     "ask",
@@ -148,8 +148,8 @@ export default function SettingsPage() {
     );
   }, [riskProfileId]);
 
-  const companySeats = 5;
-  const usedSeats = Math.max(members.length, 1);
+  const companyUsers = 5;
+  const usedUsers = Math.max(members.length, 1);
 
   useEffect(() => {
     async function loadSettings() {
@@ -263,7 +263,7 @@ export default function SettingsPage() {
       current.filter((member) => String(member.id || member.email || member.name) !== identifier),
     );
     setStatusType("success");
-    setStatus("Account removed from the workspace seat list.");
+    setStatus("Account removed from the workspace list.");
   }
 
   function removeWorkspaceInvite(identifier: string) {
@@ -271,7 +271,7 @@ export default function SettingsPage() {
       current.filter((invite) => String(invite.id || invite.email) !== identifier),
     );
     setStatusType("success");
-    setStatus("Pending invitation removed and seat released.");
+    setStatus("Pending invitation removed.");
   }
 
   async function sendInvite() {
@@ -294,7 +294,7 @@ export default function SettingsPage() {
     } catch {
       setStatusType("error");
       setStatus(
-        "Invitation could not be created. Company plan and sign-in may be required.",
+        "Invitation could not be created. Sign-in may be required.",
       );
     }
   }
@@ -307,7 +307,7 @@ export default function SettingsPage() {
       setStorageMode("local");
       setStatusType("error");
       setStatus(
-        "Cloud workspace sync requires the Company plan. Reports will stay on this device.",
+        "Cloud workspace sync is currently unavailable. Reports will stay on this device.",
       );
       return;
     }
@@ -422,7 +422,7 @@ export default function SettingsPage() {
                 "Private Local Vault",
               "Storage",
             ],
-            [`${usedSeats}/${companySeats}`, "Company Seats"],
+            [`${usedUsers}/${companyUsers}`, "Users"],
           ].map(([value, label]) => (
             <div key={label} className="border-l-4 border-[#1D72B8] bg-slate-50 dark:bg-slate-950 px-4 py-3">
               <p className="truncate text-sm font-black text-slate-950 dark:text-slate-100">{value}</p>
@@ -476,7 +476,7 @@ export default function SettingsPage() {
         <AppPanel padding="lg">
           <SectionHeader
             title="Organization"
-            description="Company information used on reports and cover pages."
+            description="Organization information used on reports and cover pages."
           />
 
           <div className="mt-4 grid gap-4 md:grid-cols-[1fr_220px]">
@@ -497,7 +497,7 @@ export default function SettingsPage() {
                 {companyLogo ? (
                   <img
                     src={companyLogo}
-                    alt="Company logo preview"
+                    alt="Organization logo preview"
                     className="max-h-20 max-w-full object-contain"
                   />
                 ) : (
@@ -653,7 +653,7 @@ export default function SettingsPage() {
                     </span>
                     <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                       {disabled
-                        ? `${description} Company plan required.`
+                        ? `${description} Currently unavailable.`
                         : description}
                     </span>
                   </span>
@@ -772,128 +772,6 @@ export default function SettingsPage() {
           </label>
         </AppPanel>
 
-        <AppPanel padding="lg">
-          <SectionHeader
-            title="Team"
-            description="Company plan tools for members and invitations."
-          />
-
-          {hasPlanEntitlement("teamMembers", planCode) ? (
-            <>
-              <div className="mt-4 grid gap-3 md:grid-cols-[1fr_180px_auto]">
-                <AppInput
-                  value={inviteEmail}
-                  onChange={(event) => setInviteEmail(event.target.value)}
-                  placeholder="Invite email"
-                />
-
-                <AppSelect
-                  value={inviteRole}
-                  onChange={(event) => setInviteRole(event.target.value)}
-                >
-                  <option>Auditor</option>
-                  <option>Supervisor</option>
-                  <option>Viewer</option>
-                </AppSelect>
-
-                <AppButton type="button" onClick={sendInvite}>
-                  Invite
-                </AppButton>
-              </div>
-
-              <div className="mt-4 border-y border-slate-200 dark:border-slate-800">
-                <div className="border-b border-slate-200 dark:border-slate-800 px-1 py-3">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">
-                    Active Accounts
-                  </p>
-                </div>
-
-                {members.length ? (
-                  members.map((member, index) => {
-                    const identifier = String(member.id || member.email || member.name || index);
-
-                    return (
-                      <div
-                        key={identifier}
-                        className="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 px-1 py-3 last:border-b-0"
-                      >
-                        <div>
-                          <p className="text-sm font-black text-slate-950 dark:text-slate-100">
-                            {member.email || member.name || "Team member"}
-                          </p>
-                          <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            {member.role || "Member"}
-                          </p>
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => removeWorkspaceMember(identifier)}
-                          className="rounded-lg border border-red-100 bg-white px-3 py-1.5 text-xs font-black text-red-700 hover:bg-red-50"
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <p className="px-1 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
-                    No active team members loaded.
-                  </p>
-                )}
-
-                <div className="border-y border-slate-200 dark:border-slate-800 px-1 py-3">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-400">
-                    Pending Invites
-                  </p>
-                </div>
-
-                {invites.length ? (
-                  invites.map((invite, index) => {
-                    const identifier = String(invite.id || invite.email || index);
-
-                    return (
-                      <div
-                        key={identifier}
-                        className="flex items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 px-1 py-3 last:border-b-0"
-                      >
-                        <div>
-                          <p className="text-sm font-black text-slate-950 dark:text-slate-100">
-                            {invite.email || "Pending invite"}
-                          </p>
-                          <p className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                            {invite.role || invite.status || "Pending"}
-                          </p>
-                        </div>
-
-                        <button
-                          type="button"
-                          onClick={() => removeWorkspaceInvite(identifier)}
-                          className="rounded-lg border border-red-100 bg-white px-3 py-1.5 text-xs font-black text-red-700 hover:bg-red-50"
-                        >
-                          Remove Invite
-                        </button>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <p className="px-1 py-4 text-sm font-semibold text-slate-500 dark:text-slate-400">
-                    No pending invites.
-                  </p>
-                )}
-              </div>
-            </>
-          ) : (
-            <div className="mt-4 border-y border-slate-200 dark:border-slate-800 py-4">
-              <p className="text-sm font-black text-slate-950 dark:text-slate-100">
-                Company plan required
-              </p>
-              <p className="mt-1 text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
-                Team members, seats, and role controls are available on the Company plan.
-              </p>
-            </div>
-          )}
-        </AppPanel>
       </div>
 
       {status && (

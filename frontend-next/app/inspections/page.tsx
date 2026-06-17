@@ -62,14 +62,14 @@ const workflowOptions: {
   {
     id: "advanced",
     title: "Audit Review",
-    eyebrow: "Company",
+    eyebrow: "Advanced",
     description:
       "Build a deeper review record with validation, traceability, and review triggers.",
     details:
       "Best for formal audits, complex findings, and defensible records.",
     route: "/inspection-cover",
     entitlement: "advancedReview",
-    tierLabel: "Company",
+    tierLabel: "Advanced",
     inspectionType: "advanced_review",
   },
 ];

@@ -301,16 +301,16 @@ export default function ReviewCoreKnowledgeReviewPage() {
   if (!canUseKnowledgeReview) {
     return (
       <LockedFeatureCard
-        eyebrow="Company Knowledge Governance"
-        title="HazLenz AI knowledge review is Company-only."
+        eyebrow="Knowledge Governance"
+        title="HazLenz AI knowledge review is currently unavailable."
         description="The review console controls source-backed knowledge candidates, approval decisions, and governed promotion into the HazLenz AI knowledge base."
         requiredPlan={requiredPlanForArea("knowledge_library")}
         bullets={[
           "Review proposed source-backed knowledge before it can influence future HazLenz AI output.",
           "Protect regulatory mappings with qualified approval and audit history.",
-          "Keep Company knowledge governance separate from Basic and Pro field workflows.",
+          "Keep knowledge governance separate from field workflows.",
         ]}
-        ctaLabel="View Company Plan"
+        ctaLabel="View Plans"
       />
     );
   }
@@ -363,7 +363,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
             fieldSize="sm"
             className="min-h-11 font-black"
           >
-            <option value="company">Company</option>
+            <option value="company">Advanced</option>
             <option value="team">Team</option>
             <option value="individual">Individual</option>
           </AppSelect>
@@ -609,7 +609,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
 
                 {!canApprove && (
                   <p className="rounded-xl bg-slate-50 px-3 py-2 text-xs font-black text-slate-500">
-                    Approval requires owner/admin/compliance admin role and Team or Company plan.
+                    Approval requires authorized review access.
                   </p>
                 )}
               </div>

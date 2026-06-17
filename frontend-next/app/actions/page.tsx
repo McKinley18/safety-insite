@@ -390,7 +390,7 @@ export default function ActionsPage() {
             Action Tracker
           </p>
           <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
-            Track local and report-generated corrective actions. Company workspaces add shared action sync and team assignment.
+            Track local and report-generated corrective actions.
           </p>
         </AppPanel>
       )}

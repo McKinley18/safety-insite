@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getStoredPlanCode, hasPlanEntitlement } from "@/lib/planEntitlements";
+import { getStoredPlanCode } from "@/lib/planEntitlements";
 import { getFacilities } from "@/lib/facilityStorage";
 import { getOrganizationSettings } from "@/lib/auth";
 import { AppPanel } from "@/components/ui/AppPanel";
@@ -15,7 +15,7 @@ type RegulatoryScope = "all" | "msha" | "osha_general" | "osha_construction";
 
 const storageModes = [
   ["local", "Private Local Vault", "Keep reports on this device unless exported."],
-  ["cloud", "Company Cloud", "Sync reports to the shared company workspace."],
+  ["cloud", "Cloud Sync", "Sync reports to a shared workspace."],
   ["ask", "Ask Each Report", "Choose local or cloud when finalizing each report."],
 ] as const;
 
@@ -160,8 +160,6 @@ export default function SettingsHubPage() {
     regulatoryScopes.find(([id]) => id === regulatoryScope)?.[1] ||
     "Let HazLenz AI Evaluate";
 
-  const isCompany = hasPlanEntitlement("teamMembers", planCode);
-
   return (
     <section className="sentinel-page-shell space-y-4">
       <HeroPanel align="center">
@@ -254,51 +252,19 @@ export default function SettingsHubPage() {
         </div>
       </AppPanel>
 
-      <section className="grid gap-4 lg:grid-cols-2">
-        <AppPanel padding="lg">
-          <SectionHeader
-            eyebrow="Setup"
-            title="Workspace setup"
-            description="Open full settings for report defaults, logo, security, and locations."
-          />
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="Setup"
+          title="Workspace setup"
+          description="Open full settings for report defaults, logo, security, and locations."
+        />
 
-          <div className="mt-5 flex justify-center">
-            <AppLinkButton href="/settings/workspace" className="w-44">
-              Workspace Setup
-            </AppLinkButton>
-          </div>
-        </AppPanel>
-
-        {isCompany ? (
-          <AppPanel padding="lg">
-            <SectionHeader
-              eyebrow="Company"
-              title="Team controls"
-              description="Manage users, roles, shared work, and assigned follow-up."
-            />
-
-            <div className="mt-5 flex justify-center">
-              <AppLinkButton href="/company" className="w-44">
-                Company Center
-              </AppLinkButton>
-            </div>
-          </AppPanel>
-        ) : (
-          <AppPanel variant="dashed" padding="md">
-            <SectionHeader
-              eyebrow="Company"
-              title="Available on Company plan"
-              description="Add team management, shared locations, assigned inspections, and assigned corrective work."
-            />
-
-            <div className="mt-5 flex justify-center">
-              <AppLinkButton href="/pricing" className="w-44">
-                View Plans
-              </AppLinkButton>
-            </div>
-          </AppPanel>
-        )}
-      </section>
+        <div className="mt-5 flex justify-center">
+          <AppLinkButton href="/settings/workspace" className="w-44">
+            Workspace Setup
+          </AppLinkButton>
+        </div>
+      </AppPanel>
     </section>
   );
 }

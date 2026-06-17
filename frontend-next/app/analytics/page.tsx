@@ -392,13 +392,13 @@ export default function AnalyticsPage() {
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-                Company Filters
+                Advanced Filters
               </p>
               <h2 className="mt-0.5 text-base font-black text-slate-900">
                 Workspace analytics view
               </h2>
               <p className="mt-0.5 text-xs font-semibold leading-5 text-slate-500">
-                Company plan insights can be filtered by facility, user,
+                Insights can be filtered by facility, user,
                 inspection status, risk, date, agency, and corrective action status.
               </p>
             </div>

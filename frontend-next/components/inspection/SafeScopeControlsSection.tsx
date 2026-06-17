@@ -46,7 +46,7 @@ export default function SafeScopeControlsSection({
         ? "OSHA General Industry"
         : agencyMode === "osha_construction"
           ? "OSHA Construction"
-          : "Company default / HazLenz AI";
+          : "Default / HazLenz AI";
 
   const riskMatrixLabel =
     riskProfileId === "simple_4x4"

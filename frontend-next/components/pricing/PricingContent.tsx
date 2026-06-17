@@ -72,33 +72,33 @@ const tiers = [
     ],
   },
   {
-    name: "Company",
+    name: "Advanced",
     price: "$49.99",
     cadence: "/month",
-    audience: "For teams that need shared accountability and operational visibility.",
-    position: "Includes the account owner plus 5 additional users.",
-    cta: "Choose Company",
-    publicHref: "/register?plan=company",
-    upgradeHref: "/profile?upgrade=company",
+    audience: "For safety professionals who need deeper reporting and review tools.",
+    position: "Adds expanded reporting, review visibility, and advanced workflow tools.",
+    cta: "Choose Advanced",
+    publicHref: "/register?plan=pro",
+    upgradeHref: "/profile?upgrade=pro",
     featured: false,
     sections: [
       {
         title: "Team Access",
         items: [
-          "Account owner included",
-          "5 additional users included",
-          "Team member roles",
-          "Company workspace access",
-          "Shared inspection records",
+          "Expanded report review",
+          "Advanced inspection history",
+          "Advanced review controls",
+          "Advanced workspace tools",
+          "Expanded inspection records",
         ],
       },
       {
-        title: "Management Tools",
+        title: "Advanced Tools",
         items: [
-          "Assign inspections",
-          "Assign corrective actions",
-          "Company dashboards",
-          "Action ownership and due dates",
+          "Inspection planning tools",
+          "Corrective action tracking",
+          "Advanced dashboards",
+          "Action due dates and status tracking",
           "Workspace-level safety visibility",
         ],
       },
@@ -114,9 +114,9 @@ const comparisonRows = [
   ["Evidence gap prompts", "No", "Yes", "Yes"],
   ["Corrective action reasoning", "Manual only", "Yes", "Yes"],
   ["Saved inspection history", "Limited", "Yes", "Yes"],
-  ["Team users and roles", "No", "No", "Owner + 5 users"],
-  ["Inspection and action assignments", "No", "No", "Yes"],
-  ["Company dashboards", "No", "No", "Yes"],
+  ["Advanced review controls", "No", "No", "Yes"],
+  ["Inspection planning tools", "No", "No", "Yes"],
+  ["Advanced dashboards", "No", "No", "Yes"],
 ];
 
 export default function PricingContent({ mode = "public" }: PricingContentProps) {
@@ -137,7 +137,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
 
         <p className="mx-auto mt-5 max-w-3xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
           Free helps users try the workflow. Pro unlocks HazLenz AI intelligence.
-          Company gives safety teams shared accountability, assignments, and
+          Advanced tools add expanded review, reporting, and
           workspace-level visibility.
         </p>
       </div>
@@ -254,7 +254,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
               <div className="px-3 py-3">Feature</div>
               <div className="px-3 py-3 text-center">Free</div>
               <div className="px-3 py-3 text-center">Pro</div>
-              <div className="px-3 py-3 text-center">Company</div>
+              <div className="px-3 py-3 text-center">Advanced</div>
             </div>
 
             {comparisonRows.map((row, index) => (

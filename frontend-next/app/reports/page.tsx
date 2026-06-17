@@ -603,7 +603,7 @@ export default function ReportsPage() {
             Saved Reports
           </p>
           <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
-            View, edit, review, and export saved inspection reports. Company workspaces add shared report sync.
+            View, edit, review, and export saved inspection reports.
           </p>
         </div>
       )}
