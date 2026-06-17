@@ -363,6 +363,7 @@ export default function InspectionPage() {
       const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
 
       setSafeScopeStatus("Running HazLenz AI match...");
+
       if (isOfflineMode || forceOffline) {
         if (forceOffline) {
           setIsOfflineMode(true);
@@ -372,9 +373,9 @@ export default function InspectionPage() {
           localInspectionId: "local-ins-" + Date.now(),
           localObservationId: "local-obs-" + Date.now(),
           offlineKnowledgePackVersion: "v1.0.0-seed"
-          
         });
         setSafeScopeResult(result);
+        setSafeScopeStatus(""); // Clear status on success
         return;
       }
       const result = await runSafeScopeV2Classify({
@@ -418,7 +419,6 @@ export default function InspectionPage() {
 
       setSafeScopeResult(result);
       setSafeScopeCompactDetailsOpen(false);
-      setSafeScopeCompactDetailsOpen(false);
       setSafeScopeAdvancedOpen(false);
 
       const autoSelectedStandards = Array.isArray(result?.suggestedStandards)
@@ -446,10 +446,9 @@ export default function InspectionPage() {
                 : `${result.confidenceBand} confidence`
         })`,
       );
-    } catch (error) {
-      setSafeScopeStatus(
-        error instanceof Error ? error.message : "HazLenz AI request failed.",
-      );
+    } catch (error: any) {
+      console.error("[HazLenz AI] Review failed", error);
+      setSafeScopeStatus(`HazLenz AI review failed: ${error.message || "Unknown error"}. Check backend connection.`);
     }
   }
 

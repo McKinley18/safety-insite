@@ -233,78 +233,44 @@ export async function runSafeScopeV2Classify(input: {
 
   const headers = getSafeScopeAuthHeaders();
 
-  if (typeof window !== "undefined") {
-    console.info("[HazLenz AI] direct classify request", {
-      requestUrl,
-      hasAuthHeader: Boolean((headers as any).Authorization),
-      textLength: safePayload.text.length,
-      scopes: safePayload.scopes,
-      evidenceCount: safePayload.evidenceTexts.length,
-      priorFindingsCount: safePayload.priorFindings.length,
-      riskProfileId: safePayload.riskProfileId,
-    });
-  }
+  console.info("[HazLenz AI] Request diagnostic", {
+    url: requestUrl,
+    payloadTextLength: safePayload.text.length,
+    evidenceCount: safePayload.evidenceTexts.length,
+    priorFindingsCount: safePayload.priorFindings.length,
+    riskProfileId: safePayload.riskProfileId,
+  });
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000); // 15s timeout
 
   try {
     const response = await fetch(requestUrl, {
       method: "POST",
       headers,
       body: JSON.stringify(safePayload),
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     const responseText = await response.text();
 
     if (!response.ok) {
       const errorMsg = responseText || `HazLenz AI backend error ${response.status}`;
-      
-      if (typeof window !== "undefined") {
-        console.error("[HazLenz AI] classify error", {
-          status: response.status,
-          message: errorMsg
-        });
-      }
-
-      // Return a structured error response
-      return {
-        error: true,
-        status: response.status,
-        message: errorMsg,
-        fallbackTriggered: false // Do not trigger fallback automatically
-      };
+      console.error(`[HazLenz AI] API Error: ${response.status}`, { errorMsg });
+      throw new Error(errorMsg);
     }
 
-    const result = responseText ? JSON.parse(responseText) : null;
-
-    if (typeof window !== "undefined") {
-      console.info("[HazLenz AI] direct classify response", {
-        classification: result?.classification,
-        confidence: result?.confidence,
-        confidenceBand: result?.confidenceBand,
-        suggestedStandards: result?.suggestedStandards?.length || 0,
-        generatedActions: result?.generatedActions?.length || 0,
-      });
+    return responseText ? JSON.parse(responseText) : null;
+  } catch (error: any) {
+    clearTimeout(timeoutId);
+    if (error.name === 'AbortError') {
+      console.error("[HazLenz AI] Request timed out");
+      throw new Error("HazLenz AI request timed out.");
     }
-
-    return result;
-  } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "HazLenz AI request failed.";
-
-    if (typeof navigator !== "undefined" && !navigator.onLine) {
-      return buildOfflineSafeScopeFallback({
-        text: safePayload.text,
-        scopes: safePayload.scopes,
-        evidenceTexts: safePayload.evidenceTexts,
-        errorMessage: message,
-      });
-    }
-
-    // Return a structured error response for network/unexpected errors
-    return {
-      error: true,
-      message: message,
-      fallbackTriggered: false
-    };
+    console.error("[HazLenz AI] Classify failed", error);
+    throw error;
   }
 }
 
