@@ -1,17 +1,17 @@
 const concepts = [
   {
     title: "Current Eye Radar",
-    src: "/brand/auditally-header-logo.svg",
+    src: "/brand/guideguard-header-logo.svg?v=gg4",
     notes: "Keeps the Sight/Site eye concept, now with a radar iris.",
   },
   {
     title: "Technical Radar Lens",
-    src: "/brand/auditally-app-icon.svg",
+    src: "/brand/guideguard-app-icon.svg",
     notes: "Less eye/surveillance feel. More polished instrument, sensor, and AI lens.",
   },
   {
     title: "Site Signal Pin",
-    src: "/brand/auditally-app-icon.svg",
+    src: "/brand/guideguard-app-icon.svg",
     notes: "More field/site oriented. Suggests location-based findings and risk signals.",
   },
 ];
@@ -21,14 +21,14 @@ export default function BrandReviewPage() {
     <main className="mx-auto max-w-6xl space-y-8 px-4 py-8">
       <section className="rounded-[2rem] bg-[#0B1320] p-6 text-white shadow-2xl">
         <p className="text-xs font-black uppercase tracking-[0.24em] text-[#5DB7FF]">
-          AuditAlly Brand Review
+          GuideGuard Brand Review
         </p>
         <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
           Compare logo directions
         </h1>
         <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-slate-300">
           Comparing the current eye/radar mark against a technical radar lens and a
-          site-signal pin. HazLenz AI remains the engine name.
+          guide-guard pin. HazLenz AI remains the engine name.
         </p>
       </section>
 
@@ -51,7 +51,7 @@ export default function BrandReviewPage() {
         <h2 className="text-lg font-black text-slate-900">My recommendation</h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
           If the eye feels too surveillance-like, move to Technical Radar Lens. It keeps
-          AuditAlly’s meaning while feeling more like trusted audit support, field review, and
+          GuideGuard’s meaning while feeling more like trusted audit support, field review, and
           hazard detection.
         </p>
       </section>

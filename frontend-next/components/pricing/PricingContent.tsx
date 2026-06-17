@@ -9,7 +9,7 @@ const tiers = [
     name: "Free",
     price: "$0",
     cadence: "/month",
-    audience: "For trying AuditAlly and creating basic inspection records.",
+    audience: "For trying GuideGuard and creating basic inspection records.",
     position: "Start documenting findings without committing to a paid plan.",
     cta: "Create Free Account",
     publicHref: "/register?plan=free",
@@ -126,7 +126,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
     <section className="mx-auto max-w-6xl space-y-7 px-1">
       <div className="rounded-[32px] bg-[#0B1320] px-5 py-10 text-center text-white shadow-sm sm:px-8 md:py-12">
         <p className="text-xs font-black uppercase tracking-[0.24em] text-blue-200">
-          {isUpgrade ? "Upgrade AuditAlly" : "AuditAlly Pricing"}
+          {isUpgrade ? "Upgrade GuideGuard" : "GuideGuard Pricing"}
         </p>
 
         <h1 className="mx-auto mt-4 max-w-4xl text-4xl font-black leading-tight tracking-tight sm:text-5xl md:text-6xl">
@@ -237,7 +237,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
           </p>
 
           <h2 className="mx-auto mt-3 max-w-4xl text-3xl font-black leading-tight tracking-tight text-slate-950 sm:text-4xl">
-            Basic audit apps document the issue. AuditAlly helps explain
+            Basic audit apps document the issue. GuideGuard helps explain
             what it means and what should happen next.
           </h2>
 
@@ -282,7 +282,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         </h2>
 
         <p className="mx-auto mt-3 max-w-2xl text-sm font-bold leading-6 text-slate-700">
-          AuditAlly is designed for safety professionals who need stronger
+          GuideGuard is designed for safety professionals who need stronger
           findings, clearer corrective actions, and records that support real
           accountability.
         </p>

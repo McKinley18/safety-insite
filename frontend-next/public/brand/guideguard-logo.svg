@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 160" role="img" aria-labelledby="title desc">
+  <title id="title">GuideGuard logo</title>
+  <desc id="desc">GuideGuard readable wordmark with compass shield mark.</desc>
+  <defs>
+    <linearGradient id="mark-bg" x1="8" y1="8" x2="132" y2="132" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#102A43"/>
+      <stop offset="1" stop-color="#0B1320"/>
+    </linearGradient>
+    <linearGradient id="arrow" x1="40" y1="36" x2="100" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5DD6FF"/>
+      <stop offset="1" stop-color="#1D72B8"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <rect x="8" y="8" width="124" height="124" rx="32" fill="url(#mark-bg)"/>
+    <path d="M70 24 105 39v31c0 28-14 49-35 62-21-13-35-34-35-62V39l35-15Z" fill="#F8FAFC"/>
+    <path d="M70 39 94 50v21c0 17-8 31-24 41-16-10-24-24-24-41V50l24-11Z" fill="#0B1320"/>
+    <path d="M70 48 90 101 70 91 50 101 70 48Z" fill="url(#arrow)"/>
+    <path d="M70 48v43" stroke="#F8FAFC" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="158" y="76"
+        font-family="Inter, Arial, Helvetica, sans-serif"
+        font-size="50"
+        font-weight="900"
+        letter-spacing="-1.8"
+        fill="#0B1320">GuideGuard</text>
+  <text x="161" y="112"
+        font-family="Inter, Arial, Helvetica, sans-serif"
+        font-size="18"
+        font-weight="800"
+        letter-spacing="2"
+        fill="#1D72B8">POWERED BY HAZLENZ AI</text>
+</svg>

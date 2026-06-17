@@ -1,6 +1,6 @@
 export const sentinelTheme = {
   brand: {
-    name: "AuditAlly",
+    name: "GuideGuard",
     engine: "HazLenz AI",
     navy: "#0f172a",
     headerNavy: "#102A43",

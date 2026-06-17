@@ -269,13 +269,22 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
-            className="flex min-w-0 items-center gap-3"
+            className="flex min-w-0 items-center gap-2"
           >
             <img
               src={BRAND_HEADER_LOGO}
-              alt={`${APP_NAME} powered by ${AI_ENGINE_NAME}`}
-              className="h-12 w-auto max-w-[280px] object-contain sm:h-14 sm:max-w-[340px] lg:h-16 lg:max-w-[390px]"
+              alt=""
+              aria-hidden="true"
+              className="h-11 w-11 shrink-0 rounded-2xl object-contain sm:h-12 sm:w-12 lg:h-14 lg:w-14"
             />
+            <span className="min-w-0 leading-none">
+              <span className="block text-[1.7rem] font-black tracking-[-0.08em] text-white sm:text-[2rem] lg:text-[2.25rem]">
+                {APP_NAME}
+              </span>
+              <span className="mt-1 block text-[0.48rem] font-black uppercase tracking-[0.12em] text-[#5DD6FF] sm:text-[0.54rem] lg:text-[0.58rem]">
+                Powered by {AI_ENGINE_NAME}
+              </span>
+            </span>
           </Link>
 
           {showAppNav && (
