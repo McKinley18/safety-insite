@@ -217,20 +217,71 @@ export class SafescopeV2Service {
           "SafeScope generates classifications, standards candidates, risk reasoning, and corrective actions from its governed brain and approved/source-governed applicability logic first. Prior saved findings and workspace history may support context, trend awareness, confidence tuning, evidence questions, and review priority, but they cannot create or override standards matches.",
       };
 
-      const intelligence = await this.intelligenceOrchestrator.evaluate({
-        fusedText,
-        promotedPrimary,
-        classifierResult: result,
-        evidenceTexts,
-        visualAttachments,
-        expandedContext: {},
-        primaryStandardsResult: { suggestedStandards },
-        generatedActions,
-        additionalHazards: [],
-        priorFindings,
-        workspaceId: workspaceId || user?.workspaceId,
-        supervisorValidations: [],
-      });
+      const memorySnapshot = () => {
+        const usage = process.memoryUsage();
+        return {
+          rssMb: Math.round(usage.rss / 1024 / 1024),
+          heapUsedMb: Math.round(usage.heapUsed / 1024 / 1024),
+          heapTotalMb: Math.round(usage.heapTotal / 1024 / 1024),
+          externalMb: Math.round(usage.external / 1024 / 1024),
+        };
+      };
+
+      let intelligence: any;
+
+      try {
+        console.log("[HazLenz classify] intelligence orchestrator start", {
+          textLength: fusedText.length,
+          standards: suggestedStandards.length,
+          actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
+          memory: memorySnapshot(),
+        });
+
+        intelligence = await this.intelligenceOrchestrator.evaluate({
+          fusedText,
+          promotedPrimary,
+          classifierResult: result,
+          evidenceTexts,
+          visualAttachments,
+          expandedContext: {},
+          primaryStandardsResult: { suggestedStandards },
+          generatedActions,
+          additionalHazards: [],
+          priorFindings,
+          workspaceId: workspaceId || user?.workspaceId,
+          supervisorValidations: [],
+        });
+
+        console.log("[HazLenz classify] intelligence orchestrator complete", {
+          memory: memorySnapshot(),
+        });
+      } catch (error) {
+        console.error("[HazLenz classify] intelligence orchestrator failed; returning degraded advisory fallback", {
+          error,
+          memory: memorySnapshot(),
+        });
+
+        intelligence = {
+          degraded: true,
+          fullIntelligenceAvailable: false,
+          fallbackReason:
+            "HazLenz full intelligence layer was unavailable in production. Core classification, risk, standards candidates, and corrective actions were still generated.",
+          additionalHazards: [],
+          evidenceGaps: [
+            "Confirm guarding condition, exposure frequency, equipment energy state, and whether workers can contact moving parts.",
+            "Attach photos and supervisor notes for qualified review before relying on the result.",
+          ],
+          reasoningSummary: [
+            "Fallback generated after the full intelligence orchestrator failed.",
+            "Output remains advisory-only and requires qualified review.",
+          ],
+          governance: {
+            advisoryOnly: true,
+            requiresQualifiedReview: true,
+            degradedMode: true,
+          },
+        };
+      }
 
       const enhancedGeneratedActions = this.buildEnhancedGeneratedActions(
         generatedActions,
