@@ -84,8 +84,29 @@ export default function SafeScopePrimaryDecisionSection({
     ? confirmationItems
     : fallbackConfirmationItems;
 
+  const isDegraded =
+    safeScopeResult.degraded ||
+    safeScopeResult.fallbackMode ||
+    safeScopeResult.offlineFallback ||
+    safeScopeResult.fullIntelligenceAvailable === false ||
+    safeScopeResult.governance?.degradedMode;
+
+  const degradedReason =
+    safeScopeResult.fallbackReason ||
+    "HazLenz AI full intelligence was unavailable. Treat this result as advisory fallback output requiring qualified review.";
+
   return (
     <section className="mb-4 rounded-2xl border-l-4 border-l-[#1D72B8] border-y border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-5 shadow-sm transition-all duration-300 ease-out hover:shadow-md hover:border-sky-500/50 hover:scale-[1.01]">
+      {isDegraded && (
+        <div className="mb-4 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+          <p className="font-black">HazLenz AI degraded review</p>
+          <p className="mt-1 font-semibold leading-5">{degradedReason}</p>
+          <p className="mt-2 text-xs font-black uppercase tracking-wide">
+            Do not treat this as full HazLenz AI intelligence. Qualified review is required.
+          </p>
+        </div>
+      )}
+
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">

@@ -604,7 +604,7 @@ export class SafescopeV2Service {
       dca.immediateActions?.[0]?.action ||
       correctiveActionReasoning.immediateActions?.[0] ||
       primary.title ||
-      "Review and control SafeScope-identified hazard";
+      "Review and control HazLenz AI-identified hazard";
 
     const priority =
       primary.priority ||
