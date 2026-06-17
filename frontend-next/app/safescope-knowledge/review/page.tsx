@@ -8,14 +8,14 @@ import { HeroPanel } from "@/components/ui/HeroPanel";
 import { Badge } from "@/components/ui/Badge";
 import LockedFeatureCard from "@/components/ui/LockedFeatureCard";
 import {
-  approveReviewCoreKnowledgeRecord,
-  createReviewCoreKnowledgeDraft,
-  getReviewCorePersistenceReadiness,
-  listReviewCoreActiveRetrievalRecords,
-  listReviewCoreKnowledgeQueue,
-  rejectReviewCoreKnowledgeRecord,
-  requestMoreInfoForReviewCoreKnowledgeRecord,
-  type ReviewCoreQueueActor,
+  approveSafeScopeKnowledgeRecord,
+  createSafeScopeKnowledgeDraft,
+  getSafeScopePersistenceReadiness,
+  listSafeScopeActiveRetrievalRecords,
+  listSafeScopeKnowledgeQueue,
+  rejectSafeScopeKnowledgeRecord,
+  requestMoreInfoForSafeScopeKnowledgeRecord,
+  type SafeScopeQueueActor,
 } from "@/lib/safescopeKnowledge";
 import {
   canAccessProtectedArea,
@@ -58,7 +58,7 @@ type QueueItem = {
   reviewChecklist?: string[];
 };
 
-const DEFAULT_ACTOR: ReviewCoreQueueActor = {
+const DEFAULT_ACTOR: SafeScopeQueueActor = {
   actorId: "local-reviewer",
   role: "admin",
   planTier: "company",
@@ -138,10 +138,10 @@ function parseOriginalPayload(record: QueueRecord) {
   }
 }
 
-export default function ReviewCoreKnowledgeReviewPage() {
+export default function SafeScopeKnowledgeReviewPage() {
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
-  const [actorRole, setActorRole] = useState<NonNullable<ReviewCoreQueueActor["role"]>>("admin");
-  const [actorPlan, setActorPlan] = useState<NonNullable<ReviewCoreQueueActor["planTier"]>>("company");
+  const [actorRole, setActorRole] = useState<NonNullable<SafeScopeQueueActor["role"]>>("admin");
+  const [actorPlan, setActorPlan] = useState<NonNullable<SafeScopeQueueActor["planTier"]>>("company");
 
   const [queuePayload, setQueuePayload] = useState<any>(null);
   const [activePayload, setActivePayload] = useState<any>(null);
@@ -160,7 +160,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
   const [actionBusy, setActionBusy] = useState("");
   const [error, setError] = useState("");
 
-  const actor: ReviewCoreQueueActor = useMemo(
+  const actor: SafeScopeQueueActor = useMemo(
     () => ({
       ...DEFAULT_ACTOR,
       role: actorRole,
@@ -175,9 +175,9 @@ export default function ReviewCoreKnowledgeReviewPage() {
       setError("");
 
       const [queue, active, readiness] = await Promise.all([
-        listReviewCoreKnowledgeQueue(actor),
-        listReviewCoreActiveRetrievalRecords(actor),
-        getReviewCorePersistenceReadiness(actor),
+        listSafeScopeKnowledgeQueue(actor),
+        listSafeScopeActiveRetrievalRecords(actor),
+        getSafeScopePersistenceReadiness(actor),
       ]);
 
       setQueuePayload(queue);
@@ -269,7 +269,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
     }
 
     await runAction("create", async () => {
-      await createReviewCoreKnowledgeDraft(
+      await createSafeScopeKnowledgeDraft(
         {
           title: newDraftTitle.trim(),
           content: newDraftContent.trim(),
@@ -564,7 +564,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
                     disabled={!canApprove || !!actionBusy}
                     onClick={() =>
                       runAction("approve", () =>
-                        approveReviewCoreKnowledgeRecord(recordId(selectedRecord), actor),
+                        approveSafeScopeKnowledgeRecord(recordId(selectedRecord), actor),
                       )
                     }
                     className="min-h-11"
@@ -577,7 +577,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
                     disabled={!!actionBusy}
                     onClick={() =>
                       runAction("more-info", () =>
-                        requestMoreInfoForReviewCoreKnowledgeRecord(
+                        requestMoreInfoForSafeScopeKnowledgeRecord(
                           recordId(selectedRecord),
                           reviewNote.trim() || "More information required before governed approval.",
                           actor,
@@ -594,7 +594,7 @@ export default function ReviewCoreKnowledgeReviewPage() {
                     disabled={!!actionBusy}
                     onClick={() =>
                       runAction("reject", () =>
-                        rejectReviewCoreKnowledgeRecord(
+                        rejectSafeScopeKnowledgeRecord(
                           recordId(selectedRecord),
                           reviewNote.trim() || "Rejected during governed HazLenz AI review.",
                           actor,

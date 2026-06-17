@@ -68,12 +68,6 @@ const navItems = [
     activeRoots: ["/safety-calendar"],
   },
   {
-    href: "/actions",
-    label: "Actions",
-    icon: "✓",
-    activeRoots: ["/actions"],
-  },
-  {
     href: "/settings",
     label: "Settings",
     icon: "⚙️",
@@ -257,22 +251,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
-            className="flex min-w-0 items-center gap-2"
+            className="relative flex h-16 w-[315px] shrink-0 self-center overflow-visible sm:h-20 sm:w-[420px] lg:h-20 lg:w-[520px]"
+            aria-label="Safety InSite Home"
           >
             <img
               src={BRAND_HEADER_LOGO}
-              alt=""
-              aria-hidden="true"
-              className="h-11 w-11 shrink-0 rounded-2xl object-contain sm:h-12 sm:w-12 lg:h-14 lg:w-14"
+              alt="Safety InSite powered by HazLenz AI"
+              className="absolute -left-9 top-[64%] h-[190px] w-auto max-w-none -translate-y-1/2 object-contain sm:-left-12 sm:h-[245px] lg:-left-16 lg:h-[288px]"
             />
-            <span className="min-w-0 leading-none">
-              <span className="block text-[1.7rem] font-black tracking-[-0.08em] text-white sm:text-[2rem] lg:text-[2.25rem]">
-                {APP_NAME}
-              </span>
-              <span className="mt-1 block text-[0.48rem] font-black uppercase tracking-[0.12em] text-[#5DD6FF] sm:text-[0.54rem] lg:text-[0.58rem]">
-                Powered by {AI_ENGINE_NAME}
-              </span>
-            </span>
           </Link>
 
           {showAppNav && (

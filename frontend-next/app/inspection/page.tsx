@@ -112,7 +112,7 @@ export default function InspectionPage() {
     loadCompanyRiskProfile();
   }, []);
   const [safeScopeStatus, setSafeScopeStatus] = useState("");
-  const [safeScopeResult, setSafeScopeResult] = useState<any>(null);
+  const [safeScopeResult, setsafeScopeResult] = useState<any>(null);
   const [isOfflineMode, setIsOfflineMode] = useState<boolean>(false);
   const [selectedStandards, setSelectedStandards] = useState<any[]>([]);
   const [feedbackNotes, setFeedbackNotes] = useState("");
@@ -231,7 +231,7 @@ export default function InspectionPage() {
               loadEncryptedPhoto(photo),
             ),
           ).then(setPhotos);
-          setSafeScopeResult(finding.safeScopeResult || null);
+          setsafeScopeResult(finding.safeScopeResult || null);
           setSelectedStandards(finding.selectedStandards || []);
           setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
           setManualActions(finding.manualActions || []);
@@ -389,7 +389,7 @@ export default function InspectionPage() {
           localObservationId: "local-obs-" + Date.now(),
           offlineKnowledgePackVersion: "v1.0.0-seed"
         });
-        setSafeScopeResult(result);
+        setsafeScopeResult(result);
         setSafeScopeStatus("HazLenz AI review complete.");
         return;
       }
@@ -433,7 +433,7 @@ export default function InspectionPage() {
         })),
       });
 
-      setSafeScopeResult(result);
+      setsafeScopeResult(result);
       setSafeScopeCompactDetailsOpen(false);
       setSafeScopeAdvancedOpen(false);
 
@@ -726,7 +726,7 @@ export default function InspectionPage() {
     setPhotos([]);
     setAgencyMode("all");
     setSafeScopeStatus("");
-    setSafeScopeResult(null);
+    setsafeScopeResult(null);
     setFeedbackNotes("");
     setSeverity(null);
     setLikelihood(null);
@@ -834,7 +834,7 @@ export default function InspectionPage() {
     Promise.all(
       (finding.photos || []).map((photo: any) => loadEncryptedPhoto(photo)),
     ).then(setPhotos);
-    setSafeScopeResult(finding.safeScopeResult || null);
+    setsafeScopeResult(finding.safeScopeResult || null);
     setSelectedStandards(finding.selectedStandards || []);
     setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
     setManualActions(finding.manualActions || []);

@@ -492,17 +492,17 @@ export default function DashboardPage() {
                 Start inspections, review due work, track corrective actions, and keep your safety follow-up organized from one simple home screen.
               </p>
 
-              <div className="mt-5 flex flex-col justify-center gap-2 sm:flex-row lg:justify-start">
+              <div className="mt-5 flex flex-wrap justify-center gap-2 lg:justify-start">
                 <AppLinkButton
                   href="/inspection"
-                  className="!inline-flex justify-center rounded-full bg-[#1D72B8] px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320]"
+                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full bg-[#1D72B8] px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320]"
                 >
                   Start Inspection
                 </AppLinkButton>
                 <AppLinkButton
                   href="/reports"
-                  variant="ghost"
-                  className="!inline-flex justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-white/20"
+                  variant="accent"
+                  className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full !bg-orange-500 px-5 py-3 text-sm font-black !text-white shadow-none transition hover:!bg-orange-600"
                 >
                   View Reports
                 </AppLinkButton>
@@ -515,7 +515,7 @@ export default function DashboardPage() {
                 [String(dashboard.findingCount), "Findings", "Captured observations"],
                 [String(dashboard.openActions), "Open Actions", "Active follow-up work"],
                 [String(dashboard.overdueActions), "Overdue", "Needs attention"],
-              ].map(([value, label, detail]) => (
+              ].map(([value, label]) => (
                 <div
                   key={label}
                   className="rounded-xl border border-white/12 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
@@ -525,9 +525,6 @@ export default function DashboardPage() {
                   </p>
                   <p className="mt-1 text-[10px] font-black uppercase tracking-[0.16em] text-blue-100">
                     {label}
-                  </p>
-                  <p className="mt-1 text-[11px] font-semibold leading-4 text-slate-300">
-                    {detail}
                   </p>
                 </div>
               ))}
@@ -596,98 +593,6 @@ export default function DashboardPage() {
       </div>
 
 
-
-      <section className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-none sm:p-5">
-        <SectionHeader
-          eyebrow="Operational Focus"
-          title="Workspace snapshot"
-          description="A simple summary of current inspection activity."
-        />
-
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          {[
-            [String(dashboard.findingCount), "Findings"],
-            [String(dashboard.openActions), "Open Actions"],
-            [String(dashboard.overdueActions), "Overdue"],
-            [String(dashboard.safeScopeReviewed), "HazLenz Reviewed"],
-          ].map(([value, label]) => (
-            <div
-              key={label}
-              className="rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-center shadow-none"
-            >
-              <p className="text-2xl font-black tracking-[-0.06em] text-slate-950">{value}</p>
-              <p className="mt-1 text-[9px] font-black uppercase tracking-[0.16em] text-slate-500">
-                {label}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-5 border-t border-slate-200 pt-5">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
-                Activity
-              </p>
-              <h3 className="mt-1 text-lg font-black tracking-[-0.035em] text-slate-950">
-                Recent activity
-              </h3>
-            </div>
-
-            <AppLinkButton
-              href="/actions"
-              size="sm"
-              className="!inline-flex !w-fit shrink-0 rounded-full bg-[#102A43] px-4 py-2 text-[11px] font-black !text-white shadow-none ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8]"
-            >
-              Open Actions
-            </AppLinkButton>
-          </div>
-
-          <div className="mt-4">
-            {dashboard.recentActivity.length ? (
-              <div className="divide-y divide-slate-200">
-                {dashboard.recentActivity.map((activity, index) => (
-                  <div key={activity.id} className="flex gap-3 py-3">
-                    <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-[#E8F4FF] text-[10px] font-black uppercase text-[#1D72B8] ring-1 ring-blue-100">
-                      {index + 1}
-                    </span>
-
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <p className="text-sm font-black leading-5 text-slate-950">
-                          {activity.title}
-                        </p>
-                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-slate-500">
-                          {activity.type}
-                        </span>
-                      </div>
-
-                      {activity.detail && (
-                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">
-                          {activity.detail}
-                        </p>
-                      )}
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => dismissActivityEvent(activity.id)}
-                      aria-label={`Delete activity: ${activity.title}`}
-                      className="shrink-0 self-start rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-400 transition hover:bg-red-50 hover:text-red-700"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="mt-2 text-sm font-medium leading-6 text-slate-400">
-                No recent activity recorded.
-              </p>
-            )}
-          </div>
-        </div>
-      </section>
 
 
 

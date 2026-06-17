@@ -99,7 +99,7 @@ export default function InspectionsPage() {
     InspectionProgramRecord[]
   >([]);
   const [selectedWorkflow, setSelectedWorkflow] = useState(workflowOptions[0]);
-  const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>("guided");
+  const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>(null);
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
   const [regulatoryScope, setRegulatoryScope] = useState("all");
 
@@ -161,7 +161,7 @@ export default function InspectionsPage() {
 
         </div>
 
-        <div className="mx-auto mt-4 grid max-w-3xl grid-cols-4 justify-center gap-1.5 sm:gap-2">
+        <div className="mx-auto mt-4 grid max-w-[390px] grid-cols-2 justify-center gap-2 sm:gap-2.5">
           {[
             [String(programStatus.scheduled), "Scheduled"],
             [String(programStatus.inProgress), "In Progress"],
@@ -170,12 +170,12 @@ export default function InspectionsPage() {
           ].map(([value, label]) => (
             <div
               key={label}
-              className="w-full rounded-xl border border-white/10 bg-white/10 px-3 py-3 text-center shadow-none backdrop-blur"
+              className="w-full rounded-xl border border-white/12 bg-white/10 px-4 py-3 text-center shadow-none backdrop-blur"
             >
-              <p className="text-2xl font-black tracking-[-0.05em] text-white sm:text-3xl">
+              <p className="text-2xl font-black tracking-[-0.06em] text-white sm:text-3xl">
                 {value}
               </p>
-              <p className="mt-0.5 truncate text-[8px] font-black uppercase tracking-wide text-slate-300 sm:text-[9px]">
+              <p className="mt-1 text-[9px] font-black uppercase tracking-[0.16em] text-slate-300 sm:text-[10px]">
                 {label}
               </p>
             </div>
@@ -190,7 +190,7 @@ export default function InspectionsPage() {
           description="Full Inspection is recommended for most work. Quick Inspection is for fast capture. Audit Review is for final verification."
         />
 
-        <div className="mt-4 space-y-2">
+        <div className="mx-auto mt-4 grid max-w-5xl justify-items-center gap-3 sm:grid-cols-3">
           {workflowOptions.map((workflow) => {
             const selected = selectedWorkflow.id === workflow.id;
             const expanded = expandedWorkflowId === workflow.id;
@@ -221,7 +221,7 @@ export default function InspectionsPage() {
             return (
               <article
                 key={workflow.id}
-                className={`overflow-hidden rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
+                className={`h-full w-full max-w-[320px] overflow-hidden rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
                     : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white"
@@ -233,7 +233,7 @@ export default function InspectionsPage() {
                     setSelectedWorkflow(workflow);
                     setExpandedWorkflowId(expanded ? null : workflow.id);
                   }}
-                  className="flex w-full items-center justify-between gap-3 px-3 py-3 text-left sm:px-4"
+                  className="flex min-h-[138px] w-full items-center justify-between gap-3 px-3 py-3 text-left sm:px-4"
                 >
                   <div className="min-w-0">
                     <div className="flex flex-col items-start gap-1">

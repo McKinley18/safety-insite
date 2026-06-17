@@ -43,13 +43,13 @@ export async function searchSafeScopeKnowledge(input: {
   return response.json();
 }
 
-export type ReviewCoreQueueActor = {
+export type SafeScopeQueueActor = {
   actorId?: string;
   role?: "owner" | "admin" | "compliance_admin" | "safety_manager" | "field_inspector" | "viewer";
   planTier?: "individual" | "team" | "company";
 };
 
-export type ReviewCoreDraftInput = {
+export type SafeScopeDraftInput = {
   id?: string;
   title: string;
   content: string;
@@ -62,13 +62,13 @@ export type ReviewCoreDraftInput = {
   guardrails?: Record<string, unknown>;
 };
 
-const DEFAULT_REVIEWCORE_ACTOR: Required<ReviewCoreQueueActor> = {
+const DEFAULT_REVIEWCORE_ACTOR: Required<SafeScopeQueueActor> = {
   actorId: "local-reviewer",
   role: "admin",
   planTier: "company",
 };
 
-function reviewCoreActor(actor?: ReviewCoreQueueActor) {
+function reviewCoreActor(actor?: SafeScopeQueueActor) {
   return {
     ...DEFAULT_REVIEWCORE_ACTOR,
     ...(actor || {}),
@@ -99,7 +99,7 @@ async function reviewCoreRequest(path: string, options: RequestInit = {}) {
   return response.json();
 }
 
-export async function listReviewCoreKnowledgeQueue(actor?: ReviewCoreQueueActor) {
+export async function listSafeScopeKnowledgeQueue(actor?: SafeScopeQueueActor) {
   return reviewCoreRequest("/queue", {
     method: "POST",
     body: JSON.stringify({ actor: reviewCoreActor(actor) }),
@@ -110,7 +110,7 @@ export async function listReviewCoreKnowledgeQueue(actor?: ReviewCoreQueueActor)
   });
 }
 
-export async function getReviewCoreKnowledgeQueueItem(recordId: string, actor?: ReviewCoreQueueActor) {
+export async function getSafeScopeKnowledgeQueueItem(recordId: string, actor?: SafeScopeQueueActor) {
   const params = new URLSearchParams();
   const resolvedActor = reviewCoreActor(actor);
   params.set("actorId", resolvedActor.actorId);
@@ -120,7 +120,7 @@ export async function getReviewCoreKnowledgeQueueItem(recordId: string, actor?: 
   return reviewCoreRequest(`/queue/${encodeURIComponent(recordId)}?${params.toString()}`);
 }
 
-export async function createReviewCoreKnowledgeDraft(input: ReviewCoreDraftInput, actor?: ReviewCoreQueueActor) {
+export async function createSafeScopeKnowledgeDraft(input: SafeScopeDraftInput, actor?: SafeScopeQueueActor) {
   return reviewCoreRequest("/drafts", {
     method: "POST",
     body: JSON.stringify({
@@ -130,7 +130,7 @@ export async function createReviewCoreKnowledgeDraft(input: ReviewCoreDraftInput
   });
 }
 
-export async function approveReviewCoreKnowledgeRecord(recordId: string, actor?: ReviewCoreQueueActor) {
+export async function approveSafeScopeKnowledgeRecord(recordId: string, actor?: SafeScopeQueueActor) {
   return reviewCoreRequest(`/queue/${encodeURIComponent(recordId)}/approve`, {
     method: "POST",
     body: JSON.stringify({
@@ -140,7 +140,7 @@ export async function approveReviewCoreKnowledgeRecord(recordId: string, actor?:
   });
 }
 
-export async function rejectReviewCoreKnowledgeRecord(recordId: string, reason: string, actor?: ReviewCoreQueueActor) {
+export async function rejectSafeScopeKnowledgeRecord(recordId: string, reason: string, actor?: SafeScopeQueueActor) {
   return reviewCoreRequest(`/queue/${encodeURIComponent(recordId)}/reject`, {
     method: "POST",
     body: JSON.stringify({
@@ -150,10 +150,10 @@ export async function rejectReviewCoreKnowledgeRecord(recordId: string, reason: 
   });
 }
 
-export async function requestMoreInfoForReviewCoreKnowledgeRecord(
+export async function requestMoreInfoForSafeScopeKnowledgeRecord(
   recordId: string,
   reason: string,
-  actor?: ReviewCoreQueueActor,
+  actor?: SafeScopeQueueActor,
 ) {
   return reviewCoreRequest(`/queue/${encodeURIComponent(recordId)}/request-more-info`, {
     method: "POST",
@@ -164,7 +164,7 @@ export async function requestMoreInfoForReviewCoreKnowledgeRecord(
   });
 }
 
-export async function listReviewCoreActiveRetrievalRecords(actor?: ReviewCoreQueueActor) {
+export async function listSafeScopeActiveRetrievalRecords(actor?: SafeScopeQueueActor) {
   const params = new URLSearchParams();
   const resolvedActor = reviewCoreActor(actor);
   params.set("actorId", resolvedActor.actorId);
@@ -174,7 +174,7 @@ export async function listReviewCoreActiveRetrievalRecords(actor?: ReviewCoreQue
   return reviewCoreRequest(`/active-retrieval?${params.toString()}`);
 }
 
-export async function getReviewCorePersistenceReadiness(actor?: ReviewCoreQueueActor) {
+export async function getSafeScopePersistenceReadiness(actor?: SafeScopeQueueActor) {
   const params = new URLSearchParams();
   const resolvedActor = reviewCoreActor(actor);
   params.set("actorId", resolvedActor.actorId);

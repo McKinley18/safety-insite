@@ -1,12 +1,12 @@
-type ReviewCoreDisclaimerProps = {
+type SafeScopeDisclaimerProps = {
   compact?: boolean;
   tone?: "default" | "warning" | "dark" | "notice";
 };
 
-export default function ReviewCoreDisclaimer({
+export default function SafeScopeDisclaimer({
   compact = false,
   tone = "default",
-}: ReviewCoreDisclaimerProps) {
+}: SafeScopeDisclaimerProps) {
   const toneClass =
     tone === "warning"
       ? "border-amber-200 bg-amber-50 text-amber-950"

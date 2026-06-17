@@ -11,8 +11,8 @@ export type ReportPackageConfig = {
   shortLabel: string;
   description: string;
   includesExecutiveSummary: boolean;
-  includesReviewCoreSummary: boolean;
-  includesReviewCoreTraceability: boolean;
+  includesSafeScopeSummary: boolean;
+  includesSafeScopeTraceability: boolean;
   includesEvidenceGaps: boolean;
   includesConfidence: boolean;
   includesRepeatIntelligence: boolean;
@@ -32,8 +32,8 @@ export function getReportPackageForPlan(
       description:
         "Management-ready compliance package with company metadata, team accountability, assigned corrective actions, trend intelligence, repeat-finding history, and full HazLenz AI traceability.",
       includesExecutiveSummary: true,
-      includesReviewCoreSummary: true,
-      includesReviewCoreTraceability: true,
+      includesSafeScopeSummary: true,
+      includesSafeScopeTraceability: true,
       includesEvidenceGaps: true,
       includesConfidence: true,
       includesRepeatIntelligence: true,
@@ -51,8 +51,8 @@ export function getReportPackageForPlan(
       description:
         "Professional single-inspection report with executive summary, HazLenz AI confidence, evidence gaps, standards rationale, corrective action context, and supervisor review signals.",
       includesExecutiveSummary: true,
-      includesReviewCoreSummary: true,
-      includesReviewCoreTraceability: false,
+      includesSafeScopeSummary: true,
+      includesSafeScopeTraceability: false,
       includesEvidenceGaps: true,
       includesConfidence: true,
       includesRepeatIntelligence: false,
@@ -69,8 +69,8 @@ export function getReportPackageForPlan(
     description:
       "Clean field inspection record with findings, locations, risk ratings, selected standards, corrective actions, photos, and human-review notice.",
     includesExecutiveSummary: false,
-    includesReviewCoreSummary: false,
-    includesReviewCoreTraceability: false,
+    includesSafeScopeSummary: false,
+    includesSafeScopeTraceability: false,
     includesEvidenceGaps: false,
     includesConfidence: false,
     includesRepeatIntelligence: false,

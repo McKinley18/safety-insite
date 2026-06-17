@@ -9,7 +9,6 @@ const tabs = [
   { href: "/inspections", label: "Inspect", icon: "📋" },
   { href: "/reports", label: "Reports", icon: "🗂" },
   { href: "/safety-calendar", label: "Calendar", icon: "📅" },
-  { href: "/actions", label: "Actions", icon: "✓" },
 ];
 
 function isMobileKeyboardLikelyOpen() {
@@ -58,7 +57,7 @@ export default function MobileTabBar() {
       data-keyboard-open={keyboardOpen ? "true" : "false"}
       className="mobile-tab-bar fixed inset-x-0 bottom-0 z-[800] border-t border-slate-200 bg-[#0B1320]/96 px-2 pb-[max(env(safe-area-inset-bottom),0.25rem)] pt-1 shadow-[0_-8px_24px_rgba(15,23,42,0.16)] backdrop-blur-xl transition-transform duration-150 lg:hidden"
     >
-      <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
+      <div className="mx-auto grid max-w-md grid-cols-4 gap-1.5">
         {tabs.map((tab) => {
           const active =
             pathname === tab.href ||

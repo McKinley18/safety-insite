@@ -9,7 +9,7 @@ import {
  * HazLenz AI public frontend client.
  *
  * These wrappers provide customer-facing/service-facing HazLenz names while
- * preserving the existing SafeScope implementation, route, and imports during
+ * preserving the existing HazLenz AI implementation, route, and imports during
  * the InSite transition.
  */
 

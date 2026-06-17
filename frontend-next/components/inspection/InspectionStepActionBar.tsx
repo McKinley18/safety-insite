@@ -9,7 +9,7 @@ type Props = {
   manualActions: any[];
   currentFindingSaved: boolean;
   goToInspectionStep: (step: number) => void;
-  handleRunReviewCore: () => void;
+  handleRunSafeScope: () => void;
   saveFinding: () => void;
   generateReport: () => void;
 };
@@ -23,7 +23,7 @@ export default function InspectionStepActionBar({
   manualActions,
   currentFindingSaved,
   goToInspectionStep,
-  handleRunReviewCore,
+  handleRunSafeScope,
   saveFinding,
   generateReport,
 }: Props) {
@@ -73,7 +73,7 @@ export default function InspectionStepActionBar({
           <div className="flex flex-wrap gap-2">
             <button
               type="button"
-              onClick={handleRunReviewCore}
+              onClick={handleRunSafeScope}
               className="rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C]"
             >
               {safeScopeResult ? "Rerun HazLenz AI" : "Run HazLenz AI"}

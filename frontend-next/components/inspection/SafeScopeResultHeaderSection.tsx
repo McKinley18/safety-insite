@@ -64,7 +64,7 @@ function formatFieldOutputDisposition(value: any) {
   return labels[raw] || raw.replace(/_/g, " ");
 }
 
-export default function SafeScopeResultHeaderSection({
+export default function safeScopeResultHeaderSection({
   safeScopeResult,
   submitSafeScopeValidation,
 }: Props) {
