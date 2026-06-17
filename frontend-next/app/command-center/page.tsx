@@ -68,12 +68,13 @@ type DashboardReport = {
 };
 
 function getRiskScore(finding: any) {
-  return Number(
-    finding.riskScore ||
-      finding.safeScopeResult?.risk?.riskScore ||
-      finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
-      0,
-  );
+  const rawScore =
+    finding.riskScore ??
+    finding.safeScopeResult?.risk?.riskScore ??
+    finding.safeScopeResult?.risk?.operationalRisk?.matrixScore;
+
+  const score = Number(rawScore);
+  return Number.isFinite(score) ? score : null;
 }
 
 function getRiskBand(finding: any) {
@@ -393,7 +394,7 @@ export default function DashboardPage() {
     const criticalFindings = findings.filter((finding) => {
       const riskScore = getRiskScore(finding);
       const riskBand = getRiskBand(finding);
-      return riskScore >= 20 || riskBand.includes("critical");
+      return (riskScore !== null && riskScore >= 20) || riskBand.includes("critical");
     });
 
     const highPriorityActions = [...openActions]

@@ -36,12 +36,13 @@ function percent(numerator: number, denominator: number) {
 }
 
 function getRiskScore(finding: any) {
-  return Number(
-    finding.riskScore ||
-      finding.safeScopeResult?.risk?.riskScore ||
-      finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
-      0,
-  );
+  const rawScore =
+    finding.riskScore ??
+    finding.safeScopeResult?.risk?.riskScore ??
+    finding.safeScopeResult?.risk?.operationalRisk?.matrixScore;
+
+  const score = Number(rawScore);
+  return Number.isFinite(score) ? score : null;
 }
 
 function getRiskBand(finding: any): RiskBand {
@@ -53,12 +54,12 @@ function getRiskBand(finding: any): RiskBand {
 
   const score = getRiskScore(finding);
 
-  if (rawBand.includes("critical") || score >= 20) return "Critical";
-  if (rawBand.includes("high") || score >= 12) return "High";
-  if (rawBand.includes("medium") || rawBand.includes("moderate") || score >= 6) {
+  if (rawBand.includes("critical") || (score !== null && score >= 20)) return "Critical";
+  if (rawBand.includes("high") || (score !== null && score >= 12)) return "High";
+  if (rawBand.includes("medium") || rawBand.includes("moderate") || (score !== null && score >= 6)) {
     return "Moderate";
   }
-  if (score > 0) return "Low";
+  if (score !== null && score > 0) return "Low";
 
   return "Unrated";
 }
@@ -207,7 +208,9 @@ export default function AnalyticsPage() {
       },
     );
 
-    const riskScores = findings.map(getRiskScore).filter((score) => score > 0);
+    const riskScores = findings
+      .map(getRiskScore)
+      .filter((score): score is number => score !== null && score > 0);
 
     const averageRiskScore = riskScores.length
       ? Math.round(

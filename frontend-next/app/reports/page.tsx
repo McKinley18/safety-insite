@@ -80,12 +80,12 @@ function getRiskLabel(report: Report) {
   const scores =
     report.findings?.map((finding: any) => {
       const matrixScore =
-        finding.riskScore ||
-        finding.safeScopeResult?.risk?.riskScore ||
-        finding.safeScopeResult?.risk?.operationalRisk?.matrixScore ||
-        0;
+        finding.riskScore ??
+        finding.safeScopeResult?.risk?.riskScore ??
+        finding.safeScopeResult?.risk?.operationalRisk?.matrixScore;
 
-      return Number(matrixScore);
+      const score = Number(matrixScore);
+      return Number.isFinite(score) ? score : null;
     }) || [];
 
   const bands =
@@ -97,7 +97,8 @@ function getRiskLabel(report: Report) {
       ).toLowerCase(),
     ) || [];
 
-  const max = Math.max(0, ...scores);
+  const numericScores = scores.filter((score): score is number => score !== null);
+  const max = Math.max(0, ...numericScores);
 
   if (bands.some((band) => band.includes("critical")) || max >= 20) {
     return "Critical";
@@ -114,7 +115,9 @@ function getRiskLabel(report: Report) {
     return "Moderate";
   }
 
-  return "Low";
+  if (numericScores.some((score) => score > 0)) return "Low";
+
+  return "Unrated";
 }
 
 function riskClasses(risk: string) {

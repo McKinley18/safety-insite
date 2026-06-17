@@ -438,14 +438,36 @@ export const localExporter = {
     }
 
     // 2. EXECUTIVE SUMMARY PAGE
-    const riskScore = (f: any) =>
-      Number(f.likelihood || 1) * Number(f.severity || 1);
+    const riskScore = (f: any) => {
+      const explicitScore =
+        f.riskScore ??
+        f.safeScopeResult?.risk?.riskScore ??
+        f.safeScopeResult?.risk?.operationalRisk?.matrixScore;
 
-    const highRisk = findings.filter((f) => riskScore(f) >= 15).length;
-    const medRisk = findings.filter(
-      (f) => riskScore(f) >= 5 && riskScore(f) < 15,
+      const numericExplicitScore = Number(explicitScore);
+      if (Number.isFinite(numericExplicitScore) && numericExplicitScore > 0) {
+        return numericExplicitScore;
+      }
+
+      const likelihood = Number(f.likelihood);
+      const severity = Number(f.severity);
+
+      if (Number.isFinite(likelihood) && likelihood > 0 && Number.isFinite(severity) && severity > 0) {
+        return likelihood * severity;
+      }
+
+      return null;
+    };
+
+    const ratedRiskScores = findings
+      .map(riskScore)
+      .filter((score): score is number => score !== null);
+
+    const highRisk = ratedRiskScores.filter((score) => score >= 15).length;
+    const medRisk = ratedRiskScores.filter(
+      (score) => score >= 5 && score < 15,
     ).length;
-    const lowRisk = findings.filter((f) => riskScore(f) < 5).length;
+    const lowRisk = ratedRiskScores.filter((score) => score > 0 && score < 5).length;
     const actionCount = findings.reduce(
       (total, f) => total + (f.correctiveActions?.length || 0),
       0,
@@ -459,11 +481,11 @@ export const localExporter = {
       0,
     );
     const avgRisk =
-      findings.length > 0
+      ratedRiskScores.length > 0
         ? (
-            findings.reduce((acc, f) => acc + riskScore(f), 0) / findings.length
+            ratedRiskScores.reduce((acc, score) => acc + score, 0) / ratedRiskScores.length
           ).toFixed(1)
-        : "0.0";
+        : "Not rated";
 
     if (reportPackage.includesExecutiveSummary) {
       doc.addPage();
