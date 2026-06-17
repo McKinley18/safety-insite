@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getSafeScopeReasoningSnapshot } from "@/lib/safescope";
+import { getHazLenzReasoningSnapshot } from "@/lib/hazlenz";
 
 type Props = {
   safeScopeResult: any;
@@ -97,7 +97,7 @@ export default function SafeScopeResultHeaderSection({
 
     try {
       setSnapshotStatus("Loading reasoning snapshot...");
-      const snapshot = await getSafeScopeReasoningSnapshot(
+      const snapshot = await getHazLenzReasoningSnapshot(
         safeScopeResult.reasoningSnapshotId,
       );
       setSnapshotSummary(snapshot);
