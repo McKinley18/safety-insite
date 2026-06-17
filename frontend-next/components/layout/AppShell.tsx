@@ -117,7 +117,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   // Auth and marketing pages should keep the public layout.
   // A stale local token should not make public pages show the signed-in profile badge.
-  const isPublicPage = isAuthPublicPage || isMarketingPage;
+  const isPublicPage = isAuthPublicPage || (isMarketingPage && !hasAuthSession);
   const showAppNav = !isPublicPage;
 
   // Public/auth/marketing pages show the marketing footer.
