@@ -52,7 +52,7 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                GuideGuard helps teams turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
+                InSite helps teams turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
               </p>
             </div>
 
@@ -152,7 +152,7 @@ export default function AboutPage() {
 
           <div className="border-l border-slate-200/80 pl-4">
             <p className="text-base font-semibold leading-7 text-slate-600">
-              A safety finding should not disappear into a notebook, photo gallery, spreadsheet, or email chain. GuideGuard keeps the finding, evidence, review, and action connected so teams can move faster, communicate clearly, and follow through with confidence.
+              A safety finding should not disappear into a notebook, photo gallery, spreadsheet, or email chain. InSite keeps the finding, evidence, review, and action connected so teams can move faster, communicate clearly, and follow through with confidence.
             </p>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">

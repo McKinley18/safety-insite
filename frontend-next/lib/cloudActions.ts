@@ -107,7 +107,7 @@ export async function updateCloudActionStatus(actionId: string, status: string) 
         statusCode: toBackendStatus(status),
         closureNotes:
           status === "Completed"
-            ? "Closed from GuideGuard corrective action tracker."
+            ? "Closed from InSite corrective action tracker."
             : undefined,
       }),
     },

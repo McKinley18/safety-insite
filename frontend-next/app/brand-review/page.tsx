@@ -21,7 +21,7 @@ export default function BrandReviewPage() {
     <main className="mx-auto max-w-6xl space-y-8 px-4 py-8">
       <section className="rounded-[2rem] bg-[#0B1320] p-6 text-white shadow-2xl">
         <p className="text-xs font-black uppercase tracking-[0.24em] text-[#5DB7FF]">
-          GuideGuard Brand Review
+          InSite Brand Review
         </p>
         <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">
           Compare logo directions
@@ -51,7 +51,7 @@ export default function BrandReviewPage() {
         <h2 className="text-lg font-black text-slate-900">My recommendation</h2>
         <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
           If the eye feels too surveillance-like, move to Technical Radar Lens. It keeps
-          GuideGuard’s meaning while feeling more like trusted audit support, field review, and
+          InSite’s meaning while feeling more like trusted audit support, field review, and
           hazard detection.
         </p>
       </section>

@@ -232,7 +232,7 @@ export default function ProfilePage() {
             <SectionHeader
               eyebrow="Session"
               title="Session controls"
-              description="Sign out of this device when you are finished using GuideGuard."
+              description="Sign out of this device when you are finished using InSite."
             />
 
             <div className="mt-4 flex justify-center">

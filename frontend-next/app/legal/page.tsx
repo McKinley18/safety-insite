@@ -6,19 +6,19 @@ import { AppLinkButton } from "@/components/ui/AppLinkButton";
 const sections = [
   {
     title: "Proprietary platform",
-    body: "GuideGuard reserves rights in its platform, software, source code, workflows, user interface, reports, content, databases, taxonomies, classifications, reasoning systems, generated structures, logos, branding, and related materials to the extent permitted by law.",
+    body: "InSite reserves rights in its platform, software, source code, workflows, user interface, reports, content, databases, taxonomies, classifications, reasoning systems, generated structures, logos, branding, and related materials to the extent permitted by law.",
   },
   {
     title: "HazLenz AI",
-    body: "HazLenz AI is proprietary decision-support intelligence within GuideGuard. It is designed to help organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
+    body: "HazLenz AI is proprietary decision-support intelligence within InSite. It is designed to help organize hazard context, risk signals, evidence gaps, standards support, and corrective action reasoning for qualified review.",
   },
   {
     title: "No affiliation or endorsement",
-    body: "All third-party trademarks, trade names, service marks, company names, product names, and logos are the property of their respective owners. Use of GuideGuard or HazLenz AI does not imply affiliation with, endorsement by, or sponsorship from any other company or organization using similar names.",
+    body: "All third-party trademarks, trade names, service marks, company names, product names, and logos are the property of their respective owners. Use of InSite or HazLenz AI does not imply affiliation with, endorsement by, or sponsorship from any other company or organization using similar names.",
   },
   {
     title: "Professional review required",
-    body: "GuideGuard and HazLenz AI do not replace qualified safety professionals, legal counsel, regulatory agencies, company policy, site-specific evaluation, or professional judgment. All outputs must be reviewed and verified by qualified personnel before use.",
+    body: "InSite and HazLenz AI do not replace qualified safety professionals, legal counsel, regulatory agencies, company policy, site-specific evaluation, or professional judgment. All outputs must be reviewed and verified by qualified personnel before use.",
   },
   {
     title: "No compliance determination",
@@ -42,7 +42,7 @@ export default function LegalPage() {
           </h1>
 
           <p className="mt-4 max-w-3xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
-            GuideGuard is a proprietary field safety inspection and corrective action platform. HazLenz AI is proprietary decision-support intelligence within the platform. Neither replaces qualified professional judgment, legal advice, regulatory interpretation, or site-specific safety review.
+            InSite is a proprietary field safety inspection and corrective action platform. HazLenz AI is proprietary decision-support intelligence within the platform. Neither replaces qualified professional judgment, legal advice, regulatory interpretation, or site-specific safety review.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function LegalPage() {
           </p>
 
           <p className="mt-3 max-w-3xl text-base font-semibold leading-7 text-slate-700">
-            Do not rely on GuideGuard or HazLenz AI as the sole basis for safety, compliance, disciplinary, legal, medical, engineering, emergency-response, or operational decisions.
+            Do not rely on InSite or HazLenz AI as the sole basis for safety, compliance, disciplinary, legal, medical, engineering, emergency-response, or operational decisions.
           </p>
         </div>
 

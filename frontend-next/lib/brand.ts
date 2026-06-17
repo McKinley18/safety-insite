@@ -1,4 +1,4 @@
-export const APP_NAME = "GuideGuard";
+export const APP_NAME = "InSite";
 export const AI_ENGINE_NAME = "HazLenz AI";
 export const APP_TAGLINE = `Field safety intelligence powered by ${AI_ENGINE_NAME}.`;
 export const APP_DESCRIPTION =

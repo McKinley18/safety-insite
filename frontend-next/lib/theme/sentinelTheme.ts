@@ -1,6 +1,6 @@
 export const sentinelTheme = {
   brand: {
-    name: "GuideGuard",
+    name: "InSite",
     engine: "HazLenz AI",
     navy: "#0f172a",
     headerNavy: "#102A43",
