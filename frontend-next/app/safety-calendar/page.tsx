@@ -433,19 +433,22 @@ export default function SafetyCalendarPage() {
       </AppPanel>
 
       <AppPanel padding="sm" className="space-y-2 px-2 py-2 sm:px-3 sm:py-3">
-        <div className="flex gap-1.5">
+        <h2 className="text-lg font-black text-app-text">Calendar Controls</h2>
+        <div className="inline-flex w-fit gap-1 rounded-full bg-slate-100 p-1">
           {/* View Switchers */}
           {(["month", "week", "day"] as CalendarView[]).map((item) => (
-            <AppButton
+            <button
               key={item}
               type="button"
-              variant={view === item ? "primary" : "secondary"}
-              size="sm"
               onClick={() => setView(item)}
-              className={`flex-1 ${view === item ? "ring-2 ring-blue-400" : ""}`}
+              className={`rounded-full px-2.5 py-1 text-[11px] font-black uppercase tracking-normal transition ${
+                view === item
+                  ? "bg-[#102A43] text-white shadow-sm"
+                  : "bg-transparent text-[#102A43] hover:bg-white"
+              }`}
             >
               {item[0].toUpperCase() + item.slice(1)}
-            </AppButton>
+            </button>
           ))}
         </div>
 
@@ -480,7 +483,7 @@ export default function SafetyCalendarPage() {
                 </svg>
               </AppButton>
 
-              <h2 className="text-sm font-black uppercase tracking-widest text-blue-200">
+              <h2 className="text-xs font-black uppercase tracking-wide text-blue-200">
                 {formatMonthLabel(anchorDate)}
               </h2>
 
