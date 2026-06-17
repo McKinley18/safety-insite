@@ -341,7 +341,7 @@ export default function ActionsPage() {
           Track corrective work.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Manage actions created from inspections, HazLenz AI recommendations, reports, and user-entered work.
+          Track open, overdue, blocked, and completed corrective actions from inspections and reports.
         </p>
 
         <div className="mx-auto mt-4 grid max-w-3xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
@@ -387,19 +387,19 @@ export default function ActionsPage() {
       {!canUseWorkspaceActions && (
         <AppPanel padding="sm" className="border-slate-200/80 bg-white">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-            Personal Action Tracker
+            Action Tracker
           </p>
           <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
-            Basic and Pro plans can track local and report-generated corrective actions. Company workspaces add shared action sync, team assignment, and organization-wide accountability.
+            Track local and report-generated corrective actions. Company workspaces add shared action sync and team assignment.
           </p>
         </AppPanel>
       )}
 
       <AppPanel padding="lg">
         <SectionHeader
-          eyebrow="Add Action"
-          title="Create a corrective action"
-          description="Add work that needs to be tracked outside of a finalized report."
+          eyebrow="Add"
+          title="Create action"
+          description="Add a corrective action that needs follow-up."
         />
 
         <div className="grid gap-3">
@@ -543,7 +543,7 @@ export default function ActionsPage() {
                     </AppSelect>
                   ) : (
                     <span className="text-xs font-black uppercase tracking-wide text-slate-400">
-                      Report package
+                      From report
                     </span>
                   )
                 }
@@ -553,7 +553,7 @@ export default function ActionsPage() {
         ) : (
           <EmptyState
             title={manualActions.length || reportActions.length ? "No corrective actions match the current filters." : "No corrective actions available yet."}
-            description={manualActions.length || reportActions.length ? "Clear filters to view all corrective actions." : "Actions created manually or generated from reports will appear here."}
+            description={manualActions.length || reportActions.length ? "Clear filters to view all corrective actions." : "Actions you add or generate from reports will appear here."}
           />
         )}
       </AppPanel>

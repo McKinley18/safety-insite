@@ -548,7 +548,7 @@ export default function ReportsPage() {
           Reports
         </h2>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Review inspection records, findings, evidence, exports, and review-ready report packages.
+          Find, review, edit, and export saved inspection reports.
         </p>
         <div className="mx-auto mt-4 grid max-w-2xl grid-cols-2 justify-center gap-2 sm:grid-cols-4">
           {[
