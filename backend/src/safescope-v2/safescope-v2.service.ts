@@ -11,6 +11,7 @@ import { ReasoningSnapshotService } from "./snapshots/reasoning-snapshot.service
 import { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
 import { SafeScopeKnowledgeService } from "../safescope-knowledge/safescope-knowledge.service";
 import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
+import { STANDARDS_INTELLIGENCE_SEED } from "./standards-intelligence/standards-intelligence.seed";
 import { buildSourceSynthesis } from "../safescope-knowledge/sources/source-synthesis-helper";
 import { getEvidenceGapIntelligence } from "./intelligence/evidence-gap-intelligence";
 import { getCorrectiveActionIntelligence } from "./intelligence/corrective-action-intelligence";
@@ -434,10 +435,17 @@ export class SafescopeV2Service {
         },
       };
 
+      const standardsMatchExplanations = this.buildStandardsMatchExplanations(
+        suggestedStandards,
+        fusedText,
+        (intelligence as any)?.observationUnderstanding
+      );
+
       return {
           ...promotedPrimary,
           ...intelligence,
           suggestedStandards,
+          standardsMatchExplanations,
           excludedStandards,
           standardsTraceability,
           generatedActions: enhancedGeneratedActions,
@@ -681,6 +689,127 @@ export class SafescopeV2Service {
         scopeFit,
         scopeFitAdjustment,
         matchingReasons: reasons
+      };
+    });
+  }
+
+  private buildStandardsMatchExplanations(
+    suggestedStandards: any[],
+    fusedText: string,
+    observationUnderstanding: any
+  ) {
+    const textLower = (fusedText || "").toLowerCase();
+
+    function normalizeCit(citation: string) {
+      return String(citation || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/^(\d+)\s+cfr\s+/, "")
+        .replace(/\.+$/, "");
+    }
+
+    function isEvidenceSatisfied(question: string, text: string) {
+      const lowerText = text.toLowerCase();
+      
+      // Question 1: Active operational hazard requiring physical protection
+      if (
+        question.includes("operational hazard requiring physical protection") || 
+        question.includes("presents a physical, chemical, noise")
+      ) {
+        return ["chemical", "decanting", "splash", "jackhammer", "noise", "crushing", "dust", "flying", "particles"].some(kw => lowerText.includes(kw));
+      }
+      
+      // Question 2: Specific exposure route or affected body part
+      if (question.includes("specific exposure route or affected body part")) {
+        return ["eye", "face", "boot", "shoe", "helmet", "ear", "hand", "shield", "head", "feet", "hearing"].some(kw => lowerText.includes(kw));
+      }
+      
+      // Question 3: Proper personal protective equipment missing, inadequate, etc.
+      if (question.includes("personal protective equipment was missing")) {
+        return ["without", "no", "missing", "damaged", "wear", "observed", "unavailable", "earplug", "glasses"].some(kw => lowerText.includes(kw));
+      }
+
+      // Sibling questions (e.g. moving machinery, fall height, LOTO):
+      if (question.includes("moving machine part")) {
+        return ["conveyor", "pulley", "belt", "shaft", "rotating", "roller", "nip point", "pinch point"].some(kw => lowerText.includes(kw));
+      }
+      if (question.includes("guarding missing, damaged, removed")) {
+        return ["unguarded", "missing guard", "no guard", "removed"].some(kw => lowerText.includes(kw));
+      }
+      if (question.includes("fall height or exposure condition")) {
+        return ["fall", "height", "unprotected", "edge", "elevated", "platform"].some(kw => lowerText.includes(kw));
+      }
+      
+      return false;
+    }
+
+    return suggestedStandards.map((std: any) => {
+      const normCit = normalizeCit(std.citation);
+      const seedRecord = STANDARDS_INTELLIGENCE_SEED.find(
+        (s) => normalizeCit(s.citation) === normCit
+      );
+
+      if (!seedRecord) {
+        // Minimal fallback explanation block if no curated seed record is found
+        return {
+          standardFamily: "unknown",
+          jurisdiction: std.agencyCode === "MSHA" ? "msha" : "osha",
+          reference: std.citation,
+          title: std.heading || std.title || "Standard Reference",
+          authorityTier: 2,
+          matchedFacts: [],
+          satisfiedEvidence: [],
+          missingEvidence: ["Curated evidence requirements are not available for this reference."],
+          confidence: std.confidence ? Number(std.confidence) : null,
+          advisoryOnly: true,
+          doesNotDeclareViolation: true,
+          doesNotCreateCitation: true,
+          requiresQualifiedReview: true,
+        };
+      }
+
+      // Collect matched facts conservatively from the standard's seed tags that appear in the raw observation text
+      const matchedFacts: string[] = [];
+      const candidateTokens = [
+        ...seedRecord.hazardFamilies,
+        ...seedRecord.equipmentTags,
+        ...seedRecord.taskTags,
+        ...seedRecord.exposureTags,
+        ...seedRecord.controlTags,
+      ];
+      for (const token of candidateTokens) {
+        if (token.length > 2 && textLower.includes(token.toLowerCase())) {
+          matchedFacts.push(token);
+        }
+      }
+
+      // Evaluate evidenceRequirements dynamically based on text signatures
+      const satisfiedEvidence: string[] = [];
+      const missingEvidence: string[] = [];
+
+      for (const req of seedRecord.evidenceRequirements) {
+        if (isEvidenceSatisfied(req.question, textLower)) {
+          satisfiedEvidence.push(req.question);
+        } else {
+          missingEvidence.push(req.question);
+        }
+      }
+
+      return {
+        standardFamily: seedRecord.hazardFamilies[0] || "unknown",
+        jurisdiction: seedRecord.scope,
+        reference: seedRecord.citation,
+        title: seedRecord.title,
+        authorityTier: seedRecord.authorityTier,
+        matchedFacts: Array.from(new Set(matchedFacts)),
+        satisfiedEvidence,
+        missingEvidence,
+        confidence: std.confidence ? Number(std.confidence) : null,
+        advisoryOnly: true,
+        doesNotDeclareViolation: true,
+        doesNotCreateCitation: true,
+        requiresQualifiedReview: true,
       };
     });
   }
