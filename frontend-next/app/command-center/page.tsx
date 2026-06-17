@@ -521,10 +521,24 @@ export default function DashboardPage() {
               </h1>
 
               <p className="mx-auto mt-4 max-w-2xl text-center text-sm font-semibold leading-6 text-slate-200 sm:text-base lg:mx-0 lg:text-left">
-                Monitor inspections, findings, corrective actions, scheduled work, and HazLenz AI-supported safety review from one operational home screen.
+                Start inspections, review due work, track corrective actions, and keep your safety follow-up organized from one simple home screen.
               </p>
 
-
+              <div className="mt-5 flex flex-col justify-center gap-2 sm:flex-row lg:justify-start">
+                <AppLinkButton
+                  href="/inspection"
+                  className="!inline-flex justify-center rounded-full bg-[#1D72B8] px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320]"
+                >
+                  Start Inspection
+                </AppLinkButton>
+                <AppLinkButton
+                  href="/reports"
+                  variant="ghost"
+                  className="!inline-flex justify-center rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-white/20"
+                >
+                  View Reports
+                </AppLinkButton>
+              </div>
             </div>
 
             <div className="mx-auto grid w-full max-w-[360px] grid-cols-2 gap-2.5 lg:mx-0 lg:max-w-[390px]">
@@ -553,150 +567,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-
-      {canAssignWork && (
-        <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="sentinel-eyebrow">Company Command</p>
-              <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-slate-950">
-                Assign Work
-              </h2>
-              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
-                Assign corrective actions, inspections, follow-ups, and review tasks from the operational home screen.
-              </p>
-            </div>
-
-            <span className="sentinel-status-pill">
-              {assignments.filter((assignment) => assignment.status !== "Closed").length} open
-            </span>
-          </div>
-
-          <div className="mt-5 grid gap-3 lg:grid-cols-[1.2fr_0.8fr_0.7fr_0.7fr_auto]">
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Work Title
-              </span>
-              <input
-                value={assignmentTitle}
-                onChange={(event) => setAssignmentTitle(event.target.value)}
-                placeholder="Example: Verify guard installed on tail pulley"
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              />
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Owner
-              </span>
-              <input
-                value={assignmentOwner}
-                onChange={(event) => setAssignmentOwner(event.target.value)}
-                placeholder="Name or role"
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              />
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Type
-              </span>
-              <select
-                value={assignmentType}
-                onChange={(event) => setAssignmentType(event.target.value)}
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              >
-                {assignmentTypes.map((type) => (
-                  <option key={type}>{type}</option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Priority
-              </span>
-              <select
-                value={assignmentPriority}
-                onChange={(event) => setAssignmentPriority(event.target.value)}
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              >
-                {assignmentPriorities.map((priority) => (
-                  <option key={priority}>{priority}</option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Due
-              </span>
-              <input
-                type="date"
-                value={assignmentDueDate}
-                onChange={(event) => setAssignmentDueDate(event.target.value)}
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              />
-            </label>
-          </div>
-
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs font-black text-slate-500">
-              {assignmentStatus}
-            </p>
-
-            <button
-              type="button"
-              onClick={addCommandAssignment}
-              className="sentinel-primary-button px-5 py-2.5 text-sm"
-            >
-              Assign Work
-            </button>
-          </div>
-
-          <div className="mt-5 border-t border-slate-200 pt-4">
-            {assignments.length ? (
-              <div className="space-y-2">
-                {assignments.slice(0, 5).map((assignment) => (
-                  <div
-                    key={assignment.id}
-                    className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 shadow-none sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <div>
-                      <p className="text-sm font-black text-slate-950">
-                        {assignment.title}
-                      </p>
-                      <p className="mt-1 text-xs font-semibold text-slate-500">
-                        {assignment.type} · {assignment.owner} · {assignment.priority} priority · Due {assignment.dueDate}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <span className="sentinel-status-pill bg-white">
-                        {assignment.status}
-                      </span>
-
-                      {assignment.status !== "Closed" && (
-                        <button
-                          type="button"
-                          onClick={() => closeCommandAssignment(assignment.id)}
-                          className="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700"
-                        >
-                          Close
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="mt-2 text-sm font-medium leading-6 text-slate-400">
-                No work has been assigned from Home yet.
-              </p>
-            )}
-          </div>
-        </div>
-      )}
 
       <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
         <div className="flex items-start justify-between gap-3">
@@ -1017,6 +887,151 @@ export default function DashboardPage() {
           )}
         </div>
       </section>
+
+      {canAssignWork && (
+        <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="sentinel-eyebrow">Company Command</p>
+              <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-slate-950">
+                Assign Work
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+                Assign corrective actions, inspections, follow-ups, and review tasks from the operational home screen.
+              </p>
+            </div>
+
+            <span className="sentinel-status-pill">
+              {assignments.filter((assignment) => assignment.status !== "Closed").length} open
+            </span>
+          </div>
+
+          <div className="mt-5 grid gap-3 lg:grid-cols-[1.2fr_0.8fr_0.7fr_0.7fr_auto]">
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Work Title
+              </span>
+              <input
+                value={assignmentTitle}
+                onChange={(event) => setAssignmentTitle(event.target.value)}
+                placeholder="Example: Verify guard installed on tail pulley"
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              />
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Owner
+              </span>
+              <input
+                value={assignmentOwner}
+                onChange={(event) => setAssignmentOwner(event.target.value)}
+                placeholder="Name or role"
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              />
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Type
+              </span>
+              <select
+                value={assignmentType}
+                onChange={(event) => setAssignmentType(event.target.value)}
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              >
+                {assignmentTypes.map((type) => (
+                  <option key={type}>{type}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Priority
+              </span>
+              <select
+                value={assignmentPriority}
+                onChange={(event) => setAssignmentPriority(event.target.value)}
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              >
+                {assignmentPriorities.map((priority) => (
+                  <option key={priority}>{priority}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
+                Due
+              </span>
+              <input
+                type="date"
+                value={assignmentDueDate}
+                onChange={(event) => setAssignmentDueDate(event.target.value)}
+                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
+              />
+            </label>
+          </div>
+
+          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs font-black text-slate-500">
+              {assignmentStatus}
+            </p>
+
+            <button
+              type="button"
+              onClick={addCommandAssignment}
+              className="sentinel-primary-button px-5 py-2.5 text-sm"
+            >
+              Assign Work
+            </button>
+          </div>
+
+          <div className="mt-5 border-t border-slate-200 pt-4">
+            {assignments.length ? (
+              <div className="space-y-2">
+                {assignments.slice(0, 5).map((assignment) => (
+                  <div
+                    key={assignment.id}
+                    className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 shadow-none sm:flex-row sm:items-center sm:justify-between"
+                  >
+                    <div>
+                      <p className="text-sm font-black text-slate-950">
+                        {assignment.title}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold text-slate-500">
+                        {assignment.type} · {assignment.owner} · {assignment.priority} priority · Due {assignment.dueDate}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="sentinel-status-pill bg-white">
+                        {assignment.status}
+                      </span>
+
+                      {assignment.status !== "Closed" && (
+                        <button
+                          type="button"
+                          onClick={() => closeCommandAssignment(assignment.id)}
+                          className="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700"
+                        >
+                          Close
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="mt-2 text-sm font-medium leading-6 text-slate-400">
+                No work has been assigned from Home yet.
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
     </section>
   );
 }
