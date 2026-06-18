@@ -268,7 +268,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 })}
               </nav>
 
-              <div className="flex shrink-0 items-center gap-4">
+              <div className="flex shrink-0 items-center gap-3">
                 {!isOnline && (
                   <div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-3 py-1 ring-1 ring-orange-500/20" title="Offline Mode: Using local HazLenz AI Brain">
                     <WifiOff className="h-3.5 w-3.5 text-orange-700" />
@@ -282,7 +282,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   </div>
                 )}
 
-                <div className="relative z-[950] overflow-visible">
+                <div className="relative z-[950] -translate-x-2 overflow-visible">
                   <button
                     ref={profileButtonRef}
                     type="button"

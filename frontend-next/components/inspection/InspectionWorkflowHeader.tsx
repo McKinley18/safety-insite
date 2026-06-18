@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 type InspectionStep = {
   title: string;
   desc: string;
@@ -30,11 +32,54 @@ export default function InspectionWorkflowHeader({
   generateReport,
   goToCoverPage,
 }: InspectionWorkflowHeaderProps) {
+  const frameRef = useRef<HTMLDivElement | null>(null);
+  const barRef = useRef<HTMLDivElement | null>(null);
+  const [isCaught, setIsCaught] = useState(false);
+  const [barHeight, setBarHeight] = useState<number | null>(null);
+
   const currentStepMeta = steps[currentStep - 1] || steps[0];
   const currentStepTitle = currentStepMeta.title.replace(/^Step \d+: /, "");
   const visibleStepIndex = Math.min(Math.max(currentStep, 1), steps.length);
   const progressPercent = Math.round((visibleStepIndex / steps.length) * 100);
-  const workflowLabel = isAdvancedMode ? "Advanced" : "Quick";
+
+  useEffect(() => {
+    let raf = 0;
+
+    const measure = () => {
+      const frame = frameRef.current;
+      const bar = barRef.current;
+      if (!frame || !bar) return;
+
+      const height = Math.round(bar.getBoundingClientRect().height);
+      if (height > 0) {
+        setBarHeight(height);
+      }
+
+      const frameTop = frame.getBoundingClientRect().top;
+
+      // Collision rule:
+      // - Let the bar scroll naturally upward.
+      // - Catch it only when its original frame reaches the visible screen top.
+      // - Release it when that frame moves back below the visible screen top.
+      setIsCaught(frameTop <= 0);
+    };
+
+    const scheduleMeasure = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(measure);
+    };
+
+    measure();
+
+    window.addEventListener("scroll", scheduleMeasure, { passive: true });
+    window.addEventListener("resize", scheduleMeasure);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", scheduleMeasure);
+      window.removeEventListener("resize", scheduleMeasure);
+    };
+  }, []);
 
   function handleBack() {
     if (currentStep === 1) {
@@ -64,8 +109,18 @@ export default function InspectionWorkflowHeader({
           : "Next";
 
   return (
-    <>
-      <div className="sentinel-inspection-workflow-header sticky z-50 mb-4 overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-2.5 py-2 text-white shadow-sm ring-1 ring-white/10 backdrop-blur-xl sm:px-4 sm:py-3">
+    <div
+      ref={frameRef}
+      className="sentinel-inspection-step-frame"
+      aria-label="Inspection step navigation"
+      style={barHeight ? { minHeight: `${barHeight}px` } : undefined}
+    >
+      <div
+        ref={barRef}
+        className={`sentinel-inspection-workflow-header overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-2.5 py-2 text-white shadow-sm ring-1 ring-white/10 backdrop-blur-xl sm:px-4 sm:py-3 ${
+          isCaught ? "sentinel-inspection-workflow-header-caught" : ""
+        }`}
+      >
         <div className="flex items-center justify-between gap-2">
           <div className="flex w-24 shrink-0 justify-start">
             <button
@@ -77,7 +132,7 @@ export default function InspectionWorkflowHeader({
             </button>
           </div>
 
-          <div className="min-w-0 flex-1 text-center px-1">
+          <div className="min-w-0 flex-1 px-1 text-center">
             <p className="truncate text-[8px] font-black uppercase tracking-[0.18em] text-blue-200">
               Step {visibleStepIndex}
             </p>
@@ -106,7 +161,6 @@ export default function InspectionWorkflowHeader({
           />
         </div>
       </div>
-
-    </>
+    </div>
   );
 }

@@ -21,6 +21,11 @@
   --sentinel-finding-builder-show-bottom: calc(var(--sentinel-mobile-tabbar-height) - 1.1rem);
   --sentinel-mobile-bottom-safe-space: calc(var(--sentinel-mobile-tabbar-height) + 2.25rem);
   --sentinel-inspection-bottom-safe-space: calc(var(--sentinel-mobile-bottom-safe-space) + 4.5rem);
+  --inspection-step-gap: 0.5rem;
+  --inspection-header-height-mobile: 5rem;
+  --inspection-header-height-desktop: 6.5rem;
+  --inspection-step-frame-height-mobile: 3rem;
+  --inspection-step-frame-height-desktop: 3.2rem;
 }
 
 .dark {
@@ -662,6 +667,9 @@ body {
 /* Mobile fixed-tab safe space */
 :root {
   --sentinel-mobile-tab-height: 3.65rem;
+  --inspection-step-gap: 0.5rem;
+  --inspection-header-height-mobile: 5rem;
+  --inspection-header-height-desktop: 6.5rem;
 }
 
 .sentinel-app-main-with-tabs {
@@ -895,57 +903,6 @@ body.sentinel-keyboard-open {
   padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
 }
 
-/* Inspection workflow: keep content clear of sticky step controls and the fixed finding builder. */
-.sentinel-inspection-page {
-  padding-bottom: calc(10rem + env(safe-area-inset-bottom, 0px)) !important;
-  scroll-padding-bottom: calc(10rem + env(safe-area-inset-bottom, 0px));
-  scroll-padding-top: calc(3.25rem + env(safe-area-inset-top, 0px));
-}
-
-.sentinel-inspection-workflow-header {
-  position: sticky !important;
-  top: calc(0.35rem + env(safe-area-inset-top, 0px));
-  margin-inline: -0.5rem;
-  width: calc(100% + 1rem);
-}
-
-.sentinel-inspection-workflow-header-label,
-.sentinel-inspection-workflow-header-title {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sentinel-inspection-workflow-header-label {
-  white-space: nowrap;
-  font-size: clamp(0.55rem, 2.1vw, 0.68rem);
-  line-height: 1.1;
-  letter-spacing: 0.14em;
-}
-
-.sentinel-inspection-workflow-header-title {
-  white-space: nowrap;
-  font-size: clamp(0.82rem, 3.2vw, 1rem);
-  line-height: 1.15;
-}
-
-@media (min-width: 768px) {
-  .sentinel-inspection-page {
-    padding-top: 0;
-    padding-bottom: 8rem !important;
-    scroll-padding-bottom: 8rem;
-    scroll-padding-top: 7rem;
-  }
-
-  .sentinel-inspection-workflow-header {
-    position: sticky !important;
-    top: 1rem;
-    left: auto;
-    right: auto;
-    margin-inline: 0;
-    width: 100%;
-  }
-}
 
 
 
@@ -1006,39 +963,8 @@ body.sentinel-keyboard-open {
 
 
 
-/* Normal-flow gap below the sticky inspection step banner. */
-.sentinel-inspection-after-header-gap {
-  padding-top: 0.25rem;
-}
-
-@media (min-width: 768px) {
-  .sentinel-inspection-after-header-gap {
-    padding-top: 0.35rem;
-  }
-}
 
 
-/* Resting space above the sticky inspection banner; the viewport catches the banner on scroll. */
-.sentinel-inspection-before-header-gap {
-  height: 0;
-  margin: 0;
-  padding: 0;
-}
-
-/* Tight normal-flow gap below the sticky inspection banner. */
-.sentinel-inspection-after-header-gap {
-  padding-top: 0.2rem;
-}
-
-@media (min-width: 768px) {
-  .sentinel-inspection-before-header-gap {
-    height: 0;
-  }
-
-  .sentinel-inspection-after-header-gap {
-    padding-top: 0.35rem;
-  }
-}
 
 /* Safety InSite inspection action buttons */
 .insite-inspection-action {
@@ -1288,3 +1214,115 @@ body {
   padding-left: 1.25rem !important;
   padding-right: 1.25rem !important;
 }
+
+/* Evidence annotation vertical zoom control */
+.annotation-vertical-zoom-slider {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 116px !important;
+  height: 22px !important;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center;
+  touch-action: none;
+}
+
+.annotation-vertical-zoom-slider::-webkit-slider-thumb {
+  cursor: pointer;
+}
+
+.annotation-vertical-zoom-slider::-moz-range-thumb {
+  cursor: pointer;
+}
+
+
+/* Inspection workflow viewport-collision step bar */
+.sentinel-inspection-page {
+  padding-bottom: calc(10rem + env(safe-area-inset-bottom, 0px)) !important;
+  scroll-padding-top: calc(88px + env(safe-area-inset-top, 0px));
+  scroll-padding-bottom: calc(10rem + env(safe-area-inset-bottom, 0px));
+}
+
+.sentinel-inspection-before-header-gap {
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.sentinel-inspection-step-frame {
+  height: auto !important;
+  margin-top: -1.2rem !important;
+  margin-bottom: 0.95rem !important;
+}
+
+.sentinel-inspection-workflow-header {
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  z-index: 850;
+  width: 100% !important;
+  transform: none !important;
+}
+
+.sentinel-inspection-workflow-header-caught {
+  position: fixed !important;
+  left: 50% !important;
+  top: env(safe-area-inset-top, 0px) !important;
+  width: min(calc(100vw - 1.25rem), 1200px) !important;
+  transform: translateX(-50%) !important;
+}
+
+.sentinel-inspection-after-header-gap {
+  padding-top: 0;
+}
+
+.sentinel-inspection-workflow-header-label,
+.sentinel-inspection-workflow-header-title,
+.sentinel-workflow-header-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sentinel-inspection-workflow-header-label {
+  white-space: nowrap;
+  font-size: clamp(0.55rem, 2.1vw, 0.68rem);
+  line-height: 1.1;
+  letter-spacing: 0.14em;
+}
+
+.sentinel-inspection-workflow-header-title,
+.sentinel-workflow-header-title {
+  white-space: nowrap;
+  font-size: clamp(0.82rem, 3.2vw, 1rem);
+  line-height: 1.15;
+}
+
+@media (max-width: 639px) {
+  .sentinel-mobile-page.sentinel-inspection-page {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .sentinel-inspection-page {
+    padding-top: 0;
+    padding-bottom: 8rem !important;
+    scroll-padding-top: calc(104px + env(safe-area-inset-top, 0px));
+    scroll-padding-bottom: 8rem;
+  }
+
+  .sentinel-inspection-step-frame {
+    height: auto !important;
+    margin-top: -1.2rem !important;
+    margin-bottom: 0.95rem !important;
+  }
+
+  .sentinel-inspection-workflow-header-caught {
+    top: env(safe-area-inset-top, 0px) !important;
+    width: min(calc(100vw - 3rem), 1200px) !important;
+  }
+}
+

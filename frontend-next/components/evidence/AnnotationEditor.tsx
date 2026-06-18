@@ -33,7 +33,8 @@ type DrawShape = AnnotationShape & {
   points?: { x: number; y: number }[];
 };
 
-type DragMode = "move" | "resize" | "arrowStart" | "arrowEnd" | "draw" | null;
+type ShapeTool = "rect" | "circle" | "arrow" | null;
+type DragMode = "move" | "resize" | "arrowStart" | "arrowEnd" | "draw" | "createRect" | "createCircle" | "createArrow" | null;
 
 export default function AnnotationEditor({
   photoUrl,
@@ -59,6 +60,7 @@ export default function AnnotationEditor({
   const [textColorOpen, setTextColorOpen] = useState(false);
   const [shapeMenuOpen, setShapeMenuOpen] = useState(false);
   const [drawMode, setDrawMode] = useState(false);
+  const [activeShapeTool, setActiveShapeTool] = useState<ShapeTool>(null);
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const toolbarRef = useRef<HTMLDivElement | null>(null);
@@ -162,6 +164,7 @@ export default function AnnotationEditor({
             };
 
     setDrawMode(false);
+    setActiveShapeTool(null);
     setShapeMenuOpen(false);
     setRedoStack([]);
     setLocalAnnotations((current) => [...current, next]);
@@ -195,26 +198,65 @@ export default function AnnotationEditor({
   }
 
   function beginDraw(e: React.PointerEvent<SVGSVGElement>) {
-    if (!drawMode) return;
+    if (!drawMode && !activeShapeTool) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+    e.currentTarget.setPointerCapture(e.pointerId);
 
     const rect = e.currentTarget.getBoundingClientRect();
     const x = clamp((e.clientX - rect.left) / rect.width);
     const y = clamp((e.clientY - rect.top) / rect.height);
 
-    const newShape: DrawShape = {
-      type: "draw",
-      x,
-      y,
-      color: selectedColor,
-      points: [{ x, y }],
-    };
+    let newShape: DrawShape;
+    let mode: DragMode = "draw";
+
+    if (activeShapeTool === "rect") {
+      newShape = {
+        type: "rect",
+        x,
+        y,
+        width: 0.03,
+        height: 0.03,
+        color: selectedColor,
+      };
+      mode = "createRect";
+    } else if (activeShapeTool === "circle") {
+      newShape = {
+        type: "circle",
+        x,
+        y,
+        radius: 0.03,
+        color: selectedColor,
+      };
+      mode = "createCircle";
+    } else if (activeShapeTool === "arrow") {
+      newShape = {
+        type: "arrow",
+        x,
+        y,
+        x2: x,
+        y2: y,
+        color: selectedColor,
+      };
+      mode = "createArrow";
+    } else {
+      newShape = {
+        type: "draw",
+        x,
+        y,
+        color: selectedColor,
+        points: [{ x, y }],
+      };
+      mode = "draw";
+    }
 
     setRedoStack([]);
     setLocalAnnotations((current) => [...current, newShape]);
     setSelectedIndex(localAnnotations.length);
 
     dragRef.current = {
-      mode: "draw",
+      mode,
       index: localAnnotations.length,
       startX: x,
       startY: y,
@@ -243,6 +285,44 @@ export default function AnnotationEditor({
     const dx = x - drag.startX;
     const dy = y - drag.startY;
     const original = drag.original;
+
+    if (drag.mode === "createRect") {
+      updateShape(drag.index, (shape) => ({
+        ...shape,
+        x: Math.min(drag.startX, x),
+        y: Math.min(drag.startY, y),
+        width: clamp(Math.abs(x - drag.startX), 0.03, 0.95),
+        height: clamp(Math.abs(y - drag.startY), 0.03, 0.95),
+      }));
+      return;
+    }
+
+    if (drag.mode === "createCircle") {
+      const radius = clamp(
+        Math.max(Math.abs(x - drag.startX), Math.abs(y - drag.startY)),
+        0.03,
+        0.45,
+      );
+
+      updateShape(drag.index, (shape) => ({
+        ...shape,
+        x: drag.startX,
+        y: drag.startY,
+        radius,
+      }));
+      return;
+    }
+
+    if (drag.mode === "createArrow") {
+      updateShape(drag.index, (shape) => ({
+        ...shape,
+        x: drag.startX,
+        y: drag.startY,
+        x2: x,
+        y2: y,
+      }));
+      return;
+    }
 
     updateShape(drag.index, (shape) => {
       if (drag.mode === "move") {
@@ -285,7 +365,11 @@ export default function AnnotationEditor({
     });
   }
 
-  function stopDrag() {
+  function stopDrag(event?: React.PointerEvent<SVGSVGElement>) {
+    if (event && event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
     dragRef.current = {
       mode: null,
       index: null,
@@ -353,7 +437,7 @@ export default function AnnotationEditor({
   }
 
   function startPan(event: React.PointerEvent<HTMLDivElement>) {
-    if (zoom <= 1) return;
+    if (zoom <= 1 || drawMode || activeShapeTool) return;
 
     const target = event.target as HTMLElement;
 
@@ -397,7 +481,7 @@ export default function AnnotationEditor({
 
   return (
     <div
-      className={`w-full max-w-full overflow-hidden rounded-2xl border-2 border-[#1D72B8] bg-white dark:bg-slate-900 p-2 sm:p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}
+      className={`w-full max-w-full overflow-visible rounded-2xl border-2 border-[#1D72B8] bg-white p-2 sm:p-3 ${expanded ? "max-h-[86vh] overflow-auto" : ""}`}
     >
       <div className={expanded ? "mx-auto max-w-5xl" : ""}>
         <div className="overflow-hidden rounded-xl bg-slate-200">
@@ -411,13 +495,6 @@ export default function AnnotationEditor({
             onPointerUp={stopPan}
             onPointerCancel={stopPan}
             onPointerLeave={stopPan}
-            onWheel={(event) => {
-              if (zoom <= 1) return;
-              event.preventDefault();
-              setPan((current) =>
-                clampPan(current.x - event.deltaX, current.y - event.deltaY),
-              );
-            }}
           >
             <div
               className="absolute inset-0 origin-center"
@@ -440,6 +517,7 @@ export default function AnnotationEditor({
                 onPointerDown={beginDraw}
                 onPointerMove={handlePointerMove}
                 onPointerUp={stopDrag}
+                onPointerCancel={stopDrag}
                 onPointerLeave={stopDrag}
               >
                 {localAnnotations.map((shape, index) => {
@@ -610,20 +688,63 @@ export default function AnnotationEditor({
                 })}
               </svg>
             </div>
+
+            <div
+              data-annotation-control="true"
+              className="absolute right-2 top-1/2 z-[80] flex -translate-y-1/2 flex-col items-center gap-1 rounded-full border border-slate-200 bg-white/95 px-1.5 py-2 shadow-lg"
+              onPointerDown={(event) => event.stopPropagation()}
+              onPointerMove={(event) => event.stopPropagation()}
+              onPointerUp={(event) => event.stopPropagation()}
+              onTouchStart={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={zoomIn}
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-[#102A43] text-sm font-black text-white"
+                aria-label="Zoom in"
+                title="Zoom in"
+              >
+                +
+              </button>
+              <div className="relative flex h-32 w-8 items-center justify-center">
+                <input
+                  type="range"
+                  min="1"
+                  max="3"
+                  step="0.25"
+                  value={zoom}
+                  onChange={(event) => setZoom(Number(event.target.value))}
+                  className="annotation-vertical-zoom-slider accent-[#1D72B8]"
+                  aria-label="Annotation zoom"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={zoomOut}
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-200 text-sm font-black text-slate-800"
+                aria-label="Zoom out"
+                title="Zoom out"
+              >
+                −
+              </button>
+              <span className="text-[9px] font-black text-slate-600">
+                {Math.round(zoom * 100)}%
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
       <div
         ref={toolbarRef}
-        className="mt-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm"
+        className="relative z-[100] mt-3 overflow-visible rounded-2xl border border-slate-200 bg-white shadow-sm"
       >
-        <div className="w-full max-w-full overflow-x-auto overflow-y-visible">
-          <div className="flex w-max min-w-full items-center">
+        <div className="w-full max-w-full overflow-visible">
+          <div className="flex min-w-full flex-nowrap items-center overflow-visible">
             <button
               type="button"
               onClick={undoLast}
-              className="flex h-11 w-10 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-35"
+              className="flex h-10 w-9 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-35"
               aria-label="Undo last annotation"
               title="Undo"
               disabled={!localAnnotations.length}
@@ -634,7 +755,7 @@ export default function AnnotationEditor({
             <button
               type="button"
               onClick={redoLast}
-              className="flex h-11 w-10 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-35"
+              className="flex h-10 w-9 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-35"
               aria-label="Redo last annotation"
               title="Redo"
               disabled={!redoStack.length}
@@ -642,7 +763,28 @@ export default function AnnotationEditor({
               <span className="text-xl font-black leading-none">↪</span>
             </button>
 
-            <div className="relative border-r border-slate-200 dark:border-slate-800">
+            <button
+              type="button"
+              onClick={() => {
+                setDrawMode((value) => !value);
+                setActiveShapeTool(null);
+                setShapeMenuOpen(false);
+                setColorOpen(false);
+                setTextColorOpen(false);
+              }}
+              className={`flex h-10 min-w-[58px] shrink-0 items-center justify-center gap-1.5 border-r border-slate-200 px-2 text-[11px] font-black transition hover:bg-slate-50 ${
+                drawMode
+                  ? "bg-[#E8F4FF] text-[#1D72B8]"
+                  : "bg-white text-slate-700"
+              }`}
+              aria-label="Freehand draw annotation tool"
+              title="Draw"
+            >
+              <span className="text-sm leading-none">✎</span>
+              Draw
+            </button>
+
+            <div className="relative shrink-0 border-r border-slate-200 bg-white">
               <button
                 type="button"
                 onClick={() => {
@@ -650,7 +792,11 @@ export default function AnnotationEditor({
                   setColorOpen(false);
                   setTextColorOpen(false);
                 }}
-                className="flex h-11 items-center gap-2 px-3 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
+                className={`flex h-10 min-w-[68px] items-center justify-center gap-1 px-2 text-[10px] font-black transition hover:bg-slate-50 ${
+                  drawMode || activeShapeTool
+                    ? "bg-[#E8F4FF] text-[#1D72B8]"
+                    : "text-slate-700"
+                }`}
                 aria-label="Open shape tools"
                 title="Shape tools"
               >
@@ -658,43 +804,53 @@ export default function AnnotationEditor({
               </button>
 
               {shapeMenuOpen && (
-                <div className="absolute left-0 top-12 z-[80] w-40 overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl">
+                <div className="absolute left-0 top-10 z-[9999] flex w-auto items-center overflow-hidden rounded-lg border border-slate-200 bg-white p-1 shadow-xl">
                   {[
                     ["rect", "□", "Box"],
                     ["circle", "○", "Circle"],
                     ["arrow", "↗", "Arrow"],
-                    ["draw", "✎", "Draw"],
                     ["text", "T", "Text"],
                   ].map(([tool, icon, label]) => (
                     <button
                       key={tool}
                       type="button"
+                      aria-label={`${label} annotation tool`}
+                      title={`${label} annotation tool`}
                       onClick={() => {
                         if (tool === "draw") {
                           setDrawMode((value) => !value);
+                          setActiveShapeTool(null);
                           setShapeMenuOpen(false);
                           return;
                         }
 
-                        addShape(tool as "rect" | "circle" | "arrow" | "text");
+                        if (tool === "text") {
+                          addShape("text");
+                          setShapeMenuOpen(false);
+                          return;
+                        }
+
+                        setDrawMode(false);
+                        setActiveShapeTool(tool as "rect" | "circle" | "arrow");
+                        setShapeMenuOpen(false);
                       }}
-                      className={`flex w-full items-center gap-3 px-3 py-2 text-left text-xs font-black transition hover:bg-slate-50 dark:hover:bg-slate-800 ${
-                        tool === "draw" && drawMode
+                      className={`flex h-[20px] w-full items-center gap-1 px-1.5 py-0 text-left text-[10px] font-black leading-[1] transition hover:bg-slate-50 ${
+                        (tool === "draw" && drawMode) || tool === activeShapeTool
                           ? "bg-[#E8F4FF] text-[#1D72B8]"
-                          : "text-slate-700 dark:text-slate-300"
+                          : "text-slate-700"
                       }`}
                     >
-                      <span className="flex w-5 justify-center text-base leading-none">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center text-lg leading-none">
                         {icon}
                       </span>
-                      {label}
+                      <span className="sr-only">{label}</span>
                     </button>
                   ))}
                 </div>
               )}
             </div>
 
-            <div className="relative flex h-11 border-r border-slate-200 dark:border-slate-800">
+            <div className="relative flex h-10 border-r border-slate-200">
               <button
                 type="button"
                 onClick={() => {
@@ -702,7 +858,7 @@ export default function AnnotationEditor({
                   setColorOpen(false);
                   setShapeMenuOpen(false);
                 }}
-                className="flex h-11 w-11 flex-col items-center justify-center gap-1 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="flex h-10 w-10 flex-col items-center justify-center gap-1 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Open text color palette"
                 title="Text color"
               >
@@ -716,13 +872,13 @@ export default function AnnotationEditor({
               </button>
 
               {textColorOpen && (
-                <div className="absolute left-0 top-12 z-[80] grid w-[112px] grid-cols-4 gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-xl">
+                <div className="absolute left-0 top-11 z-[9999] grid w-[104px] grid-cols-4 gap-1 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
                   {COLORS.map((color) => (
                     <button
                       key={color}
                       type="button"
                       onClick={() => applyTextColor(color)}
-                      className="h-5 w-5 rounded border border-slate-300 dark:border-slate-700"
+                      className="h-5 w-5 rounded border border-slate-300"
                       style={{ backgroundColor: color }}
                       aria-label={`Select text color ${color}`}
                     />
@@ -731,7 +887,7 @@ export default function AnnotationEditor({
               )}
             </div>
 
-            <div className="relative flex h-11 border-r border-slate-200 dark:border-slate-800">
+            <div className="relative flex h-10 border-r border-slate-200">
               <button
                 type="button"
                 onClick={() => {
@@ -739,7 +895,7 @@ export default function AnnotationEditor({
                   setTextColorOpen(false);
                   setShapeMenuOpen(false);
                 }}
-                className="flex h-11 w-11 flex-col items-center justify-center gap-1 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="flex h-10 w-10 flex-col items-center justify-center gap-1 text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Open shape color palette"
                 title="Shape color"
               >
@@ -766,13 +922,13 @@ export default function AnnotationEditor({
               </button>
 
               {colorOpen && (
-                <div className="absolute left-0 top-12 z-[80] grid w-[112px] grid-cols-4 gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-xl">
+                <div className="absolute left-0 top-11 z-[9999] grid w-[104px] grid-cols-4 gap-1 rounded-xl border border-slate-200 bg-white p-2 shadow-xl">
                   {COLORS.map((color) => (
                     <button
                       key={color}
                       type="button"
                       onClick={() => applyColor(color)}
-                      className="h-5 w-5 rounded border border-slate-300 dark:border-slate-700"
+                      className="h-5 w-5 rounded border border-slate-300"
                       style={{ backgroundColor: color }}
                       aria-label={`Select shape color ${color}`}
                     />
@@ -781,7 +937,7 @@ export default function AnnotationEditor({
               )}
             </div>
 
-            <div className="flex h-11 shrink-0 items-center border-r border-slate-200 dark:border-slate-800">
+            <div className="flex h-10 shrink-0 items-center">
               <button
                 type="button"
                 onClick={() =>
@@ -792,7 +948,7 @@ export default function AnnotationEditor({
                     ),
                   )
                 }
-                className="flex h-11 w-10 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="flex h-10 w-9 items-center justify-center border-r border-slate-200 dark:border-slate-800 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
                 aria-label="Decrease text size"
                 title="Decrease text size"
               >
@@ -809,7 +965,7 @@ export default function AnnotationEditor({
                     ),
                   )
                 }
-                className="flex h-11 w-10 items-center justify-center text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800"
+                className="flex h-10 w-9 items-center justify-center rounded-r-2xl border-r-0 text-xs font-black text-slate-700 transition hover:bg-slate-50"
                 aria-label="Increase text size"
                 title="Increase text size"
               >
@@ -817,28 +973,17 @@ export default function AnnotationEditor({
               </button>
             </div>
 
-            <div className="flex h-11 w-[112px] shrink-0 items-center gap-1 border-r border-slate-200 dark:border-slate-800 px-2">
-              <input
-                type="range"
-                min="1"
-                max="3"
-                step="0.25"
-                value={zoom}
-                onChange={(event) => setZoom(Number(event.target.value))}
-                className="w-16 min-w-0 shrink accent-[#1D72B8]"
-                aria-label="Annotation zoom"
-              />
-              <span className="w-8 text-right text-[10px] font-black text-slate-500 dark:text-slate-400">
-                {Math.round(zoom * 100)}%
-              </span>
-            </div>
+
           </div>
         </div>
       </div>
 
       <p className="mt-2 text-xs font-bold text-slate-500 dark:text-slate-400">
-        Use Shape &gt; Text to add labels. Double-click text to edit words. Use
-        A↓ and A↑ to adjust selected text size.
+        {activeShapeTool
+          ? `Drag on the photo to draw a ${activeShapeTool === "rect" ? "box" : activeShapeTool}.`
+          : drawMode
+            ? "Drag on the photo to freehand draw."
+            : "Use Shape tools to draw boxes, circles, arrows, or labels. Double-click text to edit words."}
       </p>
 
       <div className="mt-3 flex flex-wrap justify-end gap-2">

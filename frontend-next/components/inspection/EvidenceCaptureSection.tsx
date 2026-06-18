@@ -41,9 +41,9 @@ export default function EvidenceCaptureSection({
           <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
             Capture Evidence
           </p>
-          <h2 className="mt-1 text-2xl font-black text-white">Photo and field notes</h2>
+          <h2 className="mt-1 text-2xl font-black text-white">Upload Evidence</h2>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-blue-100">
-            Add evidence, describe the condition, and note where it was found.
+            Attach a photo, then annotate or remove it before continuing.
           </p>
         </div>
 
@@ -77,27 +77,29 @@ export default function EvidenceCaptureSection({
           Uploaded Evidence
         </p>
         {photos.length > 0 ? (
-          <div className="divide-y divide-slate-200/80 border-t border-slate-200/80">
+          <div className="grid gap-3 border-t border-slate-200/80 pt-3">
             {photos.map((photo, index) => (
-              <div key={photo.id} className="py-2">
+              <div key={photo.id} className="rounded-xl border border-slate-200 bg-white p-3">
                 <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-black text-slate-900">
                       {photo.name || `Evidence photo ${index + 1}`}
                     </p>
-                    <p className="mt-1 text-xs font-semibold text-slate-500">
-                      {(photo.annotations || []).length} annotation(s)
+                    <p className="mt-0.5 text-[11px] font-semibold text-slate-600">
+                      {(photo.annotations || []).length
+                        ? `${(photo.annotations || []).length} annotation(s)`
+                        : "No annotations"}
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex shrink-0 flex-wrap gap-2">
                     <button
                       type="button"
                       onClick={() => {
                         setAnnotatingPhotoIndex(index);
                         setAnnotationExpanded(true);
                       }}
-                      className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-black text-slate-700 transition hover:bg-slate-50"
+                      className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-black text-[#102A43] transition hover:bg-slate-50"
                     >
                       Annotate
                     </button>
@@ -112,64 +114,7 @@ export default function EvidenceCaptureSection({
                   </div>
                 </div>
 
-                <div className="sentinel-phone-stack mb-3 sm:grid sm:grid-cols-2 sm:gap-3">
-                  <div>
-                    <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">
-                      Caption / Label
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-bold"
-                      placeholder="e.g. Missing guard on shaft"
-                      value={photo.caption || ''}
-                      onChange={(e) => {
-                        const next = [...photos];
-                        next[index] = { ...photo, caption: e.target.value };
-                        setPhotos(next);
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">
-                      View Type
-                    </label>
-                    <select
-                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-bold"
-                      value={photo.viewType || 'unknown'}
-                      onChange={(e) => {
-                        const next = [...photos];
-                        next[index] = { ...photo, viewType: e.target.value };
-                        setPhotos(next);
-                      }}
-                    >
-                      <option value="unknown">Select view type...</option>
-                      <option value="close_up">Close-up of condition</option>
-                      <option value="wide_area">Wide area / Context</option>
-                      <option value="control_status">Control/Lockout status</option>
-                      <option value="employee_exposure">Exposure path</option>
-                      <option value="tag_label">Tag / Label detail</option>
-                      <option value="equipment_id">Equipment ID</option>
-                    </select>
-                  </div>
-                  <div className="sm:col-span-2">
-                    <label className="mb-1 block text-[10px] font-black uppercase text-slate-400">
-                      Field Notes
-                    </label>
-                    <textarea
-                      className="w-full rounded-lg border border-slate-200 p-2 text-xs font-semibold"
-                      placeholder="Additional details about what this photo represents..."
-                      rows={2}
-                      value={photo.fieldNotes || ''}
-                      onChange={(e) => {
-                        const next = [...photos];
-                        next[index] = { ...photo, fieldNotes: e.target.value };
-                        setPhotos(next);
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-3 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
                   <AnnotationPreview
                     photoUrl={photo.url}
                     annotations={photo.annotations || []}
