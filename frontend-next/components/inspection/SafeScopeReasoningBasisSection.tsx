@@ -24,13 +24,13 @@ export default function SafeScopeReasoningBasisSection({
   return (
     <SafeScopeDrawer
       title="Reasoning Basis"
-      summary="HazLenz AI engine is primary; prior report history is reference only"
+      summary="HazLenz AI review is primary; prior report history is reference only"
       badge={basis?.sourceHierarchyEnforced ? "Hierarchy enforced" : "Review"}
     >
       <div className="space-y-3">
         <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-            Primary reasoning source
+            Primary review source
           </p>
           <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
             {formatValue(basis?.primaryReasoningSource || "safescope_governed_brain")}

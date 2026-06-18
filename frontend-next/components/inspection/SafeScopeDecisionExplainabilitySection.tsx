@@ -13,11 +13,11 @@ export default function SafeScopeDecisionExplainabilitySection({
 
   return (
     <SafeScopeDrawer
-      title="Decision Explainability"
-      summary="Why HazLenz AI made this decision"
+      title="Why This Was Suggested"
+      summary="Review the factors behind this suggestion"
       badge={
         safeScopeResult.decisionExplainability.supervisorReviewRecommended
-          ? "Supervisor Review"
+          ? "Qualified Review"
           : undefined
       }
     >

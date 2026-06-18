@@ -1,4 +1,4 @@
-type SafeScopeKnowledgeBrainSectionProps = {
+type SafeScopeKnowledgeMatchSectionProps = {
   safeScopeResult: any;
 };
 
@@ -19,15 +19,15 @@ function authorityLabel(tier: any) {
   return "Tier 5 · Internal / supporting reference";
 }
 
-export default function SafeScopeKnowledgeBrainSection({
+export default function SafeScopeKnowledgeMatchSection({
   safeScopeResult,
-}: SafeScopeKnowledgeBrainSectionProps) {
-  const knowledgeBrain = safeScopeResult?.knowledgeBrain;
+}: SafeScopeKnowledgeMatchSectionProps) {
+  const knowledgeMatch = safeScopeResult?.knowledgeMatch;
 
-  if (!knowledgeBrain) return null;
+  if (!knowledgeMatch) return null;
 
-  const matches = knowledgeBrain.matches || [];
-  const evidenceGaps = knowledgeBrain.evidenceGaps || [];
+  const matches = knowledgeMatch.matches || [];
+  const evidenceGaps = knowledgeMatch.evidenceGaps || [];
 
   if (!matches.length && !evidenceGaps.length) return null;
 
@@ -40,7 +40,7 @@ export default function SafeScopeKnowledgeBrainSection({
           </p>
 
           <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
-            HazLenz AI Knowledge Brain
+            Supporting References
           </h3>
 
           <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
@@ -59,18 +59,18 @@ export default function SafeScopeKnowledgeBrainSection({
 
         <div className="shrink-0 rounded-xl bg-[#E8F4FF] px-3 py-2 text-right">
           <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
-            Brain
+            Match
           </p>
           <p className="text-lg font-black text-[#102A43]">
-            {formatPercent(knowledgeBrain.confidence)}
+            {formatPercent(knowledgeMatch.confidence)}
           </p>
         </div>
       </summary>
 
       <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-4">
         <p className="text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
-          Supporting knowledge retrieved from approved references, incident
-          lessons, standards, and internal safety intelligence.
+          Supporting information retrieved from approved references, incident
+          lessons, standards, and safety review records.
         </p>
 
         {!!matches.length && (
@@ -87,7 +87,7 @@ export default function SafeScopeKnowledgeBrainSection({
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
                     <p className="text-sm font-black text-slate-900 dark:text-slate-100">
-                      {match.title || "Knowledge Reference"}
+                      {match.title || "Supporting Reference"}
                     </p>
                     <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">
                       {match.agency || "Reference"} ·{" "}
@@ -108,7 +108,7 @@ export default function SafeScopeKnowledgeBrainSection({
 
                 {match.reason && (
                   <p className="mt-2 text-xs font-bold leading-5 text-slate-600 dark:text-slate-300">
-                    Why matched: {match.reason}
+                    Why this matched: {match.reason}
                   </p>
                 )}
 
@@ -125,7 +125,7 @@ export default function SafeScopeKnowledgeBrainSection({
         {!!evidenceGaps.length && (
           <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3">
             <p className="text-xs font-black uppercase tracking-wide text-amber-800">
-              Evidence Gaps to Confirm
+              Evidence Needed
             </p>
 
             <ul className="mt-2 list-disc space-y-1 pl-5 text-xs font-bold leading-5 text-amber-900">
@@ -136,9 +136,9 @@ export default function SafeScopeKnowledgeBrainSection({
           </div>
         )}
 
-        {knowledgeBrain.caution && (
+        {knowledgeMatch.caution && (
           <p className="mt-3 text-[11px] font-semibold leading-5 text-slate-500 dark:text-slate-400">
-            {knowledgeBrain.caution}
+            {knowledgeMatch.caution}
           </p>
         )}
       </div>

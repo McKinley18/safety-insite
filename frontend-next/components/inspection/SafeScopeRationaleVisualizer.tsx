@@ -193,14 +193,14 @@ export default function SafeScopeRationaleVisualizer({ safeScopeResult }: Props)
       <div className="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 px-4 py-3 flex items-center justify-between">
         <div>
           <h4 className="text-sm font-black text-slate-900">
-            Interactive AI Decision Path Trace
+            Review Path
           </h4>
           <p className="text-xs text-slate-500 mt-0.5">
-            Visualize how HazLenz AI processed your input step-by-step
+            See how the finding moved from observation to review suggestions
           </p>
         </div>
         <span className="rounded-full bg-[#E8F4FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
-          Deterministic Execution
+          Review Support
         </span>
       </div>
 

@@ -82,7 +82,7 @@ export default function SafeScopeStandardsTraceabilitySection({
         {!!layers.length && (
           <div className="space-y-2">
             <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-              Standards reasoning layers
+              Standards review layers
             </p>
 
             {layers.map(([name, role]: any) => (

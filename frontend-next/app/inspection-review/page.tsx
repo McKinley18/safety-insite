@@ -701,15 +701,15 @@ export default function InspectionReviewPage() {
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-amber-700">
-                HazLenz AI Review Governance
+                HazLenz AI Review Status
               </p>
               <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
                 {getSafeScopeReviewSummary(findings).unvalidated
-                  ? `${getSafeScopeReviewSummary(findings).unvalidated} HazLenz AI finding(s) need validation`
+                  ? `${getSafeScopeReviewSummary(findings).unvalidated} HazLenz AI finding(s) need qualified review`
                   : "All HazLenz AI findings show reviewed status"}
               </h3>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
-                Snapshot validation status is included in the review page and PDF export.
+                Review status is included in the review page and PDF export.
                 Qualified-person review is still required before final use.
               </p>
             </div>

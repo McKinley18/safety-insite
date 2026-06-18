@@ -34,7 +34,7 @@ export default function SafeScopeReliabilitySection({
       {safeScopeResult.reasoningDrift && (
         <div className="mt-3 rounded-xl bg-slate-50 px-3 py-2">
           <p className="text-xs font-black uppercase tracking-wide text-slate-500">
-            Reasoning drift: {safeScopeResult.reasoningDrift.driftBand || "low"}
+            Review consistency: {safeScopeResult.reasoningDrift.driftBand || "low"}
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
             {safeScopeResult.reasoningDrift.driftSummary}
