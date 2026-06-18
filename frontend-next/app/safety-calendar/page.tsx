@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
+import { SafetyCalendarControls } from "@/components/calendar/SafetyCalendarControls";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
@@ -421,23 +422,11 @@ export default function SafetyCalendarPage() {
         <AppPanel padding="sm" className="px-0 py-0 overflow-hidden">
           {/* Unified Blue Header Banner */}
           <div className="bg-[#102A43] p-3 text-white">
-            <div className="flex items-center justify-between">
-              <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("previous")}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </AppButton>
-
-              <h2 className="text-xs font-black uppercase tracking-wide text-blue-200">
-                {formatMonthLabel(anchorDate)}
-              </h2>
-
-              <AppButton type="button" variant="secondary" size="sm" onClick={() => moveDate("next")}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </AppButton>
-            </div>
+            <SafetyCalendarControls
+              anchorDate={anchorDate}
+              formatMonthLabel={formatMonthLabel}
+              moveDate={moveDate}
+            />
             
             <div className="mt-3 grid grid-cols-7 gap-0.5 text-center text-[10px] font-black uppercase tracking-wide text-blue-300 sm:gap-1">
               {WEEKDAY_LABELS.map((day) => (
