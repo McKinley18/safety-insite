@@ -12,23 +12,15 @@ import {
   submitSupervisorValidation,
 } from "@/lib/safescope";
 import {
-  addReportAttachment,
-  saveWorkspaceReport,
-  uploadReportAttachment,
-} from "@/lib/auth";
-import {
-  getCoverPage,
   getEditReport,
-  getReports,
   removeEditReport,
-  setLatestReport,
-  setReports,
 } from "@/lib/reportStorage";
 import {
   getStoredActions,
   saveStoredActions,
 } from "@/lib/actionStorage";
 import { addActivityEvent } from "@/lib/activityStorage";
+import { generateInspectionReportPackage } from "@/lib/inspection/reportGenerationService";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
 import {
@@ -36,7 +28,6 @@ import {
   loadEncryptedPhoto,
   saveEncryptedPhoto,
 } from "@/lib/evidenceStorage";
-import { enqueueOfflineItem } from "@/lib/offlineQueue";
 import FinalizeInspectionSection from "@/components/inspection/FinalizeInspectionSection";
 import GenerateReportSection from "@/components/inspection/GenerateReportSection";
 import InspectionStepRenderer from "@/components/inspection/InspectionStepRenderer";
@@ -55,7 +46,6 @@ import {
   loadInspectionContext,
 } from "@/lib/inspection/inspectionContext";
 import { buildFinding } from "@/lib/inspection/findingBuilder";
-import { buildInspectionReport } from "@/lib/inspection/reportBuilder";
 import { validateInspectionReport } from "@/lib/inspection/reportValidation";
 import {
   buildFinalizedInspectionFindings,
@@ -900,149 +890,13 @@ export default function InspectionPage() {
       buildCurrentFinding,
     });
 
-    const coverPage = (await getCoverPage<any>()) || {};
-
-    const reportPackageMode =
-      window.localStorage.getItem("sentinel_report_package_mode") ||
-      "professional_compliance";
-
-    const builtReport = buildInspectionReport({
-      coverPage,
-      findings: finalizedFindings,
+    await generateInspectionReportPackage({
+      finalizedFindings,
+      activeEditReport,
       includeStandardsInReport,
       includeActionsInReport,
       includePhotosInReport,
       includeSafeScopeNotesInReport,
-      reportPackageMode,
-    });
-
-    const report: any = activeEditReport?.id
-      ? {
-          ...builtReport,
-          id: activeEditReport.id,
-          cloudReportId: activeEditReport.cloudReportId,
-          cloudSavedAt: activeEditReport.cloudSavedAt,
-          cloudUpdatedAt: activeEditReport.cloudUpdatedAt,
-          storageSource: activeEditReport.storageSource || "local",
-          createdAt: activeEditReport.createdAt || builtReport.createdAt,
-          updatedAt: new Date().toISOString(),
-        }
-      : builtReport;
-
-    const storageMode =
-      (window.localStorage.getItem("sentinel_report_storage_mode") as
-        | "local"
-        | "cloud"
-        | "ask"
-        | null) || "local";
-
-    let shouldSaveLocal = storageMode !== "cloud";
-
-    if (storageMode === "ask") {
-      shouldSaveLocal = window.confirm(
-        "Save this report locally in this browser?\n\nSelect Cancel to use cloud storage only.",
-      );
-    }
-
-    if (shouldSaveLocal) {
-      const existingReportsRaw = await getReports<any>();
-      const existingReports = Array.isArray(existingReportsRaw)
-        ? existingReportsRaw
-        : [];
-
-      const nextReports = [
-        report,
-        ...existingReports.filter(
-          (existing: any) =>
-            String(existing.cloudReportId || existing.id) !==
-            String(report.cloudReportId || report.id),
-        ),
-      ];
-
-      await setLatestReport(report);
-      await setReports(nextReports);
-    }
-
-    if (storageMode === "cloud" || storageMode === "ask") {
-      try {
-        const savedCloudReport = await saveWorkspaceReport(report);
-
-        const attachmentPayloads = finalizedFindings.flatMap((finding: any) =>
-          (finding.photos || []).map((photo: any) => ({
-            imageUri: photo.url || photo.imageUri || photo.id,
-            mimeType: photo.mimeType || photo.type || "image/jpeg",
-            fileName: photo.name || "evidence-photo",
-          })),
-        );
-
-        const uploadedPhotoFiles = finalizedFindings.flatMap((finding: any) =>
-          (finding.photos || []).filter((photo: any) => photo.file),
-        );
-
-        await Promise.allSettled(
-          uploadedPhotoFiles.map((photo: any) =>
-            uploadReportAttachment(savedCloudReport.id, photo.file),
-          ),
-        );
-
-        const metadataOnlyAttachments = attachmentPayloads.filter(
-          (attachment: any) =>
-            !String(attachment.imageUri || "").startsWith("data:"),
-        );
-
-        await Promise.allSettled(
-          metadataOnlyAttachments.map((attachment: any) =>
-            addReportAttachment(savedCloudReport.id, attachment),
-          ),
-        );
-
-        window.localStorage.setItem(
-          "sentinel_latest_cloud_report_id",
-          savedCloudReport.id,
-        );
-        window.localStorage.setItem(
-          "sentinel_latest_report",
-          JSON.stringify(savedCloudReport.frontendReportJson || report),
-        );
-      } catch (error) {
-        await enqueueOfflineItem({
-          type: "report_save",
-          payload: {
-            report,
-            storageMode,
-            reason: "cloud_save_failed",
-          },
-          lastError:
-            error instanceof Error
-              ? error.message
-              : "Unknown cloud save failure",
-        });
-
-        alert(
-          "Report could not be saved to cloud storage. It was saved locally and queued for retry.",
-        );
-
-        const existingReportsRaw = await getReports<any>();
-        const existingReports = Array.isArray(existingReportsRaw)
-          ? existingReportsRaw
-          : [];
-
-        const nextReports = [
-          report,
-          ...existingReports.filter(
-            (existing: any) => existing.id !== report.id,
-          ),
-        ];
-
-        await setLatestReport(report);
-        await setReports(nextReports);
-      }
-    }
-
-    await addActivityEvent({
-      type: "Report",
-      title: `Inspection report ${report.id} generated`,
-      detail: `${finalizedFindings.length} finding(s)`,
     });
 
     router.push("/inspection-review");
