@@ -34,6 +34,7 @@ type DrawShape = AnnotationShape & {
 };
 
 import { AnnotationToolbar } from "./AnnotationToolbar";
+import { AnnotationEditorFooter } from "./AnnotationEditorFooter";
 
 type ShapeTool = "rect" | "circle" | "arrow" | null;
 type DragMode = "move" | "resize" | "arrowStart" | "arrowEnd" | "draw" | "createRect" | "createCircle" | "createArrow" | null;
@@ -954,22 +955,11 @@ export default function AnnotationEditor({
             : "Use Shape tools to draw boxes, circles, arrows, or labels. Double-click text to edit words."}
       </p>
 
-      <div className="mt-3 flex flex-wrap justify-end gap-2">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="rounded-xl bg-slate-200 px-4 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-300"
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          onClick={() => onSave(localAnnotations)}
-          className="rounded-xl bg-[#1D72B8] px-4 py-2 text-xs font-black text-white transition hover:bg-[#155A91]"
-        >
-          Save
-        </button>
-      </div>
+      <AnnotationEditorFooter
+        onCancel={onCancel}
+        onSave={onSave}
+        localAnnotations={localAnnotations}
+      />
     </div>
   );
 }
