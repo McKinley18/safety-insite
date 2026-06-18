@@ -22,10 +22,10 @@ import { generateInspectionReportPackage } from "@/lib/inspection/reportGenerati
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
 import {
-  deleteEncryptedPhoto,
-  loadEncryptedPhoto,
-  saveEncryptedPhoto,
-} from "@/lib/evidenceStorage";
+  deleteEvidencePhoto,
+  loadFindingEvidencePhotos,
+  saveUploadedEvidencePhotos,
+} from "@/lib/inspection/photoEvidenceService";
 import FinalizeInspectionSection from "@/components/inspection/FinalizeInspectionSection";
 import GenerateReportSection from "@/components/inspection/GenerateReportSection";
 import InspectionStepRenderer from "@/components/inspection/InspectionStepRenderer";
@@ -234,11 +234,7 @@ export default function InspectionPage() {
           setDescription(finding.description || "");
           setLocation(finding.location || "");
           setEvidenceNotes(finding.evidenceNotes || "");
-          Promise.all(
-            (finding.photos || []).map((photo: any) =>
-              loadEncryptedPhoto(photo),
-            ),
-          ).then(setPhotos);
+          loadFindingEvidencePhotos(finding.photos || []).then(setPhotos);
           setsafeScopeResult(finding.safeScopeResult || null);
           setSelectedStandards(finding.selectedStandards || []);
           setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
@@ -662,9 +658,7 @@ export default function InspectionPage() {
     setDescription(finding.description || "");
     setLocation(finding.location || "");
     setEvidenceNotes(finding.evidenceNotes || "");
-    Promise.all(
-      (finding.photos || []).map((photo: any) => loadEncryptedPhoto(photo)),
-    ).then(setPhotos);
+    loadFindingEvidencePhotos(finding.photos || []).then(setPhotos);
     setsafeScopeResult(finding.safeScopeResult || null);
     setSelectedStandards(finding.selectedStandards || []);
     setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
@@ -720,17 +714,14 @@ export default function InspectionPage() {
 
   async function handlePhotoUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files || []);
-
-    const nextPhotos = await Promise.all(
-      files.map((file) => saveEncryptedPhoto(file)),
-    );
+    const nextPhotos = await saveUploadedEvidencePhotos(files);
 
     setPhotos((prev) => [...prev, ...nextPhotos]);
     event.target.value = "";
   }
 
   function removePhoto(id: string) {
-    deleteEncryptedPhoto(id);
+    deleteEvidencePhoto(id);
     setPhotos((prev) => prev.filter((photo) => photo.id !== id));
   }
 
