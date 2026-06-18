@@ -229,7 +229,7 @@ export default function GenerateReportSection({
             type="button"
             onClick={generateReport}
             disabled={!findings.length}
-            className="inline-flex min-h-[38px] w-auto self-center items-center justify-center rounded-xl bg-[#F97316] px-4 py-2 text-center text-xs font-black leading-none text-white shadow-sm ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-[#F97316] disabled:text-white disabled:opacity-55 sm:self-auto"
+            className="insite-inspection-action insite-inspection-action-orange insite-inspection-action-sm self-center sm:self-auto"
           >
             Generate
           </button>

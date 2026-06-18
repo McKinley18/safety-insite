@@ -231,7 +231,7 @@ export default function FinalizeInspectionSection({
             <button
               type="button"
               onClick={saveFinding}
-              className="flex h-10 w-[146px] items-center justify-center rounded-xl bg-[#102A43] px-3 text-center text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8] active:scale-[0.98]"
+              className="insite-inspection-action insite-inspection-action-navy insite-inspection-action-sm h-10 w-[146px] px-3"
             >
               {saveButtonLabel}
             </button>

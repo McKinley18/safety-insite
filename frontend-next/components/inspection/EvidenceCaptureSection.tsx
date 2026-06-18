@@ -48,7 +48,7 @@ export default function EvidenceCaptureSection({
         </div>
 
         <div className="sentinel-phone-actions mt-3 sm:flex sm:flex-wrap sm:justify-center">
-          <label className="inline-flex min-h-[42px] w-full cursor-pointer items-center justify-center rounded-full border border-blue-300/60 bg-[#1D72B8] px-4 py-2 text-center text-[13px] font-black text-white shadow-sm ring-1 ring-blue-300/40 transition hover:bg-[#155A93] sm:min-h-[44px] sm:w-[148px] sm:px-5 sm:py-2.5 sm:text-sm">
+          <label className="insite-inspection-action insite-inspection-action-blue cursor-pointer">
             Take Photo
             <input
               type="file"
@@ -59,7 +59,7 @@ export default function EvidenceCaptureSection({
             />
           </label>
 
-          <label className="inline-flex min-h-[42px] w-full cursor-pointer items-center justify-center rounded-full border border-orange-300/60 bg-[#F97316] px-4 py-2 text-center text-[13px] font-black text-white shadow-sm ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] sm:min-h-[44px] sm:w-[148px] sm:px-5 sm:py-2.5 sm:text-sm">
+          <label className="insite-inspection-action insite-inspection-action-orange cursor-pointer">
             Upload
             <input
               type="file"

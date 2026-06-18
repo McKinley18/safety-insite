@@ -380,7 +380,7 @@ export default function QuickInspectionPage() {
         />
 
         <div className="mt-3 flex flex-wrap gap-2">
-          <label className="cursor-pointer rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]">
+          <label className="insite-inspection-action insite-inspection-action-navy insite-inspection-action-sm cursor-pointer">
             Take Photo
             <input
               type="file"
@@ -534,7 +534,7 @@ export default function QuickInspectionPage() {
               type="button"
               onClick={runSafeScopeQuickReview}
               size="sm"
-              className="bg-[#1D72B8] hover:bg-[#155A93]"
+              className="insite-inspection-action insite-inspection-action-blue insite-inspection-action-sm"
             >
               Run Quick Review
             </AppButton>

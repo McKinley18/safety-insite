@@ -92,7 +92,7 @@ export default function CorrectiveActionsSection({
         <button
           type="button"
           onClick={() => setAddActionOpen((open) => !open)}
-          className="shrink-0 rounded-xl bg-[#102A43] px-3 py-2 text-xs font-black text-white shadow-sm transition hover:bg-[#1D72B8]"
+          className="insite-inspection-action insite-inspection-action-navy insite-inspection-action-sm shrink-0"
         >
           {addActionOpen ? "Close" : "+ Add Action"}
         </button>
@@ -266,7 +266,7 @@ export default function CorrectiveActionsSection({
                 addManualAction();
                 setAddActionOpen(false);
               }}
-              className="w-full rounded-xl bg-[#F97316] px-4 py-3 text-sm font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98]"
+              className="insite-inspection-action insite-inspection-action-orange w-full rounded-xl py-3 text-sm"
             >
               Add Action
             </button>

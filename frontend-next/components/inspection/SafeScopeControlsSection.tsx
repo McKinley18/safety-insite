@@ -96,7 +96,7 @@ export default function SafeScopeControlsSection({
             console.log("[HazLenz AI] Button clicked");
             handleRunSafeScope();
           }}
-          className="mx-auto inline-flex w-auto items-center justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-white shadow-sm ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98]"
+          className="insite-inspection-action insite-inspection-action-orange insite-inspection-action-sm mx-auto"
         >
           Run HazLenz
         </button>

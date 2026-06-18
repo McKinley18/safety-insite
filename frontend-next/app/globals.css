@@ -1039,3 +1039,94 @@ body.sentinel-keyboard-open {
     padding-top: 0.35rem;
   }
 }
+
+/* Safety InSite inspection action buttons */
+.insite-inspection-action {
+  display: inline-flex;
+  min-height: 42px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 900;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease;
+}
+
+.insite-inspection-action:active {
+  transform: scale(0.98);
+}
+
+.insite-inspection-action-blue {
+  border: 1px solid rgba(147, 197, 253, 0.6);
+  background: #1D72B8;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(147, 197, 253, 0.4);
+}
+
+.insite-inspection-action-blue:hover {
+  background: #155A93;
+}
+
+.insite-inspection-action-orange {
+  border: 1px solid rgba(253, 186, 116, 0.6);
+  background: #F97316;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(253, 186, 116, 0.4);
+}
+
+.insite-inspection-action-orange:hover {
+  background: #EA580C;
+}
+
+.insite-inspection-action-navy {
+  border: 1px solid rgba(15, 42, 67, 0.25);
+  background: #102A43;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(15, 42, 67, 0.12);
+}
+
+.insite-inspection-action-navy:hover {
+  background: #1D72B8;
+}
+
+.insite-inspection-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.insite-inspection-action-sm {
+  min-height: 38px;
+  width: auto;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .insite-inspection-action {
+    min-height: 44px;
+    width: 148px;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .insite-inspection-action-sm {
+    min-height: 38px;
+    width: auto;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+}

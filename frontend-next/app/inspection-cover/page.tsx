@@ -221,7 +221,7 @@ export default function InspectionCoverPage() {
           href="/inspection"
           onClick={saveCoverPage}
           variant="primary"
-          className="rounded-full bg-[#1D72B8] px-[18px] py-[13px] hover:bg-[#155A93]"
+          className="insite-inspection-action insite-inspection-action-blue w-auto px-[18px] py-[13px]"
         >
           Start Inspection
         </AppLinkButton>

@@ -197,7 +197,7 @@ export default function QuickCaptureSection({
           <button
             type="button"
             onClick={addManualAction}
-            className="mt-3 rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]"
+            className="insite-inspection-action insite-inspection-action-navy insite-inspection-action-sm mt-3"
           >
             Add Action
           </button>
