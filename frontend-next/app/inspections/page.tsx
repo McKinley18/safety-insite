@@ -126,7 +126,7 @@ export default function InspectionsPage() {
   }
 
   return (
-    <section className="sentinel-mobile-page space-y-4 sm:space-y-4">
+    <section className="sentinel-mobile-page inspections-page-scroll-fix space-y-4 sm:space-y-4">
       <HeroPanel align="center" className="text-white">
         <div className="flex flex-col items-center gap-4 sm:p-5 text-center lg:text-left">
           <div>
@@ -165,7 +165,7 @@ export default function InspectionsPage() {
         </div>
       </HeroPanel>
 
-      <AppPanel padding="lg" className="overflow-hidden">
+      <AppPanel padding="lg" className="inspections-start-panel overflow-visible pb-10 sm:pb-12">
         <SectionHeader
           eyebrow="Start"
           title="Choose inspection type"
@@ -196,7 +196,7 @@ export default function InspectionsPage() {
             return (
               <article
                 key={workflow.id}
-                className={`h-full w-full max-w-[320px] overflow-hidden rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
+                className={`inspection-workflow-card h-auto w-full max-w-[320px] overflow-visible rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
                   selected
                     ? "border-[#1D72B8] bg-[#E8F4FF]"
                     : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white"
@@ -310,6 +310,7 @@ export default function InspectionsPage() {
       </AppPanel>
 
 
+      <div aria-hidden="true" className="h-28 shrink-0 sm:h-32 lg:h-16" />
     </section>
   );
 }

@@ -226,7 +226,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div className="sentinel-modern-shell flex min-h-dvh flex-col text-slate-900 transition-colors">
+    <div className="sentinel-modern-shell min-h-dvh text-slate-900 transition-colors">
       <ToastContainer />
       <header className="sticky top-0 z-[900] w-full overflow-visible border-b border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
@@ -375,7 +375,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       </header>
 
       <main
-        className={`sentinel-app-main mx-auto w-full max-w-[1200px] flex-1 px-3 pt-3 sm:px-5 sm:pt-5 md:px-6 md:pt-6 ${showAppNav ? "" : "pb-4 sm:pb-6"}`}
+        className={`sentinel-app-main mx-auto w-full max-w-[1200px] px-3 pt-3 sm:px-5 sm:pt-5 md:px-6 md:pt-6 ${showAppNav ? "" : "pb-4 sm:pb-6"}`}
       >
         {children}
       </main>

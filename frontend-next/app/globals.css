@@ -759,7 +759,7 @@ body {
     padding-left: 0.875rem !important;
     padding-right: 0.875rem !important;
     padding-top: 0.875rem !important;
-    padding-bottom: 1.25rem !important;
+    padding-bottom: calc(var(--sentinel-mobile-tab-height) + env(safe-area-inset-bottom, 0px) + 2rem) !important;
   }
 
   .sentinel-mobile-page :where(h1, h2):not(.sentinel-workflow-header-title):not(.sentinel-finding-builder-title) {
@@ -1191,4 +1191,100 @@ html.dark body {
 
 .sentinel-modern-shell {
   color: #0f172a;
+}
+
+/* Final mobile bottom-nav clearance guardrail */
+@media (max-width: 639px) {
+  .sentinel-app-main {
+    padding-bottom: calc(var(--sentinel-mobile-tab-height) + env(safe-area-inset-bottom, 0px) + 3rem) !important;
+    scroll-padding-bottom: calc(var(--sentinel-mobile-tab-height) + env(safe-area-inset-bottom, 0px) + 3rem) !important;
+  }
+
+  .sentinel-mobile-page {
+    padding-bottom: calc(var(--sentinel-mobile-tab-height) + env(safe-area-inset-bottom, 0px) + 2rem) !important;
+  }
+}
+
+/* Final document scroll guardrail */
+html,
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sentinel-modern-shell,
+.sentinel-app-main,
+.sentinel-mobile-page {
+  overflow-y: visible;
+}
+
+@media (min-width: 640px) {
+  .sentinel-app-main {
+    padding-bottom: 5rem !important;
+    scroll-padding-bottom: 5rem !important;
+  }
+
+  .sentinel-mobile-page {
+    padding-bottom: 4rem !important;
+  }
+}
+
+/* App shell natural scroll guardrail */
+.sentinel-modern-shell {
+  min-height: 100dvh;
+  height: auto !important;
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
+.sentinel-app-main {
+  display: block;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow-y: visible !important;
+}
+
+/* Inspections page scroll and expansion guardrail */
+.inspections-page-scroll-fix {
+  display: block !important;
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.inspections-start-panel,
+.inspections-start-panel.app-card,
+.inspections-start-panel.app-surface-muted {
+  display: block !important;
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.inspections-start-panel .inspection-workflow-card {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.inspections-start-panel .grid {
+  align-items: start !important;
+}
+
+/* Cover page compact centered start button */
+.cover-start-inspection-button {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: fit-content !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
 }

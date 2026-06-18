@@ -27,15 +27,15 @@ function ReportOptionRow({
     <button
       type="button"
       onClick={onToggle}
-      className="flex h-10 w-full items-center justify-between rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 text-left transition hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-[0.99]"
+      className="flex h-10 w-full items-center justify-between rounded-lg border border-slate-200 bg-white px-3 text-left text-slate-900 shadow-sm transition hover:bg-blue-50 active:scale-[0.99]"
     >
-      <span className="truncate text-sm font-black text-slate-900 dark:text-slate-100">
+      <span className="truncate text-sm font-black text-[#102A43]">
         {label}
       </span>
 
       <span
         className={`ml-3 shrink-0 rounded-full px-2.5 py-1 text-[10px] font-black uppercase leading-none tracking-wide ${
-          enabled ? "bg-[#1D72B8] text-white" : "bg-slate-200 text-slate-500 dark:text-slate-400"
+          enabled ? "bg-[#1D72B8] text-white" : "bg-slate-100 text-slate-700"
         }`}
       >
         {enabled ? "On" : "Off"}
@@ -114,16 +114,16 @@ export default function GenerateReportSection({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-sm">
+      <div className="rounded-2xl border border-slate-200 bg-white p-4 text-slate-900 shadow-sm ring-1 ring-white/70">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Report Settings Review
             </p>
-            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
+            <h3 className="mt-1 text-base font-black text-[#102A43]">
               Confirm final report options
             </h3>
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-700">
               These options control what is included in the generated report.
             </p>
           </div>
