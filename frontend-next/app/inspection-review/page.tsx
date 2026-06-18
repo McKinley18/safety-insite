@@ -12,6 +12,10 @@ import { localExporter } from "@/lib/localExporter";
 import { getReportPackageForPlan } from "@/lib/reportPackages";
 import { saveInspectionReportToCloud } from "@/lib/cloudReports";
 import { runInspectionExport } from "@/lib/inspection/reportExportService";
+import {
+  persistReviewedReport,
+  saveReportToCloud,
+} from "@/lib/inspection/reviewReportPersistenceService";
 import { getStoredPlanCode } from "@/lib/planEntitlements";
 import {
   deleteFindingFromReport,
@@ -316,49 +320,13 @@ export default function InspectionReviewPage() {
   }
 
 
-  async function saveReportToCloud() {
-    if (!report) return;
-
-    setCloudSaveStatus("saving");
-    setCloudSaveMessage("Saving report package to cloud...");
-
-    try {
-      const saved = await saveInspectionReportToCloud(report);
-
-      const syncedReport = saved?.frontendReportJson || report;
-
-      const nextReport = {
-        ...syncedReport,
-        cloudReportId: saved?.id || syncedReport.cloudReportId || report.cloudReportId,
-        cloudSavedAt: new Date().toISOString(),
-        cloudSaveStatus: "saved",
-        evidenceCloudSync: syncedReport.evidenceCloudSync || {
-          attemptedAt: new Date().toISOString(),
-          uploadedCount: saved?.evidenceUploadedCount || 0,
-        },
-      };
-
-      await persistReviewedReport(nextReport);
-
-      setCloudSaveStatus("saved");
-      setCloudSaveMessage(
-        saved?.id
-          ? `${
-              saved?.cloudSaveMode === "updated" ? "Updated" : "Saved"
-            } cloud report ${saved.id}. Evidence uploaded: ${
-              saved?.evidenceUploadedCount || 0
-            }.`
-          : "Saved to cloud.",
-      );
-    } catch (error) {
-      const message =
-        error instanceof Error
-          ? error.message
-          : "Cloud report save failed.";
-
-      setCloudSaveStatus("error");
-      setCloudSaveMessage(message);
-    }
+  async function saveReportToCloudHandler() {
+    await saveReportToCloud({
+      report,
+      setCloudSaveStatus,
+      setCloudSaveMessage,
+      persistReviewedReport: persistReviewedReportHandler,
+    });
   }
 
   async function exportReport() {
@@ -373,17 +341,8 @@ export default function InspectionReviewPage() {
     });
   }
 
-  async function persistReviewedReport(nextReport: any) {
-    setReport(nextReport);
-    await setLatestReport(nextReport);
-
-    const storedReports = await getReports<any>();
-    const reports = Array.isArray(storedReports) ? storedReports : [];
-
-    await setReports([
-      nextReport,
-      ...reports.filter((existing: any) => !isSamePersistentReport(existing, nextReport)),
-    ]);
+  async function persistReviewedReportHandler(nextReport: any) {
+    await persistReviewedReport(nextReport, setReport);
   }
 
   async function editReport() {
@@ -419,7 +378,7 @@ export default function InspectionReviewPage() {
 
     const nextReport = deleteFindingFromReport(report, index);
 
-    await persistReviewedReport(nextReport);
+    await persistReviewedReportHandler(nextReport);
   }
 
   if (!report) {
@@ -682,7 +641,7 @@ export default function InspectionReviewPage() {
 
           <AppButton
             type="button"
-            onClick={saveReportToCloud}
+            onClick={saveReportToCloudHandler}
             variant="accent"
             size="sm"
             disabled={cloudSaveStatus === "saving"}
