@@ -19,6 +19,12 @@ import {
   upsertFindingInList,
 } from "@/lib/inspection/findingSaveService";
 import { generateInspectionReportPackage } from "@/lib/inspection/reportGenerationService";
+import {
+  clampInspectionStep,
+  getInspectionRiskScale,
+  scrollInspectionPageToBottom,
+  scrollInspectionPageToTop,
+} from "@/lib/inspection/inspectionPageHelpers";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
 import {
@@ -673,36 +679,23 @@ export default function InspectionPage() {
   }
 
   function getActiveRiskScale() {
-    const maxScore =
-      riskProfileId === "simple_4x4"
-        ? 4
-        : riskProfileId === "advanced_6x6"
-          ? 6
-          : 5;
-
-    return {
-      maxScore,
-      severity: severityScale.filter((item) => item.score <= maxScore),
-      likelihood: likelihoodScale.filter((item) => item.score <= maxScore),
-      label:
-        riskProfileId === "simple_4x4"
-          ? "Simple 4x4"
-          : riskProfileId === "advanced_6x6"
-            ? "Advanced 6x6"
-            : "Standard 5x5",
-    };
+    return getInspectionRiskScale({
+      riskProfileId,
+      severityScale,
+      likelihoodScale,
+    });
   }
 
   function goToInspectionStep(nextStep: number) {
-    let targetStep = Math.max(1, Math.min(steps.length, nextStep));
+    const targetStep = clampInspectionStep({
+      nextStep,
+      stepCount: steps.length,
+    });
 
     void isAdvancedMode;
 
     setCurrentStep(targetStep);
-
-    window.requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    scrollInspectionPageToTop();
   }
 
   function deleteFinding(index: number) {
@@ -741,12 +734,7 @@ export default function InspectionPage() {
 
     if (validationMessage) {
       setReportValidationMessage(validationMessage);
-      window.requestAnimationFrame(() => {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        });
-      });
+      scrollInspectionPageToBottom();
       return;
     }
 
