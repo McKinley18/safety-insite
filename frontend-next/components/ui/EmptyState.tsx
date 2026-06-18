@@ -11,15 +11,15 @@ type EmptyStateProps = {
 
 export default function EmptyState({ title, description, icon: Icon, actionLabel, onAction }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50/50 p-8 text-center sm:p-12 dark:border-slate-700 dark:bg-slate-950/60 dark:text-slate-300">
+    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-900 shadow-none ring-1 ring-white/70 sm:p-12">
       {Icon && (
         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 ring-4 ring-white dark:bg-slate-800 dark:ring-slate-900">
-          <Icon className="h-6 w-6 text-slate-400" aria-hidden="true" />
+          <Icon className="h-6 w-6 text-[#1D72B8]" aria-hidden="true" />
         </div>
       )}
       <p className="text-base font-black text-[#102A43]">{title}</p>
       {description && (
-        <p className="mt-2 text-sm font-semibold text-slate-500 max-w-sm">
+        <p className="mt-2 max-w-sm text-sm font-semibold leading-6 text-slate-700">
           {description}
         </p>
       )}
