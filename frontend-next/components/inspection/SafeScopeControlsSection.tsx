@@ -46,13 +46,13 @@ export default function SafeScopeControlsSection({
         ? "OSHA General Industry"
         : agencyMode === "osha_construction"
           ? "OSHA Construction"
-          : "Default / HazLenz AI";
+          : "Default";
 
   const riskMatrixLabel =
     riskProfileId === "simple_4x4"
       ? "Simple 4x4"
       : riskProfileId === "advanced_6x6"
-        ? "Advanced 6x6"
+        ? "Expanded 6x6"
         : "Standard 5x5";
 
   return (
@@ -60,14 +60,14 @@ export default function SafeScopeControlsSection({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
-            HazLenz AI Review
+            Finding Review
           </p>
           <h2 className="mt-1 text-2xl font-black text-white">
-            Analyze this finding
+            Review this finding
           </h2>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-blue-100">
-            HazLenz AI will classify the hazard, suggest standards, score risk,
-            and identify corrective action focus.
+            HazLenz AI will help organize the hazard, suggest standards,
+            score risk, and identify corrective action focus.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export default function SafeScopeControlsSection({
           type="button"
           onClick={() => setSafeScopeHelpOpen((open: boolean) => !open)}
           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 text-xs font-black text-white"
-          aria-label="Explain HazLenz AI decision-support mode"
+          aria-label="Explain HazLenz AI review mode"
         >
           ?
         </button>
@@ -83,9 +83,9 @@ export default function SafeScopeControlsSection({
 
       {safeScopeHelpOpen && (
         <p className="mt-3 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold leading-5 text-blue-100 ring-1 ring-white/10">
-          HazLenz AI provides decision support only. Final compliance decisions
-          remain with qualified personnel. Agency scope and risk matrix are
-          pulled from Settings.
+          HazLenz AI helps prepare the finding for review. Final compliance
+          decisions remain with qualified personnel. Agency scope and risk
+          matrix are pulled from Settings.
         </p>
       )}
 
@@ -98,7 +98,7 @@ export default function SafeScopeControlsSection({
           }}
           className="insite-inspection-action insite-inspection-action-orange insite-inspection-action-sm mx-auto"
         >
-          Run HazLenz
+          Review with HazLenz AI
         </button>
 
         {safeScopeStatus && (

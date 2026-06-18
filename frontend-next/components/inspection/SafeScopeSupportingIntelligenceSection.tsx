@@ -65,12 +65,12 @@ export default function SafeScopeSupportingIntelligenceSection({
       >
         <div className="min-w-0">
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-            Advanced HazLenz AI Checks
+            Additional Checks
           </p>
           <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-400">
             {safeScopeDetailsOpen
-              ? "Hide secondary review details."
-              : "Optional secondary checks. Primary finding guidance is shown above."}
+              ? "Hide additional review details."
+              : "Optional checks. Primary finding guidance is shown above."}
           </p>
         </div>
 
@@ -122,7 +122,7 @@ export default function SafeScopeSupportingIntelligenceSection({
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
-                    Secondary Checks
+                    Additional Checks
                   </p>
                   <h3 className="text-sm font-black text-slate-900 dark:text-slate-100">
                     Possible separate findings

@@ -133,7 +133,7 @@ export default function SafeScopeStandardsSection({
                 {!!standard.matchingReasons?.length && (
                   <details className="mt-2 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
                     <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                      Why HazLenz AI matched this
+                      Why this matched
                     </summary>
 
                     <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
@@ -154,7 +154,7 @@ export default function SafeScopeStandardsSection({
                   return (
                     <details className="mt-2 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2.5 border border-slate-200/50 dark:border-slate-800/40">
                       <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-[#1D72B8] outline-none">
-                        Standards Match Analysis
+                        Match Details
                       </summary>
 
                       <div className="mt-2.5 space-y-2.5 text-xs">
@@ -202,7 +202,7 @@ export default function SafeScopeStandardsSection({
                         {explanation.missingEvidence?.length > 0 && (
                           <div>
                             <p className="font-black text-amber-600 dark:text-amber-400 uppercase text-[9px] tracking-wide">
-                              Missing Operational Evidence / Open Questions
+                              Evidence Needed / Open Questions
                             </p>
                             <ul className="mt-1 space-y-1 pl-4 list-disc text-amber-800 dark:text-amber-400/90">
                               {explanation.missingEvidence.map((ev: string) => (

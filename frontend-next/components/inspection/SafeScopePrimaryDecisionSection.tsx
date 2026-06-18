@@ -48,7 +48,7 @@ export default function SafeScopePrimaryDecisionSection({
   const primaryReason =
     safeScopeResult.decisionExplainability?.decisionSummary ||
     safeScopeResult.explanation ||
-    "HazLenz AI identified a condition requiring review.";
+    "This condition requires review.";
 
   const recommendedAction =
     safeScopeResult.generatedActions?.[0]?.title ||
@@ -65,7 +65,7 @@ export default function SafeScopePrimaryDecisionSection({
   const standardReason =
     getStandardSummary(topStandard) ||
     safeScopeResult.standardsReasoning?.summary ||
-    "HazLenz AI did not identify a primary standard for automatic selection.";
+    "No primary standard was selected automatically.";
 
   const confirmationItems = uniqueItems([
     safeScopeResult.knowledgeBrain?.evidenceGaps || [],
@@ -93,16 +93,16 @@ export default function SafeScopePrimaryDecisionSection({
 
   const degradedReason =
     safeScopeResult.fallbackReason ||
-    "HazLenz AI full intelligence was unavailable. Treat this result as advisory fallback output requiring qualified review.";
+    "Full review was unavailable. Treat this as fallback output requiring qualified review.";
 
   return (
     <section className="mb-4 rounded-2xl border-l-4 border-l-[#1D72B8] border-y border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 p-5 shadow-sm transition-all duration-300 ease-out hover:shadow-md hover:border-sky-500/50 hover:scale-[1.01]">
       {isDegraded && (
         <div className="mb-4 rounded-2xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
-          <p className="font-black">HazLenz AI degraded review</p>
+          <p className="font-black">Limited review</p>
           <p className="mt-1 font-semibold leading-5">{degradedReason}</p>
           <p className="mt-2 text-xs font-black uppercase tracking-wide">
-            Do not treat this as full HazLenz AI intelligence. Qualified review is required.
+            Do not treat this as a full review. Qualified review is required.
           </p>
         </div>
       )}
@@ -110,7 +110,7 @@ export default function SafeScopePrimaryDecisionSection({
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-black uppercase tracking-[0.18em] text-[#1D72B8]">
-            HazLenz AI Decision
+            Finding Summary
           </p>
 
           <h3 className="mt-1 text-xl font-black leading-7 text-slate-900 dark:text-slate-100">
@@ -150,7 +150,7 @@ export default function SafeScopePrimaryDecisionSection({
       <div className="mt-4 space-y-3">
         <div>
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
-            Why HazLenz AI selected this
+            Why this was suggested
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
             {primaryReason}
