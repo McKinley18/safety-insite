@@ -25,6 +25,10 @@ import {
   scrollInspectionPageToBottom,
   scrollInspectionPageToTop,
 } from "@/lib/inspection/inspectionPageHelpers";
+import {
+  buildManualAction,
+  removeManualActionFromList,
+} from "@/lib/inspection/correctiveActionSelectionService";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
 import {
@@ -515,12 +519,7 @@ export default function InspectionPage() {
 
     setManualActions((current) => [
       ...current,
-      {
-        title: manualActionTitle.trim(),
-        priority: manualActionPriority,
-        due: manualActionDue || "Not set",
-        source: "User",
-      },
+      buildManualAction(manualActionTitle, manualActionPriority, manualActionDue),
     ]);
 
     setManualActionTitle("");
@@ -529,9 +528,7 @@ export default function InspectionPage() {
   }
 
   function removeManualAction(indexToRemove: number) {
-    setManualActions((current) =>
-      current.filter((_, index) => index !== indexToRemove),
-    );
+    setManualActions((current) => removeManualActionFromList(current, indexToRemove));
   }
 
   function buildCurrentFinding() {
