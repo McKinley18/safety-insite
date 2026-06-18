@@ -12,6 +12,11 @@ import { localExporter } from "@/lib/localExporter";
 import { getReportPackageForPlan } from "@/lib/reportPackages";
 import { saveInspectionReportToCloud } from "@/lib/cloudReports";
 import { getStoredPlanCode } from "@/lib/planEntitlements";
+import {
+  deleteFindingFromReport,
+  getAddFindingState,
+  getEditFindingState,
+} from "@/lib/inspection/reviewFindingManagementService";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
@@ -461,10 +466,7 @@ export default function InspectionReviewPage() {
   async function addFindingToReport() {
     if (!report) return;
 
-    await setEditReport({
-      ...report,
-      __editMode: "add_finding",
-    });
+    await setEditReport(getAddFindingState(report));
 
     window.location.href = "/inspection";
   }
@@ -472,11 +474,7 @@ export default function InspectionReviewPage() {
   async function editFindingFromReview(index: number) {
     if (!report) return;
 
-    await setEditReport({
-      ...report,
-      __editMode: "edit_finding",
-      __editFindingIndex: index,
-    });
+    await setEditReport(getEditFindingState(report, index));
 
     window.location.href = "/inspection";
   }
@@ -490,15 +488,7 @@ export default function InspectionReviewPage() {
 
     if (!confirmed) return;
 
-    const nextFindings = (report.findings || []).filter(
-      (_finding: any, findingIndex: number) => findingIndex !== index,
-    );
-
-    const nextReport = {
-      ...report,
-      findings: nextFindings,
-      updatedAt: new Date().toISOString(),
-    };
+    const nextReport = deleteFindingFromReport(report, index);
 
     await persistReviewedReport(nextReport);
   }
