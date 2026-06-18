@@ -1,3 +1,5 @@
+import type { StoredAction } from "../actionStorage";
+
 export function getHazLenzScopesForAgencyMode(mode: string) {
   if (!mode || mode === "all") return undefined;
 
@@ -81,3 +83,55 @@ export function hasFindingDraftData(input: {
     input.likelihood
   );
 }
+
+export function normalizeFindingActionsForStorage(
+  finding: any,
+  createdAt = new Date().toISOString(),
+): StoredAction[] {
+  const correctiveActions = finding?.correctiveActions || [];
+
+  return correctiveActions.map((action: any, index: number) => ({
+    id: action.id || `ACT-${finding.id}-${index}`,
+    title: action.title || action.description || "Corrective action",
+    priority: action.priority || "Medium",
+    status: action.status || "Open",
+    due: action.due || action.dueDate || "",
+    source: action.source || "Inspection",
+    location: finding.location || "Field Inspection",
+    findingTitle:
+      finding.hazardCategory ||
+      finding.safeScopeResult?.classification ||
+      finding.description ||
+      "Inspection Finding",
+    createdAt: action.createdAt || createdAt,
+  }));
+}
+
+export function mergeStoredFindingActions(
+  normalizedActions: StoredAction[],
+  storedActions: StoredAction[],
+): StoredAction[] {
+  return [
+    ...normalizedActions,
+    ...storedActions.filter(
+      (storedAction) =>
+        !normalizedActions.some((action) => action.id === storedAction.id),
+    ),
+  ];
+}
+
+export function buildFinalizedInspectionFindings(input: {
+  findings: any[];
+  currentFindingSaved: boolean;
+  hasCurrentFindingData: boolean;
+  buildCurrentFinding: () => any;
+}) {
+  const finalizedFindings = [...input.findings];
+
+  if (!input.currentFindingSaved && input.hasCurrentFindingData) {
+    finalizedFindings.push(input.buildCurrentFinding());
+  }
+
+  return finalizedFindings;
+}
+

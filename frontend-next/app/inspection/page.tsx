@@ -27,7 +27,6 @@ import {
 import {
   getStoredActions,
   saveStoredActions,
-  type StoredAction,
 } from "@/lib/actionStorage";
 import { addActivityEvent } from "@/lib/activityStorage";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
@@ -59,11 +58,14 @@ import { buildFinding } from "@/lib/inspection/findingBuilder";
 import { buildInspectionReport } from "@/lib/inspection/reportBuilder";
 import { validateInspectionReport } from "@/lib/inspection/reportValidation";
 import {
+  buildFinalizedInspectionFindings,
   buildHazLenzObservationText,
   getHazLenzScopeLabel,
   getHazLenzScopesForAgencyMode,
   getStandardKey,
   hasFindingDraftData,
+  mergeStoredFindingActions,
+  normalizeFindingActionsForStorage,
 } from "@/lib/inspection/inspectionWorkflowHelpers";
 
 export default function InspectionPage() {
@@ -621,32 +623,8 @@ export default function InspectionPage() {
     if (!correctiveActions.length) return;
 
     const storedActions = await getStoredActions();
-
-    const normalizedActions: StoredAction[] = correctiveActions.map(
-      (action: any, index: number) => ({
-        id: action.id || `ACT-${finding.id}-${index}`,
-        title: action.title || action.description || "Corrective action",
-        priority: action.priority || "Medium",
-        status: action.status || "Open",
-        due: action.due || action.dueDate || "",
-        source: action.source || "Inspection",
-        location: finding.location || "Field Inspection",
-        findingTitle:
-          finding.hazardCategory ||
-          finding.safeScopeResult?.classification ||
-          finding.description ||
-          "Inspection Finding",
-        createdAt: action.createdAt || new Date().toISOString(),
-      }),
-    );
-
-    const merged = [
-      ...normalizedActions,
-      ...storedActions.filter(
-        (storedAction) =>
-          !normalizedActions.some((action) => action.id === storedAction.id),
-      ),
-    ];
+    const normalizedActions = normalizeFindingActionsForStorage(finding);
+    const merged = mergeStoredFindingActions(normalizedActions, storedActions);
 
     await saveStoredActions(merged);
   }
@@ -854,11 +832,12 @@ export default function InspectionPage() {
   }
 
   function validateReportBeforeGenerate() {
-    const finalizedFindings = [...findings];
-
-    if (!currentFindingSaved && hasCurrentFindingData()) {
-      finalizedFindings.push(buildCurrentFinding());
-    }
+    const finalizedFindings = buildFinalizedInspectionFindings({
+      findings,
+      currentFindingSaved,
+      hasCurrentFindingData: hasCurrentFindingData(),
+      buildCurrentFinding,
+    });
 
     return validateInspectionReport(finalizedFindings);
   }
@@ -879,11 +858,12 @@ export default function InspectionPage() {
 
     setReportValidationMessage("");
 
-    const finalizedFindings = [...findings];
-
-    if (!currentFindingSaved && hasCurrentFindingData()) {
-      finalizedFindings.push(buildCurrentFinding());
-    }
+    const finalizedFindings = buildFinalizedInspectionFindings({
+      findings,
+      currentFindingSaved,
+      hasCurrentFindingData: hasCurrentFindingData(),
+      buildCurrentFinding,
+    });
 
     const coverPage = (await getCoverPage<any>()) || {};
 
