@@ -80,7 +80,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [portalMounted, setPortalMounted] = useState(false);
   const [hasAuthSession, setHasAuthSession] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [planCode, setPlanCode] = useState<string>("basic");
   const isOnline = useNetworkStatus();
 
@@ -218,46 +217,28 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [isPublicPage, pathname, router]);
 
   useEffect(() => {
-    const themeVersion = "theme-reset-2026-06-18-insite-mobile-v2";
-    const savedThemeVersion = localStorage.getItem("sentinel_theme_version");
-    const saved = localStorage.getItem("sentinel_dark_mode");
+    if (typeof window === "undefined") return;
 
-    if (savedThemeVersion !== themeVersion) {
-      localStorage.setItem("sentinel_theme_version", themeVersion);
-      localStorage.setItem("sentinel_dark_mode", "false");
-      document.documentElement.classList.remove("dark");
-      document.body.classList.remove("dark");
-      setDarkMode(false);
-      return;
-    }
-
-    setDarkMode(saved === "true");
+    localStorage.setItem("sentinel_theme_version", "light-only-2026-06-18-v1");
+    localStorage.setItem("sentinel_dark_mode", "false");
+    document.documentElement.classList.remove("dark");
+    document.body.classList.remove("dark");
   }, []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("sentinel_dark_mode", "true");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("sentinel_dark_mode", "false");
-    }
-  }, [darkMode]);
-
   return (
-    <div className="sentinel-modern-shell flex min-h-dvh flex-col text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="sentinel-modern-shell flex min-h-dvh flex-col text-slate-900 transition-colors">
       <ToastContainer />
       <header className="sticky top-0 z-[900] w-full overflow-visible border-b border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
-        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-2 sm:gap-3">
+        <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
-            className="relative flex h-14 w-[min(62vw,250px)] shrink-0 self-center overflow-hidden sm:h-20 sm:w-[420px] lg:h-20 lg:w-[520px]"
+            className="relative flex h-16 w-[315px] shrink-0 self-center overflow-visible sm:h-20 sm:w-[420px] lg:h-20 lg:w-[520px]"
             aria-label="Safety InSite Home"
           >
             <img
               src={BRAND_HEADER_LOGO}
               alt="Safety InSite powered by HazLenz AI"
-              className="absolute left-0 top-1/2 h-[112px] w-auto max-w-full -translate-y-1/2 object-contain sm:-left-12 sm:h-[245px] sm:max-w-none lg:-left-16 lg:h-[288px]"
+              className="absolute -left-9 top-[64%] h-[190px] w-auto max-w-none -translate-y-1/2 object-contain sm:-left-12 sm:h-[245px] lg:-left-16 lg:h-[288px]"
             />
           </Link>
 
@@ -316,16 +297,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     createPortal(
                       <div
                         ref={profileMenuRef}
-                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#F0F8FF_0%,#FFFFFF_45%,#F8FAFC_100%)] text-[#102A43] shadow-2xl shadow-slate-950/30 dark:border-slate-700 dark:bg-[linear-gradient(180deg,#0B1320_0%,#111827_55%,#020617_100%)] dark:text-slate-100 sm:right-4 sm:top-[82px]"
+                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#F0F8FF_0%,#FFFFFF_45%,#F8FAFC_100%)] text-[#102A43] shadow-2xl shadow-slate-950/30(180deg,#0B1320_0%,#111827_55%,#020617_100%)] sm:right-4 sm:top-[82px]"
                       >
-                      <button
-                        type="button"
-                        onClick={() => setDarkMode(!darkMode)}
-                        className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-black text-[#102A43] transition-colors hover:bg-[#E8F4FF] dark:text-slate-100 dark:hover:bg-white/10"
-                      >
-                        {darkMode ? 'Light Mode' : 'Dark Mode'}
-                        {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-                      </button>
 
                       {isPinRequired() && (
                         <button

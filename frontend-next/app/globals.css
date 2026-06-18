@@ -1168,3 +1168,27 @@ body {
     overflow-x: clip;
   }
 }
+
+
+/* Light-only mode: dark mode is intentionally disabled until the mobile UI is stabilized. */
+html,
+body {
+  color-scheme: light;
+}
+
+html.dark,
+body.dark {
+  color-scheme: light;
+}
+
+html.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.11), transparent 32rem),
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.09), transparent 28rem),
+    linear-gradient(180deg, #eef2f7 0%, #e2e8f0 100%) !important;
+  color: #0f172a !important;
+}
+
+.sentinel-modern-shell {
+  color: #0f172a;
+}

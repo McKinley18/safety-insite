@@ -391,7 +391,7 @@ export default function QuickInspectionPage() {
             />
           </label>
 
-          <label className="cursor-pointer rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800">
+          <label className="cursor-pointer rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-black text-slate-700 transition hover:bg-slate-50">
             Upload
             <input
               type="file"
@@ -412,7 +412,7 @@ export default function QuickInspectionPage() {
               return (
                 <div
                   key={photo.id || index}
-                  className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-950"
+                  className="rounded-xl border border-slate-200 bg-slate-50 p-3"
                 >
                   {photoUrl && (
                     <AnnotationPreview
@@ -443,7 +443,7 @@ export default function QuickInspectionPage() {
                       Remove
                     </AppButton>
 
-                    <span className="text-xs font-black text-slate-500 dark:text-slate-400">
+                    <span className="text-xs font-black text-slate-500">
                       {annotations.length
                         ? `${annotations.length} annotation(s)`
                         : "No annotations"}
@@ -484,7 +484,7 @@ export default function QuickInspectionPage() {
           value={description}
           onChange={(event) => setDescription(event.target.value)}
           placeholder="Example: Guard missing at tail pulley while employees access the cleanup area."
-          className="mt-3 min-h-28 bg-white dark:bg-slate-900/85 font-semibold focus:bg-white dark:focus:bg-slate-900/85"
+          className="mt-3 min-h-28 bg-white font-semibold focus:bg-white"
         />
       </AppPanel>
 
@@ -499,7 +499,7 @@ export default function QuickInspectionPage() {
           value={location}
           onChange={(event) => setLocation(event.target.value)}
           placeholder="Example: Conveyor 3, north catwalk"
-          className="mt-3 bg-white dark:bg-slate-900/85 focus:bg-white dark:focus:bg-slate-900/85"
+          className="mt-3 bg-white focus:bg-white"
         />
       </AppPanel>
 
@@ -515,7 +515,7 @@ export default function QuickInspectionPage() {
           value={hazardCategory}
           onChange={(event) => setHazardCategory(event.target.value)}
           placeholder="Let HazLenz AI suggest or type one"
-          className="mt-3 bg-white dark:bg-slate-900/85 focus:bg-white dark:focus:bg-slate-900/85"
+          className="mt-3 bg-white focus:bg-white"
         />
         <datalist id="quick-hazard-category-options">
           {hazardCategoryOptions.map((category) => (
@@ -542,7 +542,7 @@ export default function QuickInspectionPage() {
         />
 
         {safeScopeQuickResult ? (
-          <div className="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 p-5 shadow-none">
+          <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-none">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
@@ -562,11 +562,11 @@ export default function QuickInspectionPage() {
               </span>
             </div>
 
-            <div className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-4 shadow-none">
+            <div className="mt-3 rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-none">
               <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
                 Suggested Immediate Action
               </p>
-              <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
+              <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
                 {safeScopeQuickResult.generatedActions?.[0]?.title}
               </p>
             </div>
@@ -586,7 +586,7 @@ export default function QuickInspectionPage() {
             </div>
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold text-slate-500 dark:text-slate-400">
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
             Run HazLenz AI Quick Review after adding a photo, category, or observed
             condition.
           </p>
@@ -605,13 +605,13 @@ export default function QuickInspectionPage() {
             value={actionTitle}
             onChange={(event) => setActionTitle(event.target.value)}
             placeholder="Action to take"
-            className="bg-slate-50 dark:bg-slate-950 focus:bg-white dark:focus:bg-slate-950"
+            className="bg-slate-50 focus:bg-white"
           />
 
           <AppSelect
             value={priority}
             onChange={(event) => setPriority(event.target.value)}
-            className="bg-slate-50 dark:bg-slate-950 focus:bg-white dark:focus:bg-slate-950"
+            className="bg-slate-50 focus:bg-white"
           >
             <option>Low</option>
             <option>Medium</option>
@@ -623,7 +623,7 @@ export default function QuickInspectionPage() {
             type="date"
             value={due}
             onChange={(event) => setDue(event.target.value)}
-            className="bg-slate-50 dark:bg-slate-950 focus:bg-white dark:focus:bg-slate-950"
+            className="bg-slate-50 focus:bg-white"
           />
         </div>
       </AppPanel>
@@ -635,30 +635,30 @@ export default function QuickInspectionPage() {
           description="Create a report package from this quick inspection finding and open it for review."
         />
 
-        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950">
-          <div className="grid gap-2 text-xs font-black text-slate-600 dark:text-slate-300 sm:grid-cols-2">
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <div className="grid gap-2 text-xs font-black text-slate-600 sm:grid-cols-2">
             <p>
-              <span className="text-slate-900 dark:text-slate-100">Photos:</span>{" "}
+              <span className="text-slate-900">Photos:</span>{" "}
               {photos.length}
             </p>
             <p>
-              <span className="text-slate-900 dark:text-slate-100">Condition:</span>{" "}
+              <span className="text-slate-900">Condition:</span>{" "}
               {description.trim() ? "Captured" : "Needed"}
             </p>
             <p>
-              <span className="text-slate-900 dark:text-slate-100">Location:</span>{" "}
+              <span className="text-slate-900">Location:</span>{" "}
               {location.trim() || "Needed"}
             </p>
             <p>
-              <span className="text-slate-900 dark:text-slate-100">Category:</span>{" "}
+              <span className="text-slate-900">Category:</span>{" "}
               {hazardCategory || safeScopeQuickResult?.classification || "Pending"}
             </p>
             <p>
-              <span className="text-slate-900 dark:text-slate-100">HazLenz AI:</span>{" "}
+              <span className="text-slate-900">HazLenz AI:</span>{" "}
               {safeScopeQuickResult ? "Reviewed" : "Optional"}
             </p>
             <p>
-              <span className="text-slate-900 dark:text-slate-100">Action:</span>{" "}
+              <span className="text-slate-900">Action:</span>{" "}
               {actionTitle.trim() ? "Added" : "Optional"}
             </p>
           </div>
@@ -675,7 +675,7 @@ export default function QuickInspectionPage() {
             </AppButton>
 
             {status && (
-              <p className="max-w-md text-sm font-black text-slate-600 dark:text-slate-300">
+              <p className="max-w-md text-sm font-black text-slate-600">
                 {status}
               </p>
             )}

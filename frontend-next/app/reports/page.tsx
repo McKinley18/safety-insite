@@ -598,11 +598,11 @@ export default function ReportsPage() {
       )}
 
       {!canUseWorkspaceReports && (
-        <div className="rounded-xl border border-slate-200/80 bg-white px-4 py-3 shadow-none ring-1 ring-white/70 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900 dark:ring-slate-800">
+        <div className="rounded-xl border border-slate-200/80 bg-white px-4 py-3 shadow-none ring-1 ring-white/70 backdrop-blur-xl">
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Saved Reports
           </p>
-          <p className="mt-1 text-sm font-bold leading-6 text-slate-600 dark:text-slate-300">
+          <p className="mt-1 text-sm font-bold leading-6 text-slate-600">
             View, edit, review, and export saved inspection reports.
           </p>
         </div>
@@ -618,14 +618,14 @@ export default function ReportsPage() {
           className="w-full sm:max-w-xs"
         />
 
-        <label className="flex w-full items-center gap-2 rounded-xl border border-slate-200/80 bg-white px-3 min-h-[44px] text-xs font-black text-slate-600 shadow-none dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 sm:w-fit">
+        <label className="flex w-full items-center gap-2 rounded-xl border border-slate-200/80 bg-white px-3 min-h-[44px] text-xs font-black text-slate-600 shadow-none sm:w-fit">
           Sort
           <select
             value={reportSortOrder}
             onChange={(event) =>
               setReportSortOrder(event.target.value as "newest" | "oldest")
             }
-            className="bg-transparent text-sm font-black text-slate-900 outline-none w-full min-h-[48px] dark:text-slate-100"
+            className="bg-transparent text-sm font-black text-slate-900 outline-none w-full min-h-[48px]"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
@@ -659,7 +659,7 @@ export default function ReportsPage() {
                 key={report.id}
                 as="article"
                 padding="sm"
-                className="relative overflow-hidden rounded-xl border border-slate-200/80 bg-white p-0 shadow-none dark:border-slate-800 dark:bg-slate-900 sm:p-0"
+                className="relative overflow-hidden rounded-xl border border-slate-200/80 bg-white p-0 shadow-none sm:p-0"
               >
                 <div className="absolute right-2 top-2 z-10 flex items-center gap-1">
                   <button
@@ -668,7 +668,7 @@ export default function ReportsPage() {
                       event.stopPropagation();
                       beginInlineEdit(report);
                     }}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200/80 bg-white text-xs font-black text-[#102A43] shadow-none hover:border-[#1D72B8] dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-slate-200/80 bg-white text-xs font-black text-[#102A43] shadow-none hover:border-[#1D72B8]"
                     aria-label="Edit report"
                     title="Edit report"
                   >
@@ -681,7 +681,7 @@ export default function ReportsPage() {
                       event.stopPropagation();
                       deleteReport(report.id);
                     }}
-                    className="flex h-7 w-7 items-center justify-center rounded-full border border-red-100 bg-white text-xs font-black text-red-700 shadow-none hover:bg-red-50 dark:border-red-900/60 dark:bg-slate-950 dark:text-red-300 dark:hover:bg-red-950/40"
+                    className="flex h-7 w-7 items-center justify-center rounded-full border border-red-100 bg-white text-xs font-black text-red-700 shadow-none hover:bg-red-50"
                     aria-label="Delete report"
                     title="Delete report"
                   >
@@ -694,7 +694,7 @@ export default function ReportsPage() {
                   onClick={() =>
                     setExpandedReportId(expanded ? null : report.id)
                   }
-                  className="relative flex w-full items-start gap-3 px-4 py-4 pr-[5.5rem] text-left transition hover:bg-slate-50/80 dark:hover:bg-slate-800/60"
+                  className="relative flex w-full items-start gap-3 px-4 py-4 pr-[5.5rem] text-left transition hover:bg-slate-50/80"
                 >
                   <div className="min-w-0">
                     <div className="flex w-fit max-w-full flex-wrap items-center gap-1.5">
@@ -719,7 +719,7 @@ export default function ReportsPage() {
                       </span>
                     </div>
 
-                    <h3 className="mt-1.5 text-[15px] font-black leading-tight tracking-[-0.02em] text-slate-900 dark:text-slate-100">
+                    <h3 className="mt-1.5 text-[15px] font-black leading-tight tracking-[-0.02em] text-slate-900">
                       {getReportTitle(report)}
                     </h3>
 
@@ -728,13 +728,13 @@ export default function ReportsPage() {
                     </p>
                   </div>
 
-                  <span className="mt-2 inline-flex items-center gap-1 rounded-lg border border-slate-200/80 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8] shadow-none dark:border-slate-700 dark:bg-slate-950 dark:text-blue-300 sm:absolute sm:bottom-1.5 sm:right-3 sm:mt-0">
+                  <span className="mt-2 inline-flex items-center gap-1 rounded-lg border border-slate-200/80 bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8] shadow-none sm:absolute sm:bottom-1.5 sm:right-3 sm:mt-0">
                     {expanded ? "Hide details ▲" : "View details ▼"}
                   </span>
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200 bg-slate-50/45 px-4 py-4 dark:border-slate-800 dark:bg-slate-950/70">
+                  <div className="border-t border-slate-200 bg-slate-50/45 px-4 py-4">
                     {editing ? (
                       <div className="sentinel-phone-stack sm:grid sm:grid-cols-2 sm:gap-3">
                         <AppInput
@@ -775,24 +775,24 @@ export default function ReportsPage() {
                     ) : (
                       <div className="sentinel-phone-stack sm:grid sm:grid-cols-[76px_1fr] sm:gap-2.5">
                         {firstPhoto ? (
-                          <div className="hidden h-[76px] w-[76px] overflow-hidden rounded-xl border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900 sm:block">
+                          <div className="hidden h-[76px] w-[76px] overflow-hidden rounded-xl border border-slate-200 bg-slate-100 sm:block">
                             <AnnotationPreview
                               photoUrl={firstPhoto.url}
                               annotations={firstPhoto.annotations || []}
                             />
                           </div>
                         ) : (
-                          <div className="hidden h-[76px] w-[76px] rounded-xl border border-dashed border-slate-300 bg-slate-50 dark:border-slate-700 dark:bg-slate-900 sm:block" />
+                          <div className="hidden h-[76px] w-[76px] rounded-xl border border-dashed border-slate-300 bg-slate-50 sm:block" />
                         )}
 
                         <div className="min-w-0">
-                          <div className="rounded-xl border border-slate-200/80 bg-white/95 px-4 py-4 shadow-none dark:border-slate-800 dark:bg-slate-900">
-                            <div className="flex items-start justify-between gap-3 border-b border-slate-200 pb-2 dark:border-slate-800">
+                          <div className="rounded-xl border border-slate-200/80 bg-white/95 px-4 py-4 shadow-none">
+                            <div className="flex items-start justify-between gap-3 border-b border-slate-200 pb-2">
                               <div className="min-w-0">
                                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#1D72B8]">
                                   Report Contents
                                 </p>
-                                <h4 className="mt-0.5 text-sm font-black text-slate-900 dark:text-slate-100">
+                                <h4 className="mt-0.5 text-sm font-black text-slate-900">
                                   Inspection report
                                 </h4>
                               </div>
@@ -815,9 +815,9 @@ export default function ReportsPage() {
                               ].map(([value, label]) => (
                                 <div
                                   key={label}
-                                  className="min-w-0 rounded-lg border border-slate-200/80 bg-slate-50/70 px-2 py-1.5 text-center dark:border-slate-800 dark:bg-slate-950"
+                                  className="min-w-0 rounded-lg border border-slate-200/80 bg-slate-50/70 px-2 py-1.5 text-center"
                                 >
-                                  <p className="text-center text-xs font-black leading-none text-slate-900 dark:text-slate-100">
+                                  <p className="text-center text-xs font-black leading-none text-slate-900">
                                     {value}
                                   </p>
                                   <p className="mt-0.5 text-center text-[9px] font-black uppercase tracking-wide text-slate-400">
@@ -827,7 +827,7 @@ export default function ReportsPage() {
                               ))}
                             </div>
 
-                            <div className="mt-3 rounded-lg border border-slate-200/80 bg-slate-50/70 px-3 py-2.5 text-[11px] font-semibold leading-4 text-slate-600 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300">
+                            <div className="mt-3 rounded-lg border border-slate-200/80 bg-slate-50/70 px-3 py-2.5 text-[11px] font-semibold leading-4 text-slate-600">
                               <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
                                 Report details
                               </p>

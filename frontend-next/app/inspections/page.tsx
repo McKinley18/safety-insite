@@ -198,8 +198,8 @@ export default function InspectionsPage() {
                 key={workflow.id}
                 className={`h-full w-full max-w-[320px] overflow-hidden rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
                   selected
-                    ? "border-[#1D72B8] bg-[#E8F4FF] dark:bg-blue-950/40"
-                    : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:bg-slate-900/90"
+                    ? "border-[#1D72B8] bg-[#E8F4FF]"
+                    : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white"
                 }`}
               >
                 <button
@@ -218,22 +218,22 @@ export default function InspectionsPage() {
 
                     </div>
 
-                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900 dark:text-slate-100">
+                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900">
                       {workflow.title}
                     </h3>
-                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">
                       {workflow.description}
                     </p>
                   </div>
 
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-lg font-black text-[#102A43] shadow-none transition dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-lg font-black text-[#102A43] shadow-none transition">
                     {expanded ? "−" : "+"}
                   </span>
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200/80 bg-white/85 px-4 py-4 dark:border-slate-800 dark:bg-slate-950/70 sm:px-5">
-                    <p className="text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+                  <div className="border-t border-slate-200/80 bg-white/85 px-4 py-4 sm:px-5">
+                    <p className="text-xs font-semibold leading-5 text-slate-600">
                       {workflow.details}
                     </p>
 
@@ -241,7 +241,7 @@ export default function InspectionsPage() {
                       {featureRows.map((feature) => (
                         <div
                           key={feature}
-                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-none dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
+                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-none"
                         >
                           {feature}
                         </div>
@@ -294,7 +294,7 @@ export default function InspectionsPage() {
             Settings
           </AppTextLink>
           . Current default:{" "}
-          <span className="font-black text-slate-700 dark:text-slate-200">
+          <span className="font-black text-slate-700">
             {regulatoryScope === "msha"
               ? "MSHA"
               : regulatoryScope === "osha_general"

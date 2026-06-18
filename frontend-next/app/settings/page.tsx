@@ -47,8 +47,8 @@ function SelectorCard({
       className={[
         "rounded-xl border px-4 py-3 text-left transition",
         selected
-          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:bg-blue-950/40"
-          : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:bg-slate-900/90",
+          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none"
+          : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white",
       ].join(" ")}
     >
       <div className="flex items-start justify-between gap-3">
@@ -64,7 +64,7 @@ function SelectorCard({
             "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-black",
             selected
               ? "border-[#1D72B8] bg-[#1D72B8] text-white"
-              : "border-slate-300 bg-white text-transparent dark:border-slate-700 dark:bg-slate-950",
+              : "border-slate-300 bg-white text-transparent",
           ].join(" ")}
         >
           ✓

@@ -139,14 +139,14 @@ function getWeekDayTone(dateKey: string, events: SafetyCalendarEvent[]) {
   );
 
   if (hasDueSoon) {
-    return "border-amber-400 bg-amber-50 ring-2 ring-amber-100 dark:bg-amber-950/35 dark:ring-amber-900/50";
+    return "border-amber-400 bg-amber-50 ring-2 ring-amber-100";
   }
 
   if (dateKey === todayKey) {
-    return "border-[#1D72B8] bg-[#E8F4FF] dark:bg-blue-950/40";
+    return "border-[#1D72B8] bg-[#E8F4FF]";
   }
 
-  return "border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900";
+  return "border-slate-200/80 bg-white";
 }
 
 function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
@@ -168,11 +168,11 @@ function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
 }
 
 function getCalendarEventTone(event: SafetyCalendarEvent) {
-  if (event.status === "Completed") return "border-emerald-100 bg-emerald-50 text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200";
-  if (event.status === "Overdue" || event.priority === "Critical") return "border-red-100 bg-red-50 text-red-800 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-200";
-  if (event.priority === "High") return "border-orange-100 bg-orange-50 text-orange-800 dark:border-orange-900/60 dark:bg-orange-950/40 dark:text-orange-200";
-  if (event.type === "inspection") return "border-blue-100 bg-blue-50 text-blue-800 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-200";
-  return "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300";
+  if (event.status === "Completed") return "border-emerald-100 bg-emerald-50 text-emerald-800";
+  if (event.status === "Overdue" || event.priority === "Critical") return "border-red-100 bg-red-50 text-red-800";
+  if (event.priority === "High") return "border-orange-100 bg-orange-50 text-orange-800";
+  if (event.type === "inspection") return "border-blue-100 bg-blue-50 text-blue-800";
+  return "border-slate-200 bg-slate-50 text-slate-700";
 }
 
 function getCalendarEventTypeLabel(type: SafetyCalendarEvent["type"]) {
@@ -452,7 +452,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-none dark:border-slate-800 dark:bg-slate-900 sm:p-6">
+      <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-none sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <SectionHeader
             eyebrow="Week at a Glance"
@@ -492,7 +492,7 @@ export default function DashboardPage() {
                 {date.toLocaleDateString("en-US", { weekday: "short" })}
               </span>
 
-              <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-slate-100 sm:right-2 sm:top-2 sm:text-[10px]">
+              <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 sm:right-2 sm:top-2 sm:text-[10px]">
                 {date.getDate()}
               </span>
 
