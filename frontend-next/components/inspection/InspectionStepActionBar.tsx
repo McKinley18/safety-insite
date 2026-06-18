@@ -27,6 +27,20 @@ export default function InspectionStepActionBar({
   saveFinding,
   generateReport,
 }: Props) {
+  void currentStep;
+  void hasCurrentFindingData;
+  void safeScopeResult;
+  void selectedStandards;
+  void selectedGeneratedActions;
+  void manualActions;
+  void currentFindingSaved;
+  void goToInspectionStep;
+  void handleRunSafeScope;
+  void saveFinding;
+  void generateReport;
+
+  return null;
+
   const actionCount = selectedGeneratedActions.length + manualActions.length;
 
   if (currentStep === 1) {

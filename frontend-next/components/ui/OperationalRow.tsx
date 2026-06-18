@@ -18,11 +18,11 @@ export default function OperationalRow({
   children,
 }: OperationalRowProps) {
   return (
-    <div className="border-b border-slate-200 py-5 last:border-b-0">
+    <div className="border-b border-slate-200 py-5 last:border-b-0 dark:border-slate-800">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-lg font-black text-slate-900">
+            <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">
               {title}
             </h3>
 

@@ -269,11 +269,11 @@ function SafeScopeOfflineNotice({ safeScopeResult }: { safeScopeResult: any }) {
   if (safeScopeResult?.mode !== "offline_limited_advisory") return null;
 
   return (
-    <div className="mt-3 rounded-xl bg-amber-50 px-3 py-2 ring-1 ring-amber-200 border-l-4 border-l-amber-500">
+    <div className="mt-3 rounded-xl bg-amber-50 px-3 py-2 ring-1 ring-amber-200 border-l-4 border-l-amber-500 dark:bg-amber-950/35 dark:ring-amber-900/60">
       <p className="text-[10px] font-black uppercase tracking-wide text-amber-700">
         Offline Advisory Snapshot
       </p>
-      <p className="mt-1 text-xs font-bold text-slate-800">
+      <p className="mt-1 text-xs font-bold text-slate-800 dark:text-slate-200">
         {safeScopeResult.advisorySummary}
       </p>
       <div className="mt-2 space-y-1">
@@ -298,7 +298,7 @@ function SafeScopeRealImageAnalysisAppendix({
   if (!realImage || !realImage.visualSignals?.length) return null;
 
   return (
-    <div className="mt-3 rounded-xl bg-indigo-50 px-3 py-2 ring-1 ring-indigo-200">
+    <div className="mt-3 rounded-xl bg-indigo-50 px-3 py-2 ring-1 ring-indigo-200 dark:bg-indigo-950/35 dark:ring-indigo-900/60">
       <p className="text-[10px] font-black uppercase tracking-wide text-indigo-700">
         AI Photo Analysis (Beta)
       </p>
@@ -312,7 +312,7 @@ function SafeScopeRealImageAnalysisAppendix({
               'bg-amber-500'
             }`} />
             <div>
-              <p className="text-xs font-bold text-slate-800">
+              <p className="text-xs font-bold text-slate-800 dark:text-slate-200">
                 {sig.signal.replace(/_/g, " ")} 
                 <span className="ml-1 text-[10px] font-black uppercase text-slate-400 italic">
                   ({sig.support.replace(/_/g, " ")})
@@ -349,18 +349,18 @@ function SafeScopeVisualEvidenceAppendix({
   if (!visual || visual.visualSupportLevel === 'not_evaluated') return null;
 
   return (
-    <div className="rounded-xl bg-blue-50 px-3 py-2 ring-1 ring-blue-200">
+    <div className="rounded-xl bg-blue-50 px-3 py-2 ring-1 ring-blue-200 dark:bg-blue-950/35 dark:ring-blue-900/60">
       <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
         Visual evidence analysis
       </p>
 
       <div className="mt-2 grid gap-2 md:grid-cols-2">
         <p>
-          <span className="font-black text-slate-800">Status:</span>{" "}
+          <span className="font-black text-slate-800 dark:text-slate-200">Status:</span>{" "}
           {visual.visualSupportLevel.replace(/_/g, " ")}
         </p>
         <p>
-          <span className="font-black text-slate-800">Score:</span>{" "}
+          <span className="font-black text-slate-800 dark:text-slate-200">Score:</span>{" "}
           {visual.photoEvidenceScore}/10
         </p>
       </div>
@@ -423,44 +423,44 @@ function SafeScopeEquipmentReasoningAppendix({
   const rankingReasons = asReviewList(summary?.rankingReasons).slice(0, 3);
 
   return (
-    <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2 ring-1 ring-slate-200">
+    <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-800">
       <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
         Equipment reasoning
       </p>
 
       <div className="mt-2 grid gap-2 md:grid-cols-2">
         <p>
-          <span className="font-black text-slate-800">Mode:</span>{" "}
+          <span className="font-black text-slate-800 dark:text-slate-200">Mode:</span>{" "}
           {formatEquipmentReasoningMode(summary?.primaryReasoningMode)}
         </p>
 
         <p>
-          <span className="font-black text-slate-800">Primary context:</span>{" "}
+          <span className="font-black text-slate-800 dark:text-slate-200">Primary context:</span>{" "}
           {summary?.primaryEquipmentContext || "Unknown"}
         </p>
 
         <p>
-          <span className="font-black text-slate-800">Mechanism/archetype:</span>{" "}
+          <span className="font-black text-slate-800 dark:text-slate-200">Mechanism/archetype:</span>{" "}
           {summary?.primaryMechanismOrArchetype || "Unknown"}
         </p>
 
         {!!summary?.supportingContext?.length && (
           <p>
-            <span className="font-black text-slate-800">Support:</span>{" "}
+            <span className="font-black text-slate-800 dark:text-slate-200">Support:</span>{" "}
             {summary.supportingContext.slice(0, 2).join(" · ")}
           </p>
         )}
 
         {!!mechanisms.length && (
           <p>
-            <span className="font-black text-slate-800">Mechanisms:</span>{" "}
+            <span className="font-black text-slate-800 dark:text-slate-200">Mechanisms:</span>{" "}
             {mechanisms.join(" · ")}
           </p>
         )}
 
         {!!domains.length && (
           <p>
-            <span className="font-black text-slate-800">Domains:</span>{" "}
+            <span className="font-black text-slate-800 dark:text-slate-200">Domains:</span>{" "}
             {domains.join(" · ")}
           </p>
         )}
@@ -468,14 +468,14 @@ function SafeScopeEquipmentReasoningAppendix({
 
       {!!rankingReasons.length && (
         <p className="mt-2">
-          <span className="font-black text-slate-800">Ranking basis:</span>{" "}
+          <span className="font-black text-slate-800 dark:text-slate-200">Ranking basis:</span>{" "}
           {rankingReasons.join(" · ")}
         </p>
       )}
 
       {!!evidenceQuestions.length && (
         <p className="mt-2">
-          <span className="font-black text-slate-800">Evidence questions:</span>{" "}
+          <span className="font-black text-slate-800 dark:text-slate-200">Evidence questions:</span>{" "}
           {evidenceQuestions.join(" · ")}
         </p>
       )}
@@ -851,12 +851,12 @@ export default function InspectionReviewPage() {
           ].map(([label, value]) => (
             <div
               key={label}
-              className="flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-950 px-3 text-center"
+              className="flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-950 px-3 text-center ring-1 ring-slate-200 dark:ring-slate-800"
             >
               <p className="text-[9px] font-black uppercase tracking-wide text-[#1D72B8]">
                 {label}
               </p>
-              <p className="mt-0.5 max-w-full truncate text-xs font-black text-slate-800" title={String(value)}>
+              <p className="mt-0.5 max-w-full truncate text-xs font-black text-slate-800 dark:text-slate-200" title={String(value)}>
                 {value}
               </p>
             </div>
@@ -900,8 +900,8 @@ export default function InspectionReviewPage() {
               onClick={() => updateReportOption(key, !checked)}
               className={`flex h-11 items-center justify-between rounded-xl border px-3 text-left transition ${
                 checked
-                  ? "border-[#1D72B8] bg-[#E8F4FF]"
-                  : "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:bg-white"
+                  ? "border-[#1D72B8] bg-[#E8F4FF] dark:bg-blue-950/40"
+                  : "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:bg-white dark:hover:bg-slate-900"
               }`}
             >
               <span className="truncate text-sm font-black text-slate-900 dark:text-slate-100">
@@ -940,15 +940,15 @@ export default function InspectionReviewPage() {
               </p>
             </div>
             <div className="grid grid-cols-3 gap-2 text-center">
-              <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
+              <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
                 <p className="text-[10px] font-black uppercase text-slate-400">HazLenz AI</p>
                 <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getSafeScopeReviewSummary(findings).total}</p>
               </div>
-              <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
+              <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
                 <p className="text-[10px] font-black uppercase text-slate-400">Open</p>
                 <p className="text-lg font-black text-amber-700">{getSafeScopeReviewSummary(findings).unvalidated}</p>
               </div>
-              <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100">
+              <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
                 <p className="text-[10px] font-black uppercase text-slate-400">Escalated</p>
                 <p className="text-lg font-black text-red-700">{getSafeScopeReviewSummary(findings).escalated}</p>
               </div>
@@ -1201,7 +1201,7 @@ export default function InspectionReviewPage() {
                               key={actionIndex}
                               className="text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300"
                             >
-                              <span className="font-black text-slate-800">
+                              <span className="font-black text-slate-800 dark:text-slate-200">
                                 {getActionTitle(action)}
                               </span>
                               {" "}· Priority: {action.priority || "Medium"} · Due:{" "}
@@ -1317,7 +1317,7 @@ export default function InspectionReviewPage() {
         >
           <span
             className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-[#1D72B8] text-xs font-black text-white ${
-              humanReviewConfirmed ? "bg-[#1D72B8]" : "bg-white"
+              humanReviewConfirmed ? "bg-[#1D72B8]" : "bg-white dark:bg-slate-950"
             }`}
           >
             {humanReviewConfirmed ? "✓" : ""}

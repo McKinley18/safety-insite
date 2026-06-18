@@ -82,7 +82,7 @@ export default function SafeScopeControlsSection({
       </div>
 
       {safeScopeHelpOpen && (
-        <p className="mt-3 rounded-xl bg-slate-50 px-3 py-2 text-xs font-semibold leading-5 text-blue-100">
+        <p className="mt-3 rounded-xl bg-white/10 px-3 py-2 text-xs font-semibold leading-5 text-blue-100 ring-1 ring-white/10">
           HazLenz AI provides decision support only. Final compliance decisions
           remain with qualified personnel. Agency scope and risk matrix are
           pulled from Settings.
@@ -96,13 +96,13 @@ export default function SafeScopeControlsSection({
             console.log("[HazLenz AI] Button clicked");
             handleRunSafeScope();
           }}
-          className="w-full rounded-xl bg-[#F97316] px-5 py-3 text-sm font-black text-white shadow-lg shadow-orange-950/20 ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98]"
+          className="w-full rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white shadow-sm ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8] active:scale-[0.98]"
         >
           Run HazLenz AI Review
         </button>
 
         {safeScopeStatus && (
-          <p className="mt-2 text-center text-xs font-bold leading-5 text-amber-200">
+          <p className="mt-2 text-center text-xs font-bold leading-5 text-slate-300">
             {safeScopeStatus}
           </p>
         )}

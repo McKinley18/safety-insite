@@ -121,7 +121,7 @@ export default function SafeScopeInspectionStep({
                     }
                     handleRunSafeScope(true);
                   }}
-                  className="rounded-xl bg-slate-900 text-white dark:bg-white dark:bg-slate-900 dark:text-slate-900 dark:text-slate-100 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
+                  className="rounded-xl bg-slate-900 text-white dark:bg-slate-900 dark:text-slate-100 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
                 >
                   Run in Offline Fallback Mode
                 </button>

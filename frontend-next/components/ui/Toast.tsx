@@ -17,7 +17,7 @@ export function ToastContainer() {
           key={toast.id}
           className={twMerge(
             clsx(
-              "pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-900/5 transition-all animate-in slide-in-from-bottom-5 fade-in-20 duration-300",
+              "pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-900 dark:ring-slate-800 transition-all animate-in slide-in-from-bottom-5 fade-in-20 duration-300",
               {
                 "border-l-4 border-l-green-500": toast.type === "success",
                 "border-l-4 border-l-red-500": toast.type === "error",
@@ -32,7 +32,7 @@ export function ToastContainer() {
             {toast.type === "info" && <Info className="h-5 w-5 text-blue-500" />}
           </div>
           <div className="flex-1 pt-0.5">
-            <p className="text-sm font-semibold text-slate-800">{toast.message}</p>
+            <p className="text-sm font-semibold text-slate-800 dark:text-slate-100">{toast.message}</p>
           </div>
           <button
             onClick={() => toastManager.remove(toast.id)}

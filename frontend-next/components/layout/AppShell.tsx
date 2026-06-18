@@ -37,7 +37,7 @@ const marketingRoutes = [
   "/about",
   "/legal",
   "/security",
-  "/safescope",
+  "/hazlenz",
   "/pricing",
 ];
 
@@ -57,7 +57,6 @@ const navItems = [
       "/inspections",
       "/inspection",
       "/inspection-cover",
-      "/inspection-walkthrough",
     ],
   },
   { href: "/reports", label: "Reports", icon: "🗂", activeRoots: ["/reports"] },
@@ -219,18 +218,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [isPublicPage, pathname, router]);
 
   useEffect(() => {
-    const themeVersion = "theme-reset-2026-06-13-v1";
+    const themeVersion = "theme-darkmode-stable-2026-06-17-v1";
     const savedThemeVersion = localStorage.getItem("sentinel_theme_version");
+    const saved = localStorage.getItem("sentinel_dark_mode");
 
     if (savedThemeVersion !== themeVersion) {
       localStorage.setItem("sentinel_theme_version", themeVersion);
-      localStorage.setItem("sentinel_dark_mode", "false");
-      document.documentElement.classList.remove("dark");
-      setDarkMode(false);
-      return;
     }
 
-    const saved = localStorage.getItem("sentinel_dark_mode");
     setDarkMode(saved === "true");
   }, []);
 
@@ -316,12 +311,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     createPortal(
                       <div
                         ref={profileMenuRef}
-                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#F0F8FF_0%,#FFFFFF_45%,#F8FAFC_100%)] text-[#102A43] shadow-2xl shadow-slate-950/30 sm:right-4 sm:top-[82px]"
+                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#F0F8FF_0%,#FFFFFF_45%,#F8FAFC_100%)] text-[#102A43] shadow-2xl shadow-slate-950/30 dark:border-slate-700 dark:bg-[linear-gradient(180deg,#0B1320_0%,#111827_55%,#020617_100%)] dark:text-slate-100 sm:right-4 sm:top-[82px]"
                       >
                       <button
                         type="button"
                         onClick={() => setDarkMode(!darkMode)}
-                        className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
+                        className="flex w-full items-center justify-between px-4 py-4 text-left text-sm font-black text-[#102A43] transition-colors hover:bg-[#E8F4FF] dark:text-slate-100 dark:hover:bg-white/10"
                       >
                         {darkMode ? 'Light Mode' : 'Dark Mode'}
                         {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -374,7 +369,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       </Link>
 
                       <Link
-                        href="/safescope"
+                        href="/hazlenz"
                         onClick={() => setProfileOpen(false)}
                         className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
                       >
@@ -416,7 +411,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <Link href="/legal" className="text-slate-200 transition hover:text-[#5DB7FF]">
                 Legal
               </Link>
-              <Link href="/safescope" className="text-slate-200 transition hover:text-[#5DB7FF]">
+              <Link href="/hazlenz" className="text-slate-200 transition hover:text-[#5DB7FF]">
                 HazLenz AI
               </Link>
             </div>

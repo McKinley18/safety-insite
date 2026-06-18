@@ -20,7 +20,8 @@ import {
   type PlanCode,
 } from "@/lib/planEntitlements";
 
-type WorkflowId = "quick" | "guided" | "advanced";
+type WorkflowId = "quick" | "guided";
+type PlanEntitlement = Parameters<typeof hasPlanEntitlement>[0];
 
 const workflowOptions: {
   id: WorkflowId;
@@ -29,51 +30,37 @@ const workflowOptions: {
   description: string;
   details: string;
   route: string;
-  entitlement: EntitlementKey;
+  entitlement: PlanEntitlement;
   tierLabel: string;
   inspectionType: string;
 }[] = [
   {
+    id: "quick",
+    title: "Quick Inspection",
+    eyebrow: "Free",
+    description:
+      "Capture a single finding quickly with photo evidence, observed condition, location, hazard category, quick action, and report output.",
+    details:
+      "Best when you see one issue and need to document it quickly without the full guided inspection workflow.",
+    route: "/inspection-quick",
+    entitlement: "quickCapture",
+    tierLabel: "Free",
+    inspectionType: "quick_hazard_capture",
+  },
+  {
     id: "guided",
     title: "Full Inspection",
-    eyebrow: "Recommended",
+    eyebrow: "Pro",
     description:
       "Complete a guided inspection with HazLenz AI review, risk scoring, standards support, corrective actions, and report generation.",
     details:
-      "Best when you need a complete inspection record that can become a professional report.",
+      "Best when you need a complete professional inspection report with multiple findings, HazLenz AI review, standards support, and final report packaging.",
     route: "/inspection-cover",
     entitlement: "guidedInspection",
     tierLabel: "Pro",
     inspectionType: "guided_inspection",
   },
-  {
-    id: "quick",
-    title: "Quick Inspection",
-    eyebrow: "Fast Capture",
-    description:
-      "Capture a single hazard quickly with a short note, optional photo, and corrective action.",
-    details:
-      "Best when you see one issue and need to document it quickly without a full inspection workflow.",
-    route: "/inspection-quick",
-    entitlement: "quickCapture",
-    tierLabel: "Included",
-    inspectionType: "quick_hazard_capture",
-  },
-  {
-    id: "advanced",
-    title: "Audit Review",
-    eyebrow: "Review",
-    description:
-      "Review findings, evidence, standards, HazLenz AI reasoning, and corrective actions before finalizing a report.",
-    details:
-      "Best when you need to verify the inspection record before relying on it for leadership, internal review, or regulatory readiness.",
-    route: "/inspection-cover",
-    entitlement: "advancedReview",
-    tierLabel: "Advanced",
-    inspectionType: "advanced_review",
-  },
 ];
-
 
 function getProgramStatus(programs: InspectionProgramRecord[]) {
   return {
@@ -113,11 +100,6 @@ export default function InspectionsPage() {
   const programStatus = useMemo(
     () => getProgramStatus(inspectionPrograms),
     [inspectionPrograms],
-  );
-
-  const selectedAllowed = hasPlanEntitlement(
-    selectedWorkflow.entitlement,
-    planCode,
   );
 
   function startInspection(workflow = selectedWorkflow) {
@@ -187,10 +169,10 @@ export default function InspectionsPage() {
         <SectionHeader
           eyebrow="Start"
           title="Choose inspection type"
-          description="Full Inspection is recommended for most work. Quick Inspection is for fast capture. Audit Review is for final verification."
+          description="Use Quick Inspection for fast free capture, or Full Inspection for the guided Pro workflow with HazLenz AI review, standards support, corrective actions, and report generation."
         />
 
-        <div className="mx-auto mt-4 grid max-w-5xl justify-items-center gap-3 sm:grid-cols-3">
+        <div className="mx-auto mt-4 grid max-w-3xl justify-items-center gap-3 sm:grid-cols-2">
           {workflowOptions.map((workflow) => {
             const selected = selectedWorkflow.id === workflow.id;
             const expanded = expandedWorkflowId === workflow.id;
@@ -199,32 +181,25 @@ export default function InspectionsPage() {
             const featureRows =
               workflow.id === "quick"
                 ? [
-                    "Single issue",
-                    "Optional photo",
-                    "Short note",
-                    "Quick action",
+                    "Single finding",
+                    "Photo evidence",
+                    "Observed condition",
+                    "Quick report",
                   ]
-                : workflow.id === "guided"
-                  ? [
-                      "Guided evidence",
-                      "HazLenz AI review",
-                      "Risk + standards",
-                      "Report ready",
-                    ]
-                  : [
-                      "Finding review",
-                      "Evidence check",
-                      "Standards review",
-                      "Final validation",
-                    ];
+                : [
+                    "Guided evidence",
+                    "HazLenz AI review",
+                    "Risk + standards",
+                    "Full report",
+                  ];
 
             return (
               <article
                 key={workflow.id}
                 className={`h-full w-full max-w-[320px] overflow-hidden rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
                   selected
-                    ? "border-[#1D72B8] bg-[#E8F4FF]"
-                    : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white"
+                    ? "border-[#1D72B8] bg-[#E8F4FF] dark:bg-blue-950/40"
+                    : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-blue-800 dark:hover:bg-slate-900/90"
                 }`}
               >
                 <button
@@ -243,22 +218,22 @@ export default function InspectionsPage() {
 
                     </div>
 
-                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900">
+                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900 dark:text-slate-100">
                       {workflow.title}
                     </h3>
-                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
                       {workflow.description}
                     </p>
                   </div>
 
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-lg font-black text-[#102A43] shadow-none transition">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-lg font-black text-[#102A43] shadow-none transition dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100">
                     {expanded ? "−" : "+"}
                   </span>
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200/80 bg-white/85 px-4 py-4 sm:px-5">
-                    <p className="text-xs font-semibold leading-5 text-slate-600">
+                  <div className="border-t border-slate-200/80 bg-white/85 px-4 py-4 dark:border-slate-800 dark:bg-slate-950/70 sm:px-5">
+                    <p className="text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                       {workflow.details}
                     </p>
 
@@ -266,7 +241,7 @@ export default function InspectionsPage() {
                       {featureRows.map((feature) => (
                         <div
                           key={feature}
-                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-none"
+                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-none dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
                         >
                           {feature}
                         </div>
@@ -309,7 +284,6 @@ export default function InspectionsPage() {
           })}
         </div>
 
-
         <p className="mx-auto mt-4 max-w-sm text-center text-xs font-semibold leading-5 text-slate-500">
           HazLenz AI uses the default regulatory agency from{" "}
           <AppTextLink
@@ -320,7 +294,7 @@ export default function InspectionsPage() {
             Settings
           </AppTextLink>
           . Current default:{" "}
-          <span className="font-black text-slate-700">
+          <span className="font-black text-slate-700 dark:text-slate-200">
             {regulatoryScope === "msha"
               ? "MSHA"
               : regulatoryScope === "osha_general"

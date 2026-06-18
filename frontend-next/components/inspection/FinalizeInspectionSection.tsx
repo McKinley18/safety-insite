@@ -188,7 +188,7 @@ export default function FinalizeInspectionSection({
           <div className="mt-4 rounded-xl border border-amber-200 bg-white dark:bg-slate-900 px-3 py-3 shadow-sm">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
                   Current finding
                 </p>
                 <h4 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
@@ -266,7 +266,7 @@ export default function FinalizeInspectionSection({
                 ? `${visibleFindings.length} finding(s) ready for report`
                 : "No saved findings yet"}
             </h3>
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-700">
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-300">
               Use the +/- control to expand details. Edit any finding before
               generating the final report.
             </p>
@@ -305,7 +305,7 @@ export default function FinalizeInspectionSection({
                       <h4 className="mt-0.5 text-sm font-black text-slate-900 dark:text-slate-100">
                         {getFindingTitle(finding)}
                       </h4>
-                      <p className="mt-1 text-xs font-bold leading-5 text-slate-700 dark:text-slate-700">
+                      <p className="mt-1 text-xs font-bold leading-5 text-slate-700 dark:text-slate-300">
                         {statusText([
                           `${finding.photos?.length || 0} photo(s)`,
                           finding.location || "No location",
@@ -315,7 +315,7 @@ export default function FinalizeInspectionSection({
                       </p>
 
                       {!isExpanded && (
-                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
+                        <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
                           {finding.description || "No description provided."}
                         </p>
                       )}
@@ -400,7 +400,7 @@ export default function FinalizeInspectionSection({
                             ))}
                           </div>
                         ) : (
-                          <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-700">
+                          <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-300">
                             No standards selected for this finding.
                           </p>
                         )}
@@ -426,7 +426,7 @@ export default function FinalizeInspectionSection({
             })}
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-700">
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-300">
             Save at least one finding before generating the final report.
           </p>
         )}

@@ -13,7 +13,6 @@ import {
 } from "@/lib/safescope";
 import {
   addReportAttachment,
-  getOrganizationSettings,
   saveWorkspaceReport,
   uploadReportAttachment,
 } from "@/lib/auth";
@@ -78,38 +77,22 @@ export default function InspectionPage() {
   >("standard_5x5");
 
   useEffect(() => {
-    async function loadCompanyRiskProfile() {
-      try {
-        const settings = await getOrganizationSettings();
-        const backendRiskProfile = settings.riskProfileId as
-          | "simple_4x4"
-          | "standard_5x5"
-          | "advanced_6x6"
-          | undefined;
+    const savedRiskProfile =
+      (window.localStorage.getItem("sentinel_risk_profile") as
+        | "simple_4x4"
+        | "standard_5x5"
+        | "advanced_6x6"
+        | null) ||
+      (window.localStorage.getItem("sentinel_company_risk_profile") as
+        | "simple_4x4"
+        | "standard_5x5"
+        | "advanced_6x6"
+        | null);
 
-        if (backendRiskProfile) {
-          setRiskProfileId(backendRiskProfile);
-          window.localStorage.setItem(
-            "sentinel_company_risk_profile",
-            backendRiskProfile,
-          );
-          return;
-        }
-      } catch {
-        // Fall back to local workspace setting when offline or signed out.
-      }
+    if (savedRiskProfile) setRiskProfileId(savedRiskProfile);
 
-      const savedRiskProfile = window.localStorage.getItem(
-        "sentinel_company_risk_profile",
-      ) as "simple_4x4" | "standard_5x5" | "advanced_6x6" | null;
-
-      if (savedRiskProfile) setRiskProfileId(savedRiskProfile);
-
-      const savedRegulatoryScope = window.localStorage.getItem("sentinel_regulatory_scope");
-      if (savedRegulatoryScope) setAgencyMode(savedRegulatoryScope);
-    }
-
-    loadCompanyRiskProfile();
+    const savedRegulatoryScope = window.localStorage.getItem("sentinel_regulatory_scope");
+    if (savedRegulatoryScope) setAgencyMode(savedRegulatoryScope);
   }, []);
   const [safeScopeStatus, setSafeScopeStatus] = useState("");
   const [safeScopeResult, setsafeScopeResult] = useState<any>(null);
@@ -975,7 +958,7 @@ export default function InspectionPage() {
 
     if (storageMode === "ask") {
       shouldSaveLocal = window.confirm(
-        "Save this report locally in this browser?\n\nSelect Cancel for cloud-only storage.",
+        "Save this report locally in this browser?\n\nSelect Cancel to use cloud storage only.",
       );
     }
 
@@ -1045,7 +1028,7 @@ export default function InspectionPage() {
           payload: {
             report,
             storageMode,
-            reason: "workspace_cloud_save_failed",
+            reason: "cloud_save_failed",
           },
           lastError:
             error instanceof Error
@@ -1054,7 +1037,7 @@ export default function InspectionPage() {
         });
 
         alert(
-          "Report could not be saved to the workspace database. It was saved locally and queued for retry.",
+          "Report could not be saved to cloud storage. It was saved locally and queued for retry.",
         );
 
         const existingReportsRaw = await getReports<any>();

@@ -11,34 +11,6 @@ type CommandAssignment = {
   createdAt: string;
 };
 
-const assignmentTypes = [
-  "Corrective Action",
-  "Inspection",
-  "Follow-Up",
-  "Review Task",
-];
-
-const assignmentPriorities = ["Low", "Medium", "High", "Critical"];
-
-function loadCommandAssignments(): CommandAssignment[] {
-  if (typeof window === "undefined") return [];
-
-  try {
-    const raw = window.localStorage.getItem("sentinel_command_center_assignments");
-    return raw ? JSON.parse(raw) : [];
-  } catch {
-    return [];
-  }
-}
-
-function saveCommandAssignments(assignments: CommandAssignment[]) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(
-    "sentinel_command_center_assignments",
-    JSON.stringify(assignments),
-  );
-}
-
 
 import { useEffect, useMemo, useState } from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
@@ -167,14 +139,14 @@ function getWeekDayTone(dateKey: string, events: SafetyCalendarEvent[]) {
   );
 
   if (hasDueSoon) {
-    return "border-amber-400 bg-amber-50 ring-2 ring-amber-100";
+    return "border-amber-400 bg-amber-50 ring-2 ring-amber-100 dark:bg-amber-950/35 dark:ring-amber-900/50";
   }
 
   if (dateKey === todayKey) {
-    return "border-[#1D72B8] bg-[#E8F4FF]";
+    return "border-[#1D72B8] bg-[#E8F4FF] dark:bg-blue-950/40";
   }
 
-  return "border-slate-200/80 bg-white";
+  return "border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900";
 }
 
 function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
@@ -196,11 +168,11 @@ function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
 }
 
 function getCalendarEventTone(event: SafetyCalendarEvent) {
-  if (event.status === "Completed") return "border-emerald-100 bg-emerald-50 text-emerald-800";
-  if (event.status === "Overdue" || event.priority === "Critical") return "border-red-100 bg-red-50 text-red-800";
-  if (event.priority === "High") return "border-orange-100 bg-orange-50 text-orange-800";
-  if (event.type === "inspection") return "border-blue-100 bg-blue-50 text-blue-800";
-  return "border-slate-200 bg-slate-50 text-slate-700";
+  if (event.status === "Completed") return "border-emerald-100 bg-emerald-50 text-emerald-800 dark:border-emerald-900/60 dark:bg-emerald-950/40 dark:text-emerald-200";
+  if (event.status === "Overdue" || event.priority === "Critical") return "border-red-100 bg-red-50 text-red-800 dark:border-red-900/60 dark:bg-red-950/40 dark:text-red-200";
+  if (event.priority === "High") return "border-orange-100 bg-orange-50 text-orange-800 dark:border-orange-900/60 dark:bg-orange-950/40 dark:text-orange-200";
+  if (event.type === "inspection") return "border-blue-100 bg-blue-50 text-blue-800 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-200";
+  return "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300";
 }
 
 function getCalendarEventTypeLabel(type: SafetyCalendarEvent["type"]) {
@@ -280,15 +252,6 @@ function isCompanyAccountOwner(planCode: string, user: any) {
 
 export default function DashboardPage() {
 
-  const [assignments, setAssignments] = useState<CommandAssignment[]>([]);
-  const [canAssignWork, setCanAssignWork] = useState(false);
-  const [assignmentTitle, setAssignmentTitle] = useState("");
-  const [assignmentOwner, setAssignmentOwner] = useState("");
-  const [assignmentType, setAssignmentType] = useState("Corrective Action");
-  const [assignmentPriority, setAssignmentPriority] = useState("Medium");
-  const [assignmentDueDate, setAssignmentDueDate] = useState("");
-  const [assignmentStatus, setAssignmentStatus] = useState("");
-
   useEffect(() => {
     const storedUser = getStoredCommandUser();
     const storedPlan =
@@ -296,51 +259,7 @@ export default function DashboardPage() {
       window.localStorage.getItem("sentinel_effective_plan_code") ||
       "";
 
-    setCanAssignWork(isCompanyAccountOwner(storedPlan, storedUser));
-    setAssignments(loadCommandAssignments());
   }, []);
-
-  function addCommandAssignment() {
-    if (!canAssignWork) {
-      setAssignmentStatus("Work assignment is currently disabled.");
-      return;
-    }
-
-    if (!assignmentTitle.trim()) {
-      setAssignmentStatus("Enter a work title before assigning.");
-      return;
-    }
-
-    const assignment: CommandAssignment = {
-      id: "assignment-" + Date.now(),
-      title: assignmentTitle.trim(),
-      type: assignmentType,
-      owner: assignmentOwner.trim() || "Unassigned",
-      dueDate: assignmentDueDate || "No due date",
-      priority: assignmentPriority,
-      status: "Open",
-      createdAt: new Date().toISOString(),
-    };
-
-    const next = [assignment, ...assignments];
-    setAssignments(next);
-    saveCommandAssignments(next);
-
-    setAssignmentTitle("");
-    setAssignmentOwner("");
-    setAssignmentDueDate("");
-    setAssignmentPriority("Medium");
-    setAssignmentType("Corrective Action");
-    setAssignmentStatus("Work assigned.");
-  }
-
-  function closeCommandAssignment(id: string) {
-    const next = assignments.map((assignment) =>
-      assignment.id === id ? { ...assignment, status: "Closed" } : assignment,
-    );
-    setAssignments(next);
-    saveCommandAssignments(next);
-  }
 
 
   const [reports, setReports] = useState<DashboardReport[]>([]);
@@ -533,7 +452,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
+      <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-none dark:border-slate-800 dark:bg-slate-900 sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <SectionHeader
             eyebrow="Week at a Glance"
@@ -573,7 +492,7 @@ export default function DashboardPage() {
                 {date.toLocaleDateString("en-US", { weekday: "short" })}
               </span>
 
-              <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 sm:right-2 sm:top-2 sm:text-[10px]">
+              <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-slate-100 sm:right-2 sm:top-2 sm:text-[10px]">
                 {date.getDate()}
               </span>
 
@@ -593,152 +512,6 @@ export default function DashboardPage() {
       </div>
 
 
-
-
-
-      {false && canAssignWork && (
-        <div className="rounded-xl border border-slate-200/80 bg-white p-4 sm:p-5 shadow-none   sm:p-4 sm:p-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="sentinel-eyebrow">Work Assignment</p>
-              <h2 className="mt-3 text-2xl font-black tracking-[-0.04em] text-slate-950">
-                Assign Work
-              </h2>
-              <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
-                Create corrective actions, inspection follow-ups, and review tasks from the operational home screen.
-              </p>
-            </div>
-
-            <span className="sentinel-status-pill">
-              {assignments.filter((assignment) => assignment.status !== "Closed").length} open
-            </span>
-          </div>
-
-          <div className="mt-5 grid gap-3 lg:grid-cols-[1.2fr_0.8fr_0.7fr_0.7fr_auto]">
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Work Title
-              </span>
-              <input
-                value={assignmentTitle}
-                onChange={(event) => setAssignmentTitle(event.target.value)}
-                placeholder="Example: Verify guard installed on tail pulley"
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              />
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Owner
-              </span>
-              <input
-                value={assignmentOwner}
-                onChange={(event) => setAssignmentOwner(event.target.value)}
-                placeholder="Name or role"
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              />
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Type
-              </span>
-              <select
-                value={assignmentType}
-                onChange={(event) => setAssignmentType(event.target.value)}
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              >
-                {assignmentTypes.map((type) => (
-                  <option key={type}>{type}</option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Priority
-              </span>
-              <select
-                value={assignmentPriority}
-                onChange={(event) => setAssignmentPriority(event.target.value)}
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              >
-                {assignmentPriorities.map((priority) => (
-                  <option key={priority}>{priority}</option>
-                ))}
-              </select>
-            </label>
-
-            <label>
-              <span className="text-xs font-black uppercase tracking-wide text-slate-500">
-                Due
-              </span>
-              <input
-                type="date"
-                value={assignmentDueDate}
-                onChange={(event) => setAssignmentDueDate(event.target.value)}
-                className="sentinel-input mt-2 min-h-[44px] text-sm font-bold"
-              />
-            </label>
-          </div>
-
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs font-black text-slate-500">
-              {assignmentStatus}
-            </p>
-
-            <button
-              type="button"
-              onClick={addCommandAssignment}
-              className="sentinel-primary-button px-5 py-2.5 text-sm"
-            >
-              Assign Work
-            </button>
-          </div>
-
-          <div className="mt-5 border-t border-slate-200 pt-4">
-            {assignments.length ? (
-              <div className="space-y-2">
-                {assignments.slice(0, 5).map((assignment) => (
-                  <div
-                    key={assignment.id}
-                    className="flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50/80 px-4 py-3 shadow-none sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <div>
-                      <p className="text-sm font-black text-slate-950">
-                        {assignment.title}
-                      </p>
-                      <p className="mt-1 text-xs font-semibold text-slate-500">
-                        {assignment.type} · {assignment.owner} · {assignment.priority} priority · Due {assignment.dueDate}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      <span className="sentinel-status-pill bg-white">
-                        {assignment.status}
-                      </span>
-
-                      {assignment.status !== "Closed" && (
-                        <button
-                          type="button"
-                          onClick={() => closeCommandAssignment(assignment.id)}
-                          className="rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-emerald-700"
-                        >
-                          Close
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="mt-2 text-sm font-medium leading-6 text-slate-400">
-                No work has been assigned from Home yet.
-              </p>
-            )}
-          </div>
-        </div>
-      )}
 
     </section>
   );

@@ -16,6 +16,8 @@ import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
+import AnnotationPreview from "@/components/evidence/AnnotationPreview";
+import AnnotationEditor from "@/components/evidence/AnnotationEditor";
 
 const hazardCategoryOptions = [
   "Machine Guarding",
@@ -147,6 +149,8 @@ export default function QuickInspectionPage() {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [photos, setPhotos] = useState<any[]>([]);
+  const [annotatingPhotoIndex, setAnnotatingPhotoIndex] = useState<number | null>(null);
+  const [annotationExpanded, setAnnotationExpanded] = useState(false);
   const [actionTitle, setActionTitle] = useState("");
   const [priority, setPriority] = useState("Medium");
   const [due, setDue] = useState("");
@@ -173,6 +177,24 @@ export default function QuickInspectionPage() {
     const saved = await Promise.all(files.map((file) => saveEncryptedPhoto(file)));
     setPhotos((current) => [...current, ...saved]);
     event.target.value = "";
+  }
+
+  function removePhoto(indexToRemove: number) {
+    setPhotos((current) => current.filter((_, index) => index !== indexToRemove));
+    if (annotatingPhotoIndex === indexToRemove) {
+      setAnnotatingPhotoIndex(null);
+      setAnnotationExpanded(false);
+    }
+  }
+
+  function savePhotoAnnotations(indexToUpdate: number, annotations: any[]) {
+    setPhotos((current) =>
+      current.map((photo, index) =>
+        index === indexToUpdate ? { ...photo, annotations } : photo,
+      ),
+    );
+    setAnnotatingPhotoIndex(null);
+    setAnnotationExpanded(false);
   }
 
   function runSafeScopeQuickReview() {
@@ -220,7 +242,7 @@ export default function QuickInspectionPage() {
 
   async function saveQuickCapture() {
     if (!canSave) {
-      setStatus("Add a category, location, description, photo, HazLenz AI review, or action before saving.");
+      setStatus("Add a photo, observed condition, location, category, HazLenz AI review, or action before building the report.");
       return;
     }
 
@@ -240,7 +262,7 @@ export default function QuickInspectionPage() {
             "Medium",
           status: "Open",
           due,
-          source: safeScopeQuickResult ? "HazLenz AI Quick Review" : "Quick Capture",
+          source: safeScopeQuickResult ? "HazLenz AI Quick Review" : "Quick Inspection",
           createdAt: now,
         }
       : null;
@@ -248,11 +270,11 @@ export default function QuickInspectionPage() {
     const finalCategory =
       hazardCategory ||
       safeScopeQuickResult?.classification ||
-      "Quick Hazard Capture";
+      "Quick Inspection";
 
     const report = {
       id: `SSR-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`,
-      title: "Quick Hazard Capture",
+      title: "Quick Inspection",
       location: location || "Field Inspection",
       createdAt: now,
       storageSource: "local",
@@ -285,45 +307,44 @@ export default function QuickInspectionPage() {
         {
           ...action,
           location: location || "Field Inspection",
-          findingTitle: finalCategory || description || "Quick hazard capture",
+          findingTitle: finalCategory || description || "Quick inspection",
         },
         ...existingActions,
       ]);
     }
 
     await addActivityEvent({
-      type: "Quick Capture",
+      type: "Quick Inspection",
       title: finalCategory || "Hazard captured",
-      detail: location || description || "Quick hazard finding saved",
+      detail: location || description || "Quick inspection finding saved",
     });
 
-    setStatus("Quick hazard capture saved.");
-    router.push("/reports");
+    setStatus("Quick inspection report built.");
+    router.push("/inspection-review");
   }
 
   return (
     <section className="sentinel-page-shell space-y-4">
       <HeroPanel>
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col items-center gap-4 text-center">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
-              Quick Capture
+              Quick Inspection
             </p>
             <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
-              Capture the hazard fast.
+              Build a quick finding.
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-              Add a photo, location, and observed condition. HazLenz AI Quick
-              Review gives a limited preview while full standards and traceability
-              stay available in Guided Inspection.
+              Capture the photo first, describe the condition, set the location,
+              confirm the hazard category, and save a clean finding record.
             </p>
           </div>
 
           <AppLinkButton
             href="/inspections"
-            variant="ghost"
+            variant="accent"
             size="sm"
-            className="border-white bg-white text-[#0B1320] shadow-sm hover:bg-blue-50"
+            className="mx-auto inline-flex !w-24 items-center justify-center rounded-full !bg-orange-500 px-4 py-2 text-xs font-black !text-white shadow-none transition hover:!bg-orange-600"
           >
             Change
           </AppLinkButton>
@@ -353,95 +374,161 @@ export default function QuickInspectionPage() {
 
       <AppPanel padding="lg">
         <SectionHeader
-          eyebrow="Field Details"
-          title="Basic finding information"
+          eyebrow="Step 1"
+          title="Photo"
+          description="Start with visual evidence. Add an annotation when you need to point out the hazard, exposure, or missing control."
         />
 
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-              Hazard Category
-            </span>
-            <AppInput
-              list="quick-hazard-category-options"
-              value={hazardCategory}
-              onChange={(event) => setHazardCategory(event.target.value)}
-              placeholder="Let HazLenz AI suggest or type one"
-              className="mt-2 bg-white dark:bg-slate-900/85 focus:bg-white"
+        <div className="mt-3 flex flex-wrap gap-2">
+          <label className="cursor-pointer rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]">
+            Take Photo
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              className="hidden"
+              onChange={handlePhotoUpload}
             />
-            <datalist id="quick-hazard-category-options">
-              {hazardCategoryOptions.map((category) => (
-                <option key={category} value={category} />
-              ))}
-            </datalist>
           </label>
 
-          <label>
-            <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-              Location
-            </span>
-            <AppInput
-              value={location}
-              onChange={(event) => setLocation(event.target.value)}
-              placeholder="Example: Conveyor 3, north catwalk"
-              className="mt-2 bg-white dark:bg-slate-900/85 focus:bg-white"
+          <label className="cursor-pointer rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800">
+            Upload
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              className="hidden"
+              onChange={handlePhotoUpload}
             />
           </label>
         </div>
 
-        <label className="mt-4 block">
-          <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            Observed Condition
-          </span>
-          <AppTextarea
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            placeholder="What is wrong and who may be exposed?"
-            className="mt-2 min-h-24 bg-white dark:bg-slate-900/85 font-semibold focus:bg-white"
-          />
-        </label>
+        {!!photos.length && (
+          <div className="mt-4 grid gap-3">
+            {photos.map((photo, index) => {
+              const photoUrl = photo.url || photo.imageUri || photo.dataUrl || "";
+              const annotations = photo.annotations || [];
 
-        <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-4">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-            Photo
-          </p>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <label className="cursor-pointer rounded-xl bg-[#102A43] px-4 py-2 text-xs font-black text-white transition hover:bg-[#1D72B8]">
-              Take Photo
-              <input
-                type="file"
-                accept="image/*"
-                capture="environment"
-                className="hidden"
-                onChange={handlePhotoUpload}
-              />
-            </label>
+              return (
+                <div
+                  key={photo.id || index}
+                  className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-950"
+                >
+                  {photoUrl && (
+                    <AnnotationPreview
+                      photoUrl={photoUrl}
+                      annotations={annotations}
+                    />
+                  )}
 
-            <label className="cursor-pointer rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-xs font-black text-slate-700 dark:text-slate-300 transition hover:bg-slate-50 dark:hover:bg-slate-800">
-              Upload
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                className="hidden"
-                onChange={handlePhotoUpload}
-              />
-            </label>
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <AppButton
+                      type="button"
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => {
+                        setAnnotatingPhotoIndex(index);
+                        setAnnotationExpanded(true);
+                      }}
+                    >
+                      Annotate
+                    </AppButton>
+
+                    <AppButton
+                      type="button"
+                      size="sm"
+                      variant="secondary"
+                      onClick={() => removePhoto(index)}
+                    >
+                      Remove
+                    </AppButton>
+
+                    <span className="text-xs font-black text-slate-500 dark:text-slate-400">
+                      {annotations.length
+                        ? `${annotations.length} annotation(s)`
+                        : "No annotations"}
+                    </span>
+                  </div>
+
+                  {annotatingPhotoIndex === index && annotationExpanded && photoUrl && (
+                    <div className="mt-3">
+                      <AnnotationEditor
+                        photoUrl={photoUrl}
+                        annotations={annotations}
+                        expanded={annotationExpanded}
+                        onSave={(nextAnnotations) =>
+                          savePhotoAnnotations(index, nextAnnotations)
+                        }
+                        onCancel={() => {
+                          setAnnotatingPhotoIndex(null);
+                          setAnnotationExpanded(false);
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
-
-          {!!photos.length && (
-            <p className="mt-2 text-xs font-black text-slate-500 dark:text-slate-400">
-              {photos.length} photo(s) attached.
-            </p>
-          )}
-        </div>
+        )}
       </AppPanel>
 
       <AppPanel padding="lg">
         <SectionHeader
-          eyebrow="HazLenz AI Quick Review"
-          title="Limited safety intelligence preview"
-          description="Quick Review suggests a category, risk signal, and one corrective action. Guided Inspection unlocks standards, confidence, and full review detail."
+          eyebrow="Step 2"
+          title="Observed condition"
+          description="Describe what is wrong, who may be exposed, and what work activity is affected."
+        />
+
+        <AppTextarea
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder="Example: Guard missing at tail pulley while employees access the cleanup area."
+          className="mt-3 min-h-28 bg-white dark:bg-slate-900/85 font-semibold focus:bg-white dark:focus:bg-slate-900/85"
+        />
+      </AppPanel>
+
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="Step 3"
+          title="Location"
+          description="Record where the finding was observed."
+        />
+
+        <AppInput
+          value={location}
+          onChange={(event) => setLocation(event.target.value)}
+          placeholder="Example: Conveyor 3, north catwalk"
+          className="mt-3 bg-white dark:bg-slate-900/85 focus:bg-white dark:focus:bg-slate-900/85"
+        />
+      </AppPanel>
+
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="Step 4"
+          title="Hazard category"
+          description="Confirm the category or let HazLenz AI suggest one after review."
+        />
+
+        <AppInput
+          list="quick-hazard-category-options"
+          value={hazardCategory}
+          onChange={(event) => setHazardCategory(event.target.value)}
+          placeholder="Let HazLenz AI suggest or type one"
+          className="mt-3 bg-white dark:bg-slate-900/85 focus:bg-white dark:focus:bg-slate-900/85"
+        />
+        <datalist id="quick-hazard-category-options">
+          {hazardCategoryOptions.map((category) => (
+            <option key={category} value={category} />
+          ))}
+        </datalist>
+      </AppPanel>
+
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="Step 5"
+          title="HazLenz AI Quick Review"
+          description="Run an advisory quick review after the photo, condition, location, and category are captured. Full standards matching stays in Full Inspection."
           action={
             <AppButton
               type="button"
@@ -508,9 +595,9 @@ export default function QuickInspectionPage() {
 
       <AppPanel padding="lg">
         <SectionHeader
-          eyebrow="Corrective Action"
-          title="Optional action planning"
-          description="HazLenz AI Quick Review can prefill this, or you can enter one manually."
+          eyebrow="Step 6"
+          title="Corrective action"
+          description="Add the immediate or follow-up action needed to control the finding."
         />
 
         <div className="mt-3 grid gap-3 md:grid-cols-[1fr_150px_150px]">
@@ -518,13 +605,13 @@ export default function QuickInspectionPage() {
             value={actionTitle}
             onChange={(event) => setActionTitle(event.target.value)}
             placeholder="Action to take"
-            className="bg-slate-50 dark:bg-slate-950 focus:bg-white"
+            className="bg-slate-50 dark:bg-slate-950 focus:bg-white dark:focus:bg-slate-950"
           />
 
           <AppSelect
             value={priority}
             onChange={(event) => setPriority(event.target.value)}
-            className="bg-slate-50 dark:bg-slate-950 focus:bg-white"
+            className="bg-slate-50 dark:bg-slate-950 focus:bg-white dark:focus:bg-slate-950"
           >
             <option>Low</option>
             <option>Medium</option>
@@ -536,37 +623,66 @@ export default function QuickInspectionPage() {
             type="date"
             value={due}
             onChange={(event) => setDue(event.target.value)}
-            className="bg-slate-50 dark:bg-slate-950 focus:bg-white"
+            className="bg-slate-50 dark:bg-slate-950 focus:bg-white dark:focus:bg-slate-950"
           />
         </div>
       </AppPanel>
 
-      <section className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/95 p-3 shadow-[0_18px_45px_rgba(15,23,42,0.16)] backdrop-blur lg:sticky lg:bottom-4 lg:z-30">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-          <AppButton
-            type="button"
-            variant="accent"
-            size="lg"
-            onClick={saveQuickCapture}
-            className="text-white sm:w-auto"
-          >
-            Save Quick Capture
-          </AppButton>
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="Report"
+          title="Build quick report"
+          description="Create a report package from this quick inspection finding and open it for review."
+        />
 
-          <AppLinkButton
-            href="/inspections"
-            variant="secondary"
-            size="lg"
-            className="sm:w-auto"
-          >
-            Cancel
-          </AppLinkButton>
+        <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-950">
+          <div className="grid gap-2 text-xs font-black text-slate-600 dark:text-slate-300 sm:grid-cols-2">
+            <p>
+              <span className="text-slate-900 dark:text-slate-100">Photos:</span>{" "}
+              {photos.length}
+            </p>
+            <p>
+              <span className="text-slate-900 dark:text-slate-100">Condition:</span>{" "}
+              {description.trim() ? "Captured" : "Needed"}
+            </p>
+            <p>
+              <span className="text-slate-900 dark:text-slate-100">Location:</span>{" "}
+              {location.trim() || "Needed"}
+            </p>
+            <p>
+              <span className="text-slate-900 dark:text-slate-100">Category:</span>{" "}
+              {hazardCategory || safeScopeQuickResult?.classification || "Pending"}
+            </p>
+            <p>
+              <span className="text-slate-900 dark:text-slate-100">HazLenz AI:</span>{" "}
+              {safeScopeQuickResult ? "Reviewed" : "Optional"}
+            </p>
+            <p>
+              <span className="text-slate-900 dark:text-slate-100">Action:</span>{" "}
+              {actionTitle.trim() ? "Added" : "Optional"}
+            </p>
+          </div>
 
-          {status && (
-            <p className="text-sm font-black text-slate-600 dark:text-slate-300">{status}</p>
-          )}
+          <div className="mt-4 flex flex-col items-center gap-2 text-center">
+            <AppButton
+              type="button"
+              variant="accent"
+              size="lg"
+              onClick={saveQuickCapture}
+              className="w-full max-w-[260px] text-white sm:w-auto"
+            >
+              Build Quick Report
+            </AppButton>
+
+            {status && (
+              <p className="max-w-md text-sm font-black text-slate-600 dark:text-slate-300">
+                {status}
+              </p>
+            )}
+          </div>
         </div>
-      </section>
-    </section>
+      </AppPanel>
+
+</section>
   );
 }

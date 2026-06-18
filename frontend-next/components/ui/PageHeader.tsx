@@ -14,12 +14,12 @@ export default function PageHeader({ title, eyebrow, description }: PageHeaderPr
           </p>
         )}
 
-        <h1 className="mt-1 text-3xl font-black text-slate-900">
+        <h1 className="mt-1 text-3xl font-black text-slate-900 dark:text-slate-100">
           {title}
         </h1>
 
         {description && (
-          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+          <p className="mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
             {description}
           </p>
         )}

@@ -109,17 +109,17 @@ export default function InspectionCoverPage() {
       <AppPanel padding="lg">
         <SectionHeader title="Inspection Team" />
 
-        <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700">
+        <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700 dark:text-slate-300">
           Lead Inspector
         </label>
         <AppInput
           value={leadInspector}
           onChange={(event) => setLeadInspector(event.target.value)}
           placeholder="Inspector name"
-          className="bg-white/90"
+          className="bg-white/90 dark:bg-slate-900"
         />
 
-        <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700">
+        <label className="mb-1.5 mt-4 block text-sm font-extrabold text-slate-700 dark:text-slate-300">
           Additional Inspectors
         </label>
 
@@ -133,7 +133,7 @@ export default function InspectionCoverPage() {
                 setAdditionalInspectors(next);
               }}
               placeholder={`Additional inspector ${index + 1}`}
-              className="min-w-0 flex-1 bg-white/90"
+              className="min-w-0 flex-1 bg-white/90 dark:bg-slate-900"
             />
 
             <AppButton
@@ -167,21 +167,21 @@ export default function InspectionCoverPage() {
         <button
           type="button"
           onClick={() => setIncludeCoverPage(!includeCoverPage)}
-          className="mt-4 flex w-full gap-2.5 rounded-2xl border border-slate-200 bg-white/90 shadow-sm px-3.5 py-3 text-left"
+          className="mt-4 flex w-full gap-2.5 rounded-2xl border border-slate-200 bg-white/90 shadow-sm px-3.5 py-3 text-left dark:border-slate-800 dark:bg-slate-900"
         >
           <span
             className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-[#1D72B8] text-[13px] font-black text-white ${
-              includeCoverPage ? "bg-[#1D72B8]" : "bg-white"
+              includeCoverPage ? "bg-[#1D72B8]" : "bg-white dark:bg-slate-950"
             }`}
           >
             {includeCoverPage ? "✓" : ""}
           </span>
 
           <span className="flex-1">
-            <span className="block text-sm font-black text-slate-800">
+            <span className="block text-sm font-black text-slate-800 dark:text-slate-100">
               Include cover page
             </span>
-            <span className="mt-1 block text-xs leading-[17px] text-slate-600">
+            <span className="mt-1 block text-xs leading-[17px] text-slate-600 dark:text-slate-300">
               Site, logo, and report branding will use saved
               defaults when available.
             </span>
@@ -191,24 +191,24 @@ export default function InspectionCoverPage() {
         <button
           type="button"
           onClick={() => setIsConfidential(!isConfidential)}
-          className="mt-3 flex w-full gap-2.5 rounded-xl border border-red-300 bg-red-50 px-3.5 py-3 text-left"
+          className="mt-3 flex w-full gap-2.5 rounded-xl border border-red-300 bg-red-50 px-3.5 py-3 text-left dark:border-red-900/60 dark:bg-red-950/35"
         >
           <span
             className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 border-red-600 text-[13px] font-black text-white ${
-              isConfidential ? "bg-red-600" : "bg-white"
+              isConfidential ? "bg-red-600" : "bg-white dark:bg-slate-950"
             }`}
           >
             {isConfidential ? "✓" : ""}
           </span>
 
           <span className="flex-1">
-            <span className="block text-sm font-black text-red-800">
+            <span className="block text-sm font-black text-red-800 dark:text-red-200">
               Include confidentiality marker
             </span>
-            <span className="mt-1 block text-xs font-black text-red-800">
+            <span className="mt-1 block text-xs font-black text-red-800 dark:text-red-200">
               {confidentialityMarkerText}
             </span>
-            <span className="mt-1 block text-xs leading-[17px] text-red-900">
+            <span className="mt-1 block text-xs leading-[17px] text-red-900 dark:text-red-200">
               Adds the selected confidentiality marking to the report when
               appropriate for your organization&apos;s review process.
             </span>

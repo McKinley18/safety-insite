@@ -38,7 +38,7 @@ const sections = [
   },
 ];
 
-export default function SafeScopePage() {
+export default function HazLenzPage() {
   return (
     <section className="mx-auto max-w-5xl px-4 py-4 sm:px-5 lg:py-7">
       <div className="relative overflow-hidden">

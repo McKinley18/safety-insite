@@ -31,12 +31,12 @@ export default function ToggleSwitch({
       ].join(" ")}
     >
       <span className="min-w-0">
-        <span className="block text-sm font-black text-slate-900">
+        <span className="block text-sm font-black text-slate-900 dark:text-slate-100">
           {label}
         </span>
 
         {description && (
-          <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+          <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
             {description}
           </span>
         )}
