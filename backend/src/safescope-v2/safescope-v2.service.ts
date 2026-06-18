@@ -227,60 +227,86 @@ export class SafescopeV2Service {
         };
       };
 
+      const buildDegradedHazLenzIntelligence = (fallbackReason: string) => ({
+        degraded: true,
+        fullIntelligenceAvailable: false,
+        fallbackReason,
+        additionalHazards: [],
+        evidenceGaps: [
+          "Confirm guarding condition, exposure frequency, equipment energy state, and whether workers can contact moving parts.",
+          "Attach photos and supervisor notes for qualified review before relying on the result.",
+        ],
+        reasoningSummary: [
+          "HazLenz AI returned a production-safe advisory result instead of running the full intelligence layer.",
+          "Core classification, risk, standards candidates, and corrective actions were still generated.",
+          "Output remains advisory-only and requires qualified review.",
+        ],
+        governance: {
+          advisoryOnly: true,
+          requiresQualifiedReview: true,
+          degradedMode: true,
+        },
+      });
+
       let intelligence: any;
 
-      try {
-        console.log("[HazLenz classify] intelligence orchestrator start", {
+      const renderRuntime =
+        Boolean(process.env.RENDER) ||
+        Boolean(process.env.RENDER_SERVICE_ID) ||
+        Boolean(process.env.RENDER_EXTERNAL_URL);
+
+      const productionRuntime = process.env.NODE_ENV === "production";
+      const fullRenderIntelligenceEnabled =
+        process.env.HAZLENZ_FULL_INTELLIGENCE_ON_RENDER === "true";
+
+      if (productionRuntime && renderRuntime && !fullRenderIntelligenceEnabled) {
+        console.warn("[HazLenz classify] skipping full intelligence orchestrator on Render production; returning production-safe advisory fallback", {
           textLength: fusedText.length,
           standards: suggestedStandards.length,
           actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
           memory: memorySnapshot(),
         });
 
-        intelligence = await this.intelligenceOrchestrator.evaluate({
-          fusedText,
-          promotedPrimary,
-          classifierResult: result,
-          evidenceTexts,
-          visualAttachments,
-          expandedContext: {},
-          primaryStandardsResult: { suggestedStandards },
-          generatedActions,
-          additionalHazards: [],
-          priorFindings,
-          workspaceId: workspaceId || user?.workspaceId,
-          supervisorValidations: [],
-        });
+        intelligence = buildDegradedHazLenzIntelligence(
+          "HazLenz full intelligence layer is disabled on the current Render production runtime to prevent service restarts. Core classification, risk, standards candidates, and corrective actions were still generated.",
+        );
+      } else {
+        try {
+          console.log("[HazLenz classify] intelligence orchestrator start", {
+            textLength: fusedText.length,
+            standards: suggestedStandards.length,
+            actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
+            memory: memorySnapshot(),
+          });
 
-        console.log("[HazLenz classify] intelligence orchestrator complete", {
-          memory: memorySnapshot(),
-        });
-      } catch (error) {
-        console.error("[HazLenz classify] intelligence orchestrator failed; returning degraded advisory fallback", {
-          error,
-          memory: memorySnapshot(),
-        });
+          intelligence = await this.intelligenceOrchestrator.evaluate({
+            fusedText,
+            promotedPrimary,
+            classifierResult: result,
+            evidenceTexts,
+            visualAttachments,
+            expandedContext: {},
+            primaryStandardsResult: { suggestedStandards },
+            generatedActions,
+            additionalHazards: [],
+            priorFindings,
+            workspaceId: workspaceId || user?.workspaceId,
+            supervisorValidations: [],
+          });
 
-        intelligence = {
-          degraded: true,
-          fullIntelligenceAvailable: false,
-          fallbackReason:
-            "HazLenz full intelligence layer was unavailable in production. Core classification, risk, standards candidates, and corrective actions were still generated.",
-          additionalHazards: [],
-          evidenceGaps: [
-            "Confirm guarding condition, exposure frequency, equipment energy state, and whether workers can contact moving parts.",
-            "Attach photos and supervisor notes for qualified review before relying on the result.",
-          ],
-          reasoningSummary: [
-            "Fallback generated after the full intelligence orchestrator failed.",
-            "Output remains advisory-only and requires qualified review.",
-          ],
-          governance: {
-            advisoryOnly: true,
-            requiresQualifiedReview: true,
-            degradedMode: true,
-          },
-        };
+          console.log("[HazLenz classify] intelligence orchestrator complete", {
+            memory: memorySnapshot(),
+          });
+        } catch (error) {
+          console.error("[HazLenz classify] intelligence orchestrator failed; returning degraded advisory fallback", {
+            error,
+            memory: memorySnapshot(),
+          });
+
+          intelligence = buildDegradedHazLenzIntelligence(
+            "HazLenz full intelligence layer was unavailable. Core classification, risk, standards candidates, and corrective actions were still generated.",
+          );
+        }
       }
 
       const enhancedGeneratedActions = this.buildEnhancedGeneratedActions(
