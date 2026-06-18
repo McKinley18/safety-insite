@@ -32,7 +32,7 @@ export default function SafeScopeCompactReasoning({
       {!!missingInformation.length && (
         <div className="mt-3 border-t border-slate-200 pt-3">
           <p className="text-xs font-black uppercase tracking-wide text-amber-700">
-            Missing information
+            Evidence needed
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
             {missingInformation.slice(0, 3).join(" • ")}
@@ -43,7 +43,7 @@ export default function SafeScopeCompactReasoning({
       {!!reviewTriggers.length && (
         <div className="mt-3 border-t border-slate-200 pt-3">
           <p className="text-xs font-black uppercase tracking-wide text-red-700">
-            Supervisor review triggers
+            Review flags
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">
             {reviewTriggers.slice(0, 4).map((trigger: string) => (
@@ -60,11 +60,11 @@ export default function SafeScopeCompactReasoning({
           className="text-sm font-black text-[#1D72B8] hover:underline"
         >
           {safeScopeAdvancedOpen
-            ? "Hide detailed HazLenz AI reasoning"
-            : "Show detailed HazLenz AI reasoning"}
+            ? "Hide technical details"
+            : "Show technical details"}
         </button>
         <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-          Optional technical details for deeper review.
+          Optional details for qualified review.
         </p>
       </div>
     </>

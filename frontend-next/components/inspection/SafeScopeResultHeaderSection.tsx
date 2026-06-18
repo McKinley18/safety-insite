@@ -91,22 +91,22 @@ export default function safeScopeResultHeaderSection({
 
   async function loadSnapshotSummary() {
     if (!safeScopeResult.reasoningSnapshotId) {
-      setSnapshotStatus("No reasoning snapshot ID is available.");
+      setSnapshotStatus("No review record is available yet.");
       return;
     }
 
     try {
-      setSnapshotStatus("Loading reasoning snapshot...");
+      setSnapshotStatus("Loading review record...");
       const snapshot = await getHazLenzReasoningSnapshot(
         safeScopeResult.reasoningSnapshotId,
       );
       setSnapshotSummary(snapshot);
-      setSnapshotStatus("Reasoning snapshot loaded.");
+      setSnapshotStatus("Review record loaded.");
     } catch (error) {
       setSnapshotStatus(
         error instanceof Error
           ? error.message
-          : "Unable to load reasoning snapshot.",
+          : "Unable to load review record.",
       );
     }
   }
@@ -116,7 +116,7 @@ export default function safeScopeResultHeaderSection({
       {safeScopeResult.error && (
         <div className="mb-4 rounded-xl bg-red-50 px-3 py-3 ring-1 ring-red-200">
           <p className="text-sm font-black text-red-800">
-            HazLenz AI full intelligence was unavailable.
+            HazLenz AI review was unavailable.
           </p>
           <p className="mt-1 text-xs font-semibold leading-5 text-red-700">
             {safeScopeResult.message || "Review backend status before relying on this result."}
@@ -128,10 +128,10 @@ export default function safeScopeResultHeaderSection({
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
-            Analysis Complete
+            HazLenz AI Review Complete
           </p>
           <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-slate-400">
-            Review the result, then continue to actions.
+            Confirm the finding, evidence needs, and next actions.
           </p>
         </div>
 
@@ -144,11 +144,11 @@ export default function safeScopeResultHeaderSection({
         safeScopeResult.upgradeRequiredForFullSafeScope) && (
         <div className="mb-4 rounded-xl bg-[#E8F4FF] px-3 py-3">
           <p className="text-sm font-black text-slate-900 dark:text-slate-100">
-            Limited Basic hazard assistance
+            Limited hazard assistance
           </p>
           <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
-            Upgrade unlocks full standards matching, reasoning, evidence
-            quality review, and traceability.
+            Upgrade unlocks standards matching, evidence review,
+            corrective-action support, and report-ready notes.
           </p>
         </div>
       )}
@@ -158,10 +158,10 @@ export default function safeScopeResultHeaderSection({
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
               <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                Field Output
+                Review Summary
               </p>
               <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
-                {fieldOutput.primaryMessage || "HazLenz AI field guidance ready"}
+                {fieldOutput.primaryMessage || "HazLenz AI review ready"}
               </p>
             </div>
             {fieldDisposition && (
@@ -214,12 +214,12 @@ export default function safeScopeResultHeaderSection({
       {safeScopeResult.reasoningSnapshotId && (
         <details className="mb-3 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
           <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
-            Supervisor validation
+            Qualified review
           </summary>
 
           <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
-            Validate this reasoning snapshot for audit history and future
-            learning.
+            Confirm this HazLenz AI review for audit history and future
+            review quality.
           </p>
 
           <div className="mt-3 flex flex-wrap gap-2">

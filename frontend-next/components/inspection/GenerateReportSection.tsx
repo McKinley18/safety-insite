@@ -145,7 +145,7 @@ export default function GenerateReportSection({
           />
 
           <ReportOptionRow
-            label="HazLenz AI Narrative"
+            label="HazLenz AI Notes"
             enabled={includeSafeScopeNotesInReport}
             onToggle={() =>
               setIncludeSafeScopeNotesInReport(!includeSafeScopeNotesInReport)

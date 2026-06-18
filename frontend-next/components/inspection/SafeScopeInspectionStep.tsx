@@ -106,7 +106,7 @@ export default function SafeScopeInspectionStep({
             <span className="text-xl">⚠️</span>
             <div className="min-w-0 flex-1">
               <p className="text-xs font-black uppercase tracking-wide text-red-800 dark:text-red-400">
-                HazLenz AI Match Failed
+                HazLenz AI Review Unavailable
               </p>
               <p className="mt-1 text-xs font-semibold leading-relaxed text-red-700 dark:text-red-300">
                 {safeScopeStatus}
@@ -123,7 +123,7 @@ export default function SafeScopeInspectionStep({
                   }}
                   className="rounded-xl bg-slate-900 text-white dark:bg-slate-900 dark:text-slate-100 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
                 >
-                  Run in Offline Fallback Mode
+                  Use Offline Review
                 </button>
                 
                 <button
@@ -131,7 +131,7 @@ export default function SafeScopeInspectionStep({
                   onClick={() => handleRunSafeScope(false)}
                   className="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 dark:text-slate-100 text-slate-800 dark:text-slate-200 px-3 py-1.5 text-xs font-black shadow transition active:scale-95 cursor-pointer"
                 >
-                  Retry Connection
+                  Retry HazLenz AI
                 </button>
               </div>
             </div>
