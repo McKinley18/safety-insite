@@ -48,7 +48,7 @@ export class PdfService {
     doc
       .fontSize(20)
       .fillColor('#1f4e79')
-      .text('Sentinel Safety', 95, 60);
+      .text('InSite', 95, 60);
 
     doc
       .fontSize(10)

@@ -457,7 +457,7 @@ export class SafescopeV2Service {
         advisoryOnly: true,
         requiresQualifiedReview: true,
         finalGovernanceRule:
-          "ReviewCore may support classification, risk reasoning, standards review, evidence questions, and corrective action recommendations, but it must not invent citations, declare violations, finalize compliance decisions, or remove qualified human review.",
+          "HazLenz AI may support classification, risk reasoning, standards review, evidence questions, and corrective action recommendations, but it must not invent citations, declare violations, finalize compliance decisions, or remove qualified human review.",
       };
 
       const requiresHumanReview = true;

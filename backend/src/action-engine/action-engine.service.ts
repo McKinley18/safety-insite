@@ -156,7 +156,7 @@ export class ActionEngineService {
     }
 
     if (report.safeScope?.reasoning?.length) {
-      description += " SafeScope reasoning: " + report.safeScope.reasoning.join("; ");
+      description += " HazLenz AI reasoning: " + report.safeScope.reasoning.join("; ");
     }
 
     if (contextualControls.competentPersonReview) {

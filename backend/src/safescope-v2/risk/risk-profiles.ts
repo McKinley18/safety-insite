@@ -33,7 +33,7 @@ export const RISK_PROFILES: Record<RiskMatrixProfile["id"], RiskMatrixProfile> =
     label: "Standard 5x5",
     size: 5,
     maxScore: 25,
-    description: "Default Sentinel Safety risk matrix.",
+    description: "Default InSite risk matrix.",
     severityLabels: ["Minor", "Moderate", "Serious", "Major", "Critical"],
     likelihoodLabels: ["Rare", "Unlikely", "Possible", "Likely", "Frequent"],
     bands: [
