@@ -235,11 +235,11 @@ export async function uploadReportAttachment(reportId: string, file: File) {
   return response.json();
 }
 
-export async function createCheckoutSession(planCode: "plus" | "company") {
+export async function createCheckoutSession(planCode: "pro" | "plus" = "pro") {
   const response = await fetch(`${API_BASE_URL}/billing/checkout`, {
     method: "POST",
     headers: authHeaders(),
-    body: JSON.stringify({ planCode }),
+    body: JSON.stringify({ planCode: planCode === "plus" ? "pro" : planCode }),
   });
 
   if (!response.ok) {

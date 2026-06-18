@@ -17,7 +17,7 @@ export class BillingController {
   @Post('checkout')
   createCheckout(
     @Req() req: Request & { user?: any },
-    @Body() body: { planCode: 'plus' | 'company' },
+    @Body() body: { planCode: 'pro' | 'plus' },
   ) {
     return this.billingService.createCheckoutSession(req.user, body.planCode);
   }

@@ -21,7 +21,7 @@ export class BillingService {
 
   async getBillingStatus(user: any) {
     return {
-      planCode: user?.organizationPlanCode || user?.planCode || 'basic',
+      planCode: normalizeBillingPlan(user?.organizationPlanCode || user?.planCode || 'basic'),
       subscriptionStatus: user?.subscriptionStatus || 'active',
       organizationId: user?.organizationId || null,
     };
@@ -35,10 +35,12 @@ export class BillingService {
     }
 
     const config = BILLING_PLANS[planCode];
-    const priceId = config.stripePriceEnv ? process.env[config.stripePriceEnv] : null;
+    const priceId =
+      (config.stripePriceEnv ? process.env[config.stripePriceEnv] : null) ||
+      (config.legacyStripePriceEnv ? process.env[config.legacyStripePriceEnv] : null);
 
     if (!this.stripe || !priceId) {
-      throw new BadRequestException('Billing is not configured yet.');
+      throw new BadRequestException('Billing is not configured yet. Set STRIPE_PRO_PRICE_ID on the backend service.');
     }
 
     const successUrl = process.env.BILLING_SUCCESS_URL || 'http://localhost:3000/settings?billing=success';
