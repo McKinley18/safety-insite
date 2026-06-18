@@ -58,6 +58,13 @@ import {
 import { buildFinding } from "@/lib/inspection/findingBuilder";
 import { buildInspectionReport } from "@/lib/inspection/reportBuilder";
 import { validateInspectionReport } from "@/lib/inspection/reportValidation";
+import {
+  buildHazLenzObservationText,
+  getHazLenzScopeLabel,
+  getHazLenzScopesForAgencyMode,
+  getStandardKey,
+  hasFindingDraftData,
+} from "@/lib/inspection/inspectionWorkflowHelpers";
 
 export default function InspectionPage() {
   const router = useRouter();
@@ -311,37 +318,6 @@ export default function InspectionPage() {
     }
   }, []);
 
-  function getSafeScopeScopesForAgencyMode(mode: string) {
-    if (!mode || mode === "all") return undefined;
-
-    const scopeMap: Record<string, string[]> = {
-      msha: ["msha_mnm_surface"],
-      msha_mnm_surface: ["msha_mnm_surface"],
-      msha_mnm_underground: ["msha_mnm_underground"],
-      msha_coal_underground: ["msha_coal_underground"],
-      msha_coal_surface: ["msha_coal_surface"],
-      osha_general: ["osha_general"],
-      osha_construction: ["osha_construction"],
-    };
-
-    return scopeMap[mode] || [mode];
-  }
-
-  function getSafeScopeScopeLabel(mode: string) {
-    const labelMap: Record<string, string> = {
-      all: "All supported standards",
-      msha: "MSHA MNM Surface",
-      msha_mnm_surface: "MSHA MNM Surface",
-      msha_mnm_underground: "MSHA MNM Underground",
-      msha_coal_underground: "MSHA Coal Underground",
-      msha_coal_surface: "MSHA Coal Surface",
-      osha_general: "OSHA General Industry",
-      osha_construction: "OSHA Construction",
-    };
-
-    return labelMap[mode] || mode.toUpperCase();
-  }
-
   async function handleRunSafeScope(forceOffline: boolean = false) {
     console.log("[HazLenz AI] handleRunSafeScope entered");
     
@@ -352,8 +328,8 @@ export default function InspectionPage() {
     }
 
     try {
-      const safeScopeScopes = getSafeScopeScopesForAgencyMode(agencyMode);
-      const safeScopeScopeLabel = getSafeScopeScopeLabel(agencyMode);
+      const safeScopeScopes = getHazLenzScopesForAgencyMode(agencyMode);
+      const safeScopeScopeLabel = getHazLenzScopeLabel(agencyMode);
 
       setSafeScopeStatus("Starting HazLenz AI review...");
       
@@ -450,22 +426,13 @@ export default function InspectionPage() {
   }
 
   function buildSafeScopeText() {
-    return [
-      `Hazard category: ${hazardCategory || "Unspecified"}`,
-      `Observed condition: ${description || "No description provided"}`,
-      `Location: ${location || "No location provided"}`,
-      `Evidence notes: ${evidenceNotes || "No evidence notes provided"}`,
-      `Regulatory scope: ${agencyMode.toUpperCase()}`,
-    ].join("\n");
-  }
-
-  function getStandardKey(standard: any) {
-    return (
-      standard.citation ||
-      standard.id ||
-      standard.title ||
-      JSON.stringify(standard)
-    );
+    return buildHazLenzObservationText({
+      hazardCategory,
+      description,
+      location,
+      evidenceNotes,
+      agencyMode,
+    });
   }
 
   function toggleSelectedStandard(standard: any) {
@@ -685,19 +652,19 @@ export default function InspectionPage() {
   }
 
   function hasCurrentFindingData() {
-    return !!(
-      description ||
-      hazardCategory ||
-      location ||
-      evidenceNotes ||
-      photos.length ||
-      safeScopeResult ||
-      selectedStandards.length ||
-      selectedGeneratedActions.length ||
-      manualActions.length ||
-      severity ||
-      likelihood
-    );
+    return hasFindingDraftData({
+      description,
+      hazardCategory,
+      location,
+      evidenceNotes,
+      photos,
+      safeScopeResult,
+      selectedStandards,
+      selectedGeneratedActions,
+      manualActions,
+      severity,
+      likelihood,
+    });
   }
 
   function resetCurrentFinding() {
