@@ -15,10 +15,10 @@ import {
   removeEditReport,
 } from "@/lib/reportStorage";
 import {
-  getStoredActions,
-  saveStoredActions,
-} from "@/lib/actionStorage";
-import { addActivityEvent } from "@/lib/activityStorage";
+  persistFindingSaveSideEffects,
+  shouldConfirmHazLenzSuggestionSelection,
+  upsertFindingInList,
+} from "@/lib/inspection/findingSaveService";
 import { generateInspectionReportPackage } from "@/lib/inspection/reportGenerationService";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
@@ -51,8 +51,6 @@ import {
   buildHazLenzObservationText,
   getStandardKey,
   hasFindingDraftData,
-  mergeStoredFindingActions,
-  normalizeFindingActionsForStorage,
 } from "@/lib/inspection/inspectionWorkflowHelpers";
 import {
   ensureActiveLocalInspection,
@@ -583,18 +581,6 @@ export default function InspectionPage() {
     });
   }
 
-  async function persistFindingActions(finding: any) {
-    const correctiveActions = finding.correctiveActions || [];
-
-    if (!correctiveActions.length) return;
-
-    const storedActions = await getStoredActions();
-    const normalizedActions = normalizeFindingActionsForStorage(finding);
-    const merged = mergeStoredFindingActions(normalizedActions, storedActions);
-
-    await saveStoredActions(merged);
-  }
-
   function hasCurrentFindingData() {
     return hasFindingDraftData({
       description,
@@ -641,13 +627,13 @@ export default function InspectionPage() {
       return;
     }
 
-    const safeScopeSuggestedStandardCount = safeScopeResult?.suggestedStandards?.length || 0;
-    const safeScopeGeneratedActionCount = safeScopeResult?.generatedActions?.length || 0;
-
     if (
-      safeScopeResult &&
-      ((safeScopeSuggestedStandardCount > 0 && selectedStandards.length === 0) ||
-        (safeScopeGeneratedActionCount > 0 && selectedGeneratedActions.length === 0 && manualActions.length === 0))
+      shouldConfirmHazLenzSuggestionSelection({
+        safeScopeResult,
+        selectedStandards,
+        selectedGeneratedActions,
+        manualActions,
+      })
     ) {
       const confirmed = window.confirm(
         "HazLenz AI found recommended standards or corrective actions that are not selected for this finding. Save anyway?",
@@ -661,35 +647,18 @@ export default function InspectionPage() {
 
     const current = buildCurrentFinding();
     saveOfflineFindingSnapshot(current);
-    await persistFindingActions(current);
-    await addActivityEvent({
-      type: "Finding",
-      title:
-        current.hazardCategory ||
-        current.safeScopeResult?.classification ||
-        "Finding saved",
-      detail: current.location || "Inspection finding updated",
+    await persistFindingSaveSideEffects({
+      finding: current,
+      detailFallback: "Inspection finding updated",
     });
 
-    setFindings((prev) => {
-      if (editingFindingIndex !== null) {
-        return prev.map((finding, index) =>
-          index === editingFindingIndex ? current : finding,
-        );
-      }
-
-      const existingIndex = prev.findIndex(
-        (finding) => finding.id === current.id,
-      );
-
-      if (existingIndex >= 0) {
-        return prev.map((finding) =>
-          finding.id === current.id ? current : finding,
-        );
-      }
-
-      return [...prev, current];
-    });
+    setFindings((prev) =>
+      upsertFindingInList({
+        findings: prev,
+        finding: current,
+        editingFindingIndex,
+      }),
+    );
 
     setCurrentSavedFindingId(current.id);
     setCurrentFindingSaved(true);
@@ -704,14 +673,9 @@ export default function InspectionPage() {
     if (!currentFindingSaved && hasCurrentFindingData()) {
       const current = buildCurrentFinding();
       saveOfflineFindingSnapshot(current);
-      await persistFindingActions(current);
-      await addActivityEvent({
-        type: "Finding",
-        title:
-          current.hazardCategory ||
-          current.safeScopeResult?.classification ||
-          "Finding saved",
-        detail: current.location || "Inspection finding added",
+      await persistFindingSaveSideEffects({
+        finding: current,
+        detailFallback: "Inspection finding added",
       });
       setFindings((prev) => [...prev, current]);
     }
