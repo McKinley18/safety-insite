@@ -144,7 +144,7 @@ export default function ProfilePage() {
                   onClick={() => setIdentityEditing(true)}
                   aria-label="Edit account details"
                   title="Edit account details"
-                  className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#102A43] text-white shadow-sm transition hover:bg-[#1D72B8]"
+                  className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-[#102A43] shadow-sm transition hover:bg-blue-50 hover:text-[#1D72B8]"
                 >
                   <Pencil className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -153,20 +153,20 @@ export default function ProfilePage() {
           />
 
           {!identityEditing ? (
-            <div className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
-              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+            <div className="mt-4 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white text-slate-900 shadow-none ring-1 ring-white/70">
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
                 <SummaryRow label="First Name" value={firstName || "Not provided"} />
               </div>
-              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
                 <SummaryRow label="Last Name" value={lastName || "Not provided"} />
               </div>
-              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
                 <SummaryRow label="Email Address" value={profileEmail || "Not provided"} />
               </div>
-              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
                 <SummaryRow label="Plan" value={planLabel} />
               </div>
-              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-400">
+              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
                 <SummaryRow label="Role" value={user.role || "user"} last />
               </div>
             </div>
@@ -174,7 +174,7 @@ export default function ProfilePage() {
             <>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <label>
-                  <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-700">
                     First Name
                   </span>
                   <AppInput
@@ -185,7 +185,7 @@ export default function ProfilePage() {
                 </label>
 
                 <label>
-                  <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-700">
                     Last Name
                   </span>
                   <AppInput
@@ -196,7 +196,7 @@ export default function ProfilePage() {
                 </label>
 
                 <label className="sm:col-span-2">
-                  <span className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-700">
                     Email Address
                   </span>
                   <AppInput

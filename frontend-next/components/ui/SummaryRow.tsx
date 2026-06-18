@@ -10,12 +10,12 @@ type SummaryRowProps = {
 export default function SummaryRow({
   label,
   value,
-  valueClassName = "text-slate-900",
+  valueClassName = "text-[#102A43]",
   last = false,
 }: SummaryRowProps) {
   return (
     <div className={["flex justify-between gap-3", last ? "" : "border-b border-slate-100 pb-2"].filter(Boolean).join(" ")}>
-      <span>{label}</span>
+      <span className="text-slate-700">{label}</span>
       <span className={["font-black", valueClassName].filter(Boolean).join(" ")}>
         {value}
       </span>
