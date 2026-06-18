@@ -10,7 +10,7 @@ import {
  *
  * These wrappers provide customer-facing/service-facing HazLenz names while
  * preserving the existing HazLenz AI implementation, route, and imports during
- * the InSite transition.
+ * the Safety InSite transition.
  */
 
 export type HazLenzClassifyInput = Parameters<typeof runSafeScopeV2Classify>[0];

@@ -57,7 +57,7 @@ export default function UnlockPage() {
     <section className="mx-auto max-w-md space-y-6">
       <PageHeader
         eyebrow="Protected Mode"
-        title={pinExists ? "Unlock InSite" : "Create Local PIN"}
+        title={pinExists ? "Unlock Safety InSite" : "Create Local PIN"}
         description={
           pinExists
             ? "Enter your PIN to unlock encrypted local inspection reports on this device."

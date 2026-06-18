@@ -6,7 +6,7 @@ import { AppLinkButton } from "@/components/ui/AppLinkButton";
 const sections = [
   {
     title: "Structured observation understanding",
-    body: "InSite's HazLenz AI processes natural language safety observations into clean, structured datasets including equipment category, components in use, active worker tasks, exposure pathways, energy sources, and control failures.",
+    body: "Safety InSite's HazLenz AI processes natural language safety observations into clean, structured datasets including equipment category, components in use, active worker tasks, exposure pathways, energy sources, and control failures.",
   },
   {
     title: "Hazard mechanism reasoning",

@@ -1330,7 +1330,7 @@ export default function InspectionReviewPage() {
             <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
               HazLenz AI outputs, standards, risk ratings, corrective actions,
               and report language have been independently reviewed before export.
-              Use of this report remains subject to the InSite legal terms.
+              Use of this report remains subject to the Safety InSite legal terms.
             </span>
 
             <a

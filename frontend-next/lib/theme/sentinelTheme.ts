@@ -1,6 +1,6 @@
 export const sentinelTheme = {
   brand: {
-    name: "InSite",
+    name: "Safety InSite",
     engine: "HazLenz AI",
     navy: "#0f172a",
     headerNavy: "#102A43",

@@ -113,11 +113,11 @@ export default function LoginPage() {
         <form onSubmit={handleLogin} className="bg-gradient-to-b from-white to-slate-50/80 p-5 sm:p-8 lg:p-10">
           <div className="mx-auto max-w-md">
             <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
-              Access InSite
+              Access Safety InSite
             </h2>
 
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
-              Enter your email and password to continue to InSite.
+              Enter your email and password to continue to Safety InSite.
             </p>
 
             <div className="mt-5 space-y-4 sm:mt-6">

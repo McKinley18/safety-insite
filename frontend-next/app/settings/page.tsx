@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getStoredPlanCode } from "@/lib/planEntitlements";
-import { getFacilities } from "@/lib/facilityStorage";
-import { getOrganizationSettings } from "@/lib/auth";
 import { AppPanel } from "@/components/ui/AppPanel";
-import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -15,7 +12,7 @@ type RegulatoryScope = "all" | "msha" | "osha_general" | "osha_construction";
 
 const storageModes = [
   ["local", "Private Local Vault", "Keep reports on this device unless exported."],
-  ["cloud", "Cloud Sync", "Sync reports to a shared workspace."],
+  ["cloud", "Cloud Sync", "Sync reports when cloud storage is available."],
   ["ask", "Ask Each Report", "Choose local or cloud when finalizing each report."],
 ] as const;
 
@@ -95,44 +92,28 @@ function OverviewItem({
 }
 
 export default function SettingsHubPage() {
-  const [organizationName, setOrganizationName] = useState("InSite Workspace");
   const [riskProfileId, setRiskProfileId] = useState<RiskProfileId>("standard_5x5");
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
   const [regulatoryScope, setRegulatoryScope] = useState<RegulatoryScope>("all");
   const [planCode, setPlanCode] = useState("basic");
-  const [facilityCount, setFacilityCount] = useState(0);
 
   useEffect(() => {
-    async function loadSummary() {
-      const storedPlan = getStoredPlanCode();
-      setPlanCode(storedPlan);
-      setFacilityCount(getFacilities().length);
+    setPlanCode(getStoredPlanCode());
 
-      setStorageMode(
-        (window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) ||
-          "local",
-      );
+    setStorageMode(
+      (window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) ||
+        "local",
+    );
 
-      setRegulatoryScope(
-        (window.localStorage.getItem("sentinel_regulatory_scope") as RegulatoryScope | null) ||
-          "all",
-      );
+    setRiskProfileId(
+      (window.localStorage.getItem("sentinel_company_risk_profile") as RiskProfileId | null) ||
+        "standard_5x5",
+    );
 
-      try {
-        const settings = await getOrganizationSettings();
-        setOrganizationName(settings.name || "InSite Workspace");
-        setRiskProfileId((settings.riskProfileId || "standard_5x5") as RiskProfileId);
-        setRegulatoryScope(
-          (settings.regulatoryScope ||
-            window.localStorage.getItem("sentinel_regulatory_scope") ||
-            "all") as RegulatoryScope,
-        );
-      } catch {
-        setOrganizationName("InSite Workspace");
-      }
-    }
-
-    loadSummary();
+    setRegulatoryScope(
+      (window.localStorage.getItem("sentinel_regulatory_scope") as RegulatoryScope | null) ||
+        "all",
+    );
   }, []);
 
   function updateStorageMode(value: StorageMode) {
@@ -170,23 +151,22 @@ export default function SettingsHubPage() {
           Settings.
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Set your report storage, risk matrix, HazLenz AI scope, and workspace preferences.
+          Set your report storage, risk matrix, and HazLenz AI defaults.
         </p>
       </HeroPanel>
 
       <AppPanel padding="lg">
         <SectionHeader
-          eyebrow="Workspace Overview"
-          title={organizationName}
-          description="A quick snapshot of the settings currently applied to this workspace."
+          eyebrow="Settings Overview"
+          title="Current defaults"
+          description="A quick snapshot of the defaults currently applied to your inspections and reports."
         />
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <OverviewItem label="Plan" value={planCode} />
           <OverviewItem label="Storage" value={storageLabel} />
           <OverviewItem label="Risk Matrix" value={riskLabel} />
           <OverviewItem label="HazLenz AI Scope" value={scopeLabel} />
-          <OverviewItem label="Locations" value={facilityCount} />
         </div>
       </AppPanel>
 
@@ -252,19 +232,6 @@ export default function SettingsHubPage() {
         </div>
       </AppPanel>
 
-      <AppPanel padding="lg">
-        <SectionHeader
-          eyebrow="Setup"
-          title="Workspace setup"
-          description="Open full settings for report defaults, logo, security, and locations."
-        />
-
-        <div className="mt-5 flex justify-center">
-          <AppLinkButton href="/settings/workspace" className="w-44">
-            Workspace Setup
-          </AppLinkButton>
-        </div>
-      </AppPanel>
     </section>
   );
 }

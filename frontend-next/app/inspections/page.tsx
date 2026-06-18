@@ -313,11 +313,11 @@ export default function InspectionsPage() {
         <p className="mx-auto mt-4 max-w-sm text-center text-xs font-semibold leading-5 text-slate-500">
           HazLenz AI uses the default regulatory agency from{" "}
           <AppTextLink
-            href="/settings/workspace"
+            href="/settings"
             className="!text-xs !leading-5 font-black"
             style={{ textDecoration: "underline", textDecorationThickness: "2px", textUnderlineOffset: "4px" }}
           >
-            Workspace Settings
+            Settings
           </AppTextLink>
           . Current default:{" "}
           <span className="font-black text-slate-700">
