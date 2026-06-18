@@ -354,7 +354,7 @@ export default function SafetyCalendarPage() {
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
           {canUseCompanyCalendar
-            ? "Manage team inspections, corrective actions, follow-ups, review work, owners, and organization-wide workload visibility."
+            ? "Review inspections, corrective actions, follow-ups, reminders, and due work in one lightweight schedule."
             : "Manage your personal safety work, inspections, corrective actions, follow-ups, and review reminders."}
         </p>
 
@@ -605,7 +605,7 @@ export default function SafetyCalendarPage() {
           <SectionHeader
             eyebrow="Day Agenda"
             title={formatFullDate(parseLocalCalendarDate(selectedDateKey) || anchorDate)}
-            description="Review scheduled work, overdue items, owners, locations, and source details for the selected day."
+            description="Review scheduled work, overdue items, locations, and source details for the selected day."
           />
 
           <div className="mt-4 space-y-3">
@@ -619,7 +619,7 @@ export default function SafetyCalendarPage() {
                       </p>
                       <h3 className="mt-1 text-base font-black text-app-text">{event.title}</h3>
                       <p className="mt-1 text-xs font-semibold text-app-text-muted">
-                        Owner: {event.owner} · Location: {event.location}
+                        Responsible: {event.owner} · Location: {event.location}
                       </p>
                       {event.findingTitle && (
                         <p className="mt-1 text-xs font-semibold text-app-text-muted">

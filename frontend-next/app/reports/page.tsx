@@ -134,7 +134,7 @@ function riskClasses(risk: string) {
 }
 
 function getStorageLabel(source?: Report["storageSource"]) {
-  if (source === "cloud") return "Workspace Sync";
+  if (source === "cloud") return "Cloud Sync";
   if (source === "seed") return "Sample Record";
   return "Local Vault";
 }
@@ -316,7 +316,7 @@ export default function ReportsPage() {
 
       try {
         setCloudLoadStatus("loading");
-        setCloudLoadMessage("Loading workspace reports...");
+        setCloudLoadMessage("Loading cloud reports...");
 
         const cloudReports = await fetchCloudReports();
         const merged = mergeReports(localMerged, cloudReports);
@@ -325,14 +325,14 @@ export default function ReportsPage() {
         setCloudLoadStatus("loaded");
         setCloudLoadMessage(
           cloudReports.length
-            ? `${cloudReports.length} workspace report(s) synced.`
-            : "No workspace reports found.",
+            ? `${cloudReports.length} cloud report(s) synced.`
+            : "No cloud reports found.",
         );
       } catch (error) {
         const message =
           error instanceof Error
             ? error.message
-            : "Workspace reports could not be loaded.";
+            : "Cloud reports could not be loaded.";
 
         setCloudLoadStatus("error");
         setCloudLoadMessage(message);
@@ -444,7 +444,7 @@ export default function ReportsPage() {
 
     const confirmed = window.confirm(
       reportToDelete?.storageSource === "cloud"
-        ? "Archive this cloud report from the workspace? Local cached copies will also be removed."
+        ? "Archive this cloud report? Local cached copies will also be removed."
         : "Delete this local report? This cannot be undone.",
     );
 
@@ -590,7 +590,7 @@ export default function ReportsPage() {
           </p>
           {cloudLoadStatus === "error" && (
             <p className="mt-1 text-xs font-semibold leading-5 text-amber-700">
-              Local encrypted reports are still available. Workspace sync will
+              Local encrypted reports are still available. Cloud sync will
               retry the next time this page loads.
             </p>
           )}

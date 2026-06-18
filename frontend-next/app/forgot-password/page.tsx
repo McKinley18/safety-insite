@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
             </h2>
 
             <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
-              We’ll send reset instructions to the email connected to your workspace.
+              We’ll send reset instructions to the email connected to your account.
             </p>
 
             <div className="mt-5 space-y-4 sm:mt-6">

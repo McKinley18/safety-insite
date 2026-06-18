@@ -21,8 +21,8 @@ const capabilities = [
   },
   {
     title: "Corrective action tracking",
-    highlight: "Turn findings into assigned work.",
-    text: "Create follow-ups, assign responsibility, track status, and keep accountability connected to the inspection record.",
+    highlight: "Turn findings into corrective action.",
+    text: "Create follow-ups, track status, and keep accountability connected to the inspection record.",
   },
   {
     title: "Professional records",
@@ -52,7 +52,7 @@ export default function AboutPage() {
               </h1>
 
               <p className="mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Safety InSite helps teams turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
+                Safety InSite helps safety professionals turn field observations into documented findings, risk review, standards support, corrective action, and inspection-ready records.
               </p>
             </div>
 
@@ -90,7 +90,7 @@ export default function AboutPage() {
                 One connected workflow from observation to follow-through.
               </h2>
               <p className="mt-3 max-w-md text-sm font-semibold leading-6 text-slate-600">
-                Designed for teams that need faster capture, cleaner review, and stronger accountability.
+                Designed for safety professionals who need faster capture, cleaner review, and stronger accountability.
               </p>
             </div>
 
@@ -152,7 +152,7 @@ export default function AboutPage() {
 
           <div className="border-l border-slate-200/80 pl-4">
             <p className="text-base font-semibold leading-7 text-slate-600">
-              A safety finding should not disappear into a notebook, photo gallery, spreadsheet, or email chain. Safety InSite keeps the finding, evidence, review, and action connected so teams can move faster, communicate clearly, and follow through with confidence.
+              A safety finding should not disappear into a notebook, photo gallery, spreadsheet, or email chain. Safety InSite keeps the finding, evidence, review, and action connected so safety professionals can move faster, communicate clearly, and follow through with confidence.
             </p>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -171,7 +171,7 @@ export default function AboutPage() {
               <div className="border-t border-slate-200/80 pt-3">
                 <p className="text-sm font-black text-slate-950">Act</p>
                 <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
-                  Assign and track correction.
+                  Track correction.
                 </p>
               </div>
             </div>

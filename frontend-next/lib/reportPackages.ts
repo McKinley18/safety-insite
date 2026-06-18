@@ -27,10 +27,10 @@ export function getReportPackageForPlan(
   if (planCode === "company") {
     return {
       code: "company_compliance_package",
-      label: "Company Compliance Package",
-      shortLabel: "Company",
+      label: "Advanced Report Package",
+      shortLabel: "Advanced",
       description:
-        "Management-ready compliance package with company metadata, team accountability, assigned corrective actions, trend intelligence, repeat-finding history, and full HazLenz AI traceability.",
+        "Advanced report package with report metadata, corrective action accountability, trend intelligence, repeat-finding history, and full HazLenz AI traceability.",
       includesExecutiveSummary: true,
       includesSafeScopeSummary: true,
       includesSafeScopeTraceability: true,

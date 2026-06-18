@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function CompanyControlCenterPage() {
+export default function CompanyRedirectPage() {
   redirect("/command-center");
 }

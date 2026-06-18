@@ -93,7 +93,7 @@ export default function LoginPage() {
 
           <div className="relative mt-5 grid gap-2.5 sm:mt-8 sm:gap-3">
             {[
-              "Protected workspace access",
+              "Protected account access",
               "Audit-ready safety records",
               `Powered by ${AI_ENGINE_NAME}`,
             ].map((item) => (

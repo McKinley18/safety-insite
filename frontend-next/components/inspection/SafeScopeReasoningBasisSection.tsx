@@ -24,7 +24,7 @@ export default function SafeScopeReasoningBasisSection({
   return (
     <SafeScopeDrawer
       title="Reasoning Basis"
-      summary="HazLenz AI engine is primary; workspace history is reference only"
+      summary="HazLenz AI engine is primary; prior report history is reference only"
       badge={basis?.sourceHierarchyEnforced ? "Hierarchy enforced" : "Review"}
     >
       <div className="space-y-3">
@@ -49,7 +49,7 @@ export default function SafeScopeReasoningBasisSection({
         <div className="grid gap-2 sm:grid-cols-2">
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
             <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
-              Workspace history role
+              Prior report history role
             </p>
             <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
               {formatValue(basis?.workspaceHistoryRole || "supporting_reference_only")}

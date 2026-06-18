@@ -61,8 +61,8 @@ export function normalizeCloudAction(action: any) {
     priority: normalizePriority(action.priorityCode || action.priority),
     status: normalizeStatus(action.statusCode || action.status),
     due: action.dueDate || action.due || "",
-    source: action.source || action.originalSuggestion?.source || "Workspace",
-    location: action.siteId || "Workspace",
+    source: action.source || action.originalSuggestion?.source || "Cloud Sync",
+    location: action.siteId || "Field record",
     findingTitle: action.category || action.originalSuggestion?.findingTitle || "Inspection Finding",
     createdAt: action.createdAt || new Date().toISOString(),
     storageSource: "cloud",
@@ -89,7 +89,7 @@ export async function fetchCloudActions() {
     throw new Error(
       data?.message ||
         data?.error ||
-        `Workspace actions could not be loaded. Status ${response.status}.`,
+        `Cloud actions could not be loaded. Status ${response.status}.`,
     );
   }
 
@@ -124,7 +124,7 @@ export async function updateCloudActionStatus(actionId: string, status: string) 
     throw new Error(
       data?.message ||
         data?.error ||
-        `Workspace action could not be updated. Status ${response.status}.`,
+        `Cloud action could not be updated. Status ${response.status}.`,
     );
   }
 

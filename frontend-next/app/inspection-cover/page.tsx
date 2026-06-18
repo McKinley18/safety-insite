@@ -93,7 +93,7 @@ export default function InspectionCoverPage() {
           Start Field Inspection
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
-          Capture the problem first. Report details can come from workspace
+          Capture the problem first. Report details can come from saved
           settings and be reviewed before final output.
         </p>
       </HeroPanel>
@@ -182,7 +182,7 @@ export default function InspectionCoverPage() {
               Include cover page
             </span>
             <span className="mt-1 block text-xs leading-[17px] text-slate-600">
-              Organization, site, logo, and report branding will use workspace
+              Site, logo, and report branding will use saved
               defaults when available.
             </span>
           </span>

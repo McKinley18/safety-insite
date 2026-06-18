@@ -83,12 +83,12 @@ const tiers = [
     featured: false,
     sections: [
       {
-        title: "Team Access",
+        title: "Advanced Access",
         items: [
           "Expanded report review",
           "Advanced inspection history",
           "Advanced review controls",
-          "Advanced workspace tools",
+          "Advanced inspection tools",
           "Expanded inspection records",
         ],
       },
@@ -99,7 +99,7 @@ const tiers = [
           "Corrective action tracking",
           "Advanced dashboards",
           "Action due dates and status tracking",
-          "Workspace-level safety visibility",
+          "Expanded safety visibility",
         ],
       },
     ],
@@ -138,7 +138,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         <p className="mx-auto mt-5 max-w-3xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
           Free helps users try the workflow. Pro unlocks HazLenz AI intelligence.
           Advanced tools add expanded review, reporting, and
-          workspace-level visibility.
+          expanded safety visibility.
         </p>
       </div>
 

@@ -85,7 +85,7 @@ export default function SafeScopeControlsSection({
         <p className="mt-3 rounded-xl bg-slate-50 px-3 py-2 text-xs font-semibold leading-5 text-blue-100">
           HazLenz AI provides decision support only. Final compliance decisions
           remain with qualified personnel. Agency scope and risk matrix are
-          pulled from workspace settings.
+          pulled from Settings.
         </p>
       )}
 

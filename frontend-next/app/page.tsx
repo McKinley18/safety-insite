@@ -14,7 +14,7 @@ const workflow = [
   },
   {
     title: "Act",
-    body: "Assign corrective actions, track follow-through, and keep records connected to the original finding.",
+    body: "Track corrective actions, follow-through, and keep records connected to the original finding.",
   },
 ];
 
@@ -22,7 +22,7 @@ const workflow = [
 const outcomes = [
   ["Less scattered evidence", "Keep findings, photos, notes, standards support, and actions connected."],
   ["Cleaner review", "Make it easier for qualified personnel to understand what happened and what still needs verification."],
-  ["Stronger follow-through", "Move from observation to assigned work without losing accountability."],
+  ["Stronger follow-through", "Move from observation to corrective action without losing accountability."],
 ];
 
 export default function HomePage() {
@@ -44,7 +44,7 @@ export default function HomePage() {
               </h1>
 
               <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-slate-200 sm:text-lg sm:leading-8">
-                Safety InSite helps teams turn field observations into documented findings, risk review, standards support, corrective actions, and inspection-ready records.
+                Safety InSite helps safety professionals turn field observations into documented findings, risk review, standards support, corrective actions, and inspection-ready records.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -120,7 +120,7 @@ export default function HomePage() {
             One connected workflow from observation to follow-through.
           </h2>
           <p className="mt-4 text-base font-semibold leading-7 text-slate-600">
-            Built for teams that need faster capture, cleaner review, and stronger accountability across inspections, findings, and corrective actions.
+            Built for safety professionals who need faster capture, cleaner review, and stronger accountability across inspections, findings, and corrective actions.
           </p>
         </div>
 

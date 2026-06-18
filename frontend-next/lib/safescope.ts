@@ -66,7 +66,7 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
     basicPlanMode: true,
     upgradeRequiredForFullSafeScope: true,
     explanation:
-      "Basic HazLenz AI provides limited hazard assistance. Upgrade to Plus or Company for full HazLenz AI reasoning, standards matching, evidence quality review, exposure-path intelligence, and corrective action recommendations.",
+      "Basic HazLenz AI provides limited hazard assistance. Upgrade for full HazLenz AI reasoning, standards matching, evidence quality review, exposure-path intelligence, and corrective action recommendations.",
     ambiguityWarnings: [
       "Full HazLenz AI intelligence is not available on the Basic plan.",
       "Review classification, risk, standards, and corrective actions manually.",
@@ -84,7 +84,7 @@ function runBasicSafeScopeFallback(text: string, payload: any) {
       confidenceBand: "basic_review",
       strengths: ["Basic hazard category assistance was provided."],
       missingCriticalInformation: [
-        "Full HazLenz AI intelligence requires Plus or Company.",
+        "Full HazLenz AI intelligence requires an upgraded plan.",
       ],
       conflictingSignals: [],
       recommendedFollowup: [

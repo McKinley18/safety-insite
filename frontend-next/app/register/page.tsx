@@ -131,16 +131,16 @@ export default function RegisterPage() {
           </div>
 
           <h1 className="relative mt-4 text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl">
-            Create your safety workspace.
+            Create your Safety InSite account.
           </h1>
 
           <p className="relative mt-3 max-w-xl text-sm font-semibold leading-6 text-slate-300 sm:mt-4">
-            Start a modern workspace for inspections, corrective actions, audit-ready records, and HazLenz AI decision support.
+            Start an inspection-first hub for inspections, corrective actions, audit-ready records, and HazLenz AI decision support.
           </p>
 
           <div className="relative mt-5 grid gap-2.5 sm:mt-8 sm:gap-3">
             {[
-              "Role-based workspace access",
+              "Inspection and report records",
               "Secure inspection evidence",
               "HazLenz AI intelligence support",
             ].map((item) => (
@@ -160,7 +160,7 @@ export default function RegisterPage() {
         <form onSubmit={handleRegister} className="bg-gradient-to-b from-white to-slate-50/80 p-5 sm:p-8 lg:p-10">
         <h1 className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Create an Account</h1>
         <p className="mt-2 text-sm font-semibold text-slate-500">
-          Create your Safety InSite workspace account.
+          Create your Safety InSite account.
         </p>
 
         <div className="mt-5 space-y-3">
@@ -239,7 +239,7 @@ export default function RegisterPage() {
                 placeholder="Promo Code"
               />
               <p>
-                Optional. Use an approved employer code if one was provided by your organization.
+                Optional. Use an approved access code if one was provided.
               </p>
             </div>
           </details>
@@ -258,7 +258,7 @@ export default function RegisterPage() {
 
           <div className="flex justify-center pt-1">
             <AppButton type="submit" disabled={loading} size="md" className="min-h-11 bg-[#1D72B8] px-6 text-sm text-white shadow-sm shadow-blue-900/20 hover:bg-[#0B1320] active:scale-[0.98]">
-            {loading ? "Creating..." : "Create Secure Workspace"}
+            {loading ? "Creating..." : "Create Secure Account"}
           </AppButton>
           </div>
 
