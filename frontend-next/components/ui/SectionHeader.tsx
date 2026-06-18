@@ -20,12 +20,12 @@ export default function SectionHeader({
           </p>
         )}
 
-        <h2 className="mt-1 text-xl font-black tracking-[-0.035em] text-slate-900 dark:text-slate-100">
+        <h2 className="mt-1 text-xl font-black tracking-[-0.035em]" style={{ color: "#102A43" }}>
           {title}
         </h2>
 
         {description && (
-          <p className="mt-1 max-w-2xl text-sm font-semibold leading-6 text-slate-500">
+          <p className="mt-1 max-w-2xl text-sm font-semibold leading-6" style={{ color: "#0f172a" }}>
             {description}
           </p>
         )}

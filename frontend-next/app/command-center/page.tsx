@@ -400,7 +400,7 @@ export default function DashboardPage() {
           <div className="grid gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
             <div className="text-center lg:text-left">
               <p className="text-center text-xs font-black uppercase tracking-[0.28em] text-blue-200 lg:text-left">
-                Safety InSite Home
+                <span className="text-[#5DB7FF]">Safety InSite Home</span>
               </p>
 
               <h1 className="mx-auto mt-4 max-w-3xl text-center text-3xl font-black leading-tight tracking-[-0.045em] text-white sm:text-4xl lg:mx-0 lg:text-left">
@@ -488,7 +488,7 @@ export default function DashboardPage() {
                 events,
               )}`}
             >
-              <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-500 sm:left-2 sm:top-2 sm:text-[10px]">
+              <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide sm:left-2 sm:top-2 sm:text-[10px]" style={{ color: "#102A43" }}>
                 {date.toLocaleDateString("en-US", { weekday: "short" })}
               </span>
 

@@ -608,7 +608,7 @@ export default function ReportsPage() {
         </div>
       )}
 
-      <div className="sentinel-content-card px-3 py-3">
+      <div className="rounded-xl border border-slate-200/80 bg-white px-3 py-3 text-slate-900 shadow-none ring-1 ring-white/70 backdrop-blur-xl">
         <div className="sentinel-phone-toolbar items-center sm:flex sm:flex-wrap sm:gap-2">
         <AppInput
           value={reportSearch}

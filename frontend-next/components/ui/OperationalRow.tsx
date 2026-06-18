@@ -22,7 +22,7 @@ export default function OperationalRow({
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-lg font-black text-slate-900 dark:text-slate-100">
+            <h3 className="text-lg font-black" style={{ color: "#102A43" }}>
               {title}
             </h3>
 
@@ -34,13 +34,13 @@ export default function OperationalRow({
           </div>
 
           {subtitle && (
-            <p className="mt-1 text-sm font-semibold text-slate-500">
+            <p className="mt-1 text-sm font-semibold" style={{ color: "#0f172a" }}>
               {subtitle}
             </p>
           )}
 
           {metadata.length > 0 && (
-            <div className="mt-3 flex flex-wrap gap-3 text-xs font-black text-slate-400">
+            <div className="mt-3 flex flex-wrap gap-3 text-xs font-black text-slate-600">
               {metadata.map((item) => (
                 <span key={item}>{item}</span>
               ))}
