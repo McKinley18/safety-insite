@@ -89,16 +89,16 @@ export default function SafeScopeControlsSection({
         </p>
       )}
 
-      <div className="mt-4">
+      <div className="mt-4 text-center">
         <button
           type="button"
           onClick={() => {
             console.log("[HazLenz AI] Button clicked");
             handleRunSafeScope();
           }}
-          className="w-full rounded-xl bg-[#102A43] px-5 py-3 text-sm font-black text-white shadow-sm ring-1 ring-slate-900/10 transition hover:bg-[#1D72B8] active:scale-[0.98]"
+          className="mx-auto inline-flex w-auto items-center justify-center rounded-xl bg-[#F97316] px-4 py-2.5 text-sm font-black text-white shadow-sm ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98]"
         >
-          Run HazLenz AI Review
+          Run HazLenz
         </button>
 
         {safeScopeStatus && (

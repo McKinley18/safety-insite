@@ -53,10 +53,10 @@ function SummaryBox({
 }) {
   return (
     <div className="flex h-16 w-1/3 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
-      <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
+      <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
         {label}
       </p>
-      <p className="mt-0.5 text-sm font-black text-white">{value}</p>
+      <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">{value}</p>
     </div>
   );
 }
@@ -160,66 +160,66 @@ export default function GenerateReportSection({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
-        <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+      <div className="sentinel-content-card rounded-xl px-4 py-3 sm:px-5">
+        <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Report Contents
         </p>
 
-        <h3 className="mt-1 text-base font-black text-white">
+        <h3 className="mt-1 text-base font-black text-slate-900 dark:text-white">
           Package summary
         </h3>
 
         <div className="mt-4 flex h-16 w-full items-start justify-center gap-1.5 text-center">
-          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
-            <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Total
             </p>
-            <p className="mt-0.5 text-sm font-black text-white">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">
               {findings.length}
             </p>
           </div>
 
-          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
-            <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Standards
             </p>
-            <p className="mt-0.5 text-sm font-black text-white">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">
               {findingsWithStandards}
             </p>
           </div>
 
-          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
-            <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Actions
             </p>
-            <p className="mt-0.5 text-sm font-black text-white">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">
               {findingsWithActions}
             </p>
           </div>
 
-          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
-            <p className="text-[8px] font-black uppercase tracking-wide text-blue-100">
+          <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
+            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
               Photos
             </p>
-            <p className="mt-0.5 text-sm font-black text-white">
+            <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">
               {findingsWithPhotos}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-[#102A43] bg-[#102A43] p-5 text-white shadow-sm">
+      <div className="sentinel-content-card rounded-xl px-4 py-3 sm:px-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
               Final Output
             </p>
 
-            <h3 className="mt-1 text-base font-black text-white">
+            <h3 className="mt-1 text-base font-black text-slate-900 dark:text-white">
               Generate completed inspection report
             </h3>
 
-            <p className="mt-1 text-sm font-semibold leading-5 text-blue-100">
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-300">
               Create the final report using the saved findings and selected
               report package options.
             </p>
@@ -229,7 +229,7 @@ export default function GenerateReportSection({
             type="button"
             onClick={generateReport}
             disabled={!findings.length}
-            className="rounded-xl bg-[#F97316] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#EA580C] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="inline-flex min-h-[38px] w-auto self-center items-center justify-center rounded-xl bg-[#F97316] px-4 py-2 text-center text-xs font-black leading-none text-white shadow-sm ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-[#F97316] disabled:text-white disabled:opacity-55 sm:self-auto"
           >
             Generate
           </button>

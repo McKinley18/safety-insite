@@ -48,7 +48,7 @@ export default function EvidenceCaptureSection({
         </div>
 
         <div className="sentinel-phone-actions mt-3 sm:flex sm:flex-wrap sm:justify-center">
-          <label className="sentinel-compact-secondary w-full cursor-pointer sm:w-[148px]">
+          <label className="inline-flex min-h-[42px] w-full cursor-pointer items-center justify-center rounded-full border border-blue-300/60 bg-[#1D72B8] px-4 py-2 text-center text-[13px] font-black text-white shadow-sm ring-1 ring-blue-300/40 transition hover:bg-[#155A93] sm:min-h-[44px] sm:w-[148px] sm:px-5 sm:py-2.5 sm:text-sm">
             Take Photo
             <input
               type="file"
@@ -59,7 +59,7 @@ export default function EvidenceCaptureSection({
             />
           </label>
 
-          <label className="inline-flex min-h-[42px] w-full cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/10 px-4 py-2 text-center text-[13px] font-black text-white shadow-sm ring-1 ring-white/10 transition hover:bg-white/20 sm:min-h-[44px] sm:w-[148px] sm:px-5 sm:py-2.5 sm:text-sm">
+          <label className="inline-flex min-h-[42px] w-full cursor-pointer items-center justify-center rounded-full border border-orange-300/60 bg-[#F97316] px-4 py-2 text-center text-[13px] font-black text-white shadow-sm ring-1 ring-orange-300/40 transition hover:bg-[#EA580C] sm:min-h-[44px] sm:w-[148px] sm:px-5 sm:py-2.5 sm:text-sm">
             Upload
             <input
               type="file"
@@ -73,9 +73,9 @@ export default function EvidenceCaptureSection({
       </div>
 
       <section className="sentinel-content-card rounded-xl px-4 py-3 sm:px-5">
-        <h3 className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+        <p className="mb-2 text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
           Uploaded Evidence
-        </h3>
+        </p>
         {photos.length > 0 ? (
           <div className="divide-y divide-slate-200/80 border-t border-slate-200/80">
             {photos.map((photo, index) => (
