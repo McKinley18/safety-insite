@@ -218,12 +218,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [isPublicPage, pathname, router]);
 
   useEffect(() => {
-    const themeVersion = "theme-darkmode-stable-2026-06-17-v1";
+    const themeVersion = "theme-reset-2026-06-18-insite-mobile-v2";
     const savedThemeVersion = localStorage.getItem("sentinel_theme_version");
     const saved = localStorage.getItem("sentinel_dark_mode");
 
     if (savedThemeVersion !== themeVersion) {
       localStorage.setItem("sentinel_theme_version", themeVersion);
+      localStorage.setItem("sentinel_dark_mode", "false");
+      document.documentElement.classList.remove("dark");
+      document.body.classList.remove("dark");
+      setDarkMode(false);
+      return;
     }
 
     setDarkMode(saved === "true");
