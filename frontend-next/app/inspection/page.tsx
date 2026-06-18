@@ -3,13 +3,12 @@
 import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  sendHazLenzFeedback,
-} from "@/lib/hazlenz";
 import { runInspectionHazLenzReview } from "@/lib/inspection/hazlenzInspectionService";
 import {
-  submitSupervisorValidation,
-} from "@/lib/safescope";
+  submitHazLenzStandardFeedback,
+  submitHazLenzValidationReview,
+  type HazLenzValidationDecision,
+} from "@/lib/inspection/hazlenzFeedbackService";
 import {
   getEditReport,
   removeEditReport,
@@ -48,7 +47,6 @@ import { buildFinding } from "@/lib/inspection/findingBuilder";
 import { validateInspectionReport } from "@/lib/inspection/reportValidation";
 import {
   buildFinalizedInspectionFindings,
-  buildHazLenzObservationText,
   getStandardKey,
   hasFindingDraftData,
 } from "@/lib/inspection/inspectionWorkflowHelpers";
@@ -391,16 +389,6 @@ export default function InspectionPage() {
   }
 
 
-  function buildSafeScopeText() {
-    return buildHazLenzObservationText({
-      hazardCategory,
-      description,
-      location,
-      evidenceNotes,
-      agencyMode,
-    });
-  }
-
   function toggleSelectedStandard(standard: any) {
     const standardKey = getStandardKey(standard);
 
@@ -431,17 +419,16 @@ export default function InspectionPage() {
     try {
       setSafeScopeStatus(`Submitting ${action} feedback...`);
 
-      await sendHazLenzFeedback({
-        text: buildSafeScopeText(),
-        category:
-          safeScopeResult?.classification || hazardCategory || "General",
-        mode: agencyMode,
-        citation: standard.citation,
+      await submitHazLenzStandardFeedback({
+        standard,
         action,
-        notes: feedbackNotes,
-        confidenceBefore:
-          safeScopeResult?.confidenceIntelligence?.overallConfidence ??
-          safeScopeResult?.confidence,
+        hazardCategory,
+        description,
+        location,
+        evidenceNotes,
+        agencyMode,
+        feedbackNotes,
+        safeScopeResult,
         riskProfileId,
       });
 
@@ -472,33 +459,17 @@ export default function InspectionPage() {
     }
   }
 
-  async function submitSafeScopeValidation(
-    decision:
-      | "accepted"
-      | "modified"
-      | "rejected"
-      | "escalated"
-      | "insufficient_evidence",
-  ) {
-    if (!safeScopeResult?.reasoningSnapshotId) {
-      setSafeScopeStatus(
-        "No HazLenz AI reasoning snapshot is available to validate.",
-      );
-      return;
-    }
-
+  async function submitSafeScopeValidation(decision: HazLenzValidationDecision) {
     try {
       setSafeScopeStatus("Submitting supervisor validation...");
 
-      await submitSupervisorValidation({
-        reasoningSnapshotId: safeScopeResult.reasoningSnapshotId,
-        validationDecision: decision,
-        reviewerNotes: feedbackNotes,
+      const validation = await submitHazLenzValidationReview({
+        safeScopeResult,
+        decision,
+        feedbackNotes,
       });
 
-      setSafeScopeStatus(
-        `Supervisor validation saved: ${decision.replaceAll("_", " ")}`,
-      );
+      setSafeScopeStatus(validation.status);
     } catch {
       setSafeScopeStatus(
         "Supervisor validation could not be saved. Please confirm the backend is running.",
