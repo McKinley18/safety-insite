@@ -19,14 +19,29 @@ async function bootstrap() {
     transform: true,
   }));
 
-  // 🔷 CORS: Allow local dev and deployed Sentinel Safety frontend origins.
+  // 🔷 CORS: Allow local dev and deployed InSite frontend origins.
   const configuredFrontendUrl = configService.get<string>('FRONTEND_URL');
+  const configuredCorsOrigins = configService.get<string>('CORS_ORIGINS');
+
+  const configuredOriginList = configuredCorsOrigins
+    ? configuredCorsOrigins
+        .split(',')
+        .map((value) => value.trim())
+        .filter(Boolean)
+    : [];
 
   const allowedOrigins = [
     configuredFrontendUrl,
+    ...configuredOriginList,
     'http://localhost:3000',
     'http://localhost:3001',
     'http://localhost:8081',
+
+    // Current InSite production / Vercel project origins.
+    'https://safety-insite.vercel.app',
+    'https://safety-insite-mckinley18s-projects.vercel.app',
+
+    // Legacy production origins kept so old deployments and aliases do not break.
     'https://sentinelsafety.vercel.app',
     'https://sentinelsafety-mckinley18s-projects.vercel.app',
   ].filter(Boolean);
@@ -38,10 +53,14 @@ async function bootstrap() {
         return;
       }
 
-      if (
+      const isKnownVercelProjectOrigin =
         origin.endsWith('.vercel.app') &&
-        origin.includes('sentinelsafety')
-      ) {
+        (
+          origin.includes('safety-insite') ||
+          origin.includes('sentinelsafety')
+        );
+
+      if (isKnownVercelProjectOrigin) {
         callback(null, true);
         return;
       }
