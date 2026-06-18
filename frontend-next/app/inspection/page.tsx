@@ -18,7 +18,7 @@ import {
   shouldConfirmHazLenzSuggestionSelection,
   upsertFindingInList,
 } from "@/lib/inspection/findingSaveService";
-import { generateInspectionReportPackage } from "@/lib/inspection/reportGenerationService";
+import { generateInspectionReportPackage, validateInspectionReportBeforeGenerate } from "@/lib/inspection/reportGenerationService";
 import {
   clampInspectionStep,
   getInspectionRiskScale,
@@ -716,14 +716,12 @@ export default function InspectionPage() {
   }
 
   function validateReportBeforeGenerate() {
-    const finalizedFindings = buildFinalizedInspectionFindings({
+    return validateInspectionReportBeforeGenerate({
       findings,
       currentFindingSaved,
       hasCurrentFindingData: hasCurrentFindingData(),
       buildCurrentFinding,
     });
-
-    return validateInspectionReport(finalizedFindings);
   }
 
   async function generateReport() {

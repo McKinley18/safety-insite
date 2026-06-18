@@ -12,8 +12,26 @@ import {
   setReports,
 } from "@/lib/reportStorage";
 import { buildInspectionReport } from "./reportBuilder";
+import { buildFinalizedInspectionFindings } from "./inspectionWorkflowHelpers";
+import { validateInspectionReport } from "./reportValidation";
 
 export type ReportStorageMode = "local" | "cloud" | "ask";
+
+export function validateInspectionReportBeforeGenerate(input: {
+  findings: any[];
+  currentFindingSaved: boolean;
+  hasCurrentFindingData: boolean;
+  buildCurrentFinding: () => any;
+}) {
+  const finalizedFindings = buildFinalizedInspectionFindings({
+    findings: input.findings,
+    currentFindingSaved: input.currentFindingSaved,
+    hasCurrentFindingData: input.hasCurrentFindingData,
+    buildCurrentFinding: input.buildCurrentFinding,
+  });
+
+  return validateInspectionReport(finalizedFindings);
+}
 
 export async function generateInspectionReportPackage(input: {
   finalizedFindings: any[];
