@@ -3,7 +3,7 @@
 import { Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { clearAuthSession, getAuthUser, setAuthUser } from "@/lib/auth";
+import { clearAuthSession, createCheckoutSession, getAuthUser, setAuthUser } from "@/lib/auth";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
@@ -29,6 +29,7 @@ export default function ProfilePage() {
   const [profileEmail, setProfileEmail] = useState("");
   const [identityEditing, setIdentityEditing] = useState(false);
   const [status, setStatus] = useState("");
+  const [billingLoading, setBillingLoading] = useState(false);
 
   function loadUserProfile() {
     try {
@@ -83,6 +84,32 @@ export default function ProfilePage() {
     setStatus(
       "Account deletion request prepared. Production deletion should require confirmation, re-authentication, and backend account removal.",
     );
+  }
+
+  async function startProCheckout() {
+    if (billingLoading) return;
+
+    try {
+      setBillingLoading(true);
+      setStatus("Opening secure Pro checkout...");
+
+      const session = await createCheckoutSession("pro");
+      const checkoutUrl = session?.url;
+
+      if (!checkoutUrl) {
+        throw new Error("Stripe checkout did not return a checkout URL.");
+      }
+
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      console.error(error);
+      setStatus(
+        error instanceof Error
+          ? error.message
+          : "Billing checkout could not be started.",
+      );
+      setBillingLoading(false);
+    }
   }
 
   const displayName =
@@ -220,10 +247,11 @@ export default function ProfilePage() {
               <AppButton
                 type="button"
                 variant="accent"
-                onClick={() => router.push("/pricing")}
+                onClick={startProCheckout}
+                disabled={billingLoading}
                 className="w-44"
               >
-                Upgrade Plan
+                {billingLoading ? "Opening..." : "Upgrade to Pro"}
               </AppButton>
             </div>
           </AppPanel>
