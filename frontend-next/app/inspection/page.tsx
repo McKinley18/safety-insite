@@ -67,6 +67,17 @@ import {
   mergeStoredFindingActions,
   normalizeFindingActionsForStorage,
 } from "@/lib/inspection/inspectionWorkflowHelpers";
+import {
+  createLocalFinding,
+  createOfflineInspection,
+  enqueueInspectionSyncItem,
+  getLocalInspection,
+  upsertLocalFinding,
+  upsertLocalInspection,
+  type JurisdictionHint,
+} from "@/lib/inspection/offlineInspectionStore";
+
+const ACTIVE_LOCAL_INSPECTION_KEY = "insite_active_local_inspection_id";
 
 export default function InspectionPage() {
   const router = useRouter();
@@ -144,6 +155,9 @@ export default function InspectionPage() {
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const [inspectionContext, setInspectionContext] = useState<any>(null);
   const [activeEditReport, setActiveEditReport] = useState<any>(null);
+  const [activeLocalInspectionId, setActiveLocalInspectionId] = useState<
+    string | null
+  >(null);
 
   const [inspectionMode, setInspectionMode] = useState<"quick" | "advanced">(
     "quick",
@@ -155,6 +169,133 @@ export default function InspectionPage() {
     inspectionContext?.workflowDepth === "quick";
 
   const riskScore = severity && likelihood ? severity * likelihood : null;
+
+  function getJurisdictionHintFromAgencyMode(mode: string): JurisdictionHint {
+    if (mode.startsWith("msha")) return "MSHA";
+    if (mode === "osha_construction") return "OSHA_CONSTRUCTION";
+    if (mode === "osha_general") return "OSHA_GI";
+    return "UNSURE";
+  }
+
+  function normalizeFivePointScore(
+    value: number | null,
+  ): 1 | 2 | 3 | 4 | 5 | undefined {
+    if ([1, 2, 3, 4, 5].includes(Number(value))) {
+      return Number(value) as 1 | 2 | 3 | 4 | 5;
+    }
+
+    return undefined;
+  }
+
+  function ensureActiveLocalInspection() {
+    if (typeof window === "undefined") return null;
+
+    const existingId =
+      activeLocalInspectionId ||
+      window.localStorage.getItem(ACTIVE_LOCAL_INSPECTION_KEY);
+
+    if (existingId) {
+      const existingInspection = getLocalInspection(existingId);
+
+      if (existingInspection) {
+        setActiveLocalInspectionId(existingInspection.localId);
+        return existingInspection.localId;
+      }
+    }
+
+    const nextInspection = createOfflineInspection({
+      title:
+        inspectionContext?.inspectionType === "quick_hazard_capture"
+          ? "Quick Hazard Capture"
+          : "Field Inspection",
+      siteName: inspectionContext?.siteName || "",
+      inspectionType: inspectionContext?.inspectionType || inspectionMode,
+      jurisdictionHint: getJurisdictionHintFromAgencyMode(agencyMode),
+    });
+
+    const savedInspection = upsertLocalInspection(nextInspection);
+
+    window.localStorage.setItem(
+      ACTIVE_LOCAL_INSPECTION_KEY,
+      savedInspection.localId,
+    );
+
+    setActiveLocalInspectionId(savedInspection.localId);
+
+    return savedInspection.localId;
+  }
+
+  function persistOfflineFindingSnapshot(finding: any) {
+    const inspectionLocalId = ensureActiveLocalInspection();
+    if (!inspectionLocalId) return;
+
+    const localFinding = createLocalFinding({
+      inspectionLocalId,
+      observationText:
+        finding.description ||
+        finding.safeScopeResult?.classification ||
+        "Inspection finding",
+      locationLabel: finding.location || "",
+      photoLocalIds: (finding.photos || [])
+        .map((photo: any) => photo.id)
+        .filter(Boolean),
+      severity: normalizeFivePointScore(finding.severity),
+      likelihood: normalizeFivePointScore(finding.likelihood),
+      userHazardLabel: finding.hazardCategory || "",
+      userCorrectiveAction:
+        finding.correctiveActions?.[0]?.title ||
+        finding.correctiveActions?.[0]?.description ||
+        "",
+      reviewerNotes: finding.evidenceNotes || "",
+      hazlenzLocalResult:
+        finding.safeScopeResult?.offlineFallback ||
+        finding.safeScopeResult?.mode === "offline_limited_advisory"
+          ? {
+              mode: "local_fallback",
+              likelyHazardFamily:
+                finding.safeScopeResult?.classification ||
+                finding.safeScopeResult?.hazardFamily ||
+                finding.hazardCategory ||
+                "",
+              jurisdictionHint: getJurisdictionHintFromAgencyMode(agencyMode),
+              riskHint: riskScore && riskScore >= 15 ? "high" : "review",
+              evidenceQuestions:
+                finding.safeScopeResult?.missingCriticalInformation ||
+                finding.safeScopeResult?.evidenceGaps ||
+                [],
+              correctiveActionDraft: (finding.correctiveActions || [])
+                .map((action: any) => action.title || action.description)
+                .filter(Boolean),
+              cloudReviewRecommended: true,
+            }
+          : undefined,
+    });
+
+    const savedLocalFinding = upsertLocalFinding({
+      ...localFinding,
+      remoteId: String(finding.id || ""),
+      hazlenzStatus: finding.safeScopeResult
+        ? localFinding.hazlenzStatus === "local_fallback"
+          ? "local_fallback"
+          : "cloud_completed"
+        : "not_run",
+      hazlenzCloudResult:
+        finding.safeScopeResult && !finding.safeScopeResult?.offlineFallback
+          ? finding.safeScopeResult
+          : undefined,
+      syncStatus: "queued",
+    });
+
+    enqueueInspectionSyncItem({
+      entityType: "finding",
+      entityLocalId: savedLocalFinding.localId,
+      action: "create",
+    });
+  }
+
+  useEffect(() => {
+    ensureActiveLocalInspection();
+  }, [inspectionContext, agencyMode, inspectionMode]);
 
   useEffect(() => {
     try {
@@ -694,6 +835,7 @@ export default function InspectionPage() {
     }
 
     const current = buildCurrentFinding();
+    persistOfflineFindingSnapshot(current);
     await persistFindingActions(current);
     await addActivityEvent({
       type: "Finding",
@@ -736,6 +878,7 @@ export default function InspectionPage() {
   async function addNewFinding() {
     if (!currentFindingSaved && hasCurrentFindingData()) {
       const current = buildCurrentFinding();
+      persistOfflineFindingSnapshot(current);
       await persistFindingActions(current);
       await addActivityEvent({
         type: "Finding",
