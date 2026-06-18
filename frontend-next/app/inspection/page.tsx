@@ -4,10 +4,9 @@ import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  runHazLenzClassify,
-  runHazLenzOffline,
   sendHazLenzFeedback,
 } from "@/lib/hazlenz";
+import { runInspectionHazLenzReview } from "@/lib/inspection/hazlenzInspectionService";
 import {
   submitSupervisorValidation,
 } from "@/lib/safescope";
@@ -50,8 +49,6 @@ import { validateInspectionReport } from "@/lib/inspection/reportValidation";
 import {
   buildFinalizedInspectionFindings,
   buildHazLenzObservationText,
-  getHazLenzScopeLabel,
-  getHazLenzScopesForAgencyMode,
   getStandardKey,
   hasFindingDraftData,
   mergeStoredFindingActions,
@@ -345,97 +342,42 @@ export default function InspectionPage() {
 
   async function handleRunSafeScope(forceOffline: boolean = false) {
     console.log("[HazLenz AI] handleRunSafeScope entered");
-    
-    // 1. Validation
-    if (!description || description.trim().length === 0) {
-      setSafeScopeStatus("Add an observation description before running HazLenz AI.");
-      return;
-    }
+
+    setSafeScopeStatus("Starting HazLenz AI review...");
 
     try {
-      const safeScopeScopes = getHazLenzScopesForAgencyMode(agencyMode);
-      const safeScopeScopeLabel = getHazLenzScopeLabel(agencyMode);
-
-      setSafeScopeStatus("Starting HazLenz AI review...");
-      
-      // Allow for a brief moment for status to update
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
       setSafeScopeStatus("Running HazLenz AI match...");
 
-      if (isOfflineMode || forceOffline) {
-        if (forceOffline) {
-          setIsOfflineMode(true);
-        }
-        const result = await runHazLenzOffline({
-          observationText: description,
-          localInspectionId: "local-ins-" + Date.now(),
-          localObservationId: "local-obs-" + Date.now(),
-          offlineKnowledgePackVersion: "v1.0.0-seed"
-        });
-        setsafeScopeResult(result);
-        setSafeScopeStatus("HazLenz AI review complete.");
-        return;
-      }
-      
-      const result = await runHazLenzClassify({
-        text: [
-          `Hazard category: ${hazardCategory || "Unspecified"}`,
-          `Observed condition: ${description || "No description provided"}`,
-          `Location: ${location || "No location provided"}`,
-          `Evidence notes: ${evidenceNotes || "No evidence notes provided"}`,
-          `Regulatory scope: ${safeScopeScopeLabel}`,
-        ].join("\n"),
-        scopes: safeScopeScopes,
+      const review = await runInspectionHazLenzReview({
+        forceOffline,
+        isOfflineMode,
+        agencyMode,
+        hazardCategory,
+        description,
+        location,
+        evidenceNotes,
         riskProfileId,
-        visualAttachments: photos.map(p => ({
-          id: p.id,
-          type: 'photo',
-          fileName: p.name,
-          caption: p.caption,
-          fieldNotes: p.fieldNotes,
-          viewType: p.viewType || 'unknown',
-          capturedAt: p.capturedAt
-        })),
-        evidenceTexts: [
-          evidenceNotes,
-          location,
-          photos.length ? `${photos.length} evidence photo(s) attached` : "",
-          ...photos.map(
-            (photo, index) =>
-              `Photo ${index + 1}: ${photo.name || "evidence photo"}`,
-          ),
-        ].filter(Boolean),
-        priorFindings: findings.map((finding) => ({
-          id: finding.id,
-          hazardCategory: finding.hazardCategory,
-          classification: finding.safeScopeResult?.classification,
-          description: finding.description,
-          location: finding.location,
-          riskScore: finding.riskScore,
-          createdAt: finding.createdAt,
-        })),
+        photos,
+        findings,
       });
 
-      setsafeScopeResult(result);
+      if (!review.ok) {
+        setSafeScopeStatus(review.status);
+        return;
+      }
+
+      if (review.enableOfflineMode) {
+        setIsOfflineMode(true);
+      }
+
+      setsafeScopeResult(review.result);
       setSafeScopeCompactDetailsOpen(false);
       setSafeScopeAdvancedOpen(false);
-
-      const autoSelectedStandards = Array.isArray(result?.suggestedStandards)
-        ? result.suggestedStandards.slice(0, 1)
-        : [];
-
-      const autoSelectedActions = Array.isArray(result?.generatedActions)
-        ? result.generatedActions.slice(0, 1).map((action: any) => ({
-            ...action,
-            source: "HazLenz AI",
-          }))
-        : [];
-
-      setSelectedStandards(autoSelectedStandards);
-      setSelectedGeneratedActions(autoSelectedActions);
-
-      setSafeScopeStatus("HazLenz AI review complete.");
+      setSelectedStandards(review.autoSelectedStandards);
+      setSelectedGeneratedActions(review.autoSelectedActions);
+      setSafeScopeStatus(review.status);
     } catch (error: any) {
       console.error("[HazLenz AI] Review failed", error);
 
@@ -449,6 +391,7 @@ export default function InspectionPage() {
       setSafeScopeStatus(`HazLenz AI review failed: ${errorMessage}`);
     }
   }
+
 
   function buildSafeScopeText() {
     return buildHazLenzObservationText({
