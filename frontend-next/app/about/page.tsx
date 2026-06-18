@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
+import { getAuthUser } from "@/lib/auth";
 
 const capabilities = [
   {
@@ -38,6 +40,17 @@ const outcomes = [
 ];
 
 export default function AboutPage() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    try {
+      const user = getAuthUser();
+      setIsSignedIn(Boolean(user?.email || user?.name || user?.role));
+    } catch {
+      setIsSignedIn(false);
+    }
+  }, []);
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-4 sm:px-5 lg:py-7">
       <div className="relative overflow-hidden">
@@ -188,20 +201,31 @@ export default function AboutPage() {
           </p>
 
           <div className="mt-5 flex flex-wrap justify-center gap-3">
-            <AppLinkButton
-              href="/login"
-              className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
-            >
-              Return to sign in
-            </AppLinkButton>
+            {isSignedIn ? (
+              <AppLinkButton
+                href="/command-center"
+                className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
+              >
+                Return to dashboard
+              </AppLinkButton>
+            ) : (
+              <>
+                <AppLinkButton
+                  href="/login"
+                  className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
+                >
+                  Return to sign in
+                </AppLinkButton>
 
-            <AppLinkButton
-              href="/register"
-              variant="secondary"
-              className="bg-white px-6 py-3 !text-[#0B1320] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
-            >
-              Create account
-            </AppLinkButton>
+                <AppLinkButton
+                  href="/register"
+                  variant="secondary"
+                  className="bg-white px-6 py-3 !text-[#0B1320] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+                >
+                  Create account
+                </AppLinkButton>
+              </>
+            )}
           </div>
         </div>
       </div>
