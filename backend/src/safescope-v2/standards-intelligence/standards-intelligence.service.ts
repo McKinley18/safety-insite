@@ -307,7 +307,7 @@ export class StandardsIntelligenceService {
     const rawText = `${input.classification || ""} ${input.text || ""}`;
     const tokens = extractTokens(rawText);
     const selectedScopes = (input.scopes || []).map(normalizeScopeValue);
-    const limit = input.limit || 8;
+    const limit = input.limit !== undefined ? input.limit : 10;
 
     const seedResults = this.seedStandards
       .map((s) => this.scoreStandard(s, rawText, tokens, selectedScopes))
@@ -316,6 +316,21 @@ export class StandardsIntelligenceService {
 
     const query = this.standardRepository
       .createQueryBuilder("s")
+      .select([
+        "s.id",
+        "s.agencyCode",
+        "s.citation",
+        "s.partNumber",
+        "s.title",
+        "s.scopeCode",
+        "s.sourceKey",
+        "s.sourceType",
+        "s.authorityTier",
+        "s.allowedUse",
+        "s.severityWeight",
+        "s.isActive",
+        "s.requiredControls",
+      ])
       .where("s.is_active = true");
     if (tokens.length > 0) {
       const conditions = tokens
@@ -351,7 +366,7 @@ export class StandardsIntelligenceService {
         query.andWhere("s.scope_code IN (:...mapped)", { mapped });
     }
 
-    const dbStandards = await query.take(100).getMany();
+    const dbStandards = await query.take(50).getMany();
     const dbResults = dbStandards.map((db) => {
       const rec: StandardsIntelligenceRecord = {
         citation: db.citation,
