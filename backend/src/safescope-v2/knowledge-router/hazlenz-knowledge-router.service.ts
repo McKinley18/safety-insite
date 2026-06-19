@@ -225,8 +225,8 @@ export class HazLenzKnowledgeRouterService {
       return "guarding";
     }
 
-    if (/\bstruck by|struck-by|pedestrian|traffic|blind spot|backing|vehicle interaction\b/i.test(text)) {
-      reasons.push("task mechanism: struck-by");
+    if (/\b(struck by|struck-by|pedestrian|traffic|blind spot|backing|vehicle interaction|haul road|roadway|elevated roadway|berm|guardrail|dump point|edge|haul truck operating|equipment operating|miners walking nearby)\b/i.test(text)) {
+      reasons.push("task mechanism: struck-by / mobile-equipment traffic or roadway-edge exposure");
       return "struck_by";
     }
 
