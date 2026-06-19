@@ -18,9 +18,11 @@ import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import AnnotationPreview from "@/components/evidence/AnnotationPreview";
 import AnnotationEditor from "@/components/evidence/AnnotationEditor";
+import { getQuickReviewResult } from "@/lib/inspection/quickReviewService";
 
 const hazardCategoryOptions = [
-  "Machine Guarding",
+// ... (rest of imports/constants)
+
   "Electrical",
   "Fall Protection",
   "Walking/Working Surfaces",
@@ -35,107 +37,6 @@ const hazardCategoryOptions = [
   "Emergency Egress",
   "Other",
 ];
-
-function inferCategory(text: string) {
-  const value = text.toLowerCase();
-
-  const hasElectricalContext =
-    /\b(electrical|electric|disconnect|breaker|panel|mcc|switchgear|switch|cord|wire|wiring|conduit|junction|receptacle|outlet|energized|voltage|arc flash|transformer)\b/.test(value);
-
-  const hasBlockedElectricalAccess =
-    hasElectricalContext &&
-    /\b(blocked|obstructed|inaccessible|access|clearance|clearances|stored|pallet|material|equipment)\b/.test(value);
-
-  if (hasBlockedElectricalAccess || hasElectricalContext) {
-    return "Electrical";
-  }
-
-  if (value.includes("guard") || value.includes("conveyor") || value.includes("belt") || value.includes("pulley")) {
-    return "Machine Guarding";
-  }
-
-  if (value.includes("fall") || value.includes("edge") || value.includes("rail") || value.includes("ladder")) {
-    return "Fall Protection";
-  }
-
-  if (value.includes("lockout") || value.includes("loto") || value.includes("energized")) {
-    return "Lockout/Tagout";
-  }
-
-  if (value.includes("slip") || value.includes("trip") || value.includes("walkway") || value.includes("floor")) {
-    return "Walking/Working Surfaces";
-  }
-
-  if (value.includes("ppe") || value.includes("glasses") || value.includes("gloves") || value.includes("hard hat")) {
-    return "PPE";
-  }
-
-  if (value.includes("spill") || value.includes("trash") || value.includes("debris") || value.includes("housekeeping")) {
-    return "Housekeeping";
-  }
-
-  if (value.includes("forklift") || value.includes("loader") || value.includes("truck") || value.includes("mobile equipment")) {
-    return "Mobile Equipment";
-  }
-
-  return "Other";
-}
-
-function inferRiskSignal(text: string, photosLength: number) {
-  const value = text.toLowerCase();
-
-  if (
-    value.includes("unguarded") ||
-    value.includes("fall") ||
-    value.includes("energized") ||
-    value.includes("exposed wire") ||
-    value.includes("pinch point") ||
-    value.includes("crush") ||
-    value.includes("fatal")
-  ) {
-    return "High";
-  }
-
-  if (
-    value.includes("blocked") ||
-    value.includes("spill") ||
-    value.includes("trip") ||
-    value.includes("missing") ||
-    photosLength > 0
-  ) {
-    return "Medium";
-  }
-
-  return "Low";
-}
-
-function recommendedAction(category: string, riskSignal: string) {
-  if (category === "Machine Guarding") {
-    return "Stop use if exposure exists, protect the area, and verify guarding is installed before restart.";
-  }
-
-  if (category === "Electrical") {
-    return "Restrict access, remove from service if unsafe, and have a qualified person evaluate the condition.";
-  }
-
-  if (category === "Fall Protection") {
-    return "Control access to the fall exposure and verify guardrail, cover, or fall protection controls.";
-  }
-
-  if (category === "Walking/Working Surfaces") {
-    return "Remove the walking surface hazard, mark the area, and verify the surface is safe for travel.";
-  }
-
-  if (category === "Lockout/Tagout") {
-    return "Stop affected work and verify energy control procedures before maintenance or clearing activity continues.";
-  }
-
-  if (riskSignal === "High") {
-    return "Pause affected work, protect employees from exposure, and verify corrective action before restart.";
-  }
-
-  return "Correct the condition, document completion, and verify the hazard has been controlled.";
-}
 
 function riskTone(riskSignal: string) {
   if (riskSignal === "High") return "bg-red-100 text-red-700";
@@ -203,32 +104,13 @@ export default function QuickInspectionPage() {
       return;
     }
 
-    const reviewText = `${hazardCategory} ${description} ${location}`.trim();
-    const suggestedCategory = hazardCategory || inferCategory(reviewText);
-    const riskSignal = inferRiskSignal(reviewText, photos.length);
-    const suggestedAction = recommendedAction(suggestedCategory, riskSignal);
-
-    const result = {
-      mode: "quick_preview",
-      classification: suggestedCategory,
-      risk: {
-        riskBand: riskSignal,
-        quickSignal: riskSignal,
-      },
-      summary:
-        description.trim() ||
-        `Potential ${suggestedCategory.toLowerCase()} issue captured for review.`,
-      generatedActions: [
-        {
-          title: suggestedAction,
-          priority: riskSignal === "High" ? "High" : riskSignal === "Medium" ? "Medium" : "Low",
-          closureEvidence: "Photo",
-          source: "HazLenz AI Quick Review",
-        },
-      ],
-      upgradePrompt:
-        "Upgrade to Guided Inspection for standards matching, confidence scoring, evidence gaps, and full corrective action planning.",
-    };
+    const { result, suggestedCategory, suggestedAction, riskSignal } =
+      getQuickReviewResult({
+        hazardCategory,
+        description,
+        location,
+        photosLength: photos.length,
+      });
 
     setSafeScopeQuickResult(result);
 
