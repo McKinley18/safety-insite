@@ -3,6 +3,7 @@ import { STANDARDS_INTELLIGENCE_SEED } from '../standards-intelligence/standards
 
 // Fluent mock query builder to bypass database connection for lightweight seed testing
 const mockQueryBuilder: any = {
+  select() { return this; },
   where() { return this; },
   andWhere() { return this; },
   take() { return this; },

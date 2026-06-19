@@ -9,4 +9,9 @@ export class HealthController {
   async check() {
     return await this.healthService.check();
   }
+
+  @Get('version')
+  version() {
+    return this.healthService.getVersion();
+  }
 }

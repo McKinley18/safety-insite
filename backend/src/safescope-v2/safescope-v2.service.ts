@@ -94,6 +94,7 @@ export class SafescopeV2Service {
     priorFindings?: any[],
     visualAttachments?: Attachment[],
     user?: UserGovernanceContext,
+    debugMetadata?: boolean,
   ) {
     if (user) {
         const decision = this.access.can(user, 'run_classification');
@@ -148,12 +149,14 @@ export class SafescopeV2Service {
 
       // Suggest standards using the applicable standards service, then enforce selected jurisdiction scope.
       const source = this.scopeToSource(normalizedScopes);
+      const diagnostics: Record<string, any> = {};
       const rawSuggestedStandards = await this.applicableStandards.suggest(
         fusedText,
         promotedPrimary.classification,
         source,
         10,
         knowledgeRoute,
+        debugMetadata ? diagnostics : undefined,
       );
 
       const scopedStandards = this.applyStandardsScopeFit(
@@ -548,6 +551,7 @@ export class SafescopeV2Service {
           suggestedStandards,
           standardsMatchExplanations,
           excludedStandards,
+          ...(debugMetadata ? { debugMetadata: diagnostics } : {}),
           standardsTraceability,
           knowledgeRoute: {
             jurisdiction: knowledgeRoute.jurisdiction,

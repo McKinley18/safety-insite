@@ -1,4 +1,4 @@
-import { IsArray, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsArray, IsOptional, IsString, MinLength, IsBoolean } from 'class-validator';
 import { Attachment } from '../visual-evidence-reasoning/visual-evidence-reasoning.types';
 
 export class ClassifyDto {
@@ -31,6 +31,10 @@ export class ClassifyDto {
   @IsOptional()
   @IsArray()
   priorFindings?: any[];
+
+  @IsOptional()
+  @IsBoolean()
+  debugMetadata?: boolean;
 }
 
 
