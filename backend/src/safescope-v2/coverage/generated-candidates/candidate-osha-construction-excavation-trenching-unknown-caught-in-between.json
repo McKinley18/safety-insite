@@ -1,0 +1,68 @@
+{
+  "shardKeyCandidate": "osha_construction/excavation_trenching/unknown/caught_in_between",
+  "bundleIdCandidate": "bundle-osha-construction-excavation-trenching-unknown-caught-in-between",
+  "jurisdiction": "osha_construction",
+  "hazardFamily": "excavation_trenching",
+  "equipmentFamily": "unknown",
+  "taskMechanism": "caught_in_between",
+  "citations": [
+    "29 CFR 1926.650",
+    "29 CFR 1926.651",
+    "29 CFR 1926.652"
+  ],
+  "sourceKeys": [
+    "osha-1926-650",
+    "osha-1926-651",
+    "osha-1926-652"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "1926.650",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.650 Scope, application, and definitions applicable to this subpart."
+    },
+    {
+      "citation": "1926.651",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.651 Specific excavation requirements."
+    },
+    {
+      "citation": "1926.652",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.652 Requirements for protective systems."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific applicable equipment/systems or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for caught_in_between are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to excavation_trenching.",
+    "Verify conformance with standard citations: 29 CFR 1926.650, 29 CFR 1926.651, 29 CFR 1926.652.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to caught_in_between immediately.",
+    "Inspect, repair, or replace any defective components of the affected equipment before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from caught_in_between.",
+    "Instruct workers on safe practices regarding excavation_trenching and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 29 CFR 1926.650, 29 CFR 1926.651, 29 CFR 1926.652.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: osha_construction.",
+    "Applies when task, activity, or condition involves equipment/tools or associated subsystems.",
+    "Applies when workers are exposed to caught_in_between risks during normal or maintenance operations.",
+    "Relevant for hazard family: excavation_trenching.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"OSHA construction excavation and trenching\". Priority: critical. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

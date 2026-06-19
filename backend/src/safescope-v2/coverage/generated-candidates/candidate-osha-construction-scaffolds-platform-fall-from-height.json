@@ -1,0 +1,68 @@
+{
+  "shardKeyCandidate": "osha_construction/scaffolds/platform/fall_from_height",
+  "bundleIdCandidate": "bundle-osha-construction-scaffolds-platform-fall-from-height",
+  "jurisdiction": "osha_construction",
+  "hazardFamily": "scaffolds",
+  "equipmentFamily": "platform",
+  "taskMechanism": "fall_from_height",
+  "citations": [
+    "29 CFR 1926.451",
+    "29 CFR 1926.452",
+    "29 CFR 1926.454"
+  ],
+  "sourceKeys": [
+    "osha-1926-451",
+    "osha-1926-452",
+    "osha-1926-454"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "1926.451",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.451 General requirements."
+    },
+    {
+      "citation": "1926.452",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.452 Additional requirements applicable to specific types of scaffolds."
+    },
+    {
+      "citation": "1926.454",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.454 Training requirements."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific platform or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for fall_from_height are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to scaffolds.",
+    "Verify conformance with standard citations: 29 CFR 1926.451, 29 CFR 1926.452, 29 CFR 1926.454.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to fall_from_height immediately.",
+    "Inspect, repair, or replace any defective components of the affected platform before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from fall_from_height.",
+    "Instruct workers on safe practices regarding scaffolds and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 29 CFR 1926.451, 29 CFR 1926.452, 29 CFR 1926.454.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: osha_construction.",
+    "Applies when task, activity, or condition involves platform or associated subsystems.",
+    "Applies when workers are exposed to fall_from_height risks during normal or maintenance operations.",
+    "Relevant for hazard family: scaffolds.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"OSHA construction scaffolds\". Priority: high. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

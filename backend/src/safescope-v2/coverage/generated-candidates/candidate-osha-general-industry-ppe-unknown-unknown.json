@@ -1,0 +1,108 @@
+{
+  "shardKeyCandidate": "osha_general_industry/ppe/unknown/unknown",
+  "bundleIdCandidate": "bundle-osha-general-industry-ppe-unknown-unknown",
+  "jurisdiction": "osha_general_industry",
+  "hazardFamily": "ppe",
+  "equipmentFamily": "unknown",
+  "taskMechanism": "unknown",
+  "citations": [
+    "29 CFR 1910.132",
+    "29 CFR 1910.133",
+    "29 CFR 1910.134",
+    "29 CFR 1910.135",
+    "29 CFR 1910.136",
+    "29 CFR 1910.138",
+    "29 CFR 1910.95"
+  ],
+  "sourceKeys": [
+    "osha-1910-132",
+    "osha-1910-133",
+    "osha-1910-134",
+    "osha-1910-135",
+    "osha-1910-136",
+    "osha-1910-138",
+    "osha-1910-95"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "1910.132",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.132 General requirements."
+    },
+    {
+      "citation": "1910.133",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.133 Eye and face protection."
+    },
+    {
+      "citation": "1910.134",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.134 Respiratory protection."
+    },
+    {
+      "citation": "1910.135",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.135 Head protection."
+    },
+    {
+      "citation": "1910.136",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.136 Foot protection."
+    },
+    {
+      "citation": "1910.138",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.138 Hand protection."
+    },
+    {
+      "citation": "1910.95",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.95 Occupational noise exposure."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific applicable equipment/systems or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for operational activity are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to ppe.",
+    "Verify conformance with standard citations: 29 CFR 1910.132, 29 CFR 1910.133, 29 CFR 1910.134, 29 CFR 1910.135, 29 CFR 1910.136, 29 CFR 1910.138, 29 CFR 1910.95.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to hazard exposure immediately.",
+    "Inspect, repair, or replace any defective components of the affected equipment before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from hazard exposure.",
+    "Instruct workers on safe practices regarding ppe and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 29 CFR 1910.132, 29 CFR 1910.133, 29 CFR 1910.134, 29 CFR 1910.135, 29 CFR 1910.136, 29 CFR 1910.138, 29 CFR 1910.95.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: osha_general_industry.",
+    "Applies when task, activity, or condition involves equipment/tools or associated subsystems.",
+    "Applies when workers are exposed to work process risks during normal or maintenance operations.",
+    "Relevant for hazard family: ppe.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"OSHA general industry PPE, respiratory protection, and hearing conservation\". Priority: high. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

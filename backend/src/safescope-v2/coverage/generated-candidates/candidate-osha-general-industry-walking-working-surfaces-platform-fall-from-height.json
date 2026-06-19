@@ -1,0 +1,88 @@
+{
+  "shardKeyCandidate": "osha_general_industry/walking_working_surfaces/platform/fall_from_height",
+  "bundleIdCandidate": "bundle-osha-general-industry-walking-working-surfaces-platform-fall-from-height",
+  "jurisdiction": "osha_general_industry",
+  "hazardFamily": "walking_working_surfaces",
+  "equipmentFamily": "platform",
+  "taskMechanism": "fall_from_height",
+  "citations": [
+    "29 CFR 1910.22",
+    "29 CFR 1910.23",
+    "29 CFR 1910.28",
+    "29 CFR 1910.29",
+    "29 CFR 1910.140"
+  ],
+  "sourceKeys": [
+    "osha-1910-22",
+    "osha-1910-23",
+    "osha-1910-28",
+    "osha-1910-29",
+    "osha-1910-140"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "1910.22",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.22 General requirements."
+    },
+    {
+      "citation": "1910.23",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.23 Ladders."
+    },
+    {
+      "citation": "1910.28",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.28 Duty to have fall protection and falling object protection."
+    },
+    {
+      "citation": "1910.29",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.29 Fall protection systems and falling object protection—criteria and practices."
+    },
+    {
+      "citation": "1910.140",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.140 Personal fall protection systems."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific platform or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for fall_from_height are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to walking_working_surfaces.",
+    "Verify conformance with standard citations: 29 CFR 1910.22, 29 CFR 1910.23, 29 CFR 1910.28, 29 CFR 1910.29, 29 CFR 1910.140.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to fall_from_height immediately.",
+    "Inspect, repair, or replace any defective components of the affected platform before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from fall_from_height.",
+    "Instruct workers on safe practices regarding walking_working_surfaces and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 29 CFR 1910.22, 29 CFR 1910.23, 29 CFR 1910.28, 29 CFR 1910.29, 29 CFR 1910.140.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: osha_general_industry.",
+    "Applies when task, activity, or condition involves platform or associated subsystems.",
+    "Applies when workers are exposed to fall_from_height risks during normal or maintenance operations.",
+    "Relevant for hazard family: walking_working_surfaces.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"OSHA general industry walking-working surfaces and fall protection\". Priority: critical. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

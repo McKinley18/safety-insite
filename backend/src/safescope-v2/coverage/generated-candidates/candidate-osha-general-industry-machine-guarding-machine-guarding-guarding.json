@@ -1,0 +1,68 @@
+{
+  "shardKeyCandidate": "osha_general_industry/machine_guarding/machine_guarding/guarding",
+  "bundleIdCandidate": "bundle-osha-general-industry-machine-guarding-machine-guarding-guarding",
+  "jurisdiction": "osha_general_industry",
+  "hazardFamily": "machine_guarding",
+  "equipmentFamily": "machine_guarding",
+  "taskMechanism": "guarding",
+  "citations": [
+    "29 CFR 1910.212",
+    "29 CFR 1910.219",
+    "29 CFR 1910.147"
+  ],
+  "sourceKeys": [
+    "osha-1910-212",
+    "osha-1910-219",
+    "osha-1910-147"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "1910.212",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.212 General requirements for all machines."
+    },
+    {
+      "citation": "1910.219",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.219 Mechanical power-transmission apparatus."
+    },
+    {
+      "citation": "1910.147",
+      "agency_code": "OSHA",
+      "scope_code": "general_industry",
+      "part_number": "1910",
+      "source_key": "osha-ecfr-1910",
+      "title": "§ 1910.147 The control of hazardous energy (lockout/tagout)."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific machine_guarding or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for guarding are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to machine_guarding.",
+    "Verify conformance with standard citations: 29 CFR 1910.212, 29 CFR 1910.219, 29 CFR 1910.147.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to guarding immediately.",
+    "Inspect, repair, or replace any defective components of the affected machine_guarding before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from guarding.",
+    "Instruct workers on safe practices regarding machine_guarding and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 29 CFR 1910.212, 29 CFR 1910.219, 29 CFR 1910.147.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: osha_general_industry.",
+    "Applies when task, activity, or condition involves machine_guarding or associated subsystems.",
+    "Applies when workers are exposed to guarding risks during normal or maintenance operations.",
+    "Relevant for hazard family: machine_guarding.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"OSHA general industry machine guarding and energy control\". Priority: critical. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

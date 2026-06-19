@@ -1,0 +1,88 @@
+{
+  "shardKeyCandidate": "msha/fall_protection/platform/fall_from_height",
+  "bundleIdCandidate": "bundle-msha-fall-protection-platform-fall-from-height",
+  "jurisdiction": "msha",
+  "hazardFamily": "fall_protection",
+  "equipmentFamily": "platform",
+  "taskMechanism": "fall_from_height",
+  "citations": [
+    "30 CFR 56.11001",
+    "30 CFR 56.11002",
+    "30 CFR 56.11012",
+    "30 CFR 56.11014",
+    "30 CFR 56.15005"
+  ],
+  "sourceKeys": [
+    "msha-30-cfr-56-11001",
+    "msha-30-cfr-56-11002",
+    "msha-30-cfr-56-11012",
+    "msha-30-cfr-56-11014",
+    "msha-30-cfr-56-15005"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "30 CFR 56.11001",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.11001 Safe access."
+    },
+    {
+      "citation": "30 CFR 56.11002",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.11002 Handrails and toeboards."
+    },
+    {
+      "citation": "30 CFR 56.11012",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.11012 Protection for openings around travelways."
+    },
+    {
+      "citation": "30 CFR 56.11014",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.11014 Crossing moving conveyors."
+    },
+    {
+      "citation": "30 CFR 56.15005",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.15005 Safety belts and lines."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific platform or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for fall_from_height are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to fall_protection.",
+    "Verify conformance with standard citations: 30 CFR 56.11001, 30 CFR 56.11002, 30 CFR 56.11012, 30 CFR 56.11014, 30 CFR 56.15005.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to fall_from_height immediately.",
+    "Inspect, repair, or replace any defective components of the affected platform before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from fall_from_height.",
+    "Instruct workers on safe practices regarding fall_protection and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 30 CFR 56.11001, 30 CFR 56.11002, 30 CFR 56.11012, 30 CFR 56.11014, 30 CFR 56.15005.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: msha.",
+    "Applies when task, activity, or condition involves platform or associated subsystems.",
+    "Applies when workers are exposed to fall_from_height risks during normal or maintenance operations.",
+    "Relevant for hazard family: fall_protection.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"MSHA ladders, platforms, walkways, conveyor crossings, and safety belts/lines\". Priority: critical. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

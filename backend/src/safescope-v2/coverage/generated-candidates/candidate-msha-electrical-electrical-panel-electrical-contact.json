@@ -1,0 +1,88 @@
+{
+  "shardKeyCandidate": "msha/electrical/electrical_panel/electrical_contact",
+  "bundleIdCandidate": "bundle-msha-electrical-electrical-panel-electrical-contact",
+  "jurisdiction": "msha",
+  "hazardFamily": "electrical",
+  "equipmentFamily": "electrical_panel",
+  "taskMechanism": "electrical_contact",
+  "citations": [
+    "30 CFR 56.12004",
+    "30 CFR 56.12016",
+    "30 CFR 56.12017",
+    "30 CFR 56.12018",
+    "30 CFR 56.12028"
+  ],
+  "sourceKeys": [
+    "msha-30-cfr-56-12004",
+    "msha-30-cfr-56-12016",
+    "msha-30-cfr-56-12017",
+    "msha-30-cfr-56-12018",
+    "msha-30-cfr-56-12028"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "30 CFR 56.12004",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.12004 Electrical conductors."
+    },
+    {
+      "citation": "30 CFR 56.12016",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.12016 Work on electrically-powered equipment."
+    },
+    {
+      "citation": "30 CFR 56.12017",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.12017 Work on power circuits."
+    },
+    {
+      "citation": "30 CFR 56.12018",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.12018 Identification of power switches."
+    },
+    {
+      "citation": "30 CFR 56.12028",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.12028 Testing grounding systems."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific electrical_panel or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for electrical_contact are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to electrical.",
+    "Verify conformance with standard citations: 30 CFR 56.12004, 30 CFR 56.12016, 30 CFR 56.12017, 30 CFR 56.12018, 30 CFR 56.12028.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to electrical_contact immediately.",
+    "Inspect, repair, or replace any defective components of the affected electrical_panel before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from electrical_contact.",
+    "Instruct workers on safe practices regarding electrical and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 30 CFR 56.12004, 30 CFR 56.12016, 30 CFR 56.12017, 30 CFR 56.12018, 30 CFR 56.12028.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: msha.",
+    "Applies when task, activity, or condition involves electrical_panel or associated subsystems.",
+    "Applies when workers are exposed to electrical_contact risks during normal or maintenance operations.",
+    "Relevant for hazard family: electrical.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"MSHA electrical conductors, circuits, lockout, guarding, and grounding\". Priority: critical. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}
