@@ -54,7 +54,7 @@ function getDatabaseSslConfig() {
     }),
 
     TypeOrmModule.forRootAsync({
-      imports: [SafescopeV2Module, ConfigModule],
+      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const databaseUrl = configService.get<string>('DATABASE_URL');
