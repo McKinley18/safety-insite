@@ -23,6 +23,7 @@ import { SafeScopeKnowledgeModule } from "../safescope-knowledge/safescope-knowl
 import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
 import { Standard } from "../standards/entities/standard.entity";
 import { HazLenzKnowledgeIndexService } from "./knowledge-index/hazlenz-knowledge-index.service";
+import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowledge-router.service";
 
 // SafeScope v2 Core Services
 import { HazardTaxonomyCoverageService } from "./hazard-taxonomy-coverage/hazard-taxonomy-coverage.service";
@@ -238,6 +239,7 @@ import { ExecutiveJudgmentService } from "./executive-judgment/executive-judgmen
     EvidenceQuestionGenerationService,
     CorrectiveActionControlMapService,
     ExecutiveJudgmentService,
+    HazLenzKnowledgeRouterService,
     HazLenzKnowledgeIndexService,
   ],
 })

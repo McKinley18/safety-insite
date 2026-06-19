@@ -22,9 +22,8 @@ import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mob
 import { SafeScopePersistenceService } from "./persistence/persistence.service";
 import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/workspace-governance-access.service";
 import { UserGovernanceContext } from "./workspace-governance-access/workspace-governance.types";
-import { HazLenzKnowledgeIndexService } from "./knowledge-index/hazlenz-knowledge-index.service";
+import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowledge-router.service";
 import { logKnowledgeTelemetry, isHazLenzKnowledgeTelemetryEnabled } from "./telemetry/hazlenz-knowledge-telemetry";
-import { Jurisdiction, HazardFamily } from "./knowledge-index/hazlenz-knowledge-index.types";
 
 
 @Injectable()
@@ -43,7 +42,7 @@ export class SafescopeV2Service {
     private readonly imageAnalysisService: RealImageAnalysisService,
     private readonly offlineService: OfflineReasoningMobileResilienceService,
     private readonly access: WorkspaceGovernanceAccessService,
-    private readonly knowledgeIndex: HazLenzKnowledgeIndexService,
+    private readonly knowledgeRouter: HazLenzKnowledgeRouterService,
     @Optional()
     private readonly persistence?: SafeScopePersistenceService,
   ) {}
@@ -99,19 +98,6 @@ export class SafescopeV2Service {
         if (!decision.allowed) throw new ForbiddenException(decision.reason);
     }
 
-    if (isHazLenzKnowledgeTelemetryEnabled()) {
-        const route = {
-            jurisdiction: (scopes?.includes('msha') ? 'msha' : 'unclear') as Jurisdiction, 
-            hazardFamily: 'other' as HazardFamily, 
-        };
-        const candidateBundles = this.knowledgeIndex.getCandidateBundleKeys(route);
-        logKnowledgeTelemetry('SafescopeV2Service.classify_route_preview', {
-            ...route,
-            candidateBundleIds: candidateBundles,
-            previewOnly: true
-        });
-    }
-
       const evidenceFusion = this.evidenceFusion.synthesize([
         text,
         ...(evidenceTexts || []),
@@ -128,8 +114,29 @@ export class SafescopeV2Service {
       });
       promotedPrimary.risk = risk;
 
-      // Suggest standards using the applicable standards service, then enforce selected jurisdiction scope.
+      // Route the observation first so HazLenz opens the most relevant knowledge directory.
       const normalizedScopes = this.normalizeScopes(scopes, fusedText);
+      const knowledgeRoute = this.knowledgeRouter.route({
+        text: fusedText,
+        scopes: normalizedScopes,
+      });
+
+      if (isHazLenzKnowledgeTelemetryEnabled()) {
+        logKnowledgeTelemetry("SafescopeV2Service.classify_knowledge_route", {
+          jurisdiction: knowledgeRoute.jurisdiction,
+          hazardFamily: knowledgeRoute.hazardFamily,
+          equipmentFamily: knowledgeRoute.equipmentFamily,
+          taskMechanism: knowledgeRoute.taskMechanism,
+          shardKey: knowledgeRoute.shardKey,
+          candidateBundleIds: knowledgeRoute.bundleIds,
+          sourceKeys: knowledgeRoute.sourceKeys,
+          confidence: knowledgeRoute.confidence,
+          reasons: knowledgeRoute.reasons,
+          previewOnly: true,
+        });
+      }
+
+      // Suggest standards using the applicable standards service, then enforce selected jurisdiction scope.
       const source = this.scopeToSource(normalizedScopes);
       const rawSuggestedStandards = await this.applicableStandards.suggest(
         fusedText,
@@ -290,7 +297,7 @@ export class SafescopeV2Service {
             classifierResult: result,
             evidenceTexts,
             visualAttachments,
-            expandedContext: {},
+            expandedContext: { knowledgeRoute },
             primaryStandardsResult: { suggestedStandards },
             generatedActions,
             additionalHazards: [],
