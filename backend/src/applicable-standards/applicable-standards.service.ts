@@ -21,6 +21,15 @@ type CachedStandard = Pick<
   "id" | "citation" | "title" | "standardText" | "plainLanguageSummary" | "keywords" | "agencyCode" | "scopeCode"
 >;
 
+export interface ApplicableStandardsRouteHints {
+  sourceKeys?: string[];
+  bundleIds?: string[];
+  hazardFamily?: string;
+  equipmentFamily?: string;
+  taskMechanism?: string;
+  shardKey?: string;
+}
+
 @Injectable()
 export class ApplicableStandardsService {
   private cachedChunks: CachedKnowledgeChunk[] | null = null;
@@ -55,6 +64,7 @@ export class ApplicableStandardsService {
     observation: string,
     siteType?: string,
     mshaPartPreference?: "56" | "57" | "75" | "77",
+    routeHints?: ApplicableStandardsRouteHints,
   ) {
     const citation = chunk.citation || "";
     const heading = chunk.sectionHeading || "";
@@ -67,6 +77,12 @@ export class ApplicableStandardsService {
     const document = chunk.document;
     const agency = document?.agency;
     const title = document?.title || "";
+
+    const routeMatch = this.scoreRouteHintMatch(citation, text, routeHints);
+    if (routeMatch.score > 0) {
+      score += routeMatch.score;
+      matchingReasons.push(...routeMatch.reasons);
+    }
 
     if (siteType === "mining" && agency === "MSHA") {
       score += 15;
@@ -414,6 +430,71 @@ export class ApplicableStandardsService {
     };
   }
 
+  private normalizeRouteCitation(value?: string): string {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/^msha-/, "")
+      .replace(/^osha-/, "")
+      .replace(/^general-/, "")
+      .replace(/-/g, " ")
+      .replace(/\bcfr\b/g, "cfr")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  private compactRouteText(value?: string): string {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
+  }
+
+  private scoreRouteHintMatch(
+    citation: string | undefined,
+    text: string,
+    routeHints?: ApplicableStandardsRouteHints,
+  ) {
+    if (!routeHints) {
+      return { score: 0, reasons: [] as string[] };
+    }
+
+    let score = 0;
+    const reasons: string[] = [];
+    const haystack = `${citation || ""} ${text || ""}`.toLowerCase();
+
+    for (const sourceKey of routeHints.sourceKeys || []) {
+      const normalized = this.normalizeRouteCitation(sourceKey);
+      const sourceCitation = normalized
+        .replace(/^(29|30) cfr /, "$1 cfr ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      const compactSource = this.compactRouteText(sourceCitation);
+      const compactHaystack = this.compactRouteText(haystack);
+
+      if (sourceCitation && (haystack.includes(sourceCitation) || compactHaystack.includes(compactSource))) {
+        score += 80;
+        reasons.push(`route: source key ${sourceKey}`);
+      }
+    }
+
+    const familySignals = [
+      routeHints.hazardFamily,
+      routeHints.equipmentFamily,
+      routeHints.taskMechanism,
+    ]
+      .filter(Boolean)
+      .map((value) => String(value).replace(/_/g, " ").toLowerCase());
+
+    for (const signal of familySignals) {
+      if (signal && haystack.includes(signal)) {
+        score += 10;
+        reasons.push(`route: ${signal}`);
+      }
+    }
+
+    return { score, reasons };
+  }
+
   constructor(
     @InjectRepository(Standard)
     private readonly standardRepo: Repository<Standard>,
@@ -427,6 +508,7 @@ export class ApplicableStandardsService {
     hazardCategory?: string,
     source?: string,
     limit = 5,
+    routeHints?: ApplicableStandardsRouteHints,
   ) {
     const sourceMode = String(source || "");
     const siteType = sourceMode.startsWith("MSHA")
@@ -500,7 +582,13 @@ export class ApplicableStandardsService {
 
         knowledgeMatches = chunksToScore
           .map((chunk) =>
-            this.scoreKnowledgeChunk(chunk as any, observation, siteType, mshaPartPreference),
+            this.scoreKnowledgeChunk(
+              chunk as any,
+              observation,
+              siteType,
+              mshaPartPreference,
+              routeHints,
+            ),
           )
           .filter((item) => item.score > 0)
           .sort((a, b) => b.score - a.score);
@@ -600,6 +688,17 @@ export class ApplicableStandardsService {
         .map((standard) => {
           let score = 0;
           const matchingReasons: string[] = [];
+
+          const standardTextForRoute = `${standard.citation || ""} ${standard.title || ""} ${standard.plainLanguageSummary || ""} ${standard.standardText || ""}`;
+          const routeMatch = this.scoreRouteHintMatch(
+            standard.citation,
+            standardTextForRoute,
+            routeHints,
+          );
+          if (routeMatch.score > 0) {
+            score += routeMatch.score;
+            matchingReasons.push(...routeMatch.reasons);
+          }
 
           const keywords = standard.keywords || [];
 

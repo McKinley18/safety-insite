@@ -143,6 +143,7 @@ export class SafescopeV2Service {
         promotedPrimary.classification,
         source,
         10,
+        knowledgeRoute,
       );
 
       const scopedStandards = this.applyStandardsScopeFit(
