@@ -92,7 +92,8 @@
     "diagnose:safescope-200:scenario": "ts-node scripts/diagnose-scenario-mismatches.ts",
     "safescope:benchmark": "npm run validate:safescope-field-dataset && npm run validate:safescope-field-taxonomy && npm run validate:safescope-field-uniqueness && npm run calibrate:safescope-200 && npm run calibrate:safescope-200:triage && npm run analyze:safescope-200:mismatches && npm run diagnose:safescope-200:scenario",
     "validate:hazlenz": "bash ../scripts/validate-hazlenz-ai.sh",
-    "build:render": "node --max-old-space-size=1024 ./node_modules/typescript/bin/tsc"
+    "build:render": "node --max-old-space-size=1024 ./node_modules/typescript/bin/tsc",
+    "hazlenz:generate-shard-candidates": "ts-node src/safescope-v2/coverage/generate-hazlenz-warm-shard-candidates.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

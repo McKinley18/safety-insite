@@ -1,0 +1,68 @@
+{
+  "shardKeyCandidate": "msha/housekeeping/unknown/housekeeping_slip_trip",
+  "bundleIdCandidate": "bundle-msha-housekeeping-unknown-housekeeping-slip-trip",
+  "jurisdiction": "msha",
+  "hazardFamily": "housekeeping",
+  "equipmentFamily": "unknown",
+  "taskMechanism": "housekeeping_slip_trip",
+  "citations": [
+    "30 CFR 56.20003",
+    "30 CFR 56.20011",
+    "30 CFR 56.11001"
+  ],
+  "sourceKeys": [
+    "msha-30-cfr-56-20003",
+    "msha-30-cfr-56-20011",
+    "msha-30-cfr-56-11001"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "30 CFR 56.20003",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.20003 Housekeeping."
+    },
+    {
+      "citation": "30 CFR 56.20011",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.20011 Barricades and warning signs."
+    },
+    {
+      "citation": "30 CFR 56.11001",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.11001 Safe access."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific applicable equipment/systems or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for housekeeping_slip_trip are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to housekeeping.",
+    "Verify conformance with standard citations: 30 CFR 56.20003, 30 CFR 56.20011, 30 CFR 56.11001.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to housekeeping_slip_trip immediately.",
+    "Inspect, repair, or replace any defective components of the affected equipment before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from housekeeping_slip_trip.",
+    "Instruct workers on safe practices regarding housekeeping and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 30 CFR 56.20003, 30 CFR 56.20011, 30 CFR 56.11001.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: msha.",
+    "Applies when task, activity, or condition involves equipment/tools or associated subsystems.",
+    "Applies when workers are exposed to housekeeping_slip_trip risks during normal or maintenance operations.",
+    "Relevant for hazard family: housekeeping.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"MSHA housekeeping, travelways, and slipping/tripping hazards\". Priority: high. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

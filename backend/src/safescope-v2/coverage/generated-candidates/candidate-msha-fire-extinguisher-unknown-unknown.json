@@ -1,0 +1,78 @@
+{
+  "shardKeyCandidate": "msha/fire_extinguisher/unknown/unknown",
+  "bundleIdCandidate": "bundle-msha-fire-extinguisher-unknown-unknown",
+  "jurisdiction": "msha",
+  "hazardFamily": "fire_extinguisher",
+  "equipmentFamily": "unknown",
+  "taskMechanism": "unknown",
+  "citations": [
+    "30 CFR 56.4200",
+    "30 CFR 56.4201",
+    "30 CFR 56.4202",
+    "30 CFR 56.4101"
+  ],
+  "sourceKeys": [
+    "msha-30-cfr-56-4200",
+    "msha-30-cfr-56-4201",
+    "msha-30-cfr-56-4202",
+    "msha-30-cfr-56-4101"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "30 CFR 56.4200",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.4200 General requirements."
+    },
+    {
+      "citation": "30 CFR 56.4201",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.4201 Inspection."
+    },
+    {
+      "citation": "30 CFR 56.4202",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.4202 Fire hydrants."
+    },
+    {
+      "citation": "30 CFR 56.4101",
+      "agency_code": "MSHA",
+      "scope_code": "mining",
+      "part_number": "56",
+      "source_key": "msha-30-cfr-standards",
+      "title": "§ 56.4101 Warning signs."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific applicable equipment/systems or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for operational activity are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to fire_extinguisher.",
+    "Verify conformance with standard citations: 30 CFR 56.4200, 30 CFR 56.4201, 30 CFR 56.4202, 30 CFR 56.4101.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to hazard exposure immediately.",
+    "Inspect, repair, or replace any defective components of the affected equipment before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from hazard exposure.",
+    "Instruct workers on safe practices regarding fire_extinguisher and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 30 CFR 56.4200, 30 CFR 56.4201, 30 CFR 56.4202, 30 CFR 56.4101.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: msha.",
+    "Applies when task, activity, or condition involves equipment/tools or associated subsystems.",
+    "Applies when workers are exposed to work process risks during normal or maintenance operations.",
+    "Relevant for hazard family: fire_extinguisher.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"MSHA fire prevention, extinguishers, and flammable materials\". Priority: high. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}

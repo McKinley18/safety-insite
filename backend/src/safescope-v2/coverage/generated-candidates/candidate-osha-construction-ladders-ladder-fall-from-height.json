@@ -1,0 +1,58 @@
+{
+  "shardKeyCandidate": "osha_construction/ladders/ladder/fall_from_height",
+  "bundleIdCandidate": "bundle-osha-construction-ladders-ladder-fall-from-height",
+  "jurisdiction": "osha_construction",
+  "hazardFamily": "ladders",
+  "equipmentFamily": "ladder",
+  "taskMechanism": "fall_from_height",
+  "citations": [
+    "29 CFR 1926.1053",
+    "29 CFR 1926.1060"
+  ],
+  "sourceKeys": [
+    "osha-1926-1053",
+    "osha-1926-1060"
+  ],
+  "coldStandardsFound": [
+    {
+      "citation": "1926.1053",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.1053 Ladders."
+    },
+    {
+      "citation": "1926.1060",
+      "agency_code": "OSHA",
+      "scope_code": "construction",
+      "part_number": "1926",
+      "source_key": "osha-ecfr-1926",
+      "title": "§ 1926.1060 Training requirements."
+    }
+  ],
+  "evidenceNeededDraft": [
+    "Identify the specific ladder or workplace location involved.",
+    "Confirm whether physical or administrative safety controls for fall_from_height are in place and operational.",
+    "Review training records, inspection checklists, or maintenance documentation relevant to ladders.",
+    "Verify conformance with standard citations: 29 CFR 1926.1053, 29 CFR 1926.1060.",
+    "[Advisory Only] Qualified safety personnel must verify specific evidence requirements on-site."
+  ],
+  "correctiveActionPatternsDraft": [
+    "Restrict access to or isolate any hazardous conditions related to fall_from_height immediately.",
+    "Inspect, repair, or replace any defective components of the affected ladder before returning to service.",
+    "Implement engineering, administrative, or PPE controls to minimize risks from fall_from_height.",
+    "Instruct workers on safe practices regarding ladders and verify procedural compliance.",
+    "Document corrective actions completed and ensure compliance with citations: 29 CFR 1926.1053, 29 CFR 1926.1060.",
+    "[Advisory Only] Corrective action details must be reviewed and approved by qualified safety managers or engineers."
+  ],
+  "applicabilityDraft": [
+    "Applies to operations within jurisdiction: osha_construction.",
+    "Applies when task, activity, or condition involves ladder or associated subsystems.",
+    "Applies when workers are exposed to fall_from_height risks during normal or maintenance operations.",
+    "Relevant for hazard family: ladders.",
+    "[Advisory Only] Scope of applicability must be validated by a qualified inspector or safety professional."
+  ],
+  "reviewerNotes": "Draft candidate generated for backlog item: \"OSHA construction ladders\". Priority: high. Backlog Status: source_ingestion_needed. Requires qualified human review and approval.",
+  "approvalStatus": "draft_requires_human_review"
+}
