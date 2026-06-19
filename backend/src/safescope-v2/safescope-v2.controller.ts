@@ -98,7 +98,8 @@ export class SafescopeV2Controller {
         body.workspaceId || context.workspaceId,
         body.priorFindings,
         body.visualAttachments,
-        context
+        context,
+        body.debugMetadata,
       );
     } catch (error) {
       console.error('SafeScope v2 classify failed:', error);

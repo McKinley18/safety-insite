@@ -7,6 +7,7 @@ import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safesco
 import { SafeScopeKnowledgeDocument } from "../safescope-knowledge/entities/safescope-knowledge-document.entity";
 import { ApplicableStandardsController } from "./applicable-standards.controller";
 import { ApplicableStandardsService } from "./applicable-standards.service";
+import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/hazlenz-knowledge-shard.service";
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { ApplicableStandardsService } from "./applicable-standards.service";
     ]),
   ],
   controllers: [ApplicableStandardsController],
-  providers: [ApplicableStandardsService],
-  exports: [ApplicableStandardsService],
+  providers: [ApplicableStandardsService, HazLenzKnowledgeShardService],
+  exports: [ApplicableStandardsService, HazLenzKnowledgeShardService],
 })
 export class ApplicableStandardsModule {}

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
+import { getBuildMetadata } from '../utils/build-metadata';
 
 @Injectable()
 export class HealthService {
@@ -19,6 +20,11 @@ export class HealthService {
       status: database === 'up' ? 'ok' : 'degraded',
       database,
       timestamp: new Date().toISOString(),
+      version: getBuildMetadata(),
     };
+  }
+
+  getVersion() {
+    return getBuildMetadata();
   }
 }

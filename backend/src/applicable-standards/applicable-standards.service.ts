@@ -565,6 +565,7 @@ export class ApplicableStandardsService {
     source?: string,
     limit = 5,
     routeHints?: ApplicableStandardsRouteHints,
+    diagnostics?: Record<string, any>,
   ) {
     const sourceMode = String(source || "");
     const siteType = sourceMode.startsWith("MSHA")
@@ -624,6 +625,7 @@ export class ApplicableStandardsService {
     }
 
     let knowledgeMatches: any[] = [];
+    let knowledgeChunksCount = 0;
     if (this.knowledgeChunkRepo) {
       try {
         const queryBuilder = this.knowledgeChunkRepo
@@ -696,6 +698,7 @@ export class ApplicableStandardsService {
         ]);
 
         const chunks = await queryBuilder.take(50).getMany();
+        knowledgeChunksCount = chunks.length;
 
         const mappedChunks = chunks.map((chunk) => ({
           id: chunk.id,
@@ -1419,6 +1422,26 @@ export class ApplicableStandardsService {
         return true;
       })
       .slice(0, finalLimit);
+
+    if (diagnostics) {
+      const matchedFocused = results.some((item) =>
+        focusedShardCitationsArray.some((cit) => isCitationMatch(item.citation, cit))
+      );
+      Object.assign(diagnostics, {
+        standardsLookupMode: "compact_route_scoped",
+        usedFocusedShardCitations: matchedFocused,
+        focusedShardCitations: focusedShardCitationsArray,
+        standardsCandidatesQueried: focusedStandards.length + fallbackStandards.length,
+        standardsReturned: results.length,
+        knowledgeChunksQueried: knowledgeChunksCount,
+        selectedColumnsMode: "compact",
+        fallbackUsed: fallbackStandards.length > 0 || codeFallbackStandards.length > 0,
+        activeJurisdiction: activeJurisdiction || "unknown",
+        routeShardKey: routeHints?.shardKey || "unknown",
+        routeSourceKeys: routeHints?.sourceKeys || [],
+        routeBundleIds: routeHints?.bundleIds || [],
+      });
+    }
 
     return results;
   }
