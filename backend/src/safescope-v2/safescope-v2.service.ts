@@ -3,7 +3,6 @@ import { Injectable, Optional, ForbiddenException } from "@nestjs/common";
 import { WeightedClassifierService } from "./classifier/weighted-classifier.service";
 import { evaluateRisk } from "./risk/risk-engine";
 import { ActionEngineService } from "../action-engine/action-engine.service";
-import { ContextExpansionService } from "./context/context-expansion.service";
 import { EvidenceFusionService } from "./evidence/evidence-fusion.service";
 import { ApplicableStandardsService } from "../applicable-standards/applicable-standards.service";
 import { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
@@ -37,7 +36,6 @@ export class SafescopeV2Service {
 
   constructor(
     private readonly actionEngine: ActionEngineService,
-    private readonly contextExpansion: ContextExpansionService,
     private readonly evidenceFusion: EvidenceFusionService,
     private readonly applicableStandards: ApplicableStandardsService,
     private readonly intelligenceOrchestrator: SafeScopeIntelligenceOrchestrator,
