@@ -105,6 +105,77 @@ export function SafeScopeVisualEvidenceAppendix({
   );
 }
 
+export function SafeScopeKnowledgeRouteAppendix({
+  safeScopeResult,
+}: {
+  safeScopeResult: any;
+}) {
+  const route = safeScopeResult?.knowledgeRoute;
+  if (!route?.shardKey) return null;
+
+  const sourceKeys = Array.isArray(route.sourceKeys) ? route.sourceKeys : [];
+  const bundleIds = Array.isArray(route.bundleIds) ? route.bundleIds : [];
+  const reasons = Array.isArray(route.reasons) ? route.reasons : [];
+
+  return (
+    <div className="rounded-xl bg-cyan-50 px-3 py-2 ring-1 ring-cyan-200 dark:bg-cyan-950/30 dark:ring-cyan-900/60">
+      <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+        HazLenz knowledge route
+      </p>
+
+      <div className="mt-2 grid gap-2 md:grid-cols-2">
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Opened shard:</span>{" "}
+          {route.shardKey}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Confidence:</span>{" "}
+          {route.confidence !== undefined && route.confidence !== null
+            ? `${route.confidence}%`
+            : "Not scored"}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Hazard family:</span>{" "}
+          {String(route.hazardFamily || "unknown").replace(/_/g, " ")}
+        </p>
+
+        <p>
+          <span className="font-black text-slate-800 dark:text-slate-200">Mechanism:</span>{" "}
+          {String(route.taskMechanism || "unknown").replace(/_/g, " ")}
+        </p>
+      </div>
+
+      {!!sourceKeys.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Source keys:</span>{" "}
+          {sourceKeys.slice(0, 4).join(" · ")}
+        </p>
+      )}
+
+      {!!bundleIds.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Bundles:</span>{" "}
+          {bundleIds.slice(0, 4).join(" · ")}
+        </p>
+      )}
+
+      {!!reasons.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Routing basis:</span>{" "}
+          {reasons.slice(0, 4).join(" · ")}
+        </p>
+      )}
+
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 dark:text-slate-400 italic">
+        HazLenz uses this route to focus standards and knowledge retrieval. This
+        route is advisory and requires qualified review.
+      </p>
+    </div>
+  );
+}
+
 export function SafeScopeEquipmentReasoningAppendix({
   safeScopeResult,
 }: {

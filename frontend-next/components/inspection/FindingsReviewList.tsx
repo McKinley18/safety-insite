@@ -6,6 +6,7 @@ import {
   SafeScopeRealImageAnalysisAppendix,
   SafeScopeVisualEvidenceAppendix,
   SafeScopeEquipmentReasoningAppendix,
+  SafeScopeKnowledgeRouteAppendix,
 } from "@/components/inspection/SafeScopeResultAppendix";
 import {
   getFindingTitle,
@@ -56,7 +57,7 @@ export function FindingsReviewList({
             const validationStatus = getSafeScopeValidationStatus(finding);
             const validationLabel = formatSafeScopeValidationStatus(validationStatus);
             const validationComplete = isSafeScopeValidationComplete(validationStatus);
-            const traceabilityAvailable = Boolean(finding.safeScopeResult?.reasoningSnapshotId || finding.safeScopeResult?.knowledgeBrain?.matches?.length || finding.safeScopeResult?.fieldOutput?.evidenceGaps?.length || finding.safeScopeResult?.fieldOutput?.supervisorQuestions?.length || finding.safeScopeResult?.fieldOutput?.warnings?.length || finding.safeScopeResult?.knowledgeBrain?.evidenceGaps?.length || finding.safeScopeResult?.confidenceIntelligence?.missingCriticalInformation?.length || finding.safeScopeResult?.confidenceIntelligence?.reviewTriggers?.length || finding.safeScopeResult?.trendIntelligence || finding.safeScopeResult?.equipmentReasoningSummary || finding.safeScopeResult?.equipmentTaskMechanismContext || finding.safeScopeResult?.equipmentArchetypeContext || finding.safeScopeResult?.siteMemory || finding.safeScopeResult?.workspaceLearning || finding.safeScopeResult?.correlationIntelligence || finding.safeScopeResult?.reasoningDrift);
+            const traceabilityAvailable = Boolean(finding.safeScopeResult?.reasoningSnapshotId || finding.safeScopeResult?.knowledgeBrain?.matches?.length || finding.safeScopeResult?.fieldOutput?.evidenceGaps?.length || finding.safeScopeResult?.fieldOutput?.supervisorQuestions?.length || finding.safeScopeResult?.fieldOutput?.warnings?.length || finding.safeScopeResult?.knowledgeBrain?.evidenceGaps?.length || finding.safeScopeResult?.confidenceIntelligence?.missingCriticalInformation?.length || finding.safeScopeResult?.confidenceIntelligence?.reviewTriggers?.length || finding.safeScopeResult?.trendIntelligence || finding.safeScopeResult?.equipmentReasoningSummary || finding.safeScopeResult?.equipmentTaskMechanismContext || finding.safeScopeResult?.equipmentArchetypeContext || finding.safeScopeResult?.siteMemory || finding.safeScopeResult?.workspaceLearning || finding.safeScopeResult?.correlationIntelligence || finding.safeScopeResult?.reasoningDrift || finding.safeScopeResult?.knowledgeRoute);
 
             return (
               <details key={finding.id || index} className="group rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-2.5 shadow-none" open={index === 0}>
@@ -115,6 +116,7 @@ export function FindingsReviewList({
                       <SafeScopeRealImageAnalysisAppendix safeScopeResult={finding.safeScopeResult} />
                       <SafeScopeVisualEvidenceAppendix safeScopeResult={finding.safeScopeResult} />
                       <SafeScopeEquipmentReasoningAppendix safeScopeResult={finding.safeScopeResult} />
+                      <SafeScopeKnowledgeRouteAppendix safeScopeResult={finding.safeScopeResult} />
                     </div>
                   </details>
                 )}
