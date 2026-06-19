@@ -24,6 +24,7 @@ import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/
 import { UserGovernanceContext } from "./workspace-governance-access/workspace-governance.types";
 import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowledge-router.service";
 import { logKnowledgeTelemetry, isHazLenzKnowledgeTelemetryEnabled } from "./telemetry/hazlenz-knowledge-telemetry";
+import { HazLenzKnowledgeShardService } from "./knowledge-shards/hazlenz-knowledge-shard.service";
 
 
 @Injectable()
@@ -43,6 +44,7 @@ export class SafescopeV2Service {
     private readonly offlineService: OfflineReasoningMobileResilienceService,
     private readonly access: WorkspaceGovernanceAccessService,
     private readonly knowledgeRouter: HazLenzKnowledgeRouterService,
+    private readonly knowledgeShardService: HazLenzKnowledgeShardService,
     @Optional()
     private readonly persistence?: SafeScopePersistenceService,
   ) {}
@@ -121,6 +123,12 @@ export class SafescopeV2Service {
         scopes: normalizedScopes,
       });
 
+      const knowledgeShardSummary = this.knowledgeShardService.getShardSummary({
+        shardKey: knowledgeRoute.shardKey,
+        bundleIds: knowledgeRoute.bundleIds,
+        sourceKeys: knowledgeRoute.sourceKeys,
+      });
+
       if (isHazLenzKnowledgeTelemetryEnabled()) {
         logKnowledgeTelemetry("SafescopeV2Service.classify_knowledge_route", {
           jurisdiction: knowledgeRoute.jurisdiction,
@@ -132,6 +140,8 @@ export class SafescopeV2Service {
           sourceKeys: knowledgeRoute.sourceKeys,
           confidence: knowledgeRoute.confidence,
           reasons: knowledgeRoute.reasons,
+          matchedShardCount: knowledgeShardSummary.matchedShardCount,
+          focusedCitations: knowledgeShardSummary.citations,
           previewOnly: true,
         });
       }
@@ -548,6 +558,13 @@ export class SafescopeV2Service {
             bundleIds: knowledgeRoute.bundleIds,
             confidence: knowledgeRoute.confidence,
             reasons: knowledgeRoute.reasons,
+            shardSummary: {
+              matchedShardCount: knowledgeShardSummary.matchedShardCount,
+              shardKeys: knowledgeShardSummary.shardKeys,
+              citations: knowledgeShardSummary.citations,
+              evidenceNeeded: knowledgeShardSummary.evidenceNeeded,
+              correctiveActionPatterns: knowledgeShardSummary.correctiveActionPatterns,
+            },
             advisoryOnly: true,
             requiresQualifiedReview: true,
           },

@@ -116,6 +116,12 @@ export function SafeScopeKnowledgeRouteAppendix({
   const sourceKeys = Array.isArray(route.sourceKeys) ? route.sourceKeys : [];
   const bundleIds = Array.isArray(route.bundleIds) ? route.bundleIds : [];
   const reasons = Array.isArray(route.reasons) ? route.reasons : [];
+  const shardSummary = route.shardSummary || {};
+  const shardCitations = Array.isArray(shardSummary.citations) ? shardSummary.citations : [];
+  const evidenceNeeded = Array.isArray(shardSummary.evidenceNeeded) ? shardSummary.evidenceNeeded : [];
+  const correctiveActionPatterns = Array.isArray(shardSummary.correctiveActionPatterns)
+    ? shardSummary.correctiveActionPatterns
+    : [];
 
   return (
     <div className="rounded-xl bg-cyan-50 px-3 py-2 ring-1 ring-cyan-200 dark:bg-cyan-950/30 dark:ring-cyan-900/60">
@@ -159,6 +165,39 @@ export function SafeScopeKnowledgeRouteAppendix({
           <span className="font-black text-slate-800 dark:text-slate-200">Bundles:</span>{" "}
           {bundleIds.slice(0, 4).join(" · ")}
         </p>
+      )}
+
+      {!!shardCitations.length && (
+        <p className="mt-2">
+          <span className="font-black text-slate-800 dark:text-slate-200">Focused citations:</span>{" "}
+          {shardCitations.slice(0, 5).join(" · ")}
+        </p>
+      )}
+
+      {!!evidenceNeeded.length && (
+        <div className="mt-2 rounded-lg bg-white/70 px-2 py-2 ring-1 ring-cyan-100 dark:bg-slate-950/40 dark:ring-cyan-900/40">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            Evidence HazLenz looked for
+          </p>
+          <ul className="mt-1 list-inside list-disc space-y-0.5 text-[11px] font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            {evidenceNeeded.slice(0, 4).map((item: string) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {!!correctiveActionPatterns.length && (
+        <div className="mt-2 rounded-lg bg-white/70 px-2 py-2 ring-1 ring-cyan-100 dark:bg-slate-950/40 dark:ring-cyan-900/40">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            Control patterns from shard
+          </p>
+          <ul className="mt-1 list-inside list-disc space-y-0.5 text-[11px] font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            {correctiveActionPatterns.slice(0, 4).map((item: string) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       )}
 
       {!!reasons.length && (
