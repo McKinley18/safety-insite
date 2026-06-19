@@ -22,6 +22,9 @@ import {
   SafeScopeVisualEvidenceAppendix,
   SafeScopeEquipmentReasoningAppendix,
 } from "@/components/inspection/SafeScopeResultAppendix";
+import { SafeScopeOfflineNotice } from "@/components/inspection/SafeScopeOfflineNotice";
+import { ReportDetailsPanel } from "@/components/inspection/ReportDetailsPanel";
+import { ReportExportOptionsPanel } from "@/components/inspection/ReportExportOptionsPanel";
 import {
   deleteFindingFromReport,
   getAddFindingState,
@@ -53,30 +56,6 @@ import {
   isSafeScopeValidationComplete,
   isSamePersistentReport,
 } from "@/lib/inspection/reportReviewHelpers";
-
-function SafeScopeOfflineNotice({ safeScopeResult }: { safeScopeResult: any }) {
-  if (safeScopeResult?.mode !== "offline_limited_advisory") return null;
-
-  return (
-    <div className="mt-3 rounded-xl bg-amber-50 px-3 py-2 ring-1 ring-amber-200 border-l-4 border-l-amber-500 dark:bg-amber-950/35 dark:ring-amber-900/60">
-      <p className="text-[10px] font-black uppercase tracking-wide text-amber-700">
-        Offline Advisory Snapshot
-      </p>
-      <p className="mt-1 text-xs font-bold text-slate-800 dark:text-slate-200">
-        {safeScopeResult.advisorySummary}
-      </p>
-      <div className="mt-2 space-y-1">
-        <p className="text-[10px] font-black uppercase text-amber-600">Required Sync Actions:</p>
-        <ul className="list-inside list-disc text-[10px] font-semibold text-slate-600 dark:text-slate-300">
-          {safeScopeResult.requiredSyncActions.map((a: string) => <li key={a}>{a}</li>)}
-        </ul>
-      </div>
-      <p className="mt-2 text-[10px] font-bold leading-relaxed text-amber-700 italic">
-        ⚠️ SYNC REQUIRED: This observation was captured in mobile resilience mode. Final regulatory reliance requires online verification.
-      </p>
-    </div>
-  );
-}
 
 // ... imports ...
 
@@ -254,72 +233,7 @@ export default function InspectionReviewPage() {
         title="Inspection information"
       />
 
-      <AppPanel padding="sm" className="relative px-4 py-3">
-        <AppButton
-          type="button"
-          onClick={editReport}
-          aria-label="Edit report details"
-          title="Edit report details"
-          variant="ghost"
-          size="sm"
-          className="absolute right-3 top-3 h-8 w-8 rounded-full px-0 py-0 text-slate-600 dark:text-slate-300 shadow-none hover:text-[#1D72B8]"
-        >
-          <svg
-            aria-hidden="true"
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.25"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M12 20h9" />
-            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-          </svg>
-        </AppButton>
-
-        <h3 className="truncate pr-10 text-sm font-black tracking-tight text-slate-900 dark:text-slate-100">
-          {report.organizationName || "Organization"} · {report.siteLocation || "Field Inspection"}
-        </h3>
-
-        <div className="mt-3 grid gap-2 lg:grid-cols-4">
-          {[
-            [
-              "Date",
-              formatReviewDate(report.inspectionDate || report.createdAt),
-            ],
-            [
-              "Lead Inspector",
-              report.leadInspector || "Not entered",
-            ],
-            [
-              "Additional Inspectors",
-              report.additionalInspectors?.length
-                ? report.additionalInspectors.join(", ")
-                : "None",
-            ],
-            [
-              "Confidentiality",
-              report.isConfidential
-                ? report.confidentialityMarkerText || "Privileged & Confidential"
-                : "No",
-            ],
-          ].map(([label, value]) => (
-            <div
-              key={label}
-              className="flex h-9 flex-col items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-950 px-3 text-center ring-1 ring-slate-200 dark:ring-slate-800"
-            >
-              <p className="text-[9px] font-black uppercase tracking-wide text-[#1D72B8]">
-                {label}
-              </p>
-              <p className="mt-0.5 max-w-full truncate text-xs font-black text-slate-800 dark:text-slate-200" title={String(value)}>
-                {value}
-              </p>
-            </div>
-          ))}
-        </div>
-      </AppPanel>
+      <ReportDetailsPanel report={report} onEdit={editReport} />
 
       <SectionHeader
         eyebrow="Final Report Options"
@@ -327,57 +241,7 @@ export default function InspectionReviewPage() {
         description="Toggle the items that should appear in the final PDF."
       />
 
-      <AppPanel padding="lg">
-        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            [
-              "includeStandardsInReport",
-              "Standards",
-              report.includeStandardsInReport !== false,
-            ],
-            [
-              "includeActionsInReport",
-              "Actions",
-              report.includeActionsInReport !== false,
-            ],
-            [
-              "includePhotosInReport",
-              "Photos",
-              report.includePhotosInReport !== false,
-            ],
-            [
-              "includeSafeScopeNotesInReport",
-              "HazLenz AI Notes",
-              Boolean(report.includeSafeScopeNotesInReport),
-            ],
-          ].map(([key, label, checked]: any) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => updateReportOption(key, !checked)}
-              className={`flex h-11 items-center justify-between rounded-xl border px-3 text-left transition ${
-                checked
-                  ? "border-[#1D72B8] bg-[#E8F4FF] dark:bg-blue-950/40"
-                  : "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:bg-white dark:hover:bg-slate-900"
-              }`}
-            >
-              <span className="truncate text-sm font-black text-slate-900 dark:text-slate-100">
-                {label}
-              </span>
-
-              <span
-                className={`ml-3 flex h-5 min-w-10 items-center justify-center rounded-full px-2 text-[10px] font-black uppercase tracking-wide ${
-                  checked
-                    ? "bg-[#1D72B8] text-white"
-                    : "bg-slate-200 text-slate-500 dark:text-slate-400"
-                }`}
-              >
-                {checked ? "On" : "Off"}
-              </span>
-            </button>
-          ))}
-        </div>
-      </AppPanel>
+      <ReportExportOptionsPanel report={report} updateReportOption={updateReportOption} />
 
       {getSafeScopeReviewSummary(findings).total > 0 && (
         <AppPanel padding="md" className="border-amber-200 bg-amber-50/60">
