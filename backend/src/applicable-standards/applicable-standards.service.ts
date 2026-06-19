@@ -4,6 +4,7 @@ import { Repository } from "typeorm";
 import { Standard } from "../standards/entities/standard.entity";
 import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
 import { hasNonNegatedTerm } from "../safescope-v2/reasoning-orchestrator/negation-context.util";
+import { HazLenzKnowledgeShardService } from "../safescope-v2/knowledge-shards/hazlenz-knowledge-shard.service";
 
 type CachedKnowledgeChunk = Pick<
   SafeScopeKnowledgeChunk,
@@ -82,6 +83,17 @@ export class ApplicableStandardsService {
     if (routeMatch.score > 0) {
       score += routeMatch.score;
       matchingReasons.push(...routeMatch.reasons);
+    }
+
+    if (routeHints?.sourceKeys?.length) {
+      const matchesSourceKey = routeHints.sourceKeys.some((sourceKey) =>
+        this.routeSourceKeyMatchesCitation(sourceKey, citation),
+      );
+
+      if (matchesSourceKey) {
+        score += 120;
+        matchingReasons.push("warm-shard: focused source-key match");
+      }
     }
 
     if (siteType === "mining" && agency === "MSHA") {
@@ -448,6 +460,35 @@ export class ApplicableStandardsService {
       .replace(/[^a-z0-9]/g, "");
   }
 
+  private normalizeRouteCitationToken(value?: string): string {
+    const raw = String(value || "").toLowerCase().trim();
+
+    const sourceKeyMatch = raw.match(/^(msha|osha)-([0-9]+)-cfr-([0-9]+)-([0-9a-z.]+)$/);
+    if (sourceKeyMatch) {
+      return `${sourceKeyMatch[2]} cfr ${sourceKeyMatch[3]}.${sourceKeyMatch[4]}`
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    return raw
+      .replace(/^msha-/, "")
+      .replace(/^osha-/, "")
+      .replace(/\b30\s*cfr\s*/g, "30 cfr ")
+      .replace(/\b29\s*cfr\s*/g, "29 cfr ")
+      .replace(/[^a-z0-9.]+/g, " ")
+      .trim()
+      .replace(/\s+/g, " ");
+  }
+
+  private routeSourceKeyMatchesCitation(sourceKey: string, citation?: string): boolean {
+    const normalizedSource = this.normalizeRouteCitationToken(sourceKey);
+    const normalizedCitation = this.normalizeRouteCitationToken(citation);
+
+    if (!normalizedSource || !normalizedCitation) return false;
+
+    return normalizedSource === normalizedCitation;
+  }
+
   private scoreRouteHintMatch(
     citation: string | undefined,
     text: string,
@@ -501,6 +542,8 @@ export class ApplicableStandardsService {
     @Optional()
     @InjectRepository(SafeScopeKnowledgeChunk)
     private readonly knowledgeChunkRepo?: Repository<SafeScopeKnowledgeChunk>,
+    @Optional()
+    private readonly knowledgeShardService?: HazLenzKnowledgeShardService,
   ) {}
 
   async suggest(
@@ -531,6 +574,12 @@ export class ApplicableStandardsService {
               : undefined;
 
     const observation = (description || "").toLowerCase();
+    const focusedShardSummary = this.knowledgeShardService?.getShardSummary({
+      shardKey: routeHints?.shardKey,
+      bundleIds: routeHints?.bundleIds,
+      sourceKeys: routeHints?.sourceKeys,
+    });
+    const focusedShardCitations = new Set(focusedShardSummary?.citations || []);
 
     let all: CachedStandard[] = [];
 
@@ -708,6 +757,11 @@ export class ApplicableStandardsService {
           if (routeMatch.score > 0) {
             score += routeMatch.score;
             matchingReasons.push(...routeMatch.reasons);
+          }
+
+          if (focusedShardCitations.has(standard.citation)) {
+            score += 120;
+            matchingReasons.push("warm-shard: focused citation match");
           }
 
           const keywords = standard.keywords || [];

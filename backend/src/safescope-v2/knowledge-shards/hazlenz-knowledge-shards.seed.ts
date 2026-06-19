@@ -1,0 +1,175 @@
+import { HazLenzKnowledgeShardRecord } from "./hazlenz-knowledge-shard.types";
+
+export const HAZLENZ_KNOWLEDGE_SHARDS: HazLenzKnowledgeShardRecord[] = [
+  {
+    shardKey: "msha/conveyors/conveyor/guarding",
+    bundleId: "bundle-msha-conveyor-guarding",
+    sourceKeys: ["msha-30-cfr-56-14107"],
+    citations: ["30 CFR 56.14107"],
+    title: "MSHA conveyor guarding and moving machine parts",
+    summary:
+      "Focused shard for exposed conveyor pulleys, belts, moving machine parts, nip points, pinch points, and missing or ineffective guarding at surface metal/nonmetal mines.",
+    applicability: [
+      "Surface metal/nonmetal mine or aggregate operation",
+      "Conveyor, belt, pulley, shaft, gear, chain, sprocket, or similar moving machine part",
+      "Exposure to contact, entanglement, pinch point, nip point, or caught-in/between hazard",
+      "Guarding is missing, damaged, removed, inadequate, or ineffective",
+    ],
+    evidenceNeeded: [
+      "Identify the moving machine part or conveyor component",
+      "Confirm whether guarding is missing, damaged, removed, or ineffective",
+      "Confirm miner access or exposure during operation, cleanup, inspection, or maintenance",
+      "Confirm mine type/scope when selecting MSHA Part 56, 57, 75, or 77",
+    ],
+    correctiveActionPatterns: [
+      "Stop or restrict access to the exposed moving part until guarded",
+      "Install secure fixed guarding around the tail pulley or exposed nip point",
+      "Verify guard construction prevents contact with moving parts",
+      "Use lockout/tagout before cleanup or maintenance where required",
+      "Document competent-person or qualified-person verification before reopening exposure",
+    ],
+    authorityTier: "primary_regulation",
+    approvedOnly: true,
+  },
+  {
+    shardKey: "osha_general_industry/electrical/electrical_panel/electrical_contact",
+    bundleId: "bundle-osha-electrical-panel",
+    sourceKeys: ["osha-1910-303"],
+    citations: ["29 CFR 1910.303"],
+    title: "OSHA general industry electrical panel exposure",
+    summary:
+      "Focused shard for open electrical panels, missing covers, breaker openings, exposed energized parts, damaged wiring, and electrical contact hazards in general industry.",
+    applicability: [
+      "General industry workplace such as shop, warehouse, plant, or maintenance area",
+      "Electrical panel, panelboard, breaker, disconnect, junction box, wiring, or energized part",
+      "Open slot, missing cover, exposed conductor, damaged component, or shock/arc-flash exposure",
+    ],
+    evidenceNeeded: [
+      "Identify the electrical equipment involved",
+      "Confirm whether energized parts are exposed or accessible",
+      "Confirm whether covers, blanks, or enclosures are missing or damaged",
+      "Document access by workers or maintenance personnel",
+    ],
+    correctiveActionPatterns: [
+      "Restrict access to the exposed electrical equipment",
+      "Have a qualified electrical person evaluate and correct the condition",
+      "Install approved covers, blanks, or enclosure components",
+      "Verify de-energization/lockout before work where applicable",
+    ],
+    authorityTier: "primary_regulation",
+    approvedOnly: true,
+  },
+  {
+    shardKey: "osha_general_industry/chemical_exposure/unknown/chemical_exposure",
+    bundleId: "bundle-osha-hazcom",
+    sourceKeys: ["osha-1910-1200"],
+    citations: ["29 CFR 1910.1200"],
+    title: "OSHA HazCom chemical exposure and labeling",
+    summary:
+      "Focused shard for chemical containers, labels, SDS access, secondary containers, corrosives, flammables, solvents, and hazard communication issues.",
+    applicability: [
+      "General industry workplace using, storing, transferring, or handling hazardous chemicals",
+      "Chemical container, secondary container, missing label, illegible label, SDS concern, or exposure potential",
+      "Hazard communication information may be missing, incomplete, or unavailable",
+    ],
+    evidenceNeeded: [
+      "Identify the chemical or product if known",
+      "Confirm whether the container is labeled and legible",
+      "Confirm whether SDS and hazard information are available",
+      "Document potential employee exposure route",
+    ],
+    correctiveActionPatterns: [
+      "Label the container with required hazard information",
+      "Verify SDS availability",
+      "Train affected employees on chemical hazards and protective measures",
+      "Use appropriate PPE and storage/handling controls",
+    ],
+    authorityTier: "primary_regulation",
+    approvedOnly: true,
+  },
+  {
+    shardKey: "msha/lockout_tagout/unknown/energy_isolation",
+    bundleId: "bundle-msha-loto",
+    sourceKeys: ["msha-30-cfr-56-12016"],
+    citations: ["30 CFR 56.12016"],
+    title: "MSHA electrical lockout before mechanically working on equipment",
+    summary:
+      "Focused shard for electrically powered equipment where work, repair, cleanup, or maintenance may require power switches to be locked out or other energy isolation controls.",
+    applicability: [
+      "Surface metal/nonmetal mine or aggregate operation",
+      "Electrically powered equipment",
+      "Mechanical work, cleanup, maintenance, or repair is being performed or prepared",
+      "Power switch or energy source may need lockout before work begins",
+    ],
+    evidenceNeeded: [
+      "Identify the electrically powered equipment",
+      "Confirm the task: repair, cleanup, maintenance, inspection, or mechanical work",
+      "Confirm whether power was de-energized and locked out",
+      "Confirm worker exposure to unexpected startup or stored energy",
+    ],
+    correctiveActionPatterns: [
+      "Stop work until energy isolation is verified",
+      "Lock out power switches before mechanical work",
+      "Verify zero energy state before work begins",
+      "Document supervisor or competent-person verification",
+    ],
+    authorityTier: "primary_regulation",
+    approvedOnly: true,
+  },
+  {
+    shardKey: "osha_construction/fall_protection/platform/fall_from_height",
+    bundleId: "bundle-osha-fall-prot",
+    sourceKeys: ["osha-1926-501"],
+    citations: ["29 CFR 1926.501", "29 CFR 1926.451", "29 CFR 1926.502"],
+    title: "OSHA construction fall protection and scaffold/platform exposure",
+    summary:
+      "Focused shard for construction fall hazards, scaffold platforms, unprotected edges, missing guardrails, fall arrest needs, and elevated work surfaces.",
+    applicability: [
+      "Construction worksite",
+      "Elevated platform, scaffold, roof, edge, ladder, or walking-working surface",
+      "Fall exposure, missing guardrails, inadequate fall protection, or unprotected edge",
+    ],
+    evidenceNeeded: [
+      "Identify the elevated work surface or access equipment",
+      "Estimate or confirm fall height where possible",
+      "Confirm whether guardrails, personal fall arrest, or other fall protection is present",
+      "Document worker exposure near the edge/opening/platform",
+    ],
+    correctiveActionPatterns: [
+      "Restrict access to the fall exposure",
+      "Install guardrails or compliant fall protection",
+      "Verify scaffold/platform condition before use",
+      "Provide competent-person review and employee instruction where needed",
+    ],
+    authorityTier: "primary_regulation",
+    approvedOnly: true,
+  },
+  {
+    shardKey: "unclear/mobile_equipment/mobile_equipment/struck_by",
+    bundleId: "bundle-general-mobile-eq",
+    sourceKeys: ["general-pedestrian-safety"],
+    citations: [],
+    title: "Mobile equipment and pedestrian struck-by exposure",
+    summary:
+      "Focused advisory shard for mobile equipment interaction, blind spots, traffic separation, backing, haulage areas, and pedestrian struck-by exposure when jurisdiction is unclear.",
+    applicability: [
+      "Mobile equipment, vehicle, forklift, loader, haul truck, or powered haulage unit",
+      "Pedestrians or workers are near travel paths, backing zones, blind spots, or traffic interaction points",
+      "Jurisdiction or exact standard family may require confirmation",
+    ],
+    evidenceNeeded: [
+      "Identify the equipment type",
+      "Confirm pedestrian or worker location relative to travel path",
+      "Confirm traffic controls, spotters, alarms, berms, barricades, or separation controls",
+      "Confirm jurisdiction and site type",
+    ],
+    correctiveActionPatterns: [
+      "Separate pedestrians from equipment travel paths",
+      "Use spotters, barricades, signage, or positive communication as appropriate",
+      "Review traffic control plan and visibility limitations",
+      "Confirm operator and pedestrian awareness controls",
+    ],
+    authorityTier: "approved_internal",
+    approvedOnly: true,
+  },
+];
