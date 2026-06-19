@@ -60,5 +60,22 @@ export const KNOWLEDGE_MANIFEST: KnowledgeEntry[] = [
     sourceKeys: ['msha-30-cfr-56-12016'],
     approvedOnly: true,
     tier: 'pro'
-  }
+  },
+  {
+    jurisdiction: "msha",
+    hazardFamily: "mobile_equipment",
+    equipmentFamily: "mobile_equipment",
+    taskMechanism: "struck_by",
+    bundleIds: ["bundle-msha-mobile-equipment-powered-haulage"],
+    sourceKeys: [
+      "msha-30-cfr-56-14100",
+      "msha-30-cfr-56-14101",
+      "msha-30-cfr-56-14130",
+      "msha-30-cfr-56-9100",
+      "msha-30-cfr-56-9200",
+      "msha-30-cfr-56-9300",
+    ],
+    approvedOnly: true,
+    tier: "enterprise",
+  },
 ];
