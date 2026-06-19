@@ -28,6 +28,10 @@ import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mob
 import { SafeScopePersistenceService } from "./persistence/persistence.service";
 import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/workspace-governance-access.service";
 import { UserGovernanceContext } from "./workspace-governance-access/workspace-governance.types";
+import { HazLenzKnowledgeIndexService } from "./knowledge-index/hazlenz-knowledge-index.service";
+import { logKnowledgeTelemetry, isHazLenzKnowledgeTelemetryEnabled } from "./telemetry/hazlenz-knowledge-telemetry";
+import { Jurisdiction, HazardFamily } from "./knowledge-index/hazlenz-knowledge-index.types";
+
 
 @Injectable()
 export class SafescopeV2Service {
@@ -51,6 +55,7 @@ export class SafescopeV2Service {
     private readonly imageAnalysisService: RealImageAnalysisService,
     private readonly offlineService: OfflineReasoningMobileResilienceService,
     private readonly access: WorkspaceGovernanceAccessService,
+    private readonly knowledgeIndex: HazLenzKnowledgeIndexService,
     @Optional()
     private readonly persistence?: SafeScopePersistenceService,
   ) {}
@@ -91,7 +96,6 @@ export class SafescopeV2Service {
     }
     return result;
   }
-
   async classify(
     text: string,
     scopes?: string[],
@@ -102,10 +106,23 @@ export class SafescopeV2Service {
     visualAttachments?: Attachment[],
     user?: UserGovernanceContext,
   ) {
-      if (user) {
-          const decision = this.access.can(user, 'run_classification');
-          if (!decision.allowed) throw new ForbiddenException(decision.reason);
-      }
+    if (user) {
+        const decision = this.access.can(user, 'run_classification');
+        if (!decision.allowed) throw new ForbiddenException(decision.reason);
+    }
+
+    if (isHazLenzKnowledgeTelemetryEnabled()) {
+        const route = {
+            jurisdiction: (scopes?.includes('msha') ? 'msha' : 'unclear') as Jurisdiction, 
+            hazardFamily: 'other' as HazardFamily, 
+        };
+        const candidateBundles = this.knowledgeIndex.getCandidateBundleKeys(route);
+        logKnowledgeTelemetry('SafescopeV2Service.classify_route_preview', {
+            ...route,
+            candidateBundleIds: candidateBundles,
+            previewOnly: true
+        });
+    }
 
       const evidenceFusion = this.evidenceFusion.synthesize([
         text,
