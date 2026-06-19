@@ -598,7 +598,16 @@ export class ApplicableStandardsService {
       }
     }
 
-    if (knowledgeMatches.length > 0) {
+    const strongKnowledgeMatches = knowledgeMatches.filter((item) => item.score >= 80);
+    const shouldUseKnowledgeOnly =
+      strongKnowledgeMatches.length > 0 &&
+      strongKnowledgeMatches[0].matchingReasons?.some((reason: string) =>
+        reason.startsWith("route: source key") ||
+        reason.startsWith("scenario:") ||
+        reason.startsWith("scope:")
+      );
+
+    if (shouldUseKnowledgeOnly) {
       return knowledgeMatches.slice(0, limit);
     }
 
@@ -683,6 +692,7 @@ export class ApplicableStandardsService {
           : [];
 
     const results = [
+      ...knowledgeMatches,
       ...fallbackStandards,
       ...all
         .map((standard) => {
