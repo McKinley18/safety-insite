@@ -23,8 +23,10 @@
     "validate:safescope:targeted:taxonomy": "ts-node scripts/run-safescope-targeted-validation.ts --area=taxonomy",
     "validate:safescope:targeted:knowledge": "ts-node scripts/run-safescope-targeted-validation.ts --area=knowledge",
     "validate:safescope:targeted:output": "ts-node scripts/run-safescope-targeted-validation.ts --area=output",
-    "validate:safescope:targeted:orchestrator": "ts-node scripts/run-safescope-targeted-validation.ts --area=orchestrator",
+    "validate:safescope:targeted:core": "ts-node scripts/run-safescope-targeted-validation.ts --area=core",
     "validate:safescope:targeted:governance": "ts-node scripts/run-safescope-targeted-validation.ts --area=governance",
+    "validate:hazlenz-knowledge-index": "ts-node src/safescope-v2/knowledge-index/validate-hazlenz-knowledge-index.ts",
+
     "validate:safescope:targeted:precision": "ts-node scripts/run-safescope-targeted-validation.ts --area=precision",
     "validate:safescope:targeted:core": "ts-node scripts/run-safescope-targeted-validation.ts --area=core",
     "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
