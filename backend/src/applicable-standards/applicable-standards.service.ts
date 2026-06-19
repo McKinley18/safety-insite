@@ -743,8 +743,28 @@ export class ApplicableStandardsService {
         reason.startsWith("scope:"),
       );
 
-    if (shouldUseKnowledgeOnly) {
+    // If the active HazLenz route provides focused shard citations, do not
+    // short-circuit through knowledge chunks only. The standards repository path
+    // below is responsible for injecting and prioritizing those focused citations
+    // into suggestedStandards/referenceStandards.
+    if (shouldUseKnowledgeOnly && focusedShardCitationsArray.length === 0) {
       const finalLimit = limit > 5 ? limit : 10;
+      if (diagnostics) {
+        Object.assign(diagnostics, {
+          standardsLookupMode: "knowledge_only",
+          usedFocusedShardCitations: false,
+          focusedShardCitations: focusedShardCitationsArray,
+          standardsCandidatesQueried: 0,
+          standardsReturned: knowledgeMatches.slice(0, finalLimit).length,
+          knowledgeChunksQueried: knowledgeChunksCount,
+          selectedColumnsMode: "compact",
+          fallbackUsed: false,
+          activeJurisdiction: activeJurisdiction || "unknown",
+          routeShardKey: routeHints?.shardKey || "unknown",
+          routeSourceKeys: routeHints?.sourceKeys || [],
+          routeBundleIds: routeHints?.bundleIds || [],
+        });
+      }
       return knowledgeMatches.slice(0, finalLimit);
     }
 
