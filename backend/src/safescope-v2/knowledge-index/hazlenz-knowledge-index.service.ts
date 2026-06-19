@@ -13,10 +13,42 @@ export class HazLenzKnowledgeIndexService {
     taskMechanism?: TaskMechanism;
   }): KnowledgeEntry[] {
     return this.index.filter((entry) => {
-      if (route.jurisdiction && entry.jurisdiction !== route.jurisdiction) return false;
-      if (route.hazardFamily && entry.hazardFamily !== route.hazardFamily) return false;
-      if (route.equipmentFamily && entry.equipmentFamily !== route.equipmentFamily) return false;
-      if (route.taskMechanism && entry.taskMechanism !== route.taskMechanism) return false;
+      // Jurisdiction must match unless route is 'unclear' (generic fallback allowed)
+      if (route.jurisdiction) {
+        if (route.jurisdiction === 'unclear') {
+            if (entry.jurisdiction !== 'unclear') return false;
+        } else if (entry.jurisdiction !== route.jurisdiction) {
+            return false;
+        }
+      }
+      
+      // HazardFamily must match unless route is 'other'
+      if (route.hazardFamily) {
+        if (route.hazardFamily === 'other') {
+            if (entry.hazardFamily !== 'other') return false;
+        } else if (entry.hazardFamily !== route.hazardFamily) {
+            return false;
+        }
+      }
+      
+      // EquipmentFamily must match unless route is 'unknown'
+      if (route.equipmentFamily) {
+        if (route.equipmentFamily === 'unknown') {
+            if (entry.equipmentFamily !== 'unknown') return false;
+        } else if (entry.equipmentFamily !== route.equipmentFamily) {
+            return false;
+        }
+      }
+      
+      // TaskMechanism must match unless route is 'unknown'
+      if (route.taskMechanism) {
+        if (route.taskMechanism === 'unknown') {
+            if (entry.taskMechanism !== 'unknown') return false;
+        } else if (entry.taskMechanism !== route.taskMechanism) {
+            return false;
+        }
+      }
+      
       return true;
     });
   }
