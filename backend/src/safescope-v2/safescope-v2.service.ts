@@ -336,6 +336,7 @@ export class SafescopeV2Service {
         generatedActions,
         intelligence,
         actionInput.id,
+        knowledgeShardSummary,
       );
 
       const aiEvidenceContract = {
@@ -609,7 +610,12 @@ export class SafescopeV2Service {
   }
 
 
-  private buildEnhancedGeneratedActions(baseActions: any[], intelligence: any, reportId: string) {
+  private buildEnhancedGeneratedActions(
+    baseActions: any[],
+    intelligence: any,
+    reportId: string,
+    knowledgeShardSummary?: any,
+  ) {
     const safeArray = (value: any) => Array.isArray(value) ? value : [];
     const base = safeArray(baseActions);
     const primary = base[0] || {};
@@ -619,6 +625,11 @@ export class SafescopeV2Service {
     const riskReasoning = intelligence?.riskReasoning || {};
     const scenarioIntelligence = intelligence?.scenarioIntelligence || {};
     const evidenceGapQuestions = safeArray(intelligence?.evidenceGapQuestions);
+    const shardCorrectiveActionPatterns = safeArray(
+      knowledgeShardSummary?.correctiveActionPatterns,
+    )
+      .map((item: any) => String(item || "").trim())
+      .filter(Boolean);
 
     const dcaFixes = [
       ...safeArray(dca.immediateActions).map((item: any) => item?.action || item?.title || String(item)),
@@ -642,14 +653,28 @@ export class SafescopeV2Service {
       ),
     ].filter(Boolean);
 
+    const fallbackFixesAllowed = shardCorrectiveActionPatterns.length === 0;
+    const staleBaseFixPattern = /windshield|protective film/i;
+
     const suggestedFixes = Array.from(new Set([
+      ...shardCorrectiveActionPatterns,
       ...dcaFixes,
       ...brainFixes,
-      ...safeArray(primary.suggestedFixes),
-    ].map((item) => String(item).trim()).filter(Boolean))).slice(0, 12);
+      ...(fallbackFixesAllowed ? safeArray(primary.suggestedFixes) : []),
+    ]
+      .map((item) => String(item).trim())
+      .filter(Boolean)
+      .filter((item) =>
+        shardCorrectiveActionPatterns.length > 0
+          ? !staleBaseFixPattern.test(item)
+          : true,
+      ))).slice(0, 12);
 
     const descriptionParts = [
-      primary.description,
+      shardCorrectiveActionPatterns.length
+        ? `Focused HazLenz shard controls: ${shardCorrectiveActionPatterns.slice(0, 4).join("; ")}`
+        : "",
+      fallbackFixesAllowed ? primary.description : "",
       dca.actionRationale ? `DCA rationale: ${dca.actionRationale}` : "",
       correctiveActionReasoning.immediateActionNarrative
         ? `Immediate: ${correctiveActionReasoning.immediateActionNarrative}`
@@ -700,6 +725,8 @@ export class SafescopeV2Service {
         scenarioIntelligence,
         evidenceGapQuestions,
         reviewerQuestions,
+        shardCorrectiveActionPatterns,
+        usesFocusedShardCorrectiveActions: shardCorrectiveActionPatterns.length > 0,
         enrichmentApplied: true,
       },
     };
