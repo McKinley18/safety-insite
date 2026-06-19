@@ -51,7 +51,7 @@ export class StandardsMatchingServiceAdapter implements StandardsMatchingAdapter
             ? ['osha_construction']
             : ['all'];
 
-    const bridgeResult = this.standardsBridgeService.getSuggestedStandards(
+    const bridgeResult = await this.standardsBridgeService.getSuggestedStandards(
       classification,
       scopes,
     );

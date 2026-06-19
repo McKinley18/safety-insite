@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { STANDARDS_MAPPING } from './standards-mapping.seed';
+import { withKnowledgeTelemetry } from './telemetry/hazlenz-knowledge-telemetry';
 
 const REGULATORY_CROSS_BRIDGE: Record<string, { citation: string; agency: 'MSHA' | 'OSHA'; scope: 'msha' | 'osha_general' | 'osha_construction'; rationale: string }> = {
   // MSHA to OSHA
@@ -17,45 +18,47 @@ const REGULATORY_CROSS_BRIDGE: Record<string, { citation: string; agency: 'MSHA'
 
 @Injectable()
 export class StandardsBridgeService {
-  getSuggestedStandards(classification: string, scopes?: string[]) {
-    const standards = STANDARDS_MAPPING[classification] || [];
+  async getSuggestedStandards(classification: string, scopes?: string[]) {
+    return withKnowledgeTelemetry('StandardsBridgeService.getSuggestedStandards', { classification, scopeCount: scopes?.length || 0 }, async () => {
+      const standards = STANDARDS_MAPPING[classification] || [];
 
-    if (!scopes || scopes.length === 0 || scopes.includes('all')) {
-      return {
-        suggestedStandards: standards,
-        excludedStandards: [],
-      };
-    }
-
-    const suggestedStandards = standards.filter((standard: any) =>
-      scopes.includes(standard.scope),
-    );
-
-    // Apply the Cross-Jurisdictional Regulatory Bridge
-    const bridged: any[] = [];
-    for (const std of suggestedStandards) {
-      const equivalent = REGULATORY_CROSS_BRIDGE[std.citation];
-      if (equivalent && !suggestedStandards.some(s => s.citation === equivalent.citation)) {
-        bridged.push({
-          citation: equivalent.citation,
-          agency: equivalent.agency,
-          scope: equivalent.scope,
-          rationale: `${equivalent.rationale} (Cross-Jurisdictional Regulatory Bridge)`
-        });
+      if (!scopes || scopes.length === 0 || scopes.includes('all')) {
+        return {
+          suggestedStandards: standards,
+          excludedStandards: [],
+        };
       }
-    }
-    suggestedStandards.push(...bridged);
 
-    const excludedStandards = standards
-      .filter((standard: any) => !scopes.includes(standard.scope) && !bridged.some(b => b.citation === standard.citation))
-      .map((standard: any) => ({
-        citation: standard.citation,
-        reason: 'Excluded by selected regulatory scope',
-      }));
+      const suggestedStandards = standards.filter((standard: any) =>
+        scopes.includes(standard.scope),
+      );
 
-    return {
-      suggestedStandards,
-      excludedStandards,
-    };
+      // Apply the Cross-Jurisdictional Regulatory Bridge
+      const bridged: any[] = [];
+      for (const std of suggestedStandards) {
+        const equivalent = REGULATORY_CROSS_BRIDGE[std.citation];
+        if (equivalent && !suggestedStandards.some(s => s.citation === equivalent.citation)) {
+          bridged.push({
+            citation: equivalent.citation,
+            agency: equivalent.agency,
+            scope: equivalent.scope,
+            rationale: `${equivalent.rationale} (Cross-Jurisdictional Regulatory Bridge)`
+          });
+        }
+      }
+      suggestedStandards.push(...bridged);
+
+      const excludedStandards = standards
+        .filter((standard: any) => !scopes.includes(standard.scope) && !bridged.some(b => b.citation === standard.citation))
+        .map((standard: any) => ({
+          citation: standard.citation,
+          reason: 'Excluded by selected regulatory scope',
+        }));
+
+      return {
+        suggestedStandards,
+        excludedStandards,
+      };
+    });
   }
 }
