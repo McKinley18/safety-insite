@@ -5,6 +5,7 @@ import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import { SafetyCalendarControls } from "@/components/calendar/SafetyCalendarControls";
+import { PriorityTodoPanel } from "@/components/calendar/PriorityTodoPanel";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import {
@@ -14,6 +15,7 @@ import {
   parseLocalCalendarDate,
   toDateKey,
 } from "@/lib/safetyCalendar";
+import { eventTone, eventTypeLabel } from "@/lib/calendar/helpers";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 import {
   getStoredPlanCode,
@@ -60,23 +62,6 @@ function formatFullDate(date: Date) {
     day: "numeric",
     year: "numeric",
   });
-}
-
-function eventTypeLabel(type: SafetyCalendarEvent["type"]) {
-  if (type === "corrective_action") return "Action";
-  if (type === "follow_up") return "Follow-up";
-  if (type === "report_review") return "Report Review";
-  if (type === "supervisor_review") return "Review";
-  if (type === "inspection") return "Inspection";
-  return "Task";
-}
-
-function eventTone(event: SafetyCalendarEvent) {
-  if (event.status === "Completed") return "app-surface-muted";
-  if (event.status === "Overdue" || event.priority === "Critical") return "border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/50 dark:text-red-200";
-  if (event.priority === "High") return "border-orange-200 bg-orange-50 text-orange-800 dark:border-orange-900 dark:bg-orange-950/50 dark:text-orange-200";
-  if (event.type === "inspection") return "border-blue-200 bg-blue-50 text-blue-800 dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-200";
-  return "app-surface";
 }
 
 function sameDateKey(date: Date, dateKey: string) {
@@ -633,52 +618,10 @@ export default function SafetyCalendarPage() {
       )}
         </div>
 
-        <AppPanel padding="md" className="h-fit">
-          <SectionHeader
-            eyebrow="Priority Work"
-            title="To Do"
-            description="Click any item to open that day on the calendar."
-          />
-
-          <div className="mt-4 space-y-4">
-            {priorityTodoGroups.map(([groupLabel, groupEvents]) => (
-              <div key={groupLabel}>
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#1D72B8]">
-                    {groupLabel}
-                  </p>
-                  <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">
-                    {groupEvents.length}
-                  </span>
-                </div>
-
-                <div className="mt-2 space-y-2">
-                  {groupEvents.length ? (
-                    groupEvents.map((event) => (
-                      <button
-                        key={`${groupLabel}-${event.id}`}
-                        type="button"
-                        onClick={() => openEventDay(event)}
-                        className={`w-full rounded-lg border px-3 py-2 text-left transition hover:border-[#1D72B8] ${eventTone(event)}`}
-                      >
-                        <p className="text-xs font-black text-app-text">
-                          {event.title}
-                        </p>
-                        <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
-                          {eventTypeLabel(event.type)} · {event.owner} · {event.date}
-                        </p>
-                      </button>
-                    ))
-                  ) : (
-                    <p className="app-card app-text-soft rounded-lg border border-dashed px-3 py-2 text-xs font-semibold">
-                      Nothing here.
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </AppPanel>
+        <PriorityTodoPanel
+          priorityTodoGroups={priorityTodoGroups}
+          openEventDay={openEventDay}
+        />
       </div>
 
       <AppPanel padding="md" className="app-card">
