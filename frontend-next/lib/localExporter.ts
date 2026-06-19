@@ -1,255 +1,27 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import {
+  formatEquipmentReasoningModeForPdf,
+  formatPdfDate,
+  formatSafeScopeValidationStatusForPdf,
+  getStandardCitationForPdf,
+  getStandardSummaryForPdf,
+  normalizePdfPercent,
+} from "./inspection/pdfFormattingHelpers";
+import {
+  getFindingActionsForPdf,
+  getFindingCategoryForPdf,
+  getFindingConfidenceForPdf,
+  getFindingRiskForPdf,
+  getFindingStandardsForPdf,
+  getSafeScopeValidationStatusForPdf,
+} from "./inspection/pdfDataMappingHelpers";
+import { buildEquipmentReasoningNotesForPdf, asPdfList } from "./inspection/pdfEquipmentHelpers";
+
 function getReportPackageExportNote(input: any) {
   const reportPackage = input?.reportPackage;
   if (!reportPackage?.label) return "";
   return `${reportPackage.label}: ${reportPackage.description || ""}`.trim();
-}
-
-
-const SAFESCOPE_EXPORT_DISCLAIMER = "Generated with Safety InSite / HazLenz AI. HazLenz AI outputs are decision-support intelligence and require qualified human review before use. Users remain responsible for verifying observations, standards, risk ratings, corrective actions, and final safety decisions.";
-
-function normalizePdfPercent(value: any) {
-  const numeric = Number(value);
-  if (!Number.isFinite(numeric)) return null;
-  return numeric <= 1 ? Math.round(numeric * 100) : Math.round(numeric);
-}
-
-function getFindingStandardsForPdf(f: any) {
-  return (
-    (Array.isArray(f.selectedStandards) && f.selectedStandards.length
-      ? f.selectedStandards
-      : null) ||
-    (Array.isArray(f.standards) && f.standards.length ? f.standards : null) ||
-    (Array.isArray(f.safeScopeResult?.suggestedStandards) &&
-    f.safeScopeResult.suggestedStandards.length
-      ? f.safeScopeResult.suggestedStandards
-      : [])
-  );
-}
-
-function getFieldOutputActionsForPdf(f: any) {
-  const actions = f.safeScopeResult?.fieldOutput?.correctiveActions;
-  if (!Array.isArray(actions) || !actions.length) return [];
-
-  return actions.map((action: any, index: number) => {
-    if (typeof action === "string") {
-      return {
-        title: action,
-        description: action,
-        priority: f.safeScopeResult?.fieldOutput?.priority || "Medium",
-        closureEvidence:
-          f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
-          "Supervisor verification",
-        source: "HazLenz AI field output",
-      };
-    }
-
-    return {
-      ...action,
-      title: action.title || action.description || `Field output action ${index + 1}`,
-      priority:
-        action.priority ||
-        f.safeScopeResult?.fieldOutput?.priority ||
-        "Medium",
-      closureEvidence:
-        action.closureEvidence ||
-        action.verification ||
-        f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
-        "Supervisor verification",
-      source: action.source || "HazLenz AI field output",
-    };
-  });
-}
-
-function getFindingActionsForPdf(f: any) {
-  const fieldOutputActions = getFieldOutputActionsForPdf(f);
-  if (fieldOutputActions.length) {
-    return [
-      ...fieldOutputActions,
-      ...(Array.isArray(f.manualActions) ? f.manualActions : []),
-    ];
-  }
-
-  return (
-    (Array.isArray(f.correctiveActions) && f.correctiveActions.length
-      ? f.correctiveActions
-      : null) ||
-    [
-      ...(Array.isArray(f.selectedGeneratedActions)
-        ? f.selectedGeneratedActions
-        : []),
-      ...(Array.isArray(f.manualActions) ? f.manualActions : []),
-      ...(Array.isArray(f.safeScopeResult?.generatedActions)
-        ? f.safeScopeResult.generatedActions
-        : []),
-    ]
-  );
-}
-
-function getFindingRiskForPdf(f: any) {
-  return (
-    f.safeScopeResult?.risk?.riskBand ||
-    f.safeScopeResult?.risk?.operationalRisk?.matrixBand ||
-    f.riskBand ||
-    f.riskScore ||
-    "Not rated"
-  );
-}
-
-function getFindingConfidenceForPdf(f: any) {
-  return normalizePdfPercent(
-    f.safeScopeResult?.confidenceIntelligence?.overallConfidence ??
-      f.safeScopeResult?.confidence,
-  );
-}
-
-function getFindingCategoryForPdf(f: any) {
-  return (
-    f.category ||
-    f.hazardCategory ||
-    f.safeScopeResult?.classification ||
-    "Uncategorized"
-  );
-}
-
-function getSafeScopeValidationStatusForPdf(f: any) {
-  return (
-    f.safeScopeValidationStatus ||
-    f.safeScopeResult?.validationStatus ||
-    f.safeScopeResult?.snapshotSummary?.validationStatus ||
-    (f.safeScopeResult?.reasoningSnapshotId ? "generated" : f.safeScopeResult ? "local_unvalidated" : "manual")
-  );
-}
-
-function formatSafeScopeValidationStatusForPdf(status: any) {
-  const value = String(status || "manual");
-  const labels: Record<string, string> = {
-    manual: "Manual finding",
-    local_unvalidated: "HazLenz AI local review needed",
-    generated: "HazLenz AI generated - review needed",
-    requires_review: "HazLenz AI review required",
-    validated_accepted: "HazLenz AI accepted by reviewer",
-    validated_modified: "HazLenz AI modified by reviewer",
-    validated_rejected: "HazLenz AI rejected by reviewer",
-    requires_escalation: "HazLenz AI escalated",
-    requires_more_evidence: "More evidence required",
-  };
-  return labels[value] || value.replace(/_/g, " ");
-}
-
-function asPdfList(value: any): string[] {
-  if (!Array.isArray(value)) return [];
-  return value.filter(Boolean).map((item) => String(item));
-}
-
-function formatEquipmentReasoningModeForPdf(value: any) {
-  const mode = String(value || "insufficient_equipment_context");
-
-  const labels: Record<string, string> = {
-    specific_with_archetype_support: "Specific match + archetype support",
-    specific_task_mechanism: "Specific equipment mechanism",
-    archetype_fallback: "Archetype fallback",
-    insufficient_equipment_context: "Insufficient equipment context",
-  };
-
-  return labels[mode] || mode.replace(/_/g, " ");
-}
-
-function buildEquipmentReasoningNotesForPdf(safeScopeResult: any): string[] {
-  const summary = safeScopeResult?.equipmentReasoningSummary;
-  const taskContext = safeScopeResult?.equipmentTaskMechanismContext;
-  const archetypeContext = safeScopeResult?.equipmentArchetypeContext;
-
-  if (!summary && !taskContext?.matched && !archetypeContext?.matched) {
-    return [];
-  }
-
-  const primarySpecific = taskContext?.primaryMatch;
-  const primaryArchetype = archetypeContext?.primaryMatch;
-
-  const mechanisms = asPdfList(
-    primarySpecific?.harmMechanisms || primaryArchetype?.harmMechanisms,
-  )
-    .slice(0, 4)
-    .map((item) => item.replace(/_/g, " "));
-
-  const domains = asPdfList(
-    primarySpecific?.likelyHazardDomains || primaryArchetype?.likelyHazardDomains,
-  )
-    .slice(0, 4)
-    .map((item) => item.replace(/_/g, " "));
-
-  const notes = [
-    `Equipment reasoning mode: ${formatEquipmentReasoningModeForPdf(summary?.primaryReasoningMode)}`,
-    `Primary equipment context: ${summary?.primaryEquipmentContext || "Unknown"}`,
-    `Primary mechanism/archetype: ${summary?.primaryMechanismOrArchetype || "Unknown"}`,
-  ];
-
-  if (summary?.supportingContext?.length) {
-    notes.push(`Supporting equipment context: ${summary.supportingContext.slice(0, 2).join("; ")}`);
-  }
-
-  if (mechanisms.length) {
-    notes.push(`Equipment harm mechanism(s): ${mechanisms.join("; ")}`);
-  }
-
-  if (domains.length) {
-    notes.push(`Equipment-related domain(s): ${domains.join("; ")}`);
-  }
-
-  const rankingReasons = asPdfList(summary?.rankingReasons).slice(0, 2);
-  if (rankingReasons.length) {
-    notes.push(`Equipment ranking basis: ${rankingReasons.join("; ")}`);
-  }
-
-  const evidenceQuestions = asPdfList(summary?.evidenceGaps).slice(0, 3);
-  if (evidenceQuestions.length) {
-    notes.push(`Equipment evidence question(s): ${evidenceQuestions.join("; ")}`);
-  }
-
-  const cautions = asPdfList(summary?.cautions).slice(0, 2);
-  if (cautions.length) {
-    notes.push(`Equipment caution(s): ${cautions.join("; ")}`);
-  }
-
-  notes.push(
-    "Equipment reasoning is context-only and requires qualified review; it does not declare violations, create citations, or override regulations.",
-  );
-
-  return notes;
-}
-
-function getStandardCitationForPdf(standard: any) {
-  return (
-    standard?.citation ||
-    standard?.standard ||
-    standard?.label ||
-    standard?.title ||
-    String(standard)
-  );
-}
-
-function getStandardSummaryForPdf(standard: any) {
-  return (
-    standard?.rationale ||
-    standard?.summary ||
-    standard?.heading ||
-    standard?.reasoning ||
-    ""
-  );
-}
-
-
-function formatPdfDate(value?: string) {
-  if (!value) return new Date().toLocaleDateString("en-US");
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return date.toLocaleDateString("en-US", {
-    month: "2-digit",
-    day: "2-digit",
-    year: "numeric",
-  });
 }
 
 interface InspectionData {
