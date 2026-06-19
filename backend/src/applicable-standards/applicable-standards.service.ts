@@ -5,8 +5,27 @@ import { Standard } from "../standards/entities/standard.entity";
 import { SafeScopeKnowledgeChunk } from "../safescope-knowledge/entities/safescope-knowledge-chunk.entity";
 import { hasNonNegatedTerm } from "../safescope-v2/reasoning-orchestrator/negation-context.util";
 
+type CachedKnowledgeChunk = Pick<
+  SafeScopeKnowledgeChunk,
+  "id" | "citation" | "sectionHeading" | "chunkSummary" | "chunkText"
+> & {
+  document: {
+    agency?: string | null;
+    title?: string | null;
+    sourceType?: string | null;
+  } | null;
+};
+
+type CachedStandard = Pick<
+  Standard,
+  "id" | "citation" | "title" | "standardText" | "plainLanguageSummary" | "keywords" | "agencyCode" | "scopeCode"
+>;
+
 @Injectable()
 export class ApplicableStandardsService {
+  private cachedChunks: CachedKnowledgeChunk[] | null = null;
+  private cachedStandards: CachedStandard[] | null = null;
+
   private isHousekeepingAccessScenario(text: string) {
     return (
       /(catwalk|walkway|travelway|passageway|platform|access)/i.test(text) &&
@@ -431,54 +450,61 @@ export class ApplicableStandardsService {
 
     const observation = (description || "").toLowerCase();
 
-    let all: Standard[] = [];
+    let all: CachedStandard[] = [];
 
     let knowledgeMatches: any[] = [];
     if (this.knowledgeChunkRepo) {
       try {
-        const queryBuilder = this.knowledgeChunkRepo
-          .createQueryBuilder("c")
-          .innerJoinAndSelect("c.document", "d")
-          .where("d.sourceType = :sourceType", { sourceType: "regulation" })
-          .andWhere("c.citation IS NOT NULL")
-          .andWhere("c.citation ~ :cfrCitationPattern", {
-            cfrCitationPattern: "^(29|30) CFR ",
-          })
-          .andWhere("c.citation NOT ILIKE :testCitation", {
-            testCitation: "TEST-%",
-          })
-          .andWhere("c.citation NOT ILIKE :starterCitation", {
-            starterCitation: "SAFE-SCOPE-%",
-          });
+        if (!this.cachedChunks) {
+          const queryBuilder = this.knowledgeChunkRepo
+            .createQueryBuilder("c")
+            .innerJoinAndSelect("c.document", "d")
+            .where("d.sourceType = :sourceType", { sourceType: "regulation" })
+            .andWhere("c.citation IS NOT NULL")
+            .andWhere("c.citation ~ :cfrCitationPattern", {
+              cfrCitationPattern: "^(29|30) CFR ",
+            })
+            .andWhere("c.citation NOT ILIKE :testCitation", {
+              testCitation: "TEST-%",
+            })
+            .andWhere("c.citation NOT ILIKE :starterCitation", {
+              starterCitation: "SAFE-SCOPE-%",
+            });
+          const chunks = await queryBuilder.getMany();
+          this.cachedChunks = chunks.map(chunk => ({
+            id: chunk.id,
+            citation: chunk.citation,
+            sectionHeading: chunk.sectionHeading,
+            chunkSummary: chunk.chunkSummary,
+            chunkText: chunk.chunkText,
+            document: chunk.document ? {
+              agency: chunk.document.agency,
+              title: chunk.document.title,
+              sourceType: chunk.document.sourceType
+            } : null
+          }));
+          console.log(
+            `Diagnostic: Cached ${this.cachedChunks.length} chunks from SafeScopeKnowledgeChunk`,
+          );
+        }
 
-        // Add agency filter if provided
+        let chunksToScore = this.cachedChunks;
         if (sourceMode.startsWith("MSHA")) {
-          queryBuilder.andWhere("d.agency = :agency", { agency: "MSHA" });
+          chunksToScore = chunksToScore.filter(c => c.document?.agency === "MSHA");
         } else if (
           source === "OSHA_CONSTRUCTION" ||
           source === "OSHA_GENERAL_INDUSTRY"
         ) {
-          queryBuilder.andWhere("d.agency = :agency", { agency: "OSHA" });
+          chunksToScore = chunksToScore.filter(c => c.document?.agency === "OSHA");
         }
 
-        const chunks = await queryBuilder.take(5000).getMany();
-        console.log(
-          `Diagnostic: Retrieved ${chunks.length} chunks from SafeScopeKnowledgeChunk`,
-        );
-
-        knowledgeMatches = chunks
+        knowledgeMatches = chunksToScore
           .map((chunk) =>
-            this.scoreKnowledgeChunk(chunk, observation, siteType, mshaPartPreference),
+            this.scoreKnowledgeChunk(chunk as any, observation, siteType, mshaPartPreference),
           )
           .filter((item) => item.score > 0)
           .sort((a, b) => b.score - a.score);
-        knowledgeMatches
-          .slice(0, 5)
-          .forEach((m) =>
-            console.log(
-              `   - Citation: ${m.citation}, Score: ${m.score}, Reasons: ${m.matchingReasons.join(", ")}`,
-            ),
-          );
+
       } catch (error: any) {
         console.error("Applicable standards knowledge query failed:", error);
       }
@@ -489,12 +515,28 @@ export class ApplicableStandardsService {
     }
 
     try {
-      all = await this.standardRepo.find({
-        where: siteType
-          ? { scopeCode: siteType as any, isActive: true }
-          : { isActive: true },
-        take: 5000,
-      });
+      if (!this.cachedStandards) {
+        const standards = await this.standardRepo.find({
+          where: { isActive: true },
+          take: 5000,
+        });
+        this.cachedStandards = standards.map((standard) => ({
+          id: standard.id,
+          citation: standard.citation,
+          title: standard.title,
+          standardText: standard.standardText,
+          plainLanguageSummary: standard.plainLanguageSummary,
+          keywords: standard.keywords,
+          agencyCode: standard.agencyCode,
+          scopeCode: standard.scopeCode,
+        }));
+        console.log(
+          `Diagnostic: Cached ${this.cachedStandards.length} standards from Standard Repository`,
+        );
+      }
+      all = siteType
+        ? this.cachedStandards.filter(s => s.scopeCode === (siteType as any))
+        : this.cachedStandards;
     } catch (error: any) {
       console.error("Applicable standards repository query failed:", error);
       all = [];

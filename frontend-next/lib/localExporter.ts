@@ -63,7 +63,7 @@ export const localExporter = {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `sentinel-inspection-${data.adminInfo?.site || "export"}-${new Date().toISOString().split("T")[0]}.json`;
+    link.download = `insite-inspection-${data.adminInfo?.site || "export"}-${new Date().toISOString().split("T")[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   },
@@ -75,7 +75,7 @@ export const localExporter = {
   ) => {
     const doc = await localExporter._buildDoc(data, options);
     doc.save(
-      `SENTINEL-REPORT-${data.adminInfo?.site || "EXPORT"}-${new Date().getTime()}.pdf`,
+      `INSITE-REPORT-${data.adminInfo?.site || "EXPORT"}-${new Date().getTime()}.pdf`,
     );
   },
 
@@ -598,7 +598,7 @@ export const localExporter = {
         ensureFindingSpace(42);
         doc.setTextColor(15, 23, 42);
         doc.setFont("helvetica", "bold");
-        doc.text("SAFESCOPE REVIEW SUMMARY", 20, currentY);
+        doc.text("HAZLENZ AI REVIEW SUMMARY", 20, currentY);
         doc.setTextColor(71, 85, 105);
         doc.setFont("helvetica", "normal");
 

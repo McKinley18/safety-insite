@@ -6,16 +6,11 @@ import { ActionEngineService } from "../action-engine/action-engine.service";
 import { ContextExpansionService } from "./context/context-expansion.service";
 import { EvidenceFusionService } from "./evidence/evidence-fusion.service";
 import { ApplicableStandardsService } from "../applicable-standards/applicable-standards.service";
-import { SafeScopeFeedbackService } from "./feedback/safescope-feedback.service";
-import { ReasoningSnapshotService } from "./snapshots/reasoning-snapshot.service";
 import { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
-import { SafeScopeKnowledgeService } from "../safescope-knowledge/safescope-knowledge.service";
-import { StandardsIntelligenceService } from "./standards-intelligence/standards-intelligence.service";
 import { STANDARDS_INTELLIGENCE_SEED } from "./standards-intelligence/standards-intelligence.seed";
 import { buildSourceSynthesis } from "../safescope-knowledge/sources/source-synthesis-helper";
 import { getEvidenceGapIntelligence } from "./intelligence/evidence-gap-intelligence";
 import { getCorrectiveActionIntelligence } from "./intelligence/corrective-action-intelligence";
-import { SupervisorValidationService } from "./validation/supervisor-validation.service";
 import { SafeScopeNativeReasoningService } from "./native-reasoning/native-reasoning.service";
 import { SafeScopeReasoningOrchestratorService } from "./reasoning-orchestrator/reasoning-orchestrator.service";
 import { SafeScopeReasoningRequest } from "./reasoning-orchestrator/reasoning-orchestrator.types";
@@ -45,11 +40,6 @@ export class SafescopeV2Service {
     private readonly contextExpansion: ContextExpansionService,
     private readonly evidenceFusion: EvidenceFusionService,
     private readonly applicableStandards: ApplicableStandardsService,
-    private readonly feedbackService: SafeScopeFeedbackService,
-    private readonly reasoningSnapshotService: ReasoningSnapshotService,
-    private readonly safeScopeKnowledge: SafeScopeKnowledgeService,
-    private readonly standardsIntelligenceService: StandardsIntelligenceService,
-    private readonly supervisorValidationService: SupervisorValidationService,
     private readonly intelligenceOrchestrator: SafeScopeIntelligenceOrchestrator,
     private readonly visualService: VisualEvidenceReasoningService,
     private readonly imageAnalysisService: RealImageAnalysisService,

@@ -113,7 +113,7 @@ export default function ProfilePage() {
   }
 
   const displayName =
-    [firstName, lastName].filter(Boolean).join(" ").trim() || "Sentinel User";
+    [firstName, lastName].filter(Boolean).join(" ").trim() || "Safety InSite User";
 
   const planLabel = String(user.type || "basic");
 
