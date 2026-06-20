@@ -20,7 +20,7 @@ import { SafescopeV2Service } from '../safescope-v2.service';
 // Force degraded mode for deterministic offline testing
 process.env.RENDER = 'true';
 process.env.NODE_ENV = 'production';
-process.env.HAZLENZ_FULL_INTELLIGENCE_ON_RENDER = 'false';
+process.env.HAZLENZ_DISABLE_FULL_INTELLIGENCE_ON_RENDER = 'true';
 
 const databaseUrl = process.env.DATABASE_URL;
 

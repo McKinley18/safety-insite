@@ -388,12 +388,12 @@ export class SafescopeV2Service {
         Boolean(process.env.RENDER_EXTERNAL_URL);
 
       const productionRuntime = process.env.NODE_ENV === "production";
-      const fullRenderIntelligenceEnabled =
-        process.env.HAZLENZ_FULL_INTELLIGENCE_ON_RENDER === "true";
+      const fullRenderIntelligenceDisabled =
+        process.env.HAZLENZ_DISABLE_FULL_INTELLIGENCE_ON_RENDER === "true";
 
-      if (productionRuntime && renderRuntime && !fullRenderIntelligenceEnabled) {
+      if (productionRuntime && renderRuntime && fullRenderIntelligenceDisabled) {
         if (process.env.NODE_ENV === "development" || debugMetadata) {
-          console.warn("[HazLenz classify] skipping full intelligence orchestrator on Render production; returning production-safe advisory fallback", {
+          console.warn("[HazLenz classify] skipping full intelligence orchestrator on Render production because HAZLENZ_DISABLE_FULL_INTELLIGENCE_ON_RENDER=true", {
             textLength: fusedText.length,
             standards: suggestedStandards.length,
             actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
@@ -402,7 +402,7 @@ export class SafescopeV2Service {
         }
 
         intelligence = buildDegradedHazLenzIntelligence(
-          "HazLenz full intelligence layer is disabled on the current Render production runtime to prevent service restarts. Core classification, risk, standards candidates, and corrective actions were still generated.",
+          "HazLenz full intelligence layer was disabled by runtime configuration. Core classification, risk, standards candidates, and corrective actions were still generated.",
           promotedPrimary?.classification
         );
       } else {
@@ -469,6 +469,7 @@ export class SafescopeV2Service {
         intelligence,
         actionInput.id,
         knowledgeShardSummary,
+        fusedText,
       );
 
       const aiEvidenceContract = {
@@ -748,10 +749,25 @@ export class SafescopeV2Service {
     intelligence: any,
     reportId: string,
     knowledgeShardSummary?: any,
+    observationText?: string,
   ) {
     const safeArray = (value: any) => Array.isArray(value) ? value : [];
     const base = safeArray(baseActions);
     const primary = base[0] || {};
+    const normalizedObservation = String(observationText || "").toLowerCase();
+
+    const hasTrafficOrMobileEquipmentContext = /\b(forklift|loader|haul truck|vehicle|vehicles|mobile equipment|powered haulage|traffic|pedestrian|pedestrians|blind spot|blind spots|backing|backup alarm|backup alarms|berm|berms|travel path|travel paths|haul road|haul roads|spotter|spotters|flagger|flaggers)\b/i.test(normalizedObservation);
+
+    const isTrafficControlPattern = (value: string) =>
+      /\b(pedestrian|pedestrians|equipment travel path|equipment travel paths|mobile equipment|spotter|spotters|traffic control|traffic controls|backup alarm|backup alarms|blind spot|blind spots|haul road|haul roads|berm|berms|vehicle lane|vehicle lanes|operator communication|positive communication)\b/i.test(value);
+
+    const isRelevantShardCorrectiveActionPattern = (value: string) => {
+      if (isTrafficControlPattern(value) && !hasTrafficOrMobileEquipmentContext) {
+        return false;
+      }
+
+      return true;
+    };
 
     const dca = intelligence?.dca || {};
     const correctiveActionReasoning = intelligence?.correctiveActionReasoning || {};
@@ -762,7 +778,8 @@ export class SafescopeV2Service {
       knowledgeShardSummary?.correctiveActionPatterns,
     )
       .map((item: any) => String(item || "").trim())
-      .filter(Boolean);
+      .filter(Boolean)
+      .filter(isRelevantShardCorrectiveActionPattern);
 
     const dcaFixes = [
       ...safeArray(dca.immediateActions).map((item: any) => item?.action || item?.title || String(item)),
@@ -789,6 +806,9 @@ export class SafescopeV2Service {
     const fallbackFixesAllowed = shardCorrectiveActionPatterns.length === 0;
     const staleBaseFixPattern = /windshield|protective film/i;
 
+    const relevanceFilter = (item: string) =>
+      isRelevantShardCorrectiveActionPattern(item);
+
     const suggestedFixes = Array.from(new Set([
       ...shardCorrectiveActionPatterns,
       ...dcaFixes,
@@ -797,17 +817,23 @@ export class SafescopeV2Service {
     ]
       .map((item) => String(item).trim())
       .filter(Boolean)
+      .filter(relevanceFilter)
       .filter((item) =>
         shardCorrectiveActionPatterns.length > 0
           ? !staleBaseFixPattern.test(item)
           : true,
       ))).slice(0, 12);
 
+    const fallbackDescription =
+      fallbackFixesAllowed && primary.description && relevanceFilter(String(primary.description))
+        ? primary.description
+        : "";
+
     const descriptionParts = [
       shardCorrectiveActionPatterns.length
         ? `Focused HazLenz shard controls: ${shardCorrectiveActionPatterns.slice(0, 4).join("; ")}`
         : "",
-      fallbackFixesAllowed ? primary.description : "",
+      fallbackDescription,
       dca.actionRationale ? `DCA rationale: ${dca.actionRationale}` : "",
       correctiveActionReasoning.immediateActionNarrative
         ? `Immediate: ${correctiveActionReasoning.immediateActionNarrative}`
@@ -826,11 +852,18 @@ export class SafescopeV2Service {
         : "",
     ].filter(Boolean);
 
+    const sanitizeActionText = (value: any) => {
+      const raw = String(value || "").trim();
+      if (!raw) return raw;
+      if (relevanceFilter(raw)) return raw;
+      return "";
+    };
+
     const title =
-      dca.immediateActions?.[0]?.title ||
-      dca.immediateActions?.[0]?.action ||
-      correctiveActionReasoning.immediateActions?.[0] ||
-      primary.title ||
+      sanitizeActionText(dca.immediateActions?.[0]?.title) ||
+      sanitizeActionText(dca.immediateActions?.[0]?.action) ||
+      sanitizeActionText(correctiveActionReasoning.immediateActions?.[0]) ||
+      sanitizeActionText(primary.title) ||
       "Review and control HazLenz AI-identified hazard";
 
     const priority =
@@ -843,11 +876,11 @@ export class SafescopeV2Service {
     const enhancedPrimary = {
       ...primary,
       title: String(title),
-      description: descriptionParts.join(" "),
+      description: descriptionParts.map(sanitizeActionText).filter(Boolean).join(" "),
       priority,
       source: primary.source || "AI_ENGINE",
       reportId: primary.reportId || reportId,
-      suggestedFixes,
+      suggestedFixes: suggestedFixes.map(sanitizeActionText).filter(Boolean),
       originalSuggestion: {
         ...(primary.originalSuggestion || {}),
         source: "safescope_v2_enriched_corrective_action",
@@ -861,8 +894,13 @@ export class SafescopeV2Service {
         shardCorrectiveActionPatterns,
         usesFocusedShardCorrectiveActions: shardCorrectiveActionPatterns.length > 0,
         enrichmentApplied: true,
+        relevanceFilterApplied: true,
       },
     };
+
+    if (!hasTrafficOrMobileEquipmentContext) {
+      delete (enhancedPrimary.originalSuggestion as any).baseActionEngineSuggestion;
+    }
 
     return [
       enhancedPrimary,
