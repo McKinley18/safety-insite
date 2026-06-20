@@ -91,6 +91,22 @@ function runGoldenTests() {
 
   for (const test of tests) {
     const result = classifier.classify(test.text);
+
+    // Verify excludedHazards constraints (no duplicates, capped at 12)
+    const seenExcluded = new Set<string>();
+    for (const excl of result.excludedHazards) {
+      const norm = excl.classification.toLowerCase().trim();
+      if (seenExcluded.has(norm)) {
+        console.log(`❌ Error: duplicate excluded hazard found: "${excl.classification}" in test "${test.name}"`);
+        process.exit(1);
+      }
+      seenExcluded.add(norm);
+    }
+    if (result.excludedHazards.length > 12) {
+      console.log(`❌ Error: excludedHazards count exceeds limit of 12 (found ${result.excludedHazards.length}) in test "${test.name}"`);
+      process.exit(1);
+    }
+
     const risk = evaluateRisk({
       text: test.text,
       classification: result.classification,

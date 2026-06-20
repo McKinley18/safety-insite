@@ -414,16 +414,31 @@ export class WeightedClassifierService {
           evidenceTokens: candidate.evidenceTokens,
           explanation: candidate.explanation,
         })),
-      excludedHazards: candidates
-        .filter((candidate) => candidate.id !== primary.id)
-        .map((candidate) => ({
-          classification: candidate.classification,
-          reason:
-            candidate.score <= 0
-              ? "Insufficient weighted signal evidence."
-              : "Lower weighted score than primary classification.",
-          negativeTokens: candidate.negativeTokens,
-        })),
+      excludedHazards: (() => {
+        const seenExcluded = new Set<string>();
+        const deduplicatedExcluded: Array<{
+          classification: string;
+          reason: string;
+          negativeTokens: string[];
+        }> = [];
+
+        for (const candidate of candidates) {
+          if (candidate.id === primary.id) continue;
+          const normName = normalize(candidate.classification);
+          if (!seenExcluded.has(normName)) {
+            seenExcluded.add(normName);
+            deduplicatedExcluded.push({
+              classification: candidate.classification,
+              reason:
+                candidate.score <= 0
+                  ? "Insufficient weighted signal evidence."
+                  : "Lower weighted score than primary classification.",
+              negativeTokens: candidate.negativeTokens,
+            });
+          }
+        }
+        return deduplicatedExcluded.slice(0, 12);
+      })(),
     };
   }
 }
