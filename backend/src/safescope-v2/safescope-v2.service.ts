@@ -313,13 +313,52 @@ export class SafescopeV2Service {
             "Check presence of eye wash station, chemical-resistant gloves, and proper secondary containment.",
           ];
           classReason = "Assessed chemical safety risk, focusing on container labeling, hazard communication, and SDS availability.";
-        } else if (lowerClass.includes("housekeeping") || lowerClass.includes("trip") || lowerClass.includes("clutter") || lowerClass.includes("walking") || lowerClass.includes("working") || lowerClass.includes("surfaces")) {
+        } else if (lowerClass.includes("housekeeping") || lowerClass.includes("trip") || lowerClass.includes("clutter") || lowerClass.includes("walking") || lowerClass.includes("working") || lowerClass.includes("surfaces") || lowerClass.includes("slip")) {
+          if (lowerClass.includes("oil") || lowerClass.includes("container")) {
+            evidenceGaps = [
+              "Is the container labeled?",
+              "Is the container closed or covered?",
+              "Is there visible oil on the floor?",
+              "Is it in or near a travelway?",
+              "Is secondary containment present?",
+              "Are there nearby drains, soil, or stormwater pathways?",
+              "Is the container managed as used oil/waste per site procedure?",
+              "Has cleanup or spill prevention been completed?"
+            ];
+            classReason = "Assessed open used-oil container or spill hazard near walking paths, analyzing release modes, exposure pathways, and slip risks.";
+          } else {
+            evidenceGaps = [
+              "Verify if travelways, walkways, and emergency exits are clear of clutter, cords, or debris.",
+              "Identify source of any spills (oil, water, dust) and check if cleanup materials or warning signs are deployed.",
+              "Check lighting levels and walking surface conditions (uneven ground, cracks, ice) in the hazard area.",
+            ];
+            classReason = "Assessed slip, trip, and fall-on-same-level hazards, focusing on clean walkways and clear emergency exits.";
+          }
+        } else if (lowerClass.includes("traffic") || lowerClass.includes("pedestrian") || lowerClass.includes("vehicle") || lowerClass.includes("speed")) {
           evidenceGaps = [
-            "Verify if travelways, walkways, and emergency exits are clear of clutter, cords, or debris.",
-            "Identify source of any spills (oil, water, dust) and check if cleanup materials or warning signs are deployed.",
-            "Check lighting levels and walking surface conditions (uneven ground, cracks, ice) in the hazard area.",
+            "Are pedestrian walkways physically separated from vehicle lanes?",
+            "Are speed limits clearly posted and enforced?",
+            "Are backup alarms and strobe lights functioning on all equipment?",
+            "Are spotters or flaggers present in blind or high-risk zones?",
+            "Are workers wearing high-visibility safety vests?"
           ];
-          classReason = "Assessed slip, trip, and fall-on-same-level hazards, focusing on clean walkways and clear emergency exits.";
+          classReason = "Assessed mobile equipment traffic control and pedestrian interaction hazards, prioritizing physical segregation controls.";
+        } else if (lowerClass.includes("compressed_gas") || lowerClass.includes("cylinder") || lowerClass.includes("gas") || lowerClass.includes("valve cap")) {
+          evidenceGaps = [
+            "Are cylinders secured upright with chains or racks?",
+            "Are valve protective caps installed when not in active use?",
+            "Are oxygen and fuel gas cylinders separated by 20 feet or a 5-foot 1/2-hour fire barrier?",
+            "Are cylinder contents and hazards clearly labeled?"
+          ];
+          classReason = "Assessed compressed gas cylinder storage and handling hazards, focusing on restraint systems, valve caps, and storage segregation.";
+        } else if (lowerClass.includes("hydraulic") || lowerClass.includes("pneumatic") || lowerClass.includes("pressure") || lowerClass.includes("whip check")) {
+          evidenceGaps = [
+            "Are whip checks or safety cables installed on all high-pressure connections?",
+            "Has stored pressure been verified bled to zero before opening lines?",
+            "Are mechanical blocks or stands installed under hydraulically raised components?",
+            "Have high-pressure hoses been inspected for wear, leaks, or damage?"
+          ];
+          classReason = "Assessed hydraulic and pneumatic energy release hazards, focusing on pressure isolation, mechanical blocks, and whip check restraints.";
         }
 
         return {

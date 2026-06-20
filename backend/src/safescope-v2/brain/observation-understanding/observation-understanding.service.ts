@@ -132,10 +132,10 @@ export class SafeScopeObservationUnderstandingService {
     }
 
     if (
-      includesAny(text, ['chemical container', 'secondary container', 'container of chemical', 'solvent bottle', 'chemical bottle', 'drum']) ||
+      includesAny(text, ['chemical container', 'secondary container', 'container of chemical', 'solvent bottle', 'chemical bottle', 'drum', 'oil container', 'used-oil container']) ||
       (
         includesAny(text, ['container', 'bottle', 'drum', 'pail']) &&
-        includesAny(text, ['chemical', 'solvent', 'acid', 'caustic', 'flammable', 'sds', 'hazcom'])
+        includesAny(text, ['chemical', 'solvent', 'acid', 'caustic', 'flammable', 'sds', 'hazcom', 'oil'])
       )
     ) {
       findings.push({
@@ -292,13 +292,13 @@ export class SafeScopeObservationUnderstandingService {
       });
     }
 
-    if (includesAny(text, ['wet floor', 'spill', 'standing water', 'slick floor', 'loose material', 'trip hazard', 'extension cord across', 'obstruction in walkway'])) {
+    if (includesAny(text, ['wet floor', 'spill', 'standing water', 'slick floor', 'loose material', 'trip hazard', 'extension cord across', 'obstruction in walkway', 'walking path', 'oil container', 'open container', 'housekeeping'])) {
       findings.push({
         entityKind: 'walking_surface',
-        entityLabel: includesAny(text, ['wet', 'spill', 'slick']) ? 'slippery walking surface' : 'obstructed walking surface',
+        entityLabel: includesAny(text, ['wet', 'spill', 'slick', 'oil']) ? 'slippery walking surface' : 'obstructed walking surface',
         ...common,
-        likelyDomainHints: ['slip_trip_fall', 'walking_working_surfaces', 'slips_trips_falls'],
-        likelyMechanismHints: includesAny(text, ['wet', 'spill', 'slick']) ? ['slip'] : ['trip'],
+        likelyDomainHints: ['slip_trip_fall', 'walking_working_surfaces', 'slips_trips_falls_housekeeping'],
+        likelyMechanismHints: includesAny(text, ['wet', 'spill', 'slick', 'oil']) ? ['slip', 'slip_trip_fall_same_level'] : ['trip'],
         jurisdictionHints: ['osha_general_industry', 'osha_construction', 'msha'],
         negativeDomainHints: [],
         evidenceGaps: [

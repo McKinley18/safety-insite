@@ -52,6 +52,13 @@ const cases: TestCase[] = [
     minimumConfidence: 'insufficient',
     expectedMissingEvidenceIncludes: 'mechanism of injury',
   },
+  {
+    id: 'CAUSAL-007',
+    text: 'Open used-oil container with no lid and used oil still inside near a walking path.',
+    expectedMechanism: 'slip_trip_fall_same_level',
+    expectedEnergy: 'gravity',
+    minimumConfidence: 'moderate',
+  },
 ];
 
 const confidenceRank = {

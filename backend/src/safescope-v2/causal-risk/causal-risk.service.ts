@@ -93,6 +93,10 @@ export class CausalRiskService {
   }
 
   private inferMechanism(text: string, structuredMechanism: string): string {
+    if (includesAny(text, ['oil']) && includesAny(text, ['walkway', 'walking path', 'path', 'floor', 'surface'])) {
+      return 'slip_trip_fall_same_level';
+    }
+
     if (structuredMechanism !== 'unknown') return structuredMechanism;
 
     if (includesAny(text, ['not locked out', 'lockout', 'energy isolation', 'start unexpectedly', 'unexpected startup'])) {
@@ -115,8 +119,12 @@ export class CausalRiskService {
       return 'chemical_exposure_unknown_agent';
     }
 
-    if (includesAny(text, ['compressed air hose', 'pressurized hose', 'hose coupling', 'whipping'])) {
+    if (includesAny(text, ['compressed air hose', 'pressurized hose', 'hose coupling', 'whipping', 'hydraulic hose', 'pneumatic line', 'whip check', 'fluid injection'])) {
       return 'struck_by_whipping_pressurized_line';
+    }
+
+    if (includesAny(text, ['cylinder', 'compressed gas', 'oxygen cylinder', 'valve cap'])) {
+      return 'compressed_gas_release_or_rupture';
     }
 
     if (includesAny(text, ['tail pulley', 'head pulley', 'nip point', 'moving conveyor', 'rotating equipment'])) {
@@ -127,11 +135,11 @@ export class CausalRiskService {
       return 'electrical_shock';
     }
 
-    if (includesAny(text, ['forklift', 'loader', 'haul truck', 'pedestrian', 'blind spot'])) {
+    if (includesAny(text, ['forklift', 'loader', 'haul truck', 'pedestrian', 'blind spot', 'traffic'])) {
       return 'struck_by_mobile_equipment';
     }
 
-    if (includesAny(text, ['walkway', 'slip', 'trip', 'spill', 'wet floor'])) {
+    if (includesAny(text, ['walkway', 'slip', 'trip', 'spill', 'wet floor', 'walking path', 'path', 'housekeeping', 'oil container', 'clutter'])) {
       return 'slip_trip_fall_same_level';
     }
 
@@ -147,16 +155,18 @@ export class CausalRiskService {
   }
 
   private inferEnergySource(text: string, u: any, mechanism: string): string {
+    if (mechanism === 'slip_trip_fall_same_level') return 'gravity';
+
     const structured = firstKnown(u.energy?.primaryEnergySource);
     if (structured !== 'unknown') return structured;
 
-    if (mechanism.includes('fall') || mechanism.includes('suspended') || mechanism.includes('cave_in')) return 'gravity';
+    if (mechanism.includes('fall') || mechanism.includes('suspended') || mechanism.includes('cave_in') || mechanism.includes('slip_trip')) return 'gravity';
     if (mechanism.includes('unexpected_startup') || mechanism.includes('rotating_equipment')) return 'mechanical_motion';
     if (mechanism.includes('electrical')) return 'electrical';
     if (mechanism.includes('mobile_equipment')) return 'mobile_equipment_kinetic';
     if (mechanism.includes('chemical')) return 'chemical';
     if (mechanism.includes('atmospheric')) return 'atmospheric_hazard';
-    if (mechanism.includes('pressurized')) return 'stored_pressure';
+    if (mechanism.includes('pressurized') || mechanism.includes('pressure') || mechanism.includes('cylinder') || mechanism.includes('whipping')) return 'stored_pressure';
     if (mechanism.includes('delayed_emergency')) return 'emergency_response_time';
     if (includesAny(text, ['stored energy', 'pressurized', 'compressed air'])) return 'stored_energy';
     return 'unknown';
@@ -172,6 +182,7 @@ export class CausalRiskService {
     if (mechanism === 'atmospheric_hazard_engulfment_or_entrapment') return 'hazardous atmosphere, engulfment, or entrapment during entry';
     if (mechanism === 'chemical_exposure_unknown_agent') return 'unknown chemical exposure through contact, inhalation, or ingestion pathway';
     if (mechanism === 'struck_by_whipping_pressurized_line') return 'stored pressure release causing hose whip or line-of-fire impact';
+    if (mechanism === 'compressed_gas_release_or_rupture') return 'sudden release of compressed gas causing blast, projectile, or exposure';
     if (mechanism === 'slip_trip_fall_same_level') return 'loss of footing or balance on walking-working surface';
     if (mechanism === 'delayed_emergency_response') return 'delayed access to emergency equipment or egress during event';
     if (mechanism === 'caught_in_cave_in') return 'soil or material collapse onto exposed worker';
@@ -198,6 +209,8 @@ export class CausalRiskService {
     if (mechanism === 'struck_by_falling_suspended_load') return 'worker positioned in suspended-load line of fire';
     if (mechanism === 'chemical_exposure_unknown_agent') return 'chemical identity or hazard communication not available';
     if (mechanism === 'struck_by_whipping_pressurized_line') return 'damaged pressurized hose or coupling failure potential';
+    if (mechanism === 'compressed_gas_release_or_rupture') return 'unsecured compressed gas cylinder or missing protective valve cap';
+    if (mechanism === 'slip_trip_fall_same_level') return 'liquids, spill, clutter, or open containers in walking paths';
     if (text) return 'unsafe condition described in observation';
     return 'unknown';
   }
@@ -216,6 +229,7 @@ export class CausalRiskService {
     if (mechanism === 'struck_by_falling_suspended_load') return 'exclusion zone, rigging inspection, or load-path control';
     if (mechanism === 'chemical_exposure_unknown_agent') return 'container label and SDS availability';
     if (mechanism === 'struck_by_whipping_pressurized_line') return 'hose/coupling integrity and pressure isolation';
+    if (mechanism === 'compressed_gas_release_or_rupture') return 'cylinder securing / chains, protective valve caps, and incompatible storage separation';
     if (mechanism === 'rotating_equipment_nip_point') return 'machine guarding';
     if (mechanism === 'electrical_shock') return 'electrical equipment condition or isolation';
     if (mechanism === 'struck_by_mobile_equipment') return 'pedestrian separation / traffic control';
@@ -236,6 +250,7 @@ export class CausalRiskService {
       atmospheric_hazard_engulfment_or_entrapment: 'asphyxiation, toxic exposure, engulfment, entrapment, or fatality',
       chemical_exposure_unknown_agent: 'chemical burn, toxic exposure, sensitization, fire/explosion exposure, or unknown health effect',
       struck_by_whipping_pressurized_line: 'serious struck-by injury, injection injury, or eye/face trauma from pressure release',
+      compressed_gas_release_or_rupture: 'blast trauma, serious struck-by injury, asphyxiation, fire/explosion burn, or fatality',
       slip_trip_fall_same_level: 'sprain, fracture, head injury, or same-level fall injury',
       delayed_emergency_response: 'worsened injury or loss escalation due to delayed emergency response',
       caught_in_cave_in: 'fatal crushing or asphyxiation from cave-in',
@@ -255,7 +270,8 @@ export class CausalRiskService {
       atmospheric_hazard_engulfment_or_entrapment: ['asphyxiation', 'toxic_atmosphere', 'engulfment'],
       chemical_exposure_unknown_agent: ['chemical_burn', 'inhalation_exposure', 'fire_explosion'],
       struck_by_whipping_pressurized_line: ['stored_energy_release', 'fluid_injection', 'spray_contact'],
-      slip_trip_fall_same_level: ['fall_from_height'],
+      compressed_gas_release_or_rupture: ['struck_by_whipping_pressurized_line', 'asphyxiation', 'fire_explosion'],
+      slip_trip_fall_same_level: ['fall_from_height', 'chemical_exposure_unknown_agent', 'environmental_release'],
       delayed_emergency_response: ['fire_spread', 'egress_delay'],
       caught_in_cave_in: ['struck_by_falling_material', 'engulfment'],
     };

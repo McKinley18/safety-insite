@@ -10,6 +10,10 @@ import { EnergyUnderstandingService } from './energy-understanding.service';
 import { ControlUnderstandingService } from './control-understanding.service';
 import { ScenarioUnderstandingService } from './scenario-understanding.service';
 
+function includesAny(text: string, terms: string[]): boolean {
+  return terms.some((term) => text.includes(term));
+}
+
 export class ObservationUnderstandingService {
   private readonly equipmentService = new EquipmentUnderstandingService();
   private readonly taskService = new TaskUnderstandingService();
@@ -291,21 +295,52 @@ export class ObservationUnderstandingService {
       });
     }
 
-    if (input.equipmentCategory === 'mobile_equipment') {
+    if (input.equipmentCategory === 'mobile_equipment' || includesAny(input.normalizedText, ['traffic', 'vehicle', 'forklift', 'haul truck', 'loader', 'flagger'])) {
       candidates.push({
         mechanism: 'struck_by_mobile_equipment',
         confidence: input.workerExposed === true ? 0.78 : 0.58,
-        reasons: ['Mobile equipment exposure pathway detected.'],
-        competingMechanisms: ['run_off_embankment', 'crush_point']
+        reasons: ['Mobile equipment or traffic safety pathway detected.'],
+        competingMechanisms: ['run_off_embankment', 'crush_point', 'caught_between_mobile_equipment']
       });
     }
 
-    if (input.normalizedText.includes('walkway') || input.normalizedText.includes('slip') || input.normalizedText.includes('trip')) {
+    if (includesAny(input.normalizedText, ['cylinder', 'compressed gas', 'oxygen cylinder', 'valve cap'])) {
+      candidates.push({
+        mechanism: 'compressed_gas_release_or_rupture',
+        confidence: 0.75,
+        reasons: ['Compressed gas cylinder or valve cap signal detected.'],
+        competingMechanisms: ['struck_by_whipping_pressurized_line', 'asphyxiation']
+      });
+    }
+
+    if (includesAny(input.normalizedText, ['hydraulic', 'pneumatic', 'stored pressure', 'hose', 'whip check', 'pressure bleed', 'fluid injection'])) {
+      candidates.push({
+        mechanism: 'struck_by_whipping_pressurized_line',
+        confidence: 0.8,
+        reasons: ['Hydraulic, pneumatic, or stored pressure whipping line signal detected.'],
+        competingMechanisms: ['fluid_injection_injury', 'mechanical_crush_under_hydraulic_collapse']
+      });
+    }
+
+    if (
+      includesAny(input.normalizedText, [
+        'walkway',
+        'slip',
+        'trip',
+        'spill',
+        'oil',
+        'container',
+        'wet floor',
+        'walking path',
+        'path',
+        'housekeeping',
+      ])
+    ) {
       candidates.push({
         mechanism: 'slip_trip_fall_same_level',
         confidence: 0.7,
-        reasons: ['Walking-working surface or slip/trip signal detected.'],
-        competingMechanisms: ['fall_from_height']
+        reasons: ['Walking-working surface, housekeeping, or slip/trip/spill signal detected.'],
+        competingMechanisms: ['fall_from_height', 'chemical_exposure_unknown_agent', 'environmental_release']
       });
     }
 

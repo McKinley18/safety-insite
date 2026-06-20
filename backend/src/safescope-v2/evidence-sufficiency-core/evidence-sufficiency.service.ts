@@ -122,7 +122,8 @@ export class EvidenceSufficiencyService {
     const hasHazardSignal = this.includesAny(text, [
       'unguarded', 'not locked out', 'floor hole', 'confined space', 'tank', 'suspended load',
       'unlabeled', 'chemical', 'damaged', 'leaking', 'employees', 'worker', 'mechanic',
-      'fall exposure', 'energized', 'blocked', 'trench', 'excavation'
+      'fall exposure', 'energized', 'blocked', 'trench', 'excavation', 'oil', 'spill',
+      'walking path', 'path', 'container'
     ]);
 
     if (wordCount >= 10 && hasHazardSignal) {

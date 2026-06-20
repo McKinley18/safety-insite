@@ -132,6 +132,112 @@ export class SafeScopeCausalChainService {
       correctiveControlTargets.push('Use substitution, enclosure, local exhaust, wet methods, isolation, process change, housekeeping, or verified PPE/respiratory protection as applicable.');
     }
 
+    if (includesAny(combined, ['walkway', 'walking path', 'spill', 'oil', 'container', 'slip', 'trip', 'housekeeping', 'wet floor', 'clutter'])) {
+      initiatingEvents.push(
+        `Open container, spill, or accumulation of materials on walking or working surface${dynamicContext}.`,
+        'Liquids, clutter, or hoses remain uncleaned/uncovered in walking paths or work areas.',
+      );
+      energyOrExposureTransfer.push('Gravity converts loss of footing or balance into same-level fall or contact with slick surfaces.');
+      injuryOrIllnessMechanisms.push('slip_trip_fall_same_level', 'contusion_or_sprain', 'contact_exposure');
+      likelyConsequences.push('Same-level slip/trip/fall injury, sprain, fracture, contusion, or potential waste/environmental contamination.');
+      failedOrMissingControls.push('Lack of container covers, missing secondary containment, poor housekeeping, or failed spill cleanup protocols.');
+      criticalBreakPoints.push('Cover or close containers immediately.', 'Clear walking paths of obstructions and cords.', 'Clean spills and use secondary containment.');
+      evidenceNeededToConfirmChain.push(
+        'Is the container labeled?',
+        'Is the container closed or covered?',
+        'Is there visible oil on the floor?',
+        'Is it in or near a travelway?',
+        'Is secondary containment present?',
+        'Are there nearby drains, soil, or stormwater pathways?',
+        'Is the container managed as used oil/waste per site procedure?',
+        'Has cleanup or spill prevention been completed?'
+      );
+      correctiveControlTargets.push(
+        'Close or cover the container.',
+        'Label the container properly.',
+        'Move it out of the walking path.',
+        'Clean any residue or spill on walking surfaces.',
+        'Provide secondary containment if needed.',
+        'Inspect for release pathway/drain exposure.',
+        'Verify proper used-oil handling/disposal procedure.',
+        'Document closure with photos.'
+      );
+    }
+
+    if (includesAny(combined, ['traffic', 'vehicle', 'pedestrian', 'blind spot', 'walkway', 'haul truck', 'forklift', 'loader', 'flagger'])) {
+      initiatingEvents.push(
+        `Pedestrians and mobile equipment share active workspace or travelways${dynamicContext}.`,
+        'Vehicles operate with speed limits unobserved or without separation barriers.'
+      );
+      energyOrExposureTransfer.push('Kinetic energy transfers from moving vehicle or equipment to exposed pedestrian.');
+      injuryOrIllnessMechanisms.push('struck_by_mobile_equipment', 'crush_injury_collision', 'rollover_impact');
+      likelyConsequences.push('Serious crushing injury, internal trauma, skeletal fractures, or operator/pedestrian fatality.');
+      failedOrMissingControls.push('Lack of physical barriers, speed governor failures, or absent flaggers/spotters at blind intersections.');
+      criticalBreakPoints.push('Physically segregate pedestrian routes from vehicle paths.', 'Enforce speed limits and install warning signals.');
+      evidenceNeededToConfirmChain.push(
+        'Are pedestrian walkways physically separated from vehicle lanes?',
+        'Are speed limits clearly posted and enforced?',
+        'Are backup alarms and strobe lights functioning on all equipment?',
+        'Are spotters or flaggers present in blind or high-risk zones?',
+        'Are workers wearing high-visibility safety vests?'
+      );
+      correctiveControlTargets.push(
+        'Install physical traffic segregation barriers.',
+        'Enforce vehicle speed limits and site traffic plan.',
+        'Verify function of equipment backup alarms and cameras.',
+        'Deploy spotters or flaggers at intersections and work zones.',
+        'Require high-visibility clothing for all ground personnel.'
+      );
+    }
+
+    if (includesAny(combined, ['cylinder', 'compressed gas', 'oxygen', 'acetylene', 'valve cap', 'manifold'])) {
+      initiatingEvents.push(
+        `Compressed gas cylinders are stored, handled, or utilized under high stored pressure${dynamicContext}.`,
+        'Incompatible cylinders (e.g. oxygen and fuel) are stored together or valves lack protection caps.'
+      );
+      energyOrExposureTransfer.push('Sudden release of stored high-pressure gas converts into blast energy, projectile impact, or chemical fire.');
+      injuryOrIllnessMechanisms.push('compressed_gas_release_or_rupture', 'blast_trauma', 'asphyxiation', 'struck_by_projectile');
+      likelyConsequences.push('Severe blast injuries, projectile impact wounds, chemical burns, or rapid asphyxiation in enclosed spaces.');
+      failedOrMissingControls.push('Cylinders not secured upright, missing valve protective caps, or lack of 20-foot/fire-barrier separation.');
+      criticalBreakPoints.push('Secure all cylinders upright with chains or racks.', 'Install protective caps when cylinders are not in use.', 'Isolate oxygen from fuel gases.');
+      evidenceNeededToConfirmChain.push(
+        'Are cylinders secured upright with chains or racks?',
+        'Are valve protective caps installed when not in active use?',
+        'Are oxygen and fuel gas cylinders separated by 20 feet or a 5-foot 1/2-hour fire barrier?',
+        'Are cylinder contents and hazards clearly labeled?'
+      );
+      correctiveControlTargets.push(
+        'Secure cylinders upright using approved racks or chains.',
+        'Install valve protective caps on all idle cylinders.',
+        'Segregate oxygen and fuel gas storage areas.',
+        'Ensure GHS-compliant labels are clearly visible on all cylinders.'
+      );
+    }
+
+    if (includesAny(combined, ['hydraulic', 'pneumatic', 'stored pressure', 'hose', 'whip check', 'pressure bleed', 'fluid injection'])) {
+      initiatingEvents.push(
+        `Technicians perform work on or near components containing high-pressure hydraulic fluid or pneumatic air${dynamicContext}.`,
+        'Hoses, lines, or fittings fail under pressure or raised mechanical components are unsupported.'
+      );
+      energyOrExposureTransfer.push('High-pressure fluid or gas release transfers stored energy through hose whip impact or high-velocity fluid injection.');
+      injuryOrIllnessMechanisms.push('struck_by_whipping_pressurized_line', 'fluid_injection_injury', 'mechanical_crush_under_hydraulic_collapse');
+      likelyConsequences.push('Severe lacerations, line-of-fire whipping trauma, subcutaneous fluid injection tissue necrosis, or crushing fatality.');
+      failedOrMissingControls.push('Missing whip checks on high-pressure connections, failure to bleed stored pressure, or lack of mechanical blocks.');
+      criticalBreakPoints.push('Bleed stored pressure to zero energy.', 'Install safety whip checks on all pressurized hose connections.', 'Apply mechanical blocking devices.');
+      evidenceNeededToConfirmChain.push(
+        'Are whip checks or safety cables installed on all high-pressure connections?',
+        'Has stored pressure been verified bled to zero before opening lines?',
+        'Are mechanical blocks or stands installed under hydraulically raised components?',
+        'Have high-pressure hoses been inspected for wear, leaks, or damage?'
+      );
+      correctiveControlTargets.push(
+        'Install whip checks or safety cables on all pressurized hose connections.',
+        'Verify zero energy state and bleed stored pressure before maintenance.',
+        'Apply mechanical blocks or jack stands to support raised equipment.',
+        'Replace worn or damaged high-pressure hoses immediately.'
+      );
+    }
+
     const mechanismPathways = Array.isArray(mechanism.credibleAccidentPathways)
       ? mechanism.credibleAccidentPathways
       : [];

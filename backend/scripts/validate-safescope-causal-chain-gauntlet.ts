@@ -194,5 +194,86 @@ for (const scenario of scenarios) {
   });
 }
 
+// Dedicated validation scenario for used-oil container near walking path
+console.log('--- Running dedicated oil container causal-chain validation ---');
+const oilObservation = 'Open used-oil container with no lid and used oil still inside near a walking path.';
+const oilInput = {
+  classification: 'slips_trips_falls_housekeeping',
+  observationText: oilObservation,
+  risk: { riskBand: 'Moderate' },
+  mechanismIntelligence: {},
+  exposureIntelligence: {},
+  evidenceSufficiency: {},
+  actionQuality: {},
+  suggestedStandards: [],
+};
+const oilResult = service.evaluate(oilInput);
+
+// Check initiating conditions
+assert(
+  oilResult.initiatingEvents.some(e => e.includes('Open container, spill, or accumulation of materials on walking or working surface')),
+  'Missing expected initiating condition regarding open container or spill'
+);
+
+// Check failure mode
+assert(
+  oilResult.failedOrMissingControls.some(c => c.includes('Lack of container covers, missing secondary containment, poor housekeeping, or failed spill cleanup protocols.')),
+  'Missing expected failure/release mode regarding lack of covers or failed spill cleanup'
+);
+
+// Check exposure pathway
+assert(
+  oilResult.energyOrExposureTransfer.some(t => t.includes('Gravity converts loss of footing or balance into same-level fall or contact with slick surfaces.')),
+  'Missing expected exposure pathway'
+);
+
+// Check mechanism of injury / consequence
+assert(
+  oilResult.injuryOrIllnessMechanisms.includes('slip_trip_fall_same_level'),
+  'Missing expected mechanism: slip_trip_fall_same_level'
+);
+assert(
+  oilResult.likelyConsequences.some(c => c.includes('Same-level slip/trip/fall injury, sprain, fracture, contusion, or potential waste/environmental contamination.')),
+  'Missing expected consequence: same-level slip/trip/fall injury or waste/environmental contamination'
+);
+
+// Check all 8 evidence gap questions
+const expectedEvidenceGaps = [
+  'Is the container labeled?',
+  'Is the container closed or covered?',
+  'Is there visible oil on the floor?',
+  'Is it in or near a travelway?',
+  'Is secondary containment present?',
+  'Are there nearby drains, soil, or stormwater pathways?',
+  'Is the container managed as used oil/waste per site procedure?',
+  'Has cleanup or spill prevention been completed?'
+];
+for (const gap of expectedEvidenceGaps) {
+  assert(
+    oilResult.evidenceNeededToConfirmChain.includes(gap),
+    `Missing expected evidence gap question: ${gap}`
+  );
+}
+
+// Check all 8 corrective action principles
+const expectedCorrectiveActions = [
+  'Close or cover the container.',
+  'Label the container properly.',
+  'Move it out of the walking path.',
+  'Clean any residue or spill on walking surfaces.',
+  'Provide secondary containment if needed.',
+  'Inspect for release pathway/drain exposure.',
+  'Verify proper used-oil handling/disposal procedure.',
+  'Document closure with photos.'
+];
+for (const action of expectedCorrectiveActions) {
+  assert(
+    oilResult.correctiveControlTargets.includes(action),
+    `Missing expected corrective action: ${action}`
+  );
+}
+
+console.log('✅ Dedicated oil container causal-chain validation passed successfully.');
+
 console.log('✅ SafeScope causal chain gauntlet passed.');
 console.log(JSON.stringify(results, null, 2));
