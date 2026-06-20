@@ -18,6 +18,11 @@ const steps: PipelineStep[] = [
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-knowledge-intake.ts'],
   },
   {
+    name: 'Validate reputable source ingestion',
+    command: 'npx',
+    args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-reputable-sources-ingestion.ts'],
+  },
+  {
     name: 'Validate source register',
     command: 'npx',
     args: ['ts-node', '--project', 'backend/tsconfig.json', 'backend/scripts/validate-safescope-source-register.ts'],

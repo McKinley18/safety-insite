@@ -221,6 +221,11 @@ const steps: ValidationStep[] = [
     args: ["ts-node", "scripts/validate-safescope-hazard-universe-coverage-v1.ts"],
   },
   {
+    label: "Reputable source ingestion v1",
+    command: "npx",
+    args: ["ts-node", "scripts/validate-safescope-reputable-sources-ingestion.ts"],
+  },
+  {
     label: "Generalization intelligence audit v1",
     command: "npx",
     args: ["ts-node", "scripts/validate-safescope-generalization-intelligence-v1.ts"],
