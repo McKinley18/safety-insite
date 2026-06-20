@@ -40,6 +40,7 @@ import { AuditEntryAttachment } from '../audit-session/entities/audit-entry-atta
 import { AuditEntryFinding } from '../audit-session/entities/audit-entry-finding.entity';
 import { Inspection } from '../inspection/inspection.entity';
 import { Hazard } from '../inspection/hazard.entity';
+import { SafeScopeAuditRecordEntity } from '../safescope-v2/persistence/audit-record.entity';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -113,6 +114,7 @@ export const dataSource = new DataSource({
     AuditEntryFinding,
     Inspection,
     Hazard,
+    SafeScopeAuditRecordEntity,
   ],
   migrations: [isTsNode ? 'src/database/migrations/*.ts' : 'dist/database/migrations/*.js'],
   synchronize: false,

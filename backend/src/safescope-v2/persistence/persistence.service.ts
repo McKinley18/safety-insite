@@ -15,6 +15,7 @@ import { CryptographicAuditService } from './cryptographic-audit.service';
 @Injectable()
 export class SafeScopePersistenceService {
   private readonly persistenceMode: 'file' | 'database';
+  private auditTableReady?: Promise<void>;
   private readonly dataPath = path.resolve(__dirname, '../../../../../safescope-data/persistence/audit_records.json');
   private readonly cryptoSigner = new CryptographicAuditService();
 
@@ -63,8 +64,58 @@ export class SafeScopePersistenceService {
     }
   }
 
+  private isMissingAuditTableError(error: any): boolean {
+    return (
+      error?.code === '42P01' ||
+      error?.driverError?.code === '42P01' ||
+      String(error?.message || '').includes('safescope_audit_records')
+    );
+  }
+
+  private async ensureDatabaseAuditTable(): Promise<void> {
+    if (!this.repository || this.persistenceMode !== 'database') {
+      return;
+    }
+
+    if (!this.auditTableReady) {
+      this.auditTableReady = (async () => {
+        try {
+          await this.repository!.query('CREATE EXTENSION IF NOT EXISTS "pgcrypto"');
+        } catch (error) {
+          console.warn('[SafeScope persistence] pgcrypto extension could not be ensured; continuing with database UUID support.', error);
+        }
+
+        await this.repository!.query(`
+          CREATE TABLE IF NOT EXISTS "safescope_audit_records" (
+            "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+            "type" varchar(50) NOT NULL,
+            "workspaceId" varchar NULL,
+            "inspectionId" varchar NULL,
+            "observationId" varchar NULL,
+            "traceId" varchar NULL,
+            "actorId" varchar NULL,
+            "actorRole" varchar NULL,
+            "status" varchar NOT NULL DEFAULT 'active',
+            "payload" jsonb NOT NULL,
+            "metadata" jsonb NOT NULL DEFAULT '{}'::jsonb,
+            "createdAt" timestamp NOT NULL DEFAULT now(),
+            "updatedAt" timestamp NOT NULL DEFAULT now()
+          )
+        `);
+
+        await this.repository!.query('CREATE INDEX IF NOT EXISTS "idx_safescope_audit_records_type_status" ON "safescope_audit_records" ("type", "status")');
+        await this.repository!.query('CREATE INDEX IF NOT EXISTS "idx_safescope_audit_records_workspace" ON "safescope_audit_records" ("workspaceId")');
+        await this.repository!.query('CREATE INDEX IF NOT EXISTS "idx_safescope_audit_records_trace" ON "safescope_audit_records" ("traceId")');
+      })();
+    }
+
+    return this.auditTableReady;
+  }
+
+
   async save(record: Omit<SafeScopeAuditRecord, 'id' | 'createdAt' | 'updatedAt'>): Promise<SafeScopeAuditRecord> {
     if (this.repository && this.persistenceMode === 'database') {
+      await this.ensureDatabaseAuditTable();
       const entity = this.repository.create(record as any) as any;
       const saved = await this.repository.save(entity);
       const mapped = this.mapEntityToType(saved);
@@ -104,16 +155,27 @@ export class SafeScopePersistenceService {
     let results: SafeScopeAuditRecord[] = [];
 
     if (this.repository && this.persistenceMode === 'database') {
-      const query = this.repository.createQueryBuilder('record');
-      if (filter.type) query.andWhere('record.type = :type', { type: filter.type });
-      if (effectiveWorkspaceId) query.andWhere('record.workspaceId = :workspaceId', { workspaceId: effectiveWorkspaceId });
-      if (filter.inspectionId) query.andWhere('record.inspectionId = :inspectionId', { inspectionId: filter.inspectionId });
-      if (filter.observationId) query.andWhere('record.observationId = :observationId', { observationId: filter.observationId });
-      if (filter.traceId) query.andWhere('record.traceId = :traceId', { traceId: filter.traceId });
-      if (filter.status) query.andWhere('record.status = :status', { status: filter.status });
-      
-      const entities = await query.getMany();
-      results = entities.map(e => this.mapEntityToType(e));
+      try {
+        await this.ensureDatabaseAuditTable();
+
+        const query = this.repository.createQueryBuilder('record');
+        if (filter.type) query.andWhere('record.type = :type', { type: filter.type });
+        if (effectiveWorkspaceId) query.andWhere('record.workspaceId = :workspaceId', { workspaceId: effectiveWorkspaceId });
+        if (filter.inspectionId) query.andWhere('record.inspectionId = :inspectionId', { inspectionId: filter.inspectionId });
+        if (filter.observationId) query.andWhere('record.observationId = :observationId', { observationId: filter.observationId });
+        if (filter.traceId) query.andWhere('record.traceId = :traceId', { traceId: filter.traceId });
+        if (filter.status) query.andWhere('record.status = :status', { status: filter.status });
+        
+        const entities = await query.getMany();
+        results = entities.map(e => this.mapEntityToType(e));
+      } catch (error) {
+        if (this.isMissingAuditTableError(error)) {
+          console.warn('[SafeScope persistence] audit table missing or unavailable; returning empty optional audit records.', error);
+          results = [];
+        } else {
+          throw error;
+        }
+      }
     } else {
       let records = this.loadFromFile();
       results = records.filter(r => {
@@ -136,6 +198,7 @@ export class SafeScopePersistenceService {
     let record: SafeScopeAuditRecord | undefined;
 
     if (this.repository && this.persistenceMode === 'database') {
+      await this.ensureDatabaseAuditTable();
       const entity = await this.repository.findOne({ where: { id } as any });
       record = entity ? this.mapEntityToType(entity) : undefined;
     } else {
@@ -157,6 +220,7 @@ export class SafeScopePersistenceService {
 
   async updateStatus(id: string, status: string, metadataUpdate: Record<string, any> = {}, user?: UserGovernanceContext): Promise<SafeScopeAuditRecord | undefined> {
     if (this.repository && this.persistenceMode === 'database') {
+      await this.ensureDatabaseAuditTable();
       const entity = await this.repository.findOne({ where: { id } as any });
       if (entity) {
         if (user && entity.workspaceId && entity.workspaceId !== user.workspaceId) {

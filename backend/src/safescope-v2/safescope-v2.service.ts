@@ -368,7 +368,7 @@ export class SafescopeV2Service {
           additionalHazards: [],
           evidenceGaps,
           reasoningSummary: [
-            "HazLenz AI returned a production-safe advisory result instead of running the full intelligence layer.",
+            "HazLenz AI returned a production-safe advisory result while advanced review was unavailable.",
             classReason,
             "Output remains advisory-only and requires qualified review.",
           ],
@@ -402,7 +402,7 @@ export class SafescopeV2Service {
         }
 
         intelligence = buildDegradedHazLenzIntelligence(
-          "HazLenz full intelligence layer was disabled by runtime configuration. Core classification, risk, standards candidates, and corrective actions were still generated.",
+          "HazLenz AI advanced review was disabled by runtime configuration. Core classification, risk, standards candidates, and corrective actions were still generated.",
           promotedPrimary?.classification
         );
       } else {
@@ -454,7 +454,7 @@ export class SafescopeV2Service {
           });
 
           intelligence = buildDegradedHazLenzIntelligence(
-            "HazLenz full intelligence layer was unavailable. Core classification, risk, standards candidates, and corrective actions were still generated.",
+            "HazLenz AI advanced review was unavailable. Core classification, risk, standards candidates, and corrective actions were still generated.",
             promotedPrimary?.classification
           );
         }
