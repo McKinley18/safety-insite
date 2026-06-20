@@ -5,8 +5,18 @@ import { evaluateRisk } from "./risk/risk-engine";
 import { ActionEngineService } from "../action-engine/action-engine.service";
 import { EvidenceFusionService } from "./evidence/evidence-fusion.service";
 import { ApplicableStandardsService } from "../applicable-standards/applicable-standards.service";
-import { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
+import type { SafeScopeIntelligenceOrchestrator } from "./orchestration/intelligence-orchestrator.service";
 import { STANDARDS_INTELLIGENCE_SEED } from "./standards-intelligence/standards-intelligence.seed";
+
+function getMemorySnapshot() {
+  const usage = process.memoryUsage();
+  return {
+    rssMb: Math.round(usage.rss / 1024 / 1024),
+    heapUsedMb: Math.round(usage.heapUsed / 1024 / 1024),
+    heapTotalMb: Math.round(usage.heapTotal / 1024 / 1024),
+    externalMb: Math.round(usage.external / 1024 / 1024),
+  };
+}
 import { buildSourceSynthesis } from "../safescope-knowledge/sources/source-synthesis-helper";
 import { getEvidenceGapIntelligence } from "./intelligence/evidence-gap-intelligence";
 import { getCorrectiveActionIntelligence } from "./intelligence/corrective-action-intelligence";
@@ -33,12 +43,14 @@ export class SafescopeV2Service {
   private bridge = new StandardsBridgeService();
   private nativeReasoningService = new SafeScopeNativeReasoningService();
   private reasoningOrchestratorService = new SafeScopeReasoningOrchestratorService();
+  private lazyIntelligenceOrchestrator?: any;
 
   constructor(
     private readonly actionEngine: ActionEngineService,
     private readonly evidenceFusion: EvidenceFusionService,
     private readonly applicableStandards: ApplicableStandardsService,
-    private readonly intelligenceOrchestrator: SafeScopeIntelligenceOrchestrator,
+    @Optional()
+    private readonly intelligenceOrchestrator: any,
     private readonly visualService: VisualEvidenceReasoningService,
     private readonly imageAnalysisService: RealImageAnalysisService,
     private readonly offlineService: OfflineReasoningMobileResilienceService,
@@ -101,6 +113,8 @@ export class SafescopeV2Service {
         if (!decision.allowed) throw new ForbiddenException(decision.reason);
     }
 
+      const memoryBefore = getMemorySnapshot();
+
       const evidenceFusion = this.evidenceFusion.synthesize([
         text,
         ...(evidenceTexts || []),
@@ -150,6 +164,9 @@ export class SafescopeV2Service {
       // Suggest standards using the applicable standards service, then enforce selected jurisdiction scope.
       const source = this.scopeToSource(normalizedScopes);
       const diagnostics: Record<string, any> = {};
+      if (debugMetadata) {
+        diagnostics.memoryBeforeClassify = memoryBefore;
+      }
       const rawSuggestedStandards = await this.applicableStandards.suggest(
         fusedText,
         promotedPrimary.classification,
@@ -243,15 +260,7 @@ export class SafescopeV2Service {
           "HazLenz AI generates classifications, standards candidates, risk reasoning, and corrective actions from its governed brain and approved/source-governed applicability logic first. Prior saved findings and workspace history may support context, trend awareness, confidence tuning, evidence questions, and review priority, but they cannot create or override standards matches.",
       };
 
-      const memorySnapshot = () => {
-        const usage = process.memoryUsage();
-        return {
-          rssMb: Math.round(usage.rss / 1024 / 1024),
-          heapUsedMb: Math.round(usage.heapUsed / 1024 / 1024),
-          heapTotalMb: Math.round(usage.heapTotal / 1024 / 1024),
-          externalMb: Math.round(usage.external / 1024 / 1024),
-        };
-      };
+      const memorySnapshot = getMemorySnapshot;
 
       const buildDegradedHazLenzIntelligence = (fallbackReason: string, classification?: string) => {
         const lowerClass = (classification || "").toLowerCase();
@@ -344,12 +353,14 @@ export class SafescopeV2Service {
         process.env.HAZLENZ_FULL_INTELLIGENCE_ON_RENDER === "true";
 
       if (productionRuntime && renderRuntime && !fullRenderIntelligenceEnabled) {
-        console.warn("[HazLenz classify] skipping full intelligence orchestrator on Render production; returning production-safe advisory fallback", {
-          textLength: fusedText.length,
-          standards: suggestedStandards.length,
-          actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
-          memory: memorySnapshot(),
-        });
+        if (process.env.NODE_ENV === "development" || debugMetadata) {
+          console.warn("[HazLenz classify] skipping full intelligence orchestrator on Render production; returning production-safe advisory fallback", {
+            textLength: fusedText.length,
+            standards: suggestedStandards.length,
+            actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
+            memory: memorySnapshot(),
+          });
+        }
 
         intelligence = buildDegradedHazLenzIntelligence(
           "HazLenz full intelligence layer is disabled on the current Render production runtime to prevent service restarts. Core classification, risk, standards candidates, and corrective actions were still generated.",
@@ -357,14 +368,27 @@ export class SafescopeV2Service {
         );
       } else {
         try {
-          console.log("[HazLenz classify] intelligence orchestrator start", {
-            textLength: fusedText.length,
-            standards: suggestedStandards.length,
-            actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
-            memory: memorySnapshot(),
-          });
+          if (process.env.NODE_ENV === "development" || debugMetadata) {
+            console.log("[HazLenz classify] intelligence orchestrator start", {
+              textLength: fusedText.length,
+              standards: suggestedStandards.length,
+              actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
+              memory: memorySnapshot(),
+            });
+          }
 
-          intelligence = await this.intelligenceOrchestrator.evaluate({
+          let orchestrator = this.intelligenceOrchestrator || this.lazyIntelligenceOrchestrator;
+          if (!orchestrator) {
+            const { SafeScopeIntelligenceOrchestrator } = await import("./orchestration/intelligence-orchestrator.service");
+            this.lazyIntelligenceOrchestrator = new SafeScopeIntelligenceOrchestrator(
+              this.persistence,
+              undefined,
+              this.access,
+            );
+            orchestrator = this.lazyIntelligenceOrchestrator;
+          }
+
+          intelligence = await orchestrator.evaluate({
             fusedText,
             promotedPrimary,
             classifierResult: result,
@@ -379,9 +403,11 @@ export class SafescopeV2Service {
             supervisorValidations: [],
           });
 
-          console.log("[HazLenz classify] intelligence orchestrator complete", {
-            memory: memorySnapshot(),
-          });
+          if (process.env.NODE_ENV === "development" || debugMetadata) {
+            console.log("[HazLenz classify] intelligence orchestrator complete", {
+              memory: memorySnapshot(),
+            });
+          }
         } catch (error) {
           console.error("[HazLenz classify] intelligence orchestrator failed; returning degraded advisory fallback", {
             error,
@@ -393,6 +419,10 @@ export class SafescopeV2Service {
             promotedPrimary?.classification
           );
         }
+      }
+
+      if (debugMetadata) {
+        diagnostics.memoryAfterClassify = memorySnapshot();
       }
 
       const enhancedGeneratedActions = this.buildEnhancedGeneratedActions(

@@ -85,6 +85,8 @@ async function bootstrap() {
 
   console.log(`🚀 Backend running on http://localhost:${PORT}`);
   console.log(`🌍 Environment: ${configService.get<string>('NODE_ENV')}`);
+  const usage = process.memoryUsage();
+  console.log(`📊 [Startup Memory] rss: ${Math.round(usage.rss / 1024 / 1024)} MB, heapUsed: ${Math.round(usage.heapUsed / 1024 / 1024)} MB`);
 }
 bootstrap();
 // Render redeploy trigger Thu May 14 08:57:38 EDT 2026

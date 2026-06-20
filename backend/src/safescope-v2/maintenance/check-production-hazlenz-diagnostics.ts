@@ -135,6 +135,14 @@ async function run() {
       // Diagnostics metadata
       if (res.data.debugMetadata) {
         console.log("\nDiagnostics Fields (debugMetadata):");
+        const meta = res.data.debugMetadata;
+        if (meta.memoryBeforeClassify && meta.memoryAfterClassify) {
+          console.log(`  📊 [Memory Before Classify] RSS: ${meta.memoryBeforeClassify.rssMb} MB, Heap Used: ${meta.memoryBeforeClassify.heapUsedMb} MB`);
+          console.log(`  📊 [Memory After Classify]  RSS: ${meta.memoryAfterClassify.rssMb} MB, Heap Used: ${meta.memoryAfterClassify.heapUsedMb} MB`);
+          const deltaRss = meta.memoryAfterClassify.rssMb - meta.memoryBeforeClassify.rssMb;
+          const deltaHeap = meta.memoryAfterClassify.heapUsedMb - meta.memoryBeforeClassify.heapUsedMb;
+          console.log(`  📊 [Memory Delta]           RSS Delta: ${deltaRss >= 0 ? '+' : ''}${deltaRss} MB, Heap Delta: ${deltaHeap >= 0 ? '+' : ''}${deltaHeap} MB`);
+        }
         console.log(JSON.stringify(res.data.debugMetadata, null, 2));
       } else {
         console.log("\n⚠️ No debugMetadata returned in payload.");
