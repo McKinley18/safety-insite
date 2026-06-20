@@ -9,7 +9,7 @@ export class ObservationNarrativeSynthesisService {
     const { observationText, evidenceWeighting, multiHazardAnalysis, evaluatedScenarios, approvedKnowledgeMatches } = input;
     
     const version = 'v1';
-    const advisoryBoundary = 'SafeScope provides advisory information only. Requires human verification.';
+    const advisoryBoundary = 'HazLenz AI provides advisory information only. Requires human verification.';
     
     // NLP Keyword extraction
     const tfidf = new natural.TfIdf();
@@ -21,22 +21,22 @@ export class ObservationNarrativeSynthesisService {
     let confidenceLabel = '';
     switch (evidenceWeighting.evidenceGrade) {
       case 'strong':
-        confidenceLabel = 'SafeScope has enough observation detail to support a high-confidence advisory assessment.';
+        confidenceLabel = 'HazLenz AI has enough observation detail to support a high-confidence advisory assessment.';
         break;
       case 'moderate':
-        confidenceLabel = 'SafeScope has enough detail for a preliminary advisory assessment, but reviewer confirmation is still needed.';
+        confidenceLabel = 'HazLenz AI has enough detail for a preliminary advisory assessment, but reviewer confirmation is still needed.';
         break;
       case 'weak':
-        confidenceLabel = 'SafeScope has limited detail and the assessment should be treated as tentative.';
+        confidenceLabel = 'HazLenz AI has limited detail and the assessment should be treated as tentative.';
         break;
       case 'insufficient':
-        confidenceLabel = 'SafeScope does not have enough information to make a reliable advisory assessment.';
+        confidenceLabel = 'HazLenz AI does not have enough information to make a reliable advisory assessment.';
         break;
       case 'conflicting':
-        confidenceLabel = 'The observation contains conflicting facts, so SafeScope cannot provide a confident assessment until the conflict is resolved.';
+        confidenceLabel = 'The observation contains conflicting facts, so HazLenz AI cannot provide a confident assessment until the conflict is resolved.';
         break;
       default:
-        confidenceLabel = 'SafeScope assessment confidence is currently undetermined.';
+        confidenceLabel = 'HazLenz AI assessment confidence is currently undetermined.';
     }
 
     // 2. Primary and Secondary Concerns
@@ -68,8 +68,8 @@ export class ObservationNarrativeSynthesisService {
       : 'No major information gaps were identified in the primary text.';
 
     const uncertaintyStatement = evidenceWeighting.evidenceGrade === 'weak' || evidenceWeighting.evidenceGrade === 'insufficient'
-      ? 'Due to limited detail, SafeScope cannot provide a high-certainty analysis.'
-      : 'SafeScope analysis is based on available observation text.';
+      ? 'Due to limited detail, HazLenz AI cannot provide a high-certainty analysis.'
+      : 'HazLenz AI analysis is based on available observation text.';
 
     // 6. Action and Question Narratives
     const topScenario = evaluatedScenarios.length > 0 ? evaluatedScenarios[0] : null;

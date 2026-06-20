@@ -148,7 +148,7 @@ export class OutputPolicyService {
       },
       narrativePolicy: {
         openingQualifier: this.openingQualifier(allowedLanguageStrength),
-        conclusionBoundary: 'SafeScope provides advisory safety reasoning only and does not declare violations or create citations.',
+        conclusionBoundary: 'HazLenz AI provides advisory safety reasoning only and does not declare violations or create citations.',
         reviewInstruction: 'A qualified reviewer must confirm facts, jurisdiction, applicability, and corrective-action adequacy before final reliance.',
       },
       correctiveActionPolicy: {
@@ -200,8 +200,8 @@ export class OutputPolicyService {
   }
 
   private openingQualifier(strength: LanguageStrength): string {
-    if (strength === 'strong') return 'Based on the available evidence, SafeScope can provide a strong advisory safety recommendation.';
-    if (strength === 'moderate') return 'Based on the available evidence, SafeScope can provide a moderate advisory safety recommendation with review required.';
+    if (strength === 'strong') return 'Based on the available evidence, HazLenz AI can provide a strong advisory safety recommendation.';
+    if (strength === 'moderate') return 'Based on the available evidence, HazLenz AI can provide a moderate advisory safety recommendation with review required.';
     if (strength === 'cautious') return 'Evidence supports cautious advisory discussion, but key facts should be confirmed.';
     return 'Information is insufficient for strong conclusions; reviewer questions should be addressed first.';
   }

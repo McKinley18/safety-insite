@@ -206,7 +206,7 @@ export class SafescopeV2Service {
 
       const reasoningSourceHierarchy = {
         primaryBasis: [
-          "SafeScope governed classifier and reasoning brain",
+          "HazLenz AI governed classifier and reasoning brain",
           "approved knowledge and source governance",
           "regulatory scope filtering",
           "standards applicability service",
@@ -240,7 +240,7 @@ export class SafescopeV2Service {
         advisoryOnly: true,
         requiresQualifiedReview: true,
         explanation:
-          "SafeScope generates classifications, standards candidates, risk reasoning, and corrective actions from its governed brain and approved/source-governed applicability logic first. Prior saved findings and workspace history may support context, trend awareness, confidence tuning, evidence questions, and review priority, but they cannot create or override standards matches.",
+          "HazLenz AI generates classifications, standards candidates, risk reasoning, and corrective actions from its governed brain and approved/source-governed applicability logic first. Prior saved findings and workspace history may support context, trend awareness, confidence tuning, evidence questions, and review priority, but they cannot create or override standards matches.",
       };
 
       const memorySnapshot = () => {

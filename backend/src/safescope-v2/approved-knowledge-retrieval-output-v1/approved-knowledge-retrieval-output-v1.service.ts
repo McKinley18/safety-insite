@@ -262,7 +262,7 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
           ...visualEvidenceReasoning.missingVisualEvidence,
           ...(approvedMatches.length === 0 ? ['Insufficient evidence for definitive assessment.'] : [])
       ],
-      advisoryBoundaries: ['SafeScope provides advisory information only. Requires human verification.'],
+      advisoryBoundaries: ['HazLenz AI provides advisory information only. Requires human verification.'],
       recommendedReviewerActions: [
           ...evidenceWeighting.reviewerQuestions,
           ...crossDomainCausalChain.reviewerQuestions,

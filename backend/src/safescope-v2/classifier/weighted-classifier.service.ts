@@ -354,7 +354,7 @@ export class WeightedClassifierService {
         commonConsequences,
         explanation:
           score > 0
-            ? `SafeScope matched weighted ${profile.label} signals.`
+            ? `HazLenz AI matched weighted ${profile.label} signals.`
             : `Insufficient weighted signal evidence for ${profile.label}.`,
       };
     });
@@ -373,7 +373,7 @@ export class WeightedClassifierService {
       negativeTokens: [],
       matchedControls: [],
       commonConsequences: [],
-      explanation: "SafeScope could not identify enough weighted hazard signals.",
+      explanation: "HazLenz AI could not identify enough weighted hazard signals.",
     };
 
     const runnerUp = sorted[1];

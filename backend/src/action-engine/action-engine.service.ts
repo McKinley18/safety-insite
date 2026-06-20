@@ -144,7 +144,7 @@ export class ActionEngineService {
       const patternStrings = report.patterns.map(p => `${p.count} occurrences of ${p.type} hazards`);
       description = `${patternStrings.join(" and ")} detected in ${report.location}. Immediate investigation required.`;
     } else {
-      description = `Observed ${report.safeScope?.classification || report.category} hazard requires corrective action based on SafeScope intelligence in ${report.location}.`;
+      description = `Observed ${report.safeScope?.classification || report.category} hazard requires corrective action based on HazLenz AI intelligence in ${report.location}.`;
     }
 
     if (report.safeScope?.requiresShutdown) {

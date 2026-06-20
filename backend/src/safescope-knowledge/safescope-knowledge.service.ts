@@ -329,7 +329,7 @@ export class SafeScopeKnowledgeService {
         reasoning: {
           evidenceGaps: ["Enter a hazard description or search phrase."],
           caution:
-            "SafeScope Knowledge Brain requires an observation before it can retrieve supporting references.",
+            "HazLenz AI Knowledge Brain requires an observation before it can retrieve supporting references.",
         },
       };
     }
@@ -497,7 +497,7 @@ export class SafeScopeKnowledgeService {
       reasoning: {
         evidenceGaps,
         caution:
-          "SafeScope references supporting knowledge and likely applicability. Final compliance decisions require qualified review.",
+          "HazLenz AI references supporting knowledge and likely applicability. Final compliance decisions require qualified review.",
       },
     };
   }

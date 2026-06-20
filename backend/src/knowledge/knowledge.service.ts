@@ -230,7 +230,7 @@ export class KnowledgeService {
       reasoning: {
         evidenceGaps: this.evidenceGaps(query, matches),
         caution:
-          'SafeScope references supporting knowledge and likely applicability. Final compliance decisions require qualified review.',
+          'HazLenz AI references supporting knowledge and likely applicability. Final compliance decisions require qualified review.',
       },
     };
   }
