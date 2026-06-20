@@ -1,6 +1,7 @@
 "use client";
 
 import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
+import HazLenzFindingSummary from "@/components/inspection/HazLenzFindingSummary";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -254,9 +255,15 @@ export default function CurrentHazardCard({
 
           {expanded && (
             <div id={detailsId} className="border-t border-slate-200 px-3 pb-2 pt-2">
-              <p className="line-clamp-2 text-xs font-semibold leading-5 text-slate-600">
-                {secondaryLine}
-              </p>
+              <HazLenzFindingSummary
+                description={description}
+                hazardCategory={hazardCategory}
+                safeScopeResult={safeScopeResult}
+                selectedStandards={selectedStandards}
+                selectedGeneratedActions={selectedGeneratedActions}
+                manualActions={manualActions}
+                fallbackText={secondaryLine}
+              />
 
               <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-600">
                 <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
