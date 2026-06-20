@@ -38,7 +38,7 @@ export default function SafeScopeEnergyTransferSection({
 
       {!!energy.releaseMechanisms?.length && (
         <div className="mt-3">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-400">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Release Mechanism
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">

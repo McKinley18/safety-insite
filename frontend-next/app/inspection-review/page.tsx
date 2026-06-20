@@ -247,15 +247,15 @@ export default function InspectionReviewPage() {
             </div>
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
-                <p className="text-[10px] font-black uppercase text-slate-400">HazLenz AI</p>
+                <p className="text-[10px] font-black uppercase text-slate-600 dark:text-slate-300">HazLenz AI</p>
                 <p className="text-lg font-black text-slate-900 dark:text-slate-100">{getSafeScopeReviewSummary(findings).total}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
-                <p className="text-[10px] font-black uppercase text-slate-400">Open</p>
+                <p className="text-[10px] font-black uppercase text-slate-600 dark:text-slate-300">Open</p>
                 <p className="text-lg font-black text-amber-700">{getSafeScopeReviewSummary(findings).unvalidated}</p>
               </div>
               <div className="rounded-xl bg-white px-3 py-2 ring-1 ring-amber-100 dark:bg-slate-950 dark:ring-amber-900/60">
-                <p className="text-[10px] font-black uppercase text-slate-400">Escalated</p>
+                <p className="text-[10px] font-black uppercase text-slate-600 dark:text-slate-300">Escalated</p>
                 <p className="text-lg font-black text-red-700">{getSafeScopeReviewSummary(findings).escalated}</p>
               </div>
             </div>

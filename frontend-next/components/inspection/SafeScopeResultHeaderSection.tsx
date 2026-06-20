@@ -197,7 +197,7 @@ export default function safeScopeResultHeaderSection({
 
           {!!fieldSupervisorQuestions.length && (
             <div className="mt-3 rounded-xl bg-white dark:bg-slate-900 px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-800">
-              <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                 Supervisor questions
               </p>
               <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">

@@ -51,7 +51,7 @@ function DetailList({
 
   return (
     <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
-      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-600 dark:text-slate-300">
         {title}
       </p>
       <ul className="mt-2 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">

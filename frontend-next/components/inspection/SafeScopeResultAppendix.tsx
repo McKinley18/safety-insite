@@ -29,11 +29,11 @@ export function SafeScopeRealImageAnalysisAppendix({
             <div>
               <p className="text-xs font-bold text-slate-800 dark:text-slate-200">
                 {sig.signal.replace(/_/g, " ")} 
-                <span className="ml-1 text-[10px] font-black uppercase text-slate-400 italic">
+                <span className="ml-1 text-[10px] font-black uppercase text-slate-600 dark:text-slate-300 italic">
                   ({sig.support.replace(/_/g, " ")})
                 </span>
               </p>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400">Basis: {sig.basis.join(', ')}</p>
+              <p className="text-[10px] text-slate-600 dark:text-slate-300">Basis: {sig.basis.join(', ')}</p>
             </div>
           </div>
         ))}
@@ -48,7 +48,7 @@ export function SafeScopeRealImageAnalysisAppendix({
         </div>
       )}
 
-      <p className="mt-2 text-[10px] font-bold leading-relaxed text-slate-400 italic">
+      <p className="mt-2 text-[10px] font-bold leading-relaxed text-slate-600 dark:text-slate-300 italic">
         {realImage.advisoryBoundary} {realImage.imageEvidenceLimitations.join(' · ')}
       </p>
     </div>
@@ -176,7 +176,7 @@ export function SafeScopeKnowledgeRouteAppendix({
 
       {!!evidenceNeeded.length && (
         <div className="mt-2 rounded-lg bg-white/70 px-2 py-2 ring-1 ring-cyan-100 dark:bg-slate-950/40 dark:ring-cyan-900/40">
-          <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Evidence HazLenz looked for
           </p>
           <ul className="mt-1 list-inside list-disc space-y-0.5 text-[11px] font-semibold leading-5 text-slate-600 dark:text-slate-300">
@@ -189,7 +189,7 @@ export function SafeScopeKnowledgeRouteAppendix({
 
       {!!correctiveActionPatterns.length && (
         <div className="mt-2 rounded-lg bg-white/70 px-2 py-2 ring-1 ring-cyan-100 dark:bg-slate-950/40 dark:ring-cyan-900/40">
-          <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Control patterns from shard
           </p>
           <ul className="mt-1 list-inside list-disc space-y-0.5 text-[11px] font-semibold leading-5 text-slate-600 dark:text-slate-300">

@@ -64,7 +64,7 @@ export function FindingsReviewList({
                 <summary className="cursor-pointer list-none">
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
-                      <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">Finding {index + 1}</p>
+                      <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">Finding {index + 1}</p>
                       <h3 className="mt-0.5 text-base font-black leading-tight text-[#102A43]">{getFindingTitle(finding)}</h3>
                       <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{finding.description || "No description provided."}</p>
                       <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] font-bold text-slate-500 dark:text-slate-400">
@@ -96,7 +96,7 @@ export function FindingsReviewList({
                   </div>
                   {!!actions.length && (
                     <div className="mt-3 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
-                      <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">Action Details</p>
+                      <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">Action Details</p>
                       <div className="mt-1 space-y-1">
                         {actions.slice(0, 3).map((action: any, actionIndex: number) => (
                           <p key={actionIndex} className="text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
@@ -109,7 +109,7 @@ export function FindingsReviewList({
                 </div>
                 {traceabilityAvailable && (reportPackage.includesSafeScopeTraceability || reportPackage.includesEvidenceGaps || reportPackage.includesConfidence || reportPackage.includesRepeatIntelligence) && (
                   <details className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                    <summary className="cursor-pointer px-3 py-2 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">HazLenz AI appendix</summary>
+                    <summary className="cursor-pointer px-3 py-2 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">HazLenz AI appendix</summary>
                     <div className="space-y-2 border-t border-slate-200 dark:border-slate-800 px-3 py-3 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                       {finding.safeScopeResult?.reasoningSnapshotId && <p>Reasoning snapshot: {finding.safeScopeResult.reasoningSnapshotId}</p>}
                       <SafeScopeOfflineNotice safeScopeResult={finding.safeScopeResult} />

@@ -136,7 +136,7 @@ export default function SafeScopePrimaryDecisionSection({
       </div>
 
       <div className="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
-        <p className="text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+        <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
           Primary standard
         </p>
         <p className="mt-1 text-base font-black text-[#1D72B8]">
@@ -149,7 +149,7 @@ export default function SafeScopePrimaryDecisionSection({
 
       <div className="mt-4 space-y-3">
         <div>
-          <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Why this was suggested
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
@@ -158,7 +158,7 @@ export default function SafeScopePrimaryDecisionSection({
         </div>
 
         <div>
-          <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Recommended action
           </p>
           <p className="mt-1 text-sm font-black leading-6 text-slate-800 dark:text-slate-200">

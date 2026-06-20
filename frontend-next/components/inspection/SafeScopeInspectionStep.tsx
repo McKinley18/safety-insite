@@ -156,7 +156,7 @@ export default function SafeScopeInspectionStep({
           <div className="mb-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-600 dark:text-slate-300">
                   Hazard Category
                 </p>
                 <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
@@ -176,7 +176,7 @@ export default function SafeScopeInspectionStep({
             </div>
 
             <details className="mt-3">
-              <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                 Change category
               </summary>
 

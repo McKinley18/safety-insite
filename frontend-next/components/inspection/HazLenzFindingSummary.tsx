@@ -212,7 +212,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
 
       <div className="grid gap-1.5 text-[10px] font-semibold text-slate-600 sm:grid-cols-2">
         <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-          <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Why It Matters
           </p>
           <p className="mt-0.5 line-clamp-2 text-slate-800">
@@ -221,14 +221,14 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
         </div>
 
         <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-          <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Likely Scope
           </p>
           <p className="mt-0.5 truncate text-slate-800">{summary.likelyScope}</p>
         </div>
 
         <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100 sm:col-span-2">
-          <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Advisory Standard
           </p>
           <p className="mt-0.5 line-clamp-2 text-slate-800">
@@ -237,7 +237,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
         </div>
 
         <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100 sm:col-span-2">
-          <p className="text-[8px] font-black uppercase tracking-wide text-slate-400">
+          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Recommended Action
           </p>
           <p className="mt-0.5 line-clamp-2 text-slate-800">

@@ -53,7 +53,7 @@ function SummaryBox({
 }) {
   return (
     <div className="flex h-16 w-1/3 flex-col items-center justify-start rounded-lg border border-white/10 bg-white/10 px-2 py-1.5 text-center shadow-sm ring-1 ring-white/10">
-      <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+      <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
         {label}
       </p>
       <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">{value}</p>
@@ -171,7 +171,7 @@ export default function GenerateReportSection({
 
         <div className="mt-4 flex h-16 w-full items-start justify-center gap-1.5 text-center">
           <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
-            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Total
             </p>
             <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">
@@ -180,7 +180,7 @@ export default function GenerateReportSection({
           </div>
 
           <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
-            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Standards
             </p>
             <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">
@@ -189,7 +189,7 @@ export default function GenerateReportSection({
           </div>
 
           <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
-            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Actions
             </p>
             <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">
@@ -198,7 +198,7 @@ export default function GenerateReportSection({
           </div>
 
           <div className="flex h-16 w-1/4 flex-col items-center justify-start rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center shadow-sm ring-1 ring-slate-100 dark:border-slate-800 dark:bg-slate-950 dark:ring-slate-800">
-            <p className="text-[8px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Photos
             </p>
             <p className="mt-0.5 text-sm font-black text-slate-900 dark:text-white">

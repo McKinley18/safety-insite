@@ -427,7 +427,7 @@ export default function QuickInspectionPage() {
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-none">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                   Likely Issue
                 </p>
                 <h3 className="mt-1 text-sm font-black text-[#102A43] sm:text-lg">
@@ -445,7 +445,7 @@ export default function QuickInspectionPage() {
             </div>
 
             <div className="mt-3 rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-none">
-              <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+              <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                 Suggested Immediate Action
               </p>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">

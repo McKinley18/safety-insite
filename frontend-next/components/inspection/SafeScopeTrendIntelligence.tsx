@@ -25,7 +25,7 @@ export default function SafeScopeTrendIntelligence({
         >
           <div className="grid gap-3 sm:grid-cols-3">
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-slate-400">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                 Trend
               </p>
               <p className="mt-1 text-sm font-black text-slate-800">
@@ -35,7 +35,7 @@ export default function SafeScopeTrendIntelligence({
             </div>
 
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-slate-400">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                 Hotspot
               </p>
               <p className="mt-1 text-sm font-black text-slate-800">
@@ -45,7 +45,7 @@ export default function SafeScopeTrendIntelligence({
             </div>
 
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-slate-400">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                 Related
               </p>
               <p className="mt-1 text-sm font-black text-slate-800">

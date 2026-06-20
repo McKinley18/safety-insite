@@ -87,7 +87,7 @@ export default function SafeScopeObservationUnderstandingSection({
           )}
           {mechanismCandidates.length > 0 && (
             <div className="mt-2.5 space-y-1.5 border-t border-slate-200/50 dark:border-slate-800/50 pt-2.5">
-              <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+              <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
                 Plausible Mechanisms (Confidence)
               </p>
               <div className="flex flex-wrap gap-1.5 mt-1">
@@ -118,7 +118,7 @@ export default function SafeScopeObservationUnderstandingSection({
                 </div>
               )}
               {energy?.energyTransferPath && (
-                <div className="mt-1 text-[10px] text-slate-400 font-semibold leading-normal">
+                <div className="mt-1 text-[10px] text-slate-600 dark:text-slate-300 font-semibold leading-normal">
                   Path: {energy.energyTransferPath}
                 </div>
               )}
@@ -137,7 +137,7 @@ export default function SafeScopeObservationUnderstandingSection({
                 </div>
               )}
               {exposure?.frequency && (
-                <div className="mt-1 text-[10px] text-slate-400 font-semibold">
+                <div className="mt-1 text-[10px] text-slate-600 dark:text-slate-300 font-semibold">
                   Frequency: {formatValue(exposure.frequency)}
                 </div>
               )}
@@ -190,7 +190,7 @@ export default function SafeScopeObservationUnderstandingSection({
               </div>
             )}
             {jurisdiction?.confidence && (
-              <div className="mt-1 text-[10px] text-slate-400 font-semibold">
+              <div className="mt-1 text-[10px] text-slate-600 dark:text-slate-300 font-semibold">
                 Confidence: {Math.round((jurisdiction.confidence.score || 0) * 100)}% ({jurisdiction.confidence.reasons?.join(", ")})
               </div>
             )}
@@ -212,7 +212,7 @@ export default function SafeScopeObservationUnderstandingSection({
         )}
 
         {/* Advisory Guardrails disclaimer */}
-        <p className="text-[10px] font-semibold leading-normal text-slate-500 dark:text-slate-400 border-t border-slate-200/50 dark:border-slate-800/50 pt-2.5">
+        <p className="text-[10px] font-semibold leading-normal text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/50 pt-2.5">
           ℹ️ HazLenz AI understanding is advisory and requires qualified review. This analysis is generated from field observation text and does not declare regulatory violations or citations.
         </p>
       </div>

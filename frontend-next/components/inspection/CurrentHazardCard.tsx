@@ -264,7 +264,7 @@ export default function CurrentHazardCard({
 
               <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-600">
                 <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-                  <p className="text-[8px] uppercase tracking-wide text-slate-400">
+                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
                     Photos
                   </p>
                   <p className="text-slate-950">{photos.length}</p>
@@ -278,7 +278,7 @@ export default function CurrentHazardCard({
                 </div>
 
                 <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-                  <p className="text-[8px] uppercase tracking-wide text-slate-400">
+                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
                     Standard
                   </p>
                   <p className="truncate text-slate-950">
@@ -289,7 +289,7 @@ export default function CurrentHazardCard({
                 </div>
 
                 <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-                  <p className="text-[8px] uppercase tracking-wide text-slate-400">
+                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
                     Actions
                   </p>
                   <p className="text-slate-950">{actionCount}</p>

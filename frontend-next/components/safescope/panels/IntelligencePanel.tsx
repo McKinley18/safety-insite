@@ -38,7 +38,7 @@ function renderSafeScopeValue(value: any): React.ReactNode {
 
         return (
           <div key={key} className="rounded-xl border border-slate-100 bg-slate-50 dark:bg-slate-950 px-3 py-2">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               {key.replace(/([A-Z])/g, " $1").trim()}
             </p>
             <div className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">

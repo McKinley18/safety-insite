@@ -49,7 +49,7 @@ export default function SafeScopeReasoningBasisSection({
 
         <div className="grid gap-2 sm:grid-cols-2">
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Prior report history role
             </p>
             <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
@@ -58,7 +58,7 @@ export default function SafeScopeReasoningBasisSection({
           </div>
 
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Prior findings used
             </p>
             <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
@@ -70,7 +70,7 @@ export default function SafeScopeReasoningBasisSection({
           </div>
 
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Prior findings can create standards
             </p>
             <p className="mt-1 text-sm font-black text-red-700">
@@ -79,7 +79,7 @@ export default function SafeScopeReasoningBasisSection({
           </div>
 
           <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-3">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Prior findings can override governance
             </p>
             <p className="mt-1 text-sm font-black text-red-700">

@@ -161,7 +161,7 @@ export default function SafeScopeStandardsSection({
                         {/* Matched Facts */}
                         {explanation.matchedFacts?.length > 0 && (
                           <div>
-                            <p className="font-black text-slate-400 dark:text-slate-500 uppercase text-[9px] tracking-wide">
+                            <p className="font-black text-slate-600 dark:text-slate-300 uppercase text-[9px] tracking-wide">
                               Matched Facts
                             </p>
                             <div className="flex flex-wrap gap-1 mt-1">
@@ -174,7 +174,7 @@ export default function SafeScopeStandardsSection({
                                 </span>
                               ))}
                               {explanation.matchedFacts.length > 8 && (
-                                <span className="rounded bg-slate-100 dark:bg-slate-900 px-1.5 py-0.5 text-[10px] font-black text-slate-500 dark:text-slate-400">
+                                <span className="rounded bg-slate-100 dark:bg-slate-900 px-1.5 py-0.5 text-[10px] font-black text-slate-600 dark:text-slate-300">
                                   +{explanation.matchedFacts.length - 8} more
                                 </span>
                               )}
@@ -215,7 +215,7 @@ export default function SafeScopeStandardsSection({
                         )}
 
                         {/* Advisory Disclaimer */}
-                        <p className="text-[10px] leading-normal text-slate-400 dark:text-slate-500 border-t border-slate-200/50 dark:border-slate-800/40 pt-2 font-semibold">
+                        <p className="text-[10px] leading-normal text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/40 pt-2 font-semibold">
                           ℹ️ This standards-informed reference is advisory-only, does not declare regulatory violations, and requires qualified professional review.
                         </p>
                       </div>

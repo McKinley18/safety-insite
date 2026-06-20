@@ -39,7 +39,7 @@ export default function SafeScopeStandardsTraceabilitySection({
       <div className="space-y-3">
         <div className="grid gap-2 sm:grid-cols-3">
           <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Raw candidates
             </p>
             <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
@@ -48,7 +48,7 @@ export default function SafeScopeStandardsTraceabilitySection({
           </div>
 
           <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Suggested
             </p>
             <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
@@ -57,7 +57,7 @@ export default function SafeScopeStandardsTraceabilitySection({
           </div>
 
           <div className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-400">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
               Excluded
             </p>
             <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
