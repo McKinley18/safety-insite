@@ -367,6 +367,7 @@ export default function InspectionPage() {
 
       if (!review.ok) {
         setSafeScopeStatus(review.status);
+        setsafeScopeResult(null);
         return;
       }
 
@@ -391,6 +392,7 @@ export default function InspectionPage() {
             : "Unknown HazLenz AI error.";
 
       setSafeScopeStatus(`HazLenz AI review failed: ${errorMessage}`);
+      setsafeScopeResult(null);
     }
   }
 

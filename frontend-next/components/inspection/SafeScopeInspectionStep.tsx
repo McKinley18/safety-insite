@@ -109,7 +109,10 @@ export default function SafeScopeInspectionStep({
                 HazLenz AI Review Unavailable
               </p>
               <p className="mt-1 text-xs font-semibold leading-relaxed text-red-700 dark:text-red-300">
-                {safeScopeStatus}
+                HazLenz AI intelligence is unavailable. Continue documenting the finding and review before relying on automated guidance.
+              </p>
+              <p className="mt-1 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                Details: {safeScopeStatus}
               </p>
               
               <div className="mt-4 flex flex-wrap gap-2">

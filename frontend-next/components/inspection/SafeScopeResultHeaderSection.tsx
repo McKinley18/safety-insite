@@ -40,7 +40,7 @@ function asSnapshotList(value: any): string[] {
 }
 
 function getFieldOutputList(safeScopeResult: any, key: string, fallback: any[] = []) {
-  const fieldOutputValue = safeScopeResult?.fieldOutput?.[key];
+  const fieldOutputValue = safeScopeResult?.fieldOutput?.[key] ?? safeScopeResult?.[key];
   if (Array.isArray(fieldOutputValue) && fieldOutputValue.length) {
     return fieldOutputValue.filter(Boolean).map((item: any) => String(item));
   }
@@ -84,9 +84,14 @@ export default function safeScopeResultHeaderSection({
     "supervisorQuestions",
   );
   const fieldWarnings = getFieldOutputList(safeScopeResult, "warnings");
-  const fieldDisposition = formatFieldOutputDisposition(
-    fieldOutput?.recommendedDisposition,
-  );
+  const fieldDisposition = fieldOutput?.recommendedDisposition
+    ? formatFieldOutputDisposition(fieldOutput.recommendedDisposition)
+    : undefined;
+
+  const primaryMessage = fieldOutput?.primaryMessage || (safeScopeResult?.degraded ? "HazLenz AI review ready (degraded)" : "HazLenz AI review ready");
+  const summary = fieldOutput?.summary || (Array.isArray(safeScopeResult?.reasoningSummary) ? safeScopeResult.reasoningSummary.join(" ") : safeScopeResult?.reasoningSummary);
+  const displayDisposition = fieldDisposition || (safeScopeResult?.degraded ? "Proceed with human review" : undefined);
+  const showReviewSummaryBlock = Boolean(fieldOutput || fieldEvidenceGaps.length || fieldSupervisorQuestions.length || fieldWarnings.length || summary);
 
 
   async function loadSnapshotSummary() {
@@ -153,7 +158,7 @@ export default function safeScopeResultHeaderSection({
         </div>
       )}
 
-      {fieldOutput && (
+      {showReviewSummaryBlock && (
         <div className="mb-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
@@ -161,19 +166,19 @@ export default function safeScopeResultHeaderSection({
                 Review Summary
               </p>
               <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
-                {fieldOutput.primaryMessage || "HazLenz AI review ready"}
+                {primaryMessage}
               </p>
             </div>
-            {fieldDisposition && (
+            {displayDisposition && (
               <span className="rounded-full bg-white dark:bg-slate-900 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300 ring-1 ring-slate-200 dark:ring-slate-800">
-                {fieldDisposition}
+                {displayDisposition}
               </span>
             )}
           </div>
 
-          {!!fieldOutput.summary && (
+          {!!summary && (
             <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
-              {fieldOutput.summary}
+              {summary}
             </p>
           )}
 

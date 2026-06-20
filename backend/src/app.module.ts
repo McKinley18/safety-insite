@@ -64,7 +64,7 @@ function getDatabaseSslConfig() {
           host: databaseUrl ? undefined : configService.get<string>('DB_HOST'),
           port: databaseUrl ? undefined : configService.get<number>('DB_PORT'),
           username: databaseUrl ? undefined : configService.get<string>('DB_USERNAME'),
-          password: databaseUrl ? undefined : configService.get<string>('DB_PASSWORD'),
+          password: databaseUrl ? undefined : (configService.get<string>('DB_PASSWORD') ?? ''),
           database: databaseUrl ? undefined : configService.get<string>('DB_NAME'),
           ssl: getDatabaseSslConfig(),
           autoLoadEntities: true,

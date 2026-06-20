@@ -80,14 +80,15 @@ class StubSupervisorValidationService {
 
 const service = new SafescopeV2Service(
   new StubActionEngine() as any,
-  new StubContextExpansion() as any,
   new StubEvidenceFusion() as any,
   new StubApplicableStandards() as any,
-  new StubFeedbackService() as any,
-  new StubReasoningSnapshotService() as any,
-  new StubKnowledgeService() as any,
-  new StubStandardsIntelligenceService() as any,
-  new StubSupervisorValidationService() as any,
+  { evaluate: async () => ({}) } as any,
+  { evaluate: async () => ({}) } as any,
+  { evaluate: async () => ({}) } as any,
+  { evaluate: () => ({ mode: 'offline_limited_advisory', advisorySummary: 'Offline' }) } as any,
+  { can: () => ({ allowed: true }) } as any,
+  { route: async () => ({ domainId: 'unknown', confidence: 0 }) } as any,
+  { getShardSummary: () => ({ citations: [] }) } as any,
 );
 
 type CaseExpectation = {
