@@ -10,7 +10,8 @@ function formatValue(value: any) {
   if (value === true) return "Yes";
   if (value === false) return "No";
   if (value === null || value === undefined || value === "") return "Not provided";
-  return String(value).replaceAll("_", " ");
+  const str = String(value).replaceAll("_", " ");
+  return str.replace(/safescope/gi, "HazLenz AI");
 }
 
 export default function SafeScopeReasoningBasisSection({
