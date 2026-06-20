@@ -333,19 +333,15 @@ function createMockService() {
 
   return new SafescopeV2Service(
     actionEngine,
-    new ContextExpansionService(),
     new EvidenceFusionService(),
     applicableStandards,
-    feedbackService,
-    reasoningSnapshotService,
-    safeScopeKnowledge,
-    {} as StandardsIntelligenceService,
-    supervisorValidationService as any,
     mockIntelligenceOrchestrator,
     {} as any,
     {} as any,
     {} as any,
     new WorkspaceGovernanceAccessService(),
+    { route: async () => ({ domainId: 'unknown', confidence: 0 }) } as any,
+    { getShardSummary: () => ({ citations: [] }) } as any,
   );
 }
 

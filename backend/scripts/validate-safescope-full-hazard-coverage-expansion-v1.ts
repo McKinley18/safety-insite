@@ -5,18 +5,14 @@ import { SafescopeV2Service } from '../src/safescope-v2/safescope-v2.service';
 
 // Mock dependencies
 class StubActionEngine { async generateActionsFromReport() { return []; } }
-class StubContextExpansion { expand() { return {}; } }
 class StubEvidenceFusion { synthesize(v: string[]) { return { combinedNarrative: v.join(' ') }; } }
 class StubApplicableStandards { async suggest() { return []; } }
-class StubFeedbackService { async getWorkspaceStandardAdjustments() { return []; } }
-class StubReasoningSnapshotService { async createSnapshot() { return { id: 'test-id' }; } }
-class StubKnowledgeService { async retrieveForHazard() { return { matches: [] }; } }
-class StubStandardsIntelligenceService {}
-class StubSupervisorValidationService { async getWorkspaceValidationSignals() { return []; } }
 class StubVisualService { evaluate() { return { visualSupportLevel: 'not_evaluated' }; } }
 class StubImageService { evaluate() { return { visualSignals: [] }; } }
 class StubOfflineService { evaluate() { return { mode: 'offline_limited_advisory', advisorySummary: 'Offline mode' }; } }
 class StubAccessService { can() { return { allowed: true }; } }
+class StubKnowledgeRouter { async route() { return { domainId: 'unknown', confidence: 0 }; } }
+class StubKnowledgeShard { getShardSummary() { return { citations: [] }; } }
 
 class StubOrchestrator {
     async evaluate(input: any) {
@@ -81,19 +77,15 @@ async function validate() {
 
   const service = new SafescopeV2Service(
       new StubActionEngine() as any,
-      new StubContextExpansion() as any,
       new StubEvidenceFusion() as any,
       new StubApplicableStandards() as any,
-      new StubFeedbackService() as any,
-      new StubReasoningSnapshotService() as any,
-      new StubKnowledgeService() as any,
-      new StubStandardsIntelligenceService() as any,
-      new StubSupervisorValidationService() as any,
       new StubOrchestrator() as any,
       new StubVisualService() as any,
       new StubImageService() as any,
       new StubOfflineService() as any,
-      new StubAccessService() as any
+      new StubAccessService() as any,
+      new StubKnowledgeRouter() as any,
+      new StubKnowledgeShard() as any
   );
 
   for (const scenario of pack.scenarios) {

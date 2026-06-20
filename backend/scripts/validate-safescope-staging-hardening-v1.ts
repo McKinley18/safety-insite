@@ -10,7 +10,10 @@ async function validate() {
   const controller = new SafescopeV2Controller(mockService);
   
   // Use private method access for validation
+  const oldBypass = process.env.DEV_AUTH_BYPASS;
+  process.env.DEV_AUTH_BYPASS = 'false';
   const context = (controller as any).getGovernanceContext({ user: undefined });
+  process.env.DEV_AUTH_BYPASS = oldBypass;
   
   if (context.role !== 'viewer') throw new Error('Hardening failed: Missing user should default to viewer.');
   if (context.planTier !== 'individual') throw new Error('Hardening failed: Missing user should default to individual plan.');

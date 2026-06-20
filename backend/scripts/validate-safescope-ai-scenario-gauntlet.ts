@@ -135,14 +135,15 @@ function createMockService() {
 
   return new SafescopeV2Service(
     actionEngine,
-    new ContextExpansionService(),
     new EvidenceFusionService(),
     applicableStandards,
-    feedbackService,
-    reasoningSnapshotService,
-    safeScopeKnowledge,
-    {} as StandardsIntelligenceService,
-    supervisorValidationService as any,
+    { evaluate: async () => ({}) } as any,
+    { evaluate: async () => ({}) } as any,
+    { evaluate: async () => ({}) } as any,
+    { evaluate: () => ({ mode: 'offline_limited_advisory', advisorySummary: 'Offline' }) } as any,
+    { can: () => ({ allowed: true }) } as any,
+    { route: async () => ({ domainId: 'unknown', confidence: 0 }) } as any,
+    { getShardSummary: () => ({ citations: [] }) } as any,
   );
 }
 
