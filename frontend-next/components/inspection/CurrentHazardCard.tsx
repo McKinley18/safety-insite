@@ -236,20 +236,17 @@ export default function CurrentHazardCard({
                 </div>
               </div>
 
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black leading-none text-slate-600">
-                {expanded ? "⌄" : "⌃"}
-              </span>
             </button>
 
             <button
               type="button"
-              onClick={() => {
-                setExpanded(false);
-                setHidden(true);
-              }}
-              className="shrink-0 rounded-full bg-slate-100 px-1.5 py-[1px] text-[8px] font-black uppercase tracking-wide text-slate-500 transition hover:bg-slate-200 hover:text-slate-700"
+              onClick={() => setExpanded((open) => !open)}
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black leading-none text-slate-600 transition hover:bg-slate-200 hover:text-slate-800"
+              aria-expanded={expanded}
+              aria-controls={detailsId}
+              aria-label={expanded ? "Collapse finding builder" : "Expand finding builder"}
             >
-              Hide
+              {expanded ? "⌄" : "⌃"}
             </button>
           </div>
 
