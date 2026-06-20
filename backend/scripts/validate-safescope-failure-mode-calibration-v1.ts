@@ -16,6 +16,8 @@ class StubVisualService { evaluate() { return { visualSupportLevel: 'not_evaluat
 class StubImageService { evaluate() { return { visualSignals: [], visualConfidenceImpact: 'neutral' }; } }
 class StubOfflineService { evaluate() { return { mode: 'offline_limited_advisory', advisorySummary: 'Offline mode' }; } }
 class StubAccessService { can() { return { allowed: true }; } }
+class StubKnowledgeRouter { route() { return { shardKey: 'test/shard', bundleIds: [], sourceKeys: [], jurisdiction: 'msha', hazardFamily: 'machine_guarding' }; } }
+class StubKnowledgeShard { getShardSummary() { return { matchedShardCount: 0, citations: [], shardKeys: [], evidenceNeeded: [], correctiveActionPatterns: [] }; } }
 
 class StubOrchestrator {
     async evaluate(input: any) {
@@ -71,19 +73,15 @@ async function validate() {
   
   const service = new SafescopeV2Service(
       new StubActionEngine() as any,
-      new StubContextExpansion() as any,
       new StubEvidenceFusion() as any,
       new StubApplicableStandards() as any,
-      new StubFeedbackService() as any,
-      new StubReasoningSnapshotService() as any,
-      new StubKnowledgeService() as any,
-      new StubStandardsIntelligenceService() as any,
-      new StubSupervisorValidationService() as any,
       new StubOrchestrator() as any,
       new StubVisualService() as any,
       new StubImageService() as any,
       new StubOfflineService() as any,
-      new StubAccessService() as any
+      new StubAccessService() as any,
+      new StubKnowledgeRouter() as any,
+      new StubKnowledgeShard() as any
   );
 
   console.log('--- Testing SafeScope Failure-Mode Calibration Pack v1 ---');

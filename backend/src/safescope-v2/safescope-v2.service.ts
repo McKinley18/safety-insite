@@ -253,26 +253,84 @@ export class SafescopeV2Service {
         };
       };
 
-      const buildDegradedHazLenzIntelligence = (fallbackReason: string) => ({
-        degraded: true,
-        fullIntelligenceAvailable: false,
-        fallbackReason,
-        additionalHazards: [],
-        evidenceGaps: [
-          "Confirm guarding condition, exposure frequency, equipment energy state, and whether workers can contact moving parts.",
+      const buildDegradedHazLenzIntelligence = (fallbackReason: string, classification?: string) => {
+        const lowerClass = (classification || "").toLowerCase();
+        let evidenceGaps = [
+          "Confirm physical exposure condition, distance to hazard, and employee travelways.",
+          "Verify if any warning signs or administrative controls are in place.",
           "Attach photos and supervisor notes for qualified review before relying on the result.",
-        ],
-        reasoningSummary: [
-          "HazLenz AI returned a production-safe advisory result instead of running the full intelligence layer.",
-          "Core classification, risk, standards candidates, and corrective actions were still generated.",
-          "Output remains advisory-only and requires qualified review.",
-        ],
-        governance: {
-          advisoryOnly: true,
-          requiresQualifiedReview: true,
-          degradedMode: true,
-        },
-      });
+        ];
+        let classReason = "Core classification, risk, standards candidates, and corrective actions were still generated.";
+
+        if (lowerClass.includes("guarding") || lowerClass.includes("machine")) {
+          evidenceGaps = [
+            "Verify if the guard is securely fastened, requires a tool for removal, and completely prevents contact with moving parts.",
+            "Confirm standard guarding dimensions, distance from pinch points, and visibility requirements.",
+            "Attach photos and supervisor notes showing physical guard placement and pinch points.",
+          ];
+          classReason = "Assessed exposure risk to rotating parts, pulleys, or belts, prioritizing physical barrier guarding regulations.";
+        } else if (lowerClass.includes("loto") || lowerClass.includes("lockout") || lowerClass.includes("tagout")) {
+          evidenceGaps = [
+            "Verify if a machine-specific LOTO procedure exists, is current, and is actively posted at the equipment location.",
+            "Confirm that all energy sources (electrical, pneumatic, hydraulic, kinetic) are isolated and locked out.",
+            "Check if workers have verified zero energy state before starting maintenance or service work.",
+          ];
+          classReason = "Assessed hazardous energy isolation requirements, prioritizing lockout/tagout procedures and zero-energy verification.";
+        } else if (lowerClass.includes("electrical")) {
+          evidenceGaps = [
+            "Confirm panel cover status, box integrity, cover screws, and presence of open breaker slots.",
+            "Verify proper approach boundaries, PPE requirements, and enclosure ratings (e.g. NEMA ratings).",
+            "Identify if qualified electrician authorization, warning labels, or LOTO isolation was in place.",
+          ];
+          classReason = "Assessed shock, electrocution, or arc flash hazards, focusing on live parts exposure and protective enclosure requirements.";
+        } else if (lowerClass.includes("fall") || lowerClass.includes("leading edge")) {
+          evidenceGaps = [
+            "Verify actual fall height to lower level, anchorage point strength, and presence of guardrails or safety nets.",
+            "Confirm that personnel have been trained on fall protection and are actively wearing inspected harnesses/lanyards.",
+            "Check floor opening covers for proper securing, labeling ('HOLE'), and load-bearing capacity.",
+          ];
+          classReason = "Assessed height-related fall risk, focusing on guardrails, personal fall arrest systems, and hole protection.";
+        } else if (lowerClass.includes("mobile") || lowerClass.includes("berm") || lowerClass.includes("equipment") || lowerClass.includes("pedestrian")) {
+          evidenceGaps = [
+            "Verify presence and height of safety berms or guardrails along haul roads and dump points.",
+            "Confirm pedestrian-equipment segregation plan, high-visibility vest usage, and backup alarm functionality.",
+            "Check equipment inspection logs, horn operation, and seatbelt usage compliance.",
+          ];
+          classReason = "Assessed mobile machinery operation hazards, pedestrian interaction, and ground control/berm requirements.";
+        } else if (lowerClass.includes("hazcom") || lowerClass.includes("chemical") || lowerClass.includes("label") || lowerClass.includes("hazard communication")) {
+          evidenceGaps = [
+            "Verify if the container is properly labeled with identity, hazards, and GHS pictograms.",
+            "Confirm availability and location of the Safety Data Sheet (SDS) for this specific chemical.",
+            "Check presence of eye wash station, chemical-resistant gloves, and proper secondary containment.",
+          ];
+          classReason = "Assessed chemical safety risk, focusing on container labeling, hazard communication, and SDS availability.";
+        } else if (lowerClass.includes("housekeeping") || lowerClass.includes("trip") || lowerClass.includes("clutter") || lowerClass.includes("walking") || lowerClass.includes("working") || lowerClass.includes("surfaces")) {
+          evidenceGaps = [
+            "Verify if travelways, walkways, and emergency exits are clear of clutter, cords, or debris.",
+            "Identify source of any spills (oil, water, dust) and check if cleanup materials or warning signs are deployed.",
+            "Check lighting levels and walking surface conditions (uneven ground, cracks, ice) in the hazard area.",
+          ];
+          classReason = "Assessed slip, trip, and fall-on-same-level hazards, focusing on clean walkways and clear emergency exits.";
+        }
+
+        return {
+          degraded: true,
+          fullIntelligenceAvailable: false,
+          fallbackReason,
+          additionalHazards: [],
+          evidenceGaps,
+          reasoningSummary: [
+            "HazLenz AI returned a production-safe advisory result instead of running the full intelligence layer.",
+            classReason,
+            "Output remains advisory-only and requires qualified review.",
+          ],
+          governance: {
+            advisoryOnly: true,
+            requiresQualifiedReview: true,
+            degradedMode: true,
+          },
+        };
+      };
 
       let intelligence: any;
 
@@ -295,6 +353,7 @@ export class SafescopeV2Service {
 
         intelligence = buildDegradedHazLenzIntelligence(
           "HazLenz full intelligence layer is disabled on the current Render production runtime to prevent service restarts. Core classification, risk, standards candidates, and corrective actions were still generated.",
+          promotedPrimary?.classification
         );
       } else {
         try {
@@ -331,6 +390,7 @@ export class SafescopeV2Service {
 
           intelligence = buildDegradedHazLenzIntelligence(
             "HazLenz full intelligence layer was unavailable. Core classification, risk, standards candidates, and corrective actions were still generated.",
+            promotedPrimary?.classification
           );
         }
       }

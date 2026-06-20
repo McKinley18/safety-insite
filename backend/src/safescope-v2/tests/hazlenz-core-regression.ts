@@ -22,6 +22,10 @@ const suites: Suite[] = [
   {
     name: "Mobile Equipment Standards Benchmark",
     scriptPath: "src/safescope-v2/tests/mobile-standards-benchmark.ts"
+  },
+  {
+    name: "Golden Hardening Scenarios Test",
+    scriptPath: "src/safescope-v2/tests/golden-hardening-tests.ts"
   }
 ];
 

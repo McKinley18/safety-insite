@@ -596,10 +596,29 @@ export class ApplicableStandardsService {
     const focusedShardCitations = new Set(focusedShardSummary?.citations || []);
     const focusedShardCitationsArray = Array.from(focusedShardCitations);
 
-    const searchTerms = observation
+    const criticalShortWords = new Set([
+      "loto", "ppe", "dust", "fall", "trip", "slip", "wire", "lock", "tank", "berm", "crane", "gas", "hose"
+    ]);
+
+    const rawTerms = observation
       .replace(/[^a-z0-9\s]/g, " ")
-      .split(/\s+/)
-      .filter((w) => w.length > 4);
+      .split(/\s+/);
+
+    if (hazardCategory) {
+      const categoryTerms = hazardCategory
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, " ")
+        .split(/\s+/);
+      rawTerms.push(...categoryTerms);
+    }
+
+    const searchTerms = Array.from(
+      new Set(
+        rawTerms
+          .map((w) => w.trim())
+          .filter((w) => w.length > 4 || (w.length >= 3 && criticalShortWords.has(w)))
+      )
+    );
 
     let activeJurisdiction: "msha" | "osha_general_industry" | "osha_construction" | undefined = undefined;
 
@@ -970,7 +989,7 @@ export class ApplicableStandardsService {
           .toLowerCase()
           .replace(/[^a-z0-9\s-]/g, " ")
           .split(/\s+/)
-          .filter((word) => word.length > 4);
+          .filter((word) => word.length > 4 || (word.length >= 3 && criticalShortWords.has(word)));
 
         for (const word of [...new Set(titleWords)]) {
           if (observation.includes(word)) {
@@ -1229,6 +1248,33 @@ export class ApplicableStandardsService {
           }
         }
 
+        const isElectricalLockoutText =
+          /(electrically powered|electrical equipment|mechanically repaired|mechanical work|deenergized|de-energized|locked out|lockout|power switch|power switches|energized without)/i.test(
+            observation,
+          );
+
+        if (isElectricalLockoutText) {
+          if (
+            mshaPartPreference === "56" &&
+            (citation === "30 CFR 56.12016" || citation === "56.12016")
+          ) {
+            score += 220;
+            matchingReasons.push(
+              "scenario: MSHA Part 56 electrically-powered equipment lockout",
+            );
+          }
+
+          if (
+            mshaPartPreference === "57" &&
+            (citation === "30 CFR 57.12016" || citation === "57.12016")
+          ) {
+            score += 220;
+            matchingReasons.push(
+              "scenario: MSHA Part 57 electrically-powered equipment lockout",
+            );
+          }
+        }
+
         const isAccessFallScaffoldText =
           /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|hole)/i.test(
             observation,
@@ -1426,7 +1472,7 @@ export class ApplicableStandardsService {
       })
       .filter(
         (item, index, arr) =>
-          arr.findIndex((other) => other.citation === item.citation) === index,
+          arr.findIndex((other) => isCitationMatch(other.citation, item.citation)) === index,
       )
       .filter((item) => {
         if (!activeJurisdiction) return true;
