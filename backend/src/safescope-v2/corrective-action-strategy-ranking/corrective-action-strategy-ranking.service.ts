@@ -39,14 +39,21 @@ export class CorrectiveActionStrategyRankingService {
     
     const isConflicting = evidenceWeighting.evidenceGrade === 'conflicting';
     const isInsufficient = evidenceWeighting.evidenceGrade === 'insufficient' || evidenceWeighting.evidenceGrade === 'weak';
-    const hasActiveExposure = /employee|person|worker|exposed|nearby|within reach|access/i.test(observationText);
+    const hasActiveExposure = /employee|person|worker|exposed|nearby|within reach|access|walkway|travel path|pedestrian/i.test(observationText);
     const hasSeriousMechanism = causalChainAnalysis.compoundRiskLevel === 'high' || causalChainAnalysis.compoundRiskLevel === 'critical';
+    const hasClearHazardControlBasis = this.hasClearHazardControlBasis(observationText, input);
 
     // 1. Determine Action Posture
     let actionPosture: ActionPosture = 'monitor';
-    if (isConflicting || isInsufficient) {
+    if (isConflicting) {
       actionPosture = 'questions_only';
-      rankingRationale.push('Evidence is weak or conflicting; prioritizing verification questions.');
+      rankingRationale.push('Evidence is conflicting; prioritizing verification questions.');
+    } else if (isInsufficient && hasClearHazardControlBasis) {
+      actionPosture = 'verify_then_act';
+      rankingRationale.push('Evidence needs verification, but the hazard mechanism and control direction are clear enough for cautious advisory action.');
+    } else if (isInsufficient) {
+      actionPosture = 'questions_only';
+      rankingRationale.push('Evidence is weak; prioritizing verification questions.');
     } else if (hasActiveExposure && hasSeriousMechanism) {
       actionPosture = 'act_now';
       rankingRationale.push('Active exposure and high-severity hazard detected; immediate control required.');
@@ -117,6 +124,36 @@ export class CorrectiveActionStrategyRankingService {
       actionPosture,
       advisoryBoundary: 'SafeScope corrective action strategies are advisory only.'
     };
+  }
+
+  private hasClearHazardControlBasis(observationText: string, input: {
+    taxonomyRoute: any;
+    approvedKnowledgeMatches: any[];
+    scenarioMatches: any[];
+    evaluatedScenarios: any[];
+    causalChainAnalysis: CrossDomainCausalChainResult;
+  }): boolean {
+    const combined = [
+      observationText,
+      input.taxonomyRoute?.hazardDomain,
+      input.taxonomyRoute?.candidateStandardFamily,
+      input.taxonomyRoute?.classification,
+      ...(Array.isArray(input.approvedKnowledgeMatches) ? input.approvedKnowledgeMatches.map((m: any) => `${m?.hazardFamily || ''} ${m?.standardFamily || ''} ${m?.equipmentFamily || ''}`) : []),
+      ...(Array.isArray(input.scenarioMatches) ? input.scenarioMatches.map((m: any) => `${m?.hazardDomain || ''} ${m?.mechanism || ''}`) : []),
+      ...(Array.isArray(input.evaluatedScenarios) ? input.evaluatedScenarios.map((m: any) => `${m?.hazardDomain || ''} ${m?.mechanism || ''}`) : []),
+      ...(Array.isArray(input.causalChainAnalysis?.primaryCausalChain) ? input.causalChainAnalysis.primaryCausalChain : []),
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    const hasMechanism =
+      /cylinder|compressed gas|pressure|stored energy|electrical|shock|arc flash|fall|slip|trip|guard|pinch|caught|struck|chemical|spill|fire|explosion|loto|lockout|traffic|mobile equipment/i.test(combined);
+
+    const hasControlFailure =
+      /unsecured|missing|failed|damaged|exposed|unguarded|unprotected|open|leaking|spill|no guard|no restraint|no barricade|no cover|not locked out|blocked|defective/i.test(combined);
+
+    const hasKnownHazardDomain =
+      /compressed_gas|compressed gas|cylinder|electrical|fall|walking|machine|guard|chemical|hazcom|fire|explosion|loto|stored energy|mobile equipment|traffic|confined space|ppe|noise|silica|rigging|hoist|welding|ground control/i.test(combined);
+
+    return hasMechanism && hasControlFailure && hasKnownHazardDomain;
   }
 
   private createAction(id: string, type: ActionType, priority: Priority, family: string, text: string, reason: string): RankedAction {

@@ -58,10 +58,25 @@ export class DefensibleCorrectiveActionService {
       outputPolicy?.allowedOutputModes?.canGenerateCorrectiveActionText === true ||
       confidenceGovernance?.outputPermissions?.canSupportCorrectiveAction === true;
 
+    const hasClearHazardControlBasis = this.hasClearHazardControlBasis(
+      mechanism,
+      failedControl,
+      observationUnderstanding,
+      causalRiskReasoning,
+      text
+    );
+
+    const effectiveActionStrength: ActionStrength =
+      actionStrength === 'questions_only' && hasClearHazardControlBasis
+        ? 'cautious'
+        : actionStrength;
+
     const questionsOnly =
-      actionStrength === 'questions_only' ||
-      evidenceSufficiency?.sufficiencyLevel === 'insufficient' ||
-      outputPolicy?.allowedOutputModes?.mustAskReviewerQuestionsFirst === true && !canGenerateCorrectiveAction;
+      !hasClearHazardControlBasis && (
+        effectiveActionStrength === 'questions_only' ||
+        evidenceSufficiency?.sufficiencyLevel === 'insufficient' ||
+        outputPolicy?.allowedOutputModes?.mustAskReviewerQuestionsFirst === true && !canGenerateCorrectiveAction
+      );
 
     if (questionsOnly) {
       blockedActions.push('Final corrective actions are blocked until critical facts are confirmed.');
@@ -84,15 +99,15 @@ export class DefensibleCorrectiveActionService {
 
     const profile = this.actionProfile(mechanism, failedControl, exposure, priority, text);
 
-    const immediateActions = this.allowedImmediate(outputPolicy)
+    const immediateActions = this.allowedImmediate(outputPolicy, hasClearHazardControlBasis)
       ? [profile.immediate]
       : [];
 
-    const interimControls = this.allowedImmediate(outputPolicy)
+    const interimControls = this.allowedImmediate(outputPolicy, hasClearHazardControlBasis)
       ? [profile.interim]
       : [];
 
-    const permanentCorrectiveActions = this.allowedPermanent(outputPolicy, actionStrength)
+    const permanentCorrectiveActions = this.allowedPermanent(outputPolicy, effectiveActionStrength, hasClearHazardControlBasis)
       ? [profile.permanent]
       : [];
 
@@ -114,18 +129,18 @@ export class DefensibleCorrectiveActionService {
     }
 
     return this.output({
-      actionStrength,
+      actionStrength: effectiveActionStrength,
       immediateActions,
       interimControls,
       permanentCorrectiveActions,
       verificationActions,
       assignedReviewNeeds: Array.from(new Set(assignedReviewNeeds)),
-      actionRationale: this.rationale(mechanism, failedControl, exposure, causalRiskReasoning, actionStrength),
+      actionRationale: this.rationale(mechanism, failedControl, exposure, causalRiskReasoning, effectiveActionStrength),
       blockedActions: Array.from(new Set(blockedActions)),
       missingEvidenceBeforeFinalAction,
       reviewerQuestions: Array.from(new Set(reviewerQuestions)),
-      languagePolicyApplied: outputPolicy?.allowedLanguageStrength || actionStrength,
-      confidenceLimits: confidenceGovernance?.maximumSupportedConfidence || actionStrength,
+      languagePolicyApplied: outputPolicy?.allowedLanguageStrength || effectiveActionStrength,
+      confidenceLimits: confidenceGovernance?.maximumSupportedConfidence || effectiveActionStrength,
     });
   }
 
@@ -377,14 +392,62 @@ export class DefensibleCorrectiveActionService {
     return 'questions_only';
   }
 
-  private allowedImmediate(outputPolicy: any): boolean {
-    return outputPolicy?.allowedOutputModes?.canRecommendImmediateControls !== false;
+  private allowedImmediate(outputPolicy: any, hasClearHazardControlBasis = false): boolean {
+    if (outputPolicy?.allowedOutputModes?.canRecommendImmediateControls !== false) {
+      return true;
+    }
+
+    // Even when standards/citation confidence is limited, HazLenz may recommend
+    // cautious advisory immediate/interim hazard controls when the observed
+    // mechanism and failed control are clear.
+    return hasClearHazardControlBasis;
   }
 
-  private allowedPermanent(outputPolicy: any, strength: ActionStrength): boolean {
-    return strength === 'strong' || strength === 'moderate'
-      ? outputPolicy?.allowedOutputModes?.canRecommendPermanentControls !== false
-      : false;
+  private allowedPermanent(outputPolicy: any, strength: ActionStrength, hasClearHazardControlBasis = false): boolean {
+    if (strength === 'strong' || strength === 'moderate') {
+      return outputPolicy?.allowedOutputModes?.canRecommendPermanentControls !== false;
+    }
+
+    // Cautious advisory permanent controls are allowed when the observed mechanism
+    // and failed control are clear enough to recommend hazard-control direction.
+    // This does not permit violation language, citation creation, or final compliance conclusions.
+    if (strength === 'cautious' && hasClearHazardControlBasis) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private hasClearHazardControlBasis(
+    mechanism: string,
+    failedControl: string,
+    observationUnderstanding: any,
+    causalRiskReasoning: any,
+    text: string
+  ): boolean {
+    const combined = [
+      mechanism,
+      failedControl,
+      causalRiskReasoning?.initiatingCondition,
+      causalRiskReasoning?.failedOrMissingControl,
+      observationUnderstanding?.hazardCategory,
+      observationUnderstanding?.candidateStandardFamily,
+      observationUnderstanding?.classification,
+      text,
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    const hasMechanism =
+      String(mechanism || '').trim().length > 2 ||
+      /cylinder|compressed gas|pressure|stored energy|electrical|shock|arc flash|fall|slip|trip|guard|pinch|caught|struck|chemical|spill|fire|explosion|loto|lockout|traffic|mobile equipment/i.test(combined);
+
+    const hasControlFailure =
+      String(failedControl || '').trim().length > 2 ||
+      /unsecured|missing|failed|damaged|exposed|unguarded|unprotected|open|leaking|spill|no guard|no restraint|no barricade|no cover|not locked out|blocked|defective/i.test(combined);
+
+    const hasKnownHazardDomain =
+      /compressed_gas|compressed gas|cylinder|electrical|fall|walking|machine|guard|chemical|hazcom|fire|explosion|loto|stored energy|mobile equipment|traffic|confined space|ppe|noise|silica|rigging|hoist|welding|ground control/i.test(combined);
+
+    return hasMechanism && hasControlFailure && hasKnownHazardDomain;
   }
 
   private exposureSummary(observationUnderstanding: any, causalRiskReasoning: any, text: string): string {
