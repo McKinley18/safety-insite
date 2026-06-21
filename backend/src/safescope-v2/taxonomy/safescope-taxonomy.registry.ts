@@ -7,6 +7,41 @@ export type TaxonomyEntry = {
 };
 
 export const SAFESCOPE_TAXONOMY_REGISTRY: Record<string, TaxonomyEntry> = {
+  compressed_gas: {
+    canonical: 'compressed_gas',
+    aliases: ['compressed gas cylinder', 'oxygen cylinder', 'acetylene cylinder', 'gas cylinder', 'cylinder valve cap', 'unsecured cylinder'],
+    description: 'Compressed-gas cylinder storage, restraint, valve protection, and release hazards.'
+  },
+  noise_exposure: {
+    canonical: 'noise_exposure',
+    aliases: ['noise exposure', 'loud equipment', 'hearing conservation', 'without hearing protection', 'no hearing protection'],
+    description: 'Occupational noise dose and hearing-loss exposure.'
+  },
+  heat_stress: {
+    canonical: 'heat_stress',
+    aliases: ['heat stress', 'heat illness', 'high heat', 'no shade or water', 'heat index', 'wbgt'],
+    description: 'Heat illness exposure involving workload, environment, hydration, shade, rest, and acclimatization.'
+  },
+  cold_stress: {
+    canonical: 'cold_stress',
+    aliases: ['cold stress', 'cold exposure', 'hypothermia', 'frostbite', 'wind chill', 'freezing conditions'],
+    description: 'Cold injury exposure involving temperature, wind, wetness, duration, warming, and protective clothing.'
+  },
+  dropped_objects: {
+    canonical: 'dropped_objects',
+    aliases: ['dropped object', 'falling object', 'loose tools overhead', 'tools stored loose', 'tools are stored loose', 'tools on elevated platform'],
+    description: 'Struck-by exposure from unsecured tools or materials at elevation.'
+  },
+  water_drowning: {
+    canonical: 'water_drowning',
+    aliases: ['drowning hazard', 'open water', 'working near water', 'without flotation protection', 'no pfd', 'personal flotation device'],
+    description: 'Fall-into-water and drowning exposure requiring prevention and rescue capability.'
+  },
+  environmental_release: {
+    canonical: 'environmental_release',
+    aliases: ['environmental release', 'spill to drain', 'near a floor drain', 'near floor drain', 'release pathway', 'secondary containment'],
+    description: 'Material release pathway to drains, soil, or water.'
+  },
   machine_guarding_loto: {
     canonical: 'machine_guarding_loto',
     aliases: [
@@ -29,7 +64,9 @@ export const SAFESCOPE_TAXONOMY_REGISTRY: Record<string, TaxonomyEntry> = {
       'crusher maintenance',
       'crusher drive',
       'maintenance with guard removed',
-      'repair without lockout'
+      'repair without lockout',
+      'locking out',
+      'without locking out'
     ],
     description: 'Hazardous energy control, lockout/tagout, blocking, and unexpected startup hazards during servicing or maintenance.'
   },
@@ -116,7 +153,7 @@ export const SAFESCOPE_TAXONOMY_REGISTRY: Record<string, TaxonomyEntry> = {
   },
   ground_control: {
     canonical: 'ground_control',
-    aliases: ['roof_control', 'roof', 'rock_fall'],
+    aliases: ['roof_control', 'rock_fall', 'highwall', 'loose highwall', 'loose material on a highwall', 'highwall instability'],
     description: 'Management of roof and ground stability.'
   },
   health_respiratory: {
@@ -128,6 +165,7 @@ export const SAFESCOPE_TAXONOMY_REGISTRY: Record<string, TaxonomyEntry> = {
       'silica dust',
       'respirable dust',
       'dry cutting',
+      'dry cuts',
       'saw cutting',
       'concrete dust',
       'respiratory exposure',
@@ -251,6 +289,8 @@ export const SAFESCOPE_TAXONOMY_REGISTRY: Record<string, TaxonomyEntry> = {
       'platform had an open side',
       'open side',
       'unprotected edge',
+      'unprotected roof edge',
+      'roof edge',
       'leading edge',
       'guardrail missing',
       'missing guardrail',

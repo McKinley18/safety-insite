@@ -153,7 +153,7 @@ export function buildContextualControls(input: {
   imminentDanger?: boolean;
 }): ContextualControls {
   const text = (input.text || '').toLowerCase();
-  const hazardFamily = resolveCanonicalHazardFamily(input.classification);
+  const hazardFamily = resolveCanonicalHazardFamily(input.classification, input.text);
 
   const immediateControls: string[] = [];
   const permanentControls: string[] = [];
@@ -219,6 +219,7 @@ export function buildContextualControls(input: {
     permanentControls.push('Repair, replace, or install machine guarding for exposed moving parts.');
     verificationSteps.push('Verify guarding prevents contact with moving parts before restart.');
     restartCriteria.push('Equipment may restart only after guard inspection and functional verification.');
+    permanentControls.push('Apply lockout/tagout before servicing, cleaning, adjustment, or guard installation.');
     competentPersonReview = true;
   }
 
@@ -239,6 +240,9 @@ export function buildContextualControls(input: {
     immediateControls.push('Stop affected task until required PPE is provided and used.');
     permanentControls.push('Verify PPE selection matches the actual exposure and task.');
     verificationSteps.push('Confirm affected personnel are trained and equipped before resuming work.');
+    if (includesAny(text, ['grinding', 'flying particles', 'face shield', 'eye protection'])) {
+      permanentControls.push('Provide task-appropriate safety glasses or goggles and face protection for flying-particle exposure.');
+    }
   }
 
   if (hazardFamily === 'hazard_communication') {
@@ -259,6 +263,105 @@ export function buildContextualControls(input: {
       permanentControls.push('Verify required separation or an approved fire barrier between oxygen and fuel-gas cylinders.');
     }
     competentPersonReview = true;
+  }
+
+  if (hazardFamily === 'lockout_tagout') {
+    immediateControls.push('Stop servicing or jam-clearing work until hazardous energy is isolated.');
+    permanentControls.push('Identify and isolate every electrical, mechanical, hydraulic, pneumatic, gravity, or stored-energy source.');
+    permanentControls.push('Apply lockout/tagout and release, block, or restrain stored energy.');
+    verificationSteps.push('Perform and document a try/test verification of zero energy before work resumes.');
+    competentPersonReview = true;
+  }
+
+  if (hazardFamily === 'fire_protection' || hazardFamily === 'welding_cutting_hot_work') {
+    immediateControls.push('Pause hot work or control ignition sources until combustible and flammable exposures are removed or protected.');
+    permanentControls.push('Relocate combustibles and flammable materials or provide approved shielding and storage controls.');
+    permanentControls.push('Establish the applicable hot-work permit and trained fire-watch controls.');
+    verificationSteps.push('Verify the work area, fire watch, extinguishing equipment, and post-work fire check before closure.');
+    competentPersonReview = true;
+  }
+
+  if (hazardFamily === 'emergency_egress') {
+    immediateControls.push('Remove stacked material and restore the full exit route immediately.');
+    permanentControls.push('Prohibit storage in the exit route and maintain required route width, lighting, and door access.');
+    verificationSteps.push('Walk the entire evacuation path and verify the exit is unobstructed and operable.');
+  }
+
+  if (hazardFamily === 'confined_space') {
+    immediateControls.push('Stop entry and prevent unauthorized access until the space and entry hazards are evaluated.');
+    permanentControls.push('Classify the space and implement permit, isolation, ventilation, attendant, and rescue controls as applicable.');
+    verificationSteps.push('Test the atmosphere with calibrated equipment before entry and monitor as conditions require.');
+    competentPersonReview = true;
+  }
+
+  if (hazardFamily === 'excavation_trenching') {
+    immediateControls.push('Remove workers from the unprotected trench until a competent person evaluates it.');
+    permanentControls.push('Install an appropriate sloping, shoring, or shielding protective system.');
+    verificationSteps.push('Verify soil, depth, spoil setback, water, access/egress, and daily competent-person inspection.');
+    competentPersonReview = true;
+  }
+
+  if (hazardFamily === 'respirable_dust_silica') {
+    immediateControls.push('Limit access to the visible dust exposure while source controls are established.');
+    permanentControls.push('Use wet cutting or effective local exhaust/dust collection for the task.');
+    permanentControls.push('Evaluate exposure and provide respiratory protection only as required by the control plan and qualified review.');
+    verificationSteps.push('Verify dust controls operate during the task and document exposure/respirator program requirements.');
+  }
+
+  if (hazardFamily === 'noise_exposure') {
+    immediateControls.push('Limit time near the noise source and provide suitable hearing protection pending exposure evaluation.');
+    permanentControls.push('Evaluate sound level and dose, then apply feasible source, enclosure, isolation, or maintenance controls.');
+    verificationSteps.push('Verify hearing-protection selection and hearing-conservation requirements against measured exposure.');
+  }
+
+  if (hazardFamily === 'heat_stress') {
+    immediateControls.push('Provide drinking water, shade or cooling, and recovery rest based on heat conditions and workload.');
+    permanentControls.push('Implement heat acclimatization, work/rest scheduling, buddy monitoring, and emergency response procedures.');
+    verificationSteps.push('Document heat conditions, worker symptoms, hydration/rest access, and supervisor monitoring.');
+  }
+
+  if (hazardFamily === 'cold_stress') {
+    immediateControls.push('Provide a warm, dry recovery area and limit exposure based on cold, wind, wetness, and workload.');
+    permanentControls.push('Implement cold-weather work/rest, protective clothing, buddy monitoring, and emergency response controls.');
+    verificationSteps.push('Document conditions, exposure duration, warming access, clothing, and cold-injury symptoms.');
+  }
+
+  if (hazardFamily === 'ergonomics') {
+    immediateControls.push('Reduce the load, lift frequency, or awkward floor-level reach until the task is reassessed.');
+    permanentControls.push('Provide lift aids, raise the pickup height, redesign the task, or use a planned team lift.');
+    verificationSteps.push('Verify load weight, frequency, posture, and effectiveness of the revised handling method.');
+  }
+
+  if (hazardFamily === 'cranes_rigging_hoisting') {
+    immediateControls.push('Remove the damaged sling from service and stop the lift.');
+    permanentControls.push('Use inspected, identified, and adequately rated rigging selected by a qualified rigger.');
+    verificationSteps.push('Document pre-use rigging inspection, load weight, capacity, configuration, and exclusion zone.');
+    competentPersonReview = true;
+  }
+
+  if (hazardFamily === 'dropped_objects') {
+    immediateControls.push('Establish an exclusion zone below the elevated platform until loose items are secured.');
+    permanentControls.push('Secure tools and materials with containers, tethering, toe boards, or equivalent falling-object controls.');
+    verificationSteps.push('Inspect elevated storage and verify no unsecured object can enter the area below.');
+  }
+
+  if (hazardFamily === 'ground_control') {
+    immediateControls.push('Barricade the highwall fall zone and keep personnel and equipment clear.');
+    permanentControls.push('Have a competent person examine the condition and scale, stabilize, or establish a safe setback as required.');
+    verificationSteps.push('Document the ground examination and correction before reopening the work area.');
+    competentPersonReview = true;
+  }
+
+  if (hazardFamily === 'water_drowning') {
+    immediateControls.push('Provide suitable personal flotation and prevent unprotected access to the water edge.');
+    permanentControls.push('Install barriers or fall prevention and maintain immediately available ring buoys, retrieval, and rescue capability.');
+    verificationSteps.push('Verify flotation, rescue equipment, access controls, and rescue arrangements before work continues.');
+  }
+
+  if (hazardFamily === 'environmental_release') {
+    immediateControls.push('Close the container and protect or block the floor-drain release pathway.');
+    permanentControls.push('Provide compatible secondary containment and correct the storage or container condition.');
+    verificationSteps.push('Confirm released material is recovered, the drain is protected, and disposal/reporting needs receive qualified review.');
   }
 
   return {

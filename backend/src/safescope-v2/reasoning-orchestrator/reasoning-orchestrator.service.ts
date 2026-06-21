@@ -465,8 +465,13 @@ export class SafeScopeReasoningOrchestratorService {
       );
     }
 
+    const canonicalMechanism = this.resolveCanonicalMechanism(
+      hazardClassification.primaryDomain,
+      combined,
+    );
     const resolvedMechanism = {
       mechanismId:
+        canonicalMechanism ||
         mechanismPrecedence.mechanismId ||
         equipmentTaskMechanismContext.primaryMatch?.failureModeLabel ||
         equipmentReasoningSummary.primaryMechanismOrArchetype ||
@@ -810,7 +815,7 @@ export class SafeScopeReasoningOrchestratorService {
 
     if (
       jurisdiction === 'osha_general_industry' &&
-      includesAny(normalizedText, ['compressed gas cylinder', 'gas cylinder', 'cylinder valve cap', 'valve cap', 'unsecured cylinder', 'cylinder restraint'])
+      includesAny(normalizedText, ['compressed gas cylinder', 'oxygen cylinder', 'acetylene cylinder', 'gas cylinder', 'cylinder valve cap', 'valve cap', 'unsecured cylinder', 'cylinder restraint'])
     ) {
       return '29 CFR 1910.101(b)';
     }
@@ -833,7 +838,7 @@ export class SafeScopeReasoningOrchestratorService {
     if (
       jurisdiction === 'osha_general_industry' &&
       includesAny(normalizedText, ['welding cylinder', 'fuel gas cylinder', 'oxygen cylinder', 'acetylene', 'cylinder separation', 'oxygen and fuel gas', 'oxygen and acetylene', 'fuel gas and oxygen']) &&
-      includesAny(normalizedText, ['welding', 'cutting', 'hot work', 'fuel gas', 'oxygen', 'acetylene', 'separation', 'cylinder'])
+      includesAny(normalizedText, ['welding', 'cutting', 'brazing', 'fuel gas', 'acetylene', 'oxygen and fuel gas', 'oxygen and acetylene'])
     ) {
       return '29 CFR 1910.253(b)(2)(ii)';
     }
@@ -1347,6 +1352,20 @@ export class SafeScopeReasoningOrchestratorService {
     const hasGenericContainerOrLabel = /(container|bottle|bucket|jug|tank|storage|label|unlabeled|no label|unknown liquid)/i.test(normalizedText);
     const hasCylinderTerms = /(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(normalizedText);
     const hasStrongCompetingDomains = /(electrical|conductor|wire|breaker|panel|guard|nip point|pinch point|conveyor|scaffold|fall protection|harness|lanyard|exit|egress|fire extinguisher|whipcheck|hydraulic|vocs|chemical vapors|solvent vapors|atmospheric contaminant|air contaminants|toxic gas|gas exposure|ergonomics|musculoskeletal|manual lifting|heavy lifting|lifting hazard|msd|silica|concrete dust|dust exposure|respiratory exposure|confined space|entry permit|entry controls|asphyxiation|oxygen deficiency|scaffold|scaffolding|base plate|mudsill|planking|ladder|escapeway|escape route|ventilation|airflow|methane|gas buildup|ventilation curtain|rib|loose rib|rib control|roof\/rib|roof fall)/i.test(normalizedText);
+
+    if (
+      /\b(?:worker|employee|entrant) (?:enters|entered|inside|in) (?:a )?(?:tank|vessel|silo|pit)\b/i.test(normalizedText) &&
+      /\b(unknown atmosphere|atmosphere|oxygen|toxic|ventilation|entry)\b/i.test(normalizedText)
+    ) {
+      return 'confined_space';
+    }
+
+    if (
+      /\b(used oil|oil|chemical|fuel) (?:container|drum|tote)\b/i.test(normalizedText) &&
+      /\b(open|leaking|spill|release|near (?:a )?floor drain|drain|storm drain|soil|waterway)\b/i.test(normalizedText)
+    ) {
+      return 'environmental_release';
+    }
 
     if (hasGenericContainerOrLabel && !hasCylinderTerms && !hasStrongCompetingDomains) {
       return 'hazardous_materials';
@@ -1887,6 +1906,54 @@ export class SafeScopeReasoningOrchestratorService {
         reason: 'Ergonomic reviews require load weight, repetitive lift frequency, lift height, postures, duration of work, and availability of mechanical lifting aids to evaluate musculoskeletal risks.',
         importance: 'high',
       });
+    } else if (domain === 'compressed_gas') {
+      gaps.push({
+        field: 'compressedGasCylinderFacts',
+        reason: 'Cylinder review requires contents, service status, restraint, upright position, valve protection, impact exposure, and storage compatibility.',
+        importance: 'high',
+      });
+    } else if (domain === 'noise_exposure') {
+      gaps.push({
+        field: 'noiseExposureFacts',
+        reason: 'Noise review requires source, duration, sound level or dosimetry, hearing protection, and hearing-conservation program status.',
+        importance: 'high',
+      });
+    } else if (domain === 'heat_stress') {
+      gaps.push({
+        field: 'heatStressFacts',
+        reason: 'Heat-stress review requires environmental conditions, workload, duration, water/rest/shade access, acclimatization, and symptom status.',
+        importance: 'high',
+      });
+    } else if (domain === 'cold_stress') {
+      gaps.push({
+        field: 'coldStressFacts',
+        reason: 'Cold-stress review requires temperature, wind/wet conditions, duration, warming access, protective clothing, and symptom status.',
+        importance: 'high',
+      });
+    } else if (domain === 'dropped_objects') {
+      gaps.push({
+        field: 'droppedObjectFacts',
+        reason: 'Dropped-object review requires elevation, tool/material securement, toe-board or containment status, and personnel exposure below.',
+        importance: 'high',
+      });
+    } else if (domain === 'ground_control') {
+      gaps.push({
+        field: 'groundControlFacts',
+        reason: 'Ground-control review requires highwall/face condition, loose material, recent examination, scaling controls, and worker setback.',
+        importance: 'high',
+      });
+    } else if (domain === 'water_drowning') {
+      gaps.push({
+        field: 'waterDrowningFacts',
+        reason: 'Water-hazard review requires distance to water, fall prevention, flotation protection, rescue equipment, and work-alone status.',
+        importance: 'high',
+      });
+    } else if (domain === 'environmental_release') {
+      gaps.push({
+        field: 'environmentalReleaseFacts',
+        reason: 'Release-pathway review requires material identity, container condition, quantity, drain/soil/water pathway, and containment status.',
+        importance: 'high',
+      });
     } else if (domain === 'excavation_trenching') {
       gaps.push({
         field: 'excavationTrenchingFacts',
@@ -2047,6 +2114,17 @@ export class SafeScopeReasoningOrchestratorService {
       if (gap.field === 'chemicalContainerSubstanceFacts') {
         return 'What substance is inside the container or tank, and is it a chemical or secondary container?';
       }
+      const domainQuestionByField: Record<string, string> = {
+        compressedGasCylinderFacts: 'What gas is in the cylinder, and are restraint, valve protection, impact protection, and compatible storage verified?',
+        noiseExposureFacts: 'What are the noise level and duration, and what engineering, administrative, and hearing-protection controls are in place?',
+        heatStressFacts: 'What are the heat conditions, workload, duration, acclimatization status, and water/rest/shade provisions?',
+        coldStressFacts: 'What are the temperature, wind/wet conditions, exposure duration, warming provisions, clothing, and symptoms?',
+        droppedObjectFacts: 'What is stored at elevation, how is it secured, and are people exposed below?',
+        groundControlFacts: 'Has a competent person examined the highwall or ground condition, and are setback, barricading, or scaling controls in place?',
+        waterDrowningFacts: 'What prevents a fall into the water, and are PFDs and immediately available rescue equipment provided?',
+        environmentalReleaseFacts: 'What material and quantity could reach the drain, soil, or water, and what containment is present?',
+      };
+      if (domainQuestionByField[gap.field]) return domainQuestionByField[gap.field];
       return `Can the user provide more information for ${gap.field}?`;
     });
 
@@ -2266,6 +2344,7 @@ export class SafeScopeReasoningOrchestratorService {
       includesAny(text, [
         'without eye protection',
         'without face protection',
+        'without a face shield',
         'without eye and face protection',
         'without eye or face protection',
         'no eye protection',
@@ -2309,6 +2388,62 @@ export class SafeScopeReasoningOrchestratorService {
     const reasonCodes: string[] = [];
 
     if (
+      hasAny(['compressed gas cylinder', 'oxygen cylinder', 'acetylene cylinder', 'gas cylinder', 'unsecured cylinder', 'cylinder valve cap']) &&
+      hasAny(['unsecured', 'not secured', 'missing valve cap', 'without valve cap', 'stored', 'storage', 'walkway', 'traffic', 'impact'])
+    ) {
+      reasonCodes.push('priority-compressed-gas-cylinder-storage');
+      return { domain: 'compressed_gas', mechanismId: 'cylinder_projectile_or_gas_release', reasonCodes };
+    }
+
+    if (
+      hasAny(['loose tools', 'tools stored loose', 'tools are stored loose', 'unsecured tools', 'loose material', 'dropped object', 'falling object']) &&
+      hasAny(['elevated platform', 'platform', 'overhead', 'above workers', 'work below', 'people below'])
+    ) {
+      reasonCodes.push('priority-dropped-object-exposure');
+      return { domain: 'dropped_objects', mechanismId: 'struck_by_falling_object', reasonCodes };
+    }
+
+    if (
+      hasAny(['highwall', 'mine face', 'pit wall']) &&
+      hasAny(['loose material', 'cracking', 'fractured', 'sloughing', 'unstable', 'falling rock'])
+    ) {
+      reasonCodes.push('priority-highwall-ground-control');
+      return { domain: 'ground_control', mechanismId: 'fall_of_ground_or_material', reasonCodes };
+    }
+
+    if (
+      hasAny(['open water', 'pond', 'water edge', 'working near water', 'drowning hazard']) &&
+      hasAny(['employee', 'worker', 'crew', 'without flotation', 'no pfd', 'fall into water', 'unprotected edge'])
+    ) {
+      reasonCodes.push('priority-water-drowning-exposure');
+      return { domain: 'water_drowning', mechanismId: 'fall_into_water_and_drowning', reasonCodes };
+    }
+
+    if (
+      hasAny(['used oil', 'oil container', 'chemical container', 'fuel container']) &&
+      hasAny(['open', 'leaking', 'spill', 'near a floor drain', 'near floor drain', 'storm drain', 'release pathway'])
+    ) {
+      reasonCodes.push('priority-environmental-release-pathway');
+      return { domain: 'environmental_release', mechanismId: 'release_to_drain_soil_or_water', reasonCodes };
+    }
+
+    if (
+      hasAny(['welding', 'cutting', 'brazing', 'hot work']) &&
+      hasAny(['combustible', 'flammable', 'no fire watch', 'without fire watch', 'ignition source'])
+    ) {
+      reasonCodes.push('priority-hot-work-ignition');
+      return { domain: 'welding_cutting_hot_work', mechanismId: 'ignition_of_combustibles_or_vapors', reasonCodes };
+    }
+
+    if (
+      hasAny(['emergency exit', 'exit route', 'emergency egress', 'escape route']) &&
+      hasAny(['blocked', 'obstructed', 'stacked materials', 'not accessible'])
+    ) {
+      reasonCodes.push('priority-blocked-emergency-egress');
+      return { domain: 'emergency_preparedness', mechanismId: 'delayed_or_prevented_evacuation', reasonCodes };
+    }
+
+    if (
       hasAny(['exposed energized wiring', 'exposed live wiring', 'exposed energized conductor', 'exposed conductor', 'energized wiring', 'live conductor', 'damaged electrical conductor']) &&
       hasAny(['exposed', 'energized', 'live', 'wiring', 'conductor', 'shock', 'electrical'])
     ) {
@@ -2340,7 +2475,7 @@ export class SafeScopeReasoningOrchestratorService {
     ) {
       reasonCodes.push('medium-priority-cold-stress-environmental-exposure');
       return {
-        domain: 'environmental_exposure',
+        domain: 'cold_stress',
         mechanismId: 'cold_stress',
         citation: 'OSHA/NIOSH Heat and Cold Stress Guidance',
         reasonCodes,
@@ -2353,7 +2488,7 @@ export class SafeScopeReasoningOrchestratorService {
     ) {
       reasonCodes.push('medium-priority-heat-stress-environmental-exposure');
       return {
-        domain: 'environmental_exposure',
+        domain: 'heat_stress',
         mechanismId: 'heat_illness',
         citation: 'OSHA/NIOSH Heat and Cold Stress Guidance',
         reasonCodes,
@@ -2366,7 +2501,7 @@ export class SafeScopeReasoningOrchestratorService {
     ) {
       reasonCodes.push('medium-priority-noise-hearing-conservation');
       return {
-        domain: 'health_exposure',
+        domain: 'noise_exposure',
         mechanismId: 'noise_induced_hearing_loss',
         citation: '29 CFR 1910.95',
         reasonCodes,
@@ -2618,6 +2753,50 @@ export class SafeScopeReasoningOrchestratorService {
     }
 
     return { reasonCodes };
+  }
+
+  private resolveCanonicalMechanism(
+    domain: SafeScopeReasoningDomain,
+    text: string,
+  ): string | undefined {
+    const value = normalized(text);
+    const mechanisms: Partial<Record<SafeScopeReasoningDomain, string>> = {
+      compressed_gas: 'cylinder_projectile_or_gas_release',
+      hazardous_materials: 'unknown_substance_contact_or_inhalation',
+      hazard_communication: 'unknown_substance_contact_or_inhalation',
+      electrical: 'electrical_shock_or_arc_flash',
+      machine_guarding: 'caught_in_entanglement_or_crushing',
+      machine_guarding_loto: 'unexpected_startup_or_stored_energy_release',
+      lockout_tagout: 'unexpected_startup_or_stored_energy_release',
+      walking_working_surfaces: 'same_level_slip_trip_fall',
+      slip_trip_fall: 'same_level_slip_trip_fall',
+      slips_trips_falls: 'same_level_slip_trip_fall',
+      fall_protection: 'fall_to_lower_level',
+      mobile_equipment: 'struck_by_or_caught_between_mobile_equipment',
+      powered_haulage: 'struck_by_or_caught_between_mobile_equipment',
+      fire_protection: 'ignition_fire_or_explosion',
+      welding_cutting_hot_work: 'ignition_of_combustibles_or_vapors',
+      emergency_preparedness: 'delayed_or_prevented_evacuation',
+      confined_space: 'atmospheric_asphyxiation_or_toxic_exposure',
+      excavation_trenching: 'cave_in_crushing_or_engulfment',
+      ppe: 'flying_particle_eye_or_face_injury',
+      health_respiratory: 'respirable_dust_inhalation',
+      noise_exposure: 'noise_induced_hearing_loss',
+      heat_stress: 'heat_illness',
+      cold_stress: 'cold_injury',
+      ergonomics: 'musculoskeletal_overexertion_or_strain',
+      cranes_rigging_hoisting: 'rigging_failure_or_dropped_load',
+      dropped_objects: 'struck_by_falling_object',
+      ground_control: 'fall_of_ground_or_material',
+      roof_rib_control: 'fall_of_ground_or_material',
+      water_drowning: 'fall_into_water_and_drowning',
+      environmental_release: 'release_to_drain_soil_or_water',
+    };
+
+    if (domain === 'ppe' && !includesAny(value, ['grinding', 'cutting', 'chipping', 'flying particles', 'face shield', 'eye protection'])) {
+      return 'inadequate_personal_protective_equipment';
+    }
+    return mechanisms[domain];
   }
 
 }
