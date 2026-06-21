@@ -44,10 +44,172 @@ export interface ApplicableStandardsRouteHints {
   shardKey?: string;
 }
 
+type CandidateEvidenceStatus = "active" | "needs_more_evidence";
+
+interface CandidateEvidenceFit {
+  hazardDomainFit: boolean;
+  mechanismFit: boolean;
+  jurisdictionFit: boolean;
+  requiredEvidencePresent: boolean;
+  noDisqualifyingEvidence: boolean;
+  status: CandidateEvidenceStatus;
+  standardFamily: string;
+  reasons: string[];
+}
+
 @Injectable()
 export class ApplicableStandardsService {
   private cachedChunks: CachedKnowledgeChunk[] | null = null;
   private cachedStandards: CachedStandard[] | null = null;
+
+  private assessCandidateEvidenceFit(
+    candidate: any,
+    observation: string,
+    activeJurisdiction?: "msha" | "osha_general_industry" | "osha_construction",
+  ): CandidateEvidenceFit {
+    const citation = String(candidate?.citation || "");
+    const candidateText = `${citation} ${candidate?.heading || ""} ${candidate?.summary || ""}`.toLowerCase();
+    const text = String(observation || "").toLowerCase();
+    const reasons: string[] = [];
+
+    const cylinderFamily = /1910\.10(?:1|4)|1910\.25[23]|1926\.350|(?:56|57)\.1600[56]/i.test(citation) ||
+      /(compressed gas|oxygen.*cylinder|cylinder.*storage)/i.test(candidateText);
+    const walkingFamily = /1910\.22|1926\.25|(?:56|57)\.(?:20003|11001)/i.test(citation) ||
+      /(walking-working surface|housekeeping|safe access)/i.test(candidateText);
+    const hazcomFamily = /1910\.1200|1926\.59/i.test(citation) || /hazard communication/i.test(candidateText);
+    const lotoFamily = /1910\.147|(?:56|57)\.(?:12016|14105)/i.test(citation) ||
+      /(lockout|tagout|hazardous energy|deenerg)/i.test(candidateText);
+    const ppeFamily = /1910\.13[23478]|1926\.(?:9[5-9]|10[0-7])|(?:56|57)\.15/i.test(citation) ||
+      /personal protective equipment|eye and face protection|electrical protective equipment/i.test(candidateText);
+    const electricalFamily = /1910\.(?:30[3-8]|269)|1926\.(?:4(?:0[3-9]|1[0-6]))|(?:56|57)\.12/i.test(citation) ||
+      /electrical/i.test(candidateText);
+    const fallFamily = /1910\.(?:21|28|29|140)|1926\.(?:45[124]|50[123])/i.test(citation) ||
+      /(fall protection|guardrail|personal fall)/i.test(candidateText);
+
+    const hasCylinderObject = /\b(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|gas bottle)\b/i.test(text);
+    const hasCylinderMechanism = /\b(unsecured|not secured|missing.*cap|without.*cap|valve cap|damaged valve|leak|rupture|storage|stored|upright|restraint|chain|cart)\b/i.test(text);
+    const hasWalkingObject = /\b(walkway|walking surface|walking-working surface|passageway|travelway|catwalk|floor|platform|access route)\b/i.test(text);
+    const hasWalkingMechanism = /\b(spill(?:ed|age)?|oil|grease|wet|slip|trip|obstruction|blocked|debris|cords?|boxes|buildup|build up|accumulation|housekeeping|uneven|hole)\b/i.test(text);
+    const hasLabelObject = /\b(container|bottle|drum|tank|chemical|substance|liquid|hazardous material)\b/i.test(text);
+    const hasLabelMechanism = /\b(unlabeled|unlabelled|no label|missing label|labeling|labelling|ghs|sds|hazcom|hazard communication)\b/i.test(text);
+    const hasElectricalObject = /\b(electrical|panel|breaker|bus bar|busbar|conductor|wire|wiring|receptacle|junction box)\b/i.test(text);
+    const hasElectricalMechanism = /\b(energized|live|exposed|open breaker slot|missing cover|shock|arc flash|voltage|damaged insulation)\b/i.test(text);
+    const hasLotoObject = /\b(machine|equipment|conveyor|motor|circuit|energy|electrically-powered)\b/i.test(text);
+    const hasLotoMechanism = /\b(lockout|tagout|loto|stored energy|energy isolation|deenergized|not released|without lockout|maintenance|servicing|repair|clears? a jam)\b/i.test(text);
+    const hasFallObject = /\b(edge|opening|roof|scaffold|platform|ladder|height|elevated|guardrail|hole)\b/i.test(text);
+    const hasFallMechanism = /\b(fall hazard|fall protection|unprotected|no guardrail|missing guardrail|fall arrest|feet|foot drop)\b/i.test(text);
+    const hasPpeObject = /\b(ppe|protective equipment|safety glasses|goggles|face shield|gloves|respirator|hard hat|hearing protection)\b/i.test(text);
+    const hasPpeMechanism = /\b(missing|not worn|no ppe|without|damaged|incorrect|inadequate|required)\b/i.test(text);
+
+    let standardFamily = "other";
+    let hazardDomainFit = true;
+    let mechanismFit = true;
+    let requiredEvidencePresent = true;
+
+    if (cylinderFamily) {
+      standardFamily = "compressed_gas_cylinders";
+      hazardDomainFit = hasCylinderObject;
+      mechanismFit = hasCylinderMechanism;
+      requiredEvidencePresent = hasCylinderObject && hasCylinderMechanism;
+    } else if (walkingFamily) {
+      standardFamily = "walking_working_surfaces";
+      hazardDomainFit = hasWalkingObject && hasWalkingMechanism;
+      mechanismFit = hasWalkingMechanism;
+      requiredEvidencePresent = hasWalkingObject && hasWalkingMechanism;
+    } else if (hazcomFamily) {
+      standardFamily = "hazcom";
+      hazardDomainFit = hasLabelObject && hasLabelMechanism;
+      mechanismFit = hasLabelMechanism;
+      requiredEvidencePresent = hasLabelObject && hasLabelMechanism;
+    } else if (lotoFamily) {
+      standardFamily = "machine_guarding_loto";
+      hazardDomainFit = hasLotoObject;
+      mechanismFit = hasLotoMechanism;
+      requiredEvidencePresent = hasLotoObject && hasLotoMechanism;
+    } else if (ppeFamily) {
+      standardFamily = "personal_protective_equipment";
+      hazardDomainFit = hasPpeObject;
+      mechanismFit = hasPpeMechanism;
+      requiredEvidencePresent = hasPpeObject && hasPpeMechanism;
+    } else if (electricalFamily) {
+      standardFamily = "electrical";
+      hazardDomainFit = hasElectricalObject;
+      mechanismFit = hasElectricalMechanism;
+      requiredEvidencePresent = hasElectricalObject && hasElectricalMechanism;
+    } else if (fallFamily) {
+      standardFamily = "fall_protection";
+      hazardDomainFit = hasFallObject;
+      mechanismFit = hasFallMechanism;
+      requiredEvidencePresent = hasFallObject && hasFallMechanism;
+    } else {
+      const strongApplicabilityReason = (candidate?.matchingReasons || []).some((reason: string) =>
+        /^(scenario:|warm-shard: focused|route: source key|fallback:)/i.test(reason),
+      );
+      hazardDomainFit = strongApplicabilityReason;
+      mechanismFit = strongApplicabilityReason;
+      requiredEvidencePresent = strongApplicabilityReason;
+      if (!strongApplicabilityReason) {
+        reasons.push("Candidate has only lexical or contextual support; family-level applicability is not established.");
+      }
+    }
+
+    const jurisdictionFit = !activeJurisdiction ||
+      (activeJurisdiction === "msha" && /(?:30 CFR )?(?:56|57|75|77)\./i.test(citation)) ||
+      (activeJurisdiction === "osha_general_industry" && /(?:29 CFR )?1910\./i.test(citation)) ||
+      (activeJurisdiction === "osha_construction" && /(?:29 CFR )?1926\./i.test(citation));
+
+    // A strong, separately described secondary mechanism remains eligible. A mere
+    // location word (for example, "near a walkway") is context, not a second hazard.
+    const hasContraryEvidence =
+      (standardFamily === "compressed_gas_cylinders" && /\b(no cylinder|not a cylinder|cylinder secured|properly secured)\b/i.test(text)) ||
+      (standardFamily === "walking_working_surfaces" && /\b(no spill|no trip hazard|walkway (?:is )?clear|dry and clear)\b/i.test(text)) ||
+      (standardFamily === "hazcom" && /\b(properly labeled|label (?:is )?present|ghs label attached)\b/i.test(text)) ||
+      (standardFamily === "machine_guarding_loto" && /\b(locked out|energy (?:was )?released|verified de-energized)\b/i.test(text)) ||
+      (standardFamily === "electrical" && /\b(de-energized and covered|panel (?:is )?closed|no exposed parts)\b/i.test(text)) ||
+      (standardFamily === "fall_protection" && /\b(guardrail (?:is )?present|edge (?:is )?protected|fall protection (?:is )?in use)\b/i.test(text)) ||
+      (standardFamily === "personal_protective_equipment" && /\b(required ppe (?:is )?worn|ppe (?:is )?in use)\b/i.test(text));
+    const noDisqualifyingEvidence = candidate?.scopeFit !== "mismatch" && !hasContraryEvidence;
+    if (!hazardDomainFit) reasons.push(`Evidence does not establish the ${standardFamily} hazard domain.`);
+    if (!mechanismFit) reasons.push(`Evidence does not establish the ${standardFamily} triggering mechanism.`);
+    if (!jurisdictionFit) reasons.push("Citation does not fit the selected jurisdiction.");
+    if (!requiredEvidencePresent) reasons.push(`Required observation evidence for ${standardFamily} applicability is missing.`);
+    if (!noDisqualifyingEvidence) reasons.push(candidate?.scopeExclusionReason || "Candidate has disqualifying evidence.");
+
+    const status: CandidateEvidenceStatus =
+      hazardDomainFit && mechanismFit && jurisdictionFit && requiredEvidencePresent && noDisqualifyingEvidence
+        ? "active"
+        : "needs_more_evidence";
+
+    return {
+      hazardDomainFit,
+      mechanismFit,
+      jurisdictionFit,
+      requiredEvidencePresent,
+      noDisqualifyingEvidence,
+      status,
+      standardFamily,
+      reasons,
+    };
+  }
+
+  private applyCandidateEvidenceFit(
+    candidates: any[],
+    observation: string,
+    activeJurisdiction?: "msha" | "osha_general_industry" | "osha_construction",
+  ) {
+    return candidates.map((candidate) => {
+      const evidenceFit = this.assessCandidateEvidenceFit(candidate, observation, activeJurisdiction);
+      return {
+        ...candidate,
+        standardFamily: evidenceFit.standardFamily,
+        candidateStatus: evidenceFit.status,
+        evidenceFit,
+        evidenceExclusionReason: evidenceFit.status === "active"
+          ? undefined
+          : evidenceFit.reasons.join(" "),
+      };
+    });
+  }
 
   private isHousekeepingAccessScenario(text: string) {
     return (
@@ -790,7 +952,11 @@ export class ApplicableStandardsService {
           routeBundleIds: routeHints?.bundleIds || [],
         });
       }
-      return knowledgeMatches.slice(0, finalLimit);
+      return this.applyCandidateEvidenceFit(
+        knowledgeMatches,
+        observation,
+        activeJurisdiction,
+      ).slice(0, finalLimit);
     }
 
     let focusedStandards: Standard[] = [];
@@ -1469,7 +1635,7 @@ export class ApplicableStandardsService {
       return 1;
     };
 
-    const results = [
+    const rankedResults = [
       ...knowledgeMatches,
       ...codeFallbackStandards,
       ...standardMatches,
@@ -1498,8 +1664,16 @@ export class ApplicableStandardsService {
           return item.agencyCode === "OSHA" && (item.scopeCode === "construction" || item.citation.includes("1926") || item.citation.startsWith("29 CFR 1926"));
         }
         return true;
-      })
-      .slice(0, finalLimit);
+      });
+    const evidenceFittedResults = this.applyCandidateEvidenceFit(
+      rankedResults,
+      observation,
+      activeJurisdiction,
+    );
+    const results = [
+      ...evidenceFittedResults.filter((item) => item.candidateStatus === "active"),
+      ...evidenceFittedResults.filter((item) => item.candidateStatus !== "active"),
+    ].slice(0, finalLimit);
 
     if (diagnostics) {
       const matchedFocused = results.some((item) =>

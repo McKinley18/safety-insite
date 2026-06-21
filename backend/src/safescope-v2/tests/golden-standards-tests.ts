@@ -141,7 +141,11 @@ async function run() {
   for (const scen of precisionScenarios) {
     const matches = await service.suggest(scen.text, undefined, scen.source, 5);
     const cylinderPattern = /1910\.253|1910\.252|1910\.101|1926\.350|56\.16005|56\.16006|57\.16005|57\.16006/i;
-    const hasCylinderMatch = matches.some(m => cylinderPattern.test(m.citation) && m.score > 0);
+    const hasCylinderMatch = matches.some(m =>
+      cylinderPattern.test(m.citation) &&
+      m.score > 0 &&
+      m.candidateStatus === 'active'
+    );
 
     if (scen.shouldMatchCylinder) {
       if (hasCylinderMatch) {
@@ -167,6 +171,44 @@ async function run() {
         failed += 1;
         console.log(`❌ ${scen.name} (Expected NO cylinder standards, but found matching citations with positive score: ${matches.filter(m => cylinderPattern.test(m.citation) && m.score > 0).map(m => m.citation).join(', ')})`);
       }
+    }
+  }
+
+  const evidenceFitScenarios = [
+    {
+      name: 'Evidence fit A: walkway is context for an unsecured oxygen cylinder',
+      text: 'Oxygen cylinder stored unsecured near a walkway.',
+      forbiddenFamilies: ['walking_working_surfaces', 'hazcom', 'electrical'],
+    },
+    {
+      name: 'Evidence fit B: unlabeled generic container does not activate unrelated families',
+      text: 'A container has no label.',
+      forbiddenFamilies: ['compressed_gas_cylinders', 'walking_working_surfaces', 'electrical'],
+    },
+    {
+      name: 'Evidence fit C: oil spill does not activate compressed gas',
+      text: 'Oil spilled across the walkway.',
+      forbiddenFamilies: ['compressed_gas_cylinders', 'hazcom', 'electrical'],
+    },
+    {
+      name: 'Evidence fit D: exposed energized panel does not activate HazCom or walking surfaces',
+      text: 'Electrical panel has an open breaker slot exposing energized parts.',
+      forbiddenFamilies: ['compressed_gas_cylinders', 'hazcom', 'walking_working_surfaces'],
+    },
+  ];
+
+  for (const scen of evidenceFitScenarios) {
+    const matches = await service.suggest(scen.text, undefined, 'OSHA_GENERAL_INDUSTRY', 10);
+    const forbiddenActive = matches.filter(m =>
+      m.candidateStatus === 'active' && scen.forbiddenFamilies.includes(m.standardFamily)
+    );
+
+    if (forbiddenActive.length === 0) {
+      passed += 1;
+      console.log(`✅ ${scen.name}`);
+    } else {
+      failed += 1;
+      console.log(`❌ ${scen.name} (Forbidden active candidates: ${forbiddenActive.map(m => `${m.citation}:${m.standardFamily}`).join(', ')})`);
     }
   }
 

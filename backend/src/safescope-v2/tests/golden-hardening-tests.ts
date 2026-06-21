@@ -62,6 +62,7 @@ type ScenarioTest = {
   unexpectedHazardDomain?: string;
   expectedStandardFamily?: string;
   unexpectedStandardFamily?: string;
+  unexpectedActiveStandardFamilies?: string[];
 };
 
 const scenarios: ScenarioTest[] = [
@@ -81,6 +82,7 @@ const scenarios: ScenarioTest[] = [
     expectedClassification: "Electrical",
     expectedRiskBand: "Critical",
     expectedCitations: ["1910.303"],
+    unexpectedActiveStandardFamilies: ["compressed_gas_cylinders", "hazcom", "walking_working_surfaces", "personal_protective_equipment"],
     evidenceGapKeyword: "panel",
   },
   {
@@ -137,6 +139,7 @@ const scenarios: ScenarioTest[] = [
     expectedRiskBand: "Moderate",
     expectedCitations: ["1910.1200"],
     unexpectedCitations: ["1910.253", "1910.101"],
+    unexpectedActiveStandardFamilies: ["compressed_gas_cylinders", "walking_working_surfaces"],
     evidenceGapKeyword: "substance",
   },
   {
@@ -170,6 +173,7 @@ const scenarios: ScenarioTest[] = [
     expectedHazardDomain: "compressed_gas",
     unexpectedHazardDomain: "slip_trip_fall",
     unexpectedStandardFamily: "walking_working_surfaces",
+    unexpectedActiveStandardFamilies: ["walking_working_surfaces", "hazcom", "electrical"],
   },
   {
     name: "12. Precision Scenario E: Compressed gas cylinder missing valve protection cap.",
@@ -200,6 +204,7 @@ const scenarios: ScenarioTest[] = [
     evidenceGapKeyword: "walkway",
     unexpectedHazardDomain: "compressed_gas",
     unexpectedStandardFamily: "compressed_gas_cylinders",
+    unexpectedActiveStandardFamilies: ["compressed_gas_cylinders", "hazcom", "electrical"],
   },
   {
     name: "15. Test C: Compressed gas cylinder stored in a pedestrian walkway.",
@@ -223,6 +228,7 @@ const scenarios: ScenarioTest[] = [
     evidenceGapKeyword: "walkway",
     unexpectedHazardDomain: "compressed_gas",
     unexpectedStandardFamily: "compressed_gas_cylinders",
+    unexpectedActiveStandardFamilies: ["compressed_gas_cylinders", "hazcom", "electrical"],
   },
 ];
 
@@ -329,6 +335,13 @@ async function run() {
           if (found) {
             throw new Error(`Unexpected citation "${unexpectedCit}" was found in suggestions: ${standards.map((s: any) => s.citation).join(", ")}`);
           }
+        }
+      }
+
+      for (const forbiddenFamily of test.unexpectedActiveStandardFamilies || []) {
+        const found = standards.some((standard: any) => standard.standardFamily === forbiddenFamily);
+        if (found) {
+          throw new Error(`Forbidden active standard family "${forbiddenFamily}" was returned: ${standards.map((s: any) => `${s.citation}:${s.standardFamily}`).join(", ")}`);
         }
       }
       console.log(`  [PASS] Suggested standards: ${standards.map((s: any) => s.citation).join(", ")}`);

@@ -182,17 +182,28 @@ export class SafescopeV2Service {
       ).sort((a, b) => (b.score || 0) - (a.score || 0));
 
       const suggestedStandards = scopedStandards
-        .filter((standard) => standard.scopeFit !== "mismatch")
+        .filter((standard) =>
+          standard.scopeFit !== "mismatch" &&
+          standard.candidateStatus !== "needs_more_evidence"
+        )
         .slice(0, 5);
 
       const excludedStandards = scopedStandards
-        .filter((standard) => standard.scopeFit === "mismatch")
+        .filter((standard) =>
+          standard.scopeFit === "mismatch" ||
+          standard.candidateStatus === "needs_more_evidence"
+        )
         .map((standard) => ({
           ...standard,
           exclusionReason:
+            standard.evidenceExclusionReason ||
             standard.scopeExclusionReason ||
-            "Excluded by selected regulatory scope.",
+            "Candidate lacks sufficient evidence fit for active suggestion.",
         }));
+
+      const needsMoreEvidenceStandards = excludedStandards.filter(
+        (standard) => standard.candidateStatus === "needs_more_evidence",
+      );
 
       // Generate corrective actions using the action engine
       const actionInput: any = {
@@ -739,6 +750,7 @@ export class SafescopeV2Service {
           suggestedStandards,
           standardsMatchExplanations,
           excludedStandards,
+          needsMoreEvidenceStandards,
           ...(debugMetadata ? { debugMetadata: diagnostics } : {}),
           standardsTraceability,
           knowledgeRoute: {
