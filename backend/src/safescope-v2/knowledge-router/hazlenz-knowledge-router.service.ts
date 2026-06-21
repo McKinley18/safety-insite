@@ -142,6 +142,11 @@ export class HazLenzKnowledgeRouterService {
       return "conveyors";
     }
 
+    if (/\b(oxygen|acetylene|argon|propane|compressed gas|gas) cylinder\b|\bcylinder (?:valve|cap|restraint|storage|cart)\b/i.test(text)) {
+      reasons.push("hazard family: compressed-gas cylinder signal");
+      return "compressed_gas";
+    }
+
     if (/\belectrical|breaker|panel|energized|voltage|open slot|cover plate|exposed wire|arc flash\b/i.test(text)) {
       reasons.push("hazard family: electrical signal");
       return "electrical";
@@ -191,6 +196,11 @@ export class HazLenzKnowledgeRouterService {
       return "electrical_panel";
     }
 
+    if (hazardFamily === "compressed_gas" || /\b(?:compressed gas|oxygen|acetylene|argon|propane) cylinder\b/i.test(text)) {
+      reasons.push("equipment family: gas cylinder");
+      return "gas_cylinder";
+    }
+
     if (/\bforklift|loader|haul truck|truck|vehicle|mobile equipment\b/i.test(text)) {
       reasons.push("equipment family: mobile equipment");
       return "mobile_equipment";
@@ -220,6 +230,13 @@ export class HazLenzKnowledgeRouterService {
     equipmentFamily: EquipmentFamily,
     reasons: string[],
   ): TaskMechanism {
+    if (
+      hazardFamily === "compressed_gas" &&
+      /\b(unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic)\b/i.test(text)
+    ) {
+      reasons.push("task mechanism: compressed-gas cylinder storage/handling");
+      return "compressed_gas_storage";
+    }
     if (/\bguard|unguarded|missing guard|exposed|nip point|pinch point\b/i.test(text)) {
       reasons.push("task mechanism: guarding");
       return "guarding";
@@ -265,6 +282,7 @@ export class HazLenzKnowledgeRouterService {
     if (hazardFamily === "fall_protection") return "fall_from_height";
     if (hazardFamily === "chemical_exposure") return "chemical_exposure";
     if (hazardFamily === "lockout_tagout") return "energy_isolation";
+    if (hazardFamily === "compressed_gas") return "compressed_gas_storage";
 
     reasons.push("task mechanism: unknown");
     return "unknown";

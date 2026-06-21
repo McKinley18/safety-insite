@@ -32,6 +32,35 @@ export const HAZLENZ_KNOWLEDGE_SHARDS: HazLenzKnowledgeShardRecord[] = [
     approvedOnly: true,
   },
   {
+    shardKey: "osha_general_industry/compressed_gas/gas_cylinder/compressed_gas_storage",
+    bundleId: "bundle-osha-compressed-gas-cylinders",
+    sourceKeys: ["osha-1910-101"],
+    citations: ["29 CFR 1910.101"],
+    title: "OSHA general industry compressed-gas cylinder handling and storage",
+    summary:
+      "Focused shard for portable compressed-gas cylinders with missing restraint, valve protection, identification, impact protection, or compatible storage controls.",
+    applicability: [
+      "A portable compressed-gas cylinder is identified",
+      "The cylinder is unsecured, improperly stored, exposed to impact, or missing valve protection",
+      "General industry scope is selected or established",
+    ],
+    evidenceNeeded: [
+      "Identify the cylinder contents and service status",
+      "Confirm upright restraint by chain, strap, rack, or cart",
+      "Confirm valve protection and cap status when not connected for use",
+      "Confirm storage compatibility, ignition exposure, and pedestrian or vehicle impact exposure",
+    ],
+    correctiveActionPatterns: [
+      "Secure the cylinder upright with an approved chain, strap, rack, or cart",
+      "Protect the valve and install the valve cap when the cylinder is not connected for use",
+      "Move the cylinder to a designated storage area protected from impact and pedestrian traffic",
+      "Verify cylinder identity and storage compatibility before returning it to service",
+      "Have a qualified person confirm applicable cylinder-storage requirements",
+    ],
+    authorityTier: "primary_regulation",
+    approvedOnly: true,
+  },
+  {
     shardKey: "osha_general_industry/electrical/electrical_panel/electrical_contact",
     bundleId: "bundle-osha-electrical-panel",
     sourceKeys: ["osha-1910-303"],
@@ -79,6 +108,8 @@ export const HAZLENZ_KNOWLEDGE_SHARDS: HazLenzKnowledgeShardRecord[] = [
       "Document potential employee exposure route",
     ],
     correctiveActionPatterns: [
+      "Remove an unknown or unlabeled container from active use until its contents are identified",
+      "Identify the container contents and hazards before assigning label information",
       "Label the container with required hazard information",
       "Verify SDS availability",
       "Train affected employees on chemical hazards and protective measures",

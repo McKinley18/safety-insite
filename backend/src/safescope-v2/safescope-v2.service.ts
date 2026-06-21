@@ -402,10 +402,26 @@ export class SafescopeV2Service {
       const productionRuntime = process.env.NODE_ENV === "production";
       const fullRenderIntelligenceDisabled =
         process.env.HAZLENZ_DISABLE_FULL_INTELLIGENCE_ON_RENDER === "true";
+      const configuredRenderHeapLimitMb = Number(
+        process.env.HAZLENZ_MAX_HEAP_BEFORE_FULL_INTELLIGENCE_MB || 420,
+      );
+      const renderHeapGuardTriggered =
+        productionRuntime &&
+        renderRuntime &&
+        Number.isFinite(configuredRenderHeapLimitMb) &&
+        configuredRenderHeapLimitMb > 0 &&
+        memoryBefore.heapUsedMb >= configuredRenderHeapLimitMb;
 
-      if (productionRuntime && renderRuntime && fullRenderIntelligenceDisabled) {
+      if (
+        productionRuntime &&
+        renderRuntime &&
+        (fullRenderIntelligenceDisabled || renderHeapGuardTriggered)
+      ) {
         if (process.env.NODE_ENV === "development" || debugMetadata) {
-          console.warn("[HazLenz classify] skipping full intelligence orchestrator on Render production because HAZLENZ_DISABLE_FULL_INTELLIGENCE_ON_RENDER=true", {
+          console.warn("[HazLenz classify] skipping full intelligence orchestrator on Render production", {
+            reason: renderHeapGuardTriggered
+              ? "pre_import_heap_guard"
+              : "runtime_configuration",
             textLength: fusedText.length,
             standards: suggestedStandards.length,
             actions: Array.isArray(generatedActions) ? generatedActions.length : 0,
@@ -414,7 +430,9 @@ export class SafescopeV2Service {
         }
 
         intelligence = buildDegradedHazLenzIntelligence(
-          "HazLenz AI advanced review was disabled by runtime configuration. Core classification, risk, standards candidates, and corrective actions were still generated.",
+          renderHeapGuardTriggered
+            ? `HazLenz AI advanced review was skipped because heap usage reached the configured ${configuredRenderHeapLimitMb} MB pre-import guard. Core classification, risk, standards candidates, and corrective actions were still generated.`
+            : "HazLenz AI advanced review was disabled by runtime configuration. Core classification, risk, standards candidates, and corrective actions were still generated.",
           promotedPrimary?.classification
         );
       } else {
@@ -474,6 +492,13 @@ export class SafescopeV2Service {
 
       if (debugMetadata) {
         diagnostics.memoryAfterClassify = memorySnapshot();
+        diagnostics.fullIntelligenceMemoryGuard = {
+          renderRuntime,
+          productionRuntime,
+          configuredHeapLimitMb: configuredRenderHeapLimitMb,
+          heapUsedBeforeClassifyMb: memoryBefore.heapUsedMb,
+          triggered: renderHeapGuardTriggered,
+        };
       }
 
       const enhancedGeneratedActions = this.buildEnhancedGeneratedActions(

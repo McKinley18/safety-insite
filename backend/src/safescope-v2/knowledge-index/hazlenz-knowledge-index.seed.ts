@@ -22,6 +22,16 @@ export const KNOWLEDGE_MANIFEST: KnowledgeEntry[] = [
     tier: 'pro'
   },
   {
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'compressed_gas',
+    equipmentFamily: 'gas_cylinder',
+    taskMechanism: 'compressed_gas_storage',
+    bundleIds: ['bundle-osha-compressed-gas-cylinders'],
+    sourceKeys: ['osha-1910-101'],
+    approvedOnly: true,
+    tier: 'pro'
+  },
+  {
     jurisdiction: 'unclear',
     hazardFamily: 'mobile_equipment',
     equipmentFamily: 'mobile_equipment',

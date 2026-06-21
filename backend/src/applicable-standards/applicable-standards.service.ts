@@ -111,6 +111,20 @@ export class ApplicableStandardsService {
       hazardDomainFit = hasCylinderObject;
       mechanismFit = hasCylinderMechanism;
       requiredEvidencePresent = hasCylinderObject && hasCylinderMechanism;
+      if (/1910\.25[23]/i.test(citation)) {
+        const hasWeldingFuelGasContext = /\b(weld(?:ing)?|cutting|brazing|torch|fuel gas|acetylene)\b/i.test(text);
+        requiredEvidencePresent = requiredEvidencePresent && hasWeldingFuelGasContext;
+        if (!hasWeldingFuelGasContext) {
+          reasons.push("Welding, cutting, brazing, or fuel-gas use needed for this citation is not established.");
+        }
+      }
+      if (/1910\.104/i.test(citation)) {
+        const hasOxygenSystemContext = /\b(oxygen system|bulk oxygen|oxygen manifold|oxygen piping|oxygen storage system)\b/i.test(text);
+        requiredEvidencePresent = requiredEvidencePresent && hasOxygenSystemContext;
+        if (!hasOxygenSystemContext) {
+          reasons.push("An oxygen-system configuration needed for this citation is not established.");
+        }
+      }
     } else if (walkingFamily) {
       standardFamily = "walking_working_surfaces";
       hazardDomainFit = hasWalkingObject && hasWalkingMechanism;
@@ -1082,8 +1096,28 @@ export class ApplicableStandardsService {
 
     const isForkliftSeatbelt =
       /(forklift|seatbelt|industrial truck|pit|operator)/i.test(observation);
+    const isCompressedGasCylinderStorage =
+      /\b(?:oxygen|acetylene|argon|propane|compressed gas|gas) cylinder\b/i.test(observation) &&
+      /\b(?:unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic)\b/i.test(observation);
     const codeFallbackStandards =
-      this.isHousekeepingAccessScenario(observation) && activeJurisdiction === "msha"
+      isCompressedGasCylinderStorage && activeJurisdiction === "osha_general_industry"
+        ? [
+            {
+              id: "fallback-1910-101",
+              citation: "1910.101",
+              heading: "Compressed gases (general requirements)",
+              summary:
+                "General industry requirements for inspection and safe handling of compressed-gas cylinders.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "general_industry" as const,
+              score: 115,
+              confidence: 95,
+              matchingReasons: [
+                "fallback: explicit compressed-gas cylinder storage/handling evidence",
+              ],
+            },
+          ]
+        : this.isHousekeepingAccessScenario(observation) && activeJurisdiction === "msha"
         ? [
             {
               id: "fallback-30-cfr-56-20003",

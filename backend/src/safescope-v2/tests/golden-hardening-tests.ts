@@ -16,6 +16,7 @@ import { HazLenzKnowledgeRouterService } from '../knowledge-router/hazlenz-knowl
 import { HazLenzKnowledgeShardService } from '../knowledge-shards/hazlenz-knowledge-shard.service';
 import { HazLenzKnowledgeIndexService } from '../knowledge-index/hazlenz-knowledge-index.service';
 import { SafescopeV2Service } from '../safescope-v2.service';
+import { resolveCanonicalHazardFamily } from '../taxonomy/canonical-taxonomy-aliases';
 
 // Force degraded mode for deterministic offline testing
 process.env.RENDER = 'true';
@@ -63,6 +64,7 @@ type ScenarioTest = {
   expectedStandardFamily?: string;
   unexpectedStandardFamily?: string;
   unexpectedActiveStandardFamilies?: string[];
+  expectedActionKeywordGroups?: string[][];
 };
 
 const scenarios: ScenarioTest[] = [
@@ -83,6 +85,7 @@ const scenarios: ScenarioTest[] = [
     expectedRiskBand: "Critical",
     expectedCitations: ["1910.303"],
     unexpectedActiveStandardFamilies: ["compressed_gas_cylinders", "hazcom", "walking_working_surfaces", "personal_protective_equipment"],
+    expectedActionKeywordGroups: [["restrict access", "keep personnel clear"], ["cover", "filler", "blank"], ["qualified electrical", "qualified person"]],
     evidenceGapKeyword: "panel",
   },
   {
@@ -140,6 +143,7 @@ const scenarios: ScenarioTest[] = [
     expectedCitations: ["1910.1200"],
     unexpectedCitations: ["1910.253", "1910.101"],
     unexpectedActiveStandardFamilies: ["compressed_gas_cylinders", "walking_working_surfaces"],
+    expectedActionKeywordGroups: [["identify"], ["label"], ["sds"]],
     evidenceGapKeyword: "substance",
   },
   {
@@ -168,12 +172,14 @@ const scenarios: ScenarioTest[] = [
     scopes: ["osha_general"],
     expectedClassification: "Compressed Gas Cylinders",
     expectedRiskBand: "High",
-    expectedCitations: ["1910.104"],
+    expectedCitations: ["1910.101"],
+    unexpectedCitations: ["1910.104", "1910.253"],
     evidenceGapKeyword: "cylinder",
     expectedHazardDomain: "compressed_gas",
     unexpectedHazardDomain: "slip_trip_fall",
     unexpectedStandardFamily: "walking_working_surfaces",
     unexpectedActiveStandardFamilies: ["walking_working_surfaces", "hazcom", "electrical"],
+    expectedActionKeywordGroups: [["secure", "restraint"], ["upright"], ["valve", "cap"], ["traffic", "storage area"]],
   },
   {
     name: "12. Precision Scenario E: Compressed gas cylinder missing valve protection cap.",
@@ -205,6 +211,7 @@ const scenarios: ScenarioTest[] = [
     unexpectedHazardDomain: "compressed_gas",
     unexpectedStandardFamily: "compressed_gas_cylinders",
     unexpectedActiveStandardFamilies: ["compressed_gas_cylinders", "hazcom", "electrical"],
+    expectedActionKeywordGroups: [["clean", "absorbent"], ["barricade", "mark the affected"], ["leak", "release source"]],
   },
   {
     name: "15. Test C: Compressed gas cylinder stored in a pedestrian walkway.",
@@ -233,6 +240,18 @@ const scenarios: ScenarioTest[] = [
 ];
 
 async function run() {
+  const taxonomyAliases: Array<[string, string]> = [
+    ['Compressed Gas Cylinders', 'compressed_gas'],
+    ['Hazard Communication', 'hazard_communication'],
+    ['Walking/Working Surfaces', 'walking_working_surfaces'],
+    ['Lockout / Stored Energy', 'lockout_tagout'],
+  ];
+  for (const [alias, canonical] of taxonomyAliases) {
+    if (resolveCanonicalHazardFamily(alias) !== canonical) {
+      throw new Error(`Taxonomy alias "${alias}" did not resolve to "${canonical}".`);
+    }
+  }
+
   console.log("Initializing database connection...");
   await ds.initialize();
 
@@ -350,6 +369,12 @@ async function run() {
       if (!response.generatedActions || response.generatedActions.length === 0) {
         throw new Error(`Suggested actions list is empty.`);
       }
+      const actionText = JSON.stringify(response.generatedActions).toLowerCase();
+      for (const keywordGroup of test.expectedActionKeywordGroups || []) {
+        if (!keywordGroup.some((keyword) => actionText.includes(keyword.toLowerCase()))) {
+          throw new Error(`Corrective actions missing one of [${keywordGroup.join(", ")}]. Actions: ${actionText}`);
+        }
+      }
       console.log(`  [PASS] Suggested actions generated: ${response.generatedActions.length} actions.`);
 
       // 7. Hazard Domain assertion
@@ -392,6 +417,37 @@ async function run() {
       console.error(`❌ Failed: ${test.name}`);
       console.error(`   Error details: ${err.message || err}\n`);
       failed++;
+    }
+  }
+
+  const previousHeapLimit = process.env.HAZLENZ_MAX_HEAP_BEFORE_FULL_INTELLIGENCE_MB;
+  try {
+    process.env.HAZLENZ_MAX_HEAP_BEFORE_FULL_INTELLIGENCE_MB = '1';
+    const guardedResponse = await service.classify(
+      'A container has no label.',
+      ['osha_general'],
+      undefined,
+      'standard_5x5',
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      true,
+    );
+    if (guardedResponse.debugMetadata?.fullIntelligenceMemoryGuard?.triggered !== true) {
+      throw new Error('Expected the Render full-intelligence heap guard to trigger.');
+    }
+    passed += 1;
+    console.log('✅ Render full-intelligence heap guard diagnostics');
+  } catch (err: any) {
+    failed += 1;
+    console.error('❌ Render full-intelligence heap guard diagnostics');
+    console.error(`   Error details: ${err.message || err}\n`);
+  } finally {
+    if (previousHeapLimit === undefined) {
+      delete process.env.HAZLENZ_MAX_HEAP_BEFORE_FULL_INTELLIGENCE_MB;
+    } else {
+      process.env.HAZLENZ_MAX_HEAP_BEFORE_FULL_INTELLIGENCE_MB = previousHeapLimit;
     }
   }
 
