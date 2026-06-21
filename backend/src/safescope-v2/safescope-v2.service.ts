@@ -676,9 +676,66 @@ export class SafescopeV2Service {
         (intelligence as any)?.observationUnderstanding
       );
 
+      // Determine root-level hazardCategory (primary hazard domain)
+      const rootHazardCategory = (() => {
+        if (intelligence?.scenarioIntelligence?.hazardCategory && intelligence.scenarioIntelligence.hazardCategory !== 'unknown') {
+          return intelligence.scenarioIntelligence.hazardCategory;
+        }
+        // Map from classification
+        const classification = promotedPrimary.classification || '';
+        const nameLower = classification.toLowerCase();
+        if (nameLower.includes('compressed gas') || nameLower.includes('cylinder') || fusedText.includes('cylinder') || fusedText.includes('compressed gas') || fusedText.includes('oxygen')) {
+          return 'compressed_gas';
+        }
+        if (nameLower.includes('electrical')) {
+          return 'electrical';
+        }
+        if (nameLower.includes('guarding') || nameLower.includes('machine')) {
+          return 'machine_guarding';
+        }
+        if (nameLower.includes('loto') || nameLower.includes('lockout')) {
+          return 'machine_guarding_loto';
+        }
+        if (nameLower.includes('fall')) {
+          return 'fall_protection';
+        }
+        if (nameLower.includes('housekeeping') || nameLower.includes('slip') || nameLower.includes('trip') || nameLower.includes('working surfaces')) {
+          return 'slip_trip_fall';
+        }
+        if (nameLower.includes('mobile') || nameLower.includes('traffic')) {
+          return 'mobile_equipment';
+        }
+        if (nameLower.includes('confined')) {
+          return 'confined_space';
+        }
+        if (nameLower.includes('materials') || nameLower.includes('communication') || nameLower.includes('hazcom')) {
+          return 'hazardous_materials';
+        }
+        return promotedPrimary.family || 'unknown';
+      })();
+
+      // Determine root-level candidateStandardFamily
+      const rootStandardFamily = (() => {
+        if (intelligence?.scenarioIntelligence?.candidateStandardFamily && intelligence.scenarioIntelligence.candidateStandardFamily !== 'unknown') {
+          return intelligence.scenarioIntelligence.candidateStandardFamily;
+        }
+        if (rootHazardCategory === 'compressed_gas') return 'compressed_gas_cylinders';
+        if (rootHazardCategory === 'electrical') return 'electrical';
+        if (rootHazardCategory === 'machine_guarding') return 'machine_guarding';
+        if (rootHazardCategory === 'machine_guarding_loto') return 'machine_guarding_loto';
+        if (rootHazardCategory === 'fall_protection') return 'fall_protection';
+        if (rootHazardCategory === 'slip_trip_fall') return 'walking_working_surfaces';
+        if (rootHazardCategory === 'mobile_equipment') return 'mobile_equipment';
+        if (rootHazardCategory === 'confined_space') return 'confined_space';
+        if (rootHazardCategory === 'hazardous_materials') return 'hazcom';
+        return 'unknown';
+      })();
+
       return {
           ...promotedPrimary,
           ...intelligence,
+          hazardCategory: rootHazardCategory,
+          candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
           standardsMatchExplanations,
           excludedStandards,

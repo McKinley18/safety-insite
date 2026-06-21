@@ -631,6 +631,10 @@ export class ScenarioUnderstandingService {
     if (u.equipment.category === 'mobile_equipment') return;
     if (u.normalizedText.includes('floor hole') || u.normalizedText.includes('open floor hole')) return;
 
+    const hasCylinderOrSpecialHazard = /(cylinder|oxygen cylinder|gas cylinder|acetylene cylinder|compressed gas|electrical|live wire|live parts|breaker|conveyor|nip point|pinch point|guarding)/i.test(u.normalizedText);
+    const hasActualDefectOrTrip = /(spill|spilled|spilling|obstruction|obstructed|uneven|hole|guardrail|elevated platform|ladder|stairs|stairway|blocked|blocking|trip hazard|trip exposure|slip hazard|slip exposure|fall exposure|clutter|debris|aggregate|scattered|buildup|pile)/i.test(u.normalizedText);
+    if (hasCylinderOrSpecialHazard && !hasActualDefectOrTrip) return;
+
     const missingFacts = this.missing([
       ['walking/working surface condition', u.normalizedText.includes('floor') || u.normalizedText.includes('walkway') || u.normalizedText.includes('spill') || u.normalizedText.includes('spillage') || u.normalizedText.includes('leak') || u.normalizedText.includes('pooled') || u.normalizedText.includes('puddle') || u.normalizedText.replace(/soil/g, '').includes('oil') || u.normalizedText.includes('grease') || u.normalizedText.includes('fluid')],
       ['pedestrian exposure', u.exposure.workerExposed === true]

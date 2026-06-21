@@ -58,6 +58,10 @@ type ScenarioTest = {
   expectedCitations: string[];
   unexpectedCitations?: string[];
   evidenceGapKeyword: string;
+  expectedHazardDomain?: string;
+  unexpectedHazardDomain?: string;
+  expectedStandardFamily?: string;
+  unexpectedStandardFamily?: string;
 };
 
 const scenarios: ScenarioTest[] = [
@@ -163,6 +167,9 @@ const scenarios: ScenarioTest[] = [
     expectedRiskBand: "High",
     expectedCitations: ["1910.104"],
     evidenceGapKeyword: "cylinder",
+    expectedHazardDomain: "compressed_gas",
+    unexpectedHazardDomain: "slip_trip_fall",
+    unexpectedStandardFamily: "walking_working_surfaces",
   },
   {
     name: "12. Precision Scenario E: Compressed gas cylinder missing valve protection cap.",
@@ -182,6 +189,40 @@ const scenarios: ScenarioTest[] = [
     expectedCitations: ["1910.1200"],
     unexpectedCitations: ["1910.253", "1910.101"],
     evidenceGapKeyword: "substance",
+  },
+  {
+    name: "14. Test B: Oil spilled across the walkway.",
+    text: "Oil spilled across the walkway.",
+    scopes: ["osha_general"],
+    expectedClassification: "Walking/Working Surfaces",
+    expectedRiskBand: "Moderate",
+    expectedCitations: ["1910.22"],
+    evidenceGapKeyword: "walkway",
+    unexpectedHazardDomain: "compressed_gas",
+    unexpectedStandardFamily: "compressed_gas_cylinders",
+  },
+  {
+    name: "15. Test C: Compressed gas cylinder stored in a pedestrian walkway.",
+    text: "Compressed gas cylinder stored in a pedestrian walkway.",
+    scopes: ["osha_general"],
+    expectedClassification: "Compressed Gas Cylinders",
+    expectedRiskBand: "High",
+    expectedCitations: ["1910.101"],
+    evidenceGapKeyword: "cylinder",
+    expectedHazardDomain: "compressed_gas",
+    unexpectedHazardDomain: "slip_trip_fall",
+    unexpectedStandardFamily: "walking_working_surfaces",
+  },
+  {
+    name: "16. Test D: Extension cord stretched across walkway creating a trip hazard.",
+    text: "Extension cord stretched across walkway creating a trip hazard.",
+    scopes: ["osha_general"],
+    expectedClassification: "Walking/Working Surfaces",
+    expectedRiskBand: "Moderate",
+    expectedCitations: ["1910.22"],
+    evidenceGapKeyword: "walkway",
+    unexpectedHazardDomain: "compressed_gas",
+    unexpectedStandardFamily: "compressed_gas_cylinders",
   },
 ];
 
@@ -297,6 +338,40 @@ async function run() {
         throw new Error(`Suggested actions list is empty.`);
       }
       console.log(`  [PASS] Suggested actions generated: ${response.generatedActions.length} actions.`);
+
+      // 7. Hazard Domain assertion
+      if (test.expectedHazardDomain) {
+        const actualDomain = response.hazardCategory || response.scenarioIntelligence?.hazardCategory || response.riskReasoning?.hazardDomain;
+        if (actualDomain !== test.expectedHazardDomain) {
+          throw new Error(`Expected hazard domain: "${test.expectedHazardDomain}", got: "${actualDomain}"`);
+        }
+        console.log(`  [PASS] Hazard Domain: ${actualDomain}`);
+      }
+
+      if (test.unexpectedHazardDomain) {
+        const actualDomain = response.hazardCategory || response.scenarioIntelligence?.hazardCategory || response.riskReasoning?.hazardDomain;
+        if (actualDomain === test.unexpectedHazardDomain) {
+          throw new Error(`Unexpected hazard domain: "${test.unexpectedHazardDomain}" was returned!`);
+        }
+        console.log(`  [PASS] Unexpected Hazard Domain "${test.unexpectedHazardDomain}" not present`);
+      }
+
+      // 8. Standard Family assertion
+      if (test.expectedStandardFamily) {
+        const actualFamily = response.candidateStandardFamily || response.scenarioIntelligence?.candidateStandardFamily;
+        if (actualFamily !== test.expectedStandardFamily) {
+          throw new Error(`Expected standard family: "${test.expectedStandardFamily}", got: "${actualFamily}"`);
+        }
+        console.log(`  [PASS] Standard Family: ${actualFamily}`);
+      }
+
+      if (test.unexpectedStandardFamily) {
+        const actualFamily = response.candidateStandardFamily || response.scenarioIntelligence?.candidateStandardFamily;
+        if (actualFamily === test.unexpectedStandardFamily) {
+          throw new Error(`Unexpected standard family: "${test.unexpectedStandardFamily}" was returned!`);
+        }
+        console.log(`  [PASS] Unexpected Standard Family "${test.unexpectedStandardFamily}" not present`);
+      }
 
       console.log(`✅ Success for: ${test.name}\n`);
       passed++;

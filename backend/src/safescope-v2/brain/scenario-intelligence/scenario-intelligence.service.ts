@@ -13,6 +13,53 @@ export class ScenarioIntelligenceService {
   }): ScenarioIntelligence {
     const text = input.text.toLowerCase();
 
+    const classificationName = typeof input.classification === 'string'
+      ? input.classification
+      : input.classification?.classification || '';
+
+    let inferredHazard = 'unknown';
+    let inferredMechanism = 'unknown';
+    let inferredStandardFamily = 'unknown';
+
+    const nameLower = classificationName.toLowerCase();
+    if (nameLower.includes('compressed gas') || nameLower.includes('cylinder') || text.includes('cylinder') || text.includes('compressed gas') || text.includes('oxygen')) {
+      inferredHazard = 'compressed_gas';
+      inferredMechanism = 'compressed_gas_release_or_rupture';
+      inferredStandardFamily = 'compressed_gas_cylinders';
+    } else if (nameLower.includes('electrical')) {
+      inferredHazard = 'electrical';
+      inferredMechanism = 'electrical_shock';
+      inferredStandardFamily = 'electrical';
+    } else if (nameLower.includes('guarding') || nameLower.includes('machine')) {
+      inferredHazard = 'machine_guarding';
+      inferredMechanism = 'rotating_equipment_nip_point';
+      inferredStandardFamily = 'machine_guarding';
+    } else if (nameLower.includes('loto') || nameLower.includes('lockout')) {
+      inferredHazard = 'machine_guarding_loto';
+      inferredMechanism = 'unexpected_startup';
+      inferredStandardFamily = 'machine_guarding_loto';
+    } else if (nameLower.includes('fall')) {
+      inferredHazard = 'fall_protection';
+      inferredMechanism = 'fall_from_height';
+      inferredStandardFamily = 'fall_protection';
+    } else if (nameLower.includes('housekeeping') || nameLower.includes('slip') || nameLower.includes('trip') || nameLower.includes('working surfaces')) {
+      inferredHazard = 'slip_trip_fall';
+      inferredMechanism = 'slip_trip_fall_same_level';
+      inferredStandardFamily = 'walking_working_surfaces';
+    } else if (nameLower.includes('mobile') || nameLower.includes('traffic')) {
+      inferredHazard = 'mobile_equipment';
+      inferredMechanism = 'struck_by_mobile_equipment';
+      inferredStandardFamily = 'mobile_equipment';
+    } else if (nameLower.includes('confined')) {
+      inferredHazard = 'confined_space';
+      inferredMechanism = 'asphyxiation';
+      inferredStandardFamily = 'confined_space';
+    } else if (nameLower.includes('materials') || nameLower.includes('communication') || nameLower.includes('hazcom')) {
+      inferredHazard = 'hazardous_materials';
+      inferredMechanism = 'chemical_exposure';
+      inferredStandardFamily = 'hazcom';
+    }
+
     // Prefer highly specific precision scenarios before generic first-match routing.
     const priorityScenarioId = (() => {
       const hasCleanupIntent =
@@ -261,12 +308,21 @@ export class ScenarioIntelligenceService {
       ? SCENARIO_FAMILY_REGISTRY.find(family => family.id === priorityScenarioId)
       : undefined;
 
-    // Find best matching scenario family using the existing conservative first-match behavior.
     const matchedFamily = priorityFamily ?? SCENARIO_FAMILY_REGISTRY.find(family => {
       const phraseOrEquipMatch = family.commonObservationPhrases.some(phrase => text.includes(phrase)) ||
                                family.equipmentIndicators.some(indicator => text.includes(indicator));
       
       if (!phraseOrEquipMatch) return false;
+
+      // Precision Guard: A slip/trip/fall family should not be matched if the observation is actually about another primary hazard
+      // and only mentions "walkway/floor/travelway" as exposure/proximity context, unless an actual defect/trip condition is present.
+      if (family.domain === 'slip_trip_fall' || family.id === 'housekeeping_slip_trip') {
+        const hasCylinderOrSpecialHazard = /(cylinder|oxygen cylinder|gas cylinder|acetylene cylinder|compressed gas|electrical|live wire|live parts|breaker|conveyor|nip point|pinch point|guarding)/i.test(text);
+        const hasActualDefectOrTrip = /(spill|spilled|spilling|obstruction|obstructed|uneven|hole|guardrail|elevated platform|ladder|stairs|stairway|blocked|blocking|trip hazard|trip exposure|slip hazard|slip exposure|fall exposure|clutter|debris|aggregate|scattered|buildup|pile)/i.test(text);
+        if (hasCylinderOrSpecialHazard && !hasActualDefectOrTrip) {
+          return false;
+        }
+      }
       
       if (family.taskIndicators.length > 0) {
         const hasTaskIndicator = family.taskIndicators.some(t => text.includes(t));
@@ -311,12 +367,12 @@ export class ScenarioIntelligenceService {
       unsafeCondition: 'unknown',
       operationalState: 'unknown',
       energySource: 'unknown',
-      mechanismOfInjury: input.classification?.mechanism || 'unknown',
+      mechanismOfInjury: inferredMechanism !== 'unknown' ? inferredMechanism : (input.classification?.mechanism || 'unknown'),
       exposedPersonActivity: 'unknown',
       missingOrFailedControls: input.operationalReasoning?.missingControls || [],
-      hazardCategory: input.classification?.hazard || 'unknown', // Added this
+      hazardCategory: inferredHazard !== 'unknown' ? inferredHazard : (input.classification?.hazard || 'unknown'),
       hierarchyLevel: 'unknown',
-      candidateStandardFamily: input.suggestedStandards?.[0]?.family || 'unknown',
+      candidateStandardFamily: inferredStandardFamily !== 'unknown' ? inferredStandardFamily : (input.suggestedStandards?.[0]?.family || 'unknown'),
       evidenceGaps: input.evidenceGaps || [],
       confidenceSignals: {
         score: input.confidence || 0,
