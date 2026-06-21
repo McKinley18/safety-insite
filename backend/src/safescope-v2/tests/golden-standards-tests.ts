@@ -90,12 +90,84 @@ async function run() {
 
   // Verify that cylinder standards are NOT matched for mechanical guarding hazards
   const mechanicalMatches = await service.suggest('tail pulley missing guard', undefined, 'OSHA_GENERAL_INDUSTRY', 5);
-  const matchedCylinder = mechanicalMatches.some(m => /1910\.253|1910\.101/i.test(m.citation));
+  const matchedCylinder = mechanicalMatches.some(m => /1910\.253|1910\.101/i.test(m.citation) && m.score > 0);
   if (matchedCylinder) {
     console.log(`❌ Fail: Mechanical hazard matched a cylinder/oxygen standard! Matches: ${mechanicalMatches.map(m => m.citation).join(', ')}`);
     failed += 1;
   } else {
     console.log(`✅ Success: Mechanical hazard does not match cylinder/oxygen standards.`);
+  }
+
+  // Precision Upgrade Regression Scenarios:
+  const precisionScenarios = [
+    {
+      name: 'Scenario A: A container has no label.',
+      text: 'A container has no label.',
+      source: 'OSHA_GENERAL_INDUSTRY',
+      shouldMatchCylinder: false,
+    },
+    {
+      name: 'Scenario B: Unlabeled spray bottle found in the maintenance shop.',
+      text: 'Unlabeled spray bottle found in the maintenance shop.',
+      source: 'OSHA_GENERAL_INDUSTRY',
+      shouldMatchCylinder: false,
+    },
+    {
+      name: 'Scenario C: Used oil container has no label.',
+      text: 'Used oil container has no label.',
+      source: 'OSHA_GENERAL_INDUSTRY',
+      shouldMatchCylinder: false,
+    },
+    {
+      name: 'Scenario D: Oxygen cylinder stored unsecured near a walkway.',
+      text: 'Oxygen cylinder stored unsecured near a walkway.',
+      source: 'OSHA_GENERAL_INDUSTRY',
+      shouldMatchCylinder: true,
+    },
+    {
+      name: 'Scenario E: Compressed gas cylinder missing valve protection cap.',
+      text: 'Compressed gas cylinder missing valve protection cap.',
+      source: 'OSHA_GENERAL_INDUSTRY',
+      shouldMatchCylinder: true,
+    },
+    {
+      name: 'Scenario F: Tank has no label.',
+      text: 'Tank has no label.',
+      source: 'OSHA_GENERAL_INDUSTRY',
+      shouldMatchCylinder: false,
+    },
+  ];
+
+  for (const scen of precisionScenarios) {
+    const matches = await service.suggest(scen.text, undefined, scen.source, 5);
+    const cylinderPattern = /1910\.253|1910\.252|1910\.101|1926\.350|56\.16005|56\.16006|57\.16005|57\.16006/i;
+    const hasCylinderMatch = matches.some(m => cylinderPattern.test(m.citation) && m.score > 0);
+
+    if (scen.shouldMatchCylinder) {
+      if (hasCylinderMatch) {
+        passed += 1;
+        console.log(`✅ ${scen.name}`);
+      } else {
+        failed += 1;
+        console.log(`❌ ${scen.name} (Expected a cylinder standard, but none matched with positive score. Got: ${matches.map(m => m.citation + ' (' + m.score + ')').join(', ')})`);
+      }
+    } else {
+      if (!hasCylinderMatch) {
+        passed += 1;
+        console.log(`✅ ${scen.name}`);
+        const excludedCylinderMatch = matches.find(m => cylinderPattern.test(m.citation) && m.scopeFit === 'mismatch');
+        if (excludedCylinderMatch) {
+          if (excludedCylinderMatch.scopeExclusionReason === "Compressed gas / oxygen cylinder storage evidence not present.") {
+            console.log(`   (Confirmed exclusion reason: "${excludedCylinderMatch.scopeExclusionReason}")`);
+          } else {
+            console.log(`   ⚠️ Warning: Cylinder standard was excluded, but reason was incorrect: "${excludedCylinderMatch.scopeExclusionReason}"`);
+          }
+        }
+      } else {
+        failed += 1;
+        console.log(`❌ ${scen.name} (Expected NO cylinder standards, but found matching citations with positive score: ${matches.filter(m => cylinderPattern.test(m.citation) && m.score > 0).map(m => m.citation).join(', ')})`);
+      }
+    }
   }
 
   console.log('');

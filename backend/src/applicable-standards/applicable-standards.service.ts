@@ -433,10 +433,14 @@ export class ApplicableStandardsService {
     // 13. Compressed Gas / Cylinder / Oxygen standard vs Machine Guarding
     // Guardrail: Compressed gas and cylinder standards require explicit cylinder/gas terms and should be disqualified/penalized if purely mechanical/machine guarding terms are present without any cylinder terms.
     const isCylinderCitation = /1910\.253|1910\.252|1910\.101|1926\.350|56\.16005|56\.16006|57\.16005|57\.16006/i.test(citation);
+    let scopeFit = "neutral";
+    let scopeExclusionReason: string | undefined = undefined;
     if (isCylinderCitation) {
-      const hasCylinderTerms = /(cylinder|oxygen|acetylene|gas tank|compressed gas|welding cylinder|manifold|valve cap)/i.test(observation);
+      const hasCylinderTerms = /(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(observation);
       if (!hasCylinderTerms) {
-        score -= 100;
+        score = -500;
+        scopeFit = "mismatch";
+        scopeExclusionReason = "Compressed gas / oxygen cylinder storage evidence not present.";
         matchingReasons.push("guardrail: cylinder standard requires explicit cylinder/gas terms");
       }
     }
@@ -452,6 +456,8 @@ export class ApplicableStandardsService {
       confidence: Math.min(99, Math.round(score)),
       matchingReasons,
       source: ["safescope_knowledge_chunks"],
+      scopeFit,
+      scopeExclusionReason,
     };
   }
 
@@ -742,9 +748,9 @@ export class ApplicableStandardsService {
               siteType,
               mshaPartPreference,
               routeHints,
-            ),
+            )
           )
-          .filter((item) => item.score > 0)
+          .filter((item) => item.score > 0 || item.scopeFit === "mismatch")
           .sort((a, b) => b.score - a.score);
       } catch (error: any) {
         console.error("Applicable standards knowledge query failed:", error);
@@ -1407,13 +1413,17 @@ export class ApplicableStandardsService {
           /1910\.253|1910\.252|1910\.101|1926\.350|56\.16005|56\.16006|57\.16005|57\.16006/i.test(
             citation,
           );
+        let scopeFit = "neutral";
+        let scopeExclusionReason: string | undefined = undefined;
         if (isCylinderCitation) {
           const hasCylinderTerms =
-            /(cylinder|oxygen|acetylene|gas tank|compressed gas|welding cylinder|manifold|valve cap)/i.test(
+            /(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(
               observation,
             );
           if (!hasCylinderTerms) {
-            score -= 100;
+            score = -500;
+            scopeFit = "mismatch";
+            scopeExclusionReason = "Compressed gas / oxygen cylinder storage evidence not present.";
             matchingReasons.push(
               "guardrail: cylinder standard requires explicit cylinder/gas terms",
             );
@@ -1430,9 +1440,11 @@ export class ApplicableStandardsService {
           score,
           confidence: Math.min(99, Math.round(score)),
           matchingReasons,
+          scopeFit,
+          scopeExclusionReason,
         };
       })
-      .filter((item) => item.score >= 10);
+      .filter((item) => item.score >= 10 || item.scopeFit === "mismatch");
 
     const finalLimit = limit > 5 ? limit : 10;
 

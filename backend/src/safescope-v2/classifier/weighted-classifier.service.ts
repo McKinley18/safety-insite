@@ -146,6 +146,24 @@ export class WeightedClassifierService {
         }
       }
 
+      // 6. Compressed Gas Cylinders Booster & Competitor Penalties
+      if (profile.id === "compressed_gas_cylinders") {
+        const hasCylinderSignals = /(cylinder|oxygen cylinder|gas cylinder|acetylene cylinder|compressed gas|cylinder cap|valve cap|valve protection|cylinder valve|manifold|unsecured cylinder|cylinder storage|fuel gas cylinder)/i.test(normalizedText);
+        if (hasCylinderSignals) {
+          score += 35; // Apply a strong boost to cylinder classification when cylinder terms are present
+        }
+      }
+
+      const hasCylinderSignalsForCompeting = /(cylinder|oxygen cylinder|gas cylinder|acetylene cylinder|compressed gas|cylinder cap|valve cap|valve protection|cylinder valve|manifold|unsecured cylinder|cylinder storage|fuel gas cylinder)/i.test(normalizedText);
+      if (hasCylinderSignalsForCompeting) {
+        if (profile.id === "material_handling") {
+          score -= 20;
+        }
+        if (profile.id === "walking_working_surfaces") {
+          score -= 20;
+        }
+      }
+
       // 5. A. MACHINE GUARDING OVER-TRIGGERING ON CATWALK/ACCESS/FALL/SCAFFOLD
       const hasAccessFallScaffoldTerms = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|safety harness|harness|perimeter side|unprotected edge|unprotected perimeter|lanyard|lifeline)/i.test(normalizedText);
       if (hasAccessFallScaffoldTerms) {

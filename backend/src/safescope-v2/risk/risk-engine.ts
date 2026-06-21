@@ -69,7 +69,7 @@ export function evaluateRisk(input: RiskInput): RiskResult {
   const reasoning: string[] = [];
 
   if (
-    ['Electrical', 'Fall', 'Fall Protection', 'Powered Mobile Equipment', 'Mobile Equipment / Traffic', 'Machine', 'Machine Guarding', 'Confined Space', 'Fire / Explosion', 'Lockout / Stored Energy', 'Emergency Egress'].includes(
+    ['Electrical', 'Fall', 'Fall Protection', 'Powered Mobile Equipment', 'Mobile Equipment / Traffic', 'Machine', 'Machine Guarding', 'Confined Space', 'Fire / Explosion', 'Lockout / Stored Energy', 'Emergency Egress', 'Compressed Gas Cylinders'].includes(
       classification,
     )
   ) {

@@ -933,10 +933,13 @@ export class SafeScopeReasoningOrchestratorService {
       return '29 CFR 1926.1153(c)(1)';
     }
 
-    if (
-      jurisdiction === 'osha_general_industry' &&
-      domain === 'hazardous_materials'
-    ) {
+    if (domain === 'hazardous_materials') {
+      if (jurisdiction === 'msha') {
+        return '30 CFR 47.41';
+      }
+      if (jurisdiction === 'osha_construction') {
+        return '29 CFR 1926.59';
+      }
       return '29 CFR 1910.1200(f)(1)';
     }
 
@@ -1061,13 +1064,6 @@ export class SafeScopeReasoningOrchestratorService {
       domain === 'health_respiratory'
     ) {
       return '29 CFR 1926.1153(c)(1)';
-    }
-
-    if (
-      jurisdiction === 'osha_general_industry' &&
-      domain === 'hazardous_materials'
-    ) {
-      return '29 CFR 1910.1200(f)(1)';
     }
 
     if (
@@ -1346,6 +1342,15 @@ export class SafeScopeReasoningOrchestratorService {
 
   private determineDomain(text: string): SafeScopeReasoningDomain {
     const normalizedText = normalized(text);
+
+    // Cylinder / Gas precision check: force generic unlabeled containers/tanks/bottles/buckets/jugs/unknown liquids to route to hazardous_materials (HazCom) and prevent incorrect routing to confined_space or compressed_gas.
+    const hasGenericContainerOrLabel = /(container|bottle|bucket|jug|tank|storage|label|unlabeled|no label|unknown liquid)/i.test(normalizedText);
+    const hasCylinderTerms = /(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(normalizedText);
+    const hasStrongCompetingDomains = /(electrical|conductor|wire|breaker|panel|guard|nip point|pinch point|conveyor|scaffold|fall protection|harness|lanyard|exit|egress|fire extinguisher|whipcheck|hydraulic|vocs|chemical vapors|solvent vapors|atmospheric contaminant|air contaminants|toxic gas|gas exposure|ergonomics|musculoskeletal|manual lifting|heavy lifting|lifting hazard|msd|silica|concrete dust|dust exposure|respiratory exposure|confined space|entry permit|entry controls|asphyxiation|oxygen deficiency|scaffold|scaffolding|base plate|mudsill|planking|ladder|escapeway|escape route|ventilation|airflow|methane|gas buildup|ventilation curtain|rib|loose rib|rib control|roof\/rib|roof fall)/i.test(normalizedText);
+
+    if (hasGenericContainerOrLabel && !hasCylinderTerms && !hasStrongCompetingDomains) {
+      return 'hazardous_materials';
+    }
 
     if (normalizedText.includes('scaffold') || normalizedText.includes('scaffolding')) {
       return 'scaffolds';
@@ -1908,6 +1913,17 @@ export class SafeScopeReasoningOrchestratorService {
       });
     }
 
+    const hasGenericContainerOrLabel = /(container|bottle|bucket|jug|tank|storage|label|unlabeled|no label|unknown liquid)/i.test(healthExposureText);
+    const hasCylinderTerms = /(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(healthExposureText);
+
+    if (hasGenericContainerOrLabel && !hasCylinderTerms) {
+      gaps.push({
+        field: 'chemicalContainerSubstanceFacts',
+        reason: 'Identification reviews require confirmation of what substance is stored inside the container/tank, whether it is a hazardous chemical, and whether a product name or hazard label is present.',
+        importance: 'high',
+      });
+    }
+
     const jurisdictionHoldReason = this.getJurisdictionHoldReason([
       request.hazardObservation,
       request.siteType,
@@ -2028,6 +2044,9 @@ export class SafeScopeReasoningOrchestratorService {
       if (gap.field === 'jurisdictionHoldFacts') {
         return 'Confirm jurisdiction before relying on standards: is the location on mine property, who controls the work area, are miners exposed, is the road public or private, is contractor work under mine-operator control, and is construction part of mining operations or a separate project?';
       }
+      if (gap.field === 'chemicalContainerSubstanceFacts') {
+        return 'What substance is inside the container or tank, and is it a chemical or secondary container?';
+      }
       return `Can the user provide more information for ${gap.field}?`;
     });
 
@@ -2077,6 +2096,11 @@ export class SafeScopeReasoningOrchestratorService {
       questions.push(
         'If visibility or load position is involved, what is the travel path, load height/position, spotter use, pedestrian interface, route control, and operating state?',
       );
+    }
+
+    if (domain === 'hazardous_materials') {
+      questions.push('What substance is inside the container or tank, and is it a chemical or secondary container?');
+      questions.push('Does the container have any label, product name, or hazard warnings present?');
     }
 
     return Array.from(new Set(questions));

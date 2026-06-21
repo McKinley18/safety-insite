@@ -200,58 +200,58 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
   const summary = buildSummary(props);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       <div>
         <p className="text-[8px] font-black uppercase tracking-[0.14em] text-[#1D72B8]">
           {summary.reviewed ? "HazLenz AI Finding" : "Finding Summary"}
         </p>
-        <p className="mt-1 text-xs font-semibold leading-5 text-slate-700">
+        <p className="mt-1.5 text-sm font-bold leading-6 text-slate-900 dark:text-slate-100">
           {summary.detectedConcern}
         </p>
       </div>
 
-      <div className="grid gap-1.5 text-[10px] font-semibold text-slate-600 sm:grid-cols-2">
-        <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+      <div className="grid gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200 sm:grid-cols-2">
+        <div className="rounded-xl bg-white px-3 py-3 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Why It Matters
           </p>
-          <p className="mt-0.5 line-clamp-2 text-slate-800">
+          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">
             {summary.whyItMatters}
           </p>
         </div>
 
-        <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+        <div className="rounded-xl bg-white px-3 py-3 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Likely Scope
           </p>
-          <p className="mt-0.5 truncate text-slate-800">{summary.likelyScope}</p>
+          <p className="mt-1 truncate text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">{summary.likelyScope}</p>
         </div>
 
-        <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100 sm:col-span-2">
-          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+        <div className="rounded-xl bg-white px-3 py-3 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800 sm:col-span-2">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Advisory Standard
           </p>
-          <p className="mt-0.5 line-clamp-2 text-slate-800">
+          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">
             {summary.standardFamily}
           </p>
         </div>
 
-        <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100 sm:col-span-2">
-          <p className="text-[9px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+        <div className="rounded-xl bg-white px-3 py-3 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800 sm:col-span-2">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Recommended Action
           </p>
-          <p className="mt-0.5 line-clamp-2 text-slate-800">
+          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">
             {summary.recommendedAction}
           </p>
         </div>
       </div>
 
       {summary.evidenceNeeded.length > 0 && (
-        <div className="rounded-lg bg-amber-50 px-2 py-1.5 ring-1 ring-amber-100">
+        <div className="rounded-xl bg-amber-50 px-3 py-3 ring-1 ring-amber-200 dark:bg-amber-950/30 dark:ring-amber-800">
           <p className="text-[8px] font-black uppercase tracking-wide text-amber-700">
             Evidence Still Needed
           </p>
-          <ul className="mt-1 space-y-0.5 text-[10px] font-semibold leading-4 text-amber-900">
+          <ul className="mt-2 space-y-1 text-sm font-bold leading-6 text-amber-950 dark:text-amber-100">
             {summary.evidenceNeeded.map((item) => (
               <li key={item}>• {item}</li>
             ))}
@@ -259,7 +259,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
         </div>
       )}
 
-      <p className="rounded-lg bg-blue-50 px-2 py-1.5 text-[10px] font-black text-blue-800 ring-1 ring-blue-100">
+      <p className="rounded-xl bg-blue-50 px-3 py-3 text-xs font-black leading-5 text-blue-900 ring-1 ring-blue-200 dark:bg-blue-950/30 dark:text-blue-100 dark:ring-blue-800">
         {summary.reviewStatus}
       </p>
     </div>

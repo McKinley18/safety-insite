@@ -308,9 +308,10 @@ export class SafescopeV2Service {
           classReason = "Assessed mobile machinery operation hazards, pedestrian interaction, and ground control/berm requirements.";
         } else if (lowerClass.includes("hazcom") || lowerClass.includes("chemical") || lowerClass.includes("label") || lowerClass.includes("hazard communication")) {
           evidenceGaps = [
-            "Verify if the container is properly labeled with identity, hazards, and GHS pictograms.",
-            "Confirm availability and location of the Safety Data Sheet (SDS) for this specific chemical.",
+            "Verify if the container is properly labeled with chemical identity, hazards, and GHS pictograms.",
+            "Confirm availability and location of the Safety Data Sheet (SDS) for this specific chemical substance.",
             "Check presence of eye wash station, chemical-resistant gloves, and proper secondary containment.",
+            "Confirm what substance is stored inside the container/tank, and whether it is a chemical or secondary container."
           ];
           classReason = "Assessed chemical safety risk, focusing on container labeling, hazard communication, and SDS availability.";
         } else if (lowerClass.includes("housekeeping") || lowerClass.includes("trip") || lowerClass.includes("clutter") || lowerClass.includes("walking") || lowerClass.includes("working") || lowerClass.includes("surfaces") || lowerClass.includes("slip")) {
@@ -947,57 +948,60 @@ export class SafescopeV2Service {
   applyStandardsScopeFit(standards: any[], scopes: string[]) {
     return standards.map(standard => {
       const citation = standard.citation || '';
-      let scopeFit = 'neutral';
-      let scopeFitAdjustment = 0;
+      let scopeFit = standard.scopeFit || 'neutral';
+      let scopeExclusionReason = standard.scopeExclusionReason;
+      let scopeFitAdjustment = scopeFit === 'mismatch' ? -500 : 0;
       const reasons = [...(standard.matchingReasons || [])];
 
-      if (scopes.includes('msha_mnm_surface')) {
-        if (citation.startsWith('30 CFR 56.')) {
-          scopeFit = 'preferred';
-          scopeFitAdjustment = 50;
-          reasons.push('preferred MSHA Part 56 surface metal/nonmetal scope');
-        } else if (citation.startsWith('30 CFR 57.')) {
-          scopeFit = 'mismatch';
-          scopeFitAdjustment = -100;
-          reasons.push('Excluded: Part 57 applies to underground metal/nonmetal, not selected surface scope.');
-        } else if (citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
-          scopeFit = 'mismatch';
-          scopeFitAdjustment = -100;
-          reasons.push('Excluded: coal standard does not match selected metal/nonmetal scope.');
-        } else if (citation.startsWith('29 CFR') || citation.startsWith('1910.') || citation.startsWith('1926.')) {
-          scopeFit = 'mismatch';
-          scopeFitAdjustment = -100;
-          reasons.push('Excluded: OSHA standard is outside selected MSHA scope.');
-        }
-      } else if (scopes.includes('msha_mnm_underground')) {
-        if (citation.startsWith('30 CFR 57.')) {
-          scopeFit = 'preferred';
-          scopeFitAdjustment = 50;
-          reasons.push('preferred MSHA Part 57');
-        } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
-          scopeFit = 'mismatch';
-          scopeFitAdjustment = -100;
-          reasons.push('MSHA Part mismatch');
-        }
-      } else if (scopes.includes('msha_coal_underground')) {
-        if (citation.startsWith('30 CFR 75.')) {
-          scopeFit = 'preferred';
-          scopeFitAdjustment = 50;
-          reasons.push('preferred MSHA Part 75');
-        } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 77.')) {
-          scopeFit = 'mismatch';
-          scopeFitAdjustment = -100;
-          reasons.push('MSHA Part mismatch');
-        }
-      } else if (scopes.includes('msha_coal_surface')) {
-        if (citation.startsWith('30 CFR 77.')) {
-          scopeFit = 'preferred';
-          scopeFitAdjustment = 50;
-          reasons.push('preferred MSHA Part 77');
-        } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 75.')) {
-          scopeFit = 'mismatch';
-          scopeFitAdjustment = -100;
-          reasons.push('MSHA Part mismatch');
+      if (scopeFit !== 'mismatch') {
+        if (scopes.includes('msha_mnm_surface')) {
+          if (citation.startsWith('30 CFR 56.')) {
+            scopeFit = 'preferred';
+            scopeFitAdjustment = 50;
+            reasons.push('preferred MSHA Part 56 surface metal/nonmetal scope');
+          } else if (citation.startsWith('30 CFR 57.')) {
+            scopeFit = 'mismatch';
+            scopeFitAdjustment = -100;
+            reasons.push('Excluded: Part 57 applies to underground metal/nonmetal, not selected surface scope.');
+          } else if (citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
+            scopeFit = 'mismatch';
+            scopeFitAdjustment = -100;
+            reasons.push('Excluded: coal standard does not match selected metal/nonmetal scope.');
+          } else if (citation.startsWith('29 CFR') || citation.startsWith('1910.') || citation.startsWith('1926.')) {
+            scopeFit = 'mismatch';
+            scopeFitAdjustment = -100;
+            reasons.push('Excluded: OSHA standard is outside selected MSHA scope.');
+          }
+        } else if (scopes.includes('msha_mnm_underground')) {
+          if (citation.startsWith('30 CFR 57.')) {
+            scopeFit = 'preferred';
+            scopeFitAdjustment = 50;
+            reasons.push('preferred MSHA Part 57');
+          } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 75.') || citation.startsWith('30 CFR 77.')) {
+            scopeFit = 'mismatch';
+            scopeFitAdjustment = -100;
+            reasons.push('MSHA Part mismatch');
+          }
+        } else if (scopes.includes('msha_coal_underground')) {
+          if (citation.startsWith('30 CFR 75.')) {
+            scopeFit = 'preferred';
+            scopeFitAdjustment = 50;
+            reasons.push('preferred MSHA Part 75');
+          } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 77.')) {
+            scopeFit = 'mismatch';
+            scopeFitAdjustment = -100;
+            reasons.push('MSHA Part mismatch');
+          }
+        } else if (scopes.includes('msha_coal_surface')) {
+          if (citation.startsWith('30 CFR 77.')) {
+            scopeFit = 'preferred';
+            scopeFitAdjustment = 50;
+            reasons.push('preferred MSHA Part 77');
+          } else if (citation.startsWith('30 CFR 56.') || citation.startsWith('30 CFR 57.') || citation.startsWith('30 CFR 75.')) {
+            scopeFit = 'mismatch';
+            scopeFitAdjustment = -100;
+            reasons.push('MSHA Part mismatch');
+          }
         }
       }
 
@@ -1005,6 +1009,7 @@ export class SafescopeV2Service {
         ...standard,
         score: (standard.score || 0) + scopeFitAdjustment,
         scopeFit,
+        scopeExclusionReason,
         scopeFitAdjustment,
         matchingReasons: reasons
       };
