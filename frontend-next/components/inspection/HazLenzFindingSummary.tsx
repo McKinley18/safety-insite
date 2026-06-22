@@ -54,8 +54,17 @@ function humanize(value: string) {
 function getTopStandard(result: any, selectedStandards: any[]) {
   if (selectedStandards?.[0]) return selectedStandards[0];
 
+  if (result?.suggestedStandards?.[0]) {
+    return result.suggestedStandards[0];
+  }
+  if (result?.inspectionIntelligence?.candidateStandards?.[0]) {
+    return result.inspectionIntelligence.candidateStandards[0];
+  }
+  if (result?.executiveJudgment?.topStandard) {
+    return result.executiveJudgment.topStandard;
+  }
+
   return (
-    result?.suggestedStandards?.[0] ||
     result?.standardsReasoning?.topDefensible?.[0] ||
     result?.applicabilityIntelligence?.primaryApplicableStandards?.[0] ||
     result?.standardFamilyCandidates?.[0] ||
@@ -149,14 +158,16 @@ function buildSummary({
       }`
     : "Scope not confirmed";
 
-  const standardFamily = topStandard
-    ? formatStandardDisplay(topStandard)
-    : firstText(
-        result.standardFamilyCandidates?.[0]?.label,
-        result.standardFamilyCandidates?.[0]?.standardFamily,
-        result.classification,
-        "No advisory standard selected yet",
-      );
+  const standardFamily = result.isVague && (!result.suggestedStandards || result.suggestedStandards.length === 0)
+    ? "No specific standard selected yet. HazLenz needs more evidence before suggesting a candidate standard."
+    : topStandard
+      ? formatStandardDisplay(topStandard)
+      : firstText(
+          result.standardFamilyCandidates?.[0]?.label,
+          result.standardFamilyCandidates?.[0]?.standardFamily,
+          result.classification,
+          "No advisory standard selected yet",
+        );
 
   const recommendedAction = firstText(
     actionText(selectedGeneratedActions?.[0]),
@@ -181,7 +192,7 @@ function buildSummary({
   ).slice(0, 3);
 
   const reviewStatus = result.requiresHumanReview
-    ? "Needs qualified safety review before final report."
+    ? "Requires qualified review before final report."
     : "Ready for qualified review.";
 
   return {

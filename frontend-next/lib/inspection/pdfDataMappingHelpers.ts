@@ -1,16 +1,22 @@
 import { normalizePdfPercent } from "./pdfFormattingHelpers";
 
 export function getFindingStandardsForPdf(f: any) {
-  return (
-    (Array.isArray(f.selectedStandards) && f.selectedStandards.length
-      ? f.selectedStandards
-      : null) ||
-    (Array.isArray(f.standards) && f.standards.length ? f.standards : null) ||
-    (Array.isArray(f.safeScopeResult?.suggestedStandards) &&
-    f.safeScopeResult.suggestedStandards.length
-      ? f.safeScopeResult.suggestedStandards
-      : [])
-  );
+  if (Array.isArray(f.selectedStandards) && f.selectedStandards.length) {
+    return f.selectedStandards;
+  }
+  if (Array.isArray(f.standards) && f.standards.length) {
+    return f.standards;
+  }
+  if (Array.isArray(f.safeScopeResult?.suggestedStandards) && f.safeScopeResult.suggestedStandards.length) {
+    return f.safeScopeResult.suggestedStandards;
+  }
+  if (Array.isArray(f.safeScopeResult?.inspectionIntelligence?.candidateStandards) && f.safeScopeResult.inspectionIntelligence.candidateStandards.length) {
+    return f.safeScopeResult.inspectionIntelligence.candidateStandards;
+  }
+  if (f.safeScopeResult?.executiveJudgment?.topStandard) {
+    return [f.safeScopeResult.executiveJudgment.topStandard];
+  }
+  return [];
 }
 
 export function getFieldOutputActionsForPdf(f: any) {

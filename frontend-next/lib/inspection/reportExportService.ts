@@ -49,7 +49,10 @@ export async function runInspectionExport(input: {
         : finding.selectedStandards ||
           finding.standards ||
           finding.safeScopeResult?.suggestedStandards ||
-          [],
+          finding.safeScopeResult?.inspectionIntelligence?.candidateStandards ||
+          (finding.safeScopeResult?.executiveJudgment?.topStandard
+            ? [finding.safeScopeResult.executiveJudgment.topStandard]
+            : []),
     correctiveActions: getFindingActionsForReview(
       finding,
       report.includeActionsInReport !== false,

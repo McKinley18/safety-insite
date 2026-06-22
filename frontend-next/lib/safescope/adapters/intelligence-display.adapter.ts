@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SafeScopeIntelligenceResult, SafeScopeNarrative, NarrativeMode } from '../types';
 
 function compactValue(value: any): string {
@@ -47,22 +48,70 @@ function formatStandardDisplay(standard: any): string {
   return [citation, title, summary].map(compactValue).filter(Boolean).join(" — ");
 }
 
-function collectStandards(result: any): string[] {
-  const sources = [
-    ...(result?.suggestedStandards || []),
-    ...(result?.inspectionIntelligence?.candidateStandards || []),
-    ...(result?.standardsReasoning?.topDefensible || []),
-    ...(result?.applicabilityIntelligence?.primaryApplicableStandards || []),
-    ...(result?.regulatoryApplicability?.primaryApplicableStandards || []),
-  ];
+function hasStandardsContent(content: any): boolean {
+  if (!content) return false;
+  if (typeof content === "string") return content.length > 0;
+  if (Array.isArray(content)) return content.length > 0;
+  if (typeof content === "object") return Object.keys(content).length > 0;
+  return false;
+}
 
-  return Array.from(
+function collectStandards(result: any): any {
+  if (result?.isVague && (!result.suggestedStandards || result.suggestedStandards.length === 0)) {
+    return ["No specific standard selected yet. HazLenz needs more evidence before suggesting a candidate standard."];
+  }
+
+  let primary: any[] = [];
+  let isCandidateMode = false;
+  let isFallbackMode = false;
+
+  if (result?.suggestedStandards?.length) {
+    primary = result.suggestedStandards;
+  } else if (result?.inspectionIntelligence?.candidateStandards?.length) {
+    primary = result.inspectionIntelligence.candidateStandards;
+    isCandidateMode = true;
+  } else if (result?.executiveJudgment?.topStandard) {
+    primary = [result.executiveJudgment.topStandard];
+    isFallbackMode = true;
+  }
+
+  const supporting = result?.supportingStandards || [];
+
+  const formattedPrimary = Array.from(
     new Set(
-      sources
+      primary
         .map(formatStandardDisplay)
-        .filter(Boolean),
-    ),
-  ).slice(0, 8);
+        .filter(Boolean)
+    )
+  ).slice(0, 8) as string[];
+
+  const formattedSupporting = Array.from(
+    new Set(
+      supporting
+        .map(formatStandardDisplay)
+        .filter(Boolean)
+    )
+  ).slice(0, 8) as string[];
+
+  if (formattedPrimary.length === 0 && formattedSupporting.length === 0) {
+    return [];
+  }
+
+  const res: Record<string, string[]> = {};
+  if (formattedPrimary.length > 0) {
+    const key = isFallbackMode
+      ? "FallbackCandidateStandard"
+      : isCandidateMode
+        ? "PrimaryCandidateStandards"
+        : "PrimarySuggestedCandidateStandards";
+    res[key] = formattedPrimary;
+  }
+
+  if (formattedSupporting.length > 0) {
+    res["SupportingCandidateStandardsReferenceOnly"] = formattedSupporting;
+  }
+
+  return res;
 }
 
 export type DisplaySection = {
@@ -100,13 +149,13 @@ export const createDisplayAdapter = (
     },
     evidence: {
       title: 'Evidence Gaps',
-      content: result.evidenceGapQuestions?.map((q: any) => q.question) || [],
+      content: (result.evidenceGapQuestions?.map((q: any) => q.question) || []) as any,
       isVisible: true
     },
     standards: {
       title: 'Applicable Standards',
       content: collectStandards(result),
-      isVisible: collectStandards(result).length > 0
+      isVisible: hasStandardsContent(collectStandards(result))
     },
     risk: {
       title: 'Risk Reasoning',

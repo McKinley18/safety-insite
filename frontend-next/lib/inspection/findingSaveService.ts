@@ -15,7 +15,9 @@ export function shouldConfirmHazLenzSuggestionSelection(input: {
   manualActions: any[];
 }) {
   const suggestedStandardCount =
-    input.safeScopeResult?.suggestedStandards?.length || 0;
+    input.safeScopeResult?.suggestedStandards?.length ||
+    input.safeScopeResult?.inspectionIntelligence?.candidateStandards?.length ||
+    (input.safeScopeResult?.executiveJudgment?.topStandard ? 1 : 0);
   const generatedActionCount =
     input.safeScopeResult?.generatedActions?.length || 0;
 

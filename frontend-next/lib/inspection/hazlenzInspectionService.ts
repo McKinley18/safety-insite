@@ -86,9 +86,15 @@ export async function runInspectionHazLenzReview(input: {
     })),
   });
 
-  const autoSelectedStandards = Array.isArray(result?.suggestedStandards)
-    ? result.suggestedStandards.slice(0, 1)
-    : [];
+  const autoSelectedStandards = result?.isVague
+    ? []
+    : Array.isArray(result?.suggestedStandards) && result.suggestedStandards.length > 0
+      ? result.suggestedStandards.slice(0, 1)
+      : Array.isArray(result?.inspectionIntelligence?.candidateStandards) && result.inspectionIntelligence.candidateStandards.length > 0
+        ? result.inspectionIntelligence.candidateStandards.slice(0, 1)
+        : result?.executiveJudgment?.topStandard
+          ? [result.executiveJudgment.topStandard]
+          : [];
 
   const autoSelectedActions = Array.isArray(result?.generatedActions)
     ? result.generatedActions.slice(0, 1).map((action: any) => ({
