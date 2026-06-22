@@ -15,6 +15,7 @@ import { ContradictionIntelligenceService } from '../contradiction-intelligence/
 import { SitePolicyIsolationService } from '../site-policy-isolation/site-policy-isolation.service';
 import { SitePolicyGovernanceService } from '../site-policy-isolation/site-policy-governance.service';
 import { ReviewCoreKnowledgeRetrievalService } from '../knowledge-architecture/reviewcore-knowledge-retrieval.service';
+import { InspectionIntelligenceService } from '../inspection-intelligence/inspection-intelligence.service';
 import {
   SafeScopeApplicabilitySignal,
   SafeScopeJurisdiction,
@@ -51,6 +52,7 @@ export class SafeScopeReasoningOrchestratorService {
     private readonly contradictionIntelligenceService = new ContradictionIntelligenceService(),
     private readonly sitePolicyIsolationService = new SitePolicyIsolationService(new SitePolicyGovernanceService()),
     private readonly knowledgeRetrievalService = new ReviewCoreKnowledgeRetrievalService(),
+    private readonly inspectionIntelligenceService = new InspectionIntelligenceService(),
   ) {}
 
   reason(request: SafeScopeReasoningRequest): SafeScopeReasoningResult {
@@ -536,6 +538,13 @@ export class SafeScopeReasoningOrchestratorService {
       governedKnowledgeRetrieval.evidenceNeeds = ["No matches found. Reviewer must verify physical condition against safety standards."];
     }
 
+    const inspectionIntelligence = this.inspectionIntelligenceService.analyze({
+      observation: combined,
+      jurisdiction: jurisdictionAssessment.likelyJurisdiction,
+      primaryDomain: hazardClassification.primaryDomain,
+      primaryCitation,
+    });
+
     return {
       engine: 'safescope_reasoning_orchestrator_v1',
       mode: 'deterministic_test_only_advisory',
@@ -571,6 +580,7 @@ export class SafeScopeReasoningOrchestratorService {
         requiresQualifiedReview: true,
       },
       recommendedNextQuestions: this.recommendedQuestions(jurisdictionAssessment.likelyJurisdiction, hazardClassification.primaryDomain, missingEvidence),
+      inspectionIntelligence,
     };
   }
 

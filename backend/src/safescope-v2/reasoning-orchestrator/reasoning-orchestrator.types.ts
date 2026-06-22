@@ -4,6 +4,7 @@ import { CorrectiveActionReasoningResult } from './corrective-actions/corrective
 import { SafeScopeEquipmentTaskMechanismDetectionResult } from '../equipment-knowledge/equipment-task-mechanism-detector.service';
 import { SafeScopeEquipmentArchetypeDetectionResult } from '../equipment-knowledge/equipment-archetype-detector.service';
 import { SafeScopeBrainSnapshot } from '../brain/snapshot-builder/brain-snapshot-builder.types';
+import { InspectionIntelligenceResult } from '../inspection-intelligence/inspection-intelligence.types';
 
 export type SafeScopeJurisdiction =
   | 'msha'
@@ -181,4 +182,5 @@ export type SafeScopeReasoningResult = {
     requiresQualifiedReview: boolean;
   };
   recommendedNextQuestions: string[];
+  inspectionIntelligence: InspectionIntelligenceResult;
 };

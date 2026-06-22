@@ -26,6 +26,10 @@ const suites: Suite[] = [
   {
     name: "Golden Hardening Scenarios Test",
     scriptPath: "src/safescope-v2/tests/golden-hardening-tests.ts"
+  },
+  {
+    name: "Inspection Intelligence Regression",
+    scriptPath: "src/safescope-v2/tests/inspection-intelligence-regression.ts"
   }
 ];
 
