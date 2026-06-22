@@ -7,7 +7,7 @@ import { InspectionIntelligenceResult } from './inspection-intelligence.types';
 export type InspectionIntelligenceRule = {
   id: string;
   domain: SafeScopeReasoningDomain;
-  confidence?: 'moderate' | 'high';
+  confidence?: 'low' | 'moderate' | 'high';
   matches: RegExp[];
   initiating: string;
   failure: string;

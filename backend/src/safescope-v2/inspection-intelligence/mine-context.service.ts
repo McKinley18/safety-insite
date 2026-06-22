@@ -4,6 +4,7 @@ type SignalGroup = { label: string; patterns: RegExp[] };
 
 const GROUPS: Record<string, SignalGroup> = {
   nonMine: { label: 'explicit non-mine workplace', patterns: [/\bnon[- ]mine\b/, /\boff mine property\b/, /\bnot (at|on) (a )?mine\b/] },
+  lexicalTrap: { label: 'non-mining lexical use', patterns: [/\bquarry tile\b/, /\bmine the data\b/, /\bdata mining\b/, /\btext mining\b/, /\baggregate data\b/, /\bpit stop\b/, /\binspection pit\b/, /\bcoal tar\b/, /\bcoal[- ]colored\b/] },
   mine: { label: 'mine context', patterns: [/\bmine(r|rs| site| property| operation)?\b/, /\bmining operation\b/, /\bmine contractor\b/] },
   aggregate: { label: 'aggregate/quarry context', patterns: [/\baggregate (mine|plant|operation|crusher|screen)\b/, /\bquarry\b/, /\bgravel pit\b/, /\bsand and gravel\b/, /\bsurface stone\b/, /\bcrusher plant\b/, /\bscreen(ing)? plant\b/] },
   underground: { label: 'underground context', patterns: [/\bunderground\b/, /\bheading\b/, /\bdrift\b/, /\bstope\b/, /\bshaft station\b/, /\bportal to heading\b/] },
@@ -26,6 +27,10 @@ export class MineContextService {
     const has = (key: string) => matched.some((item) => item.key === key);
 
     if (has('nonMine')) return this.notMine(matched.map((item) => item.label));
+    if (
+      has('lexicalTrap')
+      && !/\b(mine site|mine property|mine operation|at (a |the )?mine|surface (coal|metal|nonmetal)? ?mine|underground (coal|metal|nonmetal)? ?mine|quarry operation|aggregate mine)\b/.test(text)
+    ) return this.notMine(matched.map((item) => item.label));
 
     const detected = has('mine') || has('aggregate') || (has('underground') && (has('coal') || has('metalNonmetal')));
     if (!detected) return this.notMine([]);

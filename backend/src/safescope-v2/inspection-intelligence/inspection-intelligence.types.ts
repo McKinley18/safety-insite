@@ -3,13 +3,14 @@ import {
   SafeScopeReasoningDomain,
 } from '../reasoning-orchestrator/reasoning-orchestrator.types';
 import { MineContextAssessment } from './mine-context.types';
+import { InspectionConditionAssessment } from './inspection-condition-assessment.types';
 
 export type InspectionHazardRole = 'primary' | 'secondary' | 'possible_related';
 
 export type InspectionHazardCandidate = {
   domain: SafeScopeReasoningDomain;
   role: InspectionHazardRole;
-  confidence: 'moderate' | 'high';
+  confidence: 'low' | 'moderate' | 'high';
   rationale: string;
 };
 
@@ -24,6 +25,7 @@ export type InspectionCandidateStandard = {
 
 export type InspectionIntelligenceResult = {
   miningContext: MineContextAssessment;
+  conditionAssessment: InspectionConditionAssessment;
   hazardCandidates: InspectionHazardCandidate[];
   mechanismChain: {
     initiatingCondition: string[];

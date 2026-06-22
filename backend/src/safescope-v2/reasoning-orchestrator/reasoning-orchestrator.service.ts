@@ -547,6 +547,37 @@ export class SafeScopeReasoningOrchestratorService {
       primaryCitation,
     });
 
+    if (inspectionIntelligence.conditionAssessment.status !== 'uncontrolled') {
+      primaryCitation = undefined;
+      brainSnapshot = undefined;
+      confidence.level = 'low';
+      confidence.reasons.push('The observation is controlled, non-hazardous in context, or lacks enough evidence for a confident finding.');
+      correctiveActionReasoning.recommendations = [];
+      correctiveActionReasoning.summary = {
+        totalRecommendations: 0,
+        immediateCount: 0,
+        engineeringCount: 0,
+        administrativeCount: 0,
+        ppeCount: 0,
+        verificationCount: 0,
+      };
+    }
+
+    if (
+      inspectionIntelligence.conditionAssessment.status === 'uncontrolled'
+      && inspectionIntelligence.conditionAssessment.controlledDomains.includes(hazardClassification.primaryDomain)
+      && inspectionIntelligence.hazardCandidates[0]
+    ) {
+      hazardClassification.primaryDomain = inspectionIntelligence.hazardCandidates[0].domain;
+      hazardClassification.reasons.push('Primary ranking was corrected because the initially classified domain is explicitly controlled in the observation.');
+      primaryCitation = inspectionIntelligence.candidateStandards[0]?.citation;
+    }
+
+    if (['controlled', 'no_hazard_signal'].includes(inspectionIntelligence.conditionAssessment.status)) {
+      hazardClassification.primaryDomain = 'unknown';
+      hazardClassification.reasons.push('No uncontrolled hazard condition remains supported after control-state and context review.');
+    }
+
     return {
       engine: 'safescope_reasoning_orchestrator_v1',
       mode: 'deterministic_test_only_advisory',
@@ -738,7 +769,10 @@ export class SafeScopeReasoningOrchestratorService {
       };
     }
 
-    if (includesAny(text, ['construction', 'scaffold', 'excavation', 'trench', 'roofing', 'steel erection'])) {
+    const constructionContext = includesAny(text, ['construction', 'construction site', 'jobsite', 'job site', 'commercial building site', 'renovation', 'steel erection']);
+    const generalIndustryContext = includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'industrial plant', 'plant', 'shop floor', 'shop', 'factory', 'fabrication', 'fabrication floor', 'assembly']);
+
+    if (constructionContext) {
       reasons.push('Construction activity terms were detected.');
       return {
         likelyJurisdiction: 'osha_construction',
@@ -747,10 +781,19 @@ export class SafeScopeReasoningOrchestratorService {
       };
     }
 
-    if (includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'industrial plant', 'plant', 'shop floor', 'shop', 'factory', 'fabrication', 'fabrication floor', 'assembly'])) {
+    if (generalIndustryContext) {
       reasons.push('General industry facility terms were detected.');
       return {
         likelyJurisdiction: 'osha_general_industry',
+        reasons,
+        requiresHumanConfirmation: true,
+      };
+    }
+
+    if (includesAny(text, ['excavation', 'trench', 'roofing', 'steel erection'])) {
+      reasons.push('A construction-specific work activity was detected without a conflicting facility context.');
+      return {
+        likelyJurisdiction: 'osha_construction',
         reasons,
         requiresHumanConfirmation: true,
       };

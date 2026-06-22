@@ -15,6 +15,7 @@ import { INSPECTION_INTELLIGENCE_EXPANSION_RULES } from './inspection-intelligen
 import { MineContextService } from './mine-context.service';
 import { MineType } from './mine-context.types';
 import { MshaInspectionIntelligenceService } from './msha-inspection-intelligence.service';
+import { InspectionConditionAssessmentService } from './inspection-condition-assessment.service';
 
 const RULES: InspectionIntelligenceRule[] = [
   ...INSPECTION_INTELLIGENCE_EXPANSION_RULES,
@@ -153,10 +154,48 @@ function citationAllowedForMineType(citation: string, mineType: MineType): boole
   return true;
 }
 
+const DOMAIN_SEVERITY: Partial<Record<SafeScopeReasoningDomain, number>> = {
+  electrical: 100,
+  machine_guarding_loto: 98,
+  confined_space: 96,
+  excavation_trenching: 94,
+  fall_protection: 92,
+  ground_control: 92,
+  cranes_rigging_hoisting: 90,
+  mobile_equipment: 88,
+  powered_haulage: 88,
+  welding_cutting_hot_work: 86,
+  fire_protection: 85,
+  machine_guarding: 84,
+  compressed_gas: 82,
+  hazardous_materials: 78,
+  environmental_release: 76,
+  hazard_communication: 72,
+  walking_working_surfaces: 65,
+  training_procedure_gap: 55,
+};
+
+function ruleScore(
+  rule: InspectionIntelligenceRule,
+  text: string,
+  jurisdiction: SafeScopeJurisdiction,
+  classifiedDomain: SafeScopeReasoningDomain,
+): number {
+  let score = DOMAIN_SEVERITY[rule.domain] || 70;
+  if (rule.domain === classifiedDomain) score += 8;
+  if ((rule.confidence || 'high') === 'high') score += 8;
+  if (rule.confidence === 'moderate' && /\b(unclear|unknown|not verified|not confirmed|insufficient|possible|maybe)\b/.test(text)) score += 12;
+  if (/\b(missing|unguarded|unsecured|exposed|damaged|blocked|leaking|inoperative|without|not verified)\b/.test(text)) score += 8;
+  if (/\b(worker|employee|miner|pedestrian)s?\b.*\b(near|beside|inside|under|within reach|exposed)|\b(cleanup|maintenance|servicing|entry)\b/.test(text)) score += 6;
+  if (jurisdiction === 'msha' && rule.id.startsWith('msha-')) score += 7;
+  return score;
+}
+
 export class InspectionIntelligenceService {
   constructor(
     private readonly mineContextService = new MineContextService(),
     private readonly mshaInspectionIntelligenceService = new MshaInspectionIntelligenceService(),
+    private readonly conditionAssessmentService = new InspectionConditionAssessmentService(),
   ) {}
 
   analyze(input: {
@@ -166,26 +205,34 @@ export class InspectionIntelligenceService {
     primaryCitation?: string;
   }): InspectionIntelligenceResult {
     const text = input.observation.toLowerCase();
+    const conditionAssessment = this.conditionAssessmentService.assess(text);
     const miningContext = this.mineContextService.assess(text);
     const mshaAnalysis = this.mshaInspectionIntelligenceService.analyze(text, miningContext);
     const matched = [...mshaAnalysis.rules, ...RULES.filter((rule) => matchesRule(text, rule))]
-      .filter((rule, index, values) => values.findIndex((candidate) => candidate.id === rule.id) === index);
-    const primaryRule = matched.find((rule) => rule.domain === input.primaryDomain) || matched[0];
-    const ordered = primaryRule ? [primaryRule, ...matched.filter((rule) => rule !== primaryRule)] : [];
+      .filter((rule, index, values) => values.findIndex((candidate) => candidate.id === rule.id) === index)
+      .filter((rule) => !conditionAssessment.controlledDomains.includes(rule.domain))
+      .sort((left, right) => ruleScore(right, text, input.jurisdiction, input.primaryDomain) - ruleScore(left, text, input.jurisdiction, input.primaryDomain));
+    const ordered = ['controlled', 'no_hazard_signal'].includes(conditionAssessment.status) ? [] : matched;
+    const primaryRule = ordered[0];
 
     const hazardCandidates: InspectionHazardCandidate[] = [];
+    const candidateConfidence = conditionAssessment.status === 'insufficient_evidence' ? 'low' : undefined;
     if (primaryRule) {
-      hazardCandidates.push({ domain: primaryRule.domain, role: 'primary', confidence: primaryRule.confidence || 'high', rationale: primaryRule.initiating });
-    } else {
+      hazardCandidates.push({ domain: primaryRule.domain, role: 'primary', confidence: candidateConfidence || primaryRule.confidence || 'high', rationale: primaryRule.initiating });
+    } else if (conditionAssessment.status === 'insufficient_evidence') {
+      (conditionAssessment.likelyDomains.length > 0 ? conditionAssessment.likelyDomains : [input.primaryDomain]).forEach((domain, index) => {
+        hazardCandidates.push({ domain, role: index === 0 ? 'primary' : 'possible_related', confidence: 'low', rationale: 'The observation suggests this hazard family, but condition, exposure, and control facts are insufficient.' });
+      });
+    } else if (conditionAssessment.status === 'uncontrolled') {
       hazardCandidates.push({ domain: input.primaryDomain, role: 'primary', confidence: 'moderate', rationale: 'The existing deterministic classifier identified this as the leading hazard family; more condition detail is needed.' });
     }
     ordered.slice(1).forEach((rule) => {
       if (!hazardCandidates.some((candidate) => candidate.domain === rule.domain)) {
-        hazardCandidates.push({ domain: rule.domain, role: 'secondary', confidence: rule.confidence || 'high', rationale: rule.initiating });
+        hazardCandidates.push({ domain: rule.domain, role: 'secondary', confidence: candidateConfidence || rule.confidence || 'high', rationale: rule.initiating });
       }
     });
     ordered.forEach((rule) => (rule.related || []).forEach((related) => {
-      if (!hazardCandidates.some((candidate) => candidate.domain === related.domain)) {
+      if (!conditionAssessment.controlledDomains.includes(related.domain) && !hazardCandidates.some((candidate) => candidate.domain === related.domain)) {
         hazardCandidates.push({ domain: related.domain, role: related.possible ? 'possible_related' : 'secondary', confidence: related.possible ? 'moderate' : 'high', rationale: related.rationale });
       }
     }));
@@ -197,9 +244,17 @@ export class InspectionIntelligenceService {
       'How close are employees to the condition, how often are they exposed, and is exposure temporary or ongoing?',
       'What controls are currently in place, and has a qualified safety professional verified their condition and applicability?',
     ];
+    const conditionQuestions = conditionAssessment.status === 'insufficient_evidence'
+      ? ['What specific observed defect, exposure pathway, task, and failed or missing control support this concern?']
+      : conditionAssessment.status === 'controlled'
+        ? ['Is there evidence that any described control is absent, damaged, bypassed, or ineffective during exposure?']
+        : conditionAssessment.status === 'no_hazard_signal'
+          ? ['Is there a separate physical condition or employee exposure beyond the administrative or conversational wording?']
+          : [];
     const evidenceGapQuestions = unique([
       ...jurisdictionQuestion,
       ...miningContext.evidenceQuestions,
+      ...conditionQuestions,
       ...ordered.flatMap((rule) => rule.questions),
       ...genericQuestions,
     ]).slice(0, 12);
@@ -208,7 +263,7 @@ export class InspectionIntelligenceService {
       ? ['osha_general_industry', 'osha_construction', 'msha']
       : [input.jurisdiction];
     const candidateStandards: InspectionCandidateStandard[] = [];
-    ordered.forEach((rule) => jurisdictions.forEach((jurisdiction) => {
+    if (conditionAssessment.citationEligible) ordered.forEach((rule) => jurisdictions.forEach((jurisdiction) => {
       (rule.standards[jurisdiction] || []).forEach((standard) => {
         if (jurisdiction === 'msha' && !citationAllowedForMineType(standard.citation, miningContext.mineType)) return;
         if (!candidateStandards.some((candidate) => candidate.citation === standard.citation)) {
@@ -218,6 +273,8 @@ export class InspectionIntelligenceService {
     }));
     if (
       input.primaryCitation
+      && conditionAssessment.citationEligible
+      && !conditionAssessment.controlledDomains.includes(input.primaryDomain)
       && !candidateStandards.some((candidate) => candidate.citation === input.primaryCitation)
       && input.jurisdiction !== 'unclear'
       && (input.jurisdiction !== 'msha' || citationAllowedForMineType(input.primaryCitation, miningContext.mineType))
@@ -226,7 +283,8 @@ export class InspectionIntelligenceService {
     }
 
     const empty = ['Insufficient observation detail; obtain condition, task, exposure, and control evidence.'];
-    const correctiveActions = ordered.reduce<InspectionIntelligenceResult['correctiveActions']>((result, rule) => ({
+    const actionRules = conditionAssessment.status === 'uncontrolled' ? ordered : [];
+    const correctiveActions = actionRules.reduce<InspectionIntelligenceResult['correctiveActions']>((result, rule) => ({
       immediate: unique([...result.immediate, ...rule.controls.immediate]),
       interim: unique([...result.interim, ...rule.controls.interim]),
       permanentEngineering: unique([...result.permanentEngineering, ...rule.controls.permanentEngineering]),
@@ -239,14 +297,15 @@ export class InspectionIntelligenceService {
         ...miningContext,
         citationLimitations: unique([...miningContext.citationLimitations, ...mshaAnalysis.citationLimitations]),
       },
+      conditionAssessment,
       hazardCandidates,
       mechanismChain: {
-        initiatingCondition: primaryRule ? unique(ordered.map((rule) => rule.initiating)) : empty,
-        releaseOrFailureMode: primaryRule ? unique(ordered.map((rule) => rule.failure)) : empty,
-        exposurePathway: primaryRule ? unique(ordered.map((rule) => rule.exposure)) : empty,
-        consequences: primaryRule ? unique(ordered.map((rule) => rule.consequences)) : empty,
+        initiatingCondition: primaryRule ? unique(ordered.map((rule) => rule.initiating)) : conditionAssessment.status === 'controlled' ? ['The observation describes the relevant control as present and effective.'] : empty,
+        releaseOrFailureMode: primaryRule ? unique(ordered.map((rule) => rule.failure)) : conditionAssessment.status === 'controlled' ? ['No uncontrolled failure or release mode is established by the observation.'] : empty,
+        exposurePathway: primaryRule ? unique(ordered.map((rule) => rule.exposure)) : conditionAssessment.status === 'controlled' ? ['No current employee exposure pathway is established while the described control remains effective.'] : empty,
+        consequences: primaryRule ? unique(ordered.map((rule) => rule.consequences)) : conditionAssessment.status === 'controlled' ? ['No injury or environmental consequence is inferred from a controlled condition alone.'] : empty,
         evidenceGaps: evidenceGapQuestions,
-        controls: unique([...correctiveActions.immediate, ...correctiveActions.permanentEngineering]),
+        controls: unique([...conditionAssessment.controlEvidence, ...correctiveActions.immediate, ...correctiveActions.permanentEngineering]),
       },
       candidateStandards,
       evidenceGapQuestions,
