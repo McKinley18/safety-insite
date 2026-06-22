@@ -7,36 +7,17 @@ import {
   InspectionHazardCandidate,
   InspectionIntelligenceResult,
 } from './inspection-intelligence.types';
+import {
+  InspectionIntelligenceRule,
+  inspectionActions as actions,
+} from './inspection-intelligence-rule.types';
+import { INSPECTION_INTELLIGENCE_EXPANSION_RULES } from './inspection-intelligence-expansion.rules';
+import { MineContextService } from './mine-context.service';
+import { MineType } from './mine-context.types';
+import { MshaInspectionIntelligenceService } from './msha-inspection-intelligence.service';
 
-type Rule = {
-  id: string;
-  domain: SafeScopeReasoningDomain;
-  matches: RegExp[];
-  initiating: string;
-  failure: string;
-  exposure: string;
-  consequences: string;
-  related?: Array<{ domain: SafeScopeReasoningDomain; rationale: string; possible?: boolean }>;
-  questions: string[];
-  controls: InspectionIntelligenceResult['correctiveActions'];
-  standards: Partial<Record<Exclude<SafeScopeJurisdiction, 'unclear'>, Array<{ citation: string; evidence: string[] }>>>;
-};
-
-const actions = (
-  immediate: string,
-  interim: string,
-  permanent: string,
-  administrative: string,
-  verification: string,
-): InspectionIntelligenceResult['correctiveActions'] => ({
-  immediate: [immediate],
-  interim: [interim],
-  permanentEngineering: [permanent],
-  administrativeProgramTraining: [administrative],
-  verificationFollowUp: [verification],
-});
-
-const RULES: Rule[] = [
+const RULES: InspectionIntelligenceRule[] = [
+  ...INSPECTION_INTELLIGENCE_EXPANSION_RULES,
   {
     id: 'compressed-gas-cylinder', domain: 'compressed_gas',
     matches: [/\b(oxygen|compressed gas|acetylene) cylinder\b/, /\bcylinder\b.*\b(unsecured|not secured|missing (valve )?cap|walkway)\b/],
@@ -155,11 +136,29 @@ function unique(values: string[]): string[] {
   return [...new Set(values.filter(Boolean))];
 }
 
-function matchesRule(text: string, rule: Rule): boolean {
+function matchesRule(text: string, rule: InspectionIntelligenceRule): boolean {
   return rule.matches.some((pattern) => pattern.test(text));
 }
 
+function citationAllowedForMineType(citation: string, mineType: MineType): boolean {
+  if (/^29 CFR\b/.test(citation) && mineType !== 'not_mine') return false;
+  const part = citation.match(/30 CFR (\d+)/)?.[1];
+  if (!part) return true;
+  if (part === '62') return mineType !== 'not_mine';
+  if (mineType === 'surface_metal_nonmetal') return ['46', '48', '56'].includes(part);
+  if (mineType === 'underground_metal_nonmetal') return ['48', '57'].includes(part);
+  if (mineType === 'surface_coal') return ['48', '71', '77'].includes(part);
+  if (mineType === 'underground_coal') return ['48', '70', '75'].includes(part);
+  if (mineType === 'unclear_mine') return false;
+  return true;
+}
+
 export class InspectionIntelligenceService {
+  constructor(
+    private readonly mineContextService = new MineContextService(),
+    private readonly mshaInspectionIntelligenceService = new MshaInspectionIntelligenceService(),
+  ) {}
+
   analyze(input: {
     observation: string;
     jurisdiction: SafeScopeJurisdiction;
@@ -167,17 +166,24 @@ export class InspectionIntelligenceService {
     primaryCitation?: string;
   }): InspectionIntelligenceResult {
     const text = input.observation.toLowerCase();
-    const matched = RULES.filter((rule) => matchesRule(text, rule));
+    const miningContext = this.mineContextService.assess(text);
+    const mshaAnalysis = this.mshaInspectionIntelligenceService.analyze(text, miningContext);
+    const matched = [...mshaAnalysis.rules, ...RULES.filter((rule) => matchesRule(text, rule))]
+      .filter((rule, index, values) => values.findIndex((candidate) => candidate.id === rule.id) === index);
     const primaryRule = matched.find((rule) => rule.domain === input.primaryDomain) || matched[0];
     const ordered = primaryRule ? [primaryRule, ...matched.filter((rule) => rule !== primaryRule)] : [];
 
     const hazardCandidates: InspectionHazardCandidate[] = [];
     if (primaryRule) {
-      hazardCandidates.push({ domain: primaryRule.domain, role: 'primary', confidence: 'high', rationale: primaryRule.initiating });
+      hazardCandidates.push({ domain: primaryRule.domain, role: 'primary', confidence: primaryRule.confidence || 'high', rationale: primaryRule.initiating });
     } else {
       hazardCandidates.push({ domain: input.primaryDomain, role: 'primary', confidence: 'moderate', rationale: 'The existing deterministic classifier identified this as the leading hazard family; more condition detail is needed.' });
     }
-    ordered.slice(1).forEach((rule) => hazardCandidates.push({ domain: rule.domain, role: 'secondary', confidence: 'high', rationale: rule.initiating }));
+    ordered.slice(1).forEach((rule) => {
+      if (!hazardCandidates.some((candidate) => candidate.domain === rule.domain)) {
+        hazardCandidates.push({ domain: rule.domain, role: 'secondary', confidence: rule.confidence || 'high', rationale: rule.initiating });
+      }
+    });
     ordered.forEach((rule) => (rule.related || []).forEach((related) => {
       if (!hazardCandidates.some((candidate) => candidate.domain === related.domain)) {
         hazardCandidates.push({ domain: related.domain, role: related.possible ? 'possible_related' : 'secondary', confidence: related.possible ? 'moderate' : 'high', rationale: related.rationale });
@@ -191,7 +197,12 @@ export class InspectionIntelligenceService {
       'How close are employees to the condition, how often are they exposed, and is exposure temporary or ongoing?',
       'What controls are currently in place, and has a qualified safety professional verified their condition and applicability?',
     ];
-    const evidenceGapQuestions = unique([...jurisdictionQuestion, ...ordered.flatMap((rule) => rule.questions), ...genericQuestions]).slice(0, 10);
+    const evidenceGapQuestions = unique([
+      ...jurisdictionQuestion,
+      ...miningContext.evidenceQuestions,
+      ...ordered.flatMap((rule) => rule.questions),
+      ...genericQuestions,
+    ]).slice(0, 12);
 
     const jurisdictions: Array<Exclude<SafeScopeJurisdiction, 'unclear'>> = input.jurisdiction === 'unclear'
       ? ['osha_general_industry', 'osha_construction', 'msha']
@@ -199,13 +210,19 @@ export class InspectionIntelligenceService {
     const candidateStandards: InspectionCandidateStandard[] = [];
     ordered.forEach((rule) => jurisdictions.forEach((jurisdiction) => {
       (rule.standards[jurisdiction] || []).forEach((standard) => {
+        if (jurisdiction === 'msha' && !citationAllowedForMineType(standard.citation, miningContext.mineType)) return;
         if (!candidateStandards.some((candidate) => candidate.citation === standard.citation)) {
-          candidateStandards.push({ citation: standard.citation, jurisdiction, status: 'candidate_standard', rationale: `Candidate only: ${rule.initiating}`, evidenceNeeded: standard.evidence });
+          candidateStandards.push({ citation: standard.citation, titleSummary: standard.summary || `Candidate requirements related to ${rule.domain.replace(/_/g, ' ')}.`, jurisdiction, status: 'candidate_standard', rationale: `Candidate only: ${rule.initiating}`, evidenceNeeded: standard.evidence });
         }
       });
     }));
-    if (input.primaryCitation && !candidateStandards.some((candidate) => candidate.citation === input.primaryCitation) && input.jurisdiction !== 'unclear') {
-      candidateStandards.unshift({ citation: input.primaryCitation, jurisdiction: input.jurisdiction, status: 'candidate_standard', rationale: 'Candidate produced by the existing deterministic citation resolver.', evidenceNeeded: ['Confirm jurisdiction, equipment/task scope, employee exposure, and the observed condition before applicability is finalized.'] });
+    if (
+      input.primaryCitation
+      && !candidateStandards.some((candidate) => candidate.citation === input.primaryCitation)
+      && input.jurisdiction !== 'unclear'
+      && (input.jurisdiction !== 'msha' || citationAllowedForMineType(input.primaryCitation, miningContext.mineType))
+    ) {
+      candidateStandards.unshift({ citation: input.primaryCitation, titleSummary: 'Candidate requirement identified by the existing deterministic citation resolver.', jurisdiction: input.jurisdiction, status: 'candidate_standard', rationale: 'Candidate produced by the existing deterministic citation resolver.', evidenceNeeded: ['Confirm jurisdiction, equipment/task scope, employee exposure, and the observed condition before applicability is finalized.'] });
     }
 
     const empty = ['Insufficient observation detail; obtain condition, task, exposure, and control evidence.'];
@@ -218,6 +235,10 @@ export class InspectionIntelligenceService {
     }), { immediate: [], interim: [], permanentEngineering: [], administrativeProgramTraining: [], verificationFollowUp: [] });
 
     return {
+      miningContext: {
+        ...miningContext,
+        citationLimitations: unique([...miningContext.citationLimitations, ...mshaAnalysis.citationLimitations]),
+      },
       hazardCandidates,
       mechanismChain: {
         initiatingCondition: primaryRule ? unique(ordered.map((rule) => rule.initiating)) : empty,

@@ -16,6 +16,7 @@ import { SitePolicyIsolationService } from '../site-policy-isolation/site-policy
 import { SitePolicyGovernanceService } from '../site-policy-isolation/site-policy-governance.service';
 import { ReviewCoreKnowledgeRetrievalService } from '../knowledge-architecture/reviewcore-knowledge-retrieval.service';
 import { InspectionIntelligenceService } from '../inspection-intelligence/inspection-intelligence.service';
+import { MineContextService } from '../inspection-intelligence/mine-context.service';
 import {
   SafeScopeApplicabilitySignal,
   SafeScopeJurisdiction,
@@ -53,6 +54,7 @@ export class SafeScopeReasoningOrchestratorService {
     private readonly sitePolicyIsolationService = new SitePolicyIsolationService(new SitePolicyGovernanceService()),
     private readonly knowledgeRetrievalService = new ReviewCoreKnowledgeRetrievalService(),
     private readonly inspectionIntelligenceService = new InspectionIntelligenceService(),
+    private readonly mineContextService = new MineContextService(),
   ) {}
 
   reason(request: SafeScopeReasoningRequest): SafeScopeReasoningResult {
@@ -721,13 +723,14 @@ export class SafeScopeReasoningOrchestratorService {
   private assessJurisdiction(text: string): SafeScopeReasoningResult['jurisdictionAssessment'] {
     const reasons: string[] = [];
     const holdReason = this.getJurisdictionHoldReason(text);
+    const mineContext = this.mineContextService.assess(text);
 
     if (holdReason) {
       reasons.push(`Jurisdiction hold: ${holdReason}`);
     }
 
-    if (includesAny(text, ['mine', 'quarry', 'pit', 'plant', 'crusher', 'screening plant', 'haul truck', 'highwall', 'berm'])) {
-      reasons.push('Mining or aggregate-site terms were detected.');
+    if (mineContext.detected) {
+      reasons.push(...mineContext.reasons);
       return {
         likelyJurisdiction: 'msha',
         reasons,
@@ -744,7 +747,7 @@ export class SafeScopeReasoningOrchestratorService {
       };
     }
 
-    if (includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'shop floor', 'shop', 'factory', 'fabrication', 'fabrication floor', 'assembly'])) {
+    if (includesAny(text, ['manufacturing', 'warehouse', 'general industry', 'facility', 'industrial plant', 'plant', 'shop floor', 'shop', 'factory', 'fabrication', 'fabrication floor', 'assembly'])) {
       reasons.push('General industry facility terms were detected.');
       return {
         likelyJurisdiction: 'osha_general_industry',
