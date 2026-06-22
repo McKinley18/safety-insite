@@ -64,7 +64,7 @@ const mixedCases = [
   ['guarded conveyor and debris', 'Conveyor tail pulley is fully guarded, but debris creates a trip hazard in the nearby travelway.', 'manufacturing plant', 'walking_working_surfaces', 'machine_guarding'],
   ['secured cylinder and unlabeled chemical', 'Oxygen cylinder is secured upright with valve cap installed, but a nearby chemical container is unlabeled.', 'industrial shop', 'hazard_communication', 'compressed_gas'],
   ['clear exit and blocked extinguisher', 'Emergency exit is clear and unobstructed, but stored boxes block the fire extinguisher.', 'warehouse', 'fire_protection', 'emergency_preparedness'],
-  ['locked machine and trip hazard', 'Machine is locked out with zero energy verified, but the removed guard is stored across the walkway creating a trip hazard.', 'manufacturing plant', 'slip_trip_fall', 'machine_guarding_loto'],
+  ['locked machine and trip hazard', 'Machine is locked out with zero energy verified, but the removed guard is stored across the walkway creating a trip hazard.', 'manufacturing plant', 'walking_working_surfaces', 'machine_guarding_loto'],
   ['separated forklift and blind corner', 'Forklift route is separated from pedestrians by barriers, but the blind corner has no warning sign or traffic control.', 'warehouse', 'traffic_control', 'mobile_equipment'],
 ] as const;
 
