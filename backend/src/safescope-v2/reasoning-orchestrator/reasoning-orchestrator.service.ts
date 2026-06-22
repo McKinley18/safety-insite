@@ -756,8 +756,20 @@ export class SafeScopeReasoningOrchestratorService {
     const holdReason = this.getJurisdictionHoldReason(text);
     const mineContext = this.mineContextService.assess(text);
 
+    const explicitCrossJurisdictionBoundary =
+      /\b(construction|mine|msha)\s+(versus|vs\.?|or)\s+(general industry|facility|shop|manufacturing|non-mine|osha)\b/.test(text) ||
+      /\b(construction|mine|non-mine|workplace)\b[^.;]{0,60}\b(context|type|jurisdiction)\b[^.;]{0,30}\b(not stated|not established)\b/.test(text);
+
     if (holdReason) {
       reasons.push(`Jurisdiction hold: ${holdReason}`);
+    }
+
+    if (holdReason && explicitCrossJurisdictionBoundary) {
+      return {
+        likelyJurisdiction: 'unclear',
+        reasons,
+        requiresHumanConfirmation: true,
+      };
     }
 
     if (mineContext.detected) {
@@ -1834,10 +1846,8 @@ export class SafeScopeReasoningOrchestratorService {
   private getJurisdictionHoldReason(text: string): string | undefined {
     const normalizedText = normalized(text);
 
-    const ambiguousShop =
-      includesAny(normalizedText, ['shop observation', 'repair shop', 'maintenance shop']) ||
-      (includesAny(normalizedText, ['shop']) &&
-        includesAny(normalizedText, ['jurisdiction', 'unclear', 'ambiguous', 'unknown', 'no jurisdiction context']));
+    const ambiguousShop = includesAny(normalizedText, ['shop', 'shop observation', 'repair shop', 'maintenance shop']) &&
+      includesAny(normalizedText, ['jurisdiction', 'unclear', 'ambiguous', 'unknown', 'no jurisdiction context', 'mine versus', 'mine vs', 'mine or']);
 
     const mineContractor =
       includesAny(normalizedText, ['contractor shop', 'mine contractor', 'contractor']) &&
@@ -1865,13 +1875,19 @@ export class SafeScopeReasoningOrchestratorService {
       includesAny(normalizedText, ['public road', 'public roadway', 'public highway']) &&
       includesAny(normalizedText, ['haul truck', 'mine truck', 'crossing', 'mine', 'plant', 'jurisdiction']);
 
+    const explicitlyUnclearBoundary =
+      /\b(construction|mine|msha)\s+(versus|vs\.?|or)\s+(general industry|facility|shop|manufacturing|non-mine|osha)\b/.test(normalizedText) ||
+      /\b(mine|non-mine|construction|general industry|workplace)\b[^.;]{0,60}\b(context|type|jurisdiction)\b[^.;]{0,30}\b(unclear|unknown|not stated|not established)\b/.test(normalizedText) ||
+      /\b(platform|scaffold|roof)\b[^.;]{0,50}\bcontext\b[^.;]{0,20}\b(unclear|unknown)\b/.test(normalizedText);
+
     if (
       ambiguousShop ||
       mineContractor ||
       constructionPlant ||
       mobileShopBoundary ||
       railSpurBoundary ||
-      publicRoadBoundary
+      publicRoadBoundary ||
+      explicitlyUnclearBoundary
     ) {
       return 'Jurisdiction is not defensible from the observation alone. Confirm mine property status, public/private road or rail boundary, controlling employer, exposed worker status, contractor/operator control, and whether construction or shop work falls under MSHA or OSHA before relying on standards.';
     }

@@ -14,7 +14,7 @@ const CONTROL_PATTERNS: ControlPattern[] = [
   { domains: ['emergency_preparedness'], pattern: /\b(emergency )?(exit|exit route|egress)\b[^.;]*\b(clear|unobstructed|unblocked|marked and unobstructed)\b/, evidence: 'Emergency egress is described as clear and available.' },
   { domains: ['walking_working_surfaces', 'slip_trip_fall', 'slips_trips_falls'], pattern: /\b(floor|walkway|aisle|surface)\b[^.;]*\b(dry|clean and dry|clear and dry|free of (spills|debris))\b/, evidence: 'The walking surface is described as dry and clear.' },
   { domains: ['electrical'], pattern: /\bno exposed (energized|live) (parts|conductors)\b|\b(panel|enclosure) (cover )?(is )?(intact|closed|secured)\b|\bcord (is )?(undamaged|intact)\b/, evidence: 'Electrical guarding or conductor integrity is explicitly described as intact.' },
-  { domains: ['mobile_equipment', 'traffic_control', 'powered_haulage'], pattern: /\b(no pedestrian exposure|pedestrians? (are )?separated|separated from pedestrians?)\b|\b(barrier|barriers|physical separation)\b[^.;]*\b(pedestrian|forklift|mobile equipment|traffic route)\b/, evidence: 'Pedestrian and mobile-equipment routes are described as separated.' },
+  { domains: ['mobile_equipment', 'powered_haulage'], pattern: /\b(no pedestrian exposure|pedestrians? (are )?separated|separated from pedestrians?)\b|\b(barrier|barriers|physical separation)\b[^.;]*\b(pedestrian|forklift|mobile equipment|traffic route)\b/, evidence: 'Pedestrian and mobile-equipment routes are described as separated.' },
   { domains: ['powered_haulage', 'mobile_equipment'], pattern: /\b(berm|guardrail|windrow)\b[^.;]*\b(present|installed|adequate|maintained)\b/, evidence: 'Edge control is described as present and adequate.' },
   { domains: ['fire_protection'], pattern: /\bfire extinguisher\b[^.;]*\b(accessible|unobstructed|clearly visible|readily available)\b/, evidence: 'Fire protection equipment is described as accessible.' },
   { domains: ['welding_cutting_hot_work', 'fire_protection'], pattern: /\b(hot work|welding|cutting)\b[^.;]*\b(combustibles? (removed|cleared|protected))\b[^.;]*\bfire watch (present|assigned|in place)\b/, evidence: 'Hot-work combustibles and fire-watch controls are described as in place.' },
@@ -41,7 +41,7 @@ const FALSE_POSITIVE_PATTERNS: Array<{ pattern: RegExp; signal: string }> = [
 ];
 
 const VAGUE_DOMAIN_PATTERNS: Array<{ domain: SafeScopeReasoningDomain; pattern: RegExp; reason: string }> = [
-  { domain: 'fall_protection', pattern: /\b(possible|maybe|potential) fall hazard\b|\bfall concern\b/, reason: 'Fall height, edge/opening geometry, task, proximity, and controls are not stated.' },
+  { domain: 'fall_protection', pattern: /\b(possible|maybe|potential)(?: a)? fall hazard\b|\bfall concern\b/, reason: 'Fall height, edge/opening geometry, task, proximity, and controls are not stated.' },
   { domain: 'electrical', pattern: /\b(maybe|possible|potential) electrical (issue|concern|problem)\b/, reason: 'Equipment, voltage, energized condition, defect, and exposure are not stated.' },
   { domain: 'hazard_communication', pattern: /\bchemical container (observed|present|noted)\b/, reason: 'Chemical identity, label, closure, condition, and exposure route are not stated.' },
   { domain: 'lockout_tagout', pattern: /\bequipment maintenance (occurring|underway|in progress)\b/, reason: 'The servicing task, hazardous energy, danger-zone access, and isolation status are not stated.' },
@@ -52,9 +52,12 @@ const VAGUE_DOMAIN_PATTERNS: Array<{ domain: SafeScopeReasoningDomain; pattern: 
   { domain: 'confined_space', pattern: /^\s*possible (confined|permit) space[.!?]?\s*$/, reason: 'Space configuration, entry, atmosphere, internal hazards, and permit-space criteria are not stated.' },
   { domain: 'fall_protection', pattern: /\bfall hazard (reported|noted)\b/, reason: 'Fall distance, surface/opening type, employee exposure, task, and controls are not stated.' },
   { domain: 'electrical', pattern: /\belectrical concern (at|near) (the )?panel\b/, reason: 'Voltage, equipment condition, energized exposure, access, and defect evidence are not stated.' },
+  { domain: 'lockout_tagout', pattern: /^\s*maintenance (ongoing|underway|in progress)[.!?]?\s*$/, reason: 'The task, hazardous energy sources, danger-zone exposure, and isolation status are not stated.' },
+  { domain: 'noise_exposure', pattern: /^\s*noise (concern|issue)[.!?]?\s*$/, reason: 'Noise source, employee exposure, duration, measurements, and controls are not stated.' },
+  { domain: 'welding_cutting_hot_work', pattern: /^\s*hot work (discussed|planned|mentioned)[.!?]?\s*$/, reason: 'No active hot-work task, ignition source, combustible exposure, or failed control is described.' },
 ];
 
-const UNCONTROLLED_SIGNAL = /\b(missing|unguarded|unsecured|exposed|damaged|frayed|blocked|obstructed|leaking|spill|inoperative|defective|broken|without|no guard|no barrier|not verified|failed|unsafe)\b|\b(guard removed|removed guard)\b/i;
+const UNCONTROLLED_SIGNAL = /\b(missing|unguarded|unsecured|unlabeled|exposed|damaged|frayed|block|blocks|blocked|blocking|obstructed|leaking|spill|debris|clutter|inoperative|defective|broken|without|no guard|no barrier|no warning|not verified|failed|unsafe)\b|\b(guard removed|removed guard|trip hazard|no traffic control)\b/i;
 
 function unique<T>(values: T[]): T[] {
   return [...new Set(values)];
@@ -67,6 +70,8 @@ export class InspectionConditionAssessmentService {
     const controls = CONTROL_PATTERNS.filter((item) => item.pattern.test(text));
     const unsafeText = text
       .replace(/\bno exposed (energized|live) (parts|conductors)\b/g, ' ')
+      .replace(/\bno (spill|spills|debris|clutter)( or (spill|spills|debris|clutter))?\b/g, ' ')
+      .replace(/\bfree of (spills|debris|clutter)( or (spills|debris|clutter))?\b/g, ' ')
       .replace(/\bcombustibles? (removed|cleared|protected)\b/g, ' ')
       .replace(/[^.;]*\b(ladder|stepladder|extension ladder)\b[^.;]*\bremoved from service\b[^.;]*/g, ' ')
       .replace(/\b(guard|guarding)\b[^.;]*\b(installed|in place|intact|secured|effective)\b/g, ' ')

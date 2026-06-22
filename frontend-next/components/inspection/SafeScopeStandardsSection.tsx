@@ -26,11 +26,13 @@ export default function SafeScopeStandardsSection({
   safeScopeStandardsOpen,
   setSafeScopeStandardsOpen,
 }: Props) {
-  if (!safeScopeResult?.suggestedStandards?.length) {
+  const standards = safeScopeResult?.suggestedStandards?.length
+    ? safeScopeResult.suggestedStandards
+    : safeScopeResult?.inspectionIntelligence?.candidateStandards || [];
+
+  if (!standards.length) {
     return null;
   }
-
-  const standards = safeScopeResult.suggestedStandards;
   const selectedCount = standards.filter((standard: any) =>
     selectedStandards.some(
       (item) => getStandardKey(item) === getStandardKey(standard),

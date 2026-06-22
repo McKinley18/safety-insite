@@ -42,6 +42,10 @@ const suites: Suite[] = [
   {
     name: "Inspection Intelligence Adversarial Regression",
     scriptPath: "src/safescope-v2/tests/inspection-intelligence-adversarial-regression.ts"
+  },
+  {
+    name: "Inspection Intelligence Citation Recovery Regression",
+    scriptPath: "src/safescope-v2/tests/inspection-intelligence-citation-recovery-regression.ts"
   }
 ];
 

@@ -62,6 +62,16 @@ const RULES: InspectionIntelligenceRule[] = [
     standards: { osha_general_industry: [{ citation: '29 CFR 1910.334(a)(2)(ii)', evidence: ['cord damage', 'energized/use status', 'removal from service'] }, { citation: '29 CFR 1910.305(g)', evidence: ['flexible-cord use', 'location rating', 'temporary/permanent use'] }], osha_construction: [{ citation: '29 CFR 1926.404(b)(1)(ii)', evidence: ['construction receptacle use', 'GFCI or assured grounding program', 'wet exposure'] }] },
   },
   {
+    id: 'damaged-flexible-cord', domain: 'electrical', matches: [/\b(damaged|frayed|cut|exposed insulation|exposed conductor)\b.*\b(extension |flexible |power )?cord\b/, /\b(extension |flexible |power )?cord\b.*\b(damaged|frayed|cut|exposed insulation|exposed conductor)\b/],
+    initiating: 'A flexible cord has visible damage while remaining available for use.',
+    failure: 'Damaged insulation, strain relief, or conductors can permit energized contact, fault current, arcing, or fire.',
+    exposure: 'Employees handling the cord or connected equipment may contact an energized conductor or conductive surface.',
+    consequences: 'Shock, electrocution, burns, arc injury, secondary fall, or fire.',
+    questions: ['What damage, voltage, energized/use status, cord type, and connected equipment are involved?', 'Was the cord removed from service and is the use temporary, construction, wet, or otherwise severe?', 'What inspection, grounding/GFCI, routing, and replacement evidence is available?'],
+    controls: actions('De-energize and remove the damaged cord from service.', 'Provide inspected temporary power with appropriate grounding/GFCI and protected routing.', 'Replace the cord or install permanent correctly rated wiring for recurring service.', 'Maintain pre-use inspection, removal criteria, and temporary-wiring controls for the observed work.', 'Document defect disposition, replacement rating, protective-device test, and safe routing.'),
+    standards: { osha_general_industry: [{ citation: '29 CFR 1910.334(a)(2)(ii)', evidence: ['cord defect', 'energized/use status', 'inspection and removal from service'] }, { citation: '29 CFR 1910.305(g)', evidence: ['flexible-cord use and location', 'temporary/permanent use', 'cord rating and protection'] }], osha_construction: [{ citation: '29 CFR 1926.405(a)(2)(ii)(I)', evidence: ['construction activity', 'temporary wiring/cord use', 'damage and employee exposure'] }] },
+  },
+  {
     id: 'mobile-pedestrian', domain: 'mobile_equipment', matches: [/\b(forklift|loader|haul truck|mobile equipment)\b.*\b(pedestrian|worker|employee|miner)s?\b.*\b(no |without |lack).{0,30}(separation|barrier|traffic control|spotter)/, /\b(pedestrian|worker|employee|miner)s?\b.*\b(forklift|loader|haul truck|mobile equipment)\b/],
     initiating: 'Mobile equipment and pedestrians occupy the same operating area without verified separation.', failure: 'Blind spots, reversing, turning, speed, or communication failure can place equipment in a pedestrian path.', exposure: 'Pedestrians can enter the travel or swing zone without the operator seeing or stopping for them.', consequences: 'Struck-by, pinned-between, run-over, or crushing injury.',
     questions: ['What equipment, route, blind spots, speed, and pedestrian frequency are involved?', 'Are physical separation, exclusion zones, right-of-way, alarms, mirrors/cameras, or a spotter in use?', 'Are operators authorized and are pedestrians trained for the traffic plan?'],
@@ -69,7 +79,17 @@ const RULES: InspectionIntelligenceRule[] = [
     standards: { osha_general_industry: [{ citation: '29 CFR 1910.178', evidence: ['powered industrial truck type', 'operating area', 'pedestrian exposure', 'operator authorization'] }], osha_construction: [{ citation: '29 CFR 1926.602', evidence: ['construction equipment type', 'route and visibility', 'pedestrian exposure', 'equipment controls'] }], msha: [{ citation: '30 CFR 56.9100', evidence: ['mine traffic context', 'rules/signals', 'pedestrian and equipment interaction'] }] },
   },
   {
-    id: 'platform-fall', domain: 'fall_protection', matches: [/\b(elevated|raised|aerial)\b.*\b(platform|work platform|surface)\b.*\b(no|without|missing)\b.*\b(guardrail|fall arrest|fall protection)/, /\b(unprotected edge|floor opening)\b/],
+    id: 'mobile-blind-corner-control', domain: 'traffic_control', matches: [/\b(forklift|loader|truck|mobile equipment|traffic route)\b.*\bblind corner\b.*\b(no|without|missing)\b.*\b(sign|warning|mirror|traffic control)/, /\bblind corner\b.*\b(no warning|no traffic control|missing sign|missing mirror)\b/],
+    initiating: 'A mobile-equipment route includes a blind corner without a verified warning or visibility control.',
+    failure: 'Restricted sight distance can prevent operators or other route users from detecting conflicting traffic in time.',
+    exposure: 'Vehicles, equipment, or people approaching the corner may enter the same conflict zone without warning.',
+    consequences: 'Collision, struck-by, caught-between, or property-damage injury.',
+    questions: ['Which users and equipment approach the corner, at what speed and frequency?', 'Are mirrors, signs, alarms, stop controls, right-of-way rules, lighting, or one-way routing present?', 'Does physical pedestrian separation remain effective through the corner and crossings?'],
+    controls: actions('Restrict approach speed and conflicting movement until visibility/warning controls are restored.', 'Use temporary stop control, warning, and controlled right-of-way at the corner.', 'Redesign the corner with sight-distance improvements, mirrors/signals, protected routes, or one-way flow.', 'Update the traffic plan and verify operator and pedestrian understanding of the corner controls.', 'Observe representative movements and document sight distance, controls, speed, separation, and compliance.'),
+    standards: { osha_general_industry: [{ citation: '29 CFR 1910.178', evidence: ['powered industrial truck applicability', 'route geometry and sight distance', 'traffic interaction', 'warning/operating controls'] }], osha_construction: [{ citation: '29 CFR 1926.602', evidence: ['construction equipment operation', 'blind-corner route', 'warning and traffic controls'] }], msha: [{ citation: '30 CFR 56.9100', evidence: ['mine traffic route', 'blind-corner interaction', 'traffic rules/signals and exposure'] }] },
+  },
+  {
+    id: 'platform-fall', domain: 'fall_protection', matches: [/\b(elevated|raised|aerial)\b.*\b(platform|work platform|surface)\b.*\b(no|without|missing)\b.*\b(guardrail|fall arrest|fall protection)/, /\b(unprotected edge|floor opening)\b/, /\b(exposed|employee exposure|worker exposure)\b.*\b(elevated|unguarded)\b.*\bedge\b/],
     initiating: 'A worker is exposed to an elevated edge or opening without a verified protective system.', failure: 'Loss of balance, a misstep, surface failure, or task force can carry the worker beyond the edge.', exposure: 'The worker can fall to a lower level or through an opening.', consequences: 'Severe or fatal fall injury, including head, spinal, or multiple-trauma injury.',
     questions: ['What is the measured fall distance, platform type, edge/opening geometry, and task?', 'Are compliant guardrails, covers, travel restraint, or personal fall arrest present and suitable?', 'If PFAS is used, are anchorage, connector, clearance, rescue, and inspection verified?'],
     controls: actions('Stop exposed work and restrict access to the edge or opening.', 'Install a compliant temporary guardrail/cover or use a verified restraint/arrest system under competent supervision.', 'Provide permanent guardrails, rated covers, or an engineered fall-protection system appropriate to the platform.', 'Document fall-protection planning, equipment inspection, worker authorization/training, and rescue arrangements.', 'Measure and photograph the completed system and document competent-person or qualified-person verification.'),
@@ -142,10 +162,11 @@ function matchesRule(text: string, rule: InspectionIntelligenceRule): boolean {
 }
 
 function citationAllowedForMineType(citation: string, mineType: MineType): boolean {
-  if (/^29 CFR\b/.test(citation) && mineType !== 'not_mine') return false;
+  if (mineType === 'not_mine') return !/^30 CFR\b/.test(citation);
+  if (/^29 CFR\b/.test(citation)) return false;
   const part = citation.match(/30 CFR (\d+)/)?.[1];
   if (!part) return true;
-  if (part === '62') return mineType !== 'not_mine';
+  if (part === '62') return true;
   if (mineType === 'surface_metal_nonmetal') return ['46', '48', '56'].includes(part);
   if (mineType === 'underground_metal_nonmetal') return ['48', '57'].includes(part);
   if (mineType === 'surface_coal') return ['48', '71', '77'].includes(part);

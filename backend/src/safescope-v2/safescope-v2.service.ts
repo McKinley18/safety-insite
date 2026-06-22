@@ -22,6 +22,7 @@ import { getEvidenceGapIntelligence } from "./intelligence/evidence-gap-intellig
 import { getCorrectiveActionIntelligence } from "./intelligence/corrective-action-intelligence";
 import { SafeScopeNativeReasoningService } from "./native-reasoning/native-reasoning.service";
 import { SafeScopeReasoningOrchestratorService } from "./reasoning-orchestrator/reasoning-orchestrator.service";
+import { InspectionCitationRecoveryService } from "./inspection-intelligence/inspection-citation-recovery.service";
 import { SafeScopeReasoningRequest } from "./reasoning-orchestrator/reasoning-orchestrator.types";
 import { VisualEvidenceReasoningService } from "./visual-evidence-reasoning/visual-evidence-reasoning.service";
 import { VisualEvidenceReasoningInput, Attachment } from "./visual-evidence-reasoning/visual-evidence-reasoning.types";
@@ -43,6 +44,7 @@ export class SafescopeV2Service {
   private bridge = new StandardsBridgeService();
   private nativeReasoningService = new SafeScopeNativeReasoningService();
   private reasoningOrchestratorService = new SafeScopeReasoningOrchestratorService();
+  private citationRecoveryService = new InspectionCitationRecoveryService();
   private lazyIntelligenceOrchestrator?: any;
 
   constructor(
@@ -133,6 +135,11 @@ export class SafescopeV2Service {
 
       // Route the observation first so HazLenz opens the most relevant knowledge directory.
       const normalizedScopes = this.normalizeScopes(scopes, fusedText);
+      const advisoryReasoning = this.reasoningOrchestratorService.reason({
+        hazardObservation: fusedText,
+        industryContext: normalizedScopes.join(' '),
+        workspaceId,
+      });
       const knowledgeRoute = this.knowledgeRouter.route({
         text: fusedText,
         scopes: normalizedScopes,
@@ -181,14 +188,14 @@ export class SafescopeV2Service {
         normalizedScopes,
       ).sort((a, b) => (b.score || 0) - (a.score || 0));
 
-      const suggestedStandards = scopedStandards
+      let suggestedStandards = scopedStandards
         .filter((standard) =>
           standard.scopeFit !== "mismatch" &&
           standard.candidateStatus !== "needs_more_evidence"
         )
         .slice(0, 5);
 
-      const excludedStandards = scopedStandards
+      let excludedStandards = scopedStandards
         .filter((standard) =>
           standard.scopeFit === "mismatch" ||
           standard.candidateStatus === "needs_more_evidence"
@@ -200,6 +207,15 @@ export class SafescopeV2Service {
             standard.scopeExclusionReason ||
             "Candidate lacks sufficient evidence fit for active suggestion.",
         }));
+
+      const citationRecovery = this.citationRecoveryService.recover({
+        suggestedStandards,
+        excludedStandards,
+        inspectionIntelligence: advisoryReasoning.inspectionIntelligence,
+        scopes: normalizedScopes,
+      });
+      suggestedStandards = citationRecovery.suggestedStandards;
+      excludedStandards = citationRecovery.excludedStandards;
 
       const needsMoreEvidenceStandards = excludedStandards.filter(
         (standard) => standard.candidateStatus === "needs_more_evidence",
@@ -773,6 +789,8 @@ export class SafescopeV2Service {
           hazardCategory: rootHazardCategory,
           candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
+          inspectionIntelligence: advisoryReasoning.inspectionIntelligence,
+          citationRecovery: citationRecovery.decision,
           standardsMatchExplanations,
           excludedStandards,
           needsMoreEvidenceStandards,
