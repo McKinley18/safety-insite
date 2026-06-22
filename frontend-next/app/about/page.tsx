@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
-import { getAuthUser } from "@/lib/auth";
+import { hasAuthToken } from "@/lib/auth";
 
 const capabilities = [
   {
@@ -43,12 +43,7 @@ export default function AboutPage() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-    try {
-      const user = getAuthUser();
-      setIsSignedIn(Boolean(user?.email || user?.name || user?.role));
-    } catch {
-      setIsSignedIn(false);
-    }
+    setIsSignedIn(hasAuthToken());
   }, []);
 
   return (
@@ -206,7 +201,7 @@ export default function AboutPage() {
                 href="/command-center"
                 className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
               >
-                Return to dashboard
+                Return to Dashboard
               </AppLinkButton>
             ) : (
               <>

@@ -1,6 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
+import { hasAuthToken } from "@/lib/auth";
 
 const proofPoints = [
   ["Inspection-first", "Built around the field workflow safety professionals already use: observe, capture, classify, correct, review, and report."],
@@ -24,6 +27,12 @@ const useCases = [
 ];
 
 export default function MarketingHomePage() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    setIsSignedIn(hasAuthToken());
+  }, []);
+
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-3 py-4 sm:px-6 sm:py-8 lg:py-10">
       <section className="overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] text-white shadow-none">
@@ -44,20 +53,31 @@ export default function MarketingHomePage() {
           </p>
 
           <div className="mx-auto mt-7 flex w-full max-w-md flex-col items-center justify-center gap-3 sm:flex-row">
-            <AppLinkButton
-              href="/register"
-              className="!flex !w-full items-center justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-center text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[180px]"
-            >
-              Create account
-            </AppLinkButton>
+            {isSignedIn ? (
+              <AppLinkButton
+                href="/command-center"
+                className="!flex !w-full items-center justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-center text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[220px]"
+              >
+                Return to Dashboard
+              </AppLinkButton>
+            ) : (
+              <>
+                <AppLinkButton
+                  href="/register"
+                  className="!flex !w-full items-center justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-center text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[180px]"
+                >
+                  Create account
+                </AppLinkButton>
 
-            <AppLinkButton
-              href="/login"
-              variant="secondary"
-              className="!flex !w-full items-center justify-center rounded-full border border-white/20 bg-white px-6 py-3 text-center text-sm font-black !text-[#0B1320] shadow-none transition hover:bg-slate-100 sm:!w-[180px]"
-            >
-              Sign in
-            </AppLinkButton>
+                <AppLinkButton
+                  href="/login"
+                  variant="secondary"
+                  className="!flex !w-full items-center justify-center rounded-full border border-white/20 bg-white px-6 py-3 text-center text-sm font-black !text-[#0B1320] shadow-none transition hover:bg-slate-100 sm:!w-[180px]"
+                >
+                  Sign in
+                </AppLinkButton>
+              </>
+            )}
           </div>
 
           <p className="mx-auto mt-4 max-w-xl text-center text-xs font-bold leading-5 text-blue-100">
@@ -152,19 +172,30 @@ export default function MarketingHomePage() {
         </p>
 
         <div className="mx-auto mt-6 flex max-w-md flex-col justify-center gap-3 sm:flex-row">
-          <AppLinkButton
-            href="/register"
-            className="!flex !w-full justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[180px]"
-          >
-            Create account
-          </AppLinkButton>
-          <AppLinkButton
-            href="/hazlenz"
-            variant="secondary"
-            className="!flex !w-full justify-center rounded-full bg-white px-6 py-3 text-sm font-black !text-[#102A43] ring-1 ring-slate-200 sm:!w-[180px]"
-          >
-            Learn HazLenz
-          </AppLinkButton>
+          {isSignedIn ? (
+            <AppLinkButton
+              href="/command-center"
+              className="!flex !w-full justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[220px]"
+            >
+              Return to Dashboard
+            </AppLinkButton>
+          ) : (
+            <>
+              <AppLinkButton
+                href="/register"
+                className="!flex !w-full justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[180px]"
+              >
+                Create account
+              </AppLinkButton>
+              <AppLinkButton
+                href="/hazlenz"
+                variant="secondary"
+                className="!flex !w-full justify-center rounded-full bg-white px-6 py-3 text-sm font-black !text-[#102A43] ring-1 ring-slate-200 sm:!w-[180px]"
+              >
+                Learn HazLenz
+              </AppLinkButton>
+            </>
+          )}
         </div>
       </section>
     </section>

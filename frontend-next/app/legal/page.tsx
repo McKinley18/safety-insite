@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
-import { getAuthUser } from "@/lib/auth";
+import { hasAuthToken } from "@/lib/auth";
 
 const sections = [
   {
@@ -36,12 +36,7 @@ export default function LegalPage() {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-    try {
-      const user = getAuthUser();
-      setIsSignedIn(Boolean(user?.email || user?.name || user?.role));
-    } catch {
-      setIsSignedIn(false);
-    }
+    setIsSignedIn(hasAuthToken());
   }, []);
 
   return (
@@ -88,20 +83,31 @@ export default function LegalPage() {
 
         <div className="py-7 text-center sm:py-8">
           <div className="flex flex-wrap justify-center gap-3">
-            <AppLinkButton
-              href="/login"
-              className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
-            >
-              Return to sign in
-            </AppLinkButton>
+            {isSignedIn ? (
+              <AppLinkButton
+                href="/command-center"
+                className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
+              >
+                Return to Dashboard
+              </AppLinkButton>
+            ) : (
+              <>
+                <AppLinkButton
+                  href="/login"
+                  className="bg-[#1D72B8] px-6 py-3 text-white shadow-sm hover:bg-[#0B1320]"
+                >
+                  Return to sign in
+                </AppLinkButton>
 
-            <AppLinkButton
-              href="/register"
-              variant="secondary"
-              className="bg-white px-6 py-3 !text-[#0B1320] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
-            >
-              Create account
-            </AppLinkButton>
+                <AppLinkButton
+                  href="/register"
+                  variant="secondary"
+                  className="bg-white px-6 py-3 !text-[#0B1320] shadow-sm ring-1 ring-slate-200 hover:bg-blue-50"
+                >
+                  Create account
+                </AppLinkButton>
+              </>
+            )}
           </div>
         </div>
       </div>
