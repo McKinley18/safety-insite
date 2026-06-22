@@ -50,6 +50,7 @@ function formatStandardDisplay(standard: any): string {
 function collectStandards(result: any): string[] {
   const sources = [
     ...(result?.suggestedStandards || []),
+    ...(result?.inspectionIntelligence?.candidateStandards || []),
     ...(result?.standardsReasoning?.topDefensible || []),
     ...(result?.applicabilityIntelligence?.primaryApplicableStandards || []),
     ...(result?.regulatoryApplicability?.primaryApplicableStandards || []),
