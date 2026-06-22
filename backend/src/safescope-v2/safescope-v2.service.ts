@@ -802,7 +802,7 @@ export class SafescopeV2Service {
         return 'unknown';
       })();
 
-      return {
+      const response = {
           ...promotedPrimary,
           ...intelligence,
           isVague,
@@ -833,7 +833,7 @@ export class SafescopeV2Service {
               shardKeys: knowledgeShardSummary.shardKeys,
               citations: knowledgeShardSummary.citations,
               evidenceNeeded: knowledgeShardSummary.evidenceNeeded,
-              correctiveActionPatterns: knowledgeShardSummary.correctiveActionPatterns,
+              correctiveActionPatterns: isVague ? [] : knowledgeShardSummary.correctiveActionPatterns,
             },
             advisoryOnly: true,
             requiresQualifiedReview: true,
@@ -876,7 +876,79 @@ export class SafescopeV2Service {
               learningMemory,
           }
       };
-  }
+
+      if (isVague) {
+        const isElectrical = String(rootHazardCategory || '').toLowerCase().includes('electrical') ||
+                             String(promotedPrimary.classification || '').toLowerCase().includes('electrical');
+        const inspectorText = isElectrical
+          ? 'Have a qualified safety professional or qualified electrical person inspect the condition.'
+          : 'Have a qualified safety professional or competent person inspect the condition.';
+
+        if (response.correctiveActionReasoning) {
+          response.correctiveActionReasoning = {
+            ...response.correctiveActionReasoning,
+            immediateActions: [
+              'Keep personnel from touching or operating the affected area/equipment until evaluated.',
+              'Restrict access if damage or hazard exposure is suspected.',
+              'Mark/flag the concern and collect photos/details.'
+            ],
+            interimControls: [
+              'Maintain access control pending qualified review.'
+            ],
+            permanentCorrections: [
+              'Repair or replace components identified by qualified review.'
+            ],
+            verificationSteps: [
+              inspectorText
+            ],
+            administrativeFollowUps: [],
+            urgencyLevel: 'moderate',
+            immediateActionNarrative: 'Keep personnel from touching or operating the affected area/equipment until evaluated.',
+            interimControlNarrative: 'Maintain access control pending qualified review.',
+            permanentCorrectionNarrative: 'Repair or replace components identified by qualified review.',
+            verificationNarrative: inspectorText,
+            administrativeFollowUpNarrative: 'Collect photos or details and request qualified safety review.',
+          };
+        }
+
+        if (response.dca) {
+          response.dca = {
+            ...response.dca,
+            immediateActions: [],
+            interimControls: [],
+            permanentCorrectiveActions: [],
+            verificationActions: [],
+            actionRationale: 'Observation is too vague to recommend specific corrective actions.',
+            blockedActions: ['Final corrective actions are blocked until critical facts are confirmed.'],
+          };
+        }
+
+        if (response.inspectionIntelligence?.correctiveActions) {
+          response.inspectionIntelligence.correctiveActions = {
+            immediate: [
+              'Keep personnel from touching or operating the affected area/equipment until evaluated.',
+              'Restrict access if damage or hazard exposure is suspected.',
+              'Mark/flag the concern and collect photos/details.'
+            ],
+            interim: [
+              'Maintain access control pending qualified review.'
+            ],
+            permanentEngineering: [
+              'Repair or replace components identified by qualified review.'
+            ],
+            administrativeProgramTraining: [],
+            verificationFollowUp: [
+              inspectorText
+            ]
+          };
+        }
+
+        // Run the recursive sanitizer on the response object to clean any nested properties
+        return this.sanitizeResponseForVagueInput(response, isElectrical, inspectorText, rootHazardCategory);
+      }
+
+      return response;
+   }
 
 
   private buildEnhancedGeneratedActions(
@@ -1289,5 +1361,190 @@ export class SafescopeV2Service {
         requiresQualifiedReview: true,
       };
     });
+  }
+
+  private sanitizeResponseForVagueInput(obj: any, isElectrical: boolean, inspectorText: string, rootHazardCategory: string): any {
+    if (obj === null || obj === undefined) return obj;
+
+    if (Array.isArray(obj)) {
+      return obj.map(item => this.sanitizeResponseForVagueInput(item, isElectrical, inspectorText, rootHazardCategory));
+    }
+
+    if (typeof obj === 'object') {
+      const newObj: any = {};
+      for (const key of Object.keys(obj)) {
+        // Skip inferredPossibilities as it is allowed to contain possible conditions
+        if (key === 'inferredPossibilities') {
+          newObj[key] = obj[key];
+          continue;
+        }
+
+        // 1. Sanitize correctiveActionPatterns
+        if (key === 'correctiveActionPatterns' || key === 'shardCorrectiveActionPatterns') {
+          newObj[key] = [];
+          continue;
+        }
+
+        // 2. Sanitize correctiveActionReasoning if it's an object
+        if (key === 'correctiveActionReasoning' && typeof obj[key] === 'object' && obj[key] !== null) {
+          newObj[key] = {
+            ...obj[key],
+            immediateActions: [
+              'Keep personnel from touching or operating the affected area/equipment until evaluated.',
+              'Restrict access if damage or hazard exposure is suspected.',
+              'Mark/flag the concern and collect photos/details.'
+            ],
+            interimControls: [
+              'Maintain access control pending qualified review.'
+            ],
+            permanentCorrections: [
+              'Repair or replace components identified by qualified review.'
+            ],
+            verificationSteps: [
+              inspectorText
+            ],
+            administrativeFollowUps: [],
+            urgencyLevel: 'moderate',
+            immediateActionNarrative: 'Keep personnel from touching or operating the affected area/equipment until evaluated.',
+            interimControlNarrative: 'Maintain access control pending qualified review.',
+            permanentCorrectionNarrative: 'Repair or replace components identified by qualified review.',
+            verificationNarrative: inspectorText,
+            administrativeFollowUpNarrative: 'Collect photos or details and request qualified safety review.',
+          };
+          continue;
+        }
+
+        // 3. Sanitize correctiveActionReasoning if it's a string
+        if (key === 'correctiveActionReasoning' && typeof obj[key] === 'string') {
+          newObj[key] = "Review and control HazLenz AI-identified hazard. Keep personnel from touching or operating the affected area/equipment until evaluated by a qualified review.";
+          continue;
+        }
+
+        // 4. Sanitize correctiveActionStrategy if it's an object
+        if (key === 'correctiveActionStrategy' && typeof obj[key] === 'object' && obj[key] !== null) {
+          const vagueRankedActions = [
+            {
+              id: "action-vague-1",
+              actionType: "immediate",
+              priority: "high",
+              controlFamily: "administrative",
+              actionText: "Keep personnel from touching or operating the affected area/equipment until evaluated.",
+              reason: "Observation is too vague to confirm specific conditions or repairs.",
+              linkedHazardDomains: [rootHazardCategory || "general"],
+              linkedScenarioIds: [],
+              linkedCausalChains: [],
+              evidenceDependency: "unconfirmed",
+              confidence: 0.5,
+              requiresHumanVerification: true,
+            },
+            {
+              id: "action-vague-2",
+              actionType: "interim",
+              priority: "medium",
+              controlFamily: "administrative",
+              actionText: "Restrict access if damage or hazard exposure is suspected.",
+              reason: "Observation is too vague to confirm specific conditions or repairs.",
+              linkedHazardDomains: [rootHazardCategory || "general"],
+              linkedScenarioIds: [],
+              linkedCausalChains: [],
+              evidenceDependency: "unconfirmed",
+              confidence: 0.5,
+              requiresHumanVerification: true,
+            },
+            {
+              id: "action-vague-3",
+              actionType: "verification",
+              priority: "high",
+              controlFamily: "verification",
+              actionText: inspectorText,
+              reason: "Qualified review and inspection required to determine specific defects.",
+              linkedHazardDomains: [rootHazardCategory || "general"],
+              linkedScenarioIds: [],
+              linkedCausalChains: [],
+              evidenceDependency: "unconfirmed",
+              confidence: 0.5,
+              requiresHumanVerification: true,
+            }
+          ];
+
+          newObj[key] = {
+            strategyVersion: 'v1-vague-sanitized',
+            rankedActions: vagueRankedActions,
+            immediateControls: vagueRankedActions.filter(a => a.actionType === 'immediate'),
+            interimControls: vagueRankedActions.filter(a => a.actionType === 'interim'),
+            permanentControls: [
+              {
+                id: "action-vague-4",
+                actionType: "permanent",
+                priority: "medium",
+                controlFamily: "engineering",
+                actionText: "Repair or replace components identified by qualified review.",
+                reason: "Permanent corrections must follow qualified inspection and review.",
+                linkedHazardDomains: [rootHazardCategory || "general"],
+                linkedScenarioIds: [],
+                linkedCausalChains: [],
+                evidenceDependency: "unconfirmed",
+                confidence: 0.5,
+                requiresHumanVerification: true,
+              }
+            ],
+            verificationSteps: vagueRankedActions.filter(a => a.actionType === 'verification'),
+            weakActionsToAvoid: [],
+            supervisorQuestions: [],
+            rankingRationale: ["Observation is too vague to recommend specific corrective actions. Prioritizing access control and qualified reviewer inspection."],
+            confidence: 0.5,
+            actionPosture: 'verify_then_act',
+            advisoryBoundary: 'Advisory-only vague hazard control strategy.'
+          };
+          continue;
+        }
+
+        // 5. Sanitize any string containing forbidden terms (case-insensitive checks)
+        if (typeof obj[key] === 'string') {
+          let val = obj[key];
+          const forbiddenTerms = [
+            'immediately stop all work',
+            'lock out',
+            'tag out',
+            'de-energization',
+            'exposed electrical equipment',
+            'exposed energized parts',
+            'approved covers',
+            'dead-front',
+            'open slot',
+            'replace damaged wiring',
+            'permanent engineered solutions specific to hazard'
+          ];
+
+          let containsForbidden = false;
+          const valLower = val.toLowerCase();
+          for (const term of forbiddenTerms) {
+            if (valLower.includes(term)) {
+              containsForbidden = true;
+              break;
+            }
+          }
+
+          if (containsForbidden) {
+            if (key === 'description' || key === 'title' || key === 'actionText' || key === 'reason') {
+               if (valLower.includes('lock out') || valLower.includes('tag out') || valLower.includes('de-energization')) {
+                 val = "Verify de-energization or lockout before work is performed.";
+               } else {
+                 val = "Review and inspect condition with qualified personnel.";
+               }
+            } else {
+               val = "Review and inspect condition with qualified personnel.";
+            }
+          }
+          newObj[key] = val;
+          continue;
+        }
+
+        newObj[key] = this.sanitizeResponseForVagueInput(obj[key], isElectrical, inspectorText, rootHazardCategory);
+      }
+      return newObj;
+    }
+
+    return obj;
   }
 }

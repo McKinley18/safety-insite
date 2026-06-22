@@ -218,6 +218,46 @@ async function run() {
     try {
       const response = await service.classify(tc.input);
 
+      // Entire serialized response check (excluding inferredPossibilities) for "panel looks bad"
+      if (tc.input === 'panel looks bad') {
+        const cleanResponseForSerialization = JSON.parse(JSON.stringify(response));
+        const walkAndRemoveInferredPossibilities = (val: any) => {
+          if (val && typeof val === 'object') {
+            if (Array.isArray(val)) {
+              val.forEach(walkAndRemoveInferredPossibilities);
+            } else {
+              delete val.inferredPossibilities;
+              for (const key of Object.keys(val)) {
+                walkAndRemoveInferredPossibilities(val[key]);
+              }
+            }
+          }
+        };
+        walkAndRemoveInferredPossibilities(cleanResponseForSerialization);
+        const serialized = JSON.stringify(cleanResponseForSerialization).toLowerCase();
+
+        const forbiddenStrings = [
+          "immediately stop all work",
+          "lock out",
+          "tag out",
+          "approved covers",
+          "blanks",
+          "enclosure components",
+          "dead-front",
+          "filler",
+          "knockout",
+          "open slot",
+          "replace damaged wiring",
+          "permanent engineered solutions specific to hazard"
+        ];
+
+        for (const forbidden of forbiddenStrings) {
+          if (serialized.includes(forbidden)) {
+            throw new Error(`Expected serialized response (excluding inferredPossibilities) to not contain "${forbidden}", but it did!`);
+          }
+        }
+      }
+
       // A1: Vague input flag should be true
       if (response.isVague !== true) {
         throw new Error(`Expected isVague to be true, got ${response.isVague}`);
