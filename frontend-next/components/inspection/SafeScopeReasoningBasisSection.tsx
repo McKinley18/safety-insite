@@ -36,7 +36,7 @@ export default function SafeScopeReasoningBasisSection({
           <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
             {formatValue(basis?.primaryReasoningSource || "safescope_governed_brain")}
           </p>
-          <p className="mt-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+          <p className="mt-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
             Standards source:{" "}
             <span className="font-black text-slate-700 dark:text-slate-300">
               {formatValue(
@@ -96,7 +96,7 @@ export default function SafeScopeReasoningBasisSection({
 
         {!!hierarchy?.primaryBasis?.length && (
           <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
               Primary basis
             </p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
@@ -109,7 +109,7 @@ export default function SafeScopeReasoningBasisSection({
 
         {!!hierarchy?.secondaryReferenceOnly?.length && (
           <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
               Reference only
             </p>
             <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">

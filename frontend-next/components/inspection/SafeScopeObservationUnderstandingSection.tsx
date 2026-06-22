@@ -48,7 +48,7 @@ export default function SafeScopeObservationUnderstandingSection({
             {formatValue(equipment?.specificEquipment || equipment?.category || "Unknown")}
           </div>
           {(equipment?.component || equipment?.motion || equipment?.operationalState) && (
-            <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
+            <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-700 dark:text-slate-700">
               Component: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(equipment?.component)}</span>{" • "}
               Motion: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(equipment?.motion)}</span>{" • "}
               State: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(equipment?.operationalState)}</span>
@@ -64,7 +64,7 @@ export default function SafeScopeObservationUnderstandingSection({
           <div className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100 capitalize">
             {formatValue(task?.activity || "Unknown")}
           </div>
-          <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
+          <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-700 dark:text-slate-700">
             Task Type: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(task?.taskType)}</span>{" • "}
             Affected Person: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(task?.workerRole || "Worker")}</span>
           </p>
@@ -81,7 +81,7 @@ export default function SafeScopeObservationUnderstandingSection({
             </div>
           )}
           {scenario?.hazardFamily && (
-            <p className="mt-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
+            <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-700">
               Hazard Family: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(scenario.hazardFamily)}</span>
             </p>
           )}
@@ -113,7 +113,7 @@ export default function SafeScopeObservationUnderstandingSection({
             <div className="mt-1 text-xs font-bold text-slate-800 dark:text-slate-200 capitalize leading-relaxed">
               Primary: <span className="font-black text-slate-900 dark:text-slate-100">{formatValue(energy?.primaryEnergySource || "Unknown")}</span>
               {energy?.sources?.length > 1 && (
-                <div className="mt-1 text-[11px] text-slate-500 font-semibold leading-normal">
+                <div className="mt-1 text-[11px] text-slate-700 font-semibold leading-normal">
                   All sources: {energy.sources.map(formatValue).join(", ")}
                 </div>
               )}
@@ -132,7 +132,7 @@ export default function SafeScopeObservationUnderstandingSection({
             <div className="mt-1 text-xs font-bold text-slate-800 dark:text-slate-200 capitalize leading-relaxed">
               Proximity: <span className="font-black text-slate-900 dark:text-slate-100">{formatValue(exposure?.proximity || "Unknown")}</span>
               {exposure?.exposurePathway && (
-                <div className="mt-1 text-[11px] text-slate-500 font-semibold leading-normal">
+                <div className="mt-1 text-[11px] text-slate-700 font-semibold leading-normal">
                   Pathway: {exposure.exposurePathway}
                 </div>
               )}
@@ -167,12 +167,12 @@ export default function SafeScopeObservationUnderstandingSection({
               </div>
             )}
             {controls?.strongestControlLevel && (
-              <p className="mt-1 text-[11px] font-black uppercase tracking-wide text-slate-500">
+              <p className="mt-1 text-[11px] font-black uppercase tracking-wide text-slate-700">
                 Strongest Control Level: <span className="text-slate-800 dark:text-slate-200">{formatValue(controls.strongestControlLevel)}</span>
               </p>
             )}
             {(!controls?.failedControls?.length && !controls?.missingControls?.length && !controls?.existingControls?.length) && (
-              <span className="text-slate-500 font-semibold">No control information provided or detected</span>
+              <span className="text-slate-700 font-semibold">No control information provided or detected</span>
             )}
           </div>
         </div>
@@ -185,7 +185,7 @@ export default function SafeScopeObservationUnderstandingSection({
           <div className="mt-1 text-xs font-bold text-slate-800 dark:text-slate-200 capitalize leading-relaxed">
             Detected: <span className="font-black text-slate-900 dark:text-slate-100">{formatValue(jurisdiction?.detected || "Unclear")}</span>
             {jurisdiction?.evidence?.length > 0 && (
-              <div className="mt-1 text-[11px] text-slate-500 font-semibold leading-normal">
+              <div className="mt-1 text-[11px] text-slate-700 font-semibold leading-normal">
                 Evidence: {jurisdiction.evidence.join(" • ")}
               </div>
             )}

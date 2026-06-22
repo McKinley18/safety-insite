@@ -43,7 +43,7 @@ export default function RiskReviewSection({
 
   return (
     <>
-      <p className="mb-4 text-sm font-semibold leading-6 text-slate-500">
+      <p className="mb-4 text-sm font-semibold leading-6 text-slate-700">
         Risk matrix: <span className="font-black text-slate-700">{activeRiskScale.label}</span>. Select one cell to confirm severity and likelihood.
       </p>
 
@@ -61,7 +61,7 @@ export default function RiskReviewSection({
       <div>
         <div className="mb-2 flex items-center justify-between gap-3">
           <h3 className="font-black text-slate-800">Risk Matrix</h3>
-          <p className="text-xs font-bold text-slate-500">
+          <p className="text-xs font-bold text-slate-700">
             Likelihood ↑ / Severity →
           </p>
         </div>
@@ -74,14 +74,14 @@ export default function RiskReviewSection({
         >
           <div />
           {severityValues.map((s) => (
-            <div key={`s-${s.score}`} className="text-center text-[9px] font-black text-slate-500">
+            <div key={`s-${s.score}`} className="text-center text-[9px] font-black text-slate-700">
               S{s.score}
             </div>
           ))}
 
           {likelihoodValues.map((l) => (
             <div key={`likelihood-row-${l.score}`} className="contents">
-              <div key={`l-label-${l.score}`} className="flex items-center justify-center text-[9px] font-black text-slate-500">
+              <div key={`l-label-${l.score}`} className="flex items-center justify-center text-[9px] font-black text-slate-700">
                 L{l.score}
               </div>
 

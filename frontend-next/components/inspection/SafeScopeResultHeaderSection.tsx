@@ -135,7 +135,7 @@ export default function safeScopeResultHeaderSection({
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             HazLenz AI Review Complete
           </p>
-          <p className="mt-1 text-sm font-semibold text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-700">
             Confirm the finding, evidence needs, and next actions.
           </p>
         </div>
@@ -162,7 +162,7 @@ export default function safeScopeResultHeaderSection({
         <div className="mb-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
                 Review Summary
               </p>
               <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">

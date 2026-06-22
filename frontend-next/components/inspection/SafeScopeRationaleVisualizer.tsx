@@ -93,7 +93,7 @@ export default function SafeScopeRationaleVisualizer({ safeScopeResult }: Props)
             <div className="text-left">
               <span className="text-[10px] font-bold text-[#1D72B8] uppercase tracking-wide">3. Energy & Barrier Mode</span>
               <p className="mt-1 text-[11px] font-semibold text-slate-800 line-clamp-1">{energyType}</p>
-              <p className="text-[10px] text-slate-500 line-clamp-1">{failureMode}</p>
+              <p className="text-[10px] text-slate-700 line-clamp-1">{failureMode}</p>
             </div>
           ),
         },
@@ -195,7 +195,7 @@ export default function SafeScopeRationaleVisualizer({ safeScopeResult }: Props)
           <h4 className="text-sm font-black text-slate-900">
             Review Path
           </h4>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-700 mt-0.5">
             See how the finding moved from observation to review suggestions
           </p>
         </div>

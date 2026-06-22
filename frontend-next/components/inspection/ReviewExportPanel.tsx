@@ -36,7 +36,7 @@ export function ReviewExportPanel({
           <span className="block text-sm font-black text-slate-900 dark:text-slate-100">
             I confirm this report has been reviewed by a qualified person.
           </span>
-          <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+          <span className="mt-1 block text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
             HazLenz AI outputs, standards, risk ratings, corrective actions,
             and report language have been independently reviewed before export.
             Use of this report remains subject to the Safety InSite legal terms.
@@ -68,7 +68,7 @@ export function ReviewExportPanel({
       </AppButton>
 
       {!humanReviewConfirmed && (
-        <p className="mt-2 text-[11px] font-bold text-slate-500 dark:text-slate-400">
+        <p className="mt-2 text-[11px] font-bold text-slate-700 dark:text-slate-700">
           Confirm qualified-person review to enable export.
         </p>
       )}

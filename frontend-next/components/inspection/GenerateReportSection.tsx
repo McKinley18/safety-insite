@@ -219,7 +219,7 @@ export default function GenerateReportSection({
               Generate completed inspection report
             </h3>
 
-            <p className="mt-1 text-sm font-semibold leading-5 text-slate-500 dark:text-slate-300">
+            <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-300">
               Create the final report using the saved findings and selected
               report package options.
             </p>

@@ -215,7 +215,7 @@ export default function CurrentHazardCard({
                   {category}
                 </h2>
 
-                <p className="truncate text-[9px] font-semibold leading-4 text-slate-500">
+                <p className="truncate text-[9px] font-semibold leading-4 text-slate-700">
                   {primaryLine} · {categorySource}
                 </p>
 

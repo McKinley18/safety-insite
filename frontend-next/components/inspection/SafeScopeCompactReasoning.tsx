@@ -63,7 +63,7 @@ export default function SafeScopeCompactReasoning({
             ? "Hide technical details"
             : "Show technical details"}
         </button>
-        <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+        <p className="mt-1 text-xs font-semibold leading-5 text-slate-700">
           Optional details for qualified review.
         </p>
       </div>

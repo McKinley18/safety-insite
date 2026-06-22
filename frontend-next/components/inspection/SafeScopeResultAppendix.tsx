@@ -98,7 +98,7 @@ export function SafeScopeVisualEvidenceAppendix({
         </div>
       )}
 
-      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 dark:text-slate-400 italic">
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-700 dark:text-slate-700 italic">
         {visual.advisoryBoundary}
       </p>
     </div>
@@ -207,7 +207,7 @@ export function SafeScopeKnowledgeRouteAppendix({
         </p>
       )}
 
-      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 dark:text-slate-400 italic">
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-700 dark:text-slate-700 italic">
         HazLenz uses this route to focus standards and knowledge retrieval. This
         route is advisory and requires qualified review.
       </p>
@@ -311,7 +311,7 @@ export function SafeScopeEquipmentReasoningAppendix({
         </p>
       )}
 
-      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-500 dark:text-slate-400 italic">
+      <p className="mt-2 text-[11px] font-bold leading-5 text-slate-700 dark:text-slate-700 italic">
         Equipment reasoning is context-only and requires qualified review. It
         does not declare violations, create citations, or override regulations.
       </p>

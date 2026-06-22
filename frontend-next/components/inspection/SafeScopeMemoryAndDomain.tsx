@@ -49,7 +49,7 @@ export default function SafeScopeMemoryAndDomain({
               .filter(([, value]: any) => Boolean(value))
               .map(([domain, value]: any) => (
                 <div key={domain} className="rounded-xl bg-slate-50 px-3 py-3">
-                  <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+                  <p className="text-xs font-black uppercase tracking-wide text-slate-700">
                     {domain.replace(/([A-Z])/g, " $1").replaceAll("_", " ")}
                   </p>
 
@@ -73,7 +73,7 @@ export default function SafeScopeMemoryAndDomain({
                   )}
 
                   {!!value.requiredControls?.length && (
-                    <p className="mt-2 text-xs font-semibold leading-5 text-slate-500">
+                    <p className="mt-2 text-xs font-semibold leading-5 text-slate-700">
                       Key controls: {value.requiredControls.slice(0, 4).join(" • ")}
                     </p>
                   )}

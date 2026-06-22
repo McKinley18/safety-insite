@@ -43,7 +43,7 @@ export default function SafeScopeKnowledgeMatchSection({
             Supporting References
           </h3>
 
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
             {matches.length
               ? `${matches.length} approved reference match${
                   matches.length === 1 ? "" : "es"
@@ -68,14 +68,14 @@ export default function SafeScopeKnowledgeMatchSection({
       </summary>
 
       <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-4">
-        <p className="text-sm font-semibold leading-6 text-slate-500 dark:text-slate-400">
+        <p className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-700">
           Supporting information retrieved from approved references, incident
           lessons, standards, and safety review records.
         </p>
 
         {!!matches.length && (
           <div className="mt-4 space-y-3">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
               Reference Matches
             </p>
 
@@ -89,7 +89,7 @@ export default function SafeScopeKnowledgeMatchSection({
                     <p className="text-sm font-black text-slate-900 dark:text-slate-100">
                       {match.title || "Supporting Reference"}
                     </p>
-                    <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+                    <p className="mt-1 text-xs font-bold text-slate-700 dark:text-slate-700">
                       {match.agency || "Reference"} ·{" "}
                       {String(match.sourceType || "source").replaceAll("_", " ")}
                     </p>
@@ -113,7 +113,7 @@ export default function SafeScopeKnowledgeMatchSection({
                 )}
 
                 {match.excerpt && (
-                  <p className="mt-2 line-clamp-3 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+                  <p className="mt-2 line-clamp-3 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
                     {match.excerpt}
                   </p>
                 )}
@@ -137,7 +137,7 @@ export default function SafeScopeKnowledgeMatchSection({
         )}
 
         {knowledgeMatch.caution && (
-          <p className="mt-3 text-[11px] font-semibold leading-5 text-slate-500 dark:text-slate-400">
+          <p className="mt-3 text-[11px] font-semibold leading-5 text-slate-700 dark:text-slate-700">
             {knowledgeMatch.caution}
           </p>
         )}

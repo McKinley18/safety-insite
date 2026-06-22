@@ -27,7 +27,7 @@ export default function InspectionSectionCard({
           {title}
         </h2>
         {description && (
-          <p className="mt-1 text-sm font-semibold leading-relaxed text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-sm font-semibold leading-relaxed text-slate-700 dark:text-slate-700">
             {description}
           </p>
         )}

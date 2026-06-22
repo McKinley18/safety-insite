@@ -43,7 +43,7 @@ export function FindingsReviewList({
       />
 
       {!findings.length ? (
-        <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+        <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-700 dark:text-slate-700">
           No findings are attached to this report.
         </AppPanel>
       ) : (
@@ -67,7 +67,7 @@ export function FindingsReviewList({
                       <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">Finding {index + 1}</p>
                       <h3 className="mt-0.5 text-base font-black leading-tight text-[#102A43]">{getFindingTitle(finding)}</h3>
                       <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">{finding.description || "No description provided."}</p>
-                      <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] font-bold text-slate-500 dark:text-slate-400">
+                      <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] font-bold text-slate-700 dark:text-slate-700">
                         <span>{finding.location || "No location"}</span> <span>•</span> <span>{photos.length} photo(s)</span> <span>•</span> <span>{standards.length || 0} standard(s)</span> <span>•</span> <span>{actions.length || 0} action(s)</span>
                       </div>
                     </div>

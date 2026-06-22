@@ -25,7 +25,7 @@ export default function InspectionFieldGroup({
       </span>
 
       {helper && (
-        <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500">
+        <span className="mt-1 block text-xs font-semibold leading-5 text-slate-700">
           {helper}
         </span>
       )}

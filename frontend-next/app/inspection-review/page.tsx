@@ -154,7 +154,7 @@ export default function InspectionReviewPage() {
     return (
       <section className="sentinel-page-shell space-y-4">
 
-        <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-500 dark:text-slate-400">
+        <AppPanel variant="dashed" padding="md" className="text-sm font-semibold text-slate-700 dark:text-slate-700">
           No finalized report found.
         </AppPanel>
       </section>

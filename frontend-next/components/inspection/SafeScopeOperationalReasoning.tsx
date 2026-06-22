@@ -46,7 +46,7 @@ export default function SafeScopeOperationalReasoning({
 
           {!!safeScopeResult.operationalReasoning.supervisorQuestions?.length && (
             <div className="mt-3 rounded-xl bg-slate-50 px-3 py-2">
-              <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-700">
                 Supervisor questions
               </p>
               <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">

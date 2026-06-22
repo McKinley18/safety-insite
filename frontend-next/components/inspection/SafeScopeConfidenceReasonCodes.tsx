@@ -11,7 +11,7 @@ export default function SafeScopeConfidenceReasonCodes({
     <>
       {!!safeScopeResult.confidenceIntelligence?.reasonCodes?.length && (
         <div className="mt-4 border-t border-slate-200 pt-3">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-700">
             Confidence reason codes
           </p>
           <div className="mt-2 flex flex-wrap gap-2">

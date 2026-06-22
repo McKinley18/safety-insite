@@ -55,7 +55,7 @@ export default function QuickCaptureSection({
           <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-200">
             Describe Finding
           </p>
-          <p className="mt-1 text-sm font-semibold text-slate-500">
+          <p className="mt-1 text-sm font-semibold text-slate-700">
             Explain what the evidence shows.
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function QuickCaptureSection({
             className={`rounded-lg px-3 py-1.5 text-[11px] font-black ${
               inspectionMode === "quick"
                 ? "bg-white text-[#1D72B8] shadow-sm"
-                : "text-slate-500"
+                : "text-slate-700"
             }`}
           >
             Quick
@@ -79,7 +79,7 @@ export default function QuickCaptureSection({
             className={`rounded-lg px-3 py-1.5 text-[11px] font-black ${
               inspectionMode === "advanced"
                 ? "bg-white text-[#102A43] shadow-sm"
-                : "text-slate-500"
+                : "text-slate-700"
             }`}
           >
             Advanced
@@ -88,7 +88,7 @@ export default function QuickCaptureSection({
       </div>
 
       <div>
-        <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+        <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-700">
           Observed Condition
         </label>
         <textarea
@@ -100,7 +100,7 @@ export default function QuickCaptureSection({
       </div>
 
       <div className="mt-4">
-        <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-500">
+        <label className="mb-1.5 block text-xs font-black uppercase tracking-wide text-slate-700">
           Location
         </label>
         <input
@@ -113,10 +113,10 @@ export default function QuickCaptureSection({
 
       <div className="mt-4 border-t border-slate-200 pt-4">
         <div className="mb-2 flex items-center justify-between gap-3">
-          <label className="text-xs font-black uppercase tracking-wide text-slate-500">
+          <label className="text-xs font-black uppercase tracking-wide text-slate-700">
             Hazard Category
           </label>
-          <span className="text-[11px] font-bold text-slate-400">Optional</span>
+          <span className="text-[11px] font-bold text-slate-700">Optional</span>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
@@ -145,10 +145,10 @@ export default function QuickCaptureSection({
       {quickCapture && (
         <div className="mt-4 border-t border-slate-200 pt-4">
           <div className="mb-2 flex items-center justify-between gap-3">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-500">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-700">
               Immediate Action
             </p>
-            <span className="text-[11px] font-bold text-slate-400">
+            <span className="text-[11px] font-bold text-slate-700">
               Optional
             </span>
           </div>
@@ -213,7 +213,7 @@ export default function QuickCaptureSection({
                     <p className="text-sm font-black text-slate-900">
                       {action.title}
                     </p>
-                    <p className="text-xs font-semibold text-slate-500">
+                    <p className="text-xs font-semibold text-slate-700">
                       {action.priority} • Due: {action.due || "Not set"} •
                       Closure: {action.closureEvidence || "Photo"}
                     </p>
@@ -233,7 +233,7 @@ export default function QuickCaptureSection({
         </div>
       )}
 
-      <div className="mt-4 border-t border-slate-200 pt-3 text-xs font-black text-slate-500">
+      <div className="mt-4 border-t border-slate-200 pt-3 text-xs font-black text-slate-700">
         Photos {photos.length} ·{" "}
         {description ? "Condition described" : "No description"} ·{" "}
         {location ? "Location added" : "No location"} ·{" "}

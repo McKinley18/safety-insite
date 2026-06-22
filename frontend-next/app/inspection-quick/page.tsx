@@ -325,7 +325,7 @@ export default function QuickInspectionPage() {
                       Remove
                     </AppButton>
 
-                    <span className="text-xs font-black text-slate-500">
+                    <span className="text-xs font-black text-slate-700">
                       {annotations.length
                         ? `${annotations.length} annotation(s)`
                         : "No annotations"}
@@ -468,7 +468,7 @@ export default function QuickInspectionPage() {
             </div>
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-500">
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-700">
             Run HazLenz AI Quick Review after adding a photo, category, or observed
             condition.
           </p>

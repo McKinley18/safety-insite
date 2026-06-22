@@ -159,7 +159,7 @@ export default function EvidenceCaptureSection({
           </div>
         ) : (
           <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 p-4 text-center">
-            <p className="text-sm font-medium text-slate-400">
+            <p className="text-sm font-medium text-slate-700">
               No photos attached yet.
             </p>
           </div>
@@ -171,13 +171,13 @@ export default function EvidenceCaptureSection({
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             Observed Condition
           </p>
-          <p className="mt-1 text-sm font-semibold leading-5 text-slate-500">
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-700">
             Keep it short. HazLenz AI will organize the details.
           </p>
         </div>
 
         <textarea
-          className="app-input w-full px-3 py-3 text-sm font-semibold leading-6 transition placeholder:text-slate-400"
+          className="app-input w-full px-3 py-3 text-sm font-semibold leading-6 transition placeholder:text-slate-700"
           style={{ minHeight: 180 }}
           placeholder="Example: Missing guard on rotating shaft near crusher drive."
           value={description}
@@ -191,13 +191,13 @@ export default function EvidenceCaptureSection({
 
         <div className="mt-1">
           <label
-            className="inline-block h-auto min-h-0 py-0 text-[11px] font-black uppercase leading-none tracking-wide text-slate-500"
+            className="inline-block h-auto min-h-0 py-0 text-[11px] font-black uppercase leading-none tracking-wide text-slate-700"
             style={{ height: "auto", minHeight: 0, marginBottom: 2, lineHeight: 1 }}
           >
             Location
           </label>
           <input
-            className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#1D72B8] focus:bg-white dark:focus:bg-slate-900"
+            className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2.5 text-sm font-bold text-slate-900 outline-none transition placeholder:text-slate-700 focus:border-[#1D72B8] focus:bg-white dark:focus:bg-slate-900"
             style={{ marginTop: 0 }}
             placeholder="Example: Crusher deck, west platform"
             value={location}
