@@ -151,7 +151,27 @@ export function buildContextualControls(input: {
   text: string;
   requiresShutdown?: boolean;
   imminentDanger?: boolean;
+  isVague?: boolean;
 }): ContextualControls {
+  if (input.isVague) {
+    return {
+      immediateControls: [
+        'Keep personnel from touching or operating the affected area/equipment until evaluated.',
+        'Restrict access if damage or hazard exposure is suspected.'
+      ],
+      permanentControls: [
+        'Repair or replace components identified by qualified review.'
+      ],
+      verificationSteps: [
+        'Have a qualified safety professional or competent person inspect the condition.'
+      ],
+      restartCriteria: [
+        'Maintain access control pending qualified review.'
+      ],
+      competentPersonReview: true
+    };
+  }
+
   const text = (input.text || '').toLowerCase();
   const hazardFamily = resolveCanonicalHazardFamily(input.classification, input.text);
 

@@ -1,6 +1,8 @@
 import { SafeScopeReasoningDomain } from '../reasoning-orchestrator/reasoning-orchestrator.types';
 import { InspectionConditionAssessment } from './inspection-condition-assessment.types';
 
+import { VagueInputIntelligenceService } from './vague-input-intelligence.service';
+
 type ControlPattern = {
   domains: SafeScopeReasoningDomain[];
   pattern: RegExp;
@@ -14,7 +16,7 @@ const CONTROL_PATTERNS: ControlPattern[] = [
   { domains: ['emergency_preparedness'], pattern: /\b(emergency )?(exit|exit route|egress)\b[^.;]*\b(clear|unobstructed|unblocked|marked and unobstructed)\b/, evidence: 'Emergency egress is described as clear and available.' },
   { domains: ['walking_working_surfaces', 'slip_trip_fall', 'slips_trips_falls'], pattern: /\b(floor|walkway|aisle|surface)\b[^.;]*\b(dry|clean and dry|clear and dry|free of (spills|debris))\b/, evidence: 'The walking surface is described as dry and clear.' },
   { domains: ['electrical'], pattern: /\bno exposed (energized|live) (parts|conductors)\b|\b(panel|enclosure) (cover )?(is )?(intact|closed|secured)\b|\bcord (is )?(undamaged|intact)\b/, evidence: 'Electrical guarding or conductor integrity is explicitly described as intact.' },
-  { domains: ['mobile_equipment', 'powered_haulage'], pattern: /\b(no pedestrian exposure|pedestrians? (are )?separated|separated from pedestrians?)\b|\b(barrier|barriers|physical separation)\b[^.;]*\b(pedestrian|forklift|mobile equipment|traffic route)\b/, evidence: 'Pedestrian and mobile-equipment routes are described as separated.' },
+  { domains: ['mobile_equipment', 'powered_haulage'], pattern: /\bno pedestrian exposure|pedestrians? (are )?separated|separated from pedestrians?\b|\b(barrier|barriers|physical separation)\b[^.;]*\b(pedestrian|forklift|mobile equipment|traffic route)\b/, evidence: 'Pedestrian and mobile-equipment routes are described as separated.' },
   { domains: ['powered_haulage', 'mobile_equipment'], pattern: /\b(berm|guardrail|windrow)\b[^.;]*\b(present|installed|adequate|maintained)\b/, evidence: 'Edge control is described as present and adequate.' },
   { domains: ['fire_protection'], pattern: /\bfire extinguisher\b[^.;]*\b(accessible|unobstructed|clearly visible|readily available)\b/, evidence: 'Fire protection equipment is described as accessible.' },
   { domains: ['welding_cutting_hot_work', 'fire_protection'], pattern: /\b(hot work|welding|cutting)\b[^.;]*\b(combustibles? (removed|cleared|protected))\b[^.;]*\bfire watch (present|assigned|in place)\b/, evidence: 'Hot-work combustibles and fire-watch controls are described as in place.' },
@@ -30,7 +32,7 @@ const FALSE_POSITIVE_PATTERNS: Array<{ pattern: RegExp; signal: string }> = [
   { pattern: /\bnoise complaint\b.*\b(office conversation|conversation|meeting|email)\b/, signal: 'Non-exposure conversational use of “noise”.' },
   { pattern: /\bdust cover\b.*\b(installed|in place|closed|secured)\b/, signal: 'Equipment dust-cover terminology rather than airborne dust.' },
   { pattern: /\blocked out of (the |my |an )?(account|system|application|app)\b/, signal: 'Account-access use of “locked out”.' },
-  { pattern: /\bguard (assigned|posted)\b.*\b(gate|entrance|door)\b/, signal: 'Security-guard terminology.' },
+  { pattern: /\bguard (assigned|posted|at)\b.*\b(gate|entrance|door)\b|\bguard at front gate\b/i, signal: 'Security-guard terminology.' },
   { pattern: /\bchemical inventory\b.*\b(complete|completed|current|reviewed)\b/, signal: 'Chemical inventory administration without a reported container/exposure failure.' },
   { pattern: /\bcoal[- ]colored\b|\bcoal color(ed)?\b/, signal: 'Color description rather than coal-mine context.' },
   { pattern: /\bpit stop\b|\binspection pit\b/, signal: 'Non-mining pit terminology.' },
@@ -82,6 +84,20 @@ export class InspectionConditionAssessmentService {
       return {
         status: 'no_hazard_signal', controlledDomains: [], controlEvidence: [], likelyDomains: [], uncertaintyReasons: [],
         falsePositiveSignals, citationEligible: false,
+      };
+    }
+
+    const vagueInputService = new VagueInputIntelligenceService();
+    if (vagueInputService.isVague(text)) {
+      const vagueAnalysis = vagueInputService.analyze(text, 'unknown');
+      return {
+        status: 'insufficient_evidence',
+        controlledDomains: [],
+        controlEvidence: [],
+        likelyDomains: vagueAnalysis.likelyHazardFamilies.map((f) => f.domain),
+        uncertaintyReasons: vagueAnalysis.missingCriticalFacts,
+        falsePositiveSignals: [],
+        citationEligible: false,
       };
     }
 

@@ -54,6 +54,14 @@ const suites: Suite[] = [
   {
     name: "Inspection Intelligence Citation Output Coherence Regression",
     scriptPath: "src/safescope-v2/tests/inspection-intelligence-citation-output-coherence-regression.ts"
+  },
+  {
+    name: "Inspection Intelligence Vague Input Regression",
+    scriptPath: "src/safescope-v2/tests/inspection-intelligence-vague-input-regression.ts"
+  },
+  {
+    name: "Inspection Intelligence Vague Output Coherence Regression",
+    scriptPath: "src/safescope-v2/tests/inspection-intelligence-vague-output-coherence-regression.ts"
   }
 ];
 

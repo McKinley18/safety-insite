@@ -1,6 +1,7 @@
 import * as natural from 'natural';
 import { CORRECTIVE_ACTION_TEMPLATE_REGISTRY } from '../../corrective-actions/corrective-action-template.registry';
 import { extractTargetEntity, tailorAction } from '../../../action-engine/contextual-control.engine';
+import { VagueInputIntelligenceService } from '../../inspection-intelligence/vague-input-intelligence.service';
 import {
   CorrectiveActionReasoningInput,
   CorrectiveActionReasoningResult,
@@ -77,17 +78,73 @@ export class SafeScopeCorrectiveActionReasoningService {
 
   private buildRecommendations(input: CorrectiveActionReasoningInput): CorrectiveActionRecommendation[] {
     const recommendations: CorrectiveActionRecommendation[] = [];
-    
+
+    if (input.isVague) {
+      const vagueInputService = new VagueInputIntelligenceService();
+      const vagueAnalysis = vagueInputService.analyze(input.hazardObservation, input.hazardDomain);
+
+      const tfidf = new natural.TfIdf();
+      tfidf.addDocument(normalize(input.hazardObservation));
+      const topTerms = tfidf.listTerms(0).slice(0, 3).map(t => t.term).join(', ');
+      const contextStr = topTerms ? ` involving ${topTerms}` : '';
+
+      (vagueAnalysis.immediateControls || vagueAnalysis.conservativeInterimControls).forEach((ctrl) => {
+        recommendations.push({
+          controlLevel: 'administrative',
+          priority: 'immediate',
+          action: ctrl,
+          rationale: `Interim safety control for vague or unconfirmed condition.`,
+          verificationEvidence: [],
+          cautions: []
+        });
+      });
+
+      // Add a verification/qualified review recommendation
+      recommendations.push({
+        controlLevel: 'verification',
+        priority: 'high',
+        action: 'Have a qualified safety professional or competent person inspect the condition to identify specific defects.',
+        rationale: 'Observation lacks detail to determine specific regulatory compliance or permanent repairs.',
+        verificationEvidence: ['Qualified reviewer note', 'Detailed inspection photos'],
+        cautions: ['Do not perform permanent repairs or equipment modifications until specific defects are identified.']
+      });
+
+      (vagueAnalysis.interimControls || []).forEach((ctrl) => {
+        recommendations.push({
+          controlLevel: 'verification',
+          priority: 'medium',
+          action: ctrl,
+          rationale: `Interim safety review actions${contextStr}.`,
+          verificationEvidence: [],
+          cautions: []
+        });
+      });
+
+      // Add permanent generic control
+      (vagueAnalysis.permanentEngineeringControls || []).forEach((ctrl) => {
+        recommendations.push({
+          controlLevel: 'engineering',
+          priority: 'high',
+          action: ctrl,
+          rationale: `Permanent generic action pending qualified review.`,
+          verificationEvidence: [],
+          cautions: []
+        });
+      });
+
+      return recommendations;
+    }
+
     // Extract situational context using TF-IDF NLP
     const tfidf = new natural.TfIdf();
     tfidf.addDocument(normalize(input.hazardObservation));
     const topTerms = tfidf.listTerms(0).slice(0, 3).map(t => t.term).join(', ');
     const contextStr = topTerms ? ` involving ${topTerms}` : '';
-    
+
     // Find template
     const template = CORRECTIVE_ACTION_TEMPLATE_REGISTRY.find(t => t.domain === input.hazardDomain);
     const targetEntity = extractTargetEntity(input.hazardObservation, input.equipmentInvolved);
-    
+
     if (template) {
         template.immediateControlElements.forEach((el: string) => {
           const action = tailorAction(el, targetEntity);

@@ -13,6 +13,7 @@ export interface ActionInput {
   patterns: { type: string, count: number }[];
   location: string;
   override: boolean;
+  isVague?: boolean;
   safeScope?: {
     classification?: string;
     riskBand?: "Low" | "Moderate" | "High" | "Critical";
@@ -22,6 +23,7 @@ export interface ActionInput {
     reasoning?: string[];
     standards?: { citation: string; rationale?: string }[];
     expandedContext?: any;
+    isVague?: boolean;
   };
 }
 
@@ -106,13 +108,19 @@ export class ActionEngineService {
     const title = this.actionMap[actionCategory] || "Perform general safety audit";
 
     // 🔷 4. INTELLIGENCE LOOKUP: Find Best Match for Fixes
-    const reference = this.hazardFixService.findBestMatch(
-      report.description || report.safeScope?.classification || report.category,
-      report.safeScope?.classification || report.category
-    );
+    const isVagueInput = Boolean(report.isVague || report.safeScope?.isVague);
+
+    const reference = isVagueInput
+      ? null
+      : this.hazardFixService.findBestMatch(
+          report.description || report.safeScope?.classification || report.category,
+          report.safeScope?.classification || report.category
+        );
 
     // 🔷 5. FEEDBACK LOOP: Integrate Learned Fixes
-    const learnedFixes = await this.fixFeedbackService.findLearnedFix(report.category);
+    const learnedFixes = isVagueInput
+      ? []
+      : await this.fixFeedbackService.findLearnedFix(report.category);
     
     let libraryFixes = reference ? reference.fixes : [];
     let finalFixes = [...libraryFixes];
@@ -127,6 +135,7 @@ export class ActionEngineService {
       text: report.description || report.category,
       requiresShutdown: report.safeScope?.requiresShutdown,
       imminentDanger: report.safeScope?.imminentDanger,
+      isVague: isVagueInput,
     });
 
     const contextualFixes = [
@@ -183,7 +192,7 @@ export class ActionEngineService {
       reportId: report.id,
       referenceStandards: report.safeScope?.standards?.length
         ? report.safeScope.standards.map((standard) => standard.citation)
-        : reference ? reference.standards : [],
+        : [],
       suggestedFixes: finalFixes,
       originalSuggestion: {
         ...(reference ? { hazard: reference.hazard, fixes: reference.fixes } : {}),

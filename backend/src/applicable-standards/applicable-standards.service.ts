@@ -85,6 +85,8 @@ export class ApplicableStandardsService {
       /electrical/i.test(candidateText);
     const fallFamily = /1910\.(?:21|28|29|140)|1926\.(?:45[124]|50[123])/i.test(citation) ||
       /(fall protection|guardrail|personal fall)/i.test(candidateText);
+    const mobileFamily = /1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|9200|9300)/i.test(citation) ||
+      /(mobile equipment|traffic control|powered industrial truck|forklift|haul road|loader)/i.test(candidateText);
 
     const hasCylinderObject = /\b(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|gas bottle)\b/i.test(text);
     const hasCylinderMechanism = /\b(unsecured|not secured|missing.*cap|without.*cap|valve cap|damaged valve|leak|rupture|storage|stored|upright|restraint|chain|cart)\b/i.test(text);
@@ -100,6 +102,8 @@ export class ApplicableStandardsService {
     const hasFallMechanism = /\b(fall hazard|fall protection|unprotected|no guardrail|missing guardrail|fall arrest|feet|foot drop)\b/i.test(text);
     const hasPpeObject = /\b(ppe|protective equipment|safety glasses|goggles|face shield|gloves|respirator|hard hat|hearing protection)\b/i.test(text);
     const hasPpeMechanism = /\b(missing|not worn|no ppe|without|damaged|incorrect|inadequate|required)\b/i.test(text);
+    const hasMobileObject = /\b(forklift|loader|truck|vehicle|mobile equipment|traffic|pedestrian)\b/i.test(text);
+    const hasMobileMechanism = /\b(operating|traffic|control|pedestrian|backing|horn|alarm|speed|movement|haul|stockpile|right-of-way)\b/i.test(text);
 
     let standardFamily = "other";
     let hazardDomainFit = true;
@@ -155,6 +159,11 @@ export class ApplicableStandardsService {
       hazardDomainFit = hasFallObject;
       mechanismFit = hasFallMechanism;
       requiredEvidencePresent = hasFallObject && hasFallMechanism;
+    } else if (mobileFamily) {
+      standardFamily = "mobile_equipment";
+      hazardDomainFit = hasMobileObject;
+      mechanismFit = hasMobileMechanism;
+      requiredEvidencePresent = hasMobileObject && hasMobileMechanism;
     } else {
       const strongApplicabilityReason = (candidate?.matchingReasons || []).some((reason: string) =>
         /^(scenario:|warm-shard: focused|route: source key|fallback:)/i.test(reason),

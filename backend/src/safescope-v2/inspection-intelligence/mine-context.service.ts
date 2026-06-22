@@ -5,12 +5,12 @@ type SignalGroup = { label: string; patterns: RegExp[] };
 const GROUPS: Record<string, SignalGroup> = {
   nonMine: { label: 'explicit non-mine workplace', patterns: [/\bnon[- ]mine\b/, /\boff mine property\b/, /\bnot (at|on) (a )?mine\b/] },
   lexicalTrap: { label: 'non-mining lexical use', patterns: [/\bquarry tile\b/, /\bmine the data\b/, /\bdata mining\b/, /\btext mining\b/, /\baggregate data\b/, /\bpit stop\b/, /\binspection pit\b/, /\bcoal tar\b/, /\bcoal[- ]colored\b/] },
-  mine: { label: 'mine context', patterns: [/\bmine(r|rs| site| property| operation)?\b/, /\bmining operation\b/, /\bmine contractor\b/] },
+  mine: { label: 'mine context', patterns: [/\bmine(r|rs| site| property| operation)?\b/, /\bmining operation\b/, /\bmine contractor\b/, /\bmsha\b/] },
   aggregate: { label: 'aggregate/quarry context', patterns: [/\baggregate (mine|plant|operation|crusher|screen)\b/, /\bquarry\b/, /\bgravel pit\b/, /\bsand and gravel\b/, /\bsurface stone\b/, /\bcrusher plant\b/, /\bscreen(ing)? plant\b/] },
-  underground: { label: 'underground context', patterns: [/\bunderground\b/, /\bheading\b/, /\bdrift\b/, /\bstope\b/, /\bshaft station\b/, /\bportal to heading\b/] },
-  surface: { label: 'surface context', patterns: [/\bsurface mine\b/, /\bsurface coal\b/, /\bsurface operation\b/, /\bopen[- ]pit\b/, /\bquarry\b/, /\baggregate (plant|crusher|screen)\b/, /\bcrusher plant\b/, /\bscreen(ing)? plant\b/, /\bdump point\b/, /\bhighwall\b/] },
-  coal: { label: 'coal context', patterns: [/\bcoal mine\b/, /\bcoal seam\b/, /\bcoal rib\b/, /\bcontinuous miner\b/, /\blongwall\b/, /\bshuttle car\b/, /\bbituminous\b/, /\banthracite\b/] },
-  metalNonmetal: { label: 'metal/nonmetal context', patterns: [/\bmetal[ /-]?nonmetal\b/, /\bm\/nm\b/, /\bmetal mine\b/, /\bnonmetal mine\b/, /\bhard rock mine\b/, /\bore mine\b/] },
+  underground: { label: 'underground context', patterns: [/\bunderground\b/, /\bheading\b/, /\bdrift\b/, /\bstope\b/, /\bshaft station\b/, /\bportal to heading\b/, /\b(msha_mnm_underground|msha_coal_underground)\b/] },
+  surface: { label: 'surface context', patterns: [/\bsurface mine\b/, /\bsurface coal\b/, /\bsurface operation\b/, /\bopen[- ]pit\b/, /\bquarry\b/, /\baggregate (plant|crusher|screen)\b/, /\bcrusher plant\b/, /\bscreen(ing)? plant\b/, /\bdump point\b/, /\bhighwall\b/, /\b(msha_mnm_surface|msha_coal_surface)\b/] },
+  coal: { label: 'coal context', patterns: [/\bcoal mine\b/, /\bcoal seam\b/, /\bcoal rib\b/, /\bcontinuous miner\b/, /\blongwall\b/, /\bshuttle car\b/, /\bbituminous\b/, /\banthracite\b/, /\b(msha_coal_surface|msha_coal_underground)\b/] },
+  metalNonmetal: { label: 'metal/nonmetal context', patterns: [/\bmetal[ /-]?nonmetal\b/, /\bm\/nm\b/, /\bmetal mine\b/, /\bnonmetal mine\b/, /\bhard rock mine\b/, /\bore mine\b/, /\b(msha_mnm_surface|msha_mnm_underground)\b/] },
   contractor: { label: 'mine contractor context', patterns: [/\bcontractor\b/, /\bindependent contractor\b/, /\bservice (worker|crew|technician)\b/, /\bvendor\b/] },
 };
 

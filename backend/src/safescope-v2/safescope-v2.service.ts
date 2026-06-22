@@ -208,6 +208,19 @@ export class SafescopeV2Service {
             "Candidate lacks sufficient evidence fit for active suggestion.",
         }));
 
+      const isVague = Boolean(advisoryReasoning.inspectionIntelligence?.vagueInputAnalysis?.isVague);
+      if (isVague) {
+        const newlyExcluded = suggestedStandards.map((standard: any) => ({
+          ...standard,
+          scopeFit: "mismatch",
+          candidateStatus: "needs_more_evidence",
+          exclusionReason: "Observation is too vague to suggest active standard candidates. More physical details are required.",
+          scopeExclusionReason: "Observation is too vague to suggest active standard candidates. More physical details are required.",
+        }));
+        excludedStandards = [...excludedStandards, ...newlyExcluded];
+        suggestedStandards = [];
+      }
+
       const citationRecovery = this.citationRecoveryService.recover({
         observation: fusedText,
         suggestedStandards,
@@ -231,6 +244,7 @@ export class SafescopeV2Service {
         patterns: [],
         location: "Field Location",
         override: false,
+        isVague,
         safeScope: {
           classification: promotedPrimary.classification,
           riskBand: (risk?.riskBand || "Low") as any,
@@ -239,6 +253,7 @@ export class SafescopeV2Service {
           fatalityPotential: risk?.fatalityPotential ? "high" : "low",
           reasoning: risk?.reasoning || [],
           standards: suggestedStandards.map(s => ({ citation: s.citation, rationale: s.matchingReasons?.join(", ") })),
+          isVague,
         }
       };
       const generatedActions = await this.actionEngine.generateActionsFromReport(actionInput);
@@ -522,6 +537,7 @@ export class SafescopeV2Service {
         actionInput.id,
         knowledgeShardSummary,
         fusedText,
+        isVague,
       );
 
       const aiEvidenceContract = {
@@ -789,6 +805,8 @@ export class SafescopeV2Service {
       return {
           ...promotedPrimary,
           ...intelligence,
+          isVague,
+          evidenceGapQuestions: isVague ? (advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || []) : (intelligence.evidenceGapQuestions || []),
           hazardCategory: rootHazardCategory,
           candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
@@ -867,6 +885,7 @@ export class SafescopeV2Service {
     reportId: string,
     knowledgeShardSummary?: any,
     observationText?: string,
+    isVague?: boolean,
   ) {
     const safeArray = (value: any) => Array.isArray(value) ? value : [];
     const base = safeArray(baseActions);
@@ -976,12 +995,13 @@ export class SafescopeV2Service {
       return "";
     };
 
-    const title =
-      sanitizeActionText(dca.immediateActions?.[0]?.title) ||
-      sanitizeActionText(dca.immediateActions?.[0]?.action) ||
-      sanitizeActionText(correctiveActionReasoning.immediateActions?.[0]) ||
-      sanitizeActionText(primary.title) ||
-      "Review and control HazLenz AI-identified hazard";
+    const title = isVague
+      ? "Review and control HazLenz AI-identified hazard"
+      : (sanitizeActionText(dca.immediateActions?.[0]?.title) ||
+         sanitizeActionText(dca.immediateActions?.[0]?.action) ||
+         sanitizeActionText(correctiveActionReasoning.immediateActions?.[0]) ||
+         sanitizeActionText(primary.title) ||
+         "Review and control HazLenz AI-identified hazard");
 
     const priority =
       primary.priority ||
@@ -990,10 +1010,14 @@ export class SafescopeV2Service {
        correctiveActionReasoning.urgencyLevel === "moderate" ? "MEDIUM" :
        "LOW");
 
+    const description = isVague
+      ? `Observed vague safety concern requires qualified safety review. Recommended interim controls: ${suggestedFixes.map(sanitizeActionText).filter(Boolean).slice(0, 3).join("; ")}`
+      : descriptionParts.map(sanitizeActionText).filter(Boolean).join(" ");
+
     const enhancedPrimary = {
       ...primary,
       title: String(title),
-      description: descriptionParts.map(sanitizeActionText).filter(Boolean).join(" "),
+      description,
       priority,
       source: primary.source || "AI_ENGINE",
       reportId: primary.reportId || reportId,

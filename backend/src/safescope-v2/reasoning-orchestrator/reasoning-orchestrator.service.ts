@@ -16,6 +16,7 @@ import { SitePolicyIsolationService } from '../site-policy-isolation/site-policy
 import { SitePolicyGovernanceService } from '../site-policy-isolation/site-policy-governance.service';
 import { ReviewCoreKnowledgeRetrievalService } from '../knowledge-architecture/reviewcore-knowledge-retrieval.service';
 import { InspectionIntelligenceService } from '../inspection-intelligence/inspection-intelligence.service';
+import { VagueInputIntelligenceService } from '../inspection-intelligence/vague-input-intelligence.service';
 import { MineContextService } from '../inspection-intelligence/mine-context.service';
 import {
   SafeScopeApplicabilitySignal,
@@ -88,6 +89,9 @@ export class SafeScopeReasoningOrchestratorService {
       missingEvidence,
     });
 
+    const vagueInputService = new VagueInputIntelligenceService();
+    const isVague = vagueInputService.isVague(request.hazardObservation);
+
     const correctiveActionReasoning = this.correctiveActionReasoningService.reason({
       hazardObservation: request.hazardObservation,
       jurisdiction: jurisdictionAssessment.likelyJurisdiction,
@@ -96,6 +100,7 @@ export class SafeScopeReasoningOrchestratorService {
       equipmentInvolved: request.equipmentInvolved,
       applicabilityAnalysis,
       missingEvidence,
+      isVague,
     });
 
     const normalizedTaskContext = this.normalizeTaskContext(request.taskContext);
@@ -542,6 +547,7 @@ export class SafeScopeReasoningOrchestratorService {
 
     const inspectionIntelligence = this.inspectionIntelligenceService.analyze({
       observation: combined,
+      rawObservation: request.hazardObservation,
       jurisdiction: jurisdictionAssessment.likelyJurisdiction,
       primaryDomain: hazardClassification.primaryDomain,
       primaryCitation,

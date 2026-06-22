@@ -30,9 +30,9 @@ const ds = new DataSource({
   url: databaseUrl || undefined,
   host: databaseUrl ? undefined : process.env.DB_HOST || 'localhost',
   port: databaseUrl ? undefined : Number(process.env.DB_PORT || 5432),
-  username: databaseUrl ? undefined : process.env.DB_USERNAME || 'user',
-  password: databaseUrl ? undefined : process.env.DB_PASSWORD || 'password',
-  database: databaseUrl ? undefined : process.env.DB_NAME || 'safescope',
+  username: databaseUrl ? undefined : process.env.DB_USERNAME || process.env.DB_USER || 'user',
+  password: databaseUrl ? undefined : process.env.DB_PASSWORD || process.env.DB_PASS || 'password',
+  database: databaseUrl ? undefined : process.env.DB_DATABASE || process.env.DB_NAME || 'safescope',
   entities: [Standard],
   synchronize: false,
 });
@@ -336,34 +336,42 @@ async function run() {
       console.log(`  [PASS] Evidence Gaps verified (contains keyword "${test.evidenceGapKeyword}")`);
 
       // 5. Standards retrieval checks (including deduplicated matches)
-      const standards = response.suggestedStandards || [];
-      if (standards.length === 0) {
+      const isVague = response.inspectionIntelligence?.vagueInputAnalysis?.isVague;
+      if (isVague) {
+        if (response.suggestedStandards && response.suggestedStandards.length > 0) {
+          throw new Error(`Expected suggested standards to be empty for vague observation, but got: ${response.suggestedStandards.map((s: any) => s.citation).join(", ")}`);
+        }
+      }
+
+      const activeStandards = response.suggestedStandards || [];
+      const candidateStandards = isVague ? (response.excludedStandards || []) : activeStandards;
+      if (candidateStandards.length === 0) {
         throw new Error(`No suggested standards returned!`);
       }
 
       for (const expectedCit of test.expectedCitations) {
-        const found = standards.some((s: any) => isCitationMatch(s.citation, expectedCit));
+        const found = candidateStandards.some((s: any) => isCitationMatch(s.citation, expectedCit));
         if (!found) {
-          throw new Error(`Expected citation "${expectedCit}" was not found in suggestions: ${standards.map((s: any) => s.citation).join(", ")}`);
+          throw new Error(`Expected citation "${expectedCit}" was not found in suggestions: ${candidateStandards.map((s: any) => s.citation).join(", ")}`);
         }
       }
 
       if (test.unexpectedCitations) {
         for (const unexpectedCit of test.unexpectedCitations) {
-          const found = standards.some((s: any) => isCitationMatch(s.citation, unexpectedCit));
+          const found = activeStandards.some((s: any) => isCitationMatch(s.citation, unexpectedCit));
           if (found) {
-            throw new Error(`Unexpected citation "${unexpectedCit}" was found in suggestions: ${standards.map((s: any) => s.citation).join(", ")}`);
+            throw new Error(`Unexpected citation "${unexpectedCit}" was found in active suggestions: ${activeStandards.map((s: any) => s.citation).join(", ")}`);
           }
         }
       }
 
       for (const forbiddenFamily of test.unexpectedActiveStandardFamilies || []) {
-        const found = standards.some((standard: any) => standard.standardFamily === forbiddenFamily);
+        const found = activeStandards.some((standard: any) => standard.standardFamily === forbiddenFamily);
         if (found) {
-          throw new Error(`Forbidden active standard family "${forbiddenFamily}" was returned: ${standards.map((s: any) => `${s.citation}:${s.standardFamily}`).join(", ")}`);
+          throw new Error(`Forbidden active standard family "${forbiddenFamily}" was returned in active suggestions: ${activeStandards.map((s: any) => `${s.citation}:${s.standardFamily}`).join(", ")}`);
         }
       }
-      console.log(`  [PASS] Suggested standards: ${standards.map((s: any) => s.citation).join(", ")}`);
+      console.log(`  [PASS] ${isVague ? 'Excluded' : 'Suggested'} standards: ${candidateStandards.map((s: any) => s.citation).join(", ")}`);
 
       // 6. No all-zero/empty results check
       if (!response.generatedActions || response.generatedActions.length === 0) {

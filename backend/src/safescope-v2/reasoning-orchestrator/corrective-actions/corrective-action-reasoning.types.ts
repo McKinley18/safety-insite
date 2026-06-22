@@ -32,6 +32,7 @@ export type CorrectiveActionReasoningInput = {
   equipmentInvolved?: string;
   applicabilityAnalysis?: ApplicabilityAnalysisResult;
   missingEvidence: SafeScopeReasoningEvidenceGap[];
+  isVague?: boolean;
 };
 
 export type CorrectiveActionReasoningResult = {
