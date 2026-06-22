@@ -411,6 +411,13 @@ export class SafeScopeIntelligenceOrchestrator {
       scenarioFamily: understandingScenarioFamily
     });
     let jurisdiction = jurisdictionResult.primaryJurisdiction;
+    const routedJurisdiction = String(expandedContext?.knowledgeRoute?.jurisdiction || '').toLowerCase();
+    if (
+      ['unknown', 'unclear', ''].includes(String(jurisdiction || '').toLowerCase()) &&
+      ['osha_general_industry', 'osha_construction', 'msha'].includes(routedJurisdiction)
+    ) {
+      jurisdiction = routedJurisdiction as any;
+    }
 
     const scenarioSpecificMechanismOverrides = [
       'electrical_panel_access',
@@ -526,7 +533,12 @@ export class SafeScopeIntelligenceOrchestrator {
         observationUnderstanding,
         calibrationMeta,
         outputPolicy,
-        fusedText
+        fusedText,
+        standardFamilyCandidates,
+        [
+          ...citationLevelCandidates,
+          ...(primaryStandardsResult?.suggestedStandards || []),
+        ]
     );
     
     const askig = await this.askigEngine.evaluateIntake(

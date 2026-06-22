@@ -12,9 +12,26 @@ export type CitationRecoveryDecision = {
 
 type RecoveryResult = {
   suggestedStandards: any[];
+  supportingStandards: any[];
+  needsMoreEvidenceStandards: any[];
   excludedStandards: any[];
   decision: CitationRecoveryDecision;
 };
+
+function recoveredMetadata(candidate: InspectionCandidateStandard): { title: string; summary: string } {
+  if (/1910\.303\(g\)\(2\)\(i\)/.test(candidate.citation)) {
+    return {
+      title: 'Electrical equipment guarding/access to live parts — candidate standard',
+      summary: 'Candidate standard related to guarding live parts or preventing accidental contact. Confirm exact subsection text and applicability before relying on it.',
+    };
+  }
+  return {
+    title: candidate.titleSummary || `Candidate standard related to ${candidate.citation}`,
+    summary: candidate.titleSummary
+      ? `${candidate.titleSummary} Confirm exact subsection text and applicability before relying on it.`
+      : 'Inspection-intelligence candidate. Confirm exact subsection text, jurisdiction, and applicability before relying on it.',
+  };
+}
 
 function citationOf(standard: any): string {
   return String(standard?.citation || standard?.standard || standard?.id || '').trim();
@@ -40,11 +57,13 @@ function scopeAllows(candidate: InspectionCandidateStandard, scopes: string[]): 
 
 function toLegacyCandidate(candidate: InspectionCandidateStandard, rank: number): any {
   const agencyCode = candidate.jurisdiction === 'msha' ? 'MSHA' : 'OSHA';
+  const metadata = recoveredMetadata(candidate);
   return {
     citation: candidate.citation,
-    heading: candidate.titleSummary,
-    title: candidate.titleSummary,
-    summary: candidate.titleSummary,
+    heading: metadata.title,
+    title: metadata.title,
+    titleSummary: metadata.title,
+    summary: metadata.summary,
     agencyCode,
     jurisdiction: candidate.jurisdiction,
     score: Math.max(70, 96 - rank * 4),
@@ -81,6 +100,8 @@ export class InspectionCitationRecoveryService {
       }));
       return {
         suggestedStandards: [],
+        supportingStandards: [],
+        needsMoreEvidenceStandards: suppressed,
         excludedStandards: [...excluded, ...suppressed],
         decision: {
           outcome: 'insufficient_evidence',
@@ -101,6 +122,8 @@ export class InspectionCitationRecoveryService {
       }));
       return {
         suggestedStandards: [],
+        supportingStandards: [],
+        needsMoreEvidenceStandards: suppressed,
         excludedStandards: [...excluded, ...suppressed],
         decision: {
           outcome: 'controlled_condition',
@@ -119,6 +142,8 @@ export class InspectionCitationRecoveryService {
       if (!input.observation) {
         return {
           suggestedStandards: existing,
+          supportingStandards: [],
+          needsMoreEvidenceStandards: [],
           excludedStandards: excluded,
           decision: {
             outcome: existing.length ? 'existing_candidates' : 'no_supported_candidate',
@@ -141,6 +166,8 @@ export class InspectionCitationRecoveryService {
       });
       return {
         suggestedStandards: ranking.suggestedStandards,
+        supportingStandards: ranking.supportingStandards,
+        needsMoreEvidenceStandards: ranking.needsMoreEvidenceStandards,
         excludedStandards: ranking.excludedStandards,
         decision: {
           outcome: existing.length ? 'existing_candidates' : 'no_supported_candidate',
@@ -166,6 +193,8 @@ export class InspectionCitationRecoveryService {
     if (!input.observation) {
       return {
         suggestedStandards: merged.slice(0, 5),
+        supportingStandards: [],
+        needsMoreEvidenceStandards: [],
         excludedStandards: excluded.filter((standard) => !recoveredKeys.has(normalizedCitation(standard))),
         decision: {
           outcome: recovered.length ? 'recovered_candidates' : 'existing_candidates',
@@ -190,6 +219,8 @@ export class InspectionCitationRecoveryService {
 
     return {
       suggestedStandards: ranking.suggestedStandards,
+      supportingStandards: ranking.supportingStandards,
+      needsMoreEvidenceStandards: ranking.needsMoreEvidenceStandards,
       excludedStandards: ranking.excludedStandards,
       decision: {
         outcome: recovered.length ? 'recovered_candidates' : 'existing_candidates',

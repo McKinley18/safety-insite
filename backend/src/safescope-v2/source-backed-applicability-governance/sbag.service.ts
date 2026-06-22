@@ -83,8 +83,9 @@ export class SourceBackedApplicabilityGovernanceService {
     ].filter(Boolean) as string[]));
 
     const citationCandidateNames = this.collectCitationCandidates(citationLevelCandidates, approvedKnowledgeRecords);
+    const advisoryCandidateAvailable = citationCandidateNames.length > 0;
 
-    const canDiscussCitationCandidate =
+    const sourceBackedCitationSupported =
       citationAllowedByPolicy &&
       jurisdictionClear &&
       evidenceLevel === 'sufficient' &&
@@ -93,14 +94,15 @@ export class SourceBackedApplicabilityGovernanceService {
       citationCandidateNames.length > 0;
 
     const citationCandidateMode: CitationCandidateMode =
-      canDiscussCitationCandidate
+      sourceBackedCitationSupported
         ? 'source_backed_candidate_with_review'
-        : citationAllowedByPolicy && jurisdictionClear && evidenceLevel === 'sufficient'
+        : citationAllowedByPolicy && jurisdictionClear && advisoryCandidateAvailable
           ? 'candidate_only_with_review'
           : 'blocked';
+    const canDiscussCitationCandidate = citationCandidateMode !== 'blocked';
 
     const applicabilitySupportLevel: ApplicabilitySupportLevel =
-      canDiscussCitationCandidate ? 'supported' :
+      sourceBackedCitationSupported ? 'supported' :
       canDiscussStandardFamily && approvedKnowledgeAvailable ? 'supported' :
       canDiscussStandardFamily ? 'partially_supported' :
       evidenceLevel === 'weak' || maxConfidence === 'low' ? 'weak' :
@@ -113,17 +115,17 @@ export class SourceBackedApplicabilityGovernanceService {
       'Applicability discussion requires qualified reviewer confirmation.',
       !jurisdictionClear ? 'Jurisdiction is not clear enough for standard-family or citation-candidate support.' : undefined,
       !evidenceAllowsStandardFamily ? 'Evidence or confidence is not strong enough for standard-family support.' : undefined,
-      !approvedKnowledgeAvailable ? 'Approved/source-backed knowledge is missing, so citation-candidate language is limited or blocked.' : undefined,
+      !approvedKnowledgeAvailable ? 'Approved/source-backed confirmation is unavailable; any inspection/applicability candidate remains advisory and requires qualified review.' : undefined,
       !citationAllowedByPolicy ? 'Output policy does not permit citation-candidate discussion.' : undefined,
     ].filter(Boolean) as string[]));
 
     const requiredReviewerConfirmations = Array.from(new Set([
-      'Confirm jurisdiction/site type before relying on applicability reasoning.',
+      requiresJurisdictionConfirmation ? 'Confirm jurisdiction/site type before relying on applicability reasoning.' : undefined,
       'Confirm the standard family is applicable to the task, equipment, exposure, and site context.',
       'Confirm any source-backed record before referencing a citation candidate.',
       'Confirm SafeScope output remains advisory and does not declare a violation or create a citation.',
       ...missingSourceNeeds.map(need => `Confirm source need: ${need}`),
-    ]));
+    ].filter(Boolean) as string[]));
 
     const jurisdictionReasons = Array.from(new Set([
       jurisdictionClear
@@ -137,21 +139,24 @@ export class SourceBackedApplicabilityGovernanceService {
     const standardReasons = Array.from(new Set([
       canDiscussStandardFamily
         ? 'Evidence, confidence, output policy, and jurisdiction support standard-family discussion.'
-        : 'Standard-family discussion is blocked or limited by evidence, jurisdiction, confidence, output policy, or missing family candidates.',
+        : advisoryCandidateAvailable && jurisdictionClear
+          ? 'Source-backed standard-family support is limited, but an inspection/applicability citation candidate is preserved for qualified advisory review.'
+          : 'Standard-family discussion is blocked or limited by evidence, jurisdiction, confidence, output policy, or missing family candidates.',
       approvedKnowledgeAvailable
         ? 'Approved/source-backed signals are available.'
         : 'No approved/source-backed records were provided for this applicability decision.',
     ]));
 
-    const citationBlockedReasons = Array.from(new Set([
-      canDiscussCitationCandidate ? undefined : 'Citation-candidate support is blocked or limited.',
+    const citationBlockedReasons = Array.from(new Set((citationCandidateMode === 'blocked' ? [
+      'Citation-candidate support is blocked because no coherent advisory candidate path is available.',
       !jurisdictionClear ? 'Jurisdiction is unclear.' : undefined,
-      evidenceLevel !== 'sufficient' ? `Evidence sufficiency is ${evidenceLevel}.` : undefined,
-      maxConfidence !== 'high' ? `Maximum supported confidence is ${maxConfidence}.` : undefined,
-      !approvedKnowledgeAvailable ? 'Approved/source-backed knowledge is unavailable.' : undefined,
       !citationAllowedByPolicy ? 'Output policy blocks citation-candidate discussion.' : undefined,
-      citationCandidateNames.length === 0 ? 'No citation candidate was provided by source-backed reasoning.' : undefined,
-    ].filter(Boolean) as string[]));
+      !advisoryCandidateAvailable ? 'No citation candidate was provided by inspection, applicability, or source-backed reasoning.' : undefined,
+    ] : [
+      !approvedKnowledgeAvailable ? 'Source-backed registry confirmation is unavailable for one or more advisory candidates.' : undefined,
+      evidenceLevel !== 'sufficient' ? `Evidence sufficiency is ${evidenceLevel}; confirm missing facts before relying on the candidate.` : undefined,
+      maxConfidence !== 'high' ? `Maximum supported confidence is ${maxConfidence}; qualified review remains required.` : undefined,
+    ]).filter(Boolean) as string[]));
 
     return {
       engine: 'safescope_source_backed_applicability_governance_core',
@@ -172,7 +177,7 @@ export class SourceBackedApplicabilityGovernanceService {
       citationCandidateSupport: {
         canDiscussCitationCandidate,
         citationCandidateMode,
-        candidates: canDiscussCitationCandidate ? citationCandidateNames : [],
+        candidates: citationCandidateMode === 'blocked' ? [] : citationCandidateNames,
         blockedReasons: citationBlockedReasons,
       },
       sourceSupport: {

@@ -2,6 +2,8 @@ import { InspectionIntelligenceResult } from './inspection-intelligence.types';
 
 export type CitationRankingResult = {
   suggestedStandards: any[];
+  supportingStandards: any[];
+  needsMoreEvidenceStandards: any[];
   excludedStandards: any[];
 };
 
@@ -145,18 +147,39 @@ export class InspectionCitationRankingService {
       candidateStatus: 'needs_more_evidence',
       exclusionReason: item.penalties.join(' '),
     }));
-    const topScore = active[0]?.directnessScore;
-    const explained = active.map((candidate, index) => ({
+    const directActive = active.filter((candidate) =>
+      candidate.citationRanking?.directCandidate === true ||
+      candidate.evidenceFitReasons?.some((reason: string) => reason.startsWith('Direct match:')) ||
+      (
+        candidate.evidenceFit?.status === 'active' &&
+        candidate.matchingReasons?.some((reason: string) => /^(scenario:|direct applicability:)/i.test(reason))
+      ),
+    );
+    const topScore = directActive[0]?.directnessScore;
+    const explained = directActive.map((candidate, index) => ({
       ...candidate,
       citationRanking: {
         ...candidate.citationRanking,
         outrankedBroaderCandidates: index === 0 && active.some((other) => other !== candidate && other.directnessScore < topScore),
       },
     }));
+    const supportingStandards = active.filter((candidate) => !directActive.includes(candidate)).map((candidate) => ({
+      ...candidate,
+      candidateStatus: 'supporting_context',
+      supportReason: candidate.citationRanking?.penalties?.length
+        ? candidate.citationRanking.penalties.join(' ')
+        : 'Relevant standards context is retained separately because direct condition/component applicability is not established.',
+    }));
+    const priorNeedsMoreEvidence = input.excludedStandards.filter((candidate) =>
+      candidate?.candidateStatus === 'needs_more_evidence' && candidate?.scopeFit !== 'mismatch',
+    );
+    const hardExcluded = input.excludedStandards.filter((candidate) => !priorNeedsMoreEvidence.includes(candidate));
 
     return {
       suggestedStandards: explained.slice(0, 5),
-      excludedStandards: [...input.excludedStandards, ...newlyExcluded]
+      supportingStandards,
+      needsMoreEvidenceStandards: priorNeedsMoreEvidence,
+      excludedStandards: [...hardExcluded, ...newlyExcluded]
         .filter((candidate, index, values) => values.findIndex((item) => citationKey(item) === citationKey(candidate)) === index),
     };
   }

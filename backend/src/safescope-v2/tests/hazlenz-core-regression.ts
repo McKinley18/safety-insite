@@ -50,6 +50,10 @@ const suites: Suite[] = [
   {
     name: "Inspection Intelligence Citation Ranking Regression",
     scriptPath: "src/safescope-v2/tests/inspection-intelligence-citation-ranking-regression.ts"
+  },
+  {
+    name: "Inspection Intelligence Citation Output Coherence Regression",
+    scriptPath: "src/safescope-v2/tests/inspection-intelligence-citation-output-coherence-regression.ts"
   }
 ];
 

@@ -217,10 +217,8 @@ export class SafescopeV2Service {
       });
       suggestedStandards = citationRecovery.suggestedStandards;
       excludedStandards = citationRecovery.excludedStandards;
-
-      const needsMoreEvidenceStandards = excludedStandards.filter(
-        (standard) => standard.candidateStatus === "needs_more_evidence",
-      );
+      const supportingStandards = citationRecovery.supportingStandards;
+      const needsMoreEvidenceStandards = citationRecovery.needsMoreEvidenceStandards;
 
       // Generate corrective actions using the action engine
       const actionInput: any = {
@@ -704,8 +702,12 @@ export class SafescopeV2Service {
         sourceMode: source || "auto_or_unspecified",
         rawCandidateCount: rawSuggestedStandards.length,
         scopeFilteredCandidateCount: suggestedStandards.length,
+        supportingCandidateCount: supportingStandards.length,
+        needsMoreEvidenceCandidateCount: needsMoreEvidenceStandards.length,
         excludedCandidateCount: excludedStandards.length,
         suggestedCitations: suggestedStandards.map((standard: any) => standard.citation).filter(Boolean),
+        supportingCitations: supportingStandards.map((standard: any) => standard.citation).filter(Boolean),
+        needsMoreEvidenceCitations: needsMoreEvidenceStandards.map((standard: any) => standard.citation).filter(Boolean),
         excludedCitations: excludedStandards.map((standard: any) => standard.citation).filter(Boolean),
         v2ContextAvailable: {
           standardsReasoning: Boolean((intelligence as any).standardsReasoning),
@@ -790,6 +792,7 @@ export class SafescopeV2Service {
           hazardCategory: rootHazardCategory,
           candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
+          supportingStandards,
           inspectionIntelligence: advisoryReasoning.inspectionIntelligence,
           citationRecovery: citationRecovery.decision,
           standardsMatchExplanations,
