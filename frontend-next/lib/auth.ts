@@ -36,6 +36,8 @@ export function hasAuthToken() {
 export function setAuthSession(token: string, user?: SentinelAuthUser | null) {
   if (typeof window === "undefined") return;
 
+  clearAuthSession();
+
   for (const key of AUTH_TOKEN_KEYS) {
     window.localStorage.setItem(key, token);
   }
@@ -67,7 +69,17 @@ export function clearAuthSession() {
     window.localStorage.removeItem(key);
   }
 
-  window.localStorage.removeItem(AUTH_USER_KEY);
+  [
+    AUTH_USER_KEY,
+    "sentinel_user",
+    "sentinel_profile",
+    "sentinel_workspace",
+    "safescope_user",
+    "safescope_profile",
+    "insite_user",
+    "insite_profile",
+    "insite_workspace",
+  ].forEach((key) => window.localStorage.removeItem(key));
 }
 
 export function authHeaders() {

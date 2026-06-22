@@ -30,23 +30,40 @@ export default function LoginPage() {
       setStatusType("idle");
       setStatus("");
 
-      if (isLocalDevAuthBypassEnabled()) {
-        const localUser = {
-          firstName: "Christopher",
-          lastName: "McKinley",
-          name: "Christopher McKinley",
-          email: email.trim() || "mckinley.christopherd@gmail.com",
-          role: "admin",
-          type: "pro",
-        };
+        if (isLocalDevAuthBypassEnabled()) {
+          const normalizedEmail = email.trim().toLowerCase();
 
-        setAuthSession(LOCAL_DEV_AUTH_TOKEN, localUser);
+          if (!normalizedEmail) {
+            setStatusType("error");
+            setStatus("Enter an email address to sign in locally.");
+            return;
+          }
 
-        setStatusType("success");
-        setStatus("Signed in locally.");
-        router.replace("/command-center");
-        return;
-      }
+          const emailName = normalizedEmail.split("@")[0] || "local-user";
+          const readableName = emailName
+            .split(/[._-]+/)
+            .filter(Boolean)
+            .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+            .join(" ")
+            .trim();
+
+          const localUser = {
+            firstName: readableName.split(" ")[0] || "Local",
+            lastName: readableName.split(" ").slice(1).join(" "),
+            name: readableName || normalizedEmail,
+            email: normalizedEmail,
+            role: "admin",
+            type: "pro",
+            localDev: true,
+          };
+
+          setAuthSession(LOCAL_DEV_AUTH_TOKEN, localUser);
+
+          setStatusType("success");
+          setStatus("Signed in locally.");
+          router.replace("/command-center");
+          return;
+        }
 
       const response = await apiFetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
@@ -78,7 +95,7 @@ export default function LoginPage() {
   }
 
   return (
-    <section className="mx-auto flex min-h-[calc(100dvh-150px)] max-w-6xl items-center justify-center px-0 py-0 sm:px-4 sm:py-6">
+    <section className="mx-auto flex min-h-[calc(100svh-150px)] max-w-6xl items-center justify-center px-0 py-4 pb-10 sm:px-4 sm:py-6">
       <div className="grid w-full overflow-hidden bg-white shadow-none sm:rounded-[32px] sm:border sm:border-slate-200 sm:shadow-2xl sm:shadow-slate-300/40 lg:grid-cols-[0.95fr_1.05fr]">
         <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1320] via-[#102A43] to-[#0B1320] p-5 text-white sm:p-8 lg:p-10">
           <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#1D72B8]/20 blur-3xl" />

@@ -151,13 +151,13 @@ html {
 }
 
 body {
-  min-height: 100dvh;
+  min-height: 100svh;
   background:
     radial-gradient(circle at top left, rgba(37, 99, 235, 0.11), transparent 32rem),
     radial-gradient(circle at top right, rgba(14, 165, 233, 0.09), transparent 28rem),
     linear-gradient(180deg, #eef2f7 0%, #e2e8f0 100%);
   color: #0f172a;
-  overscroll-behavior-y: none;
+  overscroll-behavior-y: auto;
 }
 
 .sentinel-page-shell {
@@ -463,7 +463,7 @@ body {
 }
 
 .app-page {
-  min-height: 100dvh;
+  min-height: 100svh;
   background: var(--app-bg);
   color: var(--app-text);
 }
@@ -842,8 +842,9 @@ body {
 /* Mobile keyboard behavior: do not let the keyboard push the bottom nav upward */
 html.sentinel-keyboard-open,
 body.sentinel-keyboard-open {
-  height: 100%;
+  height: auto !important;
   overflow-x: hidden;
+  overflow-y: auto !important;
 }
 
 
@@ -1158,7 +1159,7 @@ body {
 
 /* App shell natural scroll guardrail */
 .sentinel-modern-shell {
-  min-height: 100dvh;
+  min-height: 100svh;
   height: auto !important;
   overflow-x: hidden;
   overflow-y: visible !important;
@@ -1326,3 +1327,98 @@ body {
   }
 }
 
+
+/* Cross-device scroll safety: Android, small tablets, non-iPhone browsers */
+html {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  min-height: 100%;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#__next,
+.sentinel-modern-shell {
+  min-height: 100svh;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.sentinel-page-shell {
+  min-height: auto;
+  height: auto;
+  overflow: visible;
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+}
+
+@media (max-width: 767px) {
+  main,
+  section {
+    max-width: 100%;
+  }
+
+  .sentinel-page-shell {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: calc(8.5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Final cross-device scroll override.
+   Keep Android/Chrome/Samsung browsers in normal document scrolling mode. */
+html,
+body {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior-y: auto !important;
+}
+
+body {
+  position: static !important;
+  touch-action: manipulation;
+}
+
+.sentinel-modern-shell {
+  min-height: 100svh !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+.sentinel-app-main,
+.sentinel-page-shell,
+.sentinel-mobile-page {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 1023px) {
+  .sentinel-app-main {
+    padding-bottom: calc(var(--sentinel-mobile-tabbar-height, 76px) + env(safe-area-inset-bottom, 0px) + 4rem) !important;
+    scroll-padding-bottom: calc(var(--sentinel-mobile-tabbar-height, 76px) + env(safe-area-inset-bottom, 0px) + 4rem) !important;
+  }
+
+  .sentinel-page-shell,
+  .sentinel-mobile-page {
+    padding-bottom: calc(var(--sentinel-mobile-tabbar-height, 76px) + env(safe-area-inset-bottom, 0px) + 4rem) !important;
+  }
+}
+
+/* Do not lock document height when keyboard is open; only hide bottom chrome. */
+html.sentinel-keyboard-open,
+body.sentinel-keyboard-open {
+  height: auto !important;
+  overflow-y: auto !important;
+}

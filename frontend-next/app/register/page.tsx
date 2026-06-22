@@ -120,7 +120,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <section className="mx-auto flex min-h-[calc(100dvh-150px)] max-w-6xl items-center justify-center px-0 py-0 sm:px-4 sm:py-6">
+    <section className="mx-auto flex min-h-[calc(100svh-150px)] max-w-6xl items-center justify-center px-0 py-4 pb-10 sm:px-4 sm:py-6">
       <div className="grid w-full overflow-hidden bg-white shadow-none sm:rounded-[32px] sm:border sm:border-slate-200 sm:shadow-2xl sm:shadow-slate-300/40 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1320] via-[#102A43] to-[#0B1320] p-5 text-white sm:p-8 lg:p-10">
           <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#1D72B8]/25 blur-3xl" />
