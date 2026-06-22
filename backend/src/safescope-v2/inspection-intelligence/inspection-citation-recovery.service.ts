@@ -1,4 +1,5 @@
 import { InspectionCandidateStandard, InspectionIntelligenceResult } from './inspection-intelligence.types';
+import { InspectionCitationRankingService } from './inspection-citation-ranking.service';
 
 export type CitationRecoveryDecision = {
   outcome: 'existing_candidates' | 'recovered_candidates' | 'insufficient_evidence' | 'controlled_condition' | 'no_supported_candidate';
@@ -59,7 +60,10 @@ function toLegacyCandidate(candidate: InspectionCandidateStandard, rank: number)
 }
 
 export class InspectionCitationRecoveryService {
+  constructor(private readonly rankingService = new InspectionCitationRankingService()) {}
+
   recover(input: {
+    observation?: string;
     suggestedStandards: any[];
     excludedStandards: any[];
     inspectionIntelligence: InspectionIntelligenceResult;
@@ -112,9 +116,32 @@ export class InspectionCitationRecoveryService {
     const supported = input.inspectionIntelligence.candidateStandards
       .filter((candidate) => candidate.status === 'candidate_standard' && scopeAllows(candidate, input.scopes));
     if (!supported.length) {
-      return {
+      if (!input.observation) {
+        return {
+          suggestedStandards: existing,
+          excludedStandards: excluded,
+          decision: {
+            outcome: existing.length ? 'existing_candidates' : 'no_supported_candidate',
+            rationale: existing.length
+              ? 'The standards pipeline already returned advisory candidates.'
+              : 'A hazard was identified, but no candidate in the current standards knowledge matched the selected jurisdiction and evidence.',
+            recoveredCitations: [],
+            evidenceNeeded: input.inspectionIntelligence.evidenceGapQuestions,
+            advisoryOnly: true,
+            requiresQualifiedReview: true,
+          },
+        };
+      }
+      const ranking = this.rankingService.rank({
+        observation: input.observation || '',
         suggestedStandards: existing,
         excludedStandards: excluded,
+        inspectionIntelligence: input.inspectionIntelligence,
+        scopes: input.scopes,
+      });
+      return {
+        suggestedStandards: ranking.suggestedStandards,
+        excludedStandards: ranking.excludedStandards,
         decision: {
           outcome: existing.length ? 'existing_candidates' : 'no_supported_candidate',
           rationale: existing.length
@@ -134,12 +161,36 @@ export class InspectionCitationRecoveryService {
       .map(toLegacyCandidate);
     const recoveredKeys = new Set(recovered.map(normalizedCitation));
     const merged = [...recovered, ...existing]
-      .filter((standard, index, values) => values.findIndex((item) => normalizedCitation(item) === normalizedCitation(standard)) === index)
-      .slice(0, 5);
+      .filter((standard, index, values) => values.findIndex((item) => normalizedCitation(item) === normalizedCitation(standard)) === index);
 
-    return {
+    if (!input.observation) {
+      return {
+        suggestedStandards: merged.slice(0, 5),
+        excludedStandards: excluded.filter((standard) => !recoveredKeys.has(normalizedCitation(standard))),
+        decision: {
+          outcome: recovered.length ? 'recovered_candidates' : 'existing_candidates',
+          rationale: recovered.length
+            ? 'Inspection-specific condition and mechanism evidence restored supported advisory candidates after legacy scope/evidence filtering.'
+            : 'The standards pipeline already contains the supported inspection candidate citations.',
+          recoveredCitations: recovered.map(citationOf),
+          evidenceNeeded: supported.flatMap((candidate) => candidate.evidenceNeeded).filter((value, index, values) => values.indexOf(value) === index),
+          advisoryOnly: true,
+          requiresQualifiedReview: true,
+        },
+      };
+    }
+
+    const ranking = this.rankingService.rank({
+      observation: input.observation || '',
       suggestedStandards: merged,
       excludedStandards: excluded.filter((standard) => !recoveredKeys.has(normalizedCitation(standard))),
+      inspectionIntelligence: input.inspectionIntelligence,
+      scopes: input.scopes,
+    });
+
+    return {
+      suggestedStandards: ranking.suggestedStandards,
+      excludedStandards: ranking.excludedStandards,
       decision: {
         outcome: recovered.length ? 'recovered_candidates' : 'existing_candidates',
         rationale: recovered.length

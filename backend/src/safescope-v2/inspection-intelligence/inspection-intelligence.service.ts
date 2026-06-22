@@ -110,7 +110,7 @@ const RULES: InspectionIntelligenceRule[] = [
     standards: { osha_general_industry: [{ citation: '29 CFR 1910.37(a)(3)', evidence: ['exit-route segment', 'obstruction', 'required capacity/access', 'occupant exposure'] }], osha_construction: [{ citation: '29 CFR 1926.34(c)', evidence: ['construction workplace', 'exit availability', 'obstruction and occupancy'] }] },
   },
   {
-    id: 'housekeeping', domain: 'walking_working_surfaces', matches: [/\b(poor housekeeping|debris|clutter|materials|boxes|cords)\b.*\b(slip|trip|walkway|aisle|travelway)/, /\b(slip|trip) hazard\b.*\b(housekeeping|debris|clutter|walkway|aisle)/],
+    id: 'housekeeping', domain: 'walking_working_surfaces', matches: [/\b(poor housekeeping|debris|clutter|materials|boxes|cords)\b.*\b(slip|trip|walkway|aisle|travelway)/, /\b(slip|trip) hazard\b.*\b(housekeeping|debris|clutter|walkway|aisle)/, /\b(walkway|aisle|travelway|passageway)\b.*\b(slip|trip) hazard\b/],
     initiating: 'Debris, clutter, material, or contamination is present in a walking or working path.', failure: 'The surface no longer provides clear, orderly, stable footing.', exposure: 'A person can catch a foot, slip, alter their path, or fall into adjacent equipment or objects.', consequences: 'Slip, trip, same-level fall, sprain, fracture, or secondary contact injury.',
     questions: ['What material or condition creates the hazard and what route/area is affected?', 'How frequently do workers use the area and is lighting or visibility limited?', 'Is the condition temporary, recurring, or caused by inadequate storage or leak control?'],
     controls: actions('Remove or clean the immediate obstruction and warn or barricade until the route is safe.', 'Provide temporary routing and designated staging or cleanup controls.', 'Correct storage, drainage, leak, flooring, or cable-routing causes and provide durable designated locations.', 'Set inspection/cleanup frequency and assign housekeeping ownership for the affected process.', 'Photograph the clear, dry route and verify it remains clear during normal operations.'),
@@ -298,6 +298,7 @@ export class InspectionIntelligenceService {
       && !conditionAssessment.controlledDomains.includes(input.primaryDomain)
       && !candidateStandards.some((candidate) => candidate.citation === input.primaryCitation)
       && input.jurisdiction !== 'unclear'
+      && (input.jurisdiction === 'msha' ? /^30 CFR\b/.test(input.primaryCitation) : /^29 CFR\b/.test(input.primaryCitation))
       && (input.jurisdiction !== 'msha' || citationAllowedForMineType(input.primaryCitation, miningContext.mineType))
     ) {
       candidateStandards.unshift({ citation: input.primaryCitation, titleSummary: 'Candidate requirement identified by the existing deterministic citation resolver.', jurisdiction: input.jurisdiction, status: 'candidate_standard', rationale: 'Candidate produced by the existing deterministic citation resolver.', evidenceNeeded: ['Confirm jurisdiction, equipment/task scope, employee exposure, and the observed condition before applicability is finalized.'] });

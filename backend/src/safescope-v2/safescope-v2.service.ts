@@ -209,6 +209,7 @@ export class SafescopeV2Service {
         }));
 
       const citationRecovery = this.citationRecoveryService.recover({
+        observation: fusedText,
         suggestedStandards,
         excludedStandards,
         inspectionIntelligence: advisoryReasoning.inspectionIntelligence,
