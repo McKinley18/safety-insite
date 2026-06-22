@@ -149,31 +149,48 @@ export class ActionEngineService {
 
     // 6. Enhance Description
     let description = "";
-    if (report.patterns && report.patterns.length > 0) {
-      const patternStrings = report.patterns.map(p => `${p.count} occurrences of ${p.type} hazards`);
-      description = `${patternStrings.join(" and ")} detected in ${report.location}. Immediate investigation required.`;
+    let finalTitle = title;
+    let originalSuggestion: any;
+
+    if (isVagueInput) {
+      finalTitle = "Review and control HazLenz AI-identified hazard";
+      description = `Observed vague safety concern requires qualified safety review. Recommended interim controls: ${finalFixes.slice(0, 3).join("; ")}`;
+      originalSuggestion = {
+        contextualControls,
+        isVague: true,
+      };
     } else {
-      description = `Observed ${report.safeScope?.classification || report.category} hazard requires corrective action based on HazLenz AI intelligence in ${report.location}.`;
-    }
+      if (report.patterns && report.patterns.length > 0) {
+        const patternStrings = report.patterns.map(p => `${p.count} occurrences of ${p.type} hazards`);
+        description = `${patternStrings.join(" and ")} detected in ${report.location}. Immediate investigation required.`;
+      } else {
+        description = `Observed ${report.safeScope?.classification || report.category} hazard requires corrective action based on HazLenz AI intelligence in ${report.location}.`;
+      }
 
-    if (report.safeScope?.requiresShutdown) {
-      description += " Immediate shutdown or isolation is recommended until effective controls are verified.";
-    }
+      if (report.safeScope?.requiresShutdown) {
+        description += " Immediate shutdown or isolation is recommended until effective controls are verified.";
+      }
 
-    if (report.safeScope?.imminentDanger) {
-      description += " Imminent-danger indicators were detected and require immediate competent-person review.";
-    }
+      if (report.safeScope?.imminentDanger) {
+        description += " Imminent-danger indicators were detected and require immediate competent-person review.";
+      }
 
-    if (report.safeScope?.reasoning?.length) {
-      description += " HazLenz AI reasoning: " + report.safeScope.reasoning.join("; ");
-    }
+      if (report.safeScope?.reasoning?.length) {
+        description += " HazLenz AI reasoning: " + report.safeScope.reasoning.join("; ");
+      }
 
-    if (contextualControls.competentPersonReview) {
-      description += " Competent-person or qualified-person review is recommended before closure.";
-    }
+      if (contextualControls.competentPersonReview) {
+        description += " Competent-person or qualified-person review is recommended before closure.";
+      }
 
-    if (finalFixes.length > 0) {
-        description += " Recommended corrective actions: " + finalFixes.join("; ");
+      if (finalFixes.length > 0) {
+          description += " Recommended corrective actions: " + finalFixes.join("; ");
+      }
+
+      originalSuggestion = {
+        ...(reference ? { hazard: reference.hazard, fixes: reference.fixes } : {}),
+        contextualControls,
+      };
     }
 
     // 7. Role Assignment
@@ -183,7 +200,7 @@ export class ActionEngineService {
     else if (priority === "MEDIUM") assignedRole = "Team Lead";
 
     actions.push({
-      title,
+      title: finalTitle,
       description,
       priority,
       dueDate: now.toISOString(),
@@ -194,10 +211,7 @@ export class ActionEngineService {
         ? report.safeScope.standards.map((standard) => standard.citation)
         : [],
       suggestedFixes: finalFixes,
-      originalSuggestion: {
-        ...(reference ? { hazard: reference.hazard, fixes: reference.fixes } : {}),
-        contextualControls,
-      } as any,
+      originalSuggestion,
       category: report.category,
     });
 

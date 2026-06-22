@@ -154,16 +154,21 @@ export function buildContextualControls(input: {
   isVague?: boolean;
 }): ContextualControls {
   if (input.isVague) {
+    const isElectrical = String(input.classification || '').toLowerCase().includes('electrical');
+    const inspectorText = isElectrical
+      ? 'Have a qualified safety professional or qualified electrical person inspect the condition.'
+      : 'Have a qualified safety professional or competent person inspect the condition.';
     return {
       immediateControls: [
         'Keep personnel from touching or operating the affected area/equipment until evaluated.',
-        'Restrict access if damage or hazard exposure is suspected.'
+        'Restrict access if damage or hazard exposure is suspected.',
+        'Mark/flag the concern and collect photos/details.'
       ],
       permanentControls: [
         'Repair or replace components identified by qualified review.'
       ],
       verificationSteps: [
-        'Have a qualified safety professional or competent person inspect the condition.'
+        inspectorText
       ],
       restartCriteria: [
         'Maintain access control pending qualified review.'

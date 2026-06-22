@@ -254,20 +254,96 @@ async function run() {
         throw new Error(`Expected permanentEngineering to be generic, but got specific actions: ${correctiveActions.permanentEngineering.join('; ')}`);
       }
 
-      // A7: Generated action referenceStandards must be empty
-      const generatedAction = response.generatedActions?.[0];
-      if (generatedAction?.referenceStandards && generatedAction.referenceStandards.length > 0) {
-        throw new Error(`Expected generatedActions[0].referenceStandards to be empty, got ${JSON.stringify(generatedAction.referenceStandards)}`);
-      }
+      // A7: Generated and Base action validation
+      const actionsToCheck = [
+        { name: 'generatedActions[0]', action: response.generatedActions?.[0] },
+        { name: 'baseGeneratedActions[0]', action: response.baseGeneratedActions?.[0] },
+      ];
 
-      // A8: Generated action description must not include specific component repairs
-      const generatedDesc = (generatedAction?.description || '').toLowerCase();
-      const hasSpecificInDescription = tc.shouldNotMention.some(term => generatedDesc.includes(term));
-      if (hasSpecificInDescription) {
-        throw new Error(`Expected generated action description to not contain forbidden terms, but description is: "${generatedDesc}"`);
+      const allForbidden = [
+        'exposed electrical equipment',
+        'approved covers',
+        'blanks',
+        'enclosure components',
+        'filler',
+        'knockout',
+        'dead-front',
+        'open slot',
+        'lock out',
+        'tag out',
+        'immediately stop all work',
+        'permanent engineered solutions specific to hazard'
+      ];
+
+      for (const { name, action } of actionsToCheck) {
+        if (!action) {
+          throw new Error(`Expected ${name} to be defined`);
+        }
+
+        // 1. no referenceStandards
+        if (action.referenceStandards && action.referenceStandards.length > 0) {
+          throw new Error(`Expected ${name}.referenceStandards to be empty, got ${JSON.stringify(action.referenceStandards)}`);
+        }
+
+        // 2. no forbidden terms in title, description, or suggestedFixes
+        const titleLower = (action.title || '').toLowerCase();
+        const descLower = (action.description || '').toLowerCase();
+        const fixes = action.suggestedFixes || [];
+
+        for (const term of allForbidden) {
+          if (titleLower.includes(term)) {
+            throw new Error(`Expected ${name} title to not contain "${term}", but got "${action.title}"`);
+          }
+          if (descLower.includes(term)) {
+            throw new Error(`Expected ${name} description to not contain "${term}", but got "${action.description}"`);
+          }
+          for (const fix of fixes) {
+            if (fix.toLowerCase().includes(term)) {
+              throw new Error(`Expected ${name} suggestedFixes to not contain "${term}", but got "${fix}"`);
+            }
+          }
+        }
+
+        // 3. suggestedFixes are vague-safe only
+        const allowedVagueSubstrings = [
+          'personnel', 'touching', 'operating', 'affected area', 'evaluated',
+          'restrict access', 'damage', 'hazard exposure', 'suspected',
+          'qualified safety professional', 'competent person', 'inspect', 'condition',
+          'mark/flag', 'photos/details', 'maintain access', 'qualified review',
+          'repair or replace', 'qualified electrical person'
+        ];
+
+        for (const fix of fixes) {
+          const fixLower = fix.toLowerCase();
+          const isAllowed = allowedVagueSubstrings.some(sub => fixLower.includes(sub));
+          if (!isAllowed) {
+            throw new Error(`Expected ${name} suggestedFix to be vague-safe only, but got: "${fix}"`);
+          }
+        }
+
+        // 4. originalSuggestion does not leak shardCorrectiveActionPatterns with specific repair language
+        const orig = action.originalSuggestion || {};
+        if (orig.shardCorrectiveActionPatterns && orig.shardCorrectiveActionPatterns.length > 0) {
+          const hasSpecificShardPattern = orig.shardCorrectiveActionPatterns.some((pattern: string) => {
+            const patternLower = pattern.toLowerCase();
+            return allForbidden.some(term => patternLower.includes(term));
+          });
+          if (hasSpecificShardPattern) {
+            throw new Error(`Expected ${name}.originalSuggestion.shardCorrectiveActionPatterns to not leak specific repair language, got: ${JSON.stringify(orig.shardCorrectiveActionPatterns)}`);
+          }
+        }
+
+        // Also check dca / correctiveActionReasoning / riskReasoning are empty or clean
+        if (orig.dca && JSON.stringify(orig.dca).toLowerCase().includes('lockout')) {
+          throw new Error(`Expected ${name}.originalSuggestion.dca to not leak specific LOTO controls`);
+        }
+        if (orig.correctiveActionReasoning && JSON.stringify(orig.correctiveActionReasoning).toLowerCase().includes('lockout')) {
+          throw new Error(`Expected ${name}.originalSuggestion.correctiveActionReasoning to not leak specific LOTO controls`);
+        }
       }
 
       // A9: Urgency should be cautious and not critical stop-work unless evidence supports it
+      const generatedAction = response.generatedActions?.[0];
       if (generatedAction?.priority === 'CRITICAL' && !tc.input.includes('energized') && !tc.input.includes('exposed')) {
         throw new Error(`Expected priority to not be CRITICAL for vague input without direct danger, got ${generatedAction.priority}`);
       }

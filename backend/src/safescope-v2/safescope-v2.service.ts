@@ -910,27 +910,33 @@ export class SafescopeV2Service {
     const riskReasoning = intelligence?.riskReasoning || {};
     const scenarioIntelligence = intelligence?.scenarioIntelligence || {};
     const evidenceGapQuestions = safeArray(intelligence?.evidenceGapQuestions);
-    const shardCorrectiveActionPatterns = safeArray(
-      knowledgeShardSummary?.correctiveActionPatterns,
-    )
-      .map((item: any) => String(item || "").trim())
-      .filter(Boolean)
-      .filter(isRelevantShardCorrectiveActionPattern);
+    const shardCorrectiveActionPatterns = isVague
+      ? []
+      : safeArray(
+          knowledgeShardSummary?.correctiveActionPatterns,
+        )
+          .map((item: any) => String(item || "").trim())
+          .filter(Boolean)
+          .filter(isRelevantShardCorrectiveActionPattern);
 
-    const dcaFixes = [
-      ...safeArray(dca.immediateActions).map((item: any) => item?.action || item?.title || String(item)),
-      ...safeArray(dca.interimControls).map((item: any) => item?.action || item?.title || String(item)),
-      ...safeArray(dca.permanentCorrectiveActions).map((item: any) => item?.action || item?.title || String(item)),
-      ...safeArray(dca.verificationActions).map((item: any) => item?.action || item?.title || String(item)),
-    ].filter(Boolean);
+    const dcaFixes = isVague
+      ? []
+      : [
+          ...safeArray(dca.immediateActions).map((item: any) => item?.action || item?.title || String(item)),
+          ...safeArray(dca.interimControls).map((item: any) => item?.action || item?.title || String(item)),
+          ...safeArray(dca.permanentCorrectiveActions).map((item: any) => item?.action || item?.title || String(item)),
+          ...safeArray(dca.verificationActions).map((item: any) => item?.action || item?.title || String(item)),
+        ].filter(Boolean);
 
-    const brainFixes = [
-      ...safeArray(correctiveActionReasoning.immediateActions),
-      ...safeArray(correctiveActionReasoning.interimControls),
-      ...safeArray(correctiveActionReasoning.permanentCorrections),
-      ...safeArray(correctiveActionReasoning.administrativeFollowUps),
-      ...safeArray(correctiveActionReasoning.verificationSteps),
-    ].filter(Boolean);
+    const brainFixes = isVague
+      ? []
+      : [
+          ...safeArray(correctiveActionReasoning.immediateActions),
+          ...safeArray(correctiveActionReasoning.interimControls),
+          ...safeArray(correctiveActionReasoning.permanentCorrections),
+          ...safeArray(correctiveActionReasoning.administrativeFollowUps),
+          ...safeArray(correctiveActionReasoning.verificationSteps),
+        ].filter(Boolean);
 
     const reviewerQuestions = [
       ...safeArray(dca.reviewerQuestions),
@@ -1022,24 +1028,32 @@ export class SafescopeV2Service {
       source: primary.source || "AI_ENGINE",
       reportId: primary.reportId || reportId,
       suggestedFixes: suggestedFixes.map(sanitizeActionText).filter(Boolean),
-      originalSuggestion: {
-        ...(primary.originalSuggestion || {}),
-        source: "safescope_v2_enriched_corrective_action",
-        baseActionEngineSuggestion: primary.originalSuggestion || null,
-        dca,
-        correctiveActionReasoning,
-        riskReasoning,
-        scenarioIntelligence,
-        evidenceGapQuestions,
-        reviewerQuestions,
-        shardCorrectiveActionPatterns,
-        usesFocusedShardCorrectiveActions: shardCorrectiveActionPatterns.length > 0,
-        enrichmentApplied: true,
-        relevanceFilterApplied: true,
-      },
+      referenceStandards: isVague ? [] : primary.referenceStandards || [],
+      originalSuggestion: isVague
+        ? {
+            source: "safescope_v2_enriched_corrective_action",
+            contextualControls: primary.originalSuggestion?.contextualControls || null,
+            enrichmentApplied: true,
+            isVague: true,
+          }
+        : {
+            ...(primary.originalSuggestion || {}),
+            source: "safescope_v2_enriched_corrective_action",
+            baseActionEngineSuggestion: primary.originalSuggestion || null,
+            dca,
+            correctiveActionReasoning,
+            riskReasoning,
+            scenarioIntelligence,
+            evidenceGapQuestions,
+            reviewerQuestions,
+            shardCorrectiveActionPatterns,
+            usesFocusedShardCorrectiveActions: shardCorrectiveActionPatterns.length > 0,
+            enrichmentApplied: true,
+            relevanceFilterApplied: true,
+          },
     };
 
-    if (!hasTrafficOrMobileEquipmentContext) {
+    if (!hasTrafficOrMobileEquipmentContext && !isVague) {
       delete (enhancedPrimary.originalSuggestion as any).baseActionEngineSuggestion;
     }
 

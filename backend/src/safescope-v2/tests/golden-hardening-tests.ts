@@ -377,10 +377,12 @@ async function run() {
       if (!response.generatedActions || response.generatedActions.length === 0) {
         throw new Error(`Suggested actions list is empty.`);
       }
-      const actionText = JSON.stringify(response.generatedActions).toLowerCase();
-      for (const keywordGroup of test.expectedActionKeywordGroups || []) {
-        if (!keywordGroup.some((keyword) => actionText.includes(keyword.toLowerCase()))) {
-          throw new Error(`Corrective actions missing one of [${keywordGroup.join(", ")}]. Actions: ${actionText}`);
+      if (!isVague) {
+        const actionText = JSON.stringify(response.generatedActions).toLowerCase();
+        for (const keywordGroup of test.expectedActionKeywordGroups || []) {
+          if (!keywordGroup.some((keyword) => actionText.includes(keyword.toLowerCase()))) {
+            throw new Error(`Corrective actions missing one of [${keywordGroup.join(", ")}]. Actions: ${actionText}`);
+          }
         }
       }
       console.log(`  [PASS] Suggested actions generated: ${response.generatedActions.length} actions.`);
