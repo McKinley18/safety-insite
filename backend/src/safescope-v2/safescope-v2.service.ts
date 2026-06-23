@@ -36,6 +36,8 @@ import { UserGovernanceContext } from "./workspace-governance-access/workspace-g
 import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowledge-router.service";
 import { logKnowledgeTelemetry, isHazLenzKnowledgeTelemetryEnabled } from "./telemetry/hazlenz-knowledge-telemetry";
 import { HazLenzKnowledgeShardService } from "./knowledge-shards/hazlenz-knowledge-shard.service";
+import { EXPERT_APPLICABILITY_RULES } from "./inspection-intelligence/standard-applicability.rules";
+
 
 
 @Injectable()
@@ -183,10 +185,28 @@ export class SafescopeV2Service {
         debugMetadata ? diagnostics : undefined,
       );
 
+      const standardAppResults = advisoryReasoning?.inspectionIntelligence?.standardApplicability;
+      const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
+
       const scopedStandards = this.applyStandardsScopeFit(
         rawSuggestedStandards,
         normalizedScopes,
-      ).sort((a, b) => (b.score || 0) - (a.score || 0));
+      ).map((standard) => {
+        const normCit = (standard.citation || standard.standard || '').toLowerCase().replace(/\s+/g, '');
+        if (governedCitations.has(normCit)) {
+          const isSuggested = standardAppResults?.suggestedStandards?.some(
+            (c: string) => c.toLowerCase().replace(/\s+/g, '') === normCit
+          );
+          if (!isSuggested) {
+            return {
+              ...standard,
+              candidateStatus: "needs_more_evidence",
+              evidenceExclusionReason: "Candidate does not satisfy the Expert Applicability sufficiency gate requirements.",
+            };
+          }
+        }
+        return standard;
+      }).sort((a, b) => (b.score || 0) - (a.score || 0));
 
       let suggestedStandards = scopedStandards
         .filter((standard) =>
@@ -207,6 +227,7 @@ export class SafescopeV2Service {
             standard.scopeExclusionReason ||
             "Candidate lacks sufficient evidence fit for active suggestion.",
         }));
+
 
       const isVague = Boolean(advisoryReasoning.inspectionIntelligence?.vagueInputAnalysis?.isVague);
       if (isVague) {
@@ -812,6 +833,8 @@ export class SafescopeV2Service {
           suggestedStandards,
           supportingStandards,
           inspectionIntelligence: advisoryReasoning.inspectionIntelligence,
+          standardApplicability: advisoryReasoning.inspectionIntelligence?.standardApplicability,
+          evidenceGate: advisoryReasoning.inspectionIntelligence?.evidenceGate,
           citationRecovery: citationRecovery.decision,
           standardsMatchExplanations,
           excludedStandards,

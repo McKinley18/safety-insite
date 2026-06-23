@@ -37,6 +37,10 @@ export class InspectionCitationRankingService {
     scopes: string[];
   }): CitationRankingResult {
     const observation = String(input.observation || '').toLowerCase();
+    const hasSpillReleaseEvidence = /\b(used[- ]oil|waste[- ]oil|oily waste|oily residue|oil spill|spill|spilled|leak|leaking|release|residue|residual)\b/i.test(observation);
+    const hasSurfaceOrDrainPathway = /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(observation);
+    const hasHazComIdentityEvidence = /\b(unlabeled|no label|missing label|unknown chemical|chemical identity|sds|hazcom|hazard communication|secondary container)\b/i.test(observation);
+    const hasSpillReleasePathway = hasSpillReleaseEvidence && hasSurfaceOrDrainPathway;
     const directCandidates = input.inspectionIntelligence.candidateStandards;
     const directRanks = new Map(directCandidates.map((candidate, index) => [citationKey(candidate), index]));
     const ranked = input.suggestedStandards.map((candidate) => {
@@ -115,9 +119,47 @@ export class InspectionCitationRankingService {
       }
 
       const isWalkingSurfaceCitation = /1910\.22|1926\.25|(?:56|57)\.(?:20003|11001)/.test(citation);
-      const hasWalkingSurfaceFailure = /\b(walkway|floor|aisle|travelway|walking surface|passageway)\b.*\b(wet|oil|spill|slip|trip|debris|clutter|blocked|obstructed|uneven|hole)\b|\b(wet|oil|spill|slip|trip|debris|clutter|blocked|obstructed|uneven|hole)\b.*\b(walkway|floor|aisle|travelway|walking surface|passageway)\b/.test(observation);
+      const hasWalkingSurfaceFailure = /\b(walkway|floor|aisle|travelway|walking surface|passageway)\b.*\b(wet|oil|spill|slip|trip|debris|clutter|blocked|obstructed|uneven|hole|leak|leaking|release|residue|oily)\b|\b(wet|oil|spill|slip|trip|debris|clutter|blocked|obstructed|uneven|hole|leak|leaking|release|residue|oily)\b.*\b(walkway|floor|aisle|travelway|walking surface|passageway)\b/.test(observation);
       if (isWalkingSurfaceCitation && !hasWalkingSurfaceFailure) {
         score -= 210; penalties.push('No walking-surface, housekeeping, access-route, or same-level-fall condition supports this family.'); exclude = true;
+      }
+
+      const hasFloorOpening = /\b(floor hole|floor opening|open hole|uncovered opening|skylight)\b/.test(observation);
+      const isFloorOpeningCitation = /1910\.28|1910\.29|1926\.50[12]|(?:56|57)\.11012/.test(citation);
+      if (hasFloorOpening) {
+        if (isFloorOpeningCitation) {
+          score += 180;
+          reasons.push('Direct match: floor opening or hole requires cover, guarding, or fall protection.');
+        }
+        if (isWalkingSurfaceCitation) {
+          score -= 90;
+          penalties.push('Walking-surface contamination is secondary when the observation describes an opening or hole.');
+        }
+      }
+
+      const isHazcomCitation = /1910\.1200|1926\.59|47\./i.test(citation) || /hazard communication|label/i.test(text);
+      const isWalkingSurfaceOrReleaseCitation = /1910\.22|1926\.25|(?:56|57)\.(?:20003|4102|11001)/.test(citation) || /(spill|release|containment)/i.test(text);
+      const isFlammableLiquidCitation = /1910\.106|1926\.152|(?:56|57)\.4100?/i.test(citation) || /flammable liquid|flammable-liquid|combustible liquid/i.test(text);
+      if (hasSpillReleasePathway) {
+        if (isWalkingSurfaceOrReleaseCitation) {
+          score += 130;
+          reasons.push('Direct match: spill or release contaminating a walking surface or release path.');
+        }
+        if (/56\.4102|57\.4102/i.test(citation) || /(spill|release|containment)/i.test(text)) {
+          score += 85;
+          reasons.push('Direct match: release control for material reaching a drain, soil, or water pathway.');
+        }
+        if (isFlammableLiquidCitation && !/\b(flammable|combustible|flash point|ignition|vapor|fuel|gasoline|solvent)\b/i.test(observation)) {
+          score -= 120;
+          penalties.push('Flammable-liquid storage/handling is not the dominant observed deficiency when the condition is a spill or release to a walking surface.');
+        }
+        if (isHazcomCitation && !hasHazComIdentityEvidence) {
+          score -= 115;
+          penalties.push('HazCom identity/label support is secondary to the spill/release pathway and contaminated walking surface.');
+        }
+      } else if (isHazcomCitation && hasHazComIdentityEvidence) {
+        score += 40;
+        reasons.push('Direct match: chemical identity or workplace labeling is the observed deficiency.');
       }
 
       const enriched = {
@@ -202,6 +244,7 @@ export class InspectionCitationRankingService {
     direct(/\b(rotating shaft|rotating coupling|exposed shaft|unguarded shaft)\b/, /1910\.219|1910\.212|1926\.300|(?:56|57)\.14107/, 'Direct match: exposed rotating machine component.');
     direct(/\b(conveyor|tail pulley|head pulley|nip point)\b.*\b(guard|unguarded|missing|exposed|cleanup)\b/, /1910\.212|1926\.300|(?:56|57)\.14107|(?:56|57)\.12016/, 'Direct match: conveyor guarding or servicing exposure.');
     direct(/\bpoint of operation\b/, /1910\.212\(a\)\(3\)|1926\.300/, 'Direct match: point-of-operation guarding.');
+    direct(/\b(open|open container|uncovered|leaking|spill(?:ed)?|release|residue|used oil|waste oil|oily waste)\b.*\b(floor|walkway|aisle|travelway|pedestrian|drain|maintenance area|maintenance bay|shop floor|work area)\b|\b(floor|walkway|aisle|travelway|pedestrian|drain|maintenance area|maintenance bay|shop floor|work area)\b.*\b(open|open container|uncovered|leaking|spill(?:ed)?|release|residue|used oil|waste oil|oily waste)\b/, /1910\.22|1926\.25|(?:56|57)\.(?:20003|4102)/, 'Direct match: spill or release contaminating a walking surface or release pathway.');
     direct(/\b(wet|oil|spill|slippery)\b.*\b(floor|walkway|aisle)\b/, /1910\.22|1926\.25|(?:56|57)\.20003/, 'Direct match: walking-working surface contamination.');
     direct(/\b(floor hole|floor opening|open hole|uncovered opening)\b/, /1910\.(?:28|29)|1926\.50[12]|(?:56|57)\.11012/, 'Direct match: floor-opening cover or guard protection.');
     direct(/\b(platform|edge)\b.*\b(without|missing|no|unguarded)\b.*\b(guardrail|fall protection|fall arrest)\b/, /1910\.28|1926\.501|(?:56|57)\.15005/, 'Direct match: elevated edge/platform fall protection.');

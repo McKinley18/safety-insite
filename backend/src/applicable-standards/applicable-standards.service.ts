@@ -1372,7 +1372,64 @@ export class ApplicableStandardsService {
           }
         }
 
+        const hasSpillReleaseEvidence =
+          /\b(used[- ]oil|waste[- ]oil|oily waste|oily residue|oil spill|spill|spilled|leak|leaking|release|residue|residual)\b/i.test(
+            observation,
+          );
+        const hasSurfaceOrDrainPathway =
+          /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(
+            observation,
+          );
+        const hasHazComIdentityEvidence =
+          /\b(unlabeled|no label|missing label|unknown chemical|chemical identity|sds|hazcom|hazard communication|secondary container)\b/i.test(
+            observation,
+          );
+        const hasSpillReleasePathway =
+          hasSpillReleaseEvidence && hasSurfaceOrDrainPathway;
+
         const citation = standard.citation || "";
+
+        if (hasSpillReleasePathway) {
+          const isWalkingSurfaceCitation =
+            /1910\.22|56\.20003|57\.20003|1926\.25|56\.11001|57\.11001/i.test(
+              citation,
+            );
+          const isReleaseContainmentCitation =
+            /56\.4102|57\.4102/i.test(citation) ||
+            /(spill|release|containment)/i.test(standard.title || "");
+          const isHazcomCitation =
+            /1910\.1200|1926\.59|47\./i.test(citation) ||
+            /(hazard communication|label)/i.test(standard.title || "");
+
+          if (isWalkingSurfaceCitation) {
+            score += 120;
+            matchingReasons.push(
+              "scenario: spill or release contaminating a walking surface or travel path",
+            );
+          }
+
+          if (isReleaseContainmentCitation) {
+            score += 85;
+            matchingReasons.push(
+              "scenario: spill or release reaching a drain, soil, or water pathway",
+            );
+          }
+
+          if (isHazcomCitation && !hasHazComIdentityEvidence) {
+            score -= 95;
+            matchingReasons.push(
+              "negative: HazCom labeling is not the dominant deficiency when spill/release onto a walking surface or release path is the main exposure",
+            );
+          }
+        } else if (
+          /1910\.1200|1926\.59|47\./i.test(citation) &&
+          hasHazComIdentityEvidence
+        ) {
+          score += 40;
+          matchingReasons.push(
+            "scenario: missing chemical identity or label remains the primary observed deficiency",
+          );
+        }
 
         // 🔷 SAFEGUARDING AND GATING GUARDRAILS FOR REPOSITORY STANDARDS
         const isLiftingOrRiggingText =
