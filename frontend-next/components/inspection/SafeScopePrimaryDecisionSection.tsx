@@ -129,39 +129,39 @@ export default function SafeScopePrimaryDecisionSection({
         </div>
 
         {reviewNeeded && (
-          <span className="shrink-0 rounded-full bg-red-50 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-red-700">
-            Review
+          <span className="shrink-0 rounded-full bg-red-100 px-3 py-1 text-[10px] font-black uppercase tracking-wide text-red-800 dark:bg-red-950 dark:text-red-200">
+            {safeScopeResult.reviewStateLabel || "Review"}
           </span>
         )}
       </div>
 
       <div className="mt-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
-        <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+        <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
           Primary standard
         </p>
         <p className="mt-1 text-base font-black text-[#1D72B8]">
           {topStandardLabel}
         </p>
-        <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
+        <p className="mt-1 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
           {standardReason}
         </p>
       </div>
 
       <div className="mt-4 space-y-3">
         <div>
-          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Why this was suggested
           </p>
-          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
             {primaryReason}
           </p>
         </div>
 
         <div>
-          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Recommended action
           </p>
-          <p className="mt-1 text-sm font-black leading-6 text-slate-800 dark:text-slate-200">
+          <p className="mt-1 text-sm font-black leading-6 text-slate-900 dark:text-slate-100">
             {recommendedAction}
           </p>
         </div>

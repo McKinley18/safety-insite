@@ -103,7 +103,7 @@ export default function FindingReviewEditor({
             : "No standards selected yet"}
         </h3>
 
-        <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-700">
+        <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-200">
           Standards are selected in the HazLenz AI Review step. This step is for final risk and corrective action confirmation.
         </p>
 
@@ -127,7 +127,7 @@ export default function FindingReviewEditor({
                     <p className="text-sm font-black text-[#1D72B8]">
                       {formatStandardDisplay(standard)}
                     </p>
-                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-100">
                       {getStandardSummary(standard) || "No summary available."}
                     </p>
                   </div>

@@ -72,6 +72,10 @@ const suites: Suite[] = [
     scriptPath: "src/safescope-v2/tests/hazlenz-spill-release-citation-ranking.ts"
   },
   {
+    name: "HazLenz Vague Guarding Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-vague-guarding-regression.ts"
+  },
+  {
     name: "HazLenz Classify Path Regression",
     scriptPath: "src/safescope-v2/tests/hazlenz-classify-path-regression.ts"
   }

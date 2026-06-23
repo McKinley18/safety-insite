@@ -23,9 +23,9 @@ export default function SafeScopeReasoningBasisSection({
   if (!basis && !hierarchy) return null;
 
   return (
-    <SafeScopeDrawer
-      title="Reasoning Basis"
-      summary="HazLenz AI review is primary; prior report history is reference only"
+      <SafeScopeDrawer
+        title="Reasoning Basis"
+        summary="HazLenz AI review is primary; prior report history is reference only"
       badge={basis?.sourceHierarchyEnforced ? "Hierarchy enforced" : "Review"}
     >
       <div className="space-y-3">
@@ -36,9 +36,9 @@ export default function SafeScopeReasoningBasisSection({
           <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
             {formatValue(basis?.primaryReasoningSource || "safescope_governed_brain")}
           </p>
-          <p className="mt-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
+          <p className="mt-2 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
             Standards source:{" "}
-            <span className="font-black text-slate-700 dark:text-slate-300">
+            <span className="font-black text-slate-800 dark:text-slate-200">
               {formatValue(
                 basis?.standardsMatchPrimarySource ||
                   "approved_applicability_and_scope_filtered_standards",
@@ -89,17 +89,17 @@ export default function SafeScopeReasoningBasisSection({
         </div>
 
         {basis?.explanation && (
-          <p className="rounded-xl bg-blue-50 px-3 py-3 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
+          <p className="rounded-xl bg-blue-50 px-3 py-3 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
             {basis.explanation}
           </p>
         )}
 
         {!!hierarchy?.primaryBasis?.length && (
           <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-800 dark:text-slate-100">
               Primary basis
             </p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
               {hierarchy.primaryBasis.slice(0, 6).map((item: string) => (
                 <li key={item}>{item}</li>
               ))}
@@ -109,10 +109,10 @@ export default function SafeScopeReasoningBasisSection({
 
         {!!hierarchy?.secondaryReferenceOnly?.length && (
           <div>
-            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-800 dark:text-slate-100">
               Reference only
             </p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
               {hierarchy.secondaryReferenceOnly.slice(0, 6).map((item: string) => (
                 <li key={item}>{item}</li>
               ))}

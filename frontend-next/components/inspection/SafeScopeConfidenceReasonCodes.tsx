@@ -11,7 +11,7 @@ export default function SafeScopeConfidenceReasonCodes({
     <>
       {!!safeScopeResult.confidenceIntelligence?.reasonCodes?.length && (
         <div className="mt-4 border-t border-slate-200 pt-3">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-700">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-800 dark:text-slate-100">
             Confidence reason codes
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
@@ -20,7 +20,7 @@ export default function SafeScopeConfidenceReasonCodes({
               .map((code: string) => (
                 <span
                   key={code}
-                  className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600"
+                  className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-slate-700 dark:bg-slate-900 dark:text-slate-200"
                 >
                   {code.replaceAll("_", " ")}
                 </span>

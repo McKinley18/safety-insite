@@ -93,7 +93,7 @@ export const SafeScopeIntelligencePanel = ({ adapter }: { adapter: SafeScopeDisp
           <h3 className="mb-2 text-sm font-black uppercase tracking-tight text-slate-800 dark:text-slate-200">
             Narrative
           </h3>
-          <p className="text-sm text-slate-700 dark:text-slate-300">
+          <p className="text-sm text-slate-800 dark:text-slate-200">
             {adapter.narrative.findingSummary}
           </p>
         </div>

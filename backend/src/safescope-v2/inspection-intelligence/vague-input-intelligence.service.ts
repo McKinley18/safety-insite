@@ -129,6 +129,38 @@ const VAGUE_RULES: VagueRule[] = [
     ]
   },
   {
+    id: 'vague-guarding',
+    matches: [
+      /^\s*missing guard\s*$/i,
+      /^\s*guard issue\s*$/i,
+      /^\s*guarding issue\s*$/i,
+      /^\s*guard missing\s*$/i,
+      /^\s*missing guard\s*$/i,
+    ],
+    domain: 'machine_guarding_loto',
+    observedFact: 'An unspecified guarding concern was reported.',
+    possibilities: [
+      'Missing machine guard on a rotating part, nip point, or point of operation.',
+      'Missing guardrail or opening protection at an elevated edge or floor opening.',
+      'Missing barrier or cover where access to moving parts or an opening exists.',
+    ],
+    missingFacts: [
+      'What equipment, opening, or edge is missing the guard?',
+      'Is the equipment operating, energized, or otherwise accessible to workers?',
+      'Which jurisdiction applies: OSHA General Industry, OSHA Construction, or MSHA?',
+    ],
+    questions: [
+      'What equipment, opening, edge, or moving part is missing the guard?',
+      'Is the equipment operating or energized, and are workers exposed to contact or a fall/opening hazard?',
+      'Is this OSHA General Industry, OSHA Construction, or MSHA?'
+    ],
+    controls: [
+      'Keep workers away from the exposed hazard until a qualified review is completed.',
+      'Stop or isolate moving equipment if motion is involved, and apply LOTO where required.',
+      'Install or replace the appropriate guard, cover, or guardrail after qualified verification.'
+    ]
+  },
+  {
     id: 'vague-machine-loto',
     matches: [
       /\b(guard issue|machine unsafe|conveyor problem|maintenance hazard|lockout concern|rotating part maybe exposed|guarding issue|pulley issue|loto issue|lockout problem|pinch point|nip point|guard missing maybe|machine guard issue)\b/i
@@ -540,6 +572,46 @@ export class VagueInputIntelligenceService {
           'Repair or replace components identified by qualified review.'
         ],
         uncertaintyReason: 'Equipment operational state, guard integrity, and body exposure are unconfirmed.'
+      };
+    }
+
+    if (text === 'missing guard' || text === 'guard issue' || text === 'guarding issue' || text === 'guard missing') {
+      return {
+        isVague: true,
+        observedFacts: ['Unspecified guarding concern reported.'],
+        inferredPossibilities: [
+          'Missing machine guard on a rotating part or point of operation.',
+          'Missing guardrail or cover at an elevated edge or floor opening.',
+          'Worker exposure to an unprotected hazard area.'
+        ],
+        missingCriticalFacts: [
+          'Equipment or opening type',
+          'Whether the equipment is operating or energized',
+          'Jurisdiction and exposure pathway'
+        ],
+        likelyHazardFamilies: [
+          { domain: 'machine_guarding_loto', confidence: 'low', rationale: 'Observed wording suggests a guarding concern, but the guard type is not identified.' }
+        ],
+        immediateSafetyQuestions: [
+          'What equipment, opening, edge, or moving part is missing the guard?',
+          'Is the equipment operating or energized, and are workers exposed to a nip point, rotating part, fall edge, or floor opening?',
+          'Is this OSHA General Industry, OSHA Construction, or MSHA?'
+        ],
+        conservativeInterimControls: [
+          'Keep workers away from the exposed hazard until a qualified review is completed.',
+          'Stop or isolate moving equipment if motion is involved, and apply LOTO where required.'
+        ],
+        immediateControls: [
+          'Keep workers away from the exposed hazard until a qualified review is completed.',
+          'Stop or isolate moving equipment if motion is involved, and apply LOTO where required.'
+        ],
+        interimControls: [
+          'Barricade the exposed area and collect photos/details for qualified review.'
+        ],
+        permanentEngineeringControls: [
+          'Install or replace the appropriate guard, cover, or guardrail after qualified verification.'
+        ],
+        uncertaintyReason: 'Guard type, exposed component, and jurisdiction are not specified.'
       };
     }
 

@@ -16,7 +16,7 @@ export default function SafeScopeStandardsReasoning({
           <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
             Adaptive Standards Reasoning
           </p>
-          <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+          <p className="mt-2 text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
             {safeScopeResult.standardsReasoning.summary}
           </p>
 
@@ -26,10 +26,10 @@ export default function SafeScopeStandardsReasoning({
               .map((standard: any) => (
                 <div
                   key={getStandardCitation(standard) || formatStandardDisplay(standard)}
-                  className="rounded-xl bg-slate-50 px-3 py-2"
+                  className="rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <p className="text-sm font-black text-slate-900">
+                    <p className="text-sm font-black text-slate-900 dark:text-slate-100">
                       {formatStandardDisplay(standard)}
                     </p>
                     <span className="rounded-full bg-[#E8F4FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
@@ -37,7 +37,7 @@ export default function SafeScopeStandardsReasoning({
                       defensible
                     </span>
                   </div>
-                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">
+                  <p className="mt-1 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
                     {getStandardSummary(standard) || standard.reasoning || "No reasoning summary available."}
                   </p>
                 </div>

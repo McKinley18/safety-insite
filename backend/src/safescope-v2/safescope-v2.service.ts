@@ -767,6 +767,15 @@ export class SafescopeV2Service {
         fusedText,
         (intelligence as any)?.observationUnderstanding
       );
+      const likelyGuardingReview =
+        /guard/i.test(String(promotedPrimary.classification || '')) &&
+        suggestedStandards.length === 0 &&
+        (needsMoreEvidenceStandards.length > 0 || Boolean(advisoryReasoning.inspectionIntelligence?.vagueInputAnalysis?.isVague));
+      const guardingReviewQuestions = [
+        'What equipment, opening, edge, or moving part is missing the guard?',
+        'Is the equipment operating or energized, and are workers exposed to a nip point, rotating part, fall edge, or floor opening?',
+        'Is this OSHA General Industry, OSHA Construction, or MSHA?',
+      ];
 
       const classifierHazardCategory = (() => {
         const classification = promotedPrimary.classification || '';
@@ -844,8 +853,21 @@ export class SafescopeV2Service {
           ...promotedPrimary,
           ...intelligence,
           classification: promotedPrimary.classification,
+          reviewStateLabel: likelyGuardingReview
+            ? 'Review needed — likely guarding issue'
+            : isVague && /guard/i.test(String(promotedPrimary.classification || ''))
+              ? 'Review needed — likely guarding issue'
+              : requiresHumanReview
+                ? 'Review'
+                : undefined,
           isVague,
-          evidenceGapQuestions: isVague ? (advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || []) : (intelligence.evidenceGapQuestions || []),
+          evidenceGapQuestions:
+            likelyGuardingReview &&
+            !(advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || []).length
+              ? guardingReviewQuestions
+              : isVague
+                ? (advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || [])
+                : (intelligence.evidenceGapQuestions || []),
           hazardCategory: rootHazardCategory,
           candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
@@ -917,6 +939,14 @@ export class SafescopeV2Service {
               learningMemory,
           }
       };
+
+      if (likelyGuardingReview && !(response.evidenceGapQuestions || []).length) {
+        response.evidenceGapQuestions = guardingReviewQuestions;
+        response.inspectionIntelligence = {
+          ...(response.inspectionIntelligence || {}),
+          evidenceGapQuestions: guardingReviewQuestions,
+        };
+      }
 
       if (isVague) {
         const isElectrical = String(rootHazardCategory || '').toLowerCase().includes('electrical') ||

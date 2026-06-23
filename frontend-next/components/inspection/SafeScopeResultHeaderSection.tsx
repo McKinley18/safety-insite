@@ -135,7 +135,7 @@ export default function safeScopeResultHeaderSection({
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             HazLenz AI Review Complete
           </p>
-          <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
+          <p className="mt-1 text-sm font-semibold text-slate-800 dark:text-slate-200">
             Confirm the finding, evidence needs, and next actions.
           </p>
         </div>
@@ -162,7 +162,7 @@ export default function safeScopeResultHeaderSection({
         <div className="mb-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-800 dark:text-slate-100">
                 Review Summary
               </p>
               <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
@@ -177,17 +177,17 @@ export default function safeScopeResultHeaderSection({
           </div>
 
           {!!summary && (
-            <p className="mt-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
+            <p className="mt-2 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
               {summary}
             </p>
           )}
 
           {!!fieldEvidenceGaps.length && (
             <div className="mt-3 rounded-xl bg-white dark:bg-slate-900 px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-800">
-              <p className="text-[10px] font-black uppercase tracking-wide text-amber-700">
+              <p className="text-[10px] font-black uppercase tracking-wide text-amber-800 dark:text-amber-300">
                 Evidence needed
               </p>
-              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
                 {fieldEvidenceGaps.slice(0, 4).map((gap) => (
                   <li key={gap}>{gap}</li>
                 ))}
@@ -197,10 +197,10 @@ export default function safeScopeResultHeaderSection({
 
           {!!fieldSupervisorQuestions.length && (
             <div className="mt-3 rounded-xl bg-white dark:bg-slate-900 px-3 py-2 ring-1 ring-slate-200 dark:ring-slate-800">
-              <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+              <p className="text-[10px] font-black uppercase tracking-wide text-slate-800 dark:text-slate-100">
                 Supervisor questions
               </p>
-              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+              <ul className="mt-1 list-disc space-y-1 pl-4 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
                 {fieldSupervisorQuestions.slice(0, 3).map((question) => (
                   <li key={question}>{question}</li>
                 ))}

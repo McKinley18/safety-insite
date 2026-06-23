@@ -103,6 +103,12 @@ function hasWalkingSurfaceSpillEvidence(normalizedText: string) {
   );
 }
 
+function hasSpecificGuardingContext(normalizedText: string) {
+  return /\b(rotating shaft|coupling|drive shaft|conveyor|tail pulley|head pulley|belt|pulley|gear|sprocket|fan blade|auger|point of operation|opening|floor hole|floor opening|platform|guardrail|scaffold|ladder|panel|breaker|electrical|live parts?|energized parts?)\b/i.test(
+    normalizedText,
+  );
+}
+
 export class WeightedClassifierService {
   classify(text: string) {
     const normalizedText = normalize(text);
@@ -110,6 +116,9 @@ export class WeightedClassifierService {
     const hasSpillEvidence = hasWalkingSurfaceSpillEvidence(normalizedText);
     const hasPedestrianOnlyTrafficCue =
       /\bpedestrian(s)?\b/i.test(normalizedText) && !hasVehicleEvidence;
+    const hasBareGuardingConcern =
+      /\b(missing guard|guard issue|guarding issue|guard missing)\b/i.test(normalizedText) &&
+      !hasSpecificGuardingContext(normalizedText);
 
     const candidates: WeightedCandidate[] = HAZARD_TAXONOMY.map((profile: HazardProfile) => {
       const strong = scoreSignals(normalizedText, profile.strongSignals);
@@ -344,6 +353,10 @@ export class WeightedClassifierService {
         score += 12;
       }
 
+      if (profile.id === "machine_guarding" && hasBareGuardingConcern) {
+        score -= 5;
+      }
+
       if (profile.id === "mobile_equipment" && hasVehicleEvidence) {
         score += 35;
       }
@@ -452,6 +465,10 @@ export class WeightedClassifierService {
       runnerUp && scoreMargin <= 3
         ? [`Close match between ${primary.classification} and ${runnerUp.classification}.`]
         : [];
+
+    if (primary.id === "machine_guarding" && hasBareGuardingConcern) {
+      ambiguityWarnings.push("Guard type, guard location, and exposure pathway require confirmation.");
+    }
 
     return {
       classification: primary.classification,
