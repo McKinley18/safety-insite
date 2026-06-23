@@ -135,7 +135,7 @@ export default function safeScopeResultHeaderSection({
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
             HazLenz AI Review Complete
           </p>
-          <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-700">
+          <p className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
             Confirm the finding, evidence needs, and next actions.
           </p>
         </div>
@@ -162,7 +162,7 @@ export default function safeScopeResultHeaderSection({
         <div className="mb-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-3">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
-              <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+              <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
                 Review Summary
               </p>
               <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
@@ -177,7 +177,7 @@ export default function safeScopeResultHeaderSection({
           </div>
 
           {!!summary && (
-            <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            <p className="mt-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
               {summary}
             </p>
           )}

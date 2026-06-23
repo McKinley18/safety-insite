@@ -73,7 +73,7 @@ export default function SafeScopeStandardsSection({
             <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
               No specific standard selected yet
             </h3>
-            <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
               HazLenz needs more evidence before suggesting a candidate standard.
             </p>
           </div>
@@ -96,9 +96,9 @@ export default function SafeScopeStandardsSection({
                 ))}
               </ul>
             ) : (
-              <p className="text-xs text-slate-700 font-semibold">No questions available.</p>
+              <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold">No questions available.</p>
             )}
-            <p className="mt-4 text-[10px] leading-normal text-slate-700 border-t border-slate-100 dark:border-slate-800/40 pt-2 font-semibold">
+            <p className="mt-4 text-[10px] leading-normal text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800/40 pt-2 font-semibold">
               ℹ️ No candidate standard is suggested because the input is too vague. Requires qualified review.
             </p>
           </div>
@@ -165,7 +165,7 @@ export default function SafeScopeStandardsSection({
 
         {!!standard.matchingReasons?.length && (
           <details className="mt-2 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
-            <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+            <summary className="cursor-pointer text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
               Why this matched
             </summary>
 
@@ -218,7 +218,7 @@ export default function SafeScopeStandardsSection({
                 {/* Satisfied Evidence */}
                 {explanation.satisfiedEvidence?.length > 0 && (
                   <div>
-                    <p className="font-black text-slate-700 uppercase text-[9px] tracking-wide">
+                    <p className="font-black text-slate-700 dark:text-slate-300 uppercase text-[9px] tracking-wide">
                       Satisfied Evidence
                     </p>
                     <ul className="mt-1 space-y-1 pl-4 list-disc text-slate-700 dark:text-slate-300">
@@ -248,7 +248,7 @@ export default function SafeScopeStandardsSection({
                 )}
 
                 {/* Advisory Disclaimer */}
-                <p className="text-[10px] leading-normal text-slate-600 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/40 pt-2 font-semibold">
+                <p className="text-[10px] leading-normal text-slate-700 dark:text-slate-300 border-t border-slate-200/50 dark:border-slate-800/40 pt-2 font-semibold">
                   ℹ️ This candidate standard is advisory-only, does not assert regulatory noncompliance, and requires qualified review.
                 </p>
               </div>
@@ -309,7 +309,7 @@ export default function SafeScopeStandardsSection({
           <h3 className="mt-1 text-base font-black text-slate-900 dark:text-slate-100">
             {headingText}
           </h3>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
             {selectedCount
               ? `${selectedCount} selected for the report.`
               : "Review only if you want to include standards in the report."}
@@ -363,7 +363,7 @@ export default function SafeScopeStandardsSection({
           {primaryStandards.length > 0 && (
             <div className="space-y-1">
               {supportingStandards.length > 0 && (
-                <h4 className="mb-2 text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+                <h4 className="mb-2 text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
                   {isFallbackMode ? "Fallback Candidate Standard" : isCandidateMode ? "Primary Candidate Standards" : "Primary Suggested Candidate Standards"}
                 </h4>
               )}
@@ -373,7 +373,7 @@ export default function SafeScopeStandardsSection({
 
           {supportingStandards.length > 0 && (
             <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
-              <h4 className="mb-2 text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+              <h4 className="mb-2 text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
                 Supporting Candidate Standards (Reference Only)
               </h4>
               {supportingStandards.map((standard: any) => renderStandardRow(standard, true))}

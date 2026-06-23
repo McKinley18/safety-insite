@@ -89,9 +89,27 @@ function getSemanticArbitrationSignals(normalizedText: string) {
   };
 }
 
+function hasVehicleTrafficEvidence(normalizedText: string) {
+  return /\b(forklift|loader|haul truck|truck|vehicle|mobile equipment|equipment passes|traffic control|backup alarm|spotter|backing|struck by vehicle|pedestrian struck by|blind corner|haul road|dump point)\b/i.test(
+    normalizedText,
+  );
+}
+
+function hasWalkingSurfaceSpillEvidence(normalizedText: string) {
+  return /\b(oil|used oil|waste oil|oily|spill|spilled|leak|leaking|release|residue|liquid)\b/i.test(
+    normalizedText,
+  ) && /\b(floor|walkway|aisle|travelway|pedestrian walkway|walking surface|shop floor|maintenance area|maintenance bay|travel path|path)\b/i.test(
+    normalizedText,
+  );
+}
+
 export class WeightedClassifierService {
   classify(text: string) {
     const normalizedText = normalize(text);
+    const hasVehicleEvidence = hasVehicleTrafficEvidence(normalizedText);
+    const hasSpillEvidence = hasWalkingSurfaceSpillEvidence(normalizedText);
+    const hasPedestrianOnlyTrafficCue =
+      /\bpedestrian(s)?\b/i.test(normalizedText) && !hasVehicleEvidence;
 
     const candidates: WeightedCandidate[] = HAZARD_TAXONOMY.map((profile: HazardProfile) => {
       const strong = scoreSignals(normalizedText, profile.strongSignals);
@@ -304,6 +322,38 @@ export class WeightedClassifierService {
 
       if (semantic.walkingSurfaceAccessIssue) {
         if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") score += 35;
+      }
+
+      if (hasSpillEvidence) {
+        if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") {
+          score += 35;
+        }
+        if (profile.id === "mobile_equipment" && !hasVehicleEvidence) {
+          score -= 28;
+        }
+        if (profile.id === "hazard_communication") {
+          score -= 10;
+        }
+      }
+
+      if (hasPedestrianOnlyTrafficCue && profile.id === "mobile_equipment") {
+        score -= 26;
+      }
+
+      if (hasPedestrianOnlyTrafficCue && (profile.id === "walking_working_surfaces" || profile.id === "housekeeping")) {
+        score += 12;
+      }
+
+      if (profile.id === "mobile_equipment" && hasVehicleEvidence) {
+        score += 35;
+      }
+
+      if (
+        hasVehicleEvidence &&
+        !hasSpillEvidence &&
+        (profile.id === "walking_working_surfaces" || profile.id === "housekeeping")
+      ) {
+        score -= 18;
       }
 
       // 9. Safety Shower / Eye Wash vs Walking/Working Surfaces Guardrail

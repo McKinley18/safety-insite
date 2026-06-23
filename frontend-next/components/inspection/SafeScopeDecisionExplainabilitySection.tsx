@@ -21,7 +21,7 @@ export default function SafeScopeDecisionExplainabilitySection({
           : undefined
       }
     >
-      <p className="text-sm font-semibold leading-6 text-slate-700">
+      <p className="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
         {safeScopeResult.decisionExplainability.decisionSummary}
       </p>
 
@@ -30,7 +30,7 @@ export default function SafeScopeDecisionExplainabilitySection({
           <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Confidence
           </p>
-          <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
             {safeScopeResult.decisionExplainability.confidenceStatement}
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function SafeScopeDecisionExplainabilitySection({
           <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Risk Basis
           </p>
-          <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
             {safeScopeResult.decisionExplainability.riskStatement}
           </p>
         </div>
@@ -48,14 +48,14 @@ export default function SafeScopeDecisionExplainabilitySection({
           <p className="text-xs font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
             Standards Basis
           </p>
-          <p className="mt-1 text-sm font-semibold leading-6 text-slate-600">
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
             {safeScopeResult.decisionExplainability.standardsStatement}
           </p>
         </div>
       </div>
 
       {!!safeScopeResult.decisionExplainability.keyEvidence?.length && (
-        <ul className="mt-4 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-600">
+        <ul className="mt-4 list-disc space-y-1 pl-5 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-300">
           {safeScopeResult.decisionExplainability.keyEvidence
             .slice(0, 5)
             .map((item: string) => (

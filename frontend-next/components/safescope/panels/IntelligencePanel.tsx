@@ -38,7 +38,7 @@ function renderSafeScopeValue(value: any): React.ReactNode {
 
         return (
           <div key={key} className="rounded-xl border border-slate-100 bg-slate-50 dark:bg-slate-950 px-3 py-2">
-            <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
               {key.replace(/([A-Z])/g, " $1").trim()}
             </p>
             <div className="mt-1 text-sm font-semibold text-slate-700 dark:text-slate-300">
@@ -68,7 +68,7 @@ export const SafeScopeSection = ({ section }: { section: DisplaySection }) => {
       <h3 className="mb-2 text-sm font-black uppercase tracking-tight text-slate-800 dark:text-slate-200">
         {section.title}
       </h3>
-      <div className="text-sm text-slate-600 dark:text-slate-300">
+      <div className="text-sm text-slate-700 dark:text-slate-300">
         {rendered}
       </div>
     </div>
@@ -93,7 +93,7 @@ export const SafeScopeIntelligencePanel = ({ adapter }: { adapter: SafeScopeDisp
           <h3 className="mb-2 text-sm font-black uppercase tracking-tight text-slate-800 dark:text-slate-200">
             Narrative
           </h3>
-          <p className="text-sm text-slate-600 dark:text-slate-300">
+          <p className="text-sm text-slate-700 dark:text-slate-300">
             {adapter.narrative.findingSummary}
           </p>
         </div>

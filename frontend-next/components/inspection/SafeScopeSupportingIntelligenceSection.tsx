@@ -67,7 +67,7 @@ export default function SafeScopeSupportingIntelligenceSection({
           <p className="text-xs font-black uppercase tracking-[0.22em] text-[#1D72B8]">
             Additional Checks
           </p>
-          <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-700">
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-300">
             {safeScopeDetailsOpen
               ? "Hide additional review details."
               : "Optional checks. Primary finding guidance is shown above."}
@@ -86,7 +86,7 @@ export default function SafeScopeSupportingIntelligenceSection({
               <h3 className="text-sm font-black text-slate-800 dark:text-slate-200">
                 Standards considered but excluded
               </h3>
-              <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
+              <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
                 These were not selected for the current scope or finding context.
               </p>
 

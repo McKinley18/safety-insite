@@ -142,7 +142,7 @@ export default function SafeScopePrimaryDecisionSection({
         <p className="mt-1 text-base font-black text-[#1D72B8]">
           {topStandardLabel}
         </p>
-        <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+        <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
           {standardReason}
         </p>
       </div>

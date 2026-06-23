@@ -768,15 +768,16 @@ export class SafescopeV2Service {
         (intelligence as any)?.observationUnderstanding
       );
 
-      // Determine root-level hazardCategory (primary hazard domain)
-      const rootHazardCategory = (() => {
-        if (intelligence?.scenarioIntelligence?.hazardCategory && intelligence.scenarioIntelligence.hazardCategory !== 'unknown') {
-          return intelligence.scenarioIntelligence.hazardCategory;
-        }
-        // Map from classification
+      const classifierHazardCategory = (() => {
         const classification = promotedPrimary.classification || '';
         const nameLower = classification.toLowerCase();
-        if (nameLower.includes('compressed gas') || nameLower.includes('cylinder') || fusedText.includes('cylinder') || fusedText.includes('compressed gas') || fusedText.includes('oxygen')) {
+        if (
+          nameLower.includes('compressed gas') ||
+          nameLower.includes('cylinder') ||
+          fusedText.includes('cylinder') ||
+          fusedText.includes('compressed gas') ||
+          fusedText.includes('oxygen')
+        ) {
           return 'compressed_gas';
         }
         if (nameLower.includes('electrical')) {
@@ -791,7 +792,12 @@ export class SafescopeV2Service {
         if (nameLower.includes('fall')) {
           return 'fall_protection';
         }
-        if (nameLower.includes('housekeeping') || nameLower.includes('slip') || nameLower.includes('trip') || nameLower.includes('working surfaces')) {
+        if (
+          nameLower.includes('housekeeping') ||
+          nameLower.includes('slip') ||
+          nameLower.includes('trip') ||
+          nameLower.includes('working surfaces')
+        ) {
           return 'slip_trip_fall';
         }
         if (nameLower.includes('mobile') || nameLower.includes('traffic')) {
@@ -804,6 +810,17 @@ export class SafescopeV2Service {
           return 'hazardous_materials';
         }
         return promotedPrimary.family || 'unknown';
+      })();
+
+      // Determine root-level hazardCategory (primary hazard domain)
+      const rootHazardCategory = (() => {
+        if (classifierHazardCategory && classifierHazardCategory !== 'unknown') {
+          return classifierHazardCategory;
+        }
+        if (intelligence?.scenarioIntelligence?.hazardCategory && intelligence.scenarioIntelligence.hazardCategory !== 'unknown') {
+          return intelligence.scenarioIntelligence.hazardCategory;
+        }
+        return classifierHazardCategory || 'unknown';
       })();
 
       // Determine root-level candidateStandardFamily
@@ -826,6 +843,7 @@ export class SafescopeV2Service {
       const response = {
           ...promotedPrimary,
           ...intelligence,
+          classification: promotedPrimary.classification,
           isVague,
           evidenceGapQuestions: isVague ? (advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || []) : (intelligence.evidenceGapQuestions || []),
           hazardCategory: rootHazardCategory,

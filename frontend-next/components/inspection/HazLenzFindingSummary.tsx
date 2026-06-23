@@ -226,7 +226,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Why It Matters
           </p>
-          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">
+          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-900 dark:text-slate-100">
             {summary.whyItMatters}
           </p>
         </div>
@@ -235,14 +235,14 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Likely Scope
           </p>
-          <p className="mt-1 truncate text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">{summary.likelyScope}</p>
+          <p className="mt-1 truncate text-sm font-bold leading-6 text-slate-900 dark:text-slate-100">{summary.likelyScope}</p>
         </div>
 
         <div className="rounded-xl bg-white px-3 py-3 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800 sm:col-span-2">
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Advisory Standard
           </p>
-          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">
+          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-900 dark:text-slate-100">
             {summary.standardFamily}
           </p>
         </div>
@@ -251,7 +251,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Recommended Action
           </p>
-          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-950 dark:text-slate-100">
+          <p className="mt-1 line-clamp-3 text-sm font-bold leading-6 text-slate-900 dark:text-slate-100">
             {summary.recommendedAction}
           </p>
         </div>

@@ -70,6 +70,10 @@ const suites: Suite[] = [
   {
     name: "HazLenz Spill/Release Citation Ranking",
     scriptPath: "src/safescope-v2/tests/hazlenz-spill-release-citation-ranking.ts"
+  },
+  {
+    name: "HazLenz Classify Path Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-classify-path-regression.ts"
   }
 ];
 
