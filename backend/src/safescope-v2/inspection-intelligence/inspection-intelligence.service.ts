@@ -15,14 +15,19 @@ import { INSPECTION_INTELLIGENCE_EXPANSION_RULES } from './inspection-intelligen
 import { MineContextService } from './mine-context.service';
 import { MineType } from './mine-context.types';
 import { MshaInspectionIntelligenceService } from './msha-inspection-intelligence.service';
+import { InspectionConditionAssessment } from './inspection-condition-assessment.types';
 import { InspectionConditionAssessmentService } from './inspection-condition-assessment.service';
 import { VagueInputIntelligenceService } from './vague-input-intelligence.service';
+import { VagueInputAnalysis } from './vague-input-intelligence.types';
+import { StandardApplicabilityService } from './standard-applicability.service';
+import { EXPERT_APPLICABILITY_RULES } from './standard-applicability.rules';
+
 
 const RULES: InspectionIntelligenceRule[] = [
   ...INSPECTION_INTELLIGENCE_EXPANSION_RULES,
   {
     id: 'compressed-gas-cylinder', domain: 'compressed_gas',
-    matches: [/\b(oxygen|compressed gas|acetylene) cylinder\b/, /\bcylinder\b.*\b(unsecured|not secured|missing (valve )?cap|walkway)\b/],
+    matches: [/\b(oxygen|compressed gas|acetylene)\s+cylinders?\b/, /\bcylinders?\b.*\b(unsecured|not secured|missing (?:valve )?(?:protection )?caps?|walkway)\b/],
     initiating: 'A compressed-gas cylinder is unsecured, exposed to traffic, or lacks verified valve protection.',
     failure: 'Impact or a fall can damage the valve and release stored pressure, allowing uncontrolled movement or a projectile event.',
     exposure: 'People in the travel path may be struck; released gas may create oxidizer, fire, or atmospheric exposure depending on contents.',
@@ -33,12 +38,20 @@ const RULES: InspectionIntelligenceRule[] = [
     standards: { osha_general_industry: [{ citation: '29 CFR 1910.101(b)', evidence: ['cylinder contents', 'restraint condition', 'valve protection', 'storage/use configuration'] }], osha_construction: [{ citation: '29 CFR 1926.350(a)', evidence: ['construction activity', 'cylinder use or storage status', 'upright securing method', 'valve cap status'] }] },
   },
   {
-    id: 'open-oil', domain: 'hazardous_materials', matches: [/\b(open|uncovered)\b.*\b(used |waste )?oil (container|drum|pail|bucket)\b/, /\b(used |waste )?oil (container|drum|pail|bucket)\b.*\b(open|uncovered)\b/],
+    id: 'open-oil', domain: 'hazardous_materials', matches: [/\b(open|uncovered)\b.*\b(used[- ]|waste[- ])?oil\b.*\b(container|drum|pail|bucket)\b/, /\b(used[- ]|waste[- ])?oil\b.*\b(container|drum|pail|bucket)\b.*\b(open|uncovered)\b/],
     initiating: 'A used-oil container is open or uncovered in a work area.', failure: 'Oil can spill, splash, leak, or be released during handling.', exposure: 'Workers can contact oil or track it onto walking surfaces; a release may reach soil or drains.', consequences: 'Slip-and-fall injury, skin exposure, environmental contamination, and possible fire involvement if combustible conditions exist.',
     related: [{ domain: 'walking_working_surfaces', rationale: 'Released oil can contaminate walking surfaces.' }, { domain: 'environmental_release', rationale: 'Oil may migrate to a drain, soil, or water.', possible: true }, { domain: 'fire_protection', rationale: 'A fire concern depends on oil properties and nearby ignition sources.', possible: true }],
     questions: ['Is oil present outside the container or on a walking surface?', 'Is the container labeled, compatible, closed when not adding oil, and in secondary containment?', 'Are drains, soil, combustibles, or ignition sources nearby?'],
     controls: actions('Close the container and isolate and clean any release using the site spill procedure.', 'Barricade contaminated walking surfaces and place the container in compatible secondary containment.', 'Provide a compatible closed container and protected used-oil storage/transfer arrangement.', 'Review used-oil labeling, inspection, housekeeping, and spill-response responsibilities with affected workers.', 'Verify closure, labeling, containment, clean walking surfaces, and proper disposition of cleanup material.'),
     standards: { osha_general_industry: [{ citation: '29 CFR 1910.22(a)(2)', evidence: ['oil on walking-working surface', 'employee access', 'cleanup condition'] }], osha_construction: [{ citation: '29 CFR 1926.25(a)', evidence: ['construction work area', 'waste accumulation or spill', 'employee access'] }] },
+  },
+  {
+    id: 'spill-release-walking-surface', domain: 'walking_working_surfaces', matches: [/\b(open|uncovered|leaking|spill(?:ed)?|release|residue|open container)\b.*\b(used[- ]oil|waste[- ]oil|oil|oily waste|oily residue|liquid)\b.*\b(floor|walkway|aisle|travelway|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain)\b/, /\b(used[- ]oil|waste[- ]oil|oil|oily waste|oily residue|liquid)\b.*\b(open|uncovered|leaking|spill(?:ed)?|release|residue)\b.*\b(floor|walkway|aisle|travelway|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain)\b/, /\b(oily|residue|spill(?:ed)?|leak(?:ing)?|release)\b.*\b(floor|walkway|aisle|travelway|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain)\b/, /\b(floor|walkway|aisle|travelway|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain)\b.*\b(oily|residue|spill(?:ed)?|leak(?:ing)?|release)\b/],
+    initiating: 'An open or leaking oil/liquid container releases material onto a floor, walkway, or drain path.', failure: 'The liquid spreads across the walking surface or migrates toward the drain.', exposure: 'Employees walking through the area contact the contaminated surface or track the liquid farther.', consequences: 'Same-level slip or fall, strain, and possible environmental release or contamination.',
+    related: [{ domain: 'environmental_release', rationale: 'Material can migrate toward drains, soil, or water.', possible: true }, { domain: 'hazardous_materials', rationale: 'The stored liquid may need identity and containment review.', possible: true }],
+    questions: ['What liquid or oily material is released, and how far has it spread across the floor or route?', 'Is the affected area a designated walkway, aisle, travelway, or pedestrian path?', 'Can the release reach a drain or other migration path, and what containment is present?'],
+    controls: actions('Stop the release, clean the area, and barricade the contaminated path.', 'Move the source away from the route and place it in compatible secondary containment.', 'Correct the source, drainage, and housekeeping process that allowed the release to reach the route.', 'Assign inspection and response frequencies for releases and tracked contamination.', 'Verify the route is clear, dry, and protected from recurrence after cleanup.'),
+    standards: { osha_general_industry: [{ citation: '29 CFR 1910.22(a)(2)', evidence: ['oil or liquid on walking-working surface', 'employee access', 'cleanup and containment status'] }], osha_construction: [{ citation: '29 CFR 1926.25(a)', evidence: ['construction work area', 'spill or leak', 'employee access'] }], msha: [{ citation: '30 CFR 56.20003(a)', evidence: ['mine travelway or workplace', 'spill or release', 'miner exposure'] }] },
   },
   {
     id: 'conveyor-guard-cleanup', domain: 'machine_guarding_loto', matches: [/\b(conveyor|tail pulley|head pulley)\b.*\b(missing|removed|without|no)\b.*\bguard/, /\b(tail pulley|conveyor)\b.*\b(cleanup|cleaning|clearing|maintenance|servicing)\b/],
@@ -213,11 +226,96 @@ function ruleScore(
   return score;
 }
 
+function buildMechanismOfInjury(input: {
+  primaryRule?: InspectionIntelligenceRule;
+  orderedRules: InspectionIntelligenceRule[];
+  conditionAssessment: InspectionConditionAssessment;
+  vagueInputAnalysis: VagueInputAnalysis;
+  correctiveActions: InspectionIntelligenceResult['correctiveActions'];
+  baseEvidenceGapQuestions: string[];
+  standardApplicabilityQuestions: string[];
+}): InspectionIntelligenceResult['mechanismOfInjury'] {
+  const isVague = Boolean(input.vagueInputAnalysis?.isVague);
+  const isControlled = input.conditionAssessment.status === 'controlled';
+  const isNoHazardSignal = input.conditionAssessment.status === 'no_hazard_signal';
+
+  const initiatingCondition = isVague
+    ? unique([
+      ...(input.vagueInputAnalysis.observedFacts || []),
+      ...(input.vagueInputAnalysis.missingCriticalFacts || []).slice(0, 3),
+    ])
+    : input.primaryRule
+      ? unique(input.orderedRules.map((rule) => rule.initiating))
+      : isControlled
+        ? unique([
+          ...(input.conditionAssessment.controlEvidence || []),
+          'The observation describes the relevant control as present and effective.',
+        ])
+        : isNoHazardSignal
+          ? ['The observation uses administrative or conversational wording without a distinct physical hazard condition.']
+          : ['The observation identifies a hazard signal, but the initiating condition remains under-specified.'];
+
+  const failureMode = isVague
+    ? unique(input.vagueInputAnalysis.inferredPossibilities || [])
+    : input.primaryRule
+      ? unique(input.orderedRules.map((rule) => rule.failure))
+      : isControlled
+        ? ['No uncontrolled failure or release mode is established by the observation.']
+        : isNoHazardSignal
+          ? ['No active failure mode is established from the current wording alone.']
+          : ['A release, failure, or exposure mechanism is suspected but not yet specific enough to state with confidence.'];
+
+  const exposurePathway = isVague
+    ? ['Employee proximity, travel path, or task exposure is not yet confirmed.']
+    : input.primaryRule
+      ? unique(input.orderedRules.map((rule) => rule.exposure))
+      : isControlled
+        ? ['No current employee exposure pathway is established while the described control remains effective.']
+        : isNoHazardSignal
+          ? ['No worker exposure pathway is established from the current wording alone.']
+          : ['The exposure path is not yet specific enough to distinguish direct contact from indirect pathway exposure.'];
+
+  const potentialConsequences = isVague
+    ? ['Possible injury, illness, or environmental harm depending on unconfirmed details.']
+    : input.primaryRule
+      ? unique(input.orderedRules.map((rule) => rule.consequences))
+      : isControlled
+        ? ['No injury or environmental consequence is inferred from a controlled condition alone.']
+        : isNoHazardSignal
+          ? ['No consequence is supported without a physical hazard condition.']
+          : ['The likely consequence cannot be ranked without more condition, exposure, and control evidence.'];
+
+  const evidenceGaps = unique([
+    ...input.standardApplicabilityQuestions,
+    ...input.baseEvidenceGapQuestions,
+    ...(isVague ? (input.vagueInputAnalysis.missingCriticalFacts || []) : []),
+    ...(isVague ? (input.vagueInputAnalysis.immediateSafetyQuestions || []) : []),
+    ...(isControlled ? ['Confirm the control remains effective during actual exposure or task conditions.'] : []),
+  ]).slice(0, 12);
+
+  const controlThemes = unique([
+    ...(input.conditionAssessment.controlEvidence || []),
+    ...(isVague ? (input.vagueInputAnalysis.conservativeInterimControls || []) : input.correctiveActions.immediate),
+    ...(input.correctiveActions.permanentEngineering || []),
+    ...(input.correctiveActions.administrativeProgramTraining || []),
+  ]).slice(0, 10);
+
+  return {
+    initiatingCondition,
+    failureMode,
+    exposurePathway,
+    potentialConsequences,
+    evidenceGaps,
+    controlThemes,
+  };
+}
+
 export class InspectionIntelligenceService {
   constructor(
     private readonly mineContextService = new MineContextService(),
     private readonly mshaInspectionIntelligenceService = new MshaInspectionIntelligenceService(),
     private readonly conditionAssessmentService = new InspectionConditionAssessmentService(),
+    private readonly standardApplicabilityService = new StandardApplicabilityService(),
   ) {}
 
   analyze(input: {
@@ -228,8 +326,13 @@ export class InspectionIntelligenceService {
     primaryCitation?: string;
   }): InspectionIntelligenceResult {
     const text = input.observation.toLowerCase();
+    const standardAppResults = this.standardApplicabilityService.evaluate(
+      input.rawObservation || input.observation,
+      input.jurisdiction
+    );
     const conditionAssessment = this.conditionAssessmentService.assess(text);
     const miningContext = this.mineContextService.assess(text);
+
     const mshaAnalysis = this.mshaInspectionIntelligenceService.analyze(text, miningContext);
     const matched = [...mshaAnalysis.rules, ...RULES.filter((rule) => matchesRule(text, rule))]
       .filter((rule, index, values) => values.findIndex((candidate) => candidate.id === rule.id) === index)
@@ -294,18 +397,30 @@ export class InspectionIntelligenceService {
       ...genericQuestions,
     ]).slice(0, 12);
 
-    const evidenceGapQuestions = vagueInputAnalysis.isVague
-      ? vagueInputAnalysis.immediateSafetyQuestions
-      : baseEvidenceGapQuestions;
+    const mergedEvidenceGapQuestions = unique([
+      ...standardAppResults.followUpQuestions,
+      ...(vagueInputAnalysis.isVague ? vagueInputAnalysis.immediateSafetyQuestions : baseEvidenceGapQuestions)
+    ]).slice(0, 12);
 
     const jurisdictions: Array<Exclude<SafeScopeJurisdiction, 'unclear'>> = input.jurisdiction === 'unclear'
       ? ['osha_general_industry', 'osha_construction', 'msha']
       : [input.jurisdiction];
     const candidateStandards: InspectionCandidateStandard[] = [];
     if (!vagueInputAnalysis.isVague && conditionAssessment.citationEligible) {
+      const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
+
       ordered.forEach((rule) => jurisdictions.forEach((jurisdiction) => {
         (rule.standards[jurisdiction] || []).forEach((standard) => {
           if (jurisdiction === 'msha' && !citationAllowedForMineType(standard.citation, miningContext.mineType)) return;
+
+          const normCit = standard.citation.toLowerCase().replace(/\s+/g, '');
+          if (governedCitations.has(normCit)) {
+            const isSuggested = standardAppResults.suggestedStandards.some(
+              (c) => c.toLowerCase().replace(/\s+/g, '') === normCit
+            );
+            if (!isSuggested) return;
+          }
+
           if (!candidateStandards.some((candidate) => candidate.citation === standard.citation)) {
             candidateStandards.push({ citation: standard.citation, titleSummary: standard.summary || `Candidate requirements related to ${rule.domain.replace(/_/g, ' ')}.`, jurisdiction, status: 'candidate_standard', rationale: `Candidate only: ${rule.initiating}`, evidenceNeeded: standard.evidence });
           }
@@ -322,7 +437,17 @@ export class InspectionIntelligenceService {
       && (input.jurisdiction === 'msha' ? /^30 CFR\b/.test(input.primaryCitation) : /^29 CFR\b/.test(input.primaryCitation))
       && (input.jurisdiction !== 'msha' || citationAllowedForMineType(input.primaryCitation, miningContext.mineType))
     ) {
-      candidateStandards.unshift({ citation: input.primaryCitation, titleSummary: 'Candidate requirement identified by the existing deterministic citation resolver.', jurisdiction: input.jurisdiction, status: 'candidate_standard', rationale: 'Candidate produced by the existing deterministic citation resolver.', evidenceNeeded: ['Confirm jurisdiction, equipment/task scope, employee exposure, and the observed condition before applicability is finalized.'] });
+      const normCit = input.primaryCitation.toLowerCase().replace(/\s+/g, '');
+      const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
+      let allowPrimary = true;
+      if (governedCitations.has(normCit)) {
+        allowPrimary = standardAppResults.suggestedStandards.some(
+          (c) => c.toLowerCase().replace(/\s+/g, '') === normCit
+        );
+      }
+      if (allowPrimary) {
+        candidateStandards.unshift({ citation: input.primaryCitation, titleSummary: 'Candidate requirement identified by the existing deterministic citation resolver.', jurisdiction: input.jurisdiction, status: 'candidate_standard', rationale: 'Candidate produced by the existing deterministic citation resolver.', evidenceNeeded: ['Confirm jurisdiction, equipment/task scope, employee exposure, and the observed condition before applicability is finalized.'] });
+      }
     }
 
     const empty = ['Insufficient observation detail; obtain condition, task, exposure, and control evidence.'];
@@ -345,6 +470,16 @@ export class InspectionIntelligenceService {
       };
     }
 
+    const mechanismOfInjury = buildMechanismOfInjury({
+      primaryRule,
+      orderedRules: ordered,
+      conditionAssessment,
+      vagueInputAnalysis,
+      correctiveActions,
+      baseEvidenceGapQuestions,
+      standardApplicabilityQuestions: standardAppResults.followUpQuestions,
+    });
+
     return {
       miningContext: {
         ...miningContext,
@@ -353,18 +488,26 @@ export class InspectionIntelligenceService {
       conditionAssessment,
       vagueInputAnalysis,
       hazardCandidates,
+      mechanismOfInjury,
       mechanismChain: {
         initiatingCondition: vagueInputAnalysis.isVague ? vagueInputAnalysis.observedFacts : (primaryRule ? unique(ordered.map((rule) => rule.initiating)) : conditionAssessment.status === 'controlled' ? ['The observation describes the relevant control as present and effective.'] : empty),
         releaseOrFailureMode: vagueInputAnalysis.isVague ? vagueInputAnalysis.inferredPossibilities : (primaryRule ? unique(ordered.map((rule) => rule.failure)) : conditionAssessment.status === 'controlled' ? ['No uncontrolled failure or release mode is established by the observation.'] : empty),
         exposurePathway: vagueInputAnalysis.isVague ? ['Employee proximity, travel path, or tasks conducted near the concern area.'] : (primaryRule ? unique(ordered.map((rule) => rule.exposure)) : conditionAssessment.status === 'controlled' ? ['No current employee exposure pathway is established while the described control remains effective.'] : empty),
         consequences: vagueInputAnalysis.isVague ? ['Possible injury or hazard involvement depending on unconfirmed details.'] : (primaryRule ? unique(ordered.map((rule) => rule.consequences)) : conditionAssessment.status === 'controlled' ? ['No injury or environmental consequence is inferred from a controlled condition alone.'] : empty),
-        evidenceGaps: vagueInputAnalysis.isVague ? vagueInputAnalysis.missingCriticalFacts : evidenceGapQuestions,
+        evidenceGaps: unique([
+          ...standardAppResults.followUpQuestions,
+          ...(vagueInputAnalysis.isVague ? vagueInputAnalysis.missingCriticalFacts : baseEvidenceGapQuestions)
+        ]).slice(0, 12),
         controls: vagueInputAnalysis.isVague ? vagueInputAnalysis.conservativeInterimControls : unique([...conditionAssessment.controlEvidence, ...correctiveActions.immediate, ...correctiveActions.permanentEngineering]),
       },
       candidateStandards,
-      evidenceGapQuestions,
+      evidenceGapQuestions: mergedEvidenceGapQuestions,
       correctiveActions,
       guardrails: { advisoryOnly: true, candidateStandardsOnly: true, doesNotDeclareViolation: true, requiresQualifiedReview: true },
+      standardApplicability: standardAppResults,
+      evidenceGate: {
+        evaluationResults: standardAppResults.evaluationResults,
+      },
     };
   }
 }

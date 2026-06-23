@@ -889,7 +889,7 @@ export class SafeScopeReasoningOrchestratorService {
 
     if (
       jurisdiction === 'osha_general_industry' &&
-      includesAny(normalizedText, ['compressed gas cylinder', 'oxygen cylinder', 'acetylene cylinder', 'gas cylinder', 'cylinder valve cap', 'valve cap', 'unsecured cylinder', 'cylinder restraint'])
+      includesAny(normalizedText, ['compressed gas cylinder', 'compressed gas cylinders', 'oxygen cylinder', 'oxygen cylinders', 'acetylene cylinder', 'acetylene cylinders', 'gas cylinder', 'gas cylinders', 'cylinder valve cap', 'cylinder valve caps', 'valve cap', 'valve caps', 'valve protection cap', 'valve protection caps', 'unsecured cylinder', 'unsecured cylinders', 'cylinder restraint'])
     ) {
       return '29 CFR 1910.101(b)';
     }

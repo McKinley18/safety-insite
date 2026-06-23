@@ -62,6 +62,14 @@ const suites: Suite[] = [
   {
     name: "Inspection Intelligence Vague Output Coherence Regression",
     scriptPath: "src/safescope-v2/tests/inspection-intelligence-vague-output-coherence-regression.ts"
+  },
+  {
+    name: "HazLenz Mechanism Chain Hardening",
+    scriptPath: "src/safescope-v2/tests/hazlenz-mechanism-chain-hardening.ts"
+  },
+  {
+    name: "HazLenz Spill/Release Citation Ranking",
+    scriptPath: "src/safescope-v2/tests/hazlenz-spill-release-citation-ranking.ts"
   }
 ];
 

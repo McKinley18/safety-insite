@@ -5,6 +5,7 @@ import {
 import { MineContextAssessment } from './mine-context.types';
 import { InspectionConditionAssessment } from './inspection-condition-assessment.types';
 import { VagueInputAnalysis } from './vague-input-intelligence.types';
+import { StandardApplicabilityResult } from './standard-applicability.types';
 
 export type InspectionHazardRole = 'primary' | 'secondary' | 'possible_related';
 
@@ -29,6 +30,14 @@ export type InspectionIntelligenceResult = {
   conditionAssessment: InspectionConditionAssessment;
   vagueInputAnalysis?: VagueInputAnalysis;
   hazardCandidates: InspectionHazardCandidate[];
+  mechanismOfInjury: {
+    initiatingCondition: string[];
+    failureMode: string[];
+    exposurePathway: string[];
+    potentialConsequences: string[];
+    evidenceGaps: string[];
+    controlThemes: string[];
+  };
   mechanismChain: {
     initiatingCondition: string[];
     releaseOrFailureMode: string[];
@@ -52,4 +61,6 @@ export type InspectionIntelligenceResult = {
     doesNotDeclareViolation: true;
     requiresQualifiedReview: true;
   };
+  standardApplicability?: StandardApplicabilityResult;
+  evidenceGate?: any;
 };
