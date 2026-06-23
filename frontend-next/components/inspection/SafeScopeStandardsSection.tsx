@@ -1,3 +1,4 @@
+import { getHazLenzPrimaryStandards, getHazLenzSupportingStandards, standardKey } from "@/lib/inspection/hazlenzStandardCandidates";
 import { formatStandardDisplay, getStandardCitation, getStandardSummary } from "@/lib/inspection/standardDisplay";
 
 type Props = {
@@ -29,7 +30,7 @@ export default function SafeScopeStandardsSection({
   const isVague = Boolean(safeScopeResult?.isVague);
 
   // 1. Suggested standards (primary)
-  let primaryStandards: any[] = [];
+  let primaryStandards: any[] = getHazLenzPrimaryStandards(safeScopeResult);
   let isCandidateMode = false;
   let isFallbackMode = false;
   let standardLabel = "candidate standard";
@@ -52,7 +53,7 @@ export default function SafeScopeStandardsSection({
   }
 
   // 2. Supporting standards
-  const supportingStandards = safeScopeResult?.supportingStandards || [];
+  const supportingStandards = getHazLenzSupportingStandards(safeScopeResult);
 
   const totalCount = primaryStandards.length + supportingStandards.length;
 

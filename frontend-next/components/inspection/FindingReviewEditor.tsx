@@ -1,5 +1,6 @@
 "use client";
 
+import { getHazLenzPrimaryStandards } from "@/lib/inspection/hazlenzStandardCandidates";
 import { formatStandardDisplay, getStandardCitation, getStandardSummary } from "@/lib/inspection/standardDisplay";
 
 import CorrectiveActionsSection from "@/components/inspection/CorrectiveActionsSection";
@@ -88,7 +89,7 @@ export default function FindingReviewEditor({
   addManualAction,
   removeManualAction,
 }: Props) {
-  const suggestedStandards = safeScopeResult?.suggestedStandards || [];
+  const suggestedStandards = getHazLenzPrimaryStandards(safeScopeResult);
 
   return (
     <section className="space-y-2">

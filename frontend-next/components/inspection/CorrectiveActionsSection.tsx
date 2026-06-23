@@ -84,7 +84,7 @@ export default function CorrectiveActionsSection({
           <h3 className="mt-1 text-lg font-black text-slate-900 dark:text-slate-100">
             Actions for this finding
           </h3>
-          <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-700">
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-200">
             Include generated actions or add your own.
           </p>
         </div>
@@ -133,7 +133,7 @@ export default function CorrectiveActionsSection({
                     )}
 
                     {(action.priority || action.assignedRole || action.dueDate) && (
-                      <p className="mt-1 text-[11px] font-bold leading-5 text-slate-700 dark:text-slate-700">
+                      <p className="mt-1 text-[11px] font-bold leading-5 text-slate-700 dark:text-slate-200">
                         {[
                           action.priority ? `Priority: ${action.priority}` : "",
                           action.assignedRole ? `Owner: ${action.assignedRole}` : "",
@@ -149,7 +149,7 @@ export default function CorrectiveActionsSection({
                     className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide ${
                       selected
                         ? "bg-[#1D72B8] text-white"
-                        : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-700"
+                        : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200"
                     }`}
                   >
                     {selected ? "Included" : "Add"}
@@ -162,7 +162,7 @@ export default function CorrectiveActionsSection({
       )}
 
       {!generatedActions.length && (
-        <p className="mt-4 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-700">
+        <p className="mt-4 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-200">
           No generated actions are available yet. Run HazLenz AI or add a custom
           action.
         </p>
@@ -170,7 +170,7 @@ export default function CorrectiveActionsSection({
 
       {!!manualActions.length && (
         <div className="mt-4 border-t border-slate-200 dark:border-slate-800 pt-3">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Added Actions
           </p>
 
@@ -185,7 +185,7 @@ export default function CorrectiveActionsSection({
                     <p className="text-sm font-black text-slate-900 dark:text-slate-100">
                       {action.title || action.description || "Manual action"}
                     </p>
-                    <p className="mt-1 text-[11px] font-bold text-slate-700 dark:text-slate-700">
+                    <p className="mt-1 text-[11px] font-bold text-slate-700 dark:text-slate-200">
                       {[
                         action.priority ? `Priority: ${action.priority}` : "",
                         action.due ? `Due: ${action.due}` : "",
@@ -214,7 +214,7 @@ export default function CorrectiveActionsSection({
 
       {addActionOpen && (
         <div className="mt-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
-          <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+          <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Add Custom Action
           </p>
 
