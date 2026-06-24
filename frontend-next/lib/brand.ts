@@ -1,5 +1,5 @@
-export const APP_NAME = "Safety InSite";
-export const AI_ENGINE_NAME = "HazLenz AI";
+import { APP_NAME, AI_ENGINE_NAME } from "./productNames";
+export { APP_NAME, AI_ENGINE_NAME } from "./productNames";
 export const APP_TAGLINE = `Field safety intelligence powered by ${AI_ENGINE_NAME}.`;
 export const APP_DESCRIPTION =
   "Capture field observations, identify hazard patterns, track corrective actions, and build audit-ready safety reports.";
