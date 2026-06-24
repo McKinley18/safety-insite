@@ -1,3 +1,4 @@
+import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
 import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
 
 type HazLenzFindingSummaryProps = {
@@ -54,12 +55,17 @@ function humanize(value: string) {
 function getTopStandard(result: any, selectedStandards: any[]) {
   if (selectedStandards?.[0]) return selectedStandards[0];
 
+  const broadCandidates = getHazLenzSuggestedStandards(result);
+  if (broadCandidates[0]) return broadCandidates[0];
+
   if (result?.suggestedStandards?.[0]) {
     return result.suggestedStandards[0];
   }
+
   if (result?.inspectionIntelligence?.candidateStandards?.[0]) {
     return result.inspectionIntelligence.candidateStandards[0];
   }
+
   if (result?.executiveJudgment?.topStandard) {
     return result.executiveJudgment.topStandard;
   }
@@ -67,7 +73,6 @@ function getTopStandard(result: any, selectedStandards: any[]) {
   return (
     result?.standardsReasoning?.topDefensible?.[0] ||
     result?.applicabilityIntelligence?.primaryApplicableStandards?.[0] ||
-    result?.standardFamilyCandidates?.[0] ||
     null
   );
 }
@@ -163,9 +168,18 @@ function buildSummary({
     : topStandard
       ? formatStandardDisplay(topStandard)
       : firstText(
-          result.standardFamilyCandidates?.[0]?.label,
-          result.standardFamilyCandidates?.[0]?.standardFamily,
-          result.classification,
+          result.standardFamilyCandidates?.[0]?.label
+            ? `${result.standardFamilyCandidates[0].label} — review candidate standard`
+            : undefined,
+          result.standardFamilyCandidates?.[0]?.standardFamily
+            ? `${result.standardFamilyCandidates[0].standardFamily} — review candidate standard`
+            : undefined,
+          result.candidateStandardFamily
+            ? `${result.candidateStandardFamily} — review candidate standard`
+            : undefined,
+          result.classification
+            ? `${result.classification} — review candidate standard`
+            : undefined,
           "No advisory standard selected yet",
         );
 
