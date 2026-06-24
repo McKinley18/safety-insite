@@ -51,6 +51,12 @@ function sanitizeString(value: string): string {
   return sanitized;
 }
 
+const HIDDEN_STANDARD_OUTPUT_FIELDS = new Set([
+  // Reviewer-console/dev payloads should not be included in normal field inspection responses.
+  "pendingReviewerCandidates",
+  "draftKnowledgeWarnings",
+]);
+
 export function sanitizeHazLenzDisplayOutput<T>(value: T): T {
   if (value === null || value === undefined) {
     return value;
@@ -68,6 +74,10 @@ export function sanitizeHazLenzDisplayOutput<T>(value: T): T {
     const output: Record<string, unknown> = {};
 
     for (const [key, nestedValue] of Object.entries(value as Record<string, unknown>)) {
+      if (HIDDEN_STANDARD_OUTPUT_FIELDS.has(key)) {
+        continue;
+      }
+
       output[key] = sanitizeHazLenzDisplayOutput(nestedValue);
     }
 
