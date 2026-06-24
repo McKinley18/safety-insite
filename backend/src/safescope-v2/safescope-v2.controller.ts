@@ -10,6 +10,7 @@ import { VisualEvidenceReasoningInput } from './visual-evidence-reasoning/visual
 import { RealImageAnalysisInput } from './real-image-analysis/real-image-analysis.types';
 import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.types';
 import { UserGovernanceContext, SafeScopeRole } from './workspace-governance-access/workspace-governance.types';
+import { sanitizeHazLenzDisplayOutput } from "./display/hazlenz-display-sanitizer";
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
@@ -90,7 +91,7 @@ export class SafescopeV2Controller {
     const context = this.getGovernanceContext(req);
 
     try {
-      return await this.service.classify(
+      const result = await this.service.classify(
         body.text,
         body.scopes,
         body.evidenceTexts,
@@ -101,6 +102,8 @@ export class SafescopeV2Controller {
         context,
         body.debugMetadata,
       );
+
+      return sanitizeHazLenzDisplayOutput(result);
     } catch (error) {
       console.error('SafeScope v2 classify failed:', error);
       throw error; // Rethrow to let Nest handle ForbiddenException etc.
@@ -113,7 +116,8 @@ export class SafescopeV2Controller {
   async evaluateVisualEvidence(@Body() input: VisualEvidenceReasoningInput, @Req() req: Request & { user?: any }) {
     const context = this.getGovernanceContext(req);
     try {
-      return await this.service.evaluateVisualEvidence(input, context);
+      const result = await this.service.evaluateVisualEvidence(input, context);
+      return sanitizeHazLenzDisplayOutput(result);
     } catch (error) {
       console.error('SafeScope v2 visual evidence evaluation failed:', error);
       throw error;
@@ -126,7 +130,8 @@ export class SafescopeV2Controller {
   async evaluateRealImage(@Body() input: RealImageAnalysisInput, @Req() req: Request & { user?: any }) {
     const context = this.getGovernanceContext(req);
     try {
-      return await this.service.evaluateRealImage(input, context);
+      const result = await this.service.evaluateRealImage(input, context);
+      return sanitizeHazLenzDisplayOutput(result);
     } catch (error) {
       console.error('SafeScope v2 real image analysis failed:', error);
       throw error;
@@ -139,7 +144,8 @@ export class SafescopeV2Controller {
   async evaluateOffline(@Body() input: OfflineReasoningInput, @Req() req: Request & { user?: any }) {
     const context = this.getGovernanceContext(req);
     try {
-      return await this.service.evaluateOffline(input, context);
+      const result = await this.service.evaluateOffline(input, context);
+      return sanitizeHazLenzDisplayOutput(result);
     } catch (error) {
       console.error("SafeScope v2 offline evaluation failed:", error);
       throw error;
