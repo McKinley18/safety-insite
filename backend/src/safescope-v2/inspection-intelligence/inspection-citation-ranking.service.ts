@@ -288,7 +288,7 @@ export class InspectionCitationRankingService {
     direct(/\b(unlabeled|no label|missing label)\b.*\b(chemical|container|drum|bottle)\b/, /1910\.1200|1926\.59/, 'Direct match: workplace chemical-container labeling.');
     direct(/\b(crusher|screen|drill)\b.*\bnoise\b|\bnoise exposure\b.*\bcrusher\b/, /30 CFR 62\./, 'Direct match: mining occupational-noise exposure and monitoring.');
 
-    const hasMobileTerm = /\b(loader|forklift|truck|vehicle|mobile equipment|haulage|traffic|pedestrian)\b/i.test(observation);
+    const hasMobileTerm = /\b(loader|forklift|truck|vehicle|mobile equipment|haulage|traffic|haul road|stockpile|blind corner)\b/i.test(observation);
     const hasMobileMech = /\b(operating|control|pedestrian|backing|horn|alarm|speed|movement|haul|stockpile|right-of-way)\b/i.test(observation);
     if (hasMobileTerm && hasMobileMech && /1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|9200|9300)/i.test(citation)) {
       adjust(150);

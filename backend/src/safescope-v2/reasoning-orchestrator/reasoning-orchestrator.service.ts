@@ -998,8 +998,11 @@ export class SafeScopeReasoningOrchestratorService {
       includesAny(normalizedText, [
         'forklift',
         'powered industrial truck',
-        'pedestrian',
-        'pedestrians',
+        'mobile equipment',
+        'loader',
+        'haul truck',
+        'truck',
+        'vehicle',
       ])
     ) {
       return '29 CFR 1910.178(l)';
@@ -1131,8 +1134,11 @@ export class SafeScopeReasoningOrchestratorService {
       includesAny(normalizedText, [
         'forklift',
         'powered industrial truck',
-        'pedestrian',
-        'pedestrians',
+        'mobile equipment',
+        'loader',
+        'haul truck',
+        'truck',
+        'vehicle',
       ])
     ) {
       return '29 CFR 1910.178(l)';
@@ -1805,8 +1811,6 @@ export class SafeScopeReasoningOrchestratorService {
         'skid steer',
         'forklift',
         'powered industrial truck',
-        'pedestrian',
-        'pedestrians',
         'employees on foot',
         'miners on foot',
         'backing equipment',

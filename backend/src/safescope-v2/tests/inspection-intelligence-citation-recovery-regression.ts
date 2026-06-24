@@ -16,6 +16,7 @@ function inspect(observation: string, siteType?: string) {
         ? ['osha_general']
         : ['all'];
   const recovered = recovery.recover({
+    observation,
     suggestedStandards: [],
     excludedStandards: [],
     inspectionIntelligence: result.inspectionIntelligence,
@@ -34,6 +35,7 @@ const sufficientCases = [
   ['wet construction cord', 'Damaged extension cord is energized in a wet construction area.', 'construction site', /1926\./],
   ['unlabeled shop chemical', 'Unlabeled chemical container is in use in the maintenance shop.', 'industrial shop', /1910\./],
   ['used oil drain', 'Open used-oil container is leaking near a floor drain in the plant.', 'manufacturing plant', /1910\./],
+  ['tank no label', 'Tank has no label.', 'industrial shop', /1910\.1200/],
   ['forklift pedestrians', 'Forklift operates near pedestrians without separation in the warehouse aisle.', 'warehouse', /1910\./],
   ['blocked exit', 'Emergency exit is blocked by stored pallets and employees use the route.', 'warehouse', /1910\./],
   ['unguarded platform', 'Employee works on an elevated platform without guardrail or fall arrest.', 'manufacturing plant', /1910\./],
@@ -58,6 +60,17 @@ for (const [name, observation, siteType, citationPattern] of sufficientCases) {
     && safeText({ result, recovered });
   if (passed) console.log(`PASS [sufficient] ${name}`);
   else { failures += 1; console.error(`FAIL [sufficient] ${name}`, { assessment: result.inspectionIntelligence.conditionAssessment, jurisdiction: result.jurisdictionAssessment, candidates: result.inspectionIntelligence.candidateStandards, recovered }); }
+}
+
+{
+  const { result, recovered } = inspect('Scrap material and hoses are lying across a designated pedestrian walkway.', 'warehouse');
+  const citations = recovered.suggestedStandards.map((standard) => standard.citation).join(' ');
+  const passed = result.inspectionIntelligence.conditionAssessment.citationEligible
+    && !/1910\.178/.test(citations)
+    && result.inspectionIntelligence.candidateStandards.some((standard) => /1910\.22/.test(standard.citation))
+    && safeText({ result, recovered });
+  if (passed) console.log('PASS [false positive] pedestrian walkway does not trigger PIT fallback');
+  else { failures += 1; console.error('FAIL [false positive] pedestrian walkway mobile-equipment trap', { assessment: result.inspectionIntelligence.conditionAssessment, recovered }); }
 }
 
 const mixedCases = [

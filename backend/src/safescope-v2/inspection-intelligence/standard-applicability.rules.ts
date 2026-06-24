@@ -666,6 +666,49 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
   },
 
   {
+    id: 'mobile-equipment-traffic-msha',
+    jurisdiction: 'msha',
+    hazardFamily: 'mobile_equipment',
+    standardCitation: '30 CFR 56.9100',
+    standardTitle: 'Traffic control and rules governing movement of mobile equipment',
+    appliesWhen: [
+      /\b(forklift|loader|haul truck|truck|vehicle|mobile equipment|powered industrial truck|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b.*\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way)\b/i,
+      /\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way)\b.*\b(forklift|loader|haul truck|truck|vehicle|mobile equipment|powered industrial truck|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(forklift|loader|haul truck|truck|vehicle|mobile equipment|powered industrial truck|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i,
+      /\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(no traffic control|no separation|same aisle|same route|backing|turning|operating area|mine|quarry|plant|aggregate)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(separated|barriers? in place|traffic plan implemented)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(pedestrian walkway only|pedestrian route only|no mobile equipment|no vehicle)\b/i,
+      /\b(office lobby|cracked quarry tile|tile is cracked|commercial|retail)\b/i,
+    ],
+    commonlyConfusedWith: ['30 CFR 56.14132(a)', '30 CFR 56.14207'],
+    followUpQuestions: [
+      'What mobile equipment or vehicle is moving, and where are pedestrians or other traffic exposed?',
+      'Are routes physically separated or otherwise controlled to prevent contact?',
+      'Are traffic rules, spotters, alarms, right-of-way rules, and haul-road controls in place?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'Mine mobile equipment and pedestrian or vehicle traffic occupy an overlapping route without confirmed separation.',
+      releaseOrFailureMode: 'A driver may not see or stop for a pedestrian or other vehicle before entering the path.',
+      exposurePathway: 'Workers on foot or in other vehicles are exposed in the equipment travel or turning zone.',
+      consequences: 'Struck-by, run-over, pinned-between, or collision injury.'
+    },
+    controlPrinciples: [
+      'Separate pedestrian and equipment traffic immediately.',
+      'Use barriers, controlled crossings, spotters, alarms, and right-of-way rules.',
+      'Verify traffic-plan implementation, visibility, and operator/pedestrian understanding.'
+    ]
+  },
+
+  {
     id: 'spill-release-walking-surface-osha-gi',
     jurisdiction: 'osha_general_industry',
     hazardFamily: 'walking_working_surfaces',
@@ -886,7 +929,7 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     standardCitation: '29 CFR 1910.1200(f)(6)',
     standardTitle: 'Workplace labeling (hazard communication)',
     appliesWhen: [
-      /\b(chemical|container|drum|solvent|paint|acid|can|bottle|used oil)\b/i
+      /\b(chemical|container|drum|tank|pail|jug|tote|bucket|solvent|paint|acid|can|bottle|used oil|waste oil)\b/i
     ],
     requiredEvidence: [
       /\b(unlabeled|no label|missing label|open container|uncovered|no cover)\b/i
@@ -928,7 +971,7 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     standardCitation: '30 CFR 56.20012',
     standardTitle: 'Labeling of toxic substances',
     appliesWhen: [
-      /\b(chemical|container|drum|solvent|paint|acid|can|bottle|used oil)\b/i
+      /\b(chemical|container|drum|tank|pail|jug|tote|bucket|solvent|paint|acid|can|bottle|used oil|waste oil)\b/i
     ],
     requiredEvidence: [
       /\b(unlabeled|no label|missing label|open container|uncovered|no cover)\b/i

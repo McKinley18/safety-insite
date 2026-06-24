@@ -759,6 +759,7 @@ export class ApplicableStandardsService {
     diagnostics?: Record<string, any>,
   ) {
     const sourceMode = String(source || "");
+    const isCoalSource = /COAL/i.test(sourceMode);
     const siteType = sourceMode.startsWith("MSHA")
       ? "mining"
       : source === "OSHA_CONSTRUCTION"
@@ -1104,7 +1105,17 @@ export class ApplicableStandardsService {
     const candidateStandards = Array.from(candidateStandardsMap.values());
 
     const isForkliftSeatbelt =
-      /(forklift|seatbelt|industrial truck|pit|operator)/i.test(observation);
+      /\b(forklift|industrial truck|haul truck|truck|loader|mobile equipment|vehicle|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i.test(observation);
+    const isMobileTrafficContext =
+      /\b(forklift|industrial truck|haul truck|truck|loader|mobile equipment|vehicle|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i.test(observation) &&
+      /\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way|same aisle|same route|no traffic control)\b/i.test(observation);
+    const isHazComLabelContext =
+      /\b(chemical|container|drum|tank|pail|jug|tote|bucket|solvent|paint|acid|can|bottle|used oil|waste oil)\b/i.test(observation) &&
+      /\b(unlabeled|no label|missing label|unknown contents|unknown chemical|no GHS|missing GHS|secondary container|hazcom|hazard communication)\b/i.test(observation);
+    const isMSHALOTOContext =
+      /\b(lockout|loto|tagout|locked out|energy isolation|de-energized|deenergized|hazardous energy|unexpected startup|stored energy)\b/i.test(observation) ||
+      (/\b(maintenance|servicing|repair|clearing jam|unjamming|cleaning|adjusting|work on)\b/i.test(observation) &&
+        /\b(energized|powered|running|moving|startup|motor|circuit|electrical|conveyor|crusher|equipment)\b/i.test(observation));
     const isCompressedGasCylinderStorage =
       /\b(?:oxygen|acetylene|argon|propane|compressed gas|gas) cylinder\b/i.test(observation) &&
       /\b(?:unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic)\b/i.test(observation);
@@ -1123,6 +1134,71 @@ export class ApplicableStandardsService {
               confidence: 95,
               matchingReasons: [
                 "fallback: explicit compressed-gas cylinder storage/handling evidence",
+              ],
+            },
+          ]
+        : isMobileTrafficContext && activeJurisdiction === "msha" && !isCoalSource
+        ? [
+            {
+              id: "fallback-30-cfr-56-9100",
+              citation: "30 CFR 56.9100",
+              heading: "Traffic control and rules governing movement of mobile equipment",
+              summary:
+                "Mine traffic-control rules governing movement of mobile equipment where pedestrian or vehicle exposure exists.",
+              agencyCode: "MSHA" as const,
+              scopeCode: "mining" as const,
+              score: 122,
+              confidence: 95,
+              matchingReasons: [
+                "fallback: explicit mobile-equipment and traffic exposure in mine context",
+              ],
+            },
+          ]
+        : isMSHALOTOContext && activeJurisdiction === "msha"
+        ? [
+            {
+              id: "fallback-30-cfr-56-12016",
+              citation: "30 CFR 56.12016",
+              heading: "Work on electrically powered equipment; deenergizing and lockout",
+              summary:
+                "Mine lockout and de-energizing requirements for work on electrically powered equipment.",
+              agencyCode: "MSHA" as const,
+              scopeCode: "mining" as const,
+              score: 120,
+              confidence: 94,
+              matchingReasons: [
+                "fallback: maintenance or servicing with hazardous-energy evidence in mine context",
+              ],
+            },
+          ]
+        : isHazComLabelContext && activeJurisdiction === "osha_general_industry"
+        ? [
+            {
+              id: "fallback-1910-1200-f6",
+              citation: "29 CFR 1910.1200(f)(6)",
+              heading: "Workplace labeling (hazard communication)",
+              summary:
+                "Hazard communication workplace-labeling requirements for unlabeled chemical or oil containers.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "general_industry" as const,
+              score: 118,
+              confidence: 95,
+              matchingReasons: [
+                "fallback: unlabeled container or tank with chemical identity evidence",
+              ],
+            },
+            {
+              id: "fallback-1910-1200-f1",
+              citation: "29 CFR 1910.1200(f)(1)",
+              heading: "Manufacturer chemical labeling (hazard communication)",
+              summary:
+                "Hazard communication labeling requirements for chemical containers where the label is missing or unknown.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "general_industry" as const,
+              score: 114,
+              confidence: 92,
+              matchingReasons: [
+                "fallback: chemical container labeling concern where the identity or label is missing",
               ],
             },
           ]
@@ -1157,7 +1233,7 @@ export class ApplicableStandardsService {
               ],
             },
           ]
-        : isForkliftSeatbelt && activeJurisdiction === "osha_general_industry"
+          : isForkliftSeatbelt && activeJurisdiction === "osha_general_industry"
           ? [
               {
                 id: "fallback-1910-178",
@@ -1170,7 +1246,7 @@ export class ApplicableStandardsService {
                 score: 110,
                 confidence: 99,
                 matchingReasons: [
-                  "fallback: forklift, seatbelt, or PIT term matched",
+                  "fallback: forklift or mobile-equipment term matched",
                 ],
               },
             ]
