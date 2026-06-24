@@ -26,7 +26,7 @@ The app should stay smart and simple. It should not become a complex enterprise 
 
 ## HazLenz AI purpose
 
-HazLenz AI should provide advisory inspection intelligence. It should classify hazard type, identify likely mechanisms of injury or exposure, suggest applicable standards, explain uncertainty, identify evidence gaps, propose corrective actions, and support report writing.
+HazLenz AI provides advisory inspection intelligence. It classifies hazard type, identifies likely mechanisms of injury or exposure, suggests applicable standards, explains uncertainty, identifies evidence gaps, proposes corrective actions, and supports report writing.
 
 HazLenz AI must remain advisory. Final decisions require qualified human review.
 
@@ -34,18 +34,16 @@ HazLenz AI must remain advisory. Final decisions require qualified human review.
 
 HazLenz AI should reason through:
 
-- Observed condition
-- Equipment or environment involved
-- Energy source or hazardous condition
-- Failed, missing, or inadequate control
-- Exposure pathway
-- Potential injury, illness, environmental, or compliance consequence
-- Applicable jurisdiction and standards
-- Evidence gaps
-- Immediate, interim, and permanent corrective actions
-- Verification evidence
-
-Example: an open used-oil container can spill, create a slip/trip/fall exposure, cause environmental release, require containment/labeling/housekeeping controls, and require verification evidence.
+- observed condition
+- equipment or environment involved
+- energy source or hazardous condition
+- failed, missing, or inadequate control
+- exposure pathway
+- potential injury, illness, environmental, or compliance consequence
+- applicable jurisdiction and standards
+- evidence gaps
+- immediate, interim, and permanent corrective actions
+- verification evidence
 
 ## Accuracy priorities
 
@@ -105,7 +103,7 @@ The backend should stay efficient enough for low-cost hosting.
 Guidelines:
 
 - Avoid repeated database reads for static standards.
-- Cache stable standards/knowledge in compact in-memory structures.
+- Cache stable standards/knowledge in compact structures.
 - Avoid loading unnecessary large objects into every classify response.
 - Avoid logging huge JSON payloads.
 - Avoid running optional feedback/persistence queries if the needed table is unavailable.
@@ -153,11 +151,11 @@ Before pushing:
 - HazLenz API display names sanitized.
 - Conveyor cleanup no longer falsely routes to hot_work.
 - Reviewer candidate payloads hidden from normal field output.
+- Optional fix feedback lookup guarded to avoid noisy classify logs.
 
 ## Next technical priorities
 
-1. Fix noisy missing `fix_feedback` table behavior.
-2. Add normal/debug response shaping to reduce classify payload size.
-3. Add regression tests for recent fixes.
-4. Verify production Render/Vercel deployment.
-5. Continue accuracy hardening by scenario family.
+1. Add normal/debug response shaping to reduce classify payload size.
+2. Add regression tests for recent fixes.
+3. Verify production Render/Vercel deployment.
+4. Continue accuracy hardening by scenario family.
