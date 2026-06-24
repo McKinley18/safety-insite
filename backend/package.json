@@ -27,9 +27,7 @@
     "validate:safescope:targeted:core": "ts-node scripts/run-safescope-targeted-validation.ts --area=core",
     "validate:safescope:targeted:governance": "ts-node scripts/run-safescope-targeted-validation.ts --area=governance",
     "validate:hazlenz-knowledge-index": "ts-node src/safescope-v2/knowledge-index/validate-hazlenz-knowledge-index.ts",
-
     "validate:safescope:targeted:precision": "ts-node scripts/run-safescope-targeted-validation.ts --area=precision",
-    "validate:safescope:targeted:core": "ts-node scripts/run-safescope-targeted-validation.ts --area=core",
     "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
     "migration:run": "typeorm-ts-node-commonjs -d src/database/data-source.ts migration:run",
     "seed:safescope-knowledge": "ts-node src/safescope-knowledge/seed/safescope-knowledge.seed.ts",
@@ -96,7 +94,8 @@
     "build:render": "node --max-old-space-size=1024 ./node_modules/typescript/bin/tsc",
     "hazlenz:generate-shard-candidates": "ts-node src/safescope-v2/coverage/generate-hazlenz-warm-shard-candidates.ts",
     "hazlenz:qa-shard-candidates": "ts-node src/safescope-v2/coverage/qa-hazlenz-generated-candidates.ts",
-    "diagnose:production": "ts-node src/safescope-v2/maintenance/check-production-hazlenz-diagnostics.ts"
+    "diagnose:production": "ts-node src/safescope-v2/maintenance/check-production-hazlenz-diagnostics.ts",
+    "test:hazlenz-field-output-smoke": "node src/safescope-v2/tests/smoke/hazlenz-field-output-smoke.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
