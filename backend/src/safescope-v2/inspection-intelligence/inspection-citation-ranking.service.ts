@@ -41,6 +41,12 @@ export class InspectionCitationRankingService {
     const hasSurfaceOrDrainPathway = /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(observation);
     const hasHazComIdentityEvidence = /\b(unlabeled|no label|missing label|unknown chemical|chemical identity|sds|hazcom|hazard communication|secondary container)\b/i.test(observation);
     const hasSpillReleasePathway = hasSpillReleaseEvidence && hasSurfaceOrDrainPathway;
+    const hasConfinedSpaceEvidence =
+      /\b(confined space|permit space|manhole|vault|pit)\b/i.test(observation) ||
+      (/\b(tank|vessel)\b/i.test(observation) && /\b(entry|enter|inside|permit|required|atmosphere|oxygen deficiency|oxygen deficient|toxic atmosphere)\b/i.test(observation));
+    const hasServicingEnergyEvidence =
+      /\b(lockout|loto|tagout|unexpected startup|hazardous energy|energy isolation|de-energized|isolated)\b/i.test(observation) ||
+      (/\b(maintenance|servicing|cleaning machine|clearing jam|unjamming)\b/i.test(observation) && /\b(machine|equipment|conveyor|motor|circuit|press|pump|energized|powered)\b/i.test(observation));
     const directCandidates = input.inspectionIntelligence.candidateStandards;
     const directRanks = new Map(directCandidates.map((candidate, index) => [citationKey(candidate), index]));
     const ranked = input.suggestedStandards.map((candidate) => {
@@ -142,24 +148,54 @@ export class InspectionCitationRankingService {
       const isFlammableLiquidCitation = /1910\.106|1926\.152|(?:56|57)\.4100?/i.test(citation) || /flammable liquid|flammable-liquid|combustible liquid/i.test(text);
       if (hasSpillReleasePathway) {
         if (isWalkingSurfaceOrReleaseCitation) {
-          score += 130;
+          score += 180;
           reasons.push('Direct match: spill or release contaminating a walking surface or release path.');
         }
         if (/56\.4102|57\.4102/i.test(citation) || /(spill|release|containment)/i.test(text)) {
           score += 85;
           reasons.push('Direct match: release control for material reaching a drain, soil, or water pathway.');
         }
+        if (isHazcomCitation) {
+          score -= 170;
+          penalties.push('HazCom labeling is supporting context only when the dominant exposure pathway is contaminated walking surface or release control.');
+          if (!hasHazComIdentityEvidence) {
+            score -= 40;
+            penalties.push('HazCom identity evidence is not present.');
+          }
+        }
         if (isFlammableLiquidCitation && !/\b(flammable|combustible|flash point|ignition|vapor|fuel|gasoline|solvent)\b/i.test(observation)) {
           score -= 120;
           penalties.push('Flammable-liquid storage/handling is not the dominant observed deficiency when the condition is a spill or release to a walking surface.');
         }
-        if (isHazcomCitation && !hasHazComIdentityEvidence) {
-          score -= 115;
-          penalties.push('HazCom identity/label support is secondary to the spill/release pathway and contaminated walking surface.');
-        }
       } else if (isHazcomCitation && hasHazComIdentityEvidence) {
         score += 40;
         reasons.push('Direct match: chemical identity or workplace labeling is the observed deficiency.');
+      }
+
+      const isLOTOCitation = /1910\.147|(?:56|57)\.12016/i.test(citation);
+      if (isLOTOCitation) {
+        if (!hasServicingEnergyEvidence) {
+          score -= 190;
+          penalties.push('Hazardous-energy control is not the observed deficiency without servicing, maintenance, jam-clearing, or energy-isolation evidence.');
+          if (hasHazComIdentityEvidence || hasSpillReleasePathway) {
+            score -= 20;
+            penalties.push('Container/chemical spill evidence points away from lockout/tagout as the primary citation family.');
+          }
+        } else {
+          score += 120;
+          reasons.push('Direct match: servicing or energy-isolation evidence supports hazardous-energy control.');
+        }
+      }
+
+      const isConfinedSpaceCitation = /1910\.146|1926\.1203|(?:56|57)\.18001/i.test(citation);
+      if (isConfinedSpaceCitation) {
+        if (!hasConfinedSpaceEvidence) {
+          score -= 220;
+          penalties.push('Confined-space applicability is not established without entry, configuration, or atmospheric evidence.');
+        } else if (!/\b(entry|enter|inside|permit|required)\b/i.test(observation)) {
+          score -= 120;
+          penalties.push('A space was mentioned, but entry or permit-required context is not established.');
+        }
       }
 
       const enriched = {

@@ -37,6 +37,10 @@ import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowle
 import { logKnowledgeTelemetry, isHazLenzKnowledgeTelemetryEnabled } from "./telemetry/hazlenz-knowledge-telemetry";
 import { HazLenzKnowledgeShardService } from "./knowledge-shards/hazlenz-knowledge-shard.service";
 import { EXPERT_APPLICABILITY_RULES } from "./inspection-intelligence/standard-applicability.rules";
+import {
+  buildSupplementalGuidance,
+  getSupplementalKnowledgeForContext,
+} from "./supplemental-knowledge/supplemental-guidance";
 
 
 
@@ -849,6 +853,17 @@ export class SafescopeV2Service {
         return 'unknown';
       })();
 
+      const supplementalEntries = getSupplementalKnowledgeForContext({
+        hazardCategory: rootHazardCategory,
+        candidateStandardFamily: rootStandardFamily,
+        classification: promotedPrimary.classification,
+        knowledgeRoute,
+        observation: fusedText,
+        suggestedStandards,
+        supportingStandards,
+      });
+      const supplementalGuidance = buildSupplementalGuidance(supplementalEntries);
+
       const response = {
           ...promotedPrimary,
           ...intelligence,
@@ -881,6 +896,7 @@ export class SafescopeV2Service {
           needsMoreEvidenceStandards,
           ...(debugMetadata ? { debugMetadata: diagnostics } : {}),
           standardsTraceability,
+          supplementalGuidance,
           knowledgeRoute: {
             jurisdiction: knowledgeRoute.jurisdiction,
             hazardFamily: knowledgeRoute.hazardFamily,

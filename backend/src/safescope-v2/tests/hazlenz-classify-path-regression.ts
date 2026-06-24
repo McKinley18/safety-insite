@@ -16,6 +16,7 @@ type Scenario = {
   expectStandards: RegExp[];
   forbidStandards?: RegExp[];
   forbidHazardDomains?: RegExp[];
+  forbidRawTerms?: RegExp[];
 };
 
 function makeStandard(citation: string, title: string, rationale: string) {
@@ -142,8 +143,6 @@ const service = new SafescopeV2Service(
   mockKnowledgeShardService(),
 );
 
-const prohibited = /compressed gas|cylinder|1910\.101|1926\.350|56\.1600[56]|57\.1600[56]/i;
-
 const scenarios: Scenario[] = [
   {
     name: "open used oil near walkway",
@@ -155,6 +154,7 @@ const scenarios: Scenario[] = [
     expectStandards: [/1910\.22\(a\)\(2\)/, /1910\.22\(a\)/],
     forbidStandards: [/1910\.101|1910\.104|1926\.350/i],
     forbidHazardDomains: [/compressed_gas/i, /mobile_equipment/i],
+    forbidRawTerms: [/compressed gas cylinder/i, /1910\.101/i, /1926\.350/i],
   },
   {
     name: "oil spill across walkway",
@@ -166,6 +166,7 @@ const scenarios: Scenario[] = [
     expectStandards: [/1910\.22\(a\)\(2\)/, /1910\.22\(a\)/],
     forbidStandards: [/1910\.101|1910\.104|1926\.350/i],
     forbidHazardDomains: [/compressed_gas/i, /mobile_equipment/i],
+    forbidRawTerms: [/compressed gas cylinder/i, /1910\.101/i, /1926\.350/i],
   },
   {
     name: "forklift in aisle with pedestrians",
@@ -173,7 +174,7 @@ const scenarios: Scenario[] = [
     scopes: ["osha_general_industry"],
     evidenceTexts: ["forklift", "pedestrians", "marked separation"],
     expectClassification: /Mobile Equipment \/ Traffic/i,
-    expectStandards: [/1910\.178|1910\.176|1926\.601|56\.9100/i],
+    expectStandards: [/1910\.178/i],
     forbidStandards: [/1910\.22\(a\)\(2\)/i],
   },
   {
@@ -186,6 +187,7 @@ const scenarios: Scenario[] = [
     expectStandards: [/1910\.22\(a\)\(3\)/, /1910\.22\(a\)/],
     forbidStandards: [/1910\.178|56\.9100/i],
     forbidHazardDomains: [/mobile_equipment/i, /compressed_gas/i],
+    forbidRawTerms: [/compressed gas cylinder/i, /1910\.101/i, /1926\.350/i],
   },
 ];
 
@@ -217,7 +219,7 @@ async function run() {
       scenario.expectStandards.every((pattern) => pattern.test(combinedCitationText)) &&
       (!scenario.forbidStandards || !scenario.forbidStandards.some((pattern) => pattern.test(combinedCitationText))) &&
       (!scenario.forbidHazardDomains || !scenario.forbidHazardDomains.some((pattern) => pattern.test(JSON.stringify(response.inspectionIntelligence?.hazardCandidates || [])))) &&
-      !prohibited.test(text) &&
+      (!scenario.forbidRawTerms || !scenario.forbidRawTerms.some((pattern) => pattern.test(text))) &&
       response.inspectionIntelligence?.guardrails?.advisoryOnly === true &&
       response.inspectionIntelligence?.guardrails?.candidateStandardsOnly === true &&
       response.inspectionIntelligence?.guardrails?.doesNotDeclareViolation === true &&

@@ -8,6 +8,7 @@ export type SupplementalAuthorityTier =
 export type SupplementalKnowledgeEntry = {
   id: string;
   family:
+    | 'hazcom'
     | 'hazard_communication'
     | 'compressed_gas'
     | 'electrical'
@@ -29,7 +30,7 @@ export type SupplementalKnowledgeEntry = {
 export const HAZLENZ_SUPPLEMENTAL_KNOWLEDGE_REGISTRY: SupplementalKnowledgeEntry[] = [
   {
     id: 'nfpa_fire_chemical_storage',
-    family: 'hazard_communication',
+    family: 'hazcom',
     authorityName: 'NFPA fire and chemical storage guidance',
     authorityTier: 'supplemental_consensus',
     shortUse: 'Supports fire, flammable-liquid, compatibility, storage, and emergency-control reasoning.',
@@ -39,7 +40,7 @@ export const HAZLENZ_SUPPLEMENTAL_KNOWLEDGE_REGISTRY: SupplementalKnowledgeEntry
   },
   {
     id: 'dot_hazmat_transport',
-    family: 'hazard_communication',
+    family: 'hazcom',
     authorityName: 'DOT hazardous materials transportation requirements',
     authorityTier: 'primary_enforceable',
     shortUse: 'Supports hazardous-material transportation, shipping, marking, labeling, and packaging when transport is involved.',
@@ -106,6 +107,56 @@ export const HAZLENZ_SUPPLEMENTAL_KNOWLEDGE_REGISTRY: SupplementalKnowledgeEntry
     applicabilityGuardrail:
       'Use as supplemental guidance unless adopted by contract, manufacturer instruction, company policy, or regulation.',
     reasoningUses: ['machine guarding', 'safeguarding', 'risk reduction', 'verification'],
+  },
+  {
+    id: 'ansi_z244_loto',
+    family: 'lockout_tagout',
+    authorityName: 'ANSI/ASSP Z244.1 hazardous energy control guidance',
+    authorityTier: 'supplemental_consensus',
+    shortUse: 'Supports hazardous-energy control, alternate methods, verification, and servicing planning.',
+    applicabilityGuardrail:
+      'Use as supplemental guidance unless adopted by contract, company policy, regulation, or an approved energy-control program.',
+    reasoningUses: ['lockout', 'tagout', 'zero energy', 'servicing', 'maintenance', 'energy isolation'],
+  },
+  {
+    id: 'ansi_a1264_walking_surfaces',
+    family: 'walking_working_surfaces',
+    authorityName: 'ANSI/ASSP walking-working-surface and slip/trip/fall prevention guidance',
+    authorityTier: 'supplemental_consensus',
+    shortUse: 'Supports walkway condition, slip/trip prevention, housekeeping, and same-level-fall controls.',
+    applicabilityGuardrail:
+      'Use as supplemental guidance unless adopted by contract, company policy, code, or a competent-person program.',
+    reasoningUses: ['walking surface', 'housekeeping', 'slip', 'trip', 'floor condition', 'route control'],
+  },
+  {
+    id: 'nfpa_hot_work_fire_emergency',
+    family: 'fire_emergency',
+    authorityName: 'NFPA hot-work and fire-emergency guidance',
+    authorityTier: 'supplemental_consensus',
+    shortUse: 'Supports hot-work fire prevention, fire watch, extinguisher access, and emergency response planning.',
+    applicabilityGuardrail:
+      'Use as supplemental guidance unless adopted by local fire code, AHJ, contract, or company policy.',
+    reasoningUses: ['hot work', 'fire watch', 'extinguisher access', 'emergency response', 'combustibles'],
+  },
+  {
+    id: 'ansi_mhe_traffic_control',
+    family: 'mobile_equipment',
+    authorityName: 'Industrial truck and traffic-separation guidance',
+    authorityTier: 'supplemental_consensus',
+    shortUse: 'Supports pedestrian separation, traffic routes, visibility, backing, and route-control reasoning.',
+    applicabilityGuardrail:
+      'Use as supplemental guidance unless adopted by contract, company policy, manufacturer instructions, or site traffic rules.',
+    reasoningUses: ['forklift', 'loader', 'truck', 'pedestrian separation', 'backing', 'traffic route'],
+  },
+  {
+    id: 'msha_best_practice_guidance',
+    family: 'mining',
+    authorityName: 'MSHA safety alerts and best-practice guidance',
+    authorityTier: 'industry_guidance',
+    shortUse: 'Supports mining-safety context, inspection habits, traffic controls, ground control, and hazard communication.',
+    applicabilityGuardrail:
+      'Use as supporting guidance unless confirmed by mine policy, training program, or jurisdiction-specific applicability.',
+    reasoningUses: ['mine', 'miner', 'haul road', 'crusher', 'conveyor', 'ground control', 'traffic control'],
   },
   {
     id: 'ansi_assp_fall_protection',
