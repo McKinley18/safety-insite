@@ -1,3 +1,4 @@
+import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
 import { getHazLenzPrimaryStandards, getHazLenzSupportingStandards, standardKey } from "@/lib/inspection/hazlenzStandardCandidates";
 import { formatStandardDisplay, getStandardCitation, getStandardSummary } from "@/lib/inspection/standardDisplay";
 
@@ -27,6 +28,7 @@ export default function SafeScopeStandardsSection({
   safeScopeStandardsOpen,
   setSafeScopeStandardsOpen,
 }: Props) {
+  const hazLenzSuggestedStandards = getHazLenzSuggestedStandards(safeScopeResult);
   const isVague = Boolean(safeScopeResult?.isVague);
 
   // 1. Suggested standards (primary)
@@ -50,6 +52,12 @@ export default function SafeScopeStandardsSection({
     primaryStandards = [safeScopeResult.executiveJudgment.topStandard];
     isFallbackMode = true;
     standardLabel = "fallback candidate standard";
+  }
+
+  // Broad fallback across newer HazLenz response shapes.
+  if (!primaryStandards.length && hazLenzSuggestedStandards.length) {
+    primaryStandards = hazLenzSuggestedStandards;
+    standardLabel = "suggested candidate standard";
   }
 
   // 2. Supporting standards
