@@ -31,6 +31,16 @@ function firstText(...values: any[]) {
   return "";
 }
 
+function shortenReviewLabel(value: unknown) {
+  return compactText(value)
+    .replace(/^review needed\s*[-—–:]\s*/i, "")
+    .replace(/^likely\s+/i, "")
+    .replace(/\s+issue$/i, "")
+    .replace(/guarding/i, "Guarding")
+    .trim();
+}
+
+
 function normalizeConfidencePercent(value: unknown) {
   if (value === undefined || value === null || value === "") return null;
 
@@ -231,7 +241,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
           {summary.reviewed ? "HazLenz AI Finding" : "Finding Summary"}
         </p>
         <p className="mt-1.5 text-sm font-bold leading-6 text-slate-900 dark:text-slate-100">
-          {summary.detectedConcern}
+          {shortenReviewLabel(summary.detectedConcern) || summary.detectedConcern}
         </p>
       </div>
 

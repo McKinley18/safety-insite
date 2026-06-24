@@ -22,6 +22,16 @@ function compactText(value: string, fallback: string) {
   return value?.trim() ? value.trim() : fallback;
 }
 
+function shortenReviewLabel(value: string) {
+  return compactText(value, "")
+    .replace(/^review needed\s*[-—–:]\s*/i, "")
+    .replace(/^likely\s+/i, "")
+    .replace(/\s+issue$/i, "")
+    .replace(/guarding/i, "Guarding")
+    .trim();
+}
+
+
 function normalizeConfidencePercent(value: unknown) {
   if (value === undefined || value === null || value === "") return null;
 
@@ -110,12 +120,14 @@ export default function CurrentHazardCard({
     );
   }
 
-  const category =
+  const rawCategory =
     hazardCategory ||
     safeScopeResult?.classification ||
     (photos.length || location || description
       ? "Unclassified finding"
       : "Finding in progress");
+
+  const category = shortenReviewLabel(rawCategory) || rawCategory;
 
   const categorySource = hazardCategory
     ? "User selected"
@@ -211,7 +223,7 @@ export default function CurrentHazardCard({
                   </span>
                 </div>
 
-                <h2 className="sentinel-finding-builder-title truncate text-[10px] font-black leading-4 text-slate-950">
+                <h2 className="sentinel-finding-builder-title max-w-full truncate text-[10px] font-black leading-4 text-slate-950">
                   {category}
                 </h2>
 
