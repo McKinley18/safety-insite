@@ -8,6 +8,11 @@ export type HazLenzStandardCandidate = {
   rationale?: string;
 };
 
+function looksLikeCitation(value: unknown) {
+  const text = String(value || "").trim();
+  return /\b(?:\d+\s*CFR\s*\d+|\d+\.\d+|\d+\s*CFR\s*Part\s*\d+)\b/i.test(text);
+}
+
 function normalizeCitation(value: any): string {
   if (!value) return "";
   if (typeof value === "string") return value.trim();
@@ -135,6 +140,37 @@ export function getHazLenzSuggestedStandards(result: any): HazLenzStandardCandid
         : undefined,
     })),
     "standardsMatchExplanations",
+  );
+
+
+  pushUnique(standards, seen, result.suggestedStandards, "suggestedStandards");
+
+  pushUnique(
+    standards,
+    seen,
+    result.standardApplicability?.matchedRules,
+    "standardApplicability.matchedRules",
+  );
+
+  pushUnique(
+    standards,
+    seen,
+    result.applicabilityIntelligence?.primaryApplicableStandards,
+    "applicabilityIntelligence.primaryApplicableStandards",
+  );
+
+  pushUnique(
+    standards,
+    seen,
+    result.standardsReasoning?.topDefensible,
+    "standardsReasoning.topDefensible",
+  );
+
+  pushUnique(
+    standards,
+    seen,
+    result.inspectionIntelligence?.candidateStandards,
+    "inspectionIntelligence.candidateStandards",
   );
 
   return standards;
