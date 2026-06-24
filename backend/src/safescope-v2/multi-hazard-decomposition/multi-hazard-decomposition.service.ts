@@ -50,9 +50,12 @@ export class MultiHazardDecompositionService {
     });
 
     // 3. Final result
-    const isMultiHazard = hazards.length > 1;
-    const hazardCount = hazards.length;
-    const primaryHazard = hazards[0];
+    const filteredHazards = hazards.filter(
+      (hazard) => !(hazard.domainId === 'hot_work' && this.isFalsePositiveHotWorkFragment(hazard.observationFragment || '')),
+    );
+    const isMultiHazard = filteredHazards.length > 1;
+    const hazardCount = filteredHazards.length;
+    const primaryHazard = filteredHazards[0];
 
     return {
       version,
@@ -60,12 +63,27 @@ export class MultiHazardDecompositionService {
       isMultiHazard,
       hazardCount,
       primaryHazard,
-      hazards,
-      decompositionConfidence: hazards.length > 0 ? 0.9 : 0,
+      hazards: filteredHazards,
+      decompositionConfidence: filteredHazards.length > 0 ? 0.9 : 0,
       routingNotes,
-      evidenceGaps: hazards.length === 0 ? ['No clear hazards identified in text.'] : [],
+      evidenceGaps: filteredHazards.length === 0 ? ['No clear hazards identified in text.'] : [],
       reviewerQuestions: isMultiHazard ? ['Multiple hazards detected. Review each for accuracy.'] : [],
       advisoryBoundary: 'SafeScope multi-hazard decomposition is advisory only.'
     };
   }
+  private isTrueHotWorkFragment(fragment: string): boolean {
+    const normalized = fragment.toLowerCase();
+
+    return /\b(weld|welding|cut|cutting|torch|grind|grinding|braz|brazing|solder|soldering|open flame|flame|spark|sparks|hot work permit|hot-work permit)\b/i.test(normalized);
+  }
+
+  private isFalsePositiveHotWorkFragment(fragment: string): boolean {
+    const normalized = fragment.toLowerCase();
+
+    const genericWorkOnly =
+      /\b(worker|workers|work|working|clean|cleaning|cleanup|material|housekeeping)\b/i.test(normalized);
+
+    return genericWorkOnly && !this.isTrueHotWorkFragment(normalized);
+  }
+
 }
