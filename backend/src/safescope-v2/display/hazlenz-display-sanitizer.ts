@@ -55,6 +55,27 @@ const HIDDEN_STANDARD_OUTPUT_FIELDS = new Set([
   // Reviewer-console/dev payloads should not be included in normal field inspection responses.
   "pendingReviewerCandidates",
   "draftKnowledgeWarnings",
+
+  // Heavy duplicate/debug reasoning blocks. Keep the concise report-facing fields instead.
+  "retrieval",
+  "knowledgeBrain",
+  "inspectionIntelligence",
+  "decisionSupportMetadata",
+  "baseGeneratedActions",
+  "generatedActionsEnrichment",
+  "composer",
+  "askig",
+  "akpwg",
+  "akrwg",
+  "hrlg",
+  "sbag",
+  "sourceAwareAnalysis",
+  "nativeReasoning",
+  "observationUnderstanding",
+  "dca",
+  "evidenceGate",
+  "evidenceSufficiency",
+  "confidenceGovernance",
 ]);
 
 export function sanitizeHazLenzDisplayOutput<T>(value: T): T {
