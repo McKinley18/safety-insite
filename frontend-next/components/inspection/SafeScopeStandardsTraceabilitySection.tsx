@@ -73,7 +73,7 @@ export default function SafeScopeStandardsTraceabilitySection({
           <p className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100">
             {formatLabel(trace.finalSuggestedStandardsSource)}
           </p>
-          <p className="mt-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
+          <p className="mt-2 text-xs font-semibold leading-5 text-slate-700 dark:text-white">
             Scope mode: {formatLabel(trace.sourceMode)} · Prior findings role:{" "}
             {formatLabel(trace.priorFindingsRole)}
           </p>
@@ -81,7 +81,7 @@ export default function SafeScopeStandardsTraceabilitySection({
 
         {!!layers.length && (
           <div className="space-y-2">
-            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-700">
+            <p className="text-xs font-black uppercase tracking-wide text-slate-700 dark:text-white">
               Standards review layers
             </p>
 
@@ -120,7 +120,7 @@ export default function SafeScopeStandardsTraceabilitySection({
         </div>
 
         {!!trace.suggestedCitations?.length && (
-          <p className="text-xs font-semibold leading-5 text-slate-700 dark:text-slate-700">
+          <p className="text-xs font-semibold leading-5 text-slate-700 dark:text-white">
             Suggested citations: {trace.suggestedCitations.slice(0, 6).join(" • ")}
           </p>
         )}

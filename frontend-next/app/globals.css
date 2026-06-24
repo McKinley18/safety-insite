@@ -1422,3 +1422,74 @@ body.sentinel-keyboard-open {
   height: auto !important;
   overflow-y: auto !important;
 }
+
+/* Inspection contrast utilities
+   Rule: dark/navy surfaces use light text; light/white surfaces use navy text.
+*/
+.inspection-panel-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #111827 55%, #1e293b 100%);
+  color: #ffffff;
+}
+
+.inspection-panel-dark,
+.inspection-panel-dark h1,
+.inspection-panel-dark h2,
+.inspection-panel-dark h3,
+.inspection-panel-dark h4,
+.inspection-panel-dark p,
+.inspection-panel-dark span,
+.inspection-panel-dark label,
+.inspection-panel-dark li,
+.inspection-panel-dark div {
+  color: #ffffff;
+}
+
+.inspection-panel-dark .inspection-muted,
+.inspection-panel-dark .muted,
+.inspection-panel-dark small {
+  color: #dbeafe;
+}
+
+.inspection-panel-light {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.inspection-panel-light,
+.inspection-panel-light h1,
+.inspection-panel-light h2,
+.inspection-panel-light h3,
+.inspection-panel-light h4,
+.inspection-panel-light p,
+.inspection-panel-light span,
+.inspection-panel-light label,
+.inspection-panel-light li,
+.inspection-panel-light div {
+  color: #0f172a;
+}
+
+.inspection-panel-light .inspection-muted,
+.inspection-panel-light .muted,
+.inspection-panel-light small {
+  color: #334155;
+}
+
+.inspection-input-light {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.inspection-input-light::placeholder {
+  color: #64748b;
+}
+
+.inspection-input-dark {
+  background: rgba(15, 23, 42, 0.88);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.inspection-input-dark::placeholder {
+  color: #cbd5e1;
+}

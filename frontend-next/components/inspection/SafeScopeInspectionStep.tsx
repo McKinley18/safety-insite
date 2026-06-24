@@ -111,7 +111,7 @@ export default function SafeScopeInspectionStep({
               <p className="mt-1 text-xs font-semibold leading-relaxed text-red-700 dark:text-red-300">
                 HazLenz AI intelligence is unavailable. Continue documenting the finding and review before relying on automated guidance.
               </p>
-              <p className="mt-1 text-[11px] font-medium text-slate-700 dark:text-slate-700">
+              <p className="mt-1 text-[11px] font-medium text-slate-700 dark:text-white">
                 Details: {safeScopeStatus}
               </p>
               

@@ -48,7 +48,7 @@ export default function SafeScopeObservationUnderstandingSection({
             {formatValue(equipment?.specificEquipment || equipment?.category || "Unknown")}
           </div>
           {(equipment?.component || equipment?.motion || equipment?.operationalState) && (
-            <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-700 dark:text-slate-700">
+            <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-700 dark:text-white">
               Component: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(equipment?.component)}</span>{" • "}
               Motion: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(equipment?.motion)}</span>{" • "}
               State: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(equipment?.operationalState)}</span>
@@ -64,7 +64,7 @@ export default function SafeScopeObservationUnderstandingSection({
           <div className="mt-1 text-sm font-black text-slate-900 dark:text-slate-100 capitalize">
             {formatValue(task?.activity || "Unknown")}
           </div>
-          <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-700 dark:text-slate-700">
+          <p className="mt-1.5 text-xs font-semibold leading-relaxed text-slate-700 dark:text-white">
             Task Type: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(task?.taskType)}</span>{" • "}
             Affected Person: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(task?.workerRole || "Worker")}</span>
           </p>
@@ -81,7 +81,7 @@ export default function SafeScopeObservationUnderstandingSection({
             </div>
           )}
           {scenario?.hazardFamily && (
-            <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-slate-700">
+            <p className="mt-1 text-xs font-semibold text-slate-700 dark:text-white">
               Hazard Family: <span className="font-bold text-slate-700 dark:text-slate-300 capitalize">{formatValue(scenario.hazardFamily)}</span>
             </p>
           )}
