@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { SafeScopeIntelligenceResult, SafeScopeNarrative, NarrativeMode } from '../types';
+import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
+import { isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
 
 function compactValue(value: any): string {
   if (value === undefined || value === null || value === "") return "";
@@ -61,14 +63,15 @@ function collectStandards(result: any): any {
     return ["No specific standard selected yet. HazLenz needs more evidence before suggesting a candidate standard."];
   }
 
+  const hazlenzPrimary = getHazLenzSuggestedStandards(result).slice(0, 3);
   let primary: any[] = [];
   let isCandidateMode = false;
   let isFallbackMode = false;
 
-  if (result?.suggestedStandards?.length) {
-    primary = result.suggestedStandards;
-  } else if (result?.inspectionIntelligence?.candidateStandards?.length) {
-    primary = result.inspectionIntelligence.candidateStandards;
+  if (hazlenzPrimary.length) {
+    primary = hazlenzPrimary;
+  } else if (result?.inspectionIntelligence?.candidateStandards?.some(isDisplayableStandardCandidate)) {
+    primary = result.inspectionIntelligence.candidateStandards.filter(isDisplayableStandardCandidate);
     isCandidateMode = true;
   } else if (result?.executiveJudgment?.topStandard) {
     primary = [result.executiveJudgment.topStandard];

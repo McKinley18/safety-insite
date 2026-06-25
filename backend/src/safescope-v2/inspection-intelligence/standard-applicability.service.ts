@@ -64,8 +64,10 @@ export class StandardApplicabilityService {
     // 3. Generate follow-up questions for failed rules
     const followUpQuestions = this.questionService.generateQuestions(failedRules);
 
+    const sufficientRules = matchedRules.filter((_, index) => evaluationResults[index]?.isSufficient);
+
     return {
-      matchedRules: matchedRules.map((rule) => ({
+      matchedRules: sufficientRules.map((rule) => ({
         id: rule.id,
         citation: rule.standardCitation,
         standardTitle: rule.standardTitle,

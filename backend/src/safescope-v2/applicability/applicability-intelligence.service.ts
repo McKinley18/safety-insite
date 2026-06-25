@@ -58,6 +58,13 @@ export class ApplicabilityIntelligenceService {
       let score = Number(standard.score || 0);
 
       const citation = String(standard.citation || '').toLowerCase();
+      const hasLotoContext = /(lockout|tagout|loto|de-energize|deenergize|energy isolation|unexpected startup|stored energy)/.test(contextTokens);
+      const hasConfinedSpaceContext =
+        /(confined space|permit-required|permit space|manhole|vault)/.test(contextTokens) ||
+        (/(tank|vessel|silo|bin)/.test(contextTokens) &&
+          /(entry|enter|inside|worker inside|atmosphere|oxygen deficient|toxic atmosphere|engulfment|permit)/.test(contextTokens));
+      const hasCylinderContext = /(cylinder|compressed gas|oxygen|acetylene|argon|propane)/.test(contextTokens);
+      const hasHotWorkContext = /(hot work|welding|cutting|brazing|torch|fuel gas|acetylene)/.test(contextTokens);
 
       if (jurisdiction === 'msha' && citation.includes('30 cfr')) {
         score += 30;
@@ -122,8 +129,8 @@ export class ApplicabilityIntelligenceService {
         reasons.push('Production/operation phase increases guarding applicability.');
       }
 
-      if (this.hasConfinedSpaceIndicators(standardText) && !this.hasConfinedSpaceIndicators(contextTokens)) {
-        score -= 35;
+      if (this.hasConfinedSpaceIndicators(standardText) && !hasConfinedSpaceContext) {
+        score -= 80;
         exclusions.push('Permit-required confined space conditions are not sufficiently established.');
       }
 
@@ -132,14 +139,24 @@ export class ApplicabilityIntelligenceService {
         exclusions.push('Excavation or trenching conditions are not sufficiently established.');
       }
 
-      if (this.hasLotoIndicators(standardText) && !this.hasLotoIndicators(contextTokens)) {
-        score -= 20;
+      if (this.hasLotoIndicators(standardText) && !hasLotoContext) {
+        score -= 80;
         exclusions.push('Energy-control or servicing conditions are not sufficiently established.');
       }
 
       if (this.hasElectricalIndicators(standardText) && !this.hasElectricalIndicators(contextTokens)) {
         score -= 20;
         exclusions.push('Electrical exposure conditions are not sufficiently established.');
+      }
+
+      if (/(compressed gas|oxygen|acetylene|argon|propane|cylinder)/.test(standardText) && !hasCylinderContext) {
+        score -= 80;
+        exclusions.push('Compressed-gas cylinder or gas-system conditions are not sufficiently established.');
+      }
+
+      if (/1926\.350/.test(citation) && !hasHotWorkContext) {
+        score -= 90;
+        exclusions.push('Welding or hot-work conditions are not sufficiently established for this fuel-gas standard.');
       }
 
       if (this.hasAccessIndicators(standardText) && !this.hasAccessIndicators(contextTokens)) {
@@ -239,7 +256,8 @@ export class ApplicabilityIntelligenceService {
   }
 
   private hasConfinedSpaceIndicators(text: string) {
-    return /(confined space|permit required|tank|vessel|silo|atmosphere|engulfment|limited entry|limited exit)/.test(text);
+    return /(confined space|permit required|manhole|vault)/.test(text) ||
+      (/(tank|vessel|silo)/.test(text) && /(entry|enter|inside|worker inside|atmosphere|oxygen deficient|toxic atmosphere|engulfment|permit)/.test(text));
   }
 
 

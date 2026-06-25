@@ -1,6 +1,8 @@
 "use client";
 
 import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
+import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
+import { isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
 import HazLenzFindingSummary from "@/components/inspection/HazLenzFindingSummary";
 
 import { useEffect, useRef, useState } from "react";
@@ -152,16 +154,17 @@ export default function CurrentHazardCard({
   const confidenceLabel =
     confidenceValue !== null ? `${confidenceValue}%` : "Pending";
 
-  const topStandard =
-    selectedStandards?.[0]
-      ? formatStandardDisplay(selectedStandards[0])
-      : safeScopeResult?.suggestedStandards?.[0]
-        ? formatStandardDisplay(safeScopeResult.suggestedStandards[0])
-        : safeScopeResult?.standardsReasoning?.topDefensible?.[0]
-          ? formatStandardDisplay(safeScopeResult.standardsReasoning.topDefensible[0])
-          : safeScopeResult?.applicabilityIntelligence?.primaryApplicableStandards?.[0]
-            ? formatStandardDisplay(safeScopeResult.applicabilityIntelligence.primaryApplicableStandards[0])
-            : "Pending";
+  const topStandardCandidate =
+    (isDisplayableStandardCandidate(selectedStandards?.[0]) ? selectedStandards[0] : null) ||
+    getHazLenzSuggestedStandards(safeScopeResult)?.[0] ||
+    safeScopeResult?.primaryStandards?.[0] ||
+    safeScopeResult?.suggestedStandards?.[0] ||
+    safeScopeResult?.standardsReasoning?.topDefensible?.[0] ||
+    safeScopeResult?.applicabilityIntelligence?.primaryApplicableStandards?.[0];
+
+  const topStandard = topStandardCandidate
+    ? formatStandardDisplay(topStandardCandidate) || "Pending"
+    : "Pending";
 
   const riskTone =
     String(riskLabel).toLowerCase() === "critical"

@@ -384,6 +384,20 @@ export class InspectionCitationRecoveryService {
       );
     }
 
+    const hasCylinderStorageEvidence =
+      /\b(unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic|upright)\b/i.test(combined) &&
+      /\b(oxygen|acetylene|argon|propane|compressed gas|gas)\b.*\bcylinders?\b/i.test(combined);
+
+    if (hasCylinderStorageEvidence && hasOshaGeneralScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.101',
+          'Compressed gases (general requirements)',
+          'compressed-gas cylinder storage or valve-protection evidence in OSHA general industry context',
+        ),
+      );
+    }
+
     if (hasOshaGeneralScope && hasExplicitUnlabeledContainerText) {
       recovered.push(
         this.makeRecoveredStandard(

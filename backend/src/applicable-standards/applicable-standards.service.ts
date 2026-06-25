@@ -621,7 +621,14 @@ export class ApplicableStandardsService {
     let scopeFit = "neutral";
     let scopeExclusionReason: string | undefined = undefined;
     if (isCylinderCitation) {
-      const hasCylinderTerms = /(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(observation);
+      const hasHotWorkEvidence = /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(observation);
+      if (/1926\.350/i.test(citation) && !hasHotWorkEvidence) {
+        score = -500;
+        scopeFit = "mismatch";
+        scopeExclusionReason = "Welding or hot-work evidence not present for this fuel-gas standard.";
+        matchingReasons.push("guardrail: fuel-gas welding standard requires hot-work evidence");
+      }
+      const hasCylinderTerms = /(oxygen|compressed gas|gas cylinder|cylinders?|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(observation);
       if (!hasCylinderTerms) {
         score = -500;
         scopeFit = "mismatch";
@@ -1117,7 +1124,7 @@ export class ApplicableStandardsService {
       (/\b(maintenance|servicing|repair|clearing jam|unjamming|cleaning|adjusting|work on)\b/i.test(observation) &&
         /\b(energized|powered|running|moving|startup|motor|circuit|electrical|conveyor|crusher|equipment)\b/i.test(observation));
     const isCompressedGasCylinderStorage =
-      /\b(?:oxygen|acetylene|argon|propane|compressed gas|gas) cylinder\b/i.test(observation) &&
+      /\b(?:oxygen|acetylene|argon|propane|compressed gas|gas) cylinders?\b/i.test(observation) &&
       /\b(?:unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic)\b/i.test(observation);
     const codeFallbackStandards =
       isCompressedGasCylinderStorage && activeJurisdiction === "osha_general_industry"
@@ -1759,7 +1766,7 @@ export class ApplicableStandardsService {
         let scopeExclusionReason: string | undefined = undefined;
         if (isCylinderCitation) {
           const hasCylinderTerms =
-            /(oxygen|compressed gas|gas cylinder|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(
+            /(oxygen|compressed gas|gas cylinder|cylinders?|cylinder|acetylene|argon|propane|valve cap|regulator|cylinder cart|unsecured cylinder|upright cylinder|tank valve|gas bottle)/i.test(
               observation,
             );
           if (!hasCylinderTerms) {

@@ -1,6 +1,6 @@
 import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
 import { getHazLenzPrimaryStandards, getHazLenzSupportingStandards, standardKey } from "@/lib/inspection/hazlenzStandardCandidates";
-import { formatStandardDisplay, getStandardCitation, getStandardSummary } from "@/lib/inspection/standardDisplay";
+import { formatStandardDisplay, getStandardCitation, getStandardSummary, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
 
 type Props = {
   safeScopeResult: any;
@@ -37,13 +37,14 @@ export default function SafeScopeStandardsSection({
   let isFallbackMode = false;
   let standardLabel = "candidate standard";
 
-  if (safeScopeResult?.suggestedStandards?.length) {
-    primaryStandards = safeScopeResult.suggestedStandards;
+  const hazLenzFallbackStandards = getHazLenzSuggestedStandards(safeScopeResult);
+
+  if (primaryStandards.length) {
     standardLabel = "suggested candidate standard";
   }
   // 3. Candidate standards if suggested standards is empty
-  else if (safeScopeResult?.inspectionIntelligence?.candidateStandards?.length) {
-    primaryStandards = safeScopeResult.inspectionIntelligence.candidateStandards;
+  else if (safeScopeResult?.inspectionIntelligence?.candidateStandards?.some(isDisplayableStandardCandidate)) {
+    primaryStandards = safeScopeResult.inspectionIntelligence.candidateStandards.filter(isDisplayableStandardCandidate);
     isCandidateMode = true;
     standardLabel = "candidate standard";
   }
@@ -55,8 +56,8 @@ export default function SafeScopeStandardsSection({
   }
 
   // Broad fallback across newer HazLenz response shapes.
-  if (!primaryStandards.length && hazLenzSuggestedStandards.length) {
-    primaryStandards = hazLenzSuggestedStandards;
+  if (!primaryStandards.length && hazLenzFallbackStandards.length) {
+    primaryStandards = hazLenzFallbackStandards;
     standardLabel = "suggested candidate standard";
   }
 

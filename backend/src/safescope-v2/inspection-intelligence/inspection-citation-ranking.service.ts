@@ -47,6 +47,8 @@ export class InspectionCitationRankingService {
     const hasServicingEnergyEvidence =
       /\b(lockout|loto|tagout|unexpected startup|hazardous energy|energy isolation|de-energized|isolated)\b/i.test(observation) ||
       (/\b(maintenance|servicing|cleaning machine|clearing jam|unjamming)\b/i.test(observation) && /\b(machine|equipment|conveyor|motor|circuit|press|pump|energized|powered)\b/i.test(observation));
+    const hasHornEvidence = /\b(horn|horns|backup alarm|backup alarms|audible warning)\b/i.test(observation);
+    const hasHotWorkEvidence = /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(observation);
     const directCandidates = input.inspectionIntelligence.candidateStandards;
     const directRanks = new Map(directCandidates.map((candidate, index) => [citationKey(candidate), index]));
     const ranked = input.suggestedStandards.map((candidate) => {
@@ -103,8 +105,13 @@ export class InspectionCitationRankingService {
       }
 
       const isCompressedGas = /1910\.(?:101|104)|1926\.350|(?:56|57)\.1600[56]/i.test(citation) || /compressed gas|gas cylinder|oxygen cylinder/.test(text);
-      if (isCompressedGas && !/\b(compressed gas|gas cylinder|oxygen cylinder|acetylene cylinder|cylinder|oxygen system)\b/.test(observation)) {
+      if (isCompressedGas && !/\b(compressed gas|gas cylinder|oxygen cylinder|acetylene cylinder|cylinders?|cylinder|oxygen system)\b/i.test(observation)) {
         score -= 220; penalties.push('No compressed-gas cylinder or gas-system evidence is described.'); exclude = true;
+      }
+      if (/1926\.350/i.test(citation) && !hasHotWorkEvidence) {
+        score -= 220;
+        penalties.push('Welding or hot-work evidence is not established for this fuel-gas standard.');
+        exclude = true;
       }
 
       const isElectricalPhysicalCondition = /\b(panel|breaker|enclosure|cover plate|filler plate|energized parts?|live parts?|conductor|cord|wiring|power strip|receptacle)\b/.test(observation);
@@ -181,6 +188,7 @@ export class InspectionCitationRankingService {
             score -= 20;
             penalties.push('Container/chemical spill evidence points away from lockout/tagout as the primary citation family.');
           }
+          exclude = true;
         } else {
           score += 120;
           reasons.push('Direct match: servicing or energy-isolation evidence supports hazardous-energy control.');
@@ -192,10 +200,16 @@ export class InspectionCitationRankingService {
         if (!hasConfinedSpaceEvidence) {
           score -= 220;
           penalties.push('Confined-space applicability is not established without entry, configuration, or atmospheric evidence.');
+          exclude = true;
         } else if (!/\b(entry|enter|inside|permit|required)\b/i.test(observation)) {
           score -= 120;
           penalties.push('A space was mentioned, but entry or permit-required context is not established.');
         }
+      }
+
+      if (/(?:56\.93[0-9]|56\.14132\(a\)|1910\.178\(l\)|1926\.601\(b\)\(14\))/i.test(citation) && !hasHornEvidence) {
+        score -= 150;
+        penalties.push('Horn or backup-alarm evidence is not established for this mobile-equipment citation.');
       }
 
       const enriched = {

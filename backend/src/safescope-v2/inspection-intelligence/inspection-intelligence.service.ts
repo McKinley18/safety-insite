@@ -408,12 +408,19 @@ export class InspectionIntelligenceService {
     const candidateStandards: InspectionCandidateStandard[] = [];
     if (!vagueInputAnalysis.isVague && conditionAssessment.citationEligible) {
       const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
+      const hasConfinedSpaceEvidence =
+        /\b(confined space|permit space|permit-required|manhole|vault)\b/i.test(text) ||
+        (/\b(tank|vessel|silo|bin)\b/i.test(text) &&
+          /\b(entry|enter|inside|worker inside|atmosphere|oxygen deficient|toxic atmosphere|engulfment|permit)\b/i.test(text));
+      const hasHotWorkEvidence = /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(text);
 
       ordered.forEach((rule) => jurisdictions.forEach((jurisdiction) => {
         (rule.standards[jurisdiction] || []).forEach((standard) => {
           if (jurisdiction === 'msha' && !citationAllowedForMineType(standard.citation, miningContext.mineType)) return;
 
           const normCit = standard.citation.toLowerCase().replace(/\s+/g, '');
+          if (/1910\.146|1926\.1203|(?:56|57)\.18001/.test(normCit) && !hasConfinedSpaceEvidence) return;
+          if (/1926\.350/.test(normCit) && !hasHotWorkEvidence) return;
           if (governedCitations.has(normCit)) {
             const isSuggested = standardAppResults.suggestedStandards.some(
               (c) => c.toLowerCase().replace(/\s+/g, '') === normCit

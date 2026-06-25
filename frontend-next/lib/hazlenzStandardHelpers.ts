@@ -1,3 +1,5 @@
+import { isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
+
 export type HazLenzStandardCandidate = {
   citation: string;
   title?: string;
@@ -30,6 +32,8 @@ function normalizeCitation(value: any): string {
 }
 
 function candidateFrom(value: any, source: string): HazLenzStandardCandidate | null {
+  if (!isDisplayableStandardCandidate(value)) return null;
+
   const citation = normalizeCitation(value);
   if (!citation) return null;
 

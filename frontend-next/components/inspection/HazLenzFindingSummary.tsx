@@ -1,5 +1,5 @@
 import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
-import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
+import { formatStandardDisplay, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
 
 type HazLenzFindingSummaryProps = {
   description: string;
@@ -63,26 +63,26 @@ function humanize(value: string) {
 }
 
 function getTopStandard(result: any, selectedStandards: any[]) {
-  if (selectedStandards?.[0]) return selectedStandards[0];
+  if (isDisplayableStandardCandidate(selectedStandards?.[0])) return selectedStandards[0];
 
-  const broadCandidates = getHazLenzSuggestedStandards(result);
+  const broadCandidates = getHazLenzSuggestedStandards(result).filter(isDisplayableStandardCandidate);
   if (broadCandidates[0]) return broadCandidates[0];
 
-  if (result?.suggestedStandards?.[0]) {
+  if (isDisplayableStandardCandidate(result?.suggestedStandards?.[0])) {
     return result.suggestedStandards[0];
   }
 
-  if (result?.inspectionIntelligence?.candidateStandards?.[0]) {
+  if (isDisplayableStandardCandidate(result?.inspectionIntelligence?.candidateStandards?.[0])) {
     return result.inspectionIntelligence.candidateStandards[0];
   }
 
-  if (result?.executiveJudgment?.topStandard) {
+  if (isDisplayableStandardCandidate(result?.executiveJudgment?.topStandard)) {
     return result.executiveJudgment.topStandard;
   }
 
   return (
-    result?.standardsReasoning?.topDefensible?.[0] ||
-    result?.applicabilityIntelligence?.primaryApplicableStandards?.[0] ||
+    (isDisplayableStandardCandidate(result?.standardsReasoning?.topDefensible?.[0]) ? result.standardsReasoning.topDefensible[0] : null) ||
+    (isDisplayableStandardCandidate(result?.applicabilityIntelligence?.primaryApplicableStandards?.[0]) ? result.applicabilityIntelligence.primaryApplicableStandards[0] : null) ||
     null
   );
 }

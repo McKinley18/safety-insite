@@ -1,3 +1,5 @@
+import { isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
+
 export function asArray(value: any): any[] {
   return Array.isArray(value) ? value.filter(Boolean) : [];
 }
@@ -19,34 +21,37 @@ export function normalizeHazLenzStandard(standard: any, source = "candidate") {
   if (!standard) return null;
 
   if (typeof standard === "string") {
-    return {
-      citation: standard,
-      heading: standard,
-      title: standard,
-      summary: "",
-      source,
-    };
+    return isDisplayableStandardCandidate({ citation: standard })
+      ? {
+          citation: standard,
+          heading: standard,
+          title: standard,
+          summary: "",
+          source,
+        }
+      : null;
   }
+
+  const citation =
+    standard.citation ||
+    standard.standard ||
+    standard.standardNumber ||
+    standard.code ||
+    standard.reference ||
+    "";
+
+  if (!isDisplayableStandardCandidate({ ...standard, citation })) return null;
 
   return {
     ...standard,
-    citation:
-      standard.citation ||
-      standard.standard ||
-      standard.standardNumber ||
-      standard.code ||
-      standard.reference ||
-      standard.label ||
-      standard.standardFamily ||
-      "Candidate standard",
+    citation,
     heading:
       standard.heading ||
       standard.title ||
       standard.name ||
       standard.label ||
-      standard.standardFamily ||
       standard.citation ||
-      "Candidate standard",
+      "Applicable standard",
     summary:
       standard.summary ||
       standard.plainLanguageSummary ||
@@ -61,6 +66,9 @@ export function normalizeHazLenzStandard(standard: any, source = "candidate") {
 
 export function getHazLenzPrimaryStandards(result: any): any[] {
   const raw = [
+    ...asArray(result?.primaryStandards).map((s) =>
+      normalizeHazLenzStandard(s, "primaryStandards"),
+    ),
     ...asArray(result?.suggestedStandards).map((s) =>
       normalizeHazLenzStandard(s, "suggestedStandards"),
     ),

@@ -28,6 +28,30 @@ export function getStandardCitation(standard: any) {
   return value ? `30 CFR ${value}` : text;
 }
 
+function looksLikeGenericStandardLabel(value: string) {
+  const text = cleanText(value).toLowerCase();
+  if (!text) return true;
+
+  return /^(review|pending|candidate standard|suggested candidate standard|fallback candidate standard|standard family|applicable standard|no specific standard selected yet|needs more evidence|review candidate standard)(?:\s|$)/i.test(text) ||
+    /\breview candidate standard\b/i.test(text) ||
+    /\bstandard family\b/i.test(text);
+}
+
+function looksLikeCitationText(value: string) {
+  const text = cleanText(value);
+  if (!text) return false;
+
+  return /\b(?:\d+\s*CFR\s*\d+(?:\.\d+)?(?:\([a-z0-9]+\))*|\d+\.\d+(?:\([a-z0-9]+\))*)\b/i.test(text);
+}
+
+export function isDisplayableStandardCandidate(standard: any) {
+  const citation = getStandardCitation(standard);
+  if (!looksLikeCitationText(citation)) return false;
+  if (looksLikeGenericStandardLabel(citation)) return false;
+
+  return true;
+}
+
 export function getStandardTitle(standard: any) {
   const citation = getStandardCitation(standard);
   const shortCitation = citation.replace(/^30 CFR\s+/i, "");
@@ -80,6 +104,15 @@ export function getStandardSummary(standard: any) {
 
   summary = collapseDuplicateSentences(summary);
 
+  if (
+    !summary ||
+    summary === title ||
+    summary === citation ||
+    /\b(candidate standard|suggested candidate standard|fallback candidate standard|review needed|review candidate standard|standard family|no specific standard selected yet|needs more evidence)\b/i.test(summary)
+  ) {
+    return "";
+  }
+
   if (summary.length > 340) {
     summary = summary.slice(0, 337).replace(/\s+\S*$/, "") + "...";
   }
@@ -88,12 +121,20 @@ export function getStandardSummary(standard: any) {
 }
 
 export function formatStandardDisplay(standard: any) {
+  if (!isDisplayableStandardCandidate(standard)) return "";
+
   const citation = getStandardCitation(standard);
   const title = getStandardTitle(standard);
 
   if (!citation && !title) return "Applicable standard";
   if (!citation) return title;
-  if (!title || title === "Applicable standard") return citation;
+  if (
+    !title ||
+    title === "Applicable standard" ||
+    /\b(candidate standard|suggested candidate standard|fallback candidate standard|review needed|review candidate standard|standard family|no specific standard selected yet|needs more evidence)\b/i.test(title)
+  ) {
+    return citation;
+  }
 
   return `${citation} — ${title}`;
 }
