@@ -257,6 +257,9 @@ export class SafescopeV2Service {
       excludedStandards = citationRecovery.excludedStandards;
       const supportingStandards = citationRecovery.supportingStandards;
       const needsMoreEvidenceStandards = citationRecovery.needsMoreEvidenceStandards;
+      const scopeCompatibleCandidateCount = scopedStandards.filter(
+        (standard) => standard.scopeFit !== "mismatch"
+      ).length;
 
       // Generate corrective actions using the action engine
       const actionInput: any = {
@@ -918,7 +921,7 @@ export class SafescopeV2Service {
         selectedScopes: normalizedScopes,
         sourceMode: source || "auto_or_unspecified",
         rawCandidateCount: rawSuggestedStandards.length,
-        scopeFilteredCandidateCount: suggestedStandards.length,
+        scopeFilteredCandidateCount: scopeCompatibleCandidateCount,
         supportingCandidateCount: supportingStandards.length,
         needsMoreEvidenceCandidateCount: needsMoreEvidenceStandards.length,
         excludedCandidateCount: excludedStandards.length,
@@ -1064,7 +1067,10 @@ export class SafescopeV2Service {
           }
         : (intelligence as any)?.applicabilityIntelligence;
       const likelyGuardingReview =
-        /guard/i.test(String(promotedPrimary.classification || '')) &&
+        (
+          /guard/i.test(String(promotedPrimary.classification || '')) ||
+          String(knowledgeRoute?.hazardFamily || '').toLowerCase() === 'machine_guarding'
+        ) &&
         suggestedStandards.length === 0 &&
         (needsMoreEvidenceStandards.length > 0 || Boolean(advisoryReasoning.inspectionIntelligence?.vagueInputAnalysis?.isVague));
       const guardingReviewQuestions = [
@@ -1125,6 +1131,17 @@ export class SafescopeV2Service {
         if (intelligence?.scenarioIntelligence?.hazardCategory && intelligence.scenarioIntelligence.hazardCategory !== 'unknown') {
           return intelligence.scenarioIntelligence.hazardCategory;
         }
+        if (knowledgeRoute?.hazardFamily && String(knowledgeRoute.hazardFamily) !== 'unknown') {
+          return knowledgeRoute.hazardFamily;
+        }
+        if (Array.isArray(advisoryReasoning?.inspectionIntelligence?.hazardCandidates)) {
+          const primaryCandidate = advisoryReasoning.inspectionIntelligence.hazardCandidates.find((candidate: any) =>
+            candidate?.role === 'primary' && candidate?.domain && candidate.domain !== 'unknown',
+          );
+          if (primaryCandidate?.domain && primaryCandidate.domain !== 'unknown') {
+            return primaryCandidate.domain;
+          }
+        }
         return classifierHazardCategory || 'unknown';
       })();
 
@@ -1139,16 +1156,42 @@ export class SafescopeV2Service {
         if (rootHazardCategory === 'machine_guarding_loto') return 'machine_guarding_loto';
         if (rootHazardCategory === 'fall_protection') return 'fall_protection';
         if (rootHazardCategory === 'slip_trip_fall') return 'walking_working_surfaces';
+        if (rootHazardCategory === 'walking_working_surfaces') return 'walking_working_surfaces';
+        if (rootHazardCategory === 'housekeeping') return 'walking_working_surfaces';
         if (rootHazardCategory === 'mobile_equipment') return 'mobile_equipment';
         if (rootHazardCategory === 'confined_space') return 'confined_space';
-        if (rootHazardCategory === 'hazardous_materials') return 'hazcom';
+        if (rootHazardCategory === 'hazardous_materials' || rootHazardCategory === 'hazard_communication') return 'hazcom';
         return 'unknown';
       })();
+
+      const effectiveClassification = (() => {
+        const rawClassification = String(promotedPrimary.classification || '').trim();
+        if (rawClassification && !/^(unclassified|unknown)$/i.test(rawClassification)) {
+          return rawClassification;
+        }
+
+        const normalizedCategory = String(rootHazardCategory || '').toLowerCase();
+        if (normalizedCategory === 'electrical') return 'Electrical';
+        if (normalizedCategory === 'machine_guarding') return 'Machine Guarding';
+        if (normalizedCategory === 'machine_guarding_loto') return 'Lockout / Stored Energy';
+        if (normalizedCategory === 'fall_protection') return 'Fall Protection';
+        if (normalizedCategory === 'slip_trip_fall' || normalizedCategory === 'walking_working_surfaces' || normalizedCategory === 'housekeeping') return 'Walking/Working Surfaces';
+        if (normalizedCategory === 'mobile_equipment') return 'Mobile Equipment / Traffic';
+        if (normalizedCategory === 'confined_space') return 'Confined Space';
+        if (normalizedCategory === 'compressed_gas') return 'Compressed Gas Cylinders';
+        if (normalizedCategory === 'hazardous_materials' || normalizedCategory === 'hazard_communication') return 'Hazard Communication';
+        return rawClassification || 'Unclassified';
+      })();
+
+      promotedPrimary.classification = effectiveClassification;
+      if (!promotedPrimary.family || String(promotedPrimary.family).toLowerCase() === 'unknown') {
+        promotedPrimary.family = rootHazardCategory;
+      }
 
       const supplementalEntries = getSupplementalKnowledgeForContext({
         hazardCategory: rootHazardCategory,
         candidateStandardFamily: rootStandardFamily,
-        classification: promotedPrimary.classification,
+        classification: effectiveClassification,
         knowledgeRoute,
         observation: fusedText,
         suggestedStandards,
@@ -1160,7 +1203,7 @@ export class SafescopeV2Service {
           ...promotedPrimary,
           ...intelligence,
           applicabilityIntelligence: sanitizedApplicabilityIntelligence,
-          classification: promotedPrimary.classification,
+          classification: effectiveClassification,
           reviewStateLabel: likelyGuardingReview
             ? 'Review needed — likely guarding issue'
             : isVague
@@ -1580,7 +1623,7 @@ export class SafescopeV2Service {
     if (scopes.includes("msha_mnm_underground")) return "MSHA_MNM_UNDERGROUND";
     if (scopes.includes("msha_coal_underground")) return "MSHA_COAL_UNDERGROUND";
     if (scopes.includes("msha_coal_surface")) return "MSHA_COAL_SURFACE";
-    if (scopes.includes("osha_general")) return "OSHA_GENERAL_INDUSTRY";
+    if (scopes.includes("osha_general") || scopes.includes("osha_general_industry")) return "OSHA_GENERAL_INDUSTRY";
     if (scopes.includes("osha_construction")) return "OSHA_CONSTRUCTION";
     return undefined;
   }

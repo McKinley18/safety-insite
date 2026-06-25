@@ -559,46 +559,93 @@ export class SafeScopeIntelligenceOrchestrator {
         {}
     );
     
+    const promotionSourceCandidate =
+      primaryStandardsResult?.suggestedStandards?.[0] ||
+      primaryStandardsResult?.needsMoreEvidenceStandards?.[0] ||
+      primaryStandardsResult?.supportingStandards?.[0] ||
+      {
+        citation: '1910.147',
+        title: 'Lockout / Tagout',
+        summary: 'Fallback approval candidate used when no standards candidate is available.',
+        standardFamily: 'loto',
+        hazardFamily: 'Lockout / Stored Energy',
+      };
+    const promotionCitation = String(
+      typeof promotionSourceCandidate === 'string'
+        ? promotionSourceCandidate
+        : promotionSourceCandidate.citation || promotionSourceCandidate.standard || promotionSourceCandidate.reference || '1910.147',
+    );
+    const promotionJurisdiction = /^30 CFR\b/i.test(promotionCitation)
+      ? 'msha'
+      : 'osha_general_industry';
+    const promotionStandardFamily = String(
+      typeof promotionSourceCandidate === 'string'
+        ? 'general'
+        : promotionSourceCandidate.standardFamily ||
+          promotionSourceCandidate.hazardFamily ||
+      'general',
+    ).toLowerCase();
+    const promotionHazardFamilies = promotionStandardFamily.includes('electrical')
+      ? ['Electrical']
+      : promotionStandardFamily.includes('machine')
+        ? ['Machine Guarding']
+        : promotionStandardFamily.includes('walking')
+          ? ['Walking/Working Surfaces']
+          : promotionStandardFamily.includes('hazcom') || promotionStandardFamily.includes('hazard')
+            ? ['Hazard Communication']
+            : promotionStandardFamily.includes('mobile')
+              ? ['Mobile Equipment / Traffic']
+              : promotionStandardFamily.includes('fall')
+                ? ['Fall Protection']
+                : promotionStandardFamily.includes('compressed')
+                  ? ['Compressed Gas Cylinders']
+                  : ['General'];
     const dummyRecord: any = {
         recordId: 'rec-1',
         version: '1.0.0',
         status: 'draft_candidate',
         authority: {
-            agency: 'OSHA',
+            agency: promotionJurisdiction === 'msha' ? 'MSHA' : 'OSHA',
             authorityTier: 'primary_regulation',
-            jurisdiction: 'osha_general_industry',
+            jurisdiction: promotionJurisdiction,
             sourceUrl: 'http://osha.gov',
-            citation: '1910.147',
-            title: 'LOTO',
+            citation: promotionCitation,
+            title: String(
+              typeof promotionSourceCandidate === 'string'
+                ? promotionSourceCandidate
+                : promotionSourceCandidate.title || promotionSourceCandidate.titleSummary || promotionSourceCandidate.summary || promotionCitation,
+            ),
             effectiveDate: '2026-01-01',
             revisionDate: '2026-01-01',
             sourceDateStatus: 'current'
         },
         mapping: {
-            standardFamily: 'loto',
-            hazardFamilies: ['energy'],
+            standardFamily: promotionStandardFamily,
+            hazardFamilies: promotionHazardFamilies,
             mechanisms: ['unexpected_startup'],
-            equipmentGroups: ['conveyor'],
-            taskContexts: ['maintenance'],
-            applicabilitySignals: ['energized'],
-            requiredFacts: ['energy_source'],
+            equipmentGroups: [String(typeof promotionSourceCandidate === 'string' ? 'general' : promotionSourceCandidate.equipmentGroup || promotionSourceCandidate.equipmentFamily || 'general')],
+            taskContexts: [String(typeof promotionSourceCandidate === 'string' ? 'inspection' : promotionSourceCandidate.taskContext || 'inspection')],
+            applicabilitySignals: [String(typeof promotionSourceCandidate === 'string' ? promotionCitation : promotionSourceCandidate.applicabilitySignal || promotionSourceCandidate.citation || 'candidate_standard')],
+            requiredFacts: [String(typeof promotionSourceCandidate === 'string' ? 'confirm applicability' : promotionSourceCandidate.requiredFact || 'confirm applicability')],
             disqualifyingFacts: [],
-            evidenceQuestions: ['Is energy isolated?']
+            evidenceQuestions: !Array.isArray(promotionSourceCandidate) && typeof promotionSourceCandidate !== 'string' && Array.isArray(promotionSourceCandidate.evidenceNeeded) && promotionSourceCandidate.evidenceNeeded.length
+              ? promotionSourceCandidate.evidenceNeeded
+              : ['Confirm jurisdiction, exposure, and applicability details.']
         },
         applicability: {
-            plainLanguageSummary: 'LOTO is required',
-            appliesWhen: 'servicing',
-            doesNotApplyWhen: 'normal operation',
-            requiredReviewerChecks: ['LOTO check']
+            plainLanguageSummary: String(typeof promotionSourceCandidate === 'string' ? promotionSourceCandidate : promotionSourceCandidate.summary || promotionSourceCandidate.titleSummary || 'Candidate standard'),
+            appliesWhen: String(typeof promotionSourceCandidate === 'string' ? 'observed condition' : promotionSourceCandidate.appliesWhen || promotionSourceCandidate.titleSummary || 'observed condition'),
+            doesNotApplyWhen: String(typeof promotionSourceCandidate === 'string' ? 'conditions not established' : promotionSourceCandidate.doesNotApplyWhen || 'conditions not established'),
+            requiredReviewerChecks: ['Qualified review of applicability']
         },
         correctiveActionLinks: {
-            preferredControlFamilies: ['isolation'],
-            verificationMethods: ['zero energy check'],
-            commonWeakActionsToAvoid: ['simple shutdown']
+            preferredControlFamilies: [String(promotionStandardFamily || 'controls')],
+            verificationMethods: ['qualified review'],
+            commonWeakActionsToAvoid: ['unverified assumption']
         },
         governance: {
             supersedesRecordIds: [],
-            duplicateKeys: ['loto-1910.147'],
+            duplicateKeys: [String(promotionCitation).toLowerCase().replace(/\s+/g, '-')],
             advisoryOnly: true,
             doesNotDeclareViolation: true,
             doesNotCreateCitation: true,

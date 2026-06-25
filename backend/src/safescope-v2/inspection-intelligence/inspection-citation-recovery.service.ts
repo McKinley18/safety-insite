@@ -50,7 +50,7 @@ function scopeAllows(candidate: InspectionCandidateStandard, scopes: string[]): 
   if (scopes.includes('msha_coal_surface')) return /^30 CFR (48|71|77)\./.test(citation);
   if (scopes.includes('msha_coal_underground')) return /^30 CFR (48|70|75)\./.test(citation);
   if (scopes.includes('msha')) return candidate.jurisdiction === 'msha';
-  if (scopes.includes('osha_general')) return candidate.jurisdiction === 'osha_general_industry';
+  if (scopes.includes('osha_general') || scopes.includes('osha_general_industry')) return candidate.jurisdiction === 'osha_general_industry';
   if (scopes.includes('osha_construction')) return candidate.jurisdiction === 'osha_construction';
   return true;
 }

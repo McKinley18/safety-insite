@@ -22,7 +22,7 @@ function candidateText(candidate: any): string {
 
 function scopeFit(citation: string, scopes: string[]): boolean {
   if (!scopes.length || scopes.includes('all')) return true;
-  if (scopes.includes('osha_general')) return /(?:29 CFR )?1910\./i.test(citation);
+  if (scopes.includes('osha_general') || scopes.includes('osha_general_industry')) return /(?:29 CFR )?1910\./i.test(citation);
   if (scopes.includes('osha_construction')) return /(?:29 CFR )?1926\./i.test(citation);
   if (scopes.some((scope) => scope.startsWith('msha'))) return /(?:30 CFR )?(?:46|48|56|57|62|70|71|75|77)\./i.test(citation);
   return true;
