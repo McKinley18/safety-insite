@@ -174,21 +174,33 @@ function buildSummary({
     : "Scope not confirmed";
 
   const standardFamily = result.isVague && (!result.suggestedStandards || result.suggestedStandards.length === 0)
-    ? "No specific standard selected yet. HazLenz needs more evidence before suggesting a candidate standard."
+    ? firstText(
+        result.reviewStateLabel,
+        result.standardFamilyCandidates?.[0]?.label
+          ? `${result.standardFamilyCandidates[0].label} — low-confidence candidate`
+          : undefined,
+        result.standardFamilyCandidates?.[0]?.standardFamily
+          ? `${result.standardFamilyCandidates[0].standardFamily} — low-confidence candidate`
+          : undefined,
+        result.candidateStandardFamily
+          ? `${result.candidateStandardFamily} — low-confidence candidate`
+          : undefined,
+        "No specific standard selected yet. HazLenz needs more evidence before suggesting a candidate standard.",
+      )
     : topStandard
       ? formatStandardDisplay(topStandard)
       : firstText(
           result.standardFamilyCandidates?.[0]?.label
-            ? `${result.standardFamilyCandidates[0].label} — review candidate standard`
+            ? `${result.standardFamilyCandidates[0].label} — candidate standard`
             : undefined,
           result.standardFamilyCandidates?.[0]?.standardFamily
-            ? `${result.standardFamilyCandidates[0].standardFamily} — review candidate standard`
+            ? `${result.standardFamilyCandidates[0].standardFamily} — candidate standard`
             : undefined,
           result.candidateStandardFamily
-            ? `${result.candidateStandardFamily} — review candidate standard`
+            ? `${result.candidateStandardFamily} — candidate standard`
             : undefined,
           result.classification
-            ? `${result.classification} — review candidate standard`
+            ? `${result.classification} — candidate standard`
             : undefined,
           "No advisory standard selected yet",
         );

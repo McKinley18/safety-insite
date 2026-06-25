@@ -1163,8 +1163,8 @@ export class SafescopeV2Service {
           classification: promotedPrimary.classification,
           reviewStateLabel: likelyGuardingReview
             ? 'Review needed — likely guarding issue'
-            : isVague && /guard/i.test(String(promotedPrimary.classification || ''))
-              ? 'Review needed — likely guarding issue'
+            : isVague
+              ? 'Review needed — more evidence required'
               : requiresHumanReview
                 ? 'Review'
                 : undefined,

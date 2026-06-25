@@ -13,6 +13,12 @@ export function getFindingStandardsForPdf(f: any) {
   if (Array.isArray(f.safeScopeResult?.inspectionIntelligence?.candidateStandards) && f.safeScopeResult.inspectionIntelligence.candidateStandards.length) {
     return f.safeScopeResult.inspectionIntelligence.candidateStandards;
   }
+  if (Array.isArray(f.safeScopeResult?.needsMoreEvidenceStandards) && f.safeScopeResult.needsMoreEvidenceStandards.length) {
+    return f.safeScopeResult.needsMoreEvidenceStandards;
+  }
+  if (Array.isArray(f.safeScopeResult?.standardApplicability?.needsMoreEvidenceStandards) && f.safeScopeResult.standardApplicability.needsMoreEvidenceStandards.length) {
+    return f.safeScopeResult.standardApplicability.needsMoreEvidenceStandards;
+  }
   if (f.safeScopeResult?.executiveJudgment?.topStandard) {
     return [f.safeScopeResult.executiveJudgment.topStandard];
   }

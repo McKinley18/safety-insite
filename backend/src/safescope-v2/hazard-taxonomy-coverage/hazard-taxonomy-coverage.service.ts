@@ -5,11 +5,21 @@ import { TaxonomyDomain, RoutingResult } from './hazard-taxonomy-coverage.types'
 
 @Injectable()
 export class HazardTaxonomyCoverageService {
-  private coverageMap: { domains: TaxonomyDomain[] };
+  private static cachedCoverageMap: { domains: TaxonomyDomain[] } | null = null;
 
-  constructor() {
-    const mapPath = path.resolve(__dirname, '../../../../safescope-data/hazard-taxonomy/hazard-taxonomy-coverage-map.v1.json');
-    this.coverageMap = JSON.parse(fs.readFileSync(mapPath, 'utf-8'));
+  private ensureLoaded() {
+    if (HazardTaxonomyCoverageService.cachedCoverageMap) return;
+
+    const mapPath = path.resolve(
+      __dirname,
+      '../../../../safescope-data/hazard-taxonomy/hazard-taxonomy-coverage-map.v1.json',
+    );
+    HazardTaxonomyCoverageService.cachedCoverageMap = JSON.parse(fs.readFileSync(mapPath, 'utf-8'));
+  }
+
+  private get coverageMap() {
+    this.ensureLoaded();
+    return HazardTaxonomyCoverageService.cachedCoverageMap as { domains: TaxonomyDomain[] };
   }
 
   getAllDomains(): TaxonomyDomain[] {

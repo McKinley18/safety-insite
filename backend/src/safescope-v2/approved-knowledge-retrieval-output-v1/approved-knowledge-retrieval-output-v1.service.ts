@@ -24,24 +24,24 @@ import { WorkspaceGovernanceAccessService } from '../workspace-governance-access
 
 @Injectable()
 export class ApprovedKnowledgeRetrievalOutputV1Service {
-  private taxonomyService = new HazardTaxonomyCoverageService();
-  private searchService = new ApprovedKnowledgeRegistrySearchService();
-  private scenarioService = new ScenarioExpansionService();
-  private evaluationService = new ScenarioEvaluationService();
-  private evidenceWeightingService = new FieldEvidenceWeightingService();
-  private decompositionService = new MultiHazardDecompositionService();
-  private narrativeService = new ObservationNarrativeSynthesisService();
-  private causalChainService = new CrossDomainCausalChainService();
-  private strategyService = new CorrectiveActionStrategyRankingService();
-  private riskVerificationService = new RiskVerificationResidualRiskService();
-  private feedbackService: HumanReviewFeedbackLoopService;
-  private freshnessService = new SourceFreshnessGovernanceService();
-  private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
-  private traceService = new AuditReadyReasoningTraceService();
-  private consoleService: ReviewerCandidateConsoleService;
-  private semanticService = new SemanticSynonymExpansionService();
-  private visualService = new VisualEvidenceReasoningService();
-  private imageAnalysisService = new RealImageAnalysisService();
+  private _taxonomyService?: HazardTaxonomyCoverageService;
+  private _searchService?: ApprovedKnowledgeRegistrySearchService;
+  private _scenarioService?: ScenarioExpansionService;
+  private _evaluationService?: ScenarioEvaluationService;
+  private _evidenceWeightingService?: FieldEvidenceWeightingService;
+  private _decompositionService?: MultiHazardDecompositionService;
+  private _narrativeService?: ObservationNarrativeSynthesisService;
+  private _causalChainService?: CrossDomainCausalChainService;
+  private _strategyService?: CorrectiveActionStrategyRankingService;
+  private _riskVerificationService?: RiskVerificationResidualRiskService;
+  private _feedbackService?: HumanReviewFeedbackLoopService;
+  private _freshnessService?: SourceFreshnessGovernanceService;
+  private _jurisdictionService?: JurisdictionApplicabilityDecisionTreeService;
+  private _traceService?: AuditReadyReasoningTraceService;
+  private _consoleService?: ReviewerCandidateConsoleService;
+  private _semanticService?: SemanticSynonymExpansionService;
+  private _visualService?: VisualEvidenceReasoningService;
+  private _imageAnalysisService?: RealImageAnalysisService;
 
   constructor(
     @Optional()
@@ -55,8 +55,90 @@ export class ApprovedKnowledgeRetrievalOutputV1Service {
       const g = gates || new RoleBasedApprovalGatesService();
       const a = access || new WorkspaceGovernanceAccessService();
       this.persistence = p;
-      this.consoleService = new ReviewerCandidateConsoleService(p, g, a);
-      this.feedbackService = new HumanReviewFeedbackLoopService(this.consoleService, p, g, a);
+  }
+
+  private get taxonomyService() {
+    return (this._taxonomyService ??= new HazardTaxonomyCoverageService());
+  }
+
+  private get searchService() {
+    return (this._searchService ??= new ApprovedKnowledgeRegistrySearchService());
+  }
+
+  private get scenarioService() {
+    return (this._scenarioService ??= new ScenarioExpansionService());
+  }
+
+  private get evaluationService() {
+    return (this._evaluationService ??= new ScenarioEvaluationService());
+  }
+
+  private get evidenceWeightingService() {
+    return (this._evidenceWeightingService ??= new FieldEvidenceWeightingService());
+  }
+
+  private get decompositionService() {
+    return (this._decompositionService ??= new MultiHazardDecompositionService());
+  }
+
+  private get narrativeService() {
+    return (this._narrativeService ??= new ObservationNarrativeSynthesisService());
+  }
+
+  private get causalChainService() {
+    return (this._causalChainService ??= new CrossDomainCausalChainService());
+  }
+
+  private get strategyService() {
+    return (this._strategyService ??= new CorrectiveActionStrategyRankingService());
+  }
+
+  private get riskVerificationService() {
+    return (this._riskVerificationService ??= new RiskVerificationResidualRiskService());
+  }
+
+  private get freshnessService() {
+    return (this._freshnessService ??= new SourceFreshnessGovernanceService());
+  }
+
+  private get jurisdictionService() {
+    return (this._jurisdictionService ??= new JurisdictionApplicabilityDecisionTreeService());
+  }
+
+  private get traceService() {
+    return (this._traceService ??= new AuditReadyReasoningTraceService());
+  }
+
+  private get consoleService() {
+    if (!this._consoleService) {
+      const p = this.persistence || new SafeScopePersistenceService();
+      const g = this.gates || new RoleBasedApprovalGatesService();
+      const a = this.access || new WorkspaceGovernanceAccessService();
+      this._consoleService = new ReviewerCandidateConsoleService(p, g, a);
+    }
+    return this._consoleService;
+  }
+
+  private get feedbackService() {
+    if (!this._feedbackService) {
+      const p = this.persistence || new SafeScopePersistenceService();
+      const g = this.gates || new RoleBasedApprovalGatesService();
+      const a = this.access || new WorkspaceGovernanceAccessService();
+      this._feedbackService = new HumanReviewFeedbackLoopService(this.consoleService, p, g, a);
+    }
+    return this._feedbackService;
+  }
+
+  private get semanticService() {
+    return (this._semanticService ??= new SemanticSynonymExpansionService());
+  }
+
+  private get visualService() {
+    return (this._visualService ??= new VisualEvidenceReasoningService());
+  }
+
+  private get imageAnalysisService() {
+    return (this._imageAnalysisService ??= new RealImageAnalysisService());
   }
 
   async retrieve(

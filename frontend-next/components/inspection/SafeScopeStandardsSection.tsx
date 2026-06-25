@@ -74,6 +74,13 @@ export default function SafeScopeStandardsSection({
   // 5. For vague input, show "No specific standard selected yet" plus evidence questions
   if (isVague) {
     const questions = safeScopeResult?.evidenceGapQuestions?.map((q: any) => typeof q === 'string' ? q : q.question || q.prompt || "") || [];
+    const vagueCandidates = hazLenzSuggestedStandards.filter(isDisplayableStandardCandidate);
+    const vagueFamilyLabel =
+      safeScopeResult?.standardFamilyCandidates?.[0]?.label ||
+      safeScopeResult?.standardFamilyCandidates?.[0]?.standardFamily ||
+      safeScopeResult?.candidateStandardFamily ||
+      safeScopeResult?.classification ||
+      "";
     return (
       <div className="mb-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-950 shadow-sm dark:border-white/10 dark:bg-[#0B1320] dark:text-white">
         <button
@@ -91,6 +98,11 @@ export default function SafeScopeStandardsSection({
             <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
               HazLenz needs more evidence before suggesting a candidate standard.
             </p>
+            {!!vagueFamilyLabel && (
+              <p className="mt-2 text-xs font-bold leading-5 text-slate-800 dark:text-slate-100">
+                Likely standard family: {String(vagueFamilyLabel)}
+              </p>
+            )}
           </div>
           <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700 dark:text-slate-300">
             {safeScopeStandardsOpen ? "Hide" : "View Questions"}
@@ -113,6 +125,27 @@ export default function SafeScopeStandardsSection({
             ) : (
               <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold">No questions available.</p>
             )}
+
+            {vagueCandidates.length > 0 && (
+              <div className="mt-4 rounded-xl border border-slate-200 bg-white px-3 py-3 dark:border-slate-800 dark:bg-slate-950">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-800 dark:text-slate-100">
+                  Low-confidence candidate standard(s)
+                </p>
+                <div className="mt-2 space-y-2">
+                  {vagueCandidates.slice(0, 3).map((standard: any) => (
+                    <div key={getStandardCitation(standard) || formatStandardDisplay(standard)} className="rounded-xl bg-slate-50 px-3 py-2 dark:bg-slate-900">
+                      <p className="text-sm font-black text-slate-900 dark:text-slate-100">
+                        {formatStandardDisplay(standard)}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-200">
+                        {getStandardSummary(standard) || "Additional evidence is needed before this candidate can be confirmed."}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {additionalInformationNeeded.length > 0 && (
               <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 dark:border-white/10 dark:bg-[#102A43]">
                 <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-white">

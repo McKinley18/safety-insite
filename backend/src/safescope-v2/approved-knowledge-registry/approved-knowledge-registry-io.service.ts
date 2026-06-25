@@ -9,17 +9,41 @@ export class ApprovedKnowledgeRegistryIoService {
   validateRegistry(): any {
     const registryPath = path.resolve(__dirname, '../../../../safescope-data/approved-knowledge/approved-knowledge-registry.v1.json');
     const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
-    
-    // In a real implementation, we would also read the draft candidate files here.
-    
+    const registryDir = path.resolve(__dirname, '../../../../safescope-data/approved-knowledge/registry');
+    const draftFiles = fs.existsSync(registryDir)
+      ? fs.readdirSync(registryDir).filter((file) => file.endsWith('.json'))
+      : [];
+
+    let invalidCount = 0;
+    let duplicateKeyCollisions = 0;
+    let advisoryGuardrailFailures = 0;
+    const seen = new Set<string>();
+
+    for (const record of Array.isArray(registry.records) ? registry.records : []) {
+      const errors = ApprovedKnowledgeRegistryValidator.validate(record);
+      if (errors.length) {
+        invalidCount += 1;
+      }
+
+      const recordKey = String(record?.recordId || '').trim().toLowerCase();
+      if (recordKey) {
+        if (seen.has(recordKey)) duplicateKeyCollisions += 1;
+        seen.add(recordKey);
+      }
+
+      if (!record?.governance?.advisoryOnly || !record?.governance?.doesNotDeclareViolation || !record?.governance?.doesNotCreateCitation || !record?.governance?.requiresQualifiedReview) {
+        advisoryGuardrailFailures += 1;
+      }
+    }
+
     return {
-        approvedCount: registry.records.length,
-        draftCandidateCount: 3, // Mocked based on current state
+        approvedCount: Array.isArray(registry.records) ? registry.records.length : 0,
+        draftCandidateCount: draftFiles.length,
         rejectedCount: 0,
         retiredCount: 0,
-        invalidCount: 0,
-        duplicateKeyCollisions: 0,
-        advisoryGuardrailFailures: 0
+        invalidCount,
+        duplicateKeyCollisions,
+        advisoryGuardrailFailures
     };
   }
 }

@@ -78,6 +78,15 @@ export function getHazLenzPrimaryStandards(result: any): any[] {
     ...asArray(result?.applicableStandards).map((s) =>
       normalizeHazLenzStandard(s, "applicableStandards"),
     ),
+    ...asArray(result?.standardApplicability?.suggestedStandards).map((s) =>
+      normalizeHazLenzStandard(s, "standardApplicability.suggestedStandards"),
+    ),
+    ...asArray(result?.needsMoreEvidenceStandards).map((s) =>
+      normalizeHazLenzStandard(s, "needsMoreEvidenceStandards"),
+    ),
+    ...asArray(result?.standardApplicability?.needsMoreEvidenceStandards).map((s) =>
+      normalizeHazLenzStandard(s, "standardApplicability.needsMoreEvidenceStandards"),
+    ),
     ...asArray(result?.standardFamilyCandidates).map((s) =>
       normalizeHazLenzStandard(s, "standardFamilyCandidates"),
     ),

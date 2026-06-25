@@ -175,6 +175,8 @@ export function getReportIntegrity(report: Report) {
       finding.selectedStandards ||
       finding.standards ||
       finding.safeScopeResult?.suggestedStandards ||
+      finding.safeScopeResult?.needsMoreEvidenceStandards ||
+      finding.safeScopeResult?.standardApplicability?.needsMoreEvidenceStandards ||
       [],
   ).length;
 

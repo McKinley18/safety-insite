@@ -27,6 +27,8 @@
     "validate:safescope:targeted:core": "ts-node scripts/run-safescope-targeted-validation.ts --area=core",
     "validate:safescope:targeted:governance": "ts-node scripts/run-safescope-targeted-validation.ts --area=governance",
     "validate:hazlenz-knowledge-index": "ts-node src/safescope-v2/knowledge-index/validate-hazlenz-knowledge-index.ts",
+    "audit:hazlenz-knowledge-completeness": "ts-node src/safescope-v2/tests/hazlenz-knowledge-completeness-audit.ts",
+    "audit:hazlenz-knowledge-completeness:db": "ts-node src/safescope-v2/tests/hazlenz-knowledge-completeness-audit.ts --db",
     "validate:safescope:targeted:precision": "ts-node scripts/run-safescope-targeted-validation.ts --area=precision",
     "ingest:ecfr:standards": "ts-node src/standards/ingestion/ingest-ecfr-standards.ts",
     "migration:run": "typeorm-ts-node-commonjs -d src/database/data-source.ts migration:run",

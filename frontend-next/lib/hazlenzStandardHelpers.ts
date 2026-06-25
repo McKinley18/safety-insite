@@ -177,5 +177,26 @@ export function getHazLenzSuggestedStandards(result: any): HazLenzStandardCandid
     "inspectionIntelligence.candidateStandards",
   );
 
+  pushUnique(
+    standards,
+    seen,
+    result.standardApplicability?.suggestedStandards,
+    "standardApplicability.suggestedStandards",
+  );
+
+  pushUnique(
+    standards,
+    seen,
+    result.needsMoreEvidenceStandards,
+    "needsMoreEvidenceStandards",
+  );
+
+  pushUnique(
+    standards,
+    seen,
+    result.standardApplicability?.needsMoreEvidenceStandards,
+    "standardApplicability.needsMoreEvidenceStandards",
+  );
+
   return standards;
 }
