@@ -556,7 +556,150 @@ export class SafescopeV2Service {
         };
       }
 
-      const sanitizedGeneratedActions = (generatedActions || []).map((action: any) => ({
+      const hasServicingEnergyEvidence =
+        /\b(lockout|loto|tagout|locked out|energy isolation|isolated|de-energized|deenergized|hazardous energy|unexpected startup|stored energy)\b/i.test(fusedText) ||
+        (/\b(maintenance|servicing|repair|clearing jam|unjamming|cleaning|adjusting|troubleshooting|work on)\b/i.test(fusedText) &&
+          /\b(energized|powered|running|moving|startup|start up|conveyor|machine|equipment|motor|circuit|electrical)\b/i.test(fusedText));
+      const hasConfinedSpaceEvidence =
+        /\b(confined space|permit space|permit-required|manhole|vault|pit)\b/i.test(fusedText) ||
+        (/\b(tank|vessel|silo|bin)\b/i.test(fusedText) &&
+          /\b(entry|enter|inside|worker inside|atmosphere|oxygen deficient|toxic atmosphere|engulfment|permit)\b/i.test(fusedText));
+      const hasMobileEquipmentEvidence =
+        /\b(forklift|loader|haul truck|truck|mobile equipment|powered industrial truck|vehicle|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i.test(fusedText) &&
+        /\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way|same aisle|same route|no traffic control)\b/i.test(fusedText);
+      const hasCylinderEvidence =
+        /\b(oxygen|acetylene|argon|propane|compressed gas|gas cylinder|cylinders?|cylinder)\b/i.test(fusedText);
+      const hasHotWorkEvidence =
+        /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(fusedText);
+      const hasHornEvidence =
+        /\b(horn|horns|backup alarm|backup alarms|audible warning)\b/i.test(fusedText);
+      const hasSpecificPurposeEquipmentEvidence =
+        /\b(sign|outline lighting|crane|hoist|elevator|dumbwaiter|escalator|moving walk|welder|welding machine|x-ray|induction heating|dielectric heating|electrolytic cell)\b/i.test(fusedText);
+      const hasElectricalPhysicalEvidence =
+        /\b(panel|breaker|enclosure|cover plate|filler plate|energized parts?|live parts?|conductor|cord|wiring|power strip|receptacle)\b/i.test(fusedText);
+      const hasWalkingSurfaceReleaseEvidence =
+        /\b(used[- ]oil|waste[- ]oil|oily waste|oily residue|oil spill|spill|spilled|leak|leaking|release|residue|residual)\b/i.test(fusedText) &&
+        /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(fusedText);
+      const hasHazComIdentityEvidence =
+        /\b(unlabeled|no label|missing label|no workplace marking|workplace marking|unknown liquid|unknown chemical|unidentified liquid|chemical identity|sds|hazcom|hazard communication|secondary container|spray bottle)\b/i.test(fusedText);
+
+
+      const hasSpecificPanelDefectEvidence =
+        /\b(open breaker slot|missing (?:panel )?cover|missing dead[- ]front|missing filler|filler plate|knockout|open slot|empty space in (?:the )?electrical panel|breaker or blank should be|blank should be|unused opening|exposed (?:live |energized )?(?:parts|bus|busbar|terminals?)|uncovered electrical panel|open electrical panel)\b/i.test(fusedText);
+
+
+      const buildAdditionalInformationNeeded = () => {
+        const items: Array<{ category: string; question: string; reason: string }> = [];
+
+        const add = (category: string, question: string, reason: string) => {
+          const key = `${category}|${question}`.toLowerCase();
+          if (items.some((item) => `${item.category}|${item.question}`.toLowerCase() === key)) return;
+          items.push({ category, question, reason });
+        };
+
+        const lower = fusedText.toLowerCase();
+        const administrativeOnlyText =
+          /\b(meeting|scheduled|schedule|training record|record is current|binder|calendar|account|login|log in)\b/i.test(lower) &&
+          !/\b(open|missing|damaged|exposed|leaking|spill|unguarded|blocked|unsecured|no label|unlabeled|unknown liquid|energized|live parts|pedestrian exposure)\b/i.test(lower);
+
+        if (administrativeOnlyText) {
+          return [];
+        }
+
+        if (isVague || /\b(panel|breaker|electrical|cord|wire|wiring)\b/i.test(lower)) {
+          add("Electrical condition", "What electrical equipment is involved, and what visible defect was observed?", "Needed to separate blocked access, damaged cord, exposed energized parts, and general electrical concerns.");
+          add("Energy/exposure", "Are energized or live parts exposed, and can unqualified persons access the area?", "Needed before HazLenz can treat an electrical standard as more than a candidate.");
+          add("Qualified review", "Has a qualified electrical person evaluated the condition?", "Electrical findings commonly require qualified verification before final report language.");
+        }
+
+        if (/\b(container|drum|bucket|pail|jug|tank|chemical|label|unlabeled|no label|no workplace marking|workplace marking|unknown liquid|unidentified liquid|spray bottle|sds|used oil|waste oil)\b/i.test(lower)) {
+          add("Chemical identity", "What is the container holding, and is the chemical identity known?", "Needed to separate HazCom labeling, spill/release, storage, and environmental concerns.");
+          add("Label/SDS", "Is a workplace label present and is the SDS available?", "Needed to support a HazCom candidate standard.");
+          add("Release/exposure", "Is there a leak, spill, residue, drain pathway, or employee exposure?", "Needed to determine whether housekeeping, environmental, or exposure controls also apply.");
+        }
+
+        if (/\b(oil|spill|leak|residue|floor|walkway|aisle|trip|slip|blocked access)\b/i.test(lower)) {
+          add("Walking surface", "Is the walking-working surface wet, oily, obstructed, damaged, or otherwise affected?", "Needed to support walking-working surface applicability.");
+          add("Exposure", "Do employees walk through or work in the affected area?", "Needed to estimate likelihood and exposure pathway.");
+          add("Control status", "Has the area been barricaded, cleaned, or otherwise controlled?", "Needed to assess immediate control adequacy.");
+        }
+
+        if (/\b(guard|guarding|machine|conveyor|pulley|shaft|nip point|moving part)\b/i.test(lower)) {
+          add("Equipment", "What machine, conveyor, pulley, shaft, or moving part is involved?", "Needed to select the correct guarding standard and mechanism of injury.");
+          add("Exposure", "Can a person reach the moving part during operation, cleanup, or maintenance?", "Needed to determine caught-in exposure.");
+          add("Energy/task", "Was the equipment operating, capable of startup, or under lockout/tagout?", "Needed to separate guarding from hazardous-energy-control concerns.");
+        }
+
+        if (/\b(forklift|truck|loader|vehicle|mobile equipment|pedestrian|traffic|blind corner)\b/i.test(lower)) {
+          add("Equipment movement", "What mobile equipment is operating and where is it traveling?", "Needed to distinguish PIT, mobile equipment, and traffic-control issues.");
+          add("Pedestrian exposure", "Are pedestrians, miners, or workers sharing the travel path?", "Needed to evaluate struck-by exposure.");
+          add("Traffic controls", "Are spotters, barriers, signs, right-of-way rules, or separation controls in place?", "Needed to assess control adequacy.");
+        }
+
+        if (/\b(ladder|platform|roof|edge|fall|guardrail|fall arrest|scaffold)\b/i.test(lower)) {
+          add("Fall exposure", "What height, surface, ladder, platform, or edge is involved?", "Needed to separate ladder condition, fall protection, and walking-working surface issues.");
+          add("Protection status", "Are guardrails, covers, fall arrest, ladder securement, or other controls present?", "Needed to support the likely fall-protection standard.");
+          add("Task", "What work was being performed and how long was the exposure?", "Needed for risk and corrective-action confidence.");
+        }
+
+        const existingQuestions = [
+          ...(Array.isArray((intelligence as any)?.evidenceGapQuestions) ? (intelligence as any).evidenceGapQuestions : []),
+          ...(Array.isArray((intelligence as any)?.inspectionIntelligence?.evidenceGapQuestions) ? (intelligence as any).inspectionIntelligence.evidenceGapQuestions : []),
+        ];
+
+        for (const q of existingQuestions) {
+          const question = typeof q === "string" ? q : q?.question || q?.prompt || "";
+          if (question) {
+            add("HazLenz evidence gap", String(question), "Generated by HazLenz to improve confidence before final report use.");
+          }
+        }
+
+        return items.slice(0, 6);
+      };
+
+
+      const sanitizeVagueGeneratedAction = (action: any) => {
+        if (!isVague || hasSpecificPanelDefectEvidence || !action) return action;
+
+        const vagueElectricalConcern =
+          /\b(panel|breaker|electrical)\b/i.test(fusedText) &&
+          !hasSpecificPanelDefectEvidence;
+
+        if (!vagueElectricalConcern) return action;
+
+        const forbiddenSpecificElectricalLanguage =
+          /\b(filler|knockout|dead[- ]front|open slot|approved covers?|blanks?|enclosure parts?|replace damaged wiring|exposed electrical equipment)\b/i;
+
+        const sanitizeText = (value: any) => {
+          if (typeof value !== "string") return value;
+          if (!forbiddenSpecificElectricalLanguage.test(value)) return value;
+
+          return "Restrict access to the electrical area and have a qualified electrical person verify the condition before work continues.";
+        };
+
+        const sanitized = {
+          ...action,
+          title: sanitizeText(action.title),
+          text: sanitizeText(action.text),
+          action: sanitizeText(action.action),
+          description: sanitizeText(action.description),
+          summary: sanitizeText(action.summary),
+        };
+
+        if (Array.isArray(action.steps)) {
+          sanitized.steps = action.steps
+            .map(sanitizeText)
+            .filter((step: any) => typeof step !== "string" || !forbiddenSpecificElectricalLanguage.test(step));
+        }
+
+        if (Array.isArray(action.referenceStandards)) {
+          sanitized.referenceStandards = action.referenceStandards;
+        }
+
+        return sanitized;
+      };
+
+      const sanitizedGeneratedActions = (generatedActions || []).map((action: any) => sanitizeVagueGeneratedAction({
         ...action,
         referenceStandards: (Array.isArray(action?.referenceStandards) ? action.referenceStandards : []).filter((standard: any) => {
           const citation = String(standard?.citation || standard?.standard || standard?.id || standard || "").trim();
@@ -580,7 +723,7 @@ export class SafescopeV2Service {
         fusedText,
         isVague,
       );
-      const sanitizedEnhancedGeneratedActions = (enhancedGeneratedActions || []).map((action: any) => ({
+      const sanitizedEnhancedGeneratedActions = (enhancedGeneratedActions || []).map((action: any) => sanitizeVagueGeneratedAction({
         ...action,
         referenceStandards: (Array.isArray(action?.referenceStandards) ? action.referenceStandards : []).filter((standard: any) => {
           const citation = String(standard?.citation || standard?.standard || standard?.id || standard || "").trim();
@@ -839,32 +982,6 @@ export class SafescopeV2Service {
           citation,
         };
       };
-      const hasServicingEnergyEvidence =
-        /\b(lockout|loto|tagout|locked out|energy isolation|isolated|de-energized|deenergized|hazardous energy|unexpected startup|stored energy)\b/i.test(fusedText) ||
-        (/\b(maintenance|servicing|repair|clearing jam|unjamming|cleaning|adjusting|troubleshooting|work on)\b/i.test(fusedText) &&
-          /\b(energized|powered|running|moving|startup|start up|conveyor|machine|equipment|motor|circuit|electrical)\b/i.test(fusedText));
-      const hasConfinedSpaceEvidence =
-        /\b(confined space|permit space|permit-required|manhole|vault|pit)\b/i.test(fusedText) ||
-        (/\b(tank|vessel|silo|bin)\b/i.test(fusedText) &&
-          /\b(entry|enter|inside|worker inside|atmosphere|oxygen deficient|toxic atmosphere|engulfment|permit)\b/i.test(fusedText));
-      const hasMobileEquipmentEvidence =
-        /\b(forklift|loader|haul truck|truck|mobile equipment|powered industrial truck|vehicle|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i.test(fusedText) &&
-        /\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way|same aisle|same route|no traffic control)\b/i.test(fusedText);
-      const hasCylinderEvidence =
-        /\b(oxygen|acetylene|argon|propane|compressed gas|gas cylinder|cylinders?|cylinder)\b/i.test(fusedText);
-      const hasHotWorkEvidence =
-        /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(fusedText);
-      const hasHornEvidence =
-        /\b(horn|horns|backup alarm|backup alarms|audible warning)\b/i.test(fusedText);
-      const hasSpecificPurposeEquipmentEvidence =
-        /\b(sign|outline lighting|crane|hoist|elevator|dumbwaiter|escalator|moving walk|welder|welding machine|x-ray|induction heating|dielectric heating|electrolytic cell)\b/i.test(fusedText);
-      const hasElectricalPhysicalEvidence =
-        /\b(panel|breaker|enclosure|cover plate|filler plate|energized parts?|live parts?|conductor|cord|wiring|power strip|receptacle)\b/i.test(fusedText);
-      const hasWalkingSurfaceReleaseEvidence =
-        /\b(used[- ]oil|waste[- ]oil|oily waste|oily residue|oil spill|spill|spilled|leak|leaking|release|residue|residual)\b/i.test(fusedText) &&
-        /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(fusedText);
-      const hasHazComIdentityEvidence =
-        /\b(unlabeled|no label|missing label|unknown chemical|chemical identity|sds|hazcom|hazard communication|secondary container)\b/i.test(fusedText);
       const shouldSurfacePrimaryStandard = (citation: string) => {
         if (/1910\.147|(?:56|57)\.12016/i.test(citation) && !hasServicingEnergyEvidence) return false;
         if (/1910\.146|1926\.1203|(?:56|57)\.18001/i.test(citation) && !hasConfinedSpaceEvidence) return false;
@@ -877,20 +994,58 @@ export class SafescopeV2Service {
         if (/1910\.1200/i.test(citation) && hasWalkingSurfaceReleaseEvidence && !hasHazComIdentityEvidence) return false;
         return true;
       };
+      const hasContradictoryElectricalSafeEvidence =
+        /\b(panel|breaker|electrical|enclosure)\b/i.test(fusedText) &&
+        /\b(cover is intact|cover intact|access is clear|clear access|no live parts|no exposed parts|no energized parts|fully closed|closed and latched)\b/i.test(fusedText);
+
       const primaryStandards = (() => {
         const candidateStandards = (advisoryReasoning.inspectionIntelligence?.candidateStandards || []).map(buildDisplayStandard).filter(Boolean);
         const traceabilityStandards = (standardsTraceability.suggestedCitations || []).map((citation: string) => buildDisplayStandard({ citation, title: citation, summary: citation, status: "candidate_standard", candidateStatus: "candidate_standard", source: ["standards_traceability"] })).filter(Boolean);
         const supportingStandardsDisplay = (supportingStandards || []).map(buildDisplayStandard).filter(Boolean);
+        const semanticCandidateStandards = [
+          ...(hasSpecificPanelDefectEvidence
+            ? [buildDisplayStandard({
+                citation: "29 CFR 1910.303(g)(2)(i)",
+                title: "Guarding of live parts",
+                summary: "Candidate standard based on an electrical panel opening, missing cover/blank, or potentially accessible energized parts.",
+                status: "candidate_standard",
+                candidateStatus: "candidate_standard",
+                standardFamily: "electrical",
+                source: ["semantic_evidence_generalization"],
+              })]
+            : []),
+          ...(hasHazComIdentityEvidence && /\b(container|bottle|spray bottle|shop|chemical|liquid|unknown liquid|unidentified liquid|marking|label)\b/i.test(fusedText)
+            ? [buildDisplayStandard({
+                citation: "29 CFR 1910.1200(f)(1)",
+                title: "Labels on shipped containers / workplace chemical identity",
+                summary: "Candidate standard based on unknown chemical identity, missing workplace marking, or unlabeled secondary container evidence.",
+                status: "candidate_standard",
+                candidateStatus: "candidate_standard",
+                standardFamily: "hazard_communication",
+                source: ["semantic_evidence_generalization"],
+              })]
+            : []),
+        ].filter(Boolean);
+
         const collected = (suggestedStandards || []).length
           ? (suggestedStandards || []).map(buildDisplayStandard).filter(Boolean)
           : traceabilityStandards.length
             ? traceabilityStandards
-            : candidateStandards;
+            : candidateStandards.length
+              ? candidateStandards
+              : semanticCandidateStandards;
         const baseCollected = collected.length ? collected : supportingStandardsDisplay;
         const seen = new Set<string>();
         return baseCollected.filter((standard: any) => {
           const key = String(standard?.citation || "").toLowerCase().replace(/\s+/g, "");
           if (!key || seen.has(key) || !shouldSurfacePrimaryStandard(String(standard?.citation || ""))) return false;
+
+          if (hasContradictoryElectricalSafeEvidence) {
+            const family = String(standard?.standardFamily || standard?.hazardFamily || "").toLowerCase();
+            const status = String(standard?.candidateStatus || standard?.status || "").toLowerCase();
+            if (family.includes("electrical") && status.includes("supporting_context")) return false;
+          }
+
           seen.add(key);
           return true;
         }).slice(0, 5);
@@ -1073,6 +1228,8 @@ export class SafescopeV2Service {
           semanticRouting: (intelligence as any).semanticRouting,
           aiReadiness,
           aiEvidenceContract,
+          additionalInformationNeeded: buildAdditionalInformationNeeded(),
+          informationNeeded: buildAdditionalInformationNeeded(),
           aiCapabilityProfile,
           nativeReasoning,
           learningGovernance,

@@ -287,7 +287,7 @@ export class InspectionCitationRankingService {
       if (!pattern.test(observation)) return;
       if (citations.test(citation)) { adjust(150); reasons.push(label); }
     };
-    direct(/\b(open breaker slot|missing (?:panel )?cover|missing cover plate|exposed (?:live|energized) parts?|open electrical panel)\b/, /1910\.303\(g\)\(2\)\(i\)|1926\.403\(i\)\(2\)\(i\)|(?:56|57)\.12032/, 'Direct match: exposed energized parts and enclosure/cover guarding.');
+    direct(/\b(open breaker slot|missing (?:panel )?cover|missing cover plate|empty space in (?:the )?electrical panel|breaker or blank should be|unused opening|exposed (?:live|energized) parts?|open electrical panel)\b/, /1910\.303\(g\)\(2\)\(i\)|1926\.403\(i\)\(2\)\(i\)|(?:56|57)\.12032/, 'Direct match: exposed energized parts or electrical enclosure opening/cover guarding.');
     direct(/\b(blocked|obstructed|storage|pallets?|boxes?)\b.*\b(panel|disconnect|switchboard)\b|\b(panel|disconnect|switchboard)\b.*\b(blocked|obstructed|clearance)\b/, /1910\.303\(g\)\(1\)|1926\.403\(i\)\(1\)|(?:56|57)\.12004/, 'Direct match: electrical equipment access and working-space obstruction.');
     direct(/\b(damaged|frayed|cut|exposed insulation)\b.*\bcord\b|\bcord\b.*\b(damaged|frayed|cut|wet)\b/, /1910\.(?:305\(g\)|334\(a\)\(2\)\(ii\))|1926\.(?:404\(b\)\(1\)\(ii\)|405)/, 'Direct match: flexible-cord condition, use, and electrical exposure.');
     direct(/\b(daisy[- ]chain|power strip|temporary wiring|overloaded extension)\b/, /1910\.305\(g\)|1926\.405/, 'Direct match: flexible or temporary wiring configuration.');

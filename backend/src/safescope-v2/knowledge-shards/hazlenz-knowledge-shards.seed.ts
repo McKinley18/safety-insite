@@ -76,13 +76,13 @@ export const HAZLENZ_KNOWLEDGE_SHARDS: HazLenzKnowledgeShardRecord[] = [
     evidenceNeeded: [
       "Identify the electrical equipment involved",
       "Confirm whether energized parts are exposed or accessible",
-      "Confirm whether covers, blanks, or enclosures are missing or damaged",
+      "Confirm whether electrical enclosure parts are missing, damaged, or improperly secured",
       "Document access by workers or maintenance personnel",
     ],
     correctiveActionPatterns: [
       "Restrict access to the exposed electrical equipment",
       "Have a qualified electrical person evaluate and correct the condition",
-      "Install approved covers, blanks, or enclosure components",
+      "Install listed electrical enclosure parts or covers as directed by a qualified electrical person",
       "Verify de-energization/lockout before work where applicable",
     ],
     authorityTier: "primary_regulation",

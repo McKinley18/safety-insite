@@ -30,6 +30,11 @@ export default function SafeScopeStandardsSection({
 }: Props) {
   const hazLenzSuggestedStandards = getHazLenzSuggestedStandards(safeScopeResult);
   const isVague = Boolean(safeScopeResult?.isVague);
+  const additionalInformationNeeded = Array.isArray(safeScopeResult?.additionalInformationNeeded)
+    ? safeScopeResult.additionalInformationNeeded
+    : Array.isArray(safeScopeResult?.informationNeeded)
+      ? safeScopeResult.informationNeeded
+      : [];
 
   // 1. Suggested standards (primary)
   let primaryStandards: any[] = getHazLenzPrimaryStandards(safeScopeResult);
@@ -70,7 +75,7 @@ export default function SafeScopeStandardsSection({
   if (isVague) {
     const questions = safeScopeResult?.evidenceGapQuestions?.map((q: any) => typeof q === 'string' ? q : q.question || q.prompt || "") || [];
     return (
-      <div className="mb-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 shadow-sm">
+      <div className="mb-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-950 shadow-sm dark:border-white/10 dark:bg-[#0B1320] dark:text-white">
         <button
           type="button"
           onClick={() => setSafeScopeStandardsOpen((open: boolean) => !open)}
@@ -108,8 +113,24 @@ export default function SafeScopeStandardsSection({
             ) : (
               <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold">No questions available.</p>
             )}
+            {additionalInformationNeeded.length > 0 && (
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 dark:border-white/10 dark:bg-[#102A43]">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-white">
+                  Additional information needed
+                </p>
+                <ul className="mt-2 space-y-2">
+                  {additionalInformationNeeded.slice(0, 5).map((item: any, idx: number) => (
+                    <li key={idx} className="text-xs font-semibold leading-5 text-slate-700 dark:text-slate-100">
+                      <span className="font-black">{item?.category || "Evidence"}:</span>{" "}
+                      {item?.question || item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <p className="mt-4 text-[10px] leading-normal text-slate-700 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800/40 pt-2 font-semibold">
-              ℹ️ No candidate standard is suggested because the input is too vague. Requires qualified review.
+              ℹ️ HazLenz may suggest candidate standards when the hazard family is clear, but low-confidence results require additional information and qualified review.
             </p>
           </div>
         )}
@@ -141,8 +162,8 @@ export default function SafeScopeStandardsSection({
         key={getStandardCitation(standard) || formatStandardDisplay(standard)}
         className={`mb-3 rounded-2xl border border-slate-200 dark:border-slate-800 px-3 py-3 transition ${
           selected
-            ? "border-[#1D72B8] bg-[#E8F4FF]"
-            : "bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800"
+            ? "border-[#1D72B8] bg-[#E8F4FF] text-slate-950 dark:bg-[#0F2742] dark:text-white"
+            : "bg-white text-slate-950 hover:bg-slate-50 dark:bg-[#0B1320] dark:text-white dark:hover:bg-[#102A43]"
         }`}
       >
         <div className="flex flex-wrap items-center gap-2">
@@ -169,7 +190,7 @@ export default function SafeScopeStandardsSection({
           )}
         </div>
 
-        <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+        <p className="mt-2 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-100">
           {getStandardSummary(standard) || "No summary available."}
         </p>
 
@@ -179,7 +200,7 @@ export default function SafeScopeStandardsSection({
               Why this matched
             </summary>
 
-            <p className="mt-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            <p className="mt-2 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-100">
               {standard.matchingReasons.slice(0, 6).join(" • ")}
             </p>
           </details>
@@ -306,7 +327,7 @@ export default function SafeScopeStandardsSection({
   };
 
   return (
-    <div className="mb-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 shadow-sm">
+    <div className="mb-3 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-950 shadow-sm dark:border-white/10 dark:bg-[#0B1320] dark:text-white">
       <button
         type="button"
         onClick={() => setSafeScopeStandardsOpen((open: boolean) => !open)}

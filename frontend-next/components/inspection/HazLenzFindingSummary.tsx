@@ -246,7 +246,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
       </div>
 
       <div className="grid gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200 sm:grid-cols-2">
-        <div className="rounded-xl bg-white px-3 py-3 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800">
+        <div className="rounded-xl bg-white px-3 py-3 text-slate-950 ring-1 ring-slate-200 dark:bg-[#0B1320] dark:text-white dark:ring-white/10">
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Why It Matters
           </p>
@@ -255,7 +255,7 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
           </p>
         </div>
 
-        <div className="rounded-xl bg-white px-3 py-3 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800">
+        <div className="rounded-xl bg-white px-3 py-3 text-slate-950 ring-1 ring-slate-200 dark:bg-[#0B1320] dark:text-white dark:ring-white/10">
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Likely Scope
           </p>

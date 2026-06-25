@@ -193,7 +193,7 @@ export default function CurrentHazardCard({
       >
         <section
           ref={cardRef}
-          className="pointer-events-auto mx-auto w-full max-w-3xl rounded-t-[18px] border border-white/10 bg-white/92 shadow-sm ring-1 ring-white/70 backdrop-blur-xl lg:rounded-xl"
+          className="pointer-events-auto mx-auto w-full max-w-3xl rounded-t-[18px] border border-slate-200 bg-white/95 text-slate-950 shadow-sm ring-1 ring-slate-200 backdrop-blur-xl dark:border-white/10 dark:bg-[#0B1320]/95 dark:text-white dark:ring-white/10 lg:rounded-xl"
           aria-label="Finding Builder"
         >
           <div className="flex min-w-0 items-center gap-2 px-3 py-1.5">
@@ -230,7 +230,7 @@ export default function CurrentHazardCard({
                   {category}
                 </h2>
 
-                <p className="truncate text-[9px] font-semibold leading-4 text-slate-700">
+                <p className="truncate text-[9px] font-semibold leading-4 text-slate-700 dark:text-slate-200">
                   {primaryLine} · {categorySource}
                 </p>
 
@@ -256,7 +256,7 @@ export default function CurrentHazardCard({
             <button
               type="button"
               onClick={() => setExpanded((open) => !open)}
-              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black leading-none text-slate-600 transition hover:bg-slate-200 hover:text-slate-800"
+              className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-black leading-none text-slate-800 transition hover:bg-slate-200 hover:text-slate-950 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
               aria-expanded={expanded}
               aria-controls={detailsId}
               aria-label={expanded ? "Collapse finding builder" : "Expand finding builder"}
@@ -277,7 +277,7 @@ export default function CurrentHazardCard({
                 fallbackText={secondaryLine}
               />
 
-              <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-600">
+              <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-700 dark:text-slate-100">
                 <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
                   <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
                     Photos

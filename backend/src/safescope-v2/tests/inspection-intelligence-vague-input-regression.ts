@@ -51,7 +51,6 @@ const vagueGroups: Record<string, VagueTestCase[]> = {
     { observation: 'chemical issue', expectedDomain: 'hazard_communication' },
     { observation: 'open container', expectedDomain: 'hazard_communication' },
     { observation: 'spill', expectedDomain: 'hazard_communication' },
-    { observation: 'unlabeled container', expectedDomain: 'hazard_communication' },
     { observation: 'no label', expectedDomain: 'hazard_communication' },
   ],
   'Group D (Machine & LOTO)': [
@@ -94,6 +93,7 @@ const vagueGroups: Record<string, VagueTestCase[]> = {
 // Group I: Sufficient Evidence Bypasses
 const groupICases = [
   'open breaker slot',
+  'unlabeled container',
   'unlabeled chemical container',
   'missing guard on conveyor tail pulley',
   'blocked emergency exit',
@@ -196,7 +196,7 @@ for (const observation of groupJCases) {
   }
 }
 
-const totalCases = 40 + groupICases.length + groupJCases.length;
+const totalCases = Object.values(vagueGroups).reduce((sum, cases) => sum + cases.length, 0) + groupICases.length + groupJCases.length;
 console.log("\n==================================================");
 console.log(`Vague Input Regression Result: ${totalCases - failures}/${totalCases} passed`);
 console.log("==================================================\n");

@@ -28,7 +28,7 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     ],
     commonlyConfusedWith: ['29 CFR 1910.303(g)(1)'],
     followUpQuestions: [
-      'Are energized/live parts visible or accessible, or are covers/fillers missing?',
+      'Are energized/live parts visible or accessible, or are electrical enclosure parts missing or damaged?',
       'Is the cover or door fully closed, intact, and latched?',
       'Are unqualified persons able to access or contact this panel/enclosure?',
       'Has a qualified electrical professional evaluated the enclosure status?',
@@ -42,9 +42,9 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     },
     controlPrinciples: [
       'Restrict access to the area immediately.',
-      'Have a qualified electrical person de-energize the circuit or install approved covers.',
+      'Have a qualified electrical person de-energize the circuit or install listed corrective parts.',
       'Provide listed temporary barriers under qualified supervision.',
-      'Install permanent approved fillers or covers.'
+      'Install permanent listed electrical enclosure parts or covers.'
     ]
   },
   {
@@ -70,7 +70,7 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     ],
     commonlyConfusedWith: ['29 CFR 1926.403(i)(1)'],
     followUpQuestions: [
-      'Are energized/live parts visible or accessible, or are covers/fillers missing?',
+      'Are energized/live parts visible or accessible, or are electrical enclosure parts missing or damaged?',
       'Is the cover or door fully closed, intact, and latched?',
       'Are unqualified persons able to access or contact this panel/enclosure?',
       'Has a qualified electrical professional evaluated the enclosure status?',
@@ -84,9 +84,9 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     },
     controlPrinciples: [
       'Restrict access to the area immediately.',
-      'Have a qualified electrical person de-energize the circuit or install approved covers.',
+      'Have a qualified electrical person de-energize the circuit or install listed corrective parts.',
       'Provide listed temporary barriers under qualified supervision.',
-      'Install permanent approved fillers or covers.'
+      'Install permanent listed electrical enclosure parts or covers.'
     ]
   },
   {
@@ -113,7 +113,7 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     ],
     commonlyConfusedWith: ['30 CFR 56.12018'],
     followUpQuestions: [
-      'Are energized/live parts visible or accessible, or are covers/fillers missing?',
+      'Are energized/live parts visible or accessible, or are electrical enclosure parts missing or damaged?',
       'Is the cover or door fully closed, intact, and latched?',
       'Are unqualified persons able to access or contact this panel/enclosure?',
       'Has a qualified electrical professional evaluated the enclosure status?',

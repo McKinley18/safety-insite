@@ -29,7 +29,7 @@ const VAGUE_RULES: VagueRule[] = [
     missingFacts: [
       'Voltage level and equipment type involved.',
       'Whether energized/live parts are exposed to touch.',
-      'Cover, dead-front, or enclosure rating and physical condition.',
+      'Panel/enclosure condition, cover status, and physical condition.',
       'Employee proximity, accessibility, and tasks conducted near the equipment.'
     ],
     questions: [
@@ -326,10 +326,15 @@ const GENERAL_VAGUE_KEYWORDS = [
 // Inputs containing these specific indicators are deemed to have "enough evidence" to bypass vagueness.
 const SUFFICIENT_EVIDENCE_CUES = [
   /\bopen breaker slot\b/i,
+  /\bempty space in (?:the )?electrical panel\b/i,
+  /\bbreaker or blank should be\b/i,
+  /\bunused opening\b[^.;]*\b(electrical panel|panel|breaker)\b/i,
   /\bexposing energized parts\b/i,
   /\bunlabeled chemical container\b/i,
-  /\b(unlabeled|no label|missing label)\b[^.;]*\b(container|tank|drum|bottle|can|pail|jug|tote|bucket)\b/i,
-  /\b(container|tank|drum|bottle|can|pail|jug|tote|bucket)\b[^.;]*\b(unlabeled|no label|missing label)\b/i,
+  /\b(unknown liquid|unidentified liquid)\b[^.;]*\b(no workplace marking|workplace marking|no label|missing label|unlabeled|spray bottle|bottle|container)\b/i,
+  /\b(spray bottle|bottle|container|tank|drum|can|pail|jug|tote|bucket)\b[^.;]*\b(unknown liquid|unidentified liquid|no workplace marking|workplace marking|unlabeled|no label|missing label)\b/i,
+  /\b(unlabeled|no label|missing label|no workplace marking|workplace marking)\b[^.;]*\b(container|tank|drum|bottle|spray bottle|can|pail|jug|tote|bucket|unknown liquid|unidentified liquid)\b/i,
+  /\b(container|tank|drum|bottle|spray bottle|can|pail|jug|tote|bucket|unknown liquid|unidentified liquid)\b[^.;]*\b(unlabeled|no label|missing label|no workplace marking|workplace marking)\b/i,
   /\b(used[- ]oil|waste[- ]oil)\b[^.;]*\b(unlabeled|no label|missing label)\b/i,
   /\bforklift operating next to pedestrians\b/i,
   /\bmissing guard on conveyor tail pulley\b/i,
@@ -522,11 +527,11 @@ export class VagueInputIntelligenceService {
       return {
         isVague: true,
         observedFacts: ['Unspecified circuit breaker or breaker panel concern reported.'],
-        inferredPossibilities: ['Missing breaker filler plate or open slot', 'Exposed energized electrical busbar', 'Frequent tripping/overload'],
+        inferredPossibilities: ['Missing or damaged breaker/panel component', 'Exposed energized electrical busbar', 'Frequent tripping/overload'],
         missingCriticalFacts: ['Panel cover integrity', 'Energized exposure', 'Load/overload status'],
         likelyHazardFamilies: [{ domain: 'electrical', confidence: 'low', rationale: 'Observed wording suggests breaker panel concern.' }],
         immediateSafetyQuestions: [
-          'Is there a missing breaker cover, open slot, or exposed energized parts?',
+          'Is there a missing/damaged cover, exposed energized part, or other visible panel defect?',
           'Is the breaker frequently tripping, warm to touch, or physically damaged?',
           'Has a qualified electrician inspected the panel enclosure?'
         ],
