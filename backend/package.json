@@ -95,7 +95,10 @@
     "hazlenz:generate-shard-candidates": "ts-node src/safescope-v2/coverage/generate-hazlenz-warm-shard-candidates.ts",
     "hazlenz:qa-shard-candidates": "ts-node src/safescope-v2/coverage/qa-hazlenz-generated-candidates.ts",
     "diagnose:production": "ts-node src/safescope-v2/maintenance/check-production-hazlenz-diagnostics.ts",
-    "test:hazlenz-field-output-smoke": "node src/safescope-v2/tests/smoke/hazlenz-field-output-smoke.js"
+    "test:hazlenz-field-output-smoke": "node src/safescope-v2/tests/smoke/hazlenz-field-output-smoke.js",
+    "audit:hazlenz-knowledge-runtime": "ts-node scripts/audit-hazlenz-knowledge-runtime-architecture.ts",
+    "sync:standards-intelligence:dry-run": "ts-node src/standards/seed/sync-standards-intelligence-to-master.ts",
+    "sync:standards-intelligence:apply": "ts-node src/standards/seed/sync-standards-intelligence-to-master.ts --apply"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
