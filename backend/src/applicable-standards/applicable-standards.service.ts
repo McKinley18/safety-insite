@@ -622,6 +622,12 @@ export class ApplicableStandardsService {
     let scopeExclusionReason: string | undefined = undefined;
     if (isCylinderCitation) {
       const hasHotWorkEvidence = /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(observation);
+      if (/1910\.253/i.test(citation) && !hasHotWorkEvidence) {
+        score = -500;
+        scopeFit = "mismatch";
+        scopeExclusionReason = "Welding or hot-work evidence not present for this fuel-gas standard.";
+        matchingReasons.push("guardrail: fuel-gas welding standard requires hot-work evidence");
+      }
       if (/1926\.350/i.test(citation) && !hasHotWorkEvidence) {
         score = -500;
         scopeFit = "mismatch";

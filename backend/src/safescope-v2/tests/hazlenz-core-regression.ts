@@ -82,6 +82,10 @@ const suites: Suite[] = [
   {
     name: "HazLenz Classify Path Regression",
     scriptPath: "src/safescope-v2/tests/hazlenz-classify-path-regression.ts"
+  },
+  {
+    name: "HazLenz Production Path Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-production-path-regression.ts"
   }
 ];
 

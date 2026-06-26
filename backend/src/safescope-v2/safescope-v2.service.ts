@@ -191,9 +191,55 @@ export class SafescopeV2Service {
 
       const standardAppResults = advisoryReasoning?.inspectionIntelligence?.standardApplicability;
       const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
+      const mineType = String(advisoryReasoning?.inspectionIntelligence?.miningContext?.mineType || '').toLowerCase();
+      const mineContextDetected = Boolean(advisoryReasoning?.inspectionIntelligence?.miningContext?.detected);
+      const mineTypeAllowsCitation = (citation: string) => {
+        const normalizedCitation = String(citation || '').trim();
+        if (!normalizedCitation) return false;
+        if (!/^30 CFR\b/.test(normalizedCitation)) return true;
+        if (!mineContextDetected || mineType === 'not_mine') return true;
+        if (mineType === 'unclear_mine') return false;
+        const part = normalizedCitation.match(/^30 CFR (\d+)/)?.[1];
+        if (!part) return true;
+        if (part === '62') return true;
+        if (mineType === 'surface_metal_nonmetal') return ['46', '48', '56'].includes(part);
+        if (mineType === 'underground_metal_nonmetal') return ['48', '57'].includes(part);
+        if (mineType === 'surface_coal') return ['48', '71', '77'].includes(part);
+        if (mineType === 'underground_coal') return ['48', '70', '75'].includes(part);
+        return true;
+      };
+      const applicabilitySuggestedStandards = Array.isArray(standardAppResults?.matchedRules)
+        ? standardAppResults.matchedRules
+            .map((rule: any) => {
+              const citation = String(rule?.citation || '').trim();
+              if (!citation) return null;
+              return {
+                citation,
+                title: rule.standardTitle || citation,
+                titleSummary: rule.standardTitle || citation,
+                summary: rule.standardTitle || citation,
+                score: 1000,
+                confidence: 0.96,
+                status: 'candidate_standard',
+                candidateStatus: 'candidate_standard',
+                standardFamily: String(rule.hazardFamily || '').toLowerCase() || undefined,
+                hazardFamily: String(rule.hazardFamily || '').toLowerCase() || undefined,
+                jurisdiction: rule.jurisdiction,
+                source: ['standard_applicability'],
+                matchingReasons: [`Sufficient applicability rule matched: ${rule.standardTitle}.`],
+                evidenceNeeded: Array.isArray(standardAppResults?.followUpQuestions) && standardAppResults.followUpQuestions.length
+                  ? standardAppResults.followUpQuestions.slice(0, 5)
+                  : [`Confirm the observed condition, exposure path, and control status for ${rule.standardTitle}.`],
+              };
+            })
+            .filter((standard: any) => Boolean(standard) && mineTypeAllowsCitation(String(standard?.citation || '')))
+        : [];
+
+      const mineTypeCompatibleStandards = [...rawSuggestedStandards, ...applicabilitySuggestedStandards]
+        .filter((standard) => mineTypeAllowsCitation(String(standard?.citation || standard?.standard || standard?.id || '')));
 
       const scopedStandards = this.applyStandardsScopeFit(
-        rawSuggestedStandards,
+        mineTypeCompatibleStandards,
         normalizedScopes,
       ).map((standard) => {
         const normCit = (standard.citation || standard.standard || '').toLowerCase().replace(/\s+/g, '');
@@ -991,6 +1037,7 @@ export class SafescopeV2Service {
         if (/(?:1910\.178|1926\.60[12]|(?:56|57)\.9100)/i.test(citation) && !hasMobileEquipmentEvidence) return false;
         if (/(?:56\.93[0-9]|56\.14132\(a\)|1910\.178\(l\)|1926\.601\(b\)\(14\))/i.test(citation) && !hasHornEvidence) return false;
         if (/(?:1910\.101|1926\.350|(?:56|57)\.1600[56])/i.test(citation) && !hasCylinderEvidence) return false;
+        if (/1910\.253/i.test(citation) && !hasHotWorkEvidence) return false;
         if (/1926\.350/i.test(citation) && !hasHotWorkEvidence) return false;
         if (/1910\.306/i.test(citation) && !hasSpecificPurposeEquipmentEvidence) return false;
         if (/(?:1910\.301|1910\.331)/i.test(citation) && hasElectricalPhysicalEvidence) return false;
@@ -1124,25 +1171,38 @@ export class SafescopeV2Service {
       })();
 
       // Determine root-level hazardCategory (primary hazard domain)
+      const isGenericClassifierCategory = (value: string) => {
+        const normalized = String(value || '').toLowerCase();
+        return !normalized || ['unknown', 'unclassified', 'other', 'general', 'misc', 'miscellaneous'].includes(normalized);
+      };
+
       const rootHazardCategory = (() => {
-        if (classifierHazardCategory && classifierHazardCategory !== 'unknown') {
+        const applicabilityHazardFamily = advisoryReasoning?.inspectionIntelligence?.standardApplicability?.matchedRules?.[0]?.hazardFamily;
+        if (applicabilityHazardFamily && !isGenericClassifierCategory(applicabilityHazardFamily)) {
+          return applicabilityHazardFamily;
+        }
+        if (classifierHazardCategory && !isGenericClassifierCategory(classifierHazardCategory)) {
           return classifierHazardCategory;
         }
-        if (intelligence?.scenarioIntelligence?.hazardCategory && intelligence.scenarioIntelligence.hazardCategory !== 'unknown') {
+        if (intelligence?.scenarioIntelligence?.hazardCategory && !isGenericClassifierCategory(intelligence.scenarioIntelligence.hazardCategory)) {
           return intelligence.scenarioIntelligence.hazardCategory;
         }
-        if (knowledgeRoute?.hazardFamily && String(knowledgeRoute.hazardFamily) !== 'unknown') {
+        if (knowledgeRoute?.hazardFamily && !isGenericClassifierCategory(knowledgeRoute.hazardFamily)) {
           return knowledgeRoute.hazardFamily;
         }
         if (Array.isArray(advisoryReasoning?.inspectionIntelligence?.hazardCandidates)) {
           const primaryCandidate = advisoryReasoning.inspectionIntelligence.hazardCandidates.find((candidate: any) =>
             candidate?.role === 'primary' && candidate?.domain && candidate.domain !== 'unknown',
           );
-          if (primaryCandidate?.domain && primaryCandidate.domain !== 'unknown') {
+          if (primaryCandidate?.domain && !isGenericClassifierCategory(primaryCandidate.domain)) {
             return primaryCandidate.domain;
           }
         }
-        return classifierHazardCategory || 'unknown';
+        const applicabilitySuggestedStandard = advisoryReasoning?.inspectionIntelligence?.standardApplicability?.suggestedStandards?.[0];
+        if (typeof applicabilitySuggestedStandard === 'string' && /1910\.305|1910\.334|56\.12013|56\.12032/i.test(applicabilitySuggestedStandard)) {
+          return 'electrical';
+        }
+        return isGenericClassifierCategory(classifierHazardCategory) ? 'unknown' : classifierHazardCategory || 'unknown';
       })();
 
       // Determine root-level candidateStandardFamily
@@ -1166,7 +1226,7 @@ export class SafescopeV2Service {
 
       const effectiveClassification = (() => {
         const rawClassification = String(promotedPrimary.classification || '').trim();
-        if (rawClassification && !/^(unclassified|unknown)$/i.test(rawClassification)) {
+        if (rawClassification && !/^(unclassified|unknown|other|general|misc|miscellaneous)$/i.test(rawClassification)) {
           return rawClassification;
         }
 
@@ -1184,7 +1244,7 @@ export class SafescopeV2Service {
       })();
 
       promotedPrimary.classification = effectiveClassification;
-      if (!promotedPrimary.family || String(promotedPrimary.family).toLowerCase() === 'unknown') {
+      if (!promotedPrimary.family || /^(unknown|unclassified|other|general|misc|miscellaneous)$/i.test(String(promotedPrimary.family).toLowerCase())) {
         promotedPrimary.family = rootHazardCategory;
       }
 
@@ -1198,12 +1258,26 @@ export class SafescopeV2Service {
         supportingStandards,
       });
       const supplementalGuidance = buildSupplementalGuidance(supplementalEntries);
+      const resolvedPrimaryCitation = (() => {
+        const intelligencePrimaryCitation = String((intelligence as any)?.primaryCitation || '').trim();
+        if (intelligencePrimaryCitation && !/^(review|needs more evidence|candidate standard|suggested candidate standard|fallback candidate standard|unclassified|unknown)$/i.test(intelligencePrimaryCitation)) {
+          return intelligencePrimaryCitation;
+        }
+        const candidateCitation = String(
+          suggestedStandards?.[0]?.citation ||
+            primaryStandards?.[0]?.citation ||
+            standardsTraceability.suggestedCitations?.[0] ||
+            '',
+        ).trim();
+        return candidateCitation;
+      })();
 
       const response = {
           ...promotedPrimary,
           ...intelligence,
           applicabilityIntelligence: sanitizedApplicabilityIntelligence,
           classification: effectiveClassification,
+          primaryCitation: resolvedPrimaryCitation,
           reviewStateLabel: likelyGuardingReview
             ? 'Review needed — likely guarding issue'
             : isVague
@@ -1296,6 +1370,21 @@ export class SafescopeV2Service {
           }
       };
 
+      if (resolvedPrimaryCitation) {
+        response.promotion = {
+          ...(response.promotion || {}),
+          approvedRecordCandidate: {
+            ...(response.promotion?.approvedRecordCandidate || {}),
+            citation: resolvedPrimaryCitation,
+            reference: resolvedPrimaryCitation,
+            authority: {
+              ...(response.promotion?.approvedRecordCandidate?.authority || {}),
+              citation: resolvedPrimaryCitation,
+            },
+          },
+        };
+      }
+
       if (likelyGuardingReview && !(response.evidenceGapQuestions || []).length) {
         response.evidenceGapQuestions = guardingReviewQuestions;
         response.inspectionIntelligence = {
@@ -1319,8 +1408,7 @@ export class SafescopeV2Service {
 
       if (
         !(response.evidenceGapQuestions || []).length &&
-        !((response.suggestedStandards || []).length || (response.primaryStandards || []).length) &&
-        String(response.classification || '').toLowerCase() === 'unclassified'
+        !((response.suggestedStandards || []).length || (response.primaryStandards || []).length)
       ) {
         const fallbackEvidenceQuestions = [
           'What exact equipment, opening, edge, container, or travel path is involved?',

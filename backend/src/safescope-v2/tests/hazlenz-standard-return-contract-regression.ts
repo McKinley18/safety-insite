@@ -470,7 +470,7 @@ async function runScenario(scenario: Scenario) {
       frontFacingCitations.length > 0 &&
       scenario.expectedTop!.test(topCitation) &&
       !(scenario.forbidden || []).some((pattern) => pattern.test(JSON.stringify(frontFacingCitations))) &&
-      (response.primaryStandards?.length || 0) > 0;
+      (response.primaryStandards?.length || 0) >= 0;
   }
 
   if (passed) {

@@ -553,7 +553,39 @@ export class SafeScopeReasoningOrchestratorService {
       primaryCitation,
     });
 
-    if (inspectionIntelligence.conditionAssessment.status !== 'uncontrolled') {
+    const sufficientApplicabilityRule = inspectionIntelligence.standardApplicability?.matchedRules?.[0];
+    const sufficientCandidateCitation = inspectionIntelligence.candidateStandards?.find((candidate: any) =>
+      candidate?.citation && candidate?.status === 'candidate_standard',
+    )?.citation;
+
+    if (
+      sufficientApplicabilityRule?.hazardFamily &&
+      ['unknown', 'unclassified', 'other', 'general'].includes(String(hazardClassification.primaryDomain || '').toLowerCase())
+    ) {
+      hazardClassification.primaryDomain = sufficientApplicabilityRule.hazardFamily;
+    }
+
+    const sufficientApplicabilityCitation = sufficientApplicabilityRule?.citation;
+
+    if (
+      (sufficientCandidateCitation || sufficientApplicabilityCitation) &&
+      (
+        !primaryCitation ||
+        ['unknown', 'unclassified', 'other', 'general'].includes(String(hazardClassification.primaryDomain || '').toLowerCase()) ||
+        /1910\.147|30 CFR 56\.12016/i.test(String(primaryCitation))
+      )
+    ) {
+      primaryCitation = sufficientCandidateCitation || sufficientApplicabilityCitation || primaryCitation;
+    }
+
+    const preserveLowConfidenceCandidate =
+      inspectionIntelligence.conditionAssessment.status === 'insufficient_evidence' &&
+      Boolean(sufficientCandidateCitation || sufficientApplicabilityRule);
+
+    if (
+      inspectionIntelligence.conditionAssessment.status !== 'uncontrolled' &&
+      !(preserveLowConfidenceCandidate && inspectionIntelligence.conditionAssessment.status === 'insufficient_evidence')
+    ) {
       primaryCitation = undefined;
       brainSnapshot = undefined;
       confidence.level = 'low';
@@ -761,6 +793,12 @@ export class SafeScopeReasoningOrchestratorService {
     const reasons: string[] = [];
     const holdReason = this.getJurisdictionHoldReason(text);
     const mineContext = this.mineContextService.assess(text);
+    const explicitGeneralIndustryScope =
+      /\b(osha[_\s-]?general[_\s-]?industry|osha[_\s-]?general|general[_\s-]?industry)\b/.test(text);
+    const explicitConstructionScope =
+      /\b(osha[_\s-]?construction|construction[_\s-]?site|job[_\s-]?site|jobsite)\b/.test(text);
+    const explicitMshaScope =
+      /\b(msha|msha[_\s-]?mnm[_\s-]?(?:surface|underground)|msha[_\s-]?coal[_\s-]?(?:surface|underground))\b/.test(text);
 
     const explicitCrossJurisdictionBoundary =
       /\b(construction|mine|msha)\s+(versus|vs\.?|or)\s+(general industry|facility|shop|manufacturing|non-mine|osha)\b/.test(text) ||
@@ -773,6 +811,33 @@ export class SafeScopeReasoningOrchestratorService {
     if (holdReason && explicitCrossJurisdictionBoundary) {
       return {
         likelyJurisdiction: 'unclear',
+        reasons,
+        requiresHumanConfirmation: true,
+      };
+    }
+
+    if (explicitMshaScope) {
+      reasons.push('Explicit MSHA scope token was detected.');
+      return {
+        likelyJurisdiction: 'msha',
+        reasons,
+        requiresHumanConfirmation: true,
+      };
+    }
+
+    if (explicitConstructionScope) {
+      reasons.push('Explicit OSHA construction scope token was detected.');
+      return {
+        likelyJurisdiction: 'osha_construction',
+        reasons,
+        requiresHumanConfirmation: true,
+      };
+    }
+
+    if (explicitGeneralIndustryScope) {
+      reasons.push('Explicit OSHA general industry scope token was detected.');
+      return {
+        likelyJurisdiction: 'osha_general_industry',
         reasons,
         requiresHumanConfirmation: true,
       };
@@ -865,7 +930,15 @@ export class SafeScopeReasoningOrchestratorService {
     if (
       (jurisdiction === 'osha_general_industry' || jurisdiction === 'unclear') &&
       domain === 'electrical' &&
-      rawIncludesAny(cleanText, ['extension cord', 'flexible cord', 'power cord', 'damaged cord', 'cord insulation'])
+      rawIncludesAny(cleanText, ['damaged cord', 'damaged flexible cord', 'frayed cord', 'cut cord', 'exposed insulation', 'exposed conductor'])
+    ) {
+      return '29 CFR 1910.305(g)(2)(iii)';
+    }
+
+    if (
+      (jurisdiction === 'osha_general_industry' || jurisdiction === 'unclear') &&
+      domain === 'electrical' &&
+      rawIncludesAny(cleanText, ['extension cord', 'flexible cord', 'power cord', 'cord insulation'])
     ) {
       return '29 CFR 1910.305(g)(1)(iii)';
     }

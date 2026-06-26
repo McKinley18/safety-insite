@@ -211,6 +211,100 @@ async function run() {
   ];
 
   const forbiddenFinalLanguage = /\b(violation confirmed|citation issued|noncompliant|definite violation|must cite|final citation)\b/i;
+  const questionText = (value: any) => {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') return String(value.question || value.text || value.prompt || JSON.stringify(value));
+    return String(value);
+  };
+
+  const assertHazComVagueBehavior = (response: any, input: string) => {
+    const questions = (response.evidenceGapQuestions || []).map(questionText);
+    const questionsJoined = questions.join(' | ').toLowerCase();
+    const suggestedCitations = [
+      ...(response.suggestedStandards || []),
+      ...(response.supportingStandards || []),
+      ...(response.inspectionIntelligence?.candidateStandards || []),
+      ...(response.standardsTraceability?.suggestedCitations || []),
+    ]
+      .map((standard: any) => String(standard?.citation || standard?.standard || standard?.label || ''))
+      .filter(Boolean);
+
+    const guardrails = response.inspectionIntelligence?.guardrails || response.standardsTraceability?.advisoryGuardrails;
+    const candidate = response.inspectionIntelligence?.hazardCandidates?.[0];
+    const confidenceIntelligence = response.confidenceIntelligence || response.inspectionIntelligence?.confidenceIntelligence;
+
+    if (input === 'leak near drain' || input === 'open container') {
+      console.log('[diag]', input, JSON.stringify({
+        rootConfidence: response.confidence,
+        rootConfidenceBand: response.confidenceBand,
+        requiresHumanReview: response.requiresHumanReview,
+        primaryCandidate: candidate,
+        candidateConfidence: candidate?.confidence,
+        candidateConfidenceBand: candidate?.confidenceBand,
+        confidenceIntelligence,
+        reviewStateLabel: response.reviewStateLabel,
+        guardrails,
+        suggestedStandards: (response.suggestedStandards || []).slice(0, 3).map((standard: any) => ({
+          citation: standard?.citation,
+          status: standard?.candidateStatus,
+          confidence: standard?.confidence,
+          confidenceBand: standard?.confidenceBand,
+        })),
+        primaryStandards: (response.primaryStandards || []).slice(0, 3).map((standard: any) => ({
+          citation: standard?.citation,
+          status: standard?.candidateStatus,
+          confidence: standard?.confidence,
+          confidenceBand: standard?.confidenceBand,
+        })),
+        followUpQuestions: questions,
+      }, null, 2));
+    }
+
+    if (response.requiresHumanReview !== true) {
+      throw new Error(`Expected requiresHumanReview to remain true for "${input}"`);
+    }
+    const rootConfidence = typeof response.confidence === 'number'
+      ? response.confidence
+      : typeof confidenceIntelligence?.overallConfidence === 'number'
+        ? confidenceIntelligence.overallConfidence
+        : NaN;
+    const rootConfidenceBand = String(response.confidenceBand || confidenceIntelligence?.confidenceBand || '');
+    if (!Number.isFinite(rootConfidence) || rootConfidence > 0.5 || rootConfidenceBand !== 'low') {
+      throw new Error(`Expected low confidence for "${input}", got confidence=${response.confidence} band=${response.confidenceBand} overall=${confidenceIntelligence?.overallConfidence} overallBand=${confidenceIntelligence?.confidenceBand}`);
+    }
+    if (guardrails?.advisoryOnly !== true || guardrails?.doesNotDeclareViolation !== true) {
+      throw new Error(`Expected advisory guardrails to remain true for "${input}"`);
+    }
+    if (response.reviewStateLabel && !/review/i.test(response.reviewStateLabel)) {
+      throw new Error(`Expected reviewStateLabel to remain review-oriented for "${input}", got "${response.reviewStateLabel}"`);
+    }
+
+    const expectedQuestionSignals = [
+      /substance|contents|what (is|may be) (inside|leaking|stored)|identity/i,
+      /label|labeled|missing label|unlabeled/i,
+      /source|leak source|where is it coming from|release path|drain/i,
+      /worker exposure|exposure|contact|inhalation|spill path|release pathway/i,
+    ];
+    if (!expectedQuestionSignals.some((pattern) => pattern.test(questionsJoined))) {
+      throw new Error(`Expected targeted follow-up questions for "${input}" to ask about substance, labeling, source, drain/release pathway, or exposure. Got: ${questions.join(' | ')}`);
+    }
+
+    if (forbiddenFinalLanguage.test(JSON.stringify({
+      classification: response.classification,
+      explanation: response.explanation,
+      standardsStatement: response.standardsStatement,
+      questions: response.evidenceGapQuestions,
+      reviewStateLabel: response.reviewStateLabel,
+    }))) {
+      throw new Error(`Expected no definitive violation language for "${input}"`);
+    }
+
+    const directCitationFound = suggestedCitations.some((citation) => /1910\.1200|hazard communication/i.test(citation));
+    if (directCitationFound && !/container|leak|drain/.test(input)) {
+      throw new Error(`Unexpected direct citation promotion for vague input "${input}"`);
+    }
+  };
 
   // Run Vague scenarios
   for (const tc of vagueScenarios) {
@@ -277,6 +371,10 @@ async function run() {
       const primaryCandidate = response.inspectionIntelligence?.hazardCandidates?.[0];
       if (!primaryCandidate || primaryCandidate.domain !== tc.domain) {
         throw new Error(`Expected primary hazard candidate domain to be "${tc.domain}", got "${primaryCandidate?.domain}"`);
+      }
+
+      if (tc.input === 'leak near drain' || tc.input === 'open container') {
+        assertHazComVagueBehavior(response, tc.input);
       }
 
       // A5: inspectionIntelligence correctiveActions must be populated with cautious interim reviews

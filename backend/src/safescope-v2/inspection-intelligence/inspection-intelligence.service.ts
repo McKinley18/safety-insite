@@ -175,9 +175,10 @@ function matchesRule(text: string, rule: InspectionIntelligenceRule): boolean {
   return rule.matches.some((pattern) => pattern.test(text));
 }
 
-function citationAllowedForMineType(citation: string, mineType: MineType): boolean {
-  if (mineType === 'not_mine') return !/^30 CFR\b/.test(citation);
-  if (/^29 CFR\b/.test(citation)) return false;
+function citationAllowedForMineType(citation: string, mineType: MineType, mineDetected: boolean): boolean {
+  if (!/^30 CFR\b/.test(citation)) return true;
+  if (!mineDetected || mineType === 'not_mine') return true;
+  if (mineType === 'unclear_mine') return false;
   const part = citation.match(/30 CFR (\d+)/)?.[1];
   if (!part) return true;
   if (part === '62') return true;
@@ -185,7 +186,6 @@ function citationAllowedForMineType(citation: string, mineType: MineType): boole
   if (mineType === 'underground_metal_nonmetal') return ['48', '57'].includes(part);
   if (mineType === 'surface_coal') return ['48', '71', '77'].includes(part);
   if (mineType === 'underground_coal') return ['48', '70', '75'].includes(part);
-  if (mineType === 'unclear_mine') return false;
   return true;
 }
 
@@ -326,12 +326,33 @@ export class InspectionIntelligenceService {
     primaryCitation?: string;
   }): InspectionIntelligenceResult {
     const text = input.observation.toLowerCase();
-    const standardAppResults = this.standardApplicabilityService.evaluate(
+    const rawStandardAppResults = this.standardApplicabilityService.evaluate(
       input.rawObservation || input.observation,
       input.jurisdiction
     );
     const conditionAssessment = this.conditionAssessmentService.assess(text);
     const miningContext = this.mineContextService.assess(text);
+    const allowApplicabilityCandidates =
+      conditionAssessment.citationEligible &&
+      conditionAssessment.status !== 'controlled' &&
+      conditionAssessment.status !== 'no_hazard_signal';
+
+    const standardAppResults = {
+      ...rawStandardAppResults,
+      matchedRules: (rawStandardAppResults.matchedRules || []).filter((rule) =>
+        input.jurisdiction !== 'msha' || citationAllowedForMineType(rule.citation, miningContext.mineType, miningContext.detected),
+      ),
+      suggestedStandards: (rawStandardAppResults.suggestedStandards || []).filter((citation) =>
+        input.jurisdiction !== 'msha' || citationAllowedForMineType(citation, miningContext.mineType, miningContext.detected),
+      ),
+      needsMoreEvidenceStandards: (rawStandardAppResults.needsMoreEvidenceStandards || []).filter((citation) =>
+        input.jurisdiction !== 'msha' || citationAllowedForMineType(citation, miningContext.mineType, miningContext.detected),
+      ),
+      followUpQuestions: (rawStandardAppResults.followUpQuestions || []).slice(),
+      evaluationResults: (rawStandardAppResults.evaluationResults || []).filter((result: any) =>
+        input.jurisdiction !== 'msha' || citationAllowedForMineType(result?.citation || '', miningContext.mineType, miningContext.detected),
+      ),
+    };
 
     const mshaAnalysis = this.mshaInspectionIntelligenceService.analyze(text, miningContext);
     const matched = [...mshaAnalysis.rules, ...RULES.filter((rule) => matchesRule(text, rule))]
@@ -343,6 +364,24 @@ export class InspectionIntelligenceService {
 
     const vagueInputService = new VagueInputIntelligenceService();
     const vagueInputAnalysis = vagueInputService.analyze(input.rawObservation || input.observation, input.primaryDomain);
+
+    const candidateKey = (citation: string) => String(citation || '').toLowerCase().replace(/\s+/g, '');
+    const candidateStandards: InspectionCandidateStandard[] = [];
+    const candidateStandardsSeen = new Set<string>();
+    const addCandidateStandard = (candidate: InspectionCandidateStandard) => {
+      const key = candidateKey(candidate.citation);
+      if (!key || candidateStandardsSeen.has(key)) return;
+      candidateStandardsSeen.add(key);
+      candidateStandards.push(candidate);
+    };
+    const matchedRulesByCitation = new Map(
+      standardAppResults.matchedRules.map((rule) => [candidateKey(rule.citation), rule]),
+    );
+    const applicabilityCandidateRules = allowApplicabilityCandidates
+      ? standardAppResults.suggestedStandards
+        .map((citation) => matchedRulesByCitation.get(candidateKey(citation)))
+        .filter(Boolean)
+      : [];
 
     let hazardCandidates: InspectionHazardCandidate[] = [];
     if (vagueInputAnalysis.isVague) {
@@ -375,6 +414,22 @@ export class InspectionIntelligenceService {
       }));
     }
 
+    if (applicabilityCandidateRules.length) {
+      applicabilityCandidateRules.forEach((rule, index) => {
+        if (!rule) return;
+        const candidateDomain = String(rule.hazardFamily || '').toLowerCase();
+        if (!candidateDomain) return;
+        if (!hazardCandidates.some((candidate) => candidate.domain === candidateDomain)) {
+          hazardCandidates.unshift({
+            domain: candidateDomain as any,
+            role: index === 0 ? 'primary' : 'secondary',
+            confidence: 'moderate',
+            rationale: `Sufficient applicability rule matched: ${rule.standardTitle}.`,
+          });
+        }
+      });
+    }
+
     const jurisdictionQuestion = input.jurisdiction === 'unclear'
       ? ['What site type and work activity determine whether OSHA General Industry, OSHA Construction, or MSHA applies?']
       : [];
@@ -405,8 +460,20 @@ export class InspectionIntelligenceService {
     const jurisdictions: Array<Exclude<SafeScopeJurisdiction, 'unclear'>> = input.jurisdiction === 'unclear'
       ? ['osha_general_industry', 'osha_construction', 'msha']
       : [input.jurisdiction];
-    const candidateStandards: InspectionCandidateStandard[] = [];
-    if (!vagueInputAnalysis.isVague && conditionAssessment.citationEligible) {
+    applicabilityCandidateRules.forEach((rule) => {
+      if (!rule) return;
+      addCandidateStandard({
+        citation: rule.citation,
+        titleSummary: `${rule.standardTitle} — candidate standard`,
+        jurisdiction: rule.jurisdiction as any,
+        status: 'candidate_standard',
+        rationale: `Sufficient applicability rule matched: ${rule.standardTitle}.`,
+        evidenceNeeded: standardAppResults.followUpQuestions.length
+          ? standardAppResults.followUpQuestions.slice(0, 5)
+          : [`Confirm the observed condition, exposure path, and control status for ${rule.standardTitle}.`],
+      });
+    });
+    if (!vagueInputAnalysis.isVague && allowApplicabilityCandidates) {
       const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
       const hasConfinedSpaceEvidence =
         /\b(confined space|permit space|permit-required|manhole|vault)\b/i.test(text) ||
@@ -416,7 +483,7 @@ export class InspectionIntelligenceService {
 
       ordered.forEach((rule) => jurisdictions.forEach((jurisdiction) => {
         (rule.standards[jurisdiction] || []).forEach((standard) => {
-          if (jurisdiction === 'msha' && !citationAllowedForMineType(standard.citation, miningContext.mineType)) return;
+          if (jurisdiction === 'msha' && !citationAllowedForMineType(standard.citation, miningContext.mineType, miningContext.detected)) return;
 
           const normCit = standard.citation.toLowerCase().replace(/\s+/g, '');
           if (/1910\.146|1926\.1203|(?:56|57)\.18001/.test(normCit) && !hasConfinedSpaceEvidence) return;
@@ -429,7 +496,7 @@ export class InspectionIntelligenceService {
           }
 
           if (!candidateStandards.some((candidate) => candidate.citation === standard.citation)) {
-            candidateStandards.push({ citation: standard.citation, titleSummary: standard.summary || `Candidate requirements related to ${rule.domain.replace(/_/g, ' ')}.`, jurisdiction, status: 'candidate_standard', rationale: `Candidate only: ${rule.initiating}`, evidenceNeeded: standard.evidence });
+            addCandidateStandard({ citation: standard.citation, titleSummary: standard.summary || `Candidate requirements related to ${rule.domain.replace(/_/g, ' ')}.`, jurisdiction, status: 'candidate_standard', rationale: `Candidate only: ${rule.initiating}`, evidenceNeeded: standard.evidence });
           }
         });
       }));
@@ -442,7 +509,7 @@ export class InspectionIntelligenceService {
       && !candidateStandards.some((candidate) => candidate.citation === input.primaryCitation)
       && input.jurisdiction !== 'unclear'
       && (input.jurisdiction === 'msha' ? /^30 CFR\b/.test(input.primaryCitation) : /^29 CFR\b/.test(input.primaryCitation))
-      && (input.jurisdiction !== 'msha' || citationAllowedForMineType(input.primaryCitation, miningContext.mineType))
+      && (input.jurisdiction !== 'msha' || citationAllowedForMineType(input.primaryCitation, miningContext.mineType, miningContext.detected))
     ) {
       const normCit = input.primaryCitation.toLowerCase().replace(/\s+/g, '');
       const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
@@ -453,7 +520,7 @@ export class InspectionIntelligenceService {
         );
       }
       if (allowPrimary) {
-        candidateStandards.unshift({ citation: input.primaryCitation, titleSummary: 'Candidate requirement identified by the existing deterministic citation resolver.', jurisdiction: input.jurisdiction, status: 'candidate_standard', rationale: 'Candidate produced by the existing deterministic citation resolver.', evidenceNeeded: ['Confirm jurisdiction, equipment/task scope, employee exposure, and the observed condition before applicability is finalized.'] });
+        addCandidateStandard({ citation: input.primaryCitation, titleSummary: 'Candidate requirement identified by the existing deterministic citation resolver.', jurisdiction: input.jurisdiction, status: 'candidate_standard', rationale: 'Candidate produced by the existing deterministic citation resolver.', evidenceNeeded: ['Confirm jurisdiction, equipment/task scope, employee exposure, and the observed condition before applicability is finalized.'] });
       }
     }
 

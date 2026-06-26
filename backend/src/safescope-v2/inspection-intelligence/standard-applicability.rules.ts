@@ -848,7 +848,7 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
       /\b(lockout|loto|tagout|maintenance|servicing|cleaning machine|clearing jam|unjamming|energized machine|unexpected startup)\b/i
     ],
     requiredEvidence: [
-      /\b(without lockout|no loto|not locked out|energized status|not isolated|unexpected startup|during servicing|during maintenance|clearing jam)\b/i
+      /\b((?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:maintenance|servicing|cleaning machine|clearing jam|unjamming).{0,40}(?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:without lockout|no loto|not locked out).{0,40}(?:maintenance|servicing|cleaning machine|clearing jam|unjamming)\b)/i
     ],
     confidenceBoosters: [
       /\b(lock|tag|padlock|power switch|breaker|energy source|mechanical movement|pneumatic|hydraulic)\b/i
@@ -890,7 +890,7 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
       /\b(lockout|loto|tagout|maintenance|servicing|cleaning machine|clearing jam|unjamming|energized machine|unexpected startup)\b/i
     ],
     requiredEvidence: [
-      /\b(without lockout|no loto|not locked out|energized status|not isolated|unexpected startup|during servicing|during maintenance|clearing jam)\b/i
+      /\b((?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:maintenance|servicing|cleaning machine|clearing jam|unjamming).{0,40}(?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:without lockout|no loto|not locked out).{0,40}(?:maintenance|servicing|cleaning machine|clearing jam|unjamming)\b)/i
     ],
     confidenceBoosters: [
       /\b(mine|quarry|plant|crusher|conveyor|switchgear|disconnected|power switch|tag|padlock)\b/i

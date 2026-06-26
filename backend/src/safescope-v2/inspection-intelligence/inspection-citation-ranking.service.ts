@@ -120,6 +120,30 @@ export class InspectionCitationRankingService {
         score -= 110; penalties.push('Broad electrical scope/work-practice language is supporting context, not the direct physical-condition candidate.');
       }
 
+      const isCordDamageObservation =
+        /\b(damaged|frayed|cut|exposed insulation|exposed conductor)\b.*\b(cord|cable|extension cord|power cord)\b|\b(cord|cable|extension cord|power cord)\b.*\b(damaged|frayed|cut|exposed insulation|exposed conductor)\b/.test(observation);
+      const cordUseStatus = /\b(energized|in use|used|plugged|connected|remains|still)\b/.test(observation);
+      if (isCordDamageObservation) {
+        if (/1910\.303\(g\)\(2\)\(i\)/.test(citation)) {
+          score -= 240;
+          penalties.push('Live-parts guarding citation is not the direct damaged-cord condition without exposed enclosure parts.');
+          exclude = true;
+        }
+        if (/1910\.305\(g\)\(1\)\(iii\)|1910\.305\(g\)(?!\()/i.test(citation)) {
+          score -= 140;
+          penalties.push('Broad flexible-cord parent/subsection is supporting context rather than the direct damaged-cord citation.');
+        }
+        if (/1910\.334\(a\)\(2\)\(ii\)/.test(citation)) {
+          if (cordUseStatus) {
+            score += 45;
+            reasons.push('Direct match: defective portable electric equipment remains in use.');
+          } else {
+            score -= 90;
+            penalties.push('Portable electric equipment remaining-in-use context is not established.');
+          }
+        }
+      }
+
       const isSpecialPurposeElectrical = /1910\.306(?:\b|\()/.test(citation);
       const hasSpecialPurposeEquipment = /\b(sign|outline lighting|crane|hoist|elevator|dumbwaiter|escalator|moving walk|welder|welding machine|x-ray|induction heating|dielectric heating|electrolytic cell)\b/.test(observation);
       if (isSpecialPurposeElectrical && !hasSpecialPurposeEquipment) {

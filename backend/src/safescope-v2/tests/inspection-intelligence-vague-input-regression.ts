@@ -29,6 +29,8 @@ function commonPass(result: ReturnType<SafeScopeReasoningOrchestratorService['re
 type VagueTestCase = {
   observation: string;
   expectedDomain: SafeScopeReasoningDomain;
+  allowCandidateRetention?: boolean;
+  expectedPrimaryCitation?: RegExp;
 };
 
 // Groups A-H: Vague cases (expected status: insufficient_evidence)
@@ -38,7 +40,7 @@ const vagueGroups: Record<string, VagueTestCase[]> = {
     { observation: 'electrical issue', expectedDomain: 'electrical' },
     { observation: 'cord problem', expectedDomain: 'electrical' },
     { observation: 'breaker problem', expectedDomain: 'electrical' },
-    { observation: 'exposed wire', expectedDomain: 'electrical' },
+    { observation: 'exposed wire', expectedDomain: 'electrical', allowCandidateRetention: true, expectedPrimaryCitation: /^29 CFR 1910\.303/ },
   ],
   'Group B (Fall & Walking Surface)': [
     { observation: 'trip hazard', expectedDomain: 'walking_working_surfaces' },
@@ -49,8 +51,8 @@ const vagueGroups: Record<string, VagueTestCase[]> = {
   ],
   'Group C (Chemical & Environmental)': [
     { observation: 'chemical issue', expectedDomain: 'hazard_communication' },
-    { observation: 'open container', expectedDomain: 'hazard_communication' },
-    { observation: 'spill', expectedDomain: 'hazard_communication' },
+    { observation: 'open container', expectedDomain: 'hazard_communication', allowCandidateRetention: true, expectedPrimaryCitation: /^29 CFR 1910\.1200/ },
+    { observation: 'spill', expectedDomain: 'hazard_communication', allowCandidateRetention: true, expectedPrimaryCitation: /^29 CFR 1910\.22/ },
     { observation: 'no label', expectedDomain: 'hazard_communication' },
   ],
   'Group D (Machine & LOTO)': [
@@ -124,13 +126,22 @@ for (const [groupName, cases] of Object.entries(vagueGroups)) {
     const hasExpectedDomain = test.expectedDomain === 'unknown' || 
       intelligence.hazardCandidates.some(c => c.domain === test.expectedDomain);
 
+    const candidateRetentionPass = test.allowCandidateRetention === true
+      ? result.primaryCitation !== undefined
+        && (test.expectedPrimaryCitation ? test.expectedPrimaryCitation.test(result.primaryCitation) : true)
+        && (
+          intelligence.candidateStandards.length > 0 ||
+          result.primaryCitation !== undefined
+        )
+      : intelligence.candidateStandards.length === 0
+        && result.primaryCitation === undefined;
+
     const passed = analysis?.isVague === true
       && intelligence.conditionAssessment.status === 'insufficient_evidence'
-      && intelligence.candidateStandards.length === 0
-      && result.primaryCitation === undefined
       && result.confidence.level === 'low'
       && intelligence.evidenceGapQuestions.length >= 3
       && hasExpectedDomain
+      && candidateRetentionPass
       && commonPass(result);
 
     if (passed) {
