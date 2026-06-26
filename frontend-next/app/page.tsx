@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { useEffect, useState } from "react";
 import React from "react";
@@ -172,30 +173,14 @@ export default function MarketingHomePage() {
         </p>
 
         <div className="mx-auto mt-6 flex max-w-md flex-col justify-center gap-3 sm:flex-row">
-          {isSignedIn ? (
-            <AppLinkButton
-              href="/command-center"
-              className="!flex !w-full justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[220px]"
-            >
-              Return to Dashboard
-            </AppLinkButton>
-          ) : (
-            <>
-              <AppLinkButton
+          {!isSignedIn && (
+              <Link
                 href="/register"
-                className="!flex !w-full justify-center rounded-full bg-[#1D72B8] px-6 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320] sm:!w-[180px]"
+                className="rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-slate-950/20 transition hover:-translate-y-0.5"
               >
-                Create account
-              </AppLinkButton>
-              <AppLinkButton
-                href="/hazlenz"
-                variant="secondary"
-                className="!flex !w-full justify-center rounded-full bg-white px-6 py-3 text-sm font-black !text-[#102A43] ring-1 ring-slate-200 sm:!w-[180px]"
-              >
-                Learn HazLenz
-              </AppLinkButton>
-            </>
-          )}
+                Start Free
+              </Link>
+            )}
         </div>
       </section>
     </section>

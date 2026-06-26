@@ -3,7 +3,7 @@
 import { Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { clearAuthSession, createCheckoutSession, getAuthUser, setAuthUser } from "@/lib/auth";
+import { clearAuthSession, createCheckoutSession, getAuthUser, hasAuthToken, setAuthUser } from "@/lib/auth";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
@@ -23,6 +23,7 @@ type UserProfile = {
 
 export default function ProfilePage() {
   const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [user, setUser] = useState<UserProfile>({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -50,8 +51,14 @@ export default function ProfilePage() {
   }
 
   useEffect(() => {
+    if (!hasAuthToken()) {
+      router.replace("/login");
+      return;
+    }
+
+    setIsAuthorized(true);
     loadUserProfile();
-  }, []);
+  }, [router]);
 
   function saveAccountIdentity() {
     const existing = getAuthUser();

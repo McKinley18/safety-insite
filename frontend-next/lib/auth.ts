@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "./safescope";
 
-export const AUTH_TOKEN_KEYS = ["sentinel_auth_token", "token"] as const;
+export const AUTH_TOKEN_KEYS = ["sentinel_auth_token"] as const;
 export const AUTH_USER_KEY = "sentinel_auth_user";
 export const LOCAL_DEV_AUTH_TOKEN = "local-dev-token";
 
@@ -23,7 +23,13 @@ export function getAuthToken() {
 
   for (const key of AUTH_TOKEN_KEYS) {
     const token = window.localStorage.getItem(key);
-    if (token) return token;
+    if (!token) continue;
+
+    if (token === LOCAL_DEV_AUTH_TOKEN && !isLocalDevAuthBypassEnabled()) {
+      continue;
+    }
+
+    return token;
   }
 
   return null;
@@ -68,6 +74,7 @@ export function clearAuthSession() {
   for (const key of AUTH_TOKEN_KEYS) {
     window.localStorage.removeItem(key);
   }
+  window.localStorage.removeItem("token");
 
   [
     AUTH_USER_KEY,
