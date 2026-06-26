@@ -409,7 +409,7 @@ async function run() {
       (scenario.expectPromotion ? scenario.expectPromotion.test(promotionCitation || primaryCitation) : true) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(topSuggestedCitation) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(primaryCitation) &&
-      (scenario.name !== "cord damaged osha gi" || !/(1910\.1200|1910\.184|1910\.218|1910\.177|1910\.178|1910\.179|1910\.502|compressed gas|slings|forging|rim wheel|pit|crane|healthcare)/i.test(needsMoreEvidenceCitations.join(" "))) &&
+      (scenario.name !== "cord damaged osha gi" || !/(1910\.1200|1910\.184|1910\.218|1910\.177|1910\.178|1910\.179|1910\.180|1910\.502|compressed gas|slings|forging|rim wheel|pit|crane|healthcare)/i.test(needsMoreEvidenceCitations.join(" "))) &&
       (!scenario.name.includes("cord damaged") || Number(standardsTraceability.scopeFilteredCandidateCount || 0) > 0);
 
     if (passed) {
