@@ -26,6 +26,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState<"free" | "pro" | "expert">("free");
   const [promoCode, setPromoCode] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [status, setStatus] = useState("");
@@ -77,7 +78,9 @@ export default function RegisterPage() {
           name: `${firstName.trim()} ${lastName.trim()}`.trim(),
           email: email.trim(),
           password,
-          type: "company",
+          type: "individual",
+          selectedPlan,
+          planCode: selectedPlan,
           promoCode: promoCode.trim() || undefined,
         }),
       });
@@ -121,47 +124,114 @@ export default function RegisterPage() {
 
   return (
     <section className="mx-auto flex min-h-[calc(100svh-150px)] max-w-6xl items-center justify-center px-0 py-4 pb-10 sm:px-4 sm:py-6">
-      <div className="grid w-full overflow-hidden bg-white shadow-none sm:rounded-[32px] sm:border sm:border-slate-200 sm:shadow-2xl sm:shadow-slate-300/40 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="grid w-full overflow-hidden bg-white text-slate-950 shadow-none sm:rounded-[32px] sm:border sm:border-slate-200 sm:shadow-2xl sm:shadow-slate-300/40 dark:border-white/10 dark:bg-[#07111F] dark:text-white lg:grid-cols-[0.9fr_1.1fr]">
         <div className="relative overflow-hidden bg-gradient-to-br from-[#0B1320] via-[#102A43] to-[#0B1320] p-5 text-white sm:p-8 lg:p-10">
           <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#1D72B8]/25 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-20 left-6 h-48 w-48 rounded-full bg-white/10 blur-3xl" />
 
           <div className="relative inline-flex rounded-full bg-white/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.22em] text-blue-100 ring-1 ring-white/15">
-            Secure onboarding
+            Choose your access
           </div>
 
           <h1 className="relative mt-4 text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl">
-            Create your Safety InSite account.
+            Select a plan.
           </h1>
 
-          <p className="relative mt-3 max-w-xl text-sm font-semibold leading-6 text-slate-300 sm:mt-4">
-            Start an inspection-first hub for inspections, corrective actions, audit-ready records, and HazLenz AI decision support.
-          </p>
-
-          <div className="relative mt-5 grid gap-2.5 sm:mt-8 sm:gap-3">
-            {[
-              "Inspection and report records",
-              "Secure inspection evidence",
-              "HazLenz AI intelligence support",
-            ].map((item) => (
-              <div
-                key={item}
-                className="flex items-center gap-3 rounded-xl bg-white/10 px-3.5 py-2.5 ring-1 ring-white/10 sm:rounded-2xl sm:px-4 sm:py-3"
-              >
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-xs font-black text-[#102A43]">
-                  ✓
-                </span>
-                <span className="text-sm font-black text-white">{item}</span>
-              </div>
-            ))}
+          <div className="relative mt-4 max-w-xl rounded-2xl bg-white/10 px-4 py-4 ring-1 ring-white/10">
+            <p className="text-sm font-black leading-6 text-white">
+              Select the plan that best fits your inspection workflow.
+            </p>
+            <p className="mt-1 text-xs font-semibold leading-5 text-blue-100">
+              You can start free, choose a paid tier for more HazLenz AI and reporting tools, and upgrade later as your needs grow.
+            </p>
           </div>
+
+
         </div>
 
-        <form onSubmit={handleRegister} className="bg-gradient-to-b from-white to-slate-50/80 p-5 sm:p-8 lg:p-10">
-        <h1 className="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Create an Account</h1>
-        <p className="mt-2 text-sm font-semibold text-slate-500">
-          Create your Safety InSite account.
-        </p>
+        <form onSubmit={handleRegister} className="bg-gradient-to-b from-white to-slate-50/80 p-5 text-slate-950 sm:p-8 lg:p-10 dark:from-[#07111F] dark:to-[#0B1320] dark:text-white">
+        <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-none dark:border-white/10 dark:bg-white/5">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1D72B8]">
+            Select your plan
+          </p>
+          <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+            Choose Free to try the workflow, Pro for regular inspection work, or Expert for deeper HazLenz review and stronger report tools.
+          </p>
+
+          <div className="mt-4 grid gap-3 lg:grid-cols-3">
+            {[
+              {
+                id: "free" as const,
+                name: "Free",
+                price: "$0",
+                badge: "Start here",
+                description: "Try the core workflow.",
+                details: "Core inspection capture, basic reports, and limited HazLenz AI reviews",
+              },
+              {
+                id: "pro" as const,
+                name: "Pro",
+                price: "$6.99/mo",
+                badge: "Active use",
+                description: "For regular safety inspection work.",
+                details: "Expanded HazLenz AI review, professional reports, corrective-action tracking, and saved history",
+              },
+              {
+                id: "expert" as const,
+                name: "Expert",
+                price: "$11.99/mo",
+                badge: "Advanced",
+                description: "For deeper review and stronger reporting.",
+                details: "Advanced HazLenz reasoning, enhanced report packages, larger evidence history, and custom report branding",
+              },
+            ].map((plan) => {
+              const active = selectedPlan === plan.id;
+
+              return (
+                <button
+                  key={plan.id}
+                  type="button"
+                  onClick={() => setSelectedPlan(plan.id)}
+                  className={[
+                    "rounded-2xl border p-4 text-left transition",
+                    active
+                      ? "border-[#1D72B8] bg-blue-50 ring-4 ring-blue-100 dark:border-blue-300 dark:bg-blue-950/30 dark:ring-blue-900/40"
+                      : "border-slate-200 bg-slate-50 hover:border-blue-200 hover:bg-blue-50/60 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10",
+                  ].join(" ")}
+                >
+                  <span className="flex items-center justify-between gap-3">
+                    <span>
+                      <span className="block text-lg font-black text-slate-950 dark:text-white">
+                        {plan.name}
+                      </span>
+                      <span className="mt-0.5 block text-xs font-black text-[#1D72B8] dark:text-blue-200">
+                        {plan.price}
+                      </span>
+                    </span>
+                    <span
+                      className={[
+                        "rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wide",
+                        active
+                          ? "bg-[#1D72B8] text-white"
+                          : "bg-white text-slate-600 ring-1 ring-slate-200 dark:bg-white/10 dark:text-slate-200 dark:ring-white/10",
+                      ].join(" ")}
+                    >
+                      {plan.badge}
+                    </span>
+                  </span>
+
+                  <span className="mt-2 block text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
+                    {plan.description}
+                  </span>
+
+                  <span className="mt-3 block border-t border-slate-200 pt-3 text-xs font-black leading-5 text-slate-500 dark:border-white/10 dark:text-slate-300">
+                    {plan.details}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
         <div className="mt-5 space-y-3">
           <AppInput
@@ -186,12 +256,12 @@ export default function RegisterPage() {
             placeholder="Email"
           />
 
-          <details className="group text-xs font-semibold leading-5 text-slate-500">
-            <summary className="inline-flex cursor-pointer list-none items-center gap-1 font-black text-[#1D72B8]">
+          <details className="group text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            <summary className="inline-flex cursor-pointer list-none items-center gap-1 font-black text-[#1D72B8] dark:text-[#5DB7FF]">
               Password requirements
               <span className="transition group-open:rotate-180">⌄</span>
             </summary>
-            <div className="mt-2 space-y-1 pl-1 text-slate-600">
+            <div className="mt-2 space-y-1 pl-1 text-slate-700 dark:text-slate-200">
               <p>{checks.length ? "✓" : "○"} At least 8 characters</p>
               <p>{checks.uppercase ? "✓" : "○"} One uppercase letter</p>
               <p>{checks.lowercase ? "✓" : "○"} One lowercase letter</p>
@@ -226,8 +296,8 @@ export default function RegisterPage() {
             type={showPassword ? "text" : "password"}
           />
 
-          <details className="group text-xs font-semibold leading-5 text-slate-500">
-            <summary className="inline-flex cursor-pointer list-none items-center gap-1 font-black text-slate-500 hover:text-[#1D72B8]">
+          <details className="group text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
+            <summary className="inline-flex cursor-pointer list-none items-center gap-1 font-black text-slate-600 hover:text-[#1D72B8] dark:text-slate-300 dark:hover:text-[#5DB7FF]">
               Have an employer promo code?
               <span className="transition group-open:rotate-180">⌄</span>
             </summary>
@@ -244,7 +314,7 @@ export default function RegisterPage() {
             </div>
           </details>
 
-          <label className="flex gap-3 border-t border-slate-200 pt-3 text-xs font-semibold leading-5 text-slate-600">
+          <label className="flex gap-3 border-t border-slate-200 pt-3 text-xs font-semibold leading-5 text-slate-700 dark:border-slate-800 dark:text-slate-200">
             <input
               type="checkbox"
               checked={acceptedTerms}
@@ -258,7 +328,7 @@ export default function RegisterPage() {
 
           <div className="flex justify-center pt-1">
             <AppButton type="submit" disabled={loading} size="md" className="min-h-11 bg-[#1D72B8] px-6 text-sm text-white shadow-sm shadow-blue-900/20 hover:bg-[#0B1320] active:scale-[0.98]">
-            {loading ? "Creating..." : "Create Secure Account"}
+            {loading ? "Creating..." : "Create account"}
           </AppButton>
           </div>
 
@@ -266,7 +336,7 @@ export default function RegisterPage() {
             <p className={`rounded-xl p-3 text-sm font-bold ${
               statusType === "error" ? "bg-red-50 text-red-700" :
               statusType === "success" ? "bg-emerald-50 text-emerald-700" :
-              "bg-slate-50 text-slate-600"
+              "bg-slate-50 text-slate-700 dark:bg-slate-900 dark:text-slate-200"
             }`}>
               {status}
             </p>

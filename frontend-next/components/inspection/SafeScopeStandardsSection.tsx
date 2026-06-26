@@ -45,7 +45,7 @@ export default function SafeScopeStandardsSection({
   const hazLenzFallbackStandards = getHazLenzSuggestedStandards(safeScopeResult);
 
   if (primaryStandards.length) {
-    standardLabel = "suggested candidate standard";
+    standardLabel = "primary matched standard";
   }
   // 3. Candidate standards if suggested standards is empty
   else if (safeScopeResult?.inspectionIntelligence?.candidateStandards?.some(isDisplayableStandardCandidate)) {
@@ -63,7 +63,7 @@ export default function SafeScopeStandardsSection({
   // Broad fallback across newer HazLenz response shapes.
   if (!primaryStandards.length && hazLenzFallbackStandards.length) {
     primaryStandards = hazLenzFallbackStandards;
-    standardLabel = "suggested candidate standard";
+    standardLabel = "primary matched standard";
   }
 
   // 2. Supporting standards
@@ -182,37 +182,71 @@ export default function SafeScopeStandardsSection({
   ).length;
 
   const headingText = primaryStandards.length > 0
-    ? `${primaryStandards.length} ${standardLabel}(s)`
-    : `${supportingStandards.length} supporting candidate standard(s)`;
+    ? primaryStandards.length === 1
+      ? "1 primary matched standard"
+      : `${primaryStandards.length} primary matched standard(s)`
+    : `${supportingStandards.length} supporting standard(s)`;
 
-  const renderStandardRow = (standard: any, isSupporting: boolean) => {
+  const getStandardText = (standard: any) =>
+    standard?.standardText ||
+    standard?.text ||
+    standard?.plainText ||
+    standard?.regulatoryText ||
+    standard?.fullText ||
+    standard?.description ||
+    "";
+
+  const getStandardTitle = (standard: any) =>
+    standard?.title ||
+    standard?.name ||
+    standard?.standardTitle ||
+    "";
+
+  const getStandardMatchExplanation = (standard: any) => {
+    const citationStr = getStandardCitation(standard);
+    const normCitation = citationStr?.toLowerCase().replace(/\s+/g, "");
+    return safeScopeResult?.standardsMatchExplanations?.find(
+      (e: any) => e.reference?.toLowerCase().replace(/\s+/g, "") === normCitation
+    );
+  };
+
+  const renderStandardRow = (standard: any, isSupporting: boolean, index = 0) => {
     const selected = selectedStandards.some(
       (item) => getStandardKey(item) === getStandardKey(standard),
     );
 
+    const standardText = getStandardText(standard);
+    const standardTitle = getStandardTitle(standard);
+    const explanation = getStandardMatchExplanation(standard);
+    const isPrimary = !isSupporting && index === 0;
+
     return (
       <div
         key={getStandardCitation(standard) || formatStandardDisplay(standard)}
-        className={`mb-3 rounded-2xl border border-slate-200 dark:border-slate-800 px-3 py-3 transition ${
+        className={`mb-3 rounded-2xl border px-3 py-3 transition ${
           selected
             ? "border-[#1D72B8] bg-[#E8F4FF] text-slate-950 dark:bg-[#0F2742] dark:text-white"
-            : "bg-white text-slate-950 hover:bg-slate-50 dark:bg-[#0B1320] dark:text-white dark:hover:bg-[#102A43]"
+            : isPrimary
+              ? "border-[#1D72B8]/40 bg-white text-slate-950 shadow-sm dark:border-[#5DB7FF]/40 dark:bg-[#0B1320] dark:text-white"
+              : "border-slate-200 bg-white text-slate-950 hover:bg-slate-50 dark:border-slate-800 dark:bg-[#0B1320] dark:text-white dark:hover:bg-[#102A43]"
         }`}
       >
         <div className="flex flex-wrap items-center gap-2">
-          <div className="font-black text-[#1D72B8]">
-            {formatStandardDisplay(standard)}
-          </div>
-
-          {selected && (
+          {isPrimary && (
             <span className="rounded-full bg-[#1D72B8] px-2 py-1 text-[10px] font-black uppercase tracking-wide text-white">
-              Selected
+              Primary Matched Standard
             </span>
           )}
 
           {isSupporting && (
             <span className="rounded-full bg-slate-200 dark:bg-slate-800 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
-              Supporting
+              Supporting Reference
+            </span>
+          )}
+
+          {selected && (
+            <span className="rounded-full bg-[#DCFCE7] px-2 py-1 text-[10px] font-black uppercase tracking-wide text-[#166534]">
+              Selected for Report
             </span>
           )}
 
@@ -223,9 +257,37 @@ export default function SafeScopeStandardsSection({
           )}
         </div>
 
-        <p className="mt-2 text-sm font-semibold leading-6 text-slate-700 dark:text-slate-100">
-          {getStandardSummary(standard) || "No summary available."}
-        </p>
+        <div className="mt-2">
+          <p className="text-base font-black leading-6 text-[#1D72B8]">
+            {formatStandardDisplay(standard)}
+          </p>
+
+          {!!standardTitle && (
+            <p className="mt-1 text-sm font-black leading-5 text-slate-900 dark:text-slate-100">
+              {standardTitle}
+            </p>
+          )}
+        </div>
+
+        <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-slate-800 dark:bg-slate-950">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+            Standard text / plain-language review
+          </p>
+          <p className="mt-1 text-sm font-semibold leading-6 text-slate-800 dark:text-slate-100">
+            {standardText || getStandardSummary(standard) || "No standard text or summary is available for this matched standard."}
+          </p>
+        </div>
+
+        {isPrimary && (
+          <div className="mt-3 rounded-xl border border-[#1D72B8]/20 bg-[#E8F4FF] px-3 py-2.5 dark:border-[#5DB7FF]/30 dark:bg-[#0F2742]">
+            <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8] dark:text-[#5DB7FF]">
+              Inspector determination
+            </p>
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-800 dark:text-slate-100">
+              Review whether the observed condition, jurisdiction, equipment, exposure path, and missing control match this standard before including it in the report. HazLenz AI supports the review but does not declare a violation or create a citation.
+            </p>
+          </div>
+        )}
 
         {!!standard.matchingReasons?.length && (
           <details className="mt-2 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-2">
@@ -240,12 +302,6 @@ export default function SafeScopeStandardsSection({
         )}
 
         {(() => {
-          const citationStr = getStandardCitation(standard);
-          const normCitation = citationStr?.toLowerCase().replace(/\s+/g, "");
-          const explanation = safeScopeResult?.standardsMatchExplanations?.find(
-            (e: any) => e.reference?.toLowerCase().replace(/\s+/g, "") === normCitation
-          );
-
           if (!explanation) return null;
 
           return (
@@ -376,7 +432,7 @@ export default function SafeScopeStandardsSection({
           <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
             {selectedCount
               ? `${selectedCount} selected for the report.`
-              : "Review only if you want to include standards in the report."}
+              : "Review the primary matched standard before deciding whether to include it in the report."}
           </p>
         </div>
 
@@ -428,19 +484,19 @@ export default function SafeScopeStandardsSection({
             <div className="space-y-1">
               {supportingStandards.length > 0 && (
                 <h4 className="mb-2 text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
-                  {isFallbackMode ? "Fallback Candidate Standard" : isCandidateMode ? "Primary Candidate Standards" : "Primary Suggested Candidate Standards"}
+                  {isFallbackMode ? "Fallback Candidate Standard" : isCandidateMode ? "Primary Candidate Standards" : "Primary Matched Standard"}
                 </h4>
               )}
-              {primaryStandards.map((standard: any) => renderStandardRow(standard, false))}
+              {primaryStandards.map((standard: any, index: number) => renderStandardRow(standard, false, index))}
             </div>
           )}
 
           {supportingStandards.length > 0 && (
             <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
               <h4 className="mb-2 text-xs font-black uppercase tracking-wide text-slate-700 dark:text-slate-300">
-                Supporting Candidate Standards (Reference Only)
+                Supporting Standards / Related References
               </h4>
-              {supportingStandards.map((standard: any) => renderStandardRow(standard, true))}
+              {supportingStandards.map((standard: any, index: number) => renderStandardRow(standard, true, index))}
             </div>
           )}
         </div>
