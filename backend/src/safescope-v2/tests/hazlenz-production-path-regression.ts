@@ -251,6 +251,12 @@ function firstCitation(value: any): string {
   return String(list[0]?.citation || list[0]?.standard || list[0] || "").trim();
 }
 
+function citationList(value: any[]): string[] {
+  return (Array.isArray(value) ? value : [])
+    .map((item: any) => String(item?.citation || item?.standard || item || "").trim())
+    .filter(Boolean);
+}
+
 const service = new SafescopeV2Service(
   mockActionEngine(),
   new EvidenceFusionService(),
@@ -388,6 +394,7 @@ async function run() {
     const applicableSuggestions = response.inspectionIntelligence?.standardApplicability?.suggestedStandards || [];
     const promotionCitation = String(response.promotion?.approvedRecordCandidate?.authority?.citation || "");
     const reviewText = String(response.reviewStateLabel || "");
+    const needsMoreEvidenceCitations = citationList(response.needsMoreEvidenceStandards || []);
 
     const passed =
       scenario.expectClassification.test(classification) &&
@@ -402,6 +409,7 @@ async function run() {
       (scenario.expectPromotion ? scenario.expectPromotion.test(promotionCitation || primaryCitation) : true) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(topSuggestedCitation) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(primaryCitation) &&
+      (scenario.name !== "cord damaged osha gi" || !/(1910\.1200|1910\.184|1910\.218|1910\.177|1910\.178|1910\.179|1910\.502|compressed gas|slings|forging|rim wheel|pit|crane|healthcare)/i.test(needsMoreEvidenceCitations.join(" "))) &&
       (!scenario.name.includes("cord damaged") || Number(standardsTraceability.scopeFilteredCandidateCount || 0) > 0);
 
     if (passed) {
@@ -416,6 +424,7 @@ async function run() {
         primaryCitation,
         promotionCitation,
         citations,
+        needsMoreEvidenceCitations,
         reviewText,
         standardsTraceability,
         applicableSuggestions,

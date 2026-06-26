@@ -234,7 +234,7 @@ async function run() {
     const candidate = response.inspectionIntelligence?.hazardCandidates?.[0];
     const confidenceIntelligence = response.confidenceIntelligence || response.inspectionIntelligence?.confidenceIntelligence;
 
-    if (input === 'leak near drain' || input === 'open container') {
+    if (process.env.HAZLENZ_DEBUG_VAGUE_OUTPUT === 'true' && (input === 'leak near drain' || input === 'open container')) {
       console.log('[diag]', input, JSON.stringify({
         rootConfidence: response.confidence,
         rootConfidenceBand: response.confidenceBand,

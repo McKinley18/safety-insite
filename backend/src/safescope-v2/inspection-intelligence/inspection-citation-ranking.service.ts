@@ -20,6 +20,39 @@ function candidateText(candidate: any): string {
     .filter(Boolean).join(' ').toLowerCase();
 }
 
+function familyCoherencePattern(primaryFamily: string): RegExp | null {
+  const family = String(primaryFamily || '').toLowerCase();
+  if (!family) return null;
+  if (family.includes('electrical')) {
+    return /(?:1910\.(?:301|303|305|306|331|333|334)|1926\.(?:403|404|405)|(?:56|57)\.(?:12004|12013|12016|12032|12034|12037)|electrical|cord|cable|wire|panel|breaker|enclosure|live parts?|energized|work practices?)/i;
+  }
+  if (family.includes('hazard_communication') || family.includes('hazcom') || family.includes('chemical')) {
+    return /(?:1910\.1200|1926\.59|47\.|hazard communication|hazcom|chemical|container|label|sds|spill|leak|release|drain|used oil|waste oil|unknown substance|unknown contents)/i;
+  }
+  if (family.includes('walking_working_surfaces') || family.includes('housekeeping') || family.includes('slip_trip_fall')) {
+    return /(?:1910\.(?:22|23|28|29)|1926\.25|(?:56|57)\.(?:20003|11001)|walking-working surfaces|housekeeping|floor|walkway|aisle|travelway|slip|trip|fall|hole|opening|guardrail|ladder|egress|debris|spill|release|residue)/i;
+  }
+  if (family.includes('machine_guarding')) {
+    return /(?:1910\.(?:212|219|147)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|lockout|tagout|servicing|unexpected startup|hazardous energy)/i;
+  }
+  if (family.includes('mobile_equipment')) {
+    return /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i;
+  }
+  if (family.includes('fall_protection')) {
+    return /(?:1910\.(?:28|29)|1926\.501|guardrail|platform|edge|roof|fall protection|fall arrest|aerial lift|scaffold|ladder)/i;
+  }
+  if (family.includes('compressed_gas')) {
+    return /(?:1910\.101|1926\.350|(?:56|57)\.1600[56]|compressed gas|cylinder|oxygen|acetylene|valve cap|regulator)/i;
+  }
+  if (family.includes('confined_space')) {
+    return /(?:1910\.146|1926\.1203|confined space|permit space|tank|vessel|manhole|atmosphere|oxygen deficiency|entry)/i;
+  }
+  if (family.includes('industrial_hygiene') || family.includes('health_')) {
+    return /(?:silica|dust|noise|fume|vapour|vapor|heat|cold|respirator|welding|solvent|ventilation)/i;
+  }
+  return null;
+}
+
 function scopeFit(citation: string, scopes: string[]): boolean {
   if (!scopes.length || scopes.includes('all')) return true;
   if (scopes.includes('osha_general') || scopes.includes('osha_general_industry')) return /(?:29 CFR )?1910\./i.test(citation);
@@ -37,6 +70,13 @@ export class InspectionCitationRankingService {
     scopes: string[];
   }): CitationRankingResult {
     const observation = String(input.observation || '').toLowerCase();
+    const primaryHazardFamily = String(
+      input.inspectionIntelligence?.standardApplicability?.matchedRules?.[0]?.hazardFamily ||
+      input.inspectionIntelligence?.hazardCandidates?.find((candidate) => candidate?.role === 'primary')?.domain ||
+      (input.inspectionIntelligence?.candidateStandards?.[0] as any)?.hazardFamily ||
+      ''
+    ).toLowerCase();
+    const needsMoreEvidencePattern = familyCoherencePattern(primaryHazardFamily);
     const hasSpillReleaseEvidence = /\b(used[- ]oil|waste[- ]oil|oily waste|oily residue|oil spill|spill|spilled|leak|leaking|release|residue|residual)\b/i.test(observation);
     const hasSurfaceOrDrainPathway = /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(observation);
     const hasHazComIdentityEvidence = /\b(unlabeled|no label|missing label|unknown chemical|chemical identity|sds|hazcom|hazard communication|secondary container)\b/i.test(observation);
@@ -287,7 +327,12 @@ export class InspectionCitationRankingService {
         : 'Relevant standards context is retained separately because direct condition/component applicability is not established.',
     }));
     const priorNeedsMoreEvidence = input.excludedStandards.filter((candidate) =>
-      candidate?.candidateStatus === 'needs_more_evidence' && candidate?.scopeFit !== 'mismatch',
+      candidate?.candidateStatus === 'needs_more_evidence' &&
+      candidate?.scopeFit !== 'mismatch' &&
+      (
+        !needsMoreEvidencePattern ||
+        needsMoreEvidencePattern.test(`${candidateText(candidate)} ${citationOf(candidate)}`)
+      ),
     );
     const hardExcluded = input.excludedStandards.filter((candidate) => !priorNeedsMoreEvidence.includes(candidate));
 
