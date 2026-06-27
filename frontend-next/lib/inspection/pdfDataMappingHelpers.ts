@@ -1,6 +1,10 @@
 import { normalizePdfPercent } from "./pdfFormattingHelpers";
+import { getHazLenzMechanismChain } from "./mechanismReasoning";
 
 export function getFindingStandardsForPdf(f: any) {
+  if (Array.isArray(f.safeScopeResult?.standardDecisions) && f.safeScopeResult.standardDecisions.length) {
+    return f.safeScopeResult.standardDecisions;
+  }
   if (Array.isArray(f.selectedStandards) && f.selectedStandards.length) {
     return f.selectedStandards;
   }
@@ -25,6 +29,10 @@ export function getFindingStandardsForPdf(f: any) {
   return [];
 }
 
+export function getFindingMechanismChainForPdf(f: any) {
+  return getHazLenzMechanismChain(f?.safeScopeResult || f) || null;
+}
+
 export function getFieldOutputActionsForPdf(f: any) {
   const actions = f.safeScopeResult?.fieldOutput?.correctiveActions;
   if (!Array.isArray(actions) || !actions.length) return [];
@@ -38,6 +46,11 @@ export function getFieldOutputActionsForPdf(f: any) {
         closureEvidence:
           f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
           "Supervisor verification",
+        owner: "",
+        assignedTo: "",
+        assignedRole: "",
+        due: "",
+        dueDate: "",
         source: "HazLenz AI field output",
       };
     }
@@ -54,34 +67,31 @@ export function getFieldOutputActionsForPdf(f: any) {
         action.verification ||
         f.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
         "Supervisor verification",
+      owner: "",
+      assignedTo: "",
+      assignedRole: "",
+      due: "",
+      dueDate: "",
       source: action.source || "HazLenz AI field output",
     };
   });
 }
 
 export function getFindingActionsForPdf(f: any) {
-  const fieldOutputActions = getFieldOutputActionsForPdf(f);
-  if (fieldOutputActions.length) {
-    return [
-      ...fieldOutputActions,
-      ...(Array.isArray(f.manualActions) ? f.manualActions : []),
-    ];
+  if (Array.isArray(f.correctiveActions) && f.correctiveActions.length) {
+    return f.correctiveActions;
   }
 
-  return (
-    (Array.isArray(f.correctiveActions) && f.correctiveActions.length
-      ? f.correctiveActions
-      : null) ||
-    [
-      ...(Array.isArray(f.selectedGeneratedActions)
-        ? f.selectedGeneratedActions
-        : []),
-      ...(Array.isArray(f.manualActions) ? f.manualActions : []),
-      ...(Array.isArray(f.safeScopeResult?.generatedActions)
-        ? f.safeScopeResult.generatedActions
-        : []),
-    ]
-  );
+  const selectedOrManualActions = [
+    ...(Array.isArray(f.selectedGeneratedActions) ? f.selectedGeneratedActions : []),
+    ...(Array.isArray(f.manualActions) ? f.manualActions : []),
+  ];
+
+  if (selectedOrManualActions.length) {
+    return selectedOrManualActions;
+  }
+
+  return getFieldOutputActionsForPdf(f);
 }
 
 export function getFindingRiskForPdf(f: any) {

@@ -1,4 +1,5 @@
 import { formatStandardDisplay, getStandardSummary } from "@/lib/inspection/standardDisplay";
+import { getHazLenzMechanismChain } from "@/lib/inspection/mechanismReasoning";
 
 type Props = {
   safeScopeResult: any;
@@ -44,13 +45,18 @@ export default function SafeScopePrimaryDecisionSection({
   const reviewNeeded =
     safeScopeResult.confidenceIntelligence?.supervisorReviewRecommended ||
     safeScopeResult.requiresHumanReview;
+  const mechanismChain = getHazLenzMechanismChain(safeScopeResult);
 
   const primaryReason =
     safeScopeResult.decisionExplainability?.decisionSummary ||
     safeScopeResult.explanation ||
+    (mechanismChain
+      ? `${mechanismChain.observedCondition} ${mechanismChain.failureMode}`.trim()
+      : "") ||
     "This condition requires review.";
 
   const recommendedAction =
+    mechanismChain?.controlFocus?.[0] ||
     safeScopeResult.generatedActions?.[0]?.title ||
     safeScopeResult.generatedActions?.[0]?.description ||
     safeScopeResult.controlIntelligence?.verificationRecommendation ||
@@ -148,6 +154,32 @@ export default function SafeScopePrimaryDecisionSection({
       </div>
 
       <div className="mt-4 space-y-3">
+        {mechanismChain && (
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
+              Mechanism chain
+            </p>
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              <p className="text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-slate-100">Observed condition:</span>{" "}
+                {mechanismChain.observedCondition}
+              </p>
+              <p className="text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-slate-100">Failure/release mode:</span>{" "}
+                {mechanismChain.failureMode}
+              </p>
+              <p className="text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-slate-100">Exposure pathway:</span>{" "}
+                {mechanismChain.exposurePathway}
+              </p>
+              <p className="text-xs font-semibold leading-5 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-slate-100">Potential consequence:</span>{" "}
+                {mechanismChain.potentialConsequence}
+              </p>
+            </div>
+          </div>
+        )}
+
         <div>
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Why this was suggested

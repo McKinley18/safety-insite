@@ -14,6 +14,7 @@ import {
   getFindingActionsForPdf,
   getFindingCategoryForPdf,
   getFindingConfidenceForPdf,
+  getFindingMechanismChainForPdf,
   getFindingRiskForPdf,
   getFindingStandardsForPdf,
   getSafeScopeValidationStatusForPdf,
@@ -486,11 +487,12 @@ export const localExporter = {
               const priority = action.priority
                 ? `Priority: ${action.priority}`
                 : "";
+              const owner = action.owner || action.assignedTo ? `Owner: ${action.owner || action.assignedTo}` : "";
               const due = action.due ? `Due: ${action.due}` : "";
               const closureEvidence = `Closure Evidence: ${
                 action.closureEvidence || "Photo"
               }`;
-              const meta = [priority, due, closureEvidence]
+              const meta = [priority, owner, due, closureEvidence]
                 .filter(Boolean)
                 .join(" • ");
               return `${actionIndex + 1}. ${title}${meta ? ` (${meta})` : ""}`;
@@ -592,6 +594,28 @@ export const localExporter = {
             ...buildEquipmentReasoningNotesForPdf(f.safeScopeResult),
           );
         }
+
+        const mechanismChain = getFindingMechanismChainForPdf(f);
+        if (reportPackage.includesSafeScopeSummary && mechanismChain) {
+          safeScopeNotes.push(
+            `Mechanism chain: ${[
+              mechanismChain.observedCondition,
+              mechanismChain.failureMode,
+              mechanismChain.exposurePathway,
+              mechanismChain.potentialConsequence,
+            ].filter(Boolean).join(" | ")}`,
+          );
+          if (Array.isArray(mechanismChain.evidenceGaps) && mechanismChain.evidenceGaps.length) {
+            safeScopeNotes.push(
+              `Mechanism evidence to confirm: ${mechanismChain.evidenceGaps.slice(0, 3).join("; ")}`,
+            );
+          }
+          if (Array.isArray(mechanismChain.controlFocus) && mechanismChain.controlFocus.length) {
+            safeScopeNotes.push(
+              `Mechanism control focus: ${mechanismChain.controlFocus.slice(0, 3).join("; ")}`,
+            );
+          }
+        }
       }
 
       if (reportPackage.includesSafeScopeSummary && safeScopeNotes.length) {
@@ -670,4 +694,3 @@ export const localExporter = {
       return doc;
       },
       };
-

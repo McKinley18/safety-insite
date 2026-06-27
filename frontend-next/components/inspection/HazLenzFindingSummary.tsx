@@ -1,5 +1,6 @@
 import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
 import { formatStandardDisplay, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
+import { getHazLenzMechanismChain } from "@/lib/inspection/mechanismReasoning";
 
 type HazLenzFindingSummaryProps = {
   description: string;
@@ -128,18 +129,30 @@ function buildSummary({
   const understanding = result.observationUnderstanding || {};
   const topScenario = understanding?.scenarioUnderstanding?.topScenario;
   const topStandard = getTopStandard(result, selectedStandards);
+  const mechanismChain = getHazLenzMechanismChain(result);
 
   const mechanism = humanize(
     firstText(
+      mechanismChain?.observedCondition,
       topScenario?.mechanism,
       understanding?.mechanismCandidates?.[0]?.mechanism,
       understanding?.exposure?.exposurePathway,
     ),
   );
 
-  const consequences = Array.isArray(result.commonConsequences)
-    ? result.commonConsequences.slice(0, 2).join(" or ")
-    : "";
+  const failureMode = firstText(
+    mechanismChain?.failureMode,
+    result.decisionExplainability?.decisionSummary,
+    result.explanation,
+  );
+  const exposurePathway = firstText(
+    mechanismChain?.exposurePathway,
+    understanding?.exposure?.exposurePathway,
+  );
+  const consequence = firstText(
+    mechanismChain?.potentialConsequence,
+    Array.isArray(result.commonConsequences) ? result.commonConsequences.slice(0, 2).join(" or ") : "",
+  );
 
   const detectedConcern = firstText(
     result.decisionExplainability?.decisionSummary,
@@ -151,10 +164,11 @@ function buildSummary({
   const whyItMatters = firstText(
     result.risk?.reasoning,
     result.decisionExplainability?.riskStatement,
-    mechanism && consequences
-      ? `Exposure to ${mechanism} can result in ${consequences}.`
+    failureMode && consequence
+      ? `Failure/release mode: ${failureMode}. Potential consequence: ${consequence}.`
       : "",
-    mechanism ? `Exposure pathway: ${mechanism}.` : "",
+    exposurePathway ? `Exposure pathway: ${exposurePathway}.` : "",
+    mechanism ? `Observed condition: ${mechanism}.` : "",
     "Review the exposure pathway and controls before relying on the finding.",
   );
 
@@ -206,6 +220,7 @@ function buildSummary({
         );
 
   const recommendedAction = firstText(
+    mechanismChain?.controlFocus?.[0],
     actionText(selectedGeneratedActions?.[0]),
     actionText(result.generatedActions?.[0]),
     actionText(result.correctiveActionReasoning?.immediateActions?.[0]),
@@ -219,6 +234,7 @@ function buildSummary({
   const evidenceNeeded = Array.from(
     new Set(
       [
+        ...(mechanismChain?.evidenceGaps || []),
         ...(result.evidenceGapQuestions || []).map((q: any) => q?.question),
         ...(result.decisionExplainability?.uncertainty || []),
       ]
@@ -258,6 +274,32 @@ export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps)
       </div>
 
       <div className="grid gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200 sm:grid-cols-2">
+        {mechanismChain && (
+          <div className="rounded-xl bg-slate-50 px-3 py-3 text-slate-950 ring-1 ring-slate-200 dark:bg-[#0B1320] dark:text-white dark:ring-white/10 sm:col-span-2">
+            <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
+              Mechanism chain
+            </p>
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              <p className="text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-white">Observed condition:</span>{" "}
+                {mechanismChain.observedCondition}
+              </p>
+              <p className="text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-white">Failure/release mode:</span>{" "}
+                {mechanismChain.failureMode}
+              </p>
+              <p className="text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-white">Exposure pathway:</span>{" "}
+                {mechanismChain.exposurePathway}
+              </p>
+              <p className="text-sm font-semibold leading-6 text-slate-800 dark:text-slate-200">
+                <span className="font-black text-slate-900 dark:text-white">Potential consequence:</span>{" "}
+                {mechanismChain.potentialConsequence}
+              </p>
+            </div>
+          </div>
+        )}
+
         <div className="rounded-xl bg-white px-3 py-3 text-slate-950 ring-1 ring-slate-200 dark:bg-[#0B1320] dark:text-white dark:ring-white/10">
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-700 dark:text-slate-200">
             Why It Matters

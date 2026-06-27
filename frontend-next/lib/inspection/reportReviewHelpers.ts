@@ -1,4 +1,5 @@
 import { formatStandardDisplay } from "@/lib/inspection/standardDisplay";
+import { getHazLenzMechanismChain } from "@/lib/inspection/mechanismReasoning";
 
 export function getReportPersistenceKey(report: any) {
   return String(report?.cloudReportId || report?.id || "");
@@ -174,6 +175,10 @@ export function getFieldOutputActions(finding: any): any[] {
           closureEvidence:
             finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
             "Supervisor verification",
+          owner: "",
+          assignedTo: "",
+          due: "",
+          dueDate: "",
           source: "HazLenz AI field output",
         };
       }
@@ -199,6 +204,11 @@ export function getFieldOutputActions(finding: any): any[] {
           action.verification ||
           finding?.safeScopeResult?.fieldOutput?.verificationEvidence?.[0] ||
           "Supervisor verification",
+        owner: "",
+        assignedTo: "",
+        assignedRole: "",
+        due: "",
+        dueDate: "",
         source: action.source || "HazLenz AI field output",
       };
     });
@@ -207,19 +217,20 @@ export function getFieldOutputActions(finding: any): any[] {
 export function getFindingActionsForReview(finding: any, includeActions = true): any[] {
   if (!includeActions) return [];
 
-  const fieldOutputActions = getFieldOutputActions(finding);
-  if (fieldOutputActions.length) {
-    return [
-      ...fieldOutputActions,
-      ...(Array.isArray(finding?.manualActions) ? finding.manualActions : []),
-    ];
+  if (Array.isArray(finding?.correctiveActions) && finding.correctiveActions.length) {
+    return finding.correctiveActions;
   }
 
-  return finding.correctiveActions || [
-    ...(finding.selectedGeneratedActions || []),
-    ...(finding.manualActions || []),
-    ...(finding.safeScopeResult?.generatedActions || []),
+  const selectedOrManualActions = [
+    ...(Array.isArray(finding?.selectedGeneratedActions) ? finding.selectedGeneratedActions : []),
+    ...(Array.isArray(finding?.manualActions) ? finding.manualActions : []),
   ];
+
+  if (selectedOrManualActions.length) {
+    return selectedOrManualActions;
+  }
+
+  return getFieldOutputActions(finding);
 }
 
 export function getFieldOutputEvidenceGaps(finding: any): string[] {
@@ -245,4 +256,8 @@ export function formatEquipmentReasoningMode(value: any) {
   };
 
   return labels[mode] || mode.replace(/_/g, " ");
+}
+
+export function getFindingMechanismChain(finding: any) {
+  return getHazLenzMechanismChain(finding?.safeScopeResult || finding);
 }
