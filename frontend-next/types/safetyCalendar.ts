@@ -30,4 +30,5 @@ export type SafetyCalendarEvent = {
   sourceLabel: string;
   findingTitle?: string;
   createdAt?: string;
+  completedAt?: string;
 };

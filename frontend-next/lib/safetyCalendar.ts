@@ -53,6 +53,14 @@ function normalizePriority(value?: string): SafetyCalendarPriority {
 }
 
 function normalizeStatus(value?: string): SafetyCalendarEventStatus {
+  const normalized = String(value || "").trim().toLowerCase();
+
+  if (normalized === "scheduled") return "Scheduled";
+  if (normalized === "in progress" || normalized === "in_progress" || normalized === "progress") return "In Progress";
+  if (normalized === "blocked") return "Blocked";
+  if (normalized === "completed" || normalized === "done" || normalized === "complete") return "Completed";
+  if (normalized === "overdue") return "Overdue";
+
   if (
     value === "Scheduled" ||
     value === "In Progress" ||
@@ -82,6 +90,10 @@ function normalizeType(value?: string): SafetyCalendarEventType {
 function isPastDue(dateKey: string, status: SafetyCalendarEventStatus) {
   if (status === "Completed") return false;
   return dateKey < getTodayDateKey();
+}
+
+function isCompletedStatus(value?: string) {
+  return normalizeStatus(value) === "Completed";
 }
 
 function getPersonalCalendarEventIds() {
@@ -114,6 +126,7 @@ function normalizePersonalCalendarEvent(
   const date = parseLocalCalendarDate(event.date);
   const dateKey = date ? toDateKey(date) : event.date || getTodayDateKey();
   const status = normalizeStatus(event.status);
+  const completedAt = status === "Completed" ? event.completedAt : undefined;
 
   return {
     ...event,
@@ -129,6 +142,7 @@ function normalizePersonalCalendarEvent(
     sourceId: event.sourceId || event.id || `personal-${Date.now()}`,
     sourceLabel: event.sourceLabel || "Personal Task",
     createdAt: event.createdAt || new Date().toISOString(),
+    completedAt,
   };
 }
 
@@ -172,7 +186,9 @@ export function deletePersonalCalendarEvent(eventId: string) {
   if (typeof window === "undefined") return false;
 
   const current = getPersonalCalendarEvents();
-  const next = current.filter((event) => !isPersonalCalendarEvent(event) || event.id !== eventId);
+  const next = current.filter(
+    (event) => !isPersonalCalendarEvent(event) || event.id !== eventId,
+  );
 
   if (next.length === current.length) return false;
 
@@ -194,13 +210,21 @@ export function updatePersonalCalendarEvent(
   if (index === -1) return null;
 
   const existing = current[index];
+  const nextStatus = normalizeStatus(updates.status || existing.status);
+  const completedAt =
+    nextStatus === "Completed"
+      ? updates.completedAt || existing.completedAt || new Date().toISOString()
+      : undefined;
+
   const updated = normalizePersonalCalendarEvent({
     ...existing,
     ...updates,
+    status: nextStatus,
     id: existing.id,
     source: "personal_task",
     sourceId: existing.sourceId || existing.id,
     sourceLabel: existing.sourceLabel || "Personal Task",
+    completedAt,
   });
 
   const next = [...current];
@@ -210,11 +234,27 @@ export function updatePersonalCalendarEvent(
 }
 
 export function completePersonalCalendarEvent(eventId: string): SafetyCalendarEvent | null {
-  return updatePersonalCalendarEvent(eventId, { status: "Completed" });
+  return updatePersonalCalendarEvent(eventId, {
+    status: "Completed",
+    completedAt: new Date().toISOString(),
+  });
 }
 
 export function reopenPersonalCalendarEvent(eventId: string): SafetyCalendarEvent | null {
-  return updatePersonalCalendarEvent(eventId, { status: "Open" });
+  return updatePersonalCalendarEvent(eventId, { status: "Open", completedAt: undefined });
+}
+
+export function clearCompletedPersonalCalendarEvents() {
+  if (typeof window === "undefined") return 0;
+
+  const current = getPersonalCalendarEvents();
+  const next = current.filter((event) => !isCompletedStatus(event.status));
+
+  const removed = current.length - next.length;
+  if (!removed) return 0;
+
+  savePersonalCalendarEvents(next);
+  return removed;
 }
 
 export function createPersonalCalendarTask(input: {

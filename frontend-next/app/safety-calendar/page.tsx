@@ -11,6 +11,7 @@ import { CalendarViewRenderer } from "@/components/calendar/CalendarViewRenderer
 import {
   createPersonalCalendarTask,
   completePersonalCalendarEvent,
+  clearCompletedPersonalCalendarEvents,
   deletePersonalCalendarEvent,
   isPersonalCalendarEvent,
   reopenPersonalCalendarEvent,
@@ -143,8 +144,13 @@ export default function SafetyCalendarPage() {
   const [editingTaskDate, setEditingTaskDate] = useState(getTodayDateKey());
   const [editingTaskPriority, setEditingTaskPriority] = useState("Medium");
   const [editingTaskLocation, setEditingTaskLocation] = useState("");
+  const [showCompleted, setShowCompleted] = useState(false);
 
   const canUseCompanyCalendar = hasPlanEntitlement("inspectionAssignments", planCode);
+
+  function isCompletedCalendarStatus(status?: string) {
+    return String(status || "").trim().toLowerCase() === "completed";
+  }
 
   useEffect(() => {
     async function loadEvents() {
@@ -167,16 +173,17 @@ export default function SafetyCalendarPage() {
     });
   }, [canUseCompanyCalendar, events, ownerFilter, statusFilter, typeFilter]);
 
-  const ownerOptions = useMemo(() => {
-    return Array.from(new Set(events.map((event) => event.owner).filter(Boolean))).sort();
-  }, [events]);
+  const displayEvents = useMemo(() => {
+    if (showCompleted) return filteredEvents;
+    return filteredEvents.filter((event) => !isCompletedCalendarStatus(event.status));
+  }, [filteredEvents, showCompleted]);
 
   const eventsByDate = useMemo(() => {
-    return filteredEvents.reduce<Record<string, SafetyCalendarEvent[]>>((acc, event) => {
+    return displayEvents.reduce<Record<string, SafetyCalendarEvent[]>>((acc, event) => {
       acc[event.date] = [...(acc[event.date] || []), event];
       return acc;
     }, {});
-  }, [filteredEvents]);
+  }, [displayEvents]);
 
   const selectedEvents = eventsByDate[selectedDateKey] || [];
 
@@ -186,8 +193,8 @@ export default function SafetyCalendarPage() {
     const weekEnd = addDays(today, 7);
     const weekEndKey = toDateKey(weekEnd);
 
-    const activeEvents = filteredEvents.filter(
-      (event) => event.status !== "Completed",
+    const activeEvents = displayEvents.filter(
+      (event) => !isCompletedCalendarStatus(event.status),
     );
 
     const overdue = activeEvents
@@ -211,13 +218,18 @@ export default function SafetyCalendarPage() {
       .filter((event) => event.owner === "Unassigned")
       .slice(0, 6);
 
+    const completedEvents = displayEvents
+      .filter((event) => isCompletedCalendarStatus(event.status))
+      .slice(0, 6);
+
     return [
       ["Overdue", overdue],
       ["Due Today", dueToday],
       ["Due This Week", dueThisWeek],
       ...(canUseCompanyCalendar ? ([["Unassigned", unassigned]] as const) : []),
+      ...(showCompleted ? ([["Completed", completedEvents]] as const) : []),
     ] as const;
-  }, [canUseCompanyCalendar, filteredEvents]);
+  }, [canUseCompanyCalendar, displayEvents, showCompleted]);
 
   const monthDays = useMemo(() => {
     const first = startOfMonth(anchorDate);
@@ -243,19 +255,19 @@ export default function SafetyCalendarPage() {
   }, [anchorDate]);
 
   const calendarSummary = useMemo(() => {
-    const open = filteredEvents.filter((event) => event.status !== "Completed");
-    const overdue = filteredEvents.filter((event) => event.status === "Overdue");
-    const criticalHigh = filteredEvents.filter(
+    const open = displayEvents.filter((event) => !isCompletedCalendarStatus(event.status));
+    const overdue = displayEvents.filter((event) => String(event.status || "").toLowerCase() === "overdue");
+    const criticalHigh = displayEvents.filter(
       (event) => event.priority === "Critical" || event.priority === "High",
     );
 
     return {
-      total: filteredEvents.length,
+      total: displayEvents.length,
       open: open.length,
       overdue: overdue.length,
       criticalHigh: criticalHigh.length,
     };
-  }, [filteredEvents]);
+  }, [displayEvents]);
 
   function moveDate(direction: "previous" | "next") {
     const next = new Date(anchorDate);
@@ -350,6 +362,7 @@ export default function SafetyCalendarPage() {
   async function togglePersonalTaskComplete(event: SafetyCalendarEvent) {
     if (!isPersonalCalendarEvent(event)) {
       setTaskMessage(
+        // Source-managed corrective actions remain read-only here until a safe write-back exists.
         "Corrective actions are managed from their source inspection/action.",
       );
       return;
@@ -372,6 +385,7 @@ export default function SafetyCalendarPage() {
   async function deleteCalendarEvent(event: SafetyCalendarEvent) {
     if (!isPersonalCalendarEvent(event)) {
       setTaskMessage(
+        // Source-managed corrective actions remain read-only here until a safe write-back exists.
         "Corrective actions are managed from their source inspection/action.",
       );
       return;
@@ -388,6 +402,17 @@ export default function SafetyCalendarPage() {
     }
 
     setTaskMessage(deleted ? "Task deleted." : "Unable to delete that task.");
+  }
+
+  async function clearCompletedTasks() {
+    const removed = clearCompletedPersonalCalendarEvents();
+    if (!removed) {
+      setTaskMessage("No completed personal tasks to clear.");
+      return;
+    }
+
+    await refreshCalendarEvents();
+    setTaskMessage("Completed personal tasks cleared.");
   }
 
   function openDateInDayView(dateKey: string) {
@@ -469,23 +494,48 @@ export default function SafetyCalendarPage() {
 
       <AppPanel padding="sm" className="space-y-2 px-2 py-2 sm:px-3 sm:py-3">
         <h2 className="text-lg font-black text-app-text">Calendar Controls</h2>
-        <div className="inline-flex w-fit gap-1 rounded-full bg-slate-100 p-1">
-          {/* View Switchers */}
-          {(["month", "week", "day"] as CalendarView[]).map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => setView(item)}
-              className={`rounded-full px-2.5 py-1 text-[11px] font-black uppercase tracking-normal transition ${
-                view === item
-                  ? "bg-[#102A43] text-white shadow-sm"
-                  : "bg-transparent text-[#102A43] hover:bg-white"
-              }`}
-            >
-              {item[0].toUpperCase() + item.slice(1)}
-            </button>
-          ))}
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="inline-flex w-fit gap-1 rounded-full bg-slate-100 p-1 dark:bg-slate-900">
+            {(["month", "week", "day"] as CalendarView[]).map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => setView(item)}
+                className={`rounded-full px-2.5 py-1 text-[11px] font-black uppercase tracking-normal transition ${
+                  view === item
+                    ? "bg-[#102A43] text-white shadow-sm"
+                    : "bg-transparent text-[#102A43] hover:bg-white dark:text-slate-100 dark:hover:bg-slate-800"
+                }`}
+              >
+                {item[0].toUpperCase() + item.slice(1)}
+              </button>
+            ))}
+          </div>
+
+          <AppButton
+            type="button"
+            size="sm"
+            variant={showCompleted ? "primary" : "secondary"}
+            onClick={() => setShowCompleted((current) => !current)}
+          >
+            {showCompleted ? "Hide completed" : "Show completed"}
+          </AppButton>
+
+          <AppButton
+            type="button"
+            size="sm"
+            variant="danger"
+            onClick={() => {
+              void clearCompletedTasks();
+            }}
+          >
+            Clear completed tasks
+          </AppButton>
         </div>
+
+        <p className="text-xs font-semibold leading-5 text-app-text-muted">
+          Completed tasks are hidden from the active calendar. You can show or clear completed personal tasks anytime.
+        </p>
 
         <div className="grid grid-cols-2 gap-1.5">
           <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="w-full">
