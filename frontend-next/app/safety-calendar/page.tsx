@@ -4,20 +4,22 @@ import { useEffect, useMemo, useState } from "react";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
-import { SafetyCalendarControls } from "@/components/calendar/SafetyCalendarControls";
 import { PriorityTodoPanel } from "@/components/calendar/PriorityTodoPanel";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { CalendarViewRenderer } from "@/components/calendar/CalendarViewRenderer";
 import {
   createPersonalCalendarTask,
+  completePersonalCalendarEvent,
   deletePersonalCalendarEvent,
+  isPersonalCalendarEvent,
+  reopenPersonalCalendarEvent,
+  updatePersonalCalendarEvent,
   getSafetyCalendarEvents,
   getTodayDateKey,
   parseLocalCalendarDate,
   toDateKey,
 } from "@/lib/safetyCalendar";
-import { eventTone, eventTypeLabel } from "@/lib/calendar/helpers";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 import {
   getStoredPlanCode,
@@ -136,6 +138,11 @@ export default function SafetyCalendarPage() {
   const [taskPriority, setTaskPriority] = useState("Medium");
   const [taskLocation, setTaskLocation] = useState("");
   const [taskMessage, setTaskMessage] = useState("");
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+  const [editingTaskTitle, setEditingTaskTitle] = useState("");
+  const [editingTaskDate, setEditingTaskDate] = useState(getTodayDateKey());
+  const [editingTaskPriority, setEditingTaskPriority] = useState("Medium");
+  const [editingTaskLocation, setEditingTaskLocation] = useState("");
 
   const canUseCompanyCalendar = hasPlanEntitlement("inspectionAssignments", planCode);
 
@@ -288,9 +295,85 @@ export default function SafetyCalendarPage() {
     setEvents(loaded);
   }
 
+  function beginEditPersonalTask(event: SafetyCalendarEvent) {
+    if (!isPersonalCalendarEvent(event)) {
+      setTaskMessage("Corrective actions are managed from their source inspection/action.");
+      return;
+    }
+
+    setEditingTaskId(event.id);
+    setEditingTaskTitle(event.title || "");
+    setEditingTaskDate(event.date || getTodayDateKey());
+    setEditingTaskPriority(event.priority || "Medium");
+    setEditingTaskLocation(event.location || "");
+    setTaskMessage("");
+  }
+
+  function cancelEditPersonalTask() {
+    setEditingTaskId(null);
+    setEditingTaskTitle("");
+    setEditingTaskDate(getTodayDateKey());
+    setEditingTaskPriority("Medium");
+    setEditingTaskLocation("");
+  }
+
+  async function saveEditedPersonalTask() {
+    if (!editingTaskId) return;
+
+    if (!editingTaskTitle.trim()) {
+      setTaskMessage("Add a task title before saving.");
+      return;
+    }
+
+    const updated = updatePersonalCalendarEvent(editingTaskId, {
+      title: editingTaskTitle,
+      date: editingTaskDate,
+      priority: editingTaskPriority as SafetyCalendarEvent["priority"],
+      location: editingTaskLocation,
+    });
+
+    if (!updated) {
+      setTaskMessage("Unable to update that task.");
+      return;
+    }
+
+    await refreshCalendarEvents();
+    setSelectedDateKey(updated.date);
+    const updatedDate = parseLocalCalendarDate(updated.date);
+    if (updatedDate) setAnchorDate(updatedDate);
+    setExpandedMonthDateKey(updated.date);
+    setView("day");
+    cancelEditPersonalTask();
+    setTaskMessage("Task updated.");
+  }
+
+  async function togglePersonalTaskComplete(event: SafetyCalendarEvent) {
+    if (!isPersonalCalendarEvent(event)) {
+      setTaskMessage(
+        "Corrective actions are managed from their source inspection/action.",
+      );
+      return;
+    }
+
+    const nextStatus =
+      event.status === "Completed"
+        ? reopenPersonalCalendarEvent(event.id)
+        : completePersonalCalendarEvent(event.id);
+
+    await refreshCalendarEvents();
+
+    setTaskMessage(nextStatus?.status === "Completed" ? "Task marked complete." : "Task reopened.");
+  }
+
+  const editingTask = editingTaskId
+    ? events.find((event) => event.id === editingTaskId) || null
+    : null;
+
   async function deleteCalendarEvent(event: SafetyCalendarEvent) {
-    if (event.source !== "personal_task") {
-      setTaskMessage("Only personal calendar tasks can be deleted here. Corrective actions should be managed from their source inspection/action.");
+    if (!isPersonalCalendarEvent(event)) {
+      setTaskMessage(
+        "Corrective actions are managed from their source inspection/action.",
+      );
       return;
     }
 
@@ -300,11 +383,11 @@ export default function SafetyCalendarPage() {
     const deleted = deletePersonalCalendarEvent(event.id);
     await refreshCalendarEvents();
 
-    setTaskMessage(
-      deleted
-        ? "Calendar task deleted."
-        : "Unable to delete that calendar task.",
-    );
+    if (editingTaskId === event.id) {
+      cancelEditPersonalTask();
+    }
+
+    setTaskMessage(deleted ? "Task deleted." : "Unable to delete that task.");
   }
 
   function openDateInDayView(dateKey: string) {
@@ -441,15 +524,96 @@ export default function SafetyCalendarPage() {
             selectedDateKey={selectedDateKey}
             selectedEvents={selectedEvents}
             formatFullDate={formatFullDate}
+            isPersonalCalendarEvent={isPersonalCalendarEvent}
+            onOpenDay={openDateInDayView}
+            onEditPersonalEvent={beginEditPersonalTask}
+            onTogglePersonalEvent={togglePersonalTaskComplete}
             deleteCalendarEvent={deleteCalendarEvent}
           />
         </div>
         <PriorityTodoPanel
           priorityTodoGroups={priorityTodoGroups}
           openEventDay={openEventDay}
+          isPersonalCalendarEvent={isPersonalCalendarEvent}
+          onEditPersonalEvent={beginEditPersonalTask}
+          onTogglePersonalEvent={togglePersonalTaskComplete}
           deleteCalendarEvent={deleteCalendarEvent}
         />
       </div>
+
+      {editingTaskId && (
+        <AppPanel padding="md" className="app-card">
+          <SectionHeader
+            eyebrow="Edit Personal Task"
+            title="Update your calendar task"
+            description="Personal tasks can be edited, completed, reopened, or deleted from here."
+          />
+
+          <div className="mt-4 grid gap-2 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr]">
+            <AppInput
+              value={editingTaskTitle}
+              onChange={(event) => setEditingTaskTitle(event.target.value)}
+              placeholder="Task title"
+              fieldSize="sm"
+            />
+            <AppInput
+              type="date"
+              value={editingTaskDate}
+              onChange={(event) => setEditingTaskDate(event.target.value)}
+              fieldSize="sm"
+            />
+            <AppSelect
+              value={editingTaskPriority}
+              onChange={(event) => setEditingTaskPriority(event.target.value)}
+              fieldSize="sm"
+            >
+              <option value="Critical">Critical</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </AppSelect>
+            <AppInput
+              value={editingTaskLocation}
+              onChange={(event) => setEditingTaskLocation(event.target.value)}
+              placeholder="Location / note"
+              fieldSize="sm"
+            />
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <AppButton type="button" size="sm" onClick={saveEditedPersonalTask}>
+              Save Task
+            </AppButton>
+            <AppButton type="button" size="sm" variant="secondary" onClick={cancelEditPersonalTask}>
+              Cancel
+            </AppButton>
+            <AppButton
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={() => {
+                if (editingTask) {
+                  void togglePersonalTaskComplete(editingTask);
+                }
+              }}
+            >
+              {editingTask?.status === "Completed" ? "Reopen" : "Mark Complete"}
+            </AppButton>
+            <AppButton
+              type="button"
+              size="sm"
+              variant="danger"
+              onClick={() => {
+                if (editingTask) {
+                  void deleteCalendarEvent(editingTask);
+                }
+              }}
+            >
+              Delete Task
+            </AppButton>
+          </div>
+        </AppPanel>
+      )}
 
       <AppPanel padding="md" className="app-card">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">

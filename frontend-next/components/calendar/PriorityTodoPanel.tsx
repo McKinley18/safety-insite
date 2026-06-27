@@ -1,15 +1,27 @@
+import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { eventTone, eventTypeLabel } from "@/lib/calendar/helpers";
+import { isPersonalCalendarEvent } from "@/lib/safetyCalendar";
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 
 interface PriorityTodoPanelProps {
   priorityTodoGroups: readonly (readonly [string, SafetyCalendarEvent[]])[];
   openEventDay: (event: SafetyCalendarEvent) => void;
+  isPersonalCalendarEvent: typeof isPersonalCalendarEvent;
+  onEditPersonalEvent: (event: SafetyCalendarEvent) => void;
+  onTogglePersonalEvent: (event: SafetyCalendarEvent) => void | Promise<void>;
   deleteCalendarEvent: (event: SafetyCalendarEvent) => void;
 }
 
-export function PriorityTodoPanel({ priorityTodoGroups, openEventDay, deleteCalendarEvent }: PriorityTodoPanelProps) {
+export function PriorityTodoPanel({
+  priorityTodoGroups,
+  openEventDay,
+  isPersonalCalendarEvent,
+  onEditPersonalEvent,
+  onTogglePersonalEvent,
+  deleteCalendarEvent,
+}: PriorityTodoPanelProps) {
   return (
     <AppPanel padding="md" className="h-fit">
       <SectionHeader
@@ -35,35 +47,73 @@ export function PriorityTodoPanel({ priorityTodoGroups, openEventDay, deleteCale
                 groupEvents.map((event) => (
                   <div
                     key={`${groupLabel}-${event.id}`}
-                    className={`rounded-lg border px-3 py-2 text-left transition hover:border-[#1D72B8] ${eventTone(event)}`}
+                    className={`rounded-xl border px-3 py-3 transition hover:border-[#1D72B8] ${eventTone(event)}`}
                   >
-                    <button
-                      type="button"
-                      onClick={() => openEventDay(event)}
-                      className="w-full text-left"
-                    >
-                      <p className="text-xs font-black text-app-text">
-                        {event.title}
-                      </p>
-                      <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
-                        {eventTypeLabel(event.type)} · {event.owner} · {event.date}
-                      </p>
-                    </button>
-
-                    {event.source === "personal_task" && (
+                    <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
                       <button
                         type="button"
-                        onClick={(clickEvent) => {
-                          clickEvent.stopPropagation();
-                          deleteCalendarEvent(event);
-                        }}
-                        className="mt-2 rounded-lg border border-red-200 bg-red-50 px-2.5 py-1.5 text-[11px] font-black text-red-700 transition hover:bg-red-100 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-950/50"
-                        aria-label={`Delete ${event.title}`}
-                        title="Delete to-do task"
+                        onClick={() => openEventDay(event)}
+                        className="flex-1 text-left"
                       >
-                        Delete
+                        <p className="text-xs font-black text-app-text">
+                          {event.title}
+                        </p>
+                        <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
+                          {eventTypeLabel(event.type)} · {event.owner} · {event.date}
+                        </p>
+                        <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
+                          {event.location}
+                          {event.sourceLabel ? ` · ${event.sourceLabel}` : ""}
+                        </p>
                       </button>
-                    )}
+
+                      {isPersonalCalendarEvent(event) ? (
+                        <div className="flex flex-wrap gap-1.5">
+                          <AppButton
+                            type="button"
+                            size="sm"
+                            variant="secondary"
+                            onClick={(clickEvent) => {
+                              clickEvent.stopPropagation();
+                              void onTogglePersonalEvent(event);
+                            }}
+                            className="h-8 px-2.5 text-[10px]"
+                          >
+                            {event.status === "Completed" ? "Reopen" : "Complete"}
+                          </AppButton>
+                          <AppButton
+                            type="button"
+                            size="sm"
+                            variant="secondary"
+                            onClick={(clickEvent) => {
+                              clickEvent.stopPropagation();
+                              onEditPersonalEvent(event);
+                            }}
+                            className="h-8 px-2.5 text-[10px]"
+                          >
+                            Edit
+                          </AppButton>
+                          <AppButton
+                            type="button"
+                            size="sm"
+                            variant="danger"
+                            onClick={(clickEvent) => {
+                              clickEvent.stopPropagation();
+                              deleteCalendarEvent(event);
+                            }}
+                            className="h-8 px-2.5 text-[10px]"
+                            aria-label={`Delete ${event.title}`}
+                            title="Delete to-do task"
+                          >
+                            Delete
+                          </AppButton>
+                        </div>
+                      ) : (
+                        <p className="rounded-lg bg-app-surface-muted px-2.5 py-2 text-[10px] font-semibold text-app-text-muted">
+                          Corrective actions are managed from the source inspection/action.
+                        </p>
+                      )}
+                    </div>
                   </div>
                 ))
               ) : (

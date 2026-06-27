@@ -1,8 +1,10 @@
+import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { SafetyCalendarControls } from "@/components/calendar/SafetyCalendarControls";
 import { eventTone, eventTypeLabel } from "@/lib/calendar/helpers";
 import {
+  isPersonalCalendarEvent,
   toDateKey,
   parseLocalCalendarDate,
 } from "@/lib/safetyCalendar";
@@ -27,6 +29,10 @@ interface CalendarViewRendererProps {
   selectedDateKey: string;
   selectedEvents: SafetyCalendarEvent[];
   formatFullDate: (date: Date) => string;
+  isPersonalCalendarEvent: typeof isPersonalCalendarEvent;
+  onOpenDay: (dateKey: string) => void;
+  onEditPersonalEvent: (event: SafetyCalendarEvent) => void;
+  onTogglePersonalEvent: (event: SafetyCalendarEvent) => void | Promise<void>;
   deleteCalendarEvent: (event: SafetyCalendarEvent) => void;
 }
 
@@ -47,6 +53,10 @@ export function CalendarViewRenderer({
   selectedDateKey,
   selectedEvents,
   formatFullDate,
+  isPersonalCalendarEvent,
+  onOpenDay,
+  onEditPersonalEvent,
+  onTogglePersonalEvent,
   deleteCalendarEvent,
 }: CalendarViewRendererProps) {
   if (view === "month") {
@@ -72,16 +82,18 @@ export function CalendarViewRenderer({
             const expanded = expandedMonthDateKey === dateKey;
             return (
               <div key={dateKey} className={expanded ? "col-span-7 sm:col-span-2 lg:col-span-3" : ""}>
-                <button
-                  type="button"
-                  onClick={() => selectDate(day)}
+                <div
                   style={{ borderRadius: 0 }}
-                  className={`sentinel-calendar-day flex w-full flex-col items-start justify-start rounded-none border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${expanded ? "min-h-48 p-4 shadow-none" : "aspect-square p-1.5 sm:p-2"}`}
+                  className={`sentinel-calendar-day flex w-full flex-col rounded-none border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${expanded ? "min-h-48 p-4 shadow-none" : "aspect-square p-1.5 sm:p-2"}`}
                 >
-                  <div className="flex w-full items-start justify-between gap-3">
+                  <button
+                    type="button"
+                    onClick={() => selectDate(day)}
+                    className="flex w-full items-start justify-between gap-3 text-left"
+                  >
                     <span className="block self-start text-xs font-black leading-none text-app-text">{day.getDate()}</span>
                     {expanded && <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">Collapse</span>}
-                  </div>
+                  </button>
                   {!expanded && workSummary.total > 0 && (
                     <div className="mt-auto flex w-full justify-end pt-2">
                       <span className={`flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-[10px] font-black ${workSummary.overdue > 0 ? "bg-red-600 text-white" : workSummary.criticalHigh > 0 ? "bg-amber-500 text-white" : "bg-[#1D72B8] text-white"}`}>
@@ -100,19 +112,89 @@ export function CalendarViewRenderer({
                           <div key={event.id} className={`rounded-lg border px-3 py-2 ${eventTone(event)}`}>
                             <p className="text-xs font-black text-app-text">{event.title}</p>
                             <p className="mt-1 text-[11px] font-semibold text-app-text-muted">{eventTypeLabel(event.type)} · {event.owner} · {event.status}</p>
+                            <p className="mt-1 text-[11px] font-semibold text-app-text-muted">
+                              {event.location}
+                              {event.sourceLabel ? ` · ${event.sourceLabel}` : ""}
+                            </p>
+                            {isPersonalCalendarEvent(event) && (
+                              <div className="mt-2 flex flex-wrap gap-1.5">
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="secondary"
+                                  onClick={(clickEvent) => {
+                                    clickEvent.stopPropagation();
+                                    onOpenDay(dateKey);
+                                  }}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  Open Day
+                                </AppButton>
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="secondary"
+                                  onClick={(clickEvent) => {
+                                    clickEvent.stopPropagation();
+                                    void onTogglePersonalEvent(event);
+                                  }}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  {event.status === "Completed" ? "Reopen" : "Complete"}
+                                </AppButton>
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="secondary"
+                                  onClick={(clickEvent) => {
+                                    clickEvent.stopPropagation();
+                                    onEditPersonalEvent(event);
+                                  }}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  Edit
+                                </AppButton>
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="danger"
+                                  onClick={(clickEvent) => {
+                                    clickEvent.stopPropagation();
+                                    deleteCalendarEvent(event);
+                                  }}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  Delete
+                                </AppButton>
+                              </div>
+                            )}
+                            {!isPersonalCalendarEvent(event) && (
+                              <p className="mt-2 text-[10px] font-semibold text-app-text-muted">
+                                Managed from source inspection/action.
+                              </p>
+                            )}
                           </div>
                         ))
                       ) : (
                         <p className="app-card app-text-soft rounded-lg border border-dashed px-3 py-2 text-xs font-semibold">No safety work is scheduled for this day.</p>
                       )}
                       {dayEvents.length > 0 && (
-                        <span role="button" tabIndex={0} onClick={(e) => { e.stopPropagation(); openDateInDayView(dateKey); }} className="inline-flex rounded-lg bg-[#102A43] px-3 py-2 text-xs font-black text-white">
+                        <AppButton
+                          type="button"
+                          size="sm"
+                          variant="secondary"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openDateInDayView(dateKey);
+                          }}
+                          className="h-8 px-3 text-[10px]"
+                        >
                           Open Day Agenda
-                        </span>
+                        </AppButton>
                       )}
                     </div>
                   )}
-                </button>
+                </div>
               </div>
             );
           })}
@@ -134,15 +216,64 @@ export function CalendarViewRenderer({
                   <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">{WEEKDAY_LABELS[day.getDay()]}</p>
                   <p className="mt-1 text-lg font-black text-app-text">{day.getDate()}</p>
                 </button>
-                <div className="mt-3 space-y-2">
-                  {dayEvents.length ? (
-                    dayEvents.map((event) => (
-                      <div key={event.id} className={`rounded-lg border px-2 py-2 text-xs font-bold ${eventTone(event)}`}>
-                        <p className="font-black text-app-text">{event.title}</p>
-                        <p className="mt-1 text-[11px] text-app-text-muted">{event.owner} · {event.status}</p>
-                      </div>
-                    ))
-                  ) : (
+                    <div className="mt-3 space-y-2">
+                      {dayEvents.length ? (
+                        dayEvents.map((event) => (
+                          <div key={event.id} className={`rounded-lg border px-2 py-2 text-xs font-bold ${eventTone(event)}`}>
+                            <p className="font-black text-app-text">{event.title}</p>
+                            <p className="mt-1 text-[11px] text-app-text-muted">{event.owner} · {event.status}</p>
+                            <p className="mt-1 text-[11px] text-app-text-muted">
+                              {event.location}
+                              {event.sourceLabel ? ` · ${event.sourceLabel}` : ""}
+                            </p>
+                            {isPersonalCalendarEvent(event) && (
+                              <div className="mt-2 flex flex-wrap gap-1.5">
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="secondary"
+                                  onClick={() => onOpenDay(dateKey)}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  Open Day
+                                </AppButton>
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="secondary"
+                                  onClick={() => void onTogglePersonalEvent(event)}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  {event.status === "Completed" ? "Reopen" : "Complete"}
+                                </AppButton>
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="secondary"
+                                  onClick={() => onEditPersonalEvent(event)}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  Edit
+                                </AppButton>
+                                <AppButton
+                                  type="button"
+                                  size="sm"
+                                  variant="danger"
+                                  onClick={() => deleteCalendarEvent(event)}
+                                  className="h-8 px-2.5 text-[10px]"
+                                >
+                                  Delete
+                                </AppButton>
+                              </div>
+                            )}
+                            {!isPersonalCalendarEvent(event) && (
+                              <p className="mt-2 text-[10px] text-app-text-muted">
+                                Managed from source inspection/action.
+                              </p>
+                            )}
+                          </div>
+                        ))
+                      ) : (
                     <p className="app-card app-text-soft rounded-lg border border-dashed px-2 py-2 text-xs font-semibold">No work.</p>
                   )}
                 </div>
@@ -162,33 +293,71 @@ export function CalendarViewRenderer({
           title={formatFullDate(parseLocalCalendarDate(selectedDateKey) || anchorDate)}
           description="Review scheduled work, overdue items, locations, and source details for the selected day."
         />
-        <div className="mt-4 space-y-3">
-          {selectedEvents.length ? (
-            selectedEvents.map((event) => (
-              <div key={event.id} className={`rounded-lg border px-4 py-3 ${eventTone(event)}`}>
+                <div className="mt-4 space-y-3">
+                  {selectedEvents.length ? (
+                    selectedEvents.map((event) => (
+                      <div key={event.id} className={`rounded-lg border px-4 py-3 ${eventTone(event)}`}>
                 <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-wide text-app-text-muted">{eventTypeLabel(event.type)} · {event.priority}</p>
                     <h3 className="mt-1 text-base font-black text-app-text">{event.title}</h3>
                     <p className="mt-1 text-xs font-semibold text-app-text-muted">Responsible: {event.owner} · Location: {event.location}</p>
+                    {event.sourceLabel && (
+                      <p className="mt-1 text-xs font-semibold text-app-text-muted">
+                        Source: {event.sourceLabel}
+                      </p>
+                    )}
                     {event.findingTitle && <p className="mt-1 text-xs font-semibold text-app-text-muted">Finding: {event.findingTitle}</p>}
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-lg bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">{event.status}</div>
-                    {event.source === "personal_task" && (
-                      <button
-                        type="button"
-                        onClick={() => deleteCalendarEvent(event)}
-                        className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-black text-red-700 transition hover:bg-red-100 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-950/50"
-                        aria-label={`Delete ${event.title}`}
-                        title="Delete calendar task"
-                      >
-                        Delete
-                      </button>
-                    )}
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-lg bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">{event.status}</div>
+                      {isPersonalCalendarEvent(event) ? (
+                        <>
+                          <AppButton
+                            type="button"
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => onOpenDay(event.date)}
+                            className="h-8 px-2.5 text-[10px]"
+                          >
+                            Open Day
+                          </AppButton>
+                          <AppButton
+                            type="button"
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => void onTogglePersonalEvent(event)}
+                            className="h-8 px-2.5 text-[10px]"
+                          >
+                            {event.status === "Completed" ? "Reopen" : "Complete"}
+                          </AppButton>
+                          <AppButton
+                            type="button"
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => onEditPersonalEvent(event)}
+                            className="h-8 px-2.5 text-[10px]"
+                          >
+                            Edit
+                          </AppButton>
+                          <AppButton
+                            type="button"
+                            size="sm"
+                            variant="danger"
+                            onClick={() => deleteCalendarEvent(event)}
+                            className="h-8 px-2.5 text-[10px]"
+                          >
+                            Delete
+                          </AppButton>
+                        </>
+                      ) : (
+                        <p className="text-[10px] font-semibold text-app-text-muted">
+                          Managed from source inspection/action.
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
             ))
           ) : (
             <p className="app-card app-text-soft rounded-lg border border-dashed px-4 py-4 text-sm font-bold">No safety work is scheduled for this day.</p>

@@ -84,6 +84,54 @@ function isPastDue(dateKey: string, status: SafetyCalendarEventStatus) {
   return dateKey < getTodayDateKey();
 }
 
+function getPersonalCalendarEventIds() {
+  return new Set(
+    getPersonalCalendarEvents()
+      .flatMap((event) => [event.id, event.sourceId])
+      .filter((value): value is string => Boolean(value)),
+  );
+}
+
+export function isPersonalCalendarEvent(
+  event: Pick<SafetyCalendarEvent, "id" | "source" | "sourceId">,
+) {
+  if (!event) return false;
+
+  if (event.source === "personal_task") return true;
+
+  if (String(event.id || "").startsWith("personal-")) return true;
+  if (String(event.sourceId || "").startsWith("personal-")) return true;
+
+  if (typeof window === "undefined") return false;
+
+  const personalEventIds = getPersonalCalendarEventIds();
+  return personalEventIds.has(event.id) || personalEventIds.has(event.sourceId);
+}
+
+function normalizePersonalCalendarEvent(
+  event: SafetyCalendarEvent,
+): SafetyCalendarEvent {
+  const date = parseLocalCalendarDate(event.date);
+  const dateKey = date ? toDateKey(date) : event.date || getTodayDateKey();
+  const status = normalizeStatus(event.status);
+
+  return {
+    ...event,
+    id: event.id || `personal-${Date.now()}`,
+    type: event.type || "custom",
+    title: event.title?.trim() || "Personal safety task",
+    date: dateKey,
+    owner: event.owner?.trim() || "Current user",
+    location: event.location?.trim() || "Personal task",
+    priority: normalizePriority(event.priority),
+    status: isPastDue(dateKey, status) ? "Overdue" : status,
+    source: "personal_task",
+    sourceId: event.sourceId || event.id || `personal-${Date.now()}`,
+    sourceLabel: event.sourceLabel || "Personal Task",
+    createdAt: event.createdAt || new Date().toISOString(),
+  };
+}
+
 function getCompanyAssignedWork(): CompanyAssignedWork[] {
   if (typeof window === "undefined") return [];
 
@@ -106,7 +154,9 @@ export function getPersonalCalendarEvents(): SafetyCalendarEvent[] {
       window.localStorage.getItem(PERSONAL_CALENDAR_EVENTS_KEY) || "[]",
     );
 
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed)
+      ? parsed.map((event) => normalizePersonalCalendarEvent(event))
+      : [];
   } catch {
     return [];
   }
@@ -114,19 +164,57 @@ export function getPersonalCalendarEvents(): SafetyCalendarEvent[] {
 
 export function savePersonalCalendarEvents(events: SafetyCalendarEvent[]) {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(PERSONAL_CALENDAR_EVENTS_KEY, JSON.stringify(events));
+  const normalized = events.map((event) => normalizePersonalCalendarEvent(event));
+  window.localStorage.setItem(PERSONAL_CALENDAR_EVENTS_KEY, JSON.stringify(normalized));
 }
 
 export function deletePersonalCalendarEvent(eventId: string) {
   if (typeof window === "undefined") return false;
 
   const current = getPersonalCalendarEvents();
-  const next = current.filter((event) => event.id !== eventId);
+  const next = current.filter((event) => !isPersonalCalendarEvent(event) || event.id !== eventId);
 
   if (next.length === current.length) return false;
 
   savePersonalCalendarEvents(next);
   return true;
+}
+
+export function updatePersonalCalendarEvent(
+  eventId: string,
+  updates: Partial<SafetyCalendarEvent>,
+): SafetyCalendarEvent | null {
+  if (typeof window === "undefined") return null;
+
+  const current = getPersonalCalendarEvents();
+  const index = current.findIndex(
+    (event) => isPersonalCalendarEvent(event) && event.id === eventId,
+  );
+
+  if (index === -1) return null;
+
+  const existing = current[index];
+  const updated = normalizePersonalCalendarEvent({
+    ...existing,
+    ...updates,
+    id: existing.id,
+    source: "personal_task",
+    sourceId: existing.sourceId || existing.id,
+    sourceLabel: existing.sourceLabel || "Personal Task",
+  });
+
+  const next = [...current];
+  next[index] = updated;
+  savePersonalCalendarEvents(next);
+  return updated;
+}
+
+export function completePersonalCalendarEvent(eventId: string): SafetyCalendarEvent | null {
+  return updatePersonalCalendarEvent(eventId, { status: "Completed" });
+}
+
+export function reopenPersonalCalendarEvent(eventId: string): SafetyCalendarEvent | null {
+  return updatePersonalCalendarEvent(eventId, { status: "Open" });
 }
 
 export function createPersonalCalendarTask(input: {
@@ -159,9 +247,9 @@ export function createPersonalCalendarTask(input: {
     createdAt: new Date().toISOString(),
   };
 
-  const next = [task, ...getPersonalCalendarEvents()];
+  const next = [normalizePersonalCalendarEvent(task), ...getPersonalCalendarEvents()];
   savePersonalCalendarEvents(next);
-  return task;
+  return normalizePersonalCalendarEvent(task);
 }
 
 function companyAssignmentToCalendarEvent(
