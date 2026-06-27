@@ -293,7 +293,7 @@ function storedActionToCalendarEvent(
     type: "corrective_action",
     title: action.title || action.findingTitle || "Corrective action",
     date: dateKey,
-    owner: action.owner || action.assignedTo || "Unassigned",
+    owner: action.assignedTo || "Unassigned",
     location: action.location || "Field Inspection",
     priority: normalizePriority(action.priority),
     status: isPastDue(dateKey, status) ? "Overdue" : status,
