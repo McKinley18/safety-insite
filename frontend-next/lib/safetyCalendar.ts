@@ -333,7 +333,7 @@ function storedActionToCalendarEvent(
     type: "corrective_action",
     title: action.title || action.findingTitle || "Corrective action",
     date: dateKey,
-    owner: action.assignedTo || "Unassigned",
+    owner: "owner" in action && typeof action.owner === "string" && action.owner.trim() ? action.owner : "Unassigned",
     location: action.location || "Field Inspection",
     priority: normalizePriority(action.priority),
     status: isPastDue(dateKey, status) ? "Overdue" : status,
