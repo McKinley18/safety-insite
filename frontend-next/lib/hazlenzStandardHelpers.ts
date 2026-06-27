@@ -8,11 +8,48 @@ export type HazLenzStandardCandidate = {
   confidence?: number;
   source?: string;
   rationale?: string;
+  authority?: "primary" | "supporting" | "advisory" | "needs_more_evidence";
+  evidenceGaps?: string[];
+  matchReasons?: string[];
+  isCandidate?: boolean;
+  isDirectMatch?: boolean;
 };
+
+const GENERIC_STANDARD_LABEL_RE = /^(review|pending|candidate(?: standard)?|suggested candidate standard|fallback candidate standard|standard family|applicable standard|no specific standard selected yet|needs more evidence|review candidate standard|unknown|none|n\/a|na)$/i;
 
 function looksLikeCitation(value: unknown) {
   const text = String(value || "").trim();
   return /\b(?:\d+\s*CFR\s*\d+|\d+\.\d+|\d+\s*CFR\s*Part\s*\d+)\b/i.test(text);
+}
+
+function isPlaceholderLabel(value: unknown) {
+  return GENERIC_STANDARD_LABEL_RE.test(String(value || "").trim());
+}
+
+function cleanText(value: unknown) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function sanitizeTitle(value: any, citation: string) {
+  const title = cleanText(
+    value?.title ||
+      value?.heading ||
+      value?.name ||
+      value?.sectionTitle ||
+      value?.titleSummary ||
+      value?.summary ||
+      value?.description ||
+      value?.citationTitle ||
+      "",
+  );
+
+  if (!title || isPlaceholderLabel(title)) return citation || "";
+
+  const stripped = citation
+    ? title.replace(new RegExp(`^${String(citation).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[—:-]*\\s*`, "i"), "").trim()
+    : title;
+
+  return stripped && !isPlaceholderLabel(stripped) ? stripped : (citation || "");
 }
 
 function normalizeCitation(value: any): string {
@@ -31,36 +68,65 @@ function normalizeCitation(value: any): string {
   return "";
 }
 
+function normalizeDecisionConfidence(candidate: any): number | undefined {
+  const raw = candidate?.confidence ?? candidate?.confidenceScore ?? candidate?.score;
+  const numeric = Number(raw);
+  if (!Number.isFinite(numeric)) return undefined;
+  if (numeric <= 1) return Math.max(0, Math.min(1, numeric));
+  if (numeric <= 100) return Math.max(0, Math.min(1, numeric / 100));
+  return Math.max(0, Math.min(1, numeric / 1000));
+}
+
+function toTextArray(value: any): string[] {
+  const items = Array.isArray(value) ? value : value !== undefined && value !== null ? [value] : [];
+  return items
+    .map((item) => cleanText(typeof item === "string" ? item : item?.question || item?.prompt || item?.reason || item?.text || item?.title || item?.summary || item))
+    .filter(Boolean);
+}
+
 function candidateFrom(value: any, source: string): HazLenzStandardCandidate | null {
   if (!isDisplayableStandardCandidate(value)) return null;
 
   const citation = normalizeCitation(value);
   if (!citation) return null;
+  const title = sanitizeTitle(value, citation);
+
+  const matchReasons = [
+    ...toTextArray(value?.matchingReasons),
+    ...toTextArray(value?.matchReasons),
+    ...toTextArray(value?.rationale),
+    ...toTextArray(value?.reason),
+    ...toTextArray(value?.reasons),
+    ...toTextArray(value?.supportReason),
+    ...toTextArray(value?.supportReasonText),
+  ];
+
+  const evidenceGaps = [
+    ...toTextArray(value?.evidenceNeeded),
+    ...toTextArray(value?.evidenceGaps),
+    ...toTextArray(value?.missingEvidence),
+    ...toTextArray(value?.evidenceGapQuestions),
+    ...toTextArray(value?.questions),
+  ];
 
   if (typeof value === "string") {
-    return { citation, source };
+    return { citation, title: citation, source };
   }
 
   return {
     citation,
-    title:
-      value.title ||
-      value.standardTitle ||
-      value.titleSummary ||
-      value.name ||
-      value.summary,
+    title: title || citation,
     jurisdiction: value.jurisdiction,
     status: value.status,
-    confidence:
-      value.confidence ??
-      value.confidenceScore ??
-      value.score,
+    confidence: normalizeDecisionConfidence(value),
     rationale:
-      value.rationale ||
-      value.reasoning ||
-      value.reason ||
-      value.explanation,
+      cleanText(value.rationale || value.reasoning || value.reason || value.explanation) || undefined,
     source,
+    authority: value.authority,
+    evidenceGaps: evidenceGaps.length ? evidenceGaps : undefined,
+    matchReasons: matchReasons.length ? matchReasons : undefined,
+    isCandidate: value.isCandidate,
+    isDirectMatch: value.isDirectMatch,
   };
 }
 
@@ -90,6 +156,12 @@ export function getHazLenzSuggestedStandards(result: any): HazLenzStandardCandid
   const seen = new Set<string>();
 
   if (!result) return standards;
+
+  const canonicalDecisions = getHazLenzStandardDecisions(result);
+  if (canonicalDecisions.length) {
+    canonicalDecisions.forEach((standard) => pushUnique(standards, seen, standard, "standardDecisions"));
+    return standards;
+  }
 
   pushUnique(standards, seen, result.primaryStandards, "primaryStandards");
   pushUnique(standards, seen, result.supportingStandards, "supportingStandards");
@@ -199,4 +271,24 @@ export function getHazLenzSuggestedStandards(result: any): HazLenzStandardCandid
   );
 
   return standards;
+}
+
+export function getHazLenzStandardDecisions(result: any): HazLenzStandardCandidate[] {
+  const decisions = Array.isArray(result?.standardDecisions) ? result.standardDecisions : [];
+  const seen = new Set<string>();
+  const normalized: HazLenzStandardCandidate[] = [];
+
+  for (const decision of decisions) {
+    if (!decision) continue;
+    if (decision.authority === "advisory") continue;
+
+    const candidate = candidateFrom(decision, "standardDecisions");
+    if (!candidate) continue;
+    const key = candidate.citation.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    normalized.push(candidate);
+  }
+
+  return normalized;
 }

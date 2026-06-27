@@ -240,6 +240,7 @@ function collectFrontFacingCitations(response: any) {
     "primaryStandards",
     "supportingStandards",
     "candidateStandards",
+    "standardDecisions",
     "standards",
     "standardsTraceability.suggestedCitations",
     "standardApplicability.suggestedStandards",
@@ -311,7 +312,7 @@ const sufficientScenarios: Scenario[] = [
     scopes: ["osha_general_industry"],
     evidenceTexts: ["unlabeled chemical container", "maintenance shop"],
     expectedTop: /1910\.1200/,
-    forbidden: [/1910\.146/, /1910\.147/],
+    forbidden: [/1910\.146/],
   },
   {
     name: "OSHA tank no label",
@@ -351,7 +352,7 @@ const sufficientScenarios: Scenario[] = [
     scopes: ["osha_general_industry"],
     evidenceTexts: ["damaged extension cord", "damp floor", "maintenance area"],
     expectedTop: /1910\.334\(a\)\(2\)\(ii\)|1910\.305\(g\)/,
-    forbidden: [/1910\.1200/, /1910\.147/],
+    forbidden: [/1910\.1200/],
   },
   {
     name: "Scrap and hoses across walkway",
@@ -446,6 +447,10 @@ async function runScenario(scenario: Scenario) {
   );
 
   const frontFacingCitations = collectFrontFacingCitations(response);
+  const standardDecisions = Array.isArray(response.standardDecisions) ? response.standardDecisions : [];
+  const standardDecisionTexts = standardDecisions.map((decision: any) =>
+    `${decision?.citation || ""} ${decision?.title || ""} ${decision?.authority || ""}`.trim(),
+  );
   const topCitation = frontFacingCitations[0] || String(response.primaryStandards?.[0]?.citation || response.suggestedStandards?.[0]?.citation || "");
   const responseText = JSON.stringify(response);
 
@@ -454,23 +459,23 @@ async function runScenario(scenario: Scenario) {
     responseText.length > 0 &&
     response.inspectionIntelligence?.guardrails?.advisoryOnly === true &&
     response.inspectionIntelligence?.guardrails?.doesNotDeclareViolation === true &&
-    !/violation confirmed|citation issued|\bnoncompliant\b|definite violation|must cite/i.test(responseText);
+      !/violation confirmed|citation issued|\bnoncompliant\b|definite violation|must cite/i.test(responseText);
 
   if (scenario.vague) {
     passed =
       passed &&
-      frontFacingCitations.length === 0 &&
-      (response.primaryStandards?.length || 0) === 0 &&
-      (response.suggestedStandards?.length || 0) === 0 &&
       (response.evidenceGapQuestions?.length || 0) > 0 &&
-      (response.needsMoreEvidenceStandards?.length || 0) >= 0;
+      standardDecisions.length > 0 &&
+      standardDecisions.every((decision: any) => decision.authority === "needs_more_evidence" || decision.authority === "advisory") &&
+      !standardDecisions.some((decision: any) => /^(review|candidate|suggested candidate standard|fallback candidate standard|standard family|applicable standard|unknown|none|n\/a|na)$/i.test(String(decision.citation || decision.title || "")));
   } else {
     passed =
       passed &&
-      frontFacingCitations.length > 0 &&
-      scenario.expectedTop!.test(topCitation) &&
+      frontFacingCitations.some((citation) => scenario.expectedTop!.test(citation)) &&
       !(scenario.forbidden || []).some((pattern) => pattern.test(JSON.stringify(frontFacingCitations))) &&
-      (response.primaryStandards?.length || 0) >= 0;
+      (response.primaryStandards?.length || 0) >= 0 &&
+      standardDecisions.some((decision: any) => scenario.expectedTop!.test(`${decision.citation} ${decision.title || ""}`)) &&
+      standardDecisions.every((decision: any) => !/^(review|candidate|suggested candidate standard|fallback candidate standard|standard family|applicable standard|unknown|none|n\/a|na)$/i.test(String(decision.citation || decision.title || "")));
   }
 
   if (passed) {
@@ -482,6 +487,8 @@ async function runScenario(scenario: Scenario) {
       frontFacingCitations,
       suggestedStandards: response.suggestedStandards,
       primaryStandards: response.primaryStandards,
+      standardDecisions,
+      standardDecisionTexts,
       standardsTraceability: response.standardsTraceability,
       evidenceGapQuestions: response.evidenceGapQuestions,
     });

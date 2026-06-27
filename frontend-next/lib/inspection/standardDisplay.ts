@@ -32,7 +32,7 @@ function looksLikeGenericStandardLabel(value: string) {
   const text = cleanText(value).toLowerCase();
   if (!text) return true;
 
-  return /^(review|pending|candidate standard|suggested candidate standard|fallback candidate standard|standard family|applicable standard|no specific standard selected yet|needs more evidence|review candidate standard)(?:\s|$)/i.test(text) ||
+  return /^(review|pending|candidate standard|suggested candidate standard|fallback candidate standard|standard family|applicable standard|no specific standard selected yet|needs more evidence|review candidate standard|unknown|none|n\/a|na)(?:\s|$)/i.test(text) ||
     /\breview candidate standard\b/i.test(text) ||
     /\bstandard family\b/i.test(text);
 }
@@ -108,7 +108,7 @@ export function getStandardSummary(standard: any) {
     !summary ||
     summary === title ||
     summary === citation ||
-    /\b(candidate standard|suggested candidate standard|fallback candidate standard|review needed|review candidate standard|standard family|no specific standard selected yet|needs more evidence)\b/i.test(summary)
+    /\b(candidate standard|suggested candidate standard|fallback candidate standard|review needed|review candidate standard|standard family|no specific standard selected yet|needs more evidence|unknown|none|n\/a|na)\b/i.test(summary)
   ) {
     return "";
   }
@@ -131,7 +131,7 @@ export function formatStandardDisplay(standard: any) {
   if (
     !title ||
     title === "Applicable standard" ||
-    /\b(candidate standard|suggested candidate standard|fallback candidate standard|review needed|review candidate standard|standard family|no specific standard selected yet|needs more evidence)\b/i.test(title)
+    /\b(candidate standard|suggested candidate standard|fallback candidate standard|review needed|review candidate standard|standard family|no specific standard selected yet|needs more evidence|unknown|none|n\/a|na)\b/i.test(title)
   ) {
     return citation;
   }

@@ -1,3 +1,4 @@
+import { getHazLenzStandardDecisions } from "@/lib/hazlenzStandardHelpers";
 import { isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
 
 export function asArray(value: any): any[] {
@@ -65,6 +66,24 @@ export function normalizeHazLenzStandard(standard: any, source = "candidate") {
 }
 
 export function getHazLenzPrimaryStandards(result: any): any[] {
+  const canonical = getHazLenzStandardDecisions(result);
+  if (canonical.length) {
+    const primary = canonical.filter((standard) => standard.authority === "primary");
+    const supporting = canonical.filter((standard) => standard.authority === "supporting");
+    const needsMore = canonical.filter((standard) => standard.authority === "needs_more_evidence");
+    const preferred = primary.length > 0 ? primary : supporting.length > 0 ? supporting : needsMore;
+
+    const seen = new Set<string>();
+    const unique: any[] = [];
+    for (const standard of preferred) {
+      const key = standardKey(standard);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      unique.push(standard);
+    }
+    return unique.slice(0, 3);
+  }
+
   const raw = [
     ...asArray(result?.primaryStandards).map((s) =>
       normalizeHazLenzStandard(s, "primaryStandards"),
@@ -106,6 +125,15 @@ export function getHazLenzPrimaryStandards(result: any): any[] {
 }
 
 export function getHazLenzSupportingStandards(result: any): any[] {
+  const canonical = getHazLenzStandardDecisions(result);
+  if (canonical.length) {
+    const primaryKeys = new Set(getHazLenzPrimaryStandards(result).map(standardKey));
+    return canonical
+      .filter((standard) => standard.authority === "supporting" || standard.authority === "advisory")
+      .filter((standard) => !primaryKeys.has(standardKey(standard)))
+      .slice(0, 4);
+  }
+
   const primaryKeys = new Set(getHazLenzPrimaryStandards(result).map(standardKey));
 
   const raw = [

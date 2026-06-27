@@ -197,10 +197,17 @@ export default function SafeScopeStandardsSection({
     "";
 
   const getStandardTitle = (standard: any) =>
-    standard?.title ||
-    standard?.name ||
-    standard?.standardTitle ||
-    "";
+    (() => {
+      const title = String(
+        standard?.title ||
+        standard?.name ||
+        standard?.standardTitle ||
+        "",
+      ).trim();
+      return /^(review|pending|candidate(?: standard)?|suggested candidate standard|fallback candidate standard|standard family|applicable standard|no specific standard selected yet|needs more evidence|review candidate standard|unknown|none|n\/a|na)$/i.test(title)
+        ? ""
+        : title;
+    })();
 
   const getStandardMatchExplanation = (standard: any) => {
     const citationStr = getStandardCitation(standard);

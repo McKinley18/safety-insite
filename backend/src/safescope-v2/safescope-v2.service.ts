@@ -1427,6 +1427,17 @@ export class SafescopeV2Service {
         };
       }
 
+      const standardDecisions = this.buildStandardDecisions({
+        response,
+        normalizedScopes,
+      });
+      response.standardDecisions = standardDecisions;
+      response.decisionSupportMetadata = {
+        ...(response.decisionSupportMetadata || {}),
+        standardDecisions,
+        standardDecisionCount: standardDecisions.length,
+      };
+
       if (likelyGuardingReview && !(response.evidenceGapQuestions || []).length) {
         response.evidenceGapQuestions = guardingReviewQuestions;
         response.inspectionIntelligence = {
@@ -1948,6 +1959,273 @@ export class SafescopeV2Service {
         requiresQualifiedReview: true,
       };
     });
+  }
+
+  private buildStandardDecisions(input: { response: any; normalizedScopes: string[] }) {
+    const response = input?.response || {};
+    const normalizedScopes = Array.isArray(input?.normalizedScopes) ? input.normalizedScopes : [];
+    type StandardDecisionAuthority = "primary" | "supporting" | "advisory" | "needs_more_evidence";
+
+    const genericLabelPattern = /^(review|pending|candidate(?: standard)?|suggested candidate standard|fallback candidate standard|standard family|applicable standard|no specific standard selected yet|needs more evidence|review candidate standard|unknown|none|n\/a|na)$/i;
+    const citationPattern = /\b(?:\d+\s*CFR\s*\d+(?:\.\d+)?(?:\([a-z0-9]+\))*|\d+\.\d+(?:\([a-z0-9]+\))*)\b/i;
+    const authorityRank: Record<StandardDecisionAuthority, number> = {
+      primary: 3,
+      supporting: 2,
+      needs_more_evidence: 1,
+      advisory: 0,
+    };
+
+    const clean = (value: unknown) => String(value ?? "").replace(/\s+/g, " ").trim();
+    const escapeRegExp = (value: string) => String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const isPlaceholder = (value: string) => genericLabelPattern.test(clean(value));
+    const isCitationLike = (value: string) => citationPattern.test(clean(value));
+    const normalizeConfidence = (candidate: any): number | undefined => {
+      const raw = candidate?.confidence ?? candidate?.confidenceScore ?? candidate?.score;
+      const numeric = Number(raw);
+      if (!Number.isFinite(numeric)) return undefined;
+      if (numeric <= 1) return Math.max(0, Math.min(1, numeric));
+      if (numeric <= 100) return Math.max(0, Math.min(1, numeric / 100));
+      return Math.max(0, Math.min(1, numeric / 1000));
+    };
+    const collectText = (value: any, keys: string[]): string[] => {
+      const seen = new Set<string>();
+      const values: string[] = [];
+      for (const key of keys) {
+        const raw = value?.[key];
+        const items = Array.isArray(raw) ? raw : raw !== undefined && raw !== null ? [raw] : [];
+        for (const item of items) {
+          const text = clean(typeof item === "string" ? item : item?.question || item?.prompt || item?.reason || item?.text || item?.title || item?.summary || item);
+          if (!text || seen.has(text.toLowerCase())) continue;
+          seen.add(text.toLowerCase());
+          values.push(text);
+        }
+      }
+      return values;
+    };
+    const extractCitation = (value: any): string => {
+      const candidates = [
+        value?.citation,
+        value?.standard,
+        value?.standardNumber,
+        value?.code,
+        value?.reference,
+        value?.authority?.citation,
+        value?.referenceStandards?.[0]?.citation,
+        value?.primaryCitation,
+        typeof value === "string" ? value : "",
+      ];
+
+      for (const candidate of candidates) {
+        const text = clean(candidate);
+        if (!text || isPlaceholder(text) || !isCitationLike(text)) continue;
+        return text;
+      }
+      return "";
+    };
+    const extractTitle = (value: any, citation: string): string => {
+      const raw = clean(
+        value?.title ||
+        value?.heading ||
+        value?.name ||
+        value?.sectionTitle ||
+        value?.titleSummary ||
+        value?.summary ||
+        value?.description ||
+        value?.citationTitle ||
+        ""
+      );
+      if (!raw || isPlaceholder(raw)) return citation || "";
+      const cleaned = raw.replace(new RegExp(`^${escapeRegExp(citation)}\\s*[—:-]*\\s*`, "i"), "").trim();
+      return cleaned && !isPlaceholder(cleaned) ? cleaned : (citation || "");
+    };
+    const authorityFor = (value: any, source: string): StandardDecisionAuthority => {
+      const label = String(source || "").toLowerCase();
+      const status = String(value?.candidateStatus || value?.status || "").toLowerCase();
+      if (label.includes("excluded") || status.includes("excluded") || status.includes("reject")) return "advisory";
+      if (label.includes("needsmoreevidence") || label.includes("needs_more_evidence") || status.includes("needs_more_evidence") || status.includes("needs more evidence")) return "needs_more_evidence";
+      if (label.includes("supporting") || status.includes("supporting_context")) return "supporting";
+      if (label.includes("generatedactions.referencestandards") || label.includes("basegeneratedactions.referencestandards")) return "supporting";
+      return "primary";
+    };
+    const isDirectMatch = (authority: StandardDecisionAuthority, value: any, source: string) => {
+      if (authority !== "primary") return false;
+      const label = String(source || "").toLowerCase();
+      return (
+        label.includes("primarystandards") ||
+        label.includes("suggestedstandards") ||
+        label.includes("standardapplicability.suggestedstandards") ||
+        label.includes("standardapplicability.matchedrules") ||
+        label.includes("inspectionintelligence.candidatestandards") ||
+        label.includes("standardsreasoning.topdefensible") ||
+        label.includes("standardstraceability.suggestedcitations") ||
+        Boolean(value?.citationRanking?.directCandidate) ||
+        String(value?.candidateStatus || "").toLowerCase() === "candidate_standard"
+      );
+    };
+    const buildDecision = (value: any, source: string): any | null => {
+      const citation = extractCitation(value);
+      if (!citation) return null;
+
+      const authority = authorityFor(value, source);
+      const title = extractTitle(value, citation);
+      const matchReasons = collectText(value, [
+        "matchingReasons",
+        "matchReasons",
+        "rationale",
+        "reason",
+        "reasons",
+        "supportReason",
+        "supportReasonText",
+      ]);
+      const evidenceGaps = collectText(value, [
+        "evidenceNeeded",
+        "evidenceGaps",
+        "missingEvidence",
+        "evidenceGapQuestions",
+        "questions",
+      ]);
+      const agency = clean(value?.agencyCode || value?.agency || (String(citation).startsWith("30 CFR") ? "MSHA" : "OSHA")) || undefined;
+      const scope = clean(value?.scope || value?.jurisdiction || value?.standardScope || normalizedScopes[0] || "");
+      return {
+        citation,
+        title,
+        authority,
+        agency: agency || undefined,
+        scope: scope || undefined,
+        confidence: normalizeConfidence(value),
+        matchReasons: matchReasons.length ? matchReasons : undefined,
+        evidenceGaps: evidenceGaps.length ? evidenceGaps : undefined,
+        isCandidate: authority !== "advisory",
+        isDirectMatch: isDirectMatch(authority, value, source),
+        source,
+      };
+    };
+    const ingest = (
+      bucket: any,
+      source: string,
+      decisions: Map<string, any>,
+    ) => {
+      const items = Array.isArray(bucket) ? bucket : bucket ? [bucket] : [];
+      for (const item of items) {
+        const decision = buildDecision(item, source);
+        if (!decision) continue;
+
+        const key = decision.citation.toLowerCase().replace(/\s+/g, "");
+        const existing = decisions.get(key);
+        if (!existing) {
+          decisions.set(key, decision);
+          continue;
+        }
+
+        const existingRank = authorityRank[existing.authority as StandardDecisionAuthority] ?? -1;
+        const incomingRank = authorityRank[decision.authority as StandardDecisionAuthority] ?? -1;
+        const merged = {
+          ...existing,
+          ...decision,
+          authority: incomingRank > existingRank ? decision.authority : existing.authority,
+          title: (existing.title && !isPlaceholder(existing.title) && existing.title !== existing.citation)
+            ? existing.title
+            : decision.title || existing.citation,
+          confidence: Math.max(
+            Number.isFinite(Number(existing.confidence)) ? Number(existing.confidence) : 0,
+            Number.isFinite(Number(decision.confidence)) ? Number(decision.confidence) : 0,
+          ) || undefined,
+          matchReasons: Array.from(new Set([...(existing.matchReasons || []), ...(decision.matchReasons || [])])).filter(Boolean),
+          evidenceGaps: Array.from(new Set([...(existing.evidenceGaps || []), ...(decision.evidenceGaps || [])])).filter(Boolean),
+          source: Array.from(new Set([...(String(existing.source || "").split(" | ").filter(Boolean)), ...(String(decision.source || "").split(" | ").filter(Boolean))])).join(" | "),
+          isCandidate: (incomingRank > existingRank ? decision.isCandidate : existing.isCandidate) !== false,
+          isDirectMatch: incomingRank > existingRank ? decision.isDirectMatch : existing.isDirectMatch,
+        };
+        decisions.set(key, merged);
+      }
+    };
+
+    const decisions = new Map<string, any>();
+
+    ingest(response?.primaryStandards, "primaryStandards", decisions);
+    ingest(response?.suggestedStandards, "suggestedStandards", decisions);
+    ingest(response?.standards, "standards", decisions);
+    ingest(response?.standardApplicability?.suggestedStandards, "standardApplicability.suggestedStandards", decisions);
+    ingest(response?.standardApplicability?.matchedRules, "standardApplicability.matchedRules", decisions);
+    ingest(response?.inspectionIntelligence?.candidateStandards, "inspectionIntelligence.candidateStandards", decisions);
+    ingest(response?.applicabilityIntelligence?.primaryApplicableStandards, "applicabilityIntelligence.primaryApplicableStandards", decisions);
+    ingest(response?.standardsReasoning?.topDefensible, "standardsReasoning.topDefensible", decisions);
+    ingest(response?.supportingStandards, "supportingStandards", decisions);
+    ingest(response?.standardsTraceability?.supportingCitations, "standardsTraceability.supportingCitations", decisions);
+    ingest(response?.applicabilityIntelligence?.supportingStandards, "applicabilityIntelligence.supportingStandards", decisions);
+    ingest(response?.promotion?.approvedRecordCandidate, "promotion.approvedRecordCandidate", decisions);
+    ingest(
+      (response?.generatedActions || []).flatMap((action: any) => action?.referenceStandards || []),
+      "generatedActions.referenceStandards",
+      decisions,
+    );
+    ingest(
+      (response?.baseGeneratedActions || []).flatMap((action: any) => action?.referenceStandards || []),
+      "baseGeneratedActions.referenceStandards",
+      decisions,
+    );
+    ingest(response?.needsMoreEvidenceStandards, "needsMoreEvidenceStandards", decisions);
+    ingest(response?.standardApplicability?.needsMoreEvidenceStandards, "standardApplicability.needsMoreEvidenceStandards", decisions);
+    ingest(response?.standardsTraceability?.needsMoreEvidenceCitations, "standardsTraceability.needsMoreEvidenceCitations", decisions);
+    ingest(response?.applicabilityIntelligence?.needsMoreEvidenceStandards, "applicabilityIntelligence.needsMoreEvidenceStandards", decisions);
+    ingest(response?.excludedStandards, "excludedStandards", decisions);
+    ingest(response?.standardsTraceability?.excludedCitations, "standardsTraceability.excludedCitations", decisions);
+    ingest(response?.applicabilityIntelligence?.excludedStandards, "applicabilityIntelligence.excludedStandards", decisions);
+
+    const sorted = Array.from(decisions.values()).sort((left, right) => {
+      const leftRank = authorityRank[left.authority as StandardDecisionAuthority] ?? -1;
+      const rightRank = authorityRank[right.authority as StandardDecisionAuthority] ?? -1;
+      if (leftRank !== rightRank) return rightRank - leftRank;
+      return String(left.citation).localeCompare(String(right.citation));
+    });
+
+    const normalizedCitation = (citation: string) => clean(citation).toLowerCase().replace(/\s+/g, "");
+    const isPrefixOfMoreSpecificCitation = (citation: string) => {
+      const base = normalizedCitation(citation);
+      if (!base) return false;
+      return sorted.some((other: any) => {
+        const otherCitation = normalizedCitation(other?.citation || "");
+        return otherCitation !== base && otherCitation.startsWith(base) && otherCitation.length > base.length;
+      });
+    };
+    const shouldDemoteBroadReference = (decision: any) => {
+      const citation = String(decision?.citation || "");
+      const title = String(decision?.title || "");
+      return (
+        /^29 CFR 1910\.301$/i.test(citation) ||
+        /^29 CFR 1910\.331$/i.test(citation) ||
+        /^29 CFR 1910\.305\(g\)$/i.test(citation) ||
+        /^29 CFR 1910\.1200\(f\)$/i.test(citation) ||
+        /\b(introduction|scope|candidate requirements related|candidate requirement identified by the existing deterministic citation resolver|specific purpose equipment|general requirements)\b/i.test(title) ||
+        isPrefixOfMoreSpecificCitation(citation)
+      );
+    };
+
+    const ordered = sorted.map((decision: any) => {
+      if (decision?.authority === "primary" && shouldDemoteBroadReference(decision)) {
+        return {
+          ...decision,
+          authority: "supporting",
+          isDirectMatch: false,
+        };
+      }
+      return decision;
+    }).sort((left, right) => {
+      const leftRank = authorityRank[left.authority as StandardDecisionAuthority] ?? -1;
+      const rightRank = authorityRank[right.authority as StandardDecisionAuthority] ?? -1;
+      if (leftRank !== rightRank) return rightRank - leftRank;
+      return String(left.citation).localeCompare(String(right.citation));
+    });
+
+    if (process.env.HAZLENZ_DEBUG_STANDARD_DECISIONS === "true") {
+      console.log("[HazLenz standard decisions]", {
+        hazardCategory: response?.hazardCategory,
+        candidateStandardFamily: response?.candidateStandardFamily,
+        standardDecisions: ordered,
+      });
+    }
+
+    return ordered;
   }
 
   private sanitizeResponseForVagueInput(obj: any, isElectrical: boolean, inspectorText: string, rootHazardCategory: string): any {
