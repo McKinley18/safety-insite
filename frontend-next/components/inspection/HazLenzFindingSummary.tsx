@@ -261,6 +261,7 @@ function buildSummary({
 
 export default function HazLenzFindingSummary(props: HazLenzFindingSummaryProps) {
   const summary = buildSummary(props);
+  const mechanismChain = getHazLenzMechanismChain(props.safeScopeResult);
 
   return (
     <div className="space-y-3">
