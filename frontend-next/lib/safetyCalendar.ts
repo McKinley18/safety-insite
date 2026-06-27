@@ -117,6 +117,18 @@ export function savePersonalCalendarEvents(events: SafetyCalendarEvent[]) {
   window.localStorage.setItem(PERSONAL_CALENDAR_EVENTS_KEY, JSON.stringify(events));
 }
 
+export function deletePersonalCalendarEvent(eventId: string) {
+  if (typeof window === "undefined") return false;
+
+  const current = getPersonalCalendarEvents();
+  const next = current.filter((event) => event.id !== eventId);
+
+  if (next.length === current.length) return false;
+
+  savePersonalCalendarEvents(next);
+  return true;
+}
+
 export function createPersonalCalendarTask(input: {
   title: string;
   date: string;
@@ -193,7 +205,7 @@ function storedActionToCalendarEvent(
     type: "corrective_action",
     title: action.title || action.findingTitle || "Corrective action",
     date: dateKey,
-    owner: "Unassigned",
+    owner: action.owner || action.assignedTo || "Unassigned",
     location: action.location || "Field Inspection",
     priority: normalizePriority(action.priority),
     status: isPastDue(dateKey, status) ? "Overdue" : status,

@@ -27,6 +27,7 @@ interface CalendarViewRendererProps {
   selectedDateKey: string;
   selectedEvents: SafetyCalendarEvent[];
   formatFullDate: (date: Date) => string;
+  deleteCalendarEvent: (event: SafetyCalendarEvent) => void;
 }
 
 export function CalendarViewRenderer({
@@ -46,6 +47,7 @@ export function CalendarViewRenderer({
   selectedDateKey,
   selectedEvents,
   formatFullDate,
+  deleteCalendarEvent,
 }: CalendarViewRendererProps) {
   if (view === "month") {
     return (
@@ -171,7 +173,20 @@ export function CalendarViewRenderer({
                     <p className="mt-1 text-xs font-semibold text-app-text-muted">Responsible: {event.owner} · Location: {event.location}</p>
                     {event.findingTitle && <p className="mt-1 text-xs font-semibold text-app-text-muted">Finding: {event.findingTitle}</p>}
                   </div>
-                  <div className="rounded-lg bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">{event.status}</div>
+                  <div className="flex items-center gap-2">
+                    <div className="rounded-lg bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">{event.status}</div>
+                    {event.source === "personal_task" && (
+                      <button
+                        type="button"
+                        onClick={() => deleteCalendarEvent(event)}
+                        className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-black text-red-700 transition hover:bg-red-100 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-950/50"
+                        aria-label={`Delete ${event.title}`}
+                        title="Delete calendar task"
+                      >
+                        Delete
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             ))

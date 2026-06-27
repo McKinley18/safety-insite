@@ -11,6 +11,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { CalendarViewRenderer } from "@/components/calendar/CalendarViewRenderer";
 import {
   createPersonalCalendarTask,
+  deletePersonalCalendarEvent,
   getSafetyCalendarEvents,
   getTodayDateKey,
   parseLocalCalendarDate,
@@ -93,7 +94,7 @@ function getDayCardTone(day: Date, dayEvents: SafetyCalendarEvent[]) {
   }
 
   if (sameDateKey(day, todayKey)) {
-    return "border-app-primary bg-app-primary/10";
+    return "border-app-primary bg-app-brand-soft";
   }
 
   return "app-surface";
@@ -287,6 +288,25 @@ export default function SafetyCalendarPage() {
     setEvents(loaded);
   }
 
+  async function deleteCalendarEvent(event: SafetyCalendarEvent) {
+    if (event.source !== "personal_task") {
+      setTaskMessage("Only personal calendar tasks can be deleted here. Corrective actions should be managed from their source inspection/action.");
+      return;
+    }
+
+    const confirmed = window.confirm(`Delete "${event.title}" from your calendar?`);
+    if (!confirmed) return;
+
+    const deleted = deletePersonalCalendarEvent(event.id);
+    await refreshCalendarEvents();
+
+    setTaskMessage(
+      deleted
+        ? "Calendar task deleted."
+        : "Unable to delete that calendar task.",
+    );
+  }
+
   function openDateInDayView(dateKey: string) {
     const date = parseLocalCalendarDate(dateKey);
     if (date) setAnchorDate(date);
@@ -421,11 +441,13 @@ export default function SafetyCalendarPage() {
             selectedDateKey={selectedDateKey}
             selectedEvents={selectedEvents}
             formatFullDate={formatFullDate}
+            deleteCalendarEvent={deleteCalendarEvent}
           />
         </div>
         <PriorityTodoPanel
           priorityTodoGroups={priorityTodoGroups}
           openEventDay={openEventDay}
+          deleteCalendarEvent={deleteCalendarEvent}
         />
       </div>
 
