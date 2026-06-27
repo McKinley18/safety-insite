@@ -72,6 +72,10 @@ const suites: Suite[] = [
     scriptPath: "src/safescope-v2/tests/hazlenz-spill-release-citation-ranking.ts"
   },
   {
+    name: "HazLenz Mechanism Chain Contract Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-mechanism-chain-contract-regression.ts"
+  },
+  {
     name: "HazLenz Supplemental Knowledge Regression",
     scriptPath: "src/safescope-v2/tests/hazlenz-supplemental-knowledge-regression.ts"
   },

@@ -1432,10 +1432,16 @@ export class SafescopeV2Service {
         normalizedScopes,
       });
       response.standardDecisions = standardDecisions;
+      const mechanismChain = this.buildMechanismChain({
+        response,
+        normalizedScopes,
+      });
+      response.mechanismChain = mechanismChain;
       response.decisionSupportMetadata = {
         ...(response.decisionSupportMetadata || {}),
         standardDecisions,
         standardDecisionCount: standardDecisions.length,
+        mechanismChain,
       };
 
       if (likelyGuardingReview && !(response.evidenceGapQuestions || []).length) {
@@ -2226,6 +2232,126 @@ export class SafescopeV2Service {
     }
 
     return ordered;
+  }
+
+  private buildMechanismChain(input: { response: any; normalizedScopes: string[] }) {
+    const response = input?.response || {};
+    const inspectionIntelligence = response?.inspectionIntelligence || {};
+    const mechanismChainSource = inspectionIntelligence?.mechanismChain || {};
+    const mechanismOfInjury = inspectionIntelligence?.mechanismOfInjury || {};
+    const vagueInputAnalysis = inspectionIntelligence?.vagueInputAnalysis || {};
+    const correctiveActions = response?.correctiveActions || {};
+
+    const clean = (value: unknown) => String(value ?? "").replace(/\s+/g, " ").trim();
+    const uniqueText = (...sources: any[]): string[] => {
+      const seen = new Set<string>();
+      const values: string[] = [];
+      for (const source of sources) {
+        const items = Array.isArray(source) ? source : source !== undefined && source !== null ? [source] : [];
+        for (const item of items) {
+          const text = clean(
+            typeof item === "string"
+              ? item
+              : item?.observedCondition ||
+                item?.failureMode ||
+                item?.releaseOrFailureMode ||
+                item?.exposurePathway ||
+                item?.potentialConsequence ||
+                item?.consequences ||
+                item?.controlFocus ||
+                item?.controls ||
+                item?.evidenceGap ||
+                item?.evidenceGaps ||
+                item?.text ||
+                item?.title ||
+                item?.summary ||
+                item?.reason ||
+                item,
+          );
+          if (!text) continue;
+          const key = text.toLowerCase();
+          if (seen.has(key)) continue;
+          seen.add(key);
+          values.push(text);
+        }
+      }
+      return values;
+    };
+    const summarize = (values: string[], fallback: string) => uniqueText(values)[0] || fallback;
+    const evidenceGaps = uniqueText(
+      mechanismChainSource?.evidenceGaps,
+      mechanismOfInjury?.evidenceGaps,
+      response?.evidenceGapQuestions,
+      inspectionIntelligence?.standardApplicability?.followUpQuestions,
+    ).slice(0, 8);
+    const controlFocus = uniqueText(
+      mechanismChainSource?.controls,
+      mechanismOfInjury?.controlThemes,
+      correctiveActions?.immediate,
+      correctiveActions?.interim,
+      correctiveActions?.permanentEngineering,
+      correctiveActions?.administrativeProgramTraining,
+    ).slice(0, 8);
+    const confidence = Number(response?.confidence);
+    const normalizedConfidence = Number.isFinite(confidence) ? Math.max(0, Math.min(1, confidence)) : undefined;
+
+    const observedCondition = summarize(
+      uniqueText(
+        mechanismChainSource?.initiatingCondition,
+        mechanismOfInjury?.initiatingCondition,
+        vagueInputAnalysis?.observedFacts,
+      ),
+      response?.classification
+        ? `${clean(response.classification)} condition needs review.`
+        : "Observed condition needs more detail.",
+    );
+    const failureMode = summarize(
+      uniqueText(
+        mechanismChainSource?.releaseOrFailureMode,
+        mechanismOfInjury?.failureMode,
+      ),
+      response?.isVague
+        ? "Release or failure mode is not yet specific enough to confirm."
+        : "Failure mode is not fully established.",
+    );
+    const exposurePathway = summarize(
+      uniqueText(
+        mechanismChainSource?.exposurePathway,
+        mechanismOfInjury?.exposurePathway,
+      ),
+      response?.isVague
+        ? "Worker exposure pathway is not yet specific enough to confirm."
+        : "Exposure pathway is not fully established.",
+    );
+    const potentialConsequence = summarize(
+      uniqueText(
+        mechanismChainSource?.consequences,
+        mechanismOfInjury?.potentialConsequences,
+      ),
+      response?.isVague
+        ? "Possible injury, illness, or environmental consequence depends on confirmed details."
+        : "Potential consequence is not fully established.",
+    );
+
+    const mechanismChain = {
+      observedCondition,
+      failureMode,
+      exposurePathway,
+      potentialConsequence,
+      evidenceGaps,
+      controlFocus,
+      ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+    };
+
+    if (process.env.HAZLENZ_DEBUG_MECHANISM_CHAIN === "true") {
+      console.log("[HazLenz mechanism chain]", {
+        hazardCategory: response?.hazardCategory,
+        candidateStandardFamily: response?.candidateStandardFamily,
+        mechanismChain,
+      });
+    }
+
+    return mechanismChain;
   }
 
   private sanitizeResponseForVagueInput(obj: any, isElectrical: boolean, inspectorText: string, rootHazardCategory: string): any {
