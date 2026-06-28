@@ -122,6 +122,7 @@ export default function InspectionPage() {
   >([]);
   const [manualActionTitle, setManualActionTitle] = useState("");
   const [manualActionPriority, setManualActionPriority] = useState("Medium");
+  const [manualActionOwner, setManualActionOwner] = useState("");
   const [manualActionDue, setManualActionDue] = useState("");
   const [manualActionClosureEvidence, setManualActionClosureEvidence] =
     useState("Photo");
@@ -521,11 +522,12 @@ export default function InspectionPage() {
 
     setManualActions((current) => [
       ...current,
-      buildManualAction(manualActionTitle, manualActionPriority, manualActionDue),
+      buildManualAction(manualActionTitle, manualActionPriority, manualActionOwner, manualActionDue, manualActionClosureEvidence),
     ]);
 
     setManualActionTitle("");
     setManualActionPriority("Medium");
+    setManualActionOwner("");
     setManualActionDue("");
   }
 
@@ -590,6 +592,7 @@ export default function InspectionPage() {
     setManualActions([]);
     setManualActionTitle("");
     setManualActionPriority("Medium");
+    setManualActionOwner("");
     setManualActionDue("");
   }
 
@@ -831,6 +834,8 @@ export default function InspectionPage() {
         setManualActionTitle={setManualActionTitle}
         manualActionPriority={manualActionPriority}
         setManualActionPriority={setManualActionPriority}
+        manualActionOwner={manualActionOwner}
+        setManualActionOwner={setManualActionOwner}
         manualActionDue={manualActionDue}
         setManualActionDue={setManualActionDue}
         manualActionClosureEvidence={manualActionClosureEvidence}
