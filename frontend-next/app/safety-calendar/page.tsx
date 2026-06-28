@@ -178,6 +178,19 @@ export default function SafetyCalendarPage() {
     return filteredEvents.filter((event) => !isCompletedCalendarStatus(event.status));
   }, [filteredEvents, showCompleted]);
 
+  const completedPersonalTaskCount = useMemo(
+    () =>
+      filteredEvents.filter(
+        (event) => isPersonalCalendarEvent(event) && isCompletedCalendarStatus(event.status),
+      ).length,
+    [filteredEvents],
+  );
+
+  const activeTodoCount = useMemo(
+    () => displayEvents.filter((event) => !isCompletedCalendarStatus(event.status)).length,
+    [displayEvents],
+  );
+
   const eventsByDate = useMemo(() => {
     return displayEvents.reduce<Record<string, SafetyCalendarEvent[]>>((acc, event) => {
       acc[event.date] = [...(acc[event.date] || []), event];
@@ -511,26 +524,6 @@ export default function SafetyCalendarPage() {
               </button>
             ))}
           </div>
-
-          <AppButton
-            type="button"
-            size="sm"
-            variant={showCompleted ? "primary" : "secondary"}
-            onClick={() => setShowCompleted((current) => !current)}
-          >
-            {showCompleted ? "Hide completed" : "Show completed"}
-          </AppButton>
-
-          <AppButton
-            type="button"
-            size="sm"
-            variant="danger"
-            onClick={() => {
-              void clearCompletedTasks();
-            }}
-          >
-            Clear completed tasks
-          </AppButton>
         </div>
 
         <p className="text-xs font-semibold leading-5 text-app-text-muted">
@@ -588,6 +581,13 @@ export default function SafetyCalendarPage() {
           onEditPersonalEvent={beginEditPersonalTask}
           onTogglePersonalEvent={togglePersonalTaskComplete}
           deleteCalendarEvent={deleteCalendarEvent}
+          showCompleted={showCompleted}
+          onToggleShowCompleted={() => setShowCompleted((current) => !current)}
+          onClearCompletedTasks={() => {
+            void clearCompletedTasks();
+          }}
+          activeCount={activeTodoCount}
+          completedCount={completedPersonalTaskCount}
         />
       </div>
 

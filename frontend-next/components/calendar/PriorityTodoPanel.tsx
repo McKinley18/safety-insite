@@ -12,6 +12,11 @@ interface PriorityTodoPanelProps {
   onEditPersonalEvent: (event: SafetyCalendarEvent) => void;
   onTogglePersonalEvent: (event: SafetyCalendarEvent) => void | Promise<void>;
   deleteCalendarEvent: (event: SafetyCalendarEvent) => void;
+  showCompleted: boolean;
+  onToggleShowCompleted: () => void;
+  onClearCompletedTasks: () => void;
+  activeCount: number;
+  completedCount: number;
 }
 
 export function PriorityTodoPanel({
@@ -21,6 +26,11 @@ export function PriorityTodoPanel({
   onEditPersonalEvent,
   onTogglePersonalEvent,
   deleteCalendarEvent,
+  showCompleted,
+  onToggleShowCompleted,
+  onClearCompletedTasks,
+  activeCount,
+  completedCount,
 }: PriorityTodoPanelProps) {
   return (
     <AppPanel padding="md" className="h-fit">
@@ -28,6 +38,32 @@ export function PriorityTodoPanel({
         eyebrow="Priority Work"
         title="To Do"
         description="Click any item to open that day on the calendar."
+        action={
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            <span className="rounded-full bg-app-surface-muted px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-app-text-muted">
+              {activeCount} active
+              {completedCount > 0 ? ` · ${completedCount} completed` : ""}
+            </span>
+            <AppButton
+              type="button"
+              size="sm"
+              variant={showCompleted ? "primary" : "secondary"}
+              onClick={onToggleShowCompleted}
+            >
+              {showCompleted ? "Hide completed" : "Show completed"}
+            </AppButton>
+            {completedCount > 0 && (
+              <AppButton
+                type="button"
+                size="sm"
+                variant="danger"
+                onClick={onClearCompletedTasks}
+              >
+                Clear completed
+              </AppButton>
+            )}
+          </div>
+        }
       />
 
       <div className="mt-4 space-y-4">
@@ -110,7 +146,7 @@ export function PriorityTodoPanel({
                         </div>
                       ) : (
                         <p className="rounded-lg bg-app-surface-muted px-2.5 py-2 text-[10px] font-semibold text-app-text-muted">
-                          Corrective actions are managed from the source inspection/action.
+                          Inspection action · Read-only
                         </p>
                       )}
                     </div>
