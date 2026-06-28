@@ -39,30 +39,9 @@ export function PriorityTodoPanel({
         title="To Do"
         description="Click any item to open that day on the calendar."
         action={
-          <div className="flex flex-wrap items-center justify-end gap-2">
-            <span className="rounded-full bg-app-surface-muted px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-app-text-muted">
-              {activeCount} active
-              {completedCount > 0 ? ` · ${completedCount} completed` : ""}
-            </span>
-            <AppButton
-              type="button"
-              size="sm"
-              variant={showCompleted ? "primary" : "secondary"}
-              onClick={onToggleShowCompleted}
-            >
-              {showCompleted ? "Hide completed" : "Show completed"}
-            </AppButton>
-            {completedCount > 0 && (
-              <AppButton
-                type="button"
-                size="sm"
-                variant="danger"
-                onClick={onClearCompletedTasks}
-              >
-                Clear completed
-              </AppButton>
-            )}
-          </div>
+          <span className="rounded-full bg-app-surface-muted px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-app-text-muted">
+            {activeCount} active
+          </span>
         }
       />
 
@@ -85,11 +64,11 @@ export function PriorityTodoPanel({
                     key={`${groupLabel}-${event.id}`}
                     className={`rounded-xl border px-3 py-3 transition hover:border-[#1D72B8] ${eventTone(event)}`}
                   >
-                    <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="flex flex-col gap-2">
                       <button
                         type="button"
                         onClick={() => openEventDay(event)}
-                        className="flex-1 text-left"
+                        className="w-full text-left"
                       >
                         <p className="text-xs font-black text-app-text">
                           {event.title}
@@ -104,7 +83,7 @@ export function PriorityTodoPanel({
                       </button>
 
                       {isPersonalCalendarEvent(event) ? (
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap items-center gap-1.5 pt-1">
                           <AppButton
                             type="button"
                             size="sm"
@@ -160,6 +139,34 @@ export function PriorityTodoPanel({
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 dark:border-slate-800">
+        <AppButton
+          type="button"
+          size="sm"
+          variant={showCompleted ? "primary" : "secondary"}
+          onClick={onToggleShowCompleted}
+          className="h-8 px-3 text-[10px]"
+        >
+          {showCompleted ? "Hide completed" : `Show completed${completedCount > 0 ? ` (${completedCount})` : ""}`}
+        </AppButton>
+
+        {completedCount > 0 ? (
+          <AppButton
+            type="button"
+            size="sm"
+            variant="danger"
+            onClick={onClearCompletedTasks}
+            className="h-8 px-3 text-[10px]"
+          >
+            Clear completed
+          </AppButton>
+        ) : (
+          <span className="text-[10px] font-semibold text-app-text-muted">
+            Completed tasks stay hidden until shown.
+          </span>
+        )}
       </div>
     </AppPanel>
   );
