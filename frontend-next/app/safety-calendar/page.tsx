@@ -186,11 +186,6 @@ export default function SafetyCalendarPage() {
     [filteredEvents],
   );
 
-  const activeTodoCount = useMemo(
-    () => displayEvents.filter((event) => !isCompletedCalendarStatus(event.status)).length,
-    [displayEvents],
-  );
-
   const eventsByDate = useMemo(() => {
     return displayEvents.reduce<Record<string, SafetyCalendarEvent[]>>((acc, event) => {
       acc[event.date] = [...(acc[event.date] || []), event];
@@ -586,7 +581,6 @@ export default function SafetyCalendarPage() {
           onClearCompletedTasks={() => {
             void clearCompletedTasks();
           }}
-          activeCount={activeTodoCount}
           completedCount={completedPersonalTaskCount}
         />
       </div>

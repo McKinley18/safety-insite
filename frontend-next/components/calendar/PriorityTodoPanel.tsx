@@ -15,7 +15,6 @@ interface PriorityTodoPanelProps {
   showCompleted: boolean;
   onToggleShowCompleted: () => void;
   onClearCompletedTasks: () => void;
-  activeCount: number;
   completedCount: number;
 }
 
@@ -29,7 +28,6 @@ export function PriorityTodoPanel({
   showCompleted,
   onToggleShowCompleted,
   onClearCompletedTasks,
-  activeCount,
   completedCount,
 }: PriorityTodoPanelProps) {
   return (
@@ -38,11 +36,6 @@ export function PriorityTodoPanel({
         eyebrow="Priority Work"
         title="To Do"
         description="Click any item to open that day on the calendar."
-        action={
-          <span className="rounded-full bg-app-surface-muted px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-app-text-muted">
-            {activeCount} active
-          </span>
-        }
       />
 
       <div className="mt-4 space-y-4">
