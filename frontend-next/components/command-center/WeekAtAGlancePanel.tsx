@@ -52,7 +52,7 @@ export function WeekAtAGlancePanel({
                 : ""
             } ${getWeekDayTone(dateKey, events)}`}
           >
-            <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide sm:left-2 sm:top-2 sm:text-[10px]" style={{ color: "#102A43" }}>
+            <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-slate-100 sm:left-2 sm:top-2 sm:text-[10px]">
               {date.toLocaleDateString("en-US", { weekday: "short" })}
             </span>
 

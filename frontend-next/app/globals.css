@@ -722,12 +722,39 @@ body {
   color: var(--app-text-primary) !important;
 }
 
+.dark :where(
+  .text-\[\#102A43\],
+  .text-\[\#0B1320\],
+  .text-blue-900,
+  .text-blue-950,
+  .text-sky-900,
+  .text-sky-950,
+  .text-cyan-900,
+  .text-cyan-950,
+  .text-indigo-900,
+  .text-indigo-950
+) {
+  color: var(--app-text-primary) !important;
+}
+
 .dark :where(.text-slate-700, .text-gray-700, .text-zinc-700) {
   color: var(--app-text-secondary) !important;
 }
 
 .dark :where(.text-slate-600, .text-gray-600, .text-zinc-600) {
   color: var(--app-text-muted) !important;
+}
+
+.dark :where(.dark\\:text-slate-500, .dark\\:text-gray-500) {
+  color: var(--app-text-muted) !important;
+}
+
+.dark :where(.dark\\:text-slate-600, .dark\\:text-gray-600) {
+  color: var(--app-text-secondary) !important;
+}
+
+.dark :where(.dark\\:text-slate-700, .dark\\:text-gray-700) {
+  color: var(--app-text-primary) !important;
 }
 
 .dark :where(.text-slate-300, .text-gray-500) {
@@ -1802,4 +1829,3 @@ body.sentinel-keyboard-open {
 .sentinel-mobile-tabbar p {
   color: inherit;
 }
-
