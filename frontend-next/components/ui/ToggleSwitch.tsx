@@ -27,16 +27,16 @@ export default function ToggleSwitch({
         checked
           ? "border-[#1D72B8] bg-[#E8F4FF]"
           : "border-slate-200 bg-white hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:hover:bg-slate-800",
-        disabled ? "cursor-not-allowed opacity-60" : "",
+        disabled ? "cursor-not-allowed opacity-70" : "",
       ].join(" ")}
     >
       <span className="min-w-0">
-        <span className="block text-sm font-black text-slate-900 dark:text-slate-100">
+        <span className="block text-sm font-black text-slate-900 dark:text-white">
           {label}
         </span>
 
         {description && (
-          <span className="mt-1 block text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">
+          <span className="mt-1 block text-xs font-semibold leading-5 text-slate-600 dark:text-slate-100">
             {description}
           </span>
         )}

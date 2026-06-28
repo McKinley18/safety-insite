@@ -126,7 +126,7 @@ export default function SafeScopeEquipmentReasoningSection({
           <p className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-700">
             Supporting context
           </p>
-          <p className="mt-1 text-xs font-bold leading-5 text-blue-900">
+          <p className="mt-1 text-xs font-bold leading-5 text-blue-900 dark:text-slate-100">
             {summary.supportingContext.slice(0, 3).join(" • ")}
           </p>
         </div>

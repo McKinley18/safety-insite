@@ -5,10 +5,17 @@ import { getStoredPlanCode } from "@/lib/planEntitlements";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {
+  readThemePreferenceFromStorage,
+  themePreferenceLabels,
+  type ThemePreference,
+} from "@/lib/theme";
+import { setThemePreference } from "@/components/system/ThemeController";
 
 type StorageMode = "local" | "cloud" | "ask";
 type RiskProfileId = "simple_4x4" | "standard_5x5" | "advanced_6x6";
 type RegulatoryScope = "all" | "msha" | "osha_general" | "osha_construction";
+const themeModes = ["light", "dark", "system"] as const satisfies readonly ThemePreference[];
 
 const storageModes = [
   ["local", "Private Local Vault", "Keep reports on this device unless exported."],
@@ -47,14 +54,14 @@ function SelectorCard({
       className={[
         "rounded-xl border px-4 py-3 text-left transition",
         selected
-          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none"
-          : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white",
+          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:bg-[#102A43]"
+          : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800",
       ].join(" ")}
     >
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-black text-slate-950">{label}</p>
-          <p className="mt-1 text-xs font-semibold leading-5 text-slate-500">
+          <p className="text-sm font-black text-slate-950 dark:text-white">{label}</p>
+          <p className="mt-1 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-100">
             {description}
           </p>
         </div>
@@ -83,10 +90,10 @@ function OverviewItem({
 }) {
   return (
     <div className="sentinel-metric-card text-center">
-      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-600 dark:text-slate-200">
         {label}
       </p>
-      <p className="mt-1 truncate text-sm font-black text-slate-950">{value}</p>
+      <p className="mt-1 truncate text-sm font-black text-slate-950 dark:text-white">{value}</p>
     </div>
   );
 }
@@ -95,7 +102,8 @@ export default function SettingsHubPage() {
   const [riskProfileId, setRiskProfileId] = useState<RiskProfileId>("standard_5x5");
   const [storageMode, setStorageMode] = useState<StorageMode>("local");
   const [regulatoryScope, setRegulatoryScope] = useState<RegulatoryScope>("all");
-  const [planCode, setPlanCode] = useState("basic");
+  const [themePreference, setThemePreferenceState] = useState<ThemePreference>("light");
+  const [planCode, setPlanCode] = useState("free");
 
   useEffect(() => {
     setPlanCode(getStoredPlanCode());
@@ -115,6 +123,8 @@ export default function SettingsHubPage() {
       (window.localStorage.getItem("sentinel_regulatory_scope") as RegulatoryScope | null) ||
         "all",
     );
+
+    setThemePreferenceState(readThemePreferenceFromStorage(window.localStorage));
   }, []);
 
   function updateStorageMode(value: StorageMode) {
@@ -130,6 +140,11 @@ export default function SettingsHubPage() {
   function updateRegulatoryScope(value: RegulatoryScope) {
     setRegulatoryScope(value);
     window.localStorage.setItem("sentinel_regulatory_scope", value);
+  }
+
+  function updateThemePreference(value: ThemePreference) {
+    setThemePreferenceState(value);
+    setThemePreference(value);
   }
 
   const storageLabel =
@@ -151,7 +166,7 @@ export default function SettingsHubPage() {
         <h1 className="mx-auto mt-3 max-w-3xl text-4xl font-black tracking-[-0.055em] sm:text-5xl">
           Settings.
         </h1>
-        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-300">
+        <p className="mx-auto mt-2 max-w-2xl text-sm font-semibold leading-6 text-slate-100">
           Set your report storage, risk matrix, and HazLenz AI defaults.
         </p>
       </HeroPanel>
@@ -168,6 +183,32 @@ export default function SettingsHubPage() {
           <OverviewItem label="Storage" value={storageLabel} />
           <OverviewItem label="Risk Matrix" value={riskLabel} />
           <OverviewItem label="HazLenz AI Scope" value={scopeLabel} />
+        </div>
+      </AppPanel>
+
+      <AppPanel padding="lg">
+        <SectionHeader
+          eyebrow="Appearance"
+          title="Theme preference"
+          description="Choose how Safety InSite renders on this device."
+        />
+
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {themeModes.map((mode) => (
+            <SelectorCard
+              key={mode}
+              selected={themePreference === mode}
+              label={themePreferenceLabels[mode]}
+              description={
+                mode === "light"
+                  ? "Always use the light theme."
+                  : mode === "dark"
+                    ? "Always use the dark theme."
+                    : "Follow the device system setting."
+              }
+              onClick={() => updateThemePreference(mode)}
+            />
+          ))}
         </div>
       </AppPanel>
 

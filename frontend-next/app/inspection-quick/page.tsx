@@ -427,10 +427,10 @@ export default function QuickInspectionPage() {
           <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-none">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+                <p className="text-[10px] font-black uppercase tracking-wide text-slate-400 dark:text-slate-200">
                   Likely Issue
                 </p>
-                <h3 className="mt-1 text-sm font-black text-[#102A43] sm:text-lg">
+                <h3 className="mt-1 text-sm font-black text-slate-900 dark:text-white sm:text-lg">
                   {safeScopeQuickResult.classification}
                 </h3>
               </div>
@@ -445,7 +445,7 @@ export default function QuickInspectionPage() {
             </div>
 
             <div className="mt-3 rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-none">
-              <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+              <p className="text-[10px] font-black uppercase tracking-wide text-slate-400 dark:text-slate-200">
                 Suggested Immediate Action
               </p>
               <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">
@@ -454,10 +454,10 @@ export default function QuickInspectionPage() {
             </div>
 
             <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-3">
-              <p className="text-xs font-black uppercase tracking-wide text-amber-800">
+              <p className="text-xs font-black uppercase tracking-wide text-amber-800 dark:text-amber-100">
                 Pro unlock
               </p>
-              <p className="mt-1 text-sm font-semibold leading-6 text-amber-900">
+              <p className="mt-1 text-sm font-semibold leading-6 text-amber-900 dark:text-amber-100">
                 Full HazLenz AI review includes applicable standards, confidence,
                 evidence gaps, selected corrective actions, and polished report
                 packaging.
@@ -468,7 +468,7 @@ export default function QuickInspectionPage() {
             </div>
           </div>
         ) : (
-          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-700">
+          <p className="mt-4 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-3 py-3 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">
             Run HazLenz AI Quick Review after adding a photo, category, or observed
             condition.
           </p>
@@ -520,27 +520,27 @@ export default function QuickInspectionPage() {
         <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
           <div className="grid gap-2 text-xs font-black text-slate-600 sm:grid-cols-2">
             <p>
-              <span className="text-slate-900">Photos:</span>{" "}
+              <span className="text-slate-900 dark:text-slate-100">Photos:</span>{" "}
               {photos.length}
             </p>
             <p>
-              <span className="text-slate-900">Condition:</span>{" "}
+              <span className="text-slate-900 dark:text-slate-100">Condition:</span>{" "}
               {description.trim() ? "Captured" : "Needed"}
             </p>
             <p>
-              <span className="text-slate-900">Location:</span>{" "}
+              <span className="text-slate-900 dark:text-slate-100">Location:</span>{" "}
               {location.trim() || "Needed"}
             </p>
             <p>
-              <span className="text-slate-900">Category:</span>{" "}
+              <span className="text-slate-900 dark:text-slate-100">Category:</span>{" "}
               {hazardCategory || safeScopeQuickResult?.classification || "Pending"}
             </p>
             <p>
-              <span className="text-slate-900">HazLenz AI:</span>{" "}
+              <span className="text-slate-900 dark:text-slate-100">HazLenz AI:</span>{" "}
               {safeScopeQuickResult ? "Reviewed" : "Optional"}
             </p>
             <p>
-              <span className="text-slate-900">Action:</span>{" "}
+              <span className="text-slate-900 dark:text-slate-100">Action:</span>{" "}
               {actionTitle.trim() ? "Added" : "Optional"}
             </p>
           </div>
@@ -557,7 +557,7 @@ export default function QuickInspectionPage() {
             </AppButton>
 
             {status && (
-              <p className="max-w-md text-sm font-black text-slate-600">
+              <p className="max-w-md text-sm font-black text-slate-600 dark:text-slate-200">
                 {status}
               </p>
             )}

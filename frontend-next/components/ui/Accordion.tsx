@@ -24,16 +24,16 @@ export function Accordion({ title, children, defaultOpen = false, onToggle }: Ac
   };
 
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden dark:bg-slate-900 dark:border-slate-800 transition-all">
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all dark:border-slate-800 dark:bg-slate-900">
       <button
         type="button"
         onClick={handleToggle}
         className="flex w-full min-h-[48px] items-center justify-between px-5 py-4 text-left focus:outline-none focus:bg-slate-50 dark:focus:bg-slate-800"
       >
-        <span className="text-sm font-black text-[#102A43] dark:text-slate-200">{title}</span>
+        <span className="text-sm font-black text-slate-950 dark:text-white">{title}</span>
         <ChevronDown
           className={twMerge(
-            clsx("h-5 w-5 text-slate-400 transition-transform duration-300", {
+            clsx("h-5 w-5 text-slate-500 transition-transform duration-300 dark:text-slate-200", {
               "rotate-180": isOpen,
             })
           )}
@@ -48,7 +48,7 @@ export function Accordion({ title, children, defaultOpen = false, onToggle }: Ac
         )}
       >
         <div className="overflow-hidden">
-          <div className="px-5 pb-5 pt-1 text-sm text-slate-600 dark:text-slate-400">
+          <div className="px-5 pb-5 pt-1 text-sm text-slate-700 dark:text-slate-100">
             {children}
           </div>
         </div>
