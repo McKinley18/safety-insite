@@ -31,6 +31,8 @@ type Props = {
   setManualActionTitle: (value: string) => void;
   manualActionPriority: string;
   setManualActionPriority: (value: string) => void;
+  manualActionOwner: string;
+  setManualActionOwner: (value: string) => void;
   manualActionDue: string;
   setManualActionDue: (value: string) => void;
   manualActionClosureEvidence: string;
@@ -81,6 +83,8 @@ export default function FindingReviewEditor({
   setManualActionTitle,
   manualActionPriority,
   setManualActionPriority,
+  manualActionOwner,
+  setManualActionOwner,
   manualActionDue,
   setManualActionDue,
   manualActionClosureEvidence,
@@ -180,6 +184,8 @@ export default function FindingReviewEditor({
         setManualActionTitle={setManualActionTitle}
         manualActionPriority={manualActionPriority}
         setManualActionPriority={setManualActionPriority}
+        manualActionOwner={manualActionOwner}
+        setManualActionOwner={setManualActionOwner}
         manualActionDue={manualActionDue}
         setManualActionDue={setManualActionDue}
         manualActionClosureEvidence={manualActionClosureEvidence}
