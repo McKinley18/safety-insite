@@ -1788,3 +1788,18 @@ body.sentinel-keyboard-open {
   border-color: #7dd3fc !important;
   color: #0f172a !important;
 }
+
+/* Bottom navigation should stay navy in light mode. */
+.sentinel-mobile-tabbar {
+  background: #0B1320 !important;
+  color: #ffffff !important;
+  border-color: rgba(29, 114, 184, 0.35) !important;
+}
+
+.sentinel-mobile-tabbar a,
+.sentinel-mobile-tabbar button,
+.sentinel-mobile-tabbar span,
+.sentinel-mobile-tabbar p {
+  color: inherit;
+}
+
