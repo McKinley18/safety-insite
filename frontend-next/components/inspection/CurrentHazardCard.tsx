@@ -112,9 +112,9 @@ export default function CurrentHazardCard({
 
   if (hidden) {
     return (
-      <button
-        type="button"
-        onClick={() => setHidden(false)}
+        <button
+          type="button"
+          onClick={() => setHidden(false)}
         className="sentinel-keyboard-hide fixed bottom-[calc(var(--sentinel-mobile-tabbar-height)-1.1rem)] left-1/2 z-40 -translate-x-1/2 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-xs font-black text-white shadow-xl shadow-slate-950/15 ring-1 ring-white/10 backdrop-blur transition hover:bg-[#1D72B8] lg:bottom-16"
       >
         Show Finding Builder
@@ -226,11 +226,11 @@ export default function CurrentHazardCard({
                   </span>
                 </div>
 
-                <h2 className="sentinel-finding-builder-title max-w-full truncate text-[10px] font-black leading-4 text-slate-950">
+                <h2 className="sentinel-finding-builder-title max-w-full truncate text-[10px] font-black leading-4 text-slate-950 dark:text-white">
                   {category}
                 </h2>
 
-                <p className="truncate text-[9px] font-semibold leading-4 text-slate-700 dark:text-slate-200">
+                <p className="truncate text-[9px] font-semibold leading-4 text-slate-700 dark:text-slate-100">
                   {primaryLine} · {categorySource}
                 </p>
 
@@ -245,7 +245,7 @@ export default function CurrentHazardCard({
                     {confidenceLabel} Confidence
                   </span>
 
-                  <span className="max-w-[135px] truncate rounded-full bg-slate-100 px-1.5 py-[1px] text-[8px] font-black tracking-wide text-slate-700 ring-1 ring-slate-200">
+                  <span className="max-w-[135px] truncate rounded-full bg-slate-100 px-1.5 py-[1px] text-[8px] font-black tracking-wide text-slate-700 ring-1 ring-slate-200 dark:bg-slate-800 dark:text-white dark:ring-slate-700">
                     {topStandard}
                   </span>
                 </div>
@@ -278,11 +278,11 @@ export default function CurrentHazardCard({
               />
 
               <div className="mt-2 grid grid-cols-4 gap-1.5 text-[10px] font-black text-slate-700 dark:text-slate-100">
-                <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
+                <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100 dark:bg-slate-900 dark:ring-slate-800">
+                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-200">
                     Photos
                   </p>
-                  <p className="text-slate-950">{photos.length}</p>
+                  <p className="text-slate-950 dark:text-white">{photos.length}</p>
                 </div>
 
                 <div className={`rounded-lg px-2 py-1.5 ring-1 ${riskTone}`}>
@@ -292,22 +292,22 @@ export default function CurrentHazardCard({
                   <p className="truncate">{riskLabel}</p>
                 </div>
 
-                <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
+                <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100 dark:bg-slate-900 dark:ring-slate-800">
+                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-200">
                     Standard
                   </p>
-                  <p className="truncate text-slate-950">
+                  <p className="truncate text-slate-950 dark:text-white">
                     {topStandard !== "Pending"
                       ? topStandard
                       : `${selectedCount}/${suggestedStandardsCount}`}
                   </p>
                 </div>
 
-                <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100">
-                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-300">
+                <div className="rounded-lg bg-slate-50 px-2 py-1.5 ring-1 ring-slate-100 dark:bg-slate-900 dark:ring-slate-800">
+                  <p className="text-[9px] uppercase tracking-wide text-slate-600 dark:text-slate-200">
                     Actions
                   </p>
-                  <p className="text-slate-950">{actionCount}</p>
+                  <p className="text-slate-950 dark:text-white">{actionCount}</p>
                 </div>
               </div>
             </div>

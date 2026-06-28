@@ -11,6 +11,8 @@ type Props = {
   setManualActionTitle: (value: string) => void;
   manualActionPriority: string;
   setManualActionPriority: (value: string) => void;
+  manualActionOwner: string;
+  setManualActionOwner: (value: string) => void;
   manualActionDue: string;
   setManualActionDue: (value: string) => void;
   manualActionClosureEvidence: string;
@@ -50,6 +52,11 @@ function normalizeFieldOutputActions(safeScopeResult: any) {
         action.priority ||
         safeScopeResult?.fieldOutput?.priority ||
         "Medium",
+      owner: "",
+      assignedTo: "",
+      assignedRole: "",
+      due: "",
+      dueDate: "",
       source: action.source || "HazLenz AI field output",
     };
   });
@@ -63,6 +70,8 @@ export default function CorrectiveActionsSection({
   setManualActionTitle,
   manualActionPriority,
   setManualActionPriority,
+  manualActionOwner,
+  setManualActionOwner,
   manualActionDue,
   setManualActionDue,
   manualActionClosureEvidence,
@@ -127,29 +136,27 @@ export default function CorrectiveActionsSection({
                     </p>
 
                     {!!action.suggestedFixes?.length && (
-                      <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
-                        {action.suggestedFixes.slice(0, 2).join(" • ")}
-                      </p>
-                    )}
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-600 dark:text-slate-100">
+                      {action.suggestedFixes.slice(0, 2).join(" • ")}
+                    </p>
+                  )}
 
-                    {(action.priority || action.assignedRole || action.dueDate) && (
-                      <p className="mt-1 text-[11px] font-bold leading-5 text-slate-700 dark:text-slate-200">
-                        {[
-                          action.priority ? `Priority: ${action.priority}` : "",
-                          action.assignedRole ? `Owner: ${action.assignedRole}` : "",
-                          action.dueDate ? `Due: ${action.dueDate}` : "",
-                        ]
-                          .filter(Boolean)
-                          .join(" · ")}
-                      </p>
-                    )}
+                  {!!action.priority && (
+                    <p className="mt-1 text-[11px] font-bold leading-5 text-slate-700 dark:text-slate-100">
+                      Priority: {action.priority}
+                    </p>
+                  )}
+
+                    <p className="mt-1 text-[11px] font-semibold leading-5 text-slate-600 dark:text-slate-100">
+                      Owner and due date are set by the user after the action is selected.
+                    </p>
                   </div>
 
                   <span
                     className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-black uppercase tracking-wide ${
                       selected
                         ? "bg-[#1D72B8] text-white"
-                        : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200"
+                        : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-100"
                     }`}
                   >
                     {selected ? "Included" : "Add"}
@@ -162,7 +169,7 @@ export default function CorrectiveActionsSection({
       )}
 
       {!generatedActions.length && (
-        <p className="mt-4 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-200">
+        <p className="mt-4 rounded-xl bg-slate-50 dark:bg-slate-950 px-3 py-3 text-sm font-semibold leading-5 text-slate-700 dark:text-slate-100">
           No generated actions are available yet. Run HazLenz AI or add a custom
           action.
         </p>
@@ -185,9 +192,10 @@ export default function CorrectiveActionsSection({
                     <p className="text-sm font-black text-slate-900 dark:text-slate-100">
                       {action.title || action.description || "Manual action"}
                     </p>
-                    <p className="mt-1 text-[11px] font-bold text-slate-700 dark:text-slate-200">
+                    <p className="mt-1 text-[11px] font-bold text-slate-700 dark:text-slate-100">
                       {[
                         action.priority ? `Priority: ${action.priority}` : "",
+                        action.owner || action.assignedTo ? `Owner: ${action.owner || action.assignedTo}` : "",
                         action.due ? `Due: ${action.due}` : "",
                         action.closureEvidence
                           ? `Verify: ${action.closureEvidence}`
@@ -226,7 +234,7 @@ export default function CorrectiveActionsSection({
               className="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
             />
 
-            <div className="grid gap-2 sm:grid-cols-3">
+            <div className="grid gap-2 sm:grid-cols-4">
               <select
                 value={manualActionPriority}
                 onChange={(event) => setManualActionPriority(event.target.value)}
@@ -239,9 +247,17 @@ export default function CorrectiveActionsSection({
               </select>
 
               <input
+                value={manualActionOwner}
+                onChange={(event) => setManualActionOwner(event.target.value)}
+                placeholder="Owner"
+                className="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
+              />
+
+              <input
                 type="date"
                 value={manualActionDue}
                 onChange={(event) => setManualActionDue(event.target.value)}
+                aria-label="Corrective action due date"
                 className="rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-100 outline-none transition focus:border-[#1D72B8]"
               />
 
