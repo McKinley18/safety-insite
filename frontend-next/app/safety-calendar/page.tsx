@@ -537,7 +537,7 @@ export default function SafetyCalendarPage() {
           <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="w-full">
             <option value="">All statuses</option>
             <option value="Open">Open</option>
-            <option value="In Progress">Prog</option>
+            <option value="In Progress">In Progress</option>
             <option value="Completed">Done</option>
           </AppSelect>
         </div>
