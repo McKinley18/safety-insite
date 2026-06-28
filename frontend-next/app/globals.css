@@ -1725,3 +1725,66 @@ body.sentinel-keyboard-open {
   background: #0f172a;
   color: #f8fafc;
 }
+
+/* Settings page dark-mode readability guard.
+   Scoped override for Settings labels/headings that were staying dark in dark mode. */
+.dark .settings-dark-readable,
+.dark .settings-dark-readable h1,
+.dark .settings-dark-readable h2,
+.dark .settings-dark-readable h3,
+.dark .settings-dark-readable h4,
+.dark .settings-dark-readable p,
+.dark .settings-dark-readable span,
+.dark .settings-dark-readable label,
+.dark .settings-dark-readable legend {
+  color: #f8fafc !important;
+}
+
+.dark .settings-dark-readable .text-slate-600,
+.dark .settings-dark-readable .text-slate-700,
+.dark .settings-dark-readable .text-gray-600,
+.dark .settings-dark-readable .text-gray-700,
+.dark .settings-dark-readable .text-zinc-600,
+.dark .settings-dark-readable .text-zinc-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .settings-dark-readable button {
+  color: #f8fafc !important;
+}
+
+.dark .settings-dark-readable input,
+.dark .settings-dark-readable select,
+.dark .settings-dark-readable textarea {
+  color: #f8fafc !important;
+  background-color: #0f172a !important;
+}
+
+.dark .settings-dark-readable input::placeholder,
+.dark .settings-dark-readable textarea::placeholder {
+  color: #cbd5e1 !important;
+}
+
+/* Settings selected-card dark-mode contrast.
+   Forces selected Settings boxes to stay dark/tinted with readable text. */
+.dark .settings-dark-readable .settings-selected-card,
+.dark .settings-dark-readable button[data-selected="true"],
+.dark .settings-dark-readable button[aria-pressed="true"] {
+  background-color: #102a43 !important;
+  border-color: #38bdf8 !important;
+  color: #f8fafc !important;
+}
+
+.dark .settings-dark-readable .settings-selected-card *,
+.dark .settings-dark-readable button[data-selected="true"] *,
+.dark .settings-dark-readable button[aria-pressed="true"] * {
+  color: #f8fafc !important;
+}
+
+.dark .settings-dark-readable .settings-selected-card span,
+.dark .settings-dark-readable button[data-selected="true"] span,
+.dark .settings-dark-readable button[aria-pressed="true"] span {
+  background-color: #38bdf8 !important;
+  border-color: #7dd3fc !important;
+  color: #0f172a !important;
+}

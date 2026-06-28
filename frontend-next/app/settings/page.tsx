@@ -51,10 +51,12 @@ function SelectorCard({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={selected}
+      data-selected={selected ? "true" : "false"}
       className={[
         "rounded-xl border px-4 py-3 text-left transition",
         selected
-          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:border-sky-400 dark:bg-[#102A43] dark:text-white"
+          ? "settings-selected-card border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:border-sky-400 dark:bg-[#102A43] dark:text-white"
           : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800",
       ].join(" ")}
     >
