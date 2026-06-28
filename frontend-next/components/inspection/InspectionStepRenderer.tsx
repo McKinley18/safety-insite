@@ -166,6 +166,8 @@ type InspectionStepRendererProps = {
   setManualActionTitle: (value: string) => void;
   manualActionPriority: string;
   setManualActionPriority: (value: string) => void;
+  manualActionOwner: string;
+  setManualActionOwner: (value: string) => void;
   manualActionDue: string;
   setManualActionDue: (value: string) => void;
   manualActionClosureEvidence: string;
@@ -232,6 +234,8 @@ export default function InspectionStepRenderer({
   setManualActionTitle,
   manualActionPriority,
   setManualActionPriority,
+  manualActionOwner,
+  setManualActionOwner,
   manualActionDue,
   setManualActionDue,
   manualActionClosureEvidence,
@@ -317,6 +321,8 @@ export default function InspectionStepRenderer({
           setManualActionTitle={setManualActionTitle}
           manualActionPriority={manualActionPriority}
           setManualActionPriority={setManualActionPriority}
+          manualActionOwner={manualActionOwner}
+          setManualActionOwner={setManualActionOwner}
           manualActionDue={manualActionDue}
           setManualActionDue={setManualActionDue}
           manualActionClosureEvidence={manualActionClosureEvidence}
