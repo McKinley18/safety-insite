@@ -1,7 +1,18 @@
-export const buildManualAction = (title: string, priority: string, due: string) => ({
+export const buildManualAction = (
+  title: string,
+  priority: string,
+  owner: string,
+  due: string,
+  closureEvidence = "Photo",
+) => ({
   title: title.trim(),
+  description: title.trim(),
   priority,
-  due: due || "Not set",
+  owner: owner.trim(),
+  assignedTo: owner.trim(),
+  due,
+  status: "Open",
+  closureEvidence,
   source: "User",
 });
 
