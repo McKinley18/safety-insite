@@ -1837,3 +1837,18 @@ body.sentinel-keyboard-open {
 .sentinel-mobile-tabbar p {
   color: inherit;
 }
+
+/* Hero panel dark-mode child text contrast.
+   Some hero content passes its own navy title/description classes as children,
+   so the wrapper's dark:text-white is not always enough. */
+.dark .insite-hero-panel :where(h1, h2, h3) {
+  color: #f8fafc !important;
+}
+
+.dark .insite-hero-panel :where(p) {
+  color: #cbd5e1 !important;
+}
+
+.dark .insite-hero-panel :where(.text-\[\#0B1320\], .text-\[\#102A43\], .text-slate-950, .text-slate-900, .text-blue-900, .text-blue-950) {
+  color: #f8fafc !important;
+}

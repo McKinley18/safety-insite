@@ -19,7 +19,7 @@ export function WeekAtAGlancePanel({
   formatCalendarMonthLabel: (dateKey: string) => string;
 }) {
   return (
-    <div className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-none sm:p-6">
+    <div className="rounded-xl border border-slate-200/80 bg-white p-4 text-slate-950 shadow-none dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 sm:p-6">
       <div className="flex items-start justify-between gap-3">
         <SectionHeader
           eyebrow="Week at a Glance"
@@ -36,7 +36,7 @@ export function WeekAtAGlancePanel({
         </AppLinkButton>
       </div>
 
-      <div className="mt-4 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-white shadow-none ring-1 ring-slate-900/10">
+      <div className="mt-4 rounded-full border border-white/10 bg-[#0B1320] px-4 py-2 text-center text-xs font-black uppercase tracking-wide text-white shadow-none ring-1 ring-slate-900/10 dark:border-sky-300/20 dark:bg-[#07111F] dark:text-slate-100 dark:ring-white/10">
         {formatCalendarMonthLabel(weekAtGlance[0]?.dateKey || getTodayDateKey())}
       </div>
 
@@ -56,7 +56,7 @@ export function WeekAtAGlancePanel({
               {date.toLocaleDateString("en-US", { weekday: "short" })}
             </span>
 
-            <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 sm:right-2 sm:top-2 sm:text-[10px]">
+            <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-slate-100 sm:right-2 sm:top-2 sm:text-[10px]">
               {date.getDate()}
             </span>
 
