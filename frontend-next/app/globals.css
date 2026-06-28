@@ -745,15 +745,15 @@ body {
   color: var(--app-text-muted) !important;
 }
 
-.dark :where(.dark\\:text-slate-500, .dark\\:text-gray-500) {
+.dark :where(.dark\:text-slate-500, .dark\:text-gray-500) {
   color: var(--app-text-muted) !important;
 }
 
-.dark :where(.dark\\:text-slate-600, .dark\\:text-gray-600) {
+.dark :where(.dark\:text-slate-600, .dark\:text-gray-600) {
   color: var(--app-text-secondary) !important;
 }
 
-.dark :where(.dark\\:text-slate-700, .dark\\:text-gray-700) {
+.dark :where(.dark\:text-slate-700, .dark\:text-gray-700) {
   color: var(--app-text-primary) !important;
 }
 
