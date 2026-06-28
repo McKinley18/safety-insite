@@ -27,6 +27,8 @@ interface InspectionStepThreeProps {
   setManualActionTitle: (value: string) => void;
   manualActionPriority: string;
   setManualActionPriority: (value: string) => void;
+  manualActionOwner: string;
+  setManualActionOwner: (value: string) => void;
   manualActionDue: string;
   setManualActionDue: (value: string) => void;
   manualActionClosureEvidence: string;
