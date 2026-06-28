@@ -54,7 +54,7 @@ function SelectorCard({
       className={[
         "rounded-xl border px-4 py-3 text-left transition",
         selected
-          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:bg-[#102A43]"
+          ? "border-[#1D72B8] bg-[#E8F4FF] shadow-none dark:border-sky-400 dark:bg-[#102A43] dark:text-white"
           : "border-slate-200/80 bg-white shadow-none hover:border-blue-200 hover:bg-white dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700 dark:hover:bg-slate-800",
       ].join(" ")}
     >
@@ -70,8 +70,8 @@ function SelectorCard({
           className={[
             "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-black",
             selected
-              ? "border-[#1D72B8] bg-[#1D72B8] text-white"
-              : "border-slate-300 bg-white text-transparent",
+              ? "border-[#1D72B8] bg-[#1D72B8] text-white dark:border-sky-300 dark:bg-sky-400 dark:text-slate-950"
+              : "border-slate-300 bg-white text-transparent dark:border-slate-600 dark:bg-slate-900",
           ].join(" ")}
         >
           ✓
@@ -158,7 +158,7 @@ export default function SettingsHubPage() {
     "Let HazLenz AI Evaluate";
 
   return (
-    <section className="sentinel-page-shell space-y-4">
+    <section className="sentinel-page-shell settings-dark-readable space-y-4">
       <HeroPanel align="center">
         <p className="text-xs font-black uppercase tracking-[0.28em] text-[#5DB7FF]">
           Settings
