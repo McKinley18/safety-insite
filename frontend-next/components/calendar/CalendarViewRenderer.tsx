@@ -84,23 +84,36 @@ export function CalendarViewRenderer({
               <div key={dateKey} className={expanded ? "col-span-7 sm:col-span-2 lg:col-span-3" : ""}>
                 <div
                   style={{ borderRadius: 0 }}
-                  className={`sentinel-calendar-day flex w-full flex-col rounded-none border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${expanded ? "min-h-48 p-4 shadow-none" : "aspect-square p-1.5 sm:p-2"}`}
+                  className={`sentinel-calendar-day relative flex w-full flex-col overflow-hidden rounded-none border text-left align-top transition hover:border-[#1D72B8] ${dayTone} ${isCurrentMonth ? "" : "opacity-45"} ${expanded ? "min-h-48 p-4 shadow-none" : "aspect-square min-h-0 p-1.5 sm:p-2"}`}
                 >
                   <button
                     type="button"
                     onClick={() => selectDate(day)}
-                    className="flex w-full items-start justify-between gap-3 text-left"
+                    className={`relative flex h-full w-full items-start justify-between gap-3 text-left ${expanded ? "" : "overflow-hidden"}`}
                   >
-                    <span className="block self-start text-xs font-black leading-none text-app-text">{day.getDate()}</span>
-                    {expanded && <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">Collapse</span>}
-                  </button>
-                  {!expanded && workSummary.total > 0 && (
-                    <div className="mt-auto flex w-full justify-end pt-2">
-                      <span className={`flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-[10px] font-black ${workSummary.overdue > 0 ? "bg-red-600 text-white" : workSummary.criticalHigh > 0 ? "bg-amber-500 text-white" : "bg-[#1D72B8] text-white"}`}>
+                    <span className="block text-xs font-black leading-none text-app-text sm:text-[13px]">
+                      {day.getDate()}
+                    </span>
+                    {expanded && (
+                      <span className="rounded-full bg-app-surface-muted px-2 py-1 text-[10px] font-black text-app-text-muted">
+                        Collapse
+                      </span>
+                    )}
+                    {!expanded && workSummary.total > 0 && (
+                      <span
+                        className={`absolute bottom-1.5 right-1.5 flex h-6 min-w-6 items-center justify-center rounded-full px-2 text-[10px] font-black leading-none shadow-none ${
+                          workSummary.overdue > 0
+                            ? "bg-red-600 text-white"
+                            : workSummary.criticalHigh > 0
+                              ? "bg-amber-500 text-white"
+                              : "bg-[#1D72B8] text-white"
+                        }`}
+                        title={`${workSummary.total} scheduled item${workSummary.total === 1 ? "" : "s"}`}
+                      >
                         {workSummary.total}
                       </span>
-                    </div>
-                  )}
+                    )}
+                  </button>
                   {expanded && (
                     <div className="mt-4 w-full space-y-2">
                       <div className="flex items-center justify-between gap-3">
