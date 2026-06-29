@@ -2,6 +2,7 @@ import { getAuthToken } from "../auth";
 
 export function getDevOrganizationId() {
   if (typeof window === "undefined") return "";
+  if (process.env.NODE_ENV === "production") return "";
 
   return (
     window.localStorage.getItem("sentinel_dev_organization_id") ||

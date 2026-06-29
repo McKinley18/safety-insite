@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Patch, Query, Headers, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Query, Req, UseGuards } from '@nestjs/common';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { CorrectiveActionsService } from './corrective-actions.service';
@@ -12,56 +12,52 @@ export class CorrectiveActionsController {
 
   @Get()
   findAll(
-    @Headers('authorization') authorization: string,
+    @Req() req: any,
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 20,
     @Query('statusCode') statusCode?: string,
     @Query('priorityCode') priorityCode?: string,
     @Query('assignedToMe') assignedToMe?: string,
-    @Headers('x-dev-organization-id') devOrganizationId?: string,
   ) {
-    return this.service.findAll(authorization, {
+    return this.service.findAll(req.user, {
       page,
       limit,
       statusCode,
       priorityCode,
       assignedToMe: assignedToMe === 'true',
-      devOrganizationId,
     });
   }
 
   @Post()
   create(
-    @Headers('authorization') authorization: string,
-    @Headers('x-dev-organization-id') devOrganizationId: string,
+    @Req() req: any,
     @Body() dto: CreateCorrectiveActionDto,
   ) {
-    return this.service.create(authorization, dto, devOrganizationId);
+    return this.service.create(req.user, dto);
   }
 
   @Patch(':id/status')
   updateStatus(
-    @Headers('authorization') authorization: string,
+    @Req() req: any,
     @Param('id') id: string,
     @Body() body: { statusCode: 'open' | 'in_progress' | 'closed' | 'cancelled'; closureNotes?: string },
   ) {
-    return this.service.updateStatus(authorization, id, body);
+    return this.service.updateStatus(req.user, id, body);
   }
 
   @Post('alerts/scan')
-  generateDueDateAlerts(@Headers('authorization') authorization: string) {
-    return this.service.generateDueDateAlerts(authorization);
+  generateDueDateAlerts(@Req() req: any) {
+    return this.service.generateDueDateAlerts(req.user);
   }
 
   @Get('export')
   async export(
-    @Headers('authorization') authorization: string,
-    @Headers('x-dev-organization-id') devOrganizationId: string | undefined,
+    @Req() req: any,
     @Query('statusCode') statusCode?: string,
     @Query('priorityCode') priorityCode?: string,
     @Query('format') format: string = 'json',
   ) {
-    const data = await this.service.export(authorization, statusCode, priorityCode, devOrganizationId);
+    const data = await this.service.export(req.user, statusCode, priorityCode);
     if (format === 'csv') {
       const header = Object.keys(data[0] || {}).join(',');
       const rows = data.map(obj => Object.values(obj).join(',')).join('\n');

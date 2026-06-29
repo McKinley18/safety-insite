@@ -1,8 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import * as jwt from 'jsonwebtoken';
-import { getJwtSecret } from '../auth/jwt-secret.util';
 import { CorrectiveAction } from './entities/corrective-action.entity';
 import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
 import { AuditService } from '../audit/audit.service';
@@ -30,37 +28,26 @@ export class CorrectiveActionsService {
     private outcomeService: OutcomeService,
   ) {}
 
-  private getAuthContext(authHeader?: string, devOrganizationId?: string) {
-    const token = authHeader?.replace('Bearer ', '');
+  private getAuthContext(user?: any) {
+    const userId = user?.userId || user?.id || user?.sub;
+    const organizationId = user?.organizationId || user?.workspaceId || user?.tenantId;
+    const tenantId = user?.tenantId || organizationId;
 
-    if (!token && process.env.DEV_AUTH_BYPASS === 'true' && process.env.NODE_ENV !== 'production') {
-      const organizationId = devOrganizationId || 'workspace-alpha';
-      return {
-        userId: 'dev-user',
-        sub: 'dev-user',
-        organizationId,
-        tenantId: organizationId,
-      };
+    if (!userId) {
+      throw new UnauthorizedException('Authenticated user context is required.');
     }
 
-    if (!token) throw new UnauthorizedException('Missing authorization token');
-
-    try {
-      const decoded = jwt.verify(token, getJwtSecret()) as any;
-      const userId = decoded.sub || decoded.userId;
-      const organizationId = decoded.organizationId || decoded.tenantId || 'default';
-      const tenantId = decoded.tenantId || decoded.organizationId || 'default';
-
-      return {
-        ...decoded,
-        userId,
-        sub: decoded.sub || userId,
-        organizationId,
-        tenantId,
-      };
-    } catch {
-      throw new UnauthorizedException('Invalid authorization token');
+    if (!organizationId) {
+      throw new UnauthorizedException('Authenticated organization context is required.');
     }
+
+    return {
+      ...user,
+      userId,
+      sub: user?.sub || userId,
+      organizationId: String(organizationId),
+      tenantId: String(tenantId),
+    };
   }
 
   private normalizePriority(priority: any): 'low' | 'medium' | 'high' | 'urgent' {
@@ -85,16 +72,13 @@ export class CorrectiveActionsService {
     statusCode?: string,
     priorityCode?: string,
     organizationId?: string,
-    tenantId?: string,
     assignedToUserId?: string,
   ) {
-    const where: any = {};
-
-    if (organizationId && organizationId !== 'default') {
-      where.organizationId = organizationId;
-    } else if (tenantId) {
-      where.tenantId = tenantId;
+    if (!organizationId) {
+      throw new UnauthorizedException('Authenticated organization context is required.');
     }
+
+    const where: any = { organizationId };
 
     if (assignedToUserId) where.assignedToUserId = assignedToUserId;
     if (statusCode) where.statusCode = statusCode;
@@ -103,10 +87,10 @@ export class CorrectiveActionsService {
   }
 
   async findAll(
-    authHeader: string,
-    options: { page?: number | string; limit?: number | string; statusCode?: string; priorityCode?: string; assignedToMe?: boolean; devOrganizationId?: string },
+    user: any,
+    options: { page?: number | string; limit?: number | string; statusCode?: string; priorityCode?: string; assignedToMe?: boolean },
   ): Promise<{ data: CorrectiveAction[], meta: { total: number, page: number, limit: number } }> {
-    const auth = this.getAuthContext(authHeader, options.devOrganizationId);
+    const auth = this.getAuthContext(user);
     const page = toPositiveInt(options.page, 1);
     const limit = Math.min(toPositiveInt(options.limit, 20), 100);
     const skip = (page - 1) * limit;
@@ -115,7 +99,6 @@ export class CorrectiveActionsService {
       statusCode,
       priorityCode,
       auth.organizationId,
-      auth.tenantId,
       assignedToMe ? String(auth.userId) : undefined,
     );
 
@@ -132,14 +115,14 @@ export class CorrectiveActionsService {
     };
   }
 
-  async export(authHeader: string, statusCode?: string, priorityCode?: string, devOrganizationId?: string) {
-    const auth = this.getAuthContext(authHeader, devOrganizationId);
-    const where = this.buildFilter(statusCode, priorityCode, auth.organizationId, auth.tenantId);
+  async export(user: any, statusCode?: string, priorityCode?: string) {
+    const auth = this.getAuthContext(user);
+    const where = this.buildFilter(statusCode, priorityCode, auth.organizationId);
     return this.actionRepo.find({ where, order: { createdAt: 'DESC' } });
   }
 
-  async create(authHeader: string, dto: CreateCorrectiveActionDto, devOrganizationId?: string) {
-    const auth = this.getAuthContext(authHeader, devOrganizationId);
+  async create(user: any, dto: CreateCorrectiveActionDto) {
+    const auth = this.getAuthContext(user);
     const count = await this.actionRepo.count();
     const action = this.actionRepo.create({
       ...(dto as any),
@@ -164,17 +147,14 @@ export class CorrectiveActionsService {
   }
 
   async updateStatus(
-    authHeader: string,
+    user: any,
     id: string,
     body: { statusCode: 'open' | 'in_progress' | 'closed' | 'cancelled'; closureNotes?: string },
   ) {
-    const auth = this.getAuthContext(authHeader);
+    const auth = this.getAuthContext(user);
 
     const action = await this.actionRepo.findOne({
-      where:
-        auth.organizationId && auth.organizationId !== 'default'
-          ? { id, organizationId: auth.organizationId }
-          : { id, tenantId: auth.tenantId },
+      where: { id, organizationId: auth.organizationId },
     });
     if (!action) throw new Error('Action not found');
 
@@ -255,9 +235,10 @@ export class CorrectiveActionsService {
     finding?: any;
     user?: any;
   }) {
-    const organizationId = input.user?.organizationId || input.user?.workspaceId || 'default';
-    const tenantId = input.user?.tenantId || organizationId;
-    const userId = String(input.user?.userId || input.user?.sub || 'system');
+    const auth = this.getAuthContext(input.user);
+    const organizationId = auth.organizationId;
+    const tenantId = auth.tenantId;
+    const userId = String(auth.userId);
     const action = input.action || {};
     const sourceActionId = action.id ? String(action.id) : null;
 
@@ -350,16 +331,13 @@ export class CorrectiveActionsService {
     return savedActions;
   }
 
-  async generateDueDateAlerts(authHeader: string) {
-    const auth = this.getAuthContext(authHeader);
+  async generateDueDateAlerts(user: any) {
+    const auth = this.getAuthContext(user);
     const now = Date.now();
     const oneDay = 1000 * 60 * 60 * 24;
 
     const actions = await this.actionRepo.find({
-      where:
-        auth.organizationId && auth.organizationId !== 'default'
-          ? { organizationId: auth.organizationId }
-          : { tenantId: auth.tenantId },
+      where: { organizationId: auth.organizationId },
       order: { dueDate: 'ASC' },
     });
 
@@ -402,8 +380,11 @@ export class CorrectiveActionsService {
     return { ok: true, created };
   }
 
-  async close(id: string, dto: CloseCorrectiveActionDto) {
-    const action = await this.actionRepo.findOne({ where: { id } });
+  async close(id: string, dto: CloseCorrectiveActionDto, user?: any) {
+    const auth = this.getAuthContext(user);
+    const action = await this.actionRepo.findOne({
+      where: { id, organizationId: auth.organizationId },
+    });
     if (!action) throw new Error('Action not found');
     
     const before = { ...action };
@@ -445,6 +426,8 @@ export class CorrectiveActionsService {
     }
 
     await this.auditService.log({
+      tenantId: auth.tenantId,
+      actorUserId: String(auth.userId),
       entityType: 'CORRECTIVE_ACTION',
       entityId: updated.id,
       actionCode: 'ACTION_CLOSED',

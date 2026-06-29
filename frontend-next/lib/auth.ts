@@ -1,8 +1,46 @@
 import { API_BASE_URL } from "./safescope";
+import { lockSession } from "./pinSecurity";
 
 export const AUTH_TOKEN_KEYS = ["sentinel_auth_token"] as const;
 export const AUTH_USER_KEY = "sentinel_auth_user";
 export const LOCAL_DEV_AUTH_TOKEN = "local-dev-token";
+
+const SENSITIVE_LOCAL_STORAGE_KEYS = [
+  AUTH_USER_KEY,
+  "sentinel_user",
+  "sentinel_profile",
+  "sentinel_workspace",
+  "safescope_user",
+  "safescope_profile",
+  "insite_user",
+  "insite_profile",
+  "insite_workspace",
+  "sentinel_plan_code",
+  "sentinel_effective_plan_code",
+  "sentinel_selected_inspection_context",
+  "sentinel_editing_report_id",
+  "sentinel_latest_cloud_report_id",
+  "sentinel_latest_report",
+  "sentinel_report_package_mode",
+  "sentinel_report_storage_mode",
+  "sentinel_risk_profile",
+  "sentinel_company_risk_profile",
+  "sentinel_regulatory_scope",
+  "sentinel_company_logo",
+  "sentinel_include_logo_on_cover",
+  "sentinel_default_include_cover_page",
+  "sentinel_default_confidential_marker",
+  "sentinel_confidential_marker_text",
+  "sentinel_company_assigned_work",
+  "sentinel_inspection_program_v1",
+  "sentinel_encrypted_actions",
+  "sentinel_encrypted_activity",
+  "sentinel_offline_queue_v1",
+  "sentinel_dev_organization_id",
+  "sentinel_workspace_id",
+  "sentinel_safescope_brain_bundle_v1",
+  "sentinel_safescope_brain_bundle_meta_v1",
+];
 
 export type SentinelAuthUser = {
   firstName?: string;
@@ -76,17 +114,9 @@ export function clearAuthSession() {
   }
   window.localStorage.removeItem("token");
 
-  [
-    AUTH_USER_KEY,
-    "sentinel_user",
-    "sentinel_profile",
-    "sentinel_workspace",
-    "safescope_user",
-    "safescope_profile",
-    "insite_user",
-    "insite_profile",
-    "insite_workspace",
-  ].forEach((key) => window.localStorage.removeItem(key));
+  SENSITIVE_LOCAL_STORAGE_KEYS.forEach((key) => window.localStorage.removeItem(key));
+
+  lockSession();
 }
 
 export function authHeaders() {
