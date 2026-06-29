@@ -6,7 +6,9 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import StripeConstructor from 'stripe';
+import * as StripePackage from 'stripe';
+
+const StripeConstructor = (StripePackage as any).default || StripePackage;
 import { UserSubscription } from './user-subscription.entity';
 import {
   BILLING_PLAN_DEFINITIONS,
