@@ -1,5 +1,5 @@
 import { Roles } from '../auth/decorators/roles.decorator';
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 import { Request } from 'express';
 import { SafescopeV2Service } from './safescope-v2.service';
@@ -15,6 +15,27 @@ import { sanitizeHazLenzDisplayOutput } from "./display/hazlenz-display-sanitize
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
   constructor(private readonly service: SafescopeV2Service) {}
+
+  private requireUserId(user: any): string {
+    const userId = user?.userId || user?.id || user?.sub;
+
+    if (!userId) {
+      throw new UnauthorizedException('Authenticated user context is required.');
+    }
+
+    return String(userId);
+  }
+
+  private getLocalDevBypassUserId(): string {
+    if (
+      process.env.DEV_AUTH_BYPASS === 'true' &&
+      process.env.NODE_ENV !== 'production'
+    ) {
+      return 'local-dev-bypass-user';
+    }
+
+    throw new UnauthorizedException('Authenticated user context is required.');
+  }
 
   private getGovernanceContext(req: Request & { user?: any }): UserGovernanceContext {
       const user = req.user;
@@ -51,7 +72,7 @@ export class SafescopeV2Controller {
       // Production and normal unauthenticated requests remain fail-safe as viewer.
       if (localDevAuthBypassEnabled && (!user || mappedRole === 'viewer')) {
           return {
-              userId: user?.id || 'dev-local-user',
+              userId: this.getLocalDevBypassUserId(),
               workspaceId: user?.organizationId || user?.workspaceId || 'dev-local-workspace',
               role: 'safety_manager',
               planTier: 'company',
@@ -63,7 +84,7 @@ export class SafescopeV2Controller {
       // Fail-safe defaults for missing context
       if (!user) {
           return {
-              userId: 'anonymous',
+              userId: this.requireUserId(user),
               workspaceId: 'default',
               role: 'viewer',
               planTier: 'individual',
@@ -73,7 +94,7 @@ export class SafescopeV2Controller {
       }
 
       return {
-          userId: user.userId || user.id || 'anonymous',
+          userId: this.requireUserId(user),
           workspaceId: user.organizationId || user.workspaceId || 'default',
           role: mappedRole,
           planTier: user.planTier || user.planCode || user.organizationPlanCode || 'individual',

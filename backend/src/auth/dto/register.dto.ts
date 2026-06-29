@@ -1,4 +1,4 @@
-import { IsEmail, IsOptional, IsString, MinLength, Matches } from 'class-validator';
+import {IsEmail, IsIn, IsOptional, IsString, Matches, MinLength} from 'class-validator';
 
 export class RegisterDto {
   @IsString()
@@ -21,4 +21,11 @@ export class RegisterDto {
   @IsOptional()
   @IsString()
   promoCode?: string;
+  @IsOptional()
+  @IsIn(['free', 'pro', 'expert', 'basic', 'plus', 'company'])
+  selectedPlan?: 'free' | 'pro' | 'expert' | 'basic' | 'plus' | 'company';
+
+  @IsOptional()
+  @IsIn(['free', 'pro', 'expert', 'basic', 'plus', 'company'])
+  planCode?: 'free' | 'pro' | 'expert' | 'basic' | 'plus' | 'company';
 }

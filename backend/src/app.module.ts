@@ -1,5 +1,7 @@
 import { SafescopeV2Module } from './safescope-v2/safescope-v2.module';
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerGuard } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -75,7 +77,7 @@ function getDatabaseSslConfig() {
 
     ThrottlerModule.forRoot([{
       ttl: 60000,
-      limit: 10,
+      limit: 100,
     }]),
 
     AuthModule,
@@ -96,6 +98,12 @@ function getDatabaseSslConfig() {
     AnalyticsModule,
     SafeScopeModule,
     UploadModule,
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
   ],
 })
 export class AppModule {}

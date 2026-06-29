@@ -55,11 +55,13 @@ export class CorrectiveActionsController {
 
   @Get('export')
   async export(
+    @Headers('authorization') authorization: string,
+    @Headers('x-dev-organization-id') devOrganizationId: string | undefined,
     @Query('statusCode') statusCode?: string,
     @Query('priorityCode') priorityCode?: string,
     @Query('format') format: string = 'json',
   ) {
-    const data = await this.service.export(statusCode, priorityCode);
+    const data = await this.service.export(authorization, statusCode, priorityCode, devOrganizationId);
     if (format === 'csv') {
       const header = Object.keys(data[0] || {}).join(',');
       const rows = data.map(obj => Object.values(obj).join(',')).join('\n');

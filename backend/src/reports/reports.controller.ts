@@ -44,7 +44,17 @@ export class ReportsController {
 
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR')
   @Post(':id/recommendations/feedback')
-  submitFeedback(@Body() body: any) {
+  async submitFeedback(
+    @Param('id') id: string,
+    @Body() body: any,
+    @Req() req: Request & { user?: any },
+  ) {
+    const report = await this.reportsService.findOne(id, req.user);
+
+    if (!report) {
+      throw new NotFoundException('Report not found');
+    }
+
     return this.recommendationsService.submitFeedback(body);
   }
 

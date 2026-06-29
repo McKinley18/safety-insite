@@ -3,13 +3,14 @@
 import { Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { clearAuthSession, createCheckoutSession, getAuthUser, hasAuthToken, setAuthUser } from "@/lib/auth";
+import { clearAuthSession, getAuthUser, hasAuthToken, setAuthUser } from "@/lib/auth";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SummaryRow from "@/components/ui/SummaryRow";
+import BillingSettingsPanel from "@/components/billing/BillingSettingsPanel";
 
 type UserProfile = {
   email?: string;
@@ -18,6 +19,10 @@ type UserProfile = {
   name?: string;
   role?: string;
   type?: string;
+  subscriptionTier?: string;
+  billingTier?: string;
+  planCode?: string;
+  effectivePlanCode?: string;
   organizationId?: number;
 };
 
@@ -30,7 +35,6 @@ export default function ProfilePage() {
   const [profileEmail, setProfileEmail] = useState("");
   const [identityEditing, setIdentityEditing] = useState(false);
   const [status, setStatus] = useState("");
-  const [billingLoading, setBillingLoading] = useState(false);
 
   function loadUserProfile() {
     try {
@@ -93,36 +97,12 @@ export default function ProfilePage() {
     );
   }
 
-  async function startProCheckout() {
-    if (billingLoading) return;
-
-    try {
-      setBillingLoading(true);
-      setStatus("Opening secure Pro checkout...");
-
-      const session = await createCheckoutSession("pro");
-      const checkoutUrl = session?.url;
-
-      if (!checkoutUrl) {
-        throw new Error("Stripe checkout did not return a checkout URL.");
-      }
-
-      window.location.href = checkoutUrl;
-    } catch (error) {
-      console.error(error);
-      setStatus(
-        error instanceof Error
-          ? error.message
-          : "Billing checkout could not be started.",
-      );
-      setBillingLoading(false);
-    }
-  }
-
   const displayName =
     [firstName, lastName].filter(Boolean).join(" ").trim() || "Safety InSite User";
 
-  const planLabel = String(user.type || "basic");
+  const planLabel = String(
+    user.subscriptionTier || user.billingTier || user.planCode || user.type || "free",
+  );
 
   return (
     <section className="sentinel-page-shell space-y-6">
@@ -243,25 +223,10 @@ export default function ProfilePage() {
         </AppPanel>
 
         <section className="space-y-4">
-          <AppPanel padding="lg">
-            <SectionHeader
-              eyebrow="Plan Access"
-              title={`${planLabel} plan`}
-              description="Upgrade or manage your account plan as your safety program grows."
-            />
-
-            <div className="mt-4 flex justify-center">
-              <AppButton
-                type="button"
-                variant="accent"
-                onClick={startProCheckout}
-                disabled={billingLoading}
-                className="w-44"
-              >
-                {billingLoading ? "Opening..." : "Upgrade to Pro"}
-              </AppButton>
-            </div>
-          </AppPanel>
+          <BillingSettingsPanel
+            title={`${planLabel} plan`}
+            description="Upgrade or manage your account plan as your safety program grows."
+          />
 
           <AppPanel padding="lg">
             <SectionHeader

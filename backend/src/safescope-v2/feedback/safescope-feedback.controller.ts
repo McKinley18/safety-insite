@@ -1,7 +1,7 @@
 import { Roles } from '../../auth/decorators/roles.decorator';
-import { Body, Controller, Get, Post, Query, Req, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
-import { OptionalJwtGuard } from '../../auth/guards/optional-jwt.guard';
+import { JwtGuard } from '../../auth/guards/jwt.guard';
 import { SafeScopeFeedbackService } from './safescope-feedback.service';
 import { CreateSafeScopeFeedbackDto } from './create-feedback.dto';
 
@@ -11,35 +11,45 @@ export class SafeScopeFeedbackController {
     private readonly service: SafeScopeFeedbackService,
   ) {}
 
-  @UseGuards(OptionalJwtGuard)
+  @UseGuards(JwtGuard)
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR')
   @Post()
   async create(
     @Body() dto: CreateSafeScopeFeedbackDto,
     @Req() req: Request & { user?: any },
   ) {
+    const orgId = req.user?.organizationId;
+    if (!orgId) {
+      throw new BadRequestException('Organization context is required.');
+    }
     return this.service.create({
       ...dto,
-      workspaceId: req.user?.organizationId || dto.workspaceId,
-      userId: req.user?.userId || dto.userId,
+      workspaceId: orgId,
+      userId: req.user?.userId || req.user?.id || req.user?.sub,
     });
   }
 
-  @UseGuards(OptionalJwtGuard)
+  @UseGuards(JwtGuard)
   @Get()
   async getWorkspaceSignals(
-    @Query('workspaceId') workspaceId: string | undefined,
     @Req() req: Request & { user?: any },
   ) {
-    return this.service.getWorkspaceSignals(req.user?.organizationId || workspaceId);
+    const orgId = req.user?.organizationId;
+    if (!orgId) {
+      throw new BadRequestException('Organization context is required.');
+    }
+    return this.service.getWorkspaceSignals(orgId);
   }
 
-  @UseGuards(OptionalJwtGuard)
+  @UseGuards(JwtGuard)
   @Get('adjustments')
   async getWorkspaceAdjustments(
-    @Query('workspaceId') workspaceId: string | undefined,
     @Req() req: Request & { user?: any },
   ) {
-    return this.service.getWorkspaceStandardAdjustments(req.user?.organizationId || workspaceId);
+    const orgId = req.user?.organizationId;
+    if (!orgId) {
+      throw new BadRequestException('Organization context is required.');
+    }
+    return this.service.getWorkspaceStandardAdjustments(orgId);
   }
 }

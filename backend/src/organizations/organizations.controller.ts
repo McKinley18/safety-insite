@@ -73,7 +73,7 @@ export class OrganizationsController {
     const organizationId = req.user?.organizationId;
 
     if (id !== organizationId) {
-      return this.service.createInvitation(organizationId, body.email, body.role);
+      throw new ForbiddenException('You can only invite members to your own organization.');
     }
 
     return this.service.createInvitation(id, body.email, body.role);

@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getStoredPlanCode } from "@/lib/planEntitlements";
+import { getPlanDisplayName, getStoredPlanCode } from "@/lib/planEntitlements";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
+import BillingSettingsPanel from "@/components/billing/BillingSettingsPanel";
 import {
   readThemePreferenceFromStorage,
   themePreferenceLabels,
@@ -181,12 +182,17 @@ export default function SettingsHubPage() {
         />
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <OverviewItem label="Plan" value={planCode} />
+          <OverviewItem label="Plan" value={getPlanDisplayName(planCode)} />
           <OverviewItem label="Storage" value={storageLabel} />
           <OverviewItem label="Risk Matrix" value={riskLabel} />
           <OverviewItem label="HazLenz AI Scope" value={scopeLabel} />
         </div>
       </AppPanel>
+
+      <BillingSettingsPanel
+        title="Billing & plan"
+        description="Check your current subscription tier and manage upgrades from one simple place."
+      />
 
       <AppPanel padding="lg">
         <SectionHeader

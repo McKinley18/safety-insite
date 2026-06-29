@@ -15,7 +15,7 @@ export type SentinelAuthUser = {
 };
 
 export function isLocalDevAuthBypassEnabled() {
-  return process.env.NEXT_PUBLIC_DISABLE_AUTH === "true";
+  return process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" && process.env.NODE_ENV !== "production";
 }
 
 export function getAuthToken() {
@@ -254,11 +254,13 @@ export async function uploadReportAttachment(reportId: string, file: File) {
   return response.json();
 }
 
-export async function createCheckoutSession(planCode: "pro" | "plus" = "pro") {
+export async function createCheckoutSession(planCode: "pro" | "expert" | "plus" = "pro") {
   const response = await fetch(`${API_BASE_URL}/billing/checkout`, {
     method: "POST",
     headers: authHeaders(),
-    body: JSON.stringify({ planCode: planCode === "plus" ? "pro" : planCode }),
+    body: JSON.stringify({
+      tier: planCode === "plus" ? "pro" : planCode,
+    }),
   });
 
   if (!response.ok) {

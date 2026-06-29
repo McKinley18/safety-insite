@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Query, UseGuards, Req } from '@nestjs/common';
+import { UnauthorizedException, Controller, Get, Post, Body, Param, Query, UseGuards, Req } from '@nestjs/common';
 import { ReviewerCandidateConsoleService } from './reviewer-candidate-console.service';
 import { CandidateFilter } from './reviewer-candidate-console.types';
 import { Roles } from '../../auth/decorators/roles.decorator';
@@ -25,7 +25,7 @@ export class ReviewerCandidateConsoleController {
       };
 
       return {
-          userId: user?.id || 'anonymous',
+          userId: user?.userId || user?.id || user?.sub,
           workspaceId: user?.organizationId || user?.workspaceId || 'default',
           role: roleMap[user?.role] || 'viewer',
           planTier: user?.planTier || 'team',

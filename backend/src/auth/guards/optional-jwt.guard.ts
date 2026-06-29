@@ -1,5 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
+import { getJwtSecret } from '../jwt-secret.util';
 
 @Injectable()
 export class OptionalJwtGuard implements CanActivate {
@@ -13,7 +14,7 @@ export class OptionalJwtGuard implements CanActivate {
     if (!token) return true;
 
     try {
-      request.user = jwt.verify(token, 'supersecretkey');
+      request.user = jwt.verify(token, getJwtSecret());
     } catch {
       request.user = undefined;
     }

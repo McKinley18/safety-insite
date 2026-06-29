@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards, Req } from '@nestjs/common';
+import { UnauthorizedException, Controller, Get, Query, UseGuards, Req } from '@nestjs/common';
 import { SafeScopePersistenceService } from './persistence.service';
 import { AuditRecordFilter, AuditRecordType } from './persistence.types';
 import { JwtGuard } from '../../auth/guards/jwt.guard';
@@ -24,7 +24,7 @@ export class SafeScopePersistenceController {
       };
 
       return {
-          userId: user?.id || 'anonymous',
+          userId: user?.userId || user?.id || user?.sub,
           workspaceId: user?.organizationId || user?.workspaceId || 'default',
           role: roleMap[user?.role] || 'viewer',
           planTier: user?.planTier || 'team',

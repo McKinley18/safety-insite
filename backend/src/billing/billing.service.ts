@@ -1,132 +1,355 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  ServiceUnavailableException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import Stripe = require('stripe');
-import { User } from '../users/user.entity';
-import { Organization } from '../organizations/entities/organization.entity';
-import { BILLING_PLANS, normalizeBillingPlan } from './billing-plans';
+import StripeConstructor from 'stripe';
+import { UserSubscription } from './user-subscription.entity';
+import {
+  BILLING_PLAN_DEFINITIONS,
+  BillingTier,
+  getBillingEntitlements,
+  getBillingPlanDisplayName,
+  getBillingPlanMonthlyPrice,
+  normalizeBillingTier,
+  resolveTierForPriceId,
+} from './plan-entitlements';
+import { normalizeStripeSubscriptionStatus } from './subscription-status';
+
+type StripeClient = InstanceType<typeof StripeConstructor>;
+
+function getUserIdNumber(user: any): number {
+  const raw = user?.userId || user?.id || user?.sub;
+  const userId = Number(raw);
+
+  if (!Number.isFinite(userId) || userId <= 0) {
+    throw new UnauthorizedException('Authenticated user is required.');
+  }
+
+  return userId;
+}
 
 @Injectable()
 export class BillingService {
-  private stripe: any = process.env.STRIPE_SECRET_KEY
-    ? new Stripe(process.env.STRIPE_SECRET_KEY)
-    : null;
+  private readonly stripe: StripeClient | null;
 
   constructor(
-    @InjectRepository(User)
-    private readonly userRepo: Repository<User>,
-    @InjectRepository(Organization)
-    private readonly orgRepo: Repository<Organization>,
-  ) {}
+    @InjectRepository(UserSubscription)
+    private readonly subscriptions: Repository<UserSubscription>,
+  ) {
+    this.stripe = process.env.STRIPE_SECRET_KEY
+      ? new StripeConstructor(process.env.STRIPE_SECRET_KEY)
+      : null;
+  }
+
+  private requireStripe(): StripeClient {
+    if (!this.stripe) {
+      throw new ServiceUnavailableException(
+        'Stripe billing is not configured on this server.',
+      );
+    }
+
+    return this.stripe;
+  }
+
+  private frontendUrl(): string {
+    return (
+      process.env.FRONTEND_APP_URL ||
+      process.env.APP_URL ||
+      process.env.FRONTEND_URL ||
+      'http://localhost:3000'
+    ).replace(/\/$/, '');
+  }
 
   async getBillingStatus(user: any) {
+    const userId = getUserIdNumber(user);
+    const subscription = await this.subscriptions.findOne({
+      where: { userId },
+    });
+
+    const fallbackTier = normalizeBillingTier(
+      user?.subscriptionTier ||
+        user?.billingTier ||
+        user?.effectivePlanCode ||
+        user?.planCode ||
+        user?.type,
+    );
+    const tier = subscription ? this.resolveEffectiveTier(subscription) : fallbackTier;
+    const plan = BILLING_PLAN_DEFINITIONS[tier] || BILLING_PLAN_DEFINITIONS.free;
+
     return {
-      planCode: normalizeBillingPlan(user?.organizationPlanCode || user?.planCode || 'basic'),
-      subscriptionStatus: user?.subscriptionStatus || 'active',
-      organizationId: user?.organizationId || null,
+      tier,
+      planCode: tier,
+      label: getBillingPlanDisplayName(tier),
+      monthlyPrice: getBillingPlanMonthlyPrice(tier),
+      status: subscription?.status || 'none',
+      subscriptionStatus: subscription?.status || 'none',
+      currentPeriodStart: subscription?.currentPeriodStart || null,
+      currentPeriodEnd: subscription?.currentPeriodEnd || null,
+      cancelAtPeriodEnd: Boolean(subscription?.cancelAtPeriodEnd),
+      stripeCustomerId: subscription?.stripeCustomerId || null,
+      stripeSubscriptionId: subscription?.stripeSubscriptionId || null,
+      stripePriceId: subscription?.stripePriceId || null,
+      entitlements: getBillingEntitlements(tier),
+      plan,
+      billingConfigured: Boolean(this.stripe),
+      planCatalog: Object.values(BILLING_PLAN_DEFINITIONS).map((definition) => ({
+        tier: definition.tier,
+        label: definition.label,
+        priceMonthly: definition.priceMonthly,
+        description: definition.description,
+      })),
     };
   }
 
-  async createCheckoutSession(user: any, plan: string) {
-    const planCode = normalizeBillingPlan(plan);
+  async createCheckoutSession(user: any, tier: BillingTier) {
+    const userId = getUserIdNumber(user);
 
-    if (planCode === 'basic') {
-      throw new BadRequestException('Basic plan does not require checkout.');
+    if (tier === 'free') {
+      throw new BadRequestException('Free plan does not require checkout.');
     }
 
-    const config = BILLING_PLANS[planCode];
+    const stripe = this.requireStripe();
     const priceId =
-      (config.stripePriceEnv ? process.env[config.stripePriceEnv] : null) ||
-      (config.legacyStripePriceEnv ? process.env[config.legacyStripePriceEnv] : null);
+      tier === 'pro'
+        ? process.env.STRIPE_PRO_PRICE_ID
+        : process.env.STRIPE_EXPERT_PRICE_ID;
 
-    if (!this.stripe || !priceId) {
-      throw new BadRequestException('Billing is not configured yet. Set STRIPE_PRO_PRICE_ID on the backend service.');
+    if (!priceId) {
+      throw new ServiceUnavailableException(
+        `Stripe price ID is not configured for ${tier}.`,
+      );
     }
 
-    const successUrl = process.env.BILLING_SUCCESS_URL || 'http://localhost:3000/settings?billing=success';
-    const cancelUrl = process.env.BILLING_CANCEL_URL || 'http://localhost:3000/settings?billing=cancelled';
+    let subscription = await this.subscriptions.findOne({ where: { userId } });
+    let customerId = subscription?.stripeCustomerId || undefined;
 
-    return this.stripe.checkout.sessions.create({
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user?.email,
+        name: user?.name,
+        metadata: { userId: String(userId) },
+      });
+
+      customerId = customer.id;
+
+      subscription = await this.subscriptions.save({
+        ...(subscription || {}),
+        userId,
+        stripeCustomerId: customerId,
+        tier: 'free',
+        status: 'none',
+      });
+    }
+
+    const appUrl = this.frontendUrl();
+    const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
-      payment_method_types: ['card'],
+      customer: customerId,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: successUrl,
-      cancel_url: cancelUrl,
-      customer_email: user?.email,
+      success_url: `${appUrl}/settings?billing=success`,
+      cancel_url: `${appUrl}/upgrade?billing=cancelled`,
       metadata: {
-        userId: String(user?.userId || ''),
-        organizationId: String(user?.organizationId || ''),
-        planCode,
+        userId: String(userId),
+        targetTier: tier,
+      },
+      subscription_data: {
+        metadata: {
+          userId: String(userId),
+          targetTier: tier,
+        },
       },
     });
+
+    return { url: session.url };
   }
 
-  async handleStripeWebhook(payload: any) {
-    const eventType = payload?.type;
-    const session = payload?.data?.object || {};
+  async createPortalSession(user: any) {
+    const userId = getUserIdNumber(user);
+    const stripe = this.requireStripe();
 
-    if (eventType !== 'checkout.session.completed') {
-      return { received: true, ignored: eventType || 'unknown' };
-    }
-
-    const planCode = normalizeBillingPlan(session?.metadata?.planCode);
-    const organizationId = String(session?.metadata?.organizationId || '').trim();
-    const userId = Number(session?.metadata?.userId || 0);
-
-    if (planCode === 'basic') {
-      throw new BadRequestException('Checkout completed without a paid plan.');
-    }
-
-    if (organizationId) {
-      const org = await this.applyPlanToOrganization(organizationId, planCode);
-      if (org) {
-        return {
-          received: true,
-          applied: true,
-          organizationId,
-          planCode,
-        };
-      }
-    }
-
-    if (userId) {
-      const user = await this.userRepo.findOne({ where: { id: userId } });
-      if (user) {
-        user.planCode = planCode;
-        user.subscriptionStatus = 'active';
-        await this.userRepo.save(user);
-
-        if (user.organizationId) {
-          await this.applyPlanToOrganization(user.organizationId, planCode);
-        }
-
-        return {
-          received: true,
-          applied: true,
-          userId,
-          organizationId: user.organizationId || null,
-          planCode,
-        };
-      }
-    }
-
-    throw new BadRequestException('Checkout metadata did not identify an account or organization.');
-  }
-
-  async applyPlanToOrganization(organizationId: string, planCode: string) {
-    const normalized = normalizeBillingPlan(planCode);
-    const org = await this.orgRepo.findOne({ where: { id: organizationId } });
-
-    if (!org) return null;
-
-    org.planCode = normalized;
-    await this.orgRepo.save(org);
-
-    await this.userRepo.update({ organizationId }, {
-      planCode: normalized,
-      subscriptionStatus: normalized === 'basic' ? 'active' : 'active',
+    const subscription = await this.subscriptions.findOne({
+      where: { userId },
     });
 
-    return org;
+    if (!subscription?.stripeCustomerId) {
+      throw new BadRequestException(
+        'No Stripe customer exists for this user. Upgrade first.',
+      );
+    }
+
+    const session = await stripe.billingPortal.sessions.create({
+      customer: subscription.stripeCustomerId,
+      return_url: `${this.frontendUrl()}/settings`,
+    });
+
+    return { url: session.url };
+  }
+
+  async handleStripeWebhook(rawBody: Buffer | string, signature?: string) {
+    const stripe = this.requireStripe();
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+    if (!webhookSecret) {
+      throw new ServiceUnavailableException(
+        'Stripe webhook secret is not configured.',
+      );
+    }
+
+    if (!signature) {
+      throw new BadRequestException('Missing Stripe signature.');
+    }
+
+    let event: any;
+
+    try {
+      event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+    } catch {
+      throw new BadRequestException('Invalid Stripe webhook signature.');
+    }
+
+    await this.applyStripeEvent(event);
+    return { received: true };
+  }
+
+  private resolveEffectiveTier(subscription?: UserSubscription | null): BillingTier {
+    if (!subscription) return 'free';
+
+    const now = new Date();
+    const periodEnd = subscription.currentPeriodEnd
+      ? new Date(subscription.currentPeriodEnd)
+      : null;
+
+    if (subscription.status === 'active' || subscription.status === 'trialing') {
+      return normalizeBillingTier(subscription.tier);
+    }
+
+    if (
+      subscription.status === 'canceled' &&
+      periodEnd &&
+      periodEnd.getTime() > now.getTime()
+    ) {
+      return normalizeBillingTier(subscription.tier);
+    }
+
+    return 'free';
+  }
+
+  private async applyStripeEvent(event: any) {
+    const stripe = this.requireStripe();
+    const existing = await this.subscriptions.findOne({
+      where: { lastStripeEventId: event.id },
+    });
+
+    if (existing) return;
+
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object;
+        const userId = Number(session.metadata?.userId);
+        if (!Number.isFinite(userId) || userId <= 0) return;
+
+        await this.upsertSubscriptionFromCheckoutSession(userId, session, event.id);
+        return;
+      }
+
+      case 'customer.subscription.created':
+      case 'customer.subscription.updated':
+      case 'customer.subscription.deleted': {
+        const subscription = event.data.object;
+        await this.upsertSubscriptionFromStripeSubscription(subscription, event.id);
+        return;
+      }
+
+      case 'invoice.paid':
+      case 'invoice.payment_succeeded':
+      case 'invoice.payment_failed': {
+        const invoice = event.data.object;
+        const stripeSubscriptionId =
+          typeof invoice.subscription === 'string'
+            ? invoice.subscription
+            : invoice.subscription?.id;
+
+        if (!stripeSubscriptionId) return;
+
+        const stripe = this.requireStripe();
+        const subscription = await stripe.subscriptions
+          .retrieve(stripeSubscriptionId)
+          .catch(() => null);
+
+        if (!subscription) return;
+
+        await this.upsertSubscriptionFromStripeSubscription(subscription, event.id);
+        return;
+      }
+
+      default:
+        return;
+    }
+  }
+
+  private async upsertSubscriptionFromCheckoutSession(
+    userId: number,
+    session: any,
+    eventId: string,
+  ) {
+    const stripeSubscriptionId =
+      typeof session.subscription === 'string'
+        ? session.subscription
+        : session.subscription?.id;
+
+    const stripeCustomerId =
+      typeof session.customer === 'string'
+        ? session.customer
+        : session.customer?.id;
+
+    const tier = normalizeBillingTier(session.metadata?.targetTier);
+    const existing = await this.subscriptions.findOne({ where: { userId } });
+
+    await this.subscriptions.save({
+      ...(existing || {}),
+      userId,
+      stripeCustomerId,
+      stripeSubscriptionId,
+      tier,
+      status: 'incomplete',
+      lastStripeEventId: eventId,
+    });
+  }
+
+  private async upsertSubscriptionFromStripeSubscription(
+    stripeSubscription: any,
+    eventId: string,
+  ) {
+    const userId = Number(stripeSubscription.metadata?.userId);
+    if (!Number.isFinite(userId) || userId <= 0) return;
+
+    const stripePriceId = stripeSubscription.items?.data?.[0]?.price?.id;
+    const tier = resolveTierForPriceId(stripePriceId);
+    const existing = await this.subscriptions.findOne({ where: { userId } });
+
+    await this.subscriptions.save({
+      ...(existing || {}),
+      userId,
+      stripeCustomerId:
+        typeof stripeSubscription.customer === 'string'
+          ? stripeSubscription.customer
+          : stripeSubscription.customer?.id,
+      stripeSubscriptionId: stripeSubscription.id,
+      stripePriceId,
+      tier,
+      status: normalizeStripeSubscriptionStatus(stripeSubscription.status),
+      currentPeriodStart: stripeSubscription.current_period_start
+        ? new Date(stripeSubscription.current_period_start * 1000)
+        : null,
+      currentPeriodEnd: stripeSubscription.current_period_end
+        ? new Date(stripeSubscription.current_period_end * 1000)
+        : null,
+      cancelAtPeriodEnd: Boolean(stripeSubscription.cancel_at_period_end),
+      lastStripeEventId: eventId,
+    });
   }
 }

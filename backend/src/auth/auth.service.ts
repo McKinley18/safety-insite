@@ -7,6 +7,8 @@ import { User } from '../users/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { OrganizationsService } from '../organizations/organizations.service';
 import { getRequestMetadata } from '../common/utils/request-metadata';
+import { BillingService } from '../billing/billing.service';
+import { normalizeBillingTier } from '../billing/plan-entitlements';
 
 const SENTINEL_EMPLOYER_PRO_PROMO_CODE = 'Vulcan';
 
@@ -25,6 +27,7 @@ export class AuthService {
     private userRepo: Repository<User>,
     private jwtService: JwtService,
     private orgService: OrganizationsService,
+    private billingService: BillingService,
   ) {}
 
   async register(dto: RegisterDto & { inviteToken?: string }, req?: any) {
@@ -54,11 +57,7 @@ export class AuthService {
       finalType = 'company'; // Locked to company tier
     }
 
-    const planCode =
-      employerProPromoApplied ? 'plus' :
-      finalType === 'company' ? 'company' :
-      finalType === 'pro' || finalType === 'plus' ? 'plus' :
-      'basic';
+    const planCode = employerProPromoApplied ? 'pro' : 'free';
 
     if (!organizationId) {
       const org = await this.orgService.create({
@@ -124,7 +123,19 @@ export class AuthService {
       ? await this.orgService.findOne(user.organizationId).catch(() => null)
       : null;
 
-    const effectivePlanCode = organization?.planCode || user.planCode || 'basic';
+    const billingSnapshot = await this.billingService.getBillingStatus({
+      userId: user.id,
+      email: user.email,
+      planCode: organization?.planCode || user.planCode || 'free',
+      type: user.type,
+    }).catch(() => null);
+
+    const effectivePlanCode = normalizeBillingTier(
+      billingSnapshot?.tier ||
+        organization?.planCode ||
+        user.planCode ||
+        'free',
+    );
 
     const token = this.jwtService.sign({
       userId: user.id,
@@ -132,6 +143,7 @@ export class AuthService {
       type: user.type,
       role: user.role,
       subscriptionStatus: user.subscriptionStatus,
+      subscriptionTier: effectivePlanCode,
       planCode: effectivePlanCode,
       organizationPlanCode: organization?.planCode || null,
       deletedAt: user.deletedAt,
@@ -148,9 +160,12 @@ export class AuthService {
         type: user.type,
         role: user.role,
         subscriptionStatus: user.subscriptionStatus,
+        subscriptionTier: effectivePlanCode,
         planCode: effectivePlanCode,
         organizationPlanCode: organization?.planCode || null,
         organizationId: user.organizationId,
+        billingStatus: billingSnapshot?.status || user.subscriptionStatus,
+        billingEntitlements: billingSnapshot?.entitlements || null,
       },
       metadata,
     };

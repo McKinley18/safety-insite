@@ -1,136 +1,155 @@
 import { getAuthUser } from "./auth";
-export type PlanCode = "basic" | "plus" | "pro" | "company";
 
-export const PLAN_ENTITLEMENTS = {
-  basic: {
-    fullSafeScope: false,
-    cloudReports: false,
-    teamMembers: false,
-    analytics: false,
-    supervisorValidation: false,
-    auditTrail: false,
+export type BillingTier = "free" | "pro" | "expert";
+export type PlanCode = BillingTier | "basic" | "plus" | "company";
 
-    quickCapture: true,
-    guidedInspection: false,
-    advancedReview: false,
-    inspectionAssignments: false,
-    correctiveActionAssignments: false,
-    workspaceFiltering: false,
-    companyAnalytics: false,
-    sharedReports: false,
-  },
-  plus: {
-    fullSafeScope: true,
-    cloudReports: false,
-    teamMembers: false,
-    analytics: true,
-    supervisorValidation: false,
-    auditTrail: false,
+export type EntitlementKey =
+  | "fullSafeScope"
+  | "cloudReports"
+  | "teamMembers"
+  | "analytics"
+  | "supervisorValidation"
+  | "auditTrail"
+  | "quickCapture"
+  | "guidedInspection"
+  | "advancedReview"
+  | "inspectionAssignments"
+  | "correctiveActionAssignments"
+  | "workspaceFiltering"
+  | "companyAnalytics"
+  | "sharedReports"
+  | "hazlenzPreview"
+  | "hazlenzFullReview"
+  | "standardsReasoning"
+  | "professionalReports"
+  | "correctiveActionRecommendations"
+  | "evidenceGapPrompts"
+  | "deeperExplainability"
+  | "advancedReportReview"
+  | "advancedStandardsSupport"
+  | "priorityAiFeatures"
+  | "exportLevel";
 
-    quickCapture: true,
-    guidedInspection: true,
-    advancedReview: false,
-    inspectionAssignments: false,
-    correctiveActionAssignments: false,
-    workspaceFiltering: false,
-    companyAnalytics: false,
-    sharedReports: false,
-  },
-  company: {
-    fullSafeScope: true,
-    cloudReports: true,
-    teamMembers: true,
-    analytics: true,
-    supervisorValidation: true,
-    auditTrail: true,
+export type PlanEntitlements = Record<EntitlementKey, boolean | string>;
 
-    quickCapture: true,
-    guidedInspection: true,
-    advancedReview: true,
-    inspectionAssignments: true,
-    correctiveActionAssignments: true,
-    workspaceFiltering: true,
-    companyAnalytics: true,
-    sharedReports: true,
-    
-    // New Intelligence Entitlements
-    intelligenceResult: true,
-    riskReasoning: true,
-    reportNarrative: true,
-    reviewerFeedbackSubmission: true,
-  },
-  pro: { // Adding "pro" alias for "plus"
-    fullSafeScope: true,
-    cloudReports: false,
-    teamMembers: false,
-    analytics: true,
-    supervisorValidation: false,
-    auditTrail: false,
+const freeEntitlements: PlanEntitlements = {
+  fullSafeScope: false,
+  cloudReports: false,
+  teamMembers: false,
+  analytics: false,
+  supervisorValidation: false,
+  auditTrail: false,
+  quickCapture: true,
+  guidedInspection: false,
+  advancedReview: false,
+  inspectionAssignments: false,
+  correctiveActionAssignments: false,
+  workspaceFiltering: false,
+  companyAnalytics: false,
+  sharedReports: false,
+  hazlenzPreview: true,
+  hazlenzFullReview: false,
+  standardsReasoning: false,
+  professionalReports: false,
+  correctiveActionRecommendations: false,
+  evidenceGapPrompts: true,
+  deeperExplainability: false,
+  advancedReportReview: false,
+  advancedStandardsSupport: false,
+  priorityAiFeatures: false,
+  exportLevel: "basic",
+};
 
-    quickCapture: true,
-    guidedInspection: true,
-    advancedReview: false,
-    inspectionAssignments: false,
-    correctiveActionAssignments: false,
-    workspaceFiltering: false,
-    companyAnalytics: false,
-    sharedReports: false,
-    
-    // New Intelligence Entitlements
-    intelligenceResult: true,
-    riskReasoning: true,
-    reportNarrative: true,
-    reviewerFeedbackSubmission: true,
-  },
-} as const;
+const proEntitlements: PlanEntitlements = {
+  ...freeEntitlements,
+  fullSafeScope: true,
+  analytics: true,
+  guidedInspection: true,
+  hazlenzFullReview: true,
+  standardsReasoning: true,
+  professionalReports: true,
+  correctiveActionRecommendations: true,
+  evidenceGapPrompts: true,
+  exportLevel: "professional",
+};
 
-export type EntitlementKey = keyof typeof PLAN_ENTITLEMENTS.basic;
+const expertEntitlements: PlanEntitlements = {
+  ...proEntitlements,
+  cloudReports: true,
+  teamMembers: true,
+  supervisorValidation: true,
+  auditTrail: true,
+  advancedReview: true,
+  inspectionAssignments: true,
+  correctiveActionAssignments: true,
+  workspaceFiltering: true,
+  companyAnalytics: true,
+  sharedReports: true,
+  deeperExplainability: true,
+  advancedReportReview: true,
+  advancedStandardsSupport: true,
+  priorityAiFeatures: true,
+  exportLevel: "advanced",
+};
 
-export function normalizePlanCode(plan?: string | null): PlanCode {
-  const normalized = String(plan || "").toLowerCase();
+export const PLAN_ENTITLEMENTS: Record<BillingTier, PlanEntitlements> = {
+  free: freeEntitlements,
+  pro: proEntitlements,
+  expert: expertEntitlements,
+};
 
-  if (normalized === "company") return "company";
-  if (normalized === "plus" || normalized === "pro") return "pro";
+export function normalizePlanCode(plan?: string | null): BillingTier {
+  const normalized = String(plan || "").trim().toLowerCase();
 
-  return "basic";
+  if (normalized === "pro" || normalized === "plus") return "pro";
+  if (normalized === "expert" || normalized === "company" || normalized === "enterprise") {
+    return "expert";
+  }
+
+  return "free";
 }
 
-export function entitlementPlanKey(plan?: string | null): keyof typeof PLAN_ENTITLEMENTS {
-  const normalized = normalizePlanCode(plan);
-
-  if (normalized === "pro") return "pro";
-
-  return normalized;
+export function entitlementPlanKey(plan?: string | null): BillingTier {
+  return normalizePlanCode(plan);
 }
 
 export function getPlanDisplayName(plan?: string | null) {
   const normalized = normalizePlanCode(plan);
+  if (normalized === "pro") return "Pro";
+  if (normalized === "expert") return "Expert";
+  return "Free";
+}
 
-  if (normalized === "company") return "Company";
-  if (normalized === "pro" || normalized === "plus") return "Pro";
-
-  return "Basic";
+export function getPlanPricing(plan?: string | null) {
+  const normalized = normalizePlanCode(plan);
+  if (normalized === "pro") return 6.99;
+  if (normalized === "expert") return 11.99;
+  return 0;
 }
 
 export function getStoredPlanCode(): PlanCode {
   const localDevDefault =
-    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" ? "company" : "basic";
+    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" && process.env.NODE_ENV !== "production" ? "expert" : "free";
 
   if (typeof window === "undefined") return normalizePlanCode(localDevDefault);
 
   try {
     const user = getAuthUser<{
       planCode?: string;
+      subscriptionTier?: string;
+      billingTier?: string;
+      effectivePlanCode?: string;
       type?: string;
       plan?: string;
-      subscriptionTier?: string;
     }>();
 
     return normalizePlanCode(
-      user.planCode ||
+      user.subscriptionTier ||
+        user.billingTier ||
+        user.effectivePlanCode ||
+        user.planCode ||
         user.type ||
         user.plan ||
-        user.subscriptionTier ||
         localDevDefault,
     );
   } catch {
@@ -139,9 +158,8 @@ export function getStoredPlanCode(): PlanCode {
 }
 
 export function hasPlanEntitlement(entitlement: EntitlementKey, plan?: string | null) {
-  return PLAN_ENTITLEMENTS[entitlementPlanKey(plan)][entitlement];
+  return Boolean(PLAN_ENTITLEMENTS[entitlementPlanKey(plan)][entitlement]);
 }
-
 
 export type ProtectedArea =
   | "quick_capture"
@@ -182,12 +200,12 @@ export function requiredPlanForArea(area: ProtectedArea) {
     area === "workspace_filtering" ||
     area === "advanced_review"
   ) {
-    return "Company";
+    return "Expert";
   }
 
   if (area === "guided_inspection" || area === "pro_analytics") {
     return "Pro";
   }
 
-  return "Basic";
+  return "Free";
 }

@@ -1,4 +1,4 @@
-import { Injectable, Inject, forwardRef } from '@nestjs/common';
+import { Injectable, Inject, forwardRef, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -29,11 +29,22 @@ export class ReportsService {
     private correctiveActionsService: CorrectiveActionsService,
   ) {}
 
+  private requireOrganization(user?: any): string {
+    const organizationId = user?.organizationId;
+
+    if (!organizationId) {
+      throw new UnauthorizedException('Organization context is required.');
+    }
+
+    return String(organizationId);
+  }
+
   async create(body: any, user?: any) {
+    const organizationId = this.requireOrganization(user);
     const frontendReport = body.frontendReportJson || body.report || body;
 
     const report = this.reportRepo.create({
-      organizationId: user?.organizationId || body.organizationId,
+      organizationId,
       createdByUserId: user?.userId ? String(user.userId) : body.createdByUserId,
       company: body.company || frontendReport.organizationName,
       site: body.site || frontendReport.siteLocation,
@@ -97,10 +108,9 @@ export class ReportsService {
   }
 
   async updatePackage(reportId: string, body: any, user?: any) {
+    const organizationId = this.requireOrganization(user);
     const report = await this.reportRepo.findOne({
-      where: user?.organizationId
-        ? { id: reportId, organizationId: user.organizationId }
-        : { id: reportId },
+      where: { id: reportId, organizationId },
     });
 
     if (!report) {
@@ -148,10 +158,9 @@ export class ReportsService {
   }
 
   async archive(reportId: string, user?: any) {
+    const organizationId = this.requireOrganization(user);
     const report = await this.reportRepo.findOne({
-      where: user?.organizationId
-        ? { id: reportId, organizationId: user.organizationId }
-        : { id: reportId },
+      where: { id: reportId, organizationId },
     });
 
     if (!report) {
@@ -171,8 +180,9 @@ export class ReportsService {
   }
 
   async findAll(user?: any) {
+    const organizationId = this.requireOrganization(user);
     const reports = await this.reportRepo.find({
-      where: user?.organizationId ? { organizationId: user.organizationId } : {},
+      where: { organizationId },
       relations: ['findings'],
       order: { reportedDatetime: 'DESC' },
     });
@@ -181,10 +191,9 @@ export class ReportsService {
   }
 
   async findOne(id: string, user?: any) {
+    const organizationId = this.requireOrganization(user);
     const report = await this.reportRepo.findOne({
-      where: user?.organizationId
-        ? { id, organizationId: user.organizationId }
-        : { id },
+      where: { id, organizationId },
       relations: ['findings'],
     });
 

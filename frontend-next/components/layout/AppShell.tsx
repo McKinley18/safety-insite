@@ -1,6 +1,6 @@
 "use client";
 
-const DISABLE_AUTH_FOR_LOCAL_DEV = process.env.NEXT_PUBLIC_DISABLE_AUTH === "true";
+const DISABLE_AUTH_FOR_LOCAL_DEV = process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" && process.env.NODE_ENV !== "production";
 
 import Link from "next/link";
 import MobileTabBar from "@/components/layout/MobileTabBar";
@@ -9,10 +9,9 @@ import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { useNetworkStatus } from "@/hooks/useNetworkStatus";
 import { ToastContainer } from "@/components/ui/Toast";
-import { Moon, Sun, Wifi, WifiOff } from "lucide-react";
+import { Wifi, WifiOff } from "lucide-react";
 import {
   getAutoLockMinutes,
-  getProtectedModeLabel,
   hasPinSet,
   isPinRequired,
   isSessionUnlocked,
@@ -20,7 +19,6 @@ import {
 } from "@/lib/pinSecurity";
 import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
 import { AI_ENGINE_NAME, APP_NAME, BRAND_HEADER_LOGO } from "@/lib/brand";
-import { getStoredPlanCode, type PlanCode } from "@/lib/planEntitlements";
 import { clearAuthSession, hasAuthToken } from "@/lib/auth";
 
 const authPublicRoutes = [
@@ -80,12 +78,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [portalMounted, setPortalMounted] = useState(false);
   const [hasAuthSession, setHasAuthSession] = useState(false);
-  const [planCode, setPlanCode] = useState<string>("basic");
   const isOnline = useNetworkStatus();
 
   const profileMenuRef = useRef<HTMLDivElement | null>(null);
   const profileButtonRef = useRef<HTMLButtonElement | null>(null);
-  const [securityLabel, setSecurityLabel] = useState("Standard Mode");
 
   const isAuthPublicPage = authPublicRoutes.some(
     (route) => pathname === route || pathname.startsWith(route + "/"),
@@ -110,7 +106,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     // Local dev auth bypass should prevent protected-route redirects,
     // but it should not make public marketing pages render as signed-in.
     setHasAuthSession(hasAuthToken());
-    setPlanCode(getStoredPlanCode());
   }, [pathname]);
 
   useEffect(() => {
@@ -154,8 +149,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    setSecurityLabel(getProtectedModeLabel());
-
     if (DISABLE_AUTH_FOR_LOCAL_DEV || isPublicPage || pathname === "/unlock") return;
 
     if (!hasAuthToken()) {
@@ -196,7 +189,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       timer = window.setTimeout(
         () => {
           lockSession();
-          setSecurityLabel(getProtectedModeLabel());
           router.push("/unlock");
         },
         autoLockMinutes * 60 * 1000,
@@ -216,23 +208,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     };
   }, [isPublicPage, pathname, router]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    localStorage.setItem("sentinel_theme_version", "light-only-2026-06-18-v1");
-    localStorage.setItem("sentinel_dark_mode", "false");
-    document.documentElement.classList.remove("dark");
-    document.body.classList.remove("dark");
-  }, []);
-
   return (
-    <div className="sentinel-modern-shell min-h-svh overflow-x-hidden text-slate-900 transition-colors">
+    <div className="sentinel-modern-shell min-h-svh overflow-x-hidden bg-app-page text-app-primary transition-colors">
       <ToastContainer />
-      <header className="sticky top-0 z-[900] w-full overflow-visible border-b border-white/10 bg-[linear-gradient(135deg,#0B1320_0%,#102A43_52%,#0B1320_100%)] px-3 py-2 shadow-lg shadow-slate-950/10 backdrop-blur-xl sm:px-4 sm:py-3">
+      <header className="sticky top-0 z-[900] w-full overflow-visible border-b border-white/15 bg-gradient-to-r from-[#020f24] via-[#061f3f] to-[#0a355f] px-3 py-3 text-white shadow-lg shadow-slate-950/35 backdrop-blur-xl sm:px-5 sm:py-4">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
-            className="relative flex h-16 w-[315px] shrink-0 self-center overflow-visible sm:h-20 sm:w-[420px] lg:h-20 lg:w-[520px]"
+            className="relative flex h-[76px] w-[350px] shrink-0 self-center overflow-visible sm:h-24 sm:w-[470px] lg:h-24 lg:w-[580px]"
             aria-label="Safety InSite Home"
           >
             <img
@@ -256,10 +239,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       key={item.href}
                       href={item.href}
                       className={[
-                        "rounded-full px-4 py-2 text-sm font-black tracking-tight transition",
+                        "rounded-full px-7 py-3.5 text-base font-black tracking-tight transition",
                         active
-                          ? "bg-[#1D72B8] text-[#F4F6F8] shadow-md shadow-blue-900/20"
-                          : "text-[#D1D5DB] hover:bg-white/10 hover:text-[#E2E6EA]",
+                          ? "bg-white text-[#102A43] shadow-md shadow-slate-950/20"
+                          : "text-blue-100 hover:bg-white/10 hover:text-white",
                       ].join(" ")}
                     >
                       {item.label}
@@ -270,15 +253,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
               <div className="flex shrink-0 items-center gap-3">
                 {!isOnline && (
-                  <div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-3 py-1 ring-1 ring-orange-500/20" title="Offline Mode: Using local HazLenz AI Brain">
-                    <WifiOff className="h-3.5 w-3.5 text-orange-700" />
-                    <span className="text-xs font-black text-orange-800 hidden sm:inline-block">Offline</span>
+                  <div className="flex items-center gap-2 rounded-full bg-app-warning px-4 py-1.5 text-[13px] ring-1 ring-orange-500/20" title="Offline Mode: Using local HazLenz AI Brain">
+                    <WifiOff className="h-3.5 w-3.5 text-orange-700 dark:text-orange-200" />
+                    <span className="hidden text-xs font-black text-orange-800 dark:text-orange-100 sm:inline-block">Offline</span>
                   </div>
                 )}
                 {isOnline && (
-                  <div className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 ring-1 ring-emerald-500/20 hidden lg:flex" title="Connected">
-                    <Wifi className="h-3.5 w-3.5 text-emerald-700" />
-                    <span className="text-xs font-black text-emerald-800">Live</span>
+                  <div className="hidden items-center gap-2 rounded-full bg-app-success px-4 py-1.5 text-[13px] ring-1 ring-emerald-500/20 lg:flex" title="Connected">
+                    <Wifi className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-200" />
+                    <span className="text-xs font-black text-emerald-800 dark:text-emerald-100">Live</span>
                   </div>
                 )}
 
@@ -287,7 +270,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     ref={profileButtonRef}
                     type="button"
                     onClick={() => setProfileOpen((open) => !open)}
-                    className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#E8F4FF] text-xs font-black text-[#102A43] ring-2 ring-blue-100 transition hover:bg-white active:scale-95 sm:h-12 sm:w-12 sm:text-sm"
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-app-brand-soft text-sm font-black text-app-primary ring-2 ring-blue-100 transition hover:bg-white/10 active:scale-95 dark:hover:bg-[#102A43] sm:h-14 sm:w-14 sm:text-base"
                     aria-label="Open profile menu"
                   >
                     CM
@@ -297,7 +280,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     createPortal(
                       <div
                         ref={profileMenuRef}
-                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-blue-100 bg-[linear-gradient(180deg,#F0F8FF_0%,#FFFFFF_45%,#F8FAFC_100%)] text-[#102A43] shadow-2xl shadow-slate-950/30(180deg,#0B1320_0%,#111827_55%,#020617_100%)] sm:right-4 sm:top-[82px]"
+                        className="fixed right-3 top-[72px] z-[2147483647] w-56 overflow-hidden rounded-2xl border border-app-border bg-app-surface text-app-primary shadow-2xl shadow-slate-950/20 dark:bg-[#07111F] sm:right-4 sm:top-[82px]"
                       >
 
                       {isPinRequired() && (
@@ -308,7 +291,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                             setProfileOpen(false);
                             router.push("/unlock");
                           }}
-                          className="block w-full min-h-[48px] px-4 py-4 text-left text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
+                          className="block w-full min-h-[52px] px-5 py-4 text-left text-[15px] font-black text-app-primary hover:bg-[#1D72B8] hover:text-white focus:bg-[#1D72B8] focus:text-white focus:outline-none active:bg-[#102A43] transition-colors"
                         >
                           Lock App
                         </button>
@@ -317,7 +300,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/profile"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
+                        className="block min-h-[52px] px-5 py-4 text-[15px] font-black text-app-primary hover:bg-[#1D72B8] hover:text-white focus:bg-[#1D72B8] focus:text-white focus:outline-none active:bg-[#102A43] transition-colors"
                       >
                         User Profile
                       </Link>
@@ -325,7 +308,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/settings"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-4 min-h-[48px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
+                        className="block min-h-[52px] px-5 py-4 text-[15px] font-black text-app-primary hover:bg-[#1D72B8] hover:text-white focus:bg-[#1D72B8] focus:text-white focus:outline-none active:bg-[#102A43] transition-colors"
                       >
                         Settings
                       </Link>
@@ -333,7 +316,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/about"
                         onClick={() => setProfileOpen(false)}
-                        className="block border-t border-slate-100 px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
+                        className="block min-h-[48px] border-t border-app-border px-5 py-3.5 text-[15px] font-black text-app-primary hover:bg-[#1D72B8] hover:text-white focus:bg-[#1D72B8] focus:text-white focus:outline-none active:bg-[#102A43] transition-colors"
                       >
                         About
                       </Link>
@@ -341,7 +324,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/legal"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
+                        className="block min-h-[48px] px-5 py-3.5 text-[15px] font-black text-app-primary hover:bg-[#1D72B8] hover:text-white focus:bg-[#1D72B8] focus:text-white focus:outline-none active:bg-[#102A43] transition-colors"
                       >
                         Legal
                       </Link>
@@ -349,7 +332,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <Link
                         href="/hazlenz"
                         onClick={() => setProfileOpen(false)}
-                        className="block px-4 py-3 min-h-[44px] text-sm font-black text-[#102A43] hover:bg-[#E8F4FF] transition-colors"
+                        className="block min-h-[48px] px-5 py-3.5 text-[15px] font-black text-app-primary hover:bg-[#1D72B8] hover:text-white focus:bg-[#1D72B8] focus:text-white focus:outline-none active:bg-[#102A43] transition-colors"
                       >
                         HazLenz AI
                       </Link>
@@ -360,7 +343,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                           clearAuthSession();
                           window.location.href = "/login";
                         }}
-                        className="block w-full min-h-[48px] border-t border-blue-100 px-4 py-4 text-left text-sm font-black text-red-600 hover:bg-red-50  transition-colors"
+                        className="block w-full min-h-[52px] border-t border-app-border px-5 py-4 text-left text-[15px] font-black text-red-700 hover:bg-red-600 hover:text-white focus:bg-red-600 focus:text-white focus:outline-none active:bg-red-700 transition-colors dark:text-red-300 dark:hover:bg-red-600 dark:hover:text-white dark:focus:bg-red-600 dark:focus:text-white"
                       >
                         Sign Out
                       </button>
@@ -380,7 +363,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       {showPublicFooter && (
-        <footer className="mt-auto w-full bg-[#0B1320] text-white">
+        <footer className="mt-auto w-full bg-[#07111F] text-white">
           <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
             <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-black">
               <Link href="/about" className="text-slate-200 transition hover:text-[#5DB7FF]">
@@ -395,7 +378,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="mt-5 border-t border-white/10 pt-4 text-center">
-              <p className="text-xs font-semibold leading-5 text-slate-400">
+              <p className="text-xs font-semibold leading-5 text-slate-300">
                 © {new Date().getFullYear()} {APP_NAME}. Field safety intelligence powered by {AI_ENGINE_NAME}.
               </p>
             </div>

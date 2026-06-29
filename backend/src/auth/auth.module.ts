@@ -8,11 +8,13 @@ import { JwtStrategy } from './jwt.strategy';
 import { getJwtSecret } from './jwt-secret.util';
 import { User } from '../users/user.entity';
 import { OrganizationsModule } from '../organizations/organizations.module';
+import { BillingModule } from '../billing/billing.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     OrganizationsModule,
+    BillingModule,
     JwtModule.register({
       secret: getJwtSecret(),
       signOptions: {

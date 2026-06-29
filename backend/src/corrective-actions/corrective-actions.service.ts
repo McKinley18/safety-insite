@@ -132,8 +132,9 @@ export class CorrectiveActionsService {
     };
   }
 
-  async export(statusCode?: string, priorityCode?: string) {
-    const where = this.buildFilter(statusCode, priorityCode);
+  async export(authHeader: string, statusCode?: string, priorityCode?: string, devOrganizationId?: string) {
+    const auth = this.getAuthContext(authHeader, devOrganizationId);
+    const where = this.buildFilter(statusCode, priorityCode, auth.organizationId, auth.tenantId);
     return this.actionRepo.find({ where, order: { createdAt: 'DESC' } });
   }
 
