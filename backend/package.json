@@ -100,7 +100,11 @@
     "test:hazlenz-field-output-smoke": "node src/safescope-v2/tests/smoke/hazlenz-field-output-smoke.js",
     "audit:hazlenz-knowledge-runtime": "ts-node scripts/audit-hazlenz-knowledge-runtime-architecture.ts",
     "sync:standards-intelligence:dry-run": "ts-node src/standards/seed/sync-standards-intelligence-to-master.ts",
-    "sync:standards-intelligence:apply": "ts-node src/standards/seed/sync-standards-intelligence-to-master.ts --apply"
+    "sync:standards-intelligence:apply": "ts-node src/standards/seed/sync-standards-intelligence-to-master.ts --apply",
+    "verify:hazlenz:production": "ts-node scripts/verify-hazlenz-production-readiness.ts",
+    "verify:hazlenz:knowledge-source": "ts-node scripts/verify-hazlenz-knowledge-source-readiness.ts",
+    "ensure:hazlenz:knowledge-tables": "ts-node src/safescope-knowledge/maintenance/ensure-knowledge-tables.ts",
+    "seed:hazlenz:starter-knowledge": "ts-node src/safescope-knowledge/seed/safescope-knowledge.seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
