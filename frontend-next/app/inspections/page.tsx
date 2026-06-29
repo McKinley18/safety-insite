@@ -16,6 +16,7 @@ import {
   EntitlementKey,
   getPlanDisplayName,
   getStoredPlanCode,
+  getVerifiedPlanCode,
   hasPlanEntitlement,
   type PlanCode,
 } from "@/lib/planEntitlements";
@@ -94,6 +95,7 @@ export default function InspectionsPage() {
     const seeded = seedInspectionProgramIfEmpty();
     setInspectionPrograms(seeded.length ? seeded : getInspectionProgram());
     setPlanCode(getStoredPlanCode());
+    getVerifiedPlanCode().then(setPlanCode).catch(() => {});
     setRegulatoryScope(window.localStorage.getItem("sentinel_regulatory_scope") || "all");
   }, []);
 

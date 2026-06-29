@@ -15,6 +15,7 @@ import { ReportCard } from "@/components/reports/ReportCard";
 import { ReportFilterControls } from "@/components/reports/ReportFilterControls";
 import {
   getStoredPlanCode,
+  getVerifiedPlanCode,
   hasPlanEntitlement,
   type PlanCode,
 } from "@/lib/planEntitlements";
@@ -86,9 +87,12 @@ export default function ReportsPage() {
       setReports(localMerged);
 
       const storedPlan = getStoredPlanCode();
-      const workspaceReportsAllowed = hasPlanEntitlement("sharedReports", storedPlan);
-
       setPlanCode(storedPlan);
+
+      const verifiedPlan = await getVerifiedPlanCode().catch(() => storedPlan);
+      setPlanCode(verifiedPlan);
+
+      const workspaceReportsAllowed = hasPlanEntitlement("sharedReports", verifiedPlan);
 
       if (!workspaceReportsAllowed) {
         setCloudLoadStatus("idle");

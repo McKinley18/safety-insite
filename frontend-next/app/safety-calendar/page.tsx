@@ -24,6 +24,7 @@ import {
 import type { SafetyCalendarEvent } from "@/types/safetyCalendar";
 import {
   getStoredPlanCode,
+  getVerifiedPlanCode,
   hasPlanEntitlement,
   type PlanCode,
 } from "@/lib/planEntitlements";
@@ -155,6 +156,7 @@ export default function SafetyCalendarPage() {
   useEffect(() => {
     async function loadEvents() {
       setPlanCode(getStoredPlanCode());
+      getVerifiedPlanCode().then(setPlanCode).catch(() => {});
 
       const loaded = await getSafetyCalendarEvents();
       setEvents(loaded);

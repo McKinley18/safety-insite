@@ -16,7 +16,7 @@ import {
   persistReviewedReport,
   saveReportToCloud,
 } from "@/lib/inspection/reviewReportPersistenceService";
-import { getStoredPlanCode } from "@/lib/planEntitlements";
+import { getStoredPlanCode, getVerifiedPlanCode } from "@/lib/planEntitlements";
 import {
   SafeScopeRealImageAnalysisAppendix,
   SafeScopeVisualEvidenceAppendix,
@@ -58,6 +58,7 @@ export default function InspectionReviewPage() {
   useEffect(() => {
     async function loadReport() {
       setPlanCode(getStoredPlanCode());
+      getVerifiedPlanCode().then(setPlanCode).catch(() => {});
       const latest = await getLatestReport<any>();
       setReport(latest);
     }

@@ -209,3 +209,37 @@ export function requiredPlanForArea(area: ProtectedArea) {
 
   return "Free";
 }
+
+
+/**
+ * Returns the best available billing tier from the backend.
+ * Falls back to local auth-user plan only when billing cannot be loaded.
+ *
+ * This is for UI visibility only. Backend entitlement guards remain the
+ * source of truth for protected API access.
+ */
+export async function getVerifiedPlanCode(): Promise<BillingTier> {
+  if (typeof window === "undefined") return "free";
+
+  try {
+    const { getBillingMe } = await import("./billing");
+    const { getAuthUser, setAuthUser } = await import("./auth");
+
+    const billing = await getBillingMe();
+    const verifiedTier = normalizePlanCode(billing?.tier || billing?.planCode || "free");
+
+    const user = getAuthUser<Record<string, unknown>>();
+    setAuthUser({
+      ...user,
+      subscriptionTier: verifiedTier,
+      billingTier: verifiedTier,
+      planCode: verifiedTier,
+      billingStatus: billing?.status || billing?.subscriptionStatus || "none",
+      billingEntitlements: billing?.entitlements || null,
+    });
+
+    return verifiedTier;
+  } catch {
+    return normalizePlanCode(getStoredPlanCode());
+  }
+}

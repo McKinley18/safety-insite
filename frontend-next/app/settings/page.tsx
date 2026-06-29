@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getPlanDisplayName, getStoredPlanCode } from "@/lib/planEntitlements";
+import { getPlanDisplayName, getStoredPlanCode, getVerifiedPlanCode } from "@/lib/planEntitlements";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -110,6 +110,7 @@ export default function SettingsHubPage() {
 
   useEffect(() => {
     setPlanCode(getStoredPlanCode());
+    getVerifiedPlanCode().then(setPlanCode).catch(() => {});
 
     setStorageMode(
       (window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) ||

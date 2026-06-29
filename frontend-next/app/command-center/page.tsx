@@ -22,7 +22,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { getReports } from "@/lib/reportStorage";
 import { getStoredActions, type StoredAction } from "@/lib/actionStorage";
 import { getActivityEvents, saveActivityEvents, type ActivityEvent } from "@/lib/activityStorage";
-import { getStoredPlanCode } from "@/lib/planEntitlements";
+import { getStoredPlanCode, getVerifiedPlanCode } from "@/lib/planEntitlements";
 import {
   getSafetyCalendarEvents,
   getTodayDateKey,
@@ -279,6 +279,7 @@ export default function DashboardPage() {
       const savedCalendarEvents = await getSafetyCalendarEvents();
 
       setPlanCode(getStoredPlanCode());
+      getVerifiedPlanCode().then(setPlanCode).catch(() => {});
       setReports(Array.isArray(savedReports) ? savedReports : []);
       setStoredActions(Array.isArray(savedActions) ? savedActions : []);
       setActivityEvents(Array.isArray(savedActivity) ? savedActivity : []);

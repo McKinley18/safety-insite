@@ -10,14 +10,21 @@ import { getRequestMetadata } from '../common/utils/request-metadata';
 import { BillingService } from '../billing/billing.service';
 import { normalizeBillingTier } from '../billing/plan-entitlements';
 
-const SENTINEL_EMPLOYER_PRO_PROMO_CODE = 'Vulcan';
+function getEmployerProPromoCodes(): string[] {
+  return String(process.env.EMPLOYER_PRO_PROMO_CODES || '')
+    .split(',')
+    .map((code) => code.trim().toLowerCase())
+    .filter(Boolean);
+}
 
 function normalizePromoCode(value?: string): string {
   return String(value || '').trim().toLowerCase();
 }
 
 function isEmployerProPromoCode(value?: string): boolean {
-  return normalizePromoCode(value) === SENTINEL_EMPLOYER_PRO_PROMO_CODE.toLowerCase();
+  const normalized = normalizePromoCode(value);
+  if (!normalized) return false;
+  return getEmployerProPromoCodes().includes(normalized);
 }
 
 @Injectable()
@@ -79,7 +86,7 @@ export class AuthService {
       password: hashedPassword,
       type: finalType || 'individual',
       planCode,
-      subscriptionStatus: 'active',
+      subscriptionStatus: employerProPromoApplied ? 'active' : 'none',
       role,
       organizationId,
     });
