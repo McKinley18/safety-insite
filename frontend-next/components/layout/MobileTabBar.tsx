@@ -55,7 +55,7 @@ export default function MobileTabBar() {
     <nav
       aria-label="Mobile primary navigation"
       data-keyboard-open={keyboardOpen ? "true" : "false"}
-      className="mobile-tab-bar fixed inset-x-0 bottom-0 z-[800] border-t border-app-border bg-app-surface px-2 pb-[max(env(safe-area-inset-bottom),0.25rem)] pt-1 text-app-primary shadow-[0_-8px_24px_rgba(15,23,42,0.16)] backdrop-blur-xl transition-transform duration-150 dark:bg-[#07111F]/96 lg:hidden"
+      className="mobile-tab-bar fixed inset-x-0 bottom-0 z-[800] border-t border-white/10 bg-[#07111F] px-2 pb-[max(env(safe-area-inset-bottom),0.25rem)] pt-1 text-white shadow-[0_-8px_24px_rgba(15,23,42,0.28)] backdrop-blur-xl transition-transform duration-150 dark:bg-[#07111F]/96 lg:hidden"
     >
       <div className="mx-auto grid max-w-md grid-cols-4 gap-1.5">
         {tabs.map((tab) => {
@@ -69,8 +69,8 @@ export default function MobileTabBar() {
               href={tab.href}
               className={`flex min-h-[36px] flex-col items-center justify-center rounded-lg px-1 text-center transition ${
                 active
-                  ? "bg-app-brand text-app-inverse shadow-sm shadow-blue-950/30"
-                  : "text-app-primary hover:bg-app-brand-soft hover:text-app-primary"
+                  ? "bg-white/15 text-white shadow-sm shadow-blue-950/30 ring-1 ring-white/20"
+                  : "text-white/80 hover:bg-white/10 hover:text-white"
               }`}
             >
               <span className="text-[13px] leading-none">{tab.icon}</span>
