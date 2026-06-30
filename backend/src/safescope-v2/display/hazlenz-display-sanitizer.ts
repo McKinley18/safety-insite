@@ -76,6 +76,19 @@ const HIDDEN_STANDARD_OUTPUT_FIELDS = new Set([
   "evidenceGate",
   "evidenceSufficiency",
   "confidenceGovernance",
+
+  // Display-size controls:
+  // These fields duplicate concise report/API fields or contain internal ranking metadata.
+  // Keep report-facing fields such as standardsTraceability, standardsReasoning,
+  // generatedActions, mechanismChain, risk, and correctiveActionReasoning.
+  "applicabilityIntelligence",
+  "standardDecisions",
+  "supplementalGuidance",
+  "outputPolicy",
+  "operationalReasoning",
+  "primaryStandards",
+  "suggestedStandards",
+  "standards",
 ]);
 
 export function sanitizeHazLenzDisplayOutput<T>(value: T): T {

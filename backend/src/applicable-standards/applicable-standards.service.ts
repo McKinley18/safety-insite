@@ -382,15 +382,15 @@ export class ApplicableStandardsService {
 
     if (this.isScaffoldFallProtectionScenario(observation)) {
       if (citation === "29 CFR 1926.451" || citation === "1926.451") {
-        score += 110;
+        score += 220;
         matchingReasons.push(
-          "scenario: scaffold platform missing guardrails or fall protection",
+          "scenario: scaffold-specific platform missing guardrails or fall protection",
         );
       }
 
       if (citation === "29 CFR 1926.501" || citation === "1926.501") {
-        score += 80;
-        matchingReasons.push("scenario: construction fall protection duty");
+        score += 45;
+        matchingReasons.push("scenario: construction fall protection duty is supporting when scaffold-specific rule is available");
       }
 
       if (citation === "29 CFR 1926.502" || citation === "1926.502") {
@@ -1132,8 +1132,56 @@ export class ApplicableStandardsService {
     const isCompressedGasCylinderStorage =
       /\b(?:oxygen|acetylene|argon|propane|compressed gas|gas) cylinders?\b/i.test(observation) &&
       /\b(?:unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic)\b/i.test(observation);
+    const isScaffoldFallProtectionContext =
+      this.isScaffoldFallProtectionScenario(observation) &&
+      activeJurisdiction === "osha_construction";
     const codeFallbackStandards =
-      isCompressedGasCylinderStorage && activeJurisdiction === "osha_general_industry"
+      isScaffoldFallProtectionContext
+        ? [
+            {
+              id: "fallback-1926-451",
+              citation: "29 CFR 1926.451",
+              heading: "General requirements for scaffolds",
+              summary:
+                "Construction scaffold requirements including guardrail and fall-protection provisions for scaffold platforms.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "construction" as const,
+              score: 240,
+              confidence: 98,
+              matchingReasons: [
+                "fallback: scaffold platform with missing guardrails or fall protection",
+              ],
+            },
+            {
+              id: "fallback-1926-501",
+              citation: "29 CFR 1926.501",
+              heading: "Duty to have fall protection",
+              summary:
+                "Construction fall-protection duty standard retained as supporting context when scaffold-specific requirements apply.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "construction" as const,
+              score: 120,
+              confidence: 92,
+              matchingReasons: [
+                "fallback: supporting construction fall-protection duty",
+              ],
+            },
+            {
+              id: "fallback-1926-502",
+              citation: "29 CFR 1926.502",
+              heading: "Fall protection systems criteria and practices",
+              summary:
+                "Construction fall-protection system criteria retained as supporting context for required protection methods.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "construction" as const,
+              score: 100,
+              confidence: 88,
+              matchingReasons: [
+                "fallback: supporting fall-protection system criteria",
+              ],
+            },
+          ]
+        : isCompressedGasCylinderStorage && activeJurisdiction === "osha_general_industry"
         ? [
             {
               id: "fallback-1910-101",
@@ -1365,9 +1413,9 @@ export class ApplicableStandardsService {
             standard.citation === "1926.451" ||
             standard.citation === "29 CFR 1926.451"
           ) {
-            score += 110;
+            score += 220;
             matchingReasons.push(
-              "scenario: scaffold platform missing guardrails or fall protection",
+              "scenario: scaffold-specific platform missing guardrails or fall protection",
             );
           }
 
@@ -1375,8 +1423,8 @@ export class ApplicableStandardsService {
             standard.citation === "1926.501" ||
             standard.citation === "29 CFR 1926.501"
           ) {
-            score += 90;
-            matchingReasons.push("scenario: construction fall protection duty");
+            score += 45;
+            matchingReasons.push("scenario: construction fall protection duty is supporting when scaffold-specific rule is available");
           }
 
           if (
@@ -1824,17 +1872,43 @@ export class ApplicableStandardsService {
       return 1;
     };
 
+    const scaffoldFallProtectionScenario = this.isScaffoldFallProtectionScenario(observation);
+    const getScaffoldSpecificPriority = (item: any) => {
+      if (!scaffoldFallProtectionScenario) return 0;
+
+      if (isCitationMatch(item.citation, "29 CFR 1926.451") || isCitationMatch(item.citation, "1926.451")) {
+        return 3;
+      }
+
+      if (isCitationMatch(item.citation, "29 CFR 1926.502") || isCitationMatch(item.citation, "1926.502")) {
+        return 2;
+      }
+
+      if (isCitationMatch(item.citation, "29 CFR 1926.501") || isCitationMatch(item.citation, "1926.501")) {
+        return 1;
+      }
+
+      return 0;
+    };
+
     const rankedResults = [
       ...knowledgeMatches,
       ...codeFallbackStandards,
       ...standardMatches,
     ]
       .sort((a, b) => {
+        const scaffoldPriA = getScaffoldSpecificPriority(a);
+        const scaffoldPriB = getScaffoldSpecificPriority(b);
+        if (scaffoldPriA !== scaffoldPriB) {
+          return scaffoldPriB - scaffoldPriA;
+        }
+
         const priA = getPriority(a);
         const priB = getPriority(b);
         if (priA !== priB) {
           return priB - priA;
         }
+
         return b.score - a.score;
       })
       .filter(
