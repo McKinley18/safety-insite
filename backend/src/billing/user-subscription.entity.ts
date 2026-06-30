@@ -18,8 +18,8 @@ export class UserSubscription {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column({ type: "integer" })
-  userId!: number;
+  @Column({ type: "uuid" })
+  userId!: string;
 
   @Column({ type: "varchar", length: 255, nullable: true })
   stripeCustomerId!: string | null;

@@ -23,11 +23,11 @@ import { normalizeStripeSubscriptionStatus } from './subscription-status';
 
 type StripeClient = InstanceType<typeof StripeConstructor>;
 
-function getUserIdNumber(user: any): number {
+function getUserId(user: any): string {
   const raw = user?.userId || user?.id || user?.sub;
-  const userId = Number(raw);
+  const userId = String(raw || '').trim();
 
-  if (!Number.isFinite(userId) || userId <= 0) {
+  if (!userId) {
     throw new UnauthorizedException('Authenticated user is required.');
   }
 
@@ -67,7 +67,7 @@ export class BillingService {
   }
 
   async getBillingStatus(user: any) {
-    const userId = getUserIdNumber(user);
+    const userId = getUserId(user);
     const subscription = await this.subscriptions.findOne({
       where: { userId },
     });
@@ -108,7 +108,7 @@ export class BillingService {
   }
 
   async createCheckoutSession(user: any, tier: BillingTier) {
-    const userId = getUserIdNumber(user);
+    const userId = getUserId(user);
 
     if (tier === 'free') {
       throw new BadRequestException('Free plan does not require checkout.');
@@ -170,7 +170,7 @@ export class BillingService {
   }
 
   async createPortalSession(user: any) {
-    const userId = getUserIdNumber(user);
+    const userId = getUserId(user);
     const stripe = this.requireStripe();
 
     const subscription = await this.subscriptions.findOne({
@@ -251,8 +251,8 @@ export class BillingService {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object;
-        const userId = Number(session.metadata?.userId);
-        if (!Number.isFinite(userId) || userId <= 0) return;
+        const userId = String(session.metadata?.userId || '').trim();
+        if (!userId) return;
 
         await this.upsertSubscriptionFromCheckoutSession(userId, session, event.id);
         return;
@@ -294,7 +294,7 @@ export class BillingService {
   }
 
   private async upsertSubscriptionFromCheckoutSession(
-    userId: number,
+    userId: string,
     session: any,
     eventId: string,
   ) {
@@ -326,8 +326,8 @@ export class BillingService {
     stripeSubscription: any,
     eventId: string,
   ) {
-    const userId = Number(stripeSubscription.metadata?.userId);
-    if (!Number.isFinite(userId) || userId <= 0) return;
+    const userId = String(stripeSubscription.metadata?.userId || '').trim();
+    if (!userId) return;
 
     const stripePriceId = stripeSubscription.items?.data?.[0]?.price?.id;
     const tier = resolveTierForPriceId(stripePriceId);
