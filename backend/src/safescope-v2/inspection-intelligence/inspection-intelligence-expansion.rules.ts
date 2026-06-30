@@ -174,7 +174,11 @@ export const INSPECTION_INTELLIGENCE_EXPANSION_RULES: InspectionIntelligenceRule
   },
   {
     id: 'silica-dust-uncertain-exposure', domain: 'health_respiratory', confidence: 'moderate',
-    matches: [/\b(silica|concrete dust|masonry dust|stone dust)\b.*\b(dust|cutting|grinding|drilling|exposure)/, /\bdust exposure\b.*\b(no sampling|unknown duration|not sampled|unclear)/],
+    matches: [
+      /\b(silica|concrete dust|masonry dust|stone dust|crusher dust|aggregate dust|grinder dust)\b.*\b(dust|cutting|grinding|drilling|crushing|material handling|exposure)/,
+      /\b(crusher|grinder|saw|drill|cutting|grinding|drilling|aggregate plant|material handling)\b.*\b(dust|silica|respirable dust|visible dust)/,
+      /\bdust exposure\b.*\b(no sampling|unknown duration|not sampled|unclear)/,
+    ],
     initiating: 'A dust-generating task may release respirable particulate, but composition, duration, and exposure level are incomplete.', failure: 'Inadequate source control can allow fine particles to remain airborne in the breathing zone.', exposure: 'Workers may inhale respirable silica or other dust depending on material and task.', consequences: 'Potential respiratory irritation, silicosis, lung cancer, kidney disease, or other dust-related illness; conclusions require exposure evidence.',
     questions: ['What material, silica content, tool/process, task duration, frequency, and worker distance apply?', 'What wet method, local exhaust, enclosure, housekeeping, and restricted-area controls are operating?', 'What objective data or personal sampling and respiratory-protection program evidence are available?'],
     controls: actions('Limit the dust-generating task and keep unprotected workers out until controls are verified.', 'Use effective wet methods or local exhaust and appropriate interim respiratory protection under program controls.', 'Engineer source capture/enclosure or validated wet methods for the specific task and material.', 'Complete exposure assessment, written control planning, housekeeping rules, training, and respiratory-program duties where triggered.', 'Document material/task basis, control performance, duration/frequency, objective data or sampling, and qualified IH review.'),
@@ -190,7 +194,10 @@ export const INSPECTION_INTELLIGENCE_EXPANSION_RULES: InspectionIntelligenceRule
   },
   {
     id: 'noise-exposure-uncertain', domain: 'noise_exposure', confidence: 'moderate',
-    matches: [/\b(loud|high noise|noise exposure|noisy)\b.*\b(area|equipment|task|without hearing protection|unknown|not measured)/],
+    matches: [
+      /\b(loud|high noise|noise exposure|noisy|crusher noise|grinder noise|jackhammer noise)\b.*\b(area|equipment|task|without hearing protection|unknown|not measured|review|assessment)/,
+      /\b(crusher|grinder|jackhammer|saw|cutting|drilling|equipment)\b.*\b(loud|noise|noise exposure|hearing conservation|dosimetry)/,
+    ],
     initiating: 'Potentially hazardous noise is reported without sufficient level, duration, or dose evidence.', failure: 'Sustained or impulsive sound may exceed protective capacity when engineering controls and hearing conservation are inadequate.', exposure: 'Workers near the source may receive repeated or high sound-energy doses.', consequences: 'Temporary or permanent hearing loss, tinnitus, communication interference, or missed warning signals.',
     questions: ['What source, sound level/peak, duration, frequency, distance, and number of exposed workers apply?', 'What dosimetry or sound-level measurements and equipment calibration are available?', 'What engineering controls, hearing-protection attenuation/fit, audiometry, and hearing-conservation elements apply?'],
     controls: actions('Limit time and distance and restrict unprotected access pending noise assessment.', 'Use suitable hearing protection and temporary barriers/operating controls based on qualified selection.', 'Reduce noise at the source through isolation, damping, enclosure, maintenance, or quieter equipment.', 'Complete monitoring and implement hearing-conservation, training, fit/selection, and audiometric duties where triggered.', 'Document calibrated measurements/dosimetry, control performance, PPE selection, worker notification, and follow-up.'),
@@ -211,6 +218,30 @@ export const INSPECTION_INTELLIGENCE_EXPANSION_RULES: InspectionIntelligenceRule
     questions: ['What hazard assessment identifies the particle, splash, noise, or respiratory exposure and required protection?', 'What PPE type/rating/material, compatibility, fit, condition, and limitations apply?', 'What engineering/work-practice controls, training, medical evaluation, fit testing, and inspection are required?'],
     controls: actions('Pause the exposed task until higher-level controls and suitable PPE are verified.', 'Provide correctly selected and inspected interim PPE under competent supervision.', 'Eliminate/substitute or engineer the exposure and provide durable PPE selected from a documented hazard assessment.', 'Complete PPE assessment, selection, issue, training, care, replacement, and respiratory/hearing program duties as applicable.', 'Document hazard assessment, PPE marking/compatibility/fit, condition, training, and observed correct use.'),
     standards: { osha_general_industry: [{ citation: '29 CFR 1910.132(d)', summary: 'PPE hazard assessment and selection requirements.', evidence: ['task hazard assessment', 'exposure pathway', 'PPE selection/fit', 'training and condition'] }], osha_construction: [{ citation: '29 CFR 1926.95(a)', summary: 'Construction PPE provision, use, and maintenance.', evidence: ['construction task hazard', 'PPE type/condition', 'employee exposure and use'] }] },
+  },
+  {
+    id: 'natural-gas-odor-uncertain', domain: 'fire_protection', confidence: 'moderate',
+    matches: [
+      /\b(natural gas odor|smell of gas|gas odor|gas leak|gas smell)\b/,
+      /\b(boiler room|mechanical room|utility room|furnace room)\b.*\b(gas odor|smell of gas|gas leak|natural gas)\b/,
+    ],
+    initiating: 'A fuel-gas odor or leak is reported, but the source and ignition/exposure path are not yet confirmed.',
+    failure: 'Gas can accumulate or migrate if the leak source, isolation, and ventilation are not verified.',
+    exposure: 'Workers may inhale displaced gas or be exposed if ignition occurs before the source is found.',
+    consequences: 'Fire, explosion, asphyxiation, or emergency-response escalation.',
+    questions: [
+      'What is the source of the gas odor and has it been isolated?',
+      'What ventilation, shutoff, leak testing, and ignition control are in place?',
+      'Is evacuation or area control needed until the source is found?',
+    ],
+    controls: actions(
+      'Restrict access and investigate the odor source immediately.',
+      'Ventilate and shut off the gas source if it can be done safely under site emergency procedures.',
+      'Repair the leak or fuel-gas source and verify safe conditions before re-entry.',
+      'Train affected workers on odor recognition, emergency actions, and reporting.',
+      'Document source location, shutoff status, ventilation, testing, and clearance to reoccupy.',
+    ),
+    standards: { osha_general_industry: [] },
   },
   {
     id: 'trench-protective-system', domain: 'excavation_trenching',

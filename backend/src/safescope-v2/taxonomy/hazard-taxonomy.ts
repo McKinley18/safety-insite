@@ -40,7 +40,17 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "flying particles", weight: 6 }
     ],
     weakSignals: [],
-    negativeSignals: [{ term: "silica", weight: -50 }, { term: "dust", weight: -50 }],
+    negativeSignals: [
+      { term: "silica", weight: -50 },
+      { term: "dust", weight: -50 },
+      { term: "noise", weight: -18 },
+      { term: "crusher", weight: -18 },
+      { term: "grinder", weight: -18 },
+      { term: "jackhammer", weight: -18 },
+      { term: "hearing protection", weight: -14 },
+      { term: "earplugs", weight: -14 },
+      { term: "earmuffs", weight: -14 }
+    ],
     contextBoosts: [],
     commonConsequences: ["eye injury", "vision loss"],
     requiredControls: ["use approved safety glasses", "wear face shield"],
@@ -135,7 +145,14 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
     negativeSignals: [
       { term: "electrical panel", weight: -6 },
       { term: "live wire", weight: -8 },
-      { term: "chemical container", weight: -5 }
+      { term: "chemical container", weight: -5 },
+      { term: "clutter", weight: -12 },
+      { term: "housekeeping", weight: -12 },
+      { term: "boxes", weight: -12 },
+      { term: "scrap", weight: -12 },
+      { term: "hallway", weight: -10 },
+      { term: "travel path", weight: -10 },
+      { term: "trip hazard", weight: -14 }
     ],
     contextBoosts: [
       { term: "operating", weight: 3 },
@@ -391,7 +408,10 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "fuel leak near hot work", weight: 10 },
       { term: "combustible dust accumulation", weight: 9 },
       { term: "fire extinguisher missing", weight: 8 },
-      { term: "explosion hazard", weight: 10 }
+      { term: "explosion hazard", weight: 10 },
+      { term: "natural gas odor", weight: 9 },
+      { term: "gas odor", weight: 8 },
+      { term: "gas leak", weight: 8 }
     ],
     moderateSignals: [
       { term: "flammable", weight: 5 },
@@ -401,7 +421,9 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "sparks", weight: 5 },
       { term: "fire extinguisher", weight: 5 },
       { term: "extinguisher", weight: 5 },
-      { term: "sprinkler", weight: 5 }
+      { term: "sprinkler", weight: 5 },
+      { term: "boiler room", weight: 5 },
+      { term: "smell of gas", weight: 6 }
     ],
     weakSignals: [
       { term: "fire", weight: 3 },
@@ -473,7 +495,11 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "respirable dust", weight: 7 },
       { term: "dust cloud", weight: 6 },
       { term: "sweeping dust", weight: 5 },
-      { term: "crusher dust", weight: 5 }
+      { term: "crusher dust", weight: 5 },
+      { term: "crusher", weight: 5 },
+      { term: "grinder", weight: 5 },
+      { term: "aggregate plant", weight: 5 },
+      { term: "material handling", weight: 4 }
     ],
     weakSignals: [
       { term: "dust", weight: 3 },
@@ -491,6 +517,52 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
     defaultSeverityScore: 4,
     defaultLikelihoodScore: 3,
     humanReviewTriggers: ["silica exposure", "visible dust cloud", "failed dust controls"]
+  },
+  {
+    id: "noise_exposure",
+    label: "Noise Exposure",
+    family: "Industrial Hygiene",
+    strongSignals: [
+      { term: "noise exposure", weight: 10 },
+      { term: "hearing conservation", weight: 10 },
+      { term: "crusher noise", weight: 10 },
+      { term: "loud equipment", weight: 9 },
+      { term: "noise survey", weight: 9 },
+      { term: "dosimetry", weight: 9 }
+    ],
+    moderateSignals: [
+      { term: "noise", weight: 6 },
+      { term: "loud", weight: 5 },
+      { term: "decibel", weight: 6 },
+      { term: "dba", weight: 6 },
+      { term: "sound level", weight: 6 },
+      { term: "hearing protection", weight: 5 },
+      { term: "earplugs", weight: 5 },
+      { term: "earmuffs", weight: 5 },
+      { term: "grinder", weight: 6 },
+      { term: "crusher", weight: 6 },
+      { term: "jackhammer", weight: 6 },
+      { term: "saw", weight: 5 }
+    ],
+    weakSignals: [
+      { term: "hearing", weight: 2 },
+      { term: "sound", weight: 2 }
+    ],
+    negativeSignals: [
+      { term: "safety glasses", weight: -20 },
+      { term: "eye protection", weight: -20 }
+    ],
+    contextBoosts: [
+      { term: "audiogram", weight: 4 },
+      { term: "monitoring", weight: 3 },
+      { term: "hearing protection", weight: 3 }
+    ],
+    commonConsequences: ["hearing loss", "tinnitus", "communication interference"],
+    requiredControls: ["measure noise", "control source", "provide hearing protection", "hearing conservation program"],
+    defaultSeverity: "medium",
+    defaultSeverityScore: 3,
+    defaultLikelihoodScore: 3,
+    humanReviewTriggers: ["extended high-noise exposure", "hearing protection reliance", "employee symptoms"]
   },
   {
     id: "emergency_egress",
@@ -706,7 +778,13 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "gas", weight: 2 },
       { term: "cap", weight: 2 }
     ],
-    negativeSignals: [],
+    negativeSignals: [
+      { term: "natural gas", weight: -20 },
+      { term: "gas odor", weight: -18 },
+      { term: "smell of gas", weight: -18 },
+      { term: "gas leak", weight: -18 },
+      { term: "boiler room", weight: -12 }
+    ],
     contextBoosts: [],
     commonConsequences: ["cylinder projectile", "explosion", "toxic or flammable gas release"],
     requiredControls: ["secure cylinders upright", "install protective valve caps", "separate incompatible gas cylinders"],

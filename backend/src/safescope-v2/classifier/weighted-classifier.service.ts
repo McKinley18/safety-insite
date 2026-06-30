@@ -73,6 +73,10 @@ function getSemanticArbitrationSignals(normalizedText: string) {
 
   const travelPathObject =
     /\b(walkway|aisle|aisleway|travelway|passageway|floor|walking surface|walking-working surface|stairs|platform)\b/i.test(normalizedText);
+  const damagedCordObject =
+    /\b(damaged|frayed|cut|wet|exposed insulation|exposed conductor|bare)\b.*\b(cord|cable|extension cord|power cord)\b|\b(cord|cable|extension cord|power cord)\b.*\b(damaged|frayed|cut|wet|exposed insulation|exposed conductor|bare)\b/i.test(
+      normalizedText,
+    );
 
   return {
     electricalAccessIssue: electricalObject && hasBlockedOrAccessIssue,
@@ -86,6 +90,7 @@ function getSemanticArbitrationSignals(normalizedText: string) {
       !emergencyEgressObject &&
       !fireProtectionObject &&
       !machineSafetyControlObject,
+    damagedCordObject,
   };
 }
 
@@ -119,6 +124,7 @@ export class WeightedClassifierService {
     const hasBareGuardingConcern =
       /\b(missing guard|guard issue|guarding issue|guard missing)\b/i.test(normalizedText) &&
       !hasSpecificGuardingContext(normalizedText);
+    const semantic = getSemanticArbitrationSignals(normalizedText);
 
     const candidates: WeightedCandidate[] = HAZARD_TAXONOMY.map((profile: HazardProfile) => {
       const strong = scoreSignals(normalizedText, profile.strongSignals);
@@ -215,12 +221,19 @@ export class WeightedClassifierService {
         if (!hasElectricalExposure) {
           score -= 45; // Penalize electrical when no actual electrical hazard exists
         }
+        if (semantic.damagedCordObject) {
+          score += 52;
+        }
         if (isTripPassagewayOrHousekeepingText) {
           const hasDirectElectricalExposure = /(live wire|exposed conductor|exposed wiring|frayed wire|energized electrical|shock hazard|exposed energized|damaged insulation)/i.test(normalizedText);
           if (!hasDirectElectricalExposure) {
             score -= 45; // Further penalize electrical on trip/slip floor conditions near electrical locations
           }
         }
+      }
+
+      if (profile.id === "noise_exposure" && semantic.damagedCordObject && !/\b(noise|loud|hearing|decibel|dba|sound|crusher|grinder|jackhammer|saw|audiogram)\b/i.test(normalizedText)) {
+        score -= 40;
       }
 
       if (isTripPassagewayOrHousekeepingText && profile.id === "walking_working_surfaces") {
@@ -307,8 +320,6 @@ export class WeightedClassifierService {
       // Generic words like "blocked" are not enough by themselves; SafeScope should
       // identify the safety-critical object being blocked, then classify by the
       // primary hazard domain/function affected.
-      const semantic = getSemanticArbitrationSignals(normalizedText);
-
       if (semantic.electricalAccessIssue) {
         if (profile.id === "electrical") score += 70;
         if (profile.id === "walking_working_surfaces" || profile.id === "housekeeping") score -= 55;
