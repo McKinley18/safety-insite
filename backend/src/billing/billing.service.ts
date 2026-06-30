@@ -23,6 +23,9 @@ import { normalizeStripeSubscriptionStatus } from './subscription-status';
 
 type StripeClient = InstanceType<typeof StripeConstructor>;
 
+const UUID_PATTERN =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 function getUserId(user: any): string {
   const raw = user?.userId || user?.id || user?.sub;
   const userId = String(raw || '').trim();
@@ -32,6 +35,10 @@ function getUserId(user: any): string {
   }
 
   return userId;
+}
+
+function isUuid(value: string): boolean {
+  return UUID_PATTERN.test(value);
 }
 
 @Injectable()
@@ -68,17 +75,23 @@ export class BillingService {
 
   async getBillingStatus(user: any) {
     const userId = getUserId(user);
-    const subscription = await this.subscriptions.findOne({
-      where: { userId },
-    });
+    const hasUuidUserId = isUuid(userId);
+    const fallbackTier = hasUuidUserId
+      ? normalizeBillingTier(
+          user?.subscriptionTier ||
+            user?.billingTier ||
+            user?.effectivePlanCode ||
+            user?.planCode ||
+            user?.type,
+        )
+      : 'free';
 
-    const fallbackTier = normalizeBillingTier(
-      user?.subscriptionTier ||
-        user?.billingTier ||
-        user?.effectivePlanCode ||
-        user?.planCode ||
-        user?.type,
-    );
+    const subscription = hasUuidUserId
+      ? await this.subscriptions.findOne({
+          where: { userId },
+        })
+      : null;
+
     const tier = subscription ? this.resolveEffectiveTier(subscription) : fallbackTier;
     const plan = BILLING_PLAN_DEFINITIONS[tier] || BILLING_PLAN_DEFINITIONS.free;
 
@@ -109,6 +122,12 @@ export class BillingService {
 
   async createCheckoutSession(user: any, tier: BillingTier) {
     const userId = getUserId(user);
+
+    if (!isUuid(userId)) {
+      throw new UnauthorizedException(
+        'A registered user account is required to start checkout.',
+      );
+    }
 
     if (tier === 'free') {
       throw new BadRequestException('Free plan does not require checkout.');
