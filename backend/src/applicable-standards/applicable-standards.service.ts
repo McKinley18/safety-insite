@@ -243,6 +243,15 @@ export class ApplicableStandardsService {
     );
   }
 
+  private isHousekeepingTripScenario(text: string) {
+    return (
+      /(hallway|aisle|travel path|travelway|passageway|walkway|floor|platform|access)/i.test(text) &&
+      /(clutter|boxes|scrap|debris|obstruction|housekeeping|material|spill|buildup|build up|accumulation|trip|slip)/i.test(
+        text,
+      )
+    );
+  }
+
   private isMovingMachineScenario(text: string) {
     return /(unguarded|guard|moving part|rotating|shaft|pulley|belt|conveyor|nip point|pinch point|drive)/i.test(
       text,
@@ -380,7 +389,7 @@ export class ApplicableStandardsService {
       }
     }
 
-    if (this.isScaffoldFallProtectionScenario(observation)) {
+      if (this.isScaffoldFallProtectionScenario(observation)) {
       if (citation === "29 CFR 1926.451" || citation === "1926.451") {
         score += 220;
         matchingReasons.push(
@@ -389,8 +398,8 @@ export class ApplicableStandardsService {
       }
 
       if (citation === "29 CFR 1926.501" || citation === "1926.501") {
-        score += 45;
-        matchingReasons.push("scenario: construction fall protection duty is supporting when scaffold-specific rule is available");
+        score -= 120;
+        matchingReasons.push("negative: construction fall protection duty is not primary when scaffold-specific requirements are available");
       }
 
       if (citation === "29 CFR 1926.502" || citation === "1926.502") {
@@ -1132,6 +1141,11 @@ export class ApplicableStandardsService {
     const isCompressedGasCylinderStorage =
       /\b(?:oxygen|acetylene|argon|propane|compressed gas|gas) cylinders?\b/i.test(observation) &&
       /\b(?:unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic)\b/i.test(observation);
+    const isNoiseExposureContext =
+      /\b(noise|loud|hearing conservation|dosimetry|noise exposure|hearing loss|crusher noise|grinder noise|jackhammer noise)\b/i.test(observation) &&
+      /\b(crusher|grinder|jackhammer|saw|equipment|operation|exposure|monitoring|dba|decibel)\b/i.test(observation);
+    const isSilicaExposureContext =
+      /\b(silica|respirable dust|crusher dust|grinder dust|aggregate dust|dust exposure|airborne dust|material handling)\b/i.test(observation);
     const isScaffoldFallProtectionContext =
       this.isScaffoldFallProtectionScenario(observation) &&
       activeJurisdiction === "osha_construction";
@@ -1150,20 +1164,6 @@ export class ApplicableStandardsService {
               confidence: 98,
               matchingReasons: [
                 "fallback: scaffold platform with missing guardrails or fall protection",
-              ],
-            },
-            {
-              id: "fallback-1926-501",
-              citation: "29 CFR 1926.501",
-              heading: "Duty to have fall protection",
-              summary:
-                "Construction fall-protection duty standard retained as supporting context when scaffold-specific requirements apply.",
-              agencyCode: "OSHA" as const,
-              scopeCode: "construction" as const,
-              score: 120,
-              confidence: 92,
-              matchingReasons: [
-                "fallback: supporting construction fall-protection duty",
               ],
             },
             {
@@ -1232,6 +1232,54 @@ export class ApplicableStandardsService {
               ],
             },
           ]
+        : isNoiseExposureContext && activeJurisdiction === "msha"
+        ? [
+            {
+              id: "fallback-30-cfr-62-110",
+              citation: "30 CFR 62.110",
+              heading: "Noise exposure and hearing conservation",
+              summary:
+                "Mine occupational noise-exposure requirements where crusher or grinder noise warrants hearing-conservation review.",
+              agencyCode: "MSHA" as const,
+              scopeCode: "mining" as const,
+              score: 118,
+              confidence: 94,
+              matchingReasons: [
+                "fallback: mining noise exposure or hearing-conservation review",
+              ],
+            },
+          ]
+        : isSilicaExposureContext && activeJurisdiction === "msha"
+        ? [
+            {
+              id: "fallback-30-cfr-56-5005",
+              citation: "30 CFR 56.5005",
+              heading: "Dust control / respirable dust",
+              summary:
+                "Mine dust-control requirements where respirable silica or crusher dust exposure is observed.",
+              agencyCode: "MSHA" as const,
+              scopeCode: "mining" as const,
+              score: 120,
+              confidence: 95,
+              matchingReasons: [
+                "fallback: visible respirable dust or silica exposure at crusher",
+              ],
+            },
+            {
+              id: "fallback-30-cfr-56-5002",
+              citation: "30 CFR 56.5002",
+              heading: "Dust control measures",
+              summary:
+                "Mine dust-control measures where airborne dust needs suppression or monitoring.",
+              agencyCode: "MSHA" as const,
+              scopeCode: "mining" as const,
+              score: 112,
+              confidence: 92,
+              matchingReasons: [
+                "fallback: dust suppression and monitoring needed for silica exposure",
+              ],
+            },
+          ]
         : isHazComLabelContext && activeJurisdiction === "osha_general_industry"
         ? [
             {
@@ -1294,7 +1342,39 @@ export class ApplicableStandardsService {
               ],
             },
           ]
-          : isForkliftSeatbelt && activeJurisdiction === "osha_general_industry"
+        : (this.isHousekeepingAccessScenario(observation) || this.isHousekeepingTripScenario(observation)) &&
+          activeJurisdiction === "osha_general_industry"
+        ? [
+            {
+              id: "fallback-1910-22-a-3",
+              citation: "1910.22(a)(3)",
+              heading: "Walking-working surfaces clear passageways",
+              summary:
+                "Walking-working surfaces must be kept free of hazards such as debris, boxes, scrap, and clutter that create trip exposure.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "general_industry" as const,
+              score: 98,
+              confidence: 96,
+              matchingReasons: [
+                "fallback: clutter, boxes, scrap, or debris in a hallway or travel path",
+              ],
+            },
+            {
+              id: "fallback-1910-22-a",
+              citation: "1910.22(a)",
+              heading: "Walking-working surfaces",
+              summary:
+                "Walking-working surfaces must be kept clean, orderly, and free of recognized hazards.",
+              agencyCode: "OSHA" as const,
+              scopeCode: "general_industry" as const,
+              score: 82,
+              confidence: 84,
+              matchingReasons: [
+                "fallback: general walking-working surface housekeeping concern",
+              ],
+            },
+          ]
+          : isMobileTrafficContext && activeJurisdiction === "osha_general_industry"
           ? [
               {
                 id: "fallback-1910-178",
@@ -1399,8 +1479,6 @@ export class ApplicableStandardsService {
           const scaffoldPrimaryCitations = new Set([
             "1926.451",
             "29 CFR 1926.451",
-            "1926.501",
-            "29 CFR 1926.501",
             "1926.502",
             "29 CFR 1926.502",
             "1926.503",
@@ -1423,8 +1501,8 @@ export class ApplicableStandardsService {
             standard.citation === "1926.501" ||
             standard.citation === "29 CFR 1926.501"
           ) {
-            score += 45;
-            matchingReasons.push("scenario: construction fall protection duty is supporting when scaffold-specific rule is available");
+            score -= 120;
+            matchingReasons.push("negative: construction fall protection duty is not primary when scaffold-specific requirements are available");
           }
 
           if (
