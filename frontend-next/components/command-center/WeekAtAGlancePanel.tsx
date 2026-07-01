@@ -19,7 +19,7 @@ export function WeekAtAGlancePanel({
   formatCalendarMonthLabel: (dateKey: string) => string;
 }) {
   return (
-    <div className="rounded-xl border border-slate-200/80 !bg-white p-4 !text-slate-950 shadow-none sm:p-6">
+    <div className="week-glance-light rounded-xl border border-slate-200/80 !bg-white p-4 !text-slate-950 shadow-none sm:p-6">
       <div className="flex items-start justify-between gap-3">
         <SectionHeader
           eyebrow="Week at a Glance"

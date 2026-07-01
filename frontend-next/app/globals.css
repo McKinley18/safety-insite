@@ -1879,3 +1879,29 @@ body.sentinel-keyboard-open {
 .dark .insite-hero-panel :where(.text-\[\#0B1320\], .text-\[\#102A43\], .text-slate-950, .text-slate-900, .text-blue-900, .text-blue-950) {
   color: #f8fafc !important;
 }
+
+/* Week at a Glance light-mode guard.
+   Keeps the approved mobile app home card readable while dark mode is unfinished. */
+.week-glance-light,
+.week-glance-light h1,
+.week-glance-light h2,
+.week-glance-light h3,
+.week-glance-light h4,
+.week-glance-light p,
+.week-glance-light span {
+  color: #0f172a !important;
+}
+
+.week-glance-light [class*="text-slate-500"],
+.week-glance-light [class*="text-slate-600"],
+.week-glance-light [class*="text-slate-700"],
+.week-glance-light [class*="text-gray-500"],
+.week-glance-light [class*="text-gray-600"],
+.week-glance-light [class*="text-gray-700"] {
+  color: #475569 !important;
+}
+
+.week-glance-light .bg-\[\#0B1320\],
+.week-glance-light .bg-\[\#0B1320\] span {
+  color: #ffffff !important;
+}
