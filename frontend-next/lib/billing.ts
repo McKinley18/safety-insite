@@ -46,12 +46,42 @@ export type BillingResponse = {
 
 export type BillingCheckoutTier = "pro" | "expert";
 
+function isLocalDevAuthBypass() {
+  return (
+    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" &&
+    process.env.NODE_ENV !== "production"
+  );
+}
+
+function getLocalDevBillingMe(): BillingResponse {
+  return {
+    tier: "expert",
+    planCode: "expert",
+    label: getBillingTierDisplayName("expert"),
+    monthlyPrice: getBillingTierPrice("expert"),
+    status: "active",
+    subscriptionStatus: "active",
+    currentPeriodStart: null,
+    currentPeriodEnd: null,
+    cancelAtPeriodEnd: false,
+    stripeCustomerId: null,
+    stripeSubscriptionId: null,
+    stripePriceId: null,
+    billingConfigured: false,
+    entitlements: {},
+  };
+}
+
 export function isBillingTier(value?: string | null): value is BillingCheckoutTier {
   const normalized = String(value || "").toLowerCase();
   return normalized === "pro" || normalized === "expert";
 }
 
 export async function getBillingMe() {
+  if (isLocalDevAuthBypass()) {
+    return getLocalDevBillingMe();
+  }
+
   const response = await apiFetch(`${API_BASE_URL}/billing/me`, {
     headers: authHeaders(),
   });

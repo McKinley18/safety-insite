@@ -1749,11 +1749,17 @@ body.sentinel-keyboard-open {
 .inspection-panel-light h3,
 .inspection-panel-light h4,
 .inspection-panel-light p,
-.inspection-panel-light span,
 .inspection-panel-light label,
-.inspection-panel-light li,
-.inspection-panel-light div {
+.inspection-panel-light li {
   color: #0f172a;
+}
+
+.inspection-panel-light .sentinel-section-eyebrow,
+.inspection-panel-light [class*="text-[#1D72B8]"],
+.inspection-panel-light [class*="text-[#5DB7FF]"],
+.inspection-panel-light [class*="text-blue"],
+.inspection-panel-light [class*="text-sky"] {
+  color: #1D72B8 !important;
 }
 
 .inspection-panel-light .inspection-muted,
@@ -1881,15 +1887,21 @@ body.sentinel-keyboard-open {
 }
 
 /* Week at a Glance light-mode guard.
-   Keeps the approved mobile app home card readable while dark mode is unfinished. */
-.week-glance-light,
+   Keeps the approved mobile app home card readable while preserving the blue eyebrow. */
+.week-glance-light {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
 .week-glance-light h1,
 .week-glance-light h2,
 .week-glance-light h3,
-.week-glance-light h4,
-.week-glance-light p,
-.week-glance-light span {
+.week-glance-light h4 {
   color: #0f172a !important;
+}
+
+.week-glance-light p {
+  color: #475569 !important;
 }
 
 .week-glance-light [class*="text-slate-500"],
@@ -1901,7 +1913,62 @@ body.sentinel-keyboard-open {
   color: #475569 !important;
 }
 
+.week-glance-light [class*="text-blue"],
+.week-glance-light [class*="text-\[\#1D72B8\]"] {
+  color: #1D72B8 !important;
+}
+
 .week-glance-light .bg-\[\#0B1320\],
 .week-glance-light .bg-\[\#0B1320\] span {
   color: #ffffff !important;
+}
+/* Mobile app light-mode contrast guardrails for unfinished dark mode. */
+.inspections-page-scroll-fix .inspection-workflow-card {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.inspections-page-scroll-fix .inspection-workflow-card h1,
+.inspections-page-scroll-fix .inspection-workflow-card h2,
+.inspections-page-scroll-fix .inspection-workflow-card h3,
+.inspections-page-scroll-fix .inspection-workflow-card h4 {
+  color: #1D72B8 !important;
+}
+
+.inspections-page-scroll-fix .inspection-workflow-card p,
+.inspections-page-scroll-fix .inspection-workflow-card span,
+.inspections-page-scroll-fix .inspection-workflow-card li {
+  color: #0f172a !important;
+}
+
+.inspections-page-scroll-fix .inspection-workflow-card .text-white,
+.inspections-page-scroll-fix .inspection-workflow-card a[class*="bg-"],
+.inspections-page-scroll-fix .inspection-workflow-card button[class*="bg-"] {
+  color: #ffffff !important;
+}
+
+.reports-empty-light {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.reports-empty-light h1,
+.reports-empty-light h2,
+.reports-empty-light h3,
+.reports-empty-light h4,
+.reports-empty-light p,
+.reports-empty-light span {
+  color: #0f172a !important;
+}
+
+.calendar-priority-light p,
+.calendar-priority-light span,
+.calendar-priority-light li {
+  color: #0f172a !important;
+}
+
+.calendar-priority-light [class*="text-slate-500"],
+.calendar-priority-light [class*="text-slate-600"],
+.calendar-priority-light [class*="text-slate-700"] {
+  color: #334155 !important;
 }

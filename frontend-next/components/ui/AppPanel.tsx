@@ -11,11 +11,11 @@ type AppPanelProps = HTMLAttributes<HTMLElement> & {
 };
 
 const variantClasses: Record<AppPanelVariant, string> = {
-  default: "app-card",
-  subtle: "app-surface-muted p-4 rounded-xl",
-  dashed: "app-border border-dashed bg-app-bg-soft",
+  default: "app-card inspection-panel-light",
+  subtle: "app-surface-muted inspection-panel-light p-4 rounded-xl",
+  dashed: "app-border border-dashed bg-app-bg-soft inspection-panel-light",
   dark: "bg-app-primary-hover text-white border-white/10",
-  strong: "app-surface-strong app-border p-4 sm:p-6 rounded-xl",
+  strong: "app-surface-strong app-border inspection-panel-light p-4 sm:p-6 rounded-xl",
 };
 
 const paddingClasses: Record<AppPanelPadding, string> = {
