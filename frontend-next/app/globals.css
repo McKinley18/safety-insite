@@ -1358,18 +1358,45 @@ body {
 }
 
 
-/* Light-only mode: dark mode is intentionally disabled until the mobile UI is stabilized. */
+/* Light-only app mode:
+   Dark mode is intentionally disabled until the mobile UI is stabilized.
+   This neutralizes stale/system .dark classes so production phones match
+   the approved light-mode mobile app interface. */
 html,
-body {
-  color-scheme: light;
-}
-
+body,
 html.dark,
 body.dark {
-  color-scheme: light;
+  color-scheme: light !important;
 }
 
-html.dark body {
+html.dark {
+  --background: #ffffff;
+  --foreground: #0f172a;
+
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+
+  --primary: #1D72B8;
+  --primary-dark: #0B1320;
+
+  --border: #e2e8f0;
+
+  --app-page-bg: #eef2f7;
+  --app-page-bg-alt: #e2e8f0;
+  --app-surface-elevated: #ffffff;
+  --app-text-primary-hex: #0f172a;
+  --app-text-secondary-hex: #334155;
+  --app-text-muted-hex: #64748b;
+  --app-text-inverse-hex: #ffffff;
+  --app-brand-soft-hex: #E8F4FF;
+  --app-info-bg-hex: #E8F4FF;
+  --app-warning-bg-hex: #fff7ed;
+  --app-danger-bg-hex: #fef2f2;
+  --app-success-bg-hex: #f0fdf4;
+}
+
+html.dark body,
+body.dark {
   background:
     radial-gradient(circle at top left, rgba(37, 99, 235, 0.11), transparent 32rem),
     radial-gradient(circle at top right, rgba(14, 165, 233, 0.09), transparent 28rem),
