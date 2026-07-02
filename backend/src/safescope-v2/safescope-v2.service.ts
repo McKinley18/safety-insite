@@ -191,6 +191,37 @@ export class SafescopeV2Service {
 
       const standardAppResults = advisoryReasoning?.inspectionIntelligence?.standardApplicability;
       const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
+      const applicabilityEvaluationResults = Array.isArray(standardAppResults?.evaluationResults)
+        ? standardAppResults.evaluationResults
+        : [];
+      const applicabilityMatchedRules = Array.isArray(standardAppResults?.matchedRules) && standardAppResults.matchedRules.length
+        ? standardAppResults.matchedRules
+        : applicabilityEvaluationResults
+            .filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect)
+            .map((result: any) => {
+              const match = EXPERT_APPLICABILITY_RULES.find((rule) =>
+                String(rule.id || '') === String(result?.ruleId || '') ||
+                String(rule.standardCitation || '').toLowerCase().replace(/\s+/g, '') === String(result?.citation || '').toLowerCase().replace(/\s+/g, ''),
+              );
+              return {
+                id: match?.id || String(result?.ruleId || result?.citation || '').trim(),
+                citation: String(result?.citation || match?.standardCitation || '').trim(),
+                standardTitle: match?.standardTitle || String(result?.citation || '').trim(),
+                title: match?.standardTitle || String(result?.citation || '').trim(),
+                titleSummary: match?.standardTitle || String(result?.citation || '').trim(),
+                summary: match?.standardTitle || String(result?.citation || '').trim(),
+                hazardFamily: match?.hazardFamily || String(result?.hazardFamily || '').trim() || undefined,
+                jurisdiction: match?.jurisdiction || (result as any)?.jurisdiction,
+                status: 'candidate_standard',
+                candidateStatus: 'candidate_standard',
+                source: ['standard_applicability'],
+                matchingReasons: [`Sufficient applicability rule matched: ${(match?.standardTitle || result?.citation || '').trim()}.`],
+                evidenceNeeded: Array.isArray(result?.missingFacts) && result.missingFacts.length
+                  ? result.missingFacts
+                  : match?.followUpQuestions || [],
+              };
+            })
+            .filter(Boolean);
       const mineType = String(advisoryReasoning?.inspectionIntelligence?.miningContext?.mineType || '').toLowerCase();
       const mineContextDetected = Boolean(advisoryReasoning?.inspectionIntelligence?.miningContext?.detected);
       const mineTypeAllowsCitation = (citation: string) => {
@@ -208,8 +239,8 @@ export class SafescopeV2Service {
         if (mineType === 'underground_coal') return ['48', '70', '75'].includes(part);
         return true;
       };
-      const applicabilitySuggestedStandards = Array.isArray(standardAppResults?.matchedRules)
-        ? standardAppResults.matchedRules
+      const applicabilitySuggestedStandards = Array.isArray(applicabilityMatchedRules)
+        ? applicabilityMatchedRules
             .map((rule: any) => {
               const citation = String(rule?.citation || '').trim();
               if (!citation) return null;
@@ -234,6 +265,12 @@ export class SafescopeV2Service {
             })
             .filter((standard: any) => Boolean(standard) && mineTypeAllowsCitation(String(standard?.citation || '')))
         : [];
+      if (Array.isArray(standardAppResults?.matchedRules) && !standardAppResults.matchedRules.length && applicabilityMatchedRules.length) {
+        standardAppResults.matchedRules = applicabilityMatchedRules as any[];
+      }
+      if (Array.isArray(standardAppResults?.suggestedStandards) && !standardAppResults.suggestedStandards.length && applicabilitySuggestedStandards.length) {
+        standardAppResults.suggestedStandards = applicabilitySuggestedStandards.map((standard: any) => String(standard?.citation || '')).filter(Boolean);
+      }
 
       const mineTypeCompatibleStandards = [...rawSuggestedStandards, ...applicabilitySuggestedStandards]
         .filter((standard) => mineTypeAllowsCitation(String(standard?.citation || standard?.standard || standard?.id || '')));
@@ -493,11 +530,11 @@ export class SafescopeV2Service {
           classReason = "Assessed height-related fall risk, focusing on guardrails, personal fall arrest systems, and hole protection.";
         } else if (lowerClass.includes("mobile") || lowerClass.includes("berm") || lowerClass.includes("equipment") || lowerClass.includes("pedestrian")) {
           evidenceGaps = [
-            "Verify presence and height of safety berms or guardrails along haul roads and dump points.",
+            "Verify presence and height of safety berms or edge controls along haul roads and dump points.",
             "Confirm pedestrian-equipment segregation plan, high-visibility vest usage, and backup alarm functionality.",
             "Check equipment inspection logs, horn operation, and seatbelt usage compliance.",
           ];
-          classReason = "Assessed mobile machinery operation hazards, pedestrian interaction, and ground control/berm requirements.";
+          classReason = "Assessed mobile machinery operation hazards, pedestrian interaction, and ground control or berm requirements.";
         } else if (lowerClass.includes("hazcom") || lowerClass.includes("chemical") || lowerClass.includes("label") || lowerClass.includes("hazard communication")) {
           evidenceGaps = [
             "Verify if the container is properly labeled with chemical identity, hazards, and GHS pictograms.",
@@ -1129,6 +1166,53 @@ export class SafescopeV2Service {
         const candidateStandards = (advisoryReasoning.inspectionIntelligence?.candidateStandards || []).map(buildDisplayStandard).filter(Boolean);
         const traceabilityStandards = (standardsTraceability.suggestedCitations || []).map((citation: string) => buildDisplayStandard({ citation, title: citation, summary: citation, status: "candidate_standard", candidateStatus: "candidate_standard", source: ["standards_traceability"] })).filter(Boolean);
         const supportingStandardsDisplay = (supportingStandards || []).map(buildDisplayStandard).filter(Boolean);
+        const applicabilityFallbackStandards = (() => {
+          const explicitApplicabilityStandards = applicabilitySuggestedStandards.length
+            ? applicabilitySuggestedStandards
+            : applicabilityEvaluationResults
+                .filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect)
+                .map((result: any) => {
+                  const citation = String(result?.citation || result?.standard || result?.id || '').trim();
+                  if (!citation) return null;
+                  return buildDisplayStandard({
+                    citation,
+                    title: citation,
+                    titleSummary: citation,
+                    summary: citation,
+                    status: 'candidate_standard',
+                    candidateStatus: 'candidate_standard',
+                    source: ['standard_applicability'],
+                    matchingReasons: [`Sufficient applicability rule matched: ${citation}.`],
+                    evidenceNeeded: Array.isArray(result?.missingFacts) && result.missingFacts.length
+                      ? result.missingFacts
+                      : [],
+                  });
+                })
+                .filter(Boolean);
+          if (explicitApplicabilityStandards.length) {
+            return explicitApplicabilityStandards;
+          }
+          if (
+            /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i.test(fusedText) &&
+            /\b(elevated forks|raised forks|forks elevated|load elevated|pallet truck)\b/i.test(fusedText)
+          ) {
+            return [
+              buildDisplayStandard({
+                citation: "29 CFR 1910.178",
+                title: "Powered industrial trucks",
+                titleSummary: "Powered industrial trucks",
+                summary: "Candidate standard based on a pallet truck or forklift traveling with forks raised above the travel position.",
+                status: "candidate_standard",
+                candidateStatus: "candidate_standard",
+                standardFamily: "mobile_equipment",
+                hazardFamily: "mobile_equipment",
+                source: ["semantic_evidence_generalization"],
+                matchingReasons: ["A pallet truck or forklift is traveling with elevated forks above the travel position."],
+              }),
+            ].filter(Boolean);
+          }
+          return [];
+        })();
         const semanticCandidateStandards = [
           ...(hasSpecificPanelDefectEvidence
             ? [buildDisplayStandard({
@@ -1154,13 +1238,15 @@ export class SafescopeV2Service {
             : []),
         ].filter(Boolean);
 
-        const collected = (suggestedStandards || []).length
-          ? (suggestedStandards || []).map(buildDisplayStandard).filter(Boolean)
-          : traceabilityStandards.length
-            ? traceabilityStandards
-            : candidateStandards.length
-              ? candidateStandards
-              : semanticCandidateStandards;
+        const collected = applicabilityFallbackStandards.length
+          ? applicabilityFallbackStandards
+          : (suggestedStandards || []).length
+            ? (suggestedStandards || []).map(buildDisplayStandard).filter(Boolean)
+            : traceabilityStandards.length
+              ? traceabilityStandards
+              : candidateStandards.length
+                ? candidateStandards
+                : semanticCandidateStandards;
         const baseCollected = collected.length ? collected : supportingStandardsDisplay;
         const seen = new Set<string>();
         return baseCollected.filter((standard: any) => {
@@ -1363,6 +1449,18 @@ export class SafescopeV2Service {
         promotedPrimary.family ||
         '',
       ).toLowerCase();
+      const advisoryObservationContext = advisoryReasoning as any;
+      const hasExplicitMineContext = Boolean(
+        /\b(mine|mine site|mining|aggregate|quarry|pit|crusher|screen|haul road|stockpile|miner|mill)\b/i.test(
+          String(
+            advisoryObservationContext?.observationContext?.rawObservation ||
+            advisoryObservationContext?.observationContext?.normalizedText ||
+            advisoryObservationContext?.observationContext?.rawText ||
+            fusedText ||
+            ""
+          ).toLowerCase(),
+        ),
+      );
       const finalFamilyPattern = (() => {
         if (finalFamilyHint.includes('electrical')) {
           return /(?:1910\.(?:303|305|331|333|334|306)|1926\.(?:403|404|405)|(?:56|57)\.(?:12004|12013|12016|12032|12034|12037)|electrical|cord|cable|wire|panel|breaker|enclosure|live parts?|energized)/i;
@@ -1373,11 +1471,16 @@ export class SafescopeV2Service {
         if (finalFamilyHint.includes('walking_working_surfaces') || finalFamilyHint.includes('housekeeping') || finalFamilyHint.includes('slip_trip_fall')) {
           return /(?:1910\.(?:22|23|28|29)|1926\.25|(?:56|57)\.(?:20003|11001)|walking-working surfaces|housekeeping|floor|walkway|aisle|travelway|slip|trip|fall|hole|opening|guardrail|ladder|egress|debris|spill|release|residue)/i;
         }
-        if (finalFamilyHint.includes('machine_guarding_loto') || finalFamilyHint.includes('lockout') || finalFamilyHint.includes('machine_guarding')) {
-          return /(?:1910\.(?:212|219|147)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|lockout|tagout|servicing|unexpected startup|hazardous energy)/i;
+        if (finalFamilyHint.includes('machine_guarding_loto') || finalFamilyHint.includes('lockout')) {
+          return /(?:1910\.(?:212|215|219|147)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|abrasive wheel|grinder|tongue guard|wheel guard|cutoff wheel|cut-off wheel|lockout|tagout|servicing|unexpected startup|hazardous energy)/i;
+        }
+        if (finalFamilyHint.includes('machine_guarding')) {
+          return /(?:1910\.(?:212|215|219)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|abrasive wheel|grinder|tongue guard|wheel guard|cutoff wheel|cut-off wheel)/i;
         }
         if (finalFamilyHint.includes('mobile_equipment')) {
-          return /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i;
+          return hasExplicitMineContext
+            ? /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i
+            : /(?:1910\.178|1926\.(?:601|602)|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|route|blind corner)/i;
         }
         if (finalFamilyHint.includes('scaffold')) {
           return /(?:1926\.451|1926\.502|1926\.503|1926\.454|scaffold|scaffolding|guardrail|midrail|toprail|plank|mudsill|toe board|toeboard)/i;
@@ -1395,40 +1498,53 @@ export class SafescopeV2Service {
           return /(?:1910\.95|1926\.52|62\.110|1910\.1053|1926\.1153|silica|dust|noise|hearing|hearing conservation|dosimetry|fume|vapour|vapor|heat|cold|respirator|welding|solvent|ventilation)/i;
         }
         if (finalFamilyHint.includes('welding_cutting_hot_work') || finalFamilyHint.includes('fire_explosion') || finalFamilyHint.includes('fire_protection')) {
-          return /(?:1910\.252|1926\.352|(?:56|57)\.46|hot work|welding|cutting|brazing|torch|combustible|ignition|fire watch|fuel gas|gas odor|gas leak|explosion)/i;
+          return /(?:1910\.252|1910\.106|1910\.157|1926\.352|(?:56|57)\.46|hot work|welding|cutting|brazing|torch|combustible|ignition|fire watch|fuel gas|gas odor|gas leak|explosion|fire extinguisher|flammable liquid|combustible liquid|eyewash|emergency shower)/i;
         }
         return null;
       })();
+      const hasSafeControlEvidence = /\b(fully guarded|guard installed|guarded and locked out|locked out and de-energized|zero energy verified|tested before maintenance|barricaded|secured|intact|in place)\b/i.test(fusedText);
+      const hasDefectOrExposureEvidence = /\b(missing|removed|unguarded|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|no guard|no cover|blocked|obstructed)\b/i.test(fusedText);
       const applyFinalFamilyFilter = (standard: any) => {
         if (!finalFamilyPattern) return true;
         const citation = String(standard?.citation || standard?.standard || standard?.id || '').toLowerCase();
         const title = String(standard?.title || standard?.titleSummary || standard?.summary || '').toLowerCase();
         return finalFamilyPattern.test(`${citation} ${title}`);
       };
-      suggestedStandards = suggestedStandards.filter(applyFinalFamilyFilter);
-      supportingStandards = supportingStandards.filter(applyFinalFamilyFilter);
-      excludedStandards = excludedStandards.filter(applyFinalFamilyFilter);
-      needsMoreEvidenceStandards = needsMoreEvidenceStandards.filter(applyFinalFamilyFilter);
+      const applyFinalOutputFilter = (standard: any) => {
+        if (!applyFinalFamilyFilter(standard)) return false;
+        const citation = String(standard?.citation || standard?.standard || standard?.id || '');
+        if (/^30 CFR 56\.9100(?:\(a\))?$/i.test(citation) && !hasExplicitMineContext) return false;
+        if (hasSafeControlEvidence && !hasDefectOrExposureEvidence && /(1910\.147|(?:56|57)\.12016|1910\.212|1910\.219|(?:56|57)\.14107)/i.test(citation)) return false;
+        return true;
+      };
+      suggestedStandards = suggestedStandards.filter(applyFinalOutputFilter);
+      supportingStandards = supportingStandards.filter(applyFinalOutputFilter);
+      excludedStandards = excludedStandards.filter(applyFinalOutputFilter);
+      needsMoreEvidenceStandards = needsMoreEvidenceStandards.filter(applyFinalOutputFilter);
+      standardsTraceability.suggestedCitations = (standardsTraceability.suggestedCitations || []).filter((citation: any) => applyFinalOutputFilter({ citation }));
+      standardsTraceability.supportingCitations = (standardsTraceability.supportingCitations || []).filter((citation: any) => applyFinalOutputFilter({ citation }));
+      standardsTraceability.needsMoreEvidenceCitations = (standardsTraceability.needsMoreEvidenceCitations || []).filter((citation: any) => applyFinalOutputFilter({ citation }));
+      standardsTraceability.excludedCitations = (standardsTraceability.excludedCitations || []).filter((citation: any) => applyFinalOutputFilter({ citation }));
       sanitizedInspectionIntelligence = sanitizedInspectionIntelligence
         ? {
             ...sanitizedInspectionIntelligence,
             candidateStandards: Array.isArray(sanitizedInspectionIntelligence?.candidateStandards)
-              ? sanitizedInspectionIntelligence.candidateStandards.filter(applyFinalFamilyFilter)
+              ? sanitizedInspectionIntelligence.candidateStandards.filter(applyFinalOutputFilter)
               : sanitizedInspectionIntelligence?.candidateStandards,
             standardApplicability: sanitizedInspectionIntelligence?.standardApplicability
               ? {
                   ...(sanitizedInspectionIntelligence.standardApplicability || {}),
                   matchedRules: Array.isArray((sanitizedInspectionIntelligence.standardApplicability as any)?.matchedRules)
-                    ? (sanitizedInspectionIntelligence.standardApplicability as any).matchedRules.filter(applyFinalFamilyFilter)
+                    ? (sanitizedInspectionIntelligence.standardApplicability as any).matchedRules.filter(applyFinalOutputFilter)
                     : (sanitizedInspectionIntelligence.standardApplicability as any)?.matchedRules,
                   suggestedStandards: Array.isArray((sanitizedInspectionIntelligence.standardApplicability as any)?.suggestedStandards)
-                    ? (sanitizedInspectionIntelligence.standardApplicability as any).suggestedStandards.filter(applyFinalFamilyFilter)
+                    ? (sanitizedInspectionIntelligence.standardApplicability as any).suggestedStandards.filter(applyFinalOutputFilter)
                     : (sanitizedInspectionIntelligence.standardApplicability as any)?.suggestedStandards,
                   needsMoreEvidenceStandards: Array.isArray((sanitizedInspectionIntelligence.standardApplicability as any)?.needsMoreEvidenceStandards)
-                    ? (sanitizedInspectionIntelligence.standardApplicability as any).needsMoreEvidenceStandards.filter(applyFinalFamilyFilter)
+                    ? (sanitizedInspectionIntelligence.standardApplicability as any).needsMoreEvidenceStandards.filter(applyFinalOutputFilter)
                     : (sanitizedInspectionIntelligence.standardApplicability as any)?.needsMoreEvidenceStandards,
                   excludedStandards: Array.isArray((sanitizedInspectionIntelligence.standardApplicability as any)?.excludedStandards)
-                    ? (sanitizedInspectionIntelligence.standardApplicability as any).excludedStandards.filter(applyFinalFamilyFilter)
+                    ? (sanitizedInspectionIntelligence.standardApplicability as any).excludedStandards.filter(applyFinalOutputFilter)
                     : (sanitizedInspectionIntelligence.standardApplicability as any)?.excludedStandards,
                 }
               : sanitizedInspectionIntelligence.standardApplicability,
@@ -1445,6 +1561,62 @@ export class SafescopeV2Service {
         supportingStandards,
       });
       const supplementalGuidance = buildSupplementalGuidance(supplementalEntries);
+      const filteredPrimaryStandards = primaryStandards.filter(applyFinalOutputFilter);
+      const promotedPrimaryStandards = (() => {
+        const directApplicabilityStandards = applicabilityEvaluationResults
+          .filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect)
+          .map((result: any) => {
+            const citation = String(result?.citation || result?.standard || result?.id || '').trim();
+            if (!citation) return null;
+            return {
+              citation,
+              title: citation,
+              titleSummary: citation,
+              summary: citation,
+              status: 'candidate_standard',
+              candidateStatus: 'candidate_standard',
+              source: ['standard_applicability'],
+              matchingReasons: [`Sufficient applicability rule matched: ${citation}.`],
+              evidenceNeeded: Array.isArray(result?.missingFacts) && result.missingFacts.length
+                ? result.missingFacts
+                : [],
+            };
+          })
+          .filter(Boolean);
+        if (directApplicabilityStandards.length) {
+          return directApplicabilityStandards;
+        }
+        if (
+          /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i.test(fusedText) &&
+          /\b(elevated forks|raised forks|forks elevated|load elevated|pallet truck)\b/i.test(fusedText)
+        ) {
+          return [
+            {
+              citation: '29 CFR 1910.178',
+              title: 'Powered industrial trucks',
+              titleSummary: 'Powered industrial trucks',
+              summary: 'Candidate standard based on a pallet truck or forklift traveling with forks raised above the travel position.',
+              status: 'candidate_standard',
+              candidateStatus: 'candidate_standard',
+              standardFamily: 'mobile_equipment',
+              hazardFamily: 'mobile_equipment',
+              source: ['semantic_evidence_generalization'],
+              matchingReasons: ['A pallet truck or forklift is traveling with elevated forks above the travel position.'],
+            },
+          ];
+        }
+        return [];
+      })();
+      const filteredPromotedPrimaryStandards = promotedPrimaryStandards.filter(applyFinalOutputFilter);
+      const finalPrimaryStandards = (() => {
+        const seen = new Set<string>();
+        return [...filteredPromotedPrimaryStandards, ...filteredPrimaryStandards].filter((standard: any) => {
+          const key = String(standard?.citation || '').toLowerCase().replace(/\s+/g, '');
+          if (!key || seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        }).slice(0, 5);
+      })();
       const resolvedPrimaryCitation = (() => {
         const intelligencePrimaryCitation = String((intelligence as any)?.primaryCitation || '').trim();
         if (
@@ -1456,10 +1628,20 @@ export class SafescopeV2Service {
         }
         const candidateCitation = String(
           suggestedStandards?.[0]?.citation ||
-            primaryStandards?.[0]?.citation ||
+            filteredPrimaryStandards?.[0]?.citation ||
+            filteredPromotedPrimaryStandards?.[0]?.citation ||
             standardsTraceability.suggestedCitations?.[0] ||
             '',
         ).trim();
+        if (candidateCitation) {
+          return candidateCitation;
+        }
+        if (
+          /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i.test(fusedText) &&
+          /\b(elevated forks|raised forks|forks elevated|load elevated|pallet truck)\b/i.test(fusedText)
+        ) {
+          return '29 CFR 1910.178';
+        }
         return candidateCitation;
       })();
 
@@ -1487,8 +1669,8 @@ export class SafescopeV2Service {
           hazardCategory: normalizedRootHazardCategory || rootHazardCategory,
           candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
-          primaryStandards,
-          standards: primaryStandards,
+          primaryStandards: finalPrimaryStandards,
+          standards: finalPrimaryStandards,
           supportingStandards,
           inspectionIntelligence: sanitizedInspectionIntelligence,
           standardApplicability: sanitizedInspectionIntelligence?.standardApplicability,
@@ -1561,6 +1743,33 @@ export class SafescopeV2Service {
           }
       };
 
+      if (response.standardsReasoning) {
+        response.standardsReasoning = {
+          ...response.standardsReasoning,
+          topDefensible: Array.isArray(response.standardsReasoning?.topDefensible)
+            ? response.standardsReasoning.topDefensible.filter(applyFinalOutputFilter)
+            : response.standardsReasoning?.topDefensible,
+        };
+      }
+
+      if (response.applicabilityIntelligence) {
+        response.applicabilityIntelligence = {
+          ...response.applicabilityIntelligence,
+          primaryApplicableStandards: Array.isArray(response.applicabilityIntelligence?.primaryApplicableStandards)
+            ? response.applicabilityIntelligence.primaryApplicableStandards.filter(applyFinalOutputFilter)
+            : response.applicabilityIntelligence?.primaryApplicableStandards,
+          supportingStandards: Array.isArray(response.applicabilityIntelligence?.supportingStandards)
+            ? response.applicabilityIntelligence.supportingStandards.filter(applyFinalOutputFilter)
+            : response.applicabilityIntelligence?.supportingStandards,
+          needsMoreEvidenceStandards: Array.isArray(response.applicabilityIntelligence?.needsMoreEvidenceStandards)
+            ? response.applicabilityIntelligence.needsMoreEvidenceStandards.filter(applyFinalOutputFilter)
+            : response.applicabilityIntelligence?.needsMoreEvidenceStandards,
+          excludedStandards: Array.isArray(response.applicabilityIntelligence?.excludedStandards)
+            ? response.applicabilityIntelligence.excludedStandards.filter(applyFinalOutputFilter)
+            : response.applicabilityIntelligence?.excludedStandards,
+        };
+      }
+
       if (resolvedPrimaryCitation) {
         response.promotion = {
           ...(response.promotion || {}),
@@ -1574,6 +1783,9 @@ export class SafescopeV2Service {
             },
           },
         };
+        if (!applyFinalOutputFilter(response.promotion.approvedRecordCandidate)) {
+          delete response.promotion.approvedRecordCandidate;
+        }
       }
 
       const standardDecisions = this.buildStandardDecisions({
@@ -1724,6 +1936,12 @@ export class SafescopeV2Service {
 
     const isRelevantShardCorrectiveActionPattern = (value: string) => {
       if (isTrafficControlPattern(value) && !hasTrafficOrMobileEquipmentContext) {
+        return false;
+      }
+      if (/\b(cylinder|compressed gas|oxygen cylinder|gas cylinder|valve cap|protective cap)\b/i.test(value) && !/\b(oxygen|compressed gas|gas cylinder|gas cylinders|oxygen cylinder|oxygen cylinders|acetylene cylinder|propane cylinder|argon cylinder|fuel gas cylinder|cylinder|cylinders)\b/i.test(normalizedObservation)) {
+        return false;
+      }
+      if (/\b(guardrail|guardrails)\b/i.test(value) && !/\b(fall|edge|platform|scaffold|berm|dump point|roadway|haul road|hole|opening|ladder)\b/i.test(normalizedObservation)) {
         return false;
       }
 
@@ -2136,6 +2354,19 @@ export class SafescopeV2Service {
       response?.inspectionIntelligence?.hazardCandidates?.[0]?.domain ||
       ""
     ).toLowerCase();
+    const hasExplicitMineContext = /\b(mine|mine site|mining|aggregate|quarry|pit|crusher|screen|haul road|stockpile|miner|mill)\b/i.test(
+      String(
+        response?.observationContext?.rawObservation ||
+        response?.observationContext?.normalizedText ||
+        response?.observationContext?.rawText ||
+        response?.inspectionIntelligence?.observationContext?.rawObservation ||
+        response?.inspectionIntelligence?.observationContext?.normalizedText ||
+        response?.inspectionIntelligence?.observationContext?.rawText ||
+        response?.reasoningBasis?.observationText ||
+        response?.reasoningSourceHierarchy?.primaryBasis?.join(" ") ||
+        ""
+      ).toLowerCase(),
+    );
     const responseFamilyPattern = (() => {
       if (responseFamilyHint.includes('electrical')) {
         return /(?:1910\.(?:303|305|331|333|334|306)|1926\.(?:403|404|405)|(?:56|57)\.(?:12004|12013|12016|12032|12034|12037)|electrical|cord|cable|wire|panel|breaker|enclosure|live parts?|energized)/i;
@@ -2146,11 +2377,16 @@ export class SafescopeV2Service {
       if (responseFamilyHint.includes('walking_working_surfaces') || responseFamilyHint.includes('housekeeping') || responseFamilyHint.includes('slip_trip_fall')) {
         return /(?:1910\.(?:22|23|28|29)|1926\.25|(?:56|57)\.(?:20003|11001)|walking-working surfaces|housekeeping|floor|walkway|aisle|travelway|slip|trip|fall|hole|opening|guardrail|ladder|egress|debris|spill|release|residue)/i;
       }
-      if (responseFamilyHint.includes('machine_guarding_loto') || responseFamilyHint.includes('lockout') || responseFamilyHint.includes('machine_guarding')) {
-        return /(?:1910\.(?:212|219|147)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|lockout|tagout|servicing|unexpected startup|hazardous energy)/i;
+      if (responseFamilyHint.includes('machine_guarding_loto') || responseFamilyHint.includes('lockout')) {
+        return /(?:1910\.(?:212|215|219|147)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|abrasive wheel|grinder|tongue guard|wheel guard|cutoff wheel|cut-off wheel|lockout|tagout|servicing|unexpected startup|hazardous energy)/i;
       }
+      if (responseFamilyHint.includes('machine_guarding')) {
+        return /(?:1910\.(?:212|215|219)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|abrasive wheel|grinder|tongue guard|wheel guard|cutoff wheel|cut-off wheel)/i;
+        }
       if (responseFamilyHint.includes('mobile_equipment')) {
-        return /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i;
+        return hasExplicitMineContext
+          ? /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i
+          : /(?:1910\.178|1926\.(?:601|602)|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|route|blind corner)/i;
       }
       if (responseFamilyHint.includes('scaffold')) {
         return /(?:1926\.451|1926\.502|1926\.503|1926\.454|scaffold|scaffolding|guardrail|midrail|toprail|plank|mudsill|toe board|toeboard)/i;
@@ -2167,9 +2403,9 @@ export class SafescopeV2Service {
       if (responseFamilyHint.includes('industrial_hygiene') || responseFamilyHint.includes('health_') || responseFamilyHint.includes('noise_exposure') || responseFamilyHint.includes('respirable_dust_silica')) {
         return /(?:1910\.95|1926\.52|62\.110|1910\.1053|1926\.1153|silica|dust|noise|hearing|hearing conservation|dosimetry|fume|vapour|vapor|heat|cold|respirator|welding|solvent|ventilation)/i;
       }
-      if (responseFamilyHint.includes('welding_cutting_hot_work') || responseFamilyHint.includes('fire_explosion') || responseFamilyHint.includes('fire_protection')) {
-        return /(?:1910\.252|1926\.352|(?:56|57)\.46|hot work|welding|cutting|brazing|torch|combustible|ignition|fire watch|fuel gas|gas odor|gas leak|explosion)/i;
-      }
+        if (responseFamilyHint.includes('welding_cutting_hot_work') || responseFamilyHint.includes('fire_explosion') || responseFamilyHint.includes('fire_protection')) {
+        return /(?:1910\.252|1910\.106|1910\.157|1926\.352|(?:56|57)\.46|hot work|welding|cutting|brazing|torch|combustible|ignition|fire watch|fuel gas|gas odor|gas leak|explosion|fire extinguisher|flammable liquid|combustible liquid|eyewash|emergency shower)/i;
+        }
       return null;
     })();
 
@@ -2356,6 +2592,16 @@ export class SafescopeV2Service {
     ingest(response?.applicabilityIntelligence?.supportingStandards, "applicabilityIntelligence.supportingStandards", decisions);
     ingest(response?.promotion?.approvedRecordCandidate, "promotion.approvedRecordCandidate", decisions);
     ingest(
+      (response?.standardApplicability?.evaluationResults || []).filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect),
+      "standardApplicability.evaluationResults",
+      decisions,
+    );
+    ingest(
+      (response?.inspectionIntelligence?.standardApplicability?.evaluationResults || []).filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect),
+      "inspectionIntelligence.standardApplicability.evaluationResults",
+      decisions,
+    );
+    ingest(
       (response?.generatedActions || []).flatMap((action: any) => action?.referenceStandards || []),
       "generatedActions.referenceStandards",
       decisions,
@@ -2369,9 +2615,6 @@ export class SafescopeV2Service {
     ingest(response?.standardApplicability?.needsMoreEvidenceStandards, "standardApplicability.needsMoreEvidenceStandards", decisions);
     ingest(response?.standardsTraceability?.needsMoreEvidenceCitations, "standardsTraceability.needsMoreEvidenceCitations", decisions);
     ingest(response?.applicabilityIntelligence?.needsMoreEvidenceStandards, "applicabilityIntelligence.needsMoreEvidenceStandards", decisions);
-    ingest(response?.excludedStandards, "excludedStandards", decisions);
-    ingest(response?.standardsTraceability?.excludedCitations, "standardsTraceability.excludedCitations", decisions);
-    ingest(response?.applicabilityIntelligence?.excludedStandards, "applicabilityIntelligence.excludedStandards", decisions);
 
     const sorted = Array.from(decisions.values()).sort((left, right) => {
       const leftRank = authorityRank[left.authority as StandardDecisionAuthority] ?? -1;
@@ -2570,6 +2813,102 @@ export class SafescopeV2Service {
         "Keep workers away from the unknown container until the identity is confirmed.",
       ],
     };
+    const machineGuardingMechanismTemplate = {
+      observedCondition: "An abrasive wheel, conveyor, shaft, pulley, or point of operation is missing a guard or exposing the work zone.",
+      failureMode: "The moving part can catch hands, clothing, tools, or fragments and draw a person into the hazard zone.",
+      exposurePathway: "Cleanup, adjustment, or routine work places the operator or nearby workers within reach of the rotating or cutting hazard.",
+      potentialConsequence: "Entanglement, caught-in injury, eye injury, laceration, amputation, or fatal trauma.",
+      evidenceGaps: [
+        "What machine, wheel, pulley, shaft, or point of operation is exposed?",
+        "Is the equipment operating, capable of startup, or under lockout/tagout during the work?",
+        "Can a worker reach the hazard zone during cleanup, setup, or maintenance?",
+      ],
+      controlFocus: [
+        "Stop use and keep workers out of the hazard zone until the guard is restored.",
+        "Install the correct machine guard or abrasive-wheel guard before operation continues.",
+        "Verify zero-energy or safe-access controls when cleanup or maintenance is required.",
+      ],
+    };
+    const mobileEquipmentMechanismTemplate = {
+      observedCondition: "Mobile equipment and pedestrians share the same route or operating area without confirmed separation.",
+      failureMode: "Poor visibility, backing, turning, or movement can place the equipment into a pedestrian travel path.",
+      exposurePathway: "Workers on foot can be struck, pinned, or run over when the travel path or blind area is uncontrolled.",
+      potentialConsequence: "Struck-by, pinned-between, crush, or fatal injury.",
+      evidenceGaps: [
+        "What equipment is moving and what route or blind area is involved?",
+        "What separation, warning, spotter, or right-of-way controls are active?",
+        "Is this an MSHA mine context or a non-mine industrial traffic area?",
+      ],
+      controlFocus: [
+        "Separate pedestrians from the travel path before movement continues.",
+        "Use spotters, alarms, barricades, or route redesign where separation is not already verified.",
+        "Verify traffic rules, visibility, and operator communication before return to service.",
+      ],
+    };
+    const fallMechanismTemplate = {
+      observedCondition: "A worker is exposed to an elevated edge, platform, ladder, or lift without verified fall protection.",
+      failureMode: "Loss of balance, incomplete edge protection, or incorrect tie-off can allow a fall to a lower level.",
+      exposurePathway: "The worker can fall over an open side, through an opening, or out of a lift platform while working or moving.",
+      potentialConsequence: "Serious fracture, head/spinal trauma, suspension trauma, or fatal injury.",
+      evidenceGaps: [
+        "What is the fall height and what edge, opening, or platform is exposed?",
+        "Are guardrails, covers, restraint, or arrest systems present and correctly used?",
+        "What jurisdiction and access method apply to the work being performed?",
+      ],
+      controlFocus: [
+        "Restrict access to the edge or opening until fall protection is verified.",
+        "Install guardrails, covers, or a verified fall-protection system suitable to the exposure.",
+        "Confirm anchorage, tie-off, ladder setup, and competent-person verification before work continues.",
+      ],
+    };
+    const confinedSpaceMechanismTemplate = {
+      observedCondition: "A space such as a manhole, tank, vault, or pit has incomplete atmospheric or entry verification.",
+      failureMode: "A hazardous atmosphere, engulfment, or configuration hazard can exist without adequate classification and controls.",
+      exposurePathway: "An entrant or would-be rescuer can be exposed during entry, line-breaking, ventilation, or rescue attempt.",
+      potentialConsequence: "Asphyxiation, poisoning, engulfment, entrapment, explosion, or fatal rescue escalation.",
+      evidenceGaps: [
+        "Is the space a confined space or permit-required confined space?",
+        "What atmospheric testing, ventilation, isolation, attendant, and rescue controls are verified?",
+        "Is this an entry task, a line-breaking task, or only adjacency to a space?",
+      ],
+      controlFocus: [
+        "Do not enter until a qualified person classifies the space and verifies controls.",
+        "Test atmosphere, isolate energy/process lines, and provide attendant/rescue provisions before entry.",
+        "Treat line-breaking and other adjacent work as a confined-space exposure review when gases or oxygen deficits are possible.",
+      ],
+    };
+    const fireMechanismTemplate = {
+      observedCondition: "Fire response equipment, flammable storage, hot work, or ignition exposure is not adequately controlled.",
+      failureMode: "A blocked extinguisher, improper flammable storage, or nearby ignition source can allow a fire to start or spread.",
+      exposurePathway: "Workers may be unable to reach response equipment quickly, or fire/heat/smoke may reach the work area.",
+      potentialConsequence: "Burn injury, smoke inhalation, explosion, or delayed emergency response.",
+      evidenceGaps: [
+        "Is the extinguisher/eyewash/fire response equipment accessible and visible?",
+        "What flammable liquid or combustible material is stored and how close is the ignition source?",
+        "Is hot work, fire watch, or another fire-prevention control required here?",
+      ],
+      controlFocus: [
+        "Restore access to the response equipment or remove the obstruction.",
+        "Correct flammable storage or ignition separation before work continues.",
+        "Verify the fire-prevention plan, inspection, and response controls with a qualified reviewer.",
+      ],
+    };
+    const industrialHygieneMechanismTemplate = {
+      observedCondition: "A dust, noise, fume, or vapor exposure is present without enough measurement or control detail.",
+      failureMode: "Airborne contaminant or excess sound can reach workers when source controls and monitoring are incomplete.",
+      exposurePathway: "Workers inhale, absorb, or are subjected to repeated dose exposure during the task or work shift.",
+      potentialConsequence: "Respiratory illness, hearing loss, irritation, heat illness, or longer-term occupational disease.",
+      evidenceGaps: [
+        "What material, exposure level, duration, and process are involved?",
+        "What monitoring, ventilation, sampling, or respirator-program evidence is available?",
+        "Which workers are exposed and what controls are operating at the source?",
+      ],
+      controlFocus: [
+        "Measure exposure and keep workers out of the plume or high-noise area until controls are verified.",
+        "Use source control, ventilation, wet methods, enclosure, or validated hearing and respiratory protections.",
+        "Document objective data, exposure assessment, and program elements before final reliance.",
+      ],
+    };
 
     const useElectricalTemplate =
       familyHint.includes("electrical") &&
@@ -2599,6 +2938,66 @@ export class SafescopeV2Service {
           potentialConsequence: hazcomMechanismTemplate.potentialConsequence,
           evidenceGaps: uniqueText(hazcomMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
           controlFocus: uniqueText(hazcomMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+        }
+      : (familyHint.includes("machine_guarding") || familyHint.includes("machine_guarding_loto"))
+      ? {
+          observedCondition: machineGuardingMechanismTemplate.observedCondition,
+          failureMode: machineGuardingMechanismTemplate.failureMode,
+          exposurePathway: machineGuardingMechanismTemplate.exposurePathway,
+          potentialConsequence: machineGuardingMechanismTemplate.potentialConsequence,
+          evidenceGaps: uniqueText(machineGuardingMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
+          controlFocus: uniqueText(machineGuardingMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+        }
+      : familyHint.includes("mobile_equipment")
+      ? {
+          observedCondition: mobileEquipmentMechanismTemplate.observedCondition,
+          failureMode: mobileEquipmentMechanismTemplate.failureMode,
+          exposurePathway: mobileEquipmentMechanismTemplate.exposurePathway,
+          potentialConsequence: mobileEquipmentMechanismTemplate.potentialConsequence,
+          evidenceGaps: uniqueText(mobileEquipmentMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
+          controlFocus: uniqueText(mobileEquipmentMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+        }
+      : familyHint.includes("fall_protection") || familyHint.includes("falls") || familyHint.includes("scaffold")
+      ? {
+          observedCondition: fallMechanismTemplate.observedCondition,
+          failureMode: fallMechanismTemplate.failureMode,
+          exposurePathway: fallMechanismTemplate.exposurePathway,
+          potentialConsequence: fallMechanismTemplate.potentialConsequence,
+          evidenceGaps: uniqueText(fallMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
+          controlFocus: uniqueText(fallMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+        }
+      : familyHint.includes("confined_space")
+      ? {
+          observedCondition: confinedSpaceMechanismTemplate.observedCondition,
+          failureMode: confinedSpaceMechanismTemplate.failureMode,
+          exposurePathway: confinedSpaceMechanismTemplate.exposurePathway,
+          potentialConsequence: confinedSpaceMechanismTemplate.potentialConsequence,
+          evidenceGaps: uniqueText(confinedSpaceMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
+          controlFocus: uniqueText(confinedSpaceMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+        }
+      : familyHint.includes("fire_explosion") || familyHint.includes("fire_protection") || familyHint.includes("welding_cutting_hot_work")
+      ? {
+          observedCondition: fireMechanismTemplate.observedCondition,
+          failureMode: fireMechanismTemplate.failureMode,
+          exposurePathway: fireMechanismTemplate.exposurePathway,
+          potentialConsequence: fireMechanismTemplate.potentialConsequence,
+          evidenceGaps: uniqueText(fireMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
+          controlFocus: uniqueText(fireMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+        }
+      : familyHint.includes("industrial_hygiene") || familyHint.includes("health_") || familyHint.includes("noise_exposure") || familyHint.includes("respirable_dust_silica")
+      ? {
+          observedCondition: industrialHygieneMechanismTemplate.observedCondition,
+          failureMode: industrialHygieneMechanismTemplate.failureMode,
+          exposurePathway: industrialHygieneMechanismTemplate.exposurePathway,
+          potentialConsequence: industrialHygieneMechanismTemplate.potentialConsequence,
+          evidenceGaps: uniqueText(industrialHygieneMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
+          controlFocus: uniqueText(industrialHygieneMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : {

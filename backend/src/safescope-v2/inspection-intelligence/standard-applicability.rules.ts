@@ -300,6 +300,46 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
       'Implement routine pre-shift cord inspections.'
     ]
   },
+  {
+    id: 'construction-gfci-osha-construction',
+    jurisdiction: 'osha_construction',
+    hazardFamily: 'electrical',
+    standardCitation: '29 CFR 1926.404(b)(1)(ii)',
+    standardTitle: 'Ground-fault protection for receptacles',
+    appliesWhen: [
+      /\b(missing|no|without)\b.*\b(gfci|ground fault)\b/i,
+      /\b(temporary power|temporary wiring|construction site)\b.*\b(gfci|ground fault)\b/i
+    ],
+    requiredEvidence: [
+      /\b(construction site|temporary power|temporary wiring|cord-and-plug tool|receptacle)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(wet|damp|outdoor|handheld tool|portable tool)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(gfci installed|assured grounding program active|protected)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(office lobby|cracked quarry tile)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.303(b)(1)'],
+    followUpQuestions: [
+      'Is the circuit temporary power on a construction site?',
+      'Is GFCI protection installed and functional or is an assured-grounding program in place?',
+      'Are the cords, receptacles, and tool type appropriate for construction use and the observed conditions?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'Temporary construction power lacks ground-fault protection for receptacles or cord-and-plug tools.',
+      releaseOrFailureMode: 'A fault or wet condition can energize exposed parts or permit current leakage without rapid clearing.',
+      exposurePathway: 'Workers using portable tools or temporary circuits may contact energized parts or fault current.',
+      consequences: 'Shock, electrocution, arc injury, or secondary fall.'
+    },
+    controlPrinciples: [
+      'Stop use of the temporary circuit until protection is verified.',
+      'Install and test GFCI protection or an equivalent construction grounding program as required.',
+      'Replace or reroute damaged temporary wiring and maintain construction electrical inspections.'
+    ]
+  },
 
   // 4. Machine guarding / rotating parts
   {
@@ -797,6 +837,45 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     ]
   },
   {
+    id: 'missing-handrail-open-edge-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'fall_protection',
+    standardCitation: '29 CFR 1910.28(b)(1)',
+    standardTitle: 'Duty to have fall protection (unprotected sides and edges)',
+    appliesWhen: [
+      /\b(missing handrail|no handrail|missing guardrail|no guardrail|open edge|unprotected edge|stair landing)\b/i
+    ],
+    requiredEvidence: [
+      /\b(fall hazard|edge|stair|landing|lower level|unguarded)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(height|mezzanine|platform|drop|handrail|guardrail)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(guardrail installed|protected|safe)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(office lobby|cracked quarry tile)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.23'],
+    followUpQuestions: [
+      'What is the fall distance or lower-level exposure at the landing or edge?',
+      'Are the handrail/guardrail components missing, damaged, or temporarily removed?',
+      'Is this a stair/landing edge or a floor opening requiring a different fall-protection control?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A stair landing or open edge lacks a required handrail or guardrail.',
+      releaseOrFailureMode: 'A worker can lose balance or step past the protected edge.',
+      exposurePathway: 'Employees travel near the edge while using the stairs or landing.',
+      consequences: 'Fall to a lower level, fracture, head injury, or fatal trauma.'
+    },
+    controlPrinciples: [
+      'Block access until the edge protection is restored.',
+      'Install a compliant temporary handrail/guardrail system.',
+      'Repair or replace the permanent edge protection and verify dimensions.'
+    ]
+  },
+  {
     id: 'fall-exposure-msha',
     jurisdiction: 'msha',
     hazardFamily: 'fall_protection',
@@ -918,6 +997,46 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
       'De-energize the equipment and pull the disconnect immediately.',
       'Each worker must apply their own padlock and tag to the disconnect lever.',
       'Test the start button to verify zero energy before beginning work.'
+    ]
+  },
+  {
+    id: 'stored-hydraulic-energy-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'machine_guarding_loto',
+    standardCitation: '29 CFR 1910.147',
+    standardTitle: 'The control of hazardous energy',
+    appliesWhen: [
+      /\b(stored hydraulic energy|hydraulic pressure|stored pressure|pressure not relieved|pressurized ram)\b/i
+    ],
+    requiredEvidence: [
+      /\b(hydraulic|pressure|ram|cylinder|stored energy)\b/i,
+      /\b(released|not relieved|drop|movement|maintenance|servicing)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(unexpected|release|pin|block|zero energy)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(pressure relieved|zero energy verified|blocked and pinned|safe)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(no hydraulic|no pressure)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.212(a)(1)'],
+    followUpQuestions: [
+      'What hydraulic source, pressure, or stored-energy path remains live?',
+      'Has pressure been relieved and has zero-energy status been verified?',
+      'Is this maintenance or servicing that requires energy isolation before access?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A hydraulic system retains stored pressure after power is removed.',
+      releaseOrFailureMode: 'Residual pressure or an uncontrolled drop occurs when the energy is not relieved or blocked.',
+      exposurePathway: 'Workers in the work zone can be struck, pinned, or caught by moving hydraulic components.',
+      consequences: 'Crushing, struck-by trauma, amputation, or fatal injury.'
+    },
+    controlPrinciples: [
+      'Relieve hydraulic pressure and block the load before access.',
+      'Lock out and verify zero energy before servicing or repair.',
+      'Repair the system and maintain the blocking/verification procedure for future work.'
     ]
   },
 
@@ -1161,6 +1280,335 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     controlPrinciples: [
       'Isolate the container immediately and check SDS to identify the contents.',
       'Apply a compliant HazCom workplace label indicating chemical identity and hazards.'
+    ]
+  }
+  ,
+  {
+    id: 'grinder-tongue-guard-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'machine_guarding',
+    standardCitation: '29 CFR 1910.215',
+    standardTitle: 'Abrasive wheel machinery',
+    appliesWhen: [
+      /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b.*\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/i,
+      /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b.*\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i,
+      /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(line of fire|wheel|fragment|abrasive)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(noise only|hearing only|without guard issue)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(guard installed|guard in place|safe)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.212(a)(1)'],
+    followUpQuestions: [
+      'What grinder or abrasive wheel is in use and which guard is missing?',
+      'Is the wheel intact, rated, and set up per the manufacturer?',
+      'Is the operator positioned in the line of fire?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'An abrasive wheel tool is used without the required tongue guard or wheel guard.',
+      releaseOrFailureMode: 'The rotating wheel or fragments can contact the operator or nearby workers.',
+      exposurePathway: 'The operator stands in the line of fire and within reach of the wheel hazard.',
+      consequences: 'Laceration, eye injury, fracture, amputation, or fatal struck-by/contact injury.'
+    },
+    controlPrinciples: [
+      'Stop use and remove the grinder from service until the guard is restored.',
+      'Install the correct tongue guard or wheel guard before the tool returns to use.',
+      'Verify wheel condition, rating, rest adjustment, and operating position before continued work.'
+    ]
+  },
+  {
+    id: 'aerial-lift-tie-off-osha-construction',
+    jurisdiction: 'osha_construction',
+    hazardFamily: 'fall_protection',
+    standardCitation: '29 CFR 1926.453(b)(2)(v)',
+    standardTitle: 'Boom and aerial lifts',
+    appliesWhen: [
+      /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b.*\b(not tied off|tie[- ]?off missing|tie[- ]?off not used|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/i,
+      /\b(not tied off|tie[- ]?off missing|leaning out|over the rail|outside the rail|reach over)\b.*\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b/i,
+      /\b(not tied off|tie[- ]?off missing|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(fall|height|elevated|rail)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(inside the platform|tied off|guarded)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(aerial lift parked|stored|not in use)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1926.502'],
+    followUpQuestions: [
+      'What lift type is in use and what fall protection does the manufacturer require?',
+      'Was the worker tied off to an approved anchor and is the rail/gate intact?',
+      'Was the worker leaning or reaching outside the platform while elevated?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A worker is elevated in a lift platform without verified restraint or fall protection.',
+      releaseOrFailureMode: 'The occupant may lose balance, climb the rail, or be ejected when the lift moves or the task shifts.',
+      exposurePathway: 'The worker is exposed to a lower-level fall and possible platform-impact or entrapment during movement.',
+      consequences: 'Serious fall injury, suspension trauma, fracture, or fatality.'
+    },
+    controlPrinciples: [
+      'Keep the occupant inside the platform until the fall-protection requirement is verified.',
+      'Use the manufacturer-required restraint/fall-protection system before resuming work.',
+      'Use a different access method if the work requires reaching outside the platform envelope.'
+    ]
+  },
+  {
+    id: 'elevated-forks-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'mobile_equipment',
+    standardCitation: '29 CFR 1910.178',
+    standardTitle: 'Powered industrial trucks',
+    appliesWhen: [
+      /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b.*\b(elevated forks|raised forks|forks elevated|load elevated)\b/i,
+      /\b(elevated forks|raised forks|forks elevated|load elevated)\b.*\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i,
+      /\b(elevated forks|raised forks|forks elevated|load elevated)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(pedestrian|travel|blind corner|traffic|strike|struck)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(forks lowered|travel position|parked)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(no mobile equipment|no forklift)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1926.602', '30 CFR 56.9100'],
+    followUpQuestions: [
+      'How high are the forks/load and what travel path is being used?',
+      'Are pedestrians, blind corners, or traffic conflicts present?',
+      'Are the forks lowered to the travel position?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A powered industrial truck or pallet truck is traveling with forks raised above the travel position.',
+      releaseOrFailureMode: 'Raised forks reduce stability and increase the chance of striking a worker, load, or obstacle during travel or turning.',
+      exposurePathway: 'Workers nearby can be caught in the travel path or struck by the elevated load/forks.',
+      consequences: 'Struck-by, crush, or tip-over injury; damage to the load or nearby equipment.'
+    },
+    controlPrinciples: [
+      'Lower the forks to the travel position before movement continues.',
+      'Separate pedestrians and equipment and use spotters or route controls where needed.',
+      'Adjust travel rules, aisle design, and operator training to keep forks low and travel visible.'
+    ]
+  },
+  {
+    id: 'excavator-struck-by-osha-construction',
+    jurisdiction: 'osha_construction',
+    hazardFamily: 'excavation_trenching',
+    standardCitation: '29 CFR 1926.651',
+    standardTitle: 'Specific excavation requirements',
+    appliesWhen: [
+      /\b(excavator|backhoe)\b.*\b(struck[- ]by|bucket path|swing radius|swing|workers? near|worker nearby)\b/i,
+      /\b(struck[- ]by|bucket path|swing radius|swing)\b.*\b(excavator|backhoe)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(excavator|backhoe)\b/i,
+      /\b(struck[- ]by|bucket path|swing radius|swing)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(exclusion zone|earthmoving|excavation|utility|trench)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(clearly separated|no workers nearby)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(not excavator|not backhoe)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.178', '29 CFR 1926.602'],
+    followUpQuestions: [
+      'What work area, swing radius, and exclusion zone are established around the excavator?',
+      'Are workers or spotters inside the bucket path or near an uncontrolled edge?',
+      'Is there an excavation or utility context that changes the required controls?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'An excavator or backhoe is swinging material near workers and the struck-by envelope is not defined.',
+      releaseOrFailureMode: 'A bucket, boom, or load can swing into workers or adjacent hazards when the exclusion zone is not controlled.',
+      exposurePathway: 'Workers on foot or in vehicles can be struck within the machine swing radius or bucket path.',
+      consequences: 'Crush, struck-by trauma, fracture, or fatal injury.'
+    },
+    controlPrinciples: [
+      'Establish a barricaded exclusion area around the swing zone.',
+      'Use a spotter or traffic control only after the exclusion zone is defined and enforced.',
+      'Reconfigure the work so workers do not enter the bucket path or under handled material.'
+    ]
+  },
+  {
+    id: 'blocked-extinguisher-access-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'fire_protection',
+    standardCitation: '29 CFR 1910.157(c)(1)',
+    standardTitle: 'Portable fire extinguishers',
+    appliesWhen: [
+      /\b(blocked|obstructed|inaccessible)\b.*\b(fire extinguisher|extinguisher)\b/i,
+      /\b(fire extinguisher|extinguisher)\b.*\b(blocked|obstructed|inaccessible)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(fire extinguisher|extinguisher)\b/i,
+      /\b(blocked|obstructed|inaccessible)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(access|visible|mounted|corridor|pallet)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(readily accessible|unobstructed)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(no extinguisher|fire extinguisher not present)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.165'],
+    followUpQuestions: [
+      'How far is the obstruction from the extinguisher and can a worker reach it immediately?',
+      'Is the extinguisher mounted, identified, and visible from the access path?',
+      'Is the blockage temporary or a routine layout problem?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A fire extinguisher is not readily accessible because an object blocks the approach path.',
+      releaseOrFailureMode: 'Employees may not be able to reach the extinguisher promptly during an incipient fire.',
+      exposurePathway: 'Fire response is delayed while people move the obstruction or search for another device.',
+      consequences: 'Fire growth, smoke inhalation, burn injury, or delayed suppression response.'
+    },
+    controlPrinciples: [
+      'Remove the obstruction immediately and keep the extinguisher accessible.',
+      'Relocate storage so the approach path stays clear and visible.',
+      'Redesign layout or add protection so the access path stays open during normal operations.'
+    ]
+  },
+  {
+    id: 'flammable-storage-issue-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'fire_protection',
+    standardCitation: '29 CFR 1910.106',
+    standardTitle: 'Flammable liquids',
+    appliesWhen: [
+      /\b(flammable liquids?|flammables?|combustible liquids?)\b.*\b(hallway|corridor|open shelves|near ignition source|ignition source|aisle)\b/i,
+      /\b(hallway|corridor|open shelves|aisle)\b.*\b(flammable liquids?|flammables?|combustible liquids?)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(flammable liquids?|flammables?|combustible liquids?)\b/i,
+      /\b(storage|hallway|corridor|open shelves|ignition source|aisle)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(container|cabinet|vapors?|spark|heat)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(closed cabinet|protected storage)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(water only|nonflammable)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.157(c)(1)', '29 CFR 1910.1200'],
+    followUpQuestions: [
+      'What flammable or combustible liquid is stored and what container or quantity is present?',
+      'Is the container or cabinet compliant, closed, and separated from ignition sources?',
+      'Can the storage location be kept clear of traffic and emergency routes?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'Flammable or combustible liquid storage is located in a traffic or ignition-exposed area.',
+      releaseOrFailureMode: 'An ignition source, spill, or poor storage configuration can allow rapid fire spread.',
+      exposurePathway: 'Workers passing through the area or handling the material are exposed to fire, vapor, or smoke conditions.',
+      consequences: 'Fire, burn injury, smoke inhalation, or explosion if vapors accumulate.'
+    },
+    controlPrinciples: [
+      'Move the material out of the traffic route and remove ignition sources.',
+      'Store the material in the proper closed container or cabinet with controlled access.',
+      'Redesign the storage location and ignition-control layout to keep flammables in a protected area.'
+    ]
+  },
+  {
+    id: 'respirator-fit-test-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'industrial_hygiene',
+    standardCitation: '29 CFR 1910.134',
+    standardTitle: 'Respiratory protection',
+    appliesWhen: [
+      /\b(respirator|respiratory protection)\b.*\b(no fit test|missing fit test|without fit test|no program record|program record missing|not fit tested)\b/i,
+      /\b(no fit test|missing fit test|without fit test|no program record|program record missing)\b.*\b(respirator|respiratory protection)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(respirator|respiratory protection)\b/i,
+      /\b(fit test|medical clearance|program record|program)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(dust|fume|vapor|chemical|silica|noise)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(not required|voluntary use only)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(no respirator|not a respiratory task)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.132(d)', '29 CFR 1910.1053'],
+    followUpQuestions: [
+      'What hazard requires the respirator and what contaminant route is present?',
+      'Has the user been fit tested and medically cleared for the respirator model?',
+      'Is the respirator part of a written program with training, maintenance, and change-out rules?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A respirator is being used without verified fit testing or program documentation.',
+      releaseOrFailureMode: 'The respirator may not seal or may not be selected within a compliant program.',
+      exposurePathway: 'Respirable contaminants can bypass the face seal or overwhelm the protection factor.',
+      consequences: 'Inhalation exposure, illness, or reduced protection against dust, fumes, vapors, or other contaminants.'
+    },
+    controlPrinciples: [
+      'Pause the task until respirator program requirements are verified.',
+      'Use a properly selected and fit-tested respirator only under the written program.',
+      'Substitute or engineer the exposure down so respiratory protection is a last line of defense.'
+    ]
+  },
+  {
+    id: 'line-breaking-confined-space-unclear',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'confined_space',
+    standardCitation: '29 CFR 1910.146',
+    standardTitle: 'Permit-required confined spaces',
+    appliesWhen: [
+      /\b(line break(?:ing)?|breaking into|opening the line into|line opening)\b.*\b(vessel|tank|confined space|confined area|manhole|vault)\b/i,
+      /\b(vessel|tank|confined space|confined area|manhole|vault)\b.*\b(line break(?:ing)?|opening the line|maintenance)\b/i,
+    ],
+    requiredEvidence: [
+      /\b(vessel|tank|confined space|confined area|manhole|vault)\b/i,
+      /\b(line break(?:ing)?|opening the line|maintenance|atmosphere|entry)\b/i,
+    ],
+    confidenceBoosters: [
+      /\b(atmospheric testing|purge|ventilation|isolation|permit)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(adjacent only|not entering|outside the space)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(not a space|open room)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.147', '29 CFR 1910.1200'],
+    followUpQuestions: [
+      'Is this a confined-space entry or an adjacency/line-break task outside the space?',
+      'What atmospheric testing, isolation, purging, and ventilation are verified before opening the line?',
+      'Are attendant, rescue, and entry-control requirements active if anyone enters the space?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A line break or process opening into a vessel or confined area may release product or atmosphere into the space.',
+      releaseOrFailureMode: 'The connected line or vessel can discharge product, vapor, or pressure when isolation and atmospheric controls are incomplete.',
+      exposurePathway: 'An entrant or line-break worker may be exposed to a confined or changing atmosphere before the space is classified.',
+      consequences: 'Asphyxiation, poisoning, fire/explosion, engulfment, or fatal rescue escalation.'
+    },
+    controlPrinciples: [
+      'Stop the line-break task until entry classification and isolation are verified.',
+      'Perform atmospheric testing and isolate or ventilate the space or vessel before opening.',
+      'Use the full permit/alternate-entry and line-break procedure when the task enters the confined-space envelope.'
     ]
   }
 ];
