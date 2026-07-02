@@ -384,8 +384,8 @@ export class SafescopeV2Service {
       })();
       const isFamilyRelevantStandard = (standard: any) => {
         if (!standardFamilyPattern) return true;
-        const citation = String(standard?.citation || standard?.standard || standard?.id || '').toLowerCase();
-        const title = String(standard?.title || standard?.titleSummary || standard?.summary || '').toLowerCase();
+        const citation = String(typeof standard === 'string' ? standard : (standard?.citation || standard?.standard || standard?.id || '')).toLowerCase();
+        const title = String(typeof standard === 'string' ? standard : (standard?.title || standard?.titleSummary || standard?.summary || '')).toLowerCase();
         return standardFamilyPattern.test(`${citation} ${title}`);
       };
       suggestedStandards = suggestedStandards.filter(isFamilyRelevantStandard);
@@ -1502,18 +1502,26 @@ export class SafescopeV2Service {
         }
         return null;
       })();
+      const originalFindingText = String(text || '').toLowerCase();
       const hasSafeControlEvidence = /\b(fully guarded|guard installed|guarded and locked out|locked out and de-energized|zero energy verified|tested before maintenance|barricaded|secured|intact|in place)\b/i.test(fusedText);
       const hasDefectOrExposureEvidence = /\b(missing|removed|unguarded|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|no guard|no cover|blocked|obstructed)\b/i.test(fusedText);
+      const hasDirectHazardousEnergyContext =
+        /\b(lockout|tagout|loto|locked out|tagged out|zero[- ]energy|try[- ]?out|energy isolation|isolation point|de[- ]?energized|deenergized|unexpected startup|unexpected energization|hazardous energy|stored energy|release of energy)\b/i.test(originalFindingText) ||
+        (/\b(servicing|service work|maintenance|repair|setup|adjusting|troubleshooting|clearing jam|unjamming|un-jamming|cleaning machine|working on|work on|cleanup|cleaning)\b/i.test(originalFindingText) &&
+          /\b(machine|equipment|conveyor|press|pump|motor|line|circuit|hydraulic|pneumatic|mechanical|electrical|powered|energized|ram|cylinder)\b/i.test(originalFindingText));
+      const isHazardousEnergyCitation = (citation: string) =>
+        /(?:29\s*CFR\s*)?1910\.147|(?:30\s*CFR\s*)?(?:56|57)\.12016/i.test(citation);
       const applyFinalFamilyFilter = (standard: any) => {
         if (!finalFamilyPattern) return true;
-        const citation = String(standard?.citation || standard?.standard || standard?.id || '').toLowerCase();
-        const title = String(standard?.title || standard?.titleSummary || standard?.summary || '').toLowerCase();
+        const citation = String(typeof standard === 'string' ? standard : (standard?.citation || standard?.standard || standard?.id || '')).toLowerCase();
+        const title = String(typeof standard === 'string' ? standard : (standard?.title || standard?.titleSummary || standard?.summary || '')).toLowerCase();
         return finalFamilyPattern.test(`${citation} ${title}`);
       };
       const applyFinalOutputFilter = (standard: any) => {
         if (!applyFinalFamilyFilter(standard)) return false;
-        const citation = String(standard?.citation || standard?.standard || standard?.id || '');
+        const citation = String(typeof standard === 'string' ? standard : (standard?.citation || standard?.standard || standard?.id || ''));
         if (/^30 CFR 56\.9100(?:\(a\))?$/i.test(citation) && !hasExplicitMineContext) return false;
+        if (isHazardousEnergyCitation(citation) && !hasDirectHazardousEnergyContext) return false;
         if (hasSafeControlEvidence && !hasDefectOrExposureEvidence && /(1910\.147|(?:56|57)\.12016|1910\.212|1910\.219|(?:56|57)\.14107)/i.test(citation)) return false;
         return true;
       };
@@ -1521,6 +1529,41 @@ export class SafescopeV2Service {
       supportingStandards = supportingStandards.filter(applyFinalOutputFilter);
       excludedStandards = excludedStandards.filter(applyFinalOutputFilter);
       needsMoreEvidenceStandards = needsMoreEvidenceStandards.filter(applyFinalOutputFilter);
+
+      const hasConcreteObservedDefectOrExposure =
+        /\b(missing|removed|unguarded|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|blocked|obstructed|leaking|spill|spilled|residue|clutter|cord|trip|slip|uneven|riser|stair|stairs|tread|hole|opening|guardrail|handrail|forklift|pedestrian|backup alarm|seatbelt|berm|edge|fall hazard)\b/i.test(originalFindingText);
+
+      if (!suggestedStandards.length && hasConcreteObservedDefectOrExposure) {
+        const promotableNeedsMoreEvidence = needsMoreEvidenceStandards.find((standard: any) => {
+          const citation = String(typeof standard === 'string' ? standard : (standard?.citation || standard?.standard || standard?.id || ''));
+          return applyFinalOutputFilter(standard) && !isHazardousEnergyCitation(citation);
+        });
+
+        if (promotableNeedsMoreEvidence) {
+          suggestedStandards = [{
+            ...(typeof promotableNeedsMoreEvidence === 'string'
+              ? { citation: promotableNeedsMoreEvidence, title: promotableNeedsMoreEvidence }
+              : promotableNeedsMoreEvidence),
+            status: 'candidate_standard',
+            candidateStatus: 'candidate_standard',
+            source: Array.from(new Set([
+              ...((Array.isArray((promotableNeedsMoreEvidence as any)?.source) ? (promotableNeedsMoreEvidence as any).source : [])),
+              'final_family_recovery'
+            ])),
+            matchingReasons: [
+              ...((Array.isArray((promotableNeedsMoreEvidence as any)?.matchingReasons) ? (promotableNeedsMoreEvidence as any).matchingReasons : [])),
+              'Promoted from needs-more-evidence because final filtering removed non-applicable hazardous-energy citation and the original observation contains concrete defect/exposure evidence.'
+            ],
+          }];
+
+          const promotedCitation = String((suggestedStandards[0] as any)?.citation || '').toLowerCase().replace(/\s+/g, '');
+          needsMoreEvidenceStandards = needsMoreEvidenceStandards.filter((standard: any) => {
+            const citation = String(typeof standard === 'string' ? standard : (standard?.citation || standard?.standard || standard?.id || '')).toLowerCase().replace(/\s+/g, '');
+            return citation !== promotedCitation;
+          });
+        }
+      }
+
       standardsTraceability.suggestedCitations = (standardsTraceability.suggestedCitations || []).filter((citation: any) => applyFinalOutputFilter({ citation }));
       standardsTraceability.supportingCitations = (standardsTraceability.supportingCitations || []).filter((citation: any) => applyFinalOutputFilter({ citation }));
       standardsTraceability.needsMoreEvidenceCitations = (standardsTraceability.needsMoreEvidenceCitations || []).filter((citation: any) => applyFinalOutputFilter({ citation }));

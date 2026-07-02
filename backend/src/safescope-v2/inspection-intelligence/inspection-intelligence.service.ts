@@ -177,7 +177,9 @@ function matchesRule(text: string, rule: InspectionIntelligenceRule): boolean {
 
 function citationAllowedForMineType(citation: string, mineType: MineType, mineDetected: boolean): boolean {
   if (!/^30 CFR\b/.test(citation)) return true;
-  if (!mineDetected || mineType === 'not_mine') return true;
+  if (!mineDetected || mineType === 'not_mine') {
+    return !/^30 CFR 56\.9100(?:\(a\))?/i.test(citation);
+  }
   if (mineType === 'unclear_mine') return false;
   const part = citation.match(/30 CFR (\d+)/)?.[1];
   if (!part) return true;
@@ -353,6 +355,55 @@ export class InspectionIntelligenceService {
         input.jurisdiction !== 'msha' || citationAllowedForMineType(result?.citation || '', miningContext.mineType, miningContext.detected),
       ),
     };
+    const ruleById = new Map(EXPERT_APPLICABILITY_RULES.map((rule) => [rule.id, rule]));
+    const ruleByCitation = new Map(
+      EXPERT_APPLICABILITY_RULES.map((rule) => [rule.standardCitation.toLowerCase().replace(/\s+/g, ''), rule]),
+    );
+    const promoteRuleFromEvaluation = (result: any) => {
+      const rule = ruleById.get(String(result?.ruleId || '')) || ruleByCitation.get(String(result?.citation || '').toLowerCase().replace(/\s+/g, ''));
+      if (!rule) return null;
+      return {
+        id: rule.id,
+        citation: rule.standardCitation,
+        standardTitle: rule.standardTitle,
+        title: rule.standardTitle,
+        titleSummary: rule.standardTitle,
+        summary: rule.standardTitle,
+        jurisdiction: rule.jurisdiction,
+        hazardFamily: rule.hazardFamily,
+        candidateStatus: 'candidate_standard',
+        status: 'candidate_standard',
+        source: ['standard_applicability'],
+        matchingReasons: [`Sufficient applicability rule matched: ${rule.standardTitle}.`],
+        evidenceNeeded: Array.isArray(result?.missingFacts) && result.missingFacts.length
+          ? result.missingFacts
+          : [`Confirm the observed condition, exposure path, and control status for ${rule.standardTitle}.`],
+      };
+    };
+    if (!standardAppResults.matchedRules.length) {
+      standardAppResults.matchedRules = standardAppResults.evaluationResults
+        .filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect)
+        .map(promoteRuleFromEvaluation)
+        .filter(Boolean) as any[];
+    }
+    if (!standardAppResults.suggestedStandards.length) {
+      standardAppResults.suggestedStandards = standardAppResults.evaluationResults
+        .filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect)
+        .map((result: any) => promoteRuleFromEvaluation(result)?.citation || String(result?.citation || '').trim())
+        .filter(Boolean);
+    }
+    if (!standardAppResults.needsMoreEvidenceStandards.length) {
+      standardAppResults.needsMoreEvidenceStandards = standardAppResults.evaluationResults
+        .filter((result: any) => !result?.isSufficient && !result?.excludedByDoNotSelect)
+        .map((result: any) => promoteRuleFromEvaluation(result)?.citation || String(result?.citation || '').trim())
+        .filter(Boolean);
+    }
+    if (conditionAssessment.status === 'controlled' || conditionAssessment.status === 'no_hazard_signal') {
+      standardAppResults.matchedRules = [];
+      standardAppResults.suggestedStandards = [];
+      standardAppResults.needsMoreEvidenceStandards = [];
+      standardAppResults.evaluationResults = [];
+    }
 
     const mshaAnalysis = this.mshaInspectionIntelligenceService.analyze(text, miningContext);
     const matched = [...mshaAnalysis.rules, ...RULES.filter((rule) => matchesRule(text, rule))]

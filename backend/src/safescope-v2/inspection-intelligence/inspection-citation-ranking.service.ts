@@ -20,7 +20,7 @@ function candidateText(candidate: any): string {
     .filter(Boolean).join(' ').toLowerCase();
 }
 
-function familyCoherencePattern(primaryFamily: string): RegExp | null {
+function familyCoherencePattern(primaryFamily: string, hasExplicitMineContext = false): RegExp | null {
   const family = String(primaryFamily || '').toLowerCase();
   if (!family) return null;
   if (family.includes('electrical')) {
@@ -33,19 +33,21 @@ function familyCoherencePattern(primaryFamily: string): RegExp | null {
     return /(?:1910\.(?:22|23|28|29)|1926\.25|(?:56|57)\.(?:20003|11001)|walking-working surfaces|housekeeping|floor|walkway|aisle|travelway|slip|trip|fall|hole|opening|guardrail|ladder|egress|debris|spill|release|residue)/i;
   }
   if (family.includes('machine_guarding')) {
-    return /(?:1910\.(?:212|219|147)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|lockout|tagout|servicing|unexpected startup|hazardous energy)/i;
+    return /(?:1910\.(?:212|215|219)|1926\.300|(?:56|57)\.(?:14107|12016)|machine guarding|guard|guarding|conveyor|rotating|shaft|pulley|nip|point of operation|moving parts?|abrasive wheel|grinder|tongue guard|wheel guard|cutoff wheel|cut-off wheel)/i;
   }
   if (family.includes('scaffold')) {
     return /(?:1926\.451|1926\.502|1926\.503|1926\.454|scaffold|scaffolding|platform|guardrail|midrail|toprail|plank|mudsill|toe board|toeboard)/i;
   }
   if (family.includes('mobile_equipment')) {
-    return /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i;
+    return hasExplicitMineContext
+      ? /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i
+      : /(?:1910\.178|1926\.(?:601|602)|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|route|blind corner)/i;
   }
   if (family.includes('fall_protection')) {
     return /(?:1910\.(?:28|29)|1926\.501|guardrail|platform|edge|roof|fall protection|fall arrest|aerial lift|scaffold|ladder)/i;
   }
   if (family.includes('fire_explosion') || family.includes('fire_protection') || family.includes('welding_cutting_hot_work')) {
-    return /(?:1910\.252|1926\.352|(?:56|57)\.46|fire watch|hot work|welding|cutting|brazing|torch|combustible|ignition|natural gas|gas odor|gas leak|explosion|flame|spark|fuel gas)/i;
+    return /(?:1910\.252|1910\.106|1910\.157|1926\.352|(?:56|57)\.46|fire watch|hot work|welding|cutting|brazing|torch|combustible|ignition|natural gas|gas odor|gas leak|explosion|flame|spark|fuel gas|fire extinguisher|flammable liquid|combustible liquid|eyewash|emergency shower)/i;
   }
   if (family.includes('compressed_gas')) {
     return /(?:1910\.101|1926\.350|(?:56|57)\.1600[56]|compressed gas|cylinder|oxygen|acetylene|valve cap|regulator)/i;
@@ -76,13 +78,23 @@ export class InspectionCitationRankingService {
     scopes: string[];
   }): CitationRankingResult {
     const observation = String(input.observation || '').toLowerCase();
+    const conditionStatus = String(input.inspectionIntelligence?.conditionAssessment?.status || '').toLowerCase();
+    if (conditionStatus === 'controlled' || conditionStatus === 'no_hazard_signal') {
+      return {
+        suggestedStandards: [],
+        supportingStandards: [],
+        needsMoreEvidenceStandards: [],
+        excludedStandards: [...(input.excludedStandards || [])],
+      };
+    }
     const primaryHazardFamily = String(
       input.inspectionIntelligence?.standardApplicability?.matchedRules?.[0]?.hazardFamily ||
       input.inspectionIntelligence?.hazardCandidates?.find((candidate) => candidate?.role === 'primary')?.domain ||
       (input.inspectionIntelligence?.candidateStandards?.[0] as any)?.hazardFamily ||
       ''
     ).toLowerCase();
-    const needsMoreEvidencePattern = familyCoherencePattern(primaryHazardFamily);
+    const hasExplicitMineContext = /\b(mine|mine site|quarry|crusher|stockpile|haul road|pit|surface mine|underground mine|miner|mill)\b/i.test(observation);
+    const needsMoreEvidencePattern = familyCoherencePattern(primaryHazardFamily, hasExplicitMineContext);
     const hasSpillReleaseEvidence = /\b(used[- ]oil|waste[- ]oil|oily waste|oily residue|oil spill|spill|spilled|leak|leaking|release|residue|residual)\b/i.test(observation);
     const hasSurfaceOrDrainPathway = /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(observation);
     const hasHazComIdentityEvidence = /\b(unlabeled|no label|missing label|unknown chemical|chemical identity|sds|hazcom|hazard communication|secondary container)\b/i.test(observation);
@@ -95,6 +107,8 @@ export class InspectionCitationRankingService {
       (/\b(maintenance|servicing|cleaning machine|clearing jam|unjamming)\b/i.test(observation) && /\b(machine|equipment|conveyor|motor|circuit|press|pump|energized|powered)\b/i.test(observation));
     const hasHornEvidence = /\b(horn|horns|backup alarm|backup alarms|audible warning)\b/i.test(observation);
     const hasHotWorkEvidence = /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(observation);
+    const hasExplicitCompressedGasEvidence = /\b(compressed gas|gas cylinder|gas cylinders|oxygen cylinder|oxygen cylinders|acetylene cylinder|acetylene cylinders|propane cylinder|argon cylinder|fuel gas cylinder|cylinder|cylinders)\b/i.test(observation);
+    const hasGasOdorOnlyEvidence = /\b(smells like gas|gas smell|gas odor|gas leak|gas line|natural gas|heater cycles|heater cycle|gas appliance|furnace|boiler)\b/i.test(observation) && !hasExplicitCompressedGasEvidence;
     const directCandidates = input.inspectionIntelligence.candidateStandards;
     const directRanks = new Map(directCandidates.map((candidate, index) => [citationKey(candidate), index]));
     const ranked = input.suggestedStandards.map((candidate) => {
@@ -151,7 +165,7 @@ export class InspectionCitationRankingService {
       }
 
       const isCompressedGas = /1910\.(?:101|104)|1926\.350|(?:56|57)\.1600[56]/i.test(citation) || /compressed gas|gas cylinder|oxygen cylinder/.test(text);
-      if (isCompressedGas && !/\b(compressed gas|gas cylinder|oxygen cylinder|acetylene cylinder|cylinders?|cylinder|oxygen system)\b/i.test(observation)) {
+      if (isCompressedGas && (!hasExplicitCompressedGasEvidence || hasGasOdorOnlyEvidence)) {
         score -= 220; penalties.push('No compressed-gas cylinder or gas-system evidence is described.'); exclude = true;
       }
       if (/1926\.350/i.test(citation) && !hasHotWorkEvidence) {
@@ -275,7 +289,7 @@ export class InspectionCitationRankingService {
         }
       }
 
-      const hasGasOdorEvidence = /\b(natural gas odor|smell of gas|gas odor|gas leak|gas smell)\b/i.test(observation);
+      const hasGasOdorEvidence = /\b(natural gas odor|smell of gas|smells like gas|gas odor|gas leak|gas smell|gas line)\b/i.test(observation);
       if (hasGasOdorEvidence) {
         if (/1910\.101|1926\.350|(?:56|57)\.1600[56]/.test(citation)) {
           score -= 220;
@@ -295,6 +309,29 @@ export class InspectionCitationRankingService {
           score -= 230;
           penalties.push('Mobile equipment or traffic-control evidence is not established for this citation.');
           exclude = true;
+        }
+        if (/30 CFR 56\.9100(?:\(a\))?/i.test(citation)) {
+          if (!hasExplicitMineContext) {
+            score -= 260;
+            penalties.push('MSHA traffic citation requires explicit mine-context evidence.');
+            exclude = true;
+          }
+        }
+      }
+
+      const isGrinderCitation = /1910\.215|(?:56|57)\.14107/i.test(citation);
+      if (isGrinderCitation) {
+        const hasGrinderEvidence = /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i.test(observation);
+        const hasTongueGuardEvidence = /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/i.test(observation);
+        if (!hasGrinderEvidence || !hasTongueGuardEvidence) {
+          score -= 180;
+          penalties.push('Abrasive-wheel guarding evidence is not established for this citation.');
+          if (!hasGrinderEvidence) {
+            exclude = true;
+          }
+        } else {
+          score += 160;
+          reasons.push('Direct match: grinder tongue guard or abrasive-wheel guarding evidence is observed.');
         }
       }
 

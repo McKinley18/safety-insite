@@ -12,6 +12,64 @@ import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/off
 import { UserGovernanceContext, SafeScopeRole } from './workspace-governance-access/workspace-governance.types';
 import { sanitizeHazLenzDisplayOutput } from "./display/hazlenz-display-sanitizer";
 
+
+function ensureVisiblePrimaryCitationContract(response: any, observationText = ''): any {
+  if (!response || typeof response !== 'object') return response;
+
+  const primaryCitation = String(response.primaryCitation || '').trim();
+  const hasVisibleStandards =
+    (Array.isArray(response.suggestedStandards) && response.suggestedStandards.length > 0) ||
+    (Array.isArray(response.primaryStandards) && response.primaryStandards.length > 0) ||
+    (Array.isArray(response.standards) && response.standards.length > 0) ||
+    (Array.isArray(response.standardsTraceability?.suggestedCitations) &&
+      response.standardsTraceability.suggestedCitations.length > 0);
+
+  const isBareOshaCitation =
+    /^(?:29\s*CFR\s*)?(?:1910|1926)\.\d+(?:\([a-z0-9]+\))*$/i.test(primaryCitation);
+
+  const isBareMshaCitation =
+    /^(?:30\s*CFR\s*)?(?:56|57|75|77)\.\d+(?:\([a-z0-9]+\))*$/i.test(primaryCitation);
+
+  const hasConcreteDefectOrExposureEvidence =
+    /\b(damaged|broken|cracked|loose|uneven|missing|worn|deteriorated|defective|defect|trip hazard|tripping hazard|slip hazard|fall hazard|unguarded|exposed|blocked|obstructed|leaking|spill|spilled|frayed|cut|inoperative|not working)\b/i.test(observationText);
+
+  const isRealCitation =
+    primaryCitation &&
+    !/^(review|needs more evidence|candidate standard|suggested candidate standard|fallback candidate standard|unclassified|unknown)$/i.test(primaryCitation) &&
+    (isBareOshaCitation || isBareMshaCitation);
+
+  if (!hasVisibleStandards && isRealCitation && hasConcreteDefectOrExposureEvidence) {
+    const recoveredStandard = {
+      citation: primaryCitation,
+      title: primaryCitation,
+      summary:
+        'Candidate standard recovered at the API boundary because primaryCitation existed but visible standards arrays were empty.',
+      status: 'candidate_standard',
+      candidateStatus: 'candidate_standard',
+      source: ['controller_primary_citation_contract_repair'],
+      matchingReasons: [
+        'The service returned a primaryCitation, but the visible standards contract was empty before API serialization.',
+      ],
+    };
+
+    response.suggestedStandards = [recoveredStandard];
+
+    response.standardsTraceability = {
+      ...(response.standardsTraceability || {}),
+      suggestedCitations: Array.isArray(response.standardsTraceability?.suggestedCitations)
+        ? response.standardsTraceability.suggestedCitations
+        : [],
+    };
+
+    if (!response.standardsTraceability.suggestedCitations.includes(primaryCitation)) {
+      response.standardsTraceability.suggestedCitations.push(primaryCitation);
+    }
+  }
+
+  return response;
+}
+
+
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
   constructor(private readonly service: SafescopeV2Service) {}
@@ -124,7 +182,7 @@ export class SafescopeV2Controller {
         body.debugMetadata,
       );
 
-      return sanitizeHazLenzDisplayOutput(result);
+      return ensureVisiblePrimaryCitationContract(sanitizeHazLenzDisplayOutput(result), body.text);
     } catch (error) {
       console.error('SafeScope v2 classify failed:', error);
       throw error; // Rethrow to let Nest handle ForbiddenException etc.

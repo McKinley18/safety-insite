@@ -124,6 +124,32 @@ export class WeightedClassifierService {
     const hasBareGuardingConcern =
       /\b(missing guard|guard issue|guarding issue|guard missing)\b/i.test(normalizedText) &&
       !hasSpecificGuardingContext(normalizedText);
+    const hasGrinderTongueGuardCue =
+      /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i.test(normalizedText) &&
+      /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/i.test(normalizedText);
+    const hasAerialLiftFallCue =
+      /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b/i.test(normalizedText) &&
+      /\b(not tied off|tie[- ]?off missing|tie[- ]?off not used|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/i.test(normalizedText);
+    const hasElevatedForksCue =
+      /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i.test(normalizedText) &&
+      /\b(elevated forks|raised forks|forks elevated|load elevated)\b/i.test(normalizedText);
+    const hasExcavatorStruckByCue =
+      /\b(excavator|backhoe)\b/i.test(normalizedText) &&
+      /\b(struck[- ]by|bucket path|swing radius|swing|workers? near|worker nearby)\b/i.test(normalizedText);
+    const hasOpenFloorHoleCue =
+      /\b(floor hole|floor opening|open hole|open floor hole|uncovered opening|skylight|unguarded opening)\b/i.test(normalizedText);
+    const hasMissingHandrailCue =
+      /\b(missing handrail|no handrail|missing guardrail|no guardrail|open edge|open-sided|unprotected edge|stair landing)\b/i.test(normalizedText);
+    const hasDamagedStairCue =
+      /\b(damaged stair|damaged stairs|stair tread|uneven riser|stair edge|broken stair)\b/i.test(normalizedText);
+    const hasConstructionGfciCue =
+      /\b(gfci|ground fault|temporary power|temporary wiring)\b/i.test(normalizedText) &&
+      /\b(construction|jobsite|temporary power)\b/i.test(normalizedText);
+    const hasConfinedSpaceCue =
+      /\b(confined space|permit required|permit-required|manhole|vault|tank|vessel|atmosphere|oxygen reading|oxygen low|oxygen deficient|entry|attendant|rescue|testing|ventilation)\b/i.test(normalizedText);
+    const hasGenericGasOdorCue =
+      /\b(smells like gas|gas smell|gas odor|gas leak|gas line|natural gas|heater cycles|heater cycle|gas appliance|furnace|boiler)\b/i.test(normalizedText) &&
+      !/\b(compressed gas|gas cylinder|gas cylinders|oxygen cylinder|oxygen cylinders|acetylene cylinder|acetylene cylinders|propane cylinder|argon cylinder|fuel gas cylinder|cylinder|cylinders)\b/i.test(normalizedText);
     const semantic = getSemanticArbitrationSignals(normalizedText);
 
     const candidates: WeightedCandidate[] = HAZARD_TAXONOMY.map((profile: HazardProfile) => {
@@ -142,6 +168,9 @@ export class WeightedClassifierService {
       if (profile.id === "confined_space") {
         const containsTankOrVessel = normalizedText.includes("tank") || normalizedText.includes("vessel");
         const hasEntryIndicators = /(entry|inside|permit|atmosphere|attendant|opening|entrant|confined|testing|rescue|ventilation|entering)/i.test(normalizedText);
+        if (hasConfinedSpaceCue) {
+          score += 45;
+        }
         if (containsTankOrVessel && !hasEntryIndicators) {
           score -= 30; // Apply heavy penalty to prevent false-positive classifications on unlabeled storage tanks
         }
@@ -185,6 +214,18 @@ export class WeightedClassifierService {
         if (hasCylinderSignals) {
           score += 35; // Apply a strong boost to cylinder classification when cylinder terms are present
         }
+        if (/\b(no cylinder|no cylinders|without cylinder|not a cylinder)\b/i.test(normalizedText)) {
+          score -= 55;
+        }
+        if (hasGenericGasOdorCue && !hasCylinderSignals) {
+          score -= 120; // Generic gas odor/leak wording is not compressed-gas-cylinder storage.
+        }
+        if (hasConfinedSpaceCue && !hasCylinderSignals) {
+          score -= 180; // Confined-space atmosphere concerns are not cylinder storage without cylinder evidence.
+        }
+      }
+      if (profile.id === "fire_explosion" && hasGenericGasOdorCue) {
+        score += 18;
       }
 
       const hasCylinderSignalsForCompeting = /(cylinder|oxygen cylinder|gas cylinder|acetylene cylinder|compressed gas|cylinder cap|valve cap|valve protection|cylinder valve|manifold|unsecured cylinder|cylinder storage|fuel gas cylinder)/i.test(normalizedText);
@@ -366,6 +407,42 @@ export class WeightedClassifierService {
 
       if (profile.id === "machine_guarding" && hasBareGuardingConcern) {
         score -= 5;
+      }
+      if (profile.id === "machine_guarding" && hasGrinderTongueGuardCue) {
+        score += 48;
+      }
+      if (profile.id === "noise_exposure" && hasGrinderTongueGuardCue && !/\b(noise|loud|hearing|decibel|dba|sound|crusher|grinder|jackhammer|saw|audiogram)\b/i.test(normalizedText)) {
+        score -= 70;
+      }
+      if (profile.id === "falls" && hasAerialLiftFallCue) {
+        score += 55;
+      }
+      if ((profile.id === "walking_working_surfaces" || profile.id === "housekeeping") && hasAerialLiftFallCue) {
+        score -= 20;
+      }
+      if (profile.id === "mobile_equipment" && hasElevatedForksCue) {
+        score += 34;
+      }
+      if (profile.id === "trenching_shoring" && hasExcavatorStruckByCue) {
+        score += 44;
+      }
+      if (profile.id === "mobile_equipment" && hasExcavatorStruckByCue) {
+        score -= 14;
+      }
+      if (profile.id === "machine_guarding" && hasOpenFloorHoleCue) {
+        score -= 45;
+      }
+      if ((profile.id === "walking_working_surfaces" || profile.id === "falls") && hasOpenFloorHoleCue) {
+        score += 40;
+      }
+      if ((profile.id === "walking_working_surfaces" || profile.id === "falls") && hasMissingHandrailCue) {
+        score += 34;
+      }
+      if ((profile.id === "walking_working_surfaces" || profile.id === "falls") && hasDamagedStairCue) {
+        score += 28;
+      }
+      if (profile.id === "electrical" && hasConstructionGfciCue) {
+        score += 24;
       }
 
       if (profile.id === "mobile_equipment" && hasVehicleEvidence) {

@@ -775,14 +775,23 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
     ],
     weakSignals: [
       { term: "cylinder", weight: 3 },
-      { term: "gas", weight: 2 },
+      { term: "gas", weight: 0 },
       { term: "cap", weight: 2 }
     ],
     negativeSignals: [
       { term: "natural gas", weight: -20 },
       { term: "gas odor", weight: -18 },
       { term: "smell of gas", weight: -18 },
+      { term: "smells like gas", weight: -18 },
+      { term: "gas smell", weight: -18 },
       { term: "gas leak", weight: -18 },
+      { term: "gas line", weight: -16 },
+      { term: "no cylinder", weight: -24 },
+      { term: "no cylinders", weight: -24 },
+      { term: "without cylinder", weight: -24 },
+      { term: "not a cylinder", weight: -24 },
+      { term: "heater cycles", weight: -12 },
+      { term: "heater cycle", weight: -12 },
       { term: "boiler room", weight: -12 }
     ],
     contextBoosts: [],
@@ -949,45 +958,6 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
     defaultSeverityScore: 4,
     defaultLikelihoodScore: 3,
     humanReviewTriggers: ["scaffold platform without guardrails", "scaffold on unstable base"]
-  },
-  {
-    id: "compressed_gas_cylinders",
-    label: "Compressed Gas Cylinders",
-    family: "Compressed Gas Cylinders",
-    strongSignals: [
-      { term: "oxygen and acetylene stored directly touching", weight: 10 },
-      { term: "unsecured gas cylinder", weight: 10 },
-      { term: "protective valve cap missing", weight: 9 },
-      { term: "high pressure cylinder", weight: 9 },
-      { term: "cylinder rack loose", weight: 9 }
-    ],
-    moderateSignals: [
-      { term: "gas cylinder", weight: 6 },
-      { term: "oxygen cylinder", weight: 6 },
-      { term: "acetylene cylinder", weight: 6 },
-      { term: "compressed gas", weight: 6 },
-      { term: "cylinder cap", weight: 5 },
-      { term: "cylinder valve", weight: 5 },
-      { term: "regulator", weight: 4 },
-      { term: "manifold", weight: 4 },
-      { term: "chained upright", weight: 5 },
-      { term: "unsecured cylinder", weight: 6 },
-      { term: "cylinder storage", weight: 5 },
-      { term: "fuel gas cylinder", weight: 6 }
-    ],
-    weakSignals: [
-      { term: "cylinder", weight: 3 },
-      { term: "gas", weight: 2 },
-      { term: "cap", weight: 2 }
-    ],
-    negativeSignals: [],
-    contextBoosts: [],
-    commonConsequences: ["cylinder projectile", "explosion", "toxic or flammable gas release"],
-    requiredControls: ["secure cylinders upright", "install protective valve caps", "separate incompatible gas cylinders"],
-    defaultSeverity: "high",
-    defaultSeverityScore: 4,
-    defaultLikelihoodScore: 3,
-    humanReviewTriggers: ["unsecured gas cylinder", "damaged cylinder valve"]
   },
   {
     id: "compressed_air_hose_safety",

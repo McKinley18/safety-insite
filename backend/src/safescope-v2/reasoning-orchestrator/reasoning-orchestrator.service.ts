@@ -2863,7 +2863,7 @@ export class SafeScopeReasoningOrchestratorService {
       return {
         domain: 'tools_equipment',
         mechanismId: 'abrasive_wheel_failure',
-        citation: '29 CFR 1910.242(a)',
+        citation: '29 CFR 1910.215',
         reasonCodes,
       };
     }

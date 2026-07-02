@@ -12,7 +12,7 @@ export class EvidenceFusionService {
   synthesize(inputs: string[]): EvidenceFusionResult {
     const normalized = inputs
       .filter(Boolean)
-      .map((x) => x.toLowerCase().trim())
+      .map((x) => String(x).toLowerCase().trim())
       .filter(Boolean);
 
     const combinedNarrative = normalized.join(' | ');

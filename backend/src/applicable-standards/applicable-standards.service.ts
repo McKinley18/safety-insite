@@ -97,7 +97,7 @@ export class ApplicableStandardsService {
     const hasElectricalObject = /\b(electrical|panel|breaker|bus bar|busbar|conductor|wire|wiring|receptacle|junction box)\b/i.test(text);
     const hasElectricalMechanism = /\b(energized|live|exposed|open breaker slot|missing cover|shock|arc flash|voltage|damaged insulation)\b/i.test(text);
     const hasLotoObject = /\b(machine|equipment|conveyor|motor|circuit|energy|electrically-powered)\b/i.test(text);
-    const hasLotoMechanism = /\b(lockout|tagout|loto|stored energy|energy isolation|deenergized|not released|without lockout|maintenance|servicing|repair|clears? a jam)\b/i.test(text);
+    const hasLotoMechanism = /\b(lockout|tagout|loto|stored energy|stored pressure|hydraulic|pneumatic|pressure not relieved|pressure released|energy isolation|deenergized|not released|without lockout|maintenance|servicing|repair|clears? a jam)\b/i.test(text);
     const hasFallObject = /\b(edge|opening|roof|scaffold|platform|ladder|height|elevated|guardrail|hole)\b/i.test(text);
     const hasFallMechanism = /\b(fall hazard|fall protection|unprotected|no guardrail|missing guardrail|fall arrest|feet|foot drop)\b/i.test(text);
     const hasPpeObject = /\b(ppe|protective equipment|safety glasses|goggles|face shield|gloves|respirator|hard hat|hearing protection)\b/i.test(text);
@@ -468,6 +468,24 @@ export class ApplicableStandardsService {
       if (!hasElectricalTerms) {
         score -= 100;
         matchingReasons.push("guardrail: electrical standard requires explicit electrical terms");
+      }
+    }
+
+    const isLotoCitation = /1910\.147|(?:56|57)\.(?:12016|14105)/i.test(citation);
+    if (isLotoCitation) {
+      const hasGuardingTerms =
+        /(guard|unguarded|grinder|abrasive wheel|nip point|pinch point|pulley|belt|shaft|gear|chain|rotating|moving part|conveyor)/i.test(
+          observation,
+        );
+      const hasLotoMechanismEvidence =
+        /\b(lockout|tagout|loto|stored energy|stored pressure|hydraulic|pneumatic|pressure not relieved|pressure released|energy isolation|deenergized|not released|without lockout|maintenance|servicing|repair|clears? a jam)\b/i.test(
+          text,
+        );
+      if (hasGuardingTerms && !hasLotoMechanismEvidence) {
+        score = -500;
+        matchingReasons.push(
+          "guardrail: lockout/tagout requires explicit hazardous-energy or servicing evidence",
+        );
       }
     }
 
@@ -1128,9 +1146,14 @@ export class ApplicableStandardsService {
 
     const isForkliftSeatbelt =
       /\b(forklift|industrial truck|haul truck|truck|loader|mobile equipment|vehicle|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i.test(observation);
+    const hasExplicitMineContext =
+      /\b(mine|mining|quarry|crusher|stockpile|haul road|pit|surface mine|underground mine|miner|mill|aggregate plant)\b/i.test(
+        observation,
+      );
     const isMobileTrafficContext =
       /\b(forklift|industrial truck|haul truck|truck|loader|mobile equipment|vehicle|dozer|skid steer|excavator|backhoe|front-end loader|front end loader)\b/i.test(observation) &&
-      /\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way|same aisle|same route|no traffic control)\b/i.test(observation);
+      /\b(pedestrian|walkway|aisle|travelway|traffic|stockpile|haul road|blind corner|separation|spotter|traffic control|right of way|same aisle|same route|no traffic control)\b/i.test(observation) &&
+      hasExplicitMineContext;
     const isHazComLabelContext =
       /\b(chemical|container|drum|tank|pail|jug|tote|bucket|solvent|paint|acid|can|bottle|used oil|waste oil)\b/i.test(observation) &&
       /\b(unlabeled|no label|missing label|unknown contents|unknown chemical|no GHS|missing GHS|secondary container|hazcom|hazard communication)\b/i.test(observation);

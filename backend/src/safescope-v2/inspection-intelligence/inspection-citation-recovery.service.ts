@@ -1,5 +1,6 @@
 import { InspectionCandidateStandard, InspectionIntelligenceResult } from './inspection-intelligence.types';
 import { InspectionCitationRankingService } from './inspection-citation-ranking.service';
+import { EXPERT_APPLICABILITY_RULES } from './standard-applicability.rules';
 
 export type CitationRecoveryDecision = {
   outcome: 'existing_candidates' | 'recovered_candidates' | 'insufficient_evidence' | 'controlled_condition' | 'no_supported_candidate';
@@ -94,6 +95,31 @@ export class InspectionCitationRecoveryService {
       inspectionIntelligence: input.inspectionIntelligence,
       scopes: input.scopes,
     });
+    const ruleById = new Map(EXPERT_APPLICABILITY_RULES.map((rule) => [rule.id, rule]));
+    const ruleByCitation = new Map(
+      EXPERT_APPLICABILITY_RULES.map((rule) => [rule.standardCitation.toLowerCase().replace(/\s+/g, ''), rule]),
+    );
+    const applicabilityPromotedCandidates: InspectionCandidateStandard[] = Array.isArray(input.inspectionIntelligence?.standardApplicability?.evaluationResults)
+      ? input.inspectionIntelligence.standardApplicability.evaluationResults
+          .filter((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect)
+          .map((result: any) => {
+            const rule = ruleById.get(String(result?.ruleId || '')) || ruleByCitation.get(String(result?.citation || '').toLowerCase().replace(/\s+/g, ''));
+            if (!rule) return null;
+            return {
+              citation: rule.standardCitation,
+              titleSummary: rule.standardTitle,
+              rationale: `Sufficient applicability rule matched: ${rule.standardTitle}.`,
+              evidenceNeeded: Array.isArray(result?.missingFacts) && result.missingFacts.length
+                ? result.missingFacts
+                : rule.followUpQuestions,
+              jurisdiction: rule.jurisdiction,
+              status: 'candidate_standard',
+              candidateStatus: 'candidate_standard',
+              source: ['inspection_intelligence', 'standard_applicability'],
+            } as InspectionCandidateStandard;
+          })
+          .filter((candidate): candidate is InspectionCandidateStandard => Boolean(candidate))
+      : [];
 
     const existing = [...(input.suggestedStandards || [])];
     const activeSeed = [...knownRecovered, ...existing];
@@ -130,7 +156,7 @@ export class InspectionCitationRecoveryService {
       return {
         suggestedStandards: [],
         supportingStandards: [],
-        needsMoreEvidenceStandards: suppressed,
+        needsMoreEvidenceStandards: [],
         excludedStandards: [...excluded, ...suppressed],
         decision: {
           outcome: 'controlled_condition',
@@ -143,8 +169,12 @@ export class InspectionCitationRecoveryService {
       };
     }
 
-    const supported = input.inspectionIntelligence.candidateStandards
-      .filter((candidate) => candidate.status === 'candidate_standard' && scopeAllows(candidate, input.scopes));
+    const supported = [
+      ...(input.inspectionIntelligence.candidateStandards || []),
+      ...applicabilityPromotedCandidates,
+    ]
+      .filter((candidate) => candidate.status === 'candidate_standard' && scopeAllows(candidate, input.scopes))
+      .filter((candidate, index, values) => values.findIndex((item) => normalizedCitation(item) === normalizedCitation(candidate)) === index);
     if (!supported.length) {
       const recoveredCount = knownRecovered.length;
       if (!input.observation) {
@@ -305,9 +335,11 @@ export class InspectionCitationRecoveryService {
 
     const combined = `${observation} ${classification} ${hazardCandidatesText} ${standardFamilyText} ${scopesText}`;
 
+    const hasExplicitMineScope =
+      /\bmsha_(?:mnm_surface|mnm_underground|coal_surface|coal_underground)\b/i.test(scopesText);
     const hasMineScope =
-      /\b(msha|mine|miner|mining|aggregate|quarry|pit|crusher|screen|haul road|stockpile)\b/i.test(combined) ||
-      /\b(msha|mine|mining)\b/i.test(scopesText);
+      hasExplicitMineScope ||
+      /\b(mine|miner|mining|aggregate|quarry|pit|crusher|screen|haul road|stockpile)\b/i.test(combined);
 
     const hasConstructionScope =
       /\b(construction|1926|jobsite|scaffold|excavation|roof|leading edge)\b/i.test(combined) ||
@@ -355,7 +387,7 @@ export class InspectionCitationRecoveryService {
       /\b(container|tank|drum|bottle|can|pail|jug|tote|bucket)\b[^.;]*\b(unlabeled|unlabelled|no label|missing label|unknown contents|unknown chemical)\b/i.test(combined);
 
     if (hasMobileEquipment && hasTrafficExposure && !isCoalMineContext) {
-      if (hasMineScope) {
+      if (hasExplicitMineScope) {
         recovered.push(
           this.makeRecoveredStandard(
             '30 CFR 56.9100',
@@ -363,7 +395,7 @@ export class InspectionCitationRecoveryService {
             'mobile equipment and pedestrian/traffic exposure in MSHA surface mine context',
           ),
         );
-      } else if (hasOshaGeneralScope) {
+      } else if (hasOshaGeneralScope || !hasMineScope) {
         recovered.push(
           this.makeRecoveredStandard(
             '29 CFR 1910.178',
@@ -386,7 +418,7 @@ export class InspectionCitationRecoveryService {
 
     const hasCylinderStorageEvidence =
       /\b(unsecured|not secured|stored|storage|missing.*cap|without.*cap|valve|restraint|chain|rack|cart|impact|walkway|traffic|upright)\b/i.test(combined) &&
-      /\b(oxygen|acetylene|argon|propane|compressed gas|gas)\b.*\bcylinders?\b/i.test(combined);
+      /\b(compressed gas|gas cylinder|gas cylinders|oxygen cylinder|oxygen cylinders|acetylene cylinder|acetylene cylinders|argon cylinder|argon cylinders|propane cylinder|propane cylinders|fuel gas cylinder|fuel gas cylinders)\b/i.test(combined);
 
     if (hasCylinderStorageEvidence && hasOshaGeneralScope) {
       recovered.push(

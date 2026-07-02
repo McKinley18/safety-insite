@@ -82,7 +82,6 @@ const HIDDEN_STANDARD_OUTPUT_FIELDS = new Set([
   // Keep report-facing fields such as standardsTraceability, standardsReasoning,
   // generatedActions, mechanismChain, risk, and correctiveActionReasoning.
   "applicabilityIntelligence",
-  "standardDecisions",
   "supplementalGuidance",
   "outputPolicy",
   "operationalReasoning",
