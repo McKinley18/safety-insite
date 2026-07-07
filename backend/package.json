@@ -18,6 +18,7 @@
     "test:hazlenz-understanding": "ts-node src/safescope-v2/tests/hazard-understanding-coverage-benchmark.ts",
     "test:hazlenz-authentic-reasoning": "ts-node src/safescope-v2/tests/hazlenz-authentic-reasoning-evaluation.ts",
     "test:hazlenz-field-gauntlet": "ts-node src/safescope-v2/tests/hazlenz-field-gauntlet.ts",
+    "test:hazlenz-authentic-gauntlet": "ts-node src/safescope-v2/tests/hazlenz-authentic-capability-gauntlet.ts",
     "test:safescope-operational": "ts-node src/safescope-v2/tests/golden-operational-reasoning-tests.ts",
     "test:safescope-domains": "ts-node src/safescope-v2/tests/golden-domain-intelligence-tests.ts",
     "test:hazlenz-core": "ts-node src/safescope-v2/tests/hazlenz-core-regression.ts",

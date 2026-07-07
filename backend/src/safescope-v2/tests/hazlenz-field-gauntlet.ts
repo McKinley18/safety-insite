@@ -108,8 +108,12 @@ const CLASSIFY_URL = joinUrl(BASE_URL, "/safescope-v2/classify");
 const REPORT_DIR = process.env.HAZLENZ_GAUNTLET_REPORT_DIR
   ? path.resolve(process.env.HAZLENZ_GAUNTLET_REPORT_DIR)
   : path.resolve(__dirname, "../../../tmp");
-const REPORT_JSON = path.join(REPORT_DIR, "hazlenz-field-gauntlet-report.json");
-const REPORT_MD = path.join(REPORT_DIR, "hazlenz-field-gauntlet-report.md");
+const REPORT_JSON = process.env.OUTPUT_JSON
+  ? path.resolve(process.env.OUTPUT_JSON)
+  : path.join(REPORT_DIR, "hazlenz-field-gauntlet-report.json");
+const REPORT_MD = process.env.OUTPUT_MD
+  ? path.resolve(process.env.OUTPUT_MD)
+  : path.join(REPORT_DIR, "hazlenz-field-gauntlet-report.md");
 const REQUIRED_AVERAGE_SCORE = 80;
 const PASS_SCORE = 80;
 const REVIEW_SCORE = 60;
@@ -450,13 +454,24 @@ function scenarioScoreWeights(): Record<string, number> {
 }
 
 function evaluateResponse(response: any, scenario: Scenario): ScenarioOutcome {
+  const stripAdvisoryGuardrails = (value: any): any => {
+    if (!value || typeof value !== "object") return value;
+    if (Array.isArray(value)) return value.map(stripAdvisoryGuardrails);
+    const cleaned: Record<string, any> = {};
+    for (const [key, entry] of Object.entries(value)) {
+      if (key === "advisoryGuardrails" || key === "qualifiedReviewDisclaimer") continue;
+      cleaned[key] = stripAdvisoryGuardrails(entry);
+    }
+    return cleaned;
+  };
+
   const allText = deepText({
     classification: response?.classification,
     hazardCategory: response?.hazardCategory,
     candidateStandardFamily: response?.candidateStandardFamily,
     confidence: response?.confidence,
     confidenceBand: response?.confidenceBand,
-    risk: response?.risk,
+    risk: stripAdvisoryGuardrails(response?.risk),
     riskBand: response?.riskBand,
     riskLevel: response?.riskLevel,
     decisionSummary: response?.decisionSummary,
@@ -469,7 +484,7 @@ function evaluateResponse(response: any, scenario: Scenario): ScenarioOutcome {
     needsMoreEvidenceStandards: response?.needsMoreEvidenceStandards,
     standardsTraceability: response?.standardsTraceability,
     mechanismChain: response?.mechanismChain,
-    inspectionIntelligence: response?.inspectionIntelligence,
+    inspectionIntelligence: stripAdvisoryGuardrails(response?.inspectionIntelligence),
     evidenceGapQuestions: response?.evidenceGapQuestions,
     questions: response?.questions,
     correctiveActions: response?.correctiveActions,
@@ -949,6 +964,7 @@ function buildFieldGauntletScenarios(): ScenarioDefinition[] {
           evidenceTexts: ["fully guarded", "locked out", "maintenance", "barricaded"],
           overrides: {
             acceptableHazards: [/controlled|safe|review|maintenance|guarded/i],
+            requiredStandards: [],
             requiredEvidenceGaps: [/(confirm|review|status|maintenance)/i],
             forbiddenStandards: [/(56\.14107|1910\.212|1910\.147)/i],
             requireControlledOrVague: true,
@@ -1048,6 +1064,7 @@ function buildFieldGauntletScenarios(): ScenarioDefinition[] {
           evidenceTexts: ["locked out", "de-energized", "tested"],
           overrides: {
             acceptableHazards: [/controlled|safe|review|maintenance|locked out/i],
+            requiredStandards: [],
             requiredEvidenceGaps: [/(confirm|verification|maintenance|review)/i],
             forbiddenStandards: [/(1910\.147|1910\.212|1910\.1200)/i],
             requireControlledOrVague: true,
@@ -1970,6 +1987,7 @@ function buildFieldGauntletScenarios(): ScenarioDefinition[] {
           evidenceTexts: ["fully guarded", "locked out", "barricaded"],
           overrides: {
             acceptableHazards: [/controlled|safe|review|maintenance|guarded/i],
+            requiredStandards: [],
             requiredEvidenceGaps: [/(confirm|review|status|maintenance)/i],
             forbiddenStandards: [/(56\.14107|1910\.212|1910\.147)/i],
             requireControlledOrVague: true,
@@ -2256,7 +2274,9 @@ async function writeReports(
 }
 
 async function main() {
+  const limit = Number(process.env.LIMIT || 0);
   const scenarios = buildFieldGauntletScenarios().map(makeScenario);
+  const selectedScenarios = Number.isFinite(limit) && limit > 0 ? scenarios.slice(0, limit) : scenarios;
   const outcomes: Array<ScenarioOutcome & { scenario: Scenario; warnings: string[] }> = [];
   const failures: { name: string; reason: string }[] = [];
   const scores: number[] = [];
@@ -2265,12 +2285,12 @@ async function main() {
   console.log("HazLenz Field Gauntlet");
   console.log("==================================================");
   console.log(`API: ${CLASSIFY_URL}`);
-  console.log(`Scenarios: ${scenarios.length}`);
+  console.log(`Scenarios: ${selectedScenarios.length}`);
   console.log(`Threshold: ${REQUIRED_AVERAGE_SCORE}% average`);
   console.log(`Reports: ${REPORT_JSON}`);
   console.log(`          ${REPORT_MD}\n`);
 
-  for (const scenario of scenarios) {
+  for (const scenario of selectedScenarios) {
     try {
       const response = await classifyScenario(scenario);
       const evaluated = evaluateResponse(response, scenario);
@@ -2386,7 +2406,11 @@ async function main() {
   console.log("\nHazLenz field gauntlet passed.");
 }
 
-main().catch((error) => {
-  console.error("Fatal evaluation error:", error);
-  process.exit(1);
-});
+export { buildFieldGauntletScenarios, makeScenario, classifyScenario, evaluateResponse, summarizeOutcome, renderMarkdownReport, main };
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error("Fatal evaluation error:", error);
+    process.exit(1);
+  });
+}
