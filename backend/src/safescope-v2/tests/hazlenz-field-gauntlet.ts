@@ -1400,7 +1400,7 @@ function buildFieldGauntletScenarios(): ScenarioDefinition[] {
           text: "A damaged forklift has a leaking hydraulic line and worn tires but remains in service.",
           evidenceTexts: ["damaged forklift", "leaking hydraulic line", "worn tires"],
           overrides: {
-            requiredStandards: [/1910\.178/i],
+            requiredStandards: [/1910\.178|56\.14100/i],
             notes: "Checks damaged PIT remaining in service.",
           },
         },

@@ -170,6 +170,7 @@ export class InspectionCitationRecoveryService {
     }
 
     const supported = [
+      ...knownRecovered,
       ...(input.inspectionIntelligence.candidateStandards || []),
       ...applicabilityPromotedCandidates,
     ]
@@ -278,6 +279,11 @@ export class InspectionCitationRecoveryService {
   }
 
   private makeRecoveredStandard(citation: string, title: string, reason: string) {
+    const jurisdiction = /^30 CFR/i.test(citation)
+      ? 'msha'
+      : /^29 CFR 1926/i.test(citation)
+        ? 'osha_construction'
+        : 'osha_general_industry';
     return {
       citation,
       title,
@@ -287,6 +293,7 @@ export class InspectionCitationRecoveryService {
       confidence: 0.9,
       status: 'candidate_standard',
       candidateStatus: 'candidate_standard',
+      jurisdiction,
       advisoryOnly: true,
       requiresQualifiedReview: true,
       matchingReasons: [reason],
@@ -358,6 +365,9 @@ export class InspectionCitationRecoveryService {
       /mobile equipment|traffic/i.test(classification) ||
       /mobile_equipment|traffic/i.test(standardFamilyText);
 
+    const hasForkliftDefect =
+      /\bforklift\b.*\b(damaged|defect(?:ive)?|worn|leaking|out of service|in service|unsafe operating condition)\b/i.test(combined);
+
     const hasTrafficExposure =
       /\b(pedestrian|walkway|aisle|travelway|separation|traffic|spotter|berm|blind corner|same aisle|right of way|operating area|haul road|roadway)\b/i.test(combined) ||
       /pedestrian|traffic|route|separation/i.test(hazardCandidatesText);
@@ -386,8 +396,37 @@ export class InspectionCitationRecoveryService {
       /\b(unlabeled|unlabelled|no label|missing label|unknown contents|unknown chemical)\b[^.;]*\b(container|tank|drum|bottle|can|pail|jug|tote|bucket)\b/i.test(combined) ||
       /\b(container|tank|drum|bottle|can|pail|jug|tote|bucket)\b[^.;]*\b(unlabeled|unlabelled|no label|missing label|unknown contents|unknown chemical)\b/i.test(combined);
 
+    const hasStoredHydraulicEnergy =
+      /\b(hydraulic|pneumatic|stored pressure|stored energy|ram|cylinder)\b.*\b(drop|fall|release|relieved|not relieved|bleed|bled|pressure)\b/i.test(combined) ||
+      /\b(stored pressure|stored energy)\b.*\b(hydraulic|pneumatic|ram|cylinder)\b/i.test(combined);
+
+    const hasOverheadUtilityEquipmentExposure =
+      /\b(overhead utility|overhead power|power line|utility line|energized line)\b.*\b(excavation|excavator|boom|equipment|contact|route)\b/i.test(combined) ||
+      /\b(excavator|boom|equipment)\b.*\b(overhead utility|overhead power|power line|utility line|energized line|contact)\b/i.test(combined);
+
+    const hasSolventVentilationExposure =
+      /\b(solvent|degreaser|parts cleaner|chemical vapor|chemical vapors|odor control)\b.*\b(ventilation|small room|enclosed room|poor ventilation|no ventilation|without ventilation)\b/i.test(combined);
+
+    const hasAsbestosLeadDemolitionExposure =
+      /\b(asbestos|lead)\b.*\b(insulation|dust|demolition|demo|renovation|prep|suspect|suspicion)\b/i.test(combined) ||
+      /\b(old insulation|paint chips|lead dust)\b/i.test(combined);
+
+    const hasBatteryAcidSpillExposure =
+      /\b(battery acid|acid|corrosive)\b.*\b(spill|loose cap|caps loose|leak|splash|cart|staged|moved)\b/i.test(combined);
+
+    const hasMshaConveyorGuardingExposure =
+      /\b(mine|miner|miners|msha)\b.*\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|unguarded|no guard|guard missing|moving belt)\b/i.test(combined) ||
+      /\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|unguarded|no guard|guard missing|moving belt)\b.*\b(mine|miner|miners|msha)\b/i.test(combined);
+
+    const hasWorkplaceExamDocumentationIssue =
+      /\b(workplace exam|workplace examination|exam record|examination record)\b.*\b(not document|not documented|did not document|uncorrected|remained uncorrected|hazard)\b/i.test(combined);
+
+    const hasCrusherPlatformEdgeExposure =
+      /\b(crusher|screen|plant)\b.*\b(platform|catwalk|walkway|edge)\b.*\b(no barrier|missing barrier|unguarded|no guardrail|missing guardrail|fall hazard)\b/i.test(combined) ||
+      /\b(platform|catwalk|walkway|edge)\b.*\b(crusher|screen|plant)\b.*\b(no barrier|missing barrier|unguarded|no guardrail|missing guardrail|fall hazard)\b/i.test(combined);
+
     if (hasMobileEquipment && hasTrafficExposure && !isCoalMineContext) {
-      if (hasExplicitMineScope) {
+      if (hasMineScope) {
         recovered.push(
           this.makeRecoveredStandard(
             '30 CFR 56.9100',
@@ -404,6 +443,126 @@ export class InspectionCitationRecoveryService {
           ),
         );
       }
+    }
+
+    if (hasForkliftDefect) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.178',
+          'Powered industrial trucks',
+          'forklift defect or degraded condition indicates powered industrial truck condition review if OSHA PIT jurisdiction applies',
+        ),
+      );
+    }
+
+    if (hasStoredHydraulicEnergy) {
+      if (hasMineScope) {
+        recovered.push(
+          this.makeRecoveredStandard(
+            '30 CFR 56.12016',
+            'Work on electrically powered equipment; deenergizing and lockout',
+            'stored hydraulic or pneumatic energy release exposure in MSHA context',
+          ),
+        );
+      } else if (hasOshaGeneralScope) {
+        recovered.push(
+          this.makeRecoveredStandard(
+            '29 CFR 1910.147',
+            'Control of hazardous energy',
+            'stored hydraulic or pneumatic energy release exposure in OSHA general industry context',
+          ),
+        );
+      }
+    }
+
+    if (hasOverheadUtilityEquipmentExposure && hasConstructionScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1926.1410',
+          'Power line safety for equipment operations',
+          'excavation equipment or boom exposure to overhead utility lines',
+        ),
+        this.makeRecoveredStandard(
+          '29 CFR 1926.651',
+          'Specific excavation requirements',
+          'overhead utility concern associated with excavation work',
+        ),
+      );
+    }
+
+    if (hasSolventVentilationExposure && hasOshaGeneralScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.1000',
+          'Air contaminants',
+          'solvent vapor exposure without adequate ventilation',
+        ),
+        this.makeRecoveredStandard(
+          '29 CFR 1910.1200',
+          'Hazard communication',
+          'solvent chemical exposure requiring hazard communication review',
+        ),
+      );
+    }
+
+    if (hasAsbestosLeadDemolitionExposure && hasConstructionScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1926.1101',
+          'Asbestos',
+          'suspected asbestos exposure during demolition or renovation preparation',
+        ),
+        this.makeRecoveredStandard(
+          '29 CFR 1926.62',
+          'Lead',
+          'suspected lead exposure during demolition or renovation preparation',
+        ),
+      );
+    }
+
+    if (hasBatteryAcidSpillExposure && hasOshaGeneralScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.1200',
+          'Hazard communication',
+          'battery acid spill or corrosive chemical exposure potential',
+        ),
+        this.makeRecoveredStandard(
+          '29 CFR 1910.151',
+          'Medical services and first aid',
+          'corrosive battery acid splash potential requiring emergency washing review',
+        ),
+      );
+    }
+
+    if (hasMshaConveyorGuardingExposure && hasMineScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '30 CFR 56.14107(a)',
+          'Moving machine parts guarding',
+          'MSHA conveyor tail pulley or moving belt guarding exposure',
+        ),
+      );
+    }
+
+    if (hasWorkplaceExamDocumentationIssue && hasMineScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '30 CFR 56.18002(a)',
+          'Examination of working places',
+          'MSHA workplace examination documentation or uncorrected hazard issue',
+        ),
+      );
+    }
+
+    if (hasCrusherPlatformEdgeExposure && hasMineScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '30 CFR 56.11012',
+          'Protection for openings and elevated platforms',
+          'crusher platform or catwalk edge lacks barrier or guardrail protection',
+        ),
+      );
     }
 
     if (hasContainerIdentity && hasLabelProblem) {

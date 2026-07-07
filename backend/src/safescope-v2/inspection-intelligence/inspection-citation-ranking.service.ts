@@ -94,21 +94,99 @@ export class InspectionCitationRankingService {
       ''
     ).toLowerCase();
     const hasExplicitMineContext = /\b(mine|mine site|quarry|crusher|stockpile|haul road|pit|surface mine|underground mine|miner|mill)\b/i.test(observation);
+    const hasMineScopeContext = (input.scopes || []).some((scope) => /msha|mine/i.test(String(scope || '')));
     const needsMoreEvidencePattern = familyCoherencePattern(primaryHazardFamily, hasExplicitMineContext);
     const hasSpillReleaseEvidence = /\b(used[- ]oil|waste[- ]oil|oily waste|oily residue|oil spill|spill|spilled|leak|leaking|release|residue|residual)\b/i.test(observation);
     const hasSurfaceOrDrainPathway = /\b(floor|walkway|aisle|travelway|walking surface|pedestrian|maintenance area|maintenance bay|shop floor|work area|drain|floor drain|storm drain|soil|water)\b/i.test(observation);
     const hasHazComIdentityEvidence = /\b(unlabeled|no label|missing label|unknown chemical|chemical identity|sds|hazcom|hazard communication|secondary container)\b/i.test(observation);
+    const hasChemicalExposureEvidence =
+      /\b(solvent|degreaser|parts cleaner|chemical vapor|chemical vapors|battery acid|corrosive|acid)\b/i.test(observation) &&
+      /\b(ventilation|small room|enclosed room|poor ventilation|no ventilation|without ventilation|spill|loose cap|caps loose|leak|splash|cart|staged|moved)\b/i.test(observation);
     const hasSpillReleasePathway = hasSpillReleaseEvidence && hasSurfaceOrDrainPathway;
-    const hasConfinedSpaceEvidence =
+    const hasConfinedSpaceContext =
       /\b(confined space|permit space|manhole|vault|pit)\b/i.test(observation) ||
       (/\b(tank|vessel)\b/i.test(observation) && /\b(entry|enter|inside|permit|required|atmosphere|oxygen deficiency|oxygen deficient|toxic atmosphere)\b/i.test(observation));
     const hasServicingEnergyEvidence =
-      /\b(lockout|loto|tagout|unexpected startup|hazardous energy|energy isolation|de-energized|isolated)\b/i.test(observation) ||
+      /\b(lockout|loto|tagout|unexpected startup|hazardous energy|energy isolation|de-energized|isolated|stored pressure|stored energy|power removed|not relieved)\b/i.test(observation) ||
       (/\b(maintenance|servicing|cleaning machine|clearing jam|unjamming)\b/i.test(observation) && /\b(machine|equipment|conveyor|motor|circuit|press|pump|energized|powered)\b/i.test(observation));
     const hasHornEvidence = /\b(horn|horns|backup alarm|backup alarms|audible warning)\b/i.test(observation);
     const hasHotWorkEvidence = /\b(hot work|welding|cutting|brazing|torch|fuel gas)\b/i.test(observation);
-    const hasExplicitCompressedGasEvidence = /\b(compressed gas|gas cylinder|gas cylinders|oxygen cylinder|oxygen cylinders|acetylene cylinder|acetylene cylinders|propane cylinder|argon cylinder|fuel gas cylinder|cylinder|cylinders)\b/i.test(observation);
+    const hasNegativeCylinderContext = /\b(no cylinder|no cylinders|without cylinder|without cylinders|not a cylinder|no compressed gas|not compressed gas)\b/i.test(observation);
+    const hasExplicitCompressedGasEvidence = !hasNegativeCylinderContext && /\b(compressed gas|gas cylinder|gas cylinders|oxygen cylinder|oxygen cylinders|acetylene cylinder|acetylene cylinders|propane cylinder|argon cylinder|fuel gas cylinder|cylinder cap|valve cap|regulator)\b/i.test(observation);
     const hasGasOdorOnlyEvidence = /\b(smells like gas|gas smell|gas odor|gas leak|gas line|natural gas|heater cycles|heater cycle|gas appliance|furnace|boiler)\b/i.test(observation) && !hasExplicitCompressedGasEvidence;
+    const hasElectricalEvidence =
+      /\b(open breaker slot|missing cover|open electrical panel|blocked disconnect|damaged cord|frayed cord|exposed conductor|exposed conductors|live parts?|arc flash|electrical|breaker|disconnect|panel|wiring|cord|cable|GFCI|ground[- ]fault)\b/i.test(
+        observation,
+      );
+    const hasMobileEvidence =
+      /\b(forklift|loader|haul truck|truck|vehicle|mobile equipment|traffic|pedestrian|backup alarm|horn|spotter|blind corner|elevated forks|raised forks|forks elevated|load elevated)\b/i.test(
+        observation,
+      );
+    const hasFallEvidence =
+      /\b(fall|roof|edge|platform|ladder|scaffold|guardrail|handrail|opening|hole|mezzanine|elevated)\b/i.test(
+        observation,
+      );
+    const hasNoiseEvidence = /\b(noise|loud|hearing|dosimetry|crusher noise|grinder noise|jackhammer noise)\b/i.test(observation);
+    const hasSilicaEvidence = /\b(silica|respirable dust|dust cloud|crusher dust|aggregate dust|grinder dust)\b/i.test(observation);
+    const hasConfinedSpaceEntryEvidence =
+      /\b(confined space|permit space|permit[- ]required|manhole|vault|pit|tank|vessel)\b/i.test(observation) &&
+      /\b(entry|enter|inside|atmosphere|oxygen deficient|oxygen deficiency|toxic atmosphere|attendant|ventilation|rescue)\b/i.test(
+        observation,
+      );
+    const hasConfinedSpaceEvidence = hasConfinedSpaceContext || hasConfinedSpaceEntryEvidence;
+    const hasFireEvidence =
+      /\b(hot work|welding|cutting|brazing|torch|combustible|flammable|blocked extinguisher|fire extinguisher|exit|egress|eyewash|gas odor|gas leak|natural gas)\b/i.test(
+        observation,
+      );
+    const hasExplicitControlEvidence =
+      /\b(guarded|guard installed|guard in place|locked out|de-energized|deenergized|safe condition|controlled|not exposed|no access|protected)\b/i.test(
+        observation,
+      );
+    const hasDeficiencyEvidence =
+      /\b(missing|removed|unguarded|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|blocked|obstructed|leaking|spill|spilled|residue|clutter|uncovered|unprotected|uneven|broken)\b/i.test(
+        observation,
+      );
+
+    const shouldSuppressCandidate = (citation: string) => {
+      if (!citation) return '';
+      if (/(1910\.101|1926\.350|(?:56|57)\.1600[56])/i.test(citation) && !hasExplicitCompressedGasEvidence) {
+        return 'Compressed gas / cylinder standards require explicit cylinder evidence.';
+      }
+      if (/(1910\.147|(?:56|57)\.12016|(?:56|57)\.14105)/i.test(citation) && !hasServicingEnergyEvidence) {
+        return 'Hazardous-energy standards require servicing, isolation, or stored-energy evidence.';
+      }
+      if (/(1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|30 CFR 56\.9200|30 CFR 56\.9300)/i.test(citation) && !hasMobileEvidence) {
+        return 'Mobile-equipment standards require forklifts, loaders, haul trucks, or traffic exposure evidence.';
+      }
+      if (/(1910\.28|1910\.29|1926\.451|1926\.502|1926\.503|1926\.454)/i.test(citation) && !hasFallEvidence) {
+        return 'Fall-protection standards require elevated-work or opening exposure evidence.';
+      }
+      if (/(1910\.303|1910\.304|1910\.305|1910\.334|1926\.404|1926\.405|(?:56|57)\.12013|(?:56|57)\.12032)/i.test(citation) && !hasElectricalEvidence) {
+        return 'Electrical standards require explicit electrical defect or exposure evidence.';
+      }
+      if (/(1910\.1200|1926\.59|47\.)/i.test(citation) && !(hasHazComIdentityEvidence || hasSpillReleasePathway || hasChemicalExposureEvidence)) {
+        return 'HazCom standards require container identity, labeling, or spill/release evidence.';
+      }
+      if (/(1910\.95|1926\.52|62\.110)/i.test(citation) && !hasNoiseEvidence) {
+        return 'Noise standards require noise or hearing-conservation evidence.';
+      }
+      if (/(1910\.1053|1926\.1153|56\.500[25]|57\.500[25])/i.test(citation) && !hasSilicaEvidence) {
+        return 'Silica standards require respirable dust or dusty-task evidence.';
+      }
+      if (/(1910\.146|1926\.1203|(?:56|57)\.18001)/i.test(citation) && !hasConfinedSpaceEvidence) {
+        return 'Confined-space standards require entry, permit-space, or atmosphere evidence.';
+      }
+      if (/(1910\.252|1910\.106|1910\.157|1926\.352|(?:56|57)\.46)/i.test(citation) && !hasFireEvidence) {
+        return 'Fire and hot-work standards require ignition, combustibles, extinguisher, or emergency-access evidence.';
+      }
+      if (/(1910\.212|1910\.219|(?:56|57)\.14107|1926\.300)/i.test(citation) && hasExplicitControlEvidence && !hasDeficiencyEvidence) {
+        return 'Guarded or controlled conditions should not be promoted as active machine-guarding deficiencies.';
+      }
+      if (/(1910\.147|(?:56|57)\.12016)/i.test(citation) && hasExplicitControlEvidence && !hasDeficiencyEvidence) {
+        return 'Locked-out or de-energized conditions should not be promoted as active LOTO deficiencies.';
+      }
+      return '';
+    };
     const directCandidates = input.inspectionIntelligence.candidateStandards;
     const directRanks = new Map(directCandidates.map((candidate, index) => [citationKey(candidate), index]));
     const ranked = input.suggestedStandards.map((candidate) => {
@@ -126,6 +204,13 @@ export class InspectionCitationRankingService {
         reasons.push(directRank === 0
           ? 'Direct inspection candidate for the primary observed condition and failed control.'
           : 'Inspection-specific candidate for a supported secondary hazard mechanism.');
+      }
+
+      const suppressionReason = shouldSuppressCandidate(citation);
+      if (suppressionReason) {
+        score -= 500;
+        penalties.push(suppressionReason);
+        exclude = true;
       }
 
       if (scopeFit(citation, input.scopes)) {
@@ -311,7 +396,7 @@ export class InspectionCitationRankingService {
           exclude = true;
         }
         if (/30 CFR 56\.9100(?:\(a\))?/i.test(citation)) {
-          if (!hasExplicitMineContext) {
+          if (!(hasExplicitMineContext || hasMineScopeContext)) {
             score -= 260;
             penalties.push('MSHA traffic citation requires explicit mine-context evidence.');
             exclude = true;
@@ -479,7 +564,8 @@ export class InspectionCitationRankingService {
       (
         !needsMoreEvidencePattern ||
         needsMoreEvidencePattern.test(`${candidateText(candidate)} ${citationOf(candidate)}`)
-      ),
+      ) &&
+      !shouldSuppressCandidate(citationOf(candidate)),
     );
     const hardExcluded = input.excludedStandards.filter((candidate) => !priorNeedsMoreEvidence.includes(candidate));
 
@@ -513,13 +599,29 @@ export class InspectionCitationRankingService {
     direct(/\b(open|open container|uncovered|leaking|spill(?:ed)?|release|residue|used oil|waste oil|oily waste)\b.*\b(floor|walkway|aisle|travelway|pedestrian|drain|maintenance area|maintenance bay|shop floor|work area)\b|\b(floor|walkway|aisle|travelway|pedestrian|drain|maintenance area|maintenance bay|shop floor|work area)\b.*\b(open|open container|uncovered|leaking|spill(?:ed)?|release|residue|used oil|waste oil|oily waste)\b/, /1910\.22|1926\.25|(?:56|57)\.(?:20003|4102)/, 'Direct match: spill or release contaminating a walking surface or release pathway.');
     direct(/\b(wet|oil|spill|slippery)\b.*\b(floor|walkway|aisle)\b/, /1910\.22|1926\.25|(?:56|57)\.20003/, 'Direct match: walking-working surface contamination.');
     direct(/\b(floor hole|floor opening|open hole|uncovered opening)\b/, /1910\.(?:28|29)|1926\.50[12]|(?:56|57)\.11012/, 'Direct match: floor-opening cover or guard protection.');
+    direct(/\b(damaged stair tread|damaged stairs|uneven riser|broken stair|stair tread)\b/i, /1910\.22\(a\)\(1\)|1910\.23|1926\.25/i, 'Direct match: damaged stair tread or uneven riser.');
+    direct(/\b(ladder used incorrectly|improper ladder setup|ladder on muddy base|short extension|unsafe ladder angle)\b/i, /1926\.1053|1910\.23/i, 'Direct match: improper ladder setup or use.');
     direct(/\b(platform|edge)\b.*\b(without|missing|no|unguarded)\b.*\b(guardrail|fall protection|fall arrest)\b/, /1910\.28|1926\.501|(?:56|57)\.15005/, 'Direct match: elevated edge/platform fall protection.');
     direct(/\b(scaffold|scaffolding|scaffold platform)\b.*\b(without|missing|no|unguarded|open)\b.*\b(guardrail|toprail|midrail|plank|toe board|toeboard|fall protection)/, /1926\.451|1926\.502|1926\.503|1926\.454/, 'Direct match: scaffold-specific guardrail or platform protection.');
     direct(/\b(crusher|grinder|jackhammer|saw|noise exposure|hearing conservation)\b.*\b(noisy|loud|high noise|without hearing protection|not measured|unknown)/, /1910\.95|1926\.52|30 CFR 62\.110/, 'Direct match: occupational noise exposure and hearing conservation.');
     direct(/\b(silica|respirable dust|crusher dust|aggregate dust|grinder dust)\b.*\b(exposure|dust|sampling|not sampled|no sampling|unknown duration)/, /1910\.1053|1926\.1153|30 CFR 56\.500[25]|30 CFR 57\.500[25]/, 'Direct match: respirable crystalline silica or dusty mineral exposure.');
     direct(/\b(hot work|welding|cutting|brazing|torch)\b.*\b(combustible|fire watch|permit|spark|ignition|nearby)/, /1910\.252|1926\.352|(?:56|57)\.46/, 'Direct match: hot work with combustible ignition concern.');
+    direct(/\b(blocked|obstructed|storage|pallets?)\b.*\b(disconnect|panel|switchboard)\b|\b(disconnect|panel|switchboard)\b.*\b(blocked|obstructed|clearance)\b/i, /1910\.303\(g\)\(1\)|1926\.403\(i\)\(1\)|(?:56|57)\.12004/i, 'Direct match: electrical working space or disconnect access obstruction.');
+    direct(/\b(missing|no|without)\b.*\b(GFCI|ground[- ]fault)\b|\b(temporary power|temporary wiring|construction site)\b.*\b(GFCI|ground[- ]fault)\b/i, /1926\.404\(b\)\(1\)\(ii\)|1910\.303\(b\)\(1\)|(?:56|57)\.12013/i, 'Direct match: temporary power GFCI or ground-fault protection.');
     direct(/\b(damaged|broken|defective)\b.*\bladder\b|\bladder\b.*\b(damaged|broken|defective)\b/, /1910\.23|1926\.1053|(?:56|57)\.11011/, 'Direct match: ladder condition and continued use.');
     direct(/\b(unlabeled|no label|missing label)\b.*\b(chemical|container|drum|bottle)\b/, /1910\.1200|1926\.59/, 'Direct match: workplace chemical-container labeling.');
+    direct(/\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b.*\b(elevated forks|raised forks|forks elevated|load elevated)\b/i, /1910\.178|1926\.602|(?:56|57)\.9100/i, 'Direct match: elevated forks during travel.');
+    direct(/\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle|loader|haul truck)\b.*\b(damaged|defect(?:ive)?|worn|leaking|out of service|in service)\b/i, /1910\.178|1926\.602|(?:56|57)\.(?:9100|14100)/i, 'Direct match: mobile equipment defect or degraded condition.');
+    direct(/\b(backup alarm|audible warning|reverse alarm)\b.*\b(not working|inoperative|failed|missing)\b/i, /1910\.178|1926\.602|(?:56|57)\.(?:9100|14100)/i, 'Direct match: backup alarm or audible warning failure.');
+
+    direct(/\b(hydraulic|pneumatic|stored pressure|stored energy|ram|cylinder)\b.*\b(drop|fall|release|relieved|not relieved|bleed|bled|pressure)\b|\b(stored pressure|stored energy)\b.*\b(hydraulic|pneumatic|ram|cylinder)\b/i, /1910\.147|(?:56|57)\.12016|(?:56|57)\.14105/i, 'Direct match: stored hydraulic or pneumatic energy release exposure.');
+    direct(/\b(overhead utility|overhead power|power line|utility line|energized line)\b.*\b(excavation|excavator|boom|equipment|contact|route)\b|\b(excavator|boom|equipment)\b.*\b(overhead utility|overhead power|power line|utility line|energized line|contact)\b/i, /1926\.1410|1926\.651|1926\.600|1926\.602/i, 'Direct match: excavation equipment exposure to overhead utility lines.');
+    direct(/\b(solvent|degreaser|parts cleaner|chemical vapor|chemical vapors|odor control)\b.*\b(ventilation|small room|enclosed room|poor ventilation|no ventilation|without ventilation)\b/i, /1910\.1000|1910\.1200|1910\.94/i, 'Direct match: solvent vapor exposure without adequate ventilation.');
+    direct(/\b(asbestos|lead)\b.*\b(insulation|dust|demolition|demo|renovation|prep|suspect|suspicion)\b|\b(old insulation|paint chips|lead dust)\b/i, /1926\.1101|1926\.62|1910\.1001|1910\.1025/i, 'Direct match: suspected asbestos or lead exposure during construction or demolition prep.');
+    direct(/\b(battery acid|acid|corrosive)\b.*\b(spill|loose cap|caps loose|leak|splash|cart|staged|moved)\b/i, /1910\.1200|1910\.151|1910\.132/i, 'Direct match: corrosive chemical spill or splash potential.');
+    direct(/\b(mine|miner|miners|msha)\b.*\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|unguarded|no guard|guard missing|moving belt)\b|\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|unguarded|no guard|guard missing|moving belt)\b.*\b(mine|miner|miners|msha)\b/i, /(?:56|57)\.14107|(?:56|57)\.12016/i, 'Direct match: MSHA conveyor guarding at moving machine parts.');
+    direct(/\b(workplace exam|workplace examination|exam record|examination record)\b.*\b(not document|not documented|did not document|uncorrected|remained uncorrected|hazard)\b/i, /(?:56|57)\.18002/i, 'Direct match: MSHA workplace examination documentation or correction issue.');
+    direct(/\b(crusher|screen|plant)\b.*\b(platform|catwalk|walkway|edge)\b.*\b(no barrier|missing barrier|unguarded|no guardrail|missing guardrail|fall hazard)\b|\b(platform|catwalk|walkway|edge)\b.*\b(crusher|screen|plant)\b.*\b(no barrier|missing barrier|unguarded|no guardrail|missing guardrail|fall hazard)\b/i, /(?:56|57)\.11012|1910\.28|1926\.501/i, 'Direct match: platform/catwalk edge protection or guardrail issue.');
     direct(/\b(crusher|screen|drill)\b.*\bnoise\b|\bnoise exposure\b.*\bcrusher\b/, /30 CFR 62\./, 'Direct match: mining occupational-noise exposure and monitoring.');
 
     const hasMobileTerm = /\b(loader|forklift|truck|vehicle|mobile equipment|haulage|traffic|haul road|stockpile|blind corner)\b/i.test(observation);
