@@ -61,6 +61,7 @@ export type SafeScopeReasoningConfidence = 'low' | 'moderate' | 'high';
 
 export type SafeScopeReasoningRequest = {
   hazardObservation: string;
+  scopes?: string[];
   siteType?: string;
   taskContext?: string;
   industryContext?: string;
