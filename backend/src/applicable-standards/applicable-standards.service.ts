@@ -1734,9 +1734,22 @@ export class ApplicableStandardsService {
           );
         if (isForkliftSeatbeltText) {
           const isPITCitation = /1910\.178|56\.9100|56\.9200/i.test(citation);
+          const hasTrafficExposure = /\b(pedestrian|traffic|blind corner|right of way|backing|route|same aisle|same route|haul road|intersection|spotter)\b/i.test(observation);
+          const hasPITDefectEvidence = /\b(damaged|defective|leaking|leak|worn|unsafe|out of service|pre[- ]?op|pre[- ]?operational|remains in service|in service)\b/i.test(observation);
           if (isPITCitation) {
-            score += 100;
-            matchingReasons.push("boost: forklift, seatbelt, or PIT term matched");
+            if (hasTrafficExposure) {
+              score += 100;
+              matchingReasons.push("boost: forklift, seatbelt, or PIT term matched with traffic exposure");
+            } else if (/1910\.178/.test(citation) && hasPITDefectEvidence) {
+              score += 100;
+              matchingReasons.push("boost: defective powered industrial truck remaining in service");
+            } else if (/56\.9100/.test(citation)) {
+              score -= 140;
+              matchingReasons.push("negative: MSHA traffic-control citation requires explicit pedestrian or route-conflict evidence");
+            } else {
+              score += 30;
+              matchingReasons.push("boost: forklift, seatbelt, or PIT term matched");
+            }
           }
           if (isMachineGuardingCitation) {
             score -= 100;

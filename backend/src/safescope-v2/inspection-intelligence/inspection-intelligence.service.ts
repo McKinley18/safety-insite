@@ -324,6 +324,7 @@ export class InspectionIntelligenceService {
     observation: string;
     rawObservation?: string;
     jurisdiction: SafeScopeJurisdiction;
+    scopes?: string[];
     primaryDomain: SafeScopeReasoningDomain;
     primaryCitation?: string;
   }): InspectionIntelligenceResult {
@@ -333,7 +334,10 @@ export class InspectionIntelligenceService {
       input.jurisdiction
     );
     const conditionAssessment = this.conditionAssessmentService.assess(text);
-    const miningContext = this.mineContextService.assess(text);
+    const miningContext = this.mineContextService.assess(text, {
+      jurisdiction: input.jurisdiction,
+      scopes: input.scopes,
+    });
     const allowApplicabilityCandidates =
       conditionAssessment.citationEligible &&
       conditionAssessment.status !== 'controlled' &&

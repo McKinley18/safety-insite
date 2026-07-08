@@ -97,6 +97,15 @@ export class CausalRiskService {
       return 'slip_trip_fall_same_level';
     }
 
+    const hasMobileEquipmentSignal =
+      includesAny(text, ['forklift', 'pallet truck', 'powered industrial truck', 'industrial truck', 'loader', 'haul truck', 'mobile equipment']);
+    const hasMobileExposureSignal =
+      includesAny(text, ['pedestrian', 'pedestrians', 'worker on foot', 'travel path', 'traffic', 'blind spot', 'blind corner', 'elevated forks', 'forks raised']);
+
+    if (hasMobileEquipmentSignal && hasMobileExposureSignal) {
+      return 'struck_by_mobile_equipment';
+    }
+
     if (structuredMechanism !== 'unknown') return structuredMechanism;
 
     if (includesAny(text, ['not locked out', 'lockout', 'energy isolation', 'start unexpectedly', 'unexpected startup'])) {
@@ -157,13 +166,13 @@ export class CausalRiskService {
   private inferEnergySource(text: string, u: any, mechanism: string): string {
     if (mechanism === 'slip_trip_fall_same_level') return 'gravity';
 
-    const structured = firstKnown(u.energy?.primaryEnergySource);
-    if (structured !== 'unknown') return structured;
-
+    if (mechanism.includes('mobile_equipment')) return 'mobile_equipment_kinetic';
     if (mechanism.includes('fall') || mechanism.includes('suspended') || mechanism.includes('cave_in') || mechanism.includes('slip_trip')) return 'gravity';
     if (mechanism.includes('unexpected_startup') || mechanism.includes('rotating_equipment')) return 'mechanical_motion';
     if (mechanism.includes('electrical')) return 'electrical';
-    if (mechanism.includes('mobile_equipment')) return 'mobile_equipment_kinetic';
+
+    const structured = firstKnown(u.energy?.primaryEnergySource);
+    if (structured !== 'unknown') return structured;
     if (mechanism.includes('chemical')) return 'chemical';
     if (mechanism.includes('atmospheric')) return 'atmospheric_hazard';
     if (mechanism.includes('pressurized') || mechanism.includes('pressure') || mechanism.includes('cylinder') || mechanism.includes('whipping')) return 'stored_pressure';

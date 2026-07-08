@@ -2018,7 +2018,7 @@ export class SafescopeV2Service {
               shardKeys: knowledgeShardSummary.shardKeys,
               citations: knowledgeShardSummary.citations,
               evidenceNeeded: knowledgeShardSummary.evidenceNeeded,
-              correctiveActionPatterns: isVague ? [] : knowledgeShardSummary.correctiveActionPatterns,
+              correctiveActionPatterns: [],
             },
             advisoryOnly: true,
             requiresQualifiedReview: true,
@@ -2509,7 +2509,7 @@ export class SafescopeV2Service {
             source: "safescope_v2_enriched_corrective_action",
             baseActionEngineSuggestion: primary.originalSuggestion || null,
             dca,
-            correctiveActionReasoning,
+            correctiveActionReasoning: this.sanitizeCorrectiveActionReasoningForOutput(correctiveActionReasoning, scenarioIntelligence),
             riskReasoning,
             scenarioIntelligence,
             evidenceGapQuestions,
@@ -2529,6 +2529,50 @@ export class SafescopeV2Service {
       enhancedPrimary,
       ...base.slice(1),
     ];
+  }
+
+  private sanitizeCorrectiveActionReasoningForOutput(correctiveActionReasoning: any, scenarioIntelligence: any) {
+    if (!correctiveActionReasoning || typeof correctiveActionReasoning !== "object") {
+      return correctiveActionReasoning;
+    }
+
+    const mechanism = String(
+      scenarioIntelligence?.mechanismOfInjury ||
+      correctiveActionReasoning?.mechanismOfInjury ||
+      ""
+    ).toLowerCase();
+
+    const hazardDomain = String(
+      scenarioIntelligence?.hazardCategory ||
+      correctiveActionReasoning?.hazardDomain ||
+      ""
+    ).toLowerCase();
+
+    const isMobileEquipment =
+      mechanism.includes("mobile_equipment") ||
+      hazardDomain.includes("mobile_equipment");
+
+    if (!isMobileEquipment) {
+      return correctiveActionReasoning;
+    }
+
+    const mobileNarratives = {
+      immediateActionNarrative:
+        "Separate pedestrians from the travel path and stop movement until forks, visibility, and traffic controls are verified.",
+      interimControlNarrative:
+        "Use spotters, barriers, marked routes, and controlled travel paths until pedestrian exposure is resolved.",
+      permanentCorrectionNarrative:
+        "Implement traffic-management controls, lower forks to the travel position, and verify route separation, visibility, warning devices, and operator communication before normal travel resumes.",
+      administrativeFollowUpNarrative:
+        "Review traffic rules, pedestrian routes, and operator training for the equipment and travel area.",
+      verificationNarrative:
+        "Verify traffic-control layout, pedestrian separation, fork travel position, visibility, and worker briefing before closure.",
+    };
+
+    return {
+      ...correctiveActionReasoning,
+      ...mobileNarratives,
+    };
   }
 
   private normalizeScopes(scopes?: string[], text?: string) {

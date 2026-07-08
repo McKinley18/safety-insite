@@ -184,6 +184,24 @@ export class DefensibleCorrectiveActionService {
       );
     }
 
+    const hasMobileEquipmentText =
+      /\b(forklift|pallet truck|powered industrial truck|industrial truck|mobile equipment|haul truck|loader)\b/i.test(text) ||
+      /\b(elevated forks|raised forks|forks raised|traveling with elevated forks|pedestrian|pedestrians|traffic route|travel path|blind spot|backup alarm)\b/i.test(text);
+
+    if (mechanism === 'struck_by_mobile_equipment' || hasMobileEquipmentText) {
+      return this.profile(
+        'struck_by_mobile_equipment',
+        failedControl || 'traffic separation, visibility, signaling, or pedestrian control',
+        exposure,
+        priority,
+        'Separate pedestrians from mobile equipment exposure',
+        'Keep pedestrians out of the travel path or blind spot until traffic controls are confirmed.',
+        'Use spotters, temporary barricades, communication, and controlled travel paths as interim controls.',
+        'Implement durable traffic management controls such as pedestrian routes, exclusion zones, visibility controls, alarms, signage, and operator/pedestrian communication expectations.',
+        'Verify traffic-control layout, blind-spot controls, signage, route separation, and worker briefing.'
+      );
+    }
+
     if (mechanism === 'fall_from_height' || text.includes('floor hole') || text.includes('open edge')) {
       return this.profile(
         'fall_from_height',
@@ -265,20 +283,6 @@ export class DefensibleCorrectiveActionService {
         'Use temporary restraints, barricades, and pressure-control precautions until permanent correction is made.',
         'Repair or replace defective hose/line components and install pressure-rated restraints, isolation, and inspection controls.',
         'Verify depressurization, pressure rating, restraint condition, leak test, and inspection documentation.'
-      );
-    }
-
-    if (mechanism === 'struck_by_mobile_equipment') {
-      return this.profile(
-        'struck_by_mobile_equipment',
-        failedControl || 'traffic separation, visibility, signaling, or pedestrian control',
-        exposure,
-        priority,
-        'Separate pedestrians from mobile equipment exposure',
-        'Keep pedestrians out of the travel path or blind spot until traffic controls are confirmed.',
-        'Use spotters, temporary barricades, communication, and controlled travel paths as interim controls.',
-        'Implement durable traffic management controls such as pedestrian routes, exclusion zones, visibility controls, alarms, signage, and operator/pedestrian communication expectations.',
-        'Verify traffic-control layout, blind-spot controls, signage, route separation, and worker briefing.'
       );
     }
 

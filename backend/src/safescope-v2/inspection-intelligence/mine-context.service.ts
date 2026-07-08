@@ -1,6 +1,10 @@
 import { MineContextAssessment, MineType } from './mine-context.types';
 
 type SignalGroup = { label: string; patterns: RegExp[] };
+type MineContextHints = {
+  jurisdiction?: string;
+  scopes?: string[];
+};
 
 const GROUPS: Record<string, SignalGroup> = {
   nonMine: { label: 'explicit non-mine workplace', patterns: [/\bnon[- ]mine\b/, /\boff mine property\b/, /\bnot (at|on) (a )?mine\b/] },
@@ -19,8 +23,16 @@ function matches(text: string, group: SignalGroup): boolean {
 }
 
 export class MineContextService {
-  assess(value: string): MineContextAssessment {
+  assess(value: string, hints: MineContextHints = {}): MineContextAssessment {
     const text = String(value || '').toLowerCase();
+    const scopeText = [
+      hints.jurisdiction || '',
+      ...(Array.isArray(hints.scopes) ? hints.scopes : []),
+    ].join(' ').toLowerCase();
+    const explicitMineScope = /\bmsha\b|\bmine\b|\bmining\b|\baggregate\b|\bquarry\b/.test(scopeText);
+    const explicitMshaScope = /\bmsha\b|msha[_\s-]?(?:mnm|coal)|surface[_\s-]?(?:metal[_\s-]?nonmetal|coal)|underground[_\s-]?(?:metal[_\s-]?nonmetal|coal)/.test(scopeText);
+    const surfaceMineSignals = /\b(berm|windrow|haul road|roadway|stockpile|crusher|screen|platform|workplace exam|workplace examination|pre[- ]?op|pre[- ]?operational|mobile equipment|forklift|travelway|traffic|dump point|highwall|pit wall|conveyor|belt conveyor|catwalk|ladder)\b/.test(text);
+    const undergroundMineSignals = /\b(underground|heading|drift|stope|shaft station|roof|rib|back|ground support|escapeway|refuge)\b/.test(text);
     const matched = Object.entries(GROUPS)
       .filter(([, group]) => matches(text, group))
       .map(([key, group]) => ({ key, label: group.label }));
@@ -32,15 +44,20 @@ export class MineContextService {
       && !/\b(mine site|mine property|mine operation|at (a |the )?mine|surface (coal|metal|nonmetal)? ?mine|underground (coal|metal|nonmetal)? ?mine|quarry operation|aggregate mine)\b/.test(text)
     ) return this.notMine(matched.map((item) => item.label));
 
-    const detected = has('mine') || has('aggregate') || (has('underground') && (has('coal') || has('metalNonmetal')));
+    const detected =
+      has('mine')
+      || has('aggregate')
+      || (has('underground') && (has('coal') || has('metalNonmetal')))
+      || (explicitMshaScope && (surfaceMineSignals || undergroundMineSignals));
     if (!detected) return this.notMine([]);
 
     let mineType: MineType = 'unclear_mine';
     if (has('coal') && has('underground')) mineType = 'underground_coal';
     else if (has('coal') && has('surface')) mineType = 'surface_coal';
     else if (has('coal')) mineType = 'unclear_mine';
-    else if (has('underground')) mineType = 'underground_metal_nonmetal';
-    else if (has('aggregate') || has('surface') || has('metalNonmetal')) mineType = 'surface_metal_nonmetal';
+    else if (has('underground') || (explicitMshaScope && undergroundMineSignals && !surfaceMineSignals)) mineType = 'underground_metal_nonmetal';
+    else if (has('aggregate') || has('surface') || has('metalNonmetal') || (explicitMshaScope && surfaceMineSignals)) mineType = 'surface_metal_nonmetal';
+    else if (explicitMineScope && explicitMshaScope) mineType = 'surface_metal_nonmetal';
 
     const preferredCfrParts: Record<MineType, string[]> = {
       surface_metal_nonmetal: ['56'],

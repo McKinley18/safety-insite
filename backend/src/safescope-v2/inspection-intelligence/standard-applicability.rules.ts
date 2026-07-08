@@ -301,6 +301,84 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     ]
   },
   {
+    id: 'stairs-defect-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'walking_working_surfaces',
+    standardCitation: '1910.22(a)(1)',
+    standardTitle: 'Walking-working surfaces kept in safe condition',
+    appliesWhen: [
+      /\b(stair|stairs|stairway|stair tread|tread|riser|landing)\b/i
+    ],
+    requiredEvidence: [
+      /\b(damaged|broken|uneven|loose|cracked|trip hazard|defective|worn)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(access stairs|access stair|platform|landing|step)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(repaired|replaced|good condition|safe)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(office lobby|cracked quarry tile|tile is cracked)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.23'],
+    followUpQuestions: [
+      'What stair tread, riser, landing, or step is damaged or uneven?',
+      'Is the stair in active use by employees or isolated from access?',
+      'Has the damaged stair component been repaired or removed from service?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A stair tread, riser, or landing is damaged, loose, uneven, or otherwise defective.',
+      releaseOrFailureMode: 'A worker can misstep, trip, or lose traction on the damaged stair surface.',
+      exposurePathway: 'Employees use the access stairs or landing while the defect remains in service.',
+      consequences: 'Trip/fall, sprain, fracture, or secondary impact injury.'
+    },
+    controlPrinciples: [
+      'Block access to the damaged stair until repaired.',
+      'Repair or replace the damaged tread/riser and verify the repair.',
+      'Inspect the stairway for adjacent defects or loose components before reopening.'
+    ]
+  },
+  {
+    id: 'ladder-setup-osha-construction',
+    jurisdiction: 'osha_construction',
+    hazardFamily: 'fall_protection',
+    standardCitation: '29 CFR 1926.1053(b)(1)',
+    standardTitle: 'Portable ladders used as access equipment must be used properly',
+    appliesWhen: [
+      /\b(ladder|extension ladder|step ladder|portable ladder)\b/i
+    ],
+    requiredEvidence: [
+      /\b(muddy base|soft base|short distance above the landing|extends? only a short distance above the landing|too far from the top step|unsafe ladder angle|used incorrectly|improperly set|not secured|slipping)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(construction|jobsite|landing|platform|roof|access)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(secured properly|proper angle|tied off|stable)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(parked|stored|not in use)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1926.501', '29 CFR 1910.23'],
+    followUpQuestions: [
+      'How was the ladder positioned and what was wrong with the setup?',
+      'Was the ladder on a stable, level base and extended enough above the landing?',
+      'Was the ladder in active use or simply stored/parked?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A portable ladder is set on an unstable base or does not extend far enough above the landing.',
+      releaseOrFailureMode: 'The ladder can slip, tip, or fail to provide secure hand/foot transition.',
+      exposurePathway: 'Workers climb or descend the ladder during access to an elevated area.',
+      consequences: 'Fall to a lower level, fracture, head injury, or fatal trauma.'
+    },
+    controlPrinciples: [
+      'Remove the ladder from service until the setup is corrected.',
+      'Place the ladder on a stable base at a proper angle and extend above the landing.',
+      'Use an alternate access method if the required ladder setup cannot be achieved.'
+    ]
+  },
+  {
     id: 'construction-gfci-osha-construction',
     jurisdiction: 'osha_construction',
     hazardFamily: 'electrical',
@@ -704,6 +782,46 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
       'Provide secondary spill containment under conveyor drives.'
     ]
   },
+  {
+    id: 'workplace-exam-observation-msha',
+    jurisdiction: 'msha',
+    hazardFamily: 'walking_working_surfaces',
+    standardCitation: '30 CFR 56.18002(a)',
+    standardTitle: 'Workplace examination and hazard correction',
+    appliesWhen: [
+      /\b(workplace exam(?:ination)?|pre[- ]?op(?:erational)?|pre[- ]?shift)\b/i
+    ],
+    requiredEvidence: [
+      /\b(uncorrected|not corrected|not documented|failed to document|travelway hazard|crusher|plant|observed condition)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(mine|travelway|crusher|plant|work area|active hazard)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(documented and corrected|no remaining hazard|already corrected)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(office only|admin only|training record only)\b/i,
+      /\b(clean|clear|swept|orderly)\b/i,
+    ],
+    commonlyConfusedWith: ['30 CFR 56.20003(a)'],
+    followUpQuestions: [
+      'What condition or travelway hazard was observed and left uncorrected?',
+      'Was a workplace examination performed before the shift or task started?',
+      'Did the exam document and correct the observed hazard?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A mine workplace examination did not identify or document a hazard that remained in the work/travel area.',
+      releaseOrFailureMode: 'The uncorrected condition continues to expose miners during normal travel or work.',
+      exposurePathway: 'Employees continue to use the affected area after the missed or incomplete examination.',
+      consequences: 'Slip, trip, fall, struck-by, or other injury from the uncorrected condition.'
+    },
+    controlPrinciples: [
+      'Complete and document a workplace examination before continued use of the area.',
+      'Correct the observed condition or withdraw miners until it is controlled.',
+      'Track hazardous findings and re-examine the area after correction.'
+    ]
+  },
 
   {
     id: 'mobile-equipment-traffic-msha',
@@ -882,10 +1000,10 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     standardCitation: '30 CFR 56.15005',
     standardTitle: 'Safety belts and lines (fall protection)',
     appliesWhen: [
-      /\b(elevated platform|unprotected edge|leading edge|runway|mezzanine|elevated work|safety belt|harness|safety line)\b/i
+      /\b(elevated platform|crusher platform|screen deck|unprotected edge|leading edge|runway|mezzanine|elevated work|safety belt|harness|safety line)\b/i
     ],
     requiredEvidence: [
-      /\b(unguarded|no rail|no guardrail|missing guardrail|fall hazard|fall exposure|unprotected edge|no safety belt|no harness|no safety line)\b/i
+      /\b(unguarded|no rail|no guardrail|missing guardrail|no barrier|barrier missing|fall hazard|fall exposure|unprotected edge|no safety belt|no harness|no safety line)\b/i
     ],
     confidenceBoosters: [
       /\b(height|mine|crusher top|screen deck|high wall|bin|silo|working from heights)\b/i
@@ -1281,8 +1399,46 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
       'Isolate the container immediately and check SDS to identify the contents.',
       'Apply a compliant HazCom workplace label indicating chemical identity and hazards.'
     ]
-  }
-  ,
+  },
+  {
+    id: 'chemical-drain-containment-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'hazardous_materials',
+    standardCitation: '29 CFR 1910.1200(f)(6)',
+    standardTitle: 'Workplace labeling and container identification for hazardous chemicals',
+    appliesWhen: [
+      /\b(chemical|container|drum|tank|pail|jug|tote|bucket|used oil|waste oil|solvent|acid|cleaner)\b/i
+    ],
+    requiredEvidence: [
+      /\b(drain|floor drain|secondary containment|containment|near a drain|without secondary containment|release path|spill path)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(unlabeled|missing label|unknown contents|spray bottle|secondary container|workplace label)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(closed cabinet|sealed drum|no drain nearby|contained)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(water only|nonhazardous|empty and clean)\b/i,
+    ],
+    commonlyConfusedWith: ['29 CFR 1910.22(a)(2)'],
+    followUpQuestions: [
+      'What chemical or liquid is stored and what hazard identity is known?',
+      'How close is the container or release path to the drain and what containment is present?',
+      'Is the container open, uncovered, or in a secondary container that needs a workplace label?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A chemical or oily container is stored near a drain or release path without verified containment or identification.',
+      releaseOrFailureMode: 'A spill or leak can migrate into the drain or expose workers to unknown contents.',
+      exposurePathway: 'Workers handling the container or walking nearby may contact the release path, vapors, or contaminated floor.',
+      consequences: 'Chemical exposure, slip/fall, environmental release, or fire/irritation hazard depending on the material.'
+    },
+    controlPrinciples: [
+      'Move the container away from the drain and place it in compatible secondary containment.',
+      'Identify the contents and apply required workplace labeling if the container is a secondary container.',
+      'Stop the release and clean/protect the drain path before returning the area to use.'
+    ]
+  },
   {
     id: 'grinder-tongue-guard-osha-gi',
     jurisdiction: 'osha_general_industry',
@@ -1404,6 +1560,45 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
       'Lower the forks to the travel position before movement continues.',
       'Separate pedestrians and equipment and use spotters or route controls where needed.',
       'Adjust travel rules, aisle design, and operator training to keep forks low and travel visible.'
+    ]
+  },
+  {
+    id: 'pit-defective-truck-osha-gi',
+    jurisdiction: 'osha_general_industry',
+    hazardFamily: 'mobile_equipment',
+    standardCitation: '29 CFR 1910.178(p)(1)',
+    standardTitle: 'Powered industrial trucks not in safe operating condition',
+    appliesWhen: [
+      /\b(forklift|pallet truck|powered industrial truck|industrial truck)\b/i
+    ],
+    requiredEvidence: [
+      /\b(damaged|defective|leaking|leak|worn|unsafe|out of service|pre[- ]?op|pre[- ]?operational|remains in service|in service|backup alarm|audible warning|reverse alarm|horn|warning device)\b/i
+    ],
+    confidenceBoosters: [
+      /\b(hydraulic line|tires|brakes|mast|forks|inspection|service|backup alarm|audible warning|reverse alarm|horn)\b/i,
+    ],
+    confidenceReducers: [
+      /\b(removed from service|repaired|safe to operate)\b/i,
+    ],
+    doNotSelectWhen: [
+      /\b(no forklift|no mobile equipment)\b/i,
+    ],
+    commonlyConfusedWith: ['30 CFR 56.9100', '29 CFR 1910.178(l)'],
+    followUpQuestions: [
+      'What defect is present on the forklift or powered industrial truck?',
+      'Is the truck still in service or has it been removed from service pending repair?',
+      'Has a pre-use inspection or qualified repair evaluation been completed?'
+    ],
+    mechanismChain: {
+      initiatingCondition: 'A powered industrial truck has a defect such as worn tires or a leaking hydraulic line but remains in service.',
+      releaseOrFailureMode: 'The defect can reduce control, stability, braking, or hydraulic function during travel or lifting.',
+      exposurePathway: 'Operators, pedestrians, and nearby workers remain in the truck’s travel and load zone.',
+      consequences: 'Tip-over, struck-by, crush, or loss-of-control injury.'
+    },
+    controlPrinciples: [
+      'Remove the truck from service until the defect is corrected.',
+      'Repair or replace the affected components and verify safe operation.',
+      'Perform pre-use inspection and defect reporting before return to service.'
     ]
   },
   {
