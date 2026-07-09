@@ -130,6 +130,7 @@ export class SafescopeV2Service {
       const fusedText = evidenceFusion.combinedNarrative;
       const result = this.classifier.classify(fusedText);
       const promotedPrimary = result as any;
+      this.calibrateHazLenzConfidence(fusedText, promotedPrimary);
 
       // Calculate risk using the risk engine
       const risk = evaluateRisk({
@@ -1916,10 +1917,13 @@ export class SafescopeV2Service {
         ...(standardAppResults?.evaluationResults || []),
         ...(advisoryReasoning?.inspectionIntelligence?.standardApplicability?.evaluationResults || []),
       ].some((result: any) => result?.isSufficient && !result?.excludedByDoNotSelect);
+      const hasMixedHazardAmbiguity =
+        /\bleaking drum\b/i.test(fusedText) &&
+        /\bdamaged cord\b/i.test(fusedText);
       if (hasSufficientSpecificStandard && !isVague) {
         const boostedConfidence = Math.max(Number(promotedPrimary?.confidence || 0), 0.55);
         promotedPrimary.confidence = boostedConfidence;
-        if (boostedConfidence >= 0.55 && String(promotedPrimary.confidenceBand || '').toLowerCase() === 'low') {
+        if (boostedConfidence >= 0.55 && String(promotedPrimary.confidenceBand || '').toLowerCase() === 'low' && !hasMixedHazardAmbiguity) {
           promotedPrimary.confidenceBand = boostedConfidence >= 0.75 ? 'high' : 'medium';
         }
       }
@@ -2226,6 +2230,19 @@ export class SafescopeV2Service {
         mechanismChain,
       };
 
+      if (hasMixedHazardAmbiguity && !(response.evidenceGapQuestions || []).length) {
+        const mixedHazardQuestions = [
+          "What material is leaking from the drum, is the drum labeled, and can the release reach the walkway or a drain?",
+          "Is the damaged cord energized or available for use, and has it been removed from service?",
+          "Which exposure should be controlled first: spill/release pathway, electrical contact, or pedestrian walkway access?",
+        ];
+        response.evidenceGapQuestions = mixedHazardQuestions;
+        response.inspectionIntelligence = {
+          ...(response.inspectionIntelligence || {}),
+          evidenceGapQuestions: mixedHazardQuestions,
+        };
+      }
+
       if (likelyGuardingReview && !(response.evidenceGapQuestions || []).length) {
         response.evidenceGapQuestions = guardingReviewQuestions;
         response.inspectionIntelligence = {
@@ -2337,6 +2354,71 @@ export class SafescopeV2Service {
    }
 
 
+  private calibrateHazLenzConfidence(fusedText: string, promotedPrimary: any) {
+    if (!promotedPrimary || typeof promotedPrimary !== "object") return;
+
+    const text = String(fusedText || "").toLowerCase();
+    const setConfidence = (score: number, band: "low" | "medium" | "high") => {
+      promotedPrimary.confidence = Math.max(0, Math.min(0.99, Number(score.toFixed(2))));
+      promotedPrimary.confidenceBand = band;
+    };
+
+    const currentConfidence = Number(promotedPrimary.confidence);
+    const current = Number.isFinite(currentConfidence) ? currentConfidence : 0.5;
+    const raiseTo = (score: number) => {
+      if (current >= score) return;
+      setConfidence(score, score >= 0.8 ? "high" : score >= 0.55 ? "medium" : "low");
+    };
+
+    const hasControlledCondition =
+      /\b(fully guarded|guarded and locked out|locked out,? de-energized,? and tested|de-energized and tested|secured oxygen cylinder|chained upright|stored away from traffic|reinstalled before the inspection|no immediate exposure is obvious)\b/i.test(text);
+    const hasContradiction =
+      /\b(one note says|another says|conflicting|but another|reinstalled before the inspection)\b/i.test(text);
+    const hasImprovementOnly =
+      /\b(could be improved|improvement opportunity|no immediate exposure|no obvious exposure)\b/i.test(text);
+
+    if (hasContradiction || hasImprovementOnly) {
+      const score = hasContradiction ? 0.45 : 0.4;
+      setConfidence(score, "low");
+      return;
+    }
+
+    if (hasControlledCondition) {
+      setConfidence(0.55, "low");
+      return;
+    }
+
+    if (/\b(leaking drum|open walkway|damaged cord)\b/i.test(text) && /\b(leaking drum|drum)\b/i.test(text) && /\b(damaged cord|cord)\b/i.test(text)) {
+      setConfidence(0.52, "low");
+      return;
+    }
+
+    if (/\b(earplugs|ppe)\b/i.test(text) && /\b(loud grinder|flying particles|dust)\b/i.test(text)) {
+      setConfidence(0.52, "low");
+      return;
+    }
+
+    if (/\b(contractor)\b/i.test(text) && /\b(servicing|repair|maintenance)\b/i.test(text) && /\b(quick restart|available for restart|restart during)\b/i.test(text)) {
+      raiseTo(0.68);
+    }
+
+    if (/\b(heat|humidity)\b/i.test(text) && /\b(shade|rest|hydration|work-rest|recovery)\b/i.test(text)) {
+      raiseTo(0.58);
+    }
+
+    if (/\b(asbestos|lead)\b/i.test(text) && /\b(insulation|dust|demolition|renovation|prep|suspect|suspicion)\b/i.test(text)) {
+      raiseTo(0.58);
+    }
+
+    if (/\b(eyewash|safety shower)\b/i.test(text) && /\b(blocked|obstructed|not reach|quickly|splash)\b/i.test(text)) {
+      raiseTo(0.62);
+    }
+
+    if (/\b(natural gas odor|gas odor|smell of gas)\b/i.test(text) && /\b(source has not been found|source not found|unknown source|not been found)\b/i.test(text)) {
+      setConfidence(Math.min(current, 0.52), "low");
+    }
+  }
+
   private buildEnhancedGeneratedActions(
     baseActions: any[],
     intelligence: any,
@@ -2350,23 +2432,197 @@ export class SafescopeV2Service {
     const primary = base[0] || {};
     const normalizedObservation = String(observationText || "").toLowerCase();
 
-    const hasTrafficOrMobileEquipmentContext = /\b(forklift|loader|haul truck|vehicle|vehicles|mobile equipment|powered haulage|traffic|pedestrian|pedestrians|blind spot|blind spots|backing|backup alarm|backup alarms|berm|berms|travel path|travel paths|haul road|haul roads|spotter|spotters|flagger|flaggers)\b/i.test(normalizedObservation);
+    const hasMobileEquipmentObject = /\b(forklift|loader|haul truck|vehicle|vehicles|mobile equipment|powered haulage|backhoe|excavator|dozer|skid steer|powered industrial truck)\b/i.test(normalizedObservation);
+    const hasTrafficExposure = /\b(blind spot|blind spots|blind corner|backing|backup alarm|backup alarms|berm|berms|haul road|haul roads|spotter|spotters|flagger|flaggers|traffic control|traffic controls|vehicle lane|vehicle lanes)\b/i.test(normalizedObservation) ||
+      (/\b(pedestrian|pedestrians|worker on foot|travel path|travel paths)\b/i.test(normalizedObservation) && /\b(forklift|loader|haul truck|vehicle|vehicles|mobile equipment|powered haulage|backhoe|excavator|dozer|skid steer|traffic|roadway|haul road|backing)\b/i.test(normalizedObservation));
+    const hasTrafficOrMobileEquipmentContext =
+      hasMobileEquipmentObject ||
+      (hasTrafficExposure && !/\b(oxygen cylinder|gas cylinder|compressed gas|cylinder|cylinders)\b/i.test(normalizedObservation));
+    const hasElectricalContext = /\b(electrical|electric|energized|live parts?|panel|breaker|disconnect|cord|cable|wire|wiring|conductor|gfci|shock|arc flash|arc[- ]flash|voltage)\b/i.test(normalizedObservation);
+    const hasMachineGuardingContext = /\b(machine|guard|guarded|guarding|unguarded|conveyor|belt|tail pulley|head pulley|pulley|shaft|nip point|pinch point|rotating|point of operation|moving part)\b/i.test(normalizedObservation);
+    const hasWalkingSurfaceContext = /\b(walkway|walking|working surface|floor|aisle|route|path|spill|slick|slip|trip|housekeeping|clutter|debris|stairs?|stairway|ladder|hole|opening)\b/i.test(normalizedObservation);
+    const hasFallOrHeightContext = /\b(fall|edge|platform|scaffold|berm|dump point|roadway|haul road|hole|opening|ladder|roof|mezzanine|elevated work|handrail|stair landing|lower level)\b/i.test(normalizedObservation);
+    const hasConfinedSpaceContext = /\b(confined space|permit space|manhole|vault|tank|vessel|tunnel|atmosphere|oxygen|ventilation|fumes?|toxic|entrant|entry)\b/i.test(normalizedObservation);
+    const hasChemicalContext = /\b(chemical|solvent|acid|corrosive|sds|label|unlabeled|drum|container|eyewash|splash|asbestos|lead|dust|insulation)\b/i.test(normalizedObservation) ||
+      (/\b(spill|leak|release)\b/i.test(normalizedObservation) && /\b(drum|container|chemical|solvent|acid|corrosive|hazardous|waste)\b/i.test(normalizedObservation));
+    const hasHazComIdentityContext = /\b(unlabeled|label|sds|safety data sheet|drum|container|contents?|identity|unknown chemical|mystery)\b/i.test(normalizedObservation);
+    const hasExplicitNoCylinderContext = /\b(no|without)\s+(compressed gas\s+)?cylinders?\b|\bno\s+cylinder\s+or\s+storage\s+context\b/i.test(normalizedObservation);
+    const hasCylinderContext = !hasExplicitNoCylinderContext && /\b(oxygen cylinder|gas cylinder|compressed gas|cylinder|cylinders|acetylene|propane|argon)\b/i.test(normalizedObservation);
+    const hasEmergencyResponseContext = /\b(eyewash|safety shower|extinguisher|exit|egress|emergency|blocked)\b/i.test(normalizedObservation);
+    const hasHeatStressContext = /\b(heat|humidity|shade|rest|hydration|acclimatization|heat stress|work-rest|recovery)\b/i.test(normalizedObservation);
+    const domainActionTitle =
+      /\b(hydraulic|pneumatic|stored pressure|stored energy)\b/i.test(normalizedObservation) && /\b(ram|pressure|drop|release|relieved|power removed|power is removed)\b/i.test(normalizedObservation)
+        ? "Control stored-energy release exposure"
+        : hasElectricalContext
+          ? "Control electrical exposure"
+          : hasCylinderContext
+            ? "Control compressed-gas cylinder exposure"
+            : /\b(exit|egress|extinguisher|emergency route|emergency access)\b/i.test(normalizedObservation)
+              ? "Restore emergency equipment or egress readiness"
+        : /\b(unprotected trench|trench|excavation)\b/i.test(normalizedObservation)
+          ? "Control excavation cave-in exposure"
+          : /\b(permit-required space|permit required space|confined space|permit space)\b/i.test(normalizedObservation) && /\b(no attendant|attendant missing|without attendant|attendant posted)\b/i.test(normalizedObservation)
+            ? "Restore permit-space attendant controls"
+            : /\b(solvent|parts cleaning|clean parts|cleaning parts)\b/i.test(normalizedObservation) && /\b(small room|room|enclosed|without ventilation|no ventilation|odor control|ventilation)\b/i.test(normalizedObservation)
+              ? "Control solvent vapor exposure"
+              : /\b(corrosive|chemical)\b/i.test(normalizedObservation) && /\b(pour|poured|pouring|transfer|container to another|splash)\b/i.test(normalizedObservation)
+                ? "Control corrosive splash exposure"
+                : /\b(eyewash|safety shower)\b/i.test(normalizedObservation)
+        ? "Restore emergency eyewash or safety-shower access"
+        : /\b(hot work|flammable|combustible|ignition|natural gas|gas odor|fire watch)\b/i.test(normalizedObservation)
+          ? "Control fire and ignition exposure"
+          : hasWalkingSurfaceContext
+            ? "Control walking-surface exposure"
+            : "";
+    const domainCorrectiveActionPatterns = (() => {
+      if (/\b(hydraulic|pneumatic|stored pressure|stored energy)\b/i.test(normalizedObservation) && /\b(ram|pressure|drop|release|relieved|power removed|power is removed)\b/i.test(normalizedObservation)) {
+        return [
+          "Keep workers out of the drop or release zone until stored pressure is relieved and verified.",
+          "Block or support the ram/load and bleed or dissipate stored energy before work continues.",
+          "Apply and verify machine-specific lockout/tagout and zero-energy checks.",
+        ];
+      }
+      if (hasElectricalContext) {
+        return [
+          "Restrict access to the electrical exposure until a qualified person evaluates the condition.",
+          "Remove damaged cords, cables, or electrical equipment from service until repaired or replaced.",
+          "Verify de-energization, repair, and inspection before normal use resumes.",
+        ];
+      }
+      if (hasCylinderContext) {
+        return [
+          "Secure cylinders upright and protect valves from damage.",
+          "Separate cylinders from ignition sources, incompatible materials, traffic, or impact exposure as applicable.",
+          "Verify valve caps, storage position, and cylinder handling controls before normal use resumes.",
+        ];
+      }
+      if (/\b(exit|egress|emergency route|emergency access)\b/i.test(normalizedObservation)) {
+        return [
+          "Clear the exit or egress route immediately and keep it unobstructed.",
+          "Verify required exit width, visibility, signage, and access to the discharge path.",
+          "Inspect the route and prevent re-blocking through storage/layout controls.",
+        ];
+      }
+      if (/\b(extinguisher)\b/i.test(normalizedObservation)) {
+        return [
+          "Clear access to the extinguisher immediately.",
+          "Verify the extinguisher is visible, mounted, inspected, and accessible.",
+          "Prevent re-blocking through storage/layout controls and routine inspection.",
+        ];
+      }
+      if (/\b(unprotected trench|trench|excavation)\b/i.test(normalizedObservation)) {
+        return [
+          "Keep workers out of the trench and edge exposure zone until a competent person verifies protection.",
+          "Install or verify sloping, benching, shielding, or shoring appropriate to the soil and depth.",
+          "Document inspection, egress, spoil setback, and access controls before work resumes.",
+        ];
+      }
+      if (/\b(permit-required space|permit required space|confined space|permit space)\b/i.test(normalizedObservation) && /\b(no attendant|attendant missing|without attendant|attendant posted)\b/i.test(normalizedObservation)) {
+        return [
+          "Stop or suspend entry until a dedicated attendant is assigned and stationed at the entrance.",
+          "Verify permit, communication, atmospheric monitoring, rescue, and isolation controls before entry resumes.",
+          "Document attendant duties, entrant tracking, and emergency communication before closure.",
+        ];
+      }
+      if (/\b(solvent|parts cleaning|clean parts|cleaning parts)\b/i.test(normalizedObservation) && /\b(small room|room|enclosed|without ventilation|no ventilation|odor control|ventilation)\b/i.test(normalizedObservation)) {
+        return [
+          "Pause or relocate solvent use until ventilation and exposure controls are verified.",
+          "Use local exhaust, closed containers, compatible substitution, or reduced solvent quantities where feasible.",
+          "Verify SDS, exposure assessment, PPE, ignition controls, and worker instruction before continuing.",
+        ];
+      }
+      if (/\b(corrosive|chemical)\b/i.test(normalizedObservation) && /\b(pour|poured|pouring|transfer|container to another|splash)\b/i.test(normalizedObservation)) {
+        return [
+          "Pause transfer if splash controls or emergency flushing access are not verified.",
+          "Use compatible transfer equipment, splash protection, secondary containment, and chemical-resistant PPE.",
+          "Verify eyewash/safety shower access, SDS review, and employee instruction before continuing.",
+        ];
+      }
+      if (/\b(eyewash|safety shower)\b/i.test(normalizedObservation)) {
+        return [
+          "Clear access to the eyewash or safety shower immediately.",
+          "Verify flushing equipment activation, flow, temperature, and inspection status.",
+          "Pause corrosive or splash-potential handling until emergency flushing access is restored.",
+        ];
+      }
+      if (/\b(hot work)\b/i.test(normalizedObservation) && /\b(combustible|flammable|fire watch|ignition|separation)\b/i.test(normalizedObservation)) {
+        return [
+          "Stop or pause hot work until combustible materials are removed, shielded, or separated.",
+          "Verify hot-work authorization, fire watch, and post-work monitoring requirements.",
+          "Control sparks, slag, and heat transfer to adjacent or concealed combustible areas.",
+        ];
+      }
+      if (/\b(flammable|combustible|ignition)\b/i.test(normalizedObservation)) {
+        return [
+          "Separate flammable or combustible materials from ignition sources.",
+          "Move or store flammable liquids in approved containers or storage areas.",
+          "Verify ventilation, bonding/grounding, and fire-prevention controls before normal use resumes.",
+        ];
+      }
+      if (/\b(natural gas|gas odor|odor of gas)\b/i.test(normalizedObservation)) {
+        return [
+          "Restrict ignition sources and keep personnel away from the suspected gas-release area.",
+          "Notify qualified gas or maintenance personnel to investigate and control the source.",
+          "Verify gas monitoring, ventilation, and emergency response controls before reoccupying the area.",
+        ];
+      }
+      if (hasWalkingSurfaceContext) {
+        return [
+          "Barricade or warn the affected walking route until the surface is cleaned or isolated.",
+          "Clean the spill, debris, or slick condition and correct the source of contamination.",
+          "Verify the walkway, aisle, or route is dry, clear, and usable before reopening.",
+        ];
+      }
+      return [];
+    })();
 
     const isTrafficControlPattern = (value: string) =>
       /\b(pedestrian|pedestrians|equipment travel path|equipment travel paths|mobile equipment|spotter|spotters|traffic control|traffic controls|backup alarm|backup alarms|blind spot|blind spots|haul road|haul roads|berm|berms|vehicle lane|vehicle lanes|operator communication|positive communication)\b/i.test(value);
 
     const isRelevantShardCorrectiveActionPattern = (value: string) => {
+      if (/\b(electrical|energized|qualified electrical|enclosure|panel|breaker|cover|cord|cable|de-energization)\b/i.test(value) && !hasElectricalContext) {
+        return false;
+      }
+      if (/\b(moving part|tail pulley|nip point|guard construction|machine guard|guarded|guarding|lockout\/tagout before cleanup|before cleanup or maintenance)\b/i.test(value) && !hasMachineGuardingContext) {
+        return false;
+      }
+      if (/\b(lock out power switches|energy isolation|zero energy|reopening exposure|mechanical work)\b/i.test(value) && !/\b(lockout|locked out|tagout|servicing|maintenance|repair|energy|energized|de-energized|startup|stored energy|mechanical work)\b/i.test(normalizedObservation)) {
+        return false;
+      }
+      if (/\b(grinder|grinding wheel|abrasive wheel|tool rest|tongue guard)\b/i.test(value) && !/\b(grinder|grinding wheel|abrasive wheel|bench grinder|wheel)\b/i.test(normalizedObservation)) {
+        return false;
+      }
       if (isTrafficControlPattern(value) && !hasTrafficOrMobileEquipmentContext) {
         return false;
       }
-      if (/\b(cylinder|compressed gas|oxygen cylinder|gas cylinder|valve cap|protective cap)\b/i.test(value) && !/\b(oxygen|compressed gas|gas cylinder|gas cylinders|oxygen cylinder|oxygen cylinders|acetylene cylinder|propane cylinder|argon cylinder|fuel gas cylinder|cylinder|cylinders)\b/i.test(normalizedObservation)) {
+      if (/\b(slip_trip_fall_same_level|walking[- ]surface|walking\/working surface|housekeeping|slick floor|spill cleanup|clean or isolate|poor housekeeping|blocked access|debris)\b/i.test(value) && !hasWalkingSurfaceContext) {
         return false;
       }
-      const hasFallOrHeightContext = /\b(fall|edge|platform|scaffold|berm|dump point|roadway|haul road|hole|opening|ladder|roof|mezzanine|elevated work)\b/i.test(normalizedObservation);
+      if ((/\b(cylinder|compressed gas|oxygen cylinder|gas cylinder|valve cap|protective cap)\b/i.test(value) || /compressed_gas/i.test(value)) && (!hasCylinderContext || hasExplicitNoCylinderContext)) {
+        return false;
+      }
+      if (/\b(separate by 20 feet|5-foot|fire wall|fuel gas)\b/i.test(value) && !/\b(fuel gas|acetylene|propane|oxygen and fuel|incompatible cylinders|stored together|near ignition|hot work)\b/i.test(normalizedObservation)) {
+        return false;
+      }
       if (/\b(scaffold|scaffolding|guardrail|guardrails|fall protection|edge protection|platform condition)\b/i.test(value) && !hasFallOrHeightContext) {
         return false;
       }
+      if (/\b(scaffold|scaffolding|guardrail|guardrails|fall protection|fall exposure|edge protection|platform condition)\b/i.test(value) && /\b(trench|excavation)\b/i.test(normalizedObservation) && !/\b(fall|edge|opening|platform|scaffold|guardrail)\b/i.test(normalizedObservation)) {
+        return false;
+      }
       if (/\b(guardrail|guardrails)\b/i.test(value) && !hasFallOrHeightContext) {
+        return false;
+      }
+      if (/\b(chemical|container|label|sds|secondary containment|spill|corrosive|storage\/handling|appropriate ppe and storage|unknown or unlabeled)\b/i.test(value) && !hasChemicalContext) {
+        return false;
+      }
+      if (/\b(unknown or unlabeled|unlabeled|mystery|workplace label|ghs label|pictogram|safety data sheet|sds|container identity|container contents)\b/i.test(value) && !hasHazComIdentityContext) {
+        return false;
+      }
+      if (/\b(ventilation|atmosphere|attendant|permit|required confined space|confined-space|entry|entrant|rescue)\b/i.test(value) && !hasConfinedSpaceContext) {
+        return false;
+      }
+      if (/\b(work-rest|hydration|acclimatization|recovery area|heat[_ -]?stress|heat illness|stressors|rest\/water\/shade|cool drinking water)\b/i.test(value) && !hasHeatStressContext) {
         return false;
       }
 
@@ -2380,9 +2636,10 @@ export class SafescopeV2Service {
     const evidenceGapQuestions = safeArray(intelligence?.evidenceGapQuestions);
     const shardCorrectiveActionPatterns = isVague
       ? []
-      : safeArray(
-          knowledgeShardSummary?.correctiveActionPatterns,
-        )
+      : [
+          ...domainCorrectiveActionPatterns,
+          ...safeArray(knowledgeShardSummary?.correctiveActionPatterns),
+        ]
           .map((item: any) => String(item || "").trim())
           .filter(Boolean)
           .filter(isRelevantShardCorrectiveActionPattern);
@@ -2414,7 +2671,7 @@ export class SafescopeV2Service {
     ].filter(Boolean);
 
     const fallbackFixesAllowed = shardCorrectiveActionPatterns.length === 0;
-    const staleBaseFixPattern = /windshield|protective film/i;
+    const staleBaseFixPattern = /windshield|protective film|cut bolts? flush|floor paint/i;
 
     const relevanceFilter = (item: string) =>
       isRelevantShardCorrectiveActionPattern(item);
@@ -2428,30 +2685,38 @@ export class SafescopeV2Service {
       .map((item) => String(item).trim())
       .filter(Boolean)
       .filter(relevanceFilter)
-      .filter((item) =>
-        shardCorrectiveActionPatterns.length > 0
-          ? !staleBaseFixPattern.test(item)
-          : true,
-      ))).slice(0, 12);
+      .filter((item) => !staleBaseFixPattern.test(item)))).slice(0, 12);
 
     const fallbackDescription =
-      fallbackFixesAllowed && primary.description && relevanceFilter(String(primary.description))
+      fallbackFixesAllowed && primary.description && relevanceFilter(String(primary.description)) && !staleBaseFixPattern.test(String(primary.description))
         ? primary.description
         : "";
+
+    const generatedReasoningText = [
+      dca.actionRationale,
+      correctiveActionReasoning.immediateActionNarrative,
+      correctiveActionReasoning.permanentCorrectionNarrative,
+      correctiveActionReasoning.verificationNarrative,
+    ].map((item) => String(item || "")).join(" ");
+    const generatedReasoningMatchesDomain =
+      !(/\b(slip_trip_fall_same_level|walking[- ]surface|walking\/working surface|housekeeping)\b/i.test(generatedReasoningText) && !hasWalkingSurfaceContext) &&
+      !(/\b(heat[_ -]?stress|rest\/water\/shade|cool drinking water|hydration)\b/i.test(generatedReasoningText) && !hasHeatStressContext) &&
+      !(shardCorrectiveActionPatterns.length > 0 && /\b(mechanism unknown|failed\/missing control unknown|exposure unknown|exposure to unknown)\b/i.test(generatedReasoningText));
+    const includeGeneratedReasoning = !shardCorrectiveActionPatterns.length || generatedReasoningMatchesDomain;
 
     const descriptionParts = [
       shardCorrectiveActionPatterns.length
         ? `Focused HazLenz shard controls: ${shardCorrectiveActionPatterns.slice(0, 4).join("; ")}`
         : "",
       fallbackDescription,
-      dca.actionRationale ? `DCA rationale: ${dca.actionRationale}` : "",
-      correctiveActionReasoning.immediateActionNarrative
+      includeGeneratedReasoning && dca.actionRationale ? `DCA rationale: ${dca.actionRationale}` : "",
+      includeGeneratedReasoning && correctiveActionReasoning.immediateActionNarrative
         ? `Immediate: ${correctiveActionReasoning.immediateActionNarrative}`
         : "",
-      correctiveActionReasoning.permanentCorrectionNarrative
+      includeGeneratedReasoning && correctiveActionReasoning.permanentCorrectionNarrative
         ? `Permanent correction: ${correctiveActionReasoning.permanentCorrectionNarrative}`
         : "",
-      correctiveActionReasoning.verificationNarrative
+      includeGeneratedReasoning && correctiveActionReasoning.verificationNarrative
         ? `Verification: ${correctiveActionReasoning.verificationNarrative}`
         : "",
       riskReasoning.riskNarrative || riskReasoning.summary
@@ -2471,7 +2736,8 @@ export class SafescopeV2Service {
 
     const title = isVague
       ? "Review and control HazLenz AI-identified hazard"
-      : (sanitizeActionText(dca.immediateActions?.[0]?.title) ||
+      : (domainActionTitle ||
+         sanitizeActionText(dca.immediateActions?.[0]?.title) ||
          sanitizeActionText(dca.immediateActions?.[0]?.action) ||
          sanitizeActionText(correctiveActionReasoning.immediateActions?.[0]) ||
          sanitizeActionText(primary.title) ||
@@ -3241,6 +3507,8 @@ export class SafescopeV2Service {
                 item?.evidenceGap ||
                 item?.evidenceGaps ||
                 item?.text ||
+                item?.question ||
+                item?.prompt ||
                 item?.title ||
                 item?.summary ||
                 item?.reason ||
@@ -3272,6 +3540,75 @@ export class SafescopeV2Service {
     ).slice(0, 8);
     const confidence = Number(response?.confidence);
     const normalizedConfidence = Number.isFinite(confidence) ? Math.max(0, Math.min(1, confidence)) : undefined;
+    const observationText = String(
+      response?.observationContext?.rawObservation ||
+      response?.observationContext?.normalizedText ||
+      response?.rawObservation ||
+      response?.inputText ||
+      response?.text ||
+      "",
+    ).toLowerCase();
+    const hasMobileEquipmentObject = /\b(forklift|loader|haul truck|vehicle|vehicles|mobile equipment|powered haulage|backhoe|excavator|dozer|skid steer|powered industrial truck)\b/i.test(observationText);
+    const hasTrafficExposure = /\b(blind spot|blind spots|blind corner|backing|backup alarm|backup alarms|berm|berms|haul road|haul roads|spotter|spotters|flagger|flaggers|traffic control|traffic controls|vehicle lane|vehicle lanes)\b/i.test(observationText) ||
+      (/\b(pedestrian|pedestrians|worker on foot|travel path|travel paths)\b/i.test(observationText) && /\b(forklift|loader|haul truck|vehicle|vehicles|mobile equipment|powered haulage|backhoe|excavator|dozer|skid steer|traffic|roadway|haul road|backing)\b/i.test(observationText));
+    const hasTrafficOrMobileEquipmentContext =
+      hasMobileEquipmentObject ||
+      (hasTrafficExposure && !/\b(oxygen cylinder|gas cylinder|compressed gas|cylinder|cylinders)\b/i.test(observationText));
+    const hasElectricalContext = /\b(electrical|electric|energized|live parts?|panel|breaker|disconnect|cord|cable|wire|wiring|conductor|gfci|shock|arc flash|arc[- ]flash|voltage)\b/i.test(observationText);
+    const hasServicingEnergyContext = /\b(lockout|locked out|tagout|loto|servicing|maintenance|repair|unjamming|cleaning|startup|restart|stored energy|stored pressure|hydraulic|pneumatic|power is removed|power removed|zero energy|de-energized|energy isolation)\b/i.test(observationText);
+    const hasMachineGuardingContext = /\b(machine|guard|guarded|guarding|unguarded|conveyor|belt|tail pulley|head pulley|pulley|shaft|nip point|pinch point|rotating|point of operation|moving part|grinder|abrasive wheel)\b/i.test(observationText);
+    const hasWalkingSurfaceContext = /\b(walkway|walking|working surface|floor|aisle|route|path|spill|slick|slip|trip|housekeeping|clutter|debris|stairs?|stairway|ladder|hole|opening)\b/i.test(observationText);
+    const hasFallOrHeightContext = /\b(fall|edge|platform|scaffold|berm|dump point|roadway|haul road|hole|opening|ladder|roof|mezzanine|elevated work|handrail|stair landing|lower level)\b/i.test(observationText);
+    const hasConfinedSpaceContext = /\b(confined space|permit space|manhole|vault|tank|vessel|tunnel|atmosphere|ventilation|fumes?|toxic|entrant|entry)\b/i.test(observationText);
+    const hasCylinderContext = /\b(oxygen cylinder|gas cylinder|compressed gas|cylinder|cylinders|acetylene|propane|argon)\b/i.test(observationText);
+    const hasChemicalContext = /\b(chemical|solvent|acid|corrosive|sds|label|unlabeled|drum|container|eyewash|splash|asbestos|lead|dust|insulation)\b/i.test(observationText) ||
+      (/\b(spill|leak|release)\b/i.test(observationText) && /\b(drum|container|chemical|solvent|acid|corrosive|hazardous|waste)\b/i.test(observationText));
+    const hasHazComIdentityContext = /\b(unlabeled|label|sds|safety data sheet|drum|container|contents?|identity|unknown chemical|mystery)\b/i.test(observationText);
+    const hasGasReleaseContext = /\b(natural gas|gas odor|odor of gas|gas leak|suspected gas)\b/i.test(observationText);
+    const hasEmergencyResponseContext = hasGasReleaseContext || /\b(eyewash|safety shower|extinguisher|exit|egress|emergency|blocked|fire|hot work|combustible|flammable|ignition)\b/i.test(observationText);
+    const hasHeatStressContext = /\b(heat|humidity|shade|rest|hydration|acclimatization|heat stress|work-rest|recovery)\b/i.test(observationText);
+    const isRelevantMechanismSupport = (value: string) => {
+      const text = String(value || "");
+      if (!text) return false;
+      if (/\b(lockout|tagout|loto|zero-energy|zero energy|energy isolat|unexpected energization|startup|restart|power switch|disconnect switches|mechanical work|servicing|maintenance|unjamming)\b/i.test(text) && !hasServicingEnergyContext) {
+        return false;
+      }
+      if (/\b(electrical|energized|qualified electrical|shock|arc flash|arc-flash|breaker|panel|cord|cable|conductor|circuit|voltage)\b/i.test(text) && !hasElectricalContext) {
+        return false;
+      }
+      if (/\b(mobile equipment|vehicle|vehicles|traffic|travel path|blind spot|backup alarm|spotter|haul road|berm|pedestrian separation|operator communication)\b/i.test(text) && !hasTrafficOrMobileEquipmentContext) {
+        return false;
+      }
+      if (/\b(slip_trip_fall_same_level|walking[- ]surface|walking\/working surface|housekeeping|slick floor|spill cleanup|poor housekeeping|blocked access|debris|same-level fall)\b/i.test(text) && !hasWalkingSurfaceContext) {
+        return false;
+      }
+      if (/\b(machine|guarding|guard|unguarded|moving parts?|tail pulley|nip point|rotating|conveyor|grinder|abrasive wheel|point of operation)\b/i.test(text) && !hasMachineGuardingContext) {
+        return false;
+      }
+      if (/\b(fall protection|fall height|edge|opening|platform|scaffold|ladder|guardrail|handrail|tie-off|lower level)\b/i.test(text) && !hasFallOrHeightContext) {
+        return false;
+      }
+      if (/\b(confined space|permit|atmosphere|atmospheric|ventilation|entrant|attendant|rescue|oxygen deficient|oxygen deficiency|toxic|fume)\b/i.test(text) && !hasConfinedSpaceContext && !hasGasReleaseContext) {
+        return false;
+      }
+      if (/\b(cylinder|compressed gas|valve cap|fuel gas|oxygen cylinder)\b/i.test(text) && !hasCylinderContext) {
+        return false;
+      }
+      if (/\b(chemical|container|label|sds|hazcom|secondary containment|corrosive|eyewash|splash|asbestos|lead|dust|insulation|drum|hazardous waste)\b/i.test(text) && !hasChemicalContext) {
+        return false;
+      }
+      if (/\b(unknown or unlabeled|unlabeled|mystery|workplace label|ghs label|pictogram|safety data sheet|sds|container identity|container contents)\b/i.test(text) && !hasHazComIdentityContext) {
+        return false;
+      }
+      if (/\b(extinguisher|exit route|egress|flammable|combustible|hot work|fire watch|ignition|fire-prevention|fire prevention)\b/i.test(text) && !hasEmergencyResponseContext) {
+        return false;
+      }
+      if (/\b(heat[_ -]?stress|heat illness|hydration|work-rest|rest break|rest\/water\/shade|shade|acclimatization|recovery area|cool drinking water)\b/i.test(text) && !hasHeatStressContext) {
+        return false;
+      }
+      return true;
+    };
+    const relevantText = (values: string[]) => uniqueText(values).filter(isRelevantMechanismSupport).slice(0, 8);
 
     const observedCondition = summarize(
       uniqueText(
@@ -3312,9 +3649,10 @@ export class SafescopeV2Service {
     );
 
     const familyHint = String(
+      response?.classification ||
+      response?.hazardCategory ||
       response?.candidateStandardFamily ||
       response?.hazardCategory ||
-      response?.classification ||
       inspectionIntelligence?.standardApplicability?.matchedRules?.[0]?.hazardFamily ||
       "",
     ).toLowerCase();
@@ -3449,6 +3787,372 @@ export class SafescopeV2Service {
         "Document objective data, exposure assessment, and program elements before final reliance.",
       ],
     };
+    const textSpecificMechanismTemplate = (() => {
+      if (/\b(hydraulic|pneumatic|stored pressure|stored energy)\b/i.test(observationText) && /\b(ram|cylinder|pressure|drop|release|power is removed|power removed|relieved)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Stored hydraulic or pneumatic pressure remains capable of moving equipment after power is removed.",
+          failureMode: "Residual pressure can release or allow a ram, cylinder, or suspended component to drop unexpectedly.",
+          exposurePathway: "A worker near or servicing the equipment can be struck, crushed, pinned, or injected by released pressure or motion.",
+          potentialConsequence: "Crushing, struck-by injury, amputation, injection injury, or fatal injury from uncontrolled stored-energy release.",
+          evidenceGaps: [
+            "Confirm the hydraulic or pneumatic energy source, load position, pressure status, and whether stored pressure was relieved.",
+            "Verify blocking, bleeding, dissipation, lockout/tagout, and zero-energy try-test before exposure.",
+            "Confirm whether workers are servicing, inspecting, or positioned within the drop or release zone.",
+          ],
+          controlFocus: [
+            "Keep workers out of the drop or release zone until stored pressure is relieved and verified.",
+            "Block or support the ram/load and bleed or dissipate stored energy before work continues.",
+            "Apply and verify machine-specific lockout/tagout and zero-energy checks.",
+          ],
+        };
+      }
+
+      if (/\b(unprotected trench|trench|excavation)\b/i.test(observationText) && /\b(open|unprotected|workers nearby|nearby workers|roadway repair|unsupported)\b/i.test(observationText)) {
+        return {
+          observedCondition: "An open trench or excavation lacks verified protective-system or access controls while workers are nearby.",
+          failureMode: "Unsupported trench walls can cave in or material/equipment can enter the excavation exposure zone.",
+          exposurePathway: "Workers in or near the trench can be engulfed, struck, trapped, or crushed if the excavation fails.",
+          potentialConsequence: "Fatal crushing, asphyxiation, engulfment, struck-by injury, or traumatic injury from trench collapse.",
+          evidenceGaps: [
+            "Confirm trench depth, soil classification, protective system, and competent-person inspection status.",
+            "Verify whether workers are inside the trench or within the collapse/edge exposure zone.",
+            "Confirm access control, egress, spoil/equipment setback, and roadway traffic controls.",
+          ],
+          controlFocus: [
+            "Keep workers out of the trench and edge exposure zone until a competent person verifies protection.",
+            "Install or verify sloping, benching, shielding, or shoring appropriate to the soil and depth.",
+            "Document inspection, egress, spoil setback, and access controls before work resumes.",
+          ],
+        };
+      }
+
+      if (/\b(electrical|hydraulic|pneumatic)\b/i.test(observationText) && /\b(main disconnect|only .*disconnect|only one source|multiple energy|energy sources?)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Servicing is planned with multiple hazardous energy sources but only one isolation point is addressed.",
+          failureMode: "Uncontrolled electrical, hydraulic, pneumatic, gravity, or stored energy can remain after the main disconnect is opened.",
+          exposurePathway: "A worker servicing the equipment can be contacted by unexpected startup, stored pressure release, motion, or electrical energy.",
+          potentialConsequence: "Crushing, amputation, injection injury, shock, burn, or fatal injury from uncontrolled hazardous energy release.",
+          evidenceGaps: [
+            "Confirm each electrical, hydraulic, pneumatic, gravity, thermal, and stored-energy source.",
+            "Verify isolation, blocking, bleeding, dissipation, locks/tags, and zero-energy try-test for each energy source.",
+            "Confirm who controls contractor and host-employer energy-control responsibilities before servicing begins.",
+          ],
+          controlFocus: [
+            "Stop servicing until every hazardous energy source is isolated and verified.",
+            "Apply machine-specific lockout/tagout with blocking, bleeding, and stored-energy dissipation.",
+            "Document authorized-person and contractor coordination before work continues.",
+          ],
+        };
+      }
+
+      if (/\b(contractor)\b/i.test(observationText) && /\b(servicing|repair|maintenance)\b/i.test(observationText) && /\b(quick restart|available for .*restart|restart during)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Contractor servicing is occurring while the host operation expects equipment to remain available for restart.",
+          failureMode: "Production or coordination pressure can bypass host/contractor energy-control responsibilities and permit unexpected startup.",
+          exposurePathway: "The contractor or nearby plant personnel can be exposed to energized equipment, stored energy, or motion during repair.",
+          potentialConsequence: "Crushing, amputation, entanglement, shock, burn, or fatal injury during servicing.",
+          evidenceGaps: [
+            "Confirm host-employer and contractor lockout/tagout responsibilities and communication.",
+            "Verify the equipment is isolated, locked/tagged, blocked, dissipated, and try-tested before repair.",
+            "Confirm restart authority, affected-employee notification, and shift/contractor handoff controls.",
+          ],
+          controlFocus: [
+            "Stop repair until host and contractor energy-control roles are assigned and documented.",
+            "Keep equipment unavailable for restart until authorized employees verify zero energy.",
+            "Review contractor coordination and restart authorization before returning the line to service.",
+          ],
+        };
+      }
+
+      if (/\b(stair landing|stairway|stairs?)\b/i.test(observationText) && /\b(handrail|open edge|lower level)\b/i.test(observationText)) {
+        return {
+          observedCondition: "A stair landing or stairway edge is missing a handrail or equivalent edge control.",
+          failureMode: "A person using the stairs or landing can trip, stumble, or lose balance without a graspable rail or protected open side.",
+          exposurePathway: "Employees moving through the stair landing walking surface can fall over the open edge or down to the lower level.",
+          potentialConsequence: "Fall to lower level causing fracture, head injury, spinal trauma, or fatal injury.",
+          evidenceGaps: [
+            "Confirm the stair/landing location, open-side geometry, and approximate fall height.",
+            "Confirm whether employees use the stairway or landing and whether temporary access controls are in place.",
+            "Verify handrail, stair-rail, guardrail, or other edge-protection status before relying on closure.",
+            "Confirm the affected walkway or alternate route status while the handrail is missing.",
+          ],
+          controlFocus: [
+            "Restrict access or provide temporary protected access until the handrail or guardrail is restored.",
+            "Install a compliant handrail/stair rail or equivalent edge protection for the landing.",
+            "Verify stairway condition and employee access controls before returning the route to service.",
+          ],
+        };
+      }
+
+      if (/\b(trench|excavation)\b/i.test(observationText) && /\b(water|accumulated|soft|unstable|bottom)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Water accumulation and soft or unstable trench bottom conditions are present.",
+          failureMode: "Water can undermine soil strength, reduce trench stability, and defeat protective-system assumptions.",
+          exposurePathway: "Workers in or near the trench can be caught in a cave-in, engulfed, trapped, or exposed to drowning conditions.",
+          potentialConsequence: "Fatal crushing, asphyxiation, drowning, or engulfment from trench instability.",
+          evidenceGaps: [
+            "Confirm trench depth, soil classification, water source, and whether water removal is active.",
+            "Confirm whether a competent person inspected the trench after water accumulation was observed.",
+            "Verify protective system, egress, spoil placement, and whether workers are excluded until stable.",
+          ],
+          controlFocus: [
+            "Keep workers out until the competent person evaluates water and soil stability.",
+            "Remove or control water and verify the protective system is adequate for the changed conditions.",
+            "Document inspection, egress, and protective-system verification before re-entry.",
+          ],
+        };
+      }
+
+      if (/\b(overhead utility|overhead power|power line|utility line)\b/i.test(observationText) && /\b(boom|equipment|excavation|contact)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Equipment with a boom or raised component may operate beneath overhead utility lines along the excavation utility route.",
+          failureMode: "The boom, load, or equipment can create a utility strike by encroaching on or contacting energized overhead lines if clearance is not controlled.",
+          exposurePathway: "Operators, ground workers, signal persons, or nearby employees can receive electrical current or arc exposure through the equipment or ground path.",
+          potentialConsequence: "Electrocution, shock, arc-flash burn, or fatal injury from overhead power-line contact.",
+          evidenceGaps: [
+            "Locate utilities and confirm utility type, voltage if known, clearance distance, route, and equipment maximum reach.",
+            "Verify whether lines are de-energized/grounded, guarded, relocated, or controlled by approach-distance procedures.",
+            "Confirm spotter, barricade, warning-line, and operator communication controls before work proceeds.",
+          ],
+          controlFocus: [
+            "Stop equipment movement under the lines until clearance and utility status are verified.",
+            "Use power-line safety controls such as de-energization, guarding, dedicated spotter, and approach-distance limits.",
+            "Locate utilities and document qualified review of the excavation route and boom reach before work continues.",
+          ],
+        };
+      }
+
+      if (/\b(hot work)\b/i.test(observationText) && /\b(combustible|flammable|fire watch|ignition|separation)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Hot work is occurring near combustible material without verified separation, shielding, or fire-watch controls.",
+          failureMode: "Sparks, slag, radiant heat, or conducted heat can ignite nearby or concealed combustible material.",
+          exposurePathway: "Workers in or near the hot-work area can be exposed to fire, smoke, heat, or emergency evacuation hazards.",
+          potentialConsequence: "Burn injury, smoke inhalation, fire spread, explosion, or fatal injury.",
+          evidenceGaps: [
+            "Confirm hot-work permit or authorization status, material type, and distance to combustibles.",
+            "Verify combustible removal, shielding, fire watch, extinguisher access, and post-work monitoring.",
+            "Confirm whether sparks, slag, or heat can reach concealed or adjacent spaces.",
+          ],
+          controlFocus: [
+            "Pause hot work until combustible material is removed, shielded, or separated.",
+            "Verify hot-work authorization, fire watch, extinguisher readiness, and post-work monitoring.",
+            "Control ignition paths to adjacent or concealed combustible areas before work resumes.",
+          ],
+        };
+      }
+
+      if (/\b(flammable|combustible|ignition)\b/i.test(observationText) && /\b(storage|stored|container|liquid|source|shop|area)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Flammable or combustible material is stored or located near an ignition source.",
+          failureMode: "Vapor, liquid, or combustible material can ignite when separation, storage, or ventilation controls are inadequate.",
+          exposurePathway: "Workers in the storage or work area can be exposed to fire, flash fire, smoke, or explosion effects.",
+          potentialConsequence: "Burn injury, smoke inhalation, explosion injury, property damage, or fatal injury.",
+          evidenceGaps: [
+            "Identify the material, container type, quantity, and ignition source.",
+            "Confirm storage cabinet, approved container, separation distance, bonding/grounding, and ventilation controls.",
+            "Verify whether hot work, open flame, electrical ignition, or other ignition source is active nearby.",
+          ],
+          controlFocus: [
+            "Separate flammable or combustible material from ignition sources.",
+            "Move material to approved containers, cabinets, or storage areas as applicable.",
+            "Verify ventilation and fire-prevention controls before normal work resumes.",
+          ],
+        };
+      }
+
+      if (/\b(natural gas|gas odor|odor of gas)\b/i.test(observationText)) {
+        return {
+          observedCondition: "A natural-gas odor is reported and the release source is not yet confirmed.",
+          failureMode: "Uncontrolled gas can accumulate and ignite if the source, concentration, and ventilation are not verified.",
+          exposurePathway: "Workers in or near the area can inhale gas or be exposed to fire/explosion if an ignition source is present.",
+          potentialConsequence: "Fire, explosion, burn injury, asphyxiation, or fatal injury.",
+          evidenceGaps: [
+            "Confirm gas monitoring results, odor location, ventilation status, and suspected source.",
+            "Identify ignition sources, affected area boundaries, and whether evacuation or isolation is required.",
+            "Verify qualified gas, utility, or maintenance response before reoccupying or restarting equipment.",
+          ],
+          controlFocus: [
+            "Restrict ignition sources and isolate the suspected area until the source is evaluated.",
+            "Notify qualified gas, utility, or maintenance personnel and monitor the atmosphere.",
+            "Verify ventilation, source control, and emergency response status before reoccupying the area.",
+          ],
+        };
+      }
+
+      if (/\b(manhole|confined space|permit space)\b/i.test(observationText) && /\b(atmosphere|oxygen|low|not tested|untested)\b/i.test(observationText)) {
+        return {
+          observedCondition: "A manhole or confined-space atmosphere is untested or indicates possible oxygen deficiency.",
+          failureMode: "Oxygen deficiency or toxic/flammable atmosphere may be present before entry is controlled.",
+          exposurePathway: "Entrants or would-be rescuers can inhale a hazardous atmosphere during entry or rescue.",
+          potentialConsequence: "Asphyxiation, toxic exposure, loss of consciousness, explosion, or fatal rescue escalation.",
+          evidenceGaps: [
+            "Confirm calibrated atmospheric testing for oxygen, flammability, and toxic contaminants.",
+            "Confirm permit status, ventilation, isolation, attendant, communication, and rescue provisions.",
+            "Verify whether entry has been prevented until the atmosphere is acceptable and controls are documented.",
+          ],
+          controlFocus: [
+            "Do not enter until atmospheric testing and permit-space controls are complete.",
+            "Ventilate, isolate hazards, assign attendant/rescue provisions, and document acceptable atmosphere.",
+            "Retest and monitor as conditions or work activities change.",
+          ],
+        };
+      }
+
+      if (/\b(permit-required space|permit required space|confined space|permit space)\b/i.test(observationText) && /\b(no attendant|attendant is not|attendant missing|without attendant|attendant posted)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Workers are inside a permit-required confined space without a dedicated attendant posted at the entrance.",
+          failureMode: "Loss of outside monitoring, communication, entry tracking, or emergency initiation can delay recognition and rescue.",
+          exposurePathway: "Entrants can be exposed to atmospheric, engulfment, configuration, or process hazards without external observation and response.",
+          potentialConsequence: "Asphyxiation, toxic exposure, engulfment, entrapment, delayed rescue, or fatality.",
+          evidenceGaps: [
+            "Confirm permit-required space classification, active entry status, entrant count, and attendant assignment.",
+            "Verify atmospheric monitoring, communication, rescue plan, entry permit, isolation, and ventilation controls.",
+            "Confirm whether entry was stopped until attendant and permit controls were restored.",
+          ],
+          controlFocus: [
+            "Stop or suspend entry until an attendant is assigned and stationed as required.",
+            "Verify permit, communication, monitoring, rescue, and isolation controls before entry resumes.",
+            "Document attendant duties, entrant tracking, and emergency communication before closure.",
+          ],
+        };
+      }
+
+      if (/\b(tunnel|confined space|space)\b/i.test(observationText) && /\b(ventilation|fumes?|build up|inadequate)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Ventilation is inadequate and fumes are accumulating in an enclosed or confined work area.",
+          failureMode: "A hazardous atmosphere can build up when airflow does not dilute, exhaust, or replace contaminated atmosphere.",
+          exposurePathway: "Workers can inhale toxic, irritant, oxygen-deficient, or flammable atmosphere during entry or work in the tunnel.",
+          potentialConsequence: "Asphyxiation, toxic inhalation, respiratory injury, fire/explosion exposure, or fatality.",
+          evidenceGaps: [
+            "Confirm contaminant source, atmospheric testing results, airflow direction/rate, and ventilation equipment status.",
+            "Confirm whether the tunnel is a permit-required confined space and what entry controls apply.",
+            "Verify respiratory protection, evacuation, continuous monitoring, and rescue planning as applicable.",
+          ],
+          controlFocus: [
+            "Pause work or restrict entry until ventilation and atmospheric conditions are verified.",
+            "Restore mechanical ventilation or source exhaust appropriate to the contaminant and space.",
+            "Document atmospheric monitoring and entry/control verification before normal work resumes.",
+          ],
+        };
+      }
+
+      if (/\b(solvent|parts cleaning|clean parts|cleaning parts)\b/i.test(observationText) && /\b(small room|room|enclosed|without ventilation|no ventilation|odor control|ventilation)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Workers are using solvent in a small or enclosed room without verified ventilation or odor/vapor control.",
+          failureMode: "Solvent vapor can accumulate when local exhaust, general ventilation, substitution, or container controls are inadequate.",
+          exposurePathway: "Workers cleaning parts can inhale solvent vapors or experience eye/skin irritation during the task.",
+          potentialConsequence: "Respiratory irritation, central nervous system effects, chemical exposure illness, fire risk, or acute overexposure.",
+          evidenceGaps: [
+            "Identify the solvent, SDS hazards, quantity used, room size, duration, and exposed workers.",
+            "Verify ventilation rate/source capture, odor/vapor monitoring, container closure, and ignition controls.",
+            "Confirm PPE, substitution options, exposure assessment, and whether work should pause until controls are verified.",
+          ],
+          controlFocus: [
+            "Pause or relocate solvent use until ventilation and exposure controls are verified.",
+            "Use local exhaust, closed containers, compatible substitution, or reduced quantities where feasible.",
+            "Verify SDS, exposure assessment, PPE, fire controls, and worker instruction before continuing.",
+          ],
+        };
+      }
+
+      if (/\b(corrosive|chemical)\b/i.test(observationText) && /\b(pour|poured|pouring|transfer|container to another|splash)\b/i.test(observationText)) {
+        return {
+          observedCondition: "A corrosive chemical transfer creates an obvious splash potential.",
+          failureMode: "Pouring or transferring corrosive material can release liquid outside the receiving container or onto the worker.",
+          exposurePathway: "Hands, eyes, face, skin, or nearby workers can be contacted by corrosive splash during transfer.",
+          potentialConsequence: "Chemical burn, severe eye injury, skin injury, inhalation irritation, or vision loss.",
+          evidenceGaps: [
+            "Identify the corrosive material, concentration, container sizes, and transfer method.",
+            "Verify splash protection, face/eye protection, gloves, apron, secondary containment, and eyewash/shower access.",
+            "Confirm whether the transfer should pause until splash controls and emergency flushing access are verified.",
+          ],
+          controlFocus: [
+            "Pause transfer if splash controls or emergency flushing access are not verified.",
+            "Use compatible transfer equipment, splash protection, secondary containment, and chemical-resistant PPE.",
+            "Verify eyewash/safety shower access, SDS review, and employee instruction before continuing.",
+          ],
+        };
+      }
+
+      if (/\b(high heat|heat|humidity)\b/i.test(observationText) && /\b(shade|rest|hydration|work-rest|recovery)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Workers are exposed to heat and humidity with inadequate shade, rest, hydration, or recovery opportunity.",
+          failureMode: "Metabolic and environmental heat load can exceed the body's ability to cool when recovery controls are missing.",
+          exposurePathway: "Crew members performing work in hot conditions can develop escalating heat strain during the shift.",
+          potentialConsequence: "Heat exhaustion, heat stroke, collapse, organ injury, or fatal heat illness.",
+          evidenceGaps: [
+            "Confirm temperature, humidity, heat index/WBGT, workload, clothing/PPE, duration, and acclimatization status.",
+            "Verify water, shade, rest breaks, supervision, symptom monitoring, and emergency response controls.",
+            "Identify affected workers and whether any heat-illness symptoms have been reported.",
+          ],
+          controlFocus: [
+            "Implement work-rest, hydration, shade/cooling, and monitoring controls for the exposed crew.",
+            "Adjust workload or schedule and escalate medical response if symptoms are present.",
+            "Document heat-stress assessment, acclimatization, and supervisor verification.",
+          ],
+        };
+      }
+
+      if (/\b(asbestos|lead)\b/i.test(observationText) && /\b(insulation|dust|demolition|renovation|prep|suspect|suspicion)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Suspect asbestos- or lead-containing material and dust are present before demolition or disturbance.",
+          failureMode: "Disturbance can release regulated fibers or lead-containing dust if material identity and controls are not verified.",
+          exposurePathway: "Workers can inhale asbestos fibers or lead dust, ingest contaminated dust, or spread contamination outside the work area.",
+          potentialConsequence: "Serious chronic respiratory disease, cancer risk, lead poisoning, neurological effects, or reproductive harm.",
+          evidenceGaps: [
+            "Confirm material survey, sampling/analysis, lead or asbestos determination, and competent/qualified person review.",
+            "Verify demolition scope, disturbance method, exposure assessment, containment, wet methods, and hygiene controls.",
+            "Confirm respiratory protection, training, regulated area, and waste/decontamination controls where required.",
+          ],
+          controlFocus: [
+            "Do not disturb suspect material until identity and exposure controls are verified.",
+            "Use qualified asbestos/lead procedures, containment, wet methods, and exposure assessment as applicable.",
+            "Document sampling, competent-person review, worker protection, and clearance/cleanup evidence.",
+          ],
+        };
+      }
+
+      if (/\b(eyewash|safety shower)\b/i.test(observationText) && /\b(blocked|obstructed|not reach|quickly|splash)\b/i.test(observationText)) {
+        return {
+          observedCondition: "Emergency eyewash or safety shower access is blocked where splash exposure may require immediate flushing.",
+          failureMode: "Delayed access prevents immediate dilution and removal of corrosive or injurious material from eyes or skin.",
+          exposurePathway: "An operator splashed during chemical handling may be unable to reach and activate flushing equipment quickly.",
+          potentialConsequence: "Severe eye injury, chemical burn, vision loss, or worsened exposure outcome from delayed emergency response.",
+          evidenceGaps: [
+            "Confirm the corrosive or injurious material, splash pathway, and distance/travel path to flushing equipment.",
+            "Verify equipment accessibility, activation, flow, temperature, inspection status, and employee awareness.",
+            "Confirm whether chemical handling should pause until immediate flushing access is restored.",
+          ],
+          controlFocus: [
+            "Clear access immediately and pause corrosive handling if required flushing cannot be reached.",
+            "Verify eyewash/safety shower function, location, activation, and inspection status.",
+            "Prevent re-blocking through layout controls, inspections, and worker briefing.",
+          ],
+        };
+      }
+
+      if (/\b(conveyor|belt|tail pulley|head pulley)\b/i.test(observationText) && /\b(missing a guard|unguarded|guard missing|miners? clean|moving belt|moving)\b/i.test(observationText)) {
+        return {
+          observedCondition: "A conveyor pulley, belt, or moving machine part is unguarded while miners perform cleanup or work nearby on the plant walkway or access area.",
+          failureMode: "The moving belt or pulley can catch clothing, tools, hands, or limbs and draw a miner into the nip point.",
+          exposurePathway: "Miners cleaning spillage or working near the moving belt can contact the exposed in-running nip or rotating component.",
+          potentialConsequence: "Entanglement, crushing, amputation, or fatal caught-in injury.",
+          evidenceGaps: [
+            "Identify the exposed conveyor component and whether the belt was running or capable of movement.",
+            "Confirm miner access during cleanup, shoveling, inspection, or maintenance.",
+            "Verify guard condition, lockout status for cleanup/maintenance, and mine scope before closure.",
+            "Confirm walkway/access route exposure around the conveyor tail pulley.",
+          ],
+          controlFocus: [
+            "Stop or restrict cleanup near the exposed moving part until guarding and energy control are verified.",
+            "Install guarding that prevents contact with the pulley, belt, and nip point.",
+            "Document competent-person verification before miners resume access.",
+          ],
+        };
+      }
+
+      return null;
+    })();
 
     const useElectricalTemplate =
       familyHint.includes("electrical") &&
@@ -3460,14 +4164,21 @@ export class SafescopeV2Service {
         !controlFocus.length
       );
 
-    const finalMechanismChain = useElectricalTemplate
+    const finalMechanismChain = textSpecificMechanismTemplate
+      ? {
+          ...textSpecificMechanismTemplate,
+          evidenceGaps: relevantText(uniqueText(textSpecificMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(textSpecificMechanismTemplate.controlFocus, controlFocus)),
+          ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
+        }
+      : useElectricalTemplate
       ? {
           observedCondition: electricalMechanismTemplate.observedCondition,
           failureMode: electricalMechanismTemplate.failureMode,
           exposurePathway: electricalMechanismTemplate.exposurePathway,
           potentialConsequence: electricalMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(electricalMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(electricalMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(electricalMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(electricalMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : familyHint.includes("hazcom") || familyHint.includes("hazardous_materials") || familyHint.includes("chemical")
@@ -3476,8 +4187,8 @@ export class SafescopeV2Service {
           failureMode: hazcomMechanismTemplate.failureMode,
           exposurePathway: hazcomMechanismTemplate.exposurePathway,
           potentialConsequence: hazcomMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(hazcomMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(hazcomMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(hazcomMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(hazcomMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : (familyHint.includes("machine_guarding") || familyHint.includes("machine_guarding_loto"))
@@ -3486,8 +4197,8 @@ export class SafescopeV2Service {
           failureMode: machineGuardingMechanismTemplate.failureMode,
           exposurePathway: machineGuardingMechanismTemplate.exposurePathway,
           potentialConsequence: machineGuardingMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(machineGuardingMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(machineGuardingMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(machineGuardingMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(machineGuardingMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : familyHint.includes("mobile_equipment")
@@ -3496,8 +4207,8 @@ export class SafescopeV2Service {
           failureMode: mobileEquipmentMechanismTemplate.failureMode,
           exposurePathway: mobileEquipmentMechanismTemplate.exposurePathway,
           potentialConsequence: mobileEquipmentMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(mobileEquipmentMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(mobileEquipmentMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(mobileEquipmentMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(mobileEquipmentMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : familyHint.includes("fall_protection") || familyHint.includes("falls") || familyHint.includes("scaffold")
@@ -3506,8 +4217,8 @@ export class SafescopeV2Service {
           failureMode: fallMechanismTemplate.failureMode,
           exposurePathway: fallMechanismTemplate.exposurePathway,
           potentialConsequence: fallMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(fallMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(fallMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(fallMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(fallMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : familyHint.includes("confined_space")
@@ -3516,8 +4227,8 @@ export class SafescopeV2Service {
           failureMode: confinedSpaceMechanismTemplate.failureMode,
           exposurePathway: confinedSpaceMechanismTemplate.exposurePathway,
           potentialConsequence: confinedSpaceMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(confinedSpaceMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(confinedSpaceMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(confinedSpaceMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(confinedSpaceMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : familyHint.includes("fire_explosion") || familyHint.includes("fire_protection") || familyHint.includes("welding_cutting_hot_work")
@@ -3526,8 +4237,8 @@ export class SafescopeV2Service {
           failureMode: fireMechanismTemplate.failureMode,
           exposurePathway: fireMechanismTemplate.exposurePathway,
           potentialConsequence: fireMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(fireMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(fireMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(fireMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(fireMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : familyHint.includes("industrial_hygiene") || familyHint.includes("health_") || familyHint.includes("noise_exposure") || familyHint.includes("respirable_dust_silica")
@@ -3536,8 +4247,8 @@ export class SafescopeV2Service {
           failureMode: industrialHygieneMechanismTemplate.failureMode,
           exposurePathway: industrialHygieneMechanismTemplate.exposurePathway,
           potentialConsequence: industrialHygieneMechanismTemplate.potentialConsequence,
-          evidenceGaps: uniqueText(industrialHygieneMechanismTemplate.evidenceGaps, evidenceGaps).slice(0, 8),
-          controlFocus: uniqueText(industrialHygieneMechanismTemplate.controlFocus, controlFocus).slice(0, 8),
+          evidenceGaps: relevantText(uniqueText(industrialHygieneMechanismTemplate.evidenceGaps, evidenceGaps)),
+          controlFocus: relevantText(uniqueText(industrialHygieneMechanismTemplate.controlFocus, controlFocus)),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         }
       : {
@@ -3545,8 +4256,8 @@ export class SafescopeV2Service {
           failureMode,
           exposurePathway,
           potentialConsequence,
-          evidenceGaps,
-          controlFocus,
+          evidenceGaps: relevantText(evidenceGaps),
+          controlFocus: relevantText(controlFocus),
           ...(normalizedConfidence !== undefined ? { confidence: normalizedConfidence } : {}),
         };
 

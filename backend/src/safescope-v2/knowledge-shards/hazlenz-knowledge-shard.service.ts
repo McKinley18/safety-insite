@@ -12,13 +12,26 @@ export class HazLenzKnowledgeShardService {
   findFocusedShards(lookup: HazLenzKnowledgeShardLookup): HazLenzKnowledgeShardRecord[] {
     const bundleIds = new Set(lookup.bundleIds || []);
     const sourceKeys = new Set(lookup.sourceKeys || []);
+    const shardKey = String(lookup.shardKey || "");
 
-    return this.shards.filter((shard) => {
-      if (lookup.shardKey && shard.shardKey === lookup.shardKey) return true;
-      if (bundleIds.has(shard.bundleId)) return true;
-      if (shard.sourceKeys.some((sourceKey) => sourceKeys.has(sourceKey))) return true;
-      return false;
-    });
+    const exactShardMatches = this.shards.filter((shard) => shardKey && shard.shardKey === shardKey);
+    if (exactShardMatches.length) return exactShardMatches;
+
+    const bundleMatches = this.shards.filter((shard) => bundleIds.has(shard.bundleId));
+    if (bundleMatches.length) return bundleMatches;
+
+    const allowGenericPedestrianFallback = /\bmobile_equipment\b|\bstruck_by\b|\btraffic\b/i.test(shardKey);
+    const allowedSourceKeys = new Set(
+      Array.from(sourceKeys).filter((sourceKey) =>
+        sourceKey !== "general-pedestrian-safety" || allowGenericPedestrianFallback,
+      ),
+    );
+
+    if (!allowedSourceKeys.size) return [];
+
+    return this.shards.filter((shard) =>
+      shard.sourceKeys.some((sourceKey) => allowedSourceKeys.has(sourceKey)),
+    );
   }
 
   getFocusedCitations(lookup: HazLenzKnowledgeShardLookup): string[] {
