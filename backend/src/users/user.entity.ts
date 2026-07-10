@@ -18,14 +18,14 @@ export class User {
   @Column()
   type: string; // 'individual', 'pro', 'company'
 
-  @Column({ default: 'basic' })
-  planCode: string; // 'basic', 'plus', 'company'
+  @Column({ default: 'free' })
+  planCode: string; // 'free', 'pro', 'expert' with legacy basic/plus/company supported
 
   @Column({ default: 'Auditor' })
   role: string; // 'Owner', 'Auditor', 'Viewer'
 
-  @Column({ default: 'active' })
-  subscriptionStatus: string; // 'active', 'past_due', 'canceled', 'trial'
+  @Column({ default: 'none' })
+  subscriptionStatus: string; // 'none', 'active', 'trialing', 'past_due', 'canceled'
 
   @Column({ nullable: true })
   nextBillingDate: Date;

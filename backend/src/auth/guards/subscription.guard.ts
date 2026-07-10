@@ -1,5 +1,6 @@
-import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, ForbiddenException, HttpException, HttpStatus } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { hasActivePaidAccess } from '../../billing/subscription-status';
 
 @Injectable()
 export class SubscriptionGuard implements CanActivate {
@@ -9,24 +10,24 @@ export class SubscriptionGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const user = request.user;
 
-    // 1. Pro Users (One-Time Payment) are always active
-    if (user.type === 'pro') return true;
-
-    // 2. Individual (Free) Users have limited access (Handled by other logic)
-    if (user.type === 'individual') return true;
-
-    // 3. Enterprise/Company Users must have 'active' status
-    if (user.type === 'company' && user.subscriptionStatus !== 'active') {
-      throw new ForbiddenException({
-        message: 'Subscription Inactive',
-        reason: 'Payment Required',
-        action: 'Please update your billing information in settings.'
-      });
-    }
-
-    // 4. Ensure account is not soft-deleted
     if (user.deletedAt) {
       throw new ForbiddenException('Account deactivated.');
+    }
+
+    if (
+      user.type === 'company' &&
+      !hasActivePaidAccess({
+        tier: user.subscriptionTier || user.billingTier || user.effectivePlanCode || user.planCode || user.type,
+        status: user.billingStatus || user.subscriptionStatus,
+      })
+    ) {
+      throw new HttpException(
+        {
+          message: 'A paid subscription is required for this feature.',
+          code: 'PAID_SUBSCRIPTION_REQUIRED',
+        },
+        HttpStatus.PAYMENT_REQUIRED,
+      );
     }
 
     return true;

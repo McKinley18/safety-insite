@@ -1,4 +1,17 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import { AppButton } from "@/components/ui/AppButton";
 import { AppTextLink } from "@/components/ui/AppTextLink";
+import {
+  createCheckoutSession,
+  createPortalSession,
+  getBillingMe,
+  hasPaidAccess,
+  type BillingCheckoutTier,
+  type BillingResponse,
+} from "@/lib/billing";
 
 type PricingContentProps = {
   mode?: "public" | "upgrade";
@@ -7,6 +20,7 @@ type PricingContentProps = {
 const tiers = [
   {
     name: "Free",
+    tier: "free",
     price: "$0",
     cadence: "/month",
     audience: "For trying Safety InSite and creating basic inspection records.",
@@ -15,6 +29,7 @@ const tiers = [
     publicHref: "/register?plan=free",
     upgradeHref: "/profile",
     featured: false,
+    badge: null,
     sections: [
       {
         title: "Included",
@@ -39,7 +54,8 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$9.99",
+    tier: "pro",
+    price: "$6.99",
     cadence: "/month",
     audience: "For individual safety professionals who need more than documentation.",
     position: "Unlock HazLenz AI intelligence, stronger reports, and better corrective actions.",
@@ -72,18 +88,20 @@ const tiers = [
     ],
   },
   {
-    name: "Advanced",
-    price: "$49.99",
+    name: "Expert",
+    tier: "expert",
+    price: "$11.99",
     cadence: "/month",
     audience: "For safety professionals who need deeper reporting and review tools.",
     position: "Adds expanded reporting, review visibility, and advanced workflow tools.",
-    cta: "Choose Advanced",
-    publicHref: "/register?plan=pro",
-    upgradeHref: "/profile?upgrade=pro",
+    cta: "Choose Expert",
+    publicHref: "/register?plan=expert",
+    upgradeHref: "/profile?upgrade=expert",
     featured: false,
+    badge: null,
     sections: [
       {
-        title: "Advanced Access",
+        title: "Expert Access",
         items: [
           "Expanded report review",
           "Advanced inspection history",
@@ -93,7 +111,7 @@ const tiers = [
         ],
       },
       {
-        title: "Advanced Tools",
+        title: "Expert Tools",
         items: [
           "Inspection planning tools",
           "Corrective action tracking",
@@ -104,7 +122,19 @@ const tiers = [
       },
     ],
   },
-];
+] as const;
+
+const emptyBilling: BillingResponse = {
+  tier: "free",
+  status: "none",
+  currentPeriodStart: null,
+  currentPeriodEnd: null,
+  cancelAtPeriodEnd: false,
+  stripeCustomerId: null,
+  stripeSubscriptionId: null,
+  stripePriceId: null,
+  entitlements: {},
+};
 
 const comparisonRows = [
   ["Basic findings, photos, and notes", "Yes", "Yes", "Yes"],
@@ -114,13 +144,71 @@ const comparisonRows = [
   ["Evidence gap prompts", "No", "Yes", "Yes"],
   ["Corrective action reasoning", "Manual only", "Yes", "Yes"],
   ["Saved inspection history", "Limited", "Yes", "Yes"],
-  ["Advanced review controls", "No", "No", "Yes"],
+  ["Expert review controls", "No", "No", "Yes"],
   ["Inspection planning tools", "No", "No", "Yes"],
   ["Advanced dashboards", "No", "No", "Yes"],
 ];
 
 export default function PricingContent({ mode = "public" }: PricingContentProps) {
   const isUpgrade = mode === "upgrade";
+  const [billing, setBilling] = useState<BillingResponse | null>(null);
+  const [actionLoading, setActionLoading] = useState<BillingCheckoutTier | "portal" | null>(null);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (!isUpgrade) return;
+
+    let mounted = true;
+    getBillingMe()
+      .then((data) => {
+        if (mounted) setBilling(data);
+      })
+      .catch((error) => {
+        if (mounted) {
+          setMessage(
+            error instanceof Error && error.message !== "AUTH_REQUIRED"
+              ? error.message
+              : "Sign in to upgrade your plan.",
+          );
+        }
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [isUpgrade]);
+
+  async function startCheckout(tier: BillingCheckoutTier) {
+    if (actionLoading) return;
+
+    try {
+      setActionLoading(tier);
+      setMessage("Opening secure checkout...");
+      const session = await createCheckoutSession(tier);
+      if (!session?.url) throw new Error("Billing checkout did not return a URL.");
+      window.location.href = session.url;
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Billing checkout could not be started.");
+    } finally {
+      setActionLoading(null);
+    }
+  }
+
+  async function openPortal() {
+    if (actionLoading) return;
+
+    try {
+      setActionLoading("portal");
+      setMessage("Opening customer portal...");
+      const session = await createPortalSession();
+      if (!session?.url) throw new Error("Billing portal did not return a URL.");
+      window.location.href = session.url;
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Billing portal could not be opened.");
+    } finally {
+      setActionLoading(null);
+    }
+  }
 
   return (
     <section className="mx-auto max-w-6xl space-y-7 px-1">
@@ -137,20 +225,32 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
 
         <p className="mx-auto mt-5 max-w-3xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
           Free helps users try the workflow. Pro unlocks HazLenz AI intelligence.
-          Advanced tools add expanded review, reporting, and
+          Expert tools add expanded review, reporting, and
           expanded safety visibility.
         </p>
       </div>
 
+      {message && (
+        <p className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 shadow-sm">
+          {message}
+        </p>
+      )}
+
       <div className="grid gap-4 lg:grid-cols-3">
         {tiers.map((tier) => {
           const href = isUpgrade ? tier.upgradeHref : tier.publicHref;
-          const cta =
-            isUpgrade && tier.name === "Free"
-              ? "Current / Downgrade"
-              : isUpgrade
-                ? `Upgrade to ${tier.name}`
-                : tier.cta;
+          const paidTier = tier.tier === "pro" || tier.tier === "expert" ? tier.tier : null;
+          const isCurrent = billing?.tier === tier.tier;
+          const canManage = Boolean(billing?.stripeCustomerId && billing?.billingConfigured);
+          const cta = isUpgrade
+            ? isCurrent
+              ? "Current Plan"
+              : paidTier
+                ? hasPaidAccess(billing || emptyBilling)
+                  ? "Manage Subscription"
+                  : `Upgrade to ${tier.name}`
+                : "Current / Downgrade"
+            : tier.cta;
 
           return (
             <div
@@ -218,12 +318,23 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
                   ))}
                 </div>
 
-                <AppTextLink
-                  href={href}
-                  className="mt-auto flex min-h-11 w-full items-center justify-center rounded-2xl bg-[#102A43] px-4 py-3 text-center text-sm font-black !text-white shadow-sm transition hover:bg-[#1D72B8]"
-                >
-                  {cta}
-                </AppTextLink>
+                {isUpgrade && paidTier ? (
+                  <AppButton
+                    type="button"
+                    onClick={() => (hasPaidAccess(billing || emptyBilling) ? openPortal() : startCheckout(paidTier))}
+                    disabled={Boolean(actionLoading) || isCurrent || (!billing?.billingConfigured && !canManage)}
+                    className="mt-auto min-h-11 w-full rounded-2xl bg-[#102A43] hover:bg-[#1D72B8]"
+                  >
+                    {actionLoading === paidTier || actionLoading === "portal" ? "Opening..." : cta}
+                  </AppButton>
+                ) : (
+                  <AppTextLink
+                    href={href}
+                    className="mt-auto flex min-h-11 w-full items-center justify-center rounded-2xl bg-[#102A43] px-4 py-3 text-center text-sm font-black !text-white shadow-sm transition hover:bg-[#1D72B8]"
+                  >
+                    {cta}
+                  </AppTextLink>
+                )}
               </div>
             </div>
           );
@@ -254,7 +365,7 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
               <div className="px-3 py-3">Feature</div>
               <div className="px-3 py-3 text-center">Free</div>
               <div className="px-3 py-3 text-center">Pro</div>
-              <div className="px-3 py-3 text-center">Advanced</div>
+              <div className="px-3 py-3 text-center">Expert</div>
             </div>
 
             {comparisonRows.map((row, index) => (

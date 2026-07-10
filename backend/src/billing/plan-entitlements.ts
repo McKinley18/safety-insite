@@ -9,6 +9,7 @@ export type BillingSubscriptionStatus =
   | "unpaid"
   | "incomplete"
   | "incomplete_expired"
+  | "paused"
   | "none";
 
 export type BillingFeatureKey =
@@ -169,6 +170,13 @@ export function getStripePriceEnvForTier(tier: BillingTier) {
 
 export function getLegacyStripePriceEnvForTier(tier: BillingTier) {
   return BILLING_PLAN_DEFINITIONS[tier].legacyStripePriceEnv || null;
+}
+
+export function getConfiguredStripePriceIdForTier(tier: BillingTier) {
+  const plan = BILLING_PLAN_DEFINITIONS[tier];
+  const primary = plan.stripePriceEnv ? process.env[plan.stripePriceEnv] : null;
+  const legacy = plan.legacyStripePriceEnv ? process.env[plan.legacyStripePriceEnv] : null;
+  return primary || legacy || null;
 }
 
 export function getBillingEntitlements(tier?: string | null) {

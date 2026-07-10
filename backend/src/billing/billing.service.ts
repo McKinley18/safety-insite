@@ -13,18 +13,22 @@ import { UserSubscription } from './user-subscription.entity';
 import {
   BILLING_PLAN_DEFINITIONS,
   BillingTier,
+  getConfiguredStripePriceIdForTier,
   getBillingEntitlements,
   getBillingPlanDisplayName,
   getBillingPlanMonthlyPrice,
   normalizeBillingTier,
   resolveTierForPriceId,
 } from './plan-entitlements';
-import { normalizeStripeSubscriptionStatus } from './subscription-status';
+import {
+  hasActivePaidAccess,
+  hasExpertAccess,
+  hasProAccess,
+  normalizeStripeSubscriptionStatus,
+  resolveAccessTier,
+} from './subscription-status';
 
 type StripeClient = InstanceType<typeof StripeConstructor>;
-
-const UUID_PATTERN =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function getUserId(user: any): string {
   const raw = user?.userId || user?.id || user?.sub;
@@ -35,10 +39,6 @@ function getUserId(user: any): string {
   }
 
   return userId;
-}
-
-function isUuid(value: string): boolean {
-  return UUID_PATTERN.test(value);
 }
 
 @Injectable()
@@ -75,33 +75,44 @@ export class BillingService {
 
   async getBillingStatus(user: any) {
     const userId = getUserId(user);
-    const hasUuidUserId = isUuid(userId);
-    const fallbackTier = hasUuidUserId
-      ? normalizeBillingTier(
-          user?.subscriptionTier ||
-            user?.billingTier ||
-            user?.effectivePlanCode ||
-            user?.planCode ||
-            user?.type,
-        )
-      : 'free';
+    const fallbackTier = normalizeBillingTier(
+      user?.subscriptionTier ||
+        user?.billingTier ||
+        user?.effectivePlanCode ||
+        user?.planCode ||
+        user?.type,
+    );
+    const fallbackStatus =
+      normalizeStripeSubscriptionStatus(user?.subscriptionStatus || user?.billingStatus) ||
+      (fallbackTier === 'free' ? 'none' : 'active');
 
-    const subscription = hasUuidUserId
-      ? await this.subscriptions.findOne({
-          where: { userId },
-        })
-      : null;
+    const subscription = await this.findSubscriptionByUserId(userId);
 
-    const tier = subscription ? this.resolveEffectiveTier(subscription) : fallbackTier;
+    const sourceTier = subscription ? subscription.tier : fallbackTier;
+    const sourceStatus = subscription ? subscription.status : fallbackStatus;
+    const sourcePeriodEnd = subscription?.currentPeriodEnd || null;
+    const tier = subscription
+      ? this.resolveEffectiveTier(subscription)
+      : resolveAccessTier(sourceTier, sourceStatus, sourcePeriodEnd);
     const plan = BILLING_PLAN_DEFINITIONS[tier] || BILLING_PLAN_DEFINITIONS.free;
+    const accessInput = {
+      tier: sourceTier,
+      status: sourceStatus,
+      currentPeriodEnd: sourcePeriodEnd,
+      cancelAtPeriodEnd: subscription?.cancelAtPeriodEnd || false,
+    };
 
     return {
       tier,
       planCode: tier,
+      plan: tier,
       label: getBillingPlanDisplayName(tier),
       monthlyPrice: getBillingPlanMonthlyPrice(tier),
-      status: subscription?.status || 'none',
-      subscriptionStatus: subscription?.status || 'none',
+      status: sourceStatus,
+      subscriptionStatus: sourceStatus,
+      hasPaidAccess: hasActivePaidAccess(accessInput),
+      hasProAccess: hasProAccess(accessInput),
+      hasExpertAccess: hasExpertAccess(accessInput),
       currentPeriodStart: subscription?.currentPeriodStart || null,
       currentPeriodEnd: subscription?.currentPeriodEnd || null,
       cancelAtPeriodEnd: Boolean(subscription?.cancelAtPeriodEnd),
@@ -109,7 +120,7 @@ export class BillingService {
       stripeSubscriptionId: subscription?.stripeSubscriptionId || null,
       stripePriceId: subscription?.stripePriceId || null,
       entitlements: getBillingEntitlements(tier),
-      plan,
+      planDefinition: plan,
       billingConfigured: Boolean(this.stripe),
       planCatalog: Object.values(BILLING_PLAN_DEFINITIONS).map((definition) => ({
         tier: definition.tier,
@@ -123,21 +134,12 @@ export class BillingService {
   async createCheckoutSession(user: any, tier: BillingTier) {
     const userId = getUserId(user);
 
-    if (!isUuid(userId)) {
-      throw new UnauthorizedException(
-        'A registered user account is required to start checkout.',
-      );
-    }
-
     if (tier === 'free') {
       throw new BadRequestException('Free plan does not require checkout.');
     }
 
     const stripe = this.requireStripe();
-    const priceId =
-      tier === 'pro'
-        ? process.env.STRIPE_PRO_PRICE_ID
-        : process.env.STRIPE_EXPERT_PRICE_ID;
+    const priceId = getConfiguredStripePriceIdForTier(tier);
 
     if (!priceId) {
       throw new ServiceUnavailableException(
@@ -171,8 +173,8 @@ export class BillingService {
       mode: 'subscription',
       customer: customerId,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${appUrl}/settings?billing=success`,
-      cancel_url: `${appUrl}/upgrade?billing=cancelled`,
+      success_url: `${appUrl}/profile?billing=success`,
+      cancel_url: `${appUrl}/pricing?billing=cancelled`,
       metadata: {
         userId: String(userId),
         targetTier: tier,
@@ -204,7 +206,7 @@ export class BillingService {
 
     const session = await stripe.billingPortal.sessions.create({
       customer: subscription.stripeCustomerId,
-      return_url: `${this.frontendUrl()}/settings`,
+      return_url: `${this.frontendUrl()}/profile`,
     });
 
     return { url: session.url };
@@ -270,9 +272,8 @@ export class BillingService {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object;
-        const userId = String(session.metadata?.userId || '').trim();
+        const userId = await this.resolveUserIdForStripeObject(session);
         if (!userId) return;
-
         await this.upsertSubscriptionFromCheckoutSession(userId, session, event.id);
         return;
       }
@@ -345,11 +346,15 @@ export class BillingService {
     stripeSubscription: any,
     eventId: string,
   ) {
-    const userId = String(stripeSubscription.metadata?.userId || '').trim();
+    const userId = await this.resolveUserIdForStripeObject(stripeSubscription);
     if (!userId) return;
 
     const stripePriceId = stripeSubscription.items?.data?.[0]?.price?.id;
-    const tier = resolveTierForPriceId(stripePriceId);
+    const resolvedPriceTier = resolveTierForPriceId(stripePriceId);
+    const tier =
+      resolvedPriceTier !== 'free'
+        ? resolvedPriceTier
+        : normalizeBillingTier(stripeSubscription.metadata?.targetTier);
     const existing = await this.subscriptions.findOne({ where: { userId } });
 
     await this.subscriptions.save({
@@ -372,5 +377,48 @@ export class BillingService {
       cancelAtPeriodEnd: Boolean(stripeSubscription.cancel_at_period_end),
       lastStripeEventId: eventId,
     });
+  }
+
+  private async resolveUserIdForStripeObject(stripeObject: any): Promise<string | null> {
+    const metadataUserId = String(stripeObject?.metadata?.userId || '').trim();
+    if (metadataUserId) return metadataUserId;
+
+    const stripeSubscriptionId =
+      typeof stripeObject?.subscription === 'string'
+        ? stripeObject.subscription
+        : stripeObject?.subscription?.id || stripeObject?.id;
+
+    if (stripeSubscriptionId) {
+      const existingBySubscription = await this.subscriptions.findOne({
+        where: { stripeSubscriptionId },
+      });
+      if (existingBySubscription?.userId) return existingBySubscription.userId;
+    }
+
+    const stripeCustomerId =
+      typeof stripeObject?.customer === 'string'
+        ? stripeObject.customer
+        : stripeObject?.customer?.id;
+
+    if (stripeCustomerId) {
+      const existingByCustomer = await this.subscriptions.findOne({
+        where: { stripeCustomerId },
+      });
+      if (existingByCustomer?.userId) return existingByCustomer.userId;
+    }
+
+    return null;
+  }
+
+  private async findSubscriptionByUserId(userId: string) {
+    try {
+      return await this.subscriptions.findOne({ where: { userId } });
+    } catch (error: any) {
+      if (error?.code === '22P02') {
+        return null;
+      }
+
+      throw error;
+    }
   }
 }

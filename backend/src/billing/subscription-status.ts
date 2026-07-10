@@ -12,7 +12,8 @@ export function normalizeStripeSubscriptionStatus(status?: string | null): Strip
     normalized === "canceled" ||
     normalized === "unpaid" ||
     normalized === "incomplete" ||
-    normalized === "incomplete_expired"
+    normalized === "incomplete_expired" ||
+    normalized === "paused"
   ) {
     return normalized;
   }
@@ -41,4 +42,24 @@ export function resolveAccessTier(
   }
 
   return "free";
+}
+
+export type BillingAccessInput = {
+  tier?: string | null;
+  status?: string | null;
+  currentPeriodEnd?: Date | string | null;
+  cancelAtPeriodEnd?: boolean | null;
+};
+
+export function hasActivePaidAccess(input: BillingAccessInput): boolean {
+  return resolveAccessTier(input.tier, input.status, input.currentPeriodEnd) !== "free";
+}
+
+export function hasProAccess(input: BillingAccessInput): boolean {
+  const tier = resolveAccessTier(input.tier, input.status, input.currentPeriodEnd);
+  return tier === "pro" || tier === "expert";
+}
+
+export function hasExpertAccess(input: BillingAccessInput): boolean {
+  return resolveAccessTier(input.tier, input.status, input.currentPeriodEnd) === "expert";
 }

@@ -3,6 +3,8 @@ import { API_BASE_URL } from "./safescope";
 import { authHeaders } from "./auth";
 import {
   getPlanDisplayName,
+  getPlanEntitlements,
+  getLocalDevPlanCode,
   getPlanPricing,
   normalizePlanCode,
   type PlanCode,
@@ -17,6 +19,7 @@ export type BillingStatus =
   | "unpaid"
   | "incomplete"
   | "incomplete_expired"
+  | "paused"
   | "none";
 
 export type BillingTier = PlanCode;
@@ -24,10 +27,14 @@ export type BillingTier = PlanCode;
 export type BillingResponse = {
   tier: BillingTier;
   planCode?: BillingTier;
+  plan?: BillingTier;
   label?: string;
   monthlyPrice?: number;
   status: BillingStatus;
   subscriptionStatus?: BillingStatus;
+  hasPaidAccess?: boolean;
+  hasProAccess?: boolean;
+  hasExpertAccess?: boolean;
   currentPeriodStart: string | null;
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
@@ -54,13 +61,20 @@ function isLocalDevAuthBypass() {
 }
 
 function getLocalDevBillingMe(): BillingResponse {
+  const tier = getLocalDevPlanCode();
+  const active = tier !== "free";
+
   return {
-    tier: "expert",
-    planCode: "expert",
-    label: getBillingTierDisplayName("expert"),
-    monthlyPrice: getBillingTierPrice("expert"),
-    status: "active",
-    subscriptionStatus: "active",
+    tier,
+    planCode: tier,
+    plan: tier,
+    label: getBillingTierDisplayName(tier),
+    monthlyPrice: getBillingTierPrice(tier),
+    status: active ? "active" : "none",
+    subscriptionStatus: active ? "active" : "none",
+    hasPaidAccess: active,
+    hasProAccess: tier === "pro" || tier === "expert",
+    hasExpertAccess: tier === "expert",
     currentPeriodStart: null,
     currentPeriodEnd: null,
     cancelAtPeriodEnd: false,
@@ -68,7 +82,7 @@ function getLocalDevBillingMe(): BillingResponse {
     stripeSubscriptionId: null,
     stripePriceId: null,
     billingConfigured: false,
-    entitlements: {},
+    entitlements: getPlanEntitlements(tier),
   };
 }
 
@@ -82,7 +96,7 @@ export async function getBillingMe() {
     return getLocalDevBillingMe();
   }
 
-  const response = await apiFetch(`${API_BASE_URL}/billing/me`, {
+  const response = await apiFetch(`${API_BASE_URL}/billing/status`, {
     headers: authHeaders(),
   });
 
@@ -91,7 +105,7 @@ export async function getBillingMe() {
   }
 
   if (!response.ok) {
-    const message = await response.text().catch(() => "");
+    const message = await readBillingError(response);
     throw new Error(message || "Billing details could not be loaded.");
   }
 
@@ -99,14 +113,14 @@ export async function getBillingMe() {
 }
 
 export async function createCheckoutSession(tier: BillingCheckoutTier) {
-  const response = await apiFetch(`${API_BASE_URL}/billing/checkout`, {
+  const response = await apiFetch(`${API_BASE_URL}/billing/create-checkout-session`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({ tier }),
   });
 
   if (!response.ok) {
-    const message = await response.text().catch(() => "");
+    const message = await readBillingError(response);
     throw new Error(message || "Billing checkout could not be started.");
   }
 
@@ -114,14 +128,14 @@ export async function createCheckoutSession(tier: BillingCheckoutTier) {
 }
 
 export async function createPortalSession() {
-  const response = await apiFetch(`${API_BASE_URL}/billing/portal`, {
+  const response = await apiFetch(`${API_BASE_URL}/billing/create-portal-session`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({}),
   });
 
   if (!response.ok) {
-    const message = await response.text().catch(() => "");
+    const message = await readBillingError(response);
     throw new Error(message || "Billing portal could not be opened.");
   }
 
@@ -138,4 +152,42 @@ export function getBillingTierPrice(tier?: string | null) {
 
 export function getBillingTierLabel(tier?: string | null) {
   return getPlanDisplayName(normalizePlanCode(tier));
+}
+
+export function hasPaidAccess(status: BillingResponse): boolean {
+  if (typeof status.hasPaidAccess === "boolean") return status.hasPaidAccess;
+  return isActiveBillingStatus(status.status || status.subscriptionStatus) &&
+    normalizePlanCode(status.tier || status.planCode || status.plan) !== "free";
+}
+
+export function hasProAccess(status: BillingResponse): boolean {
+  if (typeof status.hasProAccess === "boolean") return status.hasProAccess;
+  const tier = normalizePlanCode(status.tier || status.planCode || status.plan);
+  return isActiveBillingStatus(status.status || status.subscriptionStatus) &&
+    (tier === "pro" || tier === "expert");
+}
+
+export function hasExpertAccess(status: BillingResponse): boolean {
+  if (typeof status.hasExpertAccess === "boolean") return status.hasExpertAccess;
+  const tier = normalizePlanCode(status.tier || status.planCode || status.plan);
+  return isActiveBillingStatus(status.status || status.subscriptionStatus) && tier === "expert";
+}
+
+function isActiveBillingStatus(status?: string | null) {
+  return status === "active" || status === "trialing";
+}
+
+async function readBillingError(response: Response) {
+  const text = await response.text().catch(() => "");
+  if (!text) return "";
+
+  try {
+    const parsed = JSON.parse(text) as { message?: unknown; code?: unknown };
+    if (typeof parsed.message === "string") return parsed.message;
+    if (typeof parsed.code === "string") return parsed.code;
+  } catch {
+    return text;
+  }
+
+  return text;
 }

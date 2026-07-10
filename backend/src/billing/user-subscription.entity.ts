@@ -18,7 +18,7 @@ export class UserSubscription {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column({ type: "uuid" })
+  @Column({ type: "varchar", length: 64 })
   userId!: string;
 
   @Column({ type: "varchar", length: 255, nullable: true })

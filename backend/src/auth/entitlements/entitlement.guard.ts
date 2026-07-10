@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, ForbiddenException, Injectable, SetMetadata } from '@nestjs/common';
+import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable, SetMetadata } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { BillingFeatureKey, hasEntitlement, normalizeBillingTier } from '../../billing/plan-entitlements';
 
@@ -32,8 +32,13 @@ export class EntitlementGuard implements CanActivate {
 
     if (hasEntitlement(effectivePlanCode, entitlement)) return true;
 
-    throw new ForbiddenException(
-      `Your current plan does not include ${String(entitlement)}.`,
+    throw new HttpException(
+      {
+        message: 'A paid subscription is required for this feature.',
+        code: 'PAID_SUBSCRIPTION_REQUIRED',
+        entitlement,
+      },
+      HttpStatus.PAYMENT_REQUIRED,
     );
   }
 }

@@ -127,9 +127,20 @@ export function getPlanPricing(plan?: string | null) {
   return 0;
 }
 
+export function getPlanEntitlements(plan?: string | null) {
+  return PLAN_ENTITLEMENTS[normalizePlanCode(plan)];
+}
+
+export function getLocalDevPlanCode(): BillingTier {
+  if (process.env.NODE_ENV === "production") return "free";
+  if (process.env.NEXT_PUBLIC_DEV_FORCE_EXPERT === "true") return "expert";
+  if (process.env.NEXT_PUBLIC_DEV_FORCE_PRO === "true") return "pro";
+  return "free";
+}
+
 export function getStoredPlanCode(): PlanCode {
   const localDevDefault =
-    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" && process.env.NODE_ENV !== "production" ? "expert" : "free";
+    process.env.NEXT_PUBLIC_DISABLE_AUTH === "true" ? getLocalDevPlanCode() : "free";
 
   if (typeof window === "undefined") return normalizePlanCode(localDevDefault);
 

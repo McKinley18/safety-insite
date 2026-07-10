@@ -6,6 +6,14 @@ import {
 } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 import { getJwtSecret } from '../jwt-secret.util';
+import { getBillingEntitlements, normalizeBillingTier } from '../../billing/plan-entitlements';
+
+function getDevBypassTier() {
+  if (process.env.NODE_ENV === 'production') return 'free';
+  if (process.env.DEV_FORCE_EXPERT === 'true') return 'expert';
+  if (process.env.DEV_FORCE_PRO === 'true') return 'pro';
+  return 'free';
+}
 
 @Injectable()
 export class JwtGuard implements CanActivate {
@@ -16,14 +24,24 @@ export class JwtGuard implements CanActivate {
       process.env.DEV_AUTH_BYPASS === 'true' &&
       process.env.NODE_ENV !== 'production'
     ) {
+      const tier = normalizeBillingTier(getDevBypassTier());
+      const active = tier !== 'free';
+
       request.user = {
         userId: 1,
         email: 'dev@sentinelsafety.local',
-        type: 'company',
+        type: tier === 'expert' ? 'company' : tier === 'pro' ? 'pro' : 'individual',
         role: 'Auditor',
-        planCode: 'company',
-        effectivePlanCode: 'company',
-        subscriptionStatus: 'active',
+        planCode: tier,
+        effectivePlanCode: tier,
+        subscriptionTier: tier,
+        billingTier: tier,
+        subscriptionStatus: active ? 'active' : 'none',
+        billingStatus: active ? 'active' : 'none',
+        billingEntitlements: getBillingEntitlements(tier),
+        hasPaidAccess: active,
+        hasProAccess: tier === 'pro' || tier === 'expert',
+        hasExpertAccess: tier === 'expert',
         organizationId: request.headers['x-dev-organization-id'] || null,
       };
 

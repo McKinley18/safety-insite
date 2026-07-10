@@ -8,6 +8,7 @@
     "gauntlet:full": "LIMIT=100 API_BASE_URL=http://localhost:4000 SCENARIO_FILE=../safescope-gauntlet.seed.json node ../tools/safescope-gauntlet/run-gauntlet.mjs",
     "test:classify": "ts-node src/test-classify.ts",
     "build": "tsc",
+    "billing:regression": "ts-node src/billing/billing-regression.ts",
     "start": "node dist/main.js",
     "ingest:msha": "ts-node src/standards/ingestion/ingest.ts",
     "ingest:cfr:bulk": "ts-node src/standards/ingestion/ingest.cfr.bulk.ts",
