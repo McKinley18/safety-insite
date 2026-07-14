@@ -19,6 +19,8 @@ type Scenario = {
   expectPromotion?: RegExp;
   forbidPromotion?: RegExp;
   expectReview?: RegExp;
+  expectEvidenceGaps?: RegExp[];
+  expectActionTitle?: RegExp;
   allowNoSuggestedStandards?: boolean;
 };
 
@@ -47,7 +49,7 @@ function mockStandardsService() {
     async suggest(description: string, hazardCategory?: string) {
       const text = `${description || ""} ${hazardCategory || ""}`.toLowerCase();
       const hasCord = /\b(cord|cable|extension cord|power cord|temporary wiring|flexible cord)\b/.test(text);
-      const hasServicing = /\b(lockout|loto|tagout|servicing|maintenance|unexpected startup|hazardous energy)\b/.test(text);
+      const hasServicing = /\b(lockout|loto|tagout|tagged|not locked|servicing|maintenance|unexpected startup|hazardous energy)\b/.test(text);
       const hasContainer = /\b(container|tank|drum|bucket|can|jug|tote|pail)\b/.test(text);
       const hasCylinder = /\b(cylinder|oxygen|acetylene|compressed gas|valve cap|secured)\b/.test(text);
       const hasWalkway = /\b(walkway|aisle|floor|travelway|pedestrian|shop floor|maintenance area)\b/.test(text);
@@ -72,6 +74,13 @@ function mockStandardsService() {
         return [
           standard("29 CFR 1910.212(a)(1)", "Machine guarding", "Generic guarding fallback."),
           standard("29 CFR 1910.28(b)(1)", "Fall protection", "Generic fall-protection fallback."),
+        ];
+      }
+
+      if (/\b(ladder|stepladder|extension ladder|portable ladder)\b/.test(text)) {
+        return [
+          standard("29 CFR 1926.1053(b)(16)", "Ladders", "Construction ladder defect candidate.", "osha_construction"),
+          standard("29 CFR 1910.23(b)", "Ladders", "General industry ladder condition candidate."),
         ];
       }
 
@@ -161,6 +170,19 @@ function mockKnowledgeRouter() {
           sourceKeys: [],
           confidence: 0.9,
           reasons: ["walking surface evidence detected"],
+        };
+      }
+      if (/\b(ladder|stepladder|extension ladder|portable ladder)\b/.test(text)) {
+        return {
+          jurisdiction: text.includes("osha_construction") ? "osha_construction" : "osha_general_industry",
+          hazardFamily: "fall_protection",
+          equipmentFamily: "ladder",
+          taskMechanism: "ladder_fall",
+          shardKey: "osha/ladder/fall",
+          bundleIds: [],
+          sourceKeys: [],
+          confidence: 0.9,
+          reasons: ["ladder evidence detected"],
         };
       }
       if (/\b(cylinder|oxygen|acetylene|compressed gas|valve cap|secured)\b/.test(text)) {
@@ -339,12 +361,40 @@ const scenarios: Scenario[] = [
     scopes: ["osha_general_industry"],
     evidenceTexts: ["locked out", "servicing"],
     expectClassification: /Lockout \/ Stored Energy|Machine Guarding/i,
-    expectHazardCategory: /machine_guarding_loto|lockout|stored|machine_guarding/i,
-    expectCandidateFamily: /machine_guarding_loto|loto|machine_guarding/i,
+    expectHazardCategory: /machine_guarding_loto|lockout_tagout|lockout|stored|machine_guarding/i,
+    expectCandidateFamily: /machine_guarding_loto|lockout_tagout|loto|machine_guarding/i,
     expectCitations: [],
     allowNoSuggestedStandards: true,
     forbidCitations: [/1910\.305\(g\)\(2\)\(iii\)/i],
     expectReview: /Review/i,
+  },
+  {
+    name: "safe lockout verified",
+    text: "The line is locked out, de-energized, and tested before maintenance begins.",
+    scopes: ["osha_general_industry"],
+    evidenceTexts: ["locked out", "de-energized", "tested"],
+    expectClassification: /Lockout \/ Stored Energy|Electrical|Machine Guarding|Unclassified/i,
+    expectHazardCategory: /machine_guarding_loto|lockout|stored|electrical|unknown|other/i,
+    expectCandidateFamily: /machine_guarding_loto|lockout_tagout|loto|electrical|unknown|other/i,
+    expectCitations: [],
+    allowNoSuggestedStandards: true,
+    forbidCitations: [/1910\.147/i, /1910\.212/i],
+    forbidPromotion: /1910\.147/i,
+    expectReview: /Review/i,
+    expectEvidenceGaps: [/confirm|verification|maintenance|review/i],
+    expectActionTitle: /verify|isolation|hazardous-energy|energy/i,
+  },
+  {
+    name: "tagged but not locked",
+    text: "Equipment is tagged but not locked where locking is possible while maintenance continues.",
+    scopes: ["osha_general_industry"],
+    evidenceTexts: ["tagged", "not locked", "maintenance"],
+    expectClassification: /Lockout \/ Stored Energy|Machine Guarding/i,
+    expectHazardCategory: /machine_guarding_loto|lockout|stored/i,
+    expectCandidateFamily: /machine_guarding_loto|loto/i,
+    expectCitations: [/1910\.147/i],
+    expectReview: /Review/i,
+    expectActionTitle: /isolation|servicing|energy/i,
   },
   {
     name: "equipment being serviced without lockout",
@@ -357,6 +407,46 @@ const scenarios: Scenario[] = [
     expectCitations: [/1910\.147/i],
     forbidCitations: [/1910\.305\(g\)\(2\)\(iii\)/i],
     expectReview: /Review/i,
+  },
+  {
+    name: "damaged construction ladder",
+    text: "A damaged ladder with cracked side rails is still being used for access to a mezzanine.",
+    scopes: ["osha_construction"],
+    evidenceTexts: ["damaged ladder", "cracked side rails", "mezzanine"],
+    expectClassification: /Fall Protection|Ladder/i,
+    expectHazardCategory: /fall|ladder/i,
+    expectCandidateFamily: /fall|ladder/i,
+    expectCitations: [/1926\.1053/i],
+    forbidCitations: [/1910\.212/i, /1910\.1200/i],
+    expectReview: /Review/i,
+    expectActionTitle: /damaged ladder|remove/i,
+  },
+  {
+    name: "improper ladder setup",
+    text: "The ladder is set on a muddy base and extends only a short distance above the landing.",
+    scopes: ["osha_construction"],
+    evidenceTexts: ["muddy base", "short extension", "landing"],
+    expectClassification: /Fall Protection|Ladder/i,
+    expectHazardCategory: /fall|ladder/i,
+    expectCandidateFamily: /fall|ladder/i,
+    expectCitations: [/1926\.1053/i],
+    forbidCitations: [/1910\.212/i, /1910\.1200/i],
+    expectReview: /Review/i,
+    expectActionTitle: /ladder setup|correct/i,
+  },
+  {
+    name: "vague ladder input",
+    text: "Ladder is bad.",
+    scopes: ["osha_general_industry"],
+    evidenceTexts: ["ladder bad"],
+    expectClassification: /Review|Unclassified|Fall Protection|Ladder/i,
+    expectHazardCategory: /unknown|fall|ladder|other/i,
+    expectCandidateFamily: /unknown|fall|ladder|other/i,
+    expectCitations: [],
+    allowNoSuggestedStandards: true,
+    forbidCitations: [/1910\.23/i, /1926\.1053/i, /56\.110/i],
+    expectReview: /Review/i,
+    expectEvidenceGaps: [/what|which|equipment|exposure|confirm|ladder/i],
   },
   {
     name: "meaningless input",
@@ -395,6 +485,14 @@ async function run() {
     const promotionCitation = String(response.promotion?.approvedRecordCandidate?.authority?.citation || "");
     const reviewText = String(response.reviewStateLabel || "");
     const needsMoreEvidenceCitations = citationList(response.needsMoreEvidenceStandards || []);
+    const evidenceGapText = JSON.stringify([
+      response.evidenceGapQuestions,
+      response.inspectionIntelligence?.evidenceGapQuestions,
+      response.standardDecisions?.flatMap?.((item: any) => item?.evidenceNeeded || item?.evidenceGaps || []),
+    ]).toLowerCase();
+    const actionTitleText = (response.generatedActions || [])
+      .map((action: any) => String(action?.title || ""))
+      .join(" ");
 
     const passed =
       scenario.expectClassification.test(classification) &&
@@ -407,6 +505,8 @@ async function run() {
       !(scenario.forbidCitations || []).some((pattern) => pattern.test(frontFacingCitations.join(" ") + " " + topSuggestedCitation + " " + primaryCitation + " " + promotionCitation)) &&
       !(scenario.forbidPromotion && scenario.forbidPromotion.test(promotionCitation)) &&
       (scenario.expectPromotion ? scenario.expectPromotion.test(promotionCitation || primaryCitation) : true) &&
+      (scenario.expectEvidenceGaps ? scenario.expectEvidenceGaps.some((pattern) => pattern.test(evidenceGapText)) : true) &&
+      (scenario.expectActionTitle ? scenario.expectActionTitle.test(actionTitleText) : true) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(topSuggestedCitation) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(primaryCitation) &&
       (scenario.name !== "cord damaged osha gi" || !/(1910\.1200|1910\.184|1910\.218|1910\.177|1910\.178|1910\.179|1910\.180|1910\.502|compressed gas|slings|forging|rim wheel|pit|crane|healthcare)/i.test(needsMoreEvidenceCitations.join(" "))) &&
@@ -426,6 +526,8 @@ async function run() {
         citations,
         needsMoreEvidenceCitations,
         reviewText,
+        evidenceGapText,
+        actionTitleText,
         standardsTraceability,
         applicableSuggestions,
       });

@@ -57,7 +57,6 @@ export class MineContextService {
     else if (has('coal')) mineType = 'unclear_mine';
     else if (has('underground') || (explicitMshaScope && undergroundMineSignals && !surfaceMineSignals)) mineType = 'underground_metal_nonmetal';
     else if (has('aggregate') || has('surface') || has('metalNonmetal') || (explicitMshaScope && surfaceMineSignals)) mineType = 'surface_metal_nonmetal';
-    else if (explicitMineScope && explicitMshaScope) mineType = 'surface_metal_nonmetal';
 
     const preferredCfrParts: Record<MineType, string[]> = {
       surface_metal_nonmetal: ['56'],

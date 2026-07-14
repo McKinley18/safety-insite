@@ -580,6 +580,10 @@ export class SafeScopeReasoningOrchestratorService {
 
     const preserveLowConfidenceCandidate =
       inspectionIntelligence.conditionAssessment.status === 'insufficient_evidence' &&
+      !(
+        inspectionIntelligence.vagueInputAnalysis?.isVague &&
+        /1910\.178\(p\)\(1\)/i.test(String(primaryCitation || ''))
+      ) &&
       Boolean(sufficientCandidateCitation || sufficientApplicabilityRule);
 
     if (

@@ -474,6 +474,7 @@ export class InspectionIntelligenceService {
         if (!rule) return;
         const candidateDomain = String(rule.hazardFamily || '').toLowerCase();
         if (!candidateDomain) return;
+        if (conditionAssessment.controlledDomains.includes(candidateDomain as SafeScopeReasoningDomain)) return;
         if (!hazardCandidates.some((candidate) => candidate.domain === candidateDomain)) {
           hazardCandidates.unshift({
             domain: candidateDomain as any,
@@ -517,6 +518,7 @@ export class InspectionIntelligenceService {
       : [input.jurisdiction];
     applicabilityCandidateRules.forEach((rule) => {
       if (!rule) return;
+      if (conditionAssessment.controlledDomains.includes(rule.hazardFamily as SafeScopeReasoningDomain)) return;
       addCandidateStandard({
         citation: rule.citation,
         titleSummary: `${rule.standardTitle} — candidate standard`,
@@ -569,6 +571,9 @@ export class InspectionIntelligenceService {
       const normCit = input.primaryCitation.toLowerCase().replace(/\s+/g, '');
       const governedCitations = new Set(EXPERT_APPLICABILITY_RULES.map(r => r.standardCitation.toLowerCase().replace(/\s+/g, '')));
       let allowPrimary = true;
+      if (/1910\.157/.test(normCit) && conditionAssessment.controlledDomains.includes('fire_protection')) {
+        allowPrimary = false;
+      }
       if (governedCitations.has(normCit)) {
         allowPrimary = standardAppResults.suggestedStandards.some(
           (c) => c.toLowerCase().replace(/\s+/g, '') === normCit

@@ -386,10 +386,12 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     standardTitle: 'Ground-fault protection for receptacles',
     appliesWhen: [
       /\b(missing|no|without)\b.*\b(gfci|ground fault)\b/i,
-      /\b(temporary power|temporary wiring|construction site)\b.*\b(gfci|ground fault)\b/i
+      /\b(temporary power|temporary wiring|construction site)\b.*\b(gfci|ground fault)\b/i,
+      /\b(damaged|frayed|cut|exposed insulation)\b.*\b(extension cord|power cord|cord)\b.*\b(energized|in use|wet|damp|water)\b/i,
+      /\b(extension cord|power cord|cord)\b.*\b(damaged|frayed|cut|exposed insulation)\b.*\b(energized|in use|wet|damp|water)\b/i,
     ],
     requiredEvidence: [
-      /\b(construction site|temporary power|temporary wiring|cord-and-plug tool|receptacle)\b/i
+      /\b(construction site|temporary power|temporary wiring|cord-and-plug tool|receptacle|extension cord|power cord|cord)\b/i
     ],
     confidenceBoosters: [
       /\b(wet|damp|outdoor|handheld tool|portable tool)\b/i,
@@ -1489,10 +1491,11 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     appliesWhen: [
       /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b.*\b(not tied off|tie[- ]?off missing|tie[- ]?off not used|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/i,
       /\b(not tied off|tie[- ]?off missing|leaning out|over the rail|outside the rail|reach over)\b.*\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b/i,
+      /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b.*\b(harness|lanyard|anchor)\b.*\b(status|condition|use|configuration)\b.*\b(unknown|unclear|not verified|not confirmed)\b/i,
     ],
     requiredEvidence: [
       /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b/i,
-      /\b(not tied off|tie[- ]?off missing|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/i,
+      /\b(not tied off|tie[- ]?off missing|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over|harness|lanyard|anchor)\b/i,
     ],
     confidenceBoosters: [
       /\b(fall|height|elevated|rail)\b/i,

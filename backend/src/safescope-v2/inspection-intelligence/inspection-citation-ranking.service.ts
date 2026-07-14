@@ -40,7 +40,7 @@ function familyCoherencePattern(primaryFamily: string, hasExplicitMineContext = 
   }
   if (family.includes('mobile_equipment')) {
     return hasExplicitMineContext
-      ? /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner)/i
+      ? /(?:1910\.178|1926\.(?:601|602)|30 CFR 56\.(?:9100|14132)|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|berm|route|blind corner|backup alarm|audible warning)/i
       : /(?:1910\.178|1926\.(?:601|602)|mobile equipment|forklift|loader|haul truck|truck|vehicle|pedestrian|backing|traffic|spotter|route|blind corner)/i;
   }
   if (family.includes('fall_protection')) {
@@ -80,11 +80,16 @@ export class InspectionCitationRankingService {
     const observation = String(input.observation || '').toLowerCase();
     const conditionStatus = String(input.inspectionIntelligence?.conditionAssessment?.status || '').toLowerCase();
     if (conditionStatus === 'controlled' || conditionStatus === 'no_hazard_signal') {
+      const controlledCandidates = [...(input.excludedStandards || [])].map((candidate: any) => ({
+        ...candidate,
+        candidateStatus: 'needs_more_evidence',
+        exclusionReason: candidate?.exclusionReason || 'The observation describes the relevant condition as controlled and does not establish a separate uncontrolled exposure.',
+      }));
       return {
         suggestedStandards: [],
         supportingStandards: [],
-        needsMoreEvidenceStandards: [],
-        excludedStandards: [...(input.excludedStandards || [])],
+        needsMoreEvidenceStandards: controlledCandidates,
+        excludedStandards: controlledCandidates,
       };
     }
     const primaryHazardFamily = String(
@@ -155,8 +160,11 @@ export class InspectionCitationRankingService {
       if (/(1910\.147|(?:56|57)\.12016|(?:56|57)\.14105)/i.test(citation) && !hasServicingEnergyEvidence) {
         return 'Hazardous-energy standards require servicing, isolation, or stored-energy evidence.';
       }
-      if (/(1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|30 CFR 56\.9200|30 CFR 56\.9300)/i.test(citation) && !hasMobileEvidence) {
+      if (/(1910\.178|1926\.(?:601|602)|30 CFR 56\.9100|30 CFR 56\.9200|30 CFR 56\.9300|30 CFR 56\.14132)/i.test(citation) && !hasMobileEvidence) {
         return 'Mobile-equipment standards require forklifts, loaders, haul trucks, or traffic exposure evidence.';
+      }
+      if (/30 CFR 56\.9300/i.test(citation) && !/\b(berm|windrow|dump point|drop-off|edge|elevated roadway|haul road)\b/i.test(observation)) {
+        return 'Berm standards require roadway, dump point, edge, or berm evidence.';
       }
       if (/(1910\.28|1910\.29|1926\.451|1926\.502|1926\.503|1926\.454)/i.test(citation) && !hasFallEvidence) {
         return 'Fall-protection standards require elevated-work or opening exposure evidence.';
@@ -404,7 +412,10 @@ export class InspectionCitationRankingService {
         }
       }
 
-      const isGrinderCitation = /1910\.215|(?:56|57)\.14107/i.test(citation);
+      const isGrinderCitation = /1910\.215/i.test(citation) || (
+        /(?:56|57)\.14107/i.test(citation) &&
+        /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i.test(`${observation} ${candidateText(candidate)}`)
+      );
       if (isGrinderCitation) {
         const hasGrinderEvidence = /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i.test(observation);
         const hasTongueGuardEvidence = /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/i.test(observation);
@@ -503,7 +514,7 @@ export class InspectionCitationRankingService {
         }
       }
 
-      if (/(?:56\.93[0-9]|56\.14132\(a\)|1910\.178\(l\)|1926\.601\(b\)\(14\))/i.test(citation) && !hasHornEvidence) {
+      if (/(?:56\.14132\(a\)|1910\.178\(l\)|1926\.601\(b\)\(14\))/i.test(citation) && !hasHornEvidence) {
         score -= 150;
         penalties.push('Horn or backup-alarm evidence is not established for this mobile-equipment citation.');
       }
@@ -592,6 +603,7 @@ export class InspectionCitationRankingService {
     direct(/\b(open breaker slot|missing (?:panel )?cover|missing cover plate|empty space in (?:the )?electrical panel|breaker or blank should be|unused opening|exposed (?:live|energized) parts?|open electrical panel)\b/, /1910\.303\(g\)\(2\)\(i\)|1926\.403\(i\)\(2\)\(i\)|(?:56|57)\.12032/, 'Direct match: exposed energized parts or electrical enclosure opening/cover guarding.');
     direct(/\b(blocked|obstructed|storage|pallets?|boxes?)\b.*\b(panel|disconnect|switchboard)\b|\b(panel|disconnect|switchboard)\b.*\b(blocked|obstructed|clearance)\b/, /1910\.303\(g\)\(1\)|1926\.403\(i\)\(1\)|(?:56|57)\.12004/, 'Direct match: electrical equipment access and working-space obstruction.');
     direct(/\b(damaged|frayed|cut|exposed insulation)\b.*\bcord\b|\bcord\b.*\b(damaged|frayed|cut|wet)\b/, /1910\.(?:305\(g\)|334\(a\)\(2\)\(ii\))|1926\.(?:404\(b\)\(1\)\(ii\)|405)/, 'Direct match: flexible-cord condition, use, and electrical exposure.');
+    direct(/\b(damaged|frayed|cut|exposed insulation)\b.*\b(extension cord|power cord|cord)\b.*\b(wet|damp|water|conductive)\b|\b(wet|damp|water|conductive)\b.*\b(damaged|frayed|cut|exposed insulation)\b.*\b(extension cord|power cord|cord)\b/i, /1926\.404\(b\)\(1\)\(ii\)/i, 'Direct match: damaged cord used in wet construction conditions requires ground-fault protection review.');
     direct(/\b(daisy[- ]chain|power strip|temporary wiring|overloaded extension)\b/, /1910\.305\(g\)|1926\.405/, 'Direct match: flexible or temporary wiring configuration.');
     direct(/\b(rotating shaft|rotating coupling|exposed shaft|unguarded shaft)\b/, /1910\.219|1910\.212|1926\.300|(?:56|57)\.14107/, 'Direct match: exposed rotating machine component.');
     direct(/\b(conveyor|tail pulley|head pulley|nip point)\b.*\b(guard|unguarded|missing|exposed|cleanup)\b/, /1910\.212|1926\.300|(?:56|57)\.14107|(?:56|57)\.12016/, 'Direct match: conveyor guarding or servicing exposure.');
@@ -612,7 +624,7 @@ export class InspectionCitationRankingService {
     direct(/\b(unlabeled|no label|missing label)\b.*\b(chemical|container|drum|bottle)\b/, /1910\.1200|1926\.59/, 'Direct match: workplace chemical-container labeling.');
     direct(/\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b.*\b(elevated forks|raised forks|forks elevated|load elevated)\b/i, /1910\.178|1926\.602|(?:56|57)\.9100/i, 'Direct match: elevated forks during travel.');
     direct(/\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle|loader|haul truck)\b.*\b(damaged|defect(?:ive)?|worn|leaking|out of service|in service)\b/i, /1910\.178|1926\.602|(?:56|57)\.(?:9100|14100)/i, 'Direct match: mobile equipment defect or degraded condition.');
-    direct(/\b(backup alarm|audible warning|reverse alarm)\b.*\b(not working|inoperative|failed|missing)\b/i, /1910\.178|1926\.602|(?:56|57)\.(?:9100|14100)/i, 'Direct match: backup alarm or audible warning failure.');
+    direct(/\b(backup alarm|audible warning|reverse alarm)\b.*\b(not working|inoperative|failed|missing)\b/i, /1910\.178|1926\.602|(?:56|57)\.(?:9100|14100|14132)/i, 'Direct match: backup alarm or audible warning failure.');
 
     direct(/\b(hydraulic|pneumatic|stored pressure|stored energy|ram|cylinder)\b.*\b(drop|fall|release|relieved|not relieved|bleed|bled|pressure)\b|\b(stored pressure|stored energy)\b.*\b(hydraulic|pneumatic|ram|cylinder)\b/i, /1910\.147|(?:56|57)\.12016|(?:56|57)\.14105/i, 'Direct match: stored hydraulic or pneumatic energy release exposure.');
     direct(/\b(overhead utility|overhead power|power line|utility line|energized line)\b.*\b(excavation|excavator|boom|equipment|contact|route)\b|\b(excavator|boom|equipment)\b.*\b(overhead utility|overhead power|power line|utility line|energized line|contact)\b/i, /1926\.1410|1926\.651|1926\.600|1926\.602/i, 'Direct match: excavation equipment exposure to overhead utility lines.');
@@ -626,7 +638,7 @@ export class InspectionCitationRankingService {
 
     const hasMobileTerm = /\b(loader|forklift|truck|vehicle|mobile equipment|haulage|traffic|haul road|stockpile|blind corner)\b/i.test(observation);
     const hasMobileMech = /\b(operating|control|pedestrian|backing|horn|alarm|speed|movement|haul|stockpile|right-of-way)\b/i.test(observation);
-    if (hasMobileTerm && hasMobileMech && /1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|9200|9300)/i.test(citation)) {
+    if (hasMobileTerm && hasMobileMech && /1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|9200|9300|14132)/i.test(citation)) {
       adjust(150);
       reasons.push('Direct match: mobile equipment, vehicle, or traffic control interaction.');
     }

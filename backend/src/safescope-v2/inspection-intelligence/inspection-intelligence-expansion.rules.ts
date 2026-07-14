@@ -46,7 +46,10 @@ export const INSPECTION_INTELLIGENCE_EXPANSION_RULES: InspectionIntelligenceRule
   },
   {
     id: 'aerial-lift-fall-ambiguity', domain: 'fall_protection', confidence: 'moderate',
-    matches: [/\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b.*\b(fall protection|harness|lanyard|anchor|guardrail)\b.*\b(unclear|unknown|not verified|missing|without)/],
+    matches: [
+      /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b.*\b(fall protection|harness|lanyard|anchor|guardrail)\b.*\b(unclear|unknown|not verified|missing|without)/,
+      /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b.*\b(harness|lanyard|anchor|guardrail)\b.*\b(status|condition|use|configuration)\b.*\b(unclear|unknown|not verified|not confirmed)/,
+    ],
     initiating: 'Fall-protection adequacy for an elevated lift platform is not established from the observation.', failure: 'Ejection, climbing, gate/rail deficiency, equipment movement, or tie-off misuse can allow a fall.', exposure: 'An occupant may be elevated without verified platform, restraint/arrest, anchorage, and operating controls.', consequences: 'Fall to a lower level, ejection injury, suspension trauma, or fatal injury.',
     questions: ['What lift type and manufacturer-required fall-protection system apply?', 'Are the gate/rails intact and are occupants standing on the floor without climbing?', 'What harness, connector, approved anchor, inspection, rescue, and operator authorization are verified?'],
     controls: actions('Pause elevated work until the lift type and required fall-protection configuration are verified.', 'Use only manufacturer-approved platform and fall-protection controls under competent supervision.', 'Repair platform controls and provide the approved anchorage/restraint or arrest system for that lift.', 'Maintain lift-specific authorization, pre-use inspection, fall-protection selection, and rescue planning.', 'Document lift model/manual basis, platform inspection, PPE/anchor compatibility, and observed safe operation.'),

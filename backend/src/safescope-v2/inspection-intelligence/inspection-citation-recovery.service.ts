@@ -156,7 +156,7 @@ export class InspectionCitationRecoveryService {
       return {
         suggestedStandards: [],
         supportingStandards: [],
-        needsMoreEvidenceStandards: [],
+        needsMoreEvidenceStandards: suppressed,
         excludedStandards: [...excluded, ...suppressed],
         decision: {
           outcome: 'controlled_condition',
@@ -259,6 +259,25 @@ export class InspectionCitationRecoveryService {
       inspectionIntelligence: input.inspectionIntelligence,
       scopes: input.scopes,
     });
+    if (!ranking.suggestedStandards.length) {
+      const directRecovered = recovered.filter((standard: any) => {
+        const citation = citationOf(standard);
+        const reasonText = `${standard?.title || ''} ${standard?.summary || ''} ${(standard?.matchingReasons || []).join(' ')}`.toLowerCase();
+        return (
+          (/^30 CFR 56\.9300$/i.test(citation) && /\bberm|dump-point|dump point|edge-control|roadway\b/i.test(reasonText)) ||
+          (/^29 CFR 1910\.157\(c\)\(1\)$/i.test(citation) && /\bextinguisher|blocked|inaccessible\b/i.test(reasonText))
+        );
+      });
+      if (directRecovered.length) {
+        ranking.suggestedStandards = directRecovered.slice(0, 5);
+        ranking.supportingStandards = ranking.supportingStandards.filter((standard: any) =>
+          !directRecovered.some((candidate: any) => normalizedCitation(candidate) === normalizedCitation(standard)),
+        );
+        ranking.excludedStandards = ranking.excludedStandards.filter((standard: any) =>
+          !directRecovered.some((candidate: any) => normalizedCitation(candidate) === normalizedCitation(standard)),
+        );
+      }
+    }
 
     return {
       suggestedStandards: ranking.suggestedStandards,
@@ -414,9 +433,14 @@ export class InspectionCitationRecoveryService {
     const hasBatteryAcidSpillExposure =
       /\b(battery acid|acid|corrosive)\b.*\b(spill|loose cap|caps loose|leak|splash|cart|staged|moved)\b/i.test(combined);
 
+    const hasConveyorGuardDefect =
+      /\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|removed|unguarded|no guard|guard missing|guard removed|moving belt)\b.*\bguard\b/i.test(combined) ||
+      /\b(conveyor|belt|tail pulley|head pulley)\b.*\bguard(?:ing)?\b.*\b(missing|removed|has been removed|was removed|unguarded|not in place|absent)\b/i.test(combined) ||
+      /\bguard(?:ing)?\b.*\b(missing|removed|has been removed|was removed|not in place|absent)\b.*\b(conveyor|belt|tail pulley|head pulley)\b/i.test(combined) ||
+      /\b(unguarded|moving belt)\b.*\b(conveyor|belt|tail pulley|head pulley)\b/i.test(combined);
+
     const hasMshaConveyorGuardingExposure =
-      /\b(mine|miner|miners|msha)\b.*\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|unguarded|no guard|guard missing|moving belt)\b/i.test(combined) ||
-      /\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|unguarded|no guard|guard missing|moving belt)\b.*\b(mine|miner|miners|msha)\b/i.test(combined);
+      /\b(mine|miner|miners|msha)\b/i.test(combined) && hasConveyorGuardDefect;
 
     const hasWorkplaceExamDocumentationIssue =
       /\b(workplace exam|workplace examination|exam record|examination record)\b.*\b(not document|not documented|did not document|uncorrected|remained uncorrected|hazard)\b/i.test(combined);
@@ -424,6 +448,27 @@ export class InspectionCitationRecoveryService {
     const hasCrusherPlatformEdgeExposure =
       /\b(crusher|screen|plant)\b.*\b(platform|catwalk|walkway|edge)\b.*\b(no barrier|missing barrier|unguarded|no guardrail|missing guardrail|fall hazard)\b/i.test(combined) ||
       /\b(platform|catwalk|walkway|edge)\b.*\b(crusher|screen|plant)\b.*\b(no barrier|missing barrier|unguarded|no guardrail|missing guardrail|fall hazard)\b/i.test(combined);
+
+    const hasMineBermExposure =
+      /\b(berm|windrow|guardrail)\b.*\b(missing|low|inadequate|damaged)\b/i.test(combined) ||
+      /\b(missing|low|inadequate|damaged)\b.*\b(berm|windrow|guardrail)\b/i.test(combined) ||
+      /\b(elevated dump point|dump point|haul road|drop[- ]off)\b.*\b(berm|windrow|guardrail)\b/i.test(combined);
+
+    const hasBlockedExtinguisherExposure =
+      /\b(blocked|obstructed|stored boxes|stored pallets|storage)\b.*\b(fire extinguisher|extinguisher)\b/i.test(combined) ||
+      /\b(fire extinguisher|extinguisher)\b.*\b(blocked|obstructed|not accessible|inaccessible)\b/i.test(combined);
+
+    const hasLadderConditionOrUseExposure =
+      /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail|muddy base|soft base|unstable|short distance above the landing|landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b/i.test(combined) ||
+      /\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail|muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
+
+    const hasLadderPhysicalDefect =
+      /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail)\b/i.test(combined) ||
+      /\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
+
+    const hasLadderSetupMisuse =
+      /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b/i.test(combined) ||
+      /\b(muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
 
     if (hasMobileEquipment && hasTrafficExposure && !isCoalMineContext) {
       if (hasMineScope) {
@@ -470,6 +515,26 @@ export class InspectionCitationRecoveryService {
             '29 CFR 1910.147',
             'Control of hazardous energy',
             'stored hydraulic or pneumatic energy release exposure in OSHA general industry context',
+          ),
+        );
+      }
+    }
+
+    if (hasServicingEnergyEvidence && !hasStoredHydraulicEnergy) {
+      if (hasMineScope) {
+        recovered.push(
+          this.makeRecoveredStandard(
+            '30 CFR 56.12016',
+            'Work on electrically powered equipment; deenergizing and lockout',
+            'servicing, cleaning, or jam-clearing work on energized mine equipment requires deenergizing, lockout, and restart prevention review',
+          ),
+        );
+      } else if ((hasOshaGeneralScope || (!hasMineScope && !hasConstructionScope)) && !hasConstructionScope) {
+        recovered.push(
+          this.makeRecoveredStandard(
+            '29 CFR 1910.147',
+            'Control of hazardous energy',
+            'servicing, cleaning, or jam-clearing work on energized general industry equipment requires hazardous-energy-control review',
           ),
         );
       }
@@ -563,6 +628,65 @@ export class InspectionCitationRecoveryService {
           'crusher platform or catwalk edge lacks barrier or guardrail protection',
         ),
       );
+    }
+
+    if (hasMineBermExposure && hasMineScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '30 CFR 56.9300',
+          'Berms or guardrails',
+          'surface mine roadway or dump-point berm/edge-control exposure',
+        ),
+      );
+    }
+
+    if (hasBlockedExtinguisherExposure && hasOshaGeneralScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.157(c)(1)',
+          'Portable fire extinguishers',
+          'blocked or inaccessible fire extinguisher in OSHA general industry context',
+        ),
+      );
+    }
+
+    if (hasLadderConditionOrUseExposure) {
+      if (hasMineScope) {
+        recovered.push(
+          this.makeRecoveredStandard(
+            '30 CFR 56.11003',
+            'Construction and maintenance of ladders',
+            'mine ladder condition or construction defect requires ladder construction and maintenance review',
+          ),
+          this.makeRecoveredStandard(
+            '30 CFR 56.11011',
+            'Use of ladders',
+            'mine ladder setup or use deficiency requires safe ladder-use review',
+          ),
+        );
+      } else if (hasConstructionScope) {
+        recovered.push(
+          this.makeRecoveredStandard(
+            hasLadderPhysicalDefect ? '29 CFR 1926.1053(b)(16)' : '29 CFR 1926.1053(b)(1)',
+            'Ladders',
+            hasLadderPhysicalDefect
+              ? 'damaged or defective construction ladder condition requires removal from service until repaired'
+              : 'construction ladder setup or access use deficiency requires ladder-use review',
+          ),
+        );
+      } else if (hasOshaGeneralScope) {
+        recovered.push(
+          this.makeRecoveredStandard(
+            '29 CFR 1910.23(b)',
+            'Ladders',
+            hasLadderPhysicalDefect
+              ? 'damaged or defective general-industry ladder condition requires removal from use until corrected'
+              : hasLadderSetupMisuse
+                ? 'general-industry ladder setup or use deficiency requires ladder-use review'
+                : 'ladder condition or use evidence requires ladder standard review',
+          ),
+        );
+      }
     }
 
     if (hasContainerIdentity && hasLabelProblem) {

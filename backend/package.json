@@ -9,6 +9,7 @@
     "test:classify": "ts-node src/test-classify.ts",
     "build": "tsc",
     "billing:regression": "ts-node src/billing/billing-regression.ts",
+    "billing:migration-validation": "ts-node src/billing/billing-migration-validation.ts",
     "start": "node dist/main.js",
     "ingest:msha": "ts-node src/standards/ingestion/ingest.ts",
     "ingest:cfr:bulk": "ts-node src/standards/ingestion/ingest.cfr.bulk.ts",
