@@ -10,20 +10,16 @@ import {
   type ThemePreference,
 } from "@/lib/theme";
 
-function getSystemPrefersDark() {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
-}
-
 export function setThemePreference(preference: ThemePreference) {
   if (typeof window === "undefined") return;
 
-  window.localStorage.setItem(THEME_STORAGE_KEY, preference);
+  const normalizedPreference: ThemePreference = preference === "dark" ? "dark" : "light";
+  window.localStorage.setItem(THEME_STORAGE_KEY, normalizedPreference);
   window.localStorage.removeItem(LEGACY_DARK_MODE_KEY);
   window.localStorage.removeItem(LEGACY_THEME_VERSION_KEY);
-  applyThemeToDocument(preference, getSystemPrefersDark());
+  applyThemeToDocument(normalizedPreference);
   window.dispatchEvent(
-    new CustomEvent("safety-insite-themechange", { detail: { preference } }),
+    new CustomEvent("safety-insite-themechange", { detail: { preference: normalizedPreference } }),
   );
 }
 
@@ -33,18 +29,13 @@ export default function ThemeController() {
 
     const applyStoredPreference = () => {
       const preference = readThemePreferenceFromStorage(window.localStorage);
-      applyThemeToDocument(preference, getSystemPrefersDark());
+      window.localStorage.setItem(THEME_STORAGE_KEY, preference);
+      window.localStorage.removeItem(LEGACY_DARK_MODE_KEY);
+      window.localStorage.removeItem(LEGACY_THEME_VERSION_KEY);
+      applyThemeToDocument(preference);
     };
 
     applyStoredPreference();
-
-    const media = window.matchMedia?.("(prefers-color-scheme: dark)");
-    const handleMediaChange = () => {
-      const preference = readThemePreferenceFromStorage(window.localStorage);
-      applyThemeToDocument(preference, getSystemPrefersDark());
-    };
-
-    media?.addEventListener?.("change", handleMediaChange);
 
     const handleStorage = (event: StorageEvent) => {
       if (event.key === THEME_STORAGE_KEY || event.key === LEGACY_DARK_MODE_KEY) {
@@ -55,7 +46,6 @@ export default function ThemeController() {
     window.addEventListener("storage", handleStorage);
 
     return () => {
-      media?.removeEventListener?.("change", handleMediaChange);
       window.removeEventListener("storage", handleStorage);
     };
   }, []);

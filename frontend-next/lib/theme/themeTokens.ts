@@ -1,4 +1,4 @@
-export type ThemePreference = "light" | "dark" | "system";
+export type ThemePreference = "light" | "dark";
 
 export const THEME_STORAGE_KEY = "safety_insite_theme";
 export const LEGACY_DARK_MODE_KEY = "sentinel_dark_mode";
@@ -7,7 +7,6 @@ export const LEGACY_THEME_VERSION_KEY = "sentinel_theme_version";
 export const themePreferenceLabels: Record<ThemePreference, string> = {
   light: "Light",
   dark: "Dark",
-  system: "System",
 };
 
 export const themeClasses = {
@@ -45,7 +44,7 @@ export function readThemePreferenceFromStorage(storage: Storage | null): ThemePr
   if (!storage) return "light";
 
   const stored = storage.getItem(THEME_STORAGE_KEY);
-  if (stored === "light" || stored === "dark" || stored === "system") {
+  if (stored === "light" || stored === "dark") {
     return stored;
   }
 
@@ -56,20 +55,34 @@ export function readThemePreferenceFromStorage(storage: Storage | null): ThemePr
   return "light";
 }
 
-export function resolveThemePreference(
-  preference: ThemePreference,
-  prefersDark: boolean,
-) {
-  return preference === "dark" || (preference === "system" && prefersDark);
+export function resolveThemePreference(preference: ThemePreference) {
+  return preference === "dark";
 }
 
-export function applyThemeToDocument(theme: ThemePreference | null, prefersDark = false) {
+export function applyThemeToDocument(theme: ThemePreference | null) {
   if (typeof document === "undefined") return false;
 
-  const resolvedTheme = theme || "light";
-  const shouldUseDark = resolveThemePreference(resolvedTheme, prefersDark);
-  document.documentElement.classList.toggle("dark", shouldUseDark);
-  document.documentElement.style.colorScheme = shouldUseDark ? "dark" : "light";
-  document.body.classList.toggle("dark", shouldUseDark);
+  const resolvedTheme: ThemePreference = theme === "dark" ? "dark" : "light";
+  const shouldUseDark = resolvedTheme === "dark";
+  const root = document.documentElement;
+  root.classList.remove("light", "dark");
+  root.classList.add(resolvedTheme);
+  root.dataset.theme = resolvedTheme;
+  root.style.colorScheme = resolvedTheme;
+  document.body.classList.remove("light", "dark");
+  document.body.classList.add(resolvedTheme);
+  document.body.style.colorScheme = resolvedTheme;
+
+  const themeColor = resolvedTheme === "dark" ? "#07111F" : "#F3F7FB";
+  const metaSelectors = [
+    'meta[name="theme-color"]',
+    'meta[name="msapplication-TileColor"]',
+    'meta[name="apple-mobile-web-app-status-bar-style"]',
+  ];
+  for (const selector of metaSelectors) {
+    const element = document.querySelector<HTMLMetaElement>(selector);
+    if (!element) continue;
+    element.setAttribute("content", selector.includes("apple-mobile") ? (shouldUseDark ? "black-translucent" : "default") : themeColor);
+  }
   return shouldUseDark;
 }

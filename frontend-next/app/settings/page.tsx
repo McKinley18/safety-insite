@@ -16,7 +16,7 @@ import { setThemePreference } from "@/components/system/ThemeController";
 type StorageMode = "local" | "cloud" | "ask";
 type RiskProfileId = "simple_4x4" | "standard_5x5" | "advanced_6x6";
 type RegulatoryScope = "all" | "msha" | "osha_general" | "osha_construction";
-const themeModes = ["light", "dark", "system"] as const satisfies readonly ThemePreference[];
+const themeModes = ["light", "dark"] as const satisfies readonly ThemePreference[];
 
 const storageModes = [
   ["local", "Private Local Vault", "Keep reports on this device unless exported."],
@@ -109,26 +109,28 @@ export default function SettingsHubPage() {
   const [planCode, setPlanCode] = useState("free");
 
   useEffect(() => {
-    setPlanCode(getStoredPlanCode());
-    getVerifiedPlanCode().then(setPlanCode).catch(() => {});
-
-    setStorageMode(
+    const storedPlanCode = getStoredPlanCode();
+    const storedStorageMode =
       (window.localStorage.getItem("sentinel_report_storage_mode") as StorageMode | null) ||
-        "local",
-    );
-
-    setRiskProfileId(
+      "local";
+    const storedRiskProfileId =
       (window.localStorage.getItem("sentinel_risk_profile") as RiskProfileId | null) ||
-        (window.localStorage.getItem("sentinel_company_risk_profile") as RiskProfileId | null) ||
-        "standard_5x5",
-    );
-
-    setRegulatoryScope(
+      (window.localStorage.getItem("sentinel_company_risk_profile") as RiskProfileId | null) ||
+      "standard_5x5";
+    const storedRegulatoryScope =
       (window.localStorage.getItem("sentinel_regulatory_scope") as RegulatoryScope | null) ||
-        "all",
-    );
+      "all";
+    const storedThemePreference = readThemePreferenceFromStorage(window.localStorage);
 
-    setThemePreferenceState(readThemePreferenceFromStorage(window.localStorage));
+    queueMicrotask(() => {
+      setPlanCode(storedPlanCode);
+      setStorageMode(storedStorageMode);
+      setRiskProfileId(storedRiskProfileId);
+      setRegulatoryScope(storedRegulatoryScope);
+      setThemePreferenceState(storedThemePreference);
+    });
+
+    getVerifiedPlanCode().then(setPlanCode).catch(() => {});
   }, []);
 
   function updateStorageMode(value: StorageMode) {
@@ -202,7 +204,7 @@ export default function SettingsHubPage() {
           description="Choose how Safety InSite renders on this device."
         />
 
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
           {themeModes.map((mode) => (
             <SelectorCard
               key={mode}
@@ -211,9 +213,7 @@ export default function SettingsHubPage() {
               description={
                 mode === "light"
                   ? "Always use the light theme."
-                  : mode === "dark"
-                    ? "Always use the dark theme."
-                    : "Follow the device system setting."
+                  : "Always use the dark theme."
               }
               onClick={() => updateThemePreference(mode)}
             />
