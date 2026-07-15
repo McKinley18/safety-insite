@@ -33,6 +33,7 @@ import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mob
 import { SafeScopePersistenceService } from "./persistence/persistence.service";
 import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/workspace-governance-access.service";
 import { UserGovernanceContext } from "./workspace-governance-access/workspace-governance.types";
+import type { StructuredObservationInput } from "./dto/classify.dto";
 import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowledge-router.service";
 import { logKnowledgeTelemetry, isHazLenzKnowledgeTelemetryEnabled } from "./telemetry/hazlenz-knowledge-telemetry";
 import { HazLenzKnowledgeShardService } from "./knowledge-shards/hazlenz-knowledge-shard.service";
@@ -68,6 +69,313 @@ export class SafescopeV2Service {
     @Optional()
     private readonly persistence?: SafeScopePersistenceService,
   ) {}
+
+  private normalizeStructuredObservation(input?: StructuredObservationInput, fallbackNarrative = ""): StructuredObservationInput | undefined {
+    if (!input || typeof input !== "object") {
+      return undefined;
+    }
+
+    const clean = (value: unknown) => String(value ?? "").replace(/\s+/g, " ").trim();
+    const textArray = (value: unknown): string[] =>
+      (Array.isArray(value) ? value : value ? [value] : [])
+        .map(clean)
+        .filter(Boolean)
+        .slice(0, 12);
+    const jurisdiction = clean(input.jurisdiction).toLowerCase();
+    const energyState = clean(input.energyState).toLowerCase();
+    const allowedJurisdictions = new Set(["msha", "osha-general-industry", "osha-construction", "unknown"]);
+    const allowedEnergyStates = new Set(["energized", "operating", "stopped", "deenergized", "locked-out", "unknown"]);
+
+    return {
+      narrative: clean(input.narrative) || clean(fallbackNarrative),
+      jurisdiction: allowedJurisdictions.has(jurisdiction) ? input.jurisdiction : undefined,
+      workEnvironment: clean(input.workEnvironment) || undefined,
+      workArea: clean(input.workArea) || undefined,
+      taskBeingPerformed: clean(input.taskBeingPerformed) || undefined,
+      equipmentInvolved: textArray(input.equipmentInvolved),
+      materialOrSubstance: textArray(input.materialOrSubstance),
+      observedCondition: clean(input.observedCondition) || undefined,
+      workerInteraction: clean(input.workerInteraction) || undefined,
+      exposurePathway: textArray(input.exposurePathway),
+      energyState: allowedEnergyStates.has(energyState) ? input.energyState : undefined,
+      controlsPresent: textArray(input.controlsPresent),
+      controlsMissing: textArray(input.controlsMissing),
+      potentialConsequence: textArray(input.potentialConsequence),
+      affectedPeople: textArray(input.affectedPeople),
+      evidenceSource: textArray(input.evidenceSource) as any,
+      additionalContext: clean(input.additionalContext) || undefined,
+    };
+  }
+
+  private structuredObservationToScopes(input?: StructuredObservationInput): string[] | undefined {
+    switch (input?.jurisdiction) {
+      case "msha":
+        return ["msha"];
+      case "osha-general-industry":
+        return ["osha_general"];
+      case "osha-construction":
+        return ["osha_construction"];
+      default:
+        return undefined;
+    }
+  }
+
+  private buildStructuredObservationEvidenceTexts(input?: StructuredObservationInput): string[] {
+    if (!input) return [];
+    const rows = [
+      input.taskBeingPerformed ? `Task being performed: ${input.taskBeingPerformed}.` : "",
+      input.equipmentInvolved?.length ? `Equipment or area involved: ${input.equipmentInvolved.join(", ")}.` : "",
+      input.materialOrSubstance?.length ? `Material or substance involved: ${input.materialOrSubstance.join(", ")}.` : "",
+      input.workerInteraction ? `Worker interaction or exposure: ${input.workerInteraction}.` : "",
+      input.exposurePathway?.length ? `Exposure pathway: ${input.exposurePathway.join(", ")}.` : "",
+      input.energyState ? `Equipment energy state: ${input.energyState}.` : "",
+      input.controlsPresent?.length ? `Controls present: ${input.controlsPresent.join(", ")}.` : "",
+      input.controlsMissing?.length ? `Controls missing or ineffective: ${input.controlsMissing.join(", ")}.` : "",
+      input.potentialConsequence?.length ? `Potential consequence: ${input.potentialConsequence.join(", ")}.` : "",
+      input.workEnvironment ? `Work environment or jurisdiction context: ${input.workEnvironment}.` : "",
+      input.workArea ? `Work area: ${input.workArea}.` : "",
+      input.observedCondition ? `Observed condition: ${input.observedCondition}.` : "",
+      input.additionalContext ? `Additional context: ${input.additionalContext}.` : "",
+    ].filter(Boolean);
+
+    return rows.length ? [`Structured observation evidence:\n${rows.join("\n")}`] : [];
+  }
+
+  private buildStructuredEvidenceUsed(input?: StructuredObservationInput, fusedText = "") {
+    const facts: Array<{ fact: string; source: string; effect: string }> = [];
+    const push = (fact: string | undefined, source: string, effect: string) => {
+      const clean = String(fact || "").replace(/\s+/g, " ").trim();
+      if (clean) facts.push({ fact: clean, source, effect });
+    };
+    const text = String(fusedText || input?.narrative || "").toLowerCase();
+
+    if (input) {
+      push(input.taskBeingPerformed, "taskBeingPerformed", "Supports task and servicing/exposure mechanism selection.");
+      push(input.energyState, "energyState", "Constrains hazardous-energy, startup, and shutdown reasoning.");
+      push(input.workerInteraction, "workerInteraction", "Supports exposure and risk applicability.");
+      push(input.jurisdiction, "jurisdiction", "Constrains OSHA/MSHA standard families.");
+    }
+
+    if (input?.equipmentInvolved?.length) {
+      push(input.equipmentInvolved.join(", "), "equipmentInvolved", "Supports equipment-specific hazard and standard selection.");
+    }
+    if (input?.controlsPresent?.length) {
+      push(input.controlsPresent.join(", "), "controlsPresent", "Identifies existing protections that may suppress unsupported hazard conclusions.");
+    }
+    if (input?.controlsMissing?.length) {
+      push(input.controlsMissing.join(", "), "controlsMissing", "Supports missing-control and corrective-action routing.");
+    }
+    if (input?.exposurePathway?.length) {
+      push(input.exposurePathway.join(", "), "exposurePathway", "Supports mechanism of injury and risk scoring.");
+    }
+
+    if (!input?.taskBeingPerformed && /\b(clear(?:ing)?|unjam|jammed|jam)\b/i.test(text) && /\b(conveyor|machine|belt)\b/i.test(text)) {
+      push("Worker was clearing a jam", "narrative", "Supports servicing and hazardous-energy analysis.");
+    }
+    if (!input?.energyState && /\b(energized|operating|running|live)\b/i.test(text)) {
+      push("Equipment was energized or operating", "narrative", "Supports hazardous-energy and serious-exposure analysis.");
+    }
+    if (!(input?.controlsMissing || []).length && /\b(guard (?:has been )?removed|removed guard|guard missing|unguarded)\b/i.test(text)) {
+      push("Guard was removed or missing", "narrative", "Supports machine-guarding and missing-control analysis.");
+    }
+    if (!input?.workerInteraction && /\b(worker|employee|miner)\b/i.test(text) && /\b(clear(?:ing)?|reach|contact|exposed|near)\b/i.test(text)) {
+      push("Worker interaction or exposure was described", "narrative", "Supports exposure and risk applicability.");
+    }
+    return facts.slice(0, 10);
+  }
+
+  private buildStructuredClarifyingQuestions(input: {
+    fusedText: string;
+    structuredObservation?: StructuredObservationInput;
+    existingQuestions?: any[];
+  }) {
+    const text = String(input.fusedText || "").toLowerCase();
+    const structured = input.structuredObservation;
+    const questions: any[] = [];
+    const add = (question: any) => {
+      if (questions.length >= 4) return;
+      if (questions.some((item) => item.id === question.id || item.question === question.question)) return;
+      questions.push(question);
+    };
+
+    const jurisdictionKnown = structured?.jurisdiction && structured.jurisdiction !== "unknown";
+    const hasCompleteMachineEnergyEvidence =
+      /\b(conveyor|machine|belt|guard|jam|pulley|shaft)\b/i.test(text) &&
+      /\b(energized|operating|running|locked[- ]out|deenergized|de-energized|zero[- ]energy|energy isolation)\b/i.test(text) &&
+      /\b(clear(?:ing)?|unjam|jammed|maintenance|servicing|repair|worker|employee|miner)\b/i.test(text) &&
+      /\b(guard (?:has been )?removed|removed guard|guard missing|lockout not applied|no lockout|without lockout|verified lockout|energy isolation)\b/i.test(text);
+    const hasElectricalExposureAnswer =
+      /\b(internal conductors? (?:are )?(?:not )?visible|energized conductors? (?:are )?visible|exposed conductors?|outer jacket damage only|jacket damage only)\b/i.test(text);
+    const hasWetLocationEvidence =
+      /\b(wet|damp|water|moisture)\b/i.test(text) &&
+      !/\b(not wet|not in a wet|dry|no wet|no damp)\b/i.test(text);
+    const hasActiveMachineEnergyExposure =
+      hasCompleteMachineEnergyEvidence &&
+      /\b(energized|operating|running|unexpected startup)\b/i.test(text) &&
+      /\b(clear(?:ing)?|unjam|jammed|maintenance|servicing|repair)\b/i.test(text);
+
+    if (!jurisdictionKnown && !hasCompleteMachineEnergyEvidence && !/\b(mine|miner|quarry|construction|jobsite|warehouse|manufacturing|plant|mill|pit)\b/i.test(text)) {
+      add({
+        id: "jurisdiction-work-environment",
+        question: "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
+        reason: "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
+        answerType: "single-select",
+        options: ["Mine or quarry", "Construction site", "Manufacturing or plant", "Warehouse", "Other workplace"],
+        requiredFor: "jurisdiction",
+        priority: "critical",
+      });
+    }
+
+    if (/\b(conveyor|machine|guard|jam|pulley|belt|shaft|moving part|nip point)\b/i.test(text)) {
+      if ((!structured?.energyState || structured.energyState === "unknown") && !/\b(energized|operating|running|locked[- ]out|deenergized|de-energized|zero[- ]energy)\b/i.test(text)) {
+        add({
+          id: "machine-energy-state",
+          question: "Was the equipment running, capable of unexpected startup, stopped, deenergized, or locked out?",
+          reason: "Energy state separates active hazardous-energy exposure from controlled isolation or out-of-service review.",
+          answerType: "single-select",
+          options: ["Running or operating", "Capable of startup", "Stopped only", "Deenergized", "Locked out"],
+          requiredFor: "standard-applicability",
+          priority: "critical",
+        });
+      }
+      if (!structured?.taskBeingPerformed && !/\b(clear(?:ing)?|unjam|jammed|maintenance|servicing|repair|operating|cleaning)\b/i.test(text) && /\b(jam|guard|machine|conveyor)\b/i.test(text)) {
+        add({
+          id: "machine-task",
+          question: "Was the worker operating, cleaning, maintaining, repairing, or clearing a jam?",
+          reason: "The task determines whether machine guarding, lockout/tagout, or both are the primary control families.",
+          answerType: "single-select",
+          options: ["Operating", "Cleaning", "Maintenance or repair", "Clearing a jam", "Inspection only"],
+          requiredFor: "hazard-classification",
+          priority: "important",
+        });
+      }
+      if (!(structured?.controlsPresent || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !(structured?.controlsMissing || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !/\b(guard (?:has been )?removed|removed guard|guard missing|lockout applied|locked[- ]out|lockout not applied|no lockout|energy isolation|zero[- ]energy)\b/i.test(text)) {
+        add({
+          id: "machine-controls",
+          question: "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?",
+          reason: "Control status determines whether HazLenz should treat the observation as an active exposure or a verification item.",
+          answerType: "multi-select",
+          options: ["Guard missing or removed", "Guard installed", "Lockout/tagout applied", "Zero-energy verified", "No control verified"],
+          requiredFor: "standard-applicability",
+          priority: "critical",
+        });
+      }
+    }
+
+    if (/\b(cord|wire|electrical|conductor|receptacle|panel|breaker)\b/i.test(text)) {
+      if (!hasElectricalExposureAnswer) {
+        add({
+          id: "electrical-damage-exposure",
+          question: "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+          reason: "Visible conductor exposure changes electrical shock risk and citation applicability.",
+          answerType: "single-select",
+          options: ["Internal conductors exposed", "Outer jacket damage only", "Unknown"],
+          requiredFor: "standard-applicability",
+          priority: "critical",
+        });
+      }
+      if (hasWetLocationEvidence) {
+        add({
+          id: "electrical-wet-location",
+          question: "Was GFCI protection present for the wet or damp location?",
+          reason: "Wet-location controls affect electrical risk and corrective actions.",
+          answerType: "yes-no",
+          requiredFor: "risk",
+          priority: "important",
+        });
+      }
+    }
+
+    if (/\b(ladder|edge|opening|roof|platform|scaffold|fall protection|six feet|6 feet)\b/i.test(text)) {
+      if (!/\b\d+\s*(?:ft|feet|foot)\b/i.test(text)) {
+        add({
+          id: "fall-height",
+          question: "What was the approximate working height or fall distance?",
+          reason: "Height determines whether fall-protection standards are likely applicable.",
+          answerType: "number",
+          requiredFor: "standard-applicability",
+          priority: "critical",
+        });
+      }
+      add({
+        id: "fall-surface-control",
+        question: "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+        reason: "Fall and ladder standards depend on the access method and specific misuse or defect.",
+        answerType: "single-select",
+        options: ["Defective ladder", "Incorrect ladder use", "Unprotected edge or opening", "Scaffold", "Roof", "Platform"],
+        requiredFor: "hazard-classification",
+        priority: "important",
+      });
+    }
+
+    if (/\b(spill|leak|chemical|solvent|acid|drum|container|unlabeled|vapou?r|fume)\b/i.test(text)) {
+      if (!(structured?.materialOrSubstance || []).length) {
+        add({
+          id: "chemical-substance",
+          question: "What substance was involved, and was the container labeled or identified?",
+          reason: "Chemical identity determines whether the issue is primarily HazCom, spill control, or exposure control.",
+          answerType: "short-text",
+          requiredFor: "standard-applicability",
+          priority: "critical",
+        });
+      }
+      add({
+        id: "chemical-exposure-path",
+        question: "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?",
+        reason: "Exposure pathway separates a housekeeping spill from chemical health or emergency-response hazards.",
+        answerType: "multi-select",
+        options: ["Walking surface", "Inhalation or vapor", "Skin or eye contact", "Drain or environment", "No exposure observed"],
+        requiredFor: "risk",
+        priority: "important",
+      });
+    }
+
+    const structuredControlText = [
+      ...(structured?.controlsPresent || []),
+      ...(structured?.controlsMissing || []),
+      structured?.energyState || "",
+    ].join(" ");
+    const hasHeatContext = /\b(heat|humidity|shade|hydration|water|acclimatization|work-rest|heat stress)\b/i.test(text);
+    const existing = (Array.isArray(input.existingQuestions) ? input.existingQuestions : [])
+      .filter((item: any) => {
+        const question = typeof item === "string" ? item : item?.question || item?.prompt || item?.evidenceGapId || "";
+        if (/\b(cool drinking water|heat|shade|hydration|acclimatization)\b/i.test(question) && !hasHeatContext) {
+          return false;
+        }
+        if (/\b(internal conductors?|energized parts?|outer jacket)\b/i.test(question) && hasElectricalExposureAnswer) {
+          return false;
+        }
+        if (/\b(lockout|tagout|loto|energy isolation|hazardous energy|zero-energy|zero energy)\b/i.test(question) && (
+          hasActiveMachineEnergyExposure ||
+          /\b(lockout|tagout|loto|locked out|not applied|no lockout|verified lockout|energy isolation|energy sources? (?:were )?isolated|zero-energy|zero energy)\b/i.test(structuredControlText)
+        )) {
+          return false;
+        }
+        if (/\b(guard|guarding)\b/i.test(question) && /\b(guard installed|guard present|guard removed|guard missing|guard bypassed)\b/i.test(structuredControlText)) {
+          return false;
+        }
+        return true;
+      })
+      .map((item: any, index: number) => typeof item === "string"
+        ? {
+            id: `existing-${index}`,
+            question: item,
+            reason: "HazLenz identified this missing fact during deterministic evidence review.",
+            answerType: "short-text",
+            requiredFor: "standard-applicability",
+            priority: "important",
+          }
+        : {
+            ...item,
+            answerType: item?.answerType === "boolean" ? "yes-no" : item?.answerType || "short-text",
+            requiredFor: item?.requiredFor || "standard-applicability",
+            reason: item?.reason || item?.reasonForQuestion || "HazLenz identified this missing fact during deterministic evidence review.",
+            priority: item?.priority || "important",
+          })
+      .filter((item: any) => item?.question);
+
+    return [...questions, ...existing].slice(0, 4);
+  }
 
   async evaluateVisualEvidence(input: VisualEvidenceReasoningInput, user?: UserGovernanceContext) {
     if (user) {
@@ -115,6 +423,7 @@ export class SafescopeV2Service {
     visualAttachments?: Attachment[],
     user?: UserGovernanceContext,
     debugMetadata?: boolean,
+    structuredObservationInput?: StructuredObservationInput,
   ) {
     if (user) {
         const decision = this.access.can(user, 'run_classification');
@@ -122,9 +431,13 @@ export class SafescopeV2Service {
     }
 
       const memoryBefore = getMemorySnapshot();
+      const structuredObservation = this.normalizeStructuredObservation(structuredObservationInput, text);
+      const structuredEvidenceTexts = this.buildStructuredObservationEvidenceTexts(structuredObservation);
+      const structuredScope = this.structuredObservationToScopes(structuredObservation);
 
       const evidenceFusion = this.evidenceFusion.synthesize([
         text,
+        ...structuredEvidenceTexts,
         ...(evidenceTexts || []),
       ]);
       const fusedText = evidenceFusion.combinedNarrative;
@@ -141,7 +454,7 @@ export class SafescopeV2Service {
       promotedPrimary.risk = risk;
 
       // Route the observation first so HazLenz opens the most relevant knowledge directory.
-      const normalizedScopes = this.normalizeScopes(scopes, fusedText);
+      const normalizedScopes = this.normalizeScopes(structuredScope?.length ? structuredScope : scopes, fusedText);
       const advisoryReasoning = this.reasoningOrchestratorService.reason({
         hazardObservation: fusedText,
         scopes: normalizedScopes,
@@ -2091,6 +2404,15 @@ export class SafescopeV2Service {
       }
 
       if (
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(conveyor|belt|jam|clearing jam|clear a jam)\b/i.test(fusedText) &&
+        /\b(energized|operating|running|unexpected startup|lockout not applied|no lockout|without lockout|loto not applied)\b/i.test(fusedText)
+      ) {
+        ensureVisibleStandard('30 CFR 56.14107(a)', 'Moving machine parts guarding', 'suggested');
+        ensureVisibleStandard('30 CFR 56.12016', 'Work on electrically powered equipment; deenergizing and lockout', 'supporting');
+      }
+
+      if (
         resolvedPrimaryCitation &&
         !suggestedStandards.length &&
         !supportingStandards.length &&
@@ -2118,8 +2440,10 @@ export class SafescopeV2Service {
             !(advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || []).length
               ? guardingReviewQuestions
               : isVague
-                ? (advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || [])
+              ? (advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || [])
                 : (intelligence.evidenceGapQuestions || []),
+          structuredObservation,
+          evidenceUsed: this.buildStructuredEvidenceUsed(structuredObservation, fusedText),
           hazardCategory: normalizedRootHazardCategory || rootHazardCategory,
           candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
@@ -2298,10 +2622,64 @@ export class SafescopeV2Service {
           }
         : response.aiEvidenceContract;
 
-      const standardDecisions = this.buildStandardDecisions({
+      if (
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(conveyor|belt|jam|clearing jam|clear a jam)\b/i.test(fusedText) &&
+        /\b(energized|operating|running|unexpected startup|lockout not applied|no lockout|without lockout|loto not applied)\b/i.test(fusedText)
+      ) {
+        response.supportingStandards = uniqueByCitation([
+          ...(Array.isArray(response.supportingStandards) ? response.supportingStandards : []),
+          {
+            citation: '30 CFR 56.12016',
+            title: 'Work on electrically powered equipment; deenergizing and lockout',
+            summary: 'Supporting hazardous-energy isolation reference for energized conveyor jam-clearing or servicing.',
+            status: 'candidate_standard',
+            candidateStatus: 'candidate_standard',
+            source: ['structured_evidence_hazardous_energy_support'],
+            matchingReasons: [
+              'Structured or narrative evidence indicates conveyor jam-clearing with equipment energized, operating, or not locked out.',
+            ],
+          },
+        ]).slice(0, 5);
+      }
+
+      let standardDecisions = this.buildStandardDecisions({
         response,
         normalizedScopes,
       });
+      const hydrateStandardReferences =
+        typeof this.applicableStandards?.hydrateStandardReferences === 'function'
+          ? this.applicableStandards.hydrateStandardReferences.bind(this.applicableStandards)
+          : async (standards: any[] = []) => standards;
+
+      standardDecisions = await hydrateStandardReferences(standardDecisions);
+      if (
+        normalizedScopes.includes('msha') &&
+        /\b(conveyor|belt|jam|clearing jam|clear a jam)\b/i.test(fusedText) &&
+        /\b(energized|operating|running|unexpected startup|lockout not applied|no lockout|without lockout|loto not applied)\b/i.test(fusedText) &&
+        !standardDecisions.some((decision: any) => /(?:30 CFR )?56\.12016/i.test(String(decision?.citation || '')))
+      ) {
+        const hydratedSupport = await hydrateStandardReferences([{
+          citation: '30 CFR 56.12016',
+          title: 'Work on electrically powered equipment; deenergizing and lockout',
+          summary: 'Supporting hazardous-energy isolation reference for energized conveyor jam-clearing or servicing.',
+          authority: 'supporting',
+          agency: 'MSHA',
+          scope: 'msha',
+          confidence: 0.82,
+          reasons: [
+            'MSHA conveyor jam-clearing evidence includes operating, energized, or not-locked-out equipment.',
+          ],
+          matchReasons: [
+            'MSHA conveyor jam-clearing evidence includes operating, energized, or not-locked-out equipment.',
+          ],
+          isCandidate: true,
+          isDirectMatch: false,
+          source: 'structured_evidence_hazardous_energy_support',
+          applicabilityStatus: 'probable',
+        }]);
+        standardDecisions = [...standardDecisions, ...hydratedSupport];
+      }
       response.standardDecisions = standardDecisions;
       const canonicalPrimaryDecisions = standardDecisions.filter((decision: any) =>
         String(decision?.authority || '').toLowerCase() === 'primary' ||
@@ -2517,6 +2895,29 @@ export class SafescopeV2Service {
           evidenceGapQuestions: fallbackEvidenceQuestions,
         };
       }
+
+      const clarifyingQuestions = this.buildStructuredClarifyingQuestions({
+        fusedText,
+        structuredObservation,
+        existingQuestions: response.evidenceGapQuestions,
+      });
+      response.clarifyingQuestions = clarifyingQuestions;
+      response.followUpQuestions = clarifyingQuestions;
+      response.resultStage = clarifyingQuestions.some((question: any) => question?.priority === "critical")
+        ? "provisional"
+        : "final";
+      response.provisionalResult = response.resultStage === "provisional"
+        ? {
+            likelyHazardFamily: response.candidateStandardFamily || response.hazardCategory || response.classification,
+            possibleAlternatives: Array.isArray(response.additionalHazards) ? response.additionalHazards.slice(0, 3) : [],
+            currentConfidence: response.confidenceIntelligence?.overallConfidence ?? response.confidence,
+            evidenceGaps: response.evidenceGapQuestions || [],
+            questionsRequiredBeforeFinalStandardSelection: clarifyingQuestions.filter((question: any) =>
+              question?.priority === "critical" || question?.requiredFor === "standard-applicability",
+            ),
+          }
+        : undefined;
+      response.finalStandardRankingHydrated = response.resultStage === "final";
 
       if (isVague) {
         const isElectrical = String(rootHazardCategory || '').toLowerCase().includes('electrical') ||
@@ -3387,7 +3788,7 @@ export class SafescopeV2Service {
       response?.inspectionIntelligence?.hazardCandidates?.[0]?.domain ||
       ""
     ).toLowerCase();
-    const observationText = String(
+    const observationText = [
       response?.observationContext?.rawObservation ||
       response?.observationContext?.normalizedText ||
       response?.observationContext?.rawText ||
@@ -3395,8 +3796,10 @@ export class SafescopeV2Service {
       response?.inspectionIntelligence?.observationContext?.normalizedText ||
       response?.inspectionIntelligence?.observationContext?.rawText ||
       response?.reasoningBasis?.observationText ||
-      ""
-    ).toLowerCase();
+      "",
+      JSON.stringify(response?.structuredObservation || {}),
+      ...(Array.isArray(response?.evidenceUsed) ? response.evidenceUsed.map((item: any) => `${item?.fact || ""} ${item?.source || ""} ${item?.effect || ""}`) : []),
+    ].join(" ").toLowerCase();
     const hasExplicitMineContext = /\b(mine|mine site|mining|aggregate|quarry|pit|crusher|screen|haul road|stockpile|miner|mill)\b/i.test(
       String(
         response?.observationContext?.rawObservation ||
@@ -3499,6 +3902,19 @@ export class SafescopeV2Service {
     const escapeRegExp = (value: string) => String(value || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const isPlaceholder = (value: string) => genericLabelPattern.test(clean(value));
     const isCitationLike = (value: string) => citationPattern.test(clean(value));
+    const decisionKey = (citation: string) => {
+      const normalized = clean(citation)
+        .replace(/^§\s*/i, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+      const cfrMatch = normalized.match(/\b(29|30)\s*cfr\s*((?:1910|1926|56|57|75|77)\.\d+(?:\([a-z0-9]+\))*)/i);
+      const bareMatch = normalized.match(/(?:^|[^\d])((?:1910|1926|56|57|75|77)\.\d+(?:\([a-z0-9]+\))*)/i);
+      const section = cfrMatch?.[2] || bareMatch?.[1] || "";
+      if (!section) return normalized.replace(/\s+/g, "");
+      const agency = cfrMatch?.[1] || (/^(1910|1926)\./.test(section) ? "29" : "30");
+      return `${agency}cfr${section}`.replace(/\s+/g, "");
+    };
     const normalizeConfidence = (candidate: any): number | undefined => {
       const raw = candidate?.confidence ?? candidate?.confidenceScore ?? candidate?.score;
       const numeric = Number(raw);
@@ -3627,18 +4043,34 @@ export class SafescopeV2Service {
       ]);
       const agency = clean(value?.agencyCode || value?.agency || (String(citation).startsWith("30 CFR") ? "MSHA" : "OSHA")) || undefined;
       const scope = clean(value?.scope || value?.jurisdiction || value?.standardScope || normalizedScopes[0] || "");
+      const standardText = clean(value?.standardText || value?.fullText || value?.regulationText || value?.regulatoryText || "");
+      const summary = clean(value?.summary || value?.plainLanguageSummary || value?.titleSummary || "");
+      const rawStatus = String(value?.applicabilityStatus || value?.candidateStatus || value?.status || authority || "").toLowerCase();
+      const applicabilityStatus =
+        /not[-_ ]applicable|excluded|mismatch|reject/.test(rawStatus) ? "not-applicable" :
+        /needs[-_ ]more[-_ ]evidence|needs more evidence|review/.test(rawStatus) ? "needs-more-evidence" :
+        /confirmed/.test(rawStatus) ? "confirmed" :
+        authority === "primary" ? "probable" :
+        authority === "supporting" ? "candidate" :
+        authority === "needs_more_evidence" ? "needs-more-evidence" :
+        "candidate";
       return {
         citation,
         title,
+        standardText: standardText || undefined,
+        summary: summary || undefined,
+        plainLanguageSummary: clean(value?.plainLanguageSummary || "") || undefined,
         authority,
         agency: agency || undefined,
         scope: scope || undefined,
         confidence: normalizeConfidence(value),
+        reasons: matchReasons.length ? matchReasons : undefined,
         matchReasons: matchReasons.length ? matchReasons : undefined,
         evidenceGaps: evidenceGaps.length ? evidenceGaps : undefined,
         isCandidate: authority !== "advisory",
         isDirectMatch: isDirectMatch(authority, value, source),
         source,
+        applicabilityStatus,
       };
     };
     const ingest = (
@@ -3651,7 +4083,7 @@ export class SafescopeV2Service {
         const decision = buildDecision(item, source);
         if (!decision) continue;
 
-        const key = decision.citation.toLowerCase().replace(/\s+/g, "");
+        const key = decisionKey(decision.citation);
         const existing = decisions.get(key);
         if (!existing) {
           decisions.set(key, decision);
@@ -3667,15 +4099,20 @@ export class SafescopeV2Service {
           title: (existing.title && !isPlaceholder(existing.title) && existing.title !== existing.citation)
             ? existing.title
             : decision.title || existing.citation,
+          standardText: existing.standardText || decision.standardText,
+          summary: existing.summary || decision.summary,
+          plainLanguageSummary: existing.plainLanguageSummary || decision.plainLanguageSummary,
           confidence: Math.max(
             Number.isFinite(Number(existing.confidence)) ? Number(existing.confidence) : 0,
             Number.isFinite(Number(decision.confidence)) ? Number(decision.confidence) : 0,
           ) || undefined,
+          reasons: Array.from(new Set([...(existing.reasons || []), ...(decision.reasons || [])])).filter(Boolean),
           matchReasons: Array.from(new Set([...(existing.matchReasons || []), ...(decision.matchReasons || [])])).filter(Boolean),
           evidenceGaps: Array.from(new Set([...(existing.evidenceGaps || []), ...(decision.evidenceGaps || [])])).filter(Boolean),
           source: Array.from(new Set([...(String(existing.source || "").split(" | ").filter(Boolean)), ...(String(decision.source || "").split(" | ").filter(Boolean))])).join(" | "),
           isCandidate: (incomingRank > existingRank ? decision.isCandidate : existing.isCandidate) !== false,
           isDirectMatch: incomingRank > existingRank ? decision.isDirectMatch : existing.isDirectMatch,
+          applicabilityStatus: existing.applicabilityStatus || decision.applicabilityStatus,
         };
         decisions.set(key, merged);
       }

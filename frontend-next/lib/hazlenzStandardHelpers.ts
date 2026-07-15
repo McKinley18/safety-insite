@@ -3,8 +3,15 @@ import { isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay
 export type HazLenzStandardCandidate = {
   citation: string;
   title?: string;
+  standardText?: string;
+  summary?: string;
+  plainLanguageSummary?: string;
+  fullText?: string;
+  regulationText?: string;
+  regulatoryText?: string;
   jurisdiction?: string;
   status?: string;
+  applicabilityStatus?: "confirmed" | "probable" | "candidate" | "needs-more-evidence" | "not-applicable";
   confidence?: number;
   source?: string;
   rationale?: string;
@@ -119,6 +126,13 @@ function candidateFrom(value: any, source: string): HazLenzStandardCandidate | n
     jurisdiction: value.jurisdiction,
     status: value.status,
     confidence: normalizeDecisionConfidence(value),
+    standardText: cleanText(value.standardText || value.fullText || value.regulationText || value.regulatoryText) || undefined,
+    summary: cleanText(value.summary || value.plainLanguageSummary) || undefined,
+    plainLanguageSummary: cleanText(value.plainLanguageSummary) || undefined,
+    fullText: cleanText(value.fullText) || undefined,
+    regulationText: cleanText(value.regulationText) || undefined,
+    regulatoryText: cleanText(value.regulatoryText) || undefined,
+    applicabilityStatus: value.applicabilityStatus,
     rationale:
       cleanText(value.rationale || value.reasoning || value.reason || value.explanation) || undefined,
     source,

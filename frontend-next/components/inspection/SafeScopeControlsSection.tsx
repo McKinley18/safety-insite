@@ -1,9 +1,14 @@
+"use client";
+
+import { useState } from "react";
+import type { StructuredObservationInput } from "@/lib/safescope";
+
 type Props = {
   safeScopeHelpOpen: boolean;
   setSafeScopeHelpOpen: (updater: any) => void;
   agencyMode: string;
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
-  handleRunSafeScope: () => void;
+  handleRunSafeScope: (forceOffline?: boolean, structuredObservation?: StructuredObservationInput) => void;
   safeScopeStatus: string;
   safeScopeResult?: any;
 };
@@ -28,6 +33,46 @@ export default function SafeScopeControlsSection({
   safeScopeStatus,
   safeScopeResult,
 }: Props) {
+  const [contextOpen, setContextOpen] = useState(false);
+  const [taskBeingPerformed, setTaskBeingPerformed] = useState("");
+  const [equipmentOrArea, setEquipmentOrArea] = useState("");
+  const [workerInteraction, setWorkerInteraction] = useState("");
+  const [energyState, setEnergyState] = useState<StructuredObservationInput["energyState"]>("unknown");
+  const [controlsPresent, setControlsPresent] = useState("");
+  const [controlsMissing, setControlsMissing] = useState("");
+  const [structuredJurisdiction, setStructuredJurisdiction] =
+    useState<StructuredObservationInput["jurisdiction"]>("unknown");
+
+  const buildStructuredObservation = (): StructuredObservationInput | undefined => {
+    const structured: StructuredObservationInput = {
+      taskBeingPerformed: taskBeingPerformed.trim() || undefined,
+      equipmentInvolved: equipmentOrArea
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean),
+      workerInteraction: workerInteraction.trim() || undefined,
+      energyState,
+      controlsMissing: controlsMissing
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean),
+      controlsPresent: controlsPresent
+        .split(",")
+        .map((item) => item.trim())
+        .filter(Boolean),
+      jurisdiction: structuredJurisdiction,
+    };
+
+    const hasValue = Object.entries(structured).some(([key, value]) => {
+      if (key === "energyState" || key === "jurisdiction") {
+        return value && value !== "unknown";
+      }
+      return Array.isArray(value) ? value.length > 0 : Boolean(value);
+    });
+
+    return hasValue ? structured : undefined;
+  };
+
   const confidence =
     safeScopeResult?.confidenceIntelligence?.overallConfidence ??
     safeScopeResult?.confidence ??
@@ -94,7 +139,7 @@ export default function SafeScopeControlsSection({
           type="button"
           onClick={() => {
             console.log("[HazLenz AI] Button clicked");
-            handleRunSafeScope();
+            handleRunSafeScope(false, buildStructuredObservation());
           }}
           className="insite-inspection-action insite-inspection-action-orange insite-inspection-action-sm mx-auto"
         >
@@ -110,6 +155,101 @@ export default function SafeScopeControlsSection({
         <p className="mt-2 text-center text-[11px] font-bold leading-5 text-blue-100">
           Using {scopeLabel} · {riskMatrixLabel}
         </p>
+      </div>
+
+      <div className="mt-4 rounded-2xl border border-white/10 bg-white/10 p-3">
+        <button
+          type="button"
+          onClick={() => setContextOpen((open) => !open)}
+          className="flex w-full items-center justify-between gap-3 text-left text-xs font-black uppercase tracking-wide text-blue-100"
+        >
+          <span>Add context for better accuracy</span>
+          <span>{contextOpen ? "Hide" : "Optional"}</span>
+        </button>
+
+        {contextOpen && (
+          <div className="mt-3 grid gap-2 sm:grid-cols-2">
+            <label className="block text-xs font-bold text-blue-100">
+              What work was happening?
+              <input
+                value={taskBeingPerformed}
+                onChange={(event) => setTaskBeingPerformed(event.target.value)}
+                placeholder="Clearing jam, operating, maintenance"
+                className="mt-1 w-full rounded-xl border border-white/15 bg-white px-3 py-2 text-sm font-semibold text-slate-900 placeholder:text-slate-500 outline-none focus:border-blue-300"
+              />
+            </label>
+
+            <label className="block text-xs font-bold text-blue-100">
+              What equipment or area was involved?
+              <input
+                value={equipmentOrArea}
+                onChange={(event) => setEquipmentOrArea(event.target.value)}
+                placeholder="Conveyor, ladder, cord, platform"
+                className="mt-1 w-full rounded-xl border border-white/15 bg-white px-3 py-2 text-sm font-semibold text-slate-900 placeholder:text-slate-500 outline-none focus:border-blue-300"
+              />
+            </label>
+
+            <label className="block text-xs font-bold text-blue-100">
+              Was anyone exposed or interacting?
+              <input
+                value={workerInteraction}
+                onChange={(event) => setWorkerInteraction(event.target.value)}
+                placeholder="Worker reaching in, no exposure observed"
+                className="mt-1 w-full rounded-xl border border-white/15 bg-white px-3 py-2 text-sm font-semibold text-slate-900 placeholder:text-slate-500 outline-none focus:border-blue-300"
+              />
+            </label>
+
+            <label className="block text-xs font-bold text-blue-100">
+              Equipment state
+              <select
+                value={energyState}
+                onChange={(event) => setEnergyState(event.target.value as StructuredObservationInput["energyState"])}
+                className="mt-1 w-full rounded-xl border border-white/15 bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none focus:border-blue-300"
+              >
+                <option value="unknown">Unknown</option>
+                <option value="energized">Energized</option>
+                <option value="operating">Operating</option>
+                <option value="stopped">Stopped</option>
+                <option value="deenergized">Deenergized</option>
+                <option value="locked-out">Locked out</option>
+              </select>
+            </label>
+
+            <label className="block text-xs font-bold text-blue-100">
+              What protection or control was present?
+              <input
+                value={controlsPresent}
+                onChange={(event) => setControlsPresent(event.target.value)}
+                placeholder="Guard installed, LOTO applied"
+                className="mt-1 w-full rounded-xl border border-white/15 bg-white px-3 py-2 text-sm font-semibold text-slate-900 placeholder:text-slate-500 outline-none focus:border-blue-300"
+              />
+            </label>
+
+            <label className="block text-xs font-bold text-blue-100">
+              What control was missing or ineffective?
+              <input
+                value={controlsMissing}
+                onChange={(event) => setControlsMissing(event.target.value)}
+                placeholder="Guard removed, no fall protection"
+                className="mt-1 w-full rounded-xl border border-white/15 bg-white px-3 py-2 text-sm font-semibold text-slate-900 placeholder:text-slate-500 outline-none focus:border-blue-300"
+              />
+            </label>
+
+            <label className="block text-xs font-bold text-blue-100">
+              Where did this occur?
+              <select
+                value={structuredJurisdiction}
+                onChange={(event) => setStructuredJurisdiction(event.target.value as StructuredObservationInput["jurisdiction"])}
+                className="mt-1 w-full rounded-xl border border-white/15 bg-white px-3 py-2 text-sm font-semibold text-slate-900 outline-none focus:border-blue-300"
+              >
+                <option value="unknown">Unknown</option>
+                <option value="msha">Mine, mill, quarry, or pit</option>
+                <option value="osha-general-industry">General industry workplace</option>
+                <option value="osha-construction">Construction site</option>
+              </select>
+            </label>
+          </div>
+        )}
       </div>
 
       {safeScopeResult && (

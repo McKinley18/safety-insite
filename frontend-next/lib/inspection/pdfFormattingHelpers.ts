@@ -1,3 +1,5 @@
+import { getStandardDisplayText } from "./standardDisplay";
+
 export function normalizePdfPercent(value: any) {
   const numeric = Number(value);
   if (!Number.isFinite(numeric)) return null;
@@ -44,13 +46,8 @@ export function getStandardCitationForPdf(standard: any) {
 }
 
 export function getStandardSummaryForPdf(standard: any) {
-  return (
-    standard?.rationale ||
-    standard?.summary ||
-    standard?.heading ||
-    standard?.reasoning ||
-    ""
-  );
+  const display = getStandardDisplayText(standard);
+  return display.label === "Unavailable" ? "" : `${display.label}: ${display.text}`;
 }
 
 export function formatPdfDate(value?: string) {

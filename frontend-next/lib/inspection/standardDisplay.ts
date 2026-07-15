@@ -25,7 +25,9 @@ export function getStandardCitation(standard: any) {
 
   if (/CFR/i.test(value)) return value.replace(/\s+/g, " ");
 
-  return value ? `30 CFR ${value}` : text;
+  if (/^(?:1910|1926)\./i.test(value)) return `29 CFR ${value}`;
+  if (/^(?:56|57|75|77)\./i.test(value)) return `30 CFR ${value}`;
+  return value || text;
 }
 
 function looksLikeGenericStandardLabel(value: string) {
@@ -54,7 +56,7 @@ export function isDisplayableStandardCandidate(standard: any) {
 
 export function getStandardTitle(standard: any) {
   const citation = getStandardCitation(standard);
-  const shortCitation = citation.replace(/^30 CFR\s+/i, "");
+  const shortCitation = citation.replace(/^(?:29|30) CFR\s+/i, "");
 
   let title = cleanText(
     standard?.title ||
@@ -82,14 +84,15 @@ export function getStandardTitle(standard: any) {
 export function getStandardSummary(standard: any) {
   const citation = getStandardCitation(standard);
   const title = getStandardTitle(standard);
-  const shortCitation = citation.replace(/^30 CFR\s+/i, "");
+  const shortCitation = citation.replace(/^(?:29|30) CFR\s+/i, "");
 
   let summary = cleanText(
-    standard?.summary ||
+    standard?.standardText ||
+      standard?.plainLanguageSummary ||
+      standard?.summary ||
       standard?.rationale ||
-      standard?.text ||
-      standard?.standardText ||
       standard?.description ||
+      standard?.text ||
       standard?.body ||
       "",
   );
@@ -118,6 +121,91 @@ export function getStandardSummary(standard: any) {
   }
 
   return summary;
+}
+
+export type StandardDisplayText = {
+  label: "Official standard text" | "Summary" | "HazLenz explanation" | "Unavailable";
+  text: string;
+  sourceField?: string;
+};
+
+export function getStandardDisplayText(standard: any): StandardDisplayText {
+  const officialText = cleanText(
+    standard?.standardText ||
+      standard?.regulatoryText ||
+      standard?.regulationText ||
+      standard?.fullText ||
+      "",
+  );
+  if (officialText) {
+    return {
+      label: "Official standard text",
+      text: officialText,
+      sourceField: standard?.standardText
+        ? "standardText"
+        : standard?.regulatoryText
+          ? "regulatoryText"
+          : standard?.regulationText
+            ? "regulationText"
+            : "fullText",
+    };
+  }
+
+  const summary = cleanText(
+    standard?.plainLanguageSummary ||
+      standard?.approvedSummary ||
+      standard?.summary ||
+      standard?.titleSummary ||
+      "",
+  );
+  if (summary && !looksLikeGenericStandardLabel(summary)) {
+    return {
+      label: "Summary",
+      text: collapseDuplicateSentences(summary),
+      sourceField: standard?.plainLanguageSummary
+        ? "plainLanguageSummary"
+        : standard?.approvedSummary
+          ? "approvedSummary"
+          : standard?.summary
+            ? "summary"
+            : "titleSummary",
+    };
+  }
+
+  const explanation = cleanText(
+    standard?.rationale ||
+      standard?.reasoning ||
+      standard?.reason ||
+      standard?.explanation ||
+      standard?.description ||
+      standard?.body ||
+      standard?.text ||
+      "",
+  );
+  if (explanation && !looksLikeGenericStandardLabel(explanation)) {
+    return {
+      label: "HazLenz explanation",
+      text: collapseDuplicateSentences(explanation),
+      sourceField: standard?.rationale
+        ? "rationale"
+        : standard?.reasoning
+          ? "reasoning"
+          : standard?.reason
+            ? "reason"
+            : standard?.explanation
+              ? "explanation"
+              : standard?.description
+                ? "description"
+                : standard?.body
+                  ? "body"
+                  : "text",
+    };
+  }
+
+  return {
+    label: "Unavailable",
+    text: "No standard text or approved summary is available for this matched standard.",
+  };
 }
 
 export function formatStandardDisplay(standard: any) {

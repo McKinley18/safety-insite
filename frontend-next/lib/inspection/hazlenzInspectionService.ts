@@ -2,6 +2,7 @@ import {
   runHazLenzClassify,
   runHazLenzOffline,
 } from "@/lib/hazlenz";
+import type { StructuredObservationInput } from "@/lib/safescope";
 import {
   getHazLenzScopeLabel,
   getHazLenzScopesForAgencyMode,
@@ -19,6 +20,7 @@ export async function runInspectionHazLenzReview(input: {
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
   photos: any[];
   findings: any[];
+  structuredObservation?: StructuredObservationInput;
 }) {
   if (!input.description || input.description.trim().length === 0) {
     return {
@@ -58,6 +60,7 @@ export async function runInspectionHazLenzReview(input: {
     ].join("\n"),
     scopes: safeScopeScopes,
     riskProfileId: input.riskProfileId,
+    structuredObservation: input.structuredObservation,
     visualAttachments: input.photos.map((photo: any) => ({
       id: photo.id,
       type: "photo",

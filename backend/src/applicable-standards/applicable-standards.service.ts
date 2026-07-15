@@ -32,7 +32,7 @@ type CachedKnowledgeChunk = Pick<
 
 type CachedStandard = Pick<
   Standard,
-  "id" | "citation" | "title" | "standardText" | "plainLanguageSummary" | "keywords" | "agencyCode" | "scopeCode"
+  "id" | "citation" | "title" | "standardText" | "plainLanguageSummary" | "keywords" | "agencyCode" | "scopeCode" | "sourceKey" | "sourceName" | "sourceType" | "authorityTier" | "allowedUse"
 >;
 
 export interface ApplicableStandardsRouteHints {
@@ -55,6 +55,68 @@ interface CandidateEvidenceFit {
   status: CandidateEvidenceStatus;
   standardFamily: string;
   reasons: string[];
+}
+
+export type HydratedStandardReference = {
+  citation: string;
+  title?: string;
+  standardText?: string;
+  summary?: string;
+  plainLanguageSummary?: string;
+  authority?: string;
+  agency?: string;
+  agencyCode?: string;
+  scope?: string;
+  scopeCode?: string;
+  source?: string;
+  sourceKey?: string;
+  sourceName?: string;
+  sourceType?: string;
+  applicabilityStatus?: "confirmed" | "probable" | "candidate" | "needs-more-evidence" | "not-applicable";
+  [key: string]: any;
+};
+
+function normalizeCitationForLookup(value: unknown): {
+  key: string;
+  agencyPrefix?: "29" | "30";
+  baseKey: string;
+  hasSubsection: boolean;
+  section?: string;
+} {
+  const raw = String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/[§]/g, "")
+    .trim();
+  if (!raw) {
+    return { key: "", baseKey: "", hasSubsection: false };
+  }
+
+  const cfrMatch = raw.match(/\b(29|30)\s*CFR\s*(?:Part\s*)?((?:\d+)\.\d+(?:\([a-z0-9]+\))*)/i);
+  const bareMatch = raw.match(/(?:^|[^\d])((?:1910|1926|56|57|75|77)\.\d+(?:\([a-z0-9]+\))*)/i);
+  const agencyPrefix = cfrMatch?.[1] as "29" | "30" | undefined;
+  const section = (cfrMatch?.[2] || bareMatch?.[1] || "").toLowerCase();
+  if (!section) {
+    return { key: "", baseKey: "", hasSubsection: false };
+  }
+
+  const inferredAgency: "29" | "30" | undefined =
+    agencyPrefix ||
+    (/^(1910|1926)\./.test(section) ? "29" : /^(56|57|75|77)\./.test(section) ? "30" : undefined);
+  const baseSection = section.replace(/\([a-z0-9]+\)/gi, "");
+  const prefix = inferredAgency ? `${inferredAgency}cfr` : "";
+  return {
+    key: `${prefix}${section}`.replace(/[^a-z0-9.()]/g, ""),
+    agencyPrefix: inferredAgency,
+    baseKey: `${prefix}${baseSection}`.replace(/[^a-z0-9.()]/g, ""),
+    hasSubsection: /\([a-z0-9]+\)/i.test(section),
+    section,
+  };
+}
+
+function citationSearchNeedle(value: unknown): string | null {
+  const parsed = normalizeCitationForLookup(value);
+  if (!parsed.section) return null;
+  return parsed.section.replace(/\([a-z0-9]+\)/gi, "");
 }
 
 @Injectable()
@@ -790,6 +852,134 @@ export class ApplicableStandardsService {
     private readonly knowledgeShardService?: HazLenzKnowledgeShardService,
   ) {}
 
+  async hydrateStandardReferences<T extends HydratedStandardReference>(standards: T[] = []): Promise<T[]> {
+    if (!Array.isArray(standards) || !standards.length) return standards;
+
+    const needles = Array.from(
+      new Set(
+        standards
+          .map((standard) => citationSearchNeedle(standard?.citation || standard?.standard || standard?.reference || standard?.code))
+          .filter((value): value is string => Boolean(value)),
+      ),
+    );
+    if (!needles.length) return standards;
+
+    let registryRows: CachedStandard[] = [];
+    try {
+      const query = this.standardRepo
+        .createQueryBuilder("s")
+        .select([
+          "s.id",
+          "s.agencyCode",
+          "s.citation",
+          "s.title",
+          "s.standardText",
+          "s.plainLanguageSummary",
+          "s.scopeCode",
+          "s.sourceKey",
+          "s.sourceName",
+          "s.sourceType",
+          "s.authorityTier",
+          "s.allowedUse",
+          "s.isActive",
+        ])
+        .where("s.is_active = true");
+
+      const params: Record<string, string> = {};
+      const conditions = needles.map((needle, index) => {
+        params[`needle${index}`] = `%${needle}%`;
+        return `s.citation ILIKE :needle${index}`;
+      });
+      query.andWhere(`(${conditions.join(" OR ")})`, params);
+      registryRows = await query.take(100).getMany();
+    } catch (error: any) {
+      console.error("Applicable standards hydration query failed:", error);
+      return standards;
+    }
+
+    const exactRegistry = new Map<string, CachedStandard>();
+    const baseRegistry = new Map<string, CachedStandard>();
+    for (const row of registryRows) {
+      const parsed = normalizeCitationForLookup(row.citation);
+      if (!parsed.key) continue;
+      exactRegistry.set(parsed.key, row);
+      if (!parsed.hasSubsection) {
+        baseRegistry.set(parsed.baseKey, row);
+      }
+    }
+
+    const textRank = (standard: any) => {
+      if (standard?.standardText) return 5;
+      if (standard?.fullText || standard?.regulationText || standard?.regulatoryText) return 4;
+      if (standard?.plainLanguageSummary || standard?.summary) return 3;
+      if (standard?.rationale || standard?.reasoning || standard?.description) return 2;
+      return 1;
+    };
+
+    const normalizeApplicabilityStatus = (standard: any): HydratedStandardReference["applicabilityStatus"] => {
+      const raw = String(standard?.applicabilityStatus || standard?.candidateStatus || standard?.status || standard?.authority || "").toLowerCase();
+      if (/not[-_ ]applicable|excluded|mismatch|reject/.test(raw)) return "not-applicable";
+      if (/needs[-_ ]more[-_ ]evidence|needs more evidence|review/.test(raw)) return "needs-more-evidence";
+      if (/confirmed/.test(raw)) return "confirmed";
+      if (/primary|candidate_standard|probable|suggested/.test(raw)) return "probable";
+      return standard?.isCandidate === false ? "not-applicable" : "candidate";
+    };
+
+    return standards.map((standard) => {
+      const citation = String(standard?.citation || standard?.standard || standard?.reference || standard?.code || "").trim();
+      const parsed = normalizeCitationForLookup(citation);
+      const exactMatch = parsed.key ? exactRegistry.get(parsed.key) : undefined;
+      const baseMatch = !parsed.hasSubsection && parsed.baseKey ? baseRegistry.get(parsed.baseKey) : undefined;
+      const registry = exactMatch || baseMatch;
+      if (!registry) {
+        return {
+          ...standard,
+          applicabilityStatus: standard.applicabilityStatus || normalizeApplicabilityStatus(standard),
+        };
+      }
+
+      const incomingRank = textRank(standard);
+      const registryTextRank = registry.standardText ? 5 : registry.plainLanguageSummary ? 3 : 1;
+      const preferRegistryText = registryTextRank >= incomingRank;
+      const sourceParts = [
+        standard.source,
+        registry.sourceName || registry.sourceKey || "standards_master",
+      ].filter(Boolean);
+
+      return {
+        ...standard,
+        citation: citation || registry.citation,
+        title:
+          registry.title ||
+          standard.title ||
+          standard.heading ||
+          standard.name ||
+          citation ||
+          registry.citation,
+        standardText: preferRegistryText && registry.standardText
+          ? registry.standardText
+          : standard.standardText || standard.fullText || standard.regulationText || standard.regulatoryText,
+        summary:
+          standard.summary ||
+          standard.plainLanguageSummary ||
+          registry.plainLanguageSummary ||
+          standard.rationale ||
+          standard.reasoning ||
+          standard.description,
+        plainLanguageSummary: standard.plainLanguageSummary || registry.plainLanguageSummary,
+        agency: standard.agency || registry.agencyCode,
+        agencyCode: standard.agencyCode || registry.agencyCode,
+        scope: standard.scope || registry.scopeCode,
+        scopeCode: standard.scopeCode || registry.scopeCode,
+        source: Array.from(new Set(sourceParts.flatMap((part) => String(part).split(" | ")).filter(Boolean))).join(" | "),
+        sourceKey: standard.sourceKey || registry.sourceKey,
+        sourceName: standard.sourceName || registry.sourceName,
+        sourceType: standard.sourceType || registry.sourceType,
+        applicabilityStatus: standard.applicabilityStatus || normalizeApplicabilityStatus(standard),
+      };
+    });
+  }
+
   async suggest(
     description: string,
     hazardCategory?: string,
@@ -1036,8 +1226,12 @@ export class ApplicableStandardsService {
             "s.citation",
             "s.partNumber",
             "s.title",
+            "s.standardText",
+            "s.plainLanguageSummary",
             "s.scopeCode",
             "s.sourceKey",
+            "s.sourceName",
+            "s.sourceType",
             "s.authorityTier",
             "s.allowedUse",
             "s.severityWeight",
@@ -1091,8 +1285,12 @@ export class ApplicableStandardsService {
           "s.citation",
           "s.partNumber",
           "s.title",
+          "s.standardText",
+          "s.plainLanguageSummary",
           "s.scopeCode",
           "s.sourceKey",
+          "s.sourceName",
+          "s.sourceType",
           "s.authorityTier",
           "s.allowedUse",
           "s.severityWeight",

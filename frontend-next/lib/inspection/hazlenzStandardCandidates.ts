@@ -61,6 +61,15 @@ export function normalizeHazLenzStandard(standard: any, source = "candidate") {
       standard.reason ||
       standard.description ||
       "",
+    standardText:
+      standard.standardText ||
+      standard.fullText ||
+      standard.regulationText ||
+      standard.regulatoryText ||
+      "",
+    plainLanguageSummary: standard.plainLanguageSummary || "",
+    fullText: standard.fullText || "",
+    regulationText: standard.regulationText || standard.regulatoryText || "",
     source,
   };
 }

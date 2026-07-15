@@ -1,6 +1,6 @@
 import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
 import { getHazLenzPrimaryStandards, getHazLenzSupportingStandards, standardKey } from "@/lib/inspection/hazlenzStandardCandidates";
-import { formatStandardDisplay, getStandardCitation, getStandardSummary, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
+import { formatStandardDisplay, getStandardCitation, getStandardDisplayText, getStandardSummary, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
 
 type Props = {
   safeScopeResult: any;
@@ -187,15 +187,6 @@ export default function SafeScopeStandardsSection({
       : `${primaryStandards.length} primary matched standard(s)`
     : `${supportingStandards.length} supporting standard(s)`;
 
-  const getStandardText = (standard: any) =>
-    standard?.standardText ||
-    standard?.text ||
-    standard?.plainText ||
-    standard?.regulatoryText ||
-    standard?.fullText ||
-    standard?.description ||
-    "";
-
   const getStandardTitle = (standard: any) =>
     (() => {
       const title = String(
@@ -222,7 +213,7 @@ export default function SafeScopeStandardsSection({
       (item) => getStandardKey(item) === getStandardKey(standard),
     );
 
-    const standardText = getStandardText(standard);
+    const standardDisplayText = getStandardDisplayText(standard);
     const standardTitle = getStandardTitle(standard);
     const explanation = getStandardMatchExplanation(standard);
     const isPrimary = !isSupporting && index === 0;
@@ -278,10 +269,10 @@ export default function SafeScopeStandardsSection({
 
         <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-slate-800 dark:bg-slate-950">
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
-            Standard text / plain-language review
+            {standardDisplayText.label}
           </p>
           <p className="mt-1 text-sm font-semibold leading-6 text-slate-800 dark:text-slate-100">
-            {standardText || getStandardSummary(standard) || "No standard text or summary is available for this matched standard."}
+            {standardDisplayText.text}
           </p>
         </div>
 

@@ -4,6 +4,7 @@ import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { runInspectionHazLenzReview } from "@/lib/inspection/hazlenzInspectionService";
+import type { StructuredObservationInput } from "@/lib/safescope";
 import {
   submitHazLenzStandardFeedback,
   submitHazLenzValidationReview,
@@ -343,7 +344,10 @@ export default function InspectionPage() {
     }
   }, []);
 
-  async function handleRunSafeScope(forceOffline: boolean = false) {
+  async function handleRunSafeScope(
+    forceOffline: boolean = false,
+    structuredObservation?: StructuredObservationInput,
+  ) {
     console.log("[HazLenz AI] handleRunSafeScope entered");
 
     setSafeScopeStatus("Starting HazLenz AI review...");
@@ -364,6 +368,7 @@ export default function InspectionPage() {
         riskProfileId,
         photos,
         findings,
+        structuredObservation,
       });
 
       if (!review.ok) {

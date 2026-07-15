@@ -9,6 +9,26 @@ export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:4000";
 
+export type StructuredObservationInput = {
+  narrative?: string;
+  jurisdiction?: "msha" | "osha-general-industry" | "osha-construction" | "unknown";
+  workEnvironment?: string;
+  workArea?: string;
+  taskBeingPerformed?: string;
+  equipmentInvolved?: string[];
+  materialOrSubstance?: string[];
+  observedCondition?: string;
+  workerInteraction?: string;
+  exposurePathway?: string[];
+  energyState?: "energized" | "operating" | "stopped" | "deenergized" | "locked-out" | "unknown";
+  controlsPresent?: string[];
+  controlsMissing?: string[];
+  potentialConsequence?: string[];
+  affectedPeople?: string[];
+  evidenceSource?: Array<"visual" | "worker-report" | "document" | "photo" | "measurement">;
+  additionalContext?: string;
+};
+
 function getSafeScopeAuthHeaders() {
   if (typeof window === "undefined") {
     return { "Content-Type": "application/json" };
@@ -214,6 +234,7 @@ export async function runSafeScopeV2Classify(input: {
   visualAttachments?: any[];
   riskProfileId?: "simple_4x4" | "standard_5x5" | "advanced_6x6";
   priorFindings?: any[];
+  structuredObservation?: StructuredObservationInput;
 }) {
   const requestUrl = `${API_BASE_URL}/safescope-v2/classify`;
 
@@ -229,6 +250,7 @@ export async function runSafeScopeV2Classify(input: {
       ? input.evidenceTexts.map((item) => String(item || "").trim()).filter(Boolean)
       : [],
     priorFindings: Array.isArray(input.priorFindings) ? input.priorFindings : [],
+    ...(input.structuredObservation ? { structuredObservation: input.structuredObservation } : {}),
   };
 
   const headers = getSafeScopeAuthHeaders();
@@ -239,6 +261,7 @@ export async function runSafeScopeV2Classify(input: {
     evidenceCount: safePayload.evidenceTexts.length,
     priorFindingsCount: safePayload.priorFindings.length,
     riskProfileId: safePayload.riskProfileId,
+    structuredObservation: Boolean(input.structuredObservation),
   });
 
   const controller = new AbortController();

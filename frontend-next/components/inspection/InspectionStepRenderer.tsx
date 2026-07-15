@@ -6,6 +6,7 @@ import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspection
 import InspectionStepOne from "./steps/InspectionStepOne";
 import InspectionStepTwo from "./steps/InspectionStepTwo";
 import InspectionStepThree from "./steps/InspectionStepThree";
+import type { StructuredObservationInput } from "@/lib/safescope";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -124,7 +125,7 @@ type InspectionStepRendererProps = {
   setSafeScopeHelpOpen: ToggleSetter;
   agencyMode: string;
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
-  handleRunSafeScope: (forceOffline?: boolean) => void;
+  handleRunSafeScope: (forceOffline?: boolean, structuredObservation?: StructuredObservationInput) => void;
   safeScopeStatus: string;
   safeScopeResult: any;
   setIsOfflineMode?: (value: boolean) => void;

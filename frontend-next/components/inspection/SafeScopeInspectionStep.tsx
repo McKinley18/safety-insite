@@ -11,6 +11,7 @@ import SafeScopeStandardsSection from "@/components/inspection/SafeScopeStandard
 import SafeScopeSupportingIntelligenceSection from "@/components/inspection/SafeScopeSupportingIntelligenceSection";
 import SafeScopeKnowledgeBrainSection from "@/components/inspection/SafeScopeKnowledgeBrainSection";
 import SafeScopeEquipmentReasoningSection from "@/components/inspection/SafeScopeEquipmentReasoningSection";
+import type { StructuredObservationInput } from "@/lib/safescope";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -19,7 +20,7 @@ type SafeScopeInspectionStepProps = {
   setSafeScopeHelpOpen: ToggleSetter;
   agencyMode: string;
   riskProfileId: "standard_5x5" | "simple_4x4" | "advanced_6x6";
-  handleRunSafeScope: (forceOffline?: boolean) => void;
+  handleRunSafeScope: (forceOffline?: boolean, structuredObservation?: StructuredObservationInput) => void;
   safeScopeStatus: string;
   safeScopeResult: any;
   setIsOfflineMode?: (value: boolean) => void;
@@ -152,6 +153,46 @@ export default function SafeScopeInspectionStep({
           <SafeScopePrimaryDecisionSection safeScopeResult={safeScopeResult} />
 
           <SafeScopeEquipmentReasoningSection safeScopeResult={safeScopeResult} />
+
+          {Array.isArray(safeScopeResult?.clarifyingQuestions) && safeScopeResult.clarifyingQuestions.length > 0 && (
+            <div className="mb-2 rounded-2xl border border-amber-200 bg-amber-50 p-3 shadow-sm dark:border-amber-900/40 dark:bg-amber-950/20">
+              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-amber-800 dark:text-amber-300">
+                Follow-up questions
+              </p>
+              <p className="mt-1 text-xs font-semibold leading-5 text-amber-900 dark:text-amber-100">
+                HazLenz needs these facts before treating the result as final.
+              </p>
+              <ul className="mt-2 space-y-2">
+                {safeScopeResult.clarifyingQuestions.slice(0, 4).map((question: any) => (
+                  <li key={question.id || question.question} className="rounded-xl bg-white px-3 py-2 text-xs font-semibold leading-5 text-slate-800 shadow-sm dark:bg-slate-900 dark:text-slate-100">
+                    <span className="font-black">{question.question}</span>
+                    {question.reason && (
+                      <span className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300">
+                        {question.reason}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {Array.isArray(safeScopeResult?.evidenceUsed) && safeScopeResult.evidenceUsed.length > 0 && (
+            <details className="mb-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <summary className="cursor-pointer text-[10px] font-black uppercase tracking-[0.18em] text-slate-600 dark:text-slate-300">
+                Evidence used
+              </summary>
+              <ul className="mt-2 space-y-2">
+                {safeScopeResult.evidenceUsed.slice(0, 8).map((item: any) => (
+                  <li key={`${item.source}-${item.fact}`} className="text-xs font-semibold leading-5 text-slate-700 dark:text-slate-200">
+                    <span className="font-black">{item.fact}</span>{" "}
+                    <span className="text-slate-500 dark:text-slate-400">({item.source})</span>
+                    {item.effect && <span className="block">{item.effect}</span>}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
 
           <div className="mb-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-sm">
             <div className="flex items-start justify-between gap-3">
