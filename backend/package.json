@@ -24,6 +24,7 @@
     "test:safescope-operational": "ts-node src/safescope-v2/tests/golden-operational-reasoning-tests.ts",
     "test:safescope-domains": "ts-node src/safescope-v2/tests/golden-domain-intelligence-tests.ts",
     "test:hazlenz-core": "ts-node src/safescope-v2/tests/hazlenz-core-regression.ts",
+    "test:hazlenz-clarification-gauntlet": "ts-node src/safescope-v2/tests/hazlenz-clarification-gauntlet.ts",
     "validate:safescope:full": "ts-node scripts/run-safescope-full-validation.ts",
     "validate:safescope:targeted": "ts-node scripts/run-safescope-targeted-validation.ts",
     "validate:safescope:targeted:taxonomy": "ts-node scripts/run-safescope-targeted-validation.ts --area=taxonomy",

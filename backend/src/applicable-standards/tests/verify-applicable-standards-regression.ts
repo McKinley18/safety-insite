@@ -1,3 +1,5 @@
+export {};
+
 const BASE_URL = process.env.SENTINEL_API_URL || "http://localhost:4000";
 
 type TestCase = {

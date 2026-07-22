@@ -33,7 +33,7 @@ import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mob
 import { SafeScopePersistenceService } from "./persistence/persistence.service";
 import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/workspace-governance-access.service";
 import { UserGovernanceContext } from "./workspace-governance-access/workspace-governance.types";
-import type { StructuredObservationInput } from "./dto/classify.dto";
+import type { HazLenzClarificationAnswerInput, StructuredObservationInput } from "./dto/classify.dto";
 import { HazLenzKnowledgeRouterService } from "./knowledge-router/hazlenz-knowledge-router.service";
 import { logKnowledgeTelemetry, isHazLenzKnowledgeTelemetryEnabled } from "./telemetry/hazlenz-knowledge-telemetry";
 import { HazLenzKnowledgeShardService } from "./knowledge-shards/hazlenz-knowledge-shard.service";
@@ -70,6 +70,271 @@ export class SafescopeV2Service {
     private readonly persistence?: SafeScopePersistenceService,
   ) {}
 
+  private appendUnique(values: string[] | undefined, additions?: string[]) {
+    const seen = new Set((values || []).map((value) => String(value).toLowerCase()));
+    const merged = [...(values || [])];
+    for (const addition of additions || []) {
+      const clean = String(addition || "").replace(/\s+/g, " ").trim();
+      if (!clean || seen.has(clean.toLowerCase())) continue;
+      seen.add(clean.toLowerCase());
+      merged.push(clean);
+    }
+    return merged.slice(0, 12);
+  }
+
+  private mergeStructuredObservation(
+    base?: StructuredObservationInput,
+    overlay?: StructuredObservationInput,
+  ): StructuredObservationInput | undefined {
+    if (!base && !overlay) return undefined;
+    const pick = <T>(field: keyof StructuredObservationInput): T | undefined => {
+      const overlayValue = overlay?.[field] as T | undefined;
+      if (overlayValue !== undefined && overlayValue !== null && String(overlayValue).trim?.() !== "") {
+        return overlayValue;
+      }
+      return base?.[field] as T | undefined;
+    };
+    return {
+      narrative: pick<string>("narrative"),
+      jurisdiction: pick<StructuredObservationInput["jurisdiction"]>("jurisdiction"),
+      workEnvironment: pick<string>("workEnvironment"),
+      workArea: pick<string>("workArea"),
+      taskBeingPerformed: pick<string>("taskBeingPerformed"),
+      observedCondition: pick<string>("observedCondition"),
+      workerInteraction: pick<string>("workerInteraction"),
+      energyState: pick<StructuredObservationInput["energyState"]>("energyState"),
+      additionalContext: pick<string>("additionalContext"),
+      equipmentInvolved: this.appendUnique(base?.equipmentInvolved, overlay?.equipmentInvolved || []),
+      materialOrSubstance: this.appendUnique(base?.materialOrSubstance, overlay?.materialOrSubstance || []),
+      exposurePathway: this.appendUnique(base?.exposurePathway, overlay?.exposurePathway || []),
+      controlsPresent: this.appendUnique(base?.controlsPresent, overlay?.controlsPresent || []),
+      controlsMissing: this.appendUnique(base?.controlsMissing, overlay?.controlsMissing || []),
+      potentialConsequence: this.appendUnique(base?.potentialConsequence, overlay?.potentialConsequence || []),
+      affectedPeople: this.appendUnique(base?.affectedPeople, overlay?.affectedPeople || []),
+      evidenceSource: this.appendUnique(base?.evidenceSource as any, overlay?.evidenceSource as any) as any,
+      userConfirmedFacts: [
+        ...(base?.userConfirmedFacts || []),
+        ...(overlay?.userConfirmedFacts || []),
+      ].slice(0, 30),
+      inferredFacts: [
+        ...(base?.inferredFacts || []),
+        ...(overlay?.inferredFacts || []),
+      ].slice(0, 30),
+      unknownFacts: this.appendUnique(base?.unknownFacts, overlay?.unknownFacts || []),
+      unresolvedContradictions: [
+        ...(base?.unresolvedContradictions || []),
+        ...(overlay?.unresolvedContradictions || []),
+      ].slice(0, 12),
+    };
+  }
+
+  private normalizeClarificationAnswers(input?: HazLenzClarificationAnswerInput[]) {
+    const allowedUnits = new Set(["ft", "feet", "in", "inch", "m", "meter", "meters"]);
+    const exactOptions: Record<string, string[]> = {
+      "jurisdiction-work-environment": ["Mine or quarry", "Construction site", "Manufacturing or plant", "Warehouse", "Other workplace", "Not sure"],
+      "machine-energy-state": ["Running or operating", "Capable of startup", "Stopped only", "Deenergized", "Locked out", "Not sure"],
+      "machine-task": ["Operating", "Cleaning", "Maintenance or repair", "Clearing a jam", "Inspection only", "Not sure"],
+      "machine-controls": ["Guard missing or removed", "Guard installed", "Lockout/tagout applied", "Zero-energy verified", "No control verified", "Not sure"],
+      "electrical-damage-exposure": ["Internal conductors exposed", "Outer jacket damage only", "Unknown", "Not sure"],
+      "electrical-wet-location": ["Yes", "No", "Not sure"],
+      "fall-surface-control": ["Defective ladder", "Incorrect ladder use", "Unprotected edge or opening", "Scaffold", "Roof", "Platform", "Not sure"],
+      "chemical-exposure-path": ["Walking surface", "Inhalation or vapor", "Skin or eye contact", "Drain or environment", "No exposure observed", "Not sure"],
+    };
+    const clean = (value: unknown) => String(value ?? "").replace(/\s+/g, " ").trim();
+    const safeShortText = (value: unknown) => {
+      const text = clean(value).slice(0, 160);
+      if (/\b(?:29|30)\s*CFR\b|§|\b(?:1910|1926|56|57|75|77)\.\d+/i.test(text)) return "";
+      return text;
+    };
+    const structured: StructuredObservationInput = {
+      userConfirmedFacts: [],
+      unknownFacts: [],
+    };
+    const answeredQuestionIds: string[] = [];
+    const invalidAnswers: any[] = [];
+    const answerEvidence: string[] = [];
+    const addFact = (field: string, value: any, sourceQuestionId: string) => {
+      structured.userConfirmedFacts = [
+        ...(structured.userConfirmedFacts || []),
+        { field, value, sourceQuestionId },
+      ];
+      answerEvidence.push(`User answer ${sourceQuestionId}: ${field} = ${Array.isArray(value) ? value.join(", ") : value}.`);
+    };
+    const addUnknown = (field: string, sourceQuestionId: string) => {
+      structured.unknownFacts = this.appendUnique(structured.unknownFacts, [field]);
+      addFact(field, "unknown", sourceQuestionId);
+    };
+    const optionsFor = (answer: HazLenzClarificationAnswerInput) => {
+      const raw = Array.isArray(answer.selectedOptions) && answer.selectedOptions.length
+        ? answer.selectedOptions
+        : [answer.value ?? answer.answer].filter((value) => value !== undefined && value !== null).map(clean);
+      const allowed = exactOptions[answer.questionId];
+      if (!allowed) return raw.map(clean).filter(Boolean);
+      const allowedLower = new Map(allowed.map((option) => [option.toLowerCase(), option]));
+      const normalized = raw.map(clean).map((item) => allowedLower.get(item.toLowerCase())).filter(Boolean) as string[];
+      if (raw.length && !normalized.length) {
+        invalidAnswers.push({ questionId: answer.questionId, reason: "Unsupported option value ignored." });
+      }
+      return Array.from(new Set(normalized));
+    };
+
+    for (const answer of Array.isArray(input) ? input.slice(0, 20) : []) {
+      const questionId = clean(answer?.questionId);
+      if (!questionId || answeredQuestionIds.includes(questionId)) continue;
+      answeredQuestionIds.push(questionId);
+      const selected = optionsFor({ ...answer, questionId });
+      const first = selected[0] || safeShortText(answer.value ?? answer.answer);
+      const isUnknown = !first || /\b(unknown|not sure|cannot verify|can't verify|unsure)\b/i.test(first);
+
+      if (isUnknown) {
+        const field = questionId.includes("jurisdiction") ? "jurisdiction" :
+          questionId.includes("energy") ? "energyState" :
+          questionId.includes("electrical") ? "electricalExposure" :
+          questionId.includes("fall") ? "fallExposure" :
+          questionId.includes("chemical") ? "chemicalExposure" :
+          "materialFact";
+        addUnknown(field, questionId);
+        continue;
+      }
+
+      switch (questionId) {
+        case "jurisdiction-work-environment":
+          if (first === "Mine or quarry") {
+            structured.jurisdiction = "msha";
+            structured.workEnvironment = "mine or quarry";
+          } else if (first === "Construction site") {
+            structured.jurisdiction = "osha-construction";
+            structured.workEnvironment = "construction site";
+          } else if (first === "Manufacturing or plant" || first === "Warehouse") {
+            structured.jurisdiction = "osha-general-industry";
+            structured.workEnvironment = first.toLowerCase();
+          } else {
+            structured.workEnvironment = first;
+          }
+          addFact("jurisdiction", structured.jurisdiction || "unknown", questionId);
+          break;
+        case "machine-energy-state":
+          if (first === "Running or operating") structured.energyState = "operating";
+          if (first === "Capable of startup") structured.energyState = "energized";
+          if (first === "Stopped only") structured.energyState = "stopped";
+          if (first === "Deenergized") structured.energyState = "deenergized";
+          if (first === "Locked out") structured.energyState = "locked-out";
+          addFact("energyState", structured.energyState || first, questionId);
+          break;
+        case "machine-task":
+          structured.taskBeingPerformed = first;
+          addFact("taskBeingPerformed", first, questionId);
+          break;
+        case "machine-controls":
+          if (selected.includes("Guard missing or removed")) structured.controlsMissing = this.appendUnique(structured.controlsMissing, ["machine guarding"]);
+          if (selected.includes("Guard installed")) structured.controlsPresent = this.appendUnique(structured.controlsPresent, ["machine guard installed"]);
+          if (selected.includes("Lockout/tagout applied")) structured.controlsPresent = this.appendUnique(structured.controlsPresent, ["lockout/tagout applied"]);
+          if (selected.includes("Zero-energy verified")) {
+            structured.controlsPresent = this.appendUnique(structured.controlsPresent, ["zero-energy verified"]);
+            structured.energyState = "locked-out";
+          }
+          if (selected.includes("No control verified")) structured.controlsMissing = this.appendUnique(structured.controlsMissing, ["no control verified"]);
+          addFact("controls", selected, questionId);
+          break;
+        case "electrical-damage-exposure":
+          if (first === "Internal conductors exposed") {
+            structured.observedCondition = "internal conductors exposed";
+            structured.controlsMissing = this.appendUnique(structured.controlsMissing, ["insulation or guarding of energized parts"]);
+            structured.exposurePathway = this.appendUnique(structured.exposurePathway, ["shock", "electrical contact"]);
+          } else if (first === "Outer jacket damage only") {
+            structured.observedCondition = "outer jacket damage only; internal conductors not visible";
+            structured.controlsPresent = this.appendUnique(structured.controlsPresent, ["no visible internal conductors"]);
+          }
+          addFact("electricalExposure", first, questionId);
+          break;
+        case "electrical-wet-location":
+          if (/^yes$/i.test(first)) structured.controlsPresent = this.appendUnique(structured.controlsPresent, ["GFCI protection present"]);
+          if (/^no$/i.test(first)) structured.controlsMissing = this.appendUnique(structured.controlsMissing, ["GFCI protection"]);
+          addFact("wetLocationGfci", first, questionId);
+          break;
+        case "fall-height": {
+          const numeric = Number(answer.value ?? answer.answer);
+          const unit = clean(answer.unit || "ft").toLowerCase();
+          if (!Number.isFinite(numeric) || numeric < 0 || numeric > 500 || !allowedUnits.has(unit)) {
+            invalidAnswers.push({ questionId, reason: "Invalid numeric height or unsupported unit ignored." });
+            break;
+          }
+          const normalized = `${numeric} ${unit}`;
+          structured.additionalContext = [structured.additionalContext, `Approximate fall height: ${normalized}.`].filter(Boolean).join(" ");
+          structured.exposurePathway = this.appendUnique(structured.exposurePathway, ["fall from elevation"]);
+          addFact("fallHeight", normalized, questionId);
+          break;
+        }
+        case "fall-surface-control":
+          structured.observedCondition = first;
+          if (/ladder/i.test(first)) structured.equipmentInvolved = this.appendUnique(structured.equipmentInvolved, ["ladder"]);
+          if (/scaffold/i.test(first)) structured.equipmentInvolved = this.appendUnique(structured.equipmentInvolved, ["scaffold"]);
+          if (/edge|opening|roof|platform/i.test(first)) structured.exposurePathway = this.appendUnique(structured.exposurePathway, ["fall from elevation"]);
+          addFact("fallSurfaceOrControl", first, questionId);
+          break;
+        case "chemical-substance": {
+          const value = safeShortText(answer.value ?? answer.answer);
+          if (!value) {
+            invalidAnswers.push({ questionId, reason: "Potential standard-injection text ignored." });
+            break;
+          }
+          structured.materialOrSubstance = this.appendUnique(structured.materialOrSubstance, [value]);
+          addFact("materialOrSubstance", value, questionId);
+          break;
+        }
+        case "chemical-exposure-path":
+          structured.exposurePathway = this.appendUnique(structured.exposurePathway, selected);
+          addFact("chemicalExposurePathway", selected, questionId);
+          break;
+        default:
+          invalidAnswers.push({ questionId, reason: "Unknown question ID ignored." });
+      }
+    }
+
+    return {
+      structured: this.normalizeStructuredObservation(structured),
+      answeredQuestionIds,
+      invalidAnswers,
+      answerEvidence,
+    };
+  }
+
+  private detectStructuredContradictions(input?: StructuredObservationInput, narrative = "") {
+    const contradictions: NonNullable<StructuredObservationInput["unresolvedContradictions"]> = [];
+    const text = [
+      narrative,
+      input?.narrative,
+      input?.observedCondition,
+      input?.additionalContext,
+    ].filter(Boolean).join(" ").toLowerCase();
+    const presentControls = (input?.controlsPresent || []).join(" ").toLowerCase();
+    const missingControls = (input?.controlsMissing || []).join(" ").toLowerCase();
+    const env = `${input?.jurisdiction || ""} ${input?.workEnvironment || ""}`.toLowerCase();
+    const push = (field: string, originalValue: string, answerValue: string, reason: string) => {
+      contradictions.push({ field, originalValue, answerValue, reason });
+    };
+
+    if (/\b(energized|operating|running|live)\b/.test(text) && /\b(locked out|lockout|zero-energy|zero energy|deenergized|de-energized)\b/.test(`${presentControls} ${input?.energyState || ""}`)) {
+      push("energyState", "energized or operating", String(input?.energyState || presentControls), "Observation and structured evidence conflict on whether hazardous energy is controlled.");
+    }
+    if (/\b(locked out|zero-energy|zero energy|deenergized|de-energized)\b/.test(text) && /\b(energized|operating|running)\b/.test(String(input?.energyState || ""))) {
+      push("energyState", "locked out or deenergized", String(input?.energyState), "Observation and answer conflict on equipment energy state.");
+    }
+    if (/\b(guard (?:is |was |has been )?missing|guard (?:is |was |has been )?removed|unguarded|missing guard)\b/.test(text) && /\b(guard installed|guard present|intact guard|machine guard installed)\b/.test(presentControls)) {
+      push("guarding", "guard missing or removed", presentControls, "Observation and answer conflict on guard status.");
+    }
+    if (/\b(mine|miner|quarry|msha)\b/.test(text) && /\bconstruction\b/.test(env)) {
+      push("jurisdiction", "mine/MSHA context", env, "Observation and answer conflict on jurisdiction context.");
+    }
+    if (/\bconstruction|jobsite\b/.test(text) && /\bmsha|mine|quarry\b/.test(env)) {
+      push("jurisdiction", "construction context", env, "Observation and answer conflict on jurisdiction context.");
+    }
+    if (/\b(no exposure|no employee exposure|no worker exposure|isolated from access)\b/.test(text) && /\b(contact|reach|direct exposure|within reach)\b/.test(String(input?.workerInteraction || "").toLowerCase())) {
+      push("workerInteraction", "no exposure", String(input?.workerInteraction), "Observation and answer conflict on worker exposure.");
+    }
+    return contradictions.slice(0, 6);
+  }
+
   private normalizeStructuredObservation(input?: StructuredObservationInput, fallbackNarrative = ""): StructuredObservationInput | undefined {
     if (!input || typeof input !== "object") {
       return undefined;
@@ -104,6 +369,45 @@ export class SafescopeV2Service {
       affectedPeople: textArray(input.affectedPeople),
       evidenceSource: textArray(input.evidenceSource) as any,
       additionalContext: clean(input.additionalContext) || undefined,
+      userConfirmedFacts: Array.isArray(input.userConfirmedFacts)
+        ? input.userConfirmedFacts
+            .map((fact) => ({
+              field: clean(fact?.field),
+              value: Array.isArray(fact?.value)
+                ? textArray(fact.value)
+                : typeof fact?.value === "number" || typeof fact?.value === "boolean" || fact?.value === null
+                  ? fact.value
+                  : clean(fact?.value),
+              sourceQuestionId: clean(fact?.sourceQuestionId) || undefined,
+            }))
+            .filter((fact) => fact.field)
+            .slice(0, 30)
+        : undefined,
+      inferredFacts: Array.isArray(input.inferredFacts)
+        ? input.inferredFacts
+            .map((fact) => ({
+              field: clean(fact?.field),
+              value: Array.isArray(fact?.value) ? textArray(fact.value) : clean(fact?.value),
+              confidence: ["low", "medium", "high"].includes(clean(fact?.confidence).toLowerCase())
+                ? (clean(fact?.confidence).toLowerCase() as "low" | "medium" | "high")
+                : undefined,
+            }))
+            .filter((fact) => fact.field && (Array.isArray(fact.value) ? fact.value.length : fact.value))
+            .slice(0, 30)
+        : undefined,
+      unknownFacts: textArray(input.unknownFacts),
+      unresolvedContradictions: Array.isArray(input.unresolvedContradictions)
+        ? input.unresolvedContradictions
+            .map((conflict) => ({
+              field: clean(conflict?.field),
+              originalValue: clean(conflict?.originalValue) || undefined,
+              answerValue: clean(conflict?.answerValue) || undefined,
+              reason: clean(conflict?.reason),
+              sourceQuestionId: clean(conflict?.sourceQuestionId) || undefined,
+            }))
+            .filter((conflict) => conflict.field && conflict.reason)
+            .slice(0, 12)
+        : undefined,
     };
   }
 
@@ -136,6 +440,17 @@ export class SafescopeV2Service {
       input.workArea ? `Work area: ${input.workArea}.` : "",
       input.observedCondition ? `Observed condition: ${input.observedCondition}.` : "",
       input.additionalContext ? `Additional context: ${input.additionalContext}.` : "",
+      input.userConfirmedFacts?.length
+        ? `User-confirmed facts: ${input.userConfirmedFacts
+            .map((fact) => `${fact.field}=${Array.isArray(fact.value) ? fact.value.join(", ") : String(fact.value ?? "")}`)
+            .join("; ")}.`
+        : "",
+      input.unknownFacts?.length ? `Facts still unknown: ${input.unknownFacts.join(", ")}.` : "",
+      input.unresolvedContradictions?.length
+        ? `Unresolved contradictions: ${input.unresolvedContradictions
+            .map((conflict) => `${conflict.field}: ${conflict.reason}`)
+            .join("; ")}.`
+        : "",
     ].filter(Boolean);
 
     return rows.length ? [`Structured observation evidence:\n${rows.join("\n")}`] : [];
@@ -168,6 +483,25 @@ export class SafescopeV2Service {
     if (input?.exposurePathway?.length) {
       push(input.exposurePathway.join(", "), "exposurePathway", "Supports mechanism of injury and risk scoring.");
     }
+    if (input?.userConfirmedFacts?.length) {
+      for (const fact of input.userConfirmedFacts.slice(0, 6)) {
+        push(
+          `${fact.field}: ${Array.isArray(fact.value) ? fact.value.join(", ") : String(fact.value ?? "")}`,
+          fact.sourceQuestionId || "clarificationAnswer",
+          "Uses the user's follow-up answer as structured evidence.",
+        );
+      }
+    }
+    if (input?.unknownFacts?.length) {
+      push(input.unknownFacts.join(", "), "unknownFacts", "Preserves uncertainty instead of inventing missing facts.");
+    }
+    if (input?.unresolvedContradictions?.length) {
+      push(
+        input.unresolvedContradictions.map((conflict) => `${conflict.field}: ${conflict.reason}`).join("; "),
+        "unresolvedContradictions",
+        "Reduces certainty and requires confirmation before final standards selection.",
+      );
+    }
 
     if (!input?.taskBeingPerformed && /\b(clear(?:ing)?|unjam|jammed|jam)\b/i.test(text) && /\b(conveyor|machine|belt)\b/i.test(text)) {
       push("Worker was clearing a jam", "narrative", "Supports servicing and hazardous-energy analysis.");
@@ -188,15 +522,45 @@ export class SafescopeV2Service {
     fusedText: string;
     structuredObservation?: StructuredObservationInput;
     existingQuestions?: any[];
+    answeredQuestionIds?: string[];
+    unresolvedContradictions?: NonNullable<StructuredObservationInput["unresolvedContradictions"]>;
   }) {
     const text = String(input.fusedText || "").toLowerCase();
     const structured = input.structuredObservation;
     const questions: any[] = [];
+    const answered = new Set((input.answeredQuestionIds || []).map((id) => String(id || "").trim()).filter(Boolean));
     const add = (question: any) => {
       if (questions.length >= 4) return;
+      if (answered.has(question.id)) return;
       if (questions.some((item) => item.id === question.id || item.question === question.question)) return;
-      questions.push(question);
+      questions.push({
+        required: question.priority === "critical",
+        impactedDecisions: question.impactedDecisions || [question.requiredFor || "standard-applicability"],
+        expectedEvidenceFields: question.expectedEvidenceFields || [],
+        couldPromoteStandard: Boolean(question.couldPromoteStandard ?? question.requiredFor === "standard-applicability"),
+        couldSuppressStandard: Boolean(question.couldSuppressStandard ?? question.requiredFor === "standard-applicability"),
+        couldChangeShutdown: Boolean(question.couldChangeShutdown),
+        ...question,
+      });
     };
+
+    for (const conflict of input.unresolvedContradictions || []) {
+      add({
+        id: `confirm-${conflict.field}`,
+        question: `Please confirm the ${conflict.field}: ${conflict.originalValue || "the observation"} or ${conflict.answerValue || "the follow-up answer"}?`,
+        shortLabel: `Confirm ${conflict.field}`,
+        reason: conflict.reason,
+        answerType: "single-select",
+        options: [conflict.originalValue || "Original observation is correct", conflict.answerValue || "Follow-up answer is correct", "Not sure"],
+        requiredFor: "standard-applicability",
+        priority: "critical",
+        impactedDecisions: ["hazard-classification", "risk", "standard-applicability", "corrective-action"],
+        expectedEvidenceFields: [conflict.field],
+        couldPromoteStandard: true,
+        couldSuppressStandard: true,
+        couldChangeShutdown: conflict.field === "energyState" || conflict.field === "workerInteraction",
+      });
+    }
 
     const jurisdictionKnown = structured?.jurisdiction && structured.jurisdiction !== "unknown";
     const hasCompleteMachineEnergyEvidence =
@@ -220,9 +584,11 @@ export class SafescopeV2Service {
         question: "Where did this occur: mine, construction site, manufacturing plant, warehouse, or another workplace?",
         reason: "Jurisdiction determines whether MSHA, OSHA General Industry, or OSHA Construction standards are in scope.",
         answerType: "single-select",
-        options: ["Mine or quarry", "Construction site", "Manufacturing or plant", "Warehouse", "Other workplace"],
+        options: ["Mine or quarry", "Construction site", "Manufacturing or plant", "Warehouse", "Other workplace", "Not sure"],
         requiredFor: "jurisdiction",
         priority: "critical",
+        impactedDecisions: ["jurisdiction", "standard-applicability"],
+        expectedEvidenceFields: ["jurisdiction", "workEnvironment"],
       });
     }
 
@@ -233,9 +599,12 @@ export class SafescopeV2Service {
           question: "Was the equipment running, capable of unexpected startup, stopped, deenergized, or locked out?",
           reason: "Energy state separates active hazardous-energy exposure from controlled isolation or out-of-service review.",
           answerType: "single-select",
-          options: ["Running or operating", "Capable of startup", "Stopped only", "Deenergized", "Locked out"],
+          options: ["Running or operating", "Capable of startup", "Stopped only", "Deenergized", "Locked out", "Not sure"],
           requiredFor: "standard-applicability",
           priority: "critical",
+          impactedDecisions: ["hazard-classification", "risk", "imminent-danger", "standard-applicability", "corrective-action"],
+          expectedEvidenceFields: ["energyState"],
+          couldChangeShutdown: true,
         });
       }
       if (!structured?.taskBeingPerformed && !/\b(clear(?:ing)?|unjam|jammed|maintenance|servicing|repair|operating|cleaning)\b/i.test(text) && /\b(jam|guard|machine|conveyor)\b/i.test(text)) {
@@ -244,9 +613,11 @@ export class SafescopeV2Service {
           question: "Was the worker operating, cleaning, maintaining, repairing, or clearing a jam?",
           reason: "The task determines whether machine guarding, lockout/tagout, or both are the primary control families.",
           answerType: "single-select",
-          options: ["Operating", "Cleaning", "Maintenance or repair", "Clearing a jam", "Inspection only"],
+          options: ["Operating", "Cleaning", "Maintenance or repair", "Clearing a jam", "Inspection only", "Not sure"],
           requiredFor: "hazard-classification",
           priority: "important",
+          impactedDecisions: ["hazard-classification", "standard-applicability", "corrective-action"],
+          expectedEvidenceFields: ["taskBeingPerformed"],
         });
       }
       if (!(structured?.controlsPresent || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !(structured?.controlsMissing || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !/\b(guard (?:has been )?removed|removed guard|guard missing|lockout applied|locked[- ]out|lockout not applied|no lockout|energy isolation|zero[- ]energy)\b/i.test(text)) {
@@ -255,9 +626,12 @@ export class SafescopeV2Service {
           question: "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?",
           reason: "Control status determines whether HazLenz should treat the observation as an active exposure or a verification item.",
           answerType: "multi-select",
-          options: ["Guard missing or removed", "Guard installed", "Lockout/tagout applied", "Zero-energy verified", "No control verified"],
+          options: ["Guard missing or removed", "Guard installed", "Lockout/tagout applied", "Zero-energy verified", "No control verified", "Not sure"],
           requiredFor: "standard-applicability",
           priority: "critical",
+          impactedDecisions: ["hazard-classification", "risk", "standard-applicability", "corrective-action"],
+          expectedEvidenceFields: ["controlsPresent", "controlsMissing", "energyState"],
+          couldChangeShutdown: true,
         });
       }
     }
@@ -269,9 +643,11 @@ export class SafescopeV2Service {
           question: "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
           reason: "Visible conductor exposure changes electrical shock risk and citation applicability.",
           answerType: "single-select",
-          options: ["Internal conductors exposed", "Outer jacket damage only", "Unknown"],
+          options: ["Internal conductors exposed", "Outer jacket damage only", "Unknown", "Not sure"],
           requiredFor: "standard-applicability",
           priority: "critical",
+          impactedDecisions: ["hazard-classification", "risk", "standard-applicability", "corrective-action"],
+          expectedEvidenceFields: ["observedCondition", "exposurePathway", "controlsPresent", "controlsMissing"],
         });
       }
       if (hasWetLocationEvidence) {
@@ -280,8 +656,11 @@ export class SafescopeV2Service {
           question: "Was GFCI protection present for the wet or damp location?",
           reason: "Wet-location controls affect electrical risk and corrective actions.",
           answerType: "yes-no",
+          options: ["Yes", "No", "Not sure"],
           requiredFor: "risk",
           priority: "important",
+          impactedDecisions: ["risk", "standard-applicability", "corrective-action"],
+          expectedEvidenceFields: ["controlsPresent", "controlsMissing"],
         });
       }
     }
@@ -295,6 +674,8 @@ export class SafescopeV2Service {
           answerType: "number",
           requiredFor: "standard-applicability",
           priority: "critical",
+          impactedDecisions: ["risk", "standard-applicability"],
+          expectedEvidenceFields: ["additionalContext", "exposurePathway"],
         });
       }
       add({
@@ -302,9 +683,11 @@ export class SafescopeV2Service {
         question: "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
         reason: "Fall and ladder standards depend on the access method and specific misuse or defect.",
         answerType: "single-select",
-        options: ["Defective ladder", "Incorrect ladder use", "Unprotected edge or opening", "Scaffold", "Roof", "Platform"],
+        options: ["Defective ladder", "Incorrect ladder use", "Unprotected edge or opening", "Scaffold", "Roof", "Platform", "Not sure"],
         requiredFor: "hazard-classification",
         priority: "important",
+        impactedDecisions: ["hazard-classification", "standard-applicability", "corrective-action"],
+        expectedEvidenceFields: ["observedCondition", "equipmentInvolved", "exposurePathway"],
       });
     }
 
@@ -317,6 +700,8 @@ export class SafescopeV2Service {
           answerType: "short-text",
           requiredFor: "standard-applicability",
           priority: "critical",
+          impactedDecisions: ["hazard-classification", "risk", "standard-applicability", "corrective-action"],
+          expectedEvidenceFields: ["materialOrSubstance", "observedCondition"],
         });
       }
       add({
@@ -324,9 +709,11 @@ export class SafescopeV2Service {
         question: "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?",
         reason: "Exposure pathway separates a housekeeping spill from chemical health or emergency-response hazards.",
         answerType: "multi-select",
-        options: ["Walking surface", "Inhalation or vapor", "Skin or eye contact", "Drain or environment", "No exposure observed"],
+        options: ["Walking surface", "Inhalation or vapor", "Skin or eye contact", "Drain or environment", "No exposure observed", "Not sure"],
         requiredFor: "risk",
         priority: "important",
+        impactedDecisions: ["hazard-classification", "risk", "standard-applicability", "corrective-action"],
+        expectedEvidenceFields: ["exposurePathway"],
       });
     }
 
@@ -424,6 +811,8 @@ export class SafescopeV2Service {
     user?: UserGovernanceContext,
     debugMetadata?: boolean,
     structuredObservationInput?: StructuredObservationInput,
+    clarificationAnswers?: HazLenzClarificationAnswerInput[],
+    priorStructuredObservationInput?: StructuredObservationInput,
   ) {
     if (user) {
         const decision = this.access.can(user, 'run_classification');
@@ -431,13 +820,29 @@ export class SafescopeV2Service {
     }
 
       const memoryBefore = getMemorySnapshot();
-      const structuredObservation = this.normalizeStructuredObservation(structuredObservationInput, text);
+      const normalizedPriorStructuredObservation = this.normalizeStructuredObservation(priorStructuredObservationInput, text);
+      const normalizedStructuredObservation = this.normalizeStructuredObservation(structuredObservationInput, text);
+      const normalizedAnswerState = this.normalizeClarificationAnswers(clarificationAnswers);
+      const structuredObservationBase = this.mergeStructuredObservation(
+        normalizedPriorStructuredObservation,
+        normalizedStructuredObservation,
+      );
+      let structuredObservation = this.mergeStructuredObservation(
+        structuredObservationBase,
+        normalizedAnswerState.structured,
+      );
+      const unresolvedContradictions = this.detectStructuredContradictions(structuredObservation, text);
+      structuredObservation = this.mergeStructuredObservation(
+        structuredObservation,
+        { unresolvedContradictions } as StructuredObservationInput,
+      );
       const structuredEvidenceTexts = this.buildStructuredObservationEvidenceTexts(structuredObservation);
       const structuredScope = this.structuredObservationToScopes(structuredObservation);
 
       const evidenceFusion = this.evidenceFusion.synthesize([
         text,
         ...structuredEvidenceTexts,
+        ...(normalizedAnswerState.answerEvidence || []),
         ...(evidenceTexts || []),
       ]);
       const fusedText = evidenceFusion.combinedNarrative;
@@ -1914,10 +2319,18 @@ export class SafescopeV2Service {
 
       const effectiveClassification = (() => {
         const rawClassification = String(promotedPrimary.classification || '').trim();
+        const hasPrimaryConveyorGuardingExposure =
+          hasExplicitConveyorGuardEnergyContext &&
+          /\b(moving belt|moving conveyor|pinch point|nip point|tail pulley|head pulley)\b/i.test(fusedText) &&
+          /\b(clean|cleanup|cleaning|material|worker|employee|miner)\b/i.test(fusedText) &&
+          !/\b(jam|jammed|clearing (?:a )?jam|clear(?:ing)? jam|unjam|unjamming|lockout|tagout|loto|unexpected startup|without lockout|no lockout|lockout not applied)\b/i.test(fusedText);
         const hasStrongApplicabilityOverride = Boolean(
           Array.isArray(advisoryReasoning?.inspectionIntelligence?.standardApplicability?.matchedRules) &&
           advisoryReasoning.inspectionIntelligence.standardApplicability.matchedRules.some((rule: any) => rule?.isSufficient && !isGenericClassifierCategory(rule?.hazardFamily)),
         );
+        if (hasPrimaryConveyorGuardingExposure) {
+          return 'Machine Guarding';
+        }
         if (hasStrongApplicabilityOverride) {
           return hazardCategoryLabelFor(normalizedRootHazardCategory, rawClassification || 'Unclassified');
         }
@@ -2027,10 +2440,24 @@ export class SafescopeV2Service {
       const hasSafeControlEvidence = /\b(fully guarded|guard installed|guarded and locked out|locked out|de-energized|deenergized|zero energy verified|zero-energy verified|tested before maintenance|before maintenance begins|before work begins|zero energy|tested|barricaded|secured|intact|in place|no access|not exposed)\b/i.test(fusedText);
       const hasDefectOrExposureEvidence = /\b(missing|removed|unguarded|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|no guard|no cover|blocked|obstructed)\b/i.test(fusedText);
       const activeHazardEnergyText = originalFindingText.replace(/\bde-energized\b|\bdeenergized\b/g, ' ');
+      const structuredControlTextForHazardousEnergy = [
+        structuredObservation?.energyState || "",
+        ...(structuredObservation?.controlsPresent || []),
+        ...(structuredObservation?.controlsMissing || []),
+        structuredObservation?.workerInteraction || "",
+        structuredObservation?.additionalContext || "",
+      ].join(" ").toLowerCase();
+      const activeStructuredControlTextForHazardousEnergy = structuredControlTextForHazardousEnergy
+        .replace(/\bno unexpected startup exposure\b/g, " ")
+        .replace(/\bno (?:direct )?exposure\b/g, " ");
+      const hasStructuredControlledHazardousEnergyEvidence =
+        /\b(locked-out|locked out|lockout\/tagout applied|lockout applied|loto applied|zero-energy verified|zero energy verified|deenergized|de-energized|energy isolated)\b/i.test(structuredControlTextForHazardousEnergy) &&
+        !/\b(no control verified|lockout\/tagout$|lockout missing|no lockout|without lockout|not locked|not verified|energized|operating|running|unexpected startup exposure|directly exposed)\b/i.test(activeStructuredControlTextForHazardousEnergy);
       const hasControlledHazardousEnergyEvidence =
-        /\b(lock(?:ed)? out|lockout applied|loto applied|tagout applied|de-energized|deenergized|energy isolated|isolated)\b/i.test(originalFindingText) &&
-        /\b(tested|verified|zero[- ]?energy|try[- ]?out|before maintenance|before work|before servicing|for maintenance|isolation complete)\b/i.test(originalFindingText) &&
-        !/\b(without|no lock|not locked|not applied|not verified|missing|bypassed|incomplete|failed|energized|running|moving|unexpected startup|started unexpectedly|restarted)\b/i.test(activeHazardEnergyText);
+        hasStructuredControlledHazardousEnergyEvidence ||
+        (/\b(lock(?:ed)? out|lockout applied|loto applied|tagout applied|de-energized|deenergized|energy isolated|isolated)\b/i.test(originalFindingText) &&
+          /\b(tested|verified|zero[- ]?energy|try[- ]?out|before maintenance|before work|before servicing|for maintenance|isolation complete)\b/i.test(originalFindingText) &&
+          !/\b(without|no lock|not locked|not applied|not verified|missing|bypassed|incomplete|failed|energized|running|moving|unexpected startup|started unexpectedly|restarted)\b/i.test(activeHazardEnergyText));
       const hasNegativeCylinderContext = /\b(no cylinder|no cylinders|without cylinder|without cylinders|not a cylinder|no compressed gas|not compressed gas)\b/i.test(originalFindingText) ||
         /\b(smells like gas|gas smell|gas odor|gas leak|gas line|natural gas|heater cycles|heater cycle|gas appliance|furnace|boiler)\b/i.test(originalFindingText);
       const hasExplicitCompressedGasEvidence =
@@ -2398,7 +2825,7 @@ export class SafescopeV2Service {
         }
       };
 
-      if (hasExplicitConveyorGuardEnergyContext && /\b(mine|miner|miners|msha|quarry|pit|aggregate plant)\b/i.test(fusedText)) {
+      if (hasExplicitConveyorGuardEnergyContext && !hasControlledHazardousEnergyEvidence && /\b(mine|miner|miners|msha|quarry|pit|aggregate plant)\b/i.test(fusedText)) {
         ensureVisibleStandard('30 CFR 56.14107(a)', 'Moving machine parts guarding', 'suggested');
         ensureVisibleStandard('30 CFR 56.12016', 'Work on electrically powered equipment; deenergizing and lockout', 'supporting');
       }
@@ -2443,6 +2870,11 @@ export class SafescopeV2Service {
               ? (advisoryReasoning.inspectionIntelligence?.evidenceGapQuestions || [])
                 : (intelligence.evidenceGapQuestions || []),
           structuredObservation,
+          clarificationAnswerState: {
+            answeredQuestionIds: normalizedAnswerState.answeredQuestionIds,
+            invalidAnswers: normalizedAnswerState.invalidAnswers,
+          },
+          unresolvedContradictions,
           evidenceUsed: this.buildStructuredEvidenceUsed(structuredObservation, fusedText),
           hazardCategory: normalizedRootHazardCategory || rootHazardCategory,
           candidateStandardFamily: rootStandardFamily,
@@ -2900,12 +3332,17 @@ export class SafescopeV2Service {
         fusedText,
         structuredObservation,
         existingQuestions: response.evidenceGapQuestions,
+        answeredQuestionIds: normalizedAnswerState.answeredQuestionIds,
+        unresolvedContradictions,
       });
       response.clarifyingQuestions = clarifyingQuestions;
       response.followUpQuestions = clarifyingQuestions;
-      response.resultStage = clarifyingQuestions.some((question: any) => question?.priority === "critical")
+      response.resultStage = unresolvedContradictions.length || clarifyingQuestions.some((question: any) => question?.priority === "critical")
         ? "provisional"
         : "final";
+      response.requiresAnotherReasoningPass = clarifyingQuestions.length > 0;
+      response.mayFinalize = response.resultStage === "final";
+      response.humanReviewRequired = Boolean(response.requiresQualifiedReview || unresolvedContradictions.length || response.resultStage === "provisional");
       response.provisionalResult = response.resultStage === "provisional"
         ? {
             likelyHazardFamily: response.candidateStandardFamily || response.hazardCategory || response.classification,

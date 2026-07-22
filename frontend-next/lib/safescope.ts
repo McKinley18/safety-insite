@@ -27,6 +27,33 @@ export type StructuredObservationInput = {
   affectedPeople?: string[];
   evidenceSource?: Array<"visual" | "worker-report" | "document" | "photo" | "measurement">;
   additionalContext?: string;
+  userConfirmedFacts?: Array<{
+    field: string;
+    value: string | string[] | number | boolean | null;
+    sourceQuestionId?: string;
+  }>;
+  inferredFacts?: Array<{
+    field: string;
+    value: string | string[];
+    confidence?: "low" | "medium" | "high";
+  }>;
+  unknownFacts?: string[];
+  unresolvedContradictions?: Array<{
+    field: string;
+    originalValue?: string;
+    answerValue?: string;
+    reason: string;
+    sourceQuestionId?: string;
+  }>;
+};
+
+export type HazLenzClarificationAnswerInput = {
+  questionId: string;
+  answer?: string | number | boolean | null;
+  value?: string | number | boolean | null;
+  selectedOptions?: string[];
+  unit?: string;
+  answeredAt?: string;
 };
 
 function getSafeScopeAuthHeaders() {
@@ -235,6 +262,8 @@ export async function runSafeScopeV2Classify(input: {
   riskProfileId?: "simple_4x4" | "standard_5x5" | "advanced_6x6";
   priorFindings?: any[];
   structuredObservation?: StructuredObservationInput;
+  priorStructuredObservation?: StructuredObservationInput;
+  clarificationAnswers?: HazLenzClarificationAnswerInput[];
 }) {
   const requestUrl = `${API_BASE_URL}/safescope-v2/classify`;
 
@@ -251,6 +280,10 @@ export async function runSafeScopeV2Classify(input: {
       : [],
     priorFindings: Array.isArray(input.priorFindings) ? input.priorFindings : [],
     ...(input.structuredObservation ? { structuredObservation: input.structuredObservation } : {}),
+    ...(input.priorStructuredObservation ? { priorStructuredObservation: input.priorStructuredObservation } : {}),
+    ...(Array.isArray(input.clarificationAnswers) && input.clarificationAnswers.length
+      ? { clarificationAnswers: input.clarificationAnswers }
+      : {}),
   };
 
   const headers = getSafeScopeAuthHeaders();
@@ -262,6 +295,8 @@ export async function runSafeScopeV2Classify(input: {
     priorFindingsCount: safePayload.priorFindings.length,
     riskProfileId: safePayload.riskProfileId,
     structuredObservation: Boolean(input.structuredObservation),
+    priorStructuredObservation: Boolean(input.priorStructuredObservation),
+    clarificationAnswerCount: input.clarificationAnswers?.length || 0,
   });
 
   const controller = new AbortController();

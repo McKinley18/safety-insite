@@ -4,7 +4,10 @@ import { secureStorage } from "@/lib/secureStorage";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { runInspectionHazLenzReview } from "@/lib/inspection/hazlenzInspectionService";
-import type { StructuredObservationInput } from "@/lib/safescope";
+import type {
+  HazLenzClarificationAnswerInput,
+  StructuredObservationInput,
+} from "@/lib/safescope";
 import {
   submitHazLenzStandardFeedback,
   submitHazLenzValidationReview,
@@ -103,6 +106,10 @@ export default function InspectionPage() {
   }, []);
   const [safeScopeStatus, setSafeScopeStatus] = useState("");
   const [safeScopeResult, setsafeScopeResult] = useState<any>(null);
+  const [hazLenzStructuredObservation, setHazLenzStructuredObservation] =
+    useState<StructuredObservationInput | undefined>(undefined);
+  const [hazLenzClarificationAnswers, setHazLenzClarificationAnswers] =
+    useState<HazLenzClarificationAnswerInput[]>([]);
   const [isOfflineMode, setIsOfflineMode] = useState<boolean>(false);
   const [selectedStandards, setSelectedStandards] = useState<any[]>([]);
   const [feedbackNotes, setFeedbackNotes] = useState("");
@@ -248,6 +255,8 @@ export default function InspectionPage() {
           setEvidenceNotes(finding.evidenceNotes || "");
           loadFindingEvidencePhotos(finding.photos || []).then(setPhotos);
           setsafeScopeResult(finding.safeScopeResult || null);
+          setHazLenzStructuredObservation(finding.safeScopeResult?.structuredObservation || undefined);
+          setHazLenzClarificationAnswers(finding.safeScopeResult?.clarificationAnswers || []);
           setSelectedStandards(finding.selectedStandards || []);
           setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
           setManualActions(finding.manualActions || []);
@@ -347,6 +356,7 @@ export default function InspectionPage() {
   async function handleRunSafeScope(
     forceOffline: boolean = false,
     structuredObservation?: StructuredObservationInput,
+    clarificationAnswers?: HazLenzClarificationAnswerInput[],
   ) {
     console.log("[HazLenz AI] handleRunSafeScope entered");
 
@@ -357,6 +367,9 @@ export default function InspectionPage() {
 
       setSafeScopeStatus("Running HazLenz AI match...");
 
+      const effectiveClarificationAnswers = clarificationAnswers || hazLenzClarificationAnswers;
+      const priorStructuredObservation =
+        safeScopeResult?.structuredObservation || hazLenzStructuredObservation;
       const review = await runInspectionHazLenzReview({
         forceOffline,
         isOfflineMode,
@@ -369,6 +382,8 @@ export default function InspectionPage() {
         photos,
         findings,
         structuredObservation,
+        priorStructuredObservation,
+        clarificationAnswers: effectiveClarificationAnswers,
       });
 
       if (!review.ok) {
@@ -381,7 +396,13 @@ export default function InspectionPage() {
         setIsOfflineMode(true);
       }
 
-      setsafeScopeResult(review.result);
+      const nextResult = {
+        ...(review.result || {}),
+        clarificationAnswers: effectiveClarificationAnswers,
+      };
+      setsafeScopeResult(nextResult);
+      setHazLenzStructuredObservation(nextResult?.structuredObservation || structuredObservation || priorStructuredObservation);
+      setHazLenzClarificationAnswers(effectiveClarificationAnswers);
       setSafeScopeCompactDetailsOpen(false);
       setSafeScopeAdvancedOpen(false);
       setSelectedStandards(review.autoSelectedStandards);
@@ -586,6 +607,8 @@ export default function InspectionPage() {
     setAgencyMode("all");
     setSafeScopeStatus("");
     setsafeScopeResult(null);
+    setHazLenzStructuredObservation(undefined);
+    setHazLenzClarificationAnswers([]);
     setFeedbackNotes("");
     setSeverity(null);
     setLikelihood(null);
@@ -673,6 +696,8 @@ export default function InspectionPage() {
     setEvidenceNotes(finding.evidenceNotes || "");
     loadFindingEvidencePhotos(finding.photos || []).then(setPhotos);
     setsafeScopeResult(finding.safeScopeResult || null);
+    setHazLenzStructuredObservation(finding.safeScopeResult?.structuredObservation || undefined);
+    setHazLenzClarificationAnswers(finding.safeScopeResult?.clarificationAnswers || []);
     setSelectedStandards(finding.selectedStandards || []);
     setSelectedGeneratedActions(finding.selectedGeneratedActions || []);
     setManualActions(finding.manualActions || []);
@@ -812,6 +837,8 @@ export default function InspectionPage() {
         handleRunSafeScope={handleRunSafeScope}
         safeScopeStatus={safeScopeStatus}
         safeScopeResult={safeScopeResult}
+        hazLenzClarificationAnswers={hazLenzClarificationAnswers}
+        setHazLenzClarificationAnswers={setHazLenzClarificationAnswers}
         setIsOfflineMode={setIsOfflineMode}
         submitSafeScopeValidation={submitSafeScopeValidation}
         safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}

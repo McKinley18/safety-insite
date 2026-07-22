@@ -6,7 +6,10 @@ import SafeScopeInspectionStep from "@/components/inspection/SafeScopeInspection
 import InspectionStepOne from "./steps/InspectionStepOne";
 import InspectionStepTwo from "./steps/InspectionStepTwo";
 import InspectionStepThree from "./steps/InspectionStepThree";
-import type { StructuredObservationInput } from "@/lib/safescope";
+import type {
+  HazLenzClarificationAnswerInput,
+  StructuredObservationInput,
+} from "@/lib/safescope";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -125,9 +128,15 @@ type InspectionStepRendererProps = {
   setSafeScopeHelpOpen: ToggleSetter;
   agencyMode: string;
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
-  handleRunSafeScope: (forceOffline?: boolean, structuredObservation?: StructuredObservationInput) => void;
+  handleRunSafeScope: (
+    forceOffline?: boolean,
+    structuredObservation?: StructuredObservationInput,
+    clarificationAnswers?: HazLenzClarificationAnswerInput[],
+  ) => void;
   safeScopeStatus: string;
   safeScopeResult: any;
+  hazLenzClarificationAnswers: HazLenzClarificationAnswerInput[];
+  setHazLenzClarificationAnswers: (answers: HazLenzClarificationAnswerInput[]) => void;
   setIsOfflineMode?: (value: boolean) => void;
   submitSafeScopeValidation: (
     decision:
@@ -208,6 +217,8 @@ export default function InspectionStepRenderer({
   handleRunSafeScope,
   safeScopeStatus,
   safeScopeResult,
+  hazLenzClarificationAnswers,
+  setHazLenzClarificationAnswers,
   setIsOfflineMode,
   submitSafeScopeValidation,
   safeScopeCompactDetailsOpen,
@@ -277,6 +288,8 @@ export default function InspectionStepRenderer({
           handleRunSafeScope={handleRunSafeScope}
           safeScopeStatus={safeScopeStatus}
           safeScopeResult={safeScopeResult}
+          hazLenzClarificationAnswers={hazLenzClarificationAnswers}
+          setHazLenzClarificationAnswers={setHazLenzClarificationAnswers}
           setIsOfflineMode={setIsOfflineMode}
           submitSafeScopeValidation={submitSafeScopeValidation}
           safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}

@@ -11,7 +11,10 @@ import SafeScopeStandardsSection from "@/components/inspection/SafeScopeStandard
 import SafeScopeSupportingIntelligenceSection from "@/components/inspection/SafeScopeSupportingIntelligenceSection";
 import SafeScopeKnowledgeBrainSection from "@/components/inspection/SafeScopeKnowledgeBrainSection";
 import SafeScopeEquipmentReasoningSection from "@/components/inspection/SafeScopeEquipmentReasoningSection";
-import type { StructuredObservationInput } from "@/lib/safescope";
+import type {
+  HazLenzClarificationAnswerInput,
+  StructuredObservationInput,
+} from "@/lib/safescope";
 
 type ToggleSetter = (updater: (open: boolean) => boolean) => void;
 
@@ -20,9 +23,15 @@ type SafeScopeInspectionStepProps = {
   setSafeScopeHelpOpen: ToggleSetter;
   agencyMode: string;
   riskProfileId: "standard_5x5" | "simple_4x4" | "advanced_6x6";
-  handleRunSafeScope: (forceOffline?: boolean, structuredObservation?: StructuredObservationInput) => void;
+  handleRunSafeScope: (
+    forceOffline?: boolean,
+    structuredObservation?: StructuredObservationInput,
+    clarificationAnswers?: HazLenzClarificationAnswerInput[],
+  ) => void;
   safeScopeStatus: string;
   safeScopeResult: any;
+  hazLenzClarificationAnswers: HazLenzClarificationAnswerInput[];
+  setHazLenzClarificationAnswers: (answers: HazLenzClarificationAnswerInput[]) => void;
   setIsOfflineMode?: (value: boolean) => void;
   hazardCategory: string;
   setHazardCategory: (value: string) => void;
@@ -61,6 +70,8 @@ export default function SafeScopeInspectionStep({
   handleRunSafeScope,
   safeScopeStatus,
   safeScopeResult,
+  hazLenzClarificationAnswers,
+  setHazLenzClarificationAnswers,
   setIsOfflineMode,
   hazardCategory,
   setHazardCategory,
@@ -80,6 +91,148 @@ export default function SafeScopeInspectionStep({
   safeScopeStandardsOpen,
   setSafeScopeStandardsOpen,
 }: SafeScopeInspectionStepProps) {
+  const answerFor = (questionId: string) =>
+    hazLenzClarificationAnswers.find((answer) => answer.questionId === questionId);
+
+  const updateAnswer = (
+    question: any,
+    patch: Partial<HazLenzClarificationAnswerInput>,
+  ) => {
+    const questionId = String(question?.id || question?.question || "").trim();
+    if (!questionId) return;
+    const nextAnswer: HazLenzClarificationAnswerInput = {
+      questionId,
+      answeredAt: new Date().toISOString(),
+      ...patch,
+    };
+    const existingIndex = hazLenzClarificationAnswers.findIndex(
+      (answer) => answer.questionId === questionId,
+    );
+    const nextAnswers =
+      existingIndex >= 0
+        ? hazLenzClarificationAnswers.map((answer, index) =>
+            index === existingIndex ? { ...answer, ...nextAnswer } : answer,
+          )
+        : [...hazLenzClarificationAnswers, nextAnswer];
+    setHazLenzClarificationAnswers(nextAnswers);
+  };
+
+  const toggleMultiOption = (question: any, option: string) => {
+    const current = answerFor(String(question?.id || question?.question || ""));
+    const selected = new Set(current?.selectedOptions || []);
+    if (selected.has(option)) selected.delete(option);
+    else selected.add(option);
+    updateAnswer(question, { selectedOptions: Array.from(selected), value: undefined, answer: undefined });
+  };
+
+  const renderClarificationAnswerControl = (question: any) => {
+    const questionId = String(question?.id || question?.question || "");
+    const answer = answerFor(questionId);
+    const options = Array.isArray(question?.options) && question.options.length
+      ? question.options
+      : question?.answerType === "yes-no"
+        ? ["Yes", "No", "Not sure"]
+        : [];
+    const chipClass = (selected: boolean) =>
+      [
+        "rounded-xl border px-3 py-2 text-[11px] font-black transition active:scale-95",
+        selected
+          ? "border-amber-700 bg-amber-700 text-white dark:border-amber-300 dark:bg-amber-300 dark:text-slate-950"
+          : "border-amber-300 bg-white text-amber-900 dark:border-amber-800 dark:bg-slate-950 dark:text-amber-100",
+      ].join(" ");
+
+    if (question?.answerType === "multi-select") {
+      return (
+        <div className="mt-2 flex flex-wrap gap-2">
+          {options.map((option: string) => {
+            const selected = Boolean(answer?.selectedOptions?.includes(option));
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => toggleMultiOption(question, option)}
+                className={chipClass(selected)}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
+      );
+    }
+
+    if (question?.answerType === "number") {
+      return (
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <input
+            type="number"
+            min={0}
+            inputMode="decimal"
+            value={typeof answer?.value === "number" || typeof answer?.value === "string" ? answer.value : ""}
+            onChange={(event) => updateAnswer(question, { value: event.target.value, unit: answer?.unit || "ft" })}
+            className="min-h-11 w-28 rounded-xl border border-amber-300 bg-white px-3 py-2 text-sm font-bold text-slate-900 outline-none focus:ring-2 focus:ring-amber-500 dark:border-amber-800 dark:bg-slate-950 dark:text-slate-100"
+            aria-label={question.question}
+          />
+          <select
+            value={answer?.unit || "ft"}
+            onChange={(event) => updateAnswer(question, { value: answer?.value || "", unit: event.target.value })}
+            className="min-h-11 rounded-xl border border-amber-300 bg-white px-3 py-2 text-sm font-bold text-slate-900 outline-none focus:ring-2 focus:ring-amber-500 dark:border-amber-800 dark:bg-slate-950 dark:text-slate-100"
+          >
+            <option value="ft">ft</option>
+            <option value="in">in</option>
+            <option value="m">m</option>
+          </select>
+          <button
+            type="button"
+            onClick={() => updateAnswer(question, { value: "Not sure", answer: "Not sure" })}
+            className={chipClass(answer?.value === "Not sure" || answer?.answer === "Not sure")}
+          >
+            Not sure
+          </button>
+        </div>
+      );
+    }
+
+    if (options.length) {
+      return (
+        <div className="mt-2 flex flex-wrap gap-2">
+          {options.map((option: string) => {
+            const selected = answer?.value === option || answer?.answer === option || answer?.selectedOptions?.includes(option);
+            return (
+              <button
+                key={option}
+                type="button"
+                onClick={() => updateAnswer(question, { value: option, answer: option, selectedOptions: [option] })}
+                className={chipClass(Boolean(selected))}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
+      );
+    }
+
+    return (
+      <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+        <input
+          type="text"
+          value={String(answer?.value || answer?.answer || "")}
+          onChange={(event) => updateAnswer(question, { value: event.target.value, answer: event.target.value })}
+          className="min-h-11 flex-1 rounded-xl border border-amber-300 bg-white px-3 py-2 text-sm font-bold text-slate-900 outline-none focus:ring-2 focus:ring-amber-500 dark:border-amber-800 dark:bg-slate-950 dark:text-slate-100"
+          aria-label={question.question}
+        />
+        <button
+          type="button"
+          onClick={() => updateAnswer(question, { value: "Not sure", answer: "Not sure" })}
+          className={chipClass(answer?.value === "Not sure" || answer?.answer === "Not sure")}
+        >
+          Not sure
+        </button>
+      </div>
+    );
+  };
+
   return (
     <>
 
@@ -166,14 +319,37 @@ export default function SafeScopeInspectionStep({
                 {safeScopeResult.clarifyingQuestions.slice(0, 4).map((question: any) => (
                   <li key={question.id || question.question} className="rounded-xl bg-white px-3 py-2 text-xs font-semibold leading-5 text-slate-800 shadow-sm dark:bg-slate-900 dark:text-slate-100">
                     <span className="font-black">{question.question}</span>
+                    {question.priority && (
+                      <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-amber-800 dark:bg-amber-900/50 dark:text-amber-100">
+                        {question.priority}
+                      </span>
+                    )}
                     {question.reason && (
                       <span className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300">
                         {question.reason}
                       </span>
                     )}
+                    {renderClarificationAnswerControl(question)}
                   </li>
                 ))}
               </ul>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleRunSafeScope(
+                    false,
+                    safeScopeResult?.structuredObservation,
+                    hazLenzClarificationAnswers,
+                  )}
+                  disabled={!hazLenzClarificationAnswers.length || safeScopeStatus.includes("Running")}
+                  className="rounded-xl bg-amber-700 px-3 py-2 text-xs font-black text-white shadow-sm transition active:scale-95 disabled:cursor-not-allowed disabled:bg-amber-300 disabled:text-amber-900 dark:bg-amber-300 dark:text-slate-950 dark:disabled:bg-amber-900/40 dark:disabled:text-amber-200"
+                >
+                  Update HazLenz Review
+                </button>
+                <p className="text-[11px] font-semibold text-amber-900 dark:text-amber-100">
+                  Answers are saved with this finding and used as structured evidence.
+                </p>
+              </div>
             </div>
           )}
 

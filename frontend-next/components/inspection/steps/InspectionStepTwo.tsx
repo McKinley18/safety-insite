@@ -1,4 +1,8 @@
 import SafeScopeInspectionStep from "../SafeScopeInspectionStep";
+import type {
+  HazLenzClarificationAnswerInput,
+  StructuredObservationInput,
+} from "@/lib/safescope";
 
 interface InspectionStepTwoProps {
   hazardCategory: string;
@@ -7,9 +11,15 @@ interface InspectionStepTwoProps {
   setSafeScopeHelpOpen: (updater: (open: boolean) => boolean) => void;
   agencyMode: string;
   riskProfileId: "simple_4x4" | "standard_5x5" | "advanced_6x6";
-  handleRunSafeScope: (forceOffline?: boolean) => void;
+  handleRunSafeScope: (
+    forceOffline?: boolean,
+    structuredObservation?: StructuredObservationInput,
+    clarificationAnswers?: HazLenzClarificationAnswerInput[],
+  ) => void;
   safeScopeStatus: string;
   safeScopeResult: any;
+  hazLenzClarificationAnswers: HazLenzClarificationAnswerInput[];
+  setHazLenzClarificationAnswers: (answers: HazLenzClarificationAnswerInput[]) => void;
   setIsOfflineMode?: (value: boolean) => void;
   submitSafeScopeValidation: (decision: "accepted" | "modified" | "rejected" | "escalated" | "insufficient_evidence") => Promise<void>;
   safeScopeCompactDetailsOpen: boolean;

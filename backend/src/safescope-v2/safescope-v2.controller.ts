@@ -181,6 +181,8 @@ export class SafescopeV2Controller {
         context,
         body.debugMetadata,
         body.structuredObservation,
+        body.clarificationAnswers,
+        body.priorStructuredObservation,
       );
 
       return ensureVisiblePrimaryCitationContract(sanitizeHazLenzDisplayOutput(result), body.text);

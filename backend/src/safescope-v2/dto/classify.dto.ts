@@ -33,6 +33,33 @@ export interface StructuredObservationInput {
   affectedPeople?: string[];
   evidenceSource?: Array<"visual" | "worker-report" | "document" | "photo" | "measurement">;
   additionalContext?: string;
+  userConfirmedFacts?: Array<{
+    field: string;
+    value: string | string[] | number | boolean | null;
+    sourceQuestionId?: string;
+  }>;
+  inferredFacts?: Array<{
+    field: string;
+    value: string | string[];
+    confidence?: "low" | "medium" | "high";
+  }>;
+  unknownFacts?: string[];
+  unresolvedContradictions?: Array<{
+    field: string;
+    originalValue?: string;
+    answerValue?: string;
+    reason: string;
+    sourceQuestionId?: string;
+  }>;
+}
+
+export interface HazLenzClarificationAnswerInput {
+  questionId: string;
+  answer?: string | number | boolean | null;
+  value?: string | number | boolean | null;
+  selectedOptions?: string[];
+  unit?: string;
+  answeredAt?: string;
 }
 
 export class ClassifyDto {
@@ -73,6 +100,14 @@ export class ClassifyDto {
   @IsOptional()
   @IsObject()
   structuredObservation?: StructuredObservationInput;
+
+  @IsOptional()
+  @IsArray()
+  clarificationAnswers?: HazLenzClarificationAnswerInput[];
+
+  @IsOptional()
+  @IsObject()
+  priorStructuredObservation?: StructuredObservationInput;
 }
 
 
