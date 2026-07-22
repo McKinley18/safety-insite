@@ -1,5 +1,6 @@
 import { SafescopeV2Controller } from '../src/safescope-v2/safescope-v2.controller';
 import { SafeScopePersistenceService } from '../src/safescope-v2/persistence/persistence.service';
+import { UnauthorizedException } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -12,12 +13,45 @@ async function validate() {
   // Use private method access for validation
   const oldBypass = process.env.DEV_AUTH_BYPASS;
   process.env.DEV_AUTH_BYPASS = 'false';
-  const context = (controller as any).getGovernanceContext({ user: undefined });
+
+  let missingUserRejected = false;
+  try {
+    (controller as any).getGovernanceContext({ user: undefined });
+  } catch (error) {
+    missingUserRejected = error instanceof UnauthorizedException;
+  }
+
   process.env.DEV_AUTH_BYPASS = oldBypass;
-  
-  if (context.role !== 'viewer') throw new Error('Hardening failed: Missing user should default to viewer.');
-  if (context.planTier !== 'individual') throw new Error('Hardening failed: Missing user should default to individual plan.');
-  if (context.workspaceId !== 'default') throw new Error('Hardening failed: Missing user should default to default workspace.');
+
+  if (!missingUserRejected) {
+    throw new Error('Hardening failed: Missing user should be rejected when dev auth bypass is disabled.');
+  }
+
+  const authenticatedContext = (controller as any).getGovernanceContext({
+    user: {
+      id: 'validator-user-1',
+      role: 'WORKER',
+      workspaceId: 'validator-workspace',
+      planCode: 'pro',
+    },
+  });
+
+  if (authenticatedContext.userId !== 'validator-user-1') throw new Error('Hardening failed: Authenticated user id was not preserved.');
+  if (authenticatedContext.role !== 'field_inspector') throw new Error('Hardening failed: WORKER role should map to field_inspector.');
+  if (authenticatedContext.planTier !== 'pro') throw new Error('Hardening failed: Authenticated plan tier was not preserved.');
+  if (authenticatedContext.workspaceId !== 'validator-workspace') throw new Error('Hardening failed: Authenticated workspace was not preserved.');
+
+  const oldNodeEnv = process.env.NODE_ENV;
+  process.env.NODE_ENV = 'test';
+  process.env.DEV_AUTH_BYPASS = 'true';
+  const localBypassContext = (controller as any).getGovernanceContext({ user: undefined });
+  process.env.DEV_AUTH_BYPASS = oldBypass;
+  process.env.NODE_ENV = oldNodeEnv;
+
+  if (localBypassContext.userId !== 'local-dev-bypass-user') throw new Error('Hardening failed: Explicit local dev bypass user was not used.');
+  if (localBypassContext.role !== 'safety_manager') throw new Error('Hardening failed: Local dev bypass should map to operational test role.');
+  if (localBypassContext.planTier !== 'company') throw new Error('Hardening failed: Local dev bypass should map to company test plan.');
+
   console.log('[PASS] Auth defaults hardened.');
 
   console.log('--- Testing Staging Hardening: Persistence Mode ---');

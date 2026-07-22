@@ -666,7 +666,9 @@ export class SafescopeV2Service {
     }
 
     if (/\b(ladder|edge|opening|roof|platform|scaffold|fall protection|six feet|6 feet)\b/i.test(text)) {
-      if (!/\b\d+\s*(?:ft|feet|foot)\b/i.test(text)) {
+      const hasFallHeightEvidence = /\b\d+\s*(?:ft|feet|foot)\b/i.test(text) ||
+        /\b(?:six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty)\s*(?:ft|feet|foot)\b/i.test(text);
+      if (!hasFallHeightEvidence) {
         add({
           id: "fall-height",
           question: "What was the approximate working height or fall distance?",
@@ -2437,8 +2439,17 @@ export class SafescopeV2Service {
         return null;
       })();
       const originalFindingText = String(text || '').toLowerCase();
-      const hasSafeControlEvidence = /\b(fully guarded|guard installed|guarded and locked out|locked out|de-energized|deenergized|zero energy verified|zero-energy verified|tested before maintenance|before maintenance begins|before work begins|zero energy|tested|barricaded|secured|intact|in place|no access|not exposed)\b/i.test(fusedText);
+      const hasSafeControlEvidence = /\b(fully guarded|guard installed|guarded and locked out|locked out|tagged out of service|out of service|removed from service|locked in a disposal bin|disposal bin|key removed|parked out of service|de-energized|deenergized|zero energy verified|zero-energy verified|tested before maintenance|before maintenance begins|before work begins|zero energy|tested|barricaded|secured|intact|in place|no access|not exposed|area restricted|restricted area|inaccessible)\b/i.test(fusedText);
       const hasDefectOrExposureEvidence = /\b(missing|removed|unguarded|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|no guard|no cover|blocked|obstructed)\b/i.test(fusedText);
+      const hasActiveEmployeeExposureEvidence = /\b(employee|worker|miner|operator|person|people|pedestrian|crew)\b.*\b(using|uses|operating|working|reaches?|contact|exposed|near|walk(?:s|ing)?|travels?|entry|inside|clearing|handling)\b/i.test(fusedText) ||
+        /\b(using|uses|operating|working|reaches?|contact|exposed|near|walk(?:s|ing)?|travels?|entry|inside|clearing|handling)\b.*\b(employee|worker|miner|operator|person|people|pedestrian|crew)\b/i.test(fusedText);
+      const hasOutOfServiceControlEvidence =
+        /\b(tagged out of service|removed from service|out of service|locked in a disposal bin|disposal bin|discarded|stored for disposal|parked out of service|key removed|unplugged|locked storage|restricted area|area restricted|no employee exposure|no access|inaccessible)\b/i.test(fusedText) &&
+        !/\b(in use|being used|while used|operating|running|backing|reverse|reversing|active traffic|employee contact possible|worker contact possible|direct exposure|exposed to)\b/i.test(fusedText);
+      const hasImmediateUseContainerEvidence =
+        /\b(immediate use|same shift|kept control|under (?:the )?control of (?:the )?worker|employee keeps control|temporary transfer)\b/i.test(fusedText) &&
+        /\b(cup|small container|secondary container|bottle|spray bottle|container)\b/i.test(fusedText) &&
+        !/\b(multiple employees|shared|left unattended|stored|storage|unknown|unidentified|not under control)\b/i.test(fusedText);
       const activeHazardEnergyText = originalFindingText.replace(/\bde-energized\b|\bdeenergized\b/g, ' ');
       const structuredControlTextForHazardousEnergy = [
         structuredObservation?.energyState || "",
@@ -2467,9 +2478,9 @@ export class SafescopeV2Service {
         /\b(smells like gas|gas smell|gas odor|gas leak|gas line|natural gas|heater cycles|heater cycle|gas appliance|furnace|boiler)\b/i.test(originalFindingText) &&
         !hasExplicitCompressedGasEvidence;
       const hasHazardousEnergyServiceActivity =
-        /\b(servicing|service work|maintenance|repair|setup|adjusting|troubleshooting|clearing jam|unjamming|un-jamming|cleaning machine|working on|work on|cleanup|cleaning|startup after maintenance|start[- ]?up after maintenance)\b/i.test(originalFindingText);
+        /\b(servicing|service work|maintenance|repair|setup|adjusting|troubleshooting|clearing (?:a )?jam(?:med)?|clear(?:ing)? (?:a )?jam(?:med)?|unjamming|un-jamming|cleaning machine|working on|work on|cleanup|cleaning|startup after maintenance|start[- ]?up after maintenance)\b/i.test(originalFindingText);
       const hasHazardousEnergyExposureIndicator =
-        /\b(while energized|energized|powered|unexpected startup|unexpected energization|quick restart|no lockout|without lockout|not locked|not locked out|lockout missing|lockout bypassed|lockout incomplete|incomplete lockout|not verified|stored pressure|stored energy|power removed|release of energy|jam clearing|clearing jam|unjam(?:ming)?|running conveyor|moving conveyor|contractor servicing|multiple energy sources|electrical[, ]+hydraulic[, ]+and[, ]+pneumatic energy sources|main disconnect|only the main disconnect)\b/i.test(activeHazardEnergyText);
+        /\b(while energized|energized|powered|unexpected startup|unexpected energization|quick restart|no lockout|without lockout|not locked|not locked out|lockout missing|lockout bypassed|lockout incomplete|incomplete lockout|not verified|stored pressure|stored energy|power removed|release of energy|jam clearing|clearing (?:a )?jam(?:med)?|clear(?:ing)? (?:a )?jam(?:med)?|unjam(?:ming)?|running conveyor|moving conveyor|contractor servicing|multiple energy sources|electrical[, ]+hydraulic[, ]+and[, ]+pneumatic energy sources|main disconnect|only the main disconnect)\b/i.test(activeHazardEnergyText);
       const hasExplicitHazardousEnergyWork =
         !hasControlledHazardousEnergyEvidence &&
         ((hasHazardousEnergyServiceActivity &&
@@ -2544,8 +2555,13 @@ export class SafescopeV2Service {
         if (/^30 CFR 56\.9100(?:\(a\))?$/i.test(citation) && !(hasExplicitMineContext || hasMineScopeContext)) return false;
         if (/^30 CFR 56\.9100(?:\(a\))?$/i.test(citation) && !/\b(pedestrian|traffic|blind corner|right of way|backing|route|same aisle|same route|haul road|intersection|spotter)\b/i.test(fusedText)) return false;
         if (/(1910\.101|1926\.350|(?:56|57)\.1600[56])/i.test(citation) && (!hasExplicitCompressedGasEvidence || hasGasOdorOnlyEvidence)) return false;
-        if (isHazardousEnergyCitation(citation) && (!hasDirectHazardousEnergyContext || (hasSafeControlEvidence && !hasDefectOrExposureEvidence))) return false;
-        if (hasSafeControlEvidence && !hasDefectOrExposureEvidence && /(1910\.212|1910\.219|(?:56|57)\.14107)/i.test(citation)) return false;
+        if (isHazardousEnergyCitation(citation) && (!hasDirectHazardousEnergyContext || (hasSafeControlEvidence && !hasActiveEmployeeExposureEvidence))) return false;
+        if (hasSafeControlEvidence && !hasActiveEmployeeExposureEvidence && /(1910\.212|1910\.219|(?:56|57)\.14107)/i.test(citation)) return false;
+        if (hasOutOfServiceControlEvidence && /(1910\.30[345]|1910\.333|1910\.334|1926\.40[346]|(?:56|57)\.12)/i.test(citation)) return false;
+        if (hasOutOfServiceControlEvidence && /(1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|14132|14207))/i.test(citation)) return false;
+        if (/\b(parked out of service|key removed|no reverse operation|not backing|not operating|removed from service)\b/i.test(fusedText) && /(1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|14132|14207))/i.test(citation)) return false;
+        if (hasImmediateUseContainerEvidence && /1910\.1200|1926\.59/i.test(citation)) return false;
+        if (/\b(?:three|3)[- ]?(?:ft|feet|foot)\b/i.test(fusedText) && /\b(no employee entry|no entry|no cave-in indicators|barricaded)\b/i.test(fusedText) && /1926\.652/i.test(citation)) return false;
         return true;
       };
       suggestedStandards = suggestedStandards.filter(applyFinalOutputFilter);
@@ -2800,8 +2816,9 @@ export class SafescopeV2Service {
         citation: string,
         title: string,
         target: 'suggested' | 'supporting' = 'suggested',
+        options?: { allowWhenVague?: boolean },
       ) => {
-        if (!citation || isVague) return;
+        if (!citation || (isVague && !options?.allowWhenVague)) return;
         const normalizedCitation = citation.toLowerCase().replace(/\s+/g, '');
         const hasCitation = [...suggestedStandards, ...supportingStandards, ...finalPrimaryStandards].some((standard: any) =>
           String(standard?.citation || standard?.standard || standard?.id || '').toLowerCase().replace(/\s+/g, '') === normalizedCitation,
@@ -2837,6 +2854,24 @@ export class SafescopeV2Service {
       ) {
         ensureVisibleStandard('30 CFR 56.14107(a)', 'Moving machine parts guarding', 'suggested');
         ensureVisibleStandard('30 CFR 56.12016', 'Work on electrically powered equipment; deenergizing and lockout', 'supporting');
+      }
+
+      const hasConstructionLadderDefectEvidence =
+        (normalizedScopes.includes('osha_construction') || /\b(construction|jobsite|building site)\b/i.test(fusedText)) &&
+        /\b(ladder|portable ladder|extension ladder|stepladder|step ladder)\b/i.test(fusedText) &&
+        /\b(using|used|climb|climbing|access|employees?|workers?)\b/i.test(fusedText) &&
+        /\b(cracked|broken|damaged|defective|loose rung|side rail|split rail)\b/i.test(fusedText);
+      if (hasConstructionLadderDefectEvidence) {
+        ensureVisibleStandard('29 CFR 1926.1053(b)(16)', 'Defective ladders shall be withdrawn from service', 'suggested', { allowWhenVague: true });
+      }
+
+      const hasGeneralIndustryWalkingSurfaceReleaseEvidence =
+        (normalizedScopes.includes('osha_general_industry') || /\b(manufacturing|plant|warehouse|shop|facility)\b/i.test(fusedText)) &&
+        /\b(oil|grease|spill|spilled|leak|leaking|slick|wet)\b/i.test(fusedText) &&
+        /\b(aisle|walkway|walking surface|travel path|floor|route)\b/i.test(fusedText) &&
+        /\b(employees?|workers?|pedestrians?|used by|traffic)\b/i.test(fusedText);
+      if (hasGeneralIndustryWalkingSurfaceReleaseEvidence) {
+        ensureVisibleStandard('29 CFR 1910.22(a)(2)', 'Walking-working surfaces maintained free of hazards', 'suggested', { allowWhenVague: true });
       }
 
       if (
@@ -3017,7 +3052,12 @@ export class SafescopeV2Service {
       const shouldKeepAncillaryCitation = (value: any) => {
         const citation = extractAncillaryCitation(value);
         if (!citation) return true;
-        if (isHazardousEnergyCitation(citation) && (!hasDirectHazardousEnergyContext || (hasSafeControlEvidence && !hasDefectOrExposureEvidence))) return false;
+        if (isHazardousEnergyCitation(citation) && (!hasDirectHazardousEnergyContext || (hasSafeControlEvidence && !hasActiveEmployeeExposureEvidence))) return false;
+        if (hasOutOfServiceControlEvidence && /(1910\.30[345]|1910\.333|1910\.334|1926\.40[346]|(?:56|57)\.12)/i.test(citation)) return false;
+        if (hasOutOfServiceControlEvidence && /(1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|14132|14207))/i.test(citation)) return false;
+        if (/\b(parked out of service|key removed|no reverse operation|not backing|not operating|removed from service)\b/i.test(fusedText) && /(1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|14132|14207))/i.test(citation)) return false;
+        if (hasImmediateUseContainerEvidence && /1910\.1200|1926\.59/i.test(citation)) return false;
+        if (/\b(?:three|3)[- ]?(?:ft|feet|foot)\b/i.test(fusedText) && /\b(no employee entry|no entry|no cave-in indicators|barricaded)\b/i.test(fusedText) && /1926\.652/i.test(citation)) return false;
         return true;
       };
       const sanitizeAncillaryStandardsList = (value: any) => Array.isArray(value)
@@ -3085,10 +3125,52 @@ export class SafescopeV2Service {
           : async (standards: any[] = []) => standards;
 
       standardDecisions = await hydrateStandardReferences(standardDecisions);
+      standardDecisions = standardDecisions.filter((decision: any) => shouldKeepAncillaryCitation(decision));
+      const hasMshaEnergizedConveyorJamEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(conveyor|belt|jam|clearing (?:a )?jam(?:med)?|clear(?:ing)? (?:a )?jam(?:med)?)\b/i.test(fusedText) &&
+        /\b(energized|operating|running|unexpected startup|lockout not applied|no lockout|without lockout|loto not applied)\b/i.test(fusedText);
+      if (hasMshaEnergizedConveyorJamEvidence) {
+        standardDecisions = standardDecisions.map((decision: any) => {
+          if (!/(?:30 CFR )?56\.12016/i.test(String(decision?.citation || ''))) return decision;
+          return {
+            ...decision,
+            authority: decision?.authority || 'supporting',
+            confidence: Math.max(Number(decision?.confidence) || 0, 0.82),
+            isCandidate: false,
+            isDirectMatch: Boolean(decision?.isDirectMatch),
+            applicabilityStatus: 'probable',
+            reasons: Array.from(new Set([
+              ...(Array.isArray(decision?.reasons) ? decision.reasons : []),
+              'MSHA conveyor jam-clearing evidence includes operating, energized, or not-locked-out equipment.',
+            ])),
+          };
+        });
+      }
+      const hasPermitSpaceEntryPredicateEvidence =
+        (normalizedScopes.includes('osha_general_industry') || /\b(general industry|warehouse|plant|facility|process tank)\b/i.test(fusedText)) &&
+        /\b(permit[- ]required|permit space|prcs|process tank|tank)\b/i.test(fusedText) &&
+        /\b(entered|entry|inside|went into|worker in|employee in)\b/i.test(fusedText) &&
+        /\b(toxic atmosphere|hazardous atmosphere|possible toxic|low oxygen|oxygen deficient|atmospheric test|pre[- ]entry|no attendant|without attendant|rescue|permit)\b/i.test(fusedText);
+      if (hasPermitSpaceEntryPredicateEvidence) {
+        standardDecisions = standardDecisions.map((decision: any) => {
+          if (!/(?:29 CFR )?1910\.146/i.test(String(decision?.citation || ''))) return decision;
+          return {
+            ...decision,
+            authority: decision?.authority || 'primary',
+            confidence: Math.max(Number(decision?.confidence) || 0, 0.84),
+            isCandidate: false,
+            isDirectMatch: true,
+            applicabilityStatus: 'probable',
+            reasons: Array.from(new Set([
+              ...(Array.isArray(decision?.reasons) ? decision.reasons : []),
+              'OSHA general-industry confined-space evidence includes tank entry and permit-space atmospheric, attendant, or pre-entry testing predicates.',
+            ])),
+          };
+        });
+      }
       if (
-        normalizedScopes.includes('msha') &&
-        /\b(conveyor|belt|jam|clearing jam|clear a jam)\b/i.test(fusedText) &&
-        /\b(energized|operating|running|unexpected startup|lockout not applied|no lockout|without lockout|loto not applied)\b/i.test(fusedText) &&
+        hasMshaEnergizedConveyorJamEvidence &&
         !standardDecisions.some((decision: any) => /(?:30 CFR )?56\.12016/i.test(String(decision?.citation || '')))
       ) {
         const hydratedSupport = await hydrateStandardReferences([{
@@ -3110,7 +3192,7 @@ export class SafescopeV2Service {
           source: 'structured_evidence_hazardous_energy_support',
           applicabilityStatus: 'probable',
         }]);
-        standardDecisions = [...standardDecisions, ...hydratedSupport];
+        standardDecisions = [...standardDecisions, ...hydratedSupport.filter((decision: any) => shouldKeepAncillaryCitation(decision))];
       }
       response.standardDecisions = standardDecisions;
       const canonicalPrimaryDecisions = standardDecisions.filter((decision: any) =>
@@ -3131,6 +3213,51 @@ export class SafescopeV2Service {
       }
       if (!(Array.isArray(response.standards) && response.standards.length) && Array.isArray(response.primaryStandards) && response.primaryStandards.length) {
         response.standards = response.primaryStandards.slice(0, 5);
+      }
+      if (
+        hasGeneralIndustryWalkingSurfaceReleaseEvidence &&
+        ![
+          ...(Array.isArray(response.suggestedStandards) ? response.suggestedStandards : []),
+          ...(Array.isArray(response.primaryStandards) ? response.primaryStandards : []),
+          ...(Array.isArray(response.standardDecisions) ? response.standardDecisions : []),
+        ].some((standard: any) => /1910\.22/i.test(String(standard?.citation || standard?.standard || standard || "")))
+      ) {
+        const walkingSurfaceCandidate = {
+          citation: '29 CFR 1910.22(a)(2)',
+          title: 'Walking-working surfaces maintained free of hazards',
+          summary: 'Oil, liquid, or slick contamination on an employee walking route supports walking-working surface review.',
+          authority: 'primary',
+          agency: 'OSHA',
+          scope: 'osha_general_industry',
+          confidence: 0.86,
+          reasons: [
+            'Observation describes oil or liquid contamination on an aisle, walkway, floor, or route used by employees.',
+          ],
+          isCandidate: true,
+          isDirectMatch: true,
+          source: 'independent_predicate_walking_surface_recovery',
+          applicabilityStatus: 'probable' as const,
+        };
+        const walkingSurfaceHydrated = await hydrateStandardReferences([walkingSurfaceCandidate]);
+        const walkingSurfaceStandard = Array.isArray(walkingSurfaceHydrated) && walkingSurfaceHydrated.length
+          ? walkingSurfaceHydrated
+          : [walkingSurfaceCandidate];
+        response.suggestedStandards = uniqueByCitation([
+          ...(Array.isArray(response.suggestedStandards) ? response.suggestedStandards : []),
+          ...walkingSurfaceStandard,
+        ]).slice(0, 5);
+        response.primaryStandards = uniqueByCitation([
+          ...(Array.isArray(response.primaryStandards) ? response.primaryStandards : []),
+          ...walkingSurfaceStandard,
+        ]).slice(0, 5);
+        response.standards = uniqueByCitation([
+          ...(Array.isArray(response.standards) ? response.standards : []),
+          ...walkingSurfaceStandard,
+        ]).slice(0, 5);
+        response.standardDecisions = uniqueByCitation([
+          ...(Array.isArray(response.standardDecisions) ? response.standardDecisions : []),
+          ...walkingSurfaceStandard,
+        ]);
       }
       if (!(Array.isArray(response.supportingStandards) && response.supportingStandards.length) && canonicalSupportingDecisions.length) {
         response.supportingStandards = canonicalSupportingDecisions.slice(0, 5);
@@ -3514,7 +3641,7 @@ export class SafescopeV2Service {
     const hasTrafficOrMobileEquipmentContext =
       hasMobileEquipmentObject ||
       (hasTrafficExposure && !/\b(oxygen cylinder|gas cylinder|compressed gas|cylinder|cylinders)\b/i.test(normalizedObservation));
-    const hasElectricalContext = /\b(electrical|electric|energized|live parts?|panel|breaker|disconnect|cord|cable|wire|wiring|conductor|gfci|shock|arc flash|arc[- ]flash|voltage)\b/i.test(normalizedObservation);
+    const hasElectricalContext = /\b(electrical|electric|live parts?|panel|breaker|disconnect|cord|cable|wire|wiring|conductor|gfci|shock|arc flash|arc[- ]flash|voltage)\b/i.test(normalizedObservation);
     const hasMachineGuardingContext = /\b(machine|guard|guarded|guarding|unguarded|conveyor|belt|tail pulley|head pulley|pulley|shaft|nip point|pinch point|rotating|point of operation|moving part)\b/i.test(normalizedObservation);
     const hasWalkingSurfaceContext = /\b(walkway|walking|working surface|floor|aisle|route|path|spill|slick|slip|trip|housekeeping|clutter|debris|stairs?|stairway|ladder|hole|opening)\b/i.test(normalizedObservation);
     const hasFallOrHeightContext = /\b(fall|edge|platform|scaffold|berm|dump point|roadway|haul road|hole|opening|ladder|roof|mezzanine|elevated work|handrail|stair landing|lower level)\b/i.test(normalizedObservation);
@@ -3716,7 +3843,14 @@ export class SafescopeV2Service {
       /\b(pedestrian|pedestrians|equipment travel path|equipment travel paths|mobile equipment|spotter|spotters|traffic control|traffic controls|backup alarm|backup alarms|blind spot|blind spots|haul road|haul roads|berm|berms|vehicle lane|vehicle lanes|operator communication|positive communication)\b/i.test(value);
 
     const isRelevantShardCorrectiveActionPattern = (value: string) => {
-      if (/\b(electrical|energized|qualified electrical|enclosure|panel|breaker|cover|cord|cable|de-energization)\b/i.test(value) && !hasElectricalContext) {
+      const electricalRepairControl =
+        /\b(electrical exposure|qualified electrical|enclosure|panel|breaker|cover|cord|cable|damaged electrical|electrical equipment)\b/i.test(value);
+      const energyIsolationControl =
+        /\b(de-energization|deenergization|de-energize|deenergize|zero[- ]energy|energy isolation|lockout|tagout)\b/i.test(value);
+      if (electricalRepairControl && !hasElectricalContext) {
+        return false;
+      }
+      if (energyIsolationControl && !(hasElectricalContext || hasHazardousEnergyActionContext)) {
         return false;
       }
       if (/\b(moving part|tail pulley|nip point|guard construction|machine guard|guarded|guarding|lockout\/tagout before cleanup|before cleanup or maintenance)\b/i.test(value) && !hasMachineGuardingContext) {
@@ -4443,7 +4577,13 @@ export class SafescopeV2Service {
       const title = extractTitle(value, citation);
       const decisionText = `${citation} ${title}`;
       const familyMatches = responseFamilyPattern?.test(decisionText) || multiHazardPatterns.some((pattern: RegExp) => pattern.test(decisionText));
-      if ((responseFamilyPattern || multiHazardPatterns.length > 0) && !familyMatches) {
+      const sourceTraceWalkingSurfaceFit =
+        source === "standardsTraceability.suggestedCitations" &&
+        /1910\.22/i.test(citation) &&
+        /\b(oil|grease|spill|spilled|leak|leaking|slick|wet)\b/i.test(observationText) &&
+        /\b(aisle|walkway|walking surface|travel path|floor|route)\b/i.test(observationText) &&
+        /\b(employees?|workers?|pedestrians?|used by|traffic)\b/i.test(observationText);
+      if ((responseFamilyPattern || multiHazardPatterns.length > 0) && !familyMatches && !sourceTraceWalkingSurfaceFit) {
         return null;
       }
       if (
@@ -4566,6 +4706,7 @@ export class SafescopeV2Service {
     ingest(response?.applicabilityIntelligence?.primaryApplicableStandards, "applicabilityIntelligence.primaryApplicableStandards", decisions);
     ingest(response?.standardsReasoning?.topDefensible, "standardsReasoning.topDefensible", decisions);
     ingest(response?.supportingStandards, "supportingStandards", decisions);
+    ingest(response?.standardsTraceability?.suggestedCitations, "standardsTraceability.suggestedCitations", decisions);
     ingest(response?.standardsTraceability?.supportingCitations, "standardsTraceability.supportingCitations", decisions);
     ingest(response?.applicabilityIntelligence?.supportingStandards, "applicabilityIntelligence.supportingStandards", decisions);
     ingest(response?.promotion?.approvedRecordCandidate, "promotion.approvedRecordCandidate", decisions);
