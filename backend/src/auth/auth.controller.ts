@@ -1,10 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
-import { IsEmail, IsString, Matches, MinLength } from 'class-validator';
+import { IsEmail, IsOptional, IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 class LoginDto {
   @IsEmail()
@@ -22,6 +22,18 @@ class PasswordResetRequestDto {
 class DeleteAccountDto {
   @IsString()
   password: string;
+}
+
+class UpdateProfileDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  firstName?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  lastName?: string;
 }
 
 class PasswordResetDto {
@@ -56,7 +68,13 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get('me')
   getProfile(@Req() req: any) {
-    return req.user;
+    return this.authService.getProfile(req.user.userId);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('me')
+  updateProfile(@Body() dto: UpdateProfileDto, @Req() req: any) {
+    return this.authService.updateProfile(req.user.userId, dto);
   }
 
   @Throttle({ default: { limit: 5, ttl: 60000 } })

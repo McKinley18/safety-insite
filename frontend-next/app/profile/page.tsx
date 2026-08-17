@@ -3,7 +3,15 @@
 import { Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { authHeaders, clearAuthSession, getAuthUser, hasAuthToken, setAuthUser } from "@/lib/auth";
+import {
+  authHeaders,
+  clearAuthSession,
+  getAuthUser,
+  getMyProfile,
+  hasAuthToken,
+  setAuthUser,
+  updateMyProfile,
+} from "@/lib/auth";
 import { API_BASE_URL } from "@/lib/safescope";
 import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";
@@ -37,24 +45,28 @@ export default function ProfilePage() {
   const [profileEmail, setProfileEmail] = useState("");
   const [identityEditing, setIdentityEditing] = useState(false);
   const [status, setStatus] = useState("");
+  const [saveError, setSaveError] = useState("");
+  const [saving, setSaving] = useState(false);
   const [deleteConfirming, setDeleteConfirming] = useState(false);
   const [deletePassword, setDeletePassword] = useState("");
   const [deleteError, setDeleteError] = useState("");
   const [deleteInFlight, setDeleteInFlight] = useState(false);
 
+  function applyProfile(parsed: UserProfile) {
+    const nameParts = String(parsed.name || "")
+      .trim()
+      .split(" ")
+      .filter(Boolean);
+
+    setUser(parsed);
+    setFirstName(parsed.firstName || nameParts[0] || "");
+    setLastName(parsed.lastName || nameParts.slice(1).join(" ") || "");
+    setProfileEmail(parsed.email || "");
+  }
+
   function loadUserProfile() {
     try {
-      const parsed = getAuthUser();
-
-      const nameParts = String(parsed.name || "")
-        .trim()
-        .split(" ")
-        .filter(Boolean);
-
-      setUser(parsed);
-      setFirstName(parsed.firstName || nameParts[0] || "");
-      setLastName(parsed.lastName || nameParts.slice(1).join(" ") || "");
-      setProfileEmail(parsed.email || "");
+      applyProfile(getAuthUser());
     } catch {
       setUser({});
     }
@@ -67,27 +79,41 @@ export default function ProfilePage() {
     }
 
     loadUserProfile();
+
+    getMyProfile()
+      .then((profile) => {
+        const merged = { ...getAuthUser(), ...profile };
+        setAuthUser(merged);
+        applyProfile(merged);
+      })
+      .catch(() => {
+        // Fall back to the cached session profile when the network/API is unavailable.
+      });
   }, [router]);
 
-  function saveAccountIdentity() {
-    const existing = getAuthUser();
+  async function saveAccountIdentity() {
+    if (saving) return;
 
-    const updated = {
-      ...existing,
-      firstName,
-      lastName,
-      email: profileEmail,
-      name: [firstName, lastName].filter(Boolean).join(" ").trim(),
-    };
+    setSaving(true);
+    setSaveError("");
 
-    setAuthUser(updated);
-    setUser(updated);
-    setIdentityEditing(false);
-    setStatus("Profile updated locally.");
+    try {
+      const updated = await updateMyProfile({ firstName, lastName });
+      const merged = { ...getAuthUser(), ...updated };
+      setAuthUser(merged);
+      applyProfile(merged);
+      setIdentityEditing(false);
+      setStatus("Profile updated.");
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : "Unable to update your profile.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   function cancelAccountIdentityEdit() {
     loadUserProfile();
+    setSaveError("");
     setIdentityEditing(false);
   }
 
@@ -231,11 +257,10 @@ export default function ProfilePage() {
                   <span className="text-xs font-black uppercase tracking-wide text-slate-700">
                     Email Address
                   </span>
-                  <AppInput
-                    value={profileEmail}
-                    onChange={(event) => setProfileEmail(event.target.value)}
-                    className="mt-2"
-                  />
+                  <AppInput value={profileEmail} disabled className="mt-2 opacity-70" />
+                  <span className="mt-1 block text-[11px] font-semibold normal-case text-slate-500">
+                    Email is your account sign-in identity and can&apos;t be changed here.
+                  </span>
                 </label>
               </div>
 
@@ -243,20 +268,28 @@ export default function ProfilePage() {
                 <AppButton
                   type="button"
                   onClick={saveAccountIdentity}
+                  disabled={saving}
                   className="w-44"
                 >
-                  Save Changes
+                  {saving ? "Saving..." : "Save Changes"}
                 </AppButton>
 
                 <AppButton
                   type="button"
                   variant="secondary"
                   onClick={cancelAccountIdentityEdit}
+                  disabled={saving}
                   className="w-44"
                 >
                   Cancel
                 </AppButton>
               </div>
+
+              {saveError && (
+                <p className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-center text-xs font-black text-red-700">
+                  {saveError}
+                </p>
+              )}
             </>
           )}
 

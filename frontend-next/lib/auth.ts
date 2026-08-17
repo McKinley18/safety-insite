@@ -129,6 +129,46 @@ export function authHeaders() {
   };
 }
 
+export async function getMyProfile() {
+  const response = await fetch(`${API_BASE_URL}/auth/me`, {
+    headers: authHeaders(),
+  });
+
+  if (response.status === 401 || response.status === 403) {
+    throw new Error("AUTH_REQUIRED");
+  }
+
+  if (!response.ok) {
+    throw new Error("Unable to load your profile.");
+  }
+
+  return (await response.json()) as SentinelAuthUser;
+}
+
+export async function updateMyProfile(payload: { firstName?: string; lastName?: string }) {
+  const response = await fetch(`${API_BASE_URL}/auth/me`, {
+    method: "PATCH",
+    headers: authHeaders(),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    let message = "Unable to update your profile.";
+    try {
+      const parsed = await response.json();
+      if (typeof parsed?.message === "string") message = parsed.message;
+      else if (Array.isArray(parsed?.message) && parsed.message.length) {
+        message = String(parsed.message[0]);
+      }
+    } catch {
+      // Non-JSON error body: keep the generic message.
+    }
+    throw new Error(message);
+  }
+
+  return (await response.json()) as SentinelAuthUser;
+}
+
 export async function getOrganizationSettings() {
   const response = await fetch(`${API_BASE_URL}/organization/me/settings`, {
     headers: authHeaders(),

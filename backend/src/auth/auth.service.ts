@@ -91,9 +91,14 @@ export class AuthService {
       Number(process.env.BCRYPT_ROUNDS || 12),
     );
 
+    const resolvedName = name || email.split('@')[0];
+    const nameParts = resolvedName.trim().split(/\s+/).filter(Boolean);
+
     const user = this.userRepo.create({
       email,
-      name: name || email.split('@')[0],
+      name: resolvedName,
+      firstName: nameParts[0] || null,
+      lastName: nameParts.slice(1).join(' ') || null,
       passwordHash: hashedPassword,
       type: finalType || 'individual',
       planCode,
@@ -189,26 +194,104 @@ export class AuthService {
     return {
       message: 'Login successful',
       token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        type: user.type,
-        role: membership?.role || user.role,
-        organizationRole: membership?.role || null,
-        platformRole: user.role === 'platform_admin' ? 'platform_admin' : null,
-        subscriptionStatus: billingSnapshot?.subscriptionStatus || user.subscriptionStatus,
-        subscriptionTier: effectivePlanCode,
-        planCode: effectivePlanCode,
-        effectivePlanCode,
-        organizationPlanCode: organization?.planCode || null,
-        organizationId: membership?.organizationId || null,
-        billingStatus: billingSnapshot?.status || user.subscriptionStatus,
-        billingEntitlements: billingSnapshot?.entitlements || null,
-        hasPaidAccess: billingSnapshot?.hasPaidAccess || false,
-        hasProAccess: billingSnapshot?.hasProAccess || false,
-      },
+      user: await this.buildUserSnapshot(user, membership, organization, billingSnapshot, effectivePlanCode),
       metadata,
+    };
+  }
+
+  async getProfile(userId: string) {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user || user.deletedAt) {
+      throw new UnauthorizedException();
+    }
+
+    return this.loadUserSnapshot(user);
+  }
+
+  async updateProfile(userId: string, dto: { firstName?: string; lastName?: string }) {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user || user.deletedAt) {
+      throw new UnauthorizedException();
+    }
+
+    if (dto.firstName !== undefined) {
+      const trimmed = dto.firstName.trim();
+      if (!trimmed) {
+        throw new BadRequestException('First name cannot be empty.');
+      }
+      if (trimmed.length > 100) {
+        throw new BadRequestException('First name is too long.');
+      }
+      user.firstName = trimmed;
+    }
+
+    if (dto.lastName !== undefined) {
+      const trimmed = dto.lastName.trim();
+      if (trimmed.length > 100) {
+        throw new BadRequestException('Last name is too long.');
+      }
+      user.lastName = trimmed || null;
+    }
+
+    const combinedName = [user.firstName, user.lastName].filter(Boolean).join(' ').trim();
+    if (combinedName) {
+      user.name = combinedName;
+    }
+
+    await this.userRepo.save(user);
+    return this.loadUserSnapshot(user);
+  }
+
+  private async loadUserSnapshot(user: User) {
+    const membership = await this.orgService.getActiveMembership(user.id);
+    const organization = membership?.organizationId
+      ? await this.orgService.findOne(membership.organizationId).catch(() => null)
+      : null;
+
+    const billingSnapshot = await this.billingService.getBillingStatus({
+      userId: user.id,
+      email: user.email,
+      planCode: organization?.planCode || user.planCode || 'free',
+      type: user.type,
+    }).catch(() => null);
+
+    const effectivePlanCode = normalizeBillingTier(
+      billingSnapshot?.tier ||
+        organization?.planCode ||
+        user.planCode ||
+        'free',
+    );
+
+    return this.buildUserSnapshot(user, membership, organization, billingSnapshot, effectivePlanCode);
+  }
+
+  private async buildUserSnapshot(
+    user: User,
+    membership: OrganizationMembership | null | undefined,
+    organization: any,
+    billingSnapshot: any,
+    effectivePlanCode: string,
+  ) {
+    return {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      firstName: user.firstName || null,
+      lastName: user.lastName || null,
+      type: user.type,
+      role: membership?.role || user.role,
+      organizationRole: membership?.role || null,
+      platformRole: user.role === 'platform_admin' ? 'platform_admin' : null,
+      subscriptionStatus: billingSnapshot?.subscriptionStatus || user.subscriptionStatus,
+      subscriptionTier: effectivePlanCode,
+      planCode: effectivePlanCode,
+      effectivePlanCode,
+      organizationPlanCode: organization?.planCode || null,
+      organizationId: membership?.organizationId || null,
+      billingStatus: billingSnapshot?.status || user.subscriptionStatus,
+      billingEntitlements: billingSnapshot?.entitlements || null,
+      hasPaidAccess: billingSnapshot?.hasPaidAccess || false,
+      hasProAccess: billingSnapshot?.hasProAccess || false,
     };
   }
 

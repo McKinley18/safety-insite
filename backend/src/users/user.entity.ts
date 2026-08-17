@@ -9,6 +9,12 @@ export class User {
   @Column()
   name: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  firstName: string | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  lastName: string | null;
+
   @Column({ unique: true })
   email: string;
 
