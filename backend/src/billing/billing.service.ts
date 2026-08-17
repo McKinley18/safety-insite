@@ -287,6 +287,27 @@ export class BillingService {
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object;
+        const stripeSubscriptionId =
+          typeof session.subscription === 'string'
+            ? session.subscription
+            : session.subscription?.id;
+
+        // Stripe delivers checkout.session.completed and customer.subscription.created
+        // concurrently, so this handler must not write a hardcoded status (e.g.
+        // 'incomplete') — that can race with and overwrite the subscription event's
+        // more current status. Fetch the live subscription and let the same
+        // upsert path used for subscription events set the authoritative state.
+        if (stripeSubscriptionId) {
+          const subscription = await stripe.subscriptions
+            .retrieve(stripeSubscriptionId)
+            .catch(() => null);
+
+          if (subscription) {
+            await this.upsertSubscriptionFromStripeSubscription(subscription, event.id);
+            return;
+          }
+        }
+
         const userId = await this.resolveUserIdForStripeObject(session);
         if (!userId) return;
         await this.upsertSubscriptionFromCheckoutSession(userId, session, event.id);
