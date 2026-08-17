@@ -8,6 +8,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import {
   createCheckoutSession,
   createPortalSession,
+  getBillingLifecycleCopy,
   getBillingMe,
   getBillingTierDisplayName,
   getBillingTierPrice,
@@ -20,13 +21,6 @@ type BillingSettingsPanelProps = {
   title?: string;
   description?: string;
 };
-
-function formatDate(value?: string | null) {
-  if (!value) return "Not available";
-  const date = new Date(value);
-  if (!Number.isFinite(date.getTime())) return "Not available";
-  return date.toLocaleDateString();
-}
 
 export default function BillingSettingsPanel({
   className = "",
@@ -74,6 +68,10 @@ export default function BillingSettingsPanel({
   const tierLabel = getBillingTierDisplayName(tier);
   const tierPrice = getBillingTierPrice(tier);
   const canManage = Boolean(billing?.stripeCustomerId && billing?.billingConfigured);
+  const lifecycleCopy = useMemo(
+    () => getBillingLifecycleCopy(billing || ({ status: "none" } as BillingResponse)),
+    [billing],
+  );
 
   const primaryUpgradeTier = useMemo<BillingCheckoutTier | null>(() => {
     if (tier === "free") return "pro";
@@ -148,12 +146,10 @@ export default function BillingSettingsPanel({
             Subscription status
           </p>
           <p className="mt-1 text-lg font-black text-slate-950 dark:text-white">
-            {loading ? "Loading..." : (billing?.status || "none")}
+            {loading ? "Loading..." : lifecycleCopy.statusLabel}
           </p>
           <p className="mt-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
-            {billing?.cancelAtPeriodEnd
-              ? `Ends ${formatDate(billing?.currentPeriodEnd)}`
-              : `Renewal ${formatDate(billing?.currentPeriodEnd)}`}
+            {loading ? "" : lifecycleCopy.renewalLabel}
           </p>
         </div>
       </div>

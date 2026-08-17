@@ -24,6 +24,11 @@ export type BillingStatus =
 
 export type BillingTier = PlanCode;
 
+export type SubscriptionLifecycleState =
+  | "active_renewing"
+  | "active_cancel_scheduled"
+  | "canceled";
+
 export type BillingResponse = {
   tier: BillingTier;
   planCode?: BillingTier;
@@ -37,6 +42,8 @@ export type BillingResponse = {
   currentPeriodStart: string | null;
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
+  cancelAt?: string | null;
+  lifecycleState?: SubscriptionLifecycleState | null;
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
   stripePriceId: string | null;
@@ -76,6 +83,8 @@ function getLocalDevBillingMe(): BillingResponse {
     currentPeriodStart: null,
     currentPeriodEnd: null,
     cancelAtPeriodEnd: false,
+    cancelAt: null,
+    lifecycleState: active ? "active_renewing" : null,
     stripeCustomerId: null,
     stripeSubscriptionId: null,
     stripePriceId: null,
@@ -166,6 +175,45 @@ export function hasProAccess(status: BillingResponse): boolean {
 
 function isActiveBillingStatus(status?: string | null) {
   return status === "active" || status === "trialing";
+}
+
+function formatBillingDate(value?: string | null) {
+  if (!value) return null;
+  const date = new Date(value);
+  if (!Number.isFinite(date.getTime())) return null;
+  return date.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+}
+
+/**
+ * Truthful status/renewal copy driven by the Stripe-derived lifecycle state.
+ * Never says "Renews" once a cancellation is scheduled, and never fabricates
+ * an end date when Stripe hasn't given us one yet.
+ */
+export function getBillingLifecycleCopy(status: BillingResponse): {
+  statusLabel: string;
+  renewalLabel: string;
+} {
+  const lifecycleState = status.lifecycleState ?? null;
+  const endDate = formatBillingDate(status.cancelAt || status.currentPeriodEnd);
+
+  if (lifecycleState === "active_cancel_scheduled") {
+    return {
+      statusLabel: "Cancels at period end",
+      renewalLabel: endDate ? `Pro access through ${endDate}` : "Pro access continues until your current billing period ends.",
+    };
+  }
+
+  if (lifecycleState === "active_renewing") {
+    return {
+      statusLabel: status.status || "active",
+      renewalLabel: endDate ? `Renews ${endDate}` : "Renewal date not available yet.",
+    };
+  }
+
+  return {
+    statusLabel: status.status || "none",
+    renewalLabel: "Not available",
+  };
 }
 
 async function readBillingError(response: Response) {

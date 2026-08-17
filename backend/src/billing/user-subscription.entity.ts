@@ -45,8 +45,14 @@ export class UserSubscription {
   @Column({ type: "boolean", default: false })
   cancelAtPeriodEnd!: boolean;
 
+  @Column({ type: "timestamptz", nullable: true })
+  cancelAt!: Date | null;
+
   @Column({ type: "varchar", length: 255, nullable: true })
   lastStripeEventId!: string | null;
+
+  @Column({ type: "timestamptz", nullable: true })
+  lastStripeEventAt!: Date | null;
 
   @CreateDateColumn({ type: "timestamptz" })
   createdAt!: Date;

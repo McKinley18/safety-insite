@@ -26,6 +26,7 @@ import {
   hasProAccess,
   normalizeStripeSubscriptionStatus,
   resolveAccessTier,
+  resolveSubscriptionLifecycleState,
 } from './subscription-status';
 
 type StripeClient = InstanceType<typeof StripeConstructor>;
@@ -39,6 +40,80 @@ function getUserId(user: any): string {
   }
 
   return userId;
+}
+
+// Stripe subscription items carry a `price` that is normally expanded to a
+// full object on webhook/API responses, but defend against the raw string-id
+// shape too.
+function itemPriceId(item: any): string | undefined {
+  return typeof item?.price === 'string' ? item.price : item?.price?.id;
+}
+
+/**
+ * Identify the subscription item that represents our Pro plan, rather than
+ * blindly reading items[0]. This product currently sells exactly one
+ * recurring price per subscription, so when the configured Pro price isn't
+ * found (e.g. env misconfigured, legacy price id), fall back to the sole
+ * item — but never guess among multiple unmatched items.
+ */
+function resolveProSubscriptionItem(stripeSubscription: any): any | null {
+  const items: any[] = stripeSubscription?.items?.data || [];
+  if (!items.length) return null;
+
+  const proPriceId = getConfiguredStripePriceIdForTier('pro');
+  const matchedByPrice = proPriceId
+    ? items.find((item) => itemPriceId(item) === proPriceId)
+    : undefined;
+  if (matchedByPrice) return matchedByPrice;
+
+  return items.length === 1 ? items[0] : null;
+}
+
+/**
+ * Billing period start/end moved off the top-level Subscription object under
+ * Stripe's "flexible" billing mode (observed on API version
+ * 2026-04-22.dahlia) and now live only on each subscription item. Prefer the
+ * top-level fields when present (older API versions / classic billing mode),
+ * otherwise fall back to the resolved Pro item. Never throws on missing data.
+ */
+function resolveSubscriptionPeriod(stripeSubscription: any): {
+  start: Date | null;
+  end: Date | null;
+} {
+  const topLevelStart = stripeSubscription?.current_period_start;
+  const topLevelEnd = stripeSubscription?.current_period_end;
+
+  if (typeof topLevelStart === 'number' && typeof topLevelEnd === 'number') {
+    return { start: new Date(topLevelStart * 1000), end: new Date(topLevelEnd * 1000) };
+  }
+
+  const item = resolveProSubscriptionItem(stripeSubscription);
+  const start = typeof item?.current_period_start === 'number'
+    ? new Date(item.current_period_start * 1000)
+    : null;
+  const end = typeof item?.current_period_end === 'number'
+    ? new Date(item.current_period_end * 1000)
+    : null;
+
+  return { start, end };
+}
+
+/**
+ * Under API version 2026-04-22.dahlia with billing_mode "flexible", the
+ * Stripe Customer Portal's at-period-end cancellation sets `cancel_at` (a
+ * general future stop timestamp) and leaves `cancel_at_period_end` false.
+ * Treat either signal as authoritative so this keeps working regardless of
+ * which field a given API version/billing mode actually populates.
+ */
+function resolveScheduledCancellation(stripeSubscription: any): {
+  cancelAt: Date | null;
+  scheduled: boolean;
+} {
+  const cancelAtPeriodEndFlag = Boolean(stripeSubscription?.cancel_at_period_end);
+  const rawCancelAt = stripeSubscription?.cancel_at;
+  const cancelAt = typeof rawCancelAt === 'number' ? new Date(rawCancelAt * 1000) : null;
+
+  return { cancelAt, scheduled: cancelAtPeriodEndFlag || cancelAt !== null };
 }
 
 @Injectable()
@@ -129,6 +204,13 @@ export class BillingService {
       currentPeriodStart: subscription?.currentPeriodStart || null,
       currentPeriodEnd: subscription?.currentPeriodEnd || null,
       cancelAtPeriodEnd: Boolean(subscription?.cancelAtPeriodEnd),
+      cancelAt: subscription?.cancelAt || null,
+      lifecycleState: subscription
+        ? resolveSubscriptionLifecycleState({
+            status: subscription.status,
+            cancelAt: subscription.cancelAt,
+          })
+        : null,
       stripeCustomerId: subscription?.stripeCustomerId || null,
       stripeSubscriptionId: subscription?.stripeSubscriptionId || null,
       stripePriceId: subscription?.stripePriceId || null,
@@ -284,6 +366,8 @@ export class BillingService {
 
     if (existing) return;
 
+    const eventCreatedAt = typeof event.created === 'number' ? new Date(event.created * 1000) : new Date();
+
     switch (event.type) {
       case 'checkout.session.completed': {
         const session = event.data.object;
@@ -303,14 +387,14 @@ export class BillingService {
             .catch(() => null);
 
           if (subscription) {
-            await this.upsertSubscriptionFromStripeSubscription(subscription, event.id);
+            await this.upsertSubscriptionFromStripeSubscription(subscription, event.id, eventCreatedAt);
             return;
           }
         }
 
         const userId = await this.resolveUserIdForStripeObject(session);
         if (!userId) return;
-        await this.upsertSubscriptionFromCheckoutSession(userId, session, event.id);
+        await this.upsertSubscriptionFromCheckoutSession(userId, session, event.id, eventCreatedAt);
         return;
       }
 
@@ -318,7 +402,7 @@ export class BillingService {
       case 'customer.subscription.updated':
       case 'customer.subscription.deleted': {
         const subscription = event.data.object;
-        await this.upsertSubscriptionFromStripeSubscription(subscription, event.id);
+        await this.upsertSubscriptionFromStripeSubscription(subscription, event.id, eventCreatedAt);
         return;
       }
 
@@ -340,7 +424,7 @@ export class BillingService {
 
         if (!subscription) return;
 
-        await this.upsertSubscriptionFromStripeSubscription(subscription, event.id);
+        await this.upsertSubscriptionFromStripeSubscription(subscription, event.id, eventCreatedAt);
         return;
       }
 
@@ -349,10 +433,25 @@ export class BillingService {
     }
   }
 
+  /**
+   * True when applying an event dated `eventCreatedAt` would overwrite state
+   * already written by a newer event for this same subscription row. Stripe
+   * guarantees an event's `created` timestamp reflects when Stripe generated
+   * it, including on redelivery/retry, so this protects against an
+   * out-of-order (stale) delivery clobbering more current state — the
+   * per-event `lastStripeEventId` check above only catches exact-duplicate
+   * redelivery, not reordering between two different events.
+   */
+  private isStaleEvent(existing: UserSubscription | null, eventCreatedAt: Date): boolean {
+    if (!existing?.lastStripeEventAt) return false;
+    return eventCreatedAt.getTime() < existing.lastStripeEventAt.getTime();
+  }
+
   private async upsertSubscriptionFromCheckoutSession(
     userId: string,
     session: any,
     eventId: string,
+    eventCreatedAt: Date,
   ) {
     const stripeSubscriptionId =
       typeof session.subscription === 'string'
@@ -367,6 +466,8 @@ export class BillingService {
     const tier = normalizeBillingTier(session.metadata?.targetTier);
     const existing = await this.subscriptions.findOne({ where: { userId } });
 
+    if (this.isStaleEvent(existing, eventCreatedAt)) return;
+
     await this.subscriptions.save({
       ...(existing || {}),
       userId,
@@ -375,23 +476,33 @@ export class BillingService {
       tier,
       status: 'incomplete',
       lastStripeEventId: eventId,
+      lastStripeEventAt: eventCreatedAt,
     });
   }
 
   private async upsertSubscriptionFromStripeSubscription(
     stripeSubscription: any,
     eventId: string,
+    eventCreatedAt: Date,
   ) {
     const userId = await this.resolveUserIdForStripeObject(stripeSubscription);
     if (!userId) return;
 
-    const stripePriceId = stripeSubscription.items?.data?.[0]?.price?.id;
+    const proItem = resolveProSubscriptionItem(stripeSubscription);
+    const stripePriceId = itemPriceId(proItem);
     const resolvedPriceTier = resolveTierForPriceId(stripePriceId);
     const tier =
       resolvedPriceTier !== 'free'
         ? resolvedPriceTier
         : normalizeBillingTier(stripeSubscription.metadata?.targetTier);
     const existing = await this.subscriptions.findOne({ where: { userId } });
+
+    if (this.isStaleEvent(existing, eventCreatedAt)) return;
+
+    const { start: currentPeriodStart, end: currentPeriodEnd } =
+      resolveSubscriptionPeriod(stripeSubscription);
+    const { cancelAt, scheduled: cancelAtPeriodEnd } =
+      resolveScheduledCancellation(stripeSubscription);
 
     await this.subscriptions.save({
       ...(existing || {}),
@@ -404,14 +515,12 @@ export class BillingService {
       stripePriceId,
       tier,
       status: normalizeStripeSubscriptionStatus(stripeSubscription.status),
-      currentPeriodStart: stripeSubscription.current_period_start
-        ? new Date(stripeSubscription.current_period_start * 1000)
-        : null,
-      currentPeriodEnd: stripeSubscription.current_period_end
-        ? new Date(stripeSubscription.current_period_end * 1000)
-        : null,
-      cancelAtPeriodEnd: Boolean(stripeSubscription.cancel_at_period_end),
+      currentPeriodStart,
+      currentPeriodEnd,
+      cancelAtPeriodEnd,
+      cancelAt,
       lastStripeEventId: eventId,
+      lastStripeEventAt: eventCreatedAt,
     });
   }
 

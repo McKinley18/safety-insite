@@ -59,3 +59,26 @@ export function hasProAccess(input: BillingAccessInput): boolean {
   const tier = resolveAccessTier(input.tier, input.status, input.currentPeriodEnd);
   return tier === "pro";
 }
+
+// Truthful, Stripe-derived lifecycle presentation state — distinct from the
+// entitlement question ("does this tier unlock features right now") answered
+// by hasActivePaidAccess/hasProAccess above. A subscription can be fully
+// entitled (status active) while also being scheduled to stop in the future.
+export type SubscriptionLifecycleState =
+  | "active_renewing"
+  | "active_cancel_scheduled"
+  | "canceled";
+
+export function resolveSubscriptionLifecycleState(input: {
+  status?: string | null;
+  cancelAt?: Date | string | null;
+}): SubscriptionLifecycleState {
+  const normalizedStatus = normalizeStripeSubscriptionStatus(input.status);
+  const isCurrentlyEntitled = normalizedStatus === "active" || normalizedStatus === "trialing";
+
+  if (!isCurrentlyEntitled) {
+    return "canceled";
+  }
+
+  return input.cancelAt ? "active_cancel_scheduled" : "active_renewing";
+}
