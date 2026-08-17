@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
+import { TokenValidityService } from './token-validity.service';
 import { getJwtSecret } from './jwt-secret.util';
 import { User } from '../users/user.entity';
 import { OrganizationsModule } from '../organizations/organizations.module';
@@ -16,6 +17,10 @@ import { InspectionAssignment } from '../inspection/entities/inspection-assignme
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { Notification } from '../notifications/notification.entity';
 
+// Global: TokenValidityService must be injectable into JwtGuard from every
+// feature module (sites, inspections, HazLenz, reports, etc.) without each
+// of those ~40 modules importing AuthModule individually.
+@Global()
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -36,6 +41,7 @@ import { Notification } from '../notifications/notification.entity';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, PasswordResetDeliveryService],
+  providers: [AuthService, JwtStrategy, PasswordResetDeliveryService, TokenValidityService],
+  exports: [TokenValidityService],
 })
 export class AuthModule {}

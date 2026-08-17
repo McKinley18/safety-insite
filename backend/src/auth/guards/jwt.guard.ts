@@ -7,6 +7,7 @@ import {
 import * as jwt from 'jsonwebtoken';
 import { getJwtSecret } from '../jwt-secret.util';
 import { getBillingEntitlements, normalizeBillingTier } from '../../billing/plan-entitlements';
+import { TokenValidityService } from '../token-validity.service';
 
 function getDevBypassTier() {
   if (process.env.NODE_ENV === 'production') return 'free';
@@ -27,7 +28,9 @@ function isDevBypassEnabled() {
 
 @Injectable()
 export class JwtGuard implements CanActivate {
-  canActivate(context: ExecutionContext): boolean {
+  constructor(private readonly tokenValidity: TokenValidityService) {}
+
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const authHeader = request.headers.authorization;
 
@@ -36,13 +39,20 @@ export class JwtGuard implements CanActivate {
     if (authHeader) {
       const token = authHeader.split(' ')[1];
 
+      let decoded: any;
       try {
-        const decoded = jwt.verify(token, getJwtSecret());
-        request.user = decoded;
-        return true;
+        decoded = jwt.verify(token, getJwtSecret());
       } catch {
         throw new UnauthorizedException('Invalid token');
       }
+
+      // Signature/expiry alone aren't enough: a deleted account or a
+      // post-issuance password change must reject the token immediately,
+      // not merely once it naturally expires.
+      await this.tokenValidity.assertTokenNotRevoked(decoded);
+
+      request.user = decoded;
+      return true;
     }
 
     if (isDevBypassEnabled()) {
