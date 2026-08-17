@@ -165,11 +165,17 @@ export function getLegacyStripePriceEnvForTier(tier: BillingTier) {
   return BILLING_PLAN_DEFINITIONS[tier].legacyStripePriceEnv || null;
 }
 
+export function isValidStripePriceId(value?: string | null): value is string {
+  return typeof value === "string" && /^price_[A-Za-z0-9]+$/.test(value);
+}
+
 export function getConfiguredStripePriceIdForTier(tier: BillingTier) {
   const plan = BILLING_PLAN_DEFINITIONS[tier];
   const primary = plan.stripePriceEnv ? process.env[plan.stripePriceEnv] : null;
   const legacy = plan.legacyStripePriceEnv ? process.env[plan.legacyStripePriceEnv] : null;
-  return primary || legacy || null;
+  if (isValidStripePriceId(primary)) return primary;
+  if (isValidStripePriceId(legacy)) return legacy;
+  return null;
 }
 
 export function getBillingEntitlements(tier?: string | null) {

@@ -134,7 +134,7 @@ export class BillingService {
       stripePriceId: subscription?.stripePriceId || null,
       entitlements: getBillingEntitlements(tier),
       planDefinition: plan,
-      billingConfigured: Boolean(this.stripe),
+      billingConfigured: Boolean(this.stripe) && Boolean(getConfiguredStripePriceIdForTier('pro')),
       accessSource: activeGrant ? activeGrant.source : subscription ? 'subscription' : 'free',
       entitlementExpiresAt: activeGrant?.endsAt || null,
       planCatalog: Object.values(BILLING_PLAN_DEFINITIONS).map((definition) => ({

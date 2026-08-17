@@ -1,6 +1,8 @@
 import {
   BILLING_PLAN_DEFINITIONS,
   getBillingEntitlements,
+  getConfiguredStripePriceIdForTier,
+  isValidStripePriceId,
   normalizeBillingTier,
   resolveTierForPriceId,
 } from "./plan-entitlements";
@@ -51,6 +53,19 @@ assert(
 );
 assert(resolveAccessTier("pro", "unpaid") === "free", "unpaid drops to free");
 assert(normalizeBillingTier("local-dev-bypass-user") === "free", "non-tier local dev value normalizes free");
+
+assert(isValidStripePriceId("price_1AbC23") === true, "valid price id accepted");
+assert(isValidStripePriceId("prod_1AbC23") === false, "product id rejected as price id");
+assert(isValidStripePriceId(null) === false, "null price id rejected");
+
+const originalLegacyPlusPrice = process.env.STRIPE_PLUS_PRICE_ID;
+process.env.STRIPE_PRO_PRICE_ID = "";
+process.env.STRIPE_PLUS_PRICE_ID = "prod_legacy_not_a_price";
+assert(
+  getConfiguredStripePriceIdForTier("pro") === null,
+  "legacy product id is never used as a checkout price",
+);
+process.env.STRIPE_PLUS_PRICE_ID = originalLegacyPlusPrice;
 
 process.env.STRIPE_PRO_PRICE_ID = originalProPrice;
 process.env.STRIPE_EXPERT_PRICE_ID = originalLegacyExpertPrice;
