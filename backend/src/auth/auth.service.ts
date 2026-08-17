@@ -1,9 +1,9 @@
-import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, BadRequestException, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { createHash, randomBytes } from 'crypto';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, IsNull, Repository } from 'typeorm';
 import { User } from '../users/user.entity';
 import { JwtService } from '@nestjs/jwt';
 import { OrganizationsService } from '../organizations/organizations.service';
@@ -11,6 +11,11 @@ import { getRequestMetadata } from '../common/utils/request-metadata';
 import { BillingService } from '../billing/billing.service';
 import { normalizeBillingTier } from '../billing/plan-entitlements';
 import { PasswordResetDeliveryService } from './password-reset-delivery.service';
+import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
+import { EntitlementGrant } from '../billing/entitlement-grant.entity';
+import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
+import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
+import { Notification } from '../notifications/notification.entity';
 
 function getEmployerProPromoCodes(): string[] {
   return String(process.env.EMPLOYER_PRO_PROMO_CODES || '')
@@ -38,6 +43,17 @@ export class AuthService {
     private orgService: OrganizationsService,
     private billingService: BillingService,
     private passwordResetDelivery: PasswordResetDeliveryService,
+    @InjectRepository(OrganizationMembership)
+    private membershipRepo: Repository<OrganizationMembership>,
+    @InjectRepository(EntitlementGrant)
+    private entitlementGrantRepo: Repository<EntitlementGrant>,
+    @InjectRepository(InspectionAssignment)
+    private assignmentRepo: Repository<InspectionAssignment>,
+    @InjectRepository(SecurityAuditEvent)
+    private securityAuditRepo: Repository<SecurityAuditEvent>,
+    @InjectRepository(Notification)
+    private notificationRepo: Repository<Notification>,
+    private dataSource: DataSource,
   ) {}
 
   async register(dto: RegisterDto & { inviteToken?: string }, req?: any) {
@@ -194,6 +210,101 @@ export class AuthService {
       },
       metadata,
     };
+  }
+
+  /**
+   * Self-service account deletion. Requires re-authentication (current password) as
+   * explicit confirmation. Because 13 tables hold ON DELETE RESTRICT foreign keys to
+   * "user" (inspections, findings, human reviews, tasks, entitlement grants, org
+   * memberships, etc.), a hard DELETE of the user row is not possible without either
+   * violating referential integrity or cascading destruction into safety/compliance
+   * records the product cannot safely guess are disposable. Instead this performs a
+   * soft delete + anonymization, consistent with the deletedAt convention the login
+   * and JWT-validation paths already enforce.
+   *
+   * Retention decisions (do not change without re-deriving from the schema):
+   * - user row: RETAINED (never hard-deleted, satisfies all RESTRICT FKs) but
+   *   ANONYMIZED — name/email scrubbed, password invalidated, deletedAt set. This
+   *   also frees the original email for reuse.
+   * - organization_memberships / inspection_assignments / entitlement_grants:
+   *   RETAINED as historical records; any currently-active rows are transitioned to
+   *   an ended/revoked state so the deleted account no longer carries live access or
+   *   billing entitlement.
+   * - inspections, observations, hazlenz_analyses, human_reviews, inspection_findings,
+   *   tasks, corrective_actions, audit_logs, security_audit_events, reports, and
+   *   legacy report/review/risk tables: RETAINED UNCHANGED. These are safety
+   *   inspection and audit content, not account profile data; deleting them on
+   *   account closure would destroy the actual compliance record the product exists
+   *   to produce, so they are preserved under the deleted (anonymized) user id.
+   * - notifications: DELETED. Purely personal, ephemeral UX reminders with no FK
+   *   constraint and no compliance value.
+   */
+  async deleteAccount(userId: string, password: string) {
+    const user = await this.userRepo
+      .createQueryBuilder('user')
+      .addSelect('user.passwordHash')
+      .where('user.id = :userId', { userId })
+      .getOne();
+
+    if (!user || user.deletedAt) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.passwordHash);
+    if (!isMatch) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const now = new Date();
+    const anonymizedEmail = `deleted-${user.id}@deleted.safety-insite.local`;
+    const originalEmail = user.email;
+
+    try {
+      await this.dataSource.transaction(async (manager) => {
+        await manager.update(
+          OrganizationMembership,
+          { userId: user.id, status: 'active' },
+          { status: 'ended', endedAt: now },
+        );
+
+        await manager.update(
+          EntitlementGrant,
+          { userId: user.id, status: 'active' },
+          { status: 'revoked' },
+        );
+
+        await manager.update(
+          InspectionAssignment,
+          { userId: user.id, endedAt: IsNull() },
+          { endedAt: now },
+        );
+
+        await manager.delete(Notification, { userId: user.id });
+
+        await manager.update(User, { id: user.id }, {
+          name: 'Deleted User',
+          email: anonymizedEmail,
+          passwordHash: await bcrypt.hash(randomBytes(32).toString('hex'), Number(process.env.BCRYPT_ROUNDS || 12)),
+          passwordResetTokenHash: null,
+          passwordResetExpiresAt: null,
+          passwordChangedAt: now,
+          deletedAt: now,
+        });
+
+        await manager.save(SecurityAuditEvent, manager.create(SecurityAuditEvent, {
+          actorUserId: user.id,
+          organizationId: user.organizationId || null,
+          action: 'account_deleted',
+          resourceType: 'User',
+          resourceId: user.id,
+          metadata: { originalEmailHash: createHash('sha256').update(originalEmail).digest('hex') },
+        }));
+      });
+    } catch {
+      throw new InternalServerErrorException('Unable to delete account. Please try again.');
+    }
+
+    return { message: 'Account deleted successfully' };
   }
 
   async requestPasswordReset(rawEmail: string) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 
 import { AuthService } from './auth.service';
@@ -17,6 +17,11 @@ class LoginDto {
 class PasswordResetRequestDto {
   @IsEmail()
   email: string;
+}
+
+class DeleteAccountDto {
+  @IsString()
+  password: string;
 }
 
 class PasswordResetDto {
@@ -52,6 +57,13 @@ export class AuthController {
   @Get('me')
   getProfile(@Req() req: any) {
     return req.user;
+  }
+
+  @Throttle({ default: { limit: 5, ttl: 60000 } })
+  @UseGuards(JwtAuthGuard)
+  @Delete('me')
+  deleteAccount(@Body() dto: DeleteAccountDto, @Req() req: any) {
+    return this.authService.deleteAccount(req.user.userId, dto.password);
   }
 
   @Throttle({ default: { limit: 5, ttl: 60000 } })

@@ -11,10 +11,21 @@ import { OrganizationsModule } from '../organizations/organizations.module';
 import { BillingModule } from '../billing/billing.module';
 import { PasswordResetDeliveryService } from './password-reset-delivery.service';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
+import { EntitlementGrant } from '../billing/entitlement-grant.entity';
+import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
+import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
+import { Notification } from '../notifications/notification.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, OrganizationMembership]),
+    TypeOrmModule.forFeature([
+      User,
+      OrganizationMembership,
+      EntitlementGrant,
+      InspectionAssignment,
+      SecurityAuditEvent,
+      Notification,
+    ]),
     OrganizationsModule,
     BillingModule,
     JwtModule.register({

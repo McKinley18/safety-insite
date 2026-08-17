@@ -3,7 +3,9 @@
 import { Pencil } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { clearAuthSession, getAuthUser, hasAuthToken, setAuthUser } from "@/lib/auth";
+import { authHeaders, clearAuthSession, getAuthUser, hasAuthToken, setAuthUser } from "@/lib/auth";
+import { API_BASE_URL } from "@/lib/safescope";
+import { apiFetch } from "@/lib/apiFetch";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppInput } from "@/components/ui/AppInput";
 import { AppPanel } from "@/components/ui/AppPanel";
@@ -35,6 +37,10 @@ export default function ProfilePage() {
   const [profileEmail, setProfileEmail] = useState("");
   const [identityEditing, setIdentityEditing] = useState(false);
   const [status, setStatus] = useState("");
+  const [deleteConfirming, setDeleteConfirming] = useState(false);
+  const [deletePassword, setDeletePassword] = useState("");
+  const [deleteError, setDeleteError] = useState("");
+  const [deleteInFlight, setDeleteInFlight] = useState(false);
 
   function loadUserProfile() {
     try {
@@ -90,10 +96,53 @@ export default function ProfilePage() {
     router.push("/login");
   }
 
-  function deleteAccountPreview() {
-    setStatus(
-      "Account deletion request prepared. Production deletion should require confirmation, re-authentication, and backend account removal.",
-    );
+  function openDeleteConfirm() {
+    setDeleteError("");
+    setDeletePassword("");
+    setDeleteConfirming(true);
+  }
+
+  function cancelDeleteConfirm() {
+    setDeleteConfirming(false);
+    setDeletePassword("");
+    setDeleteError("");
+  }
+
+  async function confirmDeleteAccount() {
+    if (!deletePassword) {
+      setDeleteError("Enter your password to confirm account deletion.");
+      return;
+    }
+
+    setDeleteInFlight(true);
+    setDeleteError("");
+
+    try {
+      const response = await apiFetch(`${API_BASE_URL}/auth/me`, {
+        method: "DELETE",
+        headers: authHeaders(),
+        body: JSON.stringify({ password: deletePassword }),
+      });
+
+      if (!response.ok) {
+        let message = "Account deletion failed. Please try again.";
+        try {
+          const parsed = await response.json();
+          if (typeof parsed?.message === "string") message = parsed.message;
+        } catch {
+          // Non-JSON error body: keep the generic message rather than surfacing raw text.
+        }
+        setDeleteError(message);
+        setDeleteInFlight(false);
+        return;
+      }
+
+      clearAuthSession();
+      router.push("/login?accountDeleted=1");
+    } catch {
+      setDeleteError("Account deletion failed. Check your connection and try again.");
+      setDeleteInFlight(false);
+    }
   }
 
   const displayName =
@@ -246,19 +295,64 @@ export default function ProfilePage() {
             <SectionHeader
               eyebrow="Danger Zone"
               title="Delete account"
-              description="Account deletion should permanently remove personal account access and should require confirmation before completion."
+              description="Permanently removes your login access. This cannot be undone from the app — enter your password to confirm."
             />
 
-            <div className="mt-4 flex justify-center">
-              <AppButton
-                type="button"
-                variant="danger"
-                onClick={deleteAccountPreview}
-                className="w-44"
-              >
-                Delete Account
-              </AppButton>
-            </div>
+            {!deleteConfirming ? (
+              <div className="mt-4 flex justify-center">
+                <AppButton
+                  type="button"
+                  variant="danger"
+                  onClick={openDeleteConfirm}
+                  className="w-44"
+                >
+                  Delete Account
+                </AppButton>
+              </div>
+            ) : (
+              <div className="mt-4 space-y-3">
+                <label>
+                  <span className="text-xs font-black uppercase tracking-wide text-slate-700">
+                    Confirm your password
+                  </span>
+                  <AppInput
+                    type="password"
+                    value={deletePassword}
+                    onChange={(event) => setDeletePassword(event.target.value)}
+                    className="mt-2"
+                    autoFocus
+                  />
+                </label>
+
+                {deleteError && (
+                  <p className="rounded-xl bg-red-100 px-3 py-2 text-center text-xs font-black text-red-700">
+                    {deleteError}
+                  </p>
+                )}
+
+                <div className="flex flex-wrap justify-center gap-2">
+                  <AppButton
+                    type="button"
+                    variant="danger"
+                    onClick={confirmDeleteAccount}
+                    disabled={deleteInFlight}
+                    className="w-44"
+                  >
+                    {deleteInFlight ? "Deleting..." : "Yes, delete my account"}
+                  </AppButton>
+
+                  <AppButton
+                    type="button"
+                    variant="secondary"
+                    onClick={cancelDeleteConfirm}
+                    disabled={deleteInFlight}
+                    className="w-44"
+                  >
+                    Cancel
+                  </AppButton>
+                </div>
+              </div>
+            )}
           </AppPanel>
         </section>
       </section>
