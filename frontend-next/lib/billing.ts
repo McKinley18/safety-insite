@@ -34,7 +34,6 @@ export type BillingResponse = {
   subscriptionStatus?: BillingStatus;
   hasPaidAccess?: boolean;
   hasProAccess?: boolean;
-  hasExpertAccess?: boolean;
   currentPeriodStart: string | null;
   currentPeriodEnd: string | null;
   cancelAtPeriodEnd: boolean;
@@ -51,7 +50,7 @@ export type BillingResponse = {
   }>;
 };
 
-export type BillingCheckoutTier = "pro" | "expert";
+export type BillingCheckoutTier = "pro";
 
 function isLocalDevAuthBypass() {
   return (
@@ -73,8 +72,7 @@ function getLocalDevBillingMe(): BillingResponse {
     status: active ? "active" : "none",
     subscriptionStatus: active ? "active" : "none",
     hasPaidAccess: active,
-    hasProAccess: tier === "pro" || tier === "expert",
-    hasExpertAccess: tier === "expert",
+    hasProAccess: tier === "pro",
     currentPeriodStart: null,
     currentPeriodEnd: null,
     cancelAtPeriodEnd: false,
@@ -88,7 +86,7 @@ function getLocalDevBillingMe(): BillingResponse {
 
 export function isBillingTier(value?: string | null): value is BillingCheckoutTier {
   const normalized = String(value || "").toLowerCase();
-  return normalized === "pro" || normalized === "expert";
+  return normalized === "pro";
 }
 
 export async function getBillingMe() {
@@ -163,14 +161,7 @@ export function hasPaidAccess(status: BillingResponse): boolean {
 export function hasProAccess(status: BillingResponse): boolean {
   if (typeof status.hasProAccess === "boolean") return status.hasProAccess;
   const tier = normalizePlanCode(status.tier || status.planCode || status.plan);
-  return isActiveBillingStatus(status.status || status.subscriptionStatus) &&
-    (tier === "pro" || tier === "expert");
-}
-
-export function hasExpertAccess(status: BillingResponse): boolean {
-  if (typeof status.hasExpertAccess === "boolean") return status.hasExpertAccess;
-  const tier = normalizePlanCode(status.tier || status.planCode || status.plan);
-  return isActiveBillingStatus(status.status || status.subscriptionStatus) && tier === "expert";
+  return isActiveBillingStatus(status.status || status.subscriptionStatus) && tier === "pro";
 }
 
 function isActiveBillingStatus(status?: string | null) {

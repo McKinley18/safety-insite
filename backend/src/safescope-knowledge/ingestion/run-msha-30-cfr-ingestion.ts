@@ -12,6 +12,7 @@ import {
   failIngestionRun,
   startIngestionRun,
 } from "./ingestion-run-logger";
+import { createHash } from "crypto";
 
 config();
 
@@ -135,6 +136,18 @@ async function run() {
     doc.sourceUrl = item.sourceUrl;
     doc.summary = item.summary;
     doc.rawText = item.rawText;
+    doc.sourceDocumentChecksum = item.sourceDocumentChecksum;
+    doc.normalizedRecordChecksum = createHash("sha256")
+      .update(JSON.stringify({
+        citation,
+        title: item.title,
+        sourceUrl: item.sourceUrl,
+        rawText: item.rawText,
+      }))
+      .digest("hex");
+    doc.retrievedAt = new Date(item.retrievedAt);
+    doc.parserVersion = "ecfr-hierarchy-v2";
+    doc.regulatoryReleaseId = "candidate-msha-30-cfr";
     doc.approvalStatus = approvalStatus;
     doc.reviewedAt = reviewedAt;
     doc.hazardTags = item.metadata.hazardTags || [];
@@ -149,6 +162,13 @@ async function run() {
       });
       if (existingChunk) {
         existingChunk.chunkText = sec.sectionText;
+        existingChunk.normalizedRecordChecksum = createHash("sha256")
+          .update(JSON.stringify({
+            citation: sec.citation,
+            heading: sec.sectionHeading,
+            text: sec.sectionText,
+          }))
+          .digest("hex");
         existingChunk.chunkSummary = sec.sectionText.slice(0, 200) + "...";
         existingChunk.sectionHeading = truncateForColumn(sec.sectionHeading);
         existingChunk.standardTags = sectionStandardTags(
@@ -164,6 +184,13 @@ async function run() {
             chunkIndex: index,
             sectionHeading: truncateForColumn(sec.sectionHeading),
             chunkText: sec.sectionText,
+            normalizedRecordChecksum: createHash("sha256")
+              .update(JSON.stringify({
+                citation: sec.citation,
+                heading: sec.sectionHeading,
+                text: sec.sectionText,
+              }))
+              .digest("hex"),
             chunkSummary: sec.sectionText.slice(0, 200) + "...",
             citation: sec.citation,
             authorityTier: saved.authorityTier,
@@ -208,4 +235,7 @@ async function run() {
   }
 }
 
-run().catch(console.error);
+run().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

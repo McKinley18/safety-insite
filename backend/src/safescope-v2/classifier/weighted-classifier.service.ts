@@ -1,4 +1,5 @@
 import { HAZARD_TAXONOMY, HazardProfile, HazardSignal } from "../taxonomy/hazard-taxonomy";
+import { hasNonNegatedSubstring } from "../reasoning-orchestrator/negation-context.util";
 
 type ConfidenceBand = "low" | "medium" | "high";
 
@@ -35,13 +36,36 @@ function scoreSignals(normalizedText: string, signals: HazardSignal[]) {
     const term = normalize(signal.term);
     if (!term) continue;
 
-    if (normalizedText.includes(term)) {
+    // A signal term being present is not evidence on its own: "no exposed
+    // energized conductors were observed" must not score the same as
+    // "exposed energized conductors were observed". hasNonNegatedSubstring
+    // scans every occurrence of the term and only counts it if at least one
+    // occurrence sits outside a negation window, so a hazard affirmed
+    // elsewhere in the same observation (e.g. "Panel A was clear, but Panel
+    // B has exposed conductors") still scores correctly. Substring (not
+    // whole-word) matching is preserved to avoid narrowing existing recall
+    // on plural/inflected forms (e.g. "conductor" matching "conductors").
+    if (normalizedText.includes(term) && hasNonNegatedSubstring(normalizedText, term)) {
       score += signal.weight;
       matches.push(signal.term);
     }
   }
 
   return { score, matches };
+}
+
+// Same negation-window semantics as scoreSignals, for the ad hoc boolean
+// "evidence present" regex checks below that gate large score
+// adjustments — a hazard object mentioned only inside a negated clause
+// (e.g. "no exposed conductor") must not satisfy these gates either.
+function testNonNegated(normalizedText: string, pattern: RegExp): boolean {
+  const globalPattern = new RegExp(pattern.source, pattern.flags.includes("g") ? pattern.flags : pattern.flags + "g");
+  let match: RegExpExecArray | null;
+  while ((match = globalPattern.exec(normalizedText)) !== null) {
+    if (hasNonNegatedSubstring(normalizedText, match[0])) return true;
+    if (match.index === globalPattern.lastIndex) globalPattern.lastIndex += 1;
+  }
+  return false;
 }
 
 function confidenceFromScore(score: number, margin: number): {
@@ -256,7 +280,7 @@ export class WeightedClassifierService {
       const isTripPassagewayOrHousekeepingText = /(trip|slip|grease|cords|floor passageway|passageway|housekeeping|walking surface|obstruction|wet floor|aisleway|aisle|spill|puddle|standing water|water on floor)/i.test(normalizedText);
       const isConfinedSpaceEntryText = /(cleanout|vessel cleanout|reaction vessel|worker entry|confined space|permit required|attendant|sewer tank|vessel entry|tank entry|entrant|retrieval line|rescue line|digester pit|manhole entry|sewer entry)/i.test(normalizedText);
       
-      const hasElectricalExposure = /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash)/i.test(normalizedText);
+      const hasElectricalExposure = testNonNegated(normalizedText, /(live|exposed conductor|exposed wire|exposed wiring|frayed|shock|electrocution|energized|voltage|breaker|panel|high voltage|arc flash)/gi);
 
       if (profile.id === "electrical") {
         if (!hasElectricalExposure) {
@@ -266,7 +290,7 @@ export class WeightedClassifierService {
           score += 52;
         }
         if (isTripPassagewayOrHousekeepingText) {
-          const hasDirectElectricalExposure = /(live wire|exposed conductor|exposed wiring|frayed wire|energized electrical|shock hazard|exposed energized|damaged insulation)/i.test(normalizedText);
+          const hasDirectElectricalExposure = testNonNegated(normalizedText, /(live wire|exposed conductor|exposed wiring|frayed wire|energized electrical|shock hazard|exposed energized|damaged insulation)/gi);
           if (!hasDirectElectricalExposure) {
             score -= 45; // Further penalize electrical on trip/slip floor conditions near electrical locations
           }
@@ -491,6 +515,43 @@ export class WeightedClassifierService {
         if (profile.id === "powered_mobile_equipment") {
           score -= 40;
         }
+      }
+
+      // 10. Verified Effective Control Guardrail
+      // A control (guard, guardrail, or energy isolation) explicitly
+      // described as installed/enclosed AND confirmed effective, with no
+      // accompanying failure/defeat language anywhere in the observation,
+      // is evidence of a controlled condition rather than an active hazard.
+      // This is deliberately conservative — any hint of failure language
+      // anywhere in the text disables the discount, so the default on
+      // ambiguous evidence stays "flag it," matching this classifier's
+      // existing bias in every other guardrail above.
+      const hasControlFailureLanguage =
+        /\b(missing|removed|bypassed|defeated|broken|damaged|loose|bent|not working|does not work|doesn't work|ineffective|not verified|unverified|cannot confirm|could not confirm|could not be confirmed|couldn't confirm)\b/i.test(normalizedText);
+
+      const hasVerifiedGuardEffective =
+        !hasControlFailureLanguage &&
+        /\bguard(?:s|rail)?\b.{0,80}\b(?:properly installed|fully enclosed|securely (?:mounted|installed|fastened)|fixed|interlocked|in place)\b.{0,100}\b(?:confirmed to prevent|prevents?\s+(?:access|contact)|cannot reach|tested|verified|secure)\b/i.test(normalizedText);
+
+      const guardrailNegated = /\b(?:no|missing|without|not)\b.{0,40}\b(?:guardrail|fall-arrest)\b/i.test(normalizedText);
+      const hasVerifiedGuardrailEffective =
+        !hasControlFailureLanguage &&
+        !guardrailNegated &&
+        /\b(?:guardrail[s]?|fall-arrest system)\b/i.test(normalizedText) &&
+        /\b(?:installed|in place|present|attached|secured|protected)\b/i.test(normalizedText);
+
+      const hasVerifiedEnergyIsolation =
+        !hasControlFailureLanguage &&
+        /\b(?:locked out|zero energy|deenergized|de-energized)\b.{0,100}\b(?:verified|confirmed|tested|log|record)\b/i.test(normalizedText);
+
+      if (hasVerifiedGuardEffective && profile.id === "machine_guarding") {
+        score -= 60;
+      }
+      if (hasVerifiedGuardrailEffective && (profile.id === "falls" || profile.id === "walking_working_surfaces")) {
+        score -= 60;
+      }
+      if (hasVerifiedEnergyIsolation && profile.id === "loto_stored_energy") {
+        score -= 60;
       }
 
       const evidenceTokens = unique([

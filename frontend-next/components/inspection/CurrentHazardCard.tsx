@@ -193,7 +193,7 @@ export default function CurrentHazardCard({
       >
         <section
           ref={cardRef}
-          className="pointer-events-auto mx-auto w-full max-w-3xl rounded-t-[18px] border border-slate-200 bg-white/95 text-slate-950 shadow-sm ring-1 ring-slate-200 backdrop-blur-xl dark:border-white/10 dark:bg-[#0B1320]/95 dark:text-white dark:ring-white/10 lg:rounded-xl"
+          className="finding-builder-surface pointer-events-auto mx-auto w-full max-w-3xl rounded-t-[18px] border border-slate-200 bg-white/95 text-slate-950 shadow-sm ring-1 ring-slate-200 backdrop-blur-xl dark:border-white/10 dark:text-white dark:ring-white/10 lg:rounded-xl"
           aria-label="Finding Builder"
         >
           <div className="flex min-w-0 items-center gap-2 px-3 py-1.5">

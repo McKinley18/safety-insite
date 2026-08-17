@@ -9,10 +9,12 @@ import { getJwtSecret } from './jwt-secret.util';
 import { User } from '../users/user.entity';
 import { OrganizationsModule } from '../organizations/organizations.module';
 import { BillingModule } from '../billing/billing.module';
+import { PasswordResetDeliveryService } from './password-reset-delivery.service';
+import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, OrganizationMembership]),
     OrganizationsModule,
     BillingModule,
     JwtModule.register({
@@ -23,6 +25,6 @@ import { BillingModule } from '../billing/billing.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, PasswordResetDeliveryService],
 })
 export class AuthModule {}

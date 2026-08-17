@@ -5,6 +5,7 @@ import {
   FactScores,
   SufficiencyLevel,
 } from './evidence-sufficiency.types';
+import { EvidenceFact } from '../evidence/shared-evidence-facts';
 
 type ScoreReason = {
   key: keyof FactScores;
@@ -23,7 +24,8 @@ export class EvidenceSufficiencyService {
   async evaluateEvidenceSufficiency(
     observationUnderstanding: any,
     causalRiskReasoning: any,
-    fusedText: string
+    fusedText: string,
+    sharedFacts?: EvidenceFact[]
   ): Promise<EvidenceSufficiencyOutput> {
     const text = this.normalize(fusedText);
     const scores = this.scoreFacts(observationUnderstanding, causalRiskReasoning, text);
@@ -80,6 +82,9 @@ export class EvidenceSufficiencyService {
         doesNotCreateCitation: true,
         requiresQualifiedReview: true,
       },
+      ...(sharedFacts ? { evidenceFactTrace: sharedFacts.map(f => ({
+        factId: f.id, type: f.type, value: f.value, source: f.source, status: f.status,
+      })) } : {}),
     };
   }
 

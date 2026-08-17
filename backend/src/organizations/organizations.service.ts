@@ -1,10 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Organization } from './entities/organization.entity';
 import { Invitation } from './entities/invitation.entity';
 import { User } from '../users/user.entity';
 import * as crypto from 'crypto';
+import {
+  OrganizationMembership,
+  OrganizationRole,
+} from './entities/organization-membership.entity';
 
 @Injectable()
 export class OrganizationsService {
@@ -15,6 +19,8 @@ export class OrganizationsService {
     private inviteRepo: Repository<Invitation>,
     @InjectRepository(User)
     private userRepo: Repository<User>,
+    @InjectRepository(OrganizationMembership)
+    private membershipRepo: Repository<OrganizationMembership>,
   ) {}
 
   async create(data: { name: string; logoPath?: string; planCode?: string }): Promise<Organization> {
@@ -56,10 +62,38 @@ export class OrganizationsService {
   }
 
   async getMembers(orgId: string) {
-    return this.userRepo.find({
-      where: { organizationId: orgId },
-      order: { id: 'ASC' },
+    return this.membershipRepo.find({
+      where: { organizationId: orgId, status: 'active' },
+      relations: ['user'],
+      order: { createdAt: 'ASC' },
     });
+  }
+
+  async getActiveMembership(userId: string) {
+    return this.membershipRepo.findOne({
+      where: { userId, status: 'active' },
+      relations: ['organization'],
+    });
+  }
+
+  async createActiveMembership(input: {
+    userId: string;
+    organizationId: string;
+    role?: OrganizationRole;
+    invitedByUserId?: string | null;
+  }) {
+    const current = await this.getActiveMembership(input.userId);
+    if (current) throw new ConflictException('User already has an active organization membership.');
+    const membership = this.membershipRepo.create({
+      userId: input.userId,
+      organizationId: input.organizationId,
+      role: input.role || 'member',
+      status: 'active',
+      invitedByUserId: input.invitedByUserId || null,
+      joinedAt: new Date(),
+      endedAt: null,
+    });
+    return this.membershipRepo.save(membership);
   }
 
   async getInvitations(orgId: string) {

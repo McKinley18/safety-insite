@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RegulatorySection } from './entities/regulatory-section.entity';
 import { RegulatoryPart } from './entities/regulatory-part.entity';
+import { RegulatoryParagraph } from './entities/regulatory-paragraph.entity';
 import { StandardMatchFeedback } from '../standards/entities/standard-match-feedback.entity';
 
 @Injectable()
@@ -12,6 +13,8 @@ export class RegulatoryService {
     private sectionRepo: Repository<RegulatorySection>,
     @InjectRepository(RegulatoryPart)
     private partRepo: Repository<RegulatoryPart>,
+    @InjectRepository(RegulatoryParagraph)
+    private paragraphRepo: Repository<RegulatoryParagraph>,
     @InjectRepository(StandardMatchFeedback)
     private feedbackRepo: Repository<StandardMatchFeedback>,
   ) {}
@@ -108,7 +111,55 @@ export class RegulatoryService {
     return await this.matchStandard({ description: query || '', agency, part });
   }
 
+  // Splits a trailing run of parenthetical subsection markers off a citation, e.g.
+  // "29 CFR 1910.212(a)(1)" -> { baseCitation: "29 CFR 1910.212", paragraphPath: "a.1" }.
+  // Mirrors the dotted paragraphPath convention regulatory_paragraph rows are stored
+  // under (see backend/scripts/verification-sync-regulatory-paragraphs.ts). Returns
+  // paragraphPath: null when the citation has no subsection suffix.
+  private parseCitationSuffix(citation: string): { baseCitation: string; paragraphPath: string | null } {
+    const trailingMarkersRe = /(\([^()]+\)\s*)+$/;
+    const match = citation.match(trailingMarkersRe);
+    if (!match) return { baseCitation: citation.trim(), paragraphPath: null };
+
+    const baseCitation = citation.slice(0, match.index).trim();
+    const tokens = Array.from(match[0].matchAll(/\(([^()]+)\)/g)).map((m) => m[1]);
+    if (!baseCitation || !tokens.length) return { baseCitation: citation.trim(), paragraphPath: null };
+
+    return { baseCitation, paragraphPath: tokens.join('.') };
+  }
+
+  // Fails soft (returns null) on any DB error, including "relation does not
+  // exist" -- e.g. when regulatory_section/regulatory_paragraph haven't been
+  // migrated into the target database yet. The caller (frontend
+  // getRegulatorySection) already treats a null/failed lookup as "text not
+  // currently available" and degrades honestly; this must never surface as
+  // an unhandled 500 for an expected, coverable pre-migration state.
   async getSection(citation: string) {
-    return await this.sectionRepo.findOne({ where: { citation } });
+    try {
+      const { baseCitation, paragraphPath } = this.parseCitationSuffix(citation);
+
+      if (paragraphPath) {
+        const paragraph = await this.paragraphRepo.findOne({
+          where: { sectionCitation: baseCitation, paragraphPath },
+        });
+        if (paragraph) {
+          const section = await this.sectionRepo.findOne({ where: { citation: baseCitation } });
+          return {
+            citation,
+            heading: section?.heading || null,
+            textPlain: paragraph.textPlain,
+            agencyCode: section?.agencyCode,
+            titleNumber: section?.titleNumber,
+            part: section?.part,
+            section: section?.section,
+          };
+        }
+      }
+
+      return await this.sectionRepo.findOne({ where: { citation } });
+    } catch (error) {
+      console.error('RegulatoryService.getSection lookup failed:', error);
+      return null;
+    }
   }
 }

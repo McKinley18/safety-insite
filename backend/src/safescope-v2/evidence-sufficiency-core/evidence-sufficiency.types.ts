@@ -26,6 +26,14 @@ export interface AdvisoryGuardrails {
   requiresQualifiedReview: boolean;
 }
 
+export interface EvidenceFactTraceEntry {
+  factId: string;
+  type: string;
+  value: string | number | boolean | string[] | null;
+  source: string;
+  status: string;
+}
+
 export interface EvidenceSufficiencyOutput {
   engine: string;
   version: string;
@@ -39,4 +47,12 @@ export interface EvidenceSufficiencyOutput {
   confidenceImpact: ConfidenceImpact;
   reasoningTrace: string[];
   advisoryGuardrails: AdvisoryGuardrails;
+  /**
+   * V5-C02: purely additive provenance -- the shared EvidenceFact[] entries (from
+   * shared-evidence-facts.ts, the same extraction path evidence-foundation.ts uses) that back this
+   * evaluation's `fusedText`. Never read by, or derived from, any field above; present only so a
+   * caller can trace this evaluation back to specific evidence facts with a known source/status.
+   * Omitted (not an empty array) when the caller did not supply a shared fact array.
+   */
+  evidenceFactTrace?: EvidenceFactTraceEntry[];
 }

@@ -12,9 +12,11 @@ import {
   type ThemePreference,
 } from "@/lib/theme";
 import { setThemePreference } from "@/components/system/ThemeController";
+import { CustomRiskMatrixBuilder } from "@/components/settings/CustomRiskMatrixBuilder";
+import { readCustomRiskMatrix, type CustomRiskMatrix } from "@/lib/customRiskMatrix";
 
 type StorageMode = "local" | "cloud" | "ask";
-type RiskProfileId = "simple_4x4" | "standard_5x5" | "advanced_6x6";
+type RiskProfileId = "simple_4x4" | "standard_5x5" | "advanced_6x6" | "custom";
 type RegulatoryScope = "all" | "msha" | "osha_general" | "osha_construction";
 const themeModes = ["light", "dark"] as const satisfies readonly ThemePreference[];
 
@@ -28,6 +30,7 @@ const riskProfiles = [
   ["simple_4x4", "Simple 4x4", "Fast scoring for simpler programs."],
   ["standard_5x5", "Standard 5x5", "Recommended default for most operations."],
   ["advanced_6x6", "Advanced 6x6", "More detail for mature safety programs."],
+  ["custom", "Custom Matrix", "Build your own likelihood × severity matrix."],
 ] as const;
 
 const regulatoryScopes = [
@@ -107,6 +110,7 @@ export default function SettingsHubPage() {
   const [regulatoryScope, setRegulatoryScope] = useState<RegulatoryScope>("all");
   const [themePreference, setThemePreferenceState] = useState<ThemePreference>("light");
   const [planCode, setPlanCode] = useState("free");
+  const [customMatrix, setCustomMatrix] = useState<CustomRiskMatrix | null>(null);
 
   useEffect(() => {
     const storedPlanCode = getStoredPlanCode();
@@ -121,6 +125,7 @@ export default function SettingsHubPage() {
       (window.localStorage.getItem("sentinel_regulatory_scope") as RegulatoryScope | null) ||
       "all";
     const storedThemePreference = readThemePreferenceFromStorage(window.localStorage);
+    const storedCustomMatrix = readCustomRiskMatrix(window.localStorage);
 
     queueMicrotask(() => {
       setPlanCode(storedPlanCode);
@@ -128,6 +133,7 @@ export default function SettingsHubPage() {
       setRiskProfileId(storedRiskProfileId);
       setRegulatoryScope(storedRegulatoryScope);
       setThemePreferenceState(storedThemePreference);
+      setCustomMatrix(storedCustomMatrix);
     });
 
     getVerifiedPlanCode().then(setPlanCode).catch(() => {});
@@ -157,7 +163,9 @@ export default function SettingsHubPage() {
     storageModes.find(([id]) => id === storageMode)?.[1] || "Private Local Vault";
 
   const riskLabel =
-    riskProfiles.find(([id]) => id === riskProfileId)?.[1] || "Standard 5x5";
+    riskProfileId === "custom"
+      ? customMatrix?.name || "Custom Matrix"
+      : riskProfiles.find(([id]) => id === riskProfileId)?.[1] || "Standard 5x5";
 
   const scopeLabel =
     regulatoryScopes.find(([id]) => id === regulatoryScope)?.[1] ||
@@ -262,6 +270,20 @@ export default function SettingsHubPage() {
           </div>
         </AppPanel>
       </section>
+
+      {riskProfileId === "custom" && (
+        <AppPanel padding="lg">
+          <SectionHeader
+            eyebrow="Risk"
+            title="Custom risk matrix"
+            description="Define your own likelihood × severity scale and risk levels, then save it to use as your default."
+          />
+
+          <div className="mt-4">
+            <CustomRiskMatrixBuilder onSaved={setCustomMatrix} />
+          </div>
+        </AppPanel>
+      )}
 
       <AppPanel padding="lg">
         <SectionHeader

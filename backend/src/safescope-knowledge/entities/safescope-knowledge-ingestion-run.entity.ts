@@ -47,7 +47,7 @@ export class SafeScopeKnowledgeIngestionRun {
   @Column({ type: 'int', default: 0 })
   skippedCount: number;
 
-  @Column({ type: 'jsonb', default: [] })
+  @Column({ type: 'text', array: true, default: '{}' })
   warnings: string[];
 
   @Column({ type: 'text', nullable: true })

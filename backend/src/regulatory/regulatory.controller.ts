@@ -3,6 +3,8 @@ import { RegulatorySyncService } from './regulatory-sync.service';
 import { RegulatoryService } from './regulatory.service';
 import { ConfigService } from '@nestjs/config';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @UseGuards(JwtGuard)
 @Controller('regulatory')
@@ -26,9 +28,11 @@ export class RegulatoryController {
   }
 
   @Post('sync')
-  async sync(@Query('key') key: string, @Query('part') part: string, @Headers('x-sync-key') headerKey: string) {
+  @UseGuards(RolesGuard)
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
+  async sync(@Query('part') part: string, @Headers('x-sync-key') headerKey: string) {
     const envKey = this.config.get('REGULATORY_SYNC_KEY');
-    if (process.env.NODE_ENV === 'production' && (!envKey || (key !== envKey && headerKey !== envKey))) {
+    if (process.env.NODE_ENV === 'production' && (!envKey || headerKey !== envKey)) {
       throw new UnauthorizedException();
     }
     

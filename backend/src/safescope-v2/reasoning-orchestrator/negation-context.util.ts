@@ -2,9 +2,10 @@ export function normalized(value: unknown): string {
   return String(value || '').toLowerCase();
 }
 
-export function hasNonNegatedTerm(text: string, term: string): boolean {
+export function hasNonNegatedTerm(text: string, term: string, options?: { requireWordBoundary?: boolean }): boolean {
   const value = normalized(text);
   const target = normalized(term).trim();
+  const requireWordBoundary = options?.requireWordBoundary !== false;
 
   if (!target) return false;
 
@@ -14,7 +15,7 @@ export function hasNonNegatedTerm(text: string, term: string): boolean {
     const isWordBoundaryBefore = index === 0 || !/[a-z0-9_]/i.test(value[index - 1]);
     const isWordBoundaryAfter = index + target.length === value.length || !/[a-z0-9_]/i.test(value[index + target.length]);
 
-    if (isWordBoundaryBefore && isWordBoundaryAfter) {
+    if (!requireWordBoundary || (isWordBoundaryBefore && isWordBoundaryAfter)) {
       const before = value.slice(Math.max(0, index - 45), index);
       const after = value.slice(index + target.length, index + target.length + 35);
 
@@ -31,6 +32,15 @@ export function hasNonNegatedTerm(text: string, term: string): boolean {
   }
 
   return false;
+}
+
+// Same negation-window semantics as hasNonNegatedTerm, but matches on a raw
+// substring rather than a whole word (requireWordBoundary: false) — needed by
+// callers (e.g. the deterministic classifier) whose existing keyword scoring
+// already relies on substring matching (e.g. "conductor" matching within
+// "conductors") for recall, and which negation-awareness must not narrow.
+export function hasNonNegatedSubstring(text: string, substring: string): boolean {
+  return hasNonNegatedTerm(text, substring, { requireWordBoundary: false });
 }
 
 export function hasAnyNonNegatedTerm(text: string, terms: string[]): boolean {

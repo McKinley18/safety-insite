@@ -15,17 +15,18 @@ export class RegisterDto {
   @Matches(/[!@#$%^&*(),.?":{}|<>]/, { message: 'Must contain special character' })
   password: string;
 
-  @IsString()
-  type: string;
+  @IsOptional()
+  @IsIn(['individual'])
+  type?: 'individual';
 
   @IsOptional()
   @IsString()
   promoCode?: string;
   @IsOptional()
-  @IsIn(['free', 'pro', 'expert', 'basic', 'plus', 'company'])
-  selectedPlan?: 'free' | 'pro' | 'expert' | 'basic' | 'plus' | 'company';
+  @IsIn(['free', 'pro', 'basic', 'plus', 'company'])
+  selectedPlan?: 'free' | 'pro' | 'basic' | 'plus' | 'company';
 
   @IsOptional()
-  @IsIn(['free', 'pro', 'expert', 'basic', 'plus', 'company'])
-  planCode?: 'free' | 'pro' | 'expert' | 'basic' | 'plus' | 'company';
+  @IsIn(['free', 'pro', 'basic', 'plus', 'company'])
+  planCode?: 'free' | 'pro' | 'basic' | 'plus' | 'company';
 }

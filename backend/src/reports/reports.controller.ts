@@ -12,12 +12,11 @@ import {
   UploadedFile,
   UseInterceptors,
   BadRequestException,
+  GoneException,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
-import * as fs from 'fs';
+import { memoryStorage } from 'multer';
 
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './dto/create-report.dto';
@@ -28,7 +27,7 @@ import { RecommendationsService } from '../recommendations/recommendations.servi
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 
 @UseGuards(JwtGuard, SubscriptionGuard, RolesGuard, EntitlementGuard)
-@Controller('reports')
+@Controller('legacy/reports')
 export class ReportsController {
   constructor(
     private readonly reportsService: ReportsService,
@@ -39,7 +38,9 @@ export class ReportsController {
   @RequireEntitlement('cloudReports')
   @Post()
   create(@Body() body: CreateReportDto, @Req() req: Request & { user?: any }) {
-    return this.reportsService.create(body, req.user);
+    void body;
+    void req;
+    throw new GoneException('Legacy report creation is retired. Generate an immutable report from a completed inspection.');
   }
 
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR')
@@ -49,13 +50,10 @@ export class ReportsController {
     @Body() body: any,
     @Req() req: Request & { user?: any },
   ) {
-    const report = await this.reportsService.findOne(id, req.user);
-
-    if (!report) {
-      throw new NotFoundException('Report not found');
-    }
-
-    return this.recommendationsService.submitFeedback(body);
+    void id;
+    void body;
+    void req;
+    throw new GoneException('Legacy report mutation is retired.');
   }
 
   @Get()
@@ -68,23 +66,13 @@ export class ReportsController {
   @RequireEntitlement('cloudReports')
   @Post(':id/attachments/upload')
   @UseInterceptors(FileInterceptor('file', {
-    storage: diskStorage({
-      destination: (_req: any, _file: Express.Multer.File, callback: any) => {
-        const uploadPath = 'uploads/evidence';
-        fs.mkdirSync(uploadPath, { recursive: true });
-        callback(null, uploadPath);
-      },
-      filename: (_req: any, file: Express.Multer.File, callback: any) => {
-        const safeName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${extname(file.originalname)}`;
-        callback(null, safeName);
-      },
-    }),
+    storage: memoryStorage(),
     limits: {
       fileSize: 10 * 1024 * 1024,
     },
     fileFilter: (_req, file, callback) => {
-      if (!file.mimetype.startsWith('image/')) {
-        return callback(new BadRequestException('Only image uploads are allowed.') as any, false);
+      if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.mimetype)) {
+        return callback(new BadRequestException('Only PNG, JPG, or WEBP images are allowed.') as any, false);
       }
 
       callback(null, true);
@@ -95,25 +83,10 @@ export class ReportsController {
     @UploadedFile() file: Express.Multer.File,
     @Req() req: Request & { user?: any },
   ) {
-    if (!file) {
-      throw new BadRequestException('No evidence file uploaded.');
-    }
-
-    const attachment = await this.reportsService.addAttachment(
-      id,
-      {
-        imageUri: `/uploads/evidence/${file.filename}`,
-        mimeType: file.mimetype,
-        fileName: file.originalname,
-      },
-      req.user,
-    );
-
-    if (!attachment) {
-      throw new NotFoundException("Report not found");
-    }
-
-    return attachment;
+    void id;
+    void file;
+    void req;
+    throw new GoneException('Legacy report attachments are retired. Upload evidence to the canonical inspection route.');
   }
 
   @RequireEntitlement('cloudReports')
@@ -123,13 +96,10 @@ export class ReportsController {
     @Body() body: any,
     @Req() req: Request & { user?: any },
   ) {
-    const attachment = await this.reportsService.addAttachment(id, body, req.user);
-
-    if (!attachment) {
-      throw new NotFoundException("Report not found");
-    }
-
-    return attachment;
+    void id;
+    void body;
+    void req;
+    throw new GoneException('Legacy report attachments are retired.');
   }
 
   @RequireEntitlement('cloudReports')
@@ -139,7 +109,10 @@ export class ReportsController {
     @Body() body: any,
     @Req() req: Request & { user?: any },
   ) {
-    return this.reportsService.updatePackage(id, body, req.user);
+    void id;
+    void body;
+    void req;
+    throw new GoneException('Legacy report mutation is retired.');
   }
 
   @RequireEntitlement('cloudReports')
@@ -148,13 +121,9 @@ export class ReportsController {
     @Param('id') id: string,
     @Req() req: Request & { user?: any },
   ) {
-    const archived = await this.reportsService.archive(id, req.user);
-
-    if (!archived) {
-      throw new NotFoundException("Report not found");
-    }
-
-    return archived;
+    void id;
+    void req;
+    throw new GoneException('Legacy report mutation is retired.');
   }
 
   @Get(':id')

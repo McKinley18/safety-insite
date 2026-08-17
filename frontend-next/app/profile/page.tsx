@@ -28,7 +28,7 @@ type UserProfile = {
 
 export default function ProfilePage() {
   const router = useRouter();
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isAuthorized] = useState(() => hasAuthToken());
   const [user, setUser] = useState<UserProfile>({});
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -60,7 +60,6 @@ export default function ProfilePage() {
       return;
     }
 
-    setIsAuthorized(true);
     loadUserProfile();
   }, [router]);
 
@@ -151,10 +150,7 @@ export default function ProfilePage() {
                 <SummaryRow label="Email Address" value={profileEmail || "Not provided"} />
               </div>
               <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
-                <SummaryRow label="Plan" value={planLabel} />
-              </div>
-              <div className="px-3 py-3 text-xs font-black uppercase tracking-wide text-slate-700">
-                <SummaryRow label="Role" value={user.role || "user"} last />
+                <SummaryRow label="Plan" value={planLabel} last />
               </div>
             </div>
           ) : (

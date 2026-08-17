@@ -65,6 +65,48 @@ export class Standard {
   @Column({ name: "approved_for_auto_ingestion", default: true })
   approvedForAutoIngestion: boolean;
 
+  @Column({ name: "release_id", nullable: true })
+  releaseId?: string;
+
+  @Column({ name: "source_url", type: "text", nullable: true })
+  sourceUrl?: string;
+
+  @Column({ name: "source_publication_date", type: "date", nullable: true })
+  sourcePublicationDate?: string;
+
+  @Column({ name: "effective_date", type: "date", nullable: true })
+  effectiveDate?: string;
+
+  @Column({ name: "revision_date", type: "date", nullable: true })
+  revisionDate?: string;
+
+  @Column({ name: "retrieval_date", type: "date", nullable: true })
+  retrievalDate?: string;
+
+  @Column({ name: "source_document_checksum", length: 64, nullable: true })
+  sourceDocumentChecksum?: string;
+
+  @Column({ name: "normalized_record_checksum", length: 64, nullable: true })
+  normalizedRecordChecksum?: string;
+
+  @Column({ name: "transformation_version", nullable: true })
+  transformationVersion?: string;
+
+  @Column({ name: "reviewer_approved", default: false })
+  reviewerApproved: boolean;
+
+  @Column({ name: "approval_date", type: "timestamptz", nullable: true })
+  approvalDate?: Date;
+
+  @Column({ name: "deprecation_status", default: "active" })
+  deprecationStatus: string;
+
+  @Column({ name: "superseded_by_citation", nullable: true })
+  supersededByCitation?: string;
+
+  @Column({ name: "applicability_schema_version", nullable: true })
+  applicabilitySchemaVersion?: string;
+
   // 🔥 Hazard-based matching
   @Column({ name: "hazard_codes", type: "simple-array", nullable: true })
   hazardCodes?: string[];

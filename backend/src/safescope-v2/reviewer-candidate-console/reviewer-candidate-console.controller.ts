@@ -3,11 +3,12 @@ import { ReviewerCandidateConsoleService } from './reviewer-candidate-console.se
 import { CandidateFilter } from './reviewer-candidate-console.types';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { JwtGuard } from '../../auth/guards/jwt.guard';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Request } from 'express';
 import { UserGovernanceContext, SafeScopeRole } from '../workspace-governance-access/workspace-governance.types';
 
 @Controller('safescope/reviewer-candidates')
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, RolesGuard)
 @Roles('SAFETY_DIRECTOR', 'AUDITOR', 'ORG_OWNER', 'SUPER_ADMIN')
 export class ReviewerCandidateConsoleController {
   constructor(private readonly service: ReviewerCandidateConsoleService) {}
@@ -34,6 +35,15 @@ export class ReviewerCandidateConsoleController {
       };
   }
 
+  private platformReviewer(req: Request & { user?: any }, notes?: string) {
+    const user = req.user;
+    return {
+      name: String(user?.userId || user?.id || user?.sub || 'authenticated-platform-administrator'),
+      role: 'system_admin',
+      notes: notes || '',
+    };
+  }
+
   @Get()
   async listCandidates(@Query() filter: CandidateFilter, @Req() req: Request) {
     const context = this.getGovernanceContext(req as any);
@@ -47,32 +57,37 @@ export class ReviewerCandidateConsoleController {
   }
 
   @Post(':id/approve')
-  async approve(@Param('id') id: string, @Body() reviewer: { name: string, role: string, notes?: string }, @Req() req: Request) {
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
+  async approve(@Param('id') id: string, @Body() reviewer: { notes?: string }, @Req() req: Request) {
     const context = this.getGovernanceContext(req as any);
-    return this.service.approveCandidate(id, reviewer, context);
+    return this.service.approveCandidate(id, this.platformReviewer(req as any, reviewer.notes), context);
   }
 
   @Post(':id/reject')
-  async reject(@Param('id') id: string, @Body() reviewer: { name: string, role: string, notes: string }, @Req() req: Request) {
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
+  async reject(@Param('id') id: string, @Body() reviewer: { notes: string }, @Req() req: Request) {
     const context = this.getGovernanceContext(req as any);
-    return this.service.rejectCandidate(id, reviewer, context);
+    return this.service.rejectCandidate(id, this.platformReviewer(req as any, reviewer.notes), context);
   }
 
   @Post(':id/request-info')
-  async requestInfo(@Param('id') id: string, @Body() reviewer: { name: string, role: string, notes: string }, @Req() req: Request) {
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
+  async requestInfo(@Param('id') id: string, @Body() reviewer: { notes: string }, @Req() req: Request) {
     const context = this.getGovernanceContext(req as any);
-    return this.service.requestMoreInfo(id, reviewer, context);
+    return this.service.requestMoreInfo(id, this.platformReviewer(req as any, reviewer.notes), context);
   }
 
   @Post(':id/block')
-  async block(@Param('id') id: string, @Body() reviewer: { name: string, role: string, notes: string }, @Req() req: Request) {
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
+  async block(@Param('id') id: string, @Body() reviewer: { notes: string }, @Req() req: Request) {
     const context = this.getGovernanceContext(req as any);
-    return this.service.blockCandidate(id, reviewer, context);
+    return this.service.blockCandidate(id, this.platformReviewer(req as any, reviewer.notes), context);
   }
 
   @Post(':id/archive')
-  async archive(@Param('id') id: string, @Body() reviewer: { name: string, role: string, notes?: string }, @Req() req: Request) {
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
+  async archive(@Param('id') id: string, @Body() reviewer: { notes?: string }, @Req() req: Request) {
     const context = this.getGovernanceContext(req as any);
-    return this.service.archiveCandidate(id, reviewer, context);
+    return this.service.archiveCandidate(id, this.platformReviewer(req as any, reviewer.notes), context);
   }
 }

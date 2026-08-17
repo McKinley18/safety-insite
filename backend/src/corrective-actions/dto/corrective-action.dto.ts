@@ -2,8 +2,12 @@ import { IsString, IsNotEmpty, IsOptional, IsDateString, IsIn } from 'class-vali
 
 export class CreateCorrectiveActionDto {
   @IsString()
-  @IsNotEmpty()
-  reportId: string;
+  @IsOptional()
+  reportId?: string;
+
+  @IsString()
+  @IsOptional()
+  inspectionId?: string;
 
   @IsString()
   @IsOptional()

@@ -20,10 +20,13 @@ export class CreateAuthWorkspaceTables1779000000000 implements MigrationInterfac
 
     await queryRunner.query(`
       CREATE TABLE IF NOT EXISTS "user" (
-        "id" SERIAL NOT NULL,
+        "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
         "name" character varying NOT NULL,
         "email" character varying NOT NULL,
-        "password" character varying NOT NULL,
+        "passwordHash" character varying NOT NULL,
+        "passwordResetTokenHash" character varying,
+        "passwordResetExpiresAt" TIMESTAMP WITH TIME ZONE,
+        "passwordChangedAt" TIMESTAMP WITH TIME ZONE,
         "type" character varying NOT NULL,
         "planCode" character varying NOT NULL DEFAULT 'basic',
         "role" character varying NOT NULL DEFAULT 'Auditor',
@@ -51,6 +54,7 @@ export class CreateAuthWorkspaceTables1779000000000 implements MigrationInterfac
     `);
 
     await queryRunner.query(`CREATE INDEX IF NOT EXISTS "idx_user_organization_id" ON "user" ("organizationId")`);
+    await queryRunner.query(`CREATE INDEX IF NOT EXISTS "idx_user_password_reset_token_hash" ON "user" ("passwordResetTokenHash")`);
     await queryRunner.query(`CREATE INDEX IF NOT EXISTS "idx_invitation_organization_id" ON "invitation" ("organizationId")`);
   }
 

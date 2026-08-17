@@ -15,14 +15,17 @@ const CONTROL_PATTERNS: ControlPattern[] = [
   { domains: ['compressed_gas'], pattern: /\b(cylinder|cylinders)\b[^.;]*\b(chained|secured|restrained)\b[^.;]*\b(upright|valve caps?|caps?)\b|\bvalve caps? (are )?installed\b[^.;]*\bsecured\b/, evidence: 'Cylinders are described as secured upright with valve protection.' },
   { domains: ['emergency_preparedness'], pattern: /\b(emergency )?(exit|exit route|egress)\b[^.;]*\b(clear|unobstructed|unblocked|marked and unobstructed)\b/, evidence: 'Emergency egress is described as clear and available.' },
   { domains: ['walking_working_surfaces', 'slip_trip_fall', 'slips_trips_falls'], pattern: /\b(floor|walkway|aisle|surface)\b[^.;]*\b(dry|clean and dry|clear and dry|free of (spills|debris))\b/, evidence: 'The walking surface is described as dry and clear.' },
+  { domains: ['walking_working_surfaces', 'hazardous_materials'], pattern: /\b(spill|leak|release)\b[^.;]*\bsecondary containment\b[^.;]*\b(no employee|no walkway|no exposure|locked|restricted)\b|\bsecondary containment\b[^.;]*\b(no employee|no walkway|no exposure|locked|restricted)\b/, evidence: 'The release is described as contained and not exposing employees or walkways.' },
   { domains: ['electrical'], pattern: /\bno exposed (energized|live) (parts|conductors)\b|\b(panel|enclosure) (cover )?(is )?(intact|closed|secured)\b|\bcord (is )?(undamaged|intact)\b/, evidence: 'Electrical guarding or conductor integrity is explicitly described as intact.' },
   { domains: ['mobile_equipment', 'powered_haulage'], pattern: /\bno pedestrian exposure|pedestrians? (are )?separated|separated from pedestrians?\b|\b(barrier|barriers|physical separation)\b[^.;]*\b(pedestrian|forklift|mobile equipment|traffic route)\b/, evidence: 'Pedestrian and mobile-equipment routes are described as separated.' },
   { domains: ['powered_haulage', 'mobile_equipment'], pattern: /\b(berm|guardrail|windrow)\b[^.;]*\b(present|installed|adequate|maintained)\b/, evidence: 'Edge control is described as present and adequate.' },
   { domains: ['fire_protection'], pattern: /\bfire extinguisher\b[^.;]*\b(accessible|unobstructed|clearly visible|readily available)\b/, evidence: 'Fire protection equipment is described as accessible.' },
   { domains: ['welding_cutting_hot_work', 'fire_protection'], pattern: /\b(hot work|welding|cutting)\b[^.;]*\b(combustibles? (removed|cleared|protected))\b[^.;]*\bfire watch (present|assigned|in place)\b/, evidence: 'Hot-work combustibles and fire-watch controls are described as in place.' },
+  { domains: ['welding_cutting_hot_work', 'fire_protection'], pattern: /\b(hot work|welding|cutting)\b[^.;]*\bcombustibles? (?:were )?(?:moved|removed|cleared|protected)\b[^.;]*\bextinguisher\b[^.;]*\bfire watch (?:is )?(?:present|assigned|in place)\b/, evidence: 'Hot-work ignition controls, extinguisher access, and fire watch are described as in place.' },
   { domains: ['ladders'], pattern: /\b(ladder|stepladder|extension ladder)\b[^.;]*\b(removed from service|tagged out of service|destroyed and discarded)\b/, evidence: 'The defective ladder is described as removed from exposure.' },
   { domains: ['hazard_communication', 'hazardous_materials'], pattern: /\b(chemical )?(container|bottle|drum)\b[^.;]*\b(labeled|identified)\b[^.;]*\b(closed|sealed|capped)\b/, evidence: 'The chemical container is described as identified, labeled, and closed.' },
   { domains: ['fall_protection'], pattern: /\b(floor hole|floor opening|opening)\b[^.;]*\b(covered|guarded)\b[^.;]*\b(labeled|marked|secured|load[- ]rated)\b/, evidence: 'The opening is described as covered/guarded and identified.' },
+  { domains: ['fall_protection'], pattern: /\bguardrail system\b[^.;]*\b(complete|installed|intact)\b|\b(complete|installed|intact)\b[^.;]*\bguardrail system\b|\bbehind\b[^.;]*\bguardrail\b[^.;]*\b(intact|complete)\b/, evidence: 'Fall protection is described as installed, complete, and intact.' },
 ];
 
 const FALSE_POSITIVE_PATTERNS: Array<{ pattern: RegExp; signal: string }> = [
@@ -59,7 +62,7 @@ const VAGUE_DOMAIN_PATTERNS: Array<{ domain: SafeScopeReasoningDomain; pattern: 
   { domain: 'welding_cutting_hot_work', pattern: /^\s*hot work (discussed|planned|mentioned)[.!?]?\s*$/, reason: 'No active hot-work task, ignition source, combustible exposure, or failed control is described.' },
 ];
 
-const UNCONTROLLED_SIGNAL = /\b(missing|unguarded|unsecured|unlabeled|exposed|damaged|frayed|block|blocks|blocked|blocking|obstructed|leaking|spill|debris|clutter|inoperative|defective|broken|without|no guard|no barrier|no warning|not verified|failed|unsafe)\b|\b(guard removed|removed guard|trip hazard|no traffic control)\b/i;
+const UNCONTROLLED_SIGNAL = /\b(missing|unguarded|unsecured|unlabeled|exposed|damaged|frayed|block|blocks|blocked|blocking|obstructed|leaking|spill|spilled|liquid across|tipped over|debris|clutter|inoperative|defective|broken|without|no guard|no barrier|no warning|not verified|failed|unsafe|top cap|top step|overfilled)\b|\b(guard removed|removed guard|trip hazard|no traffic control)\b/i;
 
 function unique<T>(values: T[]): T[] {
   return [...new Set(values)];
@@ -75,8 +78,12 @@ export class InspectionConditionAssessmentService {
       .replace(/\bno (spill|spills|debris|clutter)( or (spill|spills|debris|clutter))?\b/g, ' ')
       .replace(/\bfree of (spills|debris|clutter)( or (spills|debris|clutter))?\b/g, ' ')
       .replace(/\bcombustibles? (removed|cleared|protected)\b/g, ' ')
+      .replace(/\bcombustibles? (were )?(moved|removed|cleared|protected)[^.;]*\bfire watch (is )?(present|assigned|in place)\b/g, ' ')
+      .replace(/\b(spill|leak|release)\b[^.;]*\bsecondary containment\b[^.;]*\b(no employee|no walkway|no exposure|locked|restricted)\b/g, ' ')
+      .replace(/\bsecondary containment\b[^.;]*\b(no employee|no walkway|no exposure|locked|restricted)\b/g, ' ')
       .replace(/[^.;]*\b(ladder|stepladder|extension ladder)\b[^.;]*\bremoved from service\b[^.;]*/g, ' ')
       .replace(/\b(guard|guarding)\b[^.;]*\b(installed|in place|intact|secured|effective)\b/g, ' ')
+      .replace(/\bguardrail system\b[^.;]*\b(complete|installed|intact)\b|\b(complete|installed|intact)\b[^.;]*\bguardrail system\b|\bbehind\b[^.;]*\bguardrail\b[^.;]*\b(intact|complete)\b/g, ' ')
       .replace(/\b(no pedestrian exposure|no hazard exposure)\b/g, ' ');
     const hasActualHazardFailure = UNCONTROLLED_SIGNAL.test(unsafeText);
 

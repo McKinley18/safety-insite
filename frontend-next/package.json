@@ -7,8 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "check:company-actions": "node scripts/check-company-actions-sync.js",
-    "check:action-workflow": "node scripts/check-action-workflow-visibility.js"
+    "check:company-actions": "node scripts/check-company-actions-sync.mjs",
+    "check:action-workflow": "node scripts/check-action-workflow-visibility.mjs",
+    "check:authenticated-release": "node scripts/check-authenticated-release.mjs",
+    "check:canonical-persistence": "node scripts/check-canonical-persistence-release.mjs",
+    "check:phase5-report-release": "node scripts/check-phase5-inspection-report-release.mjs"
+    ,"check:phase6-adopted-release": "node scripts/check-phase5-inspection-report-release.mjs",
+    "check:closure-workflow": "node scripts/check-closure-inspection-workspace.mjs"
   },
   "dependencies": {
     "@xyflow/react": "^12.11.0",
@@ -16,8 +21,8 @@
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
     "lucide-react": "^1.14.0",
-    "next": "16.2.6",
-    "postcss": "^8.5.14",
+    "next": "^16.2.12",
+    "postcss": "^8.5.24",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "tailwind-merge": "^3.6.0"
@@ -25,12 +30,19 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.6",
+    "eslint-config-next": "^16.2.12",
+    "pg": "^8.22.0",
     "playwright": "^1.60.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "$postcss",
+    "sharp": "0.35.3",
+    "dompurify": "3.4.12"
   }
 }

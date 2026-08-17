@@ -2,12 +2,13 @@ import { UnauthorizedException, Controller, Get, Query, UseGuards, Req } from '@
 import { SafeScopePersistenceService } from './persistence.service';
 import { AuditRecordFilter, AuditRecordType } from './persistence.types';
 import { JwtGuard } from '../../auth/guards/jwt.guard';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 import { Roles } from '../../auth/decorators/roles.decorator';
 import { Request } from 'express';
 import { UserGovernanceContext, SafeScopeRole } from '../workspace-governance-access/workspace-governance.types';
 
 @Controller('safescope-v2/persistence')
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, RolesGuard)
 export class SafeScopePersistenceController {
   constructor(private readonly service: SafeScopePersistenceService) {}
 

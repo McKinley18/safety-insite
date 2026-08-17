@@ -152,7 +152,10 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "scrap", weight: -12 },
       { term: "hallway", weight: -10 },
       { term: "travel path", weight: -10 },
-      { term: "trip hazard", weight: -14 }
+      { term: "trip hazard", weight: -14 },
+      { term: "no deficiencies were noted", weight: -30 },
+      { term: "no hazards identified", weight: -30 },
+      { term: "no hazards were identified", weight: -30 }
     ],
     contextBoosts: [
       { term: "operating", weight: 3 },
@@ -198,7 +201,10 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "exposed rotating", weight: -8 },
       { term: "exposed moving parts", weight: -8 },
       { term: "unguarded shaft", weight: -8 },
-      { term: "conveyor drive", weight: -6 }
+      { term: "conveyor drive", weight: -6 },
+      { term: "no deficiencies were noted", weight: -30 },
+      { term: "no hazards identified", weight: -30 },
+      { term: "no hazards were identified", weight: -30 }
     ],
     contextBoosts: [
       { term: "energized", weight: 5 },
@@ -237,7 +243,12 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "housekeeping", weight: 3 },
       { term: "cleanup", weight: 2 }
     ],
-    negativeSignals: [],
+    negativeSignals: [
+      { term: "clean and dry", weight: -30 },
+      { term: "no trip hazards", weight: -20 },
+      { term: "no hazards identified", weight: -30 },
+      { term: "no hazards were identified", weight: -30 }
+    ],
     contextBoosts: [
       { term: "travelway", weight: 4 },
       { term: "pedestrian", weight: 3 },
@@ -274,7 +285,14 @@ export const HAZARD_TAXONOMY: HazardProfile[] = [
       { term: "fall", weight: 3 },
       { term: "height", weight: 3 }
     ],
-    negativeSignals: [],
+    negativeSignals: [
+      { term: "no hazards identified", weight: -30 },
+      { term: "no hazards were identified", weight: -30 },
+      { term: "no unprotected fall exposure", weight: -30 },
+      { term: "clean and dry", weight: -30 },
+      { term: "no trip hazards", weight: -20 },
+      { term: "no deficiencies were noted", weight: -30 }
+    ],
     contextBoosts: [
       { term: "six feet", weight: 4 },
       { term: "above lower level", weight: 5 },

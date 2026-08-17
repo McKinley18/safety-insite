@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { hasAuthToken } from "@/lib/auth";
@@ -28,11 +28,7 @@ const useCases = [
 ];
 
 export default function MarketingHomePage() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
-  useEffect(() => {
-    setIsSignedIn(hasAuthToken());
-  }, []);
+  const [isSignedIn] = useState(() => hasAuthToken());
 
   return (
     <section className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-3 py-4 sm:px-6 sm:py-8 lg:py-10">

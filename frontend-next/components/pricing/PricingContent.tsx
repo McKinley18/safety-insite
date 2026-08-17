@@ -57,13 +57,13 @@ const tiers = [
     tier: "pro",
     price: "$6.99",
     cadence: "/month",
-    audience: "For individual safety professionals who need more than documentation.",
-    position: "Unlock HazLenz AI intelligence, stronger reports, and better corrective actions.",
+    audience: "For safety professionals who need full access to the platform.",
+    position: "Full access: HazLenz AI intelligence, cloud reports, team tools, and advanced review.",
     cta: "Choose Pro",
     publicHref: "/register?plan=pro",
     upgradeHref: "/profile?upgrade=pro",
     featured: true,
-    badge: "Best value",
+    badge: "Full access",
     sections: [
       {
         title: "HazLenz AI Intelligence",
@@ -79,45 +79,20 @@ const tiers = [
         title: "Professional Workflow",
         items: [
           "Professional inspection reports",
-          "Corrective action recommendations",
+          "Corrective action recommendations and tracking",
           "Saved inspection history",
           "Repeat-hazard insight support",
           "Human-review safeguards",
         ],
       },
-    ],
-  },
-  {
-    name: "Expert",
-    tier: "expert",
-    price: "$11.99",
-    cadence: "/month",
-    audience: "For safety professionals who need deeper reporting and review tools.",
-    position: "Adds expanded reporting, review visibility, and advanced workflow tools.",
-    cta: "Choose Expert",
-    publicHref: "/register?plan=expert",
-    upgradeHref: "/profile?upgrade=expert",
-    featured: false,
-    badge: null,
-    sections: [
       {
-        title: "Expert Access",
+        title: "Team & Advanced Tools",
         items: [
-          "Expanded report review",
-          "Advanced inspection history",
-          "Advanced review controls",
-          "Advanced inspection tools",
-          "Expanded inspection records",
-        ],
-      },
-      {
-        title: "Expert Tools",
-        items: [
-          "Inspection planning tools",
-          "Corrective action tracking",
-          "Advanced dashboards",
+          "Cloud reports and team members",
+          "Advanced review controls and audit trail",
+          "Inspection planning and assignment tools",
+          "Advanced dashboards and analytics",
           "Action due dates and status tracking",
-          "Expanded safety visibility",
         ],
       },
     ],
@@ -137,16 +112,17 @@ const emptyBilling: BillingResponse = {
 };
 
 const comparisonRows = [
-  ["Basic findings, photos, and notes", "Yes", "Yes", "Yes"],
-  ["Simple report creation", "Yes", "Yes", "Yes"],
-  ["Full HazLenz AI hazard intelligence", "Preview only", "Yes", "Yes"],
-  ["Suggested MSHA / OSHA standards", "Limited", "Yes", "Yes"],
-  ["Evidence gap prompts", "No", "Yes", "Yes"],
-  ["Corrective action reasoning", "Manual only", "Yes", "Yes"],
-  ["Saved inspection history", "Limited", "Yes", "Yes"],
-  ["Expert review controls", "No", "No", "Yes"],
-  ["Inspection planning tools", "No", "No", "Yes"],
-  ["Advanced dashboards", "No", "No", "Yes"],
+  ["Basic findings, photos, and notes", "Yes", "Yes"],
+  ["Simple report creation", "Yes", "Yes"],
+  ["Full HazLenz AI hazard intelligence", "Preview only", "Yes"],
+  ["Suggested MSHA / OSHA standards", "Limited", "Yes"],
+  ["Evidence gap prompts", "No", "Yes"],
+  ["Corrective action reasoning", "Manual only", "Yes"],
+  ["Saved inspection history", "Limited", "Yes"],
+  ["Cloud reports and team members", "No", "Yes"],
+  ["Advanced review controls and audit trail", "No", "Yes"],
+  ["Inspection planning and assignment tools", "No", "Yes"],
+  ["Advanced dashboards", "No", "Yes"],
 ];
 
 export default function PricingContent({ mode = "public" }: PricingContentProps) {
@@ -224,9 +200,8 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         </h1>
 
         <p className="mx-auto mt-5 max-w-3xl text-sm font-semibold leading-6 text-slate-300 sm:text-base">
-          Free helps users try the workflow. Pro unlocks HazLenz AI intelligence.
-          Expert tools add expanded review, reporting, and
-          expanded safety visibility.
+          Free helps users try the workflow. Pro unlocks full access: HazLenz AI
+          intelligence, cloud reports, team tools, and advanced review.
         </p>
       </div>
 
@@ -236,10 +211,10 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         </p>
       )}
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2">
         {tiers.map((tier) => {
           const href = isUpgrade ? tier.upgradeHref : tier.publicHref;
-          const paidTier = tier.tier === "pro" || tier.tier === "expert" ? tier.tier : null;
+          const paidTier = tier.tier === "pro" ? tier.tier : null;
           const isCurrent = billing?.tier === tier.tier;
           const canManage = Boolean(billing?.stripeCustomerId && billing?.billingConfigured);
           const cta = isUpgrade
@@ -360,26 +335,24 @@ export default function PricingContent({ mode = "public" }: PricingContentProps)
         </div>
 
         <div className="mt-6 overflow-x-auto rounded-2xl border border-slate-200">
-          <div className="min-w-[720px]">
-            <div className="grid grid-cols-[1.35fr_0.65fr_0.65fr_0.8fr] bg-[#102A43] text-xs font-black uppercase tracking-wide text-white">
+          <div className="min-w-[560px]">
+            <div className="grid grid-cols-[1.35fr_0.65fr_0.65fr] bg-[#102A43] text-xs font-black uppercase tracking-wide text-white">
               <div className="px-3 py-3">Feature</div>
               <div className="px-3 py-3 text-center">Free</div>
               <div className="px-3 py-3 text-center">Pro</div>
-              <div className="px-3 py-3 text-center">Expert</div>
             </div>
 
             {comparisonRows.map((row, index) => (
               <div
                 key={row[0]}
                 className={[
-                  "grid grid-cols-[1.35fr_0.65fr_0.65fr_0.8fr] border-t border-slate-200 text-sm font-semibold",
+                  "grid grid-cols-[1.35fr_0.65fr_0.65fr] border-t border-slate-200 text-sm font-semibold",
                   index % 2 === 0 ? "bg-white" : "bg-slate-50",
                 ].join(" ")}
               >
                 <div className="px-3 py-3 text-slate-800">{row[0]}</div>
                 <div className="px-3 py-3 text-center text-slate-600">{row[1]}</div>
                 <div className="px-3 py-3 text-center font-black text-[#1D72B8]">{row[2]}</div>
-                <div className="px-3 py-3 text-center font-black text-[#102A43]">{row[3]}</div>
               </div>
             ))}
           </div>

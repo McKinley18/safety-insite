@@ -20,6 +20,7 @@ interface InspectionStepTwoProps {
   safeScopeResult: any;
   hazLenzClarificationAnswers: HazLenzClarificationAnswerInput[];
   setHazLenzClarificationAnswers: (answers: HazLenzClarificationAnswerInput[]) => void;
+  onUseHazardFragment: (hazard: any) => void;
   setIsOfflineMode?: (value: boolean) => void;
   submitSafeScopeValidation: (decision: "accepted" | "modified" | "rejected" | "escalated" | "insufficient_evidence") => Promise<void>;
   safeScopeCompactDetailsOpen: boolean;

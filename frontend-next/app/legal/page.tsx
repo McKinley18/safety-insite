@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { hasAuthToken } from "@/lib/auth";
@@ -33,11 +33,7 @@ const sections = [
 ];
 
 export default function LegalPage() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
-  useEffect(() => {
-    setIsSignedIn(hasAuthToken());
-  }, []);
+  const [isSignedIn] = useState(() => hasAuthToken());
 
   return (
     <section className="mx-auto max-w-5xl px-4 py-4 sm:px-5 lg:py-7">

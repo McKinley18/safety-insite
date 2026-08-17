@@ -1,12 +1,24 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, IsNull, Repository } from 'typeorm';
+import { randomUUID } from 'crypto';
 import { CorrectiveAction } from './entities/corrective-action.entity';
 import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
 import { AuditService } from '../audit/audit.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { FixFeedbackService } from '../intelligence/fix-feedback.service';
 import { OutcomeService } from '../outcomes/outcome.service';
+import { isOrganizationManager } from '../common/authenticated-user';
+import { InspectionFinding } from '../inspection/entities/inspection-finding.entity';
+import { Inspection } from '../inspection/inspection.entity';
+import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
+import { Site } from '../sites/entities/site.entity';
+import { AuditLog } from '../audit/entities/audit-log.entity';
 
 function toPositiveInt(value: unknown, fallback: number): number {
   const parsed = Number(value);
@@ -22,6 +34,13 @@ export class CorrectiveActionsService {
   constructor(
     @InjectRepository(CorrectiveAction)
     private actionRepo: Repository<CorrectiveAction>,
+    @InjectRepository(Inspection) private inspectionRepo: Repository<Inspection>,
+    @InjectRepository(InspectionFinding)
+    private findingRepo: Repository<InspectionFinding>,
+    @InjectRepository(Site) private siteRepo: Repository<Site>,
+    @InjectRepository(OrganizationMembership)
+    private membershipRepo: Repository<OrganizationMembership>,
+    private dataSource: DataSource,
     private auditService: AuditService,
     private notificationsService: NotificationsService,
     private fixFeedbackService: FixFeedbackService,
@@ -30,22 +49,18 @@ export class CorrectiveActionsService {
 
   private getAuthContext(user?: any) {
     const userId = user?.userId || user?.id || user?.sub;
-    const organizationId = user?.organizationId || user?.workspaceId || user?.tenantId;
-    const tenantId = user?.tenantId || organizationId;
+    const organizationId = user?.organizationId || null;
+    const tenantId = user?.tenantId || organizationId || `user:${userId}`;
 
     if (!userId) {
       throw new UnauthorizedException('Authenticated user context is required.');
-    }
-
-    if (!organizationId) {
-      throw new UnauthorizedException('Authenticated organization context is required.');
     }
 
     return {
       ...user,
       userId,
       sub: user?.sub || userId,
-      organizationId: String(organizationId),
+      organizationId: organizationId ? String(organizationId) : null,
       tenantId: String(tenantId),
     };
   }
@@ -71,14 +86,11 @@ export class CorrectiveActionsService {
   private buildFilter(
     statusCode?: string,
     priorityCode?: string,
-    organizationId?: string,
+    organizationId?: string | null,
+    ownerUserId?: string,
     assignedToUserId?: string,
   ) {
-    if (!organizationId) {
-      throw new UnauthorizedException('Authenticated organization context is required.');
-    }
-
-    const where: any = { organizationId };
+    const where: any = organizationId ? { organizationId } : { organizationId: IsNull(), ownerUserId };
 
     if (assignedToUserId) where.assignedToUserId = assignedToUserId;
     if (statusCode) where.statusCode = statusCode;
@@ -99,6 +111,7 @@ export class CorrectiveActionsService {
       statusCode,
       priorityCode,
       auth.organizationId,
+      String(auth.userId),
       assignedToMe ? String(auth.userId) : undefined,
     );
 
@@ -117,33 +130,90 @@ export class CorrectiveActionsService {
 
   async export(user: any, statusCode?: string, priorityCode?: string) {
     const auth = this.getAuthContext(user);
-    const where = this.buildFilter(statusCode, priorityCode, auth.organizationId);
+    const where = this.buildFilter(
+      statusCode,
+      priorityCode,
+      auth.organizationId,
+      String(auth.userId),
+    );
     return this.actionRepo.find({ where, order: { createdAt: 'DESC' } });
   }
 
   async create(user: any, dto: CreateCorrectiveActionDto) {
     const auth = this.getAuthContext(user);
-    const count = await this.actionRepo.count();
+    const scope = auth.organizationId
+      ? { organizationId: auth.organizationId }
+      : { organizationId: IsNull(), ownerUserId: String(auth.userId) };
+    let inspection: Inspection | null = null;
+    if (dto.inspectionId) {
+      inspection = await this.inspectionRepo.findOne({
+        where: { id: dto.inspectionId, ...scope } as any,
+      });
+      if (!inspection) throw new NotFoundException('Inspection not found.');
+    }
+    if (dto.findingId) {
+      const finding = await this.findingRepo.findOne({
+        where: { id: dto.findingId },
+      });
+      if (!finding ||
+          (inspection && finding.inspectionId !== inspection.id) ||
+          !(await this.inspectionRepo.findOne({
+            where: { id: finding.inspectionId, ...scope } as any,
+          }))) {
+        throw new NotFoundException('Finding not found.');
+      }
+      if (!inspection) inspection = await this.inspectionRepo.findOne({
+        where: { id: finding.inspectionId, ...scope } as any,
+      });
+    }
+    if (dto.siteId) {
+      const site = await this.siteRepo.findOne({
+        where: { id: dto.siteId, ...scope } as any,
+      });
+      if (!site || site.archivedAt || (inspection && inspection.siteId !== site.id)) {
+        throw new NotFoundException('Site not found.');
+      }
+    }
+    const assigneeId = dto.assignedToUserId || String(auth.userId);
+    if (auth.organizationId) {
+      const membership = await this.membershipRepo.findOne({
+        where: {
+          userId: assigneeId,
+          organizationId: auth.organizationId,
+          status: 'active',
+        },
+      });
+      if (!membership) throw new NotFoundException('Assignee not found.');
+      if (assigneeId !== String(auth.userId) && !isOrganizationManager(auth)) {
+        throw new ForbiddenException('Manager access is required to assign another member.');
+      }
+    } else if (assigneeId !== String(auth.userId)) {
+      throw new NotFoundException('Assignee not found.');
+    }
     const action = this.actionRepo.create({
       ...(dto as any),
+      inspectionId: inspection?.id || dto.inspectionId || null,
+      assignedToUserId: assigneeId,
       priorityCode: this.normalizePriority(dto.priorityCode),
       statusCode: this.normalizeStatus((dto as any).statusCode),
       dueDate: dto.dueDate ? new Date(dto.dueDate) : undefined,
       tenantId: auth.tenantId,
       organizationId: auth.organizationId,
       ownerUserId: String(auth.userId),
-      displayId: `ACT-${String(count + 2001).padStart(4, '0')}`,
+      displayId: `ACT-${randomUUID().slice(0, 8).toUpperCase()}`,
     } as any) as unknown as CorrectiveAction;
-    const saved = (await this.actionRepo.save(action)) as CorrectiveAction;
-    await this.auditService.log({
-      tenantId: auth.tenantId,
-      actorUserId: String(auth.userId),
-      entityType: 'CORRECTIVE_ACTION',
-      entityId: saved.id,
-      actionCode: 'ACTION_CREATED',
-      afterJson: saved,
+    return this.dataSource.transaction(async manager => {
+      const saved = await manager.getRepository(CorrectiveAction).save(action);
+      await manager.getRepository(AuditLog).save(manager.getRepository(AuditLog).create({
+        tenantId: auth.tenantId,
+        actorUserId: String(auth.userId),
+        entityType: 'CORRECTIVE_ACTION',
+        entityId: saved.id,
+        actionCode: 'ACTION_CREATED',
+        afterJson: saved,
+      }));
+      return saved;
     });
-    return saved;
   }
 
   async updateStatus(
@@ -154,9 +224,17 @@ export class CorrectiveActionsService {
     const auth = this.getAuthContext(user);
 
     const action = await this.actionRepo.findOne({
-      where: { id, organizationId: auth.organizationId },
+      where: auth.organizationId
+        ? { id, organizationId: auth.organizationId }
+        : { id, organizationId: IsNull(), ownerUserId: String(auth.userId) },
     });
-    if (!action) throw new Error('Action not found');
+    if (!action) throw new NotFoundException('Action not found.');
+    if (auth.organizationId &&
+        action.ownerUserId !== String(auth.userId) &&
+        action.assignedToUserId !== String(auth.userId) &&
+        !isOrganizationManager(auth)) {
+      throw new NotFoundException('Action not found.');
+    }
 
     const before = { ...action };
     action.statusCode = body.statusCode;
@@ -188,7 +266,7 @@ export class CorrectiveActionsService {
         }
 
         // 🔷 FEEDBACK LOOP: Record successful remediation (only if no recurrence)
-        if (updated.category && !outcome.recurrenceDetected) {
+        if (updated.reportId && updated.category && !outcome.recurrenceDetected) {
             await this.fixFeedbackService.recordFeedback({
                 reportId: updated.reportId,
                 category: updated.category,
@@ -337,7 +415,9 @@ export class CorrectiveActionsService {
     const oneDay = 1000 * 60 * 60 * 24;
 
     const actions = await this.actionRepo.find({
-      where: { organizationId: auth.organizationId },
+      where: auth.organizationId
+        ? { organizationId: auth.organizationId }
+        : { organizationId: IsNull(), ownerUserId: String(auth.userId) },
       order: { dueDate: 'ASC' },
     });
 
@@ -383,7 +463,9 @@ export class CorrectiveActionsService {
   async close(id: string, dto: CloseCorrectiveActionDto, user?: any) {
     const auth = this.getAuthContext(user);
     const action = await this.actionRepo.findOne({
-      where: { id, organizationId: auth.organizationId },
+      where: auth.organizationId
+        ? { id, organizationId: auth.organizationId }
+        : { id, organizationId: IsNull(), ownerUserId: String(auth.userId) },
     });
     if (!action) throw new Error('Action not found');
     
@@ -411,7 +493,7 @@ export class CorrectiveActionsService {
     }
 
     // 🔷 FEEDBACK LOOP: Record successful remediation (only if no recurrence)
-    if (updated.category && !outcome.recurrenceDetected) {
+    if (updated.reportId && updated.category && !outcome.recurrenceDetected) {
         await this.fixFeedbackService.recordFeedback({
             reportId: updated.reportId,
             category: updated.category,

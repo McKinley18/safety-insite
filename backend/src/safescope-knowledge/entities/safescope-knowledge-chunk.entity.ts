@@ -29,6 +29,9 @@ export class SafeScopeKnowledgeChunk {
   @Column({ type: 'text' })
   chunkText: string;
 
+  @Column({ type: 'char', length: 64, nullable: true })
+  normalizedRecordChecksum?: string | null;
+
   @Column({ type: 'text', nullable: true })
   chunkSummary?: string | null;
 

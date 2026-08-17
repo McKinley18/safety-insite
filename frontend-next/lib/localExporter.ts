@@ -648,7 +648,23 @@ export const localExporter = {
           const base64 = await blobToBase64(photoUrl);
           if (base64) {
             try {
-              doc.addImage(base64, "JPEG", photoX, currentY, 80, 60);
+              const boxWidth = 80;
+              const boxHeight = 60;
+              let drawX = photoX;
+              let drawY = currentY;
+              let drawWidth = boxWidth;
+              let drawHeight = boxHeight;
+              try {
+                const props = doc.getImageProperties(base64);
+                const scale = Math.min(boxWidth / props.width, boxHeight / props.height);
+                drawWidth = props.width * scale;
+                drawHeight = props.height * scale;
+                drawX = photoX + (boxWidth - drawWidth) / 2;
+                drawY = currentY + (boxHeight - drawHeight) / 2;
+              } catch {
+                // If dimensions can't be read, fall back to the full box (pre-existing behavior).
+              }
+              doc.addImage(base64, "JPEG", drawX, drawY, drawWidth, drawHeight);
             } catch (e) {
               doc.setDrawColor(226, 232, 240);
               doc.rect(photoX, currentY, 80, 60);

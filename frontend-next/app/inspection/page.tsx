@@ -686,6 +686,18 @@ export default function InspectionPage() {
     resetCurrentFinding();
   }
 
+  async function useHazardFragmentForNewFinding(hazard: any) {
+    await addNewFinding();
+
+    const fragment = String(
+      hazard?.observationFragment || hazard?.mechanism || "",
+    ).trim();
+
+    if (fragment) {
+      setDescription(fragment);
+    }
+  }
+
   function editFinding(index: number) {
     const finding = findings[index];
     if (!finding) return;
@@ -839,6 +851,7 @@ export default function InspectionPage() {
         safeScopeResult={safeScopeResult}
         hazLenzClarificationAnswers={hazLenzClarificationAnswers}
         setHazLenzClarificationAnswers={setHazLenzClarificationAnswers}
+        onUseHazardFragment={useHazardFragmentForNewFinding}
         setIsOfflineMode={setIsOfflineMode}
         submitSafeScopeValidation={submitSafeScopeValidation}
         safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}

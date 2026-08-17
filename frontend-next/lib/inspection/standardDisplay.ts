@@ -124,11 +124,17 @@ export function getStandardSummary(standard: any) {
 }
 
 export type StandardDisplayText = {
-  label: "Official standard text" | "Summary" | "HazLenz explanation" | "Unavailable";
+  label: "HazLenz standard summary" | "Summary" | "HazLenz explanation" | "Unavailable";
   text: string;
   sourceField?: string;
 };
 
+// NOTE: standardText/regulatoryText/regulationText/fullText are populated by
+// hand-typed or auto-derived paraphrases (see safescope-standards.seed.ts and
+// sync-standards-intelligence-to-master.ts's `standardText()` helper), never
+// by verbatim CFR/MSHA source text — no verbatim-text store is currently wired
+// into this display path (see P1_STANDARDS_INTEGRITY_CONTRACT.md). This tier
+// must never be labeled as official/authoritative regulatory language.
 export function getStandardDisplayText(standard: any): StandardDisplayText {
   const officialText = cleanText(
     standard?.standardText ||
@@ -139,7 +145,7 @@ export function getStandardDisplayText(standard: any): StandardDisplayText {
   );
   if (officialText) {
     return {
-      label: "Official standard text",
+      label: "HazLenz standard summary",
       text: officialText,
       sourceField: standard?.standardText
         ? "standardText"

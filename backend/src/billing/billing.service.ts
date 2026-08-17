@@ -5,11 +5,12 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { LessThanOrEqual, MoreThan, Repository } from 'typeorm';
 import * as StripePackage from 'stripe';
 
 const StripeConstructor = (StripePackage as any).default || StripePackage;
 import { UserSubscription } from './user-subscription.entity';
+import { EntitlementGrant } from './entitlement-grant.entity';
 import {
   BILLING_PLAN_DEFINITIONS,
   BillingTier,
@@ -22,7 +23,6 @@ import {
 } from './plan-entitlements';
 import {
   hasActivePaidAccess,
-  hasExpertAccess,
   hasProAccess,
   normalizeStripeSubscriptionStatus,
   resolveAccessTier,
@@ -48,6 +48,8 @@ export class BillingService {
   constructor(
     @InjectRepository(UserSubscription)
     private readonly subscriptions: Repository<UserSubscription>,
+    @InjectRepository(EntitlementGrant)
+    private readonly entitlementGrants: Repository<EntitlementGrant>,
   ) {
     this.stripe = process.env.STRIPE_SECRET_KEY
       ? new StripeConstructor(process.env.STRIPE_SECRET_KEY)
@@ -87,13 +89,25 @@ export class BillingService {
       (fallbackTier === 'free' ? 'none' : 'active');
 
     const subscription = await this.findSubscriptionByUserId(userId);
+    const now = new Date();
+    const activeGrant = await this.entitlementGrants.findOne({
+      where: {
+        userId,
+        status: 'active',
+        startsAt: LessThanOrEqual(now),
+        endsAt: MoreThan(now),
+      },
+      order: { tier: 'ASC', endsAt: 'DESC' },
+    });
 
-    const sourceTier = subscription ? subscription.tier : fallbackTier;
+    const paidTier = subscription ? subscription.tier : fallbackTier;
+    const sourceTier = activeGrant?.tier === 'pro' && paidTier === 'free' ? 'pro' : paidTier;
     const sourceStatus = subscription ? subscription.status : fallbackStatus;
     const sourcePeriodEnd = subscription?.currentPeriodEnd || null;
-    const tier = subscription
+    const paidEffectiveTier = subscription
       ? this.resolveEffectiveTier(subscription)
-      : resolveAccessTier(sourceTier, sourceStatus, sourcePeriodEnd);
+      : resolveAccessTier(paidTier, sourceStatus, sourcePeriodEnd);
+    const tier = activeGrant?.tier === 'pro' && paidEffectiveTier === 'free' ? 'pro' : paidEffectiveTier;
     const plan = BILLING_PLAN_DEFINITIONS[tier] || BILLING_PLAN_DEFINITIONS.free;
     const accessInput = {
       tier: sourceTier,
@@ -110,9 +124,8 @@ export class BillingService {
       monthlyPrice: getBillingPlanMonthlyPrice(tier),
       status: sourceStatus,
       subscriptionStatus: sourceStatus,
-      hasPaidAccess: hasActivePaidAccess(accessInput),
-      hasProAccess: hasProAccess(accessInput),
-      hasExpertAccess: hasExpertAccess(accessInput),
+      hasPaidAccess: activeGrant ? true : hasActivePaidAccess(accessInput),
+      hasProAccess: activeGrant ? true : hasProAccess(accessInput),
       currentPeriodStart: subscription?.currentPeriodStart || null,
       currentPeriodEnd: subscription?.currentPeriodEnd || null,
       cancelAtPeriodEnd: Boolean(subscription?.cancelAtPeriodEnd),
@@ -122,6 +135,8 @@ export class BillingService {
       entitlements: getBillingEntitlements(tier),
       planDefinition: plan,
       billingConfigured: Boolean(this.stripe),
+      accessSource: activeGrant ? activeGrant.source : subscription ? 'subscription' : 'free',
+      entitlementExpiresAt: activeGrant?.endsAt || null,
       planCatalog: Object.values(BILLING_PLAN_DEFINITIONS).map((definition) => ({
         tier: definition.tier,
         label: definition.label,

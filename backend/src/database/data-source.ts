@@ -41,6 +41,20 @@ import { AuditEntryFinding } from '../audit-session/entities/audit-entry-finding
 import { Inspection } from '../inspection/inspection.entity';
 import { Hazard } from '../inspection/hazard.entity';
 import { SafeScopeAuditRecordEntity } from '../safescope-v2/persistence/audit-record.entity';
+import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
+import { PlatformSupportGrant } from '../auth/entities/platform-support-grant.entity';
+import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
+import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
+import { Observation } from '../inspection/entities/observation.entity';
+import { HazLenzAnalysis } from '../inspection/entities/hazlenz-analysis.entity';
+import { HumanReview } from '../inspection/entities/human-review.entity';
+import { InspectionFinding } from '../inspection/entities/inspection-finding.entity';
+import { Task } from '../tasks/task.entity';
+import { EntitlementGrant } from '../billing/entitlement-grant.entity';
+import { StorageObject } from '../storage/storage-object.entity';
+import { InspectionReport } from '../reports/entities/inspection-report.entity';
+import { InspectionReportVersion } from '../reports/entities/inspection-report-version.entity';
+import { LegacyReportQuarantine } from '../reports/entities/legacy-report-quarantine.entity';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -115,6 +129,20 @@ export const dataSource = new DataSource({
     Inspection,
     Hazard,
     SafeScopeAuditRecordEntity,
+    OrganizationMembership,
+    PlatformSupportGrant,
+    SecurityAuditEvent,
+    InspectionAssignment,
+    Observation,
+    HazLenzAnalysis,
+    HumanReview,
+    InspectionFinding,
+    Task,
+    EntitlementGrant,
+    StorageObject,
+    InspectionReport,
+    InspectionReportVersion,
+    LegacyReportQuarantine,
   ],
   migrations: [isTsNode ? 'src/database/migrations/*.ts' : 'dist/database/migrations/*.js'],
   synchronize: false,

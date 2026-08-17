@@ -9,6 +9,19 @@ import { RegulatorySubpart } from './entities/regulatory-subpart.entity';
 import { RegulatorySection } from './entities/regulatory-section.entity';
 import { RegulatoryParagraph } from './entities/regulatory-paragraph.entity';
 
+// eCFR bulk XML paragraph nodes are plain strings only when they contain no inline
+// markup (e.g. <I>); paragraphs with inline formatting parse (via mergeAttrs) into an
+// object whose actual text lives on "_", with markup tag names merged in as sibling
+// keys. Naively .join()-ing such nodes stringifies them to "[object Object]" instead
+// of their real text -- this extracts the real text in both cases.
+function paragraphText(node: unknown): string {
+  if (typeof node === 'string') return node;
+  if (node && typeof node === 'object' && typeof (node as { _?: unknown })._ === 'string') {
+    return (node as { _: string })._;
+  }
+  return '';
+}
+
 @Injectable()
 export class RegulatorySyncService {
   constructor(
@@ -55,7 +68,8 @@ export class RegulatorySyncService {
             
             await this.sectionRepo.upsert({
                 agencyCode: opts.agencyCode, titleNumber: opts.titleNumber, part: opts.part, 
-                section: sectionNo, citation, heading: node.HEAD, textPlain: Array.isArray(node.P) ? node.P.join(' ') : (node.P || '')
+                section: sectionNo, citation, heading: node.HEAD,
+                textPlain: (Array.isArray(node.P) ? node.P.map(paragraphText) : [paragraphText(node.P)]).filter(Boolean).join(' ')
             }, ['citation']);
             sectionsUpserted++;
         } else if (typeof node === 'object') {

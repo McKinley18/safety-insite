@@ -1,6 +1,6 @@
 import { getAuthUser } from "./auth";
 
-export type BillingTier = "free" | "pro" | "expert";
+export type BillingTier = "free" | "pro";
 export type PlanCode = BillingTier | "basic" | "plus" | "company";
 
 export type EntitlementKey =
@@ -63,28 +63,23 @@ const freeEntitlements: PlanEntitlements = {
 const proEntitlements: PlanEntitlements = {
   ...freeEntitlements,
   fullSafeScope: true,
-  analytics: true,
-  guidedInspection: true,
-  hazlenzFullReview: true,
-  standardsReasoning: true,
-  professionalReports: true,
-  correctiveActionRecommendations: true,
-  evidenceGapPrompts: true,
-  exportLevel: "professional",
-};
-
-const expertEntitlements: PlanEntitlements = {
-  ...proEntitlements,
   cloudReports: true,
   teamMembers: true,
+  analytics: true,
   supervisorValidation: true,
   auditTrail: true,
+  guidedInspection: true,
   advancedReview: true,
   inspectionAssignments: true,
   correctiveActionAssignments: true,
   workspaceFiltering: true,
   companyAnalytics: true,
   sharedReports: true,
+  hazlenzFullReview: true,
+  standardsReasoning: true,
+  professionalReports: true,
+  correctiveActionRecommendations: true,
+  evidenceGapPrompts: true,
   deeperExplainability: true,
   advancedReportReview: true,
   advancedStandardsSupport: true,
@@ -95,15 +90,21 @@ const expertEntitlements: PlanEntitlements = {
 export const PLAN_ENTITLEMENTS: Record<BillingTier, PlanEntitlements> = {
   free: freeEntitlements,
   pro: proEntitlements,
-  expert: expertEntitlements,
 };
 
 export function normalizePlanCode(plan?: string | null): BillingTier {
   const normalized = String(plan || "").trim().toLowerCase();
 
-  if (normalized === "pro" || normalized === "plus") return "pro";
-  if (normalized === "expert" || normalized === "company" || normalized === "enterprise") {
-    return "expert";
+  // "expert"/"company"/"enterprise" are retired tier names; existing accounts
+  // carrying them resolve to "pro", which now includes everything Expert had.
+  if (
+    normalized === "pro" ||
+    normalized === "plus" ||
+    normalized === "expert" ||
+    normalized === "company" ||
+    normalized === "enterprise"
+  ) {
+    return "pro";
   }
 
   return "free";
@@ -116,14 +117,12 @@ export function entitlementPlanKey(plan?: string | null): BillingTier {
 export function getPlanDisplayName(plan?: string | null) {
   const normalized = normalizePlanCode(plan);
   if (normalized === "pro") return "Pro";
-  if (normalized === "expert") return "Expert";
   return "Free";
 }
 
 export function getPlanPricing(plan?: string | null) {
   const normalized = normalizePlanCode(plan);
   if (normalized === "pro") return 6.99;
-  if (normalized === "expert") return 11.99;
   return 0;
 }
 
@@ -133,7 +132,6 @@ export function getPlanEntitlements(plan?: string | null) {
 
 export function getLocalDevPlanCode(): BillingTier {
   if (process.env.NODE_ENV === "production") return "free";
-  if (process.env.NEXT_PUBLIC_DEV_FORCE_EXPERT === "true") return "expert";
   if (process.env.NEXT_PUBLIC_DEV_FORCE_PRO === "true") return "pro";
   return "free";
 }
@@ -209,12 +207,10 @@ export function requiredPlanForArea(area: ProtectedArea) {
     area === "shared_reports" ||
     area === "team_actions" ||
     area === "workspace_filtering" ||
-    area === "advanced_review"
+    area === "advanced_review" ||
+    area === "guided_inspection" ||
+    area === "pro_analytics"
   ) {
-    return "Expert";
-  }
-
-  if (area === "guided_inspection" || area === "pro_analytics") {
     return "Pro";
   }
 

@@ -57,9 +57,5 @@ export function hasActivePaidAccess(input: BillingAccessInput): boolean {
 
 export function hasProAccess(input: BillingAccessInput): boolean {
   const tier = resolveAccessTier(input.tier, input.status, input.currentPeriodEnd);
-  return tier === "pro" || tier === "expert";
-}
-
-export function hasExpertAccess(input: BillingAccessInput): boolean {
-  return resolveAccessTier(input.tier, input.status, input.currentPeriodEnd) === "expert";
+  return tier === "pro";
 }

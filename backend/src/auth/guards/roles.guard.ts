@@ -20,6 +20,14 @@ export class RolesGuard implements CanActivate {
 
     if (!user) return false;
 
-    return requiredRoles.includes(user.role) || requiredRoles.includes(user.type);
+    const normalize = (value: unknown) =>
+      String(value || '')
+        .trim()
+        .replace(/([a-z])([A-Z])/g, '$1_$2')
+        .replace(/[\s-]+/g, '_')
+        .toUpperCase();
+    const granted = new Set([normalize(user.role), normalize(user.type)]);
+
+    return requiredRoles.some((role) => granted.has(normalize(role)));
   }
 }

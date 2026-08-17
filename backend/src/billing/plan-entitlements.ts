@@ -1,4 +1,4 @@
-export type BillingTier = "free" | "pro" | "expert";
+export type BillingTier = "free" | "pro";
 export type PlanTier = BillingTier;
 
 export type BillingSubscriptionStatus =
@@ -46,7 +46,7 @@ export type BillingPlanDefinition = {
   label: string;
   priceMonthly: number;
   description: string;
-  stripePriceEnv: "STRIPE_PRO_PRICE_ID" | "STRIPE_EXPERT_PRICE_ID" | null;
+  stripePriceEnv: "STRIPE_PRO_PRICE_ID" | null;
   legacyStripePriceEnv?: "STRIPE_PLUS_PRICE_ID" | "STRIPE_COMPANY_PRICE_ID" | null;
   entitlements: BillingEntitlements;
 };
@@ -82,27 +82,22 @@ const freeEntitlements: BillingEntitlements = {
 const proEntitlements: BillingEntitlements = {
   ...freeEntitlements,
   fullSafeScope: true,
-  analytics: true,
-  guidedInspection: true,
-  hazlenzFullReview: true,
-  standardsReasoning: true,
-  professionalReports: true,
-  correctiveActionRecommendations: true,
-  exportLevel: "professional",
-};
-
-const expertEntitlements: BillingEntitlements = {
-  ...proEntitlements,
   cloudReports: true,
   teamMembers: true,
+  analytics: true,
   supervisorValidation: true,
   auditTrail: true,
+  guidedInspection: true,
   advancedReview: true,
   inspectionAssignments: true,
   correctiveActionAssignments: true,
   workspaceFiltering: true,
   companyAnalytics: true,
   sharedReports: true,
+  hazlenzFullReview: true,
+  standardsReasoning: true,
+  professionalReports: true,
+  correctiveActionRecommendations: true,
   deeperExplainability: true,
   advancedReportReview: true,
   advancedStandardsSupport: true,
@@ -123,19 +118,10 @@ export const BILLING_PLAN_DEFINITIONS: Record<BillingTier, BillingPlanDefinition
     tier: "pro",
     label: "Pro",
     priceMonthly: 6.99,
-    description: "Professional inspection workflow with HazLenz AI review.",
+    description: "Full access: professional inspection workflow, HazLenz AI review, cloud reports, team and audit tools.",
     stripePriceEnv: "STRIPE_PRO_PRICE_ID",
     legacyStripePriceEnv: "STRIPE_PLUS_PRICE_ID",
     entitlements: proEntitlements,
-  },
-  expert: {
-    tier: "expert",
-    label: "Expert",
-    priceMonthly: 11.99,
-    description: "Advanced inspection and review tools with deeper explainability.",
-    stripePriceEnv: "STRIPE_EXPERT_PRICE_ID",
-    legacyStripePriceEnv: "STRIPE_COMPANY_PRICE_ID",
-    entitlements: expertEntitlements,
   },
 };
 
@@ -148,9 +134,16 @@ export type BillingPlanCode = BillingTier | LegacyPlanCode;
 export function normalizeBillingTier(plan?: string | null): BillingTier {
   const normalized = String(plan || "").trim().toLowerCase();
 
-  if (normalized === "pro" || normalized === "plus") return "pro";
-  if (normalized === "expert" || normalized === "company" || normalized === "enterprise") {
-    return "expert";
+  // "expert"/"company"/"enterprise" are retired tier names; existing accounts
+  // carrying them resolve to "pro", which now includes everything Expert had.
+  if (
+    normalized === "pro" ||
+    normalized === "plus" ||
+    normalized === "expert" ||
+    normalized === "company" ||
+    normalized === "enterprise"
+  ) {
+    return "pro";
   }
 
   return "free";
@@ -203,11 +196,14 @@ export function isPaidBillingTier(tier?: string | null) {
 
 export function resolveTierForPriceId(priceId?: string | null): BillingTier {
   if (!priceId) return "free";
-  if (priceId === process.env.STRIPE_PRO_PRICE_ID || priceId === process.env.STRIPE_PLUS_PRICE_ID) {
+  if (
+    priceId === process.env.STRIPE_PRO_PRICE_ID ||
+    priceId === process.env.STRIPE_PLUS_PRICE_ID ||
+    // Legacy price IDs from the retired Expert/Company tier now resolve to Pro.
+    priceId === process.env.STRIPE_EXPERT_PRICE_ID ||
+    priceId === process.env.STRIPE_COMPANY_PRICE_ID
+  ) {
     return "pro";
-  }
-  if (priceId === process.env.STRIPE_EXPERT_PRICE_ID || priceId === process.env.STRIPE_COMPANY_PRICE_ID) {
-    return "expert";
   }
   return "free";
 }

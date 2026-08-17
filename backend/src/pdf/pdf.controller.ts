@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Param, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, GoneException, Param, Req, Res, UseGuards } from '@nestjs/common';
 import { PdfService } from './pdf.service';
 import { ReportsService } from '../reports/reports.service';
 import { Response, Request } from 'express';
@@ -7,7 +7,7 @@ import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entit
 
 @UseGuards(JwtGuard, EntitlementGuard)
 @RequireEntitlement('cloudReports')
-@Controller('pdf')
+@Controller('legacy/pdf')
 export class PdfController {
   constructor(
     private readonly pdfService: PdfService,
@@ -20,20 +20,9 @@ export class PdfController {
     @Req() req: Request & { user?: any },
     @Res() res: Response,
   ) {
-    const report = await this.reportsService.findOne(id, req.user);
-
-    if (!report) {
-      throw new NotFoundException('Report not found');
-    }
-
-    const pdf = await this.pdfService.generate(report);
-
-    res.set({
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': `attachment; filename=inspection-report.pdf`,
-      'Content-Length': pdf.length,
-    });
-
-    return res.end(pdf);
+    void id;
+    void req;
+    void res;
+    throw new GoneException('Legacy PDF generation is retired. Retrieve an immutable canonical report version.');
   }
 }

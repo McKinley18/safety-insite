@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 
 export function useNetworkStatus() {
+  // Keep the first render deterministic across SSR and the browser. The
+  // browser's navigator.onLine value is read after hydration so it cannot
+  // change the server-rendered icon tree during hydration.
   const [isOnline, setIsOnline] = useState(true);
 
   useEffect(() => {
-    // Initial check
     setIsOnline(navigator.onLine);
-
     const handleOnline = () => setIsOnline(true);
     const handleOffline = () => setIsOnline(false);
 

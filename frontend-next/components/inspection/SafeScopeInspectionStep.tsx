@@ -32,6 +32,7 @@ type SafeScopeInspectionStepProps = {
   safeScopeResult: any;
   hazLenzClarificationAnswers: HazLenzClarificationAnswerInput[];
   setHazLenzClarificationAnswers: (answers: HazLenzClarificationAnswerInput[]) => void;
+  onUseHazardFragment: (hazard: any) => void;
   setIsOfflineMode?: (value: boolean) => void;
   hazardCategory: string;
   setHazardCategory: (value: string) => void;
@@ -72,6 +73,7 @@ export default function SafeScopeInspectionStep({
   safeScopeResult,
   hazLenzClarificationAnswers,
   setHazLenzClarificationAnswers,
+  onUseHazardFragment,
   setIsOfflineMode,
   hazardCategory,
   setHazardCategory,
@@ -304,6 +306,51 @@ export default function SafeScopeInspectionStep({
           />
 
           <SafeScopePrimaryDecisionSection safeScopeResult={safeScopeResult} />
+
+          {Array.isArray(safeScopeResult?.multiHazardDecomposition?.hazards) &&
+            safeScopeResult.multiHazardDecomposition.hazards.length > 1 && (
+              <section
+                aria-label="Hazard decomposition"
+                className="mb-2 rounded-2xl border border-blue-200 bg-blue-50 p-3 shadow-sm dark:border-blue-900/40 dark:bg-blue-950/20"
+              >
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-blue-800 dark:text-blue-300">
+                  Separate hazards detected
+                </p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-blue-900 dark:text-blue-100">
+                  Review each material hazard independently. Evidence, standards, risk, and corrective actions must not be merged without qualified review.
+                </p>
+                <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                  {safeScopeResult.multiHazardDecomposition.hazards.map((hazard: any) => (
+                    <article
+                      key={hazard.hazardId || `${hazard.domainId}-${hazard.mechanism}`}
+                      className="rounded-xl border border-blue-200 bg-white px-3 py-2 shadow-sm dark:border-blue-900/50 dark:bg-slate-900"
+                    >
+                      <h3 className="text-xs font-black capitalize text-slate-900 dark:text-slate-100">
+                        {String(hazard.hazardFamily || hazard.domainId || "Hazard").replaceAll("_", " ")}
+                      </h3>
+                      <p className="mt-1 text-[11px] font-semibold leading-5 text-slate-700 dark:text-slate-200">
+                        {hazard.observationFragment || hazard.mechanism || "Observed hazard mechanism requires review."}
+                      </p>
+                      <p className="mt-1 text-[10px] font-black uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                        Confidence {Math.round(Number(hazard.confidence || 0) * 100)}% · Human review required
+                      </p>
+                      {Array.isArray(hazard.evidenceGaps) && hazard.evidenceGaps.length > 0 && (
+                        <p className="mt-1 text-[10px] font-semibold text-amber-800 dark:text-amber-200">
+                          Evidence gap: {hazard.evidenceGaps[0]}
+                        </p>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => onUseHazardFragment(hazard)}
+                        className="mt-2 rounded-lg border border-blue-300 bg-blue-50 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-blue-800 transition hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/40 dark:text-blue-200 dark:hover:bg-blue-950/70"
+                      >
+                        Start a finding for this hazard
+                      </button>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            )}
 
           <SafeScopeEquipmentReasoningSection safeScopeResult={safeScopeResult} />
 

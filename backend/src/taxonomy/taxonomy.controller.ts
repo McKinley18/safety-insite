@@ -3,6 +3,8 @@ import { TaxonomyService } from './taxonomy.service';
 import { HAZARD_CATEGORIES, SEVERITY_LEVELS } from './taxonomy.config';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @UseGuards(JwtGuard)
 @Controller('taxonomy')
@@ -23,8 +25,9 @@ export class TaxonomyController {
     return csv;
   }
 
-  @UseGuards(EntitlementGuard)
+  @UseGuards(EntitlementGuard, RolesGuard)
   @RequireEntitlement('auditTrail')
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
   @Post('rules/import')
   async importRules(@Body() dto: { csv: string }, @Request() req: any) {
     // Basic CSV import logic
@@ -35,14 +38,16 @@ export class TaxonomyController {
     }
     return { success: true };
   }
-  @UseGuards(EntitlementGuard)
+  @UseGuards(EntitlementGuard, RolesGuard)
   @RequireEntitlement('auditTrail')
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
   @Post('rules')
   createRule(@Body() dto: any, @Request() req: any) {
     return this.taxonomyService.createRule(dto, req.user.userId);
   }
-  @UseGuards(EntitlementGuard)
+  @UseGuards(EntitlementGuard, RolesGuard)
   @RequireEntitlement('auditTrail')
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
   @Post('rules/:ruleId/rollback/:versionId')
   async rollbackRule(
     @Param('ruleId') ruleId: string,

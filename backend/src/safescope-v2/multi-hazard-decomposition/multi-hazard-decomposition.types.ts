@@ -11,6 +11,10 @@ export interface HazardDecomposition {
   requiresHumanReview: boolean;
   evidenceGaps: string[];
   reviewerQuestions: string[];
+  conditionState?: 'ACTIVE' | 'UNKNOWN' | 'CONTRADICTORY' | 'SAFE_VERIFIED' | 'HISTORICAL' | 'INTERMITTENT' | 'PLANNED_FUTURE';
+  temporalEvidence?: string[];
+  currentCondition?: string;
+  correctionStatus?: 'not_stated' | 'planned' | 'reported' | 'verified';
 }
 
 export interface MultiHazardDecompositionResult {

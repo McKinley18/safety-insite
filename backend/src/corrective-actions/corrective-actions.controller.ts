@@ -4,8 +4,7 @@ import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entit
 import { CorrectiveActionsService } from './corrective-actions.service';
 import { CreateCorrectiveActionDto, CloseCorrectiveActionDto } from './dto/corrective-action.dto';
 
-@UseGuards(JwtGuard, EntitlementGuard)
-@RequireEntitlement('cloudReports')
+@UseGuards(JwtGuard)
 @Controller('actions')
 export class CorrectiveActionsController {
   constructor(private readonly service: CorrectiveActionsService) {}
@@ -29,6 +28,8 @@ export class CorrectiveActionsController {
   }
 
   @Post()
+  @UseGuards(EntitlementGuard)
+  @RequireEntitlement('correctiveActionAssignments')
   create(
     @Req() req: any,
     @Body() dto: CreateCorrectiveActionDto,

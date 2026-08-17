@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { AppTextLink } from "@/components/ui/AppTextLink";
@@ -13,13 +14,19 @@ import {
   seedInspectionProgramIfEmpty,
 } from "@/lib/inspectionProgramStorage";
 import {
-  EntitlementKey,
-  getPlanDisplayName,
   getStoredPlanCode,
   getVerifiedPlanCode,
   hasPlanEntitlement,
   type PlanCode,
 } from "@/lib/planEntitlements";
+import {
+  createPersistedInspection,
+  createPersistedSite,
+  listPersistedInspections,
+  listPersistedSites,
+  type PersistedInspection,
+  type PersistedSite,
+} from "@/lib/canonicalWorkflowApi";
 
 type WorkflowId = "quick" | "guided";
 type PlanEntitlement = Parameters<typeof hasPlanEntitlement>[0];
@@ -43,7 +50,7 @@ const workflowOptions: {
       "Capture a single finding quickly with photo evidence, observed condition, location, hazard category, quick action, and report output.",
     details:
       "Best when you see one issue and need to document it quickly without the full guided inspection workflow.",
-    route: "/inspection-quick",
+    route: "/inspection-workspace",
     entitlement: "quickCapture",
     tierLabel: "Free",
     inspectionType: "quick_hazard_capture",
@@ -56,7 +63,7 @@ const workflowOptions: {
       "Complete a guided inspection with HazLenz AI review, risk scoring, standards support, corrective actions, and report generation.",
     details:
       "Best when you need a complete professional inspection report with multiple findings, HazLenz AI review, standards support, and final report packaging.",
-    route: "/inspection-cover",
+    route: "/inspection-workspace",
     entitlement: "guidedInspection",
     tierLabel: "Pro",
     inspectionType: "guided_inspection",
@@ -66,23 +73,20 @@ const workflowOptions: {
 function getProgramStatus(programs: InspectionProgramRecord[]) {
   return {
     scheduled: programs.length || 0,
-    inProgress: programs.filter((program: any) =>
+    inProgress: programs.filter((program) =>
       String(program.status || "").toLowerCase().includes("progress"),
     ).length,
-    review: programs.filter((program: any) =>
+    review: programs.filter((program) =>
       String(program.status || "").toLowerCase().includes("review"),
     ).length,
-    actionRequired: programs.filter((program: any) =>
+    actionRequired: programs.filter((program) =>
       String(program.status || "").toLowerCase().includes("action"),
     ).length,
   };
 }
 
-function planLabel(planCode: PlanCode) {
-  return getPlanDisplayName(planCode);
-}
-
 export default function InspectionsPage() {
+  const router = useRouter();
   const [inspectionPrograms, setInspectionPrograms] = useState<
     InspectionProgramRecord[]
   >([]);
@@ -90,13 +94,35 @@ export default function InspectionsPage() {
   const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>(null);
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
   const [regulatoryScope, setRegulatoryScope] = useState("all");
+  const [sites, setSites] = useState<PersistedSite[]>([]);
+  const [persistedInspections, setPersistedInspections] = useState<PersistedInspection[]>([]);
+  const [selectedSiteId, setSelectedSiteId] = useState("");
+  const [newSiteName, setNewSiteName] = useState("");
+  const [persistenceStatus, setPersistenceStatus] = useState("Loading saved workspace…");
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     const seeded = seedInspectionProgramIfEmpty();
-    setInspectionPrograms(seeded.length ? seeded : getInspectionProgram());
-    setPlanCode(getStoredPlanCode());
+    queueMicrotask(() => {
+      setInspectionPrograms(seeded.length ? seeded : getInspectionProgram());
+      setPlanCode(getStoredPlanCode());
+      setRegulatoryScope(window.localStorage.getItem("sentinel_regulatory_scope") || "all");
+    });
     getVerifiedPlanCode().then(setPlanCode).catch(() => {});
-    setRegulatoryScope(window.localStorage.getItem("sentinel_regulatory_scope") || "all");
+    Promise.all([listPersistedSites(), listPersistedInspections()])
+      .then(([siteResult, inspections]) => {
+        setSites(siteResult.data);
+        setPersistedInspections(inspections);
+        setSelectedSiteId(siteResult.data[0]?.id || "");
+        setPersistenceStatus("Saved to Safety InSite");
+      })
+      .catch((error) => {
+        setPersistenceStatus(
+          error instanceof Error && error.message === "AUTH_REQUIRED"
+            ? "Sign in to load saved inspections."
+            : "Server unavailable — new work cannot be finalized.",
+        );
+      });
   }, []);
 
   const programStatus = useMemo(
@@ -104,27 +130,69 @@ export default function InspectionsPage() {
     [inspectionPrograms],
   );
 
-  function startInspection(workflow = selectedWorkflow) {
+  async function startInspection(workflow = selectedWorkflow) {
     if (!hasPlanEntitlement(workflow.entitlement, planCode)) return;
+    if (!selectedSiteId) {
+      setPersistenceStatus("Create or select a saved site before starting.");
+      return;
+    }
 
-    clearActiveInspectionDraft();
+    setSaving(true);
+    setPersistenceStatus("Saving inspection draft…");
+    try {
+      const persisted = await createPersistedInspection({
+        siteId: selectedSiteId,
+        title: workflow.title,
+      });
+      clearActiveInspectionDraft();
 
-    window.localStorage.setItem(
-      "sentinel_selected_inspection_context",
-      JSON.stringify({
-        inspectionType: workflow.inspectionType,
-        inspectionTitle: workflow.title,
-        agency:
-          regulatoryScope === "msha"
-            ? "MSHA"
-            : regulatoryScope === "osha_general"
-              ? "OSHA General Industry"
-              : regulatoryScope === "osha_construction"
-                ? "OSHA Construction"
-                : "General",
-        workflowDepth: workflow.id,
-      }),
-    );
+      window.localStorage.setItem(
+        "sentinel_selected_inspection_context",
+        JSON.stringify({
+          persistedInspectionId: persisted.id,
+          persistedSiteId: selectedSiteId,
+          persistenceState: "saved",
+          inspectionType: workflow.inspectionType,
+          inspectionTitle: workflow.title,
+          agency:
+            regulatoryScope === "msha"
+              ? "MSHA"
+              : regulatoryScope === "osha_general"
+                ? "OSHA General Industry"
+                : regulatoryScope === "osha_construction"
+                  ? "OSHA Construction"
+                  : "General",
+          workflowDepth: workflow.id,
+        }),
+      );
+      setPersistedInspections((current) => [persisted, ...current]);
+      setPersistenceStatus("Draft saved to Safety InSite");
+      router.push(workflow.route);
+    } catch (error) {
+      setPersistenceStatus(
+        error instanceof Error ? error.message : "Inspection draft was not saved.",
+      );
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function addSite() {
+    const name = newSiteName.trim();
+    if (!name) return;
+    setSaving(true);
+    setPersistenceStatus("Saving site…");
+    try {
+      const site = await createPersistedSite(name);
+      setSites((current) => [site, ...current]);
+      setSelectedSiteId(site.id);
+      setNewSiteName("");
+      setPersistenceStatus("Site saved to Safety InSite");
+    } catch (error) {
+      setPersistenceStatus(error instanceof Error ? error.message : "Site was not saved.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -168,6 +236,44 @@ export default function InspectionsPage() {
       </HeroPanel>
 
       <AppPanel padding="lg" className="inspections-start-panel overflow-visible pb-10 sm:pb-12">
+        <div className="mx-auto mb-6 max-w-3xl rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+            <label className="flex-1 text-xs font-black uppercase tracking-[0.12em] text-slate-600">
+              Saved site
+              <select
+                aria-label="Saved site"
+                value={selectedSiteId}
+                onChange={(event) => setSelectedSiteId(event.target.value)}
+                className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold normal-case tracking-normal text-slate-900"
+              >
+                <option value="">Select a site</option>
+                {sites.map((site) => <option key={site.id} value={site.id}>{site.name}</option>)}
+              </select>
+            </label>
+            <label className="flex-1 text-xs font-black uppercase tracking-[0.12em] text-slate-600">
+              New site
+              <input
+                aria-label="New site name"
+                value={newSiteName}
+                onChange={(event) => setNewSiteName(event.target.value)}
+                maxLength={160}
+                className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold normal-case tracking-normal text-slate-900"
+              />
+            </label>
+            <button
+              type="button"
+              disabled={saving || !newSiteName.trim()}
+              onClick={addSite}
+              className="rounded-full bg-[#102A43] px-5 py-2.5 text-sm font-black text-white disabled:opacity-50"
+            >
+              Save site
+            </button>
+          </div>
+          <p role="status" className="mt-3 text-xs font-semibold text-slate-600">
+            {persistenceStatus} · {persistedInspections.length} persisted inspection
+            {persistedInspections.length === 1 ? "" : "s"}
+          </p>
+        </div>
         <SectionHeader
           eyebrow="Start"
           title="Choose inspection type"
@@ -200,8 +306,8 @@ export default function InspectionsPage() {
                 key={workflow.id}
                 className={`inspection-workflow-card h-auto w-full max-w-[320px] overflow-visible rounded-xl border shadow-none transition hover:-translate-y-0.5 ${
                   selected
-                    ? "border-[#1D72B8] bg-[#E8F4FF]"
-                    : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white"
+                    ? "border-[#1D72B8] bg-[#E8F4FF] dark:border-[#38bdf8] dark:bg-[#102A43]"
+                    : "border-slate-200/80 bg-white hover:border-blue-200 hover:bg-white dark:border-white/15 dark:bg-[#0B1320] dark:hover:border-[#1D72B8] dark:hover:bg-[#0B1320]"
                 }`}
               >
                 <button
@@ -220,22 +326,22 @@ export default function InspectionsPage() {
 
                     </div>
 
-                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900">
+                    <h3 className="mt-1 text-base font-black leading-tight text-slate-900 dark:text-white">
                       {workflow.title}
                     </h3>
-                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500">
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-300">
                       {workflow.description}
                     </p>
                   </div>
 
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-lg font-black text-[#102A43] shadow-none transition">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-lg font-black text-[#102A43] shadow-none transition dark:border-white/15 dark:bg-[#0B1320] dark:text-white">
                     {expanded ? "−" : "+"}
                   </span>
                 </button>
 
                 {expanded && (
-                  <div className="border-t border-slate-200/80 bg-white/85 px-4 py-4 sm:px-5">
-                    <p className="text-xs font-semibold leading-5 text-slate-600">
+                  <div className="border-t border-slate-200/80 bg-white/85 px-4 py-4 sm:px-5 dark:border-white/10 dark:bg-[#0B1320]/85">
+                    <p className="text-xs font-semibold leading-5 text-slate-600 dark:text-slate-300">
                       {workflow.details}
                     </p>
 
@@ -243,7 +349,7 @@ export default function InspectionsPage() {
                       {featureRows.map((feature) => (
                         <div
                           key={feature}
-                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-none"
+                          className="rounded-xl border border-slate-200 bg-slate-50/90 px-3 py-2.5 text-[11px] font-black leading-4 text-slate-600 shadow-none dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
                         >
                           {feature}
                         </div>
@@ -251,24 +357,24 @@ export default function InspectionsPage() {
                     </div>
 
                     {!allowed && (
-                      <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-xs font-black leading-5 text-amber-800">
+                      <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-xs font-black leading-5 text-amber-800 dark:bg-amber-500/15 dark:text-amber-300">
                         {workflow.title} is available on the {workflow.tierLabel} plan.
                       </p>
                     )}
 
                     <div className="mt-3 flex justify-center">
                       {allowed ? (
-                        <AppLinkButton
-                          href={workflow.route}
+                        <button
+                          type="button"
+                          disabled={saving || !selectedSiteId}
                           onClick={() => {
                             setSelectedWorkflow(workflow);
-                            startInspection(workflow);
+                            void startInspection(workflow);
                           }}
-                          variant="accent"
-                          className="inline-flex w-full items-center justify-center rounded-full px-4 py-2.5 text-center !text-white shadow-none sm:w-auto sm:px-6"
+                          className="inline-flex w-full items-center justify-center rounded-full bg-[#F47C20] px-4 py-2.5 text-center text-sm font-black text-white shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-6"
                         >
-                          Start {workflow.title}
-                        </AppLinkButton>
+                          {saving ? "Saving…" : `Start ${workflow.title}`}
+                        </button>
                       ) : (
                         <AppLinkButton
                           href="/pricing"

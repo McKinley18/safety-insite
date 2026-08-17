@@ -11,8 +11,8 @@ export class ExtendStandards1777896188952 implements MigrationInterface {
             await queryRunner.query(`ALTER TABLE "hazard_taxonomy" DROP COLUMN IF EXISTS "conditionId"`);
             await queryRunner.query(`ALTER TABLE "hazard_taxonomy" DROP COLUMN IF EXISTS "synonyms"`);
         }
-        await queryRunner.query(`ALTER TABLE "standards_master" ADD "required_controls" text`);
-        await queryRunner.query(`ALTER TABLE "standards_master" ADD "severity_weight" integer NOT NULL DEFAULT '1'`);
+        await queryRunner.query(`ALTER TABLE "standards_master" ADD COLUMN IF NOT EXISTS "required_controls" text`);
+        await queryRunner.query(`ALTER TABLE "standards_master" ADD COLUMN IF NOT EXISTS "severity_weight" integer NOT NULL DEFAULT '1'`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

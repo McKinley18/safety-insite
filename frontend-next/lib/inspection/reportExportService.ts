@@ -1,6 +1,5 @@
 import { localExporter } from "@/lib/localExporter";
 import {
-  getSafeScopeReviewSummary,
   getFindingActionsForReview,
   getSafeScopeValidationStatus,
   formatSafeScopeValidationStatus,
@@ -16,9 +15,6 @@ export async function runInspectionExport(input: {
 }) {
   const { report, reportPackage, humanReviewConfirmed, setExportWarning, formatReviewDate } = input;
 
-  const currentFindings = report.findings || [];
-  const safeScopeReviewSummary = getSafeScopeReviewSummary(currentFindings);
-
   if (!humanReviewConfirmed) {
     setExportWarning(
       "Confirm qualified-person review before exporting this report.",
@@ -26,13 +22,7 @@ export async function runInspectionExport(input: {
     return;
   }
 
-  if (safeScopeReviewSummary.unvalidated > 0) {
-    setExportWarning(
-      `${safeScopeReviewSummary.unvalidated} HazLenz AI finding(s) still need snapshot validation. Export will continue only after you confirm qualified-person review.`,
-    );
-  } else {
-    setExportWarning("");
-  }
+  setExportWarning("");
 
   const findings = (report.findings || []).map((finding: any) => ({
     category:

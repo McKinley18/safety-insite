@@ -77,7 +77,6 @@ export default function BillingSettingsPanel({
 
   const primaryUpgradeTier = useMemo<BillingCheckoutTier | null>(() => {
     if (tier === "free") return "pro";
-    if (tier === "pro") return "expert";
     return null;
   }, [tier]);
 
@@ -180,19 +179,7 @@ export default function BillingSettingsPanel({
             disabled={Boolean(actionLoading) || !billing?.billingConfigured}
             className="min-w-36"
           >
-            {actionLoading === primaryUpgradeTier ? "Opening..." : `Upgrade to ${primaryUpgradeTier === "pro" ? "Pro" : "Expert"}`}
-          </AppButton>
-        ) : null}
-
-        {tier === "free" ? (
-          <AppButton
-            type="button"
-            variant="secondary"
-            onClick={() => startCheckout("expert")}
-            disabled={Boolean(actionLoading) || !billing?.billingConfigured}
-            className="min-w-36"
-          >
-            {actionLoading === "expert" ? "Opening..." : "Compare Expert"}
+            {actionLoading === primaryUpgradeTier ? "Opening..." : "Upgrade to Pro"}
           </AppButton>
         ) : null}
 

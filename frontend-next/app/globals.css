@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Tailwind v4 defaults `dark:` to the `prefers-color-scheme` media query only.
+   This app applies/persists an explicit user theme preference by toggling a
+   `dark` class on <html> (see components/system/ThemeController.tsx) and
+   needs `dark:` utilities to respond to that class, not just OS preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #F3F7FB;
   --foreground: #0F172A;
@@ -119,6 +125,185 @@ body {
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Guided inspection semantic theme.
+   This final layer intentionally uses flat surfaces and only Light/Dark modes. */
+:root {
+  --guided-page: #f1f5f9;
+  --guided-surface: #ffffff;
+  --guided-surface-secondary: #f8fafc;
+  --guided-border: #cbd5e1;
+  --guided-text: #0f172a;
+  --guided-text-secondary: #334155;
+  --guided-muted: #475569;
+  --guided-input: #ffffff;
+  --guided-selected: #e0f2fe;
+  --guided-info: #eff6ff;
+  --guided-warning: #fff7ed;
+  --guided-success: #ecfdf5;
+  --guided-danger: #fef2f2;
+  --guided-focus: #0369a1;
+  --guided-disabled: #e2e8f0;
+  --guided-overlay: rgba(15, 23, 42, 0.62);
+}
+
+.dark {
+  --guided-page: #07111f;
+  --guided-surface: #132238;
+  --guided-surface-secondary: #0f1b2d;
+  --guided-border: #475569;
+  --guided-text: #f8fafc;
+  --guided-text-secondary: #e2e8f0;
+  --guided-muted: #cbd5e1;
+  --guided-input: #0b1628;
+  --guided-selected: #123b63;
+  --guided-info: #102a43;
+  --guided-warning: #422006;
+  --guided-success: #052e26;
+  --guided-danger: #450a0a;
+  --guided-focus: #38bdf8;
+  --guided-disabled: #1e293b;
+  --guided-overlay: rgba(2, 6, 23, 0.8);
+}
+
+html,
+body,
+.dark body {
+  background: var(--guided-page);
+  color: var(--guided-text);
+}
+
+.guided-page {
+  color: var(--guided-text);
+}
+
+.guided-card {
+  border: 1px solid var(--guided-border);
+  border-radius: 1rem;
+  background: var(--guided-surface);
+  color: var(--guided-text);
+  padding: 1.25rem;
+}
+
+.guided-subcard,
+.guided-standard-card {
+  border: 1px solid var(--guided-border);
+  border-radius: 0.8rem;
+  background: var(--guided-surface-secondary);
+  color: var(--guided-text);
+  padding: 1rem;
+}
+
+.guided-standard-card {
+  border-left: 0.3rem solid var(--guided-focus);
+}
+
+.guided-info {
+  border: 1px solid var(--guided-border);
+  border-radius: 0.75rem;
+  background: var(--guided-info);
+  color: var(--guided-text);
+  padding: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.guided-muted {
+  color: var(--guided-muted);
+}
+
+.guided-eyebrow {
+  color: var(--guided-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.guided-input {
+  min-height: 2.75rem;
+  width: 100%;
+  border: 1px solid var(--guided-border);
+  border-radius: 0.65rem;
+  background: var(--guided-input);
+  color: var(--guided-text);
+  padding: 0.65rem 0.75rem;
+}
+
+.guided-input:focus-visible,
+.guided-primary-button:focus-visible,
+.guided-secondary-button:focus-visible {
+  outline: 3px solid var(--guided-focus);
+  outline-offset: 2px;
+}
+
+.guided-primary-button,
+.guided-secondary-button {
+  min-height: 2.75rem;
+  border-radius: 0.7rem;
+  padding: 0.65rem 1rem;
+  font-weight: 800;
+}
+
+.guided-primary-button {
+  background: #0369a1;
+  color: #ffffff;
+}
+
+.dark .guided-primary-button {
+  background: #38bdf8;
+  color: #082f49;
+}
+
+.guided-secondary-button {
+  border: 1px solid var(--guided-border);
+  background: var(--guided-surface-secondary);
+  color: var(--guided-text);
+}
+
+.guided-primary-button:disabled,
+.guided-secondary-button:disabled {
+  background: var(--guided-disabled);
+  color: var(--guided-muted);
+  cursor: not-allowed;
+}
+
+.guided-progress {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.guided-progress-step {
+  border-bottom: 3px solid var(--guided-border);
+  color: var(--guided-muted);
+  padding: 0.55rem 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.guided-progress-step.is-current {
+  border-color: var(--guided-focus);
+  color: var(--guided-text);
+}
+
+@media (max-width: 480px) {
+  .guided-card {
+    padding: 1rem;
+  }
+  .guided-progress-step {
+    font-size: 0.65rem;
+  }
+}
+
+/* Final page-background authority: feature components may elevate surfaces, but
+   body copy never sits on a gradient. */
+html body,
+html.dark body {
+  background: var(--guided-page) !important;
+  color: var(--guided-text);
 }
 
 .dark body {
@@ -877,6 +1062,57 @@ body {
   border-color: rgba(148, 163, 184, 0.35) !important;
 }
 
+/* Semantic alert/status colors (red/amber/emerald/blue pale-background pattern used for
+   error banners, badges, and tone chips app-wide). Keeps these legible on dark surfaces
+   instead of leaving their light-only pale backgrounds and dark text unstyled. */
+.dark :where(.bg-red-50, .bg-red-100) {
+  background-color: rgba(127, 29, 29, 0.28) !important;
+}
+
+.dark :where(.border-red-200, .border-red-100) {
+  border-color: rgba(248, 113, 113, 0.35) !important;
+}
+
+.dark :where(.text-red-700, .text-red-800, .text-red-900) {
+  color: #fca5a5 !important;
+}
+
+.dark :where(.bg-amber-50, .bg-amber-100, .bg-orange-50, .bg-orange-100) {
+  background-color: rgba(120, 53, 15, 0.28) !important;
+}
+
+.dark :where(.border-amber-200, .border-amber-100, .border-orange-200) {
+  border-color: rgba(251, 191, 36, 0.35) !important;
+}
+
+.dark :where(.text-amber-700, .text-amber-800, .text-amber-900, .text-orange-700, .text-orange-800) {
+  color: #fcd34d !important;
+}
+
+.dark :where(.bg-emerald-50, .bg-emerald-100, .bg-green-50, .bg-green-100) {
+  background-color: rgba(6, 78, 59, 0.28) !important;
+}
+
+.dark :where(.border-emerald-200, .border-emerald-100, .border-green-200) {
+  border-color: rgba(52, 211, 153, 0.35) !important;
+}
+
+.dark :where(.text-emerald-700, .text-emerald-800, .text-emerald-900, .text-green-700, .text-green-800) {
+  color: #6ee7b7 !important;
+}
+
+.dark :where(.bg-blue-50, .bg-blue-100, .bg-sky-50, .bg-sky-100) {
+  background-color: rgba(12, 74, 110, 0.28) !important;
+}
+
+.dark :where(.border-blue-200, .border-blue-100, .border-sky-200) {
+  border-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+.dark :where(.text-blue-700, .text-blue-800, .text-blue-900, .text-sky-700, .text-sky-800) {
+  color: #7dd3fc !important;
+}
+
 /* Sentinel modern shell background */
 .sentinel-modern-shell {
   position: relative;
@@ -1211,7 +1447,7 @@ body.sentinel-keyboard-open {
     border-radius: 0.625rem !important;
   }
 
-  .sentinel-mobile-page :where(section, article, aside)[class*="bg-white"] {
+  body:not(.dark) .sentinel-mobile-page :where(section, article, aside)[class*="bg-white"] {
     background-color: #ffffff !important;
   }
 }
@@ -1940,28 +2176,29 @@ body.sentinel-keyboard-open {
 .week-glance-light .bg-\[\#0B1320\] span {
   color: #ffffff !important;
 }
-/* Mobile app light-mode contrast guardrails for unfinished dark mode. */
-.inspections-page-scroll-fix .inspection-workflow-card {
+/* Mobile app light-mode contrast guardrails. Scoped out of dark mode so the
+   card's own dark: utility classes (see inspection-workflow-card usage) govern instead. */
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card {
   background: #ffffff !important;
   color: #0f172a !important;
 }
 
-.inspections-page-scroll-fix .inspection-workflow-card h1,
-.inspections-page-scroll-fix .inspection-workflow-card h2,
-.inspections-page-scroll-fix .inspection-workflow-card h3,
-.inspections-page-scroll-fix .inspection-workflow-card h4 {
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card h1,
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card h2,
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card h3,
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card h4 {
   color: #1D72B8 !important;
 }
 
-.inspections-page-scroll-fix .inspection-workflow-card p,
-.inspections-page-scroll-fix .inspection-workflow-card span,
-.inspections-page-scroll-fix .inspection-workflow-card li {
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card p,
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card span,
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card li {
   color: #0f172a !important;
 }
 
-.inspections-page-scroll-fix .inspection-workflow-card .text-white,
-.inspections-page-scroll-fix .inspection-workflow-card a[class*="bg-"],
-.inspections-page-scroll-fix .inspection-workflow-card button[class*="bg-"] {
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card .text-white,
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card a[class*="bg-"],
+body:not(.dark) .inspections-page-scroll-fix .inspection-workflow-card button[class*="bg-"] {
   color: #ffffff !important;
 }
 
@@ -1989,4 +2226,14 @@ body.sentinel-keyboard-open {
 .calendar-priority-light [class*="text-slate-600"],
 .calendar-priority-light [class*="text-slate-700"] {
   color: #334155 !important;
+}
+
+/* Finding Builder sticky summary (mobile inspection capture): a Tailwind v4
+   utility-layer ordering issue causes dark:bg-[#0B1320] to lose the cascade to
+   the light-mode bg-white/95 utility (even with the trailing "!" important
+   modifier) for this specific arbitrary-value + dark: variant combination, so
+   the override is authored directly here instead of relying on the generated
+   utility class. */
+.dark .finding-builder-surface {
+  background-color: #0b1320 !important;
 }

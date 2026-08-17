@@ -15,9 +15,7 @@ import { ApprovedKnowledgeRetrievalOutputV1Service } from '../approved-knowledge
 import { FieldOutputComposerV1Service } from '../field-output-composer-v1/field-output-composer-v1.service';
 import { ApprovedKnowledgeRegistryWriteGuardService } from '../approved-knowledge-registry-write-guard/approved-knowledge-registry-write-guard.service';
 import { LearningCandidateQueueService } from '../learning-candidate-queue/learning-candidate-queue.service';
-import { GovernanceReportAdapterService } from '../governance-report-adapter/governance-report-adapter.service';
 import { EvidenceQuestionGenerationService } from '../evidence-question-generation/evidence-question-generation.service';
-import { CorrectiveActionControlMapService } from '../corrective-action-control-map/corrective-action-control-map.service';
 import { ApprovedKnowledgeRegistryValidator } from '../approved-knowledge-registry/approved-knowledge-registry.validator';
 import { ConfidenceIntelligenceService } from '../confidence/confidence-intelligence.service';
 
@@ -69,6 +67,7 @@ import { RoleBasedApprovalGatesService } from '../role-based-approval-gates/role
 import { WorkspaceGovernanceAccessService } from '../workspace-governance-access/workspace-governance-access.service';
 import { CalibrationMeta } from '../types/safescope-intelligence.types';
 import { JurisdictionApplicabilityDecisionTreeService } from '../jurisdiction-applicability-decision-tree/jurisdiction-applicability-decision-tree.service';
+import { buildEvidenceFacts } from '../evidence/shared-evidence-facts';
 
 export type SafeScopeIntelligenceOrchestratorInput = {
   fusedText: string;
@@ -148,9 +147,7 @@ export class SafeScopeIntelligenceOrchestrator {
   private retrievalEngine: ApprovedKnowledgeRetrievalOutputV1Service;
   private composerEngine: FieldOutputComposerV1Service;
   private lcqEngine = new LearningCandidateQueueService();
-  private adapterEngine = new GovernanceReportAdapterService();
   private evgEngine = new EvidenceQuestionGenerationService();
-  private controlMapEngine = new CorrectiveActionControlMapService();
   private executiveJudgmentEngine = new ExecutiveJudgmentService();
   private jurisdictionService = new JurisdictionApplicabilityDecisionTreeService();
   private multiHazardEngine = new MultiHazardDecompositionService();
@@ -193,6 +190,12 @@ export class SafeScopeIntelligenceOrchestrator {
     const observationUnderstanding = this.observationUnderstandingEngine.evaluate(fusedText);
     const multiHazardDecomposition = this.multiHazardEngine.decompose(fusedText);
     const combined = fusedText + ' ' + observationContext.normalizedText;
+    // V5-C02: shared evidence-fact foundation, computed once per request from fusedText (this
+    // orchestrator stage only receives fusedText/scopes, not the fuller structuredObservation the
+    // protected safescope-v2.service.ts holds -- see V5_C02_SHARED_FACT_CONTRACT.md). Attached as
+    // additive provenance on evidenceSufficiency's output only; does not affect any existing
+    // decision in this method.
+    const sharedEvidenceFacts = buildEvidenceFacts({ text: fusedText, scopes: expandedContext?.scopes });
 
     const photosAttached = (evidenceTexts || []).some((item) =>
       String(item).toLowerCase().includes('photo')
@@ -374,7 +377,7 @@ export class SafeScopeIntelligenceOrchestrator {
     const citationLevelCandidates = this.citationReviewEngine.evaluate(scenarioIntelligence, evidenceQuality.gaps || []);
     const evidenceGapQuestions = this.questionGenerator.generate(scenarioIntelligence.scenarioFamilyId);
     
-    const narrative = this.narrativeEngine.generate({
+    let narrative = this.narrativeEngine.generate({
         scenarioIntelligence,
         evidenceGapQuestions
     } as any, 'professional');
@@ -390,13 +393,40 @@ export class SafeScopeIntelligenceOrchestrator {
         evidenceQuality.gaps || []
     );
 
+    // The narrative generator is deliberately enriched only from already
+    // computed, evidence-bound reasoning. This prevents the response layer
+    // from replacing mechanism, risk, evidence-gap, and corrective-action
+    // outputs with generic placeholder prose.
+    narrative = this.narrativeEngine.enrich(narrative, {
+      scenarioIntelligence,
+      correctiveActionReasoning,
+      riskReasoning,
+      standardFamilyCandidates,
+      evidenceGapQuestions,
+    });
+
     const causalRiskReasoning = await this.causalRiskEngine.analyzeCausalRisk(observationUnderstanding, fusedText);
     
     const evidenceSufficiency = await this.evidenceSufficiencyEngine.evaluateEvidenceSufficiency(
         observationUnderstanding,
         causalRiskReasoning,
-        fusedText
+        fusedText,
+        sharedEvidenceFacts.facts
     );
+    // V5-C04 DEFER_WITH_EXPLICIT_MARKER (2026-08-16): confirmed via runtime instrumentation
+    // that this is a real, non-placeholder computation (it is genuinely consumed as input
+    // by actionQuality, hazardDomainIntelligence, safetyHealthDomainMatrix,
+    // regulatoryApplicability, and causalChain below, plus controlEffectiveness in
+    // native-reasoning.service.ts). Its top-level sufficiencyLevel/overallScore/
+    // confidenceImpact verdict is intentionally hidden from the API response by
+    // hazlenz-display-sanitizer.ts (a heavy internal reasoning block, same as several
+    // sibling engines), which is correct display behavior and not a defect. The narrower,
+    // audit-identified gap is that this top-level verdict is never read by
+    // safescope-v2.service.ts's resultStage/mayFinalize decision (confirmed by a
+    // whole-file grep for "evidenceSufficiency" returning zero matches in that
+    // hash-protected file). Do not wire this verdict into finalize/clarification gating
+    // during V5-C04 -- that is a product-behavior change requiring dedicated validation.
+    // Intentionally deferred to V5-C02/C03.
 
     const understandingTopScenario = observationUnderstanding.scenarioUnderstanding?.topScenario;
     const understandingTopMechanism = observationUnderstanding.mechanismCandidates?.[0];
@@ -696,24 +726,9 @@ export class SafeScopeIntelligenceOrchestrator {
         {}
     );
 
-    const controlMap = this.controlMapEngine.mapControls(
-        'hazard',
-        'mechanism',
-        []
-    );
-
     const lcq = this.lcqEngine.createCandidate(
         {},
         hrlg
-    );
-
-    const adapter = this.adapterEngine.adapt(
-        outputPolicy,
-        evidenceSufficiency,
-        causalRiskReasoning,
-        {}, 
-        evg,
-        controlMap
     );
 
     const domainIntelligence = {
@@ -894,9 +909,7 @@ export class SafeScopeIntelligenceOrchestrator {
       retrieval,
       composer,
       lcq,
-      adapter,
       evg,
-      controlMap,
       registryValidator: ApprovedKnowledgeRegistryValidator,
       confidenceGovernance,
       calibrationMeta,

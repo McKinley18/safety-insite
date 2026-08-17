@@ -15,6 +15,7 @@ type CommandAssignment = {
 import { useEffect, useMemo, useState } from "react";
 import { StatsGrid } from "@/components/command-center/StatsGrid";
 import { WeekAtAGlancePanel } from "@/components/command-center/WeekAtAGlancePanel";
+import { PriorityTodoSection } from "@/components/calendar/PriorityTodoSection";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
@@ -130,7 +131,7 @@ function getWeekDayTone(dateKey: string, events: SafetyCalendarEvent[]) {
   );
 
   if (hasOverdue) {
-    return "border-red-400 bg-red-50 ring-2 ring-red-100";
+    return "border-red-400 bg-red-50 ring-2 ring-red-100 dark:border-red-500 dark:bg-red-950/30 dark:ring-red-900/40";
   }
 
   const hasDueSoon = events.some(
@@ -141,14 +142,14 @@ function getWeekDayTone(dateKey: string, events: SafetyCalendarEvent[]) {
   );
 
   if (hasDueSoon) {
-    return "border-amber-400 bg-amber-50 ring-2 ring-amber-100";
+    return "border-amber-400 bg-amber-50 ring-2 ring-amber-100 dark:border-amber-500 dark:bg-amber-950/30 dark:ring-amber-900/40";
   }
 
   if (dateKey === todayKey) {
-    return "border-[#1D72B8] bg-[#E8F4FF]";
+    return "border-[#1D72B8] bg-[#E8F4FF] dark:bg-[#102A43]";
   }
 
-  return "border-slate-200/80 bg-white";
+  return "border-slate-200/80 bg-white dark:border-white/15 dark:bg-[#0B1320]";
 }
 
 function getWeekBadgeTone(events: SafetyCalendarEvent[]) {
@@ -289,6 +290,11 @@ export default function DashboardPage() {
     loadDashboardReports();
   }, []);
 
+  async function refreshCalendarEvents() {
+    const savedCalendarEvents = await getSafetyCalendarEvents();
+    setCalendarEvents(Array.isArray(savedCalendarEvents) ? savedCalendarEvents : []);
+  }
+
   const dashboard = useMemo(() => {
     const findings = reports.flatMap((report) =>
       (report.findings || []).map((finding: any) => ({
@@ -416,7 +422,7 @@ export default function DashboardPage() {
 
               <div className="mt-5 flex flex-wrap justify-center gap-2 lg:justify-start">
                 <AppLinkButton
-                  href="/inspection"
+                  href="/inspections"
                   className="!inline-flex !w-[172px] shrink-0 justify-center rounded-full bg-[#1D72B8] px-5 py-3 text-sm font-black !text-white shadow-none transition hover:bg-[#5DB7FF] hover:!text-[#0B1320]"
                 >
                   Start Inspection
@@ -445,7 +451,7 @@ export default function DashboardPage() {
         formatCalendarMonthLabel={formatCalendarMonthLabel}
       />
 
-
+      <PriorityTodoSection events={calendarEvents} onEventsChanged={refreshCalendarEvents} />
 
     </section>
   );

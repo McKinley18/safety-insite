@@ -26,6 +26,10 @@ import { SafeScopeKnowledgeModule } from './safescope-knowledge/safescope-knowle
 import { SafeScopeModule } from './safescope/safescope.module';
 import { UploadModule } from './upload/upload.module';
 import { MaintenanceSeedController } from './maintenance/maintenance-seed.controller';
+import { InspectionModule } from './inspection/inspection.module';
+import { TasksModule } from './tasks/tasks.module';
+import { EntitlementsModule } from './auth/entitlements/entitlements.module';
+import { StorageModule } from './storage/storage.module';
 
 function getDatabaseSslConfig() {
   const value = String(process.env.DB_SSL || '').toLowerCase();
@@ -60,6 +64,10 @@ function getDatabaseSslConfig() {
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const databaseUrl = configService.get<string>('DATABASE_URL');
+        const synchronize = configService.get<string>('TYPEORM_SYNCHRONIZE') === 'true';
+        if (synchronize && configService.get<string>('NODE_ENV') === 'production') {
+          throw new Error('TYPEORM_SYNCHRONIZE must not be enabled in production; run migrations explicitly.');
+        }
         return {
           type: 'postgres',
           url: databaseUrl || undefined,
@@ -70,7 +78,8 @@ function getDatabaseSslConfig() {
           database: databaseUrl ? undefined : configService.get<string>('DB_NAME'),
           ssl: getDatabaseSslConfig(),
           autoLoadEntities: true,
-          synchronize: configService.get<string>('TYPEORM_SYNCHRONIZE') === 'true',
+          synchronize,
+          logging: configService.get<string>('TYPEORM_LOGGING') === 'true',
         };
       },
     }),
@@ -98,6 +107,10 @@ function getDatabaseSslConfig() {
     AnalyticsModule,
     SafeScopeModule,
     UploadModule,
+    InspectionModule,
+    TasksModule,
+    EntitlementsModule,
+    StorageModule,
   ],
   providers: [
     {

@@ -1,5 +1,6 @@
 import { API_BASE_URL } from "./safescope";
 import { lockSession } from "./pinSecurity";
+import { stripInlinePhotoData } from "./cloudReports";
 
 export const AUTH_TOKEN_KEYS = ["sentinel_auth_token"] as const;
 export const AUTH_USER_KEY = "sentinel_auth_user";
@@ -223,7 +224,7 @@ export async function saveWorkspaceReport(report: any) {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({
-      frontendReportJson: report,
+      frontendReportJson: stripInlinePhotoData(report),
     }),
   });
 

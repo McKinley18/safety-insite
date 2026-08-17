@@ -23,6 +23,17 @@ function unique(items: string[]) {
   );
 }
 
+// V5-C04 DEFER_WITH_EXPLICIT_MARKER (2026-08-16): confirmed via runtime instrumentation
+// that SafeScopeNativeReasoningService.evaluate() is never invoked. It is instantiated
+// once at `backend/src/safescope-v2/safescope-v2.service.ts:52`
+// (`private nativeReasoningService = new SafeScopeNativeReasoningService();`), but no
+// method is ever called on that field. That file is a hash-protected V4 production
+// artifact and cannot be edited in this phase, so the instantiation cannot be removed
+// without breaking protected-file immutability, and this class cannot be deleted without
+// breaking that file's import. Left in place as inert, unreachable code. Do not treat any
+// output of this class (or of SafeScopeActionQualityService / SafeScopeControlEffectivenessService,
+// which are only reachable through it) as live product behavior. Revisit removal in a phase
+// authorized to modify safescope-v2.service.ts.
 export class SafeScopeNativeReasoningService {
   private expertObservationService = new SafeScopeExpertObservationService();
   private mechanismIntelligenceService = new SafeScopeMechanismIntelligenceService();

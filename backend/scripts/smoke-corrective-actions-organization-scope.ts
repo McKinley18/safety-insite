@@ -1,12 +1,17 @@
 import * as jwt from 'jsonwebtoken';
+import { randomUUID } from 'crypto';
 import { dataSource } from '../src/database/data-source';
 import { CorrectiveActionsService } from '../src/corrective-actions/corrective-actions.service';
 import { CorrectiveAction } from '../src/corrective-actions/entities/corrective-action.entity';
+import { Inspection } from '../src/inspection/inspection.entity';
+import { InspectionFinding } from '../src/inspection/entities/inspection-finding.entity';
+import { Site } from '../src/sites/entities/site.entity';
+import { OrganizationMembership } from '../src/organizations/entities/organization-membership.entity';
 
 const SECRET = process.env.JWT_SECRET || 'development-only-secret-change-me';
 
 function tokenFor(input: {
-  userId: number;
+  userId: string;
   organizationId: string;
   tenantId?: string;
   role?: string;
@@ -51,16 +56,23 @@ async function main() {
 
   const service = new CorrectiveActionsService(
     actionRepo,
+    dataSource.getRepository(Inspection),
+    dataSource.getRepository(InspectionFinding),
+    dataSource.getRepository(Site),
+    dataSource.getRepository(OrganizationMembership),
+    dataSource,
     auditService,
     notificationsService,
     fixFeedbackService,
     outcomeService,
   );
 
-  const orgA = `smoke-org-a-${Date.now()}`;
-  const orgB = `smoke-org-b-${Date.now()}`;
-  const authA = `Bearer ${tokenFor({ userId: 101, organizationId: orgA })}`;
-  const authB = `Bearer ${tokenFor({ userId: 202, organizationId: orgB })}`;
+  const orgA = randomUUID();
+  const orgB = randomUUID();
+  const userA = randomUUID();
+  const userB = randomUUID();
+  const authA = jwt.verify(tokenFor({ userId: userA, organizationId: orgA }), SECRET);
+  const authB = jwt.verify(tokenFor({ userId: userB, organizationId: orgB }), SECRET);
 
   const created = await service.create(authA, {
     reportId: `smoke-report-${Date.now()}`,
@@ -68,8 +80,6 @@ async function main() {
     title: 'Smoke scoped corrective action',
     description: 'Verify organization-scoped corrective action create, list, and status update.',
     priorityCode: 'high',
-    assignedToUserId: '101',
-    assignedToName: 'Smoke Owner',
     dueDate: new Date(Date.now() + 86400000).toISOString(),
   });
 

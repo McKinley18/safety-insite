@@ -1,5 +1,9 @@
 export {};
 
+// pg intentionally remains a runtime dependency; the repository does not ship @types/pg.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { Client } = require("pg");
+
 type ClassificationPayload = {
   text: string;
   scopes?: string[];
@@ -9,6 +13,7 @@ type ClassificationPayload = {
 };
 
 const apiBaseUrl = process.env.HAZLENZ_API_URL || process.env.API_BASE_URL || "http://localhost:4000";
+let authToken = String(process.env.HAZLENZ_AUTH_TOKEN || "").trim();
 
 function fail(message: string): never {
   throw new Error(message);
@@ -107,7 +112,10 @@ function assertNoActiveCitation(result: any, pattern: RegExp, label: string) {
 async function classify(payload: ClassificationPayload) {
   const response = await fetch(`${apiBaseUrl}/safescope-v2/classify`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+    },
     body: JSON.stringify({
       riskProfileId: "standard_5x5",
       ...payload,
@@ -120,7 +128,71 @@ async function classify(payload: ClassificationPayload) {
   return bodyText ? JSON.parse(bodyText) : {};
 }
 
+async function establishDisposableTestAuthentication() {
+  if (authToken || process.env.HAZLENZ_TEST_AUTH !== "true") return;
+  const suffix = `${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+  const email = `hazlenz-clarification-${suffix}@example.test`;
+  const password = "HazLenz!Disposable123";
+  const registration = await fetch(`${apiBaseUrl}/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password, name: "HazLenz clarification evaluator", type: "individual" }),
+  });
+  if (registration.status !== 201) {
+    fail(`Disposable evaluator registration failed with HTTP ${registration.status}.`);
+  }
+  const login = await fetch(`${apiBaseUrl}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const body = await login.json();
+  if (login.status !== 201 || !body?.token) {
+    fail(`Disposable evaluator login failed with HTTP ${login.status}.`);
+  }
+  authToken = String(body.token);
+  await grantDisposableTestEntitlement(authToken);
+  const refreshedLogin = await fetch(`${apiBaseUrl}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const refreshedBody = await refreshedLogin.json();
+  if (refreshedLogin.status !== 201 || !refreshedBody?.token) {
+    fail(`Disposable evaluator entitlement-refresh login failed with HTTP ${refreshedLogin.status}.`);
+  }
+  authToken = String(refreshedBody.token);
+}
+
+async function grantDisposableTestEntitlement(token: string) {
+  const databaseUrl = String(process.env.HAZLENZ_TEST_DATABASE_URL || "").trim();
+  if (!databaseUrl) return;
+  const parsed = new URL(databaseUrl);
+  if (
+    process.env.NODE_ENV !== "test" ||
+    !["127.0.0.1", "localhost"].includes(parsed.hostname) ||
+    !/^(test|phase|closure|hazlenz)(?:[_-]|\d)/i.test(parsed.pathname.slice(1))
+  ) {
+    fail("Disposable entitlement fixture refused an unsafe database target.");
+  }
+  const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url").toString("utf8"));
+  const client = new Client({ connectionString: databaseUrl });
+  await client.connect();
+  try {
+    await client.query(
+      `INSERT INTO entitlement_grants
+       ("userId", source, tier, status, "startsAt", "endsAt", reason)
+       VALUES ($1, 'test', 'expert', 'active', NOW(), NOW() + INTERVAL '2 hours',
+               'Authenticated HazLenz disposable clarification fixture')`,
+      [payload.userId],
+    );
+  } finally {
+    await client.end();
+  }
+}
+
 async function run() {
+  await establishDisposableTestAuthentication();
   const results: Array<{ name: string; result: any }> = [];
 
   const damagedCordInitial = await classify({ text: "Cord is damaged.", scopes: ["osha_general_industry"] });

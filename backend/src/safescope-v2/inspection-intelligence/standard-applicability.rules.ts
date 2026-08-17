@@ -1086,13 +1086,16 @@ export const EXPERT_APPLICABILITY_RULES: ExpertApplicabilityRule[] = [
     standardCitation: '30 CFR 56.12016',
     standardTitle: 'Work on electrically powered equipment (lockout)',
     appliesWhen: [
-      /\b(lockout|loto|tagout|maintenance|servicing|cleaning machine|clearing jam|unjamming|energized machine|unexpected startup)\b/i
+      /\b(lockout|loto|tagout|maintenance|servicing|cleaning machine|clearing jam|unjamming|energized machine|unexpected startup)\b/i,
+      /\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(hydraulic|pressure|stored energy|blocking|blocked)\b/i
     ],
     requiredEvidence: [
-      /\b((?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:maintenance|servicing|cleaning machine|clearing jam|unjamming).{0,40}(?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:without lockout|no loto|not locked out).{0,40}(?:maintenance|servicing|cleaning machine|clearing jam|unjamming)\b)/i
+      /\b((?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:maintenance|servicing|cleaning machine|clearing jam|unjamming).{0,40}(?:without lockout|no loto|not locked out|unexpected startup|energy isolation|de-energized|deenergized|isolated|hazardous energy|stored energy)\b|(?:without lockout|no loto|not locked out).{0,40}(?:maintenance|servicing|cleaning machine|clearing jam|unjamming)\b)/i,
+      /\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(hydraulic|pressure)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i
     ],
     confidenceBoosters: [
-      /\b(mine|quarry|plant|crusher|conveyor|switchgear|disconnected|power switch|tag|padlock)\b/i
+      /\b(mine|quarry|plant|crusher|conveyor|switchgear|disconnected|power switch|tag|padlock)\b/i,
+      /\b(hydraulic pressure|raised component|no blocking|stored energy)\b/i
     ],
     confidenceReducers: [
       /\b(locked out|isolated|de-energized)\b/i

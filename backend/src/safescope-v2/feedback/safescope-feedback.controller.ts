@@ -2,6 +2,7 @@ import { Roles } from '../../auth/decorators/roles.decorator';
 import { BadRequestException, Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtGuard } from '../../auth/guards/jwt.guard';
+import { RolesGuard } from '../../auth/guards/roles.guard';
 import { SafeScopeFeedbackService } from './safescope-feedback.service';
 import { CreateSafeScopeFeedbackDto } from './create-feedback.dto';
 
@@ -11,7 +12,7 @@ export class SafeScopeFeedbackController {
     private readonly service: SafeScopeFeedbackService,
   ) {}
 
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, RolesGuard)
   @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR')
   @Post()
   async create(

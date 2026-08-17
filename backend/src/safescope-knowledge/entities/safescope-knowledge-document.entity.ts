@@ -84,6 +84,21 @@ export class SafeScopeKnowledgeDocument {
   @Column({ type: "text" })
   rawText: string;
 
+  @Column({ type: "char", length: 64, nullable: true })
+  sourceDocumentChecksum?: string | null;
+
+  @Column({ type: "char", length: 64, nullable: true })
+  normalizedRecordChecksum?: string | null;
+
+  @Column({ type: "timestamptz", nullable: true })
+  retrievedAt?: Date | null;
+
+  @Column({ type: "varchar", length: 80, nullable: true })
+  parserVersion?: string | null;
+
+  @Column({ type: "varchar", length: 120, nullable: true })
+  regulatoryReleaseId?: string | null;
+
   @Column({ type: "jsonb", default: [] })
   hazardTags: string[];
 

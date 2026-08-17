@@ -10,27 +10,49 @@ import { getBillingEntitlements, normalizeBillingTier } from '../../billing/plan
 
 function getDevBypassTier() {
   if (process.env.NODE_ENV === 'production') return 'free';
-  if (process.env.DEV_FORCE_EXPERT === 'true') return 'expert';
   if (process.env.DEV_FORCE_PRO === 'true') return 'pro';
   return 'free';
+}
+
+// Stable, structurally-valid (UUID-shaped) placeholder so bypass-mode identity
+// never trips uuid-typed ownership columns (sites.ownerUserId, inspections.ownerUserId, etc).
+const DEV_BYPASS_USER_ID = '00000000-0000-4000-8000-000000000001';
+
+function isDevBypassEnabled() {
+  return (
+    process.env.DEV_AUTH_BYPASS === 'true' &&
+    process.env.NODE_ENV !== 'production'
+  );
 }
 
 @Injectable()
 export class JwtGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
+    const authHeader = request.headers.authorization;
 
-    if (
-      process.env.DEV_AUTH_BYPASS === 'true' &&
-      process.env.NODE_ENV !== 'production'
-    ) {
+    // A supplied token always takes precedence over dev bypass: a real, valid
+    // identity must never be silently replaced by the synthetic bypass user.
+    if (authHeader) {
+      const token = authHeader.split(' ')[1];
+
+      try {
+        const decoded = jwt.verify(token, getJwtSecret());
+        request.user = decoded;
+        return true;
+      } catch {
+        throw new UnauthorizedException('Invalid token');
+      }
+    }
+
+    if (isDevBypassEnabled()) {
       const tier = normalizeBillingTier(getDevBypassTier());
       const active = tier !== 'free';
 
       request.user = {
-        userId: 1,
+        userId: DEV_BYPASS_USER_ID,
         email: 'dev@sentinelsafety.local',
-        type: tier === 'expert' ? 'company' : tier === 'pro' ? 'pro' : 'individual',
+        type: tier === 'pro' ? 'pro' : 'individual',
         role: 'Auditor',
         planCode: tier,
         effectivePlanCode: tier,
@@ -40,28 +62,13 @@ export class JwtGuard implements CanActivate {
         billingStatus: active ? 'active' : 'none',
         billingEntitlements: getBillingEntitlements(tier),
         hasPaidAccess: active,
-        hasProAccess: tier === 'pro' || tier === 'expert',
-        hasExpertAccess: tier === 'expert',
+        hasProAccess: tier === 'pro',
         organizationId: request.headers['x-dev-organization-id'] || null,
       };
 
       return true;
     }
 
-    const authHeader = request.headers.authorization;
-
-    if (!authHeader) {
-      throw new UnauthorizedException('No token provided');
-    }
-
-    const token = authHeader.split(' ')[1];
-
-    try {
-      const decoded = jwt.verify(token, getJwtSecret());
-      request.user = decoded;
-      return true;
-    } catch {
-      throw new UnauthorizedException('Invalid token');
-    }
+    throw new UnauthorizedException('No token provided');
   }
 }

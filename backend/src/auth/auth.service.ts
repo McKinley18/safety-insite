@@ -1,4 +1,5 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/common';
+import { createHash, randomBytes } from 'crypto';
 import { RegisterDto } from './dto/register.dto';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,6 +10,7 @@ import { OrganizationsService } from '../organizations/organizations.service';
 import { getRequestMetadata } from '../common/utils/request-metadata';
 import { BillingService } from '../billing/billing.service';
 import { normalizeBillingTier } from '../billing/plan-entitlements';
+import { PasswordResetDeliveryService } from './password-reset-delivery.service';
 
 function getEmployerProPromoCodes(): string[] {
   return String(process.env.EMPLOYER_PRO_PROMO_CODES || '')
@@ -35,10 +37,12 @@ export class AuthService {
     private jwtService: JwtService,
     private orgService: OrganizationsService,
     private billingService: BillingService,
+    private passwordResetDelivery: PasswordResetDeliveryService,
   ) {}
 
   async register(dto: RegisterDto & { inviteToken?: string }, req?: any) {
-    const { email, password, name, type, inviteToken, promoCode } = dto;
+    const { password, name, inviteToken, promoCode } = dto;
+    const email = this.normalizeEmail(dto.email);
     const metadata = req ? getRequestMetadata(req) : null;
     const promoCodeProvided = !!String(promoCode || '').trim();
     const employerProPromoApplied = isEmployerProPromoCode(promoCode);
@@ -50,8 +54,8 @@ export class AuthService {
     const existing = await this.userRepo.findOne({ where: { email } });
     if (existing) throw new BadRequestException('Email already exists');
 
-    let organizationId = null;
-    let role = 'Auditor';
+    let organizationId: string | null = null;
+    let role = 'member';
     // Public self-registration must not grant paid Company access.
     // Paid plans are applied by billing webhook; invite tokens inherit Company workspace access.
     let finalType = employerProPromoApplied ? 'pro' : 'individual';
@@ -66,15 +70,6 @@ export class AuthService {
 
     const planCode = employerProPromoApplied ? 'pro' : 'free';
 
-    if (!organizationId) {
-      const org = await this.orgService.create({
-        name: `${name || email.split('@')[0]}'s Organization`,
-        planCode,
-      } as any);
-
-      organizationId = org.id;
-    }
-
     const hashedPassword = await bcrypt.hash(
       password,
       Number(process.env.BCRYPT_ROUNDS || 12),
@@ -83,15 +78,24 @@ export class AuthService {
     const user = this.userRepo.create({
       email,
       name: name || email.split('@')[0],
-      password: hashedPassword,
+      passwordHash: hashedPassword,
       type: finalType || 'individual',
       planCode,
       subscriptionStatus: employerProPromoApplied ? 'active' : 'none',
-      role,
-      organizationId,
+      role: organizationId ? role : 'individual',
+      organizationId: null,
     });
 
     await this.userRepo.save(user);
+    if (organizationId) {
+      await this.orgService.createActiveMembership({
+        userId: user.id,
+        organizationId,
+        role: ['manager', 'organization_admin'].includes(role)
+          ? role as 'manager' | 'organization_admin'
+          : 'member',
+      });
+    }
 
     return {
       message: 'User created successfully',
@@ -108,26 +112,28 @@ export class AuthService {
   }
 
   async login(email: string, password: string, req?: any) {
+    email = this.normalizeEmail(email);
     const metadata = req ? getRequestMetadata(req) : null;
 
     const user = await this.userRepo
       .createQueryBuilder("user")
-      .addSelect("user.password")
+      .addSelect("user.passwordHash")
       .where("user.email = :email", { email })
       .getOne();
 
-    if (!user || !user.password) {
-      throw new BadRequestException('Invalid credentials');
+    if (!user || !user.passwordHash || user.deletedAt) {
+      throw new UnauthorizedException('Invalid credentials');
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, user.passwordHash);
 
     if (!isMatch) {
-      throw new BadRequestException('Invalid credentials');
+      throw new UnauthorizedException('Invalid credentials');
     }
 
-    const organization = user.organizationId
-      ? await this.orgService.findOne(user.organizationId).catch(() => null)
+    const membership = await this.orgService.getActiveMembership(user.id);
+    const organization = membership?.organizationId
+      ? await this.orgService.findOne(membership.organizationId).catch(() => null)
       : null;
 
     const billingSnapshot = await this.billingService.getBillingStatus({
@@ -148,7 +154,9 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       type: user.type,
-      role: user.role,
+      role: membership?.role || user.role,
+      organizationRole: membership?.role || null,
+      platformRole: user.role === 'platform_admin' ? 'platform_admin' : null,
       subscriptionStatus: billingSnapshot?.subscriptionStatus || user.subscriptionStatus,
       subscriptionTier: effectivePlanCode,
       planCode: effectivePlanCode,
@@ -158,9 +166,8 @@ export class AuthService {
       billingEntitlements: billingSnapshot?.entitlements || null,
       hasPaidAccess: billingSnapshot?.hasPaidAccess || false,
       hasProAccess: billingSnapshot?.hasProAccess || false,
-      hasExpertAccess: billingSnapshot?.hasExpertAccess || false,
       deletedAt: user.deletedAt,
-      organizationId: user.organizationId
+      organizationId: membership?.organizationId || null,
     });
 
     return {
@@ -171,20 +178,90 @@ export class AuthService {
         email: user.email,
         name: user.name,
         type: user.type,
-        role: user.role,
+        role: membership?.role || user.role,
+        organizationRole: membership?.role || null,
+        platformRole: user.role === 'platform_admin' ? 'platform_admin' : null,
         subscriptionStatus: billingSnapshot?.subscriptionStatus || user.subscriptionStatus,
         subscriptionTier: effectivePlanCode,
         planCode: effectivePlanCode,
         effectivePlanCode,
         organizationPlanCode: organization?.planCode || null,
-        organizationId: user.organizationId,
+        organizationId: membership?.organizationId || null,
         billingStatus: billingSnapshot?.status || user.subscriptionStatus,
         billingEntitlements: billingSnapshot?.entitlements || null,
         hasPaidAccess: billingSnapshot?.hasPaidAccess || false,
         hasProAccess: billingSnapshot?.hasProAccess || false,
-        hasExpertAccess: billingSnapshot?.hasExpertAccess || false,
       },
       metadata,
     };
+  }
+
+  async requestPasswordReset(rawEmail: string) {
+    const email = this.normalizeEmail(rawEmail);
+    const user = await this.userRepo
+      .createQueryBuilder('user')
+      .addSelect('user.passwordResetTokenHash')
+      .where('LOWER(user.email) = :email', { email })
+      .andWhere('user.deletedAt IS NULL')
+      .getOne();
+
+    let developmentResetToken: string | undefined;
+    if (user) {
+      const token = randomBytes(32).toString('hex');
+      user.passwordResetTokenHash = this.hashResetToken(token);
+      user.passwordResetExpiresAt = new Date(Date.now() + 30 * 60 * 1000);
+      await this.userRepo.save(user);
+
+      if (process.env.NODE_ENV !== 'production' && process.env.DEV_EXPOSE_RESET_TOKEN === 'true') {
+        developmentResetToken = token;
+      }
+      try {
+        await this.passwordResetDelivery.send({
+          email: user.email,
+          resetUrl: this.passwordResetDelivery.buildResetUrl(token),
+          expiresMinutes: 30,
+        });
+      } catch {
+        user.passwordResetTokenHash = null;
+        user.passwordResetExpiresAt = null;
+        await this.userRepo.save(user);
+      }
+    }
+
+    return {
+      message: 'If the account exists, password reset instructions will be sent.',
+      ...(developmentResetToken ? { developmentResetToken } : {}),
+    };
+  }
+
+  async resetPassword(token: string, newPassword: string) {
+    const tokenHash = this.hashResetToken(token);
+    const user = await this.userRepo
+      .createQueryBuilder('user')
+      .addSelect(['user.passwordHash', 'user.passwordResetTokenHash'])
+      .where('user.passwordResetTokenHash = :tokenHash', { tokenHash })
+      .andWhere('user.passwordResetExpiresAt > :now', { now: new Date() })
+      .andWhere('user.deletedAt IS NULL')
+      .getOne();
+
+    if (!user) throw new BadRequestException('Invalid or expired reset token');
+
+    user.passwordHash = await bcrypt.hash(
+      newPassword,
+      Number(process.env.BCRYPT_ROUNDS || 12),
+    );
+    user.passwordResetTokenHash = null;
+    user.passwordResetExpiresAt = null;
+    user.passwordChangedAt = new Date();
+    await this.userRepo.save(user);
+    return { message: 'Password reset successful' };
+  }
+
+  private normalizeEmail(email: string): string {
+    return String(email || '').trim().toLowerCase();
+  }
+
+  private hashResetToken(token: string): string {
+    return createHash('sha256').update(String(token || '')).digest('hex');
   }
 }

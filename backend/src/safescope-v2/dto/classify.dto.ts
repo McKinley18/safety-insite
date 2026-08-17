@@ -62,6 +62,13 @@ export interface HazLenzClarificationAnswerInput {
   answeredAt?: string;
 }
 
+export interface EvidenceSnapshotInput {
+  schemaVersion: string;
+  facts: Array<Record<string, unknown>>;
+  criticalUnknowns?: string[];
+  contradictions?: Array<Record<string, unknown>>;
+}
+
 export class ClassifyDto {
   @IsString()
   @MinLength(2)
@@ -108,6 +115,10 @@ export class ClassifyDto {
   @IsOptional()
   @IsObject()
   priorStructuredObservation?: StructuredObservationInput;
+
+  @IsOptional()
+  @IsObject()
+  evidenceSnapshot?: EvidenceSnapshotInput;
 }
 
 

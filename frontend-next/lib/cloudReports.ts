@@ -7,6 +7,58 @@ import {
   normalizeCloudReportRecord,
 } from "./inspection/reportCloudHelpers";
 
+// Server error responses (e.g. a body-size rejection from the platform's
+// request parser) are not guaranteed to be JSON. Parsing unconditionally
+// before checking response.ok let a raw parser error (a SyntaxError quoting
+// the server's non-JSON error text) leak to the user in place of a clean
+// message. Always parse defensively and fall back to status-based text.
+async function parseCloudResponseBody(response: Response) {
+  const responseText = await response.text();
+  if (!responseText) return null;
+  try {
+    return JSON.parse(responseText);
+  } catch {
+    return null;
+  }
+}
+
+function cloudErrorMessage(data: any, status: number, fallback: string) {
+  if (status === 413) {
+    return "This report is too large to save (likely due to attached evidence photos). It was kept locally — try removing a photo or saving again with fewer attachments.";
+  }
+
+  return data?.message || data?.error || `${fallback} Status ${status}.`;
+}
+
+// Photos are captured as base64 data URLs client-side and uploaded through
+// the dedicated multipart attachment endpoint (uploadReportPhotosAndAttachMetadata /
+// uploadCloudPhoto) immediately after the report record exists. Embedding
+// that same base64 data a second time inside the report JSON body is
+// unnecessary and, for even a single finding with one photo, routinely
+// exceeds the server's JSON body size limit. Strip inline data URLs (and any
+// File objects, which are not JSON-serializable) before sending the report
+// as JSON; already-uploaded cloud photo references pass through unchanged.
+export function stripInlinePhotoData(report: any) {
+  if (!report || !Array.isArray(report.findings)) return report;
+
+  return {
+    ...report,
+    findings: report.findings.map((finding: any) => {
+      if (!Array.isArray(finding?.photos)) return finding;
+
+      return {
+        ...finding,
+        photos: finding.photos.map((photo: any) => {
+          if (!photo) return photo;
+          const { file, url, ...metadata } = photo;
+          const isInlineData = typeof url === "string" && url.startsWith("data:");
+          return isInlineData || file ? metadata : photo;
+        }),
+      };
+    }),
+  };
+}
+
 async function uploadCloudPhoto(reportId: string, photo: any) {
   const file =
     photo?.file instanceof File
@@ -49,29 +101,25 @@ async function uploadCloudPhoto(reportId: string, photo: any) {
     },
   );
 
-  const responseText = await response.text();
-  const data = responseText ? JSON.parse(responseText) : null;
+  const data = await parseCloudResponseBody(response);
 
   if (!response.ok) {
-    throw new Error(
-      data?.message ||
-        data?.error ||
-        `Evidence upload failed with status ${response.status}.`,
-    );
+    throw new Error(cloudErrorMessage(data, response.status, "Evidence upload failed."));
   }
 
   return data;
 }
 
 async function patchCloudReportPackage(reportId: string, report: any) {
+  const strippedReport = stripInlinePhotoData(report);
+
   const response = await apiFetch(
     `${API_BASE_URL}/reports/${reportId}`,
     {
       method: "PATCH",
       headers: jsonHeaders(),
       body: JSON.stringify({
-        frontendReportJson: report,
-        report,
+        frontendReportJson: strippedReport,
         company: report.organizationName,
         site: report.siteLocation,
         inspector: report.leadInspector,
@@ -84,15 +132,10 @@ async function patchCloudReportPackage(reportId: string, report: any) {
     },
   );
 
-  const responseText = await response.text();
-  const data = responseText ? JSON.parse(responseText) : null;
+  const data = await parseCloudResponseBody(response);
 
   if (!response.ok) {
-    throw new Error(
-      data?.message ||
-        data?.error ||
-        `Cloud report update failed with status ${response.status}.`,
-    );
+    throw new Error(cloudErrorMessage(data, response.status, "Cloud report update failed."));
   }
 
   return data;
@@ -190,19 +233,19 @@ export async function saveInspectionReportToCloud(report: any) {
     };
   }
 
+  const strippedReport = stripInlinePhotoData(report);
+
   const response = await apiFetch(
     `${API_BASE_URL}/reports`,
     {
       method: "POST",
       headers: jsonHeaders(),
       body: JSON.stringify({
-        frontendReportJson: report,
-        report,
+        frontendReportJson: strippedReport,
         company: report.organizationName,
         site: report.siteLocation,
         inspector: report.leadInspector,
         confidential: Boolean(report.isConfidential),
-        findings: Array.isArray(report.findings) ? report.findings : [],
       }),
     },
     {
@@ -211,15 +254,10 @@ export async function saveInspectionReportToCloud(report: any) {
     },
   );
 
-  const responseText = await response.text();
-  const data = responseText ? JSON.parse(responseText) : null;
+  const data = await parseCloudResponseBody(response);
 
   if (!response.ok) {
-    throw new Error(
-      data?.message ||
-        data?.error ||
-        `Cloud report save failed with status ${response.status}.`,
-    );
+    throw new Error(cloudErrorMessage(data, response.status, "Cloud report save failed."));
   }
 
   const reportId = data?.id;
@@ -261,15 +299,10 @@ export async function fetchCloudReports() {
     },
   );
 
-  const responseText = await response.text();
-  const data = responseText ? JSON.parse(responseText) : [];
+  const data = await parseCloudResponseBody(response);
 
   if (!response.ok) {
-    throw new Error(
-      data?.message ||
-        data?.error ||
-        `Cloud reports could not be loaded. Status ${response.status}.`,
-    );
+    throw new Error(cloudErrorMessage(data, response.status, "Cloud reports could not be loaded."));
   }
 
   return Array.isArray(data) ? data.map(normalizeCloudReportRecord) : [];
@@ -293,15 +326,10 @@ export async function archiveCloudReport(reportId: string) {
     },
   );
 
-  const responseText = await response.text();
-  const data = responseText ? JSON.parse(responseText) : null;
+  const data = await parseCloudResponseBody(response);
 
   if (!response.ok) {
-    throw new Error(
-      data?.message ||
-        data?.error ||
-        `Cloud report archive failed with status ${response.status}.`,
-    );
+    throw new Error(cloudErrorMessage(data, response.status, "Cloud report archive failed."));
   }
 
   return data;

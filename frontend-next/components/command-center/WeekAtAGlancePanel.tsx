@@ -19,7 +19,7 @@ export function WeekAtAGlancePanel({
   formatCalendarMonthLabel: (dateKey: string) => string;
 }) {
   return (
-    <div className="week-glance-light rounded-xl border border-slate-200/80 !bg-white p-4 !text-slate-950 shadow-none sm:p-6">
+    <div className="rounded-xl border border-slate-200/80 bg-white p-4 text-slate-950 shadow-none dark:border-white/15 dark:bg-[#0B1320] dark:text-white sm:p-6">
       <div className="flex items-start justify-between gap-3">
         <SectionHeader
           eyebrow="Week at a Glance"
@@ -52,11 +52,11 @@ export function WeekAtAGlancePanel({
                 : ""
             } ${getWeekDayTone(dateKey, events)}`}
           >
-            <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide !text-slate-900 sm:left-2 sm:top-2 sm:text-[10px]">
+            <span className="absolute left-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-white sm:left-2 sm:top-2 sm:text-[10px]">
               {date.toLocaleDateString("en-US", { weekday: "short" })}
             </span>
 
-            <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide !text-slate-900 sm:right-2 sm:top-2 sm:text-[10px]">
+            <span className="absolute right-1.5 top-1.5 block text-[9px] font-black uppercase leading-none tracking-wide text-slate-900 dark:text-white sm:right-2 sm:top-2 sm:text-[10px]">
               {date.getDate()}
             </span>
 

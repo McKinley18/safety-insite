@@ -5,12 +5,18 @@ import { Request } from 'express';
 import { SafescopeV2Service } from './safescope-v2.service';
 import { ClassifyDto } from './dto/classify.dto';
 import { JwtGuard } from '../auth/guards/jwt.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { VisualEvidenceReasoningInput } from './visual-evidence-reasoning/visual-evidence-reasoning.types';
 import { RealImageAnalysisInput } from './real-image-analysis/real-image-analysis.types';
 import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.types';
 import { UserGovernanceContext, SafeScopeRole } from './workspace-governance-access/workspace-governance.types';
 import { sanitizeHazLenzDisplayOutput } from "./display/hazlenz-display-sanitizer";
+import { enforceHazLenzEvidenceBoundary } from './display/hazlenz-evidence-boundary';
+import { applyEvidenceFoundation } from './evidence/evidence-foundation';
+import { applyFinalizationGate } from './evidence/finalization-gate';
+import { normalizeHazardObservationText } from './display/hazlenz-evidence-boundary';
+import { attachGuidedFindingResponse } from './display/guided-finding-response';
 
 
 function ensureVisiblePrimaryCitationContract(response: any, observationText = ''): any {
@@ -69,6 +75,68 @@ function ensureVisiblePrimaryCitationContract(response: any, observationText = '
   return response;
 }
 
+function enforceVerifiedControlDisplay(response: any, observationText: string): any {
+  if (!response || typeof response !== 'object') return response;
+  const text = String(observationText || '');
+  const verified =
+    /guard[^.]{0,120}(?:fixed|interlocked)[^.]{0,60}(?:tested|prevents? access|cannot reach)/i.test(text) ||
+    /(?:stopped|deenergized|locked out|zero energy verified)[^.]{0,120}(?:log|record|tested|verified)/i.test(text) ||
+    /(?:sealed|closed)[^.]{0,100}(?:labeled|labelled|inventoried)[^.]{0,100}(?:no release|no exposure)/i.test(text) ||
+    /(?:behind|within)[^.]{0,80}(?:complete guardrail|fall-arrest system)[^.]{0,80}(?:attached|protected)/i.test(text);
+  if (!verified) return response;
+  const controlledFragment = (fragment: unknown) => {
+    const value = String(fragment || '');
+    return (
+      (/(?:sealed|closed)[^.]{0,100}(?:labeled|labelled|inventoried)?/i.test(value) && /\b(?:no active release|no release|no exposure)\b/i.test(text)) ||
+      /(?:sealed|closed)[^.]{0,100}(?:labeled|labelled|inventoried)[^.]{0,100}(?:no release|no exposure)/i.test(value) ||
+      /guard[^.]{0,120}(?:fixed|interlocked)[^.]{0,60}(?:tested|prevents? access|cannot reach)/i.test(value) ||
+      /(?:stopped|deenergized|locked out|zero energy verified)[^.]{0,120}(?:log|record|tested|verified)/i.test(value) ||
+      /(?:behind|within)[^.]{0,80}(?:complete guardrail|fall-arrest system)[^.]{0,80}(?:attached|protected)/i.test(value)
+    );
+  };
+  const preservedAdditionalHazards = Array.isArray(response.additionalHazards)
+    ? response.additionalHazards.filter((hazard: any) => {
+      const state = String(hazard?.conditionState || '').toUpperCase();
+      return !controlledFragment(hazard?.observationFragment) && !['HISTORICAL', 'SAFE_VERIFIED'].includes(state);
+    })
+    : [];
+  const originalDecomposition = response.multiHazardDecomposition && typeof response.multiHazardDecomposition === 'object'
+    ? response.multiHazardDecomposition
+    : null;
+  const preservedDecompositionHazards = Array.isArray(originalDecomposition?.hazards)
+    ? originalDecomposition.hazards.filter((hazard: any) => {
+      const state = String(hazard?.conditionState || '').toUpperCase();
+      return !controlledFragment(hazard?.observationFragment) && !['HISTORICAL', 'SAFE_VERIFIED'].includes(state);
+    })
+    : [];
+  const preservedDecomposition = originalDecomposition
+    ? {
+      ...originalDecomposition,
+      hazards: preservedDecompositionHazards,
+      hazardCount: preservedDecompositionHazards.length,
+      isMultiHazard: preservedDecompositionHazards.length > 1,
+      primaryHazard: preservedDecompositionHazards[0],
+    }
+    : { hazards: [], hazardCount: 0, isMultiHazard: false };
+  return {
+    ...response,
+    classification: 'Controlled Condition',
+    family: 'controlled_condition',
+    hazardCategory: 'controlled_condition',
+    primaryCitation: '',
+    primaryStandard: null,
+    suggestedStandards: [],
+    primaryStandards: [],
+    standards: [],
+    supportingStandards: [],
+    additionalHazards: preservedAdditionalHazards,
+    multiHazardDecomposition: preservedDecomposition,
+    requiresHumanReview: true,
+    reviewStateLabel: 'Controlled state — qualified review required',
+    assessmentDisposition: 'controlled_condition_requires_qualified_review',
+  };
+}
+
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
@@ -109,6 +177,10 @@ export class SafescopeV2Controller {
           'COMPLIANCE_ADMIN': 'compliance_admin',
           'WORKER': 'field_inspector',
           'FIELD_INSPECTOR': 'field_inspector',
+          'INDIVIDUAL': 'field_inspector',
+          'MEMBER': 'field_inspector',
+          'MANAGER': 'safety_manager',
+          'ORGANIZATION_ADMIN': 'admin',
           'VIEWER': 'viewer'
       };
 
@@ -161,9 +233,9 @@ export class SafescopeV2Controller {
       };
   }
 
-  @UseGuards(JwtGuard, EntitlementGuard)
+  @UseGuards(JwtGuard, EntitlementGuard, RolesGuard)
   @RequireEntitlement('fullSafeScope')
-  @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
+  @Roles('INDIVIDUAL', 'MEMBER', 'MANAGER', 'ORGANIZATION_ADMIN', 'ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Throttle({ default: { limit: 30, ttl: 60000 } })
   @Post('classify')
   async classify(@Body() body: ClassifyDto, @Req() req: Request & { user?: any }) {
@@ -171,7 +243,7 @@ export class SafescopeV2Controller {
 
     try {
       const result = await this.service.classify(
-        body.text,
+        normalizeHazardObservationText(body.text),
         body.scopes,
         body.evidenceTexts,
         body.riskProfileId,
@@ -185,15 +257,23 @@ export class SafescopeV2Controller {
         body.priorStructuredObservation,
       );
 
-      return ensureVisiblePrimaryCitationContract(sanitizeHazLenzDisplayOutput(result), body.text);
+      const guided = enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
+        sanitizeHazLenzDisplayOutput(
+          applyFinalizationGate(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(result, body), body)),
+        ),
+        body.text,
+      ), body), body.text);
+      // Re-apply the evidence boundary after the compatibility response adapter
+      // so legacy serialization cannot reintroduce a suppressed citation.
+      return enforceHazLenzEvidenceBoundary(guided, body);
     } catch (error) {
       console.error('SafeScope v2 classify failed:', error);
       throw error; // Rethrow to let Nest handle ForbiddenException etc.
     }
   }
 
-  @UseGuards(JwtGuard)
-  @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
+  @UseGuards(JwtGuard, RolesGuard)
+  @Roles('INDIVIDUAL', 'MEMBER', 'MANAGER', 'ORGANIZATION_ADMIN', 'ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Post('visual-evidence/evaluate')
   async evaluateVisualEvidence(@Body() input: VisualEvidenceReasoningInput, @Req() req: Request & { user?: any }) {
     const context = this.getGovernanceContext(req);
@@ -206,8 +286,8 @@ export class SafescopeV2Controller {
     }
   }
 
-  @UseGuards(JwtGuard)
-  @Roles('ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
+  @UseGuards(JwtGuard, RolesGuard)
+  @Roles('INDIVIDUAL', 'MEMBER', 'MANAGER', 'ORGANIZATION_ADMIN', 'ORG_OWNER', 'SAFETY_DIRECTOR', 'SUPERVISOR', 'AUDITOR', 'WORKER')
   @Post('real-image-analysis/evaluate')
   async evaluateRealImage(@Body() input: RealImageAnalysisInput, @Req() req: Request & { user?: any }) {
     const context = this.getGovernanceContext(req);
@@ -220,8 +300,8 @@ export class SafescopeV2Controller {
     }
   }
 
-  @UseGuards(JwtGuard)
-  @Roles("ORG_OWNER", "SAFETY_DIRECTOR", "SUPERVISOR", "AUDITOR", "WORKER")
+  @UseGuards(JwtGuard, RolesGuard)
+  @Roles("INDIVIDUAL", "MEMBER", "MANAGER", "ORGANIZATION_ADMIN", "ORG_OWNER", "SAFETY_DIRECTOR", "SUPERVISOR", "AUDITOR", "WORKER")
   @Post("offline/evaluate")
   async evaluateOffline(@Body() input: OfflineReasoningInput, @Req() req: Request & { user?: any }) {
     const context = this.getGovernanceContext(req);

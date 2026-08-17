@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React from "react";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
 import { hasAuthToken } from "@/lib/auth";
@@ -8,11 +8,11 @@ import { hasAuthToken } from "@/lib/auth";
 const sections = [
   {
     title: "Structured observation understanding",
-    body: "Safety InSite's HazLenz AI processes natural language safety observations into clean, structured datasets including equipment category, components in use, active worker tasks, exposure pathways, energy sources, and control failures.",
+    body: "Safety InSite's HazLenz AI processes natural language safety observations into clean, structured datasets including equipment category, components in use, active worker tasks, exposure pathways, energy sources, and control-related details.",
   },
   {
-    title: "Hazard mechanism reasoning",
-    body: "Instead of simple keyword matching, the engine analyzes physical energy pathways (e.g., mechanical rotation, gravity, electrical) and barrier failure modes to identify plausible ways harm could occur in a given scenario.",
+    title: "Hazard pattern reasoning",
+    body: "The engine recognizes hazard patterns and terminology across free-text safety observations, and when a single observation describes more than one hazard, it decomposes the passage into separate, independently tracked findings rather than folding them into one general note.",
   },
   {
     title: "Standards-informed matching",
@@ -41,11 +41,7 @@ const sections = [
 ];
 
 export default function HazLenzPage() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
-  useEffect(() => {
-    setIsSignedIn(hasAuthToken());
-  }, []);
+  const [isSignedIn] = useState(() => hasAuthToken());
 
   return (
     <section className="mx-auto max-w-5xl px-4 py-4 sm:px-5 lg:py-7">

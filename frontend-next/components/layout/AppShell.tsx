@@ -105,11 +105,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
     // Local dev auth bypass should prevent protected-route redirects,
     // but it should not make public marketing pages render as signed-in.
-    setHasAuthSession(hasAuthToken());
+    const frame = window.requestAnimationFrame(() => setHasAuthSession(hasAuthToken()));
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
   useEffect(() => {
-    setPortalMounted(true);
+    const frame = window.requestAnimationFrame(() => setPortalMounted(true));
+    return () => window.cancelAnimationFrame(frame);
   }, []);
 
   useEffect(() => {
@@ -215,13 +217,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3">
           <Link
             href={showAppNav ? "/command-center" : "/"}
-            className="relative flex h-[76px] w-[350px] shrink-0 self-center overflow-visible sm:h-24 sm:w-[470px] lg:h-24 lg:w-[580px]"
+            className="relative flex h-14 min-w-0 flex-1 self-center overflow-hidden sm:h-20 sm:max-w-[360px] lg:h-20 lg:max-w-[390px]"
             aria-label="Safety InSite Home"
           >
             <img
               src={BRAND_HEADER_LOGO}
               alt="Safety InSite powered by HazLenz AI"
-              className="absolute -left-9 top-[64%] h-[190px] w-auto max-w-none -translate-y-1/2 object-contain sm:-left-12 sm:h-[245px] lg:-left-16 lg:h-[288px]"
+              className="absolute left-[-21px] top-[-38px] h-[150px] w-auto max-w-none object-contain sm:left-[-30px] sm:top-[-49px] sm:h-[204px]"
             />
           </Link>
 
@@ -270,7 +272,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     ref={profileButtonRef}
                     type="button"
                     onClick={() => setProfileOpen((open) => !open)}
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl bg-app-brand-soft text-sm font-black text-app-primary ring-2 ring-blue-100 transition hover:bg-white/10 active:scale-95 dark:hover:bg-[#102A43] sm:h-14 sm:w-14 sm:text-base"
+                    className="flex h-11 w-11 items-center justify-center rounded-2xl bg-app-brand-soft text-xs font-black text-app-primary ring-2 ring-blue-100 transition hover:bg-white/10 active:scale-95 dark:hover:bg-[#102A43] sm:h-12 sm:w-12 sm:text-sm"
                     aria-label="Open profile menu"
                   >
                     CM

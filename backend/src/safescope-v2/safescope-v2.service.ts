@@ -332,6 +332,30 @@ export class SafescopeV2Service {
     if (/\b(no exposure|no employee exposure|no worker exposure|isolated from access)\b/.test(text) && /\b(contact|reach|direct exposure|within reach)\b/.test(String(input?.workerInteraction || "").toLowerCase())) {
       push("workerInteraction", "no exposure", String(input?.workerInteraction), "Observation and answer conflict on worker exposure.");
     }
+
+    // Detect material same-narrative conflicts even when no structured answer
+    // has been submitted yet. These are not resolved by choosing the more
+    // hazardous phrase; they preserve the family and require clarification.
+    if (/\b(?:energized|currently energized|operating|running|live)\b/.test(text) &&
+      /\b(?:disconnect is open|disconnect open|zero[- ]energy (?:was )?verified|deenergized|de-energized|locked out|lockout applied)\b/.test(text)) {
+      push("energyState", "energized or operating", "open disconnect or verified isolation", "The same narrative contains both active-energy and verified-isolation statements.");
+    }
+    if (/\b(?:leak(?:ing)?|spill(?:ed)?|active release|released)\b/.test(text) &&
+      /\b(?:no active leak|no leak|no release|sealed|closed and intact|release stopped)\b/.test(text)) {
+      push("releaseState", "active leak or release", "no current release or sealed container", "The narrative contains conflicting current release states.");
+    }
+    if (/\b(?:guard missing|missing guard|guard removed|unguarded)\b/.test(text) &&
+      /\b(?:guard restored|guard replaced|guard installed|intact guard|interlocked)\b/.test(text)) {
+      push("guarding", "guard missing or removed", "guard restored or installed", "The narrative contains conflicting guard states and their temporal order is material.");
+    }
+    const historicalElectricalNoCurrentExposure =
+      /\b(?:prior|previously|yesterday|last week|last month|historical|arc[- ]?flash|arc event|reported)\b/.test(text) &&
+      /\b(?:no|not|without)\b[^.]{0,90}\b(?:current|now|today|exposed|energized|live|damaged|visible|inspection|photo)\b/.test(text) &&
+      !/\b(?:still|remains|currently|now)\b[^.]{0,80}\b(?:exposed|energized|arcing|damaged|open)\b/.test(text);
+    if (!historicalElectricalNoCurrentExposure && /\b(?:exposed conductors?|exposed energized parts?|energized conductor)\b/.test(text) &&
+      /\b(?:not exposed|no exposed|de-energized and isolated|deenergized and isolated|physically isolated)\b/.test(text)) {
+      push("electricalExposure", "exposed energized parts", "not exposed or isolated", "The narrative contains conflicting electrical exposure states.");
+    }
     return contradictions.slice(0, 6);
   }
 
@@ -416,12 +440,59 @@ export class SafescopeV2Service {
       case "msha":
         return ["msha"];
       case "osha-general-industry":
-        return ["osha_general"];
+        return ["osha_general_industry"];
       case "osha-construction":
         return ["osha_construction"];
       default:
         return undefined;
     }
+  }
+
+  private scopesToStructuredObservation(scopes?: string[]): StructuredObservationInput | undefined {
+    const values = Array.isArray(scopes)
+      ? scopes.map((scope) => String(scope || "").trim().toLowerCase()).filter(Boolean)
+      : [];
+    if (!values.length || values.includes("all")) return undefined;
+    if (values.some((scope) => scope === "msha" || scope.startsWith("msha_"))) {
+      return {
+        jurisdiction: "msha",
+        workEnvironment: "mine or quarry",
+        userConfirmedFacts: [
+          {
+            field: "jurisdiction",
+            value: "msha",
+            sourceQuestionId: "request-scope",
+          },
+        ],
+      };
+    }
+    if (values.includes("osha_construction") || values.includes("construction")) {
+      return {
+        jurisdiction: "osha-construction",
+        workEnvironment: "construction site",
+        userConfirmedFacts: [
+          {
+            field: "jurisdiction",
+            value: "osha-construction",
+            sourceQuestionId: "request-scope",
+          },
+        ],
+      };
+    }
+    if (values.includes("osha_general") || values.includes("osha_general_industry") || values.includes("general_industry")) {
+      return {
+        jurisdiction: "osha-general-industry",
+        workEnvironment: "general industry workplace",
+        userConfirmedFacts: [
+          {
+            field: "jurisdiction",
+            value: "osha-general-industry",
+            sourceQuestionId: "request-scope",
+          },
+        ],
+      };
+    }
+    return undefined;
   }
 
   private buildStructuredObservationEvidenceTexts(input?: StructuredObservationInput): string[] {
@@ -524,17 +595,43 @@ export class SafescopeV2Service {
     existingQuestions?: any[];
     answeredQuestionIds?: string[];
     unresolvedContradictions?: NonNullable<StructuredObservationInput["unresolvedContradictions"]>;
+    jurisdictionKnownFromScope?: boolean;
   }) {
     const text = String(input.fusedText || "").toLowerCase();
     const structured = input.structuredObservation;
     const questions: any[] = [];
     const answered = new Set((input.answeredQuestionIds || []).map((id) => String(id || "").trim()).filter(Boolean));
+    const safetyDecisiveIds = new Set([
+      "machine-energy-state",
+      "machine-controls",
+      "electrical-damage-exposure",
+      "gap-conveyor-loto",
+      "gap-p4-roof-rib-ground-control",
+    ]);
+    const isSafetyDecisive = (question: any) => {
+      if (typeof question.safetyDecisive === "boolean") return question.safetyDecisive;
+      if (typeof question.blocksFinalization === "boolean") return question.blocksFinalization;
+      if (question.requiredFor === "jurisdiction") return false;
+      // When the observation already states the safety-critical fact, the
+      // generated confirmation question is enrichment rather than a blocker.
+      // It remains blocking only when the decisive fact is genuinely absent.
+      if (question.id === "machine-controls" && /(?:missing|removed|damaged|bypassed)\s+guard|guard\s+(?:is\s+)?(?:missing|removed|damaged|bypassed)|no\s+lockout|without\s+lockout|lockout(?:\/tagout)?\s+(?:was\s+)?(?:applied|verified)|zero[- ]energy/i.test(text)) return false;
+      if (question.id === "machine-energy-state" && /\b(?:energized|operating|running|unexpected startup|locked[- ]out|deenergized|zero[- ]energy)\b/i.test(text)) return false;
+      if (question.id === "electrical-damage-exposure" && /(?:exposed\s+(?:internal\s+)?conductors?|energized\s+parts?|outer\s+jacket\s+damage)/i.test(text)) return false;
+      if (question.id === "gap-conveyor-loto" && /(?:lockout|tagout|loto|energy\s+isolation|zero[- ]energy)/i.test(text)) return false;
+      if (safetyDecisiveIds.has(String(question.id || ""))) return true;
+      if (String(question.id || "").startsWith("confirm-")) return true;
+      return Boolean(question.couldChangeShutdown) && question.requiredFor !== "jurisdiction";
+    };
     const add = (question: any) => {
       if (questions.length >= 4) return;
       if (answered.has(question.id)) return;
       if (questions.some((item) => item.id === question.id || item.question === question.question)) return;
+      const safetyDecisive = isSafetyDecisive(question);
       questions.push({
         required: question.priority === "critical",
+        safetyDecisive,
+        blocksFinalization: safetyDecisive,
         impactedDecisions: question.impactedDecisions || [question.requiredFor || "standard-applicability"],
         expectedEvidenceFields: question.expectedEvidenceFields || [],
         couldPromoteStandard: Boolean(question.couldPromoteStandard ?? question.requiredFor === "standard-applicability"),
@@ -562,7 +659,7 @@ export class SafescopeV2Service {
       });
     }
 
-    const jurisdictionKnown = structured?.jurisdiction && structured.jurisdiction !== "unknown";
+    const jurisdictionKnown = Boolean(input.jurisdictionKnownFromScope || (structured?.jurisdiction && structured.jurisdiction !== "unknown"));
     const hasCompleteMachineEnergyEvidence =
       /\b(conveyor|machine|belt|guard|jam|pulley|shaft)\b/i.test(text) &&
       /\b(energized|operating|running|locked[- ]out|deenergized|de-energized|zero[- ]energy|energy isolation)\b/i.test(text) &&
@@ -665,6 +762,31 @@ export class SafescopeV2Service {
       }
     }
 
+    if (/\b(?:trench|excavation|open\s+cut)\b/i.test(text) && /\b(?:unknown|unclear|may\s+enter|protective\s+system)\b/i.test(text)) {
+      add({
+        id: "excavation-control-state",
+        question: "Is the excavation currently occupied or otherwise exposed to workers, and what protective system is in place?",
+        reason: "Current exposure and protective-system status determine whether the excavation is an active safety condition.",
+        answerType: "single-select",
+        requiredFor: "hazard-classification",
+        priority: "critical",
+        impactedDecisions: ["hazard-classification", "risk", "corrective-action"],
+        couldChangeShutdown: true,
+      });
+    }
+    if (/\b(?:hazardous\s+energy|energy\s+isolation|lockout|tagout|servicing|maintenance)\b/i.test(text) && /\b(?:unknown|unclear|not\s+known|unsure)\b/i.test(text)) {
+      add({
+        id: "energy-control-state",
+        question: "Was hazardous energy isolated, zero-energy verified, and protected against unexpected startup before servicing?",
+        reason: "Energy-control status is safety-decisive for current servicing exposure.",
+        answerType: "single-select",
+        requiredFor: "risk",
+        priority: "critical",
+        impactedDecisions: ["hazard-classification", "risk", "imminent-danger", "corrective-action"],
+        couldChangeShutdown: true,
+      });
+    }
+
     if (/\b(ladder|edge|opening|roof|platform|scaffold|fall protection|six feet|6 feet)\b/i.test(text)) {
       const hasFallHeightEvidence = /\b\d+\s*(?:ft|feet|foot)\b/i.test(text) ||
         /\b(?:six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty)\s*(?:ft|feet|foot)\b/i.test(text);
@@ -725,10 +847,15 @@ export class SafescopeV2Service {
       structured?.energyState || "",
     ].join(" ");
     const hasHeatContext = /\b(heat|humidity|shade|hydration|water|acclimatization|work-rest|heat stress)\b/i.test(text);
+    const hasIndustrialHygieneContext =
+      /\b(dust|silica|fume|vapou?r|airborne|respirator|respiratory|noise|dba|decibel|hearing|solvent|ventilation|heat stress)\b/i.test(text);
     const existing = (Array.isArray(input.existingQuestions) ? input.existingQuestions : [])
       .filter((item: any) => {
         const question = typeof item === "string" ? item : item?.question || item?.prompt || item?.evidenceGapId || "";
         if (/\b(cool drinking water|heat|shade|hydration|acclimatization)\b/i.test(question) && !hasHeatContext) {
+          return false;
+        }
+        if (/\b(airborne dust|dust concentration|silica|noise|dosimetry|respirator|respiratory|ventilation|vapor|fume)\b/i.test(question) && !hasIndustrialHygieneContext) {
           return false;
         }
         if (/\b(internal conductors?|energized parts?|outer jacket)\b/i.test(question) && hasElectricalExposureAnswer) {
@@ -763,7 +890,14 @@ export class SafescopeV2Service {
           })
       .filter((item: any) => item?.question);
 
-    return [...questions, ...existing].slice(0, 4);
+    return [...questions, ...existing].slice(0, 4).map((item: any) => {
+      const safetyDecisive = isSafetyDecisive(item);
+      return {
+        ...item,
+        safetyDecisive,
+        blocksFinalization: safetyDecisive,
+      };
+    });
   }
 
   async evaluateVisualEvidence(input: VisualEvidenceReasoningInput, user?: UserGovernanceContext) {
@@ -862,6 +996,7 @@ export class SafescopeV2Service {
 
       // Route the observation first so HazLenz opens the most relevant knowledge directory.
       const normalizedScopes = this.normalizeScopes(structuredScope?.length ? structuredScope : scopes, fusedText);
+      const jurisdictionKnownFromScope = Boolean(normalizedScopes.length && !normalizedScopes.includes("all"));
       const advisoryReasoning = this.reasoningOrchestratorService.reason({
         hazardObservation: fusedText,
         scopes: normalizedScopes,
@@ -1427,6 +1562,65 @@ export class SafescopeV2Service {
             supervisorValidations: [],
           });
 
+          // Promote independently evidenced decomposition hazards into the
+          // canonical advisory response.  The decomposition is computed by
+          // the production orchestrator, but historically remained nested
+          // display metadata and was therefore lost to downstream consumers
+          // that read additionalHazards.  Preserve stable family/mechanism
+          // evidence without treating translated labels or array order as
+          // identity; persistence reconciles these families separately.
+          const decompositionHazards = Array.isArray(intelligence?.multiHazardDecomposition?.hazards)
+            ? intelligence.multiHazardDecomposition.hazards
+            : [];
+          const primaryFamilyKey = String(promotedPrimary?.family || promotedPrimary?.classification || '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '_')
+            .replace(/^_|_$/g, '');
+          const existingAdditional = Array.isArray(intelligence?.additionalHazards)
+            ? intelligence.additionalHazards
+            : [];
+          const derivedAdditional = decompositionHazards
+            .filter((hazard: any) => {
+              if (['HISTORICAL', 'SAFE_VERIFIED'].includes(String(hazard?.conditionState || '').toUpperCase())) return false;
+              const familyKey = String(hazard?.hazardFamily || hazard?.domainId || '')
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '_')
+                .replace(/^_|_$/g, '');
+              return familyKey && familyKey !== primaryFamilyKey &&
+                !existingAdditional.some((item: any) => String(item?.family || item?.classification || '')
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, '_')
+                  .replace(/^_|_$/g, '') === familyKey);
+            })
+            .map((hazard: any) => {
+              const stableFamily = String(hazard.hazardFamily || hazard.domainId || '');
+              const displayFamily = stableFamily
+                .replace(/[_-]+/g, ' ')
+                .replace(/\b\w/g, (letter) => letter.toUpperCase());
+              return ({
+              classification: displayFamily,
+              family: hazard.domainId || hazard.hazardFamily,
+              hazardCategory: displayFamily,
+              confidence: hazard.confidence,
+              mechanism: hazard.mechanism,
+              observationFragment: hazard.observationFragment,
+              supportingSignals: hazard.supportingSignals || [],
+              evidenceGaps: hazard.evidenceGaps || [],
+              clarificationQuestions: hazard.reviewerQuestions || [],
+              requiresHumanReview: Boolean(hazard.requiresHumanReview),
+              advisoryOnly: true,
+              evidenceBound: true,
+              decompositionHazardId: hazard.hazardId,
+              conditionState: hazard.conditionState || 'UNKNOWN',
+              temporalEvidence: hazard.temporalEvidence || [],
+              currentCondition: hazard.currentCondition,
+              correctionStatus: hazard.correctionStatus || 'not_stated',
+            });
+            });
+          if (derivedAdditional.length) {
+            intelligence.additionalHazards = [...existingAdditional, ...derivedAdditional];
+          }
+
           if (process.env.NODE_ENV === "development" || debugMetadata) {
             console.log("[HazLenz classify] intelligence orchestrator complete", {
               memory: memorySnapshot(),
@@ -1618,12 +1812,41 @@ export class SafescopeV2Service {
         }),
       }));
 
+      // P0-03: pass the raw, single-call observation text (not the cross-turn
+      // fusedText) for corrective-action keyword matching. fusedText folds in
+      // evidenceTexts/structuredObservation carried forward from prior turns on
+      // this observation, which can still contain a sibling hazard's vocabulary
+      // (e.g. "lockout/tagout", "guardrail") after the user has isolated this
+      // finding to its own fragment. Classification/risk continue to use
+      // fusedText below; only the free-text corrective-action title/body match
+      // is scoped to this finding's own submitted text.
+      //
+      // Callers (e.g. the legacy inspection UI) compose `text` as a
+      // multi-line "Hazard category: X / Observed condition: Y / Location: Z
+      // / Evidence notes: W / Regulatory scope: V" block. Two parts of that
+      // template are not the reviewer's actual evidence and can still trip
+      // this function's defect-keyword matching:
+      //   - "Hazard category: <label>" carries the ORIGINAL multi-hazard
+      //     decomposition candidate's label (e.g. "Fall Protection") for a
+      //     finding split out of a shared observation, even when this
+      //     finding's own isolated evidence doesn't describe that hazard;
+      //   - unfilled "Location"/"Evidence notes" fields default to literal
+      //     "No location provided"/"No evidence notes provided" placeholder
+      //     text, whose "no" can combine with an unrelated word elsewhere
+      //     (e.g. "platform") to satisfy a defect-context regex that expects
+      //     "no/missing/without" language.
+      // Strip both so keyword matching sees only the observed-condition
+      // evidence actually reported for this finding.
+      const actionMatchText = text
+        .replace(/^\s*Hazard category:.*(\r?\n|$)/im, "")
+        .replace(/^\s*Location:\s*No location provided\s*(\r?\n|$)/im, "")
+        .replace(/^\s*Evidence notes:\s*No evidence notes provided\s*(\r?\n|$)/im, "");
       const enhancedGeneratedActions = this.buildEnhancedGeneratedActions(
         sanitizedGeneratedActions,
         intelligence,
         actionInput.id,
         knowledgeShardSummary,
-        fusedText,
+        actionMatchText,
         isVague,
       );
       const sanitizedEnhancedGeneratedActions = (enhancedGeneratedActions || []).map((action: any) => sanitizeVagueGeneratedAction({
@@ -2293,9 +2516,20 @@ export class SafescopeV2Service {
         return isGenericClassifierCategory(classifierHazardCategory) ? 'unknown' : classifierHazardCategory || 'unknown';
       })();
       const normalizedRootHazardCategory = String(rootHazardCategory || '').toLowerCase();
+      // A vague concern near equipment is not evidence of a particular
+      // machine, energy source, or exposure path. Keep the response
+      // unclassified until a concrete hazard anchor is supplied; otherwise
+      // the classifier's generic guarding fallback becomes an unsupported
+      // active family. Specific vague observations (for example, "missing
+      // guard on a rotating shaft") retain their family and clarification.
+      const hasConcreteVagueHazardAnchor = /\b(?:guard(?:ing|rail)?|belt|pulley|shaft|conveyor|panel|breaker|wire|cord|energ(?:ized|y)|lockout|tagout|loto|leak|spill|release|fall|edge|ladder|scaffold|cylinder|chemical|forklift|truck|welding|hot work|opening|obstruct(?:ed|ion)|debris|oil|solvent|dust|noise|fume|vapor)\b/i.test(fusedText);
+      const explicitlyInsufficientContext = /\b(?:task|jurisdiction|exposure|control)\s+(?:details?|information|status)\s+(?:are|is)\s+(?:not available|unknown|unclear|missing)\b/i.test(fusedText) ||
+        /\bunsafe condition near equipment\b/i.test(fusedText);
+      const vagueWithoutConcreteHazard = !hasConcreteVagueHazardAnchor && (isVague || explicitlyInsufficientContext);
 
       // Determine root-level candidateStandardFamily
       const rootStandardFamily = (() => {
+        if (vagueWithoutConcreteHazard) return 'unknown';
         if (intelligence?.scenarioIntelligence?.candidateStandardFamily && intelligence.scenarioIntelligence.candidateStandardFamily !== 'unknown') {
           return intelligence.scenarioIntelligence.candidateStandardFamily;
         }
@@ -2320,6 +2554,7 @@ export class SafescopeV2Service {
       })();
 
       const effectiveClassification = (() => {
+        if (vagueWithoutConcreteHazard) return 'Unclassified';
         const rawClassification = String(promotedPrimary.classification || '').trim();
         const hasPrimaryConveyorGuardingExposure =
           hasExplicitConveyorGuardEnergyContext &&
@@ -2362,8 +2597,22 @@ export class SafescopeV2Service {
       })();
 
       promotedPrimary.classification = effectiveClassification;
+      const decompositionHasConcreteEvidence = Array.isArray(intelligence.multiHazardDecomposition?.hazards) &&
+        intelligence.multiHazardDecomposition.hazards.some((hazard: any) => {
+          const domain = String(hazard?.domainId || hazard?.hazardFamily || '').toLowerCase();
+          const fragment = String(hazard?.observationFragment || '');
+          if (domain === 'hot_work') return !/\b(?:no|not|never)\s+(?:active\s+)?(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?)\b/i.test(fragment) &&
+            !/\bhot[- ]?work\b[^.]{0,40}\b(?:canceled|cancelled|not\s+planned|wasn't\s+planned|isn't\s+planned)\b/i.test(fragment) &&
+            /\b(?:weld(?:ing)?|cut(?:ting)?|torch|braz(?:ing)?|flame|spark|hot work)\b/i.test(fragment);
+          if (domain === 'mobile_equipment') return /\b(?:forklift|loader|haul truck|truck|vehicle|mobile equipment|haul route|haul road|backing|struck by|pedestrian)\b/i.test(fragment);
+          return Boolean(String(hazard?.supportingSignals || '').trim());
+        });
+      if (vagueWithoutConcreteHazard && !decompositionHasConcreteEvidence) {
+        promotedPrimary.family = 'unknown';
+        promotedPrimary.hazardCategory = 'unknown';
+      }
       if (!promotedPrimary.family || /^(unknown|unclassified|other|general|misc|miscellaneous)$/i.test(String(promotedPrimary.family).toLowerCase())) {
-        promotedPrimary.family = rootHazardCategory;
+        promotedPrimary.family = vagueWithoutConcreteHazard ? 'unknown' : rootHazardCategory;
       }
 
       const finalFamilyHint = String(
@@ -2494,7 +2743,9 @@ export class SafescopeV2Service {
         /\b(missing|bypassed|removed|incomplete|not locked|not verified|not used|inadequate|failed|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|not applied|not done|not followed)\b/i.test(originalFindingText);
       const hasStoredHydraulicEnergyReleaseEvidence =
         /\b(hydraulic|pneumatic|stored pressure|stored energy|ram|cylinder)\b.*\b(drop|fall|release|relieved|not relieved|bleed|bled|pressure)\b/i.test(originalFindingText) ||
-        /\b(stored pressure|stored energy)\b.*\b(hydraulic|pneumatic|ram|cylinder)\b/i.test(originalFindingText);
+        /\b(stored pressure|stored energy)\b.*\b(hydraulic|pneumatic|ram|cylinder)\b/i.test(originalFindingText) ||
+        /\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(hydraulic|pressure)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(originalFindingText) ||
+        /\b(hydraulic|pressure)\b.*\b(holding|supporting)\b.*\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(originalFindingText);
       const hasDirectHazardousEnergyContext = hasExplicitHazardousEnergyWork || hasHazardousEnergyFailureEvidence || hasStoredHydraulicEnergyReleaseEvidence;
       const isHazardousEnergyCitation = (citation: string) =>
         /(?:29\s*CFR\s*)?1910\.147|(?:30\s*CFR\s*)?(?:56|57)\.12016/i.test(citation);
@@ -2518,7 +2769,12 @@ export class SafescopeV2Service {
         }
         if (/1926\.1101|1926\.62|1910\.1001|1910\.1025/i.test(citation)) {
           return /\b(asbestos|lead)\b.*\b(insulation|dust|demolition|demo|renovation|prep|suspect|suspicion)\b/i.test(originalFindingText) ||
+            /\b(insulation|dust|demolition|demo|renovation|prep|suspect|suspicion)\b.*\b(asbestos|lead|acm|presumed asbestos)\b/i.test(originalFindingText) ||
             /\b(old insulation|paint chips|lead dust)\b/i.test(originalFindingText);
+        }
+        if (/(?:56|57)\.12016/i.test(citation)) {
+          return /\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(hydraulic|pressure)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(originalFindingText) ||
+            /\b(hydraulic|pressure)\b.*\b(holding|supporting)\b.*\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(originalFindingText);
         }
         if (/(?:56|57)\.14107/i.test(citation)) {
           return /\b(conveyor|belt|tail pulley|head pulley)\b.*\b(missing|removed|unguarded|no guard|guard missing|guard removed|moving belt)\b/i.test(originalFindingText) ||
@@ -2554,6 +2810,10 @@ export class SafescopeV2Service {
         )) return false;
         if (/^30 CFR 56\.9100(?:\(a\))?$/i.test(citation) && !(hasExplicitMineContext || hasMineScopeContext)) return false;
         if (/^30 CFR 56\.9100(?:\(a\))?$/i.test(citation) && !/\b(pedestrian|traffic|blind corner|right of way|backing|route|same aisle|same route|haul road|intersection|spotter)\b/i.test(fusedText)) return false;
+        if (/(1910\.22|1926\.25|(?:56|57)\.20003)/i.test(citation) && (
+          /\b(spill|leak|release)\b.*\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(fusedText) ||
+          /\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(fusedText)
+        )) return false;
         if (/(1910\.101|1926\.350|(?:56|57)\.1600[56])/i.test(citation) && (!hasExplicitCompressedGasEvidence || hasGasOdorOnlyEvidence)) return false;
         if (isHazardousEnergyCitation(citation) && (!hasDirectHazardousEnergyContext || (hasSafeControlEvidence && !hasActiveEmployeeExposureEvidence))) return false;
         if (hasSafeControlEvidence && !hasActiveEmployeeExposureEvidence && /(1910\.212|1910\.219|(?:56|57)\.14107)/i.test(citation)) return false;
@@ -2562,6 +2822,11 @@ export class SafescopeV2Service {
         if (/\b(parked out of service|key removed|no reverse operation|not backing|not operating|removed from service)\b/i.test(fusedText) && /(1910\.178|1926\.60[12]|(?:56|57)\.(?:9100|14132|14207))/i.test(citation)) return false;
         if (hasImmediateUseContainerEvidence && /1910\.1200|1926\.59/i.test(citation)) return false;
         if (/\b(?:three|3)[- ]?(?:ft|feet|foot)\b/i.test(fusedText) && /\b(no employee entry|no entry|no cave-in indicators|barricaded)\b/i.test(fusedText) && /1926\.652/i.test(citation)) return false;
+        if (
+          /1926\.501/i.test(citation) &&
+          /\bedge protection issue\b/i.test(fusedText) &&
+          !/\b(\d+\s*(?:feet|foot|ft)|six|6|open edge|unprotected edge|leading edge|roof|employees?|workers?|fall distance|above lower level)\b/i.test(fusedText)
+        ) return false;
         return true;
       };
       suggestedStandards = suggestedStandards.filter(applyFinalOutputFilter);
@@ -2829,8 +3094,9 @@ export class SafescopeV2Service {
           title,
           titleSummary: title,
           summary: title,
-          status: 'candidate_standard',
-          candidateStatus: 'candidate_standard',
+          status: target === 'supporting' ? 'candidate_standard' : 'probable',
+          candidateStatus: target === 'supporting' ? 'candidate_standard' : 'probable',
+          applicabilityStatus: target === 'supporting' ? 'candidate' : 'probable',
           source: ['final_evidence_based_visibility'],
           matchingReasons: ['Direct observation evidence supports surfacing this standard for qualified review.'],
         });
@@ -2856,6 +3122,16 @@ export class SafescopeV2Service {
         ensureVisibleStandard('30 CFR 56.12016', 'Work on electrically powered equipment; deenergizing and lockout', 'supporting');
       }
 
+      if (
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(haul truck|truck|loader|mobile equipment|equipment)\b/i.test(fusedText) &&
+        /\b(parked|parking|left)\b/i.test(fusedText) &&
+        /\b(grade|slope|incline|ramp)\b/i.test(fusedText) &&
+        /\b(no wheel chocks|no chocks|without chocks|not chocked|brake status unknown|brake unknown)\b/i.test(fusedText)
+      ) {
+        ensureVisibleStandard('30 CFR 56.14207', 'Parking procedures for unattended equipment', 'suggested', { allowWhenVague: true });
+      }
+
       const hasConstructionLadderDefectEvidence =
         (normalizedScopes.includes('osha_construction') || /\b(construction|jobsite|building site)\b/i.test(fusedText)) &&
         /\b(ladder|portable ladder|extension ladder|stepladder|step ladder)\b/i.test(fusedText) &&
@@ -2865,11 +3141,15 @@ export class SafescopeV2Service {
         ensureVisibleStandard('29 CFR 1926.1053(b)(16)', 'Defective ladders shall be withdrawn from service', 'suggested', { allowWhenVague: true });
       }
 
+      const hasContainedReleaseWithoutWalkwayExposure =
+        /\b(spill|leak|release)\b.*\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(fusedText) ||
+        /\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(fusedText);
       const hasGeneralIndustryWalkingSurfaceReleaseEvidence =
         (normalizedScopes.includes('osha_general_industry') || /\b(manufacturing|plant|warehouse|shop|facility)\b/i.test(fusedText)) &&
-        /\b(oil|grease|spill|spilled|leak|leaking|slick|wet)\b/i.test(fusedText) &&
+        /\b(oil|grease|spill|spilled|leak|leaking|slick|wet|liquid|coolant|tipped over)\b/i.test(fusedText) &&
         /\b(aisle|walkway|walking surface|travel path|floor|route)\b/i.test(fusedText) &&
-        /\b(employees?|workers?|pedestrians?|used by|traffic)\b/i.test(fusedText);
+        /\b(employees?|workers?|pedestrians?|used by|traffic)\b/i.test(fusedText) &&
+        !hasContainedReleaseWithoutWalkwayExposure;
       if (hasGeneralIndustryWalkingSurfaceReleaseEvidence) {
         ensureVisibleStandard('29 CFR 1910.22(a)(2)', 'Walking-working surfaces maintained free of hazards', 'suggested', { allowWhenVague: true });
       }
@@ -2883,9 +3163,66 @@ export class SafescopeV2Service {
         ensureVisibleStandard(resolvedPrimaryCitation, resolvedPrimaryCitation, 'suggested');
       }
 
+      // Evaluation-only stage tracing. It is opt-in via debugMetadata and is
+      // never included in ordinary production responses. The trace records
+      // family flow, not evaluator answers, so loss analysis can distinguish
+      // generation, decomposition, mapping, and serialization failures.
+      if (debugMetadata) {
+        const collectFamilies = (value: unknown): string[] => {
+          const found = new Set<string>();
+          const visit = (node: unknown, depth = 0) => {
+            if (depth > 5 || node === null || typeof node !== 'object') return;
+            if (Array.isArray(node)) { node.forEach(item => visit(item, depth + 1)); return; }
+            const record = node as Record<string, unknown>;
+            for (const key of ['family', 'classification', 'hazardFamily', 'domainId', 'hazardCategory', 'candidateFamily']) {
+              const raw = record[key];
+              if (typeof raw === 'string' && raw.trim()) found.add(raw.trim().toLowerCase());
+            }
+            for (const child of Object.values(record)) visit(child, depth + 1);
+          };
+          visit(value);
+          return [...found].sort();
+        };
+        diagnostics.stageTrace = {
+          scenarioOpaqueId: workspaceId || null,
+          initialClassifierFamilies: collectFamilies(result),
+          scenarioIntelligenceFamilies: collectFamilies(advisoryReasoning?.inspectionIntelligence?.hazardCandidates),
+          conditionAssessmentFamilies: collectFamilies(advisoryReasoning?.inspectionIntelligence?.conditionAssessment),
+          mechanismChainFamilies: collectFamilies(advisoryReasoning?.inspectionIntelligence?.mechanismChain),
+          decompositionFamilies: collectFamilies((intelligence as any)?.multiHazardDecomposition || (advisoryReasoning?.inspectionIntelligence as any)?.multiHazardDecomposition),
+          standardCandidateFamilies: collectFamilies(suggestedStandards),
+          citationRecoveryFamilies: collectFamilies({ suggestedStandards, supportingStandards, excludedStandards, needsMoreEvidenceStandards }),
+          serializedFamilies: collectFamilies({ promotedPrimary, intelligence, additionalHazards: intelligence?.additionalHazards, multiHazardDecomposition: intelligence?.multiHazardDecomposition }),
+          returnedPrimaryFamily: String(promotedPrimary?.family || promotedPrimary?.classification || '').toLowerCase(),
+        };
+      }
+
+      if (vagueWithoutConcreteHazard && !decompositionHasConcreteEvidence) {
+        // Do not let incidental words such as "removed", "serviced", or
+        // "record" create secondary hazard families when the observation
+        // contains no concrete equipment, exposure, or control predicate.
+        intelligence.additionalHazards = [];
+        if (intelligence.multiHazardDecomposition && typeof intelligence.multiHazardDecomposition === 'object') {
+          intelligence.multiHazardDecomposition = {
+            ...intelligence.multiHazardDecomposition,
+            hazards: [],
+          };
+        }
+      }
+
+      // One-way external canonical family normalization: applied ONLY to the
+      // outgoing response field, after reasoning/standards/risk have already
+      // used the internal id. hazardCategory is left untouched so the raw
+      // internal id/subtype remains available. No reverse mappings.
+      const externalCanonicalFamilyMap: Record<string, string> = {
+        ergonomics: 'ergonomic_strain',
+        bloodborne_pathogens: 'biological_exposure',
+        slip_trip_fall: 'walking_working_surfaces',
+      };
       const response = {
           ...promotedPrimary,
           ...intelligence,
+          family: externalCanonicalFamilyMap[promotedPrimary.family] ?? promotedPrimary.family,
           applicabilityIntelligence: sanitizedApplicabilityIntelligence,
           classification: effectiveClassification,
           primaryCitation: resolvedPrimaryCitation,
@@ -2911,7 +3248,7 @@ export class SafescopeV2Service {
           },
           unresolvedContradictions,
           evidenceUsed: this.buildStructuredEvidenceUsed(structuredObservation, fusedText),
-          hazardCategory: normalizedRootHazardCategory || rootHazardCategory,
+          hazardCategory: vagueWithoutConcreteHazard ? 'unknown' : (normalizedRootHazardCategory || rootHazardCategory),
           candidateStandardFamily: rootStandardFamily,
           suggestedStandards,
           primaryStandards: finalPrimaryStandards,
@@ -2987,6 +3324,73 @@ export class SafescopeV2Service {
               learningMemory,
           }
       };
+
+      // Enforce hot-work proposition polarity on every serialized path. Some
+      // classifier/standards branches can retain a family candidate even when
+      // decomposition correctly rejected the source proposition; negated,
+      // cancelled, discussed-only, or unresolved hot-work language is not a
+      // positive hazard finding.
+      const serializedHotWorkText = `${String(text || '')} ${String(fusedText || '')}`;
+      const serializedHotWorkNegated =
+        /\b(?:no|not|never)\s+(?:active\s+)?(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b/i.test(serializedHotWorkText) ||
+        /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b[^.]{0,100}\b(?:will\s+not|won't|not\s+(?:be\s+)?(?:performed|planned|scheduled|conducted)|canceled|cancelled|completed)\b/i.test(serializedHotWorkText) ||
+        /\b(?:discussed|reviewed|selected\s+(?:a\s+)?cold[- ]work|cold[- ]work\s+method|may\s+be\s+required|not\s+determined)\b/i.test(serializedHotWorkText) ||
+        /\bhot[- ]?work\s+deficiency\b[^.]{0,40}\b(?:not|no)\b/i.test(serializedHotWorkText);
+      const serializedHotWorkUncertain = /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b[^.]{0,100}\b(?:may|might|uncertain|unclear|not\s+determined|undetermined)\b/i.test(serializedHotWorkText);
+      const serializedHotWorkFuture = !serializedHotWorkNegated && !serializedHotWorkUncertain && /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b[^.]{0,100}\b(?:planned|scheduled|will\s+(?:begin|start)|tomorrow|next\s+week|after\s+shutdown)\b/i.test(serializedHotWorkText);
+      if (serializedHotWorkNegated) {
+        if (Array.isArray((response as any).additionalHazards)) {
+          (response as any).additionalHazards = (response as any).additionalHazards.filter((hazard: any) =>
+            !/hot[_ -]?work|welding|cutting|fire_explosion|welding_cutting/i.test(String(hazard?.family || hazard?.classification || hazard?.hazardCategory || '')),
+          );
+        }
+        if (Array.isArray((response as any).multiHazardDecomposition?.hazards)) {
+          (response as any).multiHazardDecomposition.hazards = (response as any).multiHazardDecomposition.hazards.filter((hazard: any) =>
+            !/hot[_ -]?work|welding|cutting/i.test(String(hazard?.domainId || hazard?.hazardFamily || '')),
+          );
+        }
+        if (/hot[_ -]?work|welding|cutting/i.test(String((response as any).family || (response as any).hazardCategory || ''))) {
+          (response as any).family = 'unknown';
+          (response as any).hazardCategory = 'unknown';
+          (response as any).classification = 'Unclassified';
+        }
+      } else if (serializedHotWorkUncertain) {
+        if (Array.isArray((response as any).additionalHazards)) {
+          (response as any).additionalHazards = (response as any).additionalHazards.filter((hazard: any) =>
+            !/hot[_ -]?work|welding|cutting|fire_explosion/i.test(String(hazard?.family || hazard?.classification || hazard?.hazardCategory || '')),
+          );
+        }
+        if (Array.isArray((response as any).multiHazardDecomposition?.hazards)) {
+          (response as any).multiHazardDecomposition.hazards = (response as any).multiHazardDecomposition.hazards.filter((hazard: any) =>
+            !/hot[_ -]?work|welding|cutting/i.test(String(hazard?.domainId || hazard?.hazardFamily || '')),
+          );
+        }
+      } else if (serializedHotWorkFuture) {
+        for (const collection of [(response as any).additionalHazards, (response as any).multiHazardDecomposition?.hazards]) {
+          if (!Array.isArray(collection)) continue;
+          for (const hazard of collection) {
+            if (/hot[_ -]?work|welding|cutting/i.test(String(hazard?.family || hazard?.classification || hazard?.hazardCategory || hazard?.domainId || hazard?.hazardFamily || ''))) {
+              hazard.conditionState = 'PLANNED_FUTURE';
+              hazard.correctionStatus = 'planned';
+            }
+          }
+        }
+      }
+
+      if (
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(haul truck|truck|loader|mobile equipment|equipment)\b/i.test(fusedText) &&
+        /\b(parked|parking|left)\b/i.test(fusedText) &&
+        /\b(grade|slope|incline|ramp)\b/i.test(fusedText) &&
+        /\b(no wheel chocks|no chocks|without chocks|not chocked|brake status unknown|brake unknown)\b/i.test(fusedText)
+      ) {
+        response.requiredControls = Array.from(new Set([
+          'verify parking brake or equivalent securement',
+          'chock wheels or otherwise prevent movement on grade',
+          'lower or secure raised components before leaving equipment unattended',
+          ...(Array.isArray(response.requiredControls) ? response.requiredControls : []),
+        ]));
+      }
 
       if (response.standardsReasoning) {
         response.standardsReasoning = {
@@ -3126,10 +3530,88 @@ export class SafescopeV2Service {
 
       standardDecisions = await hydrateStandardReferences(standardDecisions);
       standardDecisions = standardDecisions.filter((decision: any) => shouldKeepAncillaryCitation(decision));
+      if (
+        /\b(spill|leak|release)\b.*\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(fusedText) ||
+        /\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(fusedText)
+      ) {
+        standardDecisions = standardDecisions.filter((decision: any) =>
+          !/(1910\.22|1926\.25|(?:56|57)\.20003)/i.test(String(decision?.citation || '')),
+        );
+      }
+      const hasGeneralIndustryTankEntryNoControls =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(tank|vessel|process tank)\b/i.test(fusedText) &&
+        /\b(climbed|entered|entry|inside|through the hatch)\b/i.test(fusedText) &&
+        /\b(not tested|no atmospheric test|no attendant|without attendant|no permit|not evaluated)\b/i.test(fusedText);
+      if (hasGeneralIndustryTankEntryNoControls) {
+        if (!standardDecisions.some((decision: any) => /(?:29 CFR )?1910\.146/i.test(String(decision?.citation || '')))) {
+          standardDecisions = [
+            ...standardDecisions,
+            ...(await hydrateStandardReferences([{
+              citation: '29 CFR 1910.146',
+              title: 'Permit-required confined spaces',
+              summary: 'Permit-required confined-space evaluation and entry controls.',
+              authority: 'primary',
+              agency: 'OSHA',
+              scope: 'osha_general_industry',
+              confidence: 0.86,
+              reasons: ['Tank entry evidence includes entry plus missing atmospheric testing, attendant, permit, or entry-control predicates.'],
+              matchReasons: ['Tank entry evidence includes entry plus missing atmospheric testing, attendant, permit, or entry-control predicates.'],
+              isCandidate: true,
+              isDirectMatch: true,
+              source: 'final_confined_space_evidence_gate',
+              applicabilityStatus: 'probable',
+            }]))
+          ];
+        }
+        standardDecisions = standardDecisions.map((decision: any) => {
+          if (!/(?:29 CFR )?1910\.146/i.test(String(decision?.citation || ''))) return decision;
+          return {
+            ...decision,
+            authority: decision?.authority === 'needs_more_evidence' ? 'primary' : decision?.authority || 'primary',
+            confidence: Math.max(Number(decision?.confidence) || 0, 0.86),
+            isDirectMatch: true,
+            applicabilityStatus: 'probable',
+            reasons: Array.from(new Set([
+              ...(Array.isArray(decision?.reasons) ? decision.reasons : []),
+              'Tank entry evidence includes entry plus missing atmospheric testing, attendant, permit, or entry-control predicates.',
+            ])),
+          };
+        });
+      }
+      const hasConstructionAsbestosDisturbance =
+        normalizedScopes.includes('osha_construction') &&
+        (
+          /\b(asbestos|acm|presumed asbestos)\b.*\b(insulation|dust|demolition|renovation|scrap(?:e|ed|ing)|disturb(?:ed|ance))\b/i.test(fusedText) ||
+          /\b(insulation|dust|demolition|renovation|scrap(?:e|ed|ing)|disturb(?:ed|ance))\b.*\b(asbestos|acm|presumed asbestos)\b/i.test(fusedText)
+        );
+      if (hasConstructionAsbestosDisturbance) {
+        standardDecisions = standardDecisions.map((decision: any) => {
+          if (!/(?:29 CFR )?1926\.1101/i.test(String(decision?.citation || ''))) return decision;
+          return {
+            ...decision,
+            authority: decision?.authority === 'needs_more_evidence' ? 'primary' : decision?.authority || 'primary',
+            confidence: Math.max(Number(decision?.confidence) || 0, 0.86),
+            isDirectMatch: true,
+            applicabilityStatus: 'probable',
+            reasons: Array.from(new Set([
+              ...(Array.isArray(decision?.reasons) ? decision.reasons : []),
+              'Construction renovation evidence includes disturbance of insulation identified as presumed asbestos-containing material.',
+            ])),
+          };
+        });
+      }
       const hasMshaEnergizedConveyorJamEvidence =
         normalizedScopes.some((scope) => String(scope).includes('msha')) &&
         /\b(conveyor|belt|jam|clearing (?:a )?jam(?:med)?|clear(?:ing)? (?:a )?jam(?:med)?)\b/i.test(fusedText) &&
         /\b(energized|operating|running|unexpected startup|lockout not applied|no lockout|without lockout|loto not applied)\b/i.test(fusedText);
+      const hasMshaRaisedHydraulicNoBlockingEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        (
+          /\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(hydraulic|pressure)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(fusedText) ||
+          /\b(hydraulic|pressure)\b.*\b(holding|supporting)\b.*\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(fusedText)
+        ) &&
+        !hasControlledHazardousEnergyEvidence;
       if (hasMshaEnergizedConveyorJamEvidence) {
         standardDecisions = standardDecisions.map((decision: any) => {
           if (!/(?:30 CFR )?56\.12016/i.test(String(decision?.citation || ''))) return decision;
@@ -3170,22 +3652,28 @@ export class SafescopeV2Service {
         });
       }
       if (
-        hasMshaEnergizedConveyorJamEvidence &&
+        (hasMshaEnergizedConveyorJamEvidence || hasMshaRaisedHydraulicNoBlockingEvidence) &&
         !standardDecisions.some((decision: any) => /(?:30 CFR )?56\.12016/i.test(String(decision?.citation || '')))
       ) {
         const hydratedSupport = await hydrateStandardReferences([{
           citation: '30 CFR 56.12016',
           title: 'Work on electrically powered equipment; deenergizing and lockout',
-          summary: 'Supporting hazardous-energy isolation reference for energized conveyor jam-clearing or servicing.',
+          summary: hasMshaRaisedHydraulicNoBlockingEvidence
+            ? 'Supporting hazardous-energy isolation reference for raised hydraulic or gravity-supported equipment without blocking.'
+            : 'Supporting hazardous-energy isolation reference for energized conveyor jam-clearing or servicing.',
           authority: 'supporting',
           agency: 'MSHA',
           scope: 'msha',
           confidence: 0.82,
           reasons: [
-            'MSHA conveyor jam-clearing evidence includes operating, energized, or not-locked-out equipment.',
+            hasMshaRaisedHydraulicNoBlockingEvidence
+              ? 'MSHA maintenance evidence includes a raised component held by hydraulic pressure without blocking or cribbing.'
+              : 'MSHA conveyor jam-clearing evidence includes operating, energized, or not-locked-out equipment.',
           ],
           matchReasons: [
-            'MSHA conveyor jam-clearing evidence includes operating, energized, or not-locked-out equipment.',
+            hasMshaRaisedHydraulicNoBlockingEvidence
+              ? 'MSHA maintenance evidence includes a raised component held by hydraulic pressure without blocking or cribbing.'
+              : 'MSHA conveyor jam-clearing evidence includes operating, energized, or not-locked-out equipment.',
           ],
           isCandidate: true,
           isDirectMatch: false,
@@ -3194,6 +3682,615 @@ export class SafescopeV2Service {
         }]);
         standardDecisions = [...standardDecisions, ...hydratedSupport.filter((decision: any) => shouldKeepAncillaryCitation(decision))];
       }
+      const hasGeneralIndustryLadderTopUseEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(ladder|stepladder|step ladder)\b/i.test(fusedText) &&
+        /\b(top cap|top step)\b/i.test(fusedText) &&
+        /\b(standing|stand|climb|reach|use|using|employee|worker)\b/i.test(fusedText);
+      const hasGeneralIndustryStairRailEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(fixed stairway|stairway|stairs|stair)\b/i.test(fusedText) &&
+        /\b(handrail|stair rail|open side rail|railing)\b/i.test(fusedText) &&
+        /\b(missing|absent|removed|not installed|no handrail|no rail)\b/i.test(fusedText) &&
+        /\b(employees?|workers?|use|using|access|mezzanine|loft)\b/i.test(fusedText);
+      const hasGeneralIndustryMaterialStorageCollapseEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(boxes|materials?|pallet|stack|stored|storage|rack)\b/i.test(fusedText) &&
+        /\b(leaning|unstable|broken pallet|collapse|falling|fall over|tip over)\b/i.test(fusedText) &&
+        /\b(aisle|walkway|pedestrian|employees?|workers?|traffic path)\b/i.test(fusedText);
+      const hasGeneralIndustryFireExtinguisherAccessEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(extinguisher|fire extinguisher)\b/i.test(fusedText) &&
+        /\b(missing|not mounted|off bracket|from its bracket|blocked|obstructed|not accessible|cannot access)\b/i.test(fusedText);
+      const hasGeneralIndustryFlammableStorageIgnitionEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(lacquer thinner|flammable liquid|flammable|combustible liquid|solvent)\b/i.test(fusedText) &&
+        /\b(open cans?|open containers?|not closed|uncapped)\b/i.test(fusedText) &&
+        /\b(space heater|heater|ignition|spark|flame|hot surface)\b/i.test(fusedText);
+      const hasGeneralIndustryPowerPressControlEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(mechanical press|power press|press)\b/i.test(fusedText) &&
+        /\b(two-hand|two hand|presence-sensing|point of operation|controls?)\b/i.test(fusedText) &&
+        /\b(taped|defeated|bypassed|disabled|held down)\b/i.test(fusedText);
+      const hasGeneralIndustryWoodworkingGuardEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(table saw|radial saw|circular saw|woodworking)\b/i.test(fusedText) &&
+        /\b(blade guard|guard)\b/i.test(fusedText) &&
+        /\b(missing|removed|not installed|unguarded)\b/i.test(fusedText) &&
+        /\b(operator|employee|worker|ripping|cutting|by hand)\b/i.test(fusedText);
+      const hasConstructionScaffoldPlatformEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\b(scaffold|scaffolding)\b/i.test(fusedText) &&
+        /\b(plank|platform|guardrail|midrail|toprail)\b/i.test(fusedText) &&
+        /\b(cracked|bouncing|missing|absent|damaged|defective|no rail|no guardrail|missing midrail)\b/i.test(fusedText) &&
+        /\b(workers?|employees?|painters?|masons?|stand|working)\b/i.test(fusedText);
+      const hasConstructionTrenchEgressEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\b(trench|excavation)\b/i.test(fusedText) &&
+        /\b(more than four feet|over four feet|greater than four feet|4 feet|four feet|deep)\b/i.test(fusedText) &&
+        /\b(ladder|ramp|stairway|egress|access)\b/i.test(fusedText) &&
+        /\b(40 feet|thirty|30 feet|far|nearest|not within|too far|missing|no ladder)\b/i.test(fusedText);
+      const hasConstructionTrafficVisibilityEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\b(flagger|flaggers|traffic|live traffic|roadway)\b/i.test(fusedText) &&
+        /\b(dusk|night|low light|visibility|high-visibility|hi-vis|reflective)\b/i.test(fusedText) &&
+        /\b(no |without|missing|not wearing|lack)\b/i.test(fusedText);
+      const hasMshaCompressedGasStorageEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(cylinder|cylinders|oxygen|acetylene|compressed gas|propane)\b/i.test(fusedText) &&
+        /\b(unsecured|not secured|unchained|standing|near|welding area|maintenance shop)\b/i.test(fusedText);
+      const hasMshaFireExtinguisherInspectionEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(extinguisher|fire fighting equipment|firefighting equipment)\b/i.test(fusedText) &&
+        /\b(expired|inspection tag|low gauge|discharged|missing|not inspected|defective)\b/i.test(fusedText);
+      const hasMshaIlluminationEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(lights?|illumination|dark|lighting)\b/i.test(fusedText) &&
+        /\b(out|not working|failed|insufficient|poor)\b/i.test(fusedText) &&
+        /\b(tunnel|travelway|walkway|plant|miners?)\b/i.test(fusedText);
+      const hasMshaSafeAccessObstructionEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(escape route|escapeway|emergency route|travelway|walkway|access)\b/i.test(fusedText) &&
+        /\b(blocked|obstructed|stacked|covered|not clear)\b/i.test(fusedText);
+      const hasGeneralIndustryExitRouteObstructionEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(exit|egress|emergency exit|exit route|exit corridor|evacuation route)\b/i.test(fusedText) &&
+        /\b(blocked|obstructed|stacked|pallets|not clear|across)\b/i.test(fusedText) &&
+        !/\b(clear|outside the marked keep-clear|outside keep-clear|outside marked keep clear|not blocked|not obstructed)\b/i.test(fusedText);
+      const hasGeneralIndustryBloodborneExposureEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(blood|bodily fluid|opim|sharps?|needle|cut)\b/i.test(fusedText) &&
+        /\b(cleaned|cleanup|first-aid|first aid|responder|overfilled|without gloves|no gloves|sharps container)\b/i.test(fusedText);
+      const hasGeneralIndustryClearExitRouteEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(exit|egress|emergency exit|exit route|exit corridor)\b/i.test(fusedText) &&
+        /\b(clear|outside the marked keep-clear|outside keep-clear|outside marked keep clear|not blocked|not obstructed)\b/i.test(fusedText);
+      const hasConstructionVagueEdgeProtectionEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\bedge protection issue\b/i.test(fusedText) &&
+        !/\b(\d+\s*(?:feet|foot|ft)|six|6|open edge|unprotected edge|leading edge|roof|employees?|workers?|fall distance|above lower level)\b/i.test(fusedText);
+      const hasGeneralIndustryEmergencyActionEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(evacuation|emergency action|emergency plan|posted map|assembly area|where to go)\b/i.test(fusedText) &&
+        /\b(new hires|employees?|workers?|do not know|don't know|outdated|closed building|not trained|no training)\b/i.test(fusedText);
+      const hasGeneralIndustryRespiratoryProgramEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(respirator|respirators|dust mask|dust masks|n95|filtering facepiece)\b/i.test(fusedText) &&
+        /\b(voluntary|required|program|reviewed|medical|fit test|respirators are required)\b/i.test(fusedText);
+      const hasGeneralIndustryFloorOpeningEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(floor opening|opening|hole|removed grate|uncovered opening)\b/i.test(fusedText) &&
+        /\b(mezzanine|floor|employees?|workers?|pass|walk|near)\b/i.test(fusedText) &&
+        /\b(uncovered|removed|open|no cover|no guardrail|unguarded)\b/i.test(fusedText);
+      const hasGeneralIndustryChemicalExposureEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(parts washer|solvent|chemical|vapor|odor|headaches|symptoms|ventilation)\b/i.test(fusedText) &&
+        /\b(headaches|dizziness|symptoms|unknown|identity|ventilation status|not known|odor)\b/i.test(fusedText);
+      const hasGeneralIndustryChemicalPpeSplashEvidence =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(caustic|corrosive|cleaner|acid|chemical)\b/i.test(fusedText) &&
+        /\b(pour|pouring|transfer|drum|splash)\b/i.test(fusedText) &&
+        /\b(without|no |missing|not wearing)\b.*\b(face shield|gloves|goggles|eye|hand|ppe)\b/i.test(fusedText);
+      const hasGeneralIndustryConveyorGuardingExposure =
+        normalizedScopes.includes('osha_general_industry') &&
+        /\b(conveyor|belt|sprocket|chain|machine)\b/i.test(fusedText) &&
+        /\b(unguarded|guard missing|missing guard|exposed|blocked emergency stop|e-stop|pull cord)\b/i.test(fusedText) &&
+        /\b(workers?|employees?|operators?|packers?|reach|running|operating)\b/i.test(fusedText);
+      const hasConstructionSilicaCuttingEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\b(silica|concrete|masonry|block|cutting|dry-cut|dry cut|visible dust)\b/i.test(fusedText) &&
+        /\b(no water|without water|no vacuum|without vacuum|visible dust|indoors|dry)\b/i.test(fusedText);
+      const hasConstructionConfinedSpaceEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\b(manhole|sewer|confined space|space|tank|vault)\b/i.test(fusedText) &&
+        /\b(enter|entry|plans to enter|subcontractor)\b/i.test(fusedText) &&
+        /\b(no atmospheric|no test|not tested|no rescue|rescue arrangement|not documented)\b/i.test(fusedText);
+      const hasConstructionImpalementEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\b(rebar|impalement|vertical rebar|formwork)\b/i.test(fusedText) &&
+        /\b(uncapped|not capped|no caps|could fall|fall onto)\b/i.test(fusedText);
+      const hasConstructionTemporaryWiringEvidence =
+        normalizedScopes.includes('osha_construction') &&
+        /\b(temporary light|temporary lights|temporary wiring|cords?|ceiling wires?)\b/i.test(fusedText) &&
+        /\b(hang|hanging|by their cords|supported by cords|from ceiling wires)\b/i.test(fusedText);
+      const hasMshaElectricalGroundingEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(grounding|grounding conductor|ground wire|grounded|ground)\b/i.test(fusedText) &&
+        /\b(missing|broken|not connected|portable crusher|motor|equipment)\b/i.test(fusedText);
+      const hasMshaBermDumpEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(berm|dump|dumping|edge|drop-off|drop off)\b/i.test(fusedText) &&
+        /\b(below axle|too low|missing|not adequate|steep edge)\b/i.test(fusedText);
+      const hasMshaLadderTravelwayEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(ladder|travelway|safe access|crusher platform|fixed ladder)\b/i.test(fusedText) &&
+        /\b(missing rungs?|broken rung|damaged|defective|miners? still use|unsafe)\b/i.test(fusedText);
+      const hasMshaStoredEnergyEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(hydraulic|stored energy|stored pressure|raised bucket|raised component|pressure)\b/i.test(fusedText) &&
+        /\b(no blocking|without blocking|not blocked|bleeding|bleed|loosening|hose|pressure holding)\b/i.test(fusedText);
+      const hasMshaCrusherFallEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(crusher|screen|platform|catwalk|open side)\b/i.test(fusedText) &&
+        /\b(no tie-off|no tie off|no rail|no guardrail|open side|fall)\b/i.test(fusedText);
+      const hasMshaParkingGradeChockEvidence =
+        normalizedScopes.some((scope) => String(scope).includes('msha')) &&
+        /\b(haul truck|truck|loader|mobile equipment|equipment)\b/i.test(fusedText) &&
+        /\b(parked|parking|left)\b/i.test(fusedText) &&
+        /\b(grade|slope|incline|ramp)\b/i.test(fusedText) &&
+        /\b(no wheel chocks|no chocks|without chocks|not chocked|brake status unknown|brake unknown)\b/i.test(fusedText);
+      const promoteOrInsertDecision = async (input: {
+        predicate: boolean;
+        citation: string;
+        title: string;
+        scope: string;
+        agency: string;
+        summary: string;
+        reason: string;
+      }) => {
+        if (!input.predicate) return;
+        let matched = false;
+        standardDecisions = standardDecisions.map((decision: any) => {
+          if (!new RegExp(input.citation.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/^(29|30) CFR /, '(?:$1 CFR )?'), 'i').test(String(decision?.citation || ''))) {
+            return decision;
+          }
+          matched = true;
+          return {
+            ...decision,
+            authority: 'primary',
+            confidence: Math.max(Number(decision?.confidence) || 0, 0.86),
+            isDirectMatch: true,
+            applicabilityStatus: 'probable',
+            reasons: Array.from(new Set([
+              ...(Array.isArray(decision?.reasons) ? decision.reasons : []),
+              input.reason,
+            ])),
+          };
+        });
+        if (matched) return;
+        const hydrated = await hydrateStandardReferences([{
+          citation: input.citation,
+          title: input.title,
+          summary: input.summary,
+          authority: 'primary',
+          agency: input.agency,
+          scope: input.scope,
+          confidence: 0.86,
+          reasons: [input.reason],
+          matchReasons: [input.reason],
+          isCandidate: true,
+          isDirectMatch: true,
+          source: 'final_predicate_standard_decision_bridge',
+          applicabilityStatus: 'probable',
+        }]);
+        standardDecisions = [
+          ...standardDecisions,
+          ...(Array.isArray(hydrated) && hydrated.length ? hydrated : []),
+        ].filter((decision: any) => shouldKeepAncillaryCitation(decision));
+      };
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryWalkingSurfaceReleaseEvidence,
+        citation: '29 CFR 1910.22(a)(2)',
+        title: 'Walking-working surfaces maintained free of hazards',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Oil, liquid, or slick contamination on an employee walking route supports walking-working surface review.',
+        reason: 'Observation describes liquid contamination on an aisle, walkway, floor, or route used by employees.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryLadderTopUseEvidence,
+        citation: '29 CFR 1910.23(b)',
+        title: 'Ladders',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'General-industry ladder use evidence supports ladder safety review.',
+        reason: 'Observation describes an employee standing on a stepladder top cap or top step while working.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryStairRailEvidence,
+        citation: '29 CFR 1910.28(b)(11)',
+        title: 'Stairways',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'General-industry fixed stairway evidence supports stair rail or handrail fall-protection review.',
+        reason: 'Observation describes employees using a fixed stairway with a missing open-side handrail or rail.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryMaterialStorageCollapseEvidence,
+        citation: '29 CFR 1910.176(b)',
+        title: 'Secure storage',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Stored material must be stable and secure against sliding or collapse where employees may be exposed.',
+        reason: 'Observation describes unstable stacked material or a broken pallet leaning over an employee aisle.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryFireExtinguisherAccessEvidence,
+        citation: '29 CFR 1910.157(c)(1)',
+        title: 'Portable fire extinguishers',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Portable extinguishers must be mounted, located, and identified so they are readily accessible.',
+        reason: 'Observation describes a missing, unmounted, blocked, or inaccessible portable fire extinguisher.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryFlammableStorageIgnitionEvidence,
+        citation: '29 CFR 1910.106',
+        title: 'Flammable liquids',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Open flammable-liquid containers near ignition sources support flammable-liquid storage and handling review.',
+        reason: 'Observation describes open lacquer thinner or flammable liquid containers stored near an ignition source.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryPowerPressControlEvidence,
+        citation: '29 CFR 1910.217',
+        title: 'Mechanical power presses',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Mechanical power press safeguarding and controls require review when point-of-operation controls are defeated.',
+        reason: 'Observation describes a mechanical press with two-hand or point-of-operation controls taped, defeated, or bypassed.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryWoodworkingGuardEvidence,
+        citation: '29 CFR 1910.213',
+        title: 'Woodworking machinery',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Woodworking machinery guarding requires review when a saw blade guard is missing during operation.',
+        reason: 'Observation describes an operator using a table saw or woodworking saw with the blade guard missing.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasConstructionScaffoldPlatformEvidence,
+        citation: '29 CFR 1926.451',
+        title: 'Scaffolds',
+        scope: 'osha_construction',
+        agency: 'OSHA',
+        summary: 'Construction scaffold platform and guardrail defects support scaffold general requirements review.',
+        reason: 'Observation describes employees working on a scaffold with a cracked plank or missing platform guardrail component.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasConstructionTrenchEgressEvidence,
+        citation: '29 CFR 1926.651(c)(2)',
+        title: 'Means of egress from trench excavations',
+        scope: 'osha_construction',
+        agency: 'OSHA',
+        summary: 'Trench excavations four feet or deeper require safe egress located within required lateral travel distance.',
+        reason: 'Observation describes employees in a trench more than four feet deep with ladder or egress too far away or missing.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasConstructionTrafficVisibilityEvidence,
+        citation: '29 CFR 1926.95',
+        title: 'Personal protective equipment',
+        scope: 'osha_construction',
+        agency: 'OSHA',
+        summary: 'Construction traffic exposure with missing high-visibility garments supports PPE and traffic-control review.',
+        reason: 'Observation describes flaggers or workers exposed to live traffic without visible high-visibility protection.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaCompressedGasStorageEvidence,
+        citation: '30 CFR 56.16005',
+        title: 'Securing gas cylinders',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA compressed-gas cylinder storage requires securement and valve protection when cylinder movement or damage is possible.',
+        reason: 'Observation describes unsecured compressed-gas cylinders at a mine shop or welding area.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaFireExtinguisherInspectionEvidence,
+        citation: '30 CFR 56.4201',
+        title: 'Inspection of fire fighting equipment',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA fire-fighting equipment inspection and readiness require review when an extinguisher is expired, low, or defective.',
+        reason: 'Observation describes mine fire-fighting equipment with an expired inspection tag, low gauge, or defective condition.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaIlluminationEvidence,
+        citation: '30 CFR 56.17001',
+        title: 'Illumination',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA illumination requirements support review when miners use a travelway or plant area with failed lighting.',
+        reason: 'Observation describes miners traveling through a tunnel, travelway, or plant area where lighting is out or insufficient.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaSafeAccessObstructionEvidence,
+        citation: '30 CFR 56.11001',
+        title: 'Safe access',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA safe access requirements support review when a travelway, walkway, access way, or escape route is obstructed.',
+        reason: 'Observation describes an obstructed mine travelway, access way, or emergency route.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryExitRouteObstructionEvidence,
+        citation: '29 CFR 1910.37(a)(3)',
+        title: 'Exit routes unobstructed',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'General-industry exit routes must remain free and unobstructed.',
+        reason: 'Observation describes pallets or stored material blocking a marked emergency exit route.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryBloodborneExposureEvidence,
+        citation: '29 CFR 1910.1030',
+        title: 'Bloodborne pathogens',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Bloodborne pathogen exposure control requirements apply when employees have occupational exposure to blood, OPIM, or contaminated sharps.',
+        reason: 'Observation describes blood cleanup without gloves or an overfilled sharps container during first-aid response.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryEmergencyActionEvidence,
+        citation: '29 CFR 1910.38',
+        title: 'Emergency action plans',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Emergency action planning and employee instruction require review when employees do not know evacuation procedures or posted plans are obsolete.',
+        reason: 'Observation describes employees or new hires without usable evacuation direction or an outdated emergency map.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryRespiratoryProgramEvidence,
+        citation: '29 CFR 1910.134',
+        title: 'Respiratory protection',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Respirator use requires evaluation of whether a respiratory protection program or voluntary-use controls apply.',
+        reason: 'Observation describes respirator or dust-mask use without documented review of respiratory protection requirements.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryFloorOpeningEvidence,
+        citation: '29 CFR 1910.28(b)(3)',
+        title: 'Holes and openings',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'General-industry floor openings require guard or cover review where employees can pass or fall through.',
+        reason: 'Observation describes an uncovered mezzanine or floor opening where employees pass.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryChemicalExposureEvidence,
+        citation: '29 CFR 1910.1200',
+        title: 'Hazard communication',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Chemical identity and hazard communication require review when employees report symptoms near an unidentified chemical source.',
+        reason: 'Observation describes employee symptoms near a parts washer or chemical source with unknown identity or ventilation status.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryChemicalPpeSplashEvidence,
+        citation: '29 CFR 1910.132',
+        title: 'Personal protective equipment',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'Chemical splash exposure supports PPE hazard assessment and task-specific protection review.',
+        reason: 'Observation describes employees pouring a corrosive or caustic chemical without task-specific splash PPE.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasGeneralIndustryConveyorGuardingExposure,
+        citation: '29 CFR 1910.212',
+        title: 'Machine guarding',
+        scope: 'osha_general_industry',
+        agency: 'OSHA',
+        summary: 'General machine guarding applies when employees are exposed to unguarded or uncontrolled machine hazards.',
+        reason: 'Observation describes employee exposure to a conveyor, moving equipment, or blocked emergency stop control.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasConstructionSilicaCuttingEvidence,
+        citation: '29 CFR 1926.1153',
+        title: 'Respirable crystalline silica',
+        scope: 'osha_construction',
+        agency: 'OSHA',
+        summary: 'Construction concrete or masonry cutting with visible dust and missing water or vacuum controls supports silica review.',
+        reason: 'Observation describes dry concrete or masonry cutting with visible dust and no wet method or vacuum control.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasConstructionConfinedSpaceEvidence,
+        citation: '29 CFR 1926.1200',
+        title: 'Confined spaces in construction',
+        scope: 'osha_construction',
+        agency: 'OSHA',
+        summary: 'Construction confined-space entry requires evaluation when a worker plans to enter a manhole or similar space without testing or rescue arrangements.',
+        reason: 'Observation describes planned construction entry into a sewer manhole or similar space without atmospheric testing or rescue planning.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasConstructionImpalementEvidence,
+        citation: '29 CFR 1926.701',
+        title: 'Concrete and masonry construction',
+        scope: 'osha_construction',
+        agency: 'OSHA',
+        summary: 'Construction rebar impalement exposure requires guarding of projecting reinforcing steel where fall contact is possible.',
+        reason: 'Observation describes uncapped vertical rebar where workers could fall onto it.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasConstructionTemporaryWiringEvidence,
+        citation: '29 CFR 1926.405',
+        title: 'Wiring methods, components, and equipment for general use',
+        scope: 'osha_construction',
+        agency: 'OSHA',
+        summary: 'Construction temporary wiring and lighting require support and installation methods that do not suspend fixtures by cords.',
+        reason: 'Observation describes temporary lights hanging by their cords or from ceiling wires.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaElectricalGroundingEvidence,
+        citation: '30 CFR 56.12025',
+        title: 'Grounding circuits',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA electrical grounding requirements support review when mine electrical equipment has a missing grounding conductor.',
+        reason: 'Observation describes mine electrical equipment or a crusher motor with a missing grounding conductor.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaBermDumpEvidence,
+        citation: '30 CFR 56.9300',
+        title: 'Berms or guardrails',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA berm requirements support review when mobile equipment dumps near a drop-off with inadequate berm height.',
+        reason: 'Observation describes haulage or dumping at a steep edge where the berm is missing or below axle height.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaLadderTravelwayEvidence,
+        citation: '30 CFR 56.11001',
+        title: 'Safe access',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA safe access requirements support review when miners use a damaged ladder or unsafe travelway.',
+        reason: 'Observation describes miners using a fixed ladder or travelway with missing rungs or other unsafe access defects.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaStoredEnergyEvidence,
+        citation: '30 CFR 56.12016',
+        title: 'Work on electrically powered equipment',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA hazardous-energy isolation review is supported where mine maintenance exposes miners to hydraulic pressure or raised components without blocking or energy relief.',
+        reason: 'Observation describes hydraulic or stored-energy maintenance without blocking, bleeding, or verified isolation.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaCrusherFallEvidence,
+        citation: '30 CFR 56.11012',
+        title: 'Protection for openings around travelways',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'MSHA elevated travelway and platform fall protection requires review where miners work on crusher platforms with open sides or missing rails.',
+        reason: 'Observation describes a miner on a crusher or screen platform with an open side and no rail or tie-off point.',
+      });
+      await promoteOrInsertDecision({
+        predicate: hasMshaParkingGradeChockEvidence,
+        citation: '30 CFR 56.14207',
+        title: 'Parking procedures for unattended equipment',
+        scope: 'msha',
+        agency: 'MSHA',
+        summary: 'Mobile equipment parked on a grade requires effective movement-prevention controls.',
+        reason: 'Observation describes mine mobile equipment parked on a grade with no chocks or unknown brake status.',
+      });
+      const applySpecificControls = (predicate: boolean, controls: string[]) => {
+        if (!predicate) return;
+        response.requiredControls = Array.from(new Set([
+          ...controls,
+          ...(Array.isArray(response.requiredControls) ? response.requiredControls : []),
+        ]));
+      };
+      const replaceSpecificControls = (predicate: boolean, controls: string[]) => {
+        if (!predicate) return;
+        response.requiredControls = Array.from(new Set(controls));
+      };
+      const applySpecificClassification = (predicate: boolean, classification: string, hazardCategory = classification) => {
+        if (!predicate) return;
+        response.classification = classification;
+        response.hazardCategory = hazardCategory;
+      };
+      applySpecificClassification(hasGeneralIndustryBloodborneExposureEvidence, 'Bloodborne Pathogens', 'bloodborne_pathogens');
+      applySpecificClassification(hasConstructionVagueEdgeProtectionEvidence, 'Fall Protection', 'fall_protection');
+      applySpecificClassification(hasGeneralIndustryClearExitRouteEvidence, 'Controlled Emergency Egress', 'emergency_egress_controlled');
+      replaceSpecificControls(hasGeneralIndustryBloodborneExposureEvidence, [
+        'stop bare-hand cleanup of blood or contaminated sharps',
+        'provide appropriate gloves and bloodborne-pathogen cleanup supplies',
+        'replace or service the overfilled sharps container',
+        'verify exposure-control procedures and decontamination before closure',
+      ]);
+      replaceSpecificControls(hasConstructionVagueEdgeProtectionEvidence, [
+        'verify the edge location, fall distance, and worker exposure before selecting a final citation',
+        'restrict access if an unprotected edge or opening is confirmed',
+        'confirm whether guardrails, covers, warning lines, or fall protection are present',
+      ]);
+      replaceSpecificControls(hasGeneralIndustryClearExitRouteEvidence, [
+        'maintain the exit corridor clear of stored material',
+        'keep pallets outside marked keep-clear lines',
+        'continue routine exit-route inspections',
+      ]);
+      applySpecificControls(hasGeneralIndustryStairRailEvidence, [
+        'restrict stairway access until the missing handrail or stair rail is restored',
+        'install or repair the required handrail or stair rail',
+        'verify the stairway is safe before employees resume normal use',
+      ]);
+      applySpecificControls(hasGeneralIndustryMaterialStorageCollapseEvidence, [
+        'remove employees from the falling-object path',
+        'restack and stabilize stored material',
+        'replace the broken pallet or storage support before reuse',
+      ]);
+      applySpecificControls(hasGeneralIndustryFireExtinguisherAccessEvidence, [
+        'replace or remount the missing extinguisher immediately',
+        'verify extinguisher inspection, location, and access',
+        'keep the fire extinguisher path clear and identified',
+      ]);
+      applySpecificControls(hasGeneralIndustryBloodborneExposureEvidence, [
+        'stop bare-hand cleanup of blood or contaminated sharps',
+        'provide appropriate gloves and bloodborne-pathogen cleanup supplies',
+        'replace or service the overfilled sharps container',
+        'verify exposure-control procedures and decontamination before closure',
+      ]);
+      applySpecificControls(hasGeneralIndustryFlammableStorageIgnitionEvidence, [
+        'close flammable-liquid containers',
+        'remove the ignition source or relocate flammables to approved storage',
+        'verify ventilation and flammable-liquid storage controls before work continues',
+      ]);
+      applySpecificControls(hasGeneralIndustryPowerPressControlEvidence, [
+        'stop press operation until safeguards and controls are restored',
+        'remove defeated or taped control devices from service',
+        'verify point-of-operation safeguarding before restart',
+      ]);
+      applySpecificControls(hasGeneralIndustryWoodworkingGuardEvidence, [
+        'stop saw use until the blade guard is restored',
+        'install the correct woodworking-machine guard before operation',
+        'verify operator hand exposure is prevented during cutting',
+      ]);
+      applySpecificControls(hasConstructionScaffoldPlatformEvidence, [
+        'restrict scaffold use until a competent person inspects it',
+        'remove cracked or defective scaffold planks from service',
+        'restore required platform guardrails before employees work from the scaffold',
+      ]);
+      applySpecificControls(hasConstructionTrenchEgressEvidence, [
+        'provide a safe ladder, ramp, stairway, or other egress within required travel distance',
+        'keep workers out of the trench until egress is corrected if safe exit is not available',
+        'verify trench access and egress during competent-person inspection',
+      ]);
+      applySpecificControls(hasConstructionTrafficVisibilityEvidence, [
+        'provide high-visibility garments for exposed workers or flaggers',
+        'separate workers from live traffic where feasible',
+        'verify traffic-control devices and worker visibility for current light conditions',
+      ]);
+      applySpecificControls(hasMshaCompressedGasStorageEvidence, [
+        'secure gas cylinders upright against falling or rolling',
+        'protect cylinder valves and separate incompatible gases',
+        'relocate cylinders away from traffic or impact exposure where feasible',
+      ]);
+      applySpecificControls(hasMshaFireExtinguisherInspectionEvidence, [
+        'remove defective fire extinguisher from service and replace it',
+        'inspect and maintain mine fire-fighting equipment',
+        'verify the fuel island has ready fire-protection coverage before normal use continues',
+      ]);
+      applySpecificControls(hasMshaIlluminationEvidence, [
+        'restore failed lighting in the affected travelway or tunnel',
+        'restrict miner travel until safe illumination is verified',
+        'inspect temporary lighting or alternate access before use',
+      ]);
+      applySpecificControls(hasMshaSafeAccessObstructionEvidence, [
+        'clear the obstructed travelway or emergency route',
+        'restrict access until safe passage is restored',
+        'verify the route remains clear during workplace examinations',
+      ]);
       response.standardDecisions = standardDecisions;
       const canonicalPrimaryDecisions = standardDecisions.filter((decision: any) =>
         String(decision?.authority || '').toLowerCase() === 'primary' ||
@@ -3393,6 +4490,203 @@ export class SafescopeV2Service {
           response.primaryCitation = '29 CFR 1910.178';
         }
       }
+      // Resolve two high-risk evidence patterns at the domain boundary rather
+      // than allowing weaker lexical signals (for example, "conveyor" or
+      // "disconnect") to win over the actual exposure state.
+      const hasUncontrolledEnergyExposure =
+        /\b(?:working|servicing|maintenance|repair(?:ing)?)\b[^.]{0,100}\b(?:inside|within|on)\b/i.test(fusedText) &&
+        /\b(?:disconnect|energy|energized|startup|start-up|zero energy|lockout|tagout)\b/i.test(fusedText) &&
+        /\b(?:unknown|not verified|not confirmed|not locked|without lockout|no lockout|capable of startup|unexpected)\b/i.test(fusedText);
+      const hasVerifiedSafeControls =
+        /guard[^.]{0,100}(?:fixed|interlocked)[^.]{0,60}(?:tested|prevents? access|cannot reach)/i.test(fusedText) ||
+        /(?:stopped|deenergized|locked out|zero energy verified)[^.]{0,100}(?:log|record|tested|verified)/i.test(fusedText) ||
+        /(?:sealed|closed)[^.]{0,80}(?:labeled|labelled|inventoried)[^.]{0,80}(?:no release|no exposure)/i.test(fusedText) ||
+        /(?:locked out|isolated)[^.]{0,80}(?:zero energy|tested|verified)/i.test(fusedText) ||
+        /(?:surface|floor)[^.]{0,80}(?:dry|clear|cleared)[^.]{0,60}(?:verified|now)/i.test(fusedText) ||
+        /(?:behind|within)[^.]{0,60}(?:complete guardrail|fall-arrest system)[^.]{0,60}(?:attached|protected)/i.test(fusedText);
+      const hasActiveDecompositionHazard = Array.isArray(response.multiHazardDecomposition?.hazards) &&
+        response.multiHazardDecomposition.hazards.some((hazard: any) =>
+          ['hot_work', 'chemical_release', 'machine_guarding', 'fall_protection', 'electrical', 'mobile_equipment', 'powered_industrial_trucks']
+            .includes(String(hazard?.domainId || '').toLowerCase()) &&
+          Number(hazard?.confidence || 0) >= 0.35 &&
+          !['HISTORICAL', 'SAFE_VERIFIED'].includes(String(hazard?.conditionState || '').toUpperCase()) &&
+          !/\b(?:no active|no leak|not energized|no employee|sealed|closed and intact)\b/i.test(String(hazard?.observationFragment || '')) &&
+          !/(?:complete guardrail|fall[- ]arrest system|fixed guard|interlocked guard)[^.]{0,80}(?:attached|protected|prevents? access|tested|verified)/i.test(String(hazard?.observationFragment || '')),
+        );
+      const historicalHazards = [] as any[];
+      if (hasVerifiedSafeControls && /\b(?:solvent|chemical|drum|container)\b/i.test(fusedText) &&
+        /\b(?:leak(?:ed|ing)?|spill(?:ed)?|release)\b/i.test(fusedText) &&
+        /\b(?:sealed|closed|no active leak|no release)\b/i.test(fusedText)) {
+        historicalHazards.push({
+          family: 'hazard_communication',
+          classification: 'Hazard Communication',
+          conditionState: 'HISTORICAL',
+          evidenceGaps: ['Confirm the historical release was remediated and current labeling/SDS controls remain effective.'],
+          advisoryOnly: true,
+        });
+      }
+      if (hasUncontrolledEnergyExposure && !hasVerifiedSafeControls) {
+        response.classification = 'Lockout / Stored Energy';
+        response.family = 'hazardous_energy';
+        response.hazardCategory = 'hazardous_energy';
+      } else if (hasVerifiedSafeControls && !hasUncontrolledEnergyExposure && !hasActiveDecompositionHazard) {
+        response.classification = 'Controlled Condition';
+        response.family = 'controlled_condition';
+        response.hazardCategory = 'controlled_condition';
+        response.primaryCitation = '';
+        response.suggestedStandards = [];
+        response.primaryStandards = [];
+        response.standards = [];
+        response.supportingStandards = [];
+        response.needsMoreEvidenceStandards = [];
+        response.requiresHumanReview = true;
+        response.reviewStateLabel = 'Controlled state — qualified review required';
+      }
+      if (historicalHazards.length) {
+        response.historicalHazards = [
+          ...(Array.isArray(response.historicalHazards) ? response.historicalHazards : []),
+          ...historicalHazards,
+        ];
+      }
+      // Canonical per-observation state is explicit and independent from the
+      // hazard family. A contradiction preserves the detected family while
+      // preventing downstream consumers from treating it as a confirmed
+      // active deficiency. Finding-level reconciliation can refine this state
+      // independently for each decomposed hazard.
+      // Preserve both the fused evidence projection and the original narrative.
+      // Evidence fusion may omit low-confidence operational clauses (such as
+      // planned restart or emergency-stop recurrence); temporal classification
+      // must not lose those source cues.
+      const temporalNarrative = `${String(fusedText || '')} ${String(text || '')}`.toLowerCase();
+      // Preserve proposition polarity for hot-work findings across all
+      // production projections. Observation-understanding may retain the
+      // family from vocabulary alone; an explicitly negated/cancelled
+      // proposition is not a positive finding and must not become planned.
+      if (Array.isArray(response.multiHazardDecomposition?.hazards)) {
+        response.multiHazardDecomposition.hazards = response.multiHazardDecomposition.hazards.filter((hazard: any) => {
+          if (String(hazard?.domainId || '').toLowerCase() !== 'hot_work') return true;
+          const fragment = String(hazard?.observationFragment || '');
+          return !/\b(?:no|not|never)\s+(?:active\s+)?(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?)\b/i.test(fragment) &&
+            !/\bhot[- ]?work\b[^.]{0,50}\b(?:canceled|cancelled|not\s+planned|wasn't\s+planned|isn't\s+planned|will\s+not)\b/i.test(fragment);
+        });
+      }
+      const decompositionHazardsForTemporal = Array.isArray(response.multiHazardDecomposition?.hazards)
+        ? response.multiHazardDecomposition.hazards
+        : [];
+      const temporalPrimaryDomain = String(response.multiHazardDecomposition?.primaryHazard?.domainId || response.family || '').toLowerCase();
+      const primaryTemporalState = String(response.multiHazardDecomposition?.primaryHazard?.conditionState || '').toUpperCase();
+      const primaryHasCurrentExposure = ['ACTIVE', 'CURRENT', 'INTERMITTENT'].includes(primaryTemporalState);
+      const hasExplicitCurrentOperation = /\b(?:currently|now|today|performing|underway|active|sparks?|flame|torch|weld(?:ing)?)\b/i.test(temporalNarrative);
+      const temporalStateMatchesPrimary = decompositionHazardsForTemporal.length <= 1 ||
+        decompositionHazardsForTemporal.some((hazard: any) => String(hazard?.domainId || '').toLowerCase() === temporalPrimaryDomain);
+      const historicalElectricalNarrative = /\b(?:prior|previously|yesterday|last week|last month|historical|arc[- ]?flash|arc event|reported)\b/.test(temporalNarrative) &&
+        /\b(?:no|not|without)\b[^.]{0,90}\b(?:current|now|today|exposed|energized|live|damaged|visible|inspection|photo)\b/.test(temporalNarrative) &&
+        !/\b(?:still|remains|currently|now)\b[^.]{0,80}\b(?:exposed|energized|arcing|damaged|open)\b/.test(temporalNarrative) &&
+        temporalStateMatchesPrimary && !primaryHasCurrentExposure && /\b(?:electrical|arc|conductor|panel|wire|cord)\b/.test(temporalNarrative);
+      const resolvedHistoricalNarrative = /\b(?:arc|release|spill|ladder|guard|condition|incident)\b/.test(temporalNarrative) &&
+        /\b(?:yesterday|last week|last month|earlier|previously|reported)\b/.test(temporalNarrative) &&
+        /\b(?:repaired|replaced|restored|removed from service|sealed|closed|dry|clear|cleared)\b/.test(temporalNarrative) &&
+        !/\b(?:still|remains|currently|now)\b[^.]{0,80}\b(?:exposed|energized|open|leak(?:ing)?|slippery|unsafe)\b/i.test(temporalNarrative) &&
+        temporalStateMatchesPrimary;
+      const plannedHotWorkNarrative = /\b(?:planned|scheduled|will begin|will start|tomorrow|next week|in two days)\b[^.]{0,120}\bhot[- ]?work\b/i.test(temporalNarrative) &&
+        !/\b(?:currently|now|today|performing|underway|active|sparks?|flame|torch|weld(?:ing)?)\b/i.test(temporalNarrative) &&
+        temporalStateMatchesPrimary && !hasExplicitCurrentOperation && /\b(?:hot[- ]?work|weld|torch|flame|spark)/i.test(temporalNarrative);
+      const plannedGeneralNarrative = ( /\b(?:planned|scheduled|will begin|will start|next week|next month|tomorrow|in two days)\b[^.]{0,120}\b(?:maintenance|restart|barricade|barrier|work|task|operation|excavat|repair|inspection)\b/i.test(temporalNarrative) ||
+        /\b(?:maintenance|restart|barricade|barrier|work|task|operation|excavat|repair|inspection)\b[^.]{0,120}\b(?:planned|scheduled|will begin|will start|next week|next month|tomorrow|in two days|has not begun|not yet)\b/i.test(temporalNarrative) ) &&
+        !hasExplicitCurrentOperation && temporalStateMatchesPrimary;
+      const intermittentStartupNarrative = !/\b(?:may|might)\s+fail\b/i.test(temporalNarrative) &&
+        /\b(?:intermittent(?:ly)?|occasionally|recurr(?:s|ing)|repeatedly|fails?\s+(?:on|during)\s+(?:startup|start-up|shutdown|shift change))\b/i.test(temporalNarrative) &&
+        /\b(?:interlock|guard|electrical|arc|panel|conductor|startup|start-up|emergency\s+stop|shift\s+change|forklift|pedestrian)\b/i.test(temporalNarrative) && temporalStateMatchesPrimary && !hasExplicitCurrentOperation;
+      const intermittentFailureNarrative = !/\b(?:may|might)\b/i.test(temporalNarrative) &&
+        /\b(?:occasional(?:ly)?|intermittent(?:ly)?|sometimes|recurr(?:s|ing))\b[^.]{0,100}\b(?:fail(?:ure)?|jam|conflict|bypass|does not stop)\b/i.test(temporalNarrative) &&
+        /\b(?:startup|start-up|shutdown|shift change|cycling|cycle|emergency stop|interlock|forklift|pedestrian)\b/i.test(temporalNarrative) &&
+        !hasExplicitCurrentOperation;
+      const directShutdownRecurrence = ( /\b(?:emergency\s+stop|shutdown|shuts?\s+down)\b[^.]{0,100}\b(?:occasionally|intermittently|repeatedly|sometimes|during\s+startup|on\s+startup|each\s+time)\b/i.test(temporalNarrative) ||
+        /\b(?:occasionally|intermittently|repeatedly|sometimes|occasional)\b[^.]{0,100}\b(?:emergency\s+stop|shutdown|shuts?\s+down)\b/i.test(temporalNarrative) ) &&
+        !hasExplicitCurrentOperation;
+      const explicitVerifiedZeroEnergy = /\b(?:locked out|isolated)\b[^.]{0,80}\b(?:zero energy|tested|verified)\b/i.test(temporalNarrative);
+      response.conditionState = explicitVerifiedZeroEnergy
+        ? 'SAFE_VERIFIED'
+        : historicalElectricalNarrative || resolvedHistoricalNarrative
+        ? 'HISTORICAL'
+        : plannedHotWorkNarrative
+          ? 'PLANNED_FUTURE'
+          : plannedGeneralNarrative
+            ? 'PLANNED_FUTURE'
+          : intermittentStartupNarrative || intermittentFailureNarrative || directShutdownRecurrence
+            ? 'INTERMITTENT'
+            : unresolvedContradictions.length
+        ? 'CONTRADICTORY'
+        : response.family === 'controlled_condition'
+          ? 'SAFE_VERIFIED'
+          : response.requiresHumanReview || response.resultStage === 'provisional'
+            ? 'UNKNOWN'
+            : 'ACTIVE';
+      const currentDecompositionHazards = Array.isArray(response.multiHazardDecomposition?.hazards)
+        ? response.multiHazardDecomposition.hazards
+        : [];
+      const primaryDecompositionState = String(response.multiHazardDecomposition?.primaryHazard?.conditionState || '').toUpperCase();
+      if (!unresolvedContradictions.length && ['INTERMITTENT', 'PLANNED_FUTURE'].includes(primaryDecompositionState)) {
+        response.conditionState = primaryDecompositionState;
+      }
+      const hasActiveCurrentDecompositionHazard = currentDecompositionHazards.some((hazard: any) =>
+        !['HISTORICAL', 'SAFE_VERIFIED'].includes(String(hazard?.conditionState || '').toUpperCase()),
+      );
+      const hasHistoricalDecompositionHazard = currentDecompositionHazards.some((hazard: any) =>
+        String(hazard?.conditionState || '').toUpperCase() === 'HISTORICAL',
+      );
+      if (!unresolvedContradictions.length && currentDecompositionHazards.length && !hasActiveCurrentDecompositionHazard && hasHistoricalDecompositionHazard) {
+        response.conditionState = 'HISTORICAL';
+        response.family = 'historical_condition';
+        response.classification = 'Historical Condition';
+        response.hazardCategory = 'historical_condition';
+        response.candidateStandardFamily = 'unknown';
+        response.primaryCitation = '';
+        response.suggestedStandards = [];
+        response.primaryStandards = [];
+        response.standards = [];
+        response.supportingStandards = [];
+        response.requiresHumanReview = true;
+        response.reviewStateLabel = 'Historical condition — verify current status';
+      }
+      // A compound observation with both active and historical findings is a
+      // mixed state.  The observation-level summary must not claim HISTORICAL
+      // because that can contradict or suppress an authoritative active
+      // finding; finding-level states remain the source of truth.
+      if (!unresolvedContradictions.length && hasActiveCurrentDecompositionHazard && hasHistoricalDecompositionHazard && response.conditionState === 'HISTORICAL') {
+        response.conditionState = 'UNKNOWN';
+        response.conditionStateEvidence = {
+          ...(response.conditionStateEvidence || {}),
+          mixedTemporalFindings: true,
+          summaryDisposition: 'MIXED_FINDING_STATES',
+        };
+      }
+      response.conditionStateEvidence = {
+        contradictionCount: unresolvedContradictions.length,
+        evidenceGaps: Array.isArray(response.evidenceGapQuestions) ? response.evidenceGapQuestions : [],
+        advisoryOnly: true,
+      };
+      const decomposedHistoricalHazards = Array.isArray(response.multiHazardDecomposition?.hazards)
+        ? response.multiHazardDecomposition.hazards
+          .filter((hazard: any) => String(hazard?.conditionState || '').toUpperCase() === 'HISTORICAL')
+          .map((hazard: any) => ({
+            family: hazard.hazardFamily || hazard.domainId,
+            classification: String(hazard.hazardFamily || hazard.domainId || '').replace(/[_-]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase()),
+            conditionState: hazard.conditionState,
+            observationFragment: hazard.observationFragment,
+            temporalEvidence: hazard.temporalEvidence || [],
+            currentCondition: hazard.currentCondition,
+            correctionStatus: hazard.correctionStatus,
+            evidenceGaps: hazard.evidenceGaps || [],
+            advisoryOnly: true,
+          }))
+        : [];
+      if (decomposedHistoricalHazards.length) {
+        response.historicalHazards = [
+          ...(Array.isArray(response.historicalHazards) ? response.historicalHazards : []),
+          ...decomposedHistoricalHazards,
+        ];
+      }
       const mechanismChain = this.buildMechanismChain({
         response,
         normalizedScopes,
@@ -3461,13 +4755,14 @@ export class SafescopeV2Service {
         existingQuestions: response.evidenceGapQuestions,
         answeredQuestionIds: normalizedAnswerState.answeredQuestionIds,
         unresolvedContradictions,
+        jurisdictionKnownFromScope,
       });
       response.clarifyingQuestions = clarifyingQuestions;
       response.followUpQuestions = clarifyingQuestions;
-      response.resultStage = unresolvedContradictions.length || clarifyingQuestions.some((question: any) => question?.priority === "critical")
+      response.resultStage = unresolvedContradictions.length || clarifyingQuestions.some((question: any) => question?.blocksFinalization === true)
         ? "provisional"
         : "final";
-      response.requiresAnotherReasoningPass = clarifyingQuestions.length > 0;
+      response.requiresAnotherReasoningPass = clarifyingQuestions.some((question: any) => question?.blocksFinalization === true);
       response.mayFinalize = response.resultStage === "final";
       response.humanReviewRequired = Boolean(response.requiresQualifiedReview || unresolvedContradictions.length || response.resultStage === "provisional");
       response.provisionalResult = response.resultStage === "provisional"
@@ -3648,6 +4943,9 @@ export class SafescopeV2Service {
     const hasConfinedSpaceContext = /\b(confined space|permit space|manhole|vault|tank|vessel|tunnel|atmosphere|oxygen|ventilation|fumes?|toxic|entrant|entry)\b/i.test(normalizedObservation);
     const hasChemicalContext = /\b(chemical|solvent|acid|corrosive|sds|label|unlabeled|drum|container|eyewash|splash|asbestos|lead|dust|insulation)\b/i.test(normalizedObservation) ||
       (/\b(spill|leak|release)\b/i.test(normalizedObservation) && /\b(drum|container|chemical|solvent|acid|corrosive|hazardous|waste)\b/i.test(normalizedObservation));
+    const hasAsbestosLeadDisturbanceContext =
+      /\b(asbestos|lead|acm|presumed asbestos)\b.*\b(insulation|dust|demolition|renovation|scrap(?:e|ed|ing)|disturb(?:ed|ance))\b/i.test(normalizedObservation) ||
+      /\b(insulation|dust|demolition|renovation|scrap(?:e|ed|ing)|disturb(?:ed|ance))\b.*\b(asbestos|lead|acm|presumed asbestos)\b/i.test(normalizedObservation);
     const hasHazComIdentityContext = /\b(unlabeled|label|sds|safety data sheet|drum|container|contents?|identity|unknown chemical|mystery)\b/i.test(normalizedObservation);
     const hasExplicitNoCylinderContext = /\b(no|without)\s+(compressed gas\s+)?cylinders?\b|\bno\s+cylinder\s+or\s+storage\s+context\b/i.test(normalizedObservation);
     const hasCylinderContext = !hasExplicitNoCylinderContext && /\b(oxygen cylinder|gas cylinder|compressed gas|cylinder|cylinders|acetylene|propane|argon)\b/i.test(normalizedObservation);
@@ -3676,6 +4974,17 @@ export class SafescopeV2Service {
     const domainActionTitle =
       /\b(hydraulic|pneumatic|stored pressure|stored energy)\b/i.test(normalizedObservation) && /\b(ram|pressure|drop|release|relieved|power removed|power is removed)\b/i.test(normalizedObservation)
         ? "Control stored-energy release exposure"
+        : hasAsbestosLeadDisturbanceContext
+          ? "Stop asbestos or lead disturbance pending qualified review"
+        // P0-03: a missing/damaged machine guard is its own hazard even when the
+        // same observation also mentions lockout/tagout (e.g. a shared crusher
+        // observation describing both an unguarded shaft and an unlocked energy
+        // point). Check the guarding-specific context first so a machine-guarding
+        // finding gets a guarding action instead of the hazardous-energy title
+        // below matching first on "lockout/tagout" language that belongs to a
+        // sibling hazard.
+        : hasMachineGuardingContext && /\b(unguarded|missing guard|no guard|removed guard|without a guard)\b/i.test(normalizedObservation)
+          ? "Install or restore a fixed guard over the moving part"
         : hasHazardousEnergyActionContext && /\b(conveyor|belt|jam)\b/i.test(normalizedObservation)
           ? "Isolate conveyor energy before clearing jam"
         : hasHazardousEnergyActionContext
@@ -3717,6 +5026,13 @@ export class SafescopeV2Service {
           "Apply and verify machine-specific lockout/tagout and zero-energy checks.",
         ];
       }
+      if (hasAsbestosLeadDisturbanceContext) {
+        return [
+          "Stop disturbance of suspect asbestos- or lead-containing material until a qualified person evaluates the material and work scope.",
+          "Isolate and contain the work area to prevent dust migration and unauthorized exposure.",
+          "Use required PPE, respiratory protection, wet methods, cleanup, disposal, and competent-person controls before work resumes.",
+        ];
+      }
       if (hasCordTripRouteContext) {
         return [
           "Remove or reroute the cord, cable, or hose from the walking route.",
@@ -3754,9 +5070,9 @@ export class SafescopeV2Service {
       }
       if (/\b(unprotected trench|trench|excavation)\b/i.test(normalizedObservation)) {
         return [
-          "Keep workers out of the trench and edge exposure zone until a competent person verifies protection.",
-          "Install or verify sloping, benching, shielding, or shoring appropriate to the soil and depth.",
-          "Document inspection, egress, spoil setback, and access controls before work resumes.",
+          "Remove workers from the trench until a competent person verifies a protective system.",
+          "Install or verify the protective system: sloping, benching, shielding, or shoring appropriate to the soil and depth.",
+          "Move spoil and surcharge loads back from the edge and document egress, spoil setback, and inspections before work resumes.",
         ];
       }
       if (/\b(permit-required space|permit required space|confined space|permit space)\b/i.test(normalizedObservation) && /\b(no attendant|attendant missing|without attendant|attendant posted)\b/i.test(normalizedObservation)) {
@@ -3792,6 +5108,18 @@ export class SafescopeV2Service {
           "Stop ladder use until the setup is corrected.",
           "Place the ladder on a stable base, secure it as needed, and extend it properly above the landing.",
           "Use an alternate access method if the required ladder setup cannot be achieved.",
+        ];
+      }
+      // P0-03: mirrors the machine-guarding title branch above -- keep this
+      // check ahead of hasEdgeFallProtectionContext so a missing-guard finding
+      // gets a guarding-specific body even when the same observation also
+      // mentions an elevated "platform" (which alone satisfies the fall
+      // context regex below).
+      if (hasMachineGuardingContext && /\b(unguarded|missing guard|no guard|removed guard|without a guard)\b/i.test(normalizedObservation)) {
+        return [
+          "Stop the machine or restrict access to the point of operation until a fixed guard is installed.",
+          "Install or restore a guard that prevents contact with the rotating or moving part per the machine's design.",
+          "Verify guard fit, fasteners, and interlocks before returning the machine to service.",
         ];
       }
       if (hasEdgeFallProtectionContext) {
@@ -5200,9 +6528,9 @@ export class SafescopeV2Service {
             "Confirm access control, egress, spoil/equipment setback, and roadway traffic controls.",
           ],
           controlFocus: [
-            "Keep workers out of the trench and edge exposure zone until a competent person verifies protection.",
-            "Install or verify sloping, benching, shielding, or shoring appropriate to the soil and depth.",
-            "Document inspection, egress, spoil setback, and access controls before work resumes.",
+            "Remove workers from the trench until a competent person verifies a protective system.",
+            "Install or verify the protective system: sloping, benching, shielding, or shoring appropriate to the soil and depth.",
+            "Move spoil and surcharge loads back from the edge and document egress, spoil setback, and inspections before work resumes.",
           ],
         };
       }

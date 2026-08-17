@@ -12,6 +12,9 @@
 
 import * as http from "node:http";
 import * as https from "node:https";
+// pg intentionally remains a runtime dependency; the repository does not ship @types/pg.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { Client } = require("pg");
 
 type Pattern = RegExp | string;
 
@@ -58,6 +61,7 @@ type StandardLike = {
 
 const BASE_URL = process.env.SENTINEL_API_URL || "http://localhost:4000";
 const CLASSIFY_URL = joinUrl(BASE_URL, "/safescope-v2/classify");
+let authorizationToken = String(process.env.HAZLENZ_AUTH_TOKEN || "").trim();
 const REQUIRED_AVERAGE_SCORE = 80;
 const SEVERE_FALSE_POSITIVE_PATTERNS: Pattern[] = [
   /1910\.101/i,
@@ -327,6 +331,7 @@ function submitJson(url: string, payload: unknown): Promise<{ statusCode: number
         headers: {
           "Content-Type": "application/json",
           "Content-Length": Buffer.byteLength(body),
+          ...(authorizationToken ? { Authorization: `Bearer ${authorizationToken}` } : {}),
         },
       },
       (response) => {
@@ -341,6 +346,61 @@ function submitJson(url: string, payload: unknown): Promise<{ statusCode: number
     request.write(body);
     request.end();
   });
+}
+
+async function establishDisposableTestAuthentication() {
+  if (authorizationToken || process.env.HAZLENZ_TEST_AUTH !== "true") return;
+  const suffix = `${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+  const email = `hazlenz-authentic-${suffix}@example.test`;
+  const password = "HazLenz!Disposable123";
+  const registration = await submitJson(joinUrl(BASE_URL, "/auth/register"), {
+    email, password, name: "HazLenz authentic evaluator", type: "individual",
+  });
+  if (registration.statusCode !== 201) {
+    throw new Error(`Disposable evaluator registration failed: ${registration.statusCode}`);
+  }
+  const login = await submitJson(joinUrl(BASE_URL, "/auth/login"), { email, password });
+  if (login.statusCode !== 201) {
+    throw new Error(`Disposable evaluator login failed: ${login.statusCode}`);
+  }
+  authorizationToken = String(JSON.parse(login.raw).token || "");
+  if (!authorizationToken) throw new Error("Disposable evaluator login returned no token.");
+  await grantDisposableTestEntitlement(authorizationToken);
+  // Refresh the token after the fixture grant so the normal authentication
+  // path observes the same entitlement snapshot as subsequent requests.
+  const refreshedLogin = await submitJson(joinUrl(BASE_URL, "/auth/login"), { email, password });
+  if (refreshedLogin.statusCode !== 201) {
+    throw new Error(`Disposable evaluator entitlement-refresh login failed: ${refreshedLogin.statusCode}`);
+  }
+  authorizationToken = String(JSON.parse(refreshedLogin.raw).token || "");
+  if (!authorizationToken) throw new Error("Disposable evaluator entitlement-refresh login returned no token.");
+}
+
+async function grantDisposableTestEntitlement(token: string) {
+  const databaseUrl = String(process.env.HAZLENZ_TEST_DATABASE_URL || "").trim();
+  if (!databaseUrl) return;
+  const parsed = new URL(databaseUrl);
+  if (
+    process.env.NODE_ENV !== "test" ||
+    !["127.0.0.1", "localhost"].includes(parsed.hostname) ||
+    !/^(test|phase|closure|hazlenz)(?:[_-]|\d)/i.test(parsed.pathname.slice(1))
+  ) {
+    throw new Error("Disposable entitlement fixture refused an unsafe database target.");
+  }
+  const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url").toString("utf8"));
+  const client = new Client({ connectionString: databaseUrl });
+  await client.connect();
+  try {
+    await client.query(
+      `INSERT INTO entitlement_grants
+       ("userId", source, tier, status, "startsAt", "endsAt", reason)
+       VALUES ($1, 'test', 'expert', 'active', NOW(), NOW() + INTERVAL '2 hours',
+               'Authenticated HazLenz disposable regression fixture')`,
+      [payload.userId],
+    );
+  } finally {
+    await client.end();
+  }
 }
 
 function firstMatching(text: string, patterns: Pattern[] = []): string | undefined {
@@ -898,6 +958,7 @@ async function runScenario(scenario: Scenario) {
 }
 
 async function main() {
+  await establishDisposableTestAuthentication();
   const scenarios = makeScenarios();
   const failures: { name: string; reason: string }[] = [];
   const rows: string[][] = [];
@@ -922,6 +983,10 @@ async function main() {
 
       if (failedCritical) {
         failures.push({ name: scenario.name, reason: `critical dimensions failed: ${outcome.failed.join(", ")}` });
+        console.error(`[DETAIL] ${scenario.name}`, outcome.dimensions.filter((dimension) => !dimension.ok), {
+          mechanism: outcome.mechanism,
+          evidenceGaps: outcome.evidenceGaps,
+        });
       }
       if (severeFalsePositive) {
         failures.push({ name: scenario.name, reason: "severe false-positive standard appeared" });

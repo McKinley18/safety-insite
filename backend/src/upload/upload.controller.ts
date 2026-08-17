@@ -5,18 +5,22 @@ import {
   UploadedFile,
   UseGuards,
   UseInterceptors,
+  Req,
+  ForbiddenException,
 } from '@nestjs/common';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { EntitlementGuard, RequireEntitlement } from '../auth/entitlements/entitlement.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
+import { memoryStorage } from 'multer';
 import { extname } from 'path';
+import { validateRasterImage } from './image-upload.security';
+import { StorageService } from '../storage/storage.service';
+import { isOrganizationManager, requireAuthenticatedUser } from '../common/authenticated-user';
 
 const ALLOWED_LOGO_MIME_TYPES = new Set([
   'image/png',
   'image/jpeg',
   'image/webp',
-  'image/svg+xml',
 ]);
 
 const ALLOWED_LOGO_EXTENSIONS = new Set([
@@ -24,24 +28,18 @@ const ALLOWED_LOGO_EXTENSIONS = new Set([
   '.jpg',
   '.jpeg',
   '.webp',
-  '.svg',
 ]);
 
-function safeLogoFilename(originalName: string) {
-  const ext = extname(originalName || '').toLowerCase();
-
-  if (!ALLOWED_LOGO_EXTENSIONS.has(ext)) {
-    throw new BadRequestException('Unsupported logo file extension.');
-  }
-
-  const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-  return `logo-${unique}${ext}`;
+export function validateLogoFile(file: Express.Multer.File): string {
+  return validateRasterImage(file).extension;
 }
 
 @UseGuards(JwtGuard, EntitlementGuard)
 @RequireEntitlement('teamMembers')
 @Controller('upload')
 export class UploadController {
+  constructor(private readonly storage: StorageService) {}
+
   @Post('logo')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -56,31 +54,27 @@ export class UploadController {
           !ALLOWED_LOGO_MIME_TYPES.has(file.mimetype) ||
           !ALLOWED_LOGO_EXTENSIONS.has(ext)
         ) {
-          cb(new BadRequestException('Only PNG, JPG, WEBP, or SVG logo files are allowed.'), false);
+          cb(new BadRequestException('Only PNG, JPG, or WEBP logo files are allowed.'), false);
           return;
         }
 
         cb(null, true);
       },
-      storage: diskStorage({
-        destination: './uploads/logos',
-        filename: (_req: Express.Request, file: any, cb: (error: Error | null, filename: string) => void) => {
-          try {
-            cb(null, safeLogoFilename(file.originalname));
-          } catch (error) {
-            cb(error as Error, '');
-          }
-        },
-      }),
+      storage: memoryStorage(),
     }),
   )
-  uploadLogo(@UploadedFile() file: any) {
-    if (!file?.filename) {
-      throw new BadRequestException('Logo upload failed.');
+  async uploadLogo(@Req() req: any, @UploadedFile() file: Express.Multer.File) {
+    if (!file) throw new BadRequestException('Logo upload failed.');
+    const user = requireAuthenticatedUser(req.user);
+    if (!user.organizationId || !isOrganizationManager(user)) {
+      throw new ForbiddenException('Organization manager access is required.');
     }
-
-    return {
-      path: `/uploads/logos/${file.filename}`,
-    };
+    validateLogoFile(file);
+    const object = await this.storage.store({
+      user, category: 'branding', parentType: 'organization', parentId: user.organizationId,
+      organizationId: user.organizationId, ownerUserId: null, contentType: file.mimetype,
+      downloadName: file.originalname, body: file.buffer,
+    });
+    return { objectId: object.id, downloadPath: `/files/${object.id}` };
   }
 }

@@ -12,6 +12,7 @@ import {
   failIngestionRun,
   startIngestionRun,
 } from "./ingestion-run-logger";
+import { createHash } from "crypto";
 
 config();
 
@@ -129,6 +130,18 @@ async function run(sourceKey: string, listFilename: string) {
     doc.sourceUrl = item.sourceUrl;
     doc.summary = item.summary;
     doc.rawText = item.rawText;
+    doc.sourceDocumentChecksum = item.sourceDocumentChecksum;
+    doc.normalizedRecordChecksum = createHash("sha256")
+      .update(JSON.stringify({
+        citation,
+        title: item.title,
+        sourceUrl: item.sourceUrl,
+        rawText: item.rawText,
+      }))
+      .digest("hex");
+    doc.retrievedAt = new Date(item.retrievedAt);
+    doc.parserVersion = "ecfr-hierarchy-v2";
+    doc.regulatoryReleaseId = `candidate-${sourceKey}`;
     doc.approvalStatus = approvalStatus;
     doc.reviewedAt = reviewedAt;
     doc.hazardTags = item.metadata.hazardTags || [];
@@ -144,6 +157,13 @@ async function run(sourceKey: string, listFilename: string) {
           chunkIndex: idx,
           sectionHeading: sec.sectionHeading,
           chunkText: sec.sectionText,
+          normalizedRecordChecksum: createHash("sha256")
+            .update(JSON.stringify({
+              citation: sec.citation,
+              heading: sec.sectionHeading,
+              text: sec.sectionText,
+            }))
+            .digest("hex"),
           chunkSummary: sec.sectionText.slice(0, 200) + "...",
           citation: sec.citation,
           authorityTier: saved.authorityTier,
@@ -195,4 +215,7 @@ if (args.length < 2) {
   process.exit(1);
 }
 
-run(args[0], args[1]).catch(console.error);
+run(args[0], args[1]).catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

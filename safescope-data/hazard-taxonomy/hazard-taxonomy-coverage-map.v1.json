@@ -271,7 +271,7 @@
       "notes": "Gap in draft packs."
     },
     {
-      "domainId": "silica_dust",
+      "domainId": "silica_respirable_dust",
       "displayName": "Silica Dust",
       "status": "gap",
       "relatedStandardFamilies": ["silica"],
@@ -425,7 +425,7 @@
       "displayName": "Pressure Systems",
       "status": "gap",
       "relatedStandardFamilies": ["pressure"],
-      "commonEntities": ["pipe"],
+      "commonEntities": ["pipe", "relief device"],
       "commonMechanisms": ["rupture"],
       "commonControls": ["pressure_relief"],
       "evidenceQuestions": ["Is relief valve present?"],
@@ -590,7 +590,7 @@
       "displayName": "Walking/Working Surfaces",
       "status": "routing_only",
       "relatedStandardFamilies": ["walking_working_surfaces"],
-      "commonEntities": ["floor", "hole", "walkway", "opening"],
+      "commonEntities": ["floor", "hole", "walkway", "opening", "elevation transition"],
       "commonMechanisms": ["slips_trips_falls"],
       "commonControls": ["friction_enhancement"],
       "evidenceQuestions": ["Is surface secure?"],

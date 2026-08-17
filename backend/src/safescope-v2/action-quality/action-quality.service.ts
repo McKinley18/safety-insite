@@ -14,6 +14,11 @@ function includesAny(text: string, terms: string[]) {
   return terms.some((term) => lower.includes(term.toLowerCase()));
 }
 
+// V5-C04 DEFER_WITH_EXPLICIT_MARKER (2026-08-16): confirmed via runtime instrumentation
+// that this service is never invoked in production. Its only construction site is inside
+// SafeScopeNativeReasoningService, which is itself instantiated but never called from the
+// hash-protected safescope-v2.service.ts. See native-reasoning.service.ts for the full
+// explanation. Do not treat this as a live corrective-action QA check.
 export class SafeScopeActionQualityService {
   evaluate(input: SafeScopeActionQualityInput): SafeScopeActionQualityOutput {
     const actions = input.correctiveActions || [];

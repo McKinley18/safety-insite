@@ -26,7 +26,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [selectedPlan, setSelectedPlan] = useState<"free" | "pro" | "expert">("free");
+  const [selectedPlan, setSelectedPlan] = useState<"free" | "pro">("free");
   const [promoCode, setPromoCode] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [status, setStatus] = useState("");
@@ -155,10 +155,10 @@ export default function RegisterPage() {
             Select your plan
           </p>
           <p className="mt-2 text-sm font-semibold leading-6 text-slate-600 dark:text-slate-300">
-            Choose Free to try the workflow, Pro for regular inspection work, or Expert for deeper HazLenz review and stronger report tools.
+            Choose Free to try the workflow, or Pro for full access to HazLenz AI review, reporting, and team tools.
           </p>
 
-          <div className="mt-4 grid gap-3 lg:grid-cols-3">
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
             {[
               {
                 id: "free" as const,
@@ -172,17 +172,9 @@ export default function RegisterPage() {
                 id: "pro" as const,
                 name: "Pro",
                 price: "$6.99/mo",
-                badge: "Active use",
+                badge: "Full access",
                 description: "For regular safety inspection work.",
-                details: "Expanded HazLenz AI review, professional reports, corrective-action tracking, and saved history",
-              },
-              {
-                id: "expert" as const,
-                name: "Expert",
-                price: "$11.99/mo",
-                badge: "Advanced",
-                description: "For deeper review and stronger reporting.",
-                details: "Advanced HazLenz reasoning, enhanced report packages, larger evidence history, and custom report branding",
+                details: "Full HazLenz AI review, professional reports, corrective-action tracking, cloud reports, team tools, and saved history",
               },
             ].map((plan) => {
               const active = selectedPlan === plan.id;

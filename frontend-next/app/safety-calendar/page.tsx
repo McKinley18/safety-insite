@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 import { AppButton } from "@/components/ui/AppButton";
 import { AppPanel } from "@/components/ui/AppPanel";
 import { HeroPanel } from "@/components/ui/HeroPanel";
-import { PriorityTodoPanel } from "@/components/calendar/PriorityTodoPanel";
 import { AppInput, AppSelect } from "@/components/ui/AppInput";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { CalendarViewRenderer } from "@/components/calendar/CalendarViewRenderer";
@@ -122,14 +123,22 @@ function getDayWorkSummary(dayEvents: SafetyCalendarEvent[]) {
   };
 }
 
-export default function SafetyCalendarPage() {
+function SafetyCalendarPageInner() {
+  const searchParams = useSearchParams();
+  const requestedDateKey = searchParams.get("date") || "";
+  const requestedView = searchParams.get("view") as CalendarView | null;
+
   const [events, setEvents] = useState<SafetyCalendarEvent[]>([]);
-  const [view, setView] = useState<CalendarView>("month");
+  const [view, setView] = useState<CalendarView>(
+    requestedView === "day" || requestedView === "week" || requestedView === "month"
+      ? requestedView
+      : "month",
+  );
   const [anchorDate, setAnchorDate] = useState(() => {
-    const parsed = parseLocalCalendarDate(getTodayDateKey());
+    const parsed = parseLocalCalendarDate(requestedDateKey || getTodayDateKey());
     return parsed || new Date();
   });
-  const [selectedDateKey, setSelectedDateKey] = useState(getTodayDateKey());
+  const [selectedDateKey, setSelectedDateKey] = useState(requestedDateKey || getTodayDateKey());
   const [expandedMonthDateKey, setExpandedMonthDateKey] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [ownerFilter, setOwnerFilter] = useState("");
@@ -146,6 +155,7 @@ export default function SafetyCalendarPage() {
   const [editingTaskPriority, setEditingTaskPriority] = useState("Medium");
   const [editingTaskLocation, setEditingTaskLocation] = useState("");
   const [showCompleted, setShowCompleted] = useState(false);
+  const [controlsExpanded, setControlsExpanded] = useState(false);
 
   const canUseCompanyCalendar = hasPlanEntitlement("inspectionAssignments", planCode);
 
@@ -196,50 +206,6 @@ export default function SafetyCalendarPage() {
   }, [displayEvents]);
 
   const selectedEvents = eventsByDate[selectedDateKey] || [];
-
-  const priorityTodoGroups = useMemo(() => {
-    const todayKey = getTodayDateKey();
-    const today = parseLocalCalendarDate(todayKey) || new Date();
-    const weekEnd = addDays(today, 7);
-    const weekEndKey = toDateKey(weekEnd);
-
-    const activeEvents = displayEvents.filter(
-      (event) => !isCompletedCalendarStatus(event.status),
-    );
-
-    const overdue = activeEvents
-      .filter((event) => event.status === "Overdue" || event.date < todayKey)
-      .slice(0, 6);
-
-    const dueToday = activeEvents
-      .filter((event) => event.date === todayKey && event.status !== "Overdue")
-      .slice(0, 6);
-
-    const dueThisWeek = activeEvents
-      .filter(
-        (event) =>
-          event.date > todayKey &&
-          event.date <= weekEndKey &&
-          event.status !== "Overdue",
-      )
-      .slice(0, 6);
-
-    const unassigned = activeEvents
-      .filter((event) => event.owner === "Unassigned")
-      .slice(0, 6);
-
-    const completedEvents = displayEvents
-      .filter((event) => isCompletedCalendarStatus(event.status))
-      .slice(0, 6);
-
-    return [
-      ["Overdue", overdue],
-      ["Due Today", dueToday],
-      ["Due This Week", dueThisWeek],
-      ...(canUseCompanyCalendar ? ([["Unassigned", unassigned]] as const) : []),
-      ...(showCompleted ? ([["Completed", completedEvents]] as const) : []),
-    ] as const;
-  }, [canUseCompanyCalendar, displayEvents, showCompleted]);
 
   const monthDays = useMemo(() => {
     const first = startOfMonth(anchorDate);
@@ -302,14 +268,6 @@ export default function SafetyCalendarPage() {
     if (view === "month") {
       setExpandedMonthDateKey((current) => (current === dateKey ? "" : dateKey));
     }
-  }
-
-  function openEventDay(event: SafetyCalendarEvent) {
-    const date = parseLocalCalendarDate(event.date);
-    if (date) setAnchorDate(date);
-    setSelectedDateKey(event.date);
-    setExpandedMonthDateKey("");
-    setView("day");
   }
 
   async function refreshCalendarEvents() {
@@ -500,53 +458,140 @@ export default function SafetyCalendarPage() {
         </div>
       </HeroPanel>
 
-      {/* Personal safety calendar card removed */}
-
-      <AppPanel padding="sm" className="space-y-2 px-2 py-2 sm:px-3 sm:py-3">
-        <h2 className="text-lg font-black text-app-text">Calendar Controls</h2>
-        <div className="flex flex-wrap items-center gap-2">
-          <div className="inline-flex w-fit gap-1 rounded-full bg-slate-100 p-1 dark:bg-slate-900">
-            {(["month", "week", "day"] as CalendarView[]).map((item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setView(item)}
-                className={`rounded-full px-2.5 py-1 text-[11px] font-black uppercase tracking-normal transition ${
-                  view === item
-                    ? "bg-[#102A43] text-white shadow-sm"
-                    : "bg-transparent text-[#102A43] hover:bg-white dark:text-slate-100 dark:hover:bg-slate-800"
-                }`}
-              >
-                {item[0].toUpperCase() + item.slice(1)}
-              </button>
-            ))}
+      <AppPanel padding="sm" className="app-card px-3 py-2.5 sm:px-4 sm:py-3">
+        <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-wide text-[#1D72B8]">
+              Schedule My Task
+            </p>
+            <h2 className="mt-0.5 text-sm font-black text-app-text">
+              Add personal safety work
+            </h2>
+            <p className="mt-0.5 text-xs font-semibold leading-5 text-app-text-muted">
+              Schedule a personal inspection reminder, follow-up, review, or safety task for yourself.
+            </p>
           </div>
+          {taskMessage && (
+            <p className="rounded-lg bg-app-surface-muted px-2.5 py-1.5 text-[11px] font-black text-app-text">
+              {taskMessage}
+            </p>
+          )}
         </div>
 
-        <p className="text-xs font-semibold leading-5 text-app-text-muted">
-          Completed tasks are hidden from the active calendar. You can show or clear completed personal tasks anytime.
-        </p>
-
-        <div className="grid grid-cols-2 gap-1.5">
-          <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="w-full">
-            <option value="">▣ All types</option>
-            <option value="inspection">🟦 Inspections</option>
-            <option value="corrective_action">🟥 CA</option>
-            <option value="follow_up">🟨 Follow-ups</option>
-            <option value="supervisor_review">🟪 Reviews</option>
+        <div className="mt-2.5 grid gap-1.5 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
+          <AppInput
+            value={taskTitle}
+            onChange={(event) => setTaskTitle(event.target.value)}
+            placeholder="Task title"
+            fieldSize="sm"
+          />
+          <AppInput
+            type="date"
+            value={taskDate}
+            onChange={(event) => setTaskDate(event.target.value)}
+            fieldSize="sm"
+          />
+          <AppSelect
+            value={taskPriority}
+            onChange={(event) => setTaskPriority(event.target.value)}
+            fieldSize="sm"
+          >
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
           </AppSelect>
-
-          <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="w-full">
-            <option value="">All statuses</option>
-            <option value="Open">Open</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Done</option>
-          </AppSelect>
+          <AppInput
+            value={taskLocation}
+            onChange={(event) => setTaskLocation(event.target.value)}
+            placeholder="Location / note"
+            fieldSize="sm"
+          />
+          <AppButton type="button" size="sm" onClick={schedulePersonalTask}>
+            Schedule
+          </AppButton>
         </div>
       </AppPanel>
 
-      <div className="grid gap-4 xl:grid-cols-[1fr_340px]">
-        <div>
+      <div className="space-y-2">
+          <AppPanel padding="sm" className="app-card px-2 py-2 sm:px-3 sm:py-2.5">
+            <button
+              type="button"
+              onClick={() => setControlsExpanded((current) => !current)}
+              className="flex w-full items-center justify-between gap-2"
+              aria-expanded={controlsExpanded}
+            >
+              <h2 className="text-sm font-black text-app-text">Calendar Controls</h2>
+              <ChevronDown
+                className={`h-4 w-4 text-app-text-muted transition-transform ${controlsExpanded ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            {controlsExpanded && (
+              <div className="mt-2 space-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <div className="inline-flex w-fit gap-1 rounded-full bg-slate-100 p-1 dark:bg-slate-900">
+                    {(["month", "week", "day"] as CalendarView[]).map((item) => (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => setView(item)}
+                        className={`rounded-full px-2.5 py-1 text-[11px] font-black uppercase tracking-normal transition ${
+                          view === item
+                            ? "bg-[#102A43] text-white shadow-sm"
+                            : "bg-transparent text-[#102A43] hover:bg-white dark:text-slate-100 dark:hover:bg-slate-800"
+                        }`}
+                      >
+                        {item[0].toUpperCase() + item.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2">
+                  <AppButton
+                    type="button"
+                    size="sm"
+                    variant={showCompleted ? "primary" : "secondary"}
+                    onClick={() => setShowCompleted((current) => !current)}
+                    className="h-8 px-3 text-[10px]"
+                  >
+                    {showCompleted ? "Hide completed" : `Show completed${completedPersonalTaskCount > 0 ? ` (${completedPersonalTaskCount})` : ""}`}
+                  </AppButton>
+
+                  {completedPersonalTaskCount > 0 && (
+                    <AppButton
+                      type="button"
+                      size="sm"
+                      variant="danger"
+                      onClick={() => void clearCompletedTasks()}
+                      className="h-8 px-3 text-[10px]"
+                    >
+                      Clear completed
+                    </AppButton>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-2 gap-1.5">
+                  <AppSelect value={typeFilter} onChange={(event) => setTypeFilter(event.target.value)} fieldSize="sm" className="w-full">
+                    <option value="">▣ All types</option>
+                    <option value="inspection">🟦 Inspections</option>
+                    <option value="corrective_action">🟥 CA</option>
+                    <option value="follow_up">🟨 Follow-ups</option>
+                    <option value="supervisor_review">🟪 Reviews</option>
+                  </AppSelect>
+
+                  <AppSelect value={statusFilter} onChange={(event) => setStatusFilter(event.target.value)} fieldSize="sm" className="w-full">
+                    <option value="">All statuses</option>
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Done</option>
+                  </AppSelect>
+                </div>
+              </div>
+            )}
+          </AppPanel>
+
           <CalendarViewRenderer
             view={view}
             anchorDate={anchorDate}
@@ -570,21 +615,6 @@ export default function SafetyCalendarPage() {
             onTogglePersonalEvent={togglePersonalTaskComplete}
             deleteCalendarEvent={deleteCalendarEvent}
           />
-        </div>
-        <PriorityTodoPanel
-          priorityTodoGroups={priorityTodoGroups}
-          openEventDay={openEventDay}
-          isPersonalCalendarEvent={isPersonalCalendarEvent}
-          onEditPersonalEvent={beginEditPersonalTask}
-          onTogglePersonalEvent={togglePersonalTaskComplete}
-          deleteCalendarEvent={deleteCalendarEvent}
-          showCompleted={showCompleted}
-          onToggleShowCompleted={() => setShowCompleted((current) => !current)}
-          onClearCompletedTasks={() => {
-            void clearCompletedTasks();
-          }}
-          completedCount={completedPersonalTaskCount}
-        />
       </div>
 
       {editingTaskId && (
@@ -661,61 +691,14 @@ export default function SafetyCalendarPage() {
         </AppPanel>
       )}
 
-      <AppPanel padding="md" className="app-card">
-        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-          <div>
-            <p className="text-xs font-black uppercase tracking-wide text-[#1D72B8]">
-              Schedule My Task
-            </p>
-            <h2 className="mt-1 text-lg font-black text-app-text">
-              Add personal safety work
-            </h2>
-            <p className="mt-1 text-sm font-bold leading-6 text-app-text-muted">
-              Schedule a personal inspection reminder, follow-up, review, or safety task for yourself.
-            </p>
-          </div>
-          {taskMessage && (
-            <p className="rounded-xl bg-app-surface-muted px-3 py-2 text-xs font-black text-app-text">
-              {taskMessage}
-            </p>
-          )}
-        </div>
-
-        <div className="mt-4 grid gap-2 md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr_auto]">
-          <AppInput
-            value={taskTitle}
-            onChange={(event) => setTaskTitle(event.target.value)}
-            placeholder="Task title"
-            fieldSize="sm"
-          />
-          <AppInput
-            type="date"
-            value={taskDate}
-            onChange={(event) => setTaskDate(event.target.value)}
-            fieldSize="sm"
-          />
-          <AppSelect
-            value={taskPriority}
-            onChange={(event) => setTaskPriority(event.target.value)}
-            fieldSize="sm"
-          >
-            <option value="Critical">Critical</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </AppSelect>
-          <AppInput
-            value={taskLocation}
-            onChange={(event) => setTaskLocation(event.target.value)}
-            placeholder="Location / note"
-            fieldSize="sm"
-          />
-          <AppButton type="button" size="sm" onClick={schedulePersonalTask}>
-            Schedule
-          </AppButton>
-        </div>
-      </AppPanel>
-
     </section>
+  );
+}
+
+export default function SafetyCalendarPage() {
+  return (
+    <Suspense fallback={null}>
+      <SafetyCalendarPageInner />
+    </Suspense>
   );
 }

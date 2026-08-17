@@ -151,9 +151,15 @@ export class InspectionCitationRankingService {
       /\b(missing|removed|unguarded|defeated|open|exposed|damaged|frayed|cut|not working|inoperative|blocked|obstructed|leaking|spill|spilled|residue|clutter|uncovered|unprotected|uneven|broken)\b/i.test(
         observation,
       );
+    const hasContainedReleaseNoExposure =
+      /\b(spill|leak|release)\b.*\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(observation) ||
+      /\bsecondary containment\b.*\b(no employee|no walkway|no exposure|locked|restricted)\b/i.test(observation);
 
     const shouldSuppressCandidate = (citation: string) => {
       if (!citation) return '';
+      if (/(1910\.22|1926\.25|(?:56|57)\.20003)/i.test(citation) && hasContainedReleaseNoExposure) {
+        return 'Contained releases without employee walkway exposure should not be promoted as active walking-surface deficiencies.';
+      }
       if (/(1910\.101|1926\.350|(?:56|57)\.1600[56])/i.test(citation) && !hasExplicitCompressedGasEvidence) {
         return 'Compressed gas / cylinder standards require explicit cylinder evidence.';
       }
@@ -321,7 +327,7 @@ export class InspectionCitationRankingService {
       }
 
       const isWalkingSurfaceCitation = /1910\.22|1926\.25|(?:56|57)\.(?:20003|11001)/.test(citation);
-      const hasWalkingSurfaceFailure = /\b(walkway|floor|aisle|travelway|walking surface|passageway)\b.*\b(wet|oil|spill|slip|trip|debris|clutter|blocked|obstructed|uneven|hole|leak|leaking|release|residue|oily)\b|\b(wet|oil|spill|slip|trip|debris|clutter|blocked|obstructed|uneven|hole|leak|leaking|release|residue|oily)\b.*\b(walkway|floor|aisle|travelway|walking surface|passageway)\b/.test(observation);
+      const hasWalkingSurfaceFailure = /\b(walkway|floor|aisle|travelway|walking surface|passageway)\b.*\b(wet|oil|spill|spilled|slip|trip|debris|clutter|blocked|obstructed|uneven|hole|leak|leaking|release|residue|oily|liquid|coolant|tipped over)\b|\b(wet|oil|spill|spilled|slip|trip|debris|clutter|blocked|obstructed|uneven|hole|leak|leaking|release|residue|oily|liquid|coolant|tipped over)\b.*\b(walkway|floor|aisle|travelway|walking surface|passageway)\b/.test(observation);
       if (isWalkingSurfaceCitation && !hasWalkingSurfaceFailure) {
         score -= 210; penalties.push('No walking-surface, housekeeping, access-route, or same-level-fall condition supports this family.'); exclude = true;
       }

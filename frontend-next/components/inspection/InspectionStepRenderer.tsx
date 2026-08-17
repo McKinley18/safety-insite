@@ -137,6 +137,7 @@ type InspectionStepRendererProps = {
   safeScopeResult: any;
   hazLenzClarificationAnswers: HazLenzClarificationAnswerInput[];
   setHazLenzClarificationAnswers: (answers: HazLenzClarificationAnswerInput[]) => void;
+  onUseHazardFragment: (hazard: any) => void;
   setIsOfflineMode?: (value: boolean) => void;
   submitSafeScopeValidation: (
     decision:
@@ -219,6 +220,7 @@ export default function InspectionStepRenderer({
   safeScopeResult,
   hazLenzClarificationAnswers,
   setHazLenzClarificationAnswers,
+  onUseHazardFragment,
   setIsOfflineMode,
   submitSafeScopeValidation,
   safeScopeCompactDetailsOpen,
@@ -290,6 +292,7 @@ export default function InspectionStepRenderer({
           safeScopeResult={safeScopeResult}
           hazLenzClarificationAnswers={hazLenzClarificationAnswers}
           setHazLenzClarificationAnswers={setHazLenzClarificationAnswers}
+          onUseHazardFragment={onUseHazardFragment}
           setIsOfflineMode={setIsOfflineMode}
           submitSafeScopeValidation={submitSafeScopeValidation}
           safeScopeCompactDetailsOpen={safeScopeCompactDetailsOpen}

@@ -7,6 +7,8 @@ import { SourceIngestionService } from './source-ingestion.service';
 import { SourceRetrievalService } from './source-retrieval.service';
 import { SourceIntelligenceIngestionPreviewDto } from './dto/source-ingestion-preview.dto';
 import { SourceIntelligenceSearchDto } from './dto/source-intelligence-search.dto';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @UseGuards(JwtGuard, EntitlementGuard)
 @RequireEntitlement('auditTrail')
@@ -30,6 +32,8 @@ export class SourceIntelligenceController {
   }
 
   @Post('import/preview/validate')
+  @UseGuards(RolesGuard)
+  @Roles('SUPER_ADMIN', 'PLATFORM_ADMIN')
   validatePreview(@Body() body: SourceIntelligenceIngestionPreviewDto) {
     return this.ingestionService.validateIngestionPreview(body);
   }

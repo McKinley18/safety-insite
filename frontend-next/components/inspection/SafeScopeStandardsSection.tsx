@@ -1,6 +1,80 @@
+import { useState } from "react";
 import { getHazLenzSuggestedStandards } from "@/lib/hazlenzStandardHelpers";
 import { getHazLenzPrimaryStandards, getHazLenzSupportingStandards, standardKey } from "@/lib/inspection/hazlenzStandardCandidates";
 import { formatStandardDisplay, getStandardCitation, getStandardDisplayText, getStandardSummary, isDisplayableStandardCandidate } from "@/lib/inspection/standardDisplay";
+import { getRegulatorySection, type RegulatorySectionRecord } from "@/lib/canonicalWorkflowApi";
+
+export function StandardCitationHeading({ citation, title }: { citation: string; title: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const [officialText, setOfficialText] = useState<RegulatorySectionRecord | null | "loading">(null);
+
+  async function handleExpand() {
+    setExpanded((value) => !value);
+    if (officialText === null) {
+      setOfficialText("loading");
+      const record = await getRegulatorySection(citation);
+      setOfficialText(record);
+    }
+  }
+
+  return (
+    <div className="mt-2">
+      <button
+        type="button"
+        onClick={handleExpand}
+        aria-expanded={expanded}
+        className="group flex w-full items-start justify-between gap-2 text-left"
+      >
+        <span className="min-w-0">
+          <span className="block text-base font-black leading-6 text-[#1D72B8] underline decoration-dotted decoration-2 underline-offset-4 group-hover:decoration-solid">
+            {citation}
+          </span>
+          {!!title && (
+            <span className="mt-1 block text-sm font-black leading-5 text-slate-900 dark:text-slate-100">
+              {title}
+            </span>
+          )}
+        </span>
+        <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-[#1D72B8] dark:bg-slate-800">
+          {expanded ? "Hide standard detail" : "Standard detail"}
+        </span>
+      </button>
+
+      {expanded && (
+        <div className="mt-2 rounded-xl border border-[#1D72B8]/20 bg-white px-3 py-2.5 dark:border-[#5DB7FF]/20 dark:bg-[#0B1320]">
+          <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">
+            Official regulation text
+          </p>
+          {officialText === "loading" ? (
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-500 dark:text-slate-400">Loading…</p>
+          ) : officialText ? (
+            <>
+              {officialText.matchScope === "parent-section" && (
+                <p className="mb-2 rounded-lg border border-amber-300/60 bg-amber-50 px-2 py-1.5 text-[11px] font-bold text-amber-900 dark:border-amber-400/30 dark:bg-amber-950/40 dark:text-amber-200">
+                  Showing the full text of {officialText.citation} — this specific subsection ({citation}) is not
+                  separately available; the excerpt below covers the whole section.
+                </p>
+              )}
+              <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300 whitespace-pre-wrap">
+                {officialText.textPlain}
+              </p>
+              <p className="mt-2 text-[10px] font-semibold text-slate-500 dark:text-slate-400">
+                Source: {officialText.agencyCode} · {officialText.heading || officialText.citation}. Verify against the
+                agency's own published text before relying on this for compliance decisions.
+              </p>
+            </>
+          ) : (
+            <p className="mt-1 text-xs font-semibold leading-5 text-slate-700 dark:text-slate-300">
+              The verbatim text of {citation || "this standard"} is not currently available in HazLenz's local standards
+              corpus. The summary below is a HazLenz-authored overview, not the official regulation language — consult
+              the cited regulation directly for the verbatim requirement.
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 type Props = {
   safeScopeResult: any;
@@ -255,17 +329,7 @@ export default function SafeScopeStandardsSection({
           )}
         </div>
 
-        <div className="mt-2">
-          <p className="text-base font-black leading-6 text-[#1D72B8]">
-            {formatStandardDisplay(standard)}
-          </p>
-
-          {!!standardTitle && (
-            <p className="mt-1 text-sm font-black leading-5 text-slate-900 dark:text-slate-100">
-              {standardTitle}
-            </p>
-          )}
-        </div>
+        <StandardCitationHeading citation={formatStandardDisplay(standard)} title={standardTitle} />
 
         <div className="mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-slate-800 dark:bg-slate-950">
           <p className="text-[10px] font-black uppercase tracking-wide text-slate-600 dark:text-slate-300">

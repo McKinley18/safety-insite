@@ -21,7 +21,9 @@ type Scenario = {
   expectReview?: RegExp;
   expectEvidenceGaps?: RegExp[];
   expectActionTitle?: RegExp;
+  expectConditionState?: RegExp;
   allowNoSuggestedStandards?: boolean;
+  validate?: (response: any) => string | null;
 };
 
 function standard(citation: string, title: string, rationale: string, jurisdiction: "osha_general_industry" | "osha_construction" | "msha" = "osha_general_industry", status: "candidate_standard" | "needs_more_evidence" = "candidate_standard") {
@@ -373,9 +375,9 @@ const scenarios: Scenario[] = [
     text: "The line is locked out, de-energized, and tested before maintenance begins.",
     scopes: ["osha_general_industry"],
     evidenceTexts: ["locked out", "de-energized", "tested"],
-    expectClassification: /Lockout \/ Stored Energy|Electrical|Machine Guarding|Unclassified/i,
-    expectHazardCategory: /machine_guarding_loto|lockout|stored|electrical|unknown|other/i,
-    expectCandidateFamily: /machine_guarding_loto|lockout_tagout|loto|electrical|unknown|other/i,
+    expectClassification: /Controlled Condition|Lockout \/ Stored Energy|Electrical|Machine Guarding|Unclassified/i,
+    expectHazardCategory: /controlled_condition|machine_guarding_loto|lockout|stored|electrical|unknown|other/i,
+    expectCandidateFamily: /controlled_condition|machine_guarding_loto|lockout_tagout|loto|electrical|unknown|other/i,
     expectCitations: [],
     allowNoSuggestedStandards: true,
     forbidCitations: [/1910\.147/i, /1910\.212/i],
@@ -460,6 +462,32 @@ const scenarios: Scenario[] = [
     allowNoSuggestedStandards: true,
     expectReview: /Review/i,
   },
+  {
+    name: "context-free unsafe condition stays unclassified",
+    text: "A crew reports an unsafe condition near equipment, but the task, jurisdiction, and exposure details are not available.",
+    scopes: ["osha_general_industry"],
+    evidenceTexts: [],
+    expectClassification: /Unclassified|Unknown/i,
+    expectHazardCategory: /unknown|other/i,
+    expectCandidateFamily: /unknown/i,
+    expectCitations: [],
+    allowNoSuggestedStandards: true,
+    expectReview: /Review/i,
+    expectConditionState: /UNKNOWN/i,
+  },
+  {
+    name: "context-free servicing note stays unclassified",
+    text: "The equipment was being serviced after a near miss; no injury occurred, but the task, jurisdiction, and exposure details are not available.",
+    scopes: ["osha_general_industry"],
+    evidenceTexts: [],
+    expectClassification: /Unclassified|Unknown/i,
+    expectHazardCategory: /unknown|other/i,
+    expectCandidateFamily: /unknown/i,
+    expectCitations: [],
+    allowNoSuggestedStandards: true,
+    expectReview: /Review/i,
+    expectConditionState: /UNKNOWN/i,
+  },
 ];
 
 async function run() {
@@ -506,7 +534,9 @@ async function run() {
       !(scenario.forbidPromotion && scenario.forbidPromotion.test(promotionCitation)) &&
       (scenario.expectPromotion ? scenario.expectPromotion.test(promotionCitation || primaryCitation) : true) &&
       (scenario.expectEvidenceGaps ? scenario.expectEvidenceGaps.some((pattern) => pattern.test(evidenceGapText)) : true) &&
+      (scenario.expectConditionState ? scenario.expectConditionState.test(String((response as any).conditionState || "")) : true) &&
       (scenario.expectActionTitle ? scenario.expectActionTitle.test(actionTitleText) : true) &&
+      (scenario.validate ? scenario.validate(response) === null : true) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(topSuggestedCitation) &&
       !/^\s*(review|needs more evidence|candidate standard|suggested candidate standard)\s*$/i.test(primaryCitation) &&
       (scenario.name !== "cord damaged osha gi" || !/(1910\.1200|1910\.184|1910\.218|1910\.177|1910\.178|1910\.179|1910\.180|1910\.502|compressed gas|slings|forging|rim wheel|pit|crane|healthcare)/i.test(needsMoreEvidenceCitations.join(" "))) &&

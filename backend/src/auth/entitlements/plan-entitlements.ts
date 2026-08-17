@@ -70,12 +70,10 @@ export function requiredPlanForArea(area: ProtectedArea) {
     area === "shared_reports" ||
     area === "team_actions" ||
     area === "workspace_filtering" ||
-    area === "advanced_review"
+    area === "advanced_review" ||
+    area === "guided_inspection" ||
+    area === "pro_analytics"
   ) {
-    return "Expert";
-  }
-
-  if (area === "guided_inspection" || area === "pro_analytics") {
     return "Pro";
   }
 

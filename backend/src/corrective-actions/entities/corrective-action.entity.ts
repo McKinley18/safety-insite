@@ -8,8 +8,11 @@ export class CorrectiveAction {
   @Column({ nullable: true, unique: true })
   displayId: string;
 
-  @Column()
-  reportId: string;
+  @Column({ type: 'uuid', nullable: true })
+  reportId: string | null;
+
+  @Column({ type: 'uuid', nullable: true })
+  inspectionId: string | null;
 
   @Column({ nullable: true })
   findingId: string;
@@ -66,8 +69,8 @@ export class CorrectiveAction {
   @Column({ type: 'jsonb', nullable: true })
   originalSuggestion: any;
 
-  @Column({ nullable: true })
-  organizationId: string;
+  @Column({ type: 'uuid', nullable: true })
+  organizationId: string | null;
 
   @Column({ nullable: true })
   siteId: string;

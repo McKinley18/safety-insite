@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
 import { join } from "path";
+import { createHash } from "crypto";
 import { buildSourceRegistryMetadata } from "../../sources/source-registry-metadata";
 
 const MSHA_METADATA = buildSourceRegistryMetadata("msha-30-cfr-standards");
@@ -21,6 +22,8 @@ export type Msha30CfrDiscoveryItem = {
   summary: string;
   rawText: string;
   metadata: any;
+  sourceDocumentChecksum: string;
+  retrievedAt: string;
   sections: Array<{
     citation: string;
     sectionNumber: string;
@@ -28,6 +31,26 @@ export type Msha30CfrDiscoveryItem = {
     sectionText: string;
   }>;
 };
+
+const sourceCache = new Map<string, Promise<{ xml: string; checksum: string; retrievedAt: string }>>();
+
+async function fetchAuthoritativeSource(url: string) {
+  let pending = sourceCache.get(url);
+  if (!pending) {
+    pending = (async () => {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const xml = await response.text();
+      return {
+        xml,
+        checksum: createHash("sha256").update(xml).digest("hex"),
+        retrievedAt: new Date().toISOString(),
+      };
+    })();
+    sourceCache.set(url, pending);
+  }
+  return pending;
+}
 
 function stripHtml(xml: string) {
   let cleaned = xml.replace(
@@ -125,9 +148,8 @@ export class Msha30CfrConnector {
 
     for (const item of items) {
       try {
-        const response = await fetch(item.fetchUrl);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const xml = await response.text();
+        const source = await fetchAuthoritativeSource(item.fetchUrl);
+        const xml = source.xml;
 
         const subpartXml = extractSubpartXml(xml, item.part, item.subpart);
         if (!subpartXml) {
@@ -181,6 +203,8 @@ export class Msha30CfrConnector {
             standardTags: item.standardTags || [],
             hazardTags: item.hazardTags || [],
           },
+          sourceDocumentChecksum: source.checksum,
+          retrievedAt: source.retrievedAt,
           sections,
         });
       } catch (e) {

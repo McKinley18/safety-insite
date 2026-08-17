@@ -62,11 +62,22 @@ export default function SafeScopePrimaryDecisionSection({
     safeScopeResult.controlIntelligence?.verificationRecommendation ||
     "Verify controls before closure.";
 
-  const topStandard = safeScopeResult.suggestedStandards?.[0];
+  const confirmedStandard = [
+    ...(safeScopeResult.primaryStandards || []),
+    ...(safeScopeResult.standardDecisions || []),
+    ...(safeScopeResult.suggestedStandards || []),
+  ].find((standard: any) => {
+    const status = String(
+      standard?.applicabilityStatus || standard?.status || standard?.decision || "",
+    ).toLowerCase();
+    return standard?.isDirectMatch === true || standard?.isConfirmed === true || /confirmed|direct|applicable/.test(status);
+  });
+
+  const topStandard = confirmedStandard || safeScopeResult.primaryStandards?.[0];
 
   const topStandardLabel = topStandard
     ? formatStandardDisplay(topStandard)
-    : "No standard selected";
+    : "No confirmed standard selected";
 
   const standardReason =
     getStandardSummary(topStandard) ||

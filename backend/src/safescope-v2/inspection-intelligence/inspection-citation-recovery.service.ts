@@ -411,13 +411,34 @@ export class InspectionCitationRecoveryService {
       (/\b(tank|vessel|silo|bin)\b/i.test(combined) &&
         /\b(entry|enter|inside|worker inside|atmosphere|oxygen deficient|toxic atmosphere|engulfment|permit)\b/i.test(combined));
 
+    const hasExcavationProtectiveSystemEvidence =
+      /\b(trench|excavation)\b.*\b([5-9]|seven|six|eight|nine|ten)[- ]?(?:foot|feet|ft)\b.*\b(no box|no shor(?:ing)?|no slope|vertical|cave[- ]?in|spoil)\b/i.test(combined) ||
+      /\b([5-9]|seven|six|eight|nine|ten)[- ]?(?:foot|feet|ft)\b.*\b(trench|excavation)\b.*\b(no box|no shor(?:ing)?|no slope|vertical|cave[- ]?in|spoil)\b/i.test(combined) ||
+      /\b(worker|employee|laborer|utility worker)s?\b.*\b(in|inside|enter(?:ed)?)\b.*\b(trench|excavation)\b/i.test(combined) &&
+        /\b(no box|no shor(?:ing)?|no slope|vertical|cave[- ]?in|spoil|protective system)\b/i.test(combined);
+
+    const hasWalkingSurfaceSpillExposure =
+      /\b(spill|spilled|leak|liquid|coolant|oil|grease)\b.*\b(aisle|walkway|travel path|walking path|employees? (?:are )?walking|pedestrian)\b/i.test(combined) ||
+      /\b(aisle|walkway|travel path|walking path|employees? (?:are )?walking|pedestrian)\b.*\b(spill|spilled|leak|liquid|coolant|oil|grease)\b/i.test(combined);
+
+    const hasStairHandrailExposure =
+      /\b(stair|stairway|stairs|flight)\b.*\b(no handrail|missing handrail|missing rail|loose treads?|open side)\b/i.test(combined) ||
+      /\b(no handrail|missing handrail|missing rail|loose treads?|open side)\b.*\b(stair|stairway|stairs|flight)\b/i.test(combined);
+
+    const hasMeasuredNoiseProgramEvidence =
+      /\b([89]\d|1\d{2})\s*dba\b/i.test(combined) &&
+      /\b(shift|twa|operators?|employees?|workers?)\b/i.test(combined) &&
+      /\b(no hearing protection|no audiometric|hearing conservation|not documented)\b/i.test(combined);
+
     const hasExplicitUnlabeledContainerText =
       /\b(unlabeled|unlabelled|no label|missing label|unknown contents|unknown chemical)\b[^.;]*\b(container|tank|drum|bottle|can|pail|jug|tote|bucket)\b/i.test(combined) ||
       /\b(container|tank|drum|bottle|can|pail|jug|tote|bucket)\b[^.;]*\b(unlabeled|unlabelled|no label|missing label|unknown contents|unknown chemical)\b/i.test(combined);
 
     const hasStoredHydraulicEnergy =
       /\b(hydraulic|pneumatic|stored pressure|stored energy|ram|cylinder)\b.*\b(drop|fall|release|relieved|not relieved|bleed|bled|pressure)\b/i.test(combined) ||
-      /\b(stored pressure|stored energy)\b.*\b(hydraulic|pneumatic|ram|cylinder)\b/i.test(combined);
+      /\b(stored pressure|stored energy)\b.*\b(hydraulic|pneumatic|ram|cylinder)\b/i.test(combined) ||
+      /\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(hydraulic|pressure)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(combined) ||
+      /\b(hydraulic|pressure)\b.*\b(holding|supporting)\b.*\b(raised|elevated|suspended)\b.*\b(bucket|boom|component|crusher|load)\b.*\b(no blocking|not blocked|without blocking|no cribbing)\b/i.test(combined);
 
     const hasOverheadUtilityEquipmentExposure =
       /\b(overhead utility|overhead power|power line|utility line|energized line)\b.*\b(excavation|excavator|boom|equipment|contact|route)\b/i.test(combined) ||
@@ -428,6 +449,7 @@ export class InspectionCitationRecoveryService {
 
     const hasAsbestosLeadDemolitionExposure =
       /\b(asbestos|lead)\b.*\b(insulation|dust|demolition|demo|renovation|prep|suspect|suspicion)\b/i.test(combined) ||
+      /\b(insulation|dust|demolition|demo|renovation|prep|suspect|suspicion)\b.*\b(asbestos|lead|acm|presumed asbestos)\b/i.test(combined) ||
       /\b(old insulation|paint chips|lead dust)\b/i.test(combined);
 
     const hasBatteryAcidSpillExposure =
@@ -459,16 +481,23 @@ export class InspectionCitationRecoveryService {
       /\b(fire extinguisher|extinguisher)\b.*\b(blocked|obstructed|not accessible|inaccessible)\b/i.test(combined);
 
     const hasLadderConditionOrUseExposure =
-      /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail|muddy base|soft base|unstable|short distance above the landing|landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b/i.test(combined) ||
-      /\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail|muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
+      /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail|muddy base|soft base|unstable|short distance above the landing|landing|not secured|wrong angle|top step|top cap|folded|leaning|horizontal|rated capacity)\b/i.test(combined) ||
+      /\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail|muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|top cap|folded|leaning|horizontal|rated capacity)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
 
     const hasLadderPhysicalDefect =
       /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail)\b/i.test(combined) ||
       /\b(damaged|broken|cracked|defective|loose rung|broken rung|side rail)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
 
     const hasLadderSetupMisuse =
-      /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b/i.test(combined) ||
-      /\b(muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|folded|leaning|horizontal|rated capacity)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
+      /\b(ladder|stepladder|extension ladder|portable ladder)\b.*\b(muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|top cap|folded|leaning|horizontal|rated capacity)\b/i.test(combined) ||
+      /\b(muddy base|soft base|unstable|short distance above the landing|not secured|wrong angle|top step|top cap|folded|leaning|horizontal|rated capacity)\b.*\b(ladder|stepladder|extension ladder|portable ladder)\b/i.test(combined);
+
+    const hasMineParkingGradeChockExposure =
+      hasMineScope &&
+      /\b(haul truck|truck|loader|mobile equipment|equipment)\b/i.test(combined) &&
+      /\b(parked|parking|left)\b/i.test(combined) &&
+      /\b(grade|slope|incline|ramp)\b/i.test(combined) &&
+      /\b(no wheel chocks|no chocks|without chocks|brake status unknown|brake unknown|not chocked)\b/i.test(combined);
 
     if (hasMobileEquipment && hasTrafficExposure && !isCoalMineContext) {
       if (hasMineScope) {
@@ -555,6 +584,56 @@ export class InspectionCitationRecoveryService {
       );
     }
 
+    if (hasExcavationProtectiveSystemEvidence && hasConstructionScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1926.652(a)(1)',
+          'Requirements for protective systems',
+          'employee entry in a trench or excavation with cave-in indicators or missing protective system',
+        ),
+        this.makeRecoveredStandard(
+          '29 CFR 1926.651(j)(2)',
+          'Specific excavation requirements',
+          'excavation spoil or material at the edge may create additional cave-in exposure',
+        ),
+      );
+    }
+
+    if (hasWalkingSurfaceSpillExposure && hasOshaGeneralScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.22(a)(2)',
+          'Walking-working surfaces',
+          'liquid or material spill contaminates an employee walking-working surface',
+        ),
+      );
+    }
+
+    if (hasStairHandrailExposure && hasOshaGeneralScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.28(b)(11)',
+          'Duty to have fall protection and falling object protection',
+          'fixed stairway or open-side stair exposure lacks required rail or handrail protection',
+        ),
+        this.makeRecoveredStandard(
+          '29 CFR 1910.29(f)',
+          'Fall protection systems and falling object protection criteria and practices',
+          'handrail and stair-rail system criteria are implicated by missing or defective stair rail components',
+        ),
+      );
+    }
+
+    if (hasMeasuredNoiseProgramEvidence && hasOshaGeneralScope) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '29 CFR 1910.95',
+          'Occupational noise exposure',
+          'measured high occupational noise exposure with missing hearing-conservation controls',
+        ),
+      );
+    }
+
     if (hasSolventVentilationExposure && hasOshaGeneralScope) {
       recovered.push(
         this.makeRecoveredStandard(
@@ -636,6 +715,16 @@ export class InspectionCitationRecoveryService {
           '30 CFR 56.9300',
           'Berms or guardrails',
           'surface mine roadway or dump-point berm/edge-control exposure',
+        ),
+      );
+    }
+
+    if (hasMineParkingGradeChockExposure) {
+      recovered.push(
+        this.makeRecoveredStandard(
+          '30 CFR 56.14207',
+          'Parking procedures for unattended equipment',
+          'mobile equipment parked on a grade requires effective braking, chocking, or equivalent protection from movement',
         ),
       );
     }
