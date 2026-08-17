@@ -335,23 +335,26 @@ export class BillingService {
     return { received: true };
   }
 
+  /**
+   * Entitlement is derived from Stripe's `status` alone, not from comparing
+   * our locally cached `currentPeriodEnd` against server wall-clock time.
+   * A scheduled cancel-at-period-end subscription stays `status: 'active'`
+   * right up until Stripe itself transitions it — that transition is what
+   * this must react to, immediately and without a grace window. A
+   * periodEnd-based grace period previously lived here to keep Pro access
+   * alive after `status` flipped to 'canceled'; verified via a Stripe Test
+   * Clock (see verification/insite-billing-lifecycle-2026-08-17) that it
+   * incorrectly kept Pro access active after Stripe had fully ended the
+   * subscription, because `currentPeriodEnd` reflects Stripe's timeline, not
+   * necessarily anything still owed relative to this server's clock — e.g.
+   * an immediate cancellation, failed-renewal termination, or admin-driven
+   * Stripe-side cancellation would all leave a future-dated period end on a
+   * subscription Stripe already considers over.
+   */
   private resolveEffectiveTier(subscription?: UserSubscription | null): BillingTier {
     if (!subscription) return 'free';
 
-    const now = new Date();
-    const periodEnd = subscription.currentPeriodEnd
-      ? new Date(subscription.currentPeriodEnd)
-      : null;
-
     if (subscription.status === 'active' || subscription.status === 'trialing') {
-      return normalizeBillingTier(subscription.tier);
-    }
-
-    if (
-      subscription.status === 'canceled' &&
-      periodEnd &&
-      periodEnd.getTime() > now.getTime()
-    ) {
       return normalizeBillingTier(subscription.tier);
     }
 

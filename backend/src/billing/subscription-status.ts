@@ -21,24 +21,29 @@ export function normalizeStripeSubscriptionStatus(status?: string | null): Strip
   return "none";
 }
 
+/**
+ * Entitlement is derived from Stripe's `status` alone. This previously also
+ * granted access when `status === "canceled"` but `currentPeriodEnd` was
+ * still in the future, as a grace window for an already-paid-for period.
+ * Verified via a Stripe Test Clock (see
+ * verification/insite-billing-lifecycle-2026-08-17) that this let Pro access
+ * survive after Stripe had genuinely ended the subscription — Stripe's own
+ * `status` transition is the entitlement-ending event; comparing a cached
+ * period-end timestamp against server wall-clock time doesn't reliably
+ * agree with it (this account's only cancellation path keeps `status`
+ * "active" until the exact cancel_at moment, so there is no real cancelled-
+ * but-still-owed window to protect).
+ */
 export function resolveAccessTier(
   subscriptionTier?: string | null,
   status?: string | null,
-  currentPeriodEnd?: Date | string | null,
-  now = new Date(),
+  _currentPeriodEnd?: Date | string | null,
 ): BillingTier {
   const tier = normalizeBillingTier(subscriptionTier);
   const normalizedStatus = normalizeStripeSubscriptionStatus(status);
 
   if (normalizedStatus === "active" || normalizedStatus === "trialing") {
     return tier;
-  }
-
-  if (normalizedStatus === "canceled" && currentPeriodEnd) {
-    const periodEnd = currentPeriodEnd instanceof Date ? currentPeriodEnd : new Date(currentPeriodEnd);
-    if (Number.isFinite(periodEnd.getTime()) && periodEnd.getTime() > now.getTime()) {
-      return tier;
-    }
   }
 
   return "free";

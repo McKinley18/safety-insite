@@ -48,8 +48,10 @@ assert(hasActivePaidAccess({ tier: "pro", status: "incomplete" }) === false, "in
 assert(hasActivePaidAccess({ tier: "pro", status: "unpaid" }) === false, "unpaid does not unlock paid access");
 assert(hasActivePaidAccess({ tier: "pro", status: "paused" }) === false, "paused does not unlock paid access");
 assert(
-  resolveAccessTier("pro", "canceled", new Date(Date.now() + 60_000)) === "pro",
-  "canceled period-end grace",
+  resolveAccessTier("pro", "canceled", new Date(Date.now() + 60_000)) === "free",
+  "canceled drops to free immediately regardless of a future-dated cached period end " +
+    "(verified via Stripe Test Clock: status is the authoritative entitlement signal, " +
+    "not a locally cached period-end timestamp)",
 );
 assert(resolveAccessTier("pro", "unpaid") === "free", "unpaid drops to free");
 assert(normalizeBillingTier("local-dev-bypass-user") === "free", "non-tier local dev value normalizes free");
