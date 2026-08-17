@@ -17,17 +17,23 @@ export class EntitlementService {
 
   async hasFeature(user: any, feature: BillingFeatureKey): Promise<boolean> {
     const userId = String(user?.userId || '');
-    const jwtTier = normalizeBillingTier(
-      user?.planCode || user?.effectivePlanCode || user?.subscriptionTier,
-    );
-    if (hasEntitlement(jwtTier, feature)) return true;
-    if (!userId || !/^[0-9a-f-]{36}$/i.test(userId)) return false;
+    const hasValidUserId = Boolean(userId) && /^[0-9a-f-]{36}$/i.test(userId);
+    const subscription = hasValidUserId
+      ? await this.subscriptions.findOne({ where: { userId } }).catch(() => null)
+      : null;
 
     // Stripe webhooks update the subscription row immediately, but the JWT's
-    // plan claim is only refreshed at next login. Check live subscription
-    // state so a completed checkout unlocks Pro features without requiring
-    // the user to sign out and back in.
-    const subscription = await this.subscriptions.findOne({ where: { userId } }).catch(() => null);
+    // plan claim is only refreshed at next login. When a subscription row
+    // exists, its live state is authoritative in BOTH directions: it must
+    // unlock Pro features the moment a checkout completes without requiring
+    // sign-out/sign-in, and — just as importantly — it must revoke Pro
+    // features the moment Stripe ends the subscription, even though the
+    // still-unexpired JWT keeps claiming the old plan (verified via a
+    // Stripe Test Clock that a stale Pro JWT otherwise kept unlocking Pro
+    // endpoints after Stripe had fully terminated the subscription: see
+    // verification/insite-billing-lifecycle-2026-08-17). Only fall back to
+    // the JWT's plan claim when there is no subscription row to check
+    // against (e.g. an organization-seat plan carried purely on the JWT).
     if (subscription) {
       const liveTier = resolveAccessTier(
         subscription.tier,
@@ -35,7 +41,14 @@ export class EntitlementService {
         subscription.currentPeriodEnd,
       );
       if (hasEntitlement(liveTier, feature)) return true;
+    } else {
+      const jwtTier = normalizeBillingTier(
+        user?.planCode || user?.effectivePlanCode || user?.subscriptionTier,
+      );
+      if (hasEntitlement(jwtTier, feature)) return true;
     }
+
+    if (!hasValidUserId) return false;
 
     const now = new Date();
     const grant = await this.grants.findOne({

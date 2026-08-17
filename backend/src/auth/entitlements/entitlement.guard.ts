@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable, SetMetadata } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { BillingFeatureKey, hasEntitlement, normalizeBillingTier } from '../../billing/plan-entitlements';
+import { BillingFeatureKey } from '../../billing/plan-entitlements';
 import { EntitlementService } from './entitlement.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -31,16 +31,13 @@ export class EntitlementGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest();
     const user = request.user || {};
-    const effectivePlanCode = normalizeBillingTier(
-      user.planCode ||
-        user.effectivePlanCode ||
-        user.tier ||
-        user.billingTier ||
-        user.subscriptionTier,
-    );
 
-    if (hasEntitlement(effectivePlanCode, entitlement) ||
-        await this.entitlements.hasFeature(user, entitlement)) return true;
+    // Route entirely through EntitlementService, which treats a live
+    // UserSubscription row as authoritative over the JWT's cached plan claim
+    // when one exists — a JWT issued while Pro must not keep unlocking Pro
+    // features after Stripe has since ended the subscription (verified via
+    // a Stripe Test Clock: see verification/insite-billing-lifecycle-2026-08-17).
+    if (await this.entitlements.hasFeature(user, entitlement)) return true;
 
     const actorUserId = typeof user.userId === 'string' && /^[0-9a-f-]{36}$/i.test(user.userId) ? user.userId : null;
     const organizationId = typeof user.organizationId === 'string' && /^[0-9a-f-]{36}$/i.test(user.organizationId) ? user.organizationId : null;
