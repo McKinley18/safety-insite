@@ -16,6 +16,20 @@ import { EntitlementGrant } from '../billing/entitlement-grant.entity';
 import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { Notification } from '../notifications/notification.entity';
+import { RefreshToken } from './entities/refresh-token.entity';
+
+// Parses simple "<number><s|m|h|d>" durations (matches the format already
+// used for JWT_EXPIRES_IN/JWT_REFRESH_EXPIRES_IN). Falls back to 7 days for
+// anything unrecognized rather than failing session issuance.
+function parseDurationMs(value: string | undefined, fallbackMs: number): number {
+  const match = /^(\d+)\s*(s|m|h|d)$/i.exec(String(value || '').trim());
+  if (!match) return fallbackMs;
+  const amount = Number(match[1]);
+  const unitMs = { s: 1000, m: 60_000, h: 3_600_000, d: 86_400_000 }[match[2].toLowerCase()];
+  return amount * (unitMs as number);
+}
+
+const REFRESH_TOKEN_TTL_MS = parseDurationMs(process.env.JWT_REFRESH_EXPIRES_IN, 7 * 86_400_000);
 
 function getEmployerProPromoCodes(): string[] {
   return String(process.env.EMPLOYER_PRO_PROMO_CODES || '')
@@ -53,6 +67,8 @@ export class AuthService {
     private securityAuditRepo: Repository<SecurityAuditEvent>,
     @InjectRepository(Notification)
     private notificationRepo: Repository<Notification>,
+    @InjectRepository(RefreshToken)
+    private refreshTokenRepo: Repository<RefreshToken>,
     private dataSource: DataSource,
   ) {}
 
@@ -152,6 +168,84 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
+    const { membership, organization, billingSnapshot, effectivePlanCode } =
+      await this.resolveSessionContext(user);
+
+    const token = this.signAccessToken(user, membership, organization, billingSnapshot, effectivePlanCode);
+    const refreshToken = await this.issueRefreshToken(user.id);
+
+    return {
+      message: 'Login successful',
+      token,
+      refreshToken,
+      user: await this.buildUserSnapshot(user, membership, organization, billingSnapshot, effectivePlanCode),
+      metadata,
+    };
+  }
+
+  /**
+   * Rotates a refresh token: the presented token is atomically revoked and
+   * replaced. A short-lived (15m) access token means a normal inspection
+   * session outlives it many times over; the frontend calls this on a 401
+   * from the access token and retries transparently, so an active user is
+   * never bounced to /login mid-workflow. Presenting a token that was
+   * already rotated out (revokedAt set) is treated as replay/theft: every
+   * other outstanding token for that user is revoked too, forcing a fresh
+   * login rather than silently trusting the stolen token's chain.
+   */
+  async refresh(rawRefreshToken: string) {
+    const tokenHash = this.hashToken(rawRefreshToken);
+    const existing = await this.refreshTokenRepo.findOne({ where: { tokenHash } });
+
+    if (!existing) throw new UnauthorizedException('Invalid refresh token');
+
+    if (existing.revokedAt) {
+      await this.refreshTokenRepo.update(
+        { userId: existing.userId, revokedAt: IsNull() },
+        { revokedAt: new Date() },
+      );
+      throw new UnauthorizedException('Invalid refresh token');
+    }
+
+    if (existing.expiresAt < new Date()) {
+      throw new UnauthorizedException('Refresh token expired');
+    }
+
+    const user = await this.userRepo.findOne({ where: { id: existing.userId } });
+    if (!user || user.deletedAt) throw new UnauthorizedException();
+
+    existing.revokedAt = new Date();
+    await this.refreshTokenRepo.save(existing);
+
+    const { membership, organization, billingSnapshot, effectivePlanCode } =
+      await this.resolveSessionContext(user);
+
+    const token = this.signAccessToken(user, membership, organization, billingSnapshot, effectivePlanCode);
+    const refreshToken = await this.issueRefreshToken(user.id);
+
+    return {
+      token,
+      refreshToken,
+      user: await this.buildUserSnapshot(user, membership, organization, billingSnapshot, effectivePlanCode),
+    };
+  }
+
+  // Best-effort: revokes the presented refresh token so it can no longer be
+  // used to mint new access tokens. Deliberately does not require a valid
+  // access token — a user whose access token already expired must still be
+  // able to log out and kill their refresh token.
+  async logout(rawRefreshToken?: string) {
+    if (rawRefreshToken) {
+      const tokenHash = this.hashToken(rawRefreshToken);
+      await this.refreshTokenRepo.update(
+        { tokenHash, revokedAt: IsNull() },
+        { revokedAt: new Date() },
+      );
+    }
+    return { message: 'Logged out' };
+  }
+
+  private async resolveSessionContext(user: User) {
     const membership = await this.orgService.getActiveMembership(user.id);
     const organization = membership?.organizationId
       ? await this.orgService.findOne(membership.organizationId).catch(() => null)
@@ -171,7 +265,17 @@ export class AuthService {
         'free',
     );
 
-    const token = this.jwtService.sign({
+    return { membership, organization, billingSnapshot, effectivePlanCode };
+  }
+
+  private signAccessToken(
+    user: User,
+    membership: OrganizationMembership | null | undefined,
+    organization: any,
+    billingSnapshot: any,
+    effectivePlanCode: string,
+  ): string {
+    return this.jwtService.sign({
       userId: user.id,
       email: user.email,
       type: user.type,
@@ -190,13 +294,20 @@ export class AuthService {
       deletedAt: user.deletedAt,
       organizationId: membership?.organizationId || null,
     });
+  }
 
-    return {
-      message: 'Login successful',
-      token,
-      user: await this.buildUserSnapshot(user, membership, organization, billingSnapshot, effectivePlanCode),
-      metadata,
-    };
+  private async issueRefreshToken(userId: string): Promise<string> {
+    const raw = randomBytes(48).toString('hex');
+    await this.refreshTokenRepo.save(this.refreshTokenRepo.create({
+      userId,
+      tokenHash: this.hashToken(raw),
+      expiresAt: new Date(Date.now() + REFRESH_TOKEN_TTL_MS),
+    }));
+    return raw;
+  }
+
+  private hashToken(token: string): string {
+    return createHash('sha256').update(String(token || '')).digest('hex');
   }
 
   async getProfile(userId: string) {
@@ -243,25 +354,8 @@ export class AuthService {
   }
 
   private async loadUserSnapshot(user: User) {
-    const membership = await this.orgService.getActiveMembership(user.id);
-    const organization = membership?.organizationId
-      ? await this.orgService.findOne(membership.organizationId).catch(() => null)
-      : null;
-
-    const billingSnapshot = await this.billingService.getBillingStatus({
-      userId: user.id,
-      email: user.email,
-      planCode: organization?.planCode || user.planCode || 'free',
-      type: user.type,
-    }).catch(() => null);
-
-    const effectivePlanCode = normalizeBillingTier(
-      billingSnapshot?.tier ||
-        organization?.planCode ||
-        user.planCode ||
-        'free',
-    );
-
+    const { membership, organization, billingSnapshot, effectivePlanCode } =
+      await this.resolveSessionContext(user);
     return this.buildUserSnapshot(user, membership, organization, billingSnapshot, effectivePlanCode);
   }
 
@@ -364,6 +458,12 @@ export class AuthService {
 
         await manager.delete(Notification, { userId: user.id });
 
+        await manager.update(
+          RefreshToken,
+          { userId: user.id, revokedAt: IsNull() },
+          { revokedAt: now },
+        );
+
         await manager.update(User, { id: user.id }, {
           name: 'Deleted User',
           email: anonymizedEmail,
@@ -448,6 +548,10 @@ export class AuthService {
     user.passwordResetExpiresAt = null;
     user.passwordChangedAt = new Date();
     await this.userRepo.save(user);
+    await this.refreshTokenRepo.update(
+      { userId: user.id, revokedAt: IsNull() },
+      { revokedAt: new Date() },
+    );
     return { message: 'Password reset successful' };
   }
 

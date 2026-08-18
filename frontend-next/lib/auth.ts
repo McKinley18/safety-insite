@@ -1,9 +1,11 @@
 import { API_BASE_URL } from "./safescope";
+import { apiFetch } from "./apiFetch";
 import { lockSession } from "./pinSecurity";
 import { stripInlinePhotoData } from "./cloudReports";
 
 export const AUTH_TOKEN_KEYS = ["sentinel_auth_token"] as const;
 export const AUTH_USER_KEY = "sentinel_auth_user";
+export const AUTH_REFRESH_TOKEN_KEY = "sentinel_auth_refresh_token";
 export const LOCAL_DEV_AUTH_TOKEN = "local-dev-token";
 
 const SENSITIVE_LOCAL_STORAGE_KEYS = [
@@ -78,8 +80,22 @@ export function hasAuthToken() {
   return Boolean(getAuthToken());
 }
 
-export function setAuthSession(token: string, user?: SentinelAuthUser | null) {
+export function getRefreshToken() {
+  if (typeof window === "undefined") return null;
+  return window.localStorage.getItem(AUTH_REFRESH_TOKEN_KEY);
+}
+
+export function setAuthSession(
+  token: string,
+  refreshTokenOrUser?: string | SentinelAuthUser | null,
+  maybeUser?: SentinelAuthUser | null,
+) {
   if (typeof window === "undefined") return;
+
+  // Accepts either (token, user) [local-dev bypass, no real refresh token]
+  // or (token, refreshToken, user) [real backend session].
+  const refreshToken = typeof refreshTokenOrUser === "string" ? refreshTokenOrUser : null;
+  const user = typeof refreshTokenOrUser === "string" ? maybeUser : refreshTokenOrUser;
 
   clearAuthSession();
 
@@ -87,9 +103,85 @@ export function setAuthSession(token: string, user?: SentinelAuthUser | null) {
     window.localStorage.setItem(key, token);
   }
 
+  if (refreshToken) {
+    window.localStorage.setItem(AUTH_REFRESH_TOKEN_KEY, refreshToken);
+  }
+
   if (user) {
     window.localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
   }
+}
+
+let refreshInFlight: Promise<boolean> | null = null;
+
+// Silently exchanges the stored refresh token for a new access token +
+// rotated refresh token. Callers (apiFetch's 401 handler) retry their
+// original request once this resolves true. De-duped via refreshInFlight
+// so concurrent 401s from several in-flight requests share one refresh call
+// instead of racing to rotate the same token.
+export async function refreshAuthSession(): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+  if (isLocalDevAuthBypassEnabled()) return false;
+
+  if (!refreshInFlight) {
+    refreshInFlight = (async () => {
+      const refreshToken = getRefreshToken();
+      if (!refreshToken) return false;
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/refresh`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ refreshToken }),
+        });
+
+        if (!response.ok) {
+          clearAuthSession();
+          return false;
+        }
+
+        const data = await response.json();
+        if (!data?.token || !data?.refreshToken) {
+          clearAuthSession();
+          return false;
+        }
+
+        setAuthSession(data.token, data.refreshToken, data.user);
+        return true;
+      } catch {
+        return false;
+      }
+    })();
+  }
+
+  try {
+    return await refreshInFlight;
+  } finally {
+    refreshInFlight = null;
+  }
+}
+
+// Revokes the refresh token server-side (best-effort) before clearing local
+// session state, so "Sign Out" actually ends the session rather than just
+// hiding the token client-side while it remains usable to mint new access
+// tokens until it expires.
+export async function logout() {
+  if (typeof window === "undefined") return;
+
+  const refreshToken = getRefreshToken();
+  if (refreshToken) {
+    try {
+      await fetch(`${API_BASE_URL}/auth/logout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refreshToken }),
+      });
+    } catch {
+      // Best-effort: local session state is cleared regardless below.
+    }
+  }
+
+  clearAuthSession();
 }
 
 export function getAuthUser<T extends SentinelAuthUser = SentinelAuthUser>() {
@@ -114,6 +206,7 @@ export function clearAuthSession() {
     window.localStorage.removeItem(key);
   }
   window.localStorage.removeItem("token");
+  window.localStorage.removeItem(AUTH_REFRESH_TOKEN_KEY);
 
   SENSITIVE_LOCAL_STORAGE_KEYS.forEach((key) => window.localStorage.removeItem(key));
 
@@ -130,7 +223,7 @@ export function authHeaders() {
 }
 
 export async function getMyProfile() {
-  const response = await fetch(`${API_BASE_URL}/auth/me`, {
+  const response = await apiFetch(`${API_BASE_URL}/auth/me`, {
     headers: authHeaders(),
   });
 
@@ -146,7 +239,7 @@ export async function getMyProfile() {
 }
 
 export async function updateMyProfile(payload: { firstName?: string; lastName?: string }) {
-  const response = await fetch(`${API_BASE_URL}/auth/me`, {
+  const response = await apiFetch(`${API_BASE_URL}/auth/me`, {
     method: "PATCH",
     headers: authHeaders(),
     body: JSON.stringify(payload),
@@ -170,7 +263,7 @@ export async function updateMyProfile(payload: { firstName?: string; lastName?: 
 }
 
 export async function getOrganizationSettings() {
-  const response = await fetch(`${API_BASE_URL}/organization/me/settings`, {
+  const response = await apiFetch(`${API_BASE_URL}/organization/me/settings`, {
     headers: authHeaders(),
   });
 
@@ -205,7 +298,7 @@ export async function updateOrganizationSettings(payload: {
   name?: string;
   logoPath?: string;
 }) {
-  const response = await fetch(`${API_BASE_URL}/organization/me/settings`, {
+  const response = await apiFetch(`${API_BASE_URL}/organization/me/settings`, {
     method: "PATCH",
     headers: authHeaders(),
     body: JSON.stringify(payload),
@@ -219,7 +312,7 @@ export async function updateOrganizationSettings(payload: {
 }
 
 export async function getOrganizationMembers() {
-  const response = await fetch(`${API_BASE_URL}/organization/me/members`, {
+  const response = await apiFetch(`${API_BASE_URL}/organization/me/members`, {
     headers: authHeaders(),
   });
 
@@ -231,7 +324,7 @@ export async function getOrganizationMembers() {
 }
 
 export async function getOrganizationInvites() {
-  const response = await fetch(`${API_BASE_URL}/organization/me/invites`, {
+  const response = await apiFetch(`${API_BASE_URL}/organization/me/invites`, {
     headers: authHeaders(),
   });
 
@@ -246,7 +339,7 @@ export async function inviteOrganizationMember(payload: {
   email: string;
   role: string;
 }) {
-  const response = await fetch(`${API_BASE_URL}/organization/me/invite`, {
+  const response = await apiFetch(`${API_BASE_URL}/organization/me/invite`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify(payload),
@@ -260,7 +353,7 @@ export async function inviteOrganizationMember(payload: {
 }
 
 export async function saveWorkspaceReport(report: any) {
-  const response = await fetch(`${API_BASE_URL}/reports`, {
+  const response = await apiFetch(`${API_BASE_URL}/reports`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({
@@ -276,7 +369,7 @@ export async function saveWorkspaceReport(report: any) {
 }
 
 export async function getWorkspaceReports() {
-  const response = await fetch(`${API_BASE_URL}/reports`, {
+  const response = await apiFetch(`${API_BASE_URL}/reports`, {
     headers: authHeaders(),
   });
 
@@ -292,7 +385,7 @@ export async function addReportAttachment(reportId: string, payload: {
   mimeType?: string;
   fileName?: string;
 }) {
-  const response = await fetch(`${API_BASE_URL}/reports/${reportId}/attachments`, {
+  const response = await apiFetch(`${API_BASE_URL}/reports/${reportId}/attachments`, {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify(payload),
@@ -310,7 +403,7 @@ export async function uploadReportAttachment(reportId: string, file: File) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await fetch(`${API_BASE_URL}/reports/${reportId}/attachments/upload`, {
+  const response = await apiFetch(`${API_BASE_URL}/reports/${reportId}/attachments/upload`, {
     method: "POST",
     headers: {
       ...(token ? { Authorization: `Bearer ${token}` } : {}),

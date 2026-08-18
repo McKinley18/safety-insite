@@ -16,6 +16,7 @@ import { EntitlementGrant } from '../billing/entitlement-grant.entity';
 import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { Notification } from '../notifications/notification.entity';
+import { RefreshToken } from './entities/refresh-token.entity';
 
 // Global: TokenValidityService must be injectable into JwtGuard from every
 // feature module (sites, inspections, HazLenz, reports, etc.) without each
@@ -30,6 +31,7 @@ import { Notification } from '../notifications/notification.entity';
       InspectionAssignment,
       SecurityAuditEvent,
       Notification,
+      RefreshToken,
     ]),
     OrganizationsModule,
     BillingModule,

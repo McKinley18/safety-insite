@@ -1,4 +1,5 @@
 import { authHeaders, getAuthToken } from "./auth";
+import { apiFetch } from "./apiFetch";
 import { API_BASE_URL } from "./safescope";
 
 export type PersistedSite = {
@@ -154,7 +155,7 @@ export type HazLenzAnalysisResult = Record<string, unknown> & {
 };
 
 async function apiJson<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const response = await apiFetch(`${API_BASE_URL}${path}`, {
     ...init,
     headers: { ...authHeaders(), ...(init?.headers || {}) },
   });
@@ -213,7 +214,7 @@ export async function uploadInspectionEvidence(inspectionId: string, file: File)
   const data = new FormData();
   data.append("file", file);
   const token = getAuthToken();
-  const response = await fetch(
+  const response = await apiFetch(
     `${API_BASE_URL}/inspections/${encodeURIComponent(inspectionId)}/evidence`,
     {
       method: "POST",
@@ -377,7 +378,7 @@ export async function archivePersistedReport(reportId: string) {
 }
 
 export async function downloadPersistedReport(reportId: string, version: number) {
-  const response = await fetch(persistedReportDownloadUrl(reportId, version), {
+  const response = await apiFetch(persistedReportDownloadUrl(reportId, version), {
     headers: authHeaders(),
   });
   if (response.status === 401) throw new Error("AUTH_REQUIRED");

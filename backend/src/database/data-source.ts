@@ -43,6 +43,7 @@ import { Hazard } from '../inspection/hazard.entity';
 import { SafeScopeAuditRecordEntity } from '../safescope-v2/persistence/audit-record.entity';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { PlatformSupportGrant } from '../auth/entities/platform-support-grant.entity';
+import { RefreshToken } from '../auth/entities/refresh-token.entity';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
 import { InspectionAssignment } from '../inspection/entities/inspection-assignment.entity';
 import { Observation } from '../inspection/entities/observation.entity';
@@ -143,6 +144,7 @@ export const dataSource = new DataSource({
     InspectionReport,
     InspectionReportVersion,
     LegacyReportQuarantine,
+    RefreshToken,
   ],
   migrations: [isTsNode ? 'src/database/migrations/*.ts' : 'dist/database/migrations/*.js'],
   synchronize: false,

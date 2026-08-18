@@ -80,7 +80,7 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (data.token) {
-        setAuthSession(data.token, data.user);
+        setAuthSession(data.token, data.refreshToken, data.user);
       }
 
       setStatusType("success");

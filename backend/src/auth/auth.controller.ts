@@ -19,6 +19,18 @@ class PasswordResetRequestDto {
   email: string;
 }
 
+class RefreshDto {
+  @IsString()
+  @MinLength(1)
+  refreshToken: string;
+}
+
+class LogoutDto {
+  @IsOptional()
+  @IsString()
+  refreshToken?: string;
+}
+
 class DeleteAccountDto {
   @IsString()
   password: string;
@@ -88,6 +100,18 @@ export class AuthController {
   @Post('login')
   login(@Body() dto: LoginDto, @Req() req: any) {
     return this.authService.login(dto.email, dto.password, req);
+  }
+
+  @Throttle({ default: { limit: 20, ttl: 60000 } })
+  @Post('refresh')
+  refresh(@Body() dto: RefreshDto) {
+    return this.authService.refresh(dto.refreshToken);
+  }
+
+  @Throttle({ default: { limit: 20, ttl: 60000 } })
+  @Post('logout')
+  logout(@Body() dto: LogoutDto) {
+    return this.authService.logout(dto.refreshToken);
   }
 
   @Throttle({ default: { limit: 3, ttl: 60000 } })

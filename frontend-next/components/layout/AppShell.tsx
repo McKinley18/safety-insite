@@ -19,7 +19,7 @@ import {
 } from "@/lib/pinSecurity";
 import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
 import { AI_ENGINE_NAME, APP_NAME, BRAND_HEADER_LOGO } from "@/lib/brand";
-import { clearAuthSession, hasAuthToken } from "@/lib/auth";
+import { hasAuthToken, logout } from "@/lib/auth";
 
 const authPublicRoutes = [
   "/",
@@ -342,8 +342,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                       <button
                         type="button"
                         onClick={() => {
-                          clearAuthSession();
-                          window.location.href = "/login";
+                          logout().finally(() => {
+                            window.location.href = "/login";
+                          });
                         }}
                         className="block w-full min-h-[52px] border-t border-app-border px-5 py-4 text-left text-[15px] font-black text-red-700 hover:bg-red-600 hover:text-white focus:bg-red-600 focus:text-white focus:outline-none active:bg-red-700 transition-colors dark:text-red-300 dark:hover:bg-red-600 dark:hover:text-white dark:focus:bg-red-600 dark:focus:text-white"
                       >

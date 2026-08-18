@@ -62,8 +62,19 @@ function findingRiskBand(riskSnapshot: Snapshot | null | undefined): string | un
   return band && band !== 'Not established' ? band : undefined;
 }
 
-/** Honest, never-fabricated standard summary for a finding, drawn only from what HazLenz actually produced. */
-function extractStandard(finding: Snapshot, analyses: Snapshot[]): { citation: string; heading: string; text: string } | null {
+/**
+ * Honest, never-fabricated standard summary for a finding, drawn only from what HazLenz
+ * actually produced. executiveJudgment.topStandard is the single most-defensible citation
+ * for the WHOLE observation/analysis, not per-hazard -- HazLenz's decomposition schema
+ * (multiHazardDecomposition.hazards[]) carries no per-hazard citation at all. Attributing
+ * it directly to a finding is only honest when the analysis backs exactly one finding; once
+ * an observation decomposes into multiple hazards, stamping every one of them with the same
+ * observation-level citation misrepresents it as finding-specific when it may only actually
+ * apply to whichever single hazard was dominant. Omit it for the decomposed case rather than
+ * fabricate a per-finding match the underlying data doesn't support.
+ */
+function extractStandard(finding: Snapshot, analyses: Snapshot[], isDecomposedObservation: boolean): { citation: string; heading: string; text: string } | null {
+  if (isDecomposedObservation) return null;
   const analysis = analyses.find((a) => a.id === finding.originatingAnalysisId) || analyses[0];
   const snap = analysis?.resultSnapshot || {};
   const top = snap.executiveJudgment?.topStandard || snap.standardsReasoning?.topDefensible?.[0] || null;
@@ -332,6 +343,11 @@ function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analyse
   doc.addPage();
   sectionHeading(doc, 'Detailed Findings');
 
+  const findingCountByObservation = new Map<string, number>();
+  for (const f of findings) {
+    findingCountByObservation.set(f.observationId, (findingCountByObservation.get(f.observationId) || 0) + 1);
+  }
+
   findings.forEach((f, index) => {
     if (index > 0) {
       ensureSpace(doc, 100);
@@ -352,7 +368,11 @@ function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analyse
 
     ensureSpace(doc, 30);
     label(doc, 'Finding');
-    body(doc, f.conclusion || 'No finding conclusion recorded.');
+    // f.conclusion is HazLenz's internal one-or-two-word hazard-mechanism tag (e.g. "guard",
+    // "cord") -- accurate as an internal classifier value but meaningless standing alone in a
+    // customer-facing report. sourceCandidate.observationFragment is the actual excerpt of the
+    // observation text that produced this specific finding, which reads as a real sentence.
+    body(doc, f.sourceCandidate?.observationFragment || f.conclusion || 'No finding conclusion recorded.');
     doc.moveDown(0.5);
 
     const risk = f.riskSnapshot;
@@ -371,16 +391,19 @@ function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analyse
     }
 
     const analyses = analysesByObservation.get(f.observationId) || [];
-    const standard = extractStandard(f, analyses);
+    const isDecomposedObservation = (findingCountByObservation.get(f.observationId) || 0) > 1;
+    const standard = extractStandard(f, analyses, isDecomposedObservation);
+    ensureSpace(doc, 40);
+    label(doc, 'Applicable standard');
     if (standard) {
-      ensureSpace(doc, 40);
-      label(doc, 'Applicable standard');
       doc.font('Helvetica-Bold').fontSize(10).fillColor('#0369A1').text(standard.citation + (standard.heading ? ` — ${standard.heading}` : ''), { width: CONTENT_WIDTH });
       if (standard.text) {
         doc.font('Helvetica-Oblique').fontSize(9).fillColor(MUTED).text(`HazLenz standard summary: ${standard.text}`, { width: CONTENT_WIDTH });
       }
-      doc.moveDown(0.5);
+    } else {
+      doc.font('Helvetica-Oblique').fontSize(9.5).fillColor(MUTED).text('Not established for this specific finding.', { width: CONTENT_WIDTH });
     }
+    doc.moveDown(0.5);
 
     const review = f.finalReview;
     if (review) {
@@ -412,6 +435,18 @@ function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analyse
   });
 }
 
+// The generated title for a corrective action is a generic placeholder ("Verify and correct
+// reviewed condition N"); the real actionable content lives in the multi-line description
+// (Immediate/Permanent/Verification). The management-follow-up summary table has room for one
+// line per action, so surface the Immediate step there instead of repeating the placeholder
+// title -- a genuinely custom (reviewer-edited) title is still preferred when present.
+function summaryActionText(a: Snapshot): string {
+  if (a.title && !/^verify and correct reviewed condition/i.test(String(a.title).trim())) return a.title;
+  const immediate = /Immediate:\s*([^\n]+)/i.exec(String(a.description || ''));
+  if (immediate) return immediate[1].trim();
+  return a.title || a.description || 'Corrective action';
+}
+
 function correctiveActionSummary(doc: PDFKit.PDFDocument, findings: Snapshot[], correctiveActions: Snapshot[]) {
   if (!correctiveActions.length) return;
   doc.addPage();
@@ -432,7 +467,7 @@ function correctiveActionSummary(doc: PDFKit.PDFDocument, findings: Snapshot[], 
     ],
     correctiveActions.map((a) => [
       a.findingId && findingNumberById.has(a.findingId) ? `#${findingNumberById.get(a.findingId)}` : '—',
-      a.title || 'Corrective action',
+      summaryActionText(a),
       a.assignedToName || 'Unassigned',
       fmtDateShort(a.dueDate),
       titleCase(a.statusCode),
