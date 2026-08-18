@@ -127,7 +127,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <form onSubmit={handleLogin} className="bg-gradient-to-b from-white to-slate-50/80 p-5 sm:p-8 lg:p-10">
+        <form onSubmit={handleLogin} className="bg-gradient-to-b from-white to-slate-50/80 p-5 text-slate-950 sm:p-8 lg:p-10 dark:from-[#07111F] dark:to-[#0B1320] dark:text-white">
           <div className="mx-auto max-w-md">
             <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">
               Access Safety InSite
