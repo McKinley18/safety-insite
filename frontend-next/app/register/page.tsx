@@ -171,7 +171,7 @@ export default function RegisterPage() {
               {
                 id: "pro" as const,
                 name: "Pro",
-                price: "$6.99/mo",
+                price: "$9.99/mo",
                 badge: "Full access",
                 description: "For regular safety inspection work.",
                 details: "Full HazLenz AI review, professional reports, corrective-action tracking, cloud reports, team tools, and saved history",

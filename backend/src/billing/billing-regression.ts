@@ -37,7 +37,7 @@ assert(resolveTierForPriceId("price_pro_test") === "pro", "resolve pro price");
 assert(resolveTierForPriceId("price_legacy_expert_test") === "pro", "legacy expert price resolves to pro");
 assert(getBillingEntitlements("pro").priorityAiFeatures === true, "pro entitlements include former expert features");
 assert(getBillingEntitlements("free").hazlenzPreview === true, "free preview entitlement");
-assert(BILLING_PLAN_DEFINITIONS.pro.priceMonthly === 6.99, "pro price constant");
+assert(BILLING_PLAN_DEFINITIONS.pro.priceMonthly === 9.99, "pro price constant");
 assert(normalizeStripeSubscriptionStatus("ACTIVE") === "active", "normalize stripe status");
 assert(normalizeStripeSubscriptionStatus("paused") === "paused", "normalize paused status");
 assert(resolveAccessTier("pro", "active") === "pro", "active tier access");

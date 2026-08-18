@@ -122,7 +122,7 @@ export function getPlanDisplayName(plan?: string | null) {
 
 export function getPlanPricing(plan?: string | null) {
   const normalized = normalizePlanCode(plan);
-  if (normalized === "pro") return 6.99;
+  if (normalized === "pro") return 9.99;
   return 0;
 }
 

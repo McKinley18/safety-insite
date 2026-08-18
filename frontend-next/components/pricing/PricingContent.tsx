@@ -55,7 +55,7 @@ const tiers = [
   {
     name: "Pro",
     tier: "pro",
-    price: "$6.99",
+    price: "$9.99",
     cadence: "/month",
     audience: "For safety professionals who need full access to the platform.",
     position: "Full access: HazLenz AI intelligence, cloud reports, team tools, and advanced review.",

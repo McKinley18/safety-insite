@@ -117,7 +117,7 @@ export const BILLING_PLAN_DEFINITIONS: Record<BillingTier, BillingPlanDefinition
   pro: {
     tier: "pro",
     label: "Pro",
-    priceMonthly: 6.99,
+    priceMonthly: 9.99,
     description: "Full access: professional inspection workflow, HazLenz AI review, cloud reports, team and audit tools.",
     stripePriceEnv: "STRIPE_PRO_PRICE_ID",
     legacyStripePriceEnv: "STRIPE_PLUS_PRICE_ID",
