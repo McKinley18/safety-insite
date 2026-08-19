@@ -76,7 +76,14 @@ const standards: Partial<Standard>[] = [
   },
   {
     agencyCode: 'OSHA',
-    citation: '1910.147',
+    // Normalized to the same "29 CFR ..." citation format used by the larger
+    // standards-intelligence seed source for this exact regulation. This
+    // script's own exact-match upsert (below) previously used the bare
+    // "1910.147" format, which does not equal "29 CFR 1910.147" as a string
+    // -- so re-running this script after the other seed pipeline had already
+    // created "29 CFR 1910.147" always inserted a second, duplicate row for
+    // the same regulation instead of updating the existing one.
+    citation: '29 CFR 1910.147',
     partNumber: '1910',
     title: 'The control of hazardous energy',
     standardText: 'This standard covers the servicing and maintenance of machines and equipment in which unexpected energization or startup could cause injury.',
@@ -106,7 +113,13 @@ const standards: Partial<Standard>[] = [
     agencyCode: 'OSHA',
     citation: '1910.22(a)',
     partNumber: '1910',
-    title: 'Walking-working surfaces',
+    // Verified against OSHA's own published text (osha.gov): "Walking-working
+    // surfaces" is the SUBPART name (Subpart D), not this section's or this
+    // paragraph's own title. Section 1910.22's official title is "General
+    // requirements," and paragraph (a) specifically is titled "Surface
+    // conditions." Corrected to name the actual paragraph rather than the
+    // subpart it lives under, matching the 1910.178(p)(1) fix pattern.
+    title: 'Walking-working surfaces - Surface conditions',
     standardText: 'All places of employment, passageways, storerooms, service rooms, and walking-working surfaces shall be kept clean, orderly, and sanitary.',
     plainLanguageSummary: 'Keep walking-working surfaces clean, orderly, and free of hazards.',
     scopeCode: 'general_industry',

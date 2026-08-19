@@ -21,6 +21,11 @@ const unique = (values: string[]) => [...new Set(values.map(value => value.trim(
 
 function standardRecords(response: any) {
   return [
+    // standardDecisions is the report-facing list retained by the display sanitizer (the
+    // primary/suggested/standards arrays are stripped for size before this adapter runs) and is
+    // corpus-hydrated by SafescopeV2Service.hydrateFindingScopedStandards(); it goes FIRST so an
+    // API-boundary placeholder record (title = citation) can never shadow the corpus title.
+    ...list<any>(response?.standardDecisions),
     ...list<any>(response?.primaryStandards),
     ...list<any>(response?.suggestedStandards),
     ...list<any>(response?.standards),
@@ -64,6 +69,14 @@ function questionContract(response: any) {
       materialTo: unique(list<string>(question.impactedDecisions).length
         ? list<string>(question.impactedDecisions)
         : ['standard-applicability']),
+      // Preserve the engine's own criticality so the UI can distinguish a decision-critical
+      // question (jurisdiction unknown, hazard identity, energy state...) from an optional,
+      // confidence-improving one -- instead of presenting every question as "essential".
+      // Note: no question ever blocks the persisted review/finalization workflow; these flags
+      // are advisory presentation metadata, not workflow gates.
+      priority: text(question.priority) || 'important',
+      decisionCritical: Boolean(question.blocksFinalization ?? question.safetyDecisive ?? (text(question.priority) === 'critical')),
+      scope: text(question.scope) || 'finding',
     }));
 }
 
@@ -186,8 +199,13 @@ export function attachGuidedFindingResponse(response: any, request: ClassifyDto)
     title: text(record?.title || record?.heading) || family,
     agency: text(record?.agency || record?.agencyCode) ||
       (citation.includes('30 CFR') ? 'MSHA' : citation.includes('29 CFR') ? 'OSHA' : 'Unconfirmed'),
-    simplifiedRequirement: text(record?.plainLanguageSummary || record?.summary) ||
-      'Review the authoritative requirement and confirmed facts before finalization.',
+    // A record synthesised at the API boundary (controller_primary_citation_contract_repair) has
+    // no regulatory summary -- its `summary` is an internal diagnostic note and must never be shown
+    // as the "HazLenz standard summary".
+    simplifiedRequirement: (Array.isArray(record?.source) && record.source.some((item: unknown) => /controller_primary_citation_contract_repair/.test(String(item))))
+      ? 'Review the authoritative requirement and confirmed facts before finalization.'
+      : text(record?.plainLanguageSummary || record?.summary) ||
+        'Review the authoritative requirement and confirmed facts before finalization.',
     whyOffered: primaryDecision?.status === 'SUPPORTED'
       ? `HazLenz found submitted evidence supporting ${supporting.join(', ') || family.toLowerCase()}.`
       : `HazLenz retained this as a candidate because ${missing.join(', ') || 'material applicability facts'} remain unconfirmed.`,

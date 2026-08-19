@@ -1,5 +1,6 @@
 import * as cookieParser from 'cookie-parser';
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -9,7 +10,14 @@ import { validateProductionEnvironment } from './config/validate-production-envi
 
 async function bootstrap() {
   validateProductionEnvironment();
-  const app = await NestFactory.create(AppModule, { rawBody: true });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { rawBody: true });
+  // The default body-parser limit (100kb) is too small for a HazLenz multi-hazard analysis
+  // payload -- each decomposed finding now honestly carries its own evidenceSnapshot and
+  // standardCandidates (including UNKNOWN-status jurisdiction-pending candidates), which for an
+  // observation with several findings can legitimately exceed 100kb and was being rejected with
+  // 413 Payload Too Large when persisting an analysis (POST /inspections/observations/:id/analyses).
+  app.useBodyParser('json', { limit: '5mb' });
+  app.useBodyParser('urlencoded', { limit: '5mb', extended: true } as any);
   const express = app.getHttpAdapter().getInstance();
   express.disable('x-powered-by');
   const trustProxyHops = Number(process.env.TRUST_PROXY_HOPS || 0);

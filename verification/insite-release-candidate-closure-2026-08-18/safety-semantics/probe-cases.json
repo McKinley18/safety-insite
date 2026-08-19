@@ -1,0 +1,19 @@
+[
+ {"id":"ORIG-B3-02","text":"The press brake point of operation is fully enclosed by a fixed guard that was verified in place and the interlock was function-tested this morning."},
+ {"id":"ORIG-B3-03","text":"The interlock guard on the press brake is installed but has been bypassed with a jumper wire so the machine runs with the guard open."},
+ {"id":"IL-01-functioning","text":"The machine interlock is functioning normally."},
+ {"id":"IL-02-tested","text":"Guard interlock tested and works as designed."},
+ {"id":"IL-03-bypassed","text":"Operator bypassed the interlock."},
+ {"id":"IL-04-defeated","text":"Interlock has been defeated so the machine will run with the guard open."},
+ {"id":"IL-05-jumper","text":"Jumper installed across the safety interlock."},
+ {"id":"IL-06-disabled","text":"Interlock is installed but has been intentionally disabled."},
+ {"id":"IL-07-restored","text":"Interlock was previously bypassed but has now been restored and function-tested."},
+ {"id":"IL-08-uncertain","text":"Worker says the interlock may have been bypassed; condition not yet confirmed."},
+ {"id":"ORIG-B3-04","text":"The operator says the machine was locked out, but the disconnect was found in the ON position and no lock or tag was present on it."},
+ {"id":"LOTO-A","text":"Machine is locked and tagged out. Worker reports the disconnect may still be energized."},
+ {"id":"LOTO-B","text":"Lock is installed but another employee says power was never verified."},
+ {"id":"LOTO-C","text":"Equipment was de-energized and locked out, but the operator says stored hydraulic pressure remains."},
+ {"id":"LOTO-D","text":"Supervisor says lockout is complete; electrician measured voltage at the work point."},
+ {"id":"LOTO-E","text":"Worker says equipment is locked out, but I could not verify isolation."},
+ {"id":"LOTO-F","text":"Disconnect is open, lock applied, zero-energy verification completed, and stored energy relieved."}
+]

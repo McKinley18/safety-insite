@@ -1,0 +1,182 @@
+[
+ {
+  "id": "D-osha-general-industry-fall-roof",
+  "context": "osha-general-industry",
+  "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-osha-general-industry-loto-conveyor",
+  "context": "osha-general-industry",
+  "text": "Employee is servicing the conveyor with power connected and no lock or tag applied."
+ },
+ {
+  "id": "D-osha-general-industry-guard-press",
+  "context": "osha-general-industry",
+  "text": "Operator's hand can reach the unguarded point of operation on the running press."
+ },
+ {
+  "id": "D-osha-general-industry-scaffold-open",
+  "context": "osha-general-industry",
+  "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-osha-general-industry-excavation",
+  "context": "osha-general-industry",
+  "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring."
+ },
+ {
+  "id": "D-osha-general-industry-noise-92",
+  "context": "osha-general-industry",
+  "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program."
+ },
+ {
+  "id": "D-osha-general-industry-exit-blocked",
+  "context": "osha-general-industry",
+  "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working."
+ },
+ {
+  "id": "D-osha-general-industry-hazcom-label",
+  "context": "osha-general-industry",
+  "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards."
+ },
+ {
+  "id": "D-osha-general-industry-elec-cord",
+  "context": "osha-general-industry",
+  "text": "Extension cord has exposed copper conductors and remains energized in the work area."
+ },
+ {
+  "id": "D-osha-construction-fall-roof",
+  "context": "osha-construction",
+  "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-osha-construction-loto-conveyor",
+  "context": "osha-construction",
+  "text": "Employee is servicing the conveyor with power connected and no lock or tag applied."
+ },
+ {
+  "id": "D-osha-construction-guard-press",
+  "context": "osha-construction",
+  "text": "Operator's hand can reach the unguarded point of operation on the running press."
+ },
+ {
+  "id": "D-osha-construction-scaffold-open",
+  "context": "osha-construction",
+  "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-osha-construction-excavation",
+  "context": "osha-construction",
+  "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring."
+ },
+ {
+  "id": "D-osha-construction-noise-92",
+  "context": "osha-construction",
+  "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program."
+ },
+ {
+  "id": "D-osha-construction-exit-blocked",
+  "context": "osha-construction",
+  "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working."
+ },
+ {
+  "id": "D-osha-construction-hazcom-label",
+  "context": "osha-construction",
+  "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards."
+ },
+ {
+  "id": "D-osha-construction-elec-cord",
+  "context": "osha-construction",
+  "text": "Extension cord has exposed copper conductors and remains energized in the work area."
+ },
+ {
+  "id": "D-msha-fall-roof",
+  "context": "msha",
+  "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-msha-loto-conveyor",
+  "context": "msha",
+  "text": "Employee is servicing the conveyor with power connected and no lock or tag applied."
+ },
+ {
+  "id": "D-msha-guard-press",
+  "context": "msha",
+  "text": "Operator's hand can reach the unguarded point of operation on the running press."
+ },
+ {
+  "id": "D-msha-scaffold-open",
+  "context": "msha",
+  "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-msha-excavation",
+  "context": "msha",
+  "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring."
+ },
+ {
+  "id": "D-msha-noise-92",
+  "context": "msha",
+  "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program."
+ },
+ {
+  "id": "D-msha-exit-blocked",
+  "context": "msha",
+  "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working."
+ },
+ {
+  "id": "D-msha-hazcom-label",
+  "context": "msha",
+  "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards."
+ },
+ {
+  "id": "D-msha-elec-cord",
+  "context": "msha",
+  "text": "Extension cord has exposed copper conductors and remains energized in the work area."
+ },
+ {
+  "id": "D-unknown-fall-roof",
+  "context": "unknown",
+  "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-unknown-loto-conveyor",
+  "context": "unknown",
+  "text": "Employee is servicing the conveyor with power connected and no lock or tag applied."
+ },
+ {
+  "id": "D-unknown-guard-press",
+  "context": "unknown",
+  "text": "Operator's hand can reach the unguarded point of operation on the running press."
+ },
+ {
+  "id": "D-unknown-scaffold-open",
+  "context": "unknown",
+  "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "D-unknown-excavation",
+  "context": "unknown",
+  "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring."
+ },
+ {
+  "id": "D-unknown-noise-92",
+  "context": "unknown",
+  "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program."
+ },
+ {
+  "id": "D-unknown-exit-blocked",
+  "context": "unknown",
+  "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working."
+ },
+ {
+  "id": "D-unknown-hazcom-label",
+  "context": "unknown",
+  "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards."
+ },
+ {
+  "id": "D-unknown-elec-cord",
+  "context": "unknown",
+  "text": "Extension cord has exposed copper conductors and remains energized in the work area."
+ }
+]

@@ -1,0 +1,323 @@
+[
+  {
+    "id": "GI-MG-01",
+    "area": "General Industry - machine guarding",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1910.212(a)(1)"
+    ],
+    "returned": [
+      "29 CFR 1910.212(a)(1)"
+    ],
+    "candidatesOnly": [],
+    "fragment": "The point-of-operation guard on the punch press is missing while the machine is energized and operating."
+  },
+  {
+    "id": "GI-MG-02-NEG",
+    "area": "General Industry - machine guarding (negative control)",
+    "verdict": "CORRECT_NO_MATCH",
+    "expected": [],
+    "returned": [],
+    "candidatesOnly": [],
+    "fragment": "The point-of-operation guard on the punch press is securely installed and the machine has been verified de-energized."
+  },
+  {
+    "id": "GI-LOTO-01",
+    "area": "General Industry - LOTO",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1910.147"
+    ],
+    "returned": [
+      "29 CFR 1910.147"
+    ],
+    "candidatesOnly": [],
+    "fragment": "A technician is servicing the hydraulic press and hazardous energy has not been isolated or locked out."
+  },
+  {
+    "id": "MSHA-LOTO-01",
+    "area": "MSHA - energy control",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "56.12016"
+    ],
+    "returned": [
+      "30 CFR 56.12016"
+    ],
+    "candidatesOnly": [],
+    "fragment": "A miner is performing electrical repair work on the crusher and the power has not been locked out."
+  },
+  {
+    "id": "GI-ELEC-01",
+    "area": "General Industry - electrical",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1910.303"
+    ],
+    "returned": [
+      "29 CFR 1910.303"
+    ],
+    "candidatesOnly": [],
+    "fragment": "A live, exposed electrical conductor in the panel is reachable and has not been deenergized or isolated."
+  },
+  {
+    "id": "GI-PIT-01",
+    "area": "General Industry - powered industrial trucks",
+    "verdict": "FALSE_NEGATIVE_NO_MATCH",
+    "expected": [
+      "1910.178"
+    ],
+    "returned": [],
+    "candidatesOnly": [],
+    "fragment": "A forklift was found to be defective and unsafe but was not taken out of service before continued operation."
+  },
+  {
+    "id": "GI-WWS-01",
+    "area": "General Industry - walking-working surfaces / handrail",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1910.28"
+    ],
+    "returned": [
+      "29 CFR 1910.28"
+    ],
+    "candidatesOnly": [],
+    "fragment": "The handrail on the interior stairway is missing, exposing employees descending the stairs to a fall hazard."
+  },
+  {
+    "id": "GI-EXIT-01",
+    "area": "General Industry - exit routes",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1910.36"
+    ],
+    "returned": [
+      "29 CFR 1910.36"
+    ],
+    "candidatesOnly": [],
+    "fragment": "The required emergency exit door in the occupied warehouse is locked and blocked, and employees are working on shift."
+  },
+  {
+    "id": "GI-EXIT-02-NEG",
+    "area": "General Industry - exit routes (negative control)",
+    "verdict": "CORRECT_NO_MATCH",
+    "expected": [],
+    "returned": [],
+    "candidatesOnly": [
+      "29 CFR 1910.36"
+    ],
+    "fragment": "The emergency exit door in the occupied warehouse is open and usable, and employees are working on shift."
+  },
+  {
+    "id": "CON-FALL-01",
+    "area": "Construction - fall protection (scaffold)",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.451(g)(1)",
+      "1926.501"
+    ],
+    "returned": [
+      "29 CFR 1926.451(g)(1)"
+    ],
+    "candidatesOnly": [
+      "29 CFR 1926.501"
+    ],
+    "fragment": "A mason is working on a scaffold platform 18 feet above the lower level with an open side that has no guardrail or personal fall arrest system."
+  },
+  {
+    "id": "CON-EXC-01",
+    "area": "Construction - excavation",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.652"
+    ],
+    "returned": [
+      "29 CFR 1926.652(a)(1)"
+    ],
+    "candidatesOnly": [],
+    "fragment": "Laborers are working in a 6-foot trench with no protective system installed and the soil is not stable rock."
+  },
+  {
+    "id": "CON-EXC-02-NEG",
+    "area": "Construction - excavation (negative control)",
+    "verdict": "CORRECT_NO_MATCH",
+    "expected": [],
+    "returned": [],
+    "candidatesOnly": [],
+    "fragment": "Laborers are working in a 6-foot trench cut entirely into stable rock with no indications of instability."
+  },
+  {
+    "id": "CON-SILICA-01",
+    "area": "Construction - silica",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.1153"
+    ],
+    "returned": [
+      "29 CFR 1926.1153"
+    ],
+    "candidatesOnly": [],
+    "fragment": "A worker is dry-cutting concrete with a masonry saw, generating a visible dust cloud, with no water suppression or dust control in use."
+  },
+  {
+    "id": "MSHA-GUARD-01",
+    "area": "MSHA - moving machine parts",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "56.14107"
+    ],
+    "returned": [
+      "30 CFR 56.14107(a)"
+    ],
+    "candidatesOnly": [],
+    "fragment": "The guard on the conveyor tail pulley at the surface mine is missing, exposing miners to the moving parts."
+  },
+  {
+    "id": "MSHA-GUARD-02-NEG",
+    "area": "MSHA - moving machine parts (negative control)",
+    "verdict": "CORRECT_NO_MATCH",
+    "expected": [],
+    "returned": [],
+    "candidatesOnly": [],
+    "fragment": "The guard on the conveyor tail pulley at the surface mine is present and effective, fully preventing contact."
+  },
+  {
+    "id": "MSHA-TRAFFIC-01",
+    "area": "MSHA - traffic control",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "56.14132"
+    ],
+    "returned": [
+      "30 CFR 56.14132(a)"
+    ],
+    "candidatesOnly": [],
+    "fragment": "A haul truck at the surface mine is backing without a functional backup alarm and no spotter present."
+  },
+  {
+    "id": "GI-NOISE-01",
+    "area": "General Industry - noise",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1910.95"
+    ],
+    "returned": [
+      "29 CFR 1910.95"
+    ],
+    "candidatesOnly": [],
+    "fragment": "An employee's full-shift measured noise exposure is 92 dBA time-weighted average with no unusual impulse noise."
+  },
+  {
+    "id": "GI-HAZCOM-01",
+    "area": "General Industry - HazCom",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1910.1200"
+    ],
+    "returned": [
+      "29 CFR 1910.1200"
+    ],
+    "candidatesOnly": [],
+    "fragment": "A workplace chemical container has no label identifying its contents or hazards."
+  },
+  {
+    "id": "CROSS-01",
+    "area": "Cross-regime adversarial: Construction scaffold vs GI walking surface",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.451",
+      "1926.501"
+    ],
+    "returned": [
+      "29 CFR 1926.451(g)(1)",
+      "29 CFR 1926.501"
+    ],
+    "candidatesOnly": [],
+    "fragment": "A worker on a construction scaffold platform experiences a fall hazard from an unguarded edge 15 feet above the ground."
+  },
+  {
+    "id": "CON-HAZCOM-01",
+    "area": "Construction - hazard communication",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.59"
+    ],
+    "returned": [
+      "29 CFR 1926.59"
+    ],
+    "candidatesOnly": [],
+    "fragment": "On the jobsite a 5-gallon container of solvent has no label identifying its contents or hazards."
+  },
+  {
+    "id": "CON-NOISE-01",
+    "area": "Construction - occupational noise over Table D-2",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.52"
+    ],
+    "returned": [
+      "29 CFR 1926.52"
+    ],
+    "candidatesOnly": [],
+    "fragment": "Laborers on the demolition crew are exposed to a measured 92 dBA 8-hour TWA with no hearing protection or hearing conservation program."
+  },
+  {
+    "id": "CON-NOISE-02-NEG",
+    "area": "Construction - noise below Table D-2 (negative control)",
+    "verdict": "CORRECT_NO_MATCH",
+    "expected": [],
+    "returned": [],
+    "candidatesOnly": [],
+    "fragment": "Laborers on the demolition crew are exposed to a measured 88 dBA 8-hour TWA."
+  },
+  {
+    "id": "CON-ELEC-01",
+    "area": "Construction - electric power circuit contact",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.416(a)(1)"
+    ],
+    "returned": [
+      "29 CFR 1926.416(a)(1)"
+    ],
+    "candidatesOnly": [],
+    "fragment": "On the construction site an extension cord powering a saw has exposed copper conductors and remains energized where laborers are working."
+  },
+  {
+    "id": "CON-GUARD-01",
+    "area": "Construction - moving-part guarding of equipment",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "1926.300(b)(2)"
+    ],
+    "returned": [
+      "29 CFR 1926.300(b)(2)"
+    ],
+    "candidatesOnly": [],
+    "fragment": "The belt guard on the jobsite concrete mixer drive is missing and the belt and pulley are exposed to contact while the mixer is running."
+  },
+  {
+    "id": "CROSS-02",
+    "area": "Cross-regime adversarial: MSHA vs GI machine guarding",
+    "verdict": "TRUE_POSITIVE",
+    "expected": [
+      "56.14107"
+    ],
+    "returned": [
+      "30 CFR 56.14107(a)"
+    ],
+    "candidatesOnly": [],
+    "fragment": "At a surface mine, the guard on a moving machine part is missing, exposing a miner to a pinch point."
+  }
+]
+================================================================================
+TOTAL CASES: 25
+APPLICABLE-STANDARD CASES: 20
+NO-STANDARD / NEGATIVE CONTROLS: 5
+TRUE POSITIVES (correct match): 19
+CORRECT NO-MATCH (honest, no fabrication): 5
+FALSE POSITIVES (fired when it should not have): 0
+FALSE NEGATIVES (missed an applicable case): 1
+WRONG-REGIME/WRONG-FAMILY MATCHES: 0
+PRECISION (of returned matches, how many correct): 1.00 (19/19)
+RECALL (of applicable cases, how many found): 0.95 (19/20)

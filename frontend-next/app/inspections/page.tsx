@@ -24,8 +24,12 @@ import {
   createPersistedSite,
   listPersistedInspections,
   listPersistedSites,
+  REGULATORY_CONTEXT_OPTIONS,
+  regulatoryContextFromSettingsScope,
+  regulatoryContextLabel,
   type PersistedInspection,
   type PersistedSite,
+  type RegulatoryContext,
 } from "@/lib/canonicalWorkflowApi";
 
 type WorkflowId = "quick" | "guided";
@@ -94,6 +98,10 @@ export default function InspectionsPage() {
   const [expandedWorkflowId, setExpandedWorkflowId] = useState<WorkflowId | null>(null);
   const [planCode, setPlanCode] = useState<PlanCode>("basic");
   const [regulatoryScope, setRegulatoryScope] = useState("all");
+  // Inspection-level regulatory context: chosen ONCE here, persisted on the inspection, and
+  // inherited by every finding -- HazLenz never re-asks it per finding. Defaults from the
+  // Settings page's stored default so a user with one regime never has to touch it.
+  const [regulatoryContext, setRegulatoryContext] = useState<RegulatoryContext>("unknown");
   const [sites, setSites] = useState<PersistedSite[]>([]);
   const [persistedInspections, setPersistedInspections] = useState<PersistedInspection[]>([]);
   const [selectedSiteId, setSelectedSiteId] = useState("");
@@ -106,7 +114,9 @@ export default function InspectionsPage() {
     queueMicrotask(() => {
       setInspectionPrograms(seeded.length ? seeded : getInspectionProgram());
       setPlanCode(getStoredPlanCode());
-      setRegulatoryScope(window.localStorage.getItem("sentinel_regulatory_scope") || "all");
+      const storedScope = window.localStorage.getItem("sentinel_regulatory_scope") || "all";
+      setRegulatoryScope(storedScope);
+      setRegulatoryContext(regulatoryContextFromSettingsScope(storedScope));
     });
     getVerifiedPlanCode().then(setPlanCode).catch(() => {});
     Promise.all([listPersistedSites(), listPersistedInspections()])
@@ -143,6 +153,7 @@ export default function InspectionsPage() {
       const persisted = await createPersistedInspection({
         siteId: selectedSiteId,
         title: workflow.title,
+        regulatoryContext,
       });
       clearActiveInspectionDraft();
 
@@ -154,14 +165,8 @@ export default function InspectionsPage() {
           persistenceState: "saved",
           inspectionType: workflow.inspectionType,
           inspectionTitle: workflow.title,
-          agency:
-            regulatoryScope === "msha"
-              ? "MSHA"
-              : regulatoryScope === "osha_general"
-                ? "OSHA General Industry"
-                : regulatoryScope === "osha_construction"
-                  ? "OSHA Construction"
-                  : "General",
+          agency: regulatoryContextLabel(persisted.regulatoryContext || regulatoryContext),
+          regulatoryContext: persisted.regulatoryContext || regulatoryContext,
           workflowDepth: workflow.id,
         }),
       );
@@ -269,6 +274,24 @@ export default function InspectionsPage() {
               Save site
             </button>
           </div>
+          <label className="mt-3 block text-xs font-black uppercase tracking-[0.12em] text-slate-600">
+            Regulatory context
+            <select
+              aria-label="Regulatory context"
+              value={regulatoryContext}
+              onChange={(event) => setRegulatoryContext(event.target.value as RegulatoryContext)}
+              className="mt-2 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold normal-case tracking-normal text-slate-900"
+            >
+              {REGULATORY_CONTEXT_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label} · {option.description}
+                </option>
+              ))}
+            </select>
+            <span className="mt-1 block text-[11px] font-semibold normal-case tracking-normal text-slate-500">
+              Set once for this inspection. Every finding inherits it, so HazLenz will not ask which agency applies for each one.
+            </span>
+          </label>
           <p role="status" className="mt-3 text-xs font-semibold text-slate-600">
             {persistenceStatus} · {persistedInspections.length} persisted inspection
             {persistedInspections.length === 1 ? "" : "s"}
@@ -393,7 +416,7 @@ export default function InspectionsPage() {
         </div>
 
         <p className="mx-auto mt-4 max-w-sm text-center text-xs font-semibold leading-5 text-slate-500">
-          HazLenz AI uses the default regulatory agency from{" "}
+          The regulatory context above defaults from{" "}
           <AppTextLink
             href="/settings"
             className="!text-xs !leading-5 font-black"
@@ -401,17 +424,8 @@ export default function InspectionsPage() {
           >
             Settings
           </AppTextLink>
-          . Current default:{" "}
-          <span className="font-black text-slate-700">
-            {regulatoryScope === "msha"
-              ? "MSHA"
-              : regulatoryScope === "osha_general"
-                ? "OSHA General Industry"
-                : regulatoryScope === "osha_construction"
-                  ? "OSHA Construction"
-                  : "Let HazLenz AI evaluate"}
-          </span>
-          .
+          {" "}({regulatoryContextLabel(regulatoryContextFromSettingsScope(regulatoryScope))}) and is saved with this inspection as{" "}
+          <span className="font-black text-slate-700">{regulatoryContextLabel(regulatoryContext)}</span>.
         </p>
 
 

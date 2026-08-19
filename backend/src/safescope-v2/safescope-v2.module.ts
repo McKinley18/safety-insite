@@ -30,11 +30,15 @@ import { WorkspaceGovernanceAccessService } from "./workspace-governance-access/
 import { OfflineReasoningMobileResilienceService } from "./offline-reasoning-mobile-resilience/offline-reasoning-mobile-resilience.service";
 import { VisualEvidenceReasoningService } from "./visual-evidence-reasoning/visual-evidence-reasoning.service";
 import { RealImageAnalysisService } from "./real-image-analysis/real-image-analysis.service";
+import { InspectionModule } from "../inspection/inspection.module";
 
 @Module({
   imports: [
     ActionEngineModule,
     ApplicableStandardsModule,
+    // Lets the classify endpoint resolve a persisted inspection's regulatory context
+    // authoritatively (InspectionModule does not import this module -- no cycle).
+    InspectionModule,
     SafeScopeKnowledgeModule,
     ReviewCoreKnowledgeReviewQueueModule,
     TypeOrmModule.forFeature([

@@ -13,6 +13,7 @@ import { HumanReview } from './entities/human-review.entity';
 import { InspectionFinding } from './entities/inspection-finding.entity';
 import { OrganizationMembership } from '../organizations/entities/organization-membership.entity';
 import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entity';
+import { CorrectiveAction } from '../corrective-actions/entities/corrective-action.entity';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entit
       InspectionFinding,
       OrganizationMembership,
       SecurityAuditEvent,
+      CorrectiveAction,
     ]),
     SitesModule,
   ],

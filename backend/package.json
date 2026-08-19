@@ -43,6 +43,7 @@
     "seed:safescope-standards": "ts-node src/safescope-v2/standards/safescope-standards.seed.ts && ts-node src/standards/seed/sync-standards-intelligence-to-master.ts --apply && ts-node src/standards/seed/finalize-regulatory-release.ts",
     "seed:regulatory-release": "ts-node src/standards/seed/finalize-regulatory-release.ts",
     "test:safescope-standards": "ts-node src/safescope-v2/tests/golden-standards-tests.ts",
+    "test:standards-corpus-integrity": "ts-node src/standards/tests/standards-corpus-integrity-regression.ts",
     "test:hazlenz-understanding": "ts-node src/safescope-v2/tests/hazard-understanding-coverage-benchmark.ts",
     "test:hazlenz-authentic-reasoning": "ts-node src/safescope-v2/tests/hazlenz-authentic-reasoning-evaluation.ts",
     "test:hazlenz-field-gauntlet": "ts-node src/safescope-v2/tests/hazlenz-field-gauntlet.ts",

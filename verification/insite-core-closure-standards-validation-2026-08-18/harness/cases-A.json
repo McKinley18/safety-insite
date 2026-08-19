@@ -1,0 +1,116 @@
+[
+ {
+  "id": "A-clear-loto",
+  "context": "osha-general-industry",
+  "text": "Employee is servicing the conveyor with power connected and no lock or tag applied.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-guard",
+  "context": "osha-general-industry",
+  "text": "Operator's hand can reach the unguarded point of operation on the running press.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-fall-con",
+  "context": "osha-construction",
+  "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-elec",
+  "context": "osha-general-industry",
+  "text": "Extension cord has exposed copper conductors and remains energized in the work area.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-silica",
+  "context": "osha-construction",
+  "text": "A worker is dry-cutting concrete block with a gas-powered masonry saw with no water suppression or dust collection, generating a visible dust cloud in his breathing zone.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-exit",
+  "context": "osha-general-industry",
+  "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-hazcom",
+  "context": "osha-general-industry",
+  "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-trench",
+  "context": "osha-construction",
+  "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-msha-guard",
+  "context": "msha",
+  "text": "The guard on the conveyor tail pulley at the surface mine is missing, exposing miners to the moving parts.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-noise",
+  "context": "osha-general-industry",
+  "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-msha-loto-inferred",
+  "context": "unknown",
+  "text": "At the surface mine, a miner is servicing the crusher drive with power connected and no lock or tag applied.",
+  "expect": "no_question"
+ },
+ {
+  "id": "A-clear-multi",
+  "context": "osha-general-industry",
+  "text": "Guardrails on the mezzanine platform are properly secured and no deficiencies were observed there. Separately, a portable generator power cord has exposed conductors and damaged insulation near a wet floor area. A worker was performing maintenance on the stamping press without lockout applied and stored energy had not been released.",
+  "expect": "no_question"
+ },
+ {
+  "id": "B-amb-maint",
+  "context": "osha-general-industry",
+  "text": "Maintenance is being performed on the packaging line.",
+  "expect": "question_or_insufficient"
+ },
+ {
+  "id": "B-amb-trench",
+  "context": "osha-construction",
+  "text": "A trench about 5 feet deep is open near the loading dock.",
+  "expect": "question_or_insufficient"
+ },
+ {
+  "id": "B-amb-cord",
+  "context": "osha-general-industry",
+  "text": "There is an extension cord on the floor of the shop.",
+  "expect": "question_or_insufficient"
+ },
+ {
+  "id": "B-amb-loud",
+  "context": "osha-general-industry",
+  "text": "Employees report that the mixing room is loud.",
+  "expect": "question_or_insufficient"
+ },
+ {
+  "id": "B-amb-guard",
+  "context": "osha-general-industry",
+  "text": "Guard status on the press could not be confirmed during the walkthrough.",
+  "expect": "question_or_insufficient"
+ },
+ {
+  "id": "B-amb-jur",
+  "context": "unknown",
+  "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+  "expect": "one_jurisdiction_question"
+ },
+ {
+  "id": "B-amb-crane",
+  "context": "osha-construction",
+  "text": "A crane is lifting a steel beam and two workers are standing under the suspended load.",
+  "expect": "question_ok"
+ }
+]

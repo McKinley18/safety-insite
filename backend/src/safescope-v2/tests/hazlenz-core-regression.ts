@@ -90,6 +90,42 @@ const suites: Suite[] = [
   {
     name: "HazLenz Production Path Regression",
     scriptPath: "src/safescope-v2/tests/hazlenz-production-path-regression.ts"
+  },
+  {
+    name: "HazLenz Temporal Reconciliation Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-temporal-reconciliation-regression.ts"
+  },
+  {
+    name: "HazLenz Condition-State Invariants Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-condition-state-invariants-regression.ts"
+  },
+  {
+    name: "HazLenz Finding-Scoped Standards Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-finding-scoped-standards-regression.ts"
+  },
+  {
+    name: "HazLenz LOTO Fragment-Scoping Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-loto-fragment-scoping-regression.ts"
+  },
+  {
+    name: "HazLenz Handrail/Guardrail Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-handrail-guardrail-regression.ts"
+  },
+  {
+    name: "HazLenz Energy-Isolation Negation Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-energy-isolation-negation-regression.ts"
+  },
+  {
+    name: "HazLenz Defeated-Control / Contradiction Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-defeated-control-contradiction-regression.ts"
+  },
+  {
+    name: "HazLenz Jurisdiction-Unknown Standards Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-jurisdiction-unknown-standards-regression.ts"
+  },
+  {
+    name: "HazLenz Inspection-Context / Autonomy Regression",
+    scriptPath: "src/safescope-v2/tests/hazlenz-inspection-context-autonomy-regression.ts"
   }
 ];
 

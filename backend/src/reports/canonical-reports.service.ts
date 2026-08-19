@@ -6,6 +6,7 @@ import { SecurityAuditEvent } from '../audit/entities/security-audit-event.entit
 import { AuthenticatedUser, requireAuthenticatedUser } from '../common/authenticated-user';
 import { CorrectiveAction } from '../corrective-actions/entities/corrective-action.entity';
 import { InspectionService } from '../inspection/inspection.service';
+import { Inspection } from '../inspection/inspection.entity';
 import { Site } from '../sites/entities/site.entity';
 import { StorageService } from '../storage/storage.service';
 import { User } from '../users/user.entity';
@@ -40,7 +41,13 @@ export class CanonicalReportsService {
     return report;
   }
 
-  private snapshotInspection(inspection: any, actions: CorrectiveAction[], site: Site | null, preparedBy: User | null) {
+  private snapshotInspection(
+    inspection: any,
+    actions: CorrectiveAction[],
+    site: Site | null,
+    preparedBy: User | null,
+    assigneeNamesByUserId: Map<string, string>,
+  ) {
     return JSON.parse(JSON.stringify({
       capturedAt: new Date().toISOString(),
       site: site ? { id: site.id, name: site.name } : null,
@@ -49,6 +56,10 @@ export class CanonicalReportsService {
         id: inspection.id, title: inspection.title, status: inspection.status, version: inspection.version,
         siteId: inspection.siteId, organizationId: inspection.organizationId,
         ownerUserId: inspection.ownerUserId, completedAt: inspection.completedAt,
+        // Inspection-level regulatory context (established once at setup, inherited by every
+        // finding). 'unknown' means it was never established -- the report must say so rather
+        // than imply a regime.
+        regulatoryContext: inspection.regulatoryContext || 'unknown',
       },
       observations: (inspection.observations || []).map((observation: any) => ({
         id: observation.id, rawText: observation.rawText, evidenceSource: observation.evidenceSource,
@@ -69,7 +80,17 @@ export class CanonicalReportsService {
             : null,
         })),
       })),
-      correctiveActions: actions,
+      // A corrective action records its assignee as a user id; assignedToName is only populated
+      // when a reviewer typed a free-text name or role. The report's "Assigned To" line and the
+      // corrective-action summary's Owner column must show the person who is actually
+      // accountable, so the assigned user's name is resolved here (display only -- the stored
+      // action row is never written to). An id with no resolvable user stays unnamed rather
+      // than being shown as an opaque uuid.
+      correctiveActions: actions.map(action => ({
+        ...action,
+        assignedToName: action.assignedToName
+          || (action.assignedToUserId ? assigneeNamesByUserId.get(action.assignedToUserId) || null : null),
+      })),
     }));
   }
 
@@ -89,7 +110,10 @@ export class CanonicalReportsService {
       inspection.siteId ? this.sites.findOne({ where: { id: inspection.siteId } }) : Promise.resolve(null),
       inspection.ownerUserId ? this.users.findOne({ where: { id: inspection.ownerUserId } }) : Promise.resolve(null),
     ]);
-    const sourceSnapshot = this.snapshotInspection(inspection, actions, site, preparedBy);
+    const assigneeIds = Array.from(new Set(actions.map(action => action.assignedToUserId).filter(Boolean)));
+    const assignees = assigneeIds.length ? await this.users.find({ where: assigneeIds.map(id => ({ id })) }) : [];
+    const assigneeNamesByUserId = new Map(assignees.filter(user => user.name).map(user => [user.id, user.name]));
+    const sourceSnapshot = this.snapshotInspection(inspection, actions, site, preparedBy, assigneeNamesByUserId);
     const sourceFingerprint = this.snapshotFingerprint(sourceSnapshot);
     return this.dataSource.transaction(async manager => {
       await manager.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`inspection-report:${inspectionId}`]);
@@ -128,7 +152,31 @@ export class CanonicalReportsService {
         { scope: user.organizationId || user.userId })
       .andWhere('report.archivedAt IS NULL')
       .orderBy('version.version', 'DESC');
-    return query.getMany();
+    const reports = await query.getMany();
+    // Human-readable context for the report list (the list previously exposed only the raw
+    // inspection UUID as its heading). Read from the same scope the report itself belongs to;
+    // no additional authorization surface is opened because every report row here already
+    // passed the owner/organization scope filter above.
+    const inspectionIds = Array.from(new Set(reports.map(report => report.inspectionId).filter(Boolean)));
+    const inspections = inspectionIds.length
+      ? await this.dataSource.getRepository(Inspection).find({ where: inspectionIds.map(id => ({ id })) })
+      : [];
+    const siteIds = Array.from(new Set(inspections.map(item => item.siteId).filter(Boolean)));
+    const sites = siteIds.length ? await this.sites.find({ where: siteIds.map(id => ({ id })) }) : [];
+    const siteById = new Map(sites.map(site => [site.id, site]));
+    const inspectionById = new Map(inspections.map(item => [item.id, item]));
+    return reports.map(report => {
+      const inspection = inspectionById.get(report.inspectionId);
+      const site = inspection ? siteById.get(inspection.siteId) : undefined;
+      return {
+        ...report,
+        inspection: inspection ? {
+          id: inspection.id, title: inspection.title, status: inspection.status,
+          regulatoryContext: inspection.regulatoryContext || 'unknown',
+          completedAt: inspection.completedAt, siteName: site?.name || null,
+        } : null,
+      };
+    });
   }
 
   async get(rawUser: unknown, reportId: string) {

@@ -1,0 +1,4560 @@
+{
+ "D": [
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-fall-roof",
+   "context": "osha-general-industry",
+   "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.28",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "worker is exposed to an unprotected roof edge approximately 18 feet above the lower level ",
+     "cands": [
+      [
+       "29 CFR 1910.28",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.28",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-loto-conveyor",
+   "context": "osha-general-industry",
+   "text": "Employee is servicing the conveyor with power connected and no lock or tag applied.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.147",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "employee is servicing the conveyor with power connected and no lock or tag applied.",
+     "cands": [
+      [
+       "29 CFR 1910.147",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.147",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-guard-press",
+   "context": "osha-general-industry",
+   "text": "Operator's hand can reach the unguarded point of operation on the running press.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.212(a)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "operator's hand can reach the unguarded point of operation on the running press",
+     "cands": [
+      [
+       "29 CFR 1910.212(a)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.212(a)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-scaffold-open",
+   "context": "osha-general-industry",
+   "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.28",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "a worker is on a scaffold platform about 12 feet above the ground with an open side that h",
+     "cands": [
+      [
+       "29 CFR 1910.28",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.28",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-excavation",
+   "context": "osha-general-industry",
+   "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "excavation_trenching",
+     "state": "ACTIVE",
+     "fragment": "or shoring",
+     "cands": []
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-noise-92",
+   "context": "osha-general-industry",
+   "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.95",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "noise_exposure",
+     "state": "ACTIVE",
+     "fragment": "employees in the grinding area are exposed to a measured 92 dba 8-hour twa with no hearing",
+     "cands": [
+      [
+       "29 CFR 1910.95",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.95",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-exit-blocked",
+   "context": "osha-general-industry",
+   "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.36",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "emergency_egress",
+     "state": "ACTIVE",
+     "fragment": "the east emergency exit door in the occupied warehouse is chained shut during the shift wi",
+     "cands": [
+      [
+       "29 CFR 1910.36",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.36",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "chemical-substance",
+     "question": "What substance was involved, and was the container labeled or identified?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    },
+    {
+     "id": "chemical-exposure-path",
+     "question": "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?",
+     "priority": "important",
+     "requiredFor": "risk",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "multi-select",
+     "options": [
+      "Walking surface",
+      "Inhalation or vapor",
+      "Skin or eye contact",
+      "Drain or environment",
+      "No exposure observed",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-hazcom-label",
+   "context": "osha-general-industry",
+   "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.1200",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "hazcom",
+     "state": "ACTIVE",
+     "fragment": "a 5-gallon container of solvent in the paint shop has no label identifying its contents or",
+     "cands": [
+      [
+       "29 CFR 1910.1200",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.1200",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "electrical-damage-exposure",
+     "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-general-industry-elec-cord",
+   "context": "osha-general-industry",
+   "text": "Extension cord has exposed copper conductors and remains energized in the work area.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.303",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "extension cord has exposed copper conductors",
+     "cands": [
+      [
+       "29 CFR 1910.303",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.303",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-fall-roof",
+   "context": "osha-construction",
+   "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.501",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "worker is exposed to an unprotected roof edge approximately 18 feet above the lower level ",
+     "cands": [
+      [
+       "29 CFR 1926.501",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.501",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-loto-conveyor",
+   "context": "osha-construction",
+   "text": "Employee is servicing the conveyor with power connected and no lock or tag applied.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "employee is servicing the conveyor with power connected and no lock or tag applied.",
+     "cands": []
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-guard-press",
+   "context": "osha-construction",
+   "text": "Operator's hand can reach the unguarded point of operation on the running press.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.300(b)(2)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "operator's hand can reach the unguarded point of operation on the running press",
+     "cands": [
+      [
+       "29 CFR 1926.300(b)(2)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.300(b)(2)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-scaffold-open",
+   "context": "osha-construction",
+   "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.451(g)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ],
+    [
+     "29 CFR 1926.501",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "a worker is on a scaffold platform about 12 feet above the ground with an open side that h",
+     "cands": [
+      [
+       "29 CFR 1926.451(g)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ],
+      [
+       "29 CFR 1926.501",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.451(g)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-excavation",
+   "context": "osha-construction",
+   "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.652(a)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "excavation_trenching",
+     "state": "ACTIVE",
+     "fragment": "or shoring",
+     "cands": [
+      [
+       "29 CFR 1926.652(a)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.652(a)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-noise-92",
+   "context": "osha-construction",
+   "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.52",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "noise_exposure",
+     "state": "ACTIVE",
+     "fragment": "employees in the grinding area are exposed to a measured 92 dba 8-hour twa with no hearing",
+     "cands": [
+      [
+       "29 CFR 1926.52",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.52",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-exit-blocked",
+   "context": "osha-construction",
+   "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.34(a)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "emergency_egress",
+     "state": "ACTIVE",
+     "fragment": "the east emergency exit door in the occupied warehouse is chained shut during the shift wi",
+     "cands": [
+      [
+       "29 CFR 1926.34(a)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.34(a)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "chemical-substance",
+     "question": "What substance was involved, and was the container labeled or identified?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    },
+    {
+     "id": "chemical-exposure-path",
+     "question": "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?",
+     "priority": "important",
+     "requiredFor": "risk",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "multi-select",
+     "options": [
+      "Walking surface",
+      "Inhalation or vapor",
+      "Skin or eye contact",
+      "Drain or environment",
+      "No exposure observed",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-hazcom-label",
+   "context": "osha-construction",
+   "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.59",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "hazcom",
+     "state": "ACTIVE",
+     "fragment": "a 5-gallon container of solvent in the paint shop has no label identifying its contents or",
+     "cands": [
+      [
+       "29 CFR 1926.59",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.59",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "electrical-damage-exposure",
+     "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-osha-construction-elec-cord",
+   "context": "osha-construction",
+   "text": "Extension cord has exposed copper conductors and remains energized in the work area.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.416(a)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "extension cord has exposed copper conductors",
+     "cands": [
+      [
+       "29 CFR 1926.416(a)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.416(a)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-fall-roof",
+   "context": "msha",
+   "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.15005",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "worker is exposed to an unprotected roof edge approximately 18 feet above the lower level ",
+     "cands": [
+      [
+       "30 CFR 56.15005",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.15005",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-loto-conveyor",
+   "context": "msha",
+   "text": "Employee is servicing the conveyor with power connected and no lock or tag applied.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.12016",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "employee is servicing the conveyor with power connected and no lock or tag applied.",
+     "cands": [
+      [
+       "30 CFR 56.12016",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.12016",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-guard-press",
+   "context": "msha",
+   "text": "Operator's hand can reach the unguarded point of operation on the running press.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.14107(a)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "operator's hand can reach the unguarded point of operation on the running press",
+     "cands": [
+      [
+       "30 CFR 56.14107(a)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.14107(a)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-scaffold-open",
+   "context": "msha",
+   "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.15005",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "a worker is on a scaffold platform about 12 feet above the ground with an open side that h",
+     "cands": [
+      [
+       "30 CFR 56.15005",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.15005",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-excavation",
+   "context": "msha",
+   "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "excavation_trenching",
+     "state": "ACTIVE",
+     "fragment": "or shoring",
+     "cands": []
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-noise-92",
+   "context": "msha",
+   "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 62.120",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ],
+    [
+     "30 CFR 62.130",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "noise_exposure",
+     "state": "ACTIVE",
+     "fragment": "employees in the grinding area are exposed to a measured 92 dba 8-hour twa with no hearing",
+     "cands": [
+      [
+       "30 CFR 62.120",
+       "direct",
+       "USER_CONFIRMED"
+      ],
+      [
+       "30 CFR 62.130",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 62.120",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-exit-blocked",
+   "context": "msha",
+   "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "emergency_egress",
+     "state": "ACTIVE",
+     "fragment": "the east emergency exit door in the occupied warehouse is chained shut during the shift wi",
+     "cands": []
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "chemical-substance",
+     "question": "What substance was involved, and was the container labeled or identified?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    },
+    {
+     "id": "chemical-exposure-path",
+     "question": "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?",
+     "priority": "important",
+     "requiredFor": "risk",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "multi-select",
+     "options": [
+      "Walking surface",
+      "Inhalation or vapor",
+      "Skin or eye contact",
+      "Drain or environment",
+      "No exposure observed",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-hazcom-label",
+   "context": "msha",
+   "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 47.41(a)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "hazcom",
+     "state": "ACTIVE",
+     "fragment": "a 5-gallon container of solvent in the paint shop has no label identifying its contents or",
+     "cands": [
+      [
+       "30 CFR 47.41(a)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 47.41(a)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "predicate-30-cfr-56-12025-conductive-contact-pathway",
+     "question": "Can you confirm: conductive contact pathway?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-msha-elec-cord",
+   "context": "msha",
+   "text": "Extension cord has exposed copper conductors and remains energized in the work area.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.12025",
+     "UNKNOWN",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "extension cord has exposed copper conductors",
+     "cands": [
+      [
+       "30 CFR 56.12025",
+       "candidate",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "predicate-30-cfr-56-12025-conductive-contact-pathway",
+     "q": "Can you confirm: conductive contact pathway?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.12025",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-fall-roof",
+   "context": "unknown",
+   "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.15005",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1910.28",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1926.501",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "worker is exposed to an unprotected roof edge approximately 18 feet above the lower level ",
+     "cands": [
+      [
+       "30 CFR 56.15005",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1910.28",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1926.501",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.15005",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-loto-conveyor",
+   "context": "unknown",
+   "text": "Employee is servicing the conveyor with power connected and no lock or tag applied.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.12016",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1910.147",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "employee is servicing the conveyor with power connected and no lock or tag applied.",
+     "cands": [
+      [
+       "30 CFR 56.12016",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1910.147",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.12016",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-guard-press",
+   "context": "unknown",
+   "text": "Operator's hand can reach the unguarded point of operation on the running press.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.14107(a)",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1910.212(a)(1)",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1926.300(b)(2)",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "operator's hand can reach the unguarded point of operation on the running press",
+     "cands": [
+      [
+       "30 CFR 56.14107(a)",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1910.212(a)(1)",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1926.300(b)(2)",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.14107(a)",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-scaffold-open",
+   "context": "unknown",
+   "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.15005",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1910.28",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1926.451(g)(1)",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1926.501",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "a worker is on a scaffold platform about 12 feet above the ground with an open side that h",
+     "cands": [
+      [
+       "30 CFR 56.15005",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1910.28",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1926.451(g)(1)",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1926.501",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.15005",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-excavation",
+   "context": "unknown",
+   "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.652(a)(1)",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "excavation_trenching",
+     "state": "ACTIVE",
+     "fragment": "or shoring",
+     "cands": [
+      [
+       "29 CFR 1926.652(a)(1)",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.652(a)(1)",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-noise-92",
+   "context": "unknown",
+   "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.52",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "30 CFR 62.120",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "30 CFR 62.130",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1910.95",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "noise_exposure",
+     "state": "ACTIVE",
+     "fragment": "employees in the grinding area are exposed to a measured 92 dba 8-hour twa with no hearing",
+     "cands": [
+      [
+       "29 CFR 1926.52",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "30 CFR 62.120",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "30 CFR 62.130",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1910.95",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.52",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-exit-blocked",
+   "context": "unknown",
+   "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "HAZLENZ_INFERRED",
+    "source": "observation_evidence",
+    "basis": [
+     "warehouse"
+    ]
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.36",
+     "SUPPORTED",
+     "HAZLENZ_INFERRED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "emergency_egress",
+     "state": "ACTIVE",
+     "fragment": "the east emergency exit door in the occupied warehouse is chained shut during the shift wi",
+     "cands": [
+      [
+       "29 CFR 1910.36",
+       "direct",
+       "HAZLENZ_INFERRED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.36",
+    "applicability": "direct",
+    "confidenceLabel": "Moderate"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-hazcom-label",
+   "context": "unknown",
+   "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.1200",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1926.59",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "30 CFR 47.41(a)",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "hazcom",
+     "state": "ACTIVE",
+     "fragment": "a 5-gallon container of solvent in the paint shop has no label identifying its contents or",
+     "cands": [
+      [
+       "29 CFR 1910.1200",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1926.59",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "30 CFR 47.41(a)",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.1200",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "predicate-30-cfr-56-12025-conductive-contact-pathway",
+     "question": "Can you confirm: conductive contact pathway?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "D-unknown-elec-cord",
+   "context": "unknown",
+   "text": "Extension cord has exposed copper conductors and remains energized in the work area.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.12025",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1910.303",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1926.416(a)(1)",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "extension cord has exposed copper conductors",
+     "cands": [
+      [
+       "30 CFR 56.12025",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1910.303",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1926.416(a)(1)",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "predicate-30-cfr-56-12025-conductive-contact-pathway",
+     "q": "Can you confirm: conductive contact pathway?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.12025",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  }
+ ],
+ "E": [
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E1-loto-terse",
+   "context": "osha-general-industry",
+   "text": "Employee servicing equipment without energy isolation.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.147",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "employee servicing equipment without energy isolation",
+     "cands": [
+      [
+       "29 CFR 1910.147",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.147",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E1b-loto-natural",
+   "context": "osha-general-industry",
+   "text": "Employee is servicing the packaging line without isolating hazardous energy; the line is still powered.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.147",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "employee is servicing the packaging line without isolating hazardous energy",
+     "cands": [
+      [
+       "29 CFR 1910.147",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.147",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+     "question": "Can you confirm: moving or accessible energy?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E2-guard-terse",
+   "context": "osha-general-industry",
+   "text": "Unguarded machine point of operation.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.212(a)(1)",
+     "UNKNOWN",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "unguarded machine point of operation",
+     "cands": [
+      [
+       "29 CFR 1910.212(a)(1)",
+       "candidate",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+     "q": "Can you confirm: moving or accessible energy?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.212(a)(1)",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E2b-guard-natural",
+   "context": "osha-general-industry",
+   "text": "The point of operation on the punch press is unguarded and the operator's hands enter the die area while it is running.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.212(a)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "the point of operation on the punch press is unguarded",
+     "cands": [
+      [
+       "29 CFR 1910.212(a)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.212(a)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "predicate-29-cfr-1926-451-g-1--platform-more-than-10-feet-above-lower-level",
+     "question": "Can you confirm: platform more than 10 feet above lower level?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1926-451-g-1--worker-on-platform",
+     "question": "Can you confirm: worker on platform?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1926-501-worker-exposure",
+     "question": "Can you confirm: worker exposure?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E3-scaffold-terse",
+   "context": "osha-construction",
+   "text": "Scaffold open-side fall exposure.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.451(g)(1)",
+     "UNKNOWN",
+     "USER_CONFIRMED"
+    ],
+    [
+     "29 CFR 1926.501",
+     "UNKNOWN",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "scaffold open-side fall exposure",
+     "cands": [
+      [
+       "29 CFR 1926.451(g)(1)",
+       "candidate",
+       "USER_CONFIRMED"
+      ],
+      [
+       "29 CFR 1926.501",
+       "candidate",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "predicate-29-cfr-1926-451-g-1--platform-more-than-10-feet-above-lower-level",
+     "q": "Can you confirm: platform more than 10 feet above lower level?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1926-451-g-1--worker-on-platform",
+     "q": "Can you confirm: worker on platform?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1926-501-worker-exposure",
+     "q": "Can you confirm: worker exposure?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.451(g)(1)",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E3b-scaffold-natural",
+   "context": "osha-construction",
+   "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.451(g)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ],
+    [
+     "29 CFR 1926.501",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "a worker is on a scaffold platform about 12 feet above the ground with an open side that h",
+     "cands": [
+      [
+       "29 CFR 1926.451(g)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ],
+      [
+       "29 CFR 1926.501",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.451(g)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "electrical-damage-exposure",
+     "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "existing-0",
+     "question": "What voltage is present in this equipment?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    },
+    {
+     "id": "existing-1",
+     "question": "Is it used in a wet or damp location, or outdoors?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    },
+    {
+     "id": "existing-2",
+     "question": "Is GFCI protection in use, or does the cord cross a travel path?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E4-cord-terse",
+   "context": "osha-general-industry",
+   "text": "Damaged electrical cord.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "damaged electrical cord",
+     "cands": []
+    }
+   ],
+   "questions": [
+    {
+     "id": "electrical-damage-exposure",
+     "q": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ],
+     "materialTo": [
+      "hazard-classification",
+      "risk",
+      "standard-applicability",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "existing-0",
+     "q": "What voltage is present in this equipment?",
+     "options": [
+      "Yes",
+      "No",
+      "Unknown",
+      "Not applicable"
+     ],
+     "materialTo": [
+      "standard-applicability"
+     ]
+    },
+    {
+     "id": "existing-1",
+     "q": "Is it used in a wet or damp location, or outdoors?",
+     "options": [
+      "Yes",
+      "No",
+      "Unknown",
+      "Not applicable"
+     ],
+     "materialTo": [
+      "standard-applicability"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review needed \u2014 more evidence required",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "electrical-damage-exposure",
+     "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E4b-cord-natural",
+   "context": "osha-general-industry",
+   "text": "An extension cord in use at the workbench has damaged insulation with exposed copper conductors and is still plugged in.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.303",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "an extension cord in use at the workbench has damaged insulation with exposed copper condu",
+     "cands": [
+      [
+       "29 CFR 1910.303",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.303",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "evidence-sufficiency-insufficient",
+     "question": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+     "priority": "critical",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "text",
+     "options": null
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": {
+    "blockedBy": "evidence_sufficiency",
+    "reason": "Evidence is insufficient to identify a specific hazardous condition (unresolved: clear hazard description, equipment or hazard source, task or activity, worker exposure)."
+   },
+   "id": "E5-noise-terse",
+   "context": "osha-general-industry",
+   "text": "Excessive occupational noise.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "noise",
+     "state": "ACTIVE",
+     "fragment": "excessive occupational noise",
+     "cands": []
+    }
+   ],
+   "questions": [
+    {
+     "id": "evidence-sufficiency-insufficient",
+     "q": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+     "options": [
+      "Yes",
+      "No",
+      "Unknown",
+      "Not applicable"
+     ],
+     "materialTo": [
+      "hazard-classification",
+      "risk",
+      "standard-applicability",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "E5b-noise-natural",
+   "context": "osha-general-industry",
+   "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.95",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "noise_exposure",
+     "state": "ACTIVE",
+     "fragment": "employees in the grinding area are exposed to a measured 92 dba 8-hour twa with no hearing",
+     "cands": [
+      [
+       "29 CFR 1910.95",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.95",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  }
+ ],
+ "A": [
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-loto",
+   "context": "osha-general-industry",
+   "text": "Employee is servicing the conveyor with power connected and no lock or tag applied.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.147",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "employee is servicing the conveyor with power connected and no lock or tag applied.",
+     "cands": [
+      [
+       "29 CFR 1910.147",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.147",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-guard",
+   "context": "osha-general-industry",
+   "text": "Operator's hand can reach the unguarded point of operation on the running press.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.212(a)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "operator's hand can reach the unguarded point of operation on the running press",
+     "cands": [
+      [
+       "29 CFR 1910.212(a)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.212(a)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-fall-con",
+   "context": "osha-construction",
+   "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.501",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "worker is exposed to an unprotected roof edge approximately 18 feet above the lower level ",
+     "cands": [
+      [
+       "29 CFR 1926.501",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.501",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "electrical-damage-exposure",
+     "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-elec",
+   "context": "osha-general-industry",
+   "text": "Extension cord has exposed copper conductors and remains energized in the work area.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.303",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "extension cord has exposed copper conductors",
+     "cands": [
+      [
+       "29 CFR 1910.303",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.303",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-silica",
+   "context": "osha-construction",
+   "text": "A worker is dry-cutting concrete block with a gas-powered masonry saw with no water suppression or dust collection, generating a visible dust cloud in his breathing zone.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.1153",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "silica_respirable_dust",
+     "state": "ACTIVE",
+     "fragment": "a worker is dry-cutting concrete block with a gas-powered masonry saw with no water suppre",
+     "cands": [
+      [
+       "29 CFR 1926.1153",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.1153",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-exit",
+   "context": "osha-general-industry",
+   "text": "The east emergency exit door in the occupied warehouse is chained shut during the shift with 20 employees working.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.36",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "emergency_egress",
+     "state": "ACTIVE",
+     "fragment": "the east emergency exit door in the occupied warehouse is chained shut during the shift wi",
+     "cands": [
+      [
+       "29 CFR 1910.36",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.36",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "chemical-substance",
+     "question": "What substance was involved, and was the container labeled or identified?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    },
+    {
+     "id": "chemical-exposure-path",
+     "question": "Were inhalation, skin contact, vapor, ingestion, drain, or walking-surface exposure pathways possible?",
+     "priority": "important",
+     "requiredFor": "risk",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "multi-select",
+     "options": [
+      "Walking surface",
+      "Inhalation or vapor",
+      "Skin or eye contact",
+      "Drain or environment",
+      "No exposure observed",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-hazcom",
+   "context": "osha-general-industry",
+   "text": "A 5-gallon container of solvent in the paint shop has no label identifying its contents or hazards.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.1200",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "hazcom",
+     "state": "ACTIVE",
+     "fragment": "a 5-gallon container of solvent in the paint shop has no label identifying its contents or",
+     "cands": [
+      [
+       "29 CFR 1910.1200",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.1200",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-trench",
+   "context": "osha-construction",
+   "text": "Two laborers are working in a 7-foot deep trench in clay soil with no trench box, sloping, or shoring.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.652(a)(1)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "excavation_trenching",
+     "state": "ACTIVE",
+     "fragment": "or shoring",
+     "cands": [
+      [
+       "29 CFR 1926.652(a)(1)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.652(a)(1)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "machine-energy-state",
+     "question": "Was the equipment running, capable of unexpected startup, stopped, deenergized, or locked out?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Running or operating",
+      "Capable of startup",
+      "Stopped only",
+      "Deenergized",
+      "Locked out",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "machine-task",
+     "question": "Was the worker operating, cleaning, maintaining, repairing, or clearing a jam?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Operating",
+      "Cleaning",
+      "Maintenance or repair",
+      "Clearing a jam",
+      "Inspection only",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "machine-controls",
+     "question": "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "multi-select",
+     "options": [
+      "Guard missing or removed",
+      "Guard installed",
+      "Lockout/tagout applied",
+      "Zero-energy verified",
+      "No control verified",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-msha-guard",
+   "context": "msha",
+   "text": "The guard on the conveyor tail pulley at the surface mine is missing, exposing miners to the moving parts.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.14107(a)",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "the guard on the conveyor tail pulley at the surface mine is missing",
+     "cands": [
+      [
+       "30 CFR 56.14107(a)",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.14107(a)",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Critical"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-noise",
+   "context": "osha-general-industry",
+   "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.95",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "noise_exposure",
+     "state": "ACTIVE",
+     "fragment": "employees in the grinding area are exposed to a measured 92 dba 8-hour twa with no hearing",
+     "cands": [
+      [
+       "29 CFR 1910.95",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.95",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-msha-loto-inferred",
+   "context": "unknown",
+   "text": "At the surface mine, a miner is servicing the crusher drive with power connected and no lock or tag applied.",
+   "regulatoryContext": {
+    "value": "msha",
+    "provenance": "HAZLENZ_INFERRED",
+    "source": "observation_evidence",
+    "basis": [
+     "surface mine",
+     "miner"
+    ]
+   },
+   "decisions": [
+    [
+     "30 CFR 56.12016",
+     "SUPPORTED",
+     "HAZLENZ_INFERRED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "at the surface mine, a miner is servicing the crusher drive with power connected and no lo",
+     "cands": [
+      [
+       "30 CFR 56.12016",
+       "direct",
+       "HAZLENZ_INFERRED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.12016",
+    "applicability": "direct",
+    "confidenceLabel": "Moderate"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "electrical-wet-location",
+     "question": "Was GFCI protection present for the wet or damp location?",
+     "priority": "important",
+     "requiredFor": "risk",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "yes-no",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "fall-height",
+     "question": "What was the approximate working height or fall distance?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "number",
+     "options": null
+    },
+    {
+     "id": "fall-surface-control",
+     "question": "Was the issue a defective ladder, incorrect ladder use, an unprotected edge/opening, scaffold, roof, or platform?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Defective ladder",
+      "Incorrect ladder use",
+      "Unprotected edge or opening",
+      "Scaffold",
+      "Roof",
+      "Platform",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "A-clear-multi",
+   "context": "osha-general-industry",
+   "text": "Guardrails on the mezzanine platform are properly secured and no deficiencies were observed there. Separately, a portable generator power cord has exposed conductors and damaged insulation near a wet floor area. A worker was performing maintenance on the stamping press without lockout applied and stored energy had not been released.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.303",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ],
+    [
+     "29 CFR 1910.147",
+     "SUPPORTED",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "a portable generator power cord has exposed conductors",
+     "cands": [
+      [
+       "29 CFR 1910.303",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    },
+    {
+     "domain": "slips_trips_falls",
+     "state": "ACTIVE",
+     "fragment": "damaged insulation near a wet floor area",
+     "cands": []
+    },
+    {
+     "domain": "lockout_tagout",
+     "state": "ACTIVE",
+     "fragment": "a worker was performing maintenance on the stamping press without lockout applied and stor",
+     "cands": [
+      [
+       "29 CFR 1910.147",
+       "direct",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.303",
+    "applicability": "direct",
+    "confidenceLabel": "High"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "predicate-29-cfr-1910-147-hazardous-energy-present-or-capable",
+     "question": "Was the equipment energized or capable of unexpected movement while the work was performed?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1910-147-energy-not-isolated-and-locked",
+     "question": "Can you confirm: energy not isolated and locked?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": {
+    "blockedBy": "evidence_sufficiency",
+    "reason": "Evidence is insufficient to identify a specific hazardous condition (unresolved: clear hazard description, equipment or hazard source, worker exposure, energy source)."
+   },
+   "id": "B-amb-maint",
+   "context": "osha-general-industry",
+   "text": "Maintenance is being performed on the packaging line.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1910.147",
+     "UNKNOWN",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [],
+   "questions": [
+    {
+     "id": "predicate-29-cfr-1910-147-hazardous-energy-present-or-capable",
+     "q": "Was the equipment energized or capable of unexpected movement while the work was performed?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1910-147-energy-not-isolated-and-locked",
+     "q": "Can you confirm: energy not isolated and locked?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1910.147",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "predicate-29-cfr-1926-652-a-1--worker-cave-in-exposure",
+     "question": "Did any worker enter the excavation where a cave-in could reach them?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1926-652-a-1--protective-system-absent",
+     "question": "Was the excavation protected by sloping, shoring, shielding, or a documented exception?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "B-amb-trench",
+   "context": "osha-construction",
+   "text": "A trench about 5 feet deep is open near the loading dock.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.652(a)(1)",
+     "UNKNOWN",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "excavation_trenching",
+     "state": "ACTIVE",
+     "fragment": "a trench about 5 feet deep is open near the loading dock",
+     "cands": [
+      [
+       "29 CFR 1926.652(a)(1)",
+       "candidate",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "predicate-29-cfr-1926-652-a-1--worker-cave-in-exposure",
+     "q": "Did any worker enter the excavation where a cave-in could reach them?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "predicate-29-cfr-1926-652-a-1--protective-system-absent",
+     "q": "Was the excavation protected by sloping, shoring, shielding, or a documented exception?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.652(a)(1)",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "electrical-damage-exposure",
+     "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "B-amb-cord",
+   "context": "osha-general-industry",
+   "text": "There is an extension cord on the floor of the shop.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "electrical",
+     "state": "ACTIVE",
+     "fragment": "there is an extension cord on the floor of the shop",
+     "cands": []
+    }
+   ],
+   "questions": [
+    {
+     "id": "electrical-damage-exposure",
+     "q": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+     "options": [
+      "Internal conductors exposed",
+      "Outer jacket damage only",
+      "Unknown",
+      "Not sure"
+     ],
+     "materialTo": [
+      "hazard-classification",
+      "risk",
+      "standard-applicability",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "evidence-sufficiency-insufficient",
+     "question": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+     "priority": "critical",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "text",
+     "options": null
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": {
+    "blockedBy": "evidence_sufficiency",
+    "reason": "Evidence is insufficient to identify a specific hazardous condition (unresolved: clear hazard description, equipment or hazard source, task or activity, energy source)."
+   },
+   "id": "B-amb-loud",
+   "context": "osha-general-industry",
+   "text": "Employees report that the mixing room is loud.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [],
+   "questions": [
+    {
+     "id": "evidence-sufficiency-insufficient",
+     "q": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+     "options": [
+      "Yes",
+      "No",
+      "Unknown",
+      "Not applicable"
+     ],
+     "materialTo": [
+      "hazard-classification",
+      "risk",
+      "standard-applicability",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "machine-energy-state",
+     "question": "Was the equipment running, capable of unexpected startup, stopped, deenergized, or locked out?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "single-select",
+     "options": [
+      "Running or operating",
+      "Capable of startup",
+      "Stopped only",
+      "Deenergized",
+      "Locked out",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "machine-task",
+     "question": "Was the worker operating, cleaning, maintaining, repairing, or clearing a jam?",
+     "priority": "important",
+     "requiredFor": "hazard-classification",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "single-select",
+     "options": [
+      "Operating",
+      "Cleaning",
+      "Maintenance or repair",
+      "Clearing a jam",
+      "Inspection only",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "machine-controls",
+     "question": "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": true,
+     "blocksFinalization": true,
+     "answerType": "multi-select",
+     "options": [
+      "Guard missing or removed",
+      "Guard installed",
+      "Lockout/tagout applied",
+      "Zero-energy verified",
+      "No control verified",
+      "Not sure"
+     ]
+    },
+    {
+     "id": "existing-0",
+     "question": "What equipment, opening, edge, or moving part is missing the guard?",
+     "priority": "important",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": false,
+     "blocksFinalization": false,
+     "answerType": "short-text",
+     "options": null
+    }
+   ],
+   "resultStage": "provisional",
+   "mayFinalize": false,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "B-amb-guard",
+   "context": "osha-general-industry",
+   "text": "Guard status on the press could not be confirmed during the walkthrough.",
+   "regulatoryContext": {
+    "value": "osha-general-industry",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [],
+   "hazards": [
+    {
+     "domain": "machine_guarding",
+     "state": "ACTIVE",
+     "fragment": "guard status on the press could not be confirmed during the walkthrough",
+     "cands": []
+    }
+   ],
+   "questions": [
+    {
+     "id": "machine-energy-state",
+     "q": "Was the equipment running, capable of unexpected startup, stopped, deenergized, or locked out?",
+     "options": [
+      "Running or operating",
+      "Capable of startup",
+      "Stopped only",
+      "Deenergized",
+      "Locked out",
+      "Not sure"
+     ],
+     "materialTo": [
+      "hazard-classification",
+      "risk",
+      "imminent-danger",
+      "standard-applicability",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "machine-task",
+     "q": "Was the worker operating, cleaning, maintaining, repairing, or clearing a jam?",
+     "options": [
+      "Operating",
+      "Cleaning",
+      "Maintenance or repair",
+      "Clearing a jam",
+      "Inspection only",
+      "Not sure"
+     ],
+     "materialTo": [
+      "hazard-classification",
+      "standard-applicability",
+      "corrective-action"
+     ]
+    },
+    {
+     "id": "machine-controls",
+     "q": "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?",
+     "options": [
+      "Guard missing or removed",
+      "Guard installed",
+      "Lockout/tagout applied",
+      "Zero-energy verified",
+      "No control verified",
+      "Not sure"
+     ],
+     "materialTo": [
+      "hazard-classification",
+      "risk",
+      "standard-applicability",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": null,
+   "reviewStateLabel": "Review needed \u2014 likely guarding issue",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "jurisdiction",
+     "question": "Which regulatory authority governs this inspection site?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "B-amb-jur",
+   "context": "unknown",
+   "text": "Worker is exposed to an unprotected roof edge approximately 18 feet above the lower level with no guardrail or personal fall arrest system.",
+   "regulatoryContext": {
+    "value": "unknown",
+    "provenance": "UNKNOWN",
+    "source": null,
+    "basis": []
+   },
+   "decisions": [
+    [
+     "30 CFR 56.15005",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1910.28",
+     "UNKNOWN",
+     "UNKNOWN"
+    ],
+    [
+     "29 CFR 1926.501",
+     "UNKNOWN",
+     "UNKNOWN"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "fall_protection",
+     "state": "ACTIVE",
+     "fragment": "worker is exposed to an unprotected roof edge approximately 18 feet above the lower level ",
+     "cands": [
+      [
+       "30 CFR 56.15005",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1910.28",
+       "candidate",
+       "UNKNOWN"
+      ],
+      [
+       "29 CFR 1926.501",
+       "candidate",
+       "UNKNOWN"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "jurisdiction",
+     "q": "Which regulatory authority governs this inspection site?",
+     "options": [
+      "OSHA General Industry",
+      "OSHA Construction",
+      "MSHA",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "30 CFR 56.15005",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "High"
+  },
+  {
+   "rawQuestions": [
+    {
+     "id": "predicate-29-cfr-1926-1425-permitted-task-exception-absent",
+     "question": "Were the workers beneath the load only to receive, guide, or connect it under the permitted fall-zone procedure?",
+     "priority": "critical",
+     "requiredFor": "standard-applicability",
+     "safetyDecisive": null,
+     "blocksFinalization": null,
+     "answerType": "single-select",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ]
+    }
+   ],
+   "resultStage": "final",
+   "mayFinalize": true,
+   "evidenceSufficiency": null,
+   "finalizationGate": null,
+   "id": "B-amb-crane",
+   "context": "osha-construction",
+   "text": "A crane is lifting a steel beam and two workers are standing under the suspended load.",
+   "regulatoryContext": {
+    "value": "osha-construction",
+    "provenance": "USER_CONFIRMED",
+    "source": "inspection",
+    "basis": []
+   },
+   "decisions": [
+    [
+     "29 CFR 1926.1425",
+     "UNKNOWN",
+     "USER_CONFIRMED"
+    ]
+   ],
+   "hazards": [
+    {
+     "domain": "cranes_hoists",
+     "state": "ACTIVE",
+     "fragment": "a crane is lifting a steel beam",
+     "cands": []
+    },
+    {
+     "domain": "suspended_loads",
+     "state": "ACTIVE",
+     "fragment": "two workers are standing under the suspended load",
+     "cands": [
+      [
+       "29 CFR 1926.1425",
+       "candidate",
+       "USER_CONFIRMED"
+      ]
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "predicate-29-cfr-1926-1425-permitted-task-exception-absent",
+     "q": "Were the workers beneath the load only to receive, guide, or connect it under the permitted fall-zone procedure?",
+     "options": [
+      "Yes",
+      "No",
+      "Not sure"
+     ],
+     "materialTo": [
+      "standard-applicability",
+      "risk",
+      "corrective-action"
+     ]
+    }
+   ],
+   "conditionState": "UNKNOWN",
+   "requiresHumanReview": true,
+   "primaryStandard": {
+    "citation": "29 CFR 1926.1425",
+    "applicability": "candidate",
+    "confidenceLabel": "Low"
+   },
+   "reviewStateLabel": "Review",
+   "assessmentDisposition": "hazard_requires_human_review",
+   "riskBand": "Moderate"
+  }
+ ],
+ "summary": {
+  "observations": 19,
+  "findings": 20,
+  "questions_total": 11,
+  "engine_flagged_blocking": 3,
+  "optional": 8,
+  "DECISION_CRITICAL": 6,
+  "CONFIDENCE_IMPROVING": 5,
+  "NONESSENTIAL": 0,
+  "REDUNDANT": 0,
+  "REPEATED_CONTEXT": 0,
+  "clear_total": 12,
+  "clear_without_clarification": 12,
+  "clear_pct": 100.0,
+  "ambiguous_total": 7,
+  "ambiguous_correctly_asking": 7
+ }
+}

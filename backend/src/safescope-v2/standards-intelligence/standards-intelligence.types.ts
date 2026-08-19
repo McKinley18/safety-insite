@@ -60,4 +60,8 @@ export interface StandardsIntelligenceRecord {
   requiresApproval?: boolean;
   approvedForAutoIngestion?: boolean;
   jurisdictionTags?: string[];
+  /** Authoritative page the title/summary were verified against (primary government source). */
+  sourceUrl?: string;
+  /** ISO date the authoritative page was retrieved/verified (YYYY-MM-DD). */
+  retrievalDate?: string;
 }

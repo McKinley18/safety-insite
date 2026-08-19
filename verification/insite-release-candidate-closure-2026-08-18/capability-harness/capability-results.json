@@ -1,0 +1,5079 @@
+{
+ "B3": [
+  {
+   "id": "B3-01-multi-simultaneous",
+   "context": "osha-construction",
+   "text": "On the third floor deck the guardrail is missing along the open edge, the extension cord running to the saw has exposed conductors, and a container of solvent by the wall has no label.",
+   "expect": {
+    "min_hazards": 3,
+    "families_any": [
+     "fall",
+     "electrical",
+     "hazard_communication",
+     "hazcom"
+    ],
+    "unsafe": true
+   },
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "OSHA Construction hazard communication (identical to 1910.1200)",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "on the third floor deck the guardrail is missing along the open edge",
+      "citations": [
+       [
+        "29 CFR 1926.501",
+        "candidate"
+       ]
+      ]
+     },
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "the extension cord running to the saw has exposed conductors",
+      "citations": [
+       [
+        "29 CFR 1926.416(a)(1)",
+        "direct"
+       ]
+      ]
+     },
+     {
+      "domainId": "ground_control",
+      "family": "ground_control",
+      "state": "ACTIVE",
+      "fragment": "a container of solvent by the wall has no label",
+      "citations": [
+       [
+        "29 CFR 1926.59",
+        "direct"
+       ]
+      ]
+     },
+     {
+      "domainId": "hazcom",
+      "family": "hazard_communication",
+      "state": "ACTIVE",
+      "fragment": "on the third floor deck the guardrail is missing along the open edge, the extension cord running to the saw has exposed ",
+      "citations": [
+       [
+        "29 CFR 1926.501",
+        "candidate"
+       ],
+       [
+        "29 CFR 1926.59",
+        "direct"
+       ],
+       [
+        "29 CFR 1926.416(a)(1)",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.501",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "citation": "29 CFR 1926.59",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "citation": "29 CFR 1926.416(a)(1)",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.59",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "Hazard Communication"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected extension cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction hazard communication (identical to 1910.1200) evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1926-501-worker-exposure",
+      "q": "Can you confirm: worker exposure?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports electrical involving cord during maintenance. The available evidence indicates electrical shock exposure for employees handle the cord.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "On the third floor deck the guardrail is missing along the open edge, the extension cord running to the saw has exposed conductors, and a container of solvent by the wall has no label."
+   }
+  },
+  {
+   "id": "B3-02-effective-control",
+   "context": "osha-general-industry",
+   "text": "The press brake point of operation is fully enclosed by a fixed guard that was verified in place and the interlock was function-tested this morning.",
+   "expect": {
+    "controlled": true,
+    "no_supported_violation": true
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "Machine Guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.25,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "guarding_interlocks",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the interlock was function-tested this morning",
+      "citations": []
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "NOT_APPLICABLE",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Controlled",
+     "provisional": true,
+     "rationale": "Current uncontrolled exposure is not established by the submitted evidence."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Machine Guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates cut amputation point of operation exposure for access to point.",
+    "explanation": "HazLenz AI could not identify enough weighted hazard signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The press brake point of operation is fully enclosed by a fixed guard that was verified in place and the interlock was function-tested this morning."
+   }
+  },
+  {
+   "id": "B3-03-failed-control",
+   "context": "osha-general-industry",
+   "text": "The interlock guard on the press brake is installed but has been bypassed with a jumper wire so the machine runs with the guard open.",
+   "expect": {
+    "unsafe": true,
+    "families_any": [
+     "machine_guarding",
+     "guard"
+    ]
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "Machine Guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.52,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "guarding_interlocks",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the interlock guard on the press brake is installed but has been bypassed with a jumper wire so the machine runs with th",
+      "citations": []
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "NOT_APPLICABLE",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Controlled",
+     "provisional": true,
+     "rationale": "Current uncontrolled exposure is not established by the submitted evidence."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Machine Guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates cut amputation point of operation exposure for access to point.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The interlock guard on the press brake is installed but has been bypassed with a jumper wire so the machine runs with the guard open."
+   }
+  },
+  {
+   "id": "B3-04-conflicting",
+   "context": "osha-general-industry",
+   "text": "The operator says the machine was locked out, but the disconnect was found in the ON position and no lock or tag was present on it.",
+   "expect": {
+    "contradiction": true,
+    "unsafe": true
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "Machine Guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.25,
+    "confidenceBand": "low",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected disconnect from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Machine Guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving unknown during unknown. The available evidence indicates rotating equipment nip point exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "The operator says the machine was locked out, but the disconnect was found in the ON position and no lock or tag was present on it."
+   }
+  },
+  {
+   "id": "B3-05-uncertain-jurisdiction",
+   "context": "unknown",
+   "text": "A worker was on a ladder near the crusher discharge with no fall protection.",
+   "expect": {
+    "jurisdiction_unknown_ok": true,
+    "no_definite_citation_without_regime": true
+   },
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "MSHA fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "unknown",
+     "provenance": "UNKNOWN",
+     "source": null
+    },
+    "hazards": [
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "a worker was on a ladder near the crusher discharge with no fall protection",
+      "citations": [
+       [
+        "30 CFR 56.15005",
+        "candidate"
+       ],
+       [
+        "29 CFR 1910.28",
+        "candidate"
+       ],
+       [
+        "29 CFR 1926.501",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "30 CFR 56.15005",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "UNKNOWN"
+     },
+     {
+      "citation": "29 CFR 1910.28",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "UNKNOWN"
+     },
+     {
+      "citation": "29 CFR 1926.501",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "UNKNOWN"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "30 CFR 56.15005",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "MSHA fall protection"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues.",
+     "permanentCorrection": "Erect engineered guardrails or qualified-review approved edge-protection controls around the ladder to resolve fall exposures.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the MSHA fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "jurisdiction",
+      "q": "Which regulatory authority governs this inspection site?",
+      "requiredFor": "standard-applicability",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports fall_protection involving unknown during unknown. The available evidence indicates fall from height exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "A worker was on a ladder near the crusher discharge with no fall protection."
+   }
+  },
+  {
+   "id": "B3-06-explicit-jurisdiction",
+   "context": "unknown",
+   "text": "At this surface sand and gravel mine, regulated by MSHA, the tail pulley guard on the conveyor is missing.",
+   "expect": {
+    "regime_inferred": "msha",
+    "unsafe": true
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "MSHA moving machine parts guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "msha",
+     "provenance": "HAZLENZ_INFERRED",
+     "source": "observation_evidence"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the tail pulley guard on the conveyor is missing",
+      "citations": [
+       [
+        "30 CFR 56.14107(a)",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "30 CFR 56.14107(a)",
+      "status": "SUPPORTED",
+      "confidence": 0.8,
+      "provenance": "HAZLENZ_INFERRED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "30 CFR 56.14107(a)",
+     "applicability": "direct",
+     "confidenceLabel": "Moderate",
+     "title": "Moving machine parts"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": false,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause affected work and restrict access around the exposed tail_pulley until guarding and mechanical_rotation exposure controls are reviewed.",
+     "permanentCorrection": "Install permanent, secure guarding over the exposed tail_pulley to completely eliminate the unknown hazard.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the MSHA moving machine parts guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving conveyor during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "At this surface sand and gravel mine, regulated by MSHA, the tail pulley guard on the conveyor is missing."
+   }
+  },
+  {
+   "id": "B3-07-safe-condition",
+   "context": "osha-general-industry",
+   "text": "Walked the finished goods aisle; floors were dry and clear, all pallets were stacked squarely, and nothing was blocking the exit route.",
+   "expect": {
+    "controlled": true,
+    "no_supported_violation": true
+   },
+   "features": {
+    "classification": "Controlled Emergency Egress",
+    "hazardCategory": "Controlled Emergency Egress",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "material_handling",
+      "family": "material_handling",
+      "state": "ACTIVE",
+      "fragment": "all pallets were stacked squarely",
+      "citations": []
+     },
+     {
+      "domainId": "slips_trips_falls",
+      "family": "walking_working_surfaces",
+      "state": "ACTIVE",
+      "fragment": "floors were dry",
+      "citations": []
+     },
+     {
+      "domainId": "emergency_egress",
+      "family": "egress",
+      "state": "ACTIVE",
+      "fragment": "nothing was blocking the exit route",
+      "citations": []
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.36",
+      "status": "CONTRADICTED",
+      "confidence": 0.05,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Controlled",
+     "provisional": true,
+     "rationale": "Current uncontrolled exposure is not established by the submitted evidence."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Controlled Emergency Egress evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "Walked the finished goods aisle; floors were dry and clear, all pallets were stacked squarely, and nothing was blocking the exit route."
+   }
+  },
+  {
+   "id": "B3-08-negated-hazard",
+   "context": "osha-general-industry",
+   "text": "No exposed energized conductors were found in Panel B; the cover was in place and secured.",
+   "expect": {
+    "controlled": true,
+    "no_supported_violation": true
+   },
+   "features": {
+    "classification": "Electrical",
+    "hazardCategory": "Electrical",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.52,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "1910.303(b)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Electrical equipment examination and use"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Electrical hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected panel from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Electrical evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports electrical involving unknown during unknown. The available evidence indicates electrical shock exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Electrical signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "No exposed energized conductors were found in Panel B; the cover was in place and secured."
+   }
+  },
+  {
+   "id": "B3-09-temporal-change",
+   "context": "osha-construction",
+   "text": "The trench had no protective system yesterday; today a properly rated trench box is installed and the competent person inspected it before entry this morning.",
+   "expect": {
+    "controlled": true,
+    "no_supported_violation": true
+   },
+   "features": {
+    "classification": "Confined Space",
+    "hazardCategory": "OSHA Construction excavation protective systems",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "excavation_trenching",
+      "family": "excavation",
+      "state": "ACTIVE",
+      "fragment": "today a properly rated trench box is installed",
+      "citations": [
+       [
+        "29 CFR 1926.652(a)(1)",
+        "candidate"
+       ]
+      ]
+     },
+     {
+      "domainId": "training_competency",
+      "family": "training",
+      "state": "ACTIVE",
+      "fragment": "the competent person inspected it before entry this morning",
+      "citations": []
+     },
+     {
+      "domainId": "excavation_trenching",
+      "family": "excavation_trenching",
+      "state": "ACTIVE",
+      "fragment": "the trench had no protective system yesterday",
+      "citations": [
+       [
+        "29 CFR 1926.652(a)(1)",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.652(a)(1)",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.652(a)(1)",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "OSHA Construction excavation protective systems"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": false,
+     "rationale": "Confined Space hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to asphyxiation.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction excavation protective systems evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports confined_space involving unknown during unknown. The available evidence indicates asphyxiation exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Confined Space signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The trench had no protective system yesterday; today a properly rated trench box is installed and the competent person inspected it before entry this morning."
+   }
+  },
+  {
+   "id": "B3-10-worker-equipment-environment",
+   "context": "osha-construction",
+   "text": "A laborer is guiding a suspended precast panel by hand while the crane swings it over the access road in gusting wind and no taglines are in use.",
+   "expect": {
+    "unsafe": true,
+    "min_hazards": 1
+   },
+   "features": {
+    "classification": "Lifting & Rigging",
+    "hazardCategory": "OSHA Construction crane fall zone",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "a laborer is guiding a suspended precast panel by hand",
+      "citations": [
+       [
+        "29 CFR 1926.1425",
+        "candidate"
+       ]
+      ]
+     },
+     {
+      "domainId": "cranes_hoists",
+      "family": "cranes",
+      "state": "ACTIVE",
+      "fragment": "the crane swings it over the access road in gusting wind",
+      "citations": []
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.1425",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.1425",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "OSHA Construction crane fall zone"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected panel from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction crane fall zone evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1926-1425-worker-in-fall-zone",
+      "q": "Can you confirm: worker in fall zone?",
+      "requiredFor": "standard-applicability",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     },
+     {
+      "id": "predicate-29-cfr-1926-1425-permitted-task-exception-absent",
+      "q": "Were the workers beneath the load only to receive, guide, or connect it under the permitted fall-zone procedure?",
+      "requiredFor": "standard-applicability",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports electrical involving electrical panel during operation. The available evidence indicates arc flash exposure for employees cannot safely access.",
+    "explanation": "HazLenz AI matched weighted Lifting & Rigging signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "A laborer is guiding a suspended precast panel by hand while the crane swings it over the access road in gusting wind and no taglines are in use."
+   }
+  },
+  {
+   "id": "B3-11-context-dependent-severity",
+   "context": "osha-general-industry",
+   "text": "A four inch deep floor opening cover is missing in the mezzanine walkway twenty two feet above the shipping floor and workers cross it every shift.",
+   "expect": {
+    "unsafe": true,
+    "risk_at_least": "High"
+   },
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "Fall Protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "walking_working_surfaces",
+      "family": "walking_working_surfaces",
+      "state": "ACTIVE",
+      "fragment": "a four inch deep floor opening cover is missing in the mezzanine walkway twenty two feet above the shipping floor",
+      "citations": []
+     },
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "a four inch deep floor opening cover is missing in the mezzanine walkway twenty two feet above the shipping floor",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.28(b)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Candidate requirements related to fall protection."
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Fall Protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "A four inch deep floor opening cover is missing in the mezzanine walkway twenty two feet above the shipping floor and workers cross it every shift."
+   }
+  },
+  {
+   "id": "B3-12-irrelevant-noise",
+   "context": "osha-general-industry",
+   "text": "Coffee machine in the breakroom is broken again and the parking lot was repaved last week. In the shop the abrasive wheel grinder has no tongue guard and the work rest is set about a half inch off the wheel.",
+   "expect": {
+    "unsafe": true,
+    "families_any": [
+     "machine_guarding",
+     "guard"
+    ],
+    "no_phantom_families": [
+     "parking",
+     "coffee"
+    ]
+   },
+   "features": {
+    "classification": "Noise Exposure",
+    "hazardCategory": "OSHA General Industry machine guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.55,
+    "confidenceBand": "medium",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.212(a)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Machine guarding - types of guarding methods"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA General Industry machine guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+      "q": "Can you confirm: moving or accessible energy?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates cut amputation point of operation exposure for access to point.",
+    "explanation": "HazLenz AI matched weighted Noise Exposure signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "Coffee machine in the breakroom is broken again and the parking lot was repaved last week. In the shop the abrasive wheel grinder has no tongue guard and the work rest is set about a half inch off the wheel."
+   }
+  },
+  {
+   "id": "B3-13-incomplete-needs-clarification",
+   "context": "unknown",
+   "text": "Someone mentioned there might be a problem with one of the machines in the back.",
+   "expect": {
+    "should_ask": true,
+    "no_supported_violation": true
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "Machine Guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.25,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "unknown",
+     "provenance": "UNKNOWN",
+     "source": null
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Machine Guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "evidence-sufficiency-insufficient",
+      "q": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+      "requiredFor": "hazard-classification",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports machine_guarding involving unknown during unknown. The available evidence indicates rotating equipment nip point exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "Someone mentioned there might be a problem with one of the machines in the back."
+   }
+  },
+  {
+   "id": "B3-14-incomplete-no-clarification-needed",
+   "context": "osha-general-industry",
+   "text": "The tail pulley on the packaging conveyor is completely unguarded and operators reach across it to clear jams while it is running.",
+   "expect": {
+    "unsafe": true,
+    "questions_not_blocking": true
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "OSHA General Industry machine guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the tail pulley on the packaging conveyor is completely unguarded",
+      "citations": [
+       [
+        "29 CFR 1910.212(a)(1)",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.212(a)(1)",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "Machine guarding - types of guarding methods"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": false,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause affected work and restrict access around the exposed tail_pulley until guarding and mechanical_rotation exposure controls are reviewed.",
+     "permanentCorrection": "Install permanent, secure guarding over the exposed tail_pulley to completely eliminate the rotating equipment nip point hazard.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA General Industry machine guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving conveyor during cleanup. The available evidence indicates rotating equipment nip point exposure for worker near belt.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [
+     {
+      "id": "gap-conveyor-loto",
+      "scenarioFamilyId": "conveyor-cleanup",
+      "hazardDomain": "machine_guarding",
+      "evidenceGapId": "LOTO status",
+      "question": "Was a verified Lockout/Tagout (LOTO) procedure applied before cleaning?",
+      "reasonForQuestion": "Conveyor cleaning near moving parts is high-risk; verifying energy isolation is critical.",
+      "relatedMechanismOfInjury": "rotating_equipment_nip_point",
+      "relatedExposurePathway": "worker near belt",
+      "relatedMissingControl": "no LOTO",
+      "relatedStandardFamilyCandidate": "candidate-machine-guarding",
+      "priority": "critical",
+      "answerType": "boolean",
+      "examplesOfUsefulEvidence": [
+       "photo of lock",
+       "tag details"
+      ],
+      "confidenceImpact": "high",
+      "factsToConfirm": [
+       "Confirm exposure",
+       "Confirm controls"
+      ],
+      "humanReviewTrigger": true,
+      "advisoryGuardrails": {
+       "advisoryOnly": true,
+       "doesNotDeclareViolation": true,
+       "requiresQualifiedReview": true
+      }
+     }
+    ],
+    "observedCondition": "The tail pulley on the packaging conveyor is completely unguarded and operators reach across it to clear jams while it is running."
+   }
+  },
+  {
+   "id": "B3-15a-similar-wording-gi",
+   "context": "osha-general-industry",
+   "text": "Employee working on an unprotected side of a mezzanine platform six feet above the floor with no guardrail.",
+   "expect": {
+    "unsafe": true,
+    "regime_family": "1910"
+   },
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "OSHA walking-working surface fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "employee working on an unprotected side of a mezzanine platform six feet above the floor with no guardrail",
+      "citations": [
+       [
+        "29 CFR 1910.28",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.28",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.28",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "OSHA walking-working surface fall protection"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": false,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues.",
+     "permanentCorrection": "Erect engineered guardrails or qualified-review approved edge-protection controls around the unknown to resolve fall exposures.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA walking-working surface fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "Employee working on an unprotected side of a mezzanine platform six feet above the floor with no guardrail."
+   }
+  },
+  {
+   "id": "B3-15b-similar-wording-construction",
+   "context": "osha-construction",
+   "text": "Employee working on an unprotected side of a leading edge six feet above the lower level with no guardrail.",
+   "expect": {
+    "unsafe": true,
+    "regime_family": "1926"
+   },
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "OSHA Construction fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "employee working on an unprotected side of a leading edge six feet above the lower level with no guardrail",
+      "citations": [
+       [
+        "29 CFR 1926.501",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.501",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.501",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "Duty to have fall protection"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": false,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop exposed work and restrict access to the unprotected edge or elevated access point.",
+     "permanentCorrection": "Install compliant guardrails or another engineered fall-protection system suited to the identified edge and task before work resumes.",
+     "verificationStep": "Inspect the installed edge protection at the point of exposure and document that it remains continuous and secure before reopening the area.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports fall_protection involving unknown during unknown. The available evidence indicates fall from height exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "Employee working on an unprotected side of a leading edge six feet above the lower level with no guardrail."
+   }
+  }
+ ],
+ "B4": [
+  {
+   "id": "B4-01",
+   "context": "osha-general-industry",
+   "hazardText": "The guard on the drill press is missing.",
+   "controlText": "The guard on the drill press was inspected and is securely installed.",
+   "hazardFeatures": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "OSHA General Industry machine guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.55,
+    "confidenceBand": "medium",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the guard on the drill press is missing",
+      "citations": [
+       [
+        "29 CFR 1910.212(a)(1)",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.212(a)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Machine guarding - types of guarding methods"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA General Industry machine guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+      "q": "Can you confirm: moving or accessible energy?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports machine_guarding involving unknown during unknown. The available evidence indicates rotating equipment nip point exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The guard on the drill press is missing."
+   },
+   "controlFeatures": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "Machine Guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.52,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the guard on the drill press was inspected",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Machine Guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving unknown during unknown. The available evidence indicates rotating equipment nip point exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The guard on the drill press was inspected and is securely installed."
+   }
+  },
+  {
+   "id": "B4-02",
+   "context": "osha-general-industry",
+   "hazardText": "Worker is exposed to energized conductors inside the open motor control cabinet.",
+   "controlText": "The motor control cabinet was de-energized, locked out, and absence of voltage was verified before work began.",
+   "hazardFeatures": {
+    "classification": "Electrical",
+    "hazardCategory": "Electrical",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "worker is exposed to energized conductors inside the open motor control cabinet",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.303(g)(2)(i)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "29 CFR 1910.303(g)(2)(i)"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Electrical hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected unknown from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Electrical evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Electrical signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "Worker is exposed to energized conductors inside the open motor control cabinet."
+   },
+   "controlFeatures": {
+    "classification": "Controlled Condition",
+    "hazardCategory": "Controlled Condition",
+    "conditionState": "SAFE_VERIFIED",
+    "guidedConditionState": "SAFE_VERIFIED",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Electrical hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected unknown from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Controlled Condition evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Electrical signals.",
+    "evidenceGapQuestions": [
+     "Confirm the lockout/tagout review status and whether the equipment remains isolated for the maintenance task.",
+     "Verify that all hazardous energy sources were isolated, stored energy was relieved or restrained, and zero-energy testing was completed.",
+     "Confirm each exposed employee is protected by the lockout/tagout controls before maintenance continues or equipment is restored."
+    ],
+    "observedCondition": "The motor control cabinet was de-energized, locked out, and absence of voltage was verified before work began."
+   }
+  },
+  {
+   "id": "B4-03",
+   "context": "osha-construction",
+   "hazardText": "Open trench about seven feet deep with vertical sides and no protective system, worker at the bottom.",
+   "controlText": "The excavation is four feet deep, entirely in stable rock, and the competent person examined it and found no indication of a potential cave-in, so no protective system is required.",
+   "hazardFeatures": {
+    "classification": "Trenching & Shoring",
+    "hazardCategory": "OSHA Construction excavation protective systems",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "excavation_trenching",
+      "family": "excavation",
+      "state": "ACTIVE",
+      "fragment": "open trench about seven feet deep with vertical sides",
+      "citations": [
+       [
+        "29 CFR 1926.652(a)(1)",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.652(a)(1)",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.652(a)(1)",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "OSHA Construction excavation protective systems"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": false,
+     "rationale": "The available evidence supports a moderate advisory risk level."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Prompt",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction excavation protective systems evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Trenching & Shoring signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "Open trench about seven feet deep with vertical sides and no protective system, worker at the bottom."
+   },
+   "controlFeatures": {
+    "classification": "Trenching & Shoring",
+    "hazardCategory": "Trenching & Shoring",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.7,
+    "confidenceBand": "medium",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "excavation_trenching",
+      "family": "excavation",
+      "state": "ACTIVE",
+      "fragment": "the excavation is four feet deep",
+      "citations": [
+       [
+        "29 CFR 1926.652(a)(1)",
+        "candidate"
+       ]
+      ]
+     },
+     {
+      "domainId": "training_competency",
+      "family": "training",
+      "state": "ACTIVE",
+      "fragment": "the competent person examined it",
+      "citations": []
+     },
+     {
+      "domainId": "excavation_trenching",
+      "family": "excavation_trenching",
+      "state": "ACTIVE",
+      "fragment": "found no indication of a potential cave-in",
+      "citations": [
+       [
+        "29 CFR 1926.652(a)(1)",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.652(a)(1)",
+      "status": "NOT_APPLICABLE",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Controlled",
+     "provisional": true,
+     "rationale": "Current uncontrolled exposure is not established by the submitted evidence."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as no protective system or missing protective system or spoil pile near edge, to eliminate exposure to caught_in_cave_in.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Trenching & Shoring evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports excavation_trenching involving excavator during trenching. The available evidence indicates caught in cave in exposure for worker is inside excavation.",
+    "explanation": "HazLenz AI matched weighted Trenching & Shoring signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The excavation is four feet deep, entirely in stable rock, and the competent person examined it and found no indication of a potential cave-in, so no protective system is required."
+   }
+  },
+  {
+   "id": "B4-04",
+   "context": "osha-general-industry",
+   "hazardText": "A damaged extension cord with the outer jacket split is in use at the assembly bench.",
+   "controlText": "A damaged extension cord was found at the assembly bench, tagged, and removed from service.",
+   "hazardFeatures": {
+    "classification": "Electrical",
+    "hazardCategory": "Electrical",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "a damaged extension cord with the outer jacket split is in use at the assembly bench",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.334(a)(2)(ii)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Candidate requirements related to electrical."
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Electrical hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected extension cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Electrical evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports electrical involving cord during maintenance. The available evidence indicates electrical shock exposure for employees handle the cord.",
+    "explanation": "HazLenz AI matched weighted Electrical signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "A damaged extension cord with the outer jacket split is in use at the assembly bench."
+   },
+   "controlFeatures": {
+    "classification": "Electrical",
+    "hazardCategory": "Electrical",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "a damaged extension cord was found at the assembly bench",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Controlled",
+     "provisional": true,
+     "rationale": "Current uncontrolled exposure is not established by the submitted evidence."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected extension cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Electrical evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports electrical involving unknown during unknown. The available evidence indicates electrical shock exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Electrical signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "A damaged extension cord was found at the assembly bench, tagged, and removed from service."
+   }
+  },
+  {
+   "id": "B4-05",
+   "context": "osha-general-industry",
+   "hazardText": "Dosimetry recorded 92 dBA sustained across the full eight hour shift for the saw operator with no hearing protection.",
+   "controlText": "A brief instantaneous reading of 92 dBA was recorded at the saw, but the operator's documented eight hour dose is well below the action level and hearing protection is worn.",
+   "hazardFeatures": {
+    "classification": "Noise Exposure",
+    "hazardCategory": "Noise Exposure",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Noise Exposure evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates cut amputation point of operation exposure for access to point.",
+    "explanation": "HazLenz AI matched weighted Noise Exposure signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "Dosimetry recorded 92 dBA sustained across the full eight hour shift for the saw operator with no hearing protection."
+   },
+   "controlFeatures": {
+    "classification": "Noise Exposure",
+    "hazardCategory": "Noise Exposure",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "noise",
+      "family": "noise",
+      "state": "ACTIVE",
+      "fragment": "hearing protection is worn",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Noise Exposure evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates cut amputation point of operation exposure for access to point.",
+    "explanation": "HazLenz AI matched weighted Noise Exposure signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "A brief instantaneous reading of 92 dBA was recorded at the saw, but the operator's documented eight hour dose is well below the action level and hearing protection is worn."
+   }
+  }
+ ],
+ "B5": [
+  {
+   "id": "B5-gi",
+   "context": "osha-general-industry",
+   "text": "In the packaging area the case sealer belt drive is being serviced with power connected and no lock or tag applied, the extension cord feeding the shrink wrap station has exposed copper conductors, the aisle to the emergency exit is blocked by stacked pallets, and a drum of cleaning chemical by the sink has no label.",
+   "expect": {
+    "min_hazards": 3,
+    "families_any": [
+     "lockout",
+     "energy",
+     "electrical",
+     "egress",
+     "hazard_communication",
+     "hazcom"
+    ]
+   },
+   "features": {
+    "classification": "Emergency Egress",
+    "hazardCategory": "OSHA General Industry live electrical parts",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "the extension cord feeding the shrink wrap station has exposed copper conductors",
+      "citations": [
+       [
+        "29 CFR 1910.303",
+        "direct"
+       ]
+      ]
+     },
+     {
+      "domainId": "emergency_egress",
+      "family": "egress",
+      "state": "ACTIVE",
+      "fragment": "the aisle to the emergency exit is blocked by stacked pallets",
+      "citations": []
+     },
+     {
+      "domainId": "hazcom",
+      "family": "hazard_communication",
+      "state": "ACTIVE",
+      "fragment": "a drum of cleaning chemical by the sink has no label",
+      "citations": [
+       [
+        "29 CFR 1910.1200",
+        "direct"
+       ]
+      ]
+     },
+     {
+      "domainId": "lockout_tagout",
+      "family": "lockout_tagout",
+      "state": "ACTIVE",
+      "fragment": "in the packaging area the case sealer belt drive is being serviced with power connected and no lock or tag applied, the ",
+      "citations": [
+       [
+        "29 CFR 1910.303",
+        "direct"
+       ],
+       [
+        "29 CFR 1910.147",
+        "direct"
+       ],
+       [
+        "29 CFR 1910.1200",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.303",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "citation": "29 CFR 1910.147",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "citation": "29 CFR 1910.36",
+      "status": "CONTRADICTED",
+      "confidence": 0.05,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "citation": "29 CFR 1910.1200",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.303",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "OSHA General Industry live electrical parts"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": false,
+     "rationale": "Emergency Egress hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected extension cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA General Industry live electrical parts evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports electrical involving cord during maintenance. The available evidence indicates electrical shock exposure for employees handle the cord.",
+    "explanation": "HazLenz AI matched weighted Emergency Egress signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "In the packaging area the case sealer belt drive is being serviced with power connected and no lock or tag applied, the extension cord feeding the shrink wrap station has exposed copper conductors, the aisle to the emergency exit is blocked by stacked pallets, and a drum of cleaning chemical by the sink has no label."
+   }
+  },
+  {
+   "id": "B5-construction",
+   "context": "osha-construction",
+   "text": "On the second floor slab the leading edge is open with no guardrail and workers are within a foot of it, the scaffold beside the column is missing its guardrail on the open side above ten feet, a portable generator is feeding tools through a cord with no GFCI, and the ladder used to reach the slab does not extend three feet above the landing.",
+   "expect": {
+    "min_hazards": 3,
+    "families_any": [
+     "fall",
+     "scaffold",
+     "electrical",
+     "ladder"
+    ]
+   },
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "OSHA Construction scaffold fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "the ladder used to reach the slab does not extend three feet above the landing",
+      "citations": []
+     },
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "a portable generator is feeding tools through a cord with no gfci",
+      "citations": []
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.451(g)(1)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "citation": "29 CFR 1926.501",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.451(g)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "OSHA Construction scaffold fall protection"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction scaffold fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1926-451-g-1--platform-more-than-10-feet-above-lower-level",
+      "q": "Can you confirm: platform more than 10 feet above lower level?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     },
+     {
+      "id": "predicate-29-cfr-1926-451-g-1--worker-on-platform",
+      "q": "Can you confirm: worker on platform?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     },
+     {
+      "id": "predicate-29-cfr-1926-501-worker-exposure",
+      "q": "Can you confirm: worker exposure?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "On the second floor slab the leading edge is open with no guardrail and workers are within a foot of it, the scaffold beside the column is missing its guardrail on the open side above ten feet, a portable generator is feeding tools through a cord with no GFCI, and the ladder used to reach the slab does not extend three feet above the landing."
+   }
+  },
+  {
+   "id": "B5-msha",
+   "context": "msha",
+   "text": "At the primary crusher the tail pulley guard is off, a miner was greasing the head pulley while the conveyor was running, the travelway handrail beside the belt is missing a section, and the berm along the haul road above the crusher is below axle height.",
+   "expect": {
+    "min_hazards": 3,
+    "families_any": [
+     "guard",
+     "machine_guarding",
+     "energy",
+     "lockout",
+     "fall",
+     "berm",
+     "haul"
+    ]
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "MSHA fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "msha",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the conveyor was running",
+      "citations": []
+     },
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "the travelway handrail beside the belt is missing a section",
+      "citations": [
+       [
+        "30 CFR 56.15005",
+        "direct"
+       ]
+      ]
+     },
+     {
+      "domainId": "mobile_equipment",
+      "family": "mobile_equipment",
+      "state": "UNKNOWN",
+      "fragment": "at the primary crusher the tail pulley guard is off, a miner was greasing the head pulley while the conveyor was running",
+      "citations": [
+       [
+        "30 CFR 56.15005",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "30 CFR 56.15005",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "30 CFR 56.15005",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "MSHA fall protection"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": false,
+     "rationale": "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause affected work and restrict access around the exposed tail_pulley until guarding and mechanical_rotation exposure controls are reviewed.",
+     "permanentCorrection": "Install permanent, secure guarding over the exposed tail_pulley to completely eliminate the unknown hazard.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the MSHA fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving conveyor during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Mobile Equipment / Traffic signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "At the primary crusher the tail pulley guard is off, a miner was greasing the head pulley while the conveyor was running, the travelway handrail beside the belt is missing a section, and the berm along the haul road above the crusher is below axle height."
+   }
+  }
+ ],
+ "B7": [
+  {
+   "id": "B7-01-enough-evidence",
+   "context": "osha-general-industry",
+   "text": "The tail pulley on the packaging conveyor is completely unguarded and operators reach across it while running.",
+   "expect": {
+    "kind": "ENOUGH_EVIDENCE"
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "OSHA General Industry machine guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the tail pulley on the packaging conveyor is completely unguarded",
+      "citations": [
+       [
+        "29 CFR 1910.212(a)(1)",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.212(a)(1)",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "Machine guarding - types of guarding methods"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": false,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause affected work and restrict access around the exposed tail_pulley until guarding and mechanical_rotation exposure controls are reviewed.",
+     "permanentCorrection": "Install permanent, secure guarding over the exposed tail_pulley to completely eliminate the rotating equipment nip point hazard.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA General Industry machine guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving conveyor during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The tail pulley on the packaging conveyor is completely unguarded and operators reach across it while running."
+   }
+  },
+  {
+   "id": "B7-02-decision-critical-question",
+   "context": "osha-general-industry",
+   "text": "There is an opening in the mezzanine floor.",
+   "expect": {
+    "kind": "DECISION_CRITICAL_QUESTION"
+   },
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "Fall Protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.52,
+    "confidenceBand": "low",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "walking_working_surfaces",
+      "family": "walking_working_surfaces",
+      "state": "ACTIVE",
+      "fragment": "there is an opening in the mezzanine floor",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Fall Protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "There is an opening in the mezzanine floor."
+   }
+  },
+  {
+   "id": "B7-03-unknown",
+   "context": "unknown",
+   "text": "Something did not look right in the yard.",
+   "expect": {
+    "kind": "UNKNOWN"
+   },
+   "features": {
+    "classification": "Unclassified",
+    "hazardCategory": "Unclassified",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.25,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "unknown",
+     "provenance": "UNKNOWN",
+     "source": null
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Unclassified evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "evidence-sufficiency-insufficient",
+      "q": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+      "requiredFor": "hazard-classification",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI could not identify enough weighted hazard signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "Something did not look right in the yard."
+   }
+  },
+  {
+   "id": "B7-04-safe-or-controlled",
+   "context": "osha-general-industry",
+   "text": "All machine guards in the fabrication cell were verified in place and function tested this morning.",
+   "expect": {
+    "kind": "SAFE_OR_CONTROLLED"
+   },
+   "features": {
+    "classification": "Unclassified",
+    "hazardCategory": "Unclassified",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.25,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "all machine guards in the fabrication cell were verified in place",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Unclassified evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI could not identify enough weighted hazard signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "All machine guards in the fabrication cell were verified in place and function tested this morning."
+   }
+  },
+  {
+   "id": "B7-05-jurisdiction-unknown-not-zero",
+   "context": "unknown",
+   "text": "The tail pulley on the conveyor is completely unguarded and workers reach across it while it runs.",
+   "expect": {
+    "kind": "ENOUGH_EVIDENCE",
+    "must_not_be_empty": true
+   },
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "MSHA moving machine parts guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "unknown",
+     "provenance": "UNKNOWN",
+     "source": null
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "the tail pulley on the conveyor is completely unguarded",
+      "citations": [
+       [
+        "30 CFR 56.14107(a)",
+        "candidate"
+       ],
+       [
+        "29 CFR 1910.212(a)(1)",
+        "candidate"
+       ],
+       [
+        "29 CFR 1926.300(b)(2)",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "30 CFR 56.14107(a)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "UNKNOWN"
+     },
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "UNKNOWN"
+     },
+     {
+      "citation": "29 CFR 1926.300(b)(2)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "UNKNOWN"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "30 CFR 56.14107(a)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Moving machine parts"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause affected work and restrict access around the exposed tail_pulley until guarding and mechanical_rotation exposure controls are reviewed.",
+     "permanentCorrection": "Install permanent, secure guarding over the exposed tail_pulley to completely eliminate the rotating equipment nip point hazard.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the MSHA moving machine parts guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "jurisdiction",
+      "q": "Which regulatory authority governs this inspection site?",
+      "requiredFor": "standard-applicability",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     },
+     {
+      "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+      "q": "Can you confirm: moving or accessible energy?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports machine_guarding involving conveyor during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "The tail pulley on the conveyor is completely unguarded and workers reach across it while it runs."
+   }
+  }
+ ],
+ "B10": [
+  {
+   "id": "B10-01",
+   "context": "osha-general-industry",
+   "text": "grinder in maint shop missing tongue guard, work rest gap way too big, guys use it daily",
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "OSHA General Industry machine guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "grinder in maint shop missing tongue guard",
+      "citations": [
+       [
+        "29 CFR 1910.212(a)(1)",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.212(a)(1)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.212(a)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Machine guarding - types of guarding methods"
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA General Industry machine guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy",
+      "q": "Can you confirm: moving or accessible energy?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates cut amputation point of operation exposure for access to point.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [
+     "What equipment, opening, edge, or moving part is missing the guard?",
+     "Is the equipment operating or energized, and are workers exposed to a nip point, rotating part, fall edge, or floor opening?",
+     "Is this OSHA General Industry, OSHA Construction, or MSHA?"
+    ],
+    "observedCondition": "grinder in maint shop missing tongue guard, work rest gap way too big, guys use it daily"
+   }
+  },
+  {
+   "id": "B10-02",
+   "context": "osha-general-industry",
+   "text": "found the LOTO box empty again. mechanic had the conveyor drive open w/ power still on, no lock no tag",
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "OSHA General Industry hazardous energy control",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "mechanic had the conveyor drive open w/ power still on",
+      "citations": [
+       [
+        "29 CFR 1910.147",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.147",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.147",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "The control of hazardous energy"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": false,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause affected work and restrict access around the exposed head_pulley_or_drive until guarding and unknown exposure controls are reviewed.",
+     "permanentCorrection": "Install permanent, secure guarding over the exposed head_pulley_or_drive to completely eliminate the unknown hazard.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA General Industry hazardous energy control evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving conveyor during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "found the LOTO box empty again. mechanic had the conveyor drive open w/ power still on, no lock no tag"
+   }
+  },
+  {
+   "id": "B10-03",
+   "context": "osha-general-industry",
+   "text": "ext cord at the pack line is chewed up, copper showing. still plugged in",
+   "features": {
+    "classification": "Unclassified",
+    "hazardCategory": "Unclassified",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.25,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "ext cord at the pack line is chewed up",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "1910.303(b)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Electrical equipment examination and use"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Unclassified evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI could not identify enough weighted hazard signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "ext cord at the pack line is chewed up, copper showing. still plugged in"
+   }
+  },
+  {
+   "id": "B10-04",
+   "context": "osha-general-industry",
+   "text": "exit door by shipping blocked w/ pallets abt 4 high, been like that all week",
+   "features": {
+    "classification": "Emergency Egress",
+    "hazardCategory": "Emergency Egress",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "emergency_egress",
+      "family": "egress",
+      "state": "ACTIVE",
+      "fragment": "exit door by shipping blocked w/ pallets abt 4 high",
+      "citations": []
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.36",
+      "status": "CONTRADICTED",
+      "confidence": 0.05,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Controlled",
+     "provisional": true,
+     "rationale": "Current uncontrolled exposure is not established by the submitted evidence."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Emergency Egress evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Emergency Egress signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "exit door by shipping blocked w/ pallets abt 4 high, been like that all week"
+   }
+  },
+  {
+   "id": "B10-05",
+   "context": "osha-general-industry",
+   "text": "drum of parts washer solvent no label on it, sitting by the sink",
+   "features": {
+    "classification": "Hazard Communication",
+    "hazardCategory": "OSHA hazard communication labeling",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "hazcom",
+      "family": "hazard_communication",
+      "state": "ACTIVE",
+      "fragment": "drum of parts washer solvent no label on it, sitting by the sink",
+      "citations": [
+       [
+        "29 CFR 1910.1200",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.1200",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.1200",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "OSHA hazard communication labeling"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": false,
+     "rationale": "The available evidence supports a moderate advisory risk level."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop the release or transfer if safe to do so, restrict access, and protect workers from the observed chemical path.",
+     "permanentCorrection": "Repair or replace the failed transfer component and provide containment or ventilation appropriate to the confirmed substance and exposure pathway.",
+     "verificationStep": "Verify the source is no longer releasing, inspect the affected surface, and document cleanup and control checks before restoring normal work.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Prompt",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA hazard communication labeling evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports hazardous_materials involving unknown during unknown. The available evidence indicates chemical exposure exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Hazard Communication signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "drum of parts washer solvent no label on it, sitting by the sink"
+   }
+  },
+  {
+   "id": "B10-06",
+   "context": "osha-general-industry",
+   "text": "guys on the mezz walking next to a open floor hole, no cover no rail, its abt 20 ft down",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "OSHA walking-working surface fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.7,
+    "confidenceBand": "medium",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "walking_working_surfaces",
+      "family": "walking_working_surfaces",
+      "state": "ACTIVE",
+      "fragment": "guys on the mezz walking next to a open floor hole",
+      "citations": [
+       [
+        "29 CFR 1910.28",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.28",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.28",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "OSHA walking-working surface fall protection"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA walking-working surface fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1910-28-employee-access-or-exposure",
+      "q": "Can you confirm: employee access or exposure?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "guys on the mezz walking next to a open floor hole, no cover no rail, its abt 20 ft down"
+   }
+  },
+  {
+   "id": "B10-07",
+   "context": "osha-general-industry",
+   "text": "forklift operator driving w/ forks up abt 4 ft, pedestrians in same aisle, no horn at the corner",
+   "features": {
+    "classification": "Mobile Equipment / Traffic",
+    "hazardCategory": "Mobile Equipment / Traffic",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "mobile_equipment",
+      "family": "mobile_equipment",
+      "state": "ACTIVE",
+      "fragment": "forklift operator driving w/ forks up abt 4 ft",
+      "citations": []
+     },
+     {
+      "domainId": "powered_industrial_trucks",
+      "family": "powered_industrial_trucks",
+      "state": "ACTIVE",
+      "fragment": "forklift operator driving w/ forks up abt 4 ft",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.178(p)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Powered industrial trucks - Operation of the truck: removing unsafe or defective trucks from service"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause the conflicting movement and separate people from the vehicle path until a controlled route is established.",
+     "permanentCorrection": "Engineer durable pedestrian/vehicle separation and a defined traffic-control layout matched to the observed route and visibility limits.",
+     "verificationStep": "Walk the route with operators and pedestrians, verify separation and visibility controls, and retain the completed traffic-control check.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Mobile Equipment / Traffic evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports mobile_equipment involving forklift during transport. The available evidence indicates struck by mobile equipment exposure for employees walking beside moving equipment.",
+    "explanation": "HazLenz AI matched weighted Mobile Equipment / Traffic signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "forklift operator driving w/ forks up abt 4 ft, pedestrians in same aisle, no horn at the corner"
+   }
+  },
+  {
+   "id": "B10-08",
+   "context": "osha-general-industry",
+   "text": "noise in the stamping area is bad, dosimeter came back 94 dba 8hr TWA, no plugs being worn",
+   "features": {
+    "classification": "Noise Exposure",
+    "hazardCategory": "OSHA occupational noise",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "noise",
+      "family": "noise",
+      "state": "ACTIVE",
+      "fragment": "dosimeter came back 94 dba 8hr twa",
+      "citations": [
+       [
+        "29 CFR 1910.95",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1910.95",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.95",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "OSHA occupational noise"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": false,
+     "rationale": "The available evidence supports a moderate advisory risk level."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Prompt",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA occupational noise evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Noise Exposure signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "noise in the stamping area is bad, dosimeter came back 94 dba 8hr TWA, no plugs being worn"
+   }
+  },
+  {
+   "id": "B10-09",
+   "context": "osha-general-industry",
+   "text": "eyewash station in the plating room dont work, no water pressure",
+   "features": {
+    "classification": "First Aid / Eyewash / Safety Shower Access",
+    "hazardCategory": "First Aid / Eyewash / Safety Shower Access",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.52,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the First Aid / Eyewash / Safety Shower Access evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "evidence-sufficiency-insufficient",
+      "q": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+      "requiredFor": "hazard-classification",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted First Aid / Eyewash / Safety Shower Access signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "eyewash station in the plating room dont work, no water pressure"
+   }
+  },
+  {
+   "id": "B10-10",
+   "context": "osha-general-industry",
+   "text": "confined space entry into the mix tank, no attendant outside, no atmo test done that i saw",
+   "features": {
+    "classification": "Confined Space",
+    "hazardCategory": "Confined Space",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "confined_space",
+      "family": "confined_space",
+      "state": "ACTIVE",
+      "fragment": "confined space entry into the mix tank",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "29 CFR 1910.146(c)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Candidate requirement identified by the existing deterministic citation resolver."
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Confined Space hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Stop access to the exposed moving interface and keep the affected equipment out of service until guarding and isolation are verified.",
+     "permanentCorrection": "Install or restore a fixed or interlocked guard at the identified point of operation, then function-test the guard before return to service.",
+     "verificationStep": "Document a competent-person inspection and functional test confirming the guard prevents access during normal operation.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Confined Space evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates cut amputation point of operation exposure for access to point.",
+    "explanation": "HazLenz AI matched weighted Confined Space signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "confined space entry into the mix tank, no attendant outside, no atmo test done that i saw"
+   }
+  },
+  {
+   "id": "B10-11",
+   "context": "osha-general-industry",
+   "text": "electrical panel in the boiler rm has abt 18in clearance, boxes stacked in front",
+   "features": {
+    "classification": "Electrical",
+    "hazardCategory": "Electrical",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "electrical",
+      "family": "electrical",
+      "state": "ACTIVE",
+      "fragment": "electrical panel in the boiler rm has abt 18in clearance",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Electrical hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected electrical panel from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Electrical evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports electrical involving unknown during unknown. The available evidence indicates electrical shock exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Electrical signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "electrical panel in the boiler rm has abt 18in clearance, boxes stacked in front"
+   }
+  },
+  {
+   "id": "B10-12",
+   "context": "osha-general-industry",
+   "text": "chemical storage - oxidizer stored right next to the flammables cabinet",
+   "features": {
+    "classification": "Electrical",
+    "hazardCategory": "Electrical",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "hazcom",
+      "family": "hazard_communication",
+      "state": "ACTIVE",
+      "fragment": "chemical storage - oxidizer stored right next to the flammables cabinet",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Electrical hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Confirm eye/face splash exposure controls for the chemical transfer task and review PPE/barrier controls before continuing the task.",
+     "permanentCorrection": "Implement localized engineering controls or ventilation systems to eliminate the risk of respiratory chemical inhalation and direct liquid contact.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Electrical evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports hazardous_materials involving drum during storage. The available evidence indicates chemical burn exposure for employees storing or transferring material.",
+    "explanation": "HazLenz AI matched weighted Electrical signals.",
+    "evidenceGapQuestions": [
+     {
+      "id": "gap-p4-hazardous-materials-storage",
+      "scenarioFamilyId": "hazardous_materials_storage_compatibility_gap",
+      "hazardDomain": "hazardous_materials",
+      "evidenceGapId": "storage compatibility and containment",
+      "question": "What material is stored, and are labeling, compatibility, container condition, and secondary containment verified?",
+      "reasonForQuestion": "Hazardous material controls depend on the material identity, compatibility, container integrity, and spill/fire exposure potential.",
+      "relatedMechanismOfInjury": "chemical_exposure_or_fire",
+      "relatedExposurePathway": "employees near storage or transfer area",
+      "relatedMissingControl": "labeling, compatible storage, or containment",
+      "relatedStandardFamilyCandidate": "candidate-hazardous-materials",
+      "priority": "high",
+      "answerType": "photo",
+      "examplesOfUsefulEvidence": [
+       "container label photo",
+       "SDS reference",
+       "storage layout photo",
+       "containment photo"
+      ],
+      "confidenceImpact": "high",
+      "factsToConfirm": [
+       "Confirm exposure",
+       "Confirm controls"
+      ],
+      "humanReviewTrigger": true,
+      "advisoryGuardrails": {
+       "advisoryOnly": true,
+       "doesNotDeclareViolation": true,
+       "requiresQualifiedReview": true
+      }
+     }
+    ],
+    "observedCondition": "chemical storage - oxidizer stored right next to the flammables cabinet"
+   }
+  },
+  {
+   "id": "B10-13",
+   "context": "osha-general-industry",
+   "text": "compressed gas cyls in the weld shop not chained, caps off, laying on their side",
+   "features": {
+    "classification": "Compressed Gas Cylinders",
+    "hazardCategory": "Compressed Gas Cylinders",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "compressed_gas",
+      "family": "compressed_gas",
+      "state": "ACTIVE",
+      "fragment": "compressed gas cyls in the weld shop not chained",
+      "citations": []
+     },
+     {
+      "domainId": "hot_work",
+      "family": "hot_work",
+      "state": "ACTIVE",
+      "fragment": "compressed gas cyls in the weld shop not chained, caps off, laying on their side",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Compressed Gas Cylinders evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports compressed_gas involving unknown during unknown. The available evidence indicates compressed gas release or rupture exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Compressed Gas Cylinders signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "compressed gas cyls in the weld shop not chained, caps off, laying on their side"
+   }
+  },
+  {
+   "id": "B10-14",
+   "context": "osha-general-industry",
+   "text": "stair rail on the north stairs is loose, wobbles when you pull it. 3 flights",
+   "features": {
+    "classification": "Compressed Air / Hose Safety",
+    "hazardCategory": "Compressed Air / Hose Safety",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.55,
+    "confidenceBand": "medium",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "1910.22(a)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "1910.22(a)(1)"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Compressed Air / Hose Safety evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Compressed Air / Hose Safety signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "stair rail on the north stairs is loose, wobbles when you pull it. 3 flights"
+   }
+  },
+  {
+   "id": "B10-15",
+   "context": "osha-general-industry",
+   "text": "checked the fab cell. all guards on, interlocks tested ok, housekeeping good. nothing to write up",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "Walking/Working Surfaces",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-general-industry",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "all guards on",
+      "citations": []
+     },
+     {
+      "domainId": "guarding_interlocks",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "interlocks tested ok",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Walking/Working Surfaces evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "checked the fab cell. all guards on, interlocks tested ok, housekeeping good. nothing to write up"
+   }
+  },
+  {
+   "id": "B10-16",
+   "context": "osha-construction",
+   "text": "no guardrail on the 2nd flr leading edge, 3 laborers within a couple ft of it, abt 25 ft drop",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "OSHA Construction fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.7,
+    "confidenceBand": "medium",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.501",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.501",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Duty to have fall protection"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1926-501-worker-exposure",
+      "q": "Can you confirm: worker exposure?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports slip_trip_fall involving unknown during unknown. The available evidence indicates slip trip fall same level exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "no guardrail on the 2nd flr leading edge, 3 laborers within a couple ft of it, abt 25 ft drop"
+   }
+  },
+  {
+   "id": "B10-17",
+   "context": "osha-construction",
+   "text": "scaffold by the elevator shaft - no rail on the open side, planks not full width, its over 10 ft",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "OSHA Construction fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.7,
+    "confidenceBand": "medium",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.451(g)(1)",
+      "status": "CONTRADICTED",
+      "confidence": 0.05,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "citation": "29 CFR 1926.501",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.501",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "OSHA Construction fall protection"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues.",
+     "permanentCorrection": "Erect engineered guardrails or qualified-review approved edge-protection controls around the scaffold to resolve fall exposures.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1926-501-worker-exposure",
+      "q": "Can you confirm: worker exposure?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports machine_guarding involving machinery during unknown. The available evidence indicates rotating equipment entanglement exposure for access to area.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "scaffold by the elevator shaft - no rail on the open side, planks not full width, its over 10 ft"
+   }
+  },
+  {
+   "id": "B10-18",
+   "context": "osha-construction",
+   "text": "trench on the east side abt 8 ft deep, clay, straight walls, no box no slope, spoil right at the lip, 2 guys in it",
+   "features": {
+    "classification": "Trenching & Shoring",
+    "hazardCategory": "OSHA Construction excavation protective systems",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "excavation_trenching",
+      "family": "excavation",
+      "state": "ACTIVE",
+      "fragment": "trench on the east side abt 8 ft deep",
+      "citations": [
+       [
+        "29 CFR 1926.652(a)(1)",
+        "candidate"
+       ]
+      ]
+     },
+     {
+      "domainId": "ground_control",
+      "family": "ground_control",
+      "state": "ACTIVE",
+      "fragment": "straight walls",
+      "citations": []
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.652(a)(1)",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.652(a)(1)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "OSHA Construction excavation protective systems"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction excavation protective systems evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1926-652-a-1--worker-cave-in-exposure",
+      "q": "Did any worker enter the excavation where a cave-in could reach them?",
+      "requiredFor": "standard-applicability",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Trenching & Shoring signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "trench on the east side abt 8 ft deep, clay, straight walls, no box no slope, spoil right at the lip, 2 guys in it"
+   }
+  },
+  {
+   "id": "B10-19",
+   "context": "osha-construction",
+   "text": "temp power on the slab, cords running thru water, no gfci on the spider box",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "Walking/Working Surfaces",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Isolate the affected cord from service and route damaged electrical-integrity concerns for qualified review before reuse.",
+     "permanentCorrection": "Replace damaged wiring assemblies with rated replacement components appropriate for the affected equipment and environment to ensure continuous, safe electrical-integrity barriers.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Walking/Working Surfaces evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports electrical involving cord during maintenance. The available evidence indicates electrical shock exposure for employees handle the cord.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "temp power on the slab, cords running thru water, no gfci on the spider box"
+   }
+  },
+  {
+   "id": "B10-20",
+   "context": "osha-construction",
+   "text": "ladder to the deck only comes up level w/ the landing, not tied off",
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "Fall Protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.52,
+    "confidenceBand": "low",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "ladder to the deck only comes up level w/ the landing",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues.",
+     "permanentCorrection": "Erect engineered guardrails or qualified-review approved edge-protection controls around the ladder to resolve fall exposures.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Fall Protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports fall_protection involving unknown during unknown. The available evidence indicates fall from height exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "ladder to the deck only comes up level w/ the landing, not tied off"
+   }
+  },
+  {
+   "id": "B10-21",
+   "context": "osha-construction",
+   "text": "excavator swinging bucket over the laydown area, a laborer walked right thru the swing radius",
+   "features": {
+    "classification": "Trenching & Shoring",
+    "hazardCategory": "Trenching & Shoring",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.651",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "29 CFR 1926.651"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to unknown.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Trenching & Shoring evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports unknown involving unknown during unknown. The available evidence indicates unknown exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Trenching & Shoring signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "excavator swinging bucket over the laydown area, a laborer walked right thru the swing radius"
+   }
+  },
+  {
+   "id": "B10-22",
+   "context": "osha-construction",
+   "text": "silica - guys dry cutting block all afternoon, no water no vac, big dust cloud, no resps",
+   "features": {
+    "classification": "Respirable Dust / Silica",
+    "hazardCategory": "OSHA Construction respirable crystalline silica",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.7,
+    "confidenceBand": "medium",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "silica_respirable_dust",
+      "family": "silica",
+      "state": "ACTIVE",
+      "fragment": "silica - guys dry cutting block all afternoon",
+      "citations": [
+       [
+        "29 CFR 1926.1153",
+        "candidate"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "29 CFR 1926.1153",
+      "status": "UNKNOWN",
+      "confidence": 0.45,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.1153",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Construction respirable crystalline silica requirements."
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as dust_suppression or respiratory_protection, to eliminate exposure to respiratory_disease.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the OSHA Construction respirable crystalline silica evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "predicate-29-cfr-1926-1153-airborne-dust-or-exposure-pathway",
+      "q": "Can you confirm: airborne dust or exposure pathway?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     },
+     {
+      "id": "predicate-29-cfr-1926-1153-required-engineering-work-practice-control-absent",
+      "q": "Can you confirm: required engineering/work-practice control absent?",
+      "requiredFor": "standard-applicability",
+      "priority": "important",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports industrial_hygiene involving grinder during cutting. The available evidence indicates respiratory disease exposure for worker_inhalation.",
+    "explanation": "HazLenz AI matched weighted Respirable Dust / Silica signals.",
+    "evidenceGapQuestions": [
+     {
+      "id": "gap-ih-dust-suppression",
+      "scenarioFamilyId": "respirable_dust_or_silica_exposure",
+      "hazardDomain": "industrial_hygiene",
+      "evidenceGapId": "exposure level",
+      "question": "Has the airborne dust concentration been assessed or measured?",
+      "reasonForQuestion": "Measuring dust levels ensures exposure controls are effective.",
+      "relatedMechanismOfInjury": "respiratory_disease",
+      "relatedExposurePathway": "worker_inhalation",
+      "relatedMissingControl": "dust_suppression",
+      "relatedStandardFamilyCandidate": "candidate-ih",
+      "priority": "critical",
+      "answerType": "text",
+      "examplesOfUsefulEvidence": [
+       "dust measurement"
+      ],
+      "confidenceImpact": "high",
+      "factsToConfirm": [
+       "Confirm exposure",
+       "Confirm controls"
+      ],
+      "humanReviewTrigger": true,
+      "advisoryGuardrails": {
+       "advisoryOnly": true,
+       "doesNotDeclareViolation": true,
+       "requiresQualifiedReview": true
+      }
+     }
+    ],
+    "observedCondition": "silica - guys dry cutting block all afternoon, no water no vac, big dust cloud, no resps"
+   }
+  },
+  {
+   "id": "B10-23",
+   "context": "osha-construction",
+   "text": "rebar caps missing on the vertical rebar in the footing area, guys working above it",
+   "features": {
+    "classification": "Compressed Gas Cylinders",
+    "hazardCategory": "Compressed Gas Cylinders",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.25,
+    "confidenceBand": "low",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Critical",
+     "provisional": true,
+     "rationale": "Compressed Gas Cylinders hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as barriers, to eliminate exposure to compressed_gas_release_or_rupture.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Compressed Gas Cylinders evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "evidence-sufficiency-insufficient",
+      "q": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+      "requiredFor": "hazard-classification",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports compressed_gas involving unknown during unknown. The available evidence indicates compressed gas release or rupture exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Compressed Gas Cylinders signals.",
+    "evidenceGapQuestions": [
+     "What exact equipment, opening, edge, container, or travel path is involved?",
+     "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+     "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?"
+    ],
+    "observedCondition": "rebar caps missing on the vertical rebar in the footing area, guys working above it"
+   }
+  },
+  {
+   "id": "B10-24",
+   "context": "osha-construction",
+   "text": "hot work in the stairwell, no fire watch, no permit posted, cardboard right there",
+   "features": {
+    "classification": "Fire / Explosion",
+    "hazardCategory": "Fire / Explosion",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.52,
+    "confidenceBand": "low",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "hot_work",
+      "family": "hot_work",
+      "state": "ACTIVE",
+      "fragment": "hot work in the stairwell",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "29 CFR 1926.352(a)",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Candidate requirements related to welding cutting hot work."
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Fire / Explosion hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Secure the area to prevent further hazard exposure and notify the area supervisor.",
+     "permanentCorrection": "Implement permanent engineered controls, such as rest/water/shade, to eliminate exposure to heat_stress.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Fire / Explosion evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports industrial_hygiene involving environment during work. The available evidence indicates heat stress exposure for heat.",
+    "explanation": "HazLenz AI matched weighted Fire / Explosion signals.",
+    "evidenceGapQuestions": [
+     {
+      "id": "gap-ih-heat-hydration",
+      "scenarioFamilyId": "heat_stress_exposure",
+      "hazardDomain": "industrial_hygiene",
+      "evidenceGapId": "hydration access",
+      "question": "Is adequate, cool drinking water readily available and accessible to all workers?",
+      "reasonForQuestion": "Hydration is crucial for preventing heat stress.",
+      "relatedMechanismOfInjury": "heat_stress",
+      "relatedExposurePathway": "worker",
+      "relatedMissingControl": "rest_breaks",
+      "relatedStandardFamilyCandidate": "candidate-ih",
+      "priority": "high",
+      "answerType": "boolean",
+      "examplesOfUsefulEvidence": [
+       "water station photo"
+      ],
+      "confidenceImpact": "high",
+      "factsToConfirm": [
+       "Confirm exposure",
+       "Confirm controls"
+      ],
+      "humanReviewTrigger": true,
+      "advisoryGuardrails": {
+       "advisoryOnly": true,
+       "doesNotDeclareViolation": true,
+       "requiresQualifiedReview": true
+      }
+     }
+    ],
+    "observedCondition": "hot work in the stairwell, no fire watch, no permit posted, cardboard right there"
+   }
+  },
+  {
+   "id": "B10-25",
+   "context": "osha-construction",
+   "text": "aerial lift operator leaning way out over the rail to reach the fascia, harness on but not tied to the boom",
+   "features": {
+    "classification": "Fall Protection",
+    "hazardCategory": "Fall Protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "osha-construction",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Fall Protection hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues.",
+     "permanentCorrection": "Erect engineered guardrails or qualified-review approved edge-protection controls around the personal_fall_arrest to resolve fall exposures.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Fall Protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports fall_protection involving unknown during unknown. The available evidence indicates fall from height exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Fall Protection signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "aerial lift operator leaning way out over the rail to reach the fascia, harness on but not tied to the boom"
+   }
+  },
+  {
+   "id": "B10-26",
+   "context": "msha",
+   "text": "tail pulley guard off at the primary, miner walks that travelway all shift",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "Walking/Working Surfaces",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "msha",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "tail pulley guard off at the primary",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Walking/Working Surfaces evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "tail pulley guard off at the primary, miner walks that travelway all shift"
+   }
+  },
+  {
+   "id": "B10-27",
+   "context": "msha",
+   "text": "miner greasing the head pulley w/ the belt running, no energy isolation",
+   "features": {
+    "classification": "Machine Guarding",
+    "hazardCategory": "Machine Guarding",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.7,
+    "confidenceBand": "medium",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "msha",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "conveyors",
+      "family": "conveyors",
+      "state": "ACTIVE",
+      "fragment": "miner greasing the head pulley w/ the belt running",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": "30 CFR 56.12016",
+     "applicability": "candidate",
+     "confidenceLabel": "Low",
+     "title": "Work on electrically powered equipment"
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Machine Guarding hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause affected work and restrict access around the exposed head_pulley_or_drive until guarding and mechanical_rotation exposure controls are reviewed.",
+     "permanentCorrection": "Install permanent, secure guarding over the exposed head_pulley_or_drive to completely eliminate the unknown hazard.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Machine Guarding evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports machine_guarding involving unknown during unknown. The available evidence indicates rotating equipment nip point exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Machine Guarding signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "miner greasing the head pulley w/ the belt running, no energy isolation"
+   }
+  },
+  {
+   "id": "B10-28",
+   "context": "msha",
+   "text": "berm on the haul rd by the dump point is way below axle ht on the biggest truck we run",
+   "features": {
+    "classification": "Mobile Equipment / Traffic",
+    "hazardCategory": "Mobile Equipment / Traffic",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.93,
+    "confidenceBand": "high",
+    "resultStage": "provisional",
+    "mayFinalize": false,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "msha",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "powered_industrial_trucks",
+      "family": "powered_industrial_trucks",
+      "state": "ACTIVE",
+      "fragment": "berm on the haul rd by the dump point is way below axle ht on the biggest truck we run",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "High",
+     "provisional": true,
+     "rationale": "Mobile Equipment / Traffic hazards can create serious or fatal exposure."
+    },
+    "correctiveAction": {
+     "immediateAction": "Pause the conflicting movement and separate people from the vehicle path until a controlled route is established.",
+     "permanentCorrection": "Engineer durable pedestrian/vehicle separation and a defined traffic-control layout matched to the observed route and visibility limits.",
+     "verificationStep": "Walk the route with operators and pedestrians, verify separation and visibility controls, and retain the completed traffic-control check.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Urgent",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Mobile Equipment / Traffic evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [
+     {
+      "id": "evidence-sufficiency-insufficient",
+      "q": "What specific equipment, condition, and worker exposure were observed? The description provided is too general to identify a hazardous condition.",
+      "requiredFor": "hazard-classification",
+      "priority": "critical",
+      "blocksFinalization": null,
+      "safetyDecisive": null
+     }
+    ],
+    "narrative": "The observation supports mobile_equipment involving unknown during unknown. The available evidence indicates struck by mobile equipment exposure for unknown.",
+    "explanation": "HazLenz AI matched weighted Mobile Equipment / Traffic signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "berm on the haul rd by the dump point is way below axle ht on the biggest truck we run"
+   }
+  },
+  {
+   "id": "B10-29",
+   "context": "msha",
+   "text": "no handrail on abt 15 ft of the elevated travelway next to the screen deck",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "MSHA fall protection",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.7,
+    "confidenceBand": "medium",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "msha",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "fall_protection",
+      "family": "fall_protection",
+      "state": "ACTIVE",
+      "fragment": "no handrail on abt 15 ft of the elevated travelway next to the screen deck",
+      "citations": [
+       [
+        "30 CFR 56.15005",
+        "direct"
+       ]
+      ]
+     }
+    ],
+    "decisions": [
+     {
+      "citation": "30 CFR 56.15005",
+      "status": "SUPPORTED",
+      "confidence": 0.96,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "primaryStandard": {
+     "citation": "30 CFR 56.15005",
+     "applicability": "direct",
+     "confidenceLabel": "High",
+     "title": "MSHA fall protection"
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": false,
+     "rationale": "The available evidence supports a moderate advisory risk level."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict access to the open platform edge and verify temporary edge protection or fall-protection controls before affected work continues.",
+     "permanentCorrection": "Erect engineered guardrails or qualified-review approved edge-protection controls around the unknown to resolve fall exposures.",
+     "verificationStep": "Perform a formal inspection and functional verification by a competent person before removing interim controls or resuming normal operations.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Prompt",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the MSHA fall protection evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "no handrail on abt 15 ft of the elevated travelway next to the screen deck"
+   }
+  },
+  {
+   "id": "B10-30",
+   "context": "msha",
+   "text": "checked the shop - guards in place, LOTO locks on the board, travelways clear, berms look good at the dump",
+   "features": {
+    "classification": "Walking/Working Surfaces",
+    "hazardCategory": "Walking/Working Surfaces",
+    "conditionState": "UNKNOWN",
+    "guidedConditionState": "UNKNOWN",
+    "confidence": 0.82,
+    "confidenceBand": "high",
+    "resultStage": "final",
+    "mayFinalize": true,
+    "requiresHumanReview": true,
+    "isVague": false,
+    "regulatoryContext": {
+     "value": "msha",
+     "provenance": "USER_CONFIRMED",
+     "source": "inspection"
+    },
+    "hazards": [
+     {
+      "domainId": "machine_guarding",
+      "family": "machine_guarding",
+      "state": "ACTIVE",
+      "fragment": "checked the shop - guards in place",
+      "citations": []
+     }
+    ],
+    "decisions": [],
+    "primaryStandard": {
+     "citation": null,
+     "applicability": null,
+     "confidenceLabel": null,
+     "title": null
+    },
+    "risk": {
+     "overall": "Moderate",
+     "provisional": true,
+     "rationale": "Material exposure or control facts remain unconfirmed."
+    },
+    "correctiveAction": {
+     "immediateAction": "Restrict the affected travel path and provide a safe alternate route while the observed walking-surface condition is corrected.",
+     "permanentCorrection": "Remove the spill, obstruction, or damaged surface and restore a clean, dry, unobstructed walking route appropriate to the work area.",
+     "verificationStep": "Walk the route after correction and document that the surface is clean, dry, level, and free of remaining exposure.",
+     "responsibleRole": "Qualified responsible person",
+     "urgency": "Pending evidence review",
+     "suggestedDueDate": null,
+     "rationale": "Actions are advisory and tied to the Walking/Working Surfaces evidence and proposed risk.",
+     "hierarchyPreference": [
+      "elimination",
+      "substitution",
+      "engineering",
+      "administrative",
+      "PPE"
+     ]
+    },
+    "questions": [],
+    "narrative": "The observation supports slip_trip_fall involving floor during unknown. The available evidence indicates slip trip fall same level exposure for employees use the walkway.",
+    "explanation": "HazLenz AI matched weighted Walking/Working Surfaces signals.",
+    "evidenceGapQuestions": [],
+    "observedCondition": "checked the shop - guards in place, LOTO locks on the board, travelways clear, berms look good at the dump"
+   }
+  }
+ ]
+}

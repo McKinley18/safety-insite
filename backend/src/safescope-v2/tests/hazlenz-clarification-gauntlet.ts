@@ -182,7 +182,7 @@ async function grantDisposableTestEntitlement(token: string) {
     await client.query(
       `INSERT INTO entitlement_grants
        ("userId", source, tier, status, "startsAt", "endsAt", reason)
-       VALUES ($1, 'test', 'expert', 'active', NOW(), NOW() + INTERVAL '2 hours',
+       VALUES ($1, 'test', 'pro', 'active', NOW(), NOW() + INTERVAL '2 hours',
                'Authenticated HazLenz disposable clarification fixture')`,
       [payload.userId],
     );

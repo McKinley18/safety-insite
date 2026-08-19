@@ -13,10 +13,27 @@ import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/off
 import { UserGovernanceContext, SafeScopeRole } from './workspace-governance-access/workspace-governance.types';
 import { sanitizeHazLenzDisplayOutput } from "./display/hazlenz-display-sanitizer";
 import { enforceHazLenzEvidenceBoundary } from './display/hazlenz-evidence-boundary';
-import { applyEvidenceFoundation } from './evidence/evidence-foundation';
+import { applyEvidenceFoundation, applyFindingScopedStandards } from './evidence/evidence-foundation';
 import { applyFinalizationGate } from './evidence/finalization-gate';
 import { normalizeHazardObservationText } from './display/hazlenz-evidence-boundary';
 import { attachGuidedFindingResponse } from './display/guided-finding-response';
+import { InspectionService } from '../inspection/inspection.service';
+import { regulatoryContextProvenance } from '../inspection/inspection.entity';
+
+/**
+ * Maps the inspection-level regulatory context onto BOTH jurisdiction vocabularies the
+ * classify pipeline consumes (structuredObservation.jurisdiction for the evidence-fact /
+ * applicability engine, and `scopes` for the classifier's standards search), so the two
+ * engines can never disagree about which regime governs the inspection.
+ */
+function scopesForRegulatoryContext(context: string): string[] | undefined {
+  switch (context) {
+    case 'msha': return ['msha'];
+    case 'osha-general-industry': return ['osha_general_industry'];
+    case 'osha-construction': return ['osha_construction'];
+    default: return undefined;
+  }
+}
 
 
 function ensureVisiblePrimaryCitationContract(response: any, observationText = ''): any {
@@ -140,7 +157,48 @@ function enforceVerifiedControlDisplay(response: any, observationText: string): 
 
 @Controller('safescope-v2')
 export class SafescopeV2Controller {
-  constructor(private readonly service: SafescopeV2Service) {}
+  constructor(
+    private readonly service: SafescopeV2Service,
+    private readonly inspections: InspectionService,
+  ) {}
+
+  /**
+   * Inspection-level regulatory context is the authoritative source of jurisdiction for
+   * every observation in a persisted inspection. When the client identifies the inspection,
+   * load its persisted context (authorization-checked exactly like every other inspection
+   * read) and apply it to the request -- overriding whatever jurisdiction/scopes the client
+   * sent, so a stale or missing client-side value can never make one finding evaluate under
+   * a different regime than its siblings. An 'unknown' inspection context leaves HazLenz free
+   * to infer from evidence or ask once; it does NOT override a jurisdiction the client did
+   * confirm on the request itself (e.g. an answered clarification the UI is about to persist).
+   */
+  private async applyInspectionRegulatoryContext(body: ClassifyDto, user: unknown): Promise<void> {
+    if (!body.inspectionId) {
+      // Without a persisted inspection there is no inspection-level provenance to claim: a
+      // client-supplied regulatoryContext is just another explicit request jurisdiction.
+      const claimed = body.regulatoryContext?.value;
+      delete body.regulatoryContext;
+      if (claimed && claimed !== 'unknown' && !body.structuredObservation?.jurisdiction) {
+        body.structuredObservation = { ...(body.structuredObservation || {}), jurisdiction: claimed };
+      }
+      return;
+    }
+    const inspection = await this.inspections.findAccessible(user, body.inspectionId);
+    const value = inspection.regulatoryContext || 'unknown';
+    const provenance = regulatoryContextProvenance(value);
+    if (provenance === 'USER_CONFIRMED') {
+      body.structuredObservation = { ...(body.structuredObservation || {}), jurisdiction: value };
+      body.scopes = scopesForRegulatoryContext(value);
+      body.regulatoryContext = { value, provenance, source: 'inspection', inspectionId: inspection.id };
+      return;
+    }
+    const clientJurisdiction = body.structuredObservation?.jurisdiction;
+    if (clientJurisdiction && clientJurisdiction !== 'unknown') {
+      body.regulatoryContext = { value: clientJurisdiction, provenance: 'USER_CONFIRMED', source: 'request', inspectionId: inspection.id };
+      return;
+    }
+    body.regulatoryContext = { value: 'unknown', provenance: 'UNKNOWN', source: 'inspection', inspectionId: inspection.id };
+  }
 
   private requireUserId(user: any): string {
     const userId = user?.userId || user?.id || user?.sub;
@@ -240,6 +298,7 @@ export class SafescopeV2Controller {
   @Post('classify')
   async classify(@Body() body: ClassifyDto, @Req() req: Request & { user?: any }) {
     const context = this.getGovernanceContext(req);
+    await this.applyInspectionRegulatoryContext(body, req.user);
 
     try {
       const result = await this.service.classify(
@@ -257,9 +316,12 @@ export class SafescopeV2Controller {
         body.priorStructuredObservation,
       );
 
+      const foundation = await this.service.hydrateFindingScopedStandards(
+        applyFindingScopedStandards(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(result, body), body), body),
+      );
       const guided = enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
         sanitizeHazLenzDisplayOutput(
-          applyFinalizationGate(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(result, body), body)),
+          applyFinalizationGate(foundation),
         ),
         body.text,
       ), body), body.text);

@@ -690,7 +690,10 @@ export class SafescopeV2Service {
     }
 
     if (/\b(conveyor|machine|guard|jam|pulley|belt|shaft|moving part|nip point)\b/i.test(text)) {
-      if ((!structured?.energyState || structured.energyState === "unknown") && !/\b(energized|operating|running|locked[- ]out|deenergized|de-energized|zero[- ]energy)\b/i.test(text)) {
+      // Same ordinary energy-state phrasings the shared evidence-fact model recognises ("power
+      // connected", "plugged in", "power on", "not de-energized"): asking "was it running?" after
+      // the observer said "power connected" is a redundant question.
+      if ((!structured?.energyState || structured.energyState === "unknown") && !/\b(energized|operating|running|locked[- ]out|deenergized|de-energized|zero[- ]energy|power (?:is |was |still |remains? )?(?:connected|on)|plugged in|under power|not (?:been )?de-?energized|capable of (?:starting|startup|movement))\b/i.test(text)) {
         add({
           id: "machine-energy-state",
           question: "Was the equipment running, capable of unexpected startup, stopped, deenergized, or locked out?",
@@ -717,7 +720,7 @@ export class SafescopeV2Service {
           expectedEvidenceFields: ["taskBeingPerformed"],
         });
       }
-      if (!(structured?.controlsPresent || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !(structured?.controlsMissing || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !/\b(guard (?:has been )?removed|removed guard|guard missing|lockout applied|locked[- ]out|lockout not applied|no lockout|energy isolation|zero[- ]energy)\b/i.test(text)) {
+      if (!(structured?.controlsPresent || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !(structured?.controlsMissing || []).join(" ").match(/guard|lockout|tagout|loto|energy isolation/i) && !/\b(guard (?:has been )?removed|removed guard|guard missing|guard (?:is |was )?missing|lockout applied|locked[- ]out|lockout not applied|no lockout|energy isolation|zero[- ]energy|no (?:personal )?lock(?:s)?(?: or tag(?:s)?)?(?: (?:was |were |is |are |has been )?applied)?|not locked(?: or tagged)?|without (?:a )?(?:lock|tag|lockout|isolat\w+)|no LOTO)\b/i.test(text)) {
         add({
           id: "machine-controls",
           question: "Was a guard removed, missing, damaged, bypassed, or was lockout/tagout applied and verified?",
@@ -849,11 +852,31 @@ export class SafescopeV2Service {
     const hasHeatContext = /\b(heat|humidity|shade|hydration|water|acclimatization|work-rest|heat stress)\b/i.test(text);
     const hasIndustrialHygieneContext =
       /\b(dust|silica|fume|vapou?r|airborne|respirator|respiratory|noise|dba|decibel|hearing|solvent|ventilation|heat stress)\b/i.test(text);
+    // Enclosure/panel follow-ups (cover, door, latched, enclosure parts, panel access, enclosure
+    // status) only make sense when the observation is about an enclosure -- a damaged CORD is not
+    // one. Same topical-relevance principle as the heat / industrial-hygiene filters above.
+    const hasEnclosureContext =
+      /\b(panel|panels|enclosure|enclosures|breaker|breakers|switchgear|switchboard|cabinet|junction box|disconnect|cover|door|knockout|dead front|bus bar|busbar)\b/i.test(text);
+    // A question that asks for a fact the observer already stated is redundant.
+    const cordDamageStated =
+      /\b(?:cord|cable|lead|wire|wiring)\b[^.]{0,40}\b(?:damaged|frayed|cut|spliced|cracked|worn|deteriorated|exposed)\b/i.test(text) ||
+      /\b(?:damaged|frayed|cut|spliced|cracked|worn|deteriorated)\b[^.]{0,20}\b(?:cord|cable|lead|wire|wiring)\b/i.test(text);
     const existing = (Array.isArray(input.existingQuestions) ? input.existingQuestions : [])
       .filter((item: any) => {
         const question = typeof item === "string" ? item : item?.question || item?.prompt || item?.evidenceGapId || "";
         if (/\b(cool drinking water|heat|shade|hydration|acclimatization)\b/i.test(question) && !hasHeatContext) {
           return false;
+        }
+        if (/\b(enclosure|panel|cover or door|door|latched|dead front)\b/i.test(question) && !hasEnclosureContext) {
+          return false;
+        }
+        if (/\bis the cord (?:damaged|frayed|cut|spliced)\b/i.test(question) && cordDamageStated) {
+          return false;
+        }
+        // "Are bare conductors or exposed wiring visible?" duplicates the deterministic
+        // electrical-damage-exposure question (internal conductors / energized parts exposed?).
+        if (/\bbare conductors or exposed wiring\b/i.test(question) && /\b(cord|wire|electrical|conductor|receptacle|panel|breaker)\b/i.test(text)) {
+          return false; // the deterministic electrical-damage-exposure question already asks exactly this
         }
         if (/\b(airborne dust|dust concentration|silica|noise|dosimetry|respirator|respiratory|ventilation|vapor|fume)\b/i.test(question) && !hasIndustrialHygieneContext) {
           return false;
@@ -4649,6 +4672,26 @@ export class SafescopeV2Service {
         response.requiresHumanReview = true;
         response.reviewStateLabel = 'Historical condition — verify current status';
       }
+      // Every decomposed hazard was explicitly negated or affirmatively
+      // described as safe/controlled (SAFE_VERIFIED) and none are
+      // HISTORICAL either -- the observation-level summary must not default
+      // to ACTIVE the way an unmatched narrative otherwise would. This
+      // mirrors the HISTORICAL-only aggregate above; a mix of SAFE_VERIFIED
+      // and HISTORICAL (still no active hazard) is intentionally left to the
+      // HISTORICAL branch above, which already reflects "not active."
+      if (!unresolvedContradictions.length && currentDecompositionHazards.length && !hasActiveCurrentDecompositionHazard && !hasHistoricalDecompositionHazard) {
+        response.conditionState = 'SAFE_VERIFIED';
+        response.family = 'controlled_condition';
+        response.classification = 'Controlled Condition';
+        response.hazardCategory = 'controlled_condition';
+        response.candidateStandardFamily = 'unknown';
+        response.primaryCitation = '';
+        response.suggestedStandards = [];
+        response.primaryStandards = [];
+        response.standards = [];
+        response.supportingStandards = [];
+        response.reviewStateLabel = 'Verified controlled condition — no active deficiency identified';
+      }
       // A compound observation with both active and historical findings is a
       // mixed state.  The observation-level summary must not claim HISTORICAL
       // because that can contradict or suppress an authoritative active
@@ -4733,9 +4776,21 @@ export class SafescopeV2Service {
         };
       }
 
+      // The generic fallback ("What exact equipment ... is involved? / Is the condition damaged,
+      // energized...? / Are workers exposed?") exists for observations in which NO specific hazard
+      // could be identified. Once decomposition has already produced a specific ACTIVE finding, those
+      // answers cannot change the assessment (the hazard, its evidence and its exposure are already
+      // established) -- the honest state for a real hazard with no matching rule is "finding, no
+      // confirmed citation", not three redundant questions.
+      const hasSpecificActiveFinding = Array.isArray(response.multiHazardDecomposition?.hazards) &&
+        response.multiHazardDecomposition.hazards.some((hazard: any) =>
+          hazard && hazard.domainId && hazard.domainId !== 'unknown' &&
+          String(hazard.conditionState || 'ACTIVE').toUpperCase() === 'ACTIVE' &&
+          String(hazard.observationFragment || '').trim().length > 0);
       if (
         !(response.evidenceGapQuestions || []).length &&
-        !((response.suggestedStandards || []).length || (response.primaryStandards || []).length)
+        !((response.suggestedStandards || []).length || (response.primaryStandards || []).length) &&
+        !hasSpecificActiveFinding
       ) {
         const fallbackEvidenceQuestions = [
           'What exact equipment, opening, edge, container, or travel path is involved?',
@@ -5437,6 +5492,48 @@ export class SafescopeV2Service {
       ...correctiveActionReasoning,
       ...mobileNarratives,
     };
+  }
+
+  /**
+   * Corpus-backed display path for the deterministic applicability stage. The evidence-foundation
+   * decisions (result.primaryStandards / suggestedStandards visible decision) and every finding's
+   * own standardCandidates are produced AFTER the classifier's own hydration ran, so without this
+   * step they carry only the rule's family as a title and the decision explanation as text -- even
+   * when standards_master has an authoritative row for the citation. This reuses the existing
+   * ApplicableStandardsService.hydrateStandardReferences (normalized-citation lookup) so the
+   * Standard Detail panel and the PDF show the corpus title / plain-language summary / source
+   * metadata whenever a row exists, and fall back to family + explanation (disclosed as such)
+   * only when it genuinely does not.
+   */
+  async hydrateFindingScopedStandards(result: any): Promise<any> {
+    if (!result || typeof result !== 'object' || typeof this.applicableStandards?.hydrateStandardReferences !== 'function') return result;
+    const hydrate = this.applicableStandards.hydrateStandardReferences.bind(this.applicableStandards);
+    const mark = (item: any, hydrated: any) => ({
+      ...item,
+      ...(hydrated?.title && hydrated.title !== item.citation ? { title: hydrated.title } : {}),
+      ...(hydrated?.plainLanguageSummary ? { plainLanguageSummary: hydrated.plainLanguageSummary } : {}),
+      ...(hydrated?.sourceKey ? { sourceKey: hydrated.sourceKey, sourceName: hydrated.sourceName, sourceType: hydrated.sourceType } : {}),
+      corpusBacked: Boolean(hydrated?.sourceKey),
+    });
+    try {
+      // standardDecisions is the report-facing list that survives the display sanitizer (the
+      // primary/suggested arrays are stripped for size before the guided response is attached).
+      for (const key of ['primaryStandards', 'suggestedStandards', 'standardDecisions']) {
+        if (Array.isArray(result[key]) && result[key].length) {
+          const hydrated = await hydrate(result[key].map((item: any) => ({ ...item })));
+          result[key] = result[key].map((item: any, index: number) => mark(item, hydrated[index]));
+        }
+      }
+      const hazards = Array.isArray(result?.multiHazardDecomposition?.hazards) ? result.multiHazardDecomposition.hazards : [];
+      for (const hazard of hazards) {
+        if (!Array.isArray(hazard?.standardCandidates) || !hazard.standardCandidates.length) continue;
+        const hydrated = await hydrate(hazard.standardCandidates.map((item: any) => ({ citation: item.citation, family: item.family })));
+        hazard.standardCandidates = hazard.standardCandidates.map((item: any, index: number) => mark(item, hydrated[index]));
+      }
+    } catch (error) {
+      console.error('HazLenz finding-scoped standards hydration failed (falling back to rule family):', error);
+    }
+    return result;
   }
 
   private normalizeScopes(scopes?: string[], text?: string) {

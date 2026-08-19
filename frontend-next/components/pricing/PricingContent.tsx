@@ -81,7 +81,12 @@ const tiers = [
           "Professional inspection reports",
           "Corrective action recommendations and tracking",
           "Saved inspection history",
-          "Repeat-hazard insight support",
+          // "Repeat-hazard insight support" was removed rather than reworded: HazLenz's
+          // recurrence/trend engine reads only prior findings supplied on the classify request,
+          // and the inspection workspace does not send them, so every analysis reports recurrence
+          // risk "low" with zero related findings. No adjacent capability was verified closely
+          // enough to substitute a replacement claim, and "Saved inspection history" above
+          // already states what the tier genuinely provides.
           "Human-review safeguards",
         ],
       },

@@ -1,0 +1,761 @@
+diff --git a/backend/src/inspection/inspection.service.ts b/backend/src/inspection/inspection.service.ts
+index be32fdd2..0c0363c5 100644
+--- a/backend/src/inspection/inspection.service.ts
++++ b/backend/src/inspection/inspection.service.ts
+@@ -31,6 +31,7 @@ import { Inspection } from './inspection.entity';
+ import { materialRiskChanged, urgencyForRisk } from './risk-policy';
+ import { evaluateRisk } from '../safescope-v2/risk/risk-engine';
+ import { hazardFamilyToRiskClassification } from './finding-risk.mapping';
++import { getCorrectiveActionIntelligence } from '../safescope-v2/intelligence/corrective-action-intelligence';
+ 
+ @Injectable()
+ export class InspectionService {
+@@ -359,6 +360,41 @@ export class InspectionService {
+     };
+   }
+ 
++  /**
++   * Corrective actions were previously read from a single flat
++   * `generatedActions` array on the whole-observation classify() response by
++   * positional index (actions[0]/[1]/[2] as "immediate"/"permanent"/
++   * "verification"), so a multi-hazard observation's actions for finding A
++   * could be displayed under finding B once index order didn't line up with
++   * which hazard each action actually addressed. This computes a corrective
++   * action independently for ONE decomposed hazard, consuming only that
++   * hazard's own evidence, risk (from computeFindingRisk above, never
++   * another finding's risk), regulatory basis (that finding's own
++   * standardCandidates from the Phase 5 finding-scoped standards fix), and
++   * evidence gaps -- reusing the existing, unmodified
++   * getCorrectiveActionIntelligence() the same way computeFindingRisk reuses
++   * evaluateRisk(). Returns null when there is no risk for this finding
++   * (e.g. HISTORICAL/SAFE_VERIFIED), matching computeFindingRisk's own null
++   * case, since an action with no risk basis would not be a real recommendation.
++   */
++  private computeFindingCorrectiveAction(
++    hazard: Record<string, unknown>,
++    riskSnapshot: Record<string, unknown> | null,
++  ): Record<string, unknown> | null {
++    if (!riskSnapshot) return null;
++    const hazardFamily = String(hazard.hazardFamily || hazard.domainId || 'Safety observation');
++    const displayFamily = hazardFamily.replace(/[_-]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
++    const standardCandidates = Array.isArray(hazard.standardCandidates) ? hazard.standardCandidates as any[] : [];
++    const sourceAnalysis = {
++      primaryRegulatoryBasis: standardCandidates.filter(candidate => candidate?.applicability === 'direct'),
++    };
++    const evidenceGap = {
++      criticalQuestions: Array.isArray(hazard.reviewerQuestions) ? hazard.reviewerQuestions : [],
++      closureEvidenceNeeded: Array.isArray(hazard.evidenceGaps) ? hazard.evidenceGaps : [],
++    };
++    return getCorrectiveActionIntelligence(displayFamily, riskSnapshot, sourceAnalysis, evidenceGap) as unknown as Record<string, unknown>;
++  }
++
+   private async reconcileDecompositionFindings(
+     manager: import('typeorm').EntityManager,
+     observation: Observation,
+@@ -389,7 +425,11 @@ export class InspectionService {
+       const family = String(hazard.hazardFamily || hazard.domainId || 'Safety observation');
+       const mechanism = String(hazard.mechanism || hazard.observationFragment || family);
+       const candidate = { ...hazard, hazardKey };
+-      const riskSnapshot = this.computeFindingRisk(hazard, hazardKey, riskProfileId);
++      const baseRiskSnapshot = this.computeFindingRisk(hazard, hazardKey, riskProfileId);
++      const correctiveActionIntelligence = this.computeFindingCorrectiveAction(hazard, baseRiskSnapshot);
++      const riskSnapshot = baseRiskSnapshot && correctiveActionIntelligence
++        ? { ...baseRiskSnapshot, correctiveActionIntelligence }
++        : baseRiskSnapshot;
+       if (existing) {
+         // Captured before mutation below so the V5-C01 risk-change comparison is
+         // meaningful (unlike the pre-existing conclusion/sourceCandidate comparison
+diff --git a/backend/src/reports/canonical-report-pdf-renderer.ts b/backend/src/reports/canonical-report-pdf-renderer.ts
+index b25997c9..36b6fb34 100644
+--- a/backend/src/reports/canonical-report-pdf-renderer.ts
++++ b/backend/src/reports/canonical-report-pdf-renderer.ts
+@@ -74,7 +74,29 @@ function findingRiskBand(riskSnapshot: Snapshot | null | undefined): string | un
+  * fabricate a per-finding match the underlying data doesn't support.
+  */
+ function extractStandard(finding: Snapshot, analyses: Snapshot[], isDecomposedObservation: boolean): { citation: string; heading: string; text: string } | null {
+-  if (isDecomposedObservation) return null;
++  // A decomposed (multi-hazard) observation's analysis-level executiveJudgment/
++  // standardsReasoning is scoped to the whole observation's primary classification,
++  // not to any one finding -- showing it under every finding would stamp the SAME
++  // standard across findings it does not belong to (or belongs to only one of
++  // them). Each decomposed finding's own candidate standards, computed
++  // independently from that finding's own evidence (Phase 5 finding-scoped
++  // standards fix), live on finding.sourceCandidate.standardCandidates and are
++  // the only standards data this function trusts for a decomposed finding.
++  if (isDecomposedObservation) {
++    const candidates: Snapshot[] = Array.isArray(finding.sourceCandidate?.standardCandidates)
++      ? finding.sourceCandidate.standardCandidates
++      : [];
++    const direct = candidates.find((candidate) => candidate?.applicability === 'direct') ||
++      candidates.find((candidate) => candidate?.applicability === 'candidate');
++    if (!direct?.citation) return null;
++    return {
++      citation: direct.citation,
++      heading: direct.family || '',
++      text: direct.applicability === 'candidate'
++        ? `Candidate only, qualified review required: ${direct.explanation || ''}`.trim()
++        : (direct.explanation || ''),
++    };
++  }
+   const analysis = analyses.find((a) => a.id === finding.originatingAnalysisId) || analyses[0];
+   const snap = analysis?.resultSnapshot || {};
+   const top = snap.executiveJudgment?.topStandard || snap.standardsReasoning?.topDefensible?.[0] || null;
+@@ -361,19 +383,31 @@ function detailedFindings(doc: PDFKit.PDFDocument, findings: Snapshot[], analyse
+       .text(`Finding ${index + 1} — ${titleCase(f.hazardCategory || f.hazardKey || 'Uncategorized')}`, { width: CONTENT_WIDTH });
+     doc.moveDown(0.4);
+ 
++    // A multi-hazard observation decomposes into several findings; each one's own
++    // evidence is the excerpt HazLenz actually attributed to it (sourceCandidate.
++    // observationFragment), not the entire combined observation repeated verbatim
++    // under every finding. Fall back to the full observation text only when no
++    // finding-specific fragment exists (e.g. a single, non-decomposed observation,
++    // where the fragment and the full text are effectively the same thing).
++    const findingCountForThisObservation = findingCountByObservation.get(f.observationId) || 0;
++    const isDecomposedFinding = findingCountForThisObservation > 1;
++    const findingEvidence = f.sourceCandidate?.observationFragment || f.conclusion;
++
+     ensureSpace(doc, 30);
+     label(doc, 'What was observed');
+-    body(doc, f.observationText || 'No observation text recorded.');
++    body(doc, findingEvidence || f.observationText || 'No observation text recorded.');
+     doc.moveDown(0.5);
+ 
+-    ensureSpace(doc, 30);
+-    label(doc, 'Finding');
+-    // f.conclusion is HazLenz's internal one-or-two-word hazard-mechanism tag (e.g. "guard",
+-    // "cord") -- accurate as an internal classifier value but meaningless standing alone in a
+-    // customer-facing report. sourceCandidate.observationFragment is the actual excerpt of the
+-    // observation text that produced this specific finding, which reads as a real sentence.
+-    body(doc, f.sourceCandidate?.observationFragment || f.conclusion || 'No finding conclusion recorded.');
+-    doc.moveDown(0.5);
++    if (isDecomposedFinding && findingEvidence && f.observationText) {
++      // The full source observation is preserved for audit traceability -- it is
++      // shown once per finding (not lost), but clearly labeled as the shared,
++      // multi-hazard source rather than presented as if it were this finding's
++      // own evidence.
++      ensureSpace(doc, 30);
++      label(doc, 'Full source observation (shared across this inspection’s findings)');
++      body(doc, f.observationText, { size: 8.5, color: MUTED });
++      doc.moveDown(0.5);
++    }
+ 
+     const risk = f.riskSnapshot;
+     if (risk) {
+diff --git a/backend/src/safescope-v2/classifier/weighted-classifier.service.ts b/backend/src/safescope-v2/classifier/weighted-classifier.service.ts
+index 4966fd12..c23b2ee0 100644
+--- a/backend/src/safescope-v2/classifier/weighted-classifier.service.ts
++++ b/backend/src/safescope-v2/classifier/weighted-classifier.service.ts
+@@ -80,8 +80,11 @@ function confidenceFromScore(score: number, margin: number): {
+ }
+ 
+ function getSemanticArbitrationSignals(normalizedText: string) {
++  // Deficiency-phrase cue: "no obstruction was blocking the exit" must not
++  // score the same as "a pallet is blocking the exit". Same negation-window
++  // semantics as scoreSignals()/hasElectricalExposure below.
+   const hasBlockedOrAccessIssue =
+-    /\b(blocked|obstructed|inaccessible|access blocked|blocked access|clearance|clearances|stored|storage|pallet|material|equipment|covered|buried)\b/i.test(normalizedText);
++    testNonNegated(normalizedText, /\b(blocked|obstructed|inaccessible|access blocked|blocked access|clearance|clearances|stored|storage|pallet|material|equipment|covered|buried)\b/gi);
+ 
+   const electricalObject =
+     /\b(electrical|electric|disconnect|breaker|panel|mcc|switchgear|switch|cord|wire|wiring|conduit|junction|receptacle|outlet|energized|voltage|arc flash|transformer|fuse|cabinet)\b/i.test(normalizedText);
+@@ -145,29 +148,35 @@ export class WeightedClassifierService {
+     const hasSpillEvidence = hasWalkingSurfaceSpillEvidence(normalizedText);
+     const hasPedestrianOnlyTrafficCue =
+       /\bpedestrian(s)?\b/i.test(normalizedText) && !hasVehicleEvidence;
++    // The cues below name the DEFICIENCY itself (e.g. "missing guardrail",
++    // "no handrail"), so a compound negation like "no missing guardrails" or
++    // "confirmed no floor holes are open" would otherwise substring-match the
++    // deficiency phrase and score it as if the deficiency were present. Route
++    // these through testNonNegated (same negation-window utility already
++    // used above for hasElectricalExposure) instead of a plain .test().
+     const hasBareGuardingConcern =
+-      /\b(missing guard|guard issue|guarding issue|guard missing)\b/i.test(normalizedText) &&
++      testNonNegated(normalizedText, /\b(missing guard|guard issue|guarding issue|guard missing)\b/gi) &&
+       !hasSpecificGuardingContext(normalizedText);
+     const hasGrinderTongueGuardCue =
+       /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i.test(normalizedText) &&
+-      /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/i.test(normalizedText);
++      testNonNegated(normalizedText, /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/gi);
+     const hasAerialLiftFallCue =
+       /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b/i.test(normalizedText) &&
+-      /\b(not tied off|tie[- ]?off missing|tie[- ]?off not used|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/i.test(normalizedText);
++      testNonNegated(normalizedText, /\b(not tied off|tie[- ]?off missing|tie[- ]?off not used|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/gi);
+     const hasElevatedForksCue =
+       /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i.test(normalizedText) &&
+-      /\b(elevated forks|raised forks|forks elevated|load elevated)\b/i.test(normalizedText);
++      testNonNegated(normalizedText, /\b(elevated forks|raised forks|forks elevated|load elevated)\b/gi);
+     const hasExcavatorStruckByCue =
+       /\b(excavator|backhoe)\b/i.test(normalizedText) &&
+-      /\b(struck[- ]by|bucket path|swing radius|swing|workers? near|worker nearby)\b/i.test(normalizedText);
++      testNonNegated(normalizedText, /\b(struck[- ]by|bucket path|swing radius|swing|workers? near|worker nearby)\b/gi);
+     const hasOpenFloorHoleCue =
+-      /\b(floor hole|floor opening|open hole|open floor hole|uncovered opening|skylight|unguarded opening)\b/i.test(normalizedText);
++      testNonNegated(normalizedText, /\b(floor hole|floor opening|open hole|open floor hole|uncovered opening|skylight|unguarded opening)\b/gi);
+     const hasMissingHandrailCue =
+-      /\b(missing handrail|no handrail|missing guardrail|no guardrail|open edge|open-sided|unprotected edge|stair landing)\b/i.test(normalizedText);
++      testNonNegated(normalizedText, /\b(missing handrail|no handrail|missing guardrail|no guardrail|open edge|open-sided|unprotected edge|stair landing)\b/gi);
+     const hasDamagedStairCue =
+-      /\b(damaged stair|damaged stairs|stair tread|uneven riser|stair edge|broken stair)\b/i.test(normalizedText);
++      testNonNegated(normalizedText, /\b(damaged stair|damaged stairs|stair tread|uneven riser|stair edge|broken stair)\b/gi);
+     const hasConstructionGfciCue =
+-      /\b(gfci|ground fault|temporary power|temporary wiring)\b/i.test(normalizedText) &&
++      testNonNegated(normalizedText, /\b(gfci|ground fault|temporary power|temporary wiring)\b/gi) &&
+       /\b(construction|jobsite|temporary power)\b/i.test(normalizedText);
+     const hasConfinedSpaceCue =
+       /\b(confined space|permit required|permit-required|manhole|vault|tank|vessel|atmosphere|oxygen reading|oxygen low|oxygen deficient|entry|attendant|rescue|testing|ventilation)\b/i.test(normalizedText);
+@@ -192,7 +201,10 @@ export class WeightedClassifierService {
+       if (profile.id === "confined_space") {
+         const containsTankOrVessel = normalizedText.includes("tank") || normalizedText.includes("vessel");
+         const hasEntryIndicators = /(entry|inside|permit|atmosphere|attendant|opening|entrant|confined|testing|rescue|ventilation|entering)/i.test(normalizedText);
+-        if (hasConfinedSpaceCue) {
++        // hasConfinedSpaceCue itself matches on bare "tank"/"vessel", so gate the boost the
++        // same way as the penalty below — otherwise a bare tank/vessel mention nets +45-30=+15
++        // instead of the intended net penalty, defeating this guardrail's own purpose.
++        if (hasConfinedSpaceCue && (!containsTankOrVessel || hasEntryIndicators)) {
+           score += 45;
+         }
+         if (containsTankOrVessel && !hasEntryIndicators) {
+@@ -263,7 +275,18 @@ export class WeightedClassifierService {
+       }
+ 
+       // 5. A. MACHINE GUARDING OVER-TRIGGERING ON CATWALK/ACCESS/FALL/SCAFFOLD
++      // Mentioning these objects at all (even in a safe/negated statement like
++      // "no missing guardrails") is enough to disambiguate AWAY from machine
++      // guarding, so that penalty stays object-presence-only. Boosting
++      // falls/walking-working-surfaces is different: that treats the mention
++      // as positive hazard evidence, so it must not fire when the object is
++      // negated or affirmatively described as safe ("guardrails are complete
++      // and fully secured").
+       const hasAccessFallScaffoldTerms = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|safety harness|harness|perimeter side|unprotected edge|unprotected perimeter|lanyard|lifeline)/i.test(normalizedText);
++      const hasActiveAccessFallScaffoldEvidence =
++        hasAccessFallScaffoldTerms &&
++        testNonNegated(normalizedText, /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|safety harness|harness|perimeter side|unprotected edge|unprotected perimeter|lanyard|lifeline)/gi) &&
++        !/\b(?:properly|correctly|adequately|securely|fully)\s+(?:secured|installed|guarded|protected|maintained|anchored|covered|fastened|bolted|attached|in\s+place)\b/i.test(normalizedText);
+       if (hasAccessFallScaffoldTerms) {
+         if (profile.id === "machine_guarding") {
+           const hasMachineContactExposure = /(unguarded conveyor|unguarded rotating|unguarded shaft|missing guard|guard removed|exposed rotating|nip point|pinch point|moving machine part|exposed.*rotating|exposed.*moving|pulley|sprocket|belt|gear|rotating component|point of operation)/i.test(normalizedText);
+@@ -271,7 +294,7 @@ export class WeightedClassifierService {
+             score -= 45; // Penalize machine guarding in catwalk/grating/fall contexts unless explicit moving parts are unguarded
+           }
+         }
+-        if (profile.id === "falls" || profile.id === "walking_working_surfaces") {
++        if ((profile.id === "falls" || profile.id === "walking_working_surfaces") && hasActiveAccessFallScaffoldEvidence) {
+           score += 25;
+         }
+       }
+diff --git a/backend/src/safescope-v2/evidence/evidence-foundation.ts b/backend/src/safescope-v2/evidence/evidence-foundation.ts
+index 952ca110..4dd67dfe 100644
+--- a/backend/src/safescope-v2/evidence/evidence-foundation.ts
++++ b/backend/src/safescope-v2/evidence/evidence-foundation.ts
+@@ -431,3 +431,64 @@ export function applyEvidenceFoundation(result: any, request: ClassifyDto) {
+   };
+   return result;
+ }
++
++export interface FindingStandardCandidate {
++  citation: string;
++  family: string;
++  status: PredicateStatus;
++  confidence: number;
++  applicability: 'direct' | 'candidate' | 'excluded';
++  explanation: string;
++  missingPredicates: string[];
++}
++
++/**
++ * V5-C-standards-scope. Standards applicability for a decomposed multi-hazard
++ * observation was previously evaluated once against the whole observation's
++ * evidence facts, so non-primary findings had no independent standards search
++ * at all -- they inherited whichever candidates happened to be evaluated for
++ * the primary/combined evidence, or none. This runs the SAME unmodified
++ * evaluate()/buildEvidenceFacts() engine used for the whole-observation path,
++ * once per decomposed hazard, scoped to only that hazard's own evidence
++ * (observationFragment, mechanism, supportingSignals) -- never the full
++ * combined observation text and never another finding's fragment. A
++ * legitimate result is an empty array (no applicable/candidate standard for
++ * that finding); this function does not fabricate one.
++ */
++export function applyFindingScopedStandards(result: any, request: ClassifyDto) {
++  if (!result || typeof result !== 'object') return result;
++  const hazards = Array.isArray(result?.multiHazardDecomposition?.hazards)
++    ? result.multiHazardDecomposition.hazards
++    : [];
++  for (const hazard of hazards) {
++    if (!hazard || typeof hazard !== 'object') continue;
++    const fragment = String(hazard.observationFragment || '').trim();
++    const mechanism = String(hazard.mechanism || '').trim();
++    const supportingSignals = Array.isArray(hazard.supportingSignals)
++      ? hazard.supportingSignals.map((item: unknown) => String(item || '').trim()).filter(Boolean)
++      : [];
++    const findingText = [fragment, mechanism, ...supportingSignals].filter(Boolean).join('. ');
++    if (!findingText) {
++      hazard.standardCandidates = [];
++      continue;
++    }
++    const findingExtracted = buildEvidenceFacts({
++      text: findingText,
++      scopes: request.scopes,
++    });
++    const findingDecisions = evaluate(findingExtracted);
++    hazard.standardCandidates = findingDecisions
++      .filter(item => item.status !== 'NOT_APPLICABLE')
++      .map((item): FindingStandardCandidate => ({
++        citation: item.citation,
++        family: item.family,
++        status: item.status,
++        confidence: item.confidence,
++        applicability: item.status === 'SUPPORTED' ? 'direct' : item.status === 'CONTRADICTED' ? 'excluded' : 'candidate',
++        explanation: item.explanation,
++        missingPredicates: item.missingPredicates,
++      }))
++      .filter(item => item.applicability !== 'excluded');
++  }
++  return result;
++}
+diff --git a/backend/src/safescope-v2/hazard-taxonomy-coverage/hazard-taxonomy-coverage.service.ts b/backend/src/safescope-v2/hazard-taxonomy-coverage/hazard-taxonomy-coverage.service.ts
+index e058a6f4..bedfd621 100644
+--- a/backend/src/safescope-v2/hazard-taxonomy-coverage/hazard-taxonomy-coverage.service.ts
++++ b/backend/src/safescope-v2/hazard-taxonomy-coverage/hazard-taxonomy-coverage.service.ts
+@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
+ import * as fs from 'fs';
+ import * as path from 'path';
+ import { TaxonomyDomain, RoutingResult } from './hazard-taxonomy-coverage.types';
++import { hasNonNegatedSubstring } from '../reasoning-orchestrator/negation-context.util';
+ 
+ @Injectable()
+ export class HazardTaxonomyCoverageService {
+@@ -55,7 +56,12 @@ export class HazardTaxonomyCoverageService {
+         let matches: string[] = [];
+         
+         for (const signal of signals) {
+-            if (lowerText.includes(signal.toLowerCase())) {
++            // A signal term's presence is not itself hazard evidence: "no missing
++            // guardrails" must not route the same as "missing guardrails". Reuse the
++            // same negation-window utility the weighted classifier already relies on
++            // (reasoning-orchestrator/negation-context.util.ts) rather than adding a
++            // second, parallel negation heuristic here.
++            if (hasNonNegatedSubstring(lowerText, signal.toLowerCase())) {
+                 score += (signal.split(' ').length > 1 ? 2 : 1); // Weight multi-word signals higher
+                 matches.push(signal);
+             }
+diff --git a/backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts b/backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts
+index 7ea24f78..280e27d0 100644
+--- a/backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts
++++ b/backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts
+@@ -129,6 +129,18 @@ export class MultiHazardDecompositionService {
+         ) {
+           route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+         }
++        if (
++          route.domainId === 'mobile_equipment' &&
++          route.confidence <= 0.4 &&
++          !/\b(?:forklift|loader|haul\s+truck|truck|vehicle|mobile\s+equipment|backing|struck\s+by|traffic|spotter)\b/i.test(fragment)
++        ) {
++          // A bare "pedestrian" mention (e.g. "pedestrian walkway is clear")
++          // is not itself vehicle/pedestrian traffic-interaction evidence;
++          // that requires an actual vehicle/equipment/traffic-conflict term
++          // in the same fragment, matching the taxonomy domain's own stated
++          // scope.
++          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
++        }
+         if (
+           route.domainId === 'silica_respirable_dust' &&
+           route.confidence <= 0.4 &&
+@@ -187,15 +199,26 @@ export class MultiHazardDecompositionService {
+ 
+         if (route.domainId !== 'unknown') {
+             const domain = this.taxonomyService.findDomainById(route.domainId);
+-            
+-            const existing = hazards.find(h => h.domainId === route.domainId);
+-            if (existing) {
+-                routingNotes.push(`Fragment "${fragment}" also matched ${route.domainId} (already captured).`);
++            const existingIndex = hazards.findIndex(h => h.domainId === route.domainId);
++            const existing = existingIndex >= 0 ? hazards[existingIndex] : undefined;
++
++            // A domain slot is claimed by whichever fragment matches it first,
++            // but "first" is incidental sentence order, not evidence strength.
++            // A weak, contentless fragment (e.g. "during the shop floor
++            // walkthrough", matching only on the bare word "floor") must not
++            // permanently block a later fragment carrying the domain's real,
++            // specific evidence (e.g. "a trip hazard was created by scrap
++            // material") from ever being captured. Prefer the fragment with
++            // the stronger (or equal) match confidence, replacing the earlier
++            // claim in place -- the hazardId and array position stay stable so
++            // this remains a durable identity, not order-dependent.
++            if (existing && route.confidence < existing.confidence) {
++                routingNotes.push(`Fragment "${fragment}" also matched ${route.domainId} (already captured by stronger evidence).`);
+                 return;
+             }
+ 
+-            hazards.push({
+-                hazardId: `haz-${hazards.length + 1}`,
++            const nextHazard = {
++                hazardId: existing ? existing.hazardId : `haz-${hazards.length + 1}`,
+                 domainId: route.domainId,
+                 hazardFamily: domain?.relatedStandardFamilies[0] || 'unknown',
+                 mechanism: route.matchedSignals[0],
+@@ -207,8 +230,14 @@ export class MultiHazardDecompositionService {
+                 evidenceGaps: [],
+                 reviewerQuestions: route.requiresHumanReview ? [`Please verify the ${route.domainId} hazard in this fragment.`] : [],
+                 ...this.inferConditionState(fragment, originalObservation, route.domainId),
+-            });
+-            routingNotes.push(`Decomposed fragment "${fragment}" routed to ${route.domainId}`);
++            };
++            if (existing) {
++                routingNotes.push(`Fragment "${fragment}" replaced a weaker earlier match for ${route.domainId}.`);
++                hazards[existingIndex] = nextHazard;
++            } else {
++                hazards.push(nextHazard);
++                routingNotes.push(`Decomposed fragment "${fragment}" routed to ${route.domainId}`);
++            }
+         }
+     });
+ 
+@@ -447,7 +476,15 @@ export class MultiHazardDecompositionService {
+       /\bhot[- ]?work\s+deficiency\b[^.]{0,40}\b(?:not|no)\b/i.test(observationText);
+     const hotWorkUncertain = /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b[^.]{0,100}\b(?:may|might|uncertain|unclear|not\s+determined|undetermined)\b/i.test(observationText);
+     const hotWorkFuture = !hotWorkUncertain && !hotWorkNegated && /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b[^.]{0,100}\b(?:planned|scheduled|will\s+(?:begin|start)|tomorrow|next\s+week|after\s+shutdown)\b/i.test(observationText);
+-    const activeHotWork = !hotWorkUncertain && !hotWorkNegated && !hotWorkFuture && /\b(weld(?:ing)?|cut(?:ting)?|torch|braz(?:ing)?|flame[- ]cut(?:ting)?|grind(?:ing)?)\b/i.test(observationText) &&
++    // A hot-work verb by itself (e.g. "grinding") is not evidence of a hot-work
++    // hazard when the same observation explicitly describes the task being
++    // performed with PPE correctly/properly/consistently in use and no
++    // independent fire/spark/combustible signal is present -- that is a safe
++    // routine-task description, not a deficiency report.
++    const hotWorkSafePpeContext =
++      /\b(?:wearing|worn|equipped with)\b[^.]{0,80}\b(?:correctly|properly|consistently)\b/i.test(observationText) &&
++      !/\b(?:spark|fire|flame|combustible|flammable|fire\s+watch|ignition)\b/i.test(observationText);
++    const activeHotWork = !hotWorkUncertain && !hotWorkNegated && !hotWorkFuture && !hotWorkSafePpeContext && /\b(weld(?:ing)?|cut(?:ting)?|torch|braz(?:ing)?|flame[- ]cut(?:ting)?|grind(?:ing)?)\b/i.test(observationText) &&
+       !/\b(?:discussed|reviewed|permit|selected|completed|canceled|cancelled|planned|scheduled)\b/i.test(observationText);
+     if ((activeHotWork || hotWorkFuture) && !hotWorkNegated && !hazards.some(hazard => hazard.domainId === 'hot_work')) {
+       hazards.push({
+@@ -1340,10 +1377,41 @@ export class MultiHazardDecompositionService {
+     const familyContext = domainId === 'electrical' ? /\b(?:electrical|conductors?|panel|cabinet|wire|cord)\b/i.test(text) :
+       domainId === 'machine_guarding' || domainId === 'machine_guarding_loto' || domainId === 'guarding_interlocks' ? /\b(?:guard|guarding|conveyor|belt|shaft|pulley|machine|interlock)\b/i.test(text) :
+       domainId === 'chemical_release' || domainId === 'hazcom' ? /\b(?:leak|spill|release|chemical|solvent|drum|container|oil)\b/i.test(text) : true;
++    // Hazard vocabulary is not itself evidence of a hazard: "no missing
++    // guardrails" and "guardrails are fully secured" describe the absence of
++    // a deficiency, not its presence, and must not default to ACTIVE the way
++    // an unrecognized fragment otherwise would. This stays scoped to the
++    // finding-local fragment (the same `text` every other check here uses)
++    // and requires the deficiency-adjective or the positive-state assertion
++    // to be the thing negated/affirmed, not any unrelated "no"/"not" in the
++    // fragment.
++    const negatedPositiveSafeAssertion = /\b(?:not|never|wasn't|weren't|isn't|aren't|failed\s+to\s+be|without\s+being|no\s+longer)\b[^.]{0,20}\b(?:properly|correctly|adequately|securely|fully)?\s*(?:secured|installed|guarded|protected|maintained|anchored|covered|fastened|bolted|attached|in\s+place|intact|present|functional|undamaged)\b/i.test(text);
++    const explicitSafeOrNegatedDeficiency =
++      /\bno\s+(?:missing|damaged|unsecured|defective|broken|loose|deteriorated|corroded|frayed|cracked|unguarded|exposed)\b/i.test(text) ||
++      /\bno\s+[a-z][a-z\s-]{0,25}\b(?:were|was)\s+observed\b/i.test(text) ||
++      /\bno\s+deficienc(?:y|ies)\b[^.]{0,30}\b(?:observed|found|noted|identified)?/i.test(text) ||
++      // Covers both adverb+participle order ("properly secured") and
++      // adjective-noun-participle order ("proper shoring installed").
++      (/\b(?:properly|correctly|adequately|securely|fully)\s+(?:secured|installed|guarded|protected|maintained|anchored|covered|fastened|bolted|attached|in\s+place)\b/i.test(text) && !negatedPositiveSafeAssertion) ||
++      (/\bproper\b[^.]{0,20}\b(?:installed|in\s+place|present)\b/i.test(text) && !negatedPositiveSafeAssertion) ||
++      (/\b(?:guardrails?|covers?|shoring|guard)\b[^.]{0,30}\b(?:is|are|was|were)\s+(?:complete|intact|in\s+place|present|installed)\b/i.test(text) && !negatedPositiveSafeAssertion) ||
++      /\bfully\s+prevented\s+access\b/i.test(text) ||
++      /\binspected\s+by\s+a\s+competent\s+person\b/i.test(text);
+     const verifiedCorrection = /\b(?:was|were|has been|have been)\s+(?:repaired|replaced|restored|backfilled|filled|fixed|secured|closed|removed from service)\b/i.test(text) ||
+       /\b(?:repaired|replaced|restored|fixed|secured|closed|removed from service|replacement)\b[^.]{0,100}\b(?:before (?:the )?inspection|current(?:ly)?|verified|tested|confirmed|inspected|tagged|in place)\b/i.test(text) ||
+       /\b(?:de[- ]energized|deenergized|locked out|zero[- ]energy|isolated)\b[^.]{0,80}\b(?:verified|tested|confirmed)\b/i.test(text) ||
+-      /\b(?:surface|floor)\b[^.]{0,80}\b(?:dry|clear|cleared|no\s+(?:current\s+)?(?:residue|slippery\s+condition))\b/i.test(text);
++      // LOTO verification language ("zero-energy state was verified with a
++      // tester") legitimately appears in a clause separate from the one
++      // naming the lockout/tagout procedure itself (e.g. joined by "and",
++      // which fragment-splitting treats as a boundary). Falling back to the
++      // full observation here is deliberately narrow: it is gated to the
++      // lockout_tagout domain, requires the same strong verified-isolation
++      // phrase as the fragment-scoped check above, and still requires no
++      // contradicting current-exposure language in this finding's own
++      // fragment.
++      (domainId === 'lockout_tagout' && /\b(?:de[- ]energized|deenergized|locked out|zero[- ]energy|isolated)\b[^.]{0,80}\b(?:verified|tested|confirmed)\b/i.test(fullText)) ||
++      /\b(?:surface|floor)\b[^.]{0,80}\b(?:dry|clear|cleared|no\s+(?:current\s+)?(?:residue|slippery\s+condition))\b/i.test(text) ||
++      explicitSafeOrNegatedDeficiency;
+     const unresolvedHaulRoute =
+       domainId === 'mobile_equipment' &&
+       /\b(?:haul route|haul road)\b/i.test(text) &&
+@@ -1354,6 +1422,20 @@ export class MultiHazardDecompositionService {
+       /\b(?:prior|previously|yesterday|last week|last month|historical|arc[- ]?flash|arc event|reported)\b/i.test(temporalText) &&
+       /\b(?:no|not|without)\b[^.]{0,80}\b(?:current|now|today|exposed|energized|live|damaged|visible|inspection|photo)/i.test(temporalText) &&
+       !/\b(?:still|remains|currently|now)\b[^.]{0,80}\b(?:exposed|energized|arcing|damaged|open)/i.test(temporalText);
++    // The prior-event clause ("an arc flash was reported last month") and the
++    // no-current-exposure clause ("no current exposure, and the panel has
++    // since been cleared") commonly land in different fragments once split
++    // on commas/"and" -- the fragment that actually routes to the electrical
++    // domain may only carry one half. Fall back to the full observation for
++    // this one electrical/historical pattern, narrowly, the same way the
++    // lockout_tagout verification check above does.
++    const historicalNoCurrentExposureFullText = domainId === 'electrical' &&
++      !historicalNoCurrentExposure &&
++      !/\b(?:unsure|uncertain|unknown|not sure|may|might)\b/i.test(fullText) &&
++      /\b(?:prior|previously|yesterday|last week|last month|historical|arc[- ]?flash|arc event|reported)\b/i.test(fullText) &&
++      /\b(?:no|not|without)\b[^.]{0,80}\b(?:current|now|today|exposed|energized|live|damaged|visible|inspection|photo)/i.test(fullText) &&
++      !/\b(?:still|remains|currently|now)\b[^.]{0,80}\b(?:exposed|energized|arcing|damaged|open)/i.test(fullText) &&
++      !currentExposure;
+     const uncertainHistoricalElectrical = domainId === 'electrical' &&
+       /\b(?:prior|previously|yesterday|last week|last month|historical|reported)\b/i.test(temporalText) &&
+       /\b(?:unsure|uncertain|unknown|not sure|may|might)\b/i.test(temporalText) &&
+@@ -1372,7 +1454,7 @@ export class MultiHazardDecompositionService {
+     if (intermittent) return { conditionState: 'INTERMITTENT', temporalEvidence, currentCondition: 'Condition is reported during a recurring operation or time window.', correctionStatus: 'not_stated' };
+     if (futureActivity && !currentExposure && !futureCorrection) return { conditionState: 'PLANNED_FUTURE', temporalEvidence, currentCondition: 'The hazardous activity is planned but not yet underway.', correctionStatus: 'planned' };
+     if (futureCorrection) return { conditionState: 'ACTIVE', temporalEvidence, currentCondition: 'Correction is planned, not yet verified.', correctionStatus: 'planned' };
+-    if (historicalNoCurrentExposure) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior electrical event is documented, but current exposure is not established.', correctionStatus: 'reported' };
++    if (historicalNoCurrentExposure || historicalNoCurrentExposureFullText) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior electrical event is documented, but current exposure is not established.', correctionStatus: 'reported' };
+     if (uncertainHistoricalElectrical) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior electrical event is uncertain and does not establish a current exposure.', correctionStatus: 'reported' };
+     if (historicalReportedNoCurrentInspection) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior condition is reported, but current status was not inspected or verified.', correctionStatus: 'reported' };
+     if (historicalReportedEvent) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior condition is reported without current exposure evidence.', correctionStatus: 'reported' };
+diff --git a/backend/src/safescope-v2/safescope-v2.controller.ts b/backend/src/safescope-v2/safescope-v2.controller.ts
+index f8de3194..3fdd26cd 100644
+--- a/backend/src/safescope-v2/safescope-v2.controller.ts
++++ b/backend/src/safescope-v2/safescope-v2.controller.ts
+@@ -13,7 +13,7 @@ import { OfflineReasoningInput } from './offline-reasoning-mobile-resilience/off
+ import { UserGovernanceContext, SafeScopeRole } from './workspace-governance-access/workspace-governance.types';
+ import { sanitizeHazLenzDisplayOutput } from "./display/hazlenz-display-sanitizer";
+ import { enforceHazLenzEvidenceBoundary } from './display/hazlenz-evidence-boundary';
+-import { applyEvidenceFoundation } from './evidence/evidence-foundation';
++import { applyEvidenceFoundation, applyFindingScopedStandards } from './evidence/evidence-foundation';
+ import { applyFinalizationGate } from './evidence/finalization-gate';
+ import { normalizeHazardObservationText } from './display/hazlenz-evidence-boundary';
+ import { attachGuidedFindingResponse } from './display/guided-finding-response';
+@@ -259,7 +259,7 @@ export class SafescopeV2Controller {
+ 
+       const guided = enforceVerifiedControlDisplay(attachGuidedFindingResponse(ensureVisiblePrimaryCitationContract(
+         sanitizeHazLenzDisplayOutput(
+-          applyFinalizationGate(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(result, body), body)),
++          applyFinalizationGate(applyFindingScopedStandards(applyEvidenceFoundation(enforceHazLenzEvidenceBoundary(result, body), body), body)),
+         ),
+         body.text,
+       ), body), body.text);
+diff --git a/backend/src/safescope-v2/safescope-v2.service.ts b/backend/src/safescope-v2/safescope-v2.service.ts
+index de49db20..6ff91827 100644
+--- a/backend/src/safescope-v2/safescope-v2.service.ts
++++ b/backend/src/safescope-v2/safescope-v2.service.ts
+@@ -4649,6 +4649,26 @@ export class SafescopeV2Service {
+         response.requiresHumanReview = true;
+         response.reviewStateLabel = 'Historical condition — verify current status';
+       }
++      // Every decomposed hazard was explicitly negated or affirmatively
++      // described as safe/controlled (SAFE_VERIFIED) and none are
++      // HISTORICAL either -- the observation-level summary must not default
++      // to ACTIVE the way an unmatched narrative otherwise would. This
++      // mirrors the HISTORICAL-only aggregate above; a mix of SAFE_VERIFIED
++      // and HISTORICAL (still no active hazard) is intentionally left to the
++      // HISTORICAL branch above, which already reflects "not active."
++      if (!unresolvedContradictions.length && currentDecompositionHazards.length && !hasActiveCurrentDecompositionHazard && !hasHistoricalDecompositionHazard) {
++        response.conditionState = 'SAFE_VERIFIED';
++        response.family = 'controlled_condition';
++        response.classification = 'Controlled Condition';
++        response.hazardCategory = 'controlled_condition';
++        response.candidateStandardFamily = 'unknown';
++        response.primaryCitation = '';
++        response.suggestedStandards = [];
++        response.primaryStandards = [];
++        response.standards = [];
++        response.supportingStandards = [];
++        response.reviewStateLabel = 'Verified controlled condition — no active deficiency identified';
++      }
+       // A compound observation with both active and historical findings is a
+       // mixed state.  The observation-level summary must not claim HISTORICAL
+       // because that can contradict or suppress an authoritative active
+diff --git a/backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts b/backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts
+index 3ecfedaf..39c90913 100644
+--- a/backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts
++++ b/backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts
+@@ -865,7 +865,14 @@ const RAW_STANDARDS_INTELLIGENCE_SEED: StandardsIntelligenceRecord[] = [
+     scope: "osha-general-industry",
+     part: "1910",
+     subpart: "N",
+-    title: "Powered industrial trucks - General requirements",
++    // Verified against OSHA's own published text (osha.gov): paragraph (p) is
++    // "Operation of the truck," and (p)(1) specifically requires a powered
++    // industrial truck found to be in need of repair, defective, or in any
++    // way unsafe to be taken out of service until restored to safe operating
++    // condition. "General requirements" is actually paragraph (a) of this
++    // same section -- a different provision -- and was corrected here rather
++    // than left pointing at the wrong regulatory text.
++    title: "Powered industrial trucks - Operation of the truck: removing unsafe or defective trucks from service",
+     plainLanguageSummary: "General industry powered industrial truck safety criteria may be relevant when defects or unsafe conditions are observed on an operating forklift, requiring qualified review of equipment condition, task safety, and operator controls.",
+     hazardFamilies: ["Powered Industrial Trucks", "PIT", "Mobile Equipment"],
+     equipmentTags: ["forklift", "truck", "loader", "vehicle", "lift", "brakes", "controls"],
+diff --git a/backend/src/safescope-v2/tests/hazlenz-clarification-gauntlet.ts b/backend/src/safescope-v2/tests/hazlenz-clarification-gauntlet.ts
+index 1f1ecb81..c43f268b 100644
+--- a/backend/src/safescope-v2/tests/hazlenz-clarification-gauntlet.ts
++++ b/backend/src/safescope-v2/tests/hazlenz-clarification-gauntlet.ts
+@@ -182,7 +182,7 @@ async function grantDisposableTestEntitlement(token: string) {
+     await client.query(
+       `INSERT INTO entitlement_grants
+        ("userId", source, tier, status, "startsAt", "endsAt", reason)
+-       VALUES ($1, 'test', 'expert', 'active', NOW(), NOW() + INTERVAL '2 hours',
++       VALUES ($1, 'test', 'pro', 'active', NOW(), NOW() + INTERVAL '2 hours',
+                'Authenticated HazLenz disposable clarification fixture')`,
+       [payload.userId],
+     );
+diff --git a/backend/src/safescope-v2/tests/hazlenz-core-regression.ts b/backend/src/safescope-v2/tests/hazlenz-core-regression.ts
+index 354b9ee1..d401b0ec 100644
+--- a/backend/src/safescope-v2/tests/hazlenz-core-regression.ts
++++ b/backend/src/safescope-v2/tests/hazlenz-core-regression.ts
+@@ -90,6 +90,18 @@ const suites: Suite[] = [
+   {
+     name: "HazLenz Production Path Regression",
+     scriptPath: "src/safescope-v2/tests/hazlenz-production-path-regression.ts"
++  },
++  {
++    name: "HazLenz Temporal Reconciliation Regression",
++    scriptPath: "src/safescope-v2/tests/hazlenz-temporal-reconciliation-regression.ts"
++  },
++  {
++    name: "HazLenz Condition-State Invariants Regression",
++    scriptPath: "src/safescope-v2/tests/hazlenz-condition-state-invariants-regression.ts"
++  },
++  {
++    name: "HazLenz Finding-Scoped Standards Regression",
++    scriptPath: "src/safescope-v2/tests/hazlenz-finding-scoped-standards-regression.ts"
+   }
+ ];
+ 
+diff --git a/backend/src/standards/seed/sync-standards-intelligence-to-master.ts b/backend/src/standards/seed/sync-standards-intelligence-to-master.ts
+index 92fcef85..edb69cc7 100644
+--- a/backend/src/standards/seed/sync-standards-intelligence-to-master.ts
++++ b/backend/src/standards/seed/sync-standards-intelligence-to-master.ts
+@@ -21,6 +21,22 @@ const ds = new DataSource({
+   synchronize: false,
+ });
+ 
++// The curated 19-standard seed (safescope-standards.seed.ts, run before this
++// script) and this larger intelligence catalog do not agree on a citation
++// string format for the same regulation -- one uses "1910.147", the other
++// "29 CFR 1910.147". Matching on the raw citation string treats those as two
++// different standards and inserts a duplicate row for the same regulation.
++// Reuse the same "strip agency/part prefix, compare digits and punctuation"
++// normalization already used by this repo's own standards test harnesses
++// (see canonicalizeCitation() in golden-standards-tests.ts) so a sync run
++// recognizes and updates the existing row instead of duplicating it.
++function normalizeCitationForMatch(citation: string): string {
++  return String(citation || '')
++    .toLowerCase()
++    .replace(/^(msha|osha|29|30|cfr|part|subpart|\s|-|§|\.)+/g, '')
++    .replace(/[^a-z0-9]/g, '');
++}
++
+ function normalizeAgency(agency: string): AgencyCode | null {
+   const normalized = String(agency || '').toUpperCase();
+   if (normalized.includes('MSHA')) return 'MSHA' as AgencyCode;
+@@ -134,6 +150,20 @@ async function run() {
+   await ds.initialize();
+   const repo = ds.getRepository(Standard);
+ 
++  const allExisting = await repo.find();
++  const existingByNormalizedCitation = new Map<string, Standard>();
++  for (const standard of allExisting) {
++    const normalizedKey = `${standard.agencyCode}::${normalizeCitationForMatch(standard.citation)}`;
++    // If two rows already collide on the normalized key (the exact duplicate
++    // this fix prevents going forward), keep the first and leave the
++    // pre-existing duplicate for a separate, explicit cleanup decision --
++    // this sync only prevents new duplicates, it does not silently delete
++    // existing rows.
++    if (!existingByNormalizedCitation.has(normalizedKey)) {
++      existingByNormalizedCitation.set(normalizedKey, standard);
++    }
++  }
++
+   const unique = new Map<string, AnyRecord>();
+ 
+   for (const record of STANDARDS_INTELLIGENCE_SEED as AnyRecord[]) {
+@@ -166,12 +196,9 @@ async function run() {
+     const agencyKey = String(payload.agencyCode);
+     byAgency.set(agencyKey, (byAgency.get(agencyKey) || 0) + 1);
+ 
+-    const existing = await repo.findOne({
+-      where: {
+-        agencyCode: payload.agencyCode,
+-        citation: payload.citation,
+-      } as any,
+-    });
++    const existing = existingByNormalizedCitation.get(
++      `${payload.agencyCode}::${normalizeCitationForMatch(payload.citation)}`,
++    );
+ 
+     if (existing) planned.update++;
+     else planned.insert++;
+@@ -202,19 +229,20 @@ async function run() {
+       continue;
+     }
+ 
+-    const existing = await repo.findOne({
+-      where: {
+-        agencyCode: payload.agencyCode,
+-        citation: payload.citation,
+-      } as any,
+-    });
++    const existing = existingByNormalizedCitation.get(
++      `${payload.agencyCode}::${normalizeCitationForMatch(payload.citation)}`,
++    );
+ 
+     if (existing) {
+       Object.assign(existing, payload);
+       await repo.save(existing);
+       updated++;
+     } else {
+-      await repo.save(repo.create(payload));
++      const created = await repo.save(repo.create(payload));
++      existingByNormalizedCitation.set(
++        `${payload.agencyCode}::${normalizeCitationForMatch(payload.citation)}`,
++        created,
++      );
+       inserted++;
+     }
+   }
+diff --git a/frontend-next/components/layout/AppShell.tsx b/frontend-next/components/layout/AppShell.tsx
+index 21eefaf8..99cdccb6 100644
+--- a/frontend-next/components/layout/AppShell.tsx
++++ b/frontend-next/components/layout/AppShell.tsx
+@@ -19,7 +19,22 @@ import {
+ } from "@/lib/pinSecurity";
+ import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
+ import { AI_ENGINE_NAME, APP_NAME, BRAND_HEADER_LOGO } from "@/lib/brand";
+-import { hasAuthToken, logout } from "@/lib/auth";
++import { getAuthUser, hasAuthToken, logout } from "@/lib/auth";
++
++function computeProfileInitials(user: { firstName?: string; lastName?: string; name?: string; email?: string }) {
++  const first = (user.firstName || "").trim();
++  const last = (user.lastName || "").trim();
++  if (first || last) {
++    return `${first.charAt(0)}${last.charAt(0)}`.toUpperCase();
++  }
++
++  const nameParts = (user.name || "").trim().split(/\s+/).filter(Boolean);
++  if (nameParts.length >= 2) return `${nameParts[0].charAt(0)}${nameParts[1].charAt(0)}`.toUpperCase();
++  if (nameParts.length === 1) return nameParts[0].slice(0, 2).toUpperCase();
++
++  const email = (user.email || "").trim();
++  return email ? email.charAt(0).toUpperCase() : "";
++}
+ 
+ const authPublicRoutes = [
+   "/",
+@@ -78,6 +93,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
+   const [profileOpen, setProfileOpen] = useState(false);
+   const [portalMounted, setPortalMounted] = useState(false);
+   const [hasAuthSession, setHasAuthSession] = useState(false);
++  const [profileInitials, setProfileInitials] = useState("");
+   const isOnline = useNetworkStatus();
+ 
+   const profileMenuRef = useRef<HTMLDivElement | null>(null);
+@@ -105,7 +121,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
+ 
+     // Local dev auth bypass should prevent protected-route redirects,
+     // but it should not make public marketing pages render as signed-in.
+-    const frame = window.requestAnimationFrame(() => setHasAuthSession(hasAuthToken()));
++    const frame = window.requestAnimationFrame(() => {
++      setHasAuthSession(hasAuthToken());
++      setProfileInitials(computeProfileInitials(getAuthUser()));
++    });
+     return () => window.cancelAnimationFrame(frame);
+   }, [pathname]);
+ 
+@@ -275,7 +294,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
+                     className="flex h-11 w-11 items-center justify-center rounded-2xl bg-app-brand-soft text-xs font-black text-app-primary ring-2 ring-blue-100 transition hover:bg-white/10 active:scale-95 dark:hover:bg-[#102A43] sm:h-12 sm:w-12 sm:text-sm"
+                     aria-label="Open profile menu"
+                   >
+-                    CM
++                    {profileInitials}
+                   </button>
+ 
+                   {profileOpen && portalMounted &&

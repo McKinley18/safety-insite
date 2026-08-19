@@ -8,6 +8,7 @@ import {
   archivePersistedReport,
   downloadPersistedReport,
   listPersistedReports,
+  regulatoryContextLabel,
   type PersistedReport,
 } from "@/lib/canonicalWorkflowApi";
 import { FileText } from "lucide-react";
@@ -71,7 +72,7 @@ export default function ReportsPage() {
 
   async function deleteReport(report: PersistedReport) {
     const confirmed = window.confirm(
-      `Delete "Inspection ${report.inspectionId}" from your reports list? This removes it from view; it is not permanently erased.`,
+      `Delete "${report.inspection?.title || "Inspection"}${report.inspection?.siteName ? ` · ${report.inspection.siteName}` : ""}" from your reports list? This removes it from view; it is not permanently erased.`,
     );
     if (!confirmed) return;
 
@@ -130,10 +131,18 @@ export default function ReportsPage() {
             <AppPanel key={report.id} as="article" className="space-y-4">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <h2 className="text-base font-black text-app-text">Inspection {report.inspectionId}</h2>
+                  <h2 className="text-base font-black text-app-text">
+                    {report.inspection?.title || "Inspection"}
+                    {report.inspection?.siteName ? ` · ${report.inspection.siteName}` : ""}
+                  </h2>
                   <p className="mt-1 text-xs font-semibold text-app-text-muted">
-                    Report {report.id} · created {new Date(report.createdAt).toLocaleString()}
+                    {report.inspection ? `${regulatoryContextLabel(report.inspection.regulatoryContext)} · ` : ""}
+                    created {new Date(report.createdAt).toLocaleString()}
                   </p>
+                  <details className="mt-1">
+                    <summary className="cursor-pointer text-[11px] font-semibold text-app-text-muted">Record IDs</summary>
+                    <p className="text-[11px] text-app-text-muted">Inspection {report.inspectionId} · Report {report.id}</p>
+                  </details>
                 </div>
                 <AppButton
                   size="sm"

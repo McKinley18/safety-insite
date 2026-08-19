@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HazardDecomposition, MultiHazardDecompositionResult } from './multi-hazard-decomposition.types';
 import { HazardTaxonomyCoverageService } from '../hazard-taxonomy-coverage/hazard-taxonomy-coverage.service';
+import { hasAnyNonNegatedTerm } from '../reasoning-orchestrator/negation-context.util';
 
 @Injectable()
 export class MultiHazardDecompositionService {
@@ -12,22 +13,63 @@ export class MultiHazardDecompositionService {
     
     // 1. Split into fragments
     const splitRegex = /[.;,!]|\band\b|\balso\b|\bwhile\b/i;
+    // The classify pipeline fuses the structured-observation metadata block ("Structured
+    // observation evidence:\nWork area: third-floor deck. Task being performed: ...") into the
+    // analysed text. Purely contextual rows (where / which equipment / which task / jurisdiction
+    // context / bookkeeping) are not hazard observations and must not seed a finding of their own --
+    // "Work area: third-floor deck" is not a walking-surface hazard. Rows that DO carry hazard
+    // evidence (observed condition, controls missing, worker interaction, potential consequence,
+    // additional context) are kept.
+    // (Line breaks in the fused text may arrive as "\n" or as " | " separators, so both are
+    // normalised away before the label check.)
+    const contextualMetadataLine = /^(?:structured observation evidence\s*:?\s*)?(?:work area|work environment(?: or jurisdiction context)?|equipment or area involved|task being performed|evidence source|user-confirmed facts|facts still unknown|unresolved contradictions|material or substance involved)\s*:/i;
+    const stripMetadataHeader = (f: string) => f.replace(/^[\s|]+/, '').replace(/^structured observation evidence\s*:?\s*\|?\s*/i, '').replace(/^[\s|]+/, '').trim();
     const fragments = observationText.split(splitRegex)
-      .map(f => f.trim())
-      .filter(f => f.length > 5);
+      .map(f => stripMetadataHeader(f))
+      .filter(f => f.length > 5)
+      .filter(f => !contextualMetadataLine.test(f));
 
     const hazards: HazardDecomposition[] = [];
     const routingNotes: string[] = [];
 
+    // Shared hazardous-energy-control vocabulary. Field observers rarely write the literal
+    // words "lockout"/"tagout": "no lock or tag applied", "without a lock", "not locked or
+    // tagged", "no LOTO", "power connected", "still running" are the ordinary forms. Every
+    // LOTO detector below (per-fragment and cross-clause) reads from these two patterns so
+    // that recall does not depend on which synonym the observer happened to use.
+    //   LOTO_CONTROL_ABSENT: the CONTROL is stated absent/not applied (an active deficiency,
+    //   never to be confused with a negated deficiency such as "no lockout issue was found").
+    //   LOTO_ENERGY_SOURCE: a hazardous-energy source is present/capable ("power connected",
+    //   "running", "energized", named energy types...).
+    const LOTO_CONTROL_ABSENT =
+      /\b(?:no|not|never|without)\b[^.]{0,30}\b(?:lockout|lock\s*out|tagout|tag\s*out|LOTO|(?:personal\s+)?locks?(?:\s*(?:,|or|and|\/|nor)\s*(?:tags?|tagout))?|tags?)\b[^.]{0,25}\b(?:has\s+been\s+|have\s+been\s+|was\s+|were\s+|is\s+|are\s+|been\s+)?(?:applied|attached|installed|placed|in\s+place|hung|fitted|used|present)\b/i;
+    const LOTO_CONTROL_ABSENT_ALT =
+      /\b(?:lockout|lock\s*out|tagout|tag\s*out|LOTO|locks?|tags?)\b[^.]{0,20}\b(?:has\s+not\s+been|have\s+not\s+been|was\s+not|were\s+not|is\s+not|are\s+not|has\s+not|not)\b[^.]{0,20}\b(?:applied|attached|installed|placed|in\s+place|hung|fitted|used|present)\b/i;
+    const LOTO_CONTROL_ABSENT_BARE =
+      /\b(?:without\s+(?:a\s+|any\s+)?(?:personal\s+)?(?:lock|tag|LOTO)(?:\s*(?:or|and|\/)\s*(?:tag|lock))?\b|not\s+(?:locked|tagged)(?:\s+(?:or|and)\s+(?:locked|tagged))?(?:\s+out)?\b|no\s+(?:personal\s+)?(?:lock|tag|LOTO)(?:\s*(?:or|and|\/)\s*(?:tag|lock))?\b(?![^.]{0,20}\b(?:deficienc|issue|problem|concern|violation|finding)))/i;
+    const lotoControlAbsent = (value: string) =>
+      LOTO_CONTROL_ABSENT.test(value) || LOTO_CONTROL_ABSENT_ALT.test(value) || LOTO_CONTROL_ABSENT_BARE.test(value);
+    const LOTO_ENERGY_SOURCE =
+      /\b(?:hydraulic|pneumatic|mechanical|gravity|spring|thermal|pressure|stored\s+energy|hazardous\s+energy|energ(?:ized|ised)|electrical|multiple\s+energy|disconnect|isolation|elevated|load|re-?energ|power(?:ed)?(?:\s+(?:connected|on|remains?|remained|still|is\s+(?:still\s+)?on|was\s+(?:still\s+)?on|supply|source|feed|not\s+(?:been\s+)?(?:isolated|disconnected|removed|locked)))|plugged\s+in|(?:is|was|were|are|remains?|remained|kept|left|still)\s+(?:running|operating|in\s+operation|cycling)|running|operating)\b/i;
+
     // 2. Process each fragment
     fragments.forEach((fragment, index) => {
         let route = this.taxonomyService.route(fragment);
-        const negatedLockoutDeficiency = /\b(?:no|not|never)\b[^.]{0,50}\b(?:lockout|lock out|tagout|tag out|failure to isolate|uncontrolled stored energy|unexpected energization)\b/i.test(fragment) ||
+        // "no lockout/tagout has been applied" (or "was applied"/"is applied")
+        // describes the CONTROL as absent -- an active deficiency -- not a
+        // negated hazard. It must be distinguished from genuinely safe negation
+        // like "no lockout deficiency exists" or "no failure to isolate," which
+        // negate the DEFICIENCY itself. Without this distinction, the general
+        // "no...lockout" negation check below (added to suppress false
+        // positives on genuinely safe LOTO language) would also suppress this
+        // genuinely active case.
+        const lockoutControlAbsent = lotoControlAbsent(fragment);
+        const negatedLockoutDeficiency = (/\b(?:no|not|never)\b[^.]{0,50}\b(?:lockout|lock out|tagout|tag out|failure to isolate|uncontrolled stored energy|unexpected energization)\b/i.test(fragment) && !lockoutControlAbsent) ||
           /\b(?:historical|prior|previous|earlier)\b[^.]{0,80}\b(?:lockout|tagout|isolation)\b[^.]{0,80}\b(?:corrected|resolved|verified|confirmed)\b/i.test(fragment) ||
           /\b(?:lockout|tagout|isolation|energy control)\b[^.]{0,50}\b(?:was|were|is|has been)\b[^.]{0,30}\b(?:correctly applied|verified|confirmed|complete|effective)\b/i.test(fragment);
         const positiveLotoMechanism = /\b(?:servic\w*|maint\w*|repair\w*|clear\w*\s+(?:a\s+)?jam|interven\w*)\b/i.test(fragment) &&
-          /\b(?:hydraulic|pneumatic|mechanical|gravity|spring|thermal|pressure|stored\s+energy|energ(?:ized|ised)|electrical|multiple\s+energy|disconnect|isolation|elevated|load|re-?energ)\b/i.test(fragment) &&
-          /\b(?:without\s+(?:lockout|isolation|energy\s+control)|not\s+(?:isolated|controlled|locked)|uncontrolled|remains?\s+uncontrolled|lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|before\s+isolation|isolation\s+(?:was\s+)?incomplete|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|pressure\s+(?:remains?|is\s+present|retained)|retains?\s+pressure|spring\s+remains?|can\s+drop|only\s+[^.]{0,50}\s+isolated|not\s+all\s+(?:energy|sources)|begins?\s+(?:maintenance|servicing)\s+before)\b/i.test(fragment);
+          LOTO_ENERGY_SOURCE.test(fragment) &&
+          (/\b(?:without\s+(?:lockout|(?:hazardous\s+)?(?:energy\s+)?isolation|isolating|energy\s+control)|not\s+(?:isolated|controlled|locked)|uncontrolled|remains?\s+uncontrolled|lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|before\s+isolation|isolation\s+(?:was\s+)?incomplete|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|pressure\s+(?:remains?|is\s+present|retained)|retains?\s+pressure|spring\s+remains?|can\s+drop|only\s+[^.]{0,50}\s+isolated|not\s+all\s+(?:energy|sources)|begins?\s+(?:maintenance|servicing)\s+before)\b/i.test(fragment) || lockoutControlAbsent);
         if (negatedLockoutDeficiency) {
           route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: false };
         }
@@ -130,6 +172,18 @@ export class MultiHazardDecompositionService {
           route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
         }
         if (
+          route.domainId === 'mobile_equipment' &&
+          route.confidence <= 0.4 &&
+          !/\b(?:forklift|loader|haul\s+truck|truck|vehicle|mobile\s+equipment|backing|struck\s+by|traffic|spotter)\b/i.test(fragment)
+        ) {
+          // A bare "pedestrian" mention (e.g. "pedestrian walkway is clear")
+          // is not itself vehicle/pedestrian traffic-interaction evidence;
+          // that requires an actual vehicle/equipment/traffic-conflict term
+          // in the same fragment, matching the taxonomy domain's own stated
+          // scope.
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
           route.domainId === 'silica_respirable_dust' &&
           route.confidence <= 0.4 &&
           (/\bsilica(?:[- ]bearing)?(?:\s+material)?\b[^.]{0,40}\b(?:not\s+supported|not\s+established|not\s+confirmed|is\s+absent|not\s+identified)\b/i.test(fragment) ||
@@ -139,10 +193,35 @@ export class MultiHazardDecompositionService {
           route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
         }
         if (
+          route.domainId !== 'silica_respirable_dust' &&
+          route.confidence <= 0.4 &&
+          !/\b(?:weld(?:ing)?|torch|braz(?:ing)?|flame|hot[- ]?work|fire\s+watch|spark)\b/i.test(fragment) &&
+          /\b(?:dry[- ]?cut(?:s|ting)?|dry[- ]?grind(?:s|ing)?|masonry\s+saw|concrete\s+saw|(?:cutting|grinding|sawing|chipping|jackhammering)\s+(?:concrete|block|brick|stone|tile|masonry|mortar))\b/i.test(fragment)
+        ) {
+          // Dry-cutting/grinding masonry, concrete or block is a respirable-silica task, not hot
+          // work: no flame, no sparks, no fire watch. A weak hot_work pre-route on such a fragment
+          // (a bare taxonomy word coincidence) must not create a hot-work finding beside -- or
+          // instead of -- the silica finding that owns the evidence.
+          route = { domainId: 'silica_respirable_dust', confidence: 0.6, matchedSignals: ['dry cutting/grinding of silica-bearing material'], routeDisposition: 'categorize_only', requiresHumanReview: false };
+        }
+        if (
           route.domainId === 'machine_guarding' &&
           route.confidence <= 0.4 &&
           /\bguard\b[^.]{0,30}\b(?:status\s+)?(?:cannot\s+be\s+confirmed|unconfirmed|unknown|not\s+confirmed|not\s+established)\b/i.test(fragment)
         ) {
+          route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
+        }
+        if (
+          (route.domainId === 'machine_guarding' || route.domainId === 'conveyors') &&
+          route.confidence <= 0.4 &&
+          /\b(?:servic\w*|maint\w*|repair\w*|interven\w*|clear\w*\s+(?:a\s+)?jam)\b/i.test(this.sentenceContaining(observationText, fragment)) &&
+          !/\b(?:guard(?:s|ed|ing)?|unguarded|nip|pinch|point\s+of\s+operation|exposed\s+(?:shaft|belt|pulley|rotating|moving)|rotating|in-?running)\b/i.test(fragment)
+        ) {
+          // A bare machine-entity word (e.g. "conveyor") in a servicing/maintenance
+          // fragment is a hazardous-energy-control context, not guarding evidence:
+          // without any guarding vocabulary in the same fragment, the weak entity
+          // coincidence must not manufacture a second, guarding-labelled finding
+          // alongside the LOTO finding that actually owns this evidence.
           route = { domainId: 'unknown', confidence: 0, matchedSignals: [], routeDisposition: 'hold_for_review', requiresHumanReview: true };
         }
         if (
@@ -187,15 +266,26 @@ export class MultiHazardDecompositionService {
 
         if (route.domainId !== 'unknown') {
             const domain = this.taxonomyService.findDomainById(route.domainId);
-            
-            const existing = hazards.find(h => h.domainId === route.domainId);
-            if (existing) {
-                routingNotes.push(`Fragment "${fragment}" also matched ${route.domainId} (already captured).`);
+            const existingIndex = hazards.findIndex(h => h.domainId === route.domainId);
+            const existing = existingIndex >= 0 ? hazards[existingIndex] : undefined;
+
+            // A domain slot is claimed by whichever fragment matches it first,
+            // but "first" is incidental sentence order, not evidence strength.
+            // A weak, contentless fragment (e.g. "during the shop floor
+            // walkthrough", matching only on the bare word "floor") must not
+            // permanently block a later fragment carrying the domain's real,
+            // specific evidence (e.g. "a trip hazard was created by scrap
+            // material") from ever being captured. Prefer the fragment with
+            // the stronger (or equal) match confidence, replacing the earlier
+            // claim in place -- the hazardId and array position stay stable so
+            // this remains a durable identity, not order-dependent.
+            if (existing && route.confidence < existing.confidence) {
+                routingNotes.push(`Fragment "${fragment}" also matched ${route.domainId} (already captured by stronger evidence).`);
                 return;
             }
 
-            hazards.push({
-                hazardId: `haz-${hazards.length + 1}`,
+            const nextHazard = {
+                hazardId: existing ? existing.hazardId : `haz-${hazards.length + 1}`,
                 domainId: route.domainId,
                 hazardFamily: domain?.relatedStandardFamilies[0] || 'unknown',
                 mechanism: route.matchedSignals[0],
@@ -207,8 +297,14 @@ export class MultiHazardDecompositionService {
                 evidenceGaps: [],
                 reviewerQuestions: route.requiresHumanReview ? [`Please verify the ${route.domainId} hazard in this fragment.`] : [],
                 ...this.inferConditionState(fragment, originalObservation, route.domainId),
-            });
-            routingNotes.push(`Decomposed fragment "${fragment}" routed to ${route.domainId}`);
+            };
+            if (existing) {
+                routingNotes.push(`Fragment "${fragment}" replaced a weaker earlier match for ${route.domainId}.`);
+                hazards[existingIndex] = nextHazard;
+            } else {
+                hazards.push(nextHazard);
+                routingNotes.push(`Decomposed fragment "${fragment}" routed to ${route.domainId}`);
+            }
         }
     });
 
@@ -298,8 +394,8 @@ export class MultiHazardDecompositionService {
     fragments.forEach((fragment) => {
       const negated = /\b(?:no|not|never)\b[^.]{0,50}\b(?:lockout|tagout|failure to isolate|uncontrolled stored energy)\b/i.test(fragment) || /\b(?:historical|prior|previous|earlier)\b[^.]{0,80}\b(?:lockout|tagout|isolation)\b[^.]{0,80}\b(?:corrected|resolved|verified|confirmed)\b/i.test(fragment);
       const mechanism = /\b(?:servic\w*|maint\w*|repair\w*|interven\w*)\b/i.test(fragment) &&
-        /\b(?:hydraulic|pneumatic|mechanical|gravity|spring|thermal|pressure|stored\s+energy|energ(?:ized|ised)|electrical|multiple\s+energy|disconnect|isolation|elevated|load|re-?energ)\b/i.test(fragment) &&
-        /\b(?:without\s+(?:lockout|isolation|energy\s+control)|not\s+(?:isolated|controlled|locked)|uncontrolled|remains?\s+uncontrolled|lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|before\s+(?:supply\s+)?isolation|isolation\s+(?:was\s+)?incomplete|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|pressure\s+(?:remains?|is\s+present|retained)|retains?\s+pressure|spring\s+remains?|can\s+drop|only\s+[^.]{0,50}\s+isolated|not\s+all\s+(?:energy|sources)|begins?\s+(?:maintenance|servicing)\s+before)\b/i.test(fragment);
+        LOTO_ENERGY_SOURCE.test(fragment) &&
+        (/\b(?:without\s+(?:lockout|(?:hazardous\s+)?(?:energy\s+)?isolation|isolating|energy\s+control)|not\s+(?:isolated|controlled|locked)|uncontrolled|remains?\s+uncontrolled|lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|before\s+(?:supply\s+)?isolation|isolation\s+(?:was\s+)?incomplete|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|pressure\s+(?:remains?|is\s+present|retained)|retains?\s+pressure|spring\s+remains?|can\s+drop|only\s+[^.]{0,50}\s+isolated|not\s+all\s+(?:energy|sources)|begins?\s+(?:maintenance|servicing)\s+before)\b/i.test(fragment) || lotoControlAbsent(fragment));
       if (mechanism && !negated && !hazards.some(h => h.domainId === 'lockout_tagout' && h.observationFragment === fragment)) {
         hazards.push({
           hazardId: `haz-${hazards.length + 1}`,
@@ -317,49 +413,79 @@ export class MultiHazardDecompositionService {
         });
       }
     });
-    const crossClauseIntervention = /\b(?:servic\w*|maint\w*|repair\w*|interven\w*|clear\w*|unjam\w*|reach\w*\s+into|disconnect\w*\s+(?:a\s+)?(?:hydraulic|pneumatic)|work\w*\s+(?:beneath|under))\b/i.test(observationText);
-    const crossClauseEnergy = /\b(?:hydraulic|pneumatic|compressed[- ]air|mechanical|gravity|spring|thermal|pressure|stored\s+energy|energ(?:ized|ised)|electrical|disconnect|isolation|elevated|raised|load|accumulator|cylinder|re-?energ(?:ization|isation|ized|ised|izes|ises)?)\b/i.test(observationText);
-    const crossClauseUncontrolledEnergy = /\b(?:lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|re-?energ(?:izes|ises)|uncontrolled|without\s+(?:lockout|isolation|energy\s+control)|not\s+(?:isolated|controlled|locked|restrained|discharged)|(?:pressure|energy)\s+remains?\b|remains?\s+(?:stored|pressurized|under\s+pressure)|capable\s+of\s+movement|spring\s+remains?|can\s+drop|unsupported|not\s+(?:been\s+)?discharged|before\s+(?:supply\s+)?isolation|before\s+(?:stored\s+)?(?:pressure|energy)\s+(?:is\s+)?(?:relieved|bled|released|discharged)|before\s+(?:stored\s+)?(?:pressure|energy)\s+has\s+been\s+(?:relieved|bled|released|discharged)|before\s+(?:hazardous\s+)?(?:stored\s+)?energy\s+isolation\s+is\s+applied|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|verification\s+was\s+never\s+completed)\b/i.test(observationText);
+    const crossClauseIntervention =/\b(?:servic\w*|maint\w*|repair\w*|interven\w*|clear\w*|unjam\w*|reach\w*\s+into|disconnect\w*\s+(?:a\s+)?(?:hydraulic|pneumatic)|work\w*\s+(?:beneath|under))\b/i.test(observationText);
+    const crossClauseEnergy = /\b(?:hydraulic|pneumatic|compressed[- ]air|mechanical|gravity|spring|thermal|pressure|stored\s+energy|hazardous\s+energy|energ(?:ized|ised)|electrical|disconnect|isolation|elevated|raised|load|accumulator|cylinder|re-?energ(?:ization|isation|ized|ised|izes|ises)?)\b/i.test(observationText) ||
+      LOTO_ENERGY_SOURCE.test(observationText);
+    const crossClauseUncontrolledEnergy = /\b(?:lock\s+(?:was\s+)?removed|re-?energ(?:ization|isation)|unexpected(?:ly)?\s+re-?energ|re-?energ(?:izes|ises)|uncontrolled|without\s+(?:lockout|(?:hazardous\s+)?(?:energy\s+)?isolation|isolating|energy\s+control)|not\s+(?:been\s+|yet\s+)?(?:isolated|controlled|locked|restrained|discharged)|(?:pressure|energy)\s+remains?\b|remains?\s+(?:stored|pressurized|under\s+pressure)|capable\s+of\s+movement|spring\s+remains?|can\s+drop|unsupported|not\s+(?:been\s+)?discharged|before\s+(?:supply\s+)?isolation|before\s+(?:stored\s+)?(?:pressure|energy)\s+(?:is\s+)?(?:relieved|bled|released|discharged)|before\s+(?:stored\s+)?(?:pressure|energy)\s+has\s+been\s+(?:relieved|bled|released|discharged)|before\s+(?:hazardous\s+)?(?:stored\s+)?energy\s+isolation\s+is\s+applied|zero[- ]energy\s+(?:was\s+)?(?:not\s+verified|never\s+(?:completed|performed|verified))|verification\s+was\s+never\s+completed)\b/i.test(observationText) ||
+      lotoControlAbsent(observationText);
     const crossClauseSafeEnergy = /\b(?:isolated|bled\s+off|bled|depressurized|de-pressurized|zero[- ]energy\s+(?:verified|confirmed)|locked\s+out|lockout\s+(?:applied|verified)|released|restrained|relieved\s+and\s+verified)\b/i.test(observationText) && !crossClauseUncontrolledEnergy;
     const historicalLotoContext = crossClauseIntervention && crossClauseEnergy &&
       /\b(?:yesterday|historical|prior|previous|earlier)\b/i.test(observationText) &&
       /\b(?:isolated|repaired|resolved|restored|corrected|verified)\b/i.test(observationText);
     const plannedLotoContext = crossClauseIntervention && crossClauseEnergy &&
       /\b(?:planned|scheduled|tomorrow|next\s+shift|future)\b/i.test(observationText);
+    // Same distinction as lockoutControlAbsent in the per-fragment loop above:
+    // "no lockout/tagout has been applied" names the control as absent (an
+    // active deficiency), not a negated hazard, and must not be excluded by
+    // the general "no...lockout" safe-language check below.
+    const crossClauseLockoutControlAbsent = lotoControlAbsent(observationText);
     const crossClauseLoto = crossClauseIntervention && crossClauseEnergy && crossClauseUncontrolledEnergy && !crossClauseSafeEnergy &&
       !historicalLotoContext && !plannedLotoContext &&
-      !/\b(?:no|not|never)\b[^.]{0,50}\b(?:lockout|tagout|failure to isolate|uncontrolled stored energy)\b/i.test(observationText) &&
+      (crossClauseLockoutControlAbsent || !/\b(?:no|not|never)\b[^.]{0,50}\b(?:lockout|tagout|failure to isolate|uncontrolled stored energy)\b/i.test(observationText)) &&
       !/\b(?:historical|prior|previous|earlier)\b[^.]{0,80}\b(?:lockout|tagout|isolation)\b[^.]{0,80}\b(?:corrected|resolved|verified|confirmed)\b/i.test(observationText);
+    // Deliberately narrower than the servicing/intervention detection gate
+    // above (servic*/maint*/repair*/interven*/clear*/unjam*): those verbs are
+    // common to many unrelated hazard descriptions (e.g. "the handrail...was
+    // repaired"), so including them in the SENTENCE-SELECTION filter pulled
+    // an unrelated sentence's "repaired...verified secure" into the LOTO
+    // fragment, which then made the whole finding's own inferConditionState()
+    // read as SAFE_VERIFIED -- a real, demonstrated regression. The
+    // intervention verb that actually matters for LOTO is always in the same
+    // period-delimited sentence as its own energy/lockout term (confirmed
+    // across every case this fix was tested against), so restricting fragment
+    // selection to lockout/tagout/energy-specific terms is sufficient and
+    // does not need the generic intervention verbs at all.
+    // Sentence SELECTION stays deliberately tight (LOTO-specific vocabulary only, plus the
+    // control-absent "no lock or tag" / "power connected" forms) so a sibling sentence about,
+    // say, a damaged power cord or a locked exit door is never pulled into the LOTO finding's
+    // evidence -- that would leak that sentence's standards onto this finding.
+    // A LOTO sentence must ALSO carry the intervention/lock/isolation vocabulary -- a sibling
+    // sentence that only says "energized" (e.g. a damaged, energized cord) belongs to the
+    // electrical finding, not this one.
+    const lotoSentenceQualifier = /\b(?:servic\w*|maint\w*|repair\w*|interven\w*|clear\w*|unjam\w*|lockout|lock\s*out|tagout|tag\s*out|LOTO|locks?|tags?|locked|tagged|isolat\w*)\b/i;
+    const lotoKeywordPattern = /\b(?:lockout|lock\s*out|tagout|tag\s*out|LOTO|hazardous\s+energy|stored\s+energy|energ(?:ized|ised|y)|isolat\w*|de-?energ\w*|re-?energ\w*|(?:no|without|not)\s+(?:a\s+|any\s+|personal\s+)?(?:locks?|tags?)\b|not\s+(?:locked|tagged)\b|power\s+(?:connected|on|still|remains?|remained|is\s+(?:still\s+)?on|was\s+(?:still\s+)?on))\b/i;
     if (crossClauseLoto && !hazards.some(h => h.domainId === 'lockout_tagout')) {
+      const lotoFragment = this.relevantSentenceFragment(observationText, lotoKeywordPattern, lotoSentenceQualifier);
       hazards.push({
         hazardId: `haz-${hazards.length + 1}`,
         domainId: 'lockout_tagout',
         hazardFamily: 'lockout_tagout',
         mechanism: 'hazardous energy control failure',
-        observationFragment: observationText,
+        observationFragment: lotoFragment,
         supportingSignals: ['servicing/intervention', 'hazardous energy source', 'energy control failure'],
         confidence: 0.75,
         possibleOverlapWith: [],
         requiresHumanReview: true,
         evidenceGaps: ['Confirm all hazardous energy sources and isolation/zero-energy verification.'],
         reviewerQuestions: ['Were all energy sources isolated and verified before or during servicing?'],
-        ...this.inferConditionState(observationText, observationText, 'lockout_tagout'),
+        ...this.inferConditionState(lotoFragment, observationText, 'lockout_tagout'),
       });
     }
     if ((historicalLotoContext || plannedLotoContext) && !hazards.some(h => h.domainId === 'lockout_tagout')) {
+      const lotoFragment = this.relevantSentenceFragment(observationText, lotoKeywordPattern, lotoSentenceQualifier);
       hazards.push({
         hazardId: `haz-${hazards.length + 1}`,
         domainId: 'lockout_tagout',
         hazardFamily: 'lockout_tagout',
         mechanism: 'hazardous energy control context',
-        observationFragment: observationText,
+        observationFragment: lotoFragment,
         supportingSignals: ['servicing/intervention', 'hazardous energy source', historicalLotoContext ? 'historical correction' : 'planned work'],
         confidence: 0.75,
         possibleOverlapWith: [],
         requiresHumanReview: true,
         evidenceGaps: [],
         reviewerQuestions: [],
-        ...this.inferConditionState(observationText, observationText, 'lockout_tagout'),
+        ...this.inferConditionState(lotoFragment, observationText, 'lockout_tagout'),
         conditionState: historicalLotoContext ? 'HISTORICAL' : 'PLANNED_FUTURE',
         temporalEvidence: [historicalLotoContext ? 'historical correction context' : 'planned future work'],
       });
@@ -447,7 +573,29 @@ export class MultiHazardDecompositionService {
       /\bhot[- ]?work\s+deficiency\b[^.]{0,40}\b(?:not|no)\b/i.test(observationText);
     const hotWorkUncertain = /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b[^.]{0,100}\b(?:may|might|uncertain|unclear|not\s+determined|undetermined)\b/i.test(observationText);
     const hotWorkFuture = !hotWorkUncertain && !hotWorkNegated && /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|grind(?:ing)?)\b[^.]{0,100}\b(?:planned|scheduled|will\s+(?:begin|start)|tomorrow|next\s+week|after\s+shutdown)\b/i.test(observationText);
-    const activeHotWork = !hotWorkUncertain && !hotWorkNegated && !hotWorkFuture && /\b(weld(?:ing)?|cut(?:ting)?|torch|braz(?:ing)?|flame[- ]cut(?:ting)?|grind(?:ing)?)\b/i.test(observationText) &&
+    // A hot-work verb by itself (e.g. "grinding") is not evidence of a hot-work
+    // hazard when the same observation explicitly describes the task being
+    // performed with PPE correctly/properly/consistently in use and no
+    // independent fire/spark/combustible signal is present -- that is a safe
+    // routine-task description, not a deficiency report.
+    const hotWorkSafePpeContext =
+      /\b(?:wearing|worn|equipped with)\b[^.]{0,80}\b(?:correctly|properly|consistently)\b/i.test(observationText) &&
+      !/\b(?:spark|fire|flame|combustible|flammable|fire\s+watch|ignition)\b/i.test(observationText);
+    // "grinding"/"cutting" only count as hot work when they describe an ACTIVITY being performed
+    // ("is grinding the weld", "cutting steel pipe"), never as a place noun ("the grinding area",
+    // "cutting station") and never as a masonry/concrete dry-cutting silica task (which produces
+    // dust, not flame/sparks, and is owned by the silica finding). Explicit hot-work vocabulary
+    // (weld/torch/braze/flame/spark/hot work) needs no such qualification.
+    const explicitHotWorkTerm = /\b(weld(?:ing)?|torch|braz(?:ing)?|flame[- ]?cut(?:ting)?|open\s+flame|hot[- ]?work)\b/i.test(observationText);
+    const grindCutActivity =
+      /\b(?:is|was|were|are|while|during|performing|doing|began|started|continu\w*|observed)\s+(?:\w+\s+){0,2}(?:grinding|cutting)\b/i.test(observationText) ||
+      /\b(?:grinding|cutting)\s+(?:steel|metal|pipe|rebar|plate|angle\s+iron|a\s+weld|welds|the\s+weld|through|off)\b/i.test(observationText) ||
+      /\b(?:angle|bench|hand|portable|abrasive|cut-?off)\s+grinder\b/i.test(observationText);
+    const grindCutPlaceOrSilicaOnly =
+      /\b(?:grinding|cutting)\s+(?:area|room|bay|station|booth|shop|department|table|line|floor|wheel|oil|fluid|board|zone)\b/i.test(observationText) ||
+      /\b(?:dry[- ]?cut(?:ting)?|masonry|concrete|block|brick|stone|tile)\b/i.test(observationText);
+    const activeHotWork = !hotWorkUncertain && !hotWorkNegated && !hotWorkFuture && !hotWorkSafePpeContext &&
+      (explicitHotWorkTerm || (grindCutActivity && !grindCutPlaceOrSilicaOnly)) &&
       !/\b(?:discussed|reviewed|permit|selected|completed|canceled|cancelled|planned|scheduled)\b/i.test(observationText);
     if ((activeHotWork || hotWorkFuture) && !hotWorkNegated && !hazards.some(hazard => hazard.domainId === 'hot_work')) {
       hazards.push({
@@ -455,7 +603,7 @@ export class MultiHazardDecompositionService {
         domainId: 'hot_work',
         hazardFamily: 'hot_work',
         mechanism: 'hot_work',
-        observationFragment: observationText,
+        observationFragment: this.relevantSentenceFragment(observationText, /\b(?:hot[- ]?work|weld(?:ing)?|cut(?:ting)?|torch|braz(?:ing)?|flame|grind(?:ing)?)\b/i),
         supportingSignals: ['active hot-work operation'],
         confidence: 0.4,
         possibleOverlapWith: [],
@@ -485,7 +633,7 @@ export class MultiHazardDecompositionService {
         domainId: 'welding_fumes',
         hazardFamily: 'welding_fumes',
         mechanism: 'welding_fumes',
-        observationFragment: observationText,
+        observationFragment: this.relevantSentenceFragment(observationText, /\b(?:weld(?:ing)?|cut(?:ting)?|torch|braz(?:ing)?|fumes?|breathing[- ]zone|fume\s+capture|local\s+exhaust)\b/i),
         supportingSignals: ['active welding/cutting/brazing process', 'explicit fume/breathing-zone or fume-capture-failure evidence'],
         confidence: 0.6,
         possibleOverlapWith: ['hot_work'],
@@ -512,7 +660,7 @@ export class MultiHazardDecompositionService {
         domainId: 'ventilation_air_quality',
         hazardFamily: 'ventilation_air_quality',
         mechanism: 'ventilation_air_quality',
-        observationFragment: observationText,
+        observationFragment: this.relevantSentenceFragment(observationText, /\b(?:exhaust|ventilation|fan|airflow|stagnant|air)\b/i),
         supportingSignals: ['explicit ventilation/exhaust failure or stagnant contaminated air evidence'],
         confidence: 0.6,
         possibleOverlapWith: ['hot_work', 'welding_fumes', 'hazcom'],
@@ -693,7 +841,14 @@ export class MultiHazardDecompositionService {
       const unknownStorage = /\b(?:not\s+visible|not\s+established|unknown|unclear)\b/i.test(clause) && /\b(?:stability|securing|secured|condition)\b/i.test(clause);
       const negatedStorageDefect = /\b(?:not|no)\b[^.]{0,30}\b(?:damaged|overloaded|unstable|leaning|unsecured)\b/i.test(clause) && /\b(?:rack|stack|pallet|stored\s+material)\b/i.test(clause);
       const liftedOnly = /\b(?:suspended|being\s+lifted|crane\s+(?:lifts?|suspends?)|sling|rigging)\b/i.test(clause) && !/\b(?:adjacent|separate|stored\s+stack|storage\s+rack|pallet\s+stack)\b/i.test(clause);
-      if ((!storageSubject || !unsafeStorage) && !correctedStorage && !plannedStorage) continue;
+      // correctedStorage's own regex only checks for generic "was...repaired...
+      // verified...before today" temporal-correction language -- it has no
+      // requirement that the clause is actually about stored/stacked material.
+      // That generic phrasing is common across many unrelated hazard domains
+      // (a repaired handrail, a repaired guard, a repaired panel), so without
+      // also requiring storageSubject here, any historical-correction clause
+      // was misrouted into material_handling_storage regardless of subject.
+      if ((!storageSubject || !unsafeStorage) && !(correctedStorage && storageSubject) && !plannedStorage) continue;
       if (safeStorage || unknownStorage || negatedStorageDefect || liftedOnly) continue;
       if (hazards.some(hazard => hazard.domainId === 'material_handling_storage' && hazard.observationFragment === clause)) continue;
       const explicitState = plannedStorage ? 'PLANNED_FUTURE' : correctedStorage ? 'HISTORICAL' : undefined;
@@ -815,7 +970,7 @@ export class MultiHazardDecompositionService {
         domainId: 'mobile_equipment',
         hazardFamily: 'mobile_equipment',
         mechanism: 'haul-route interaction',
-        observationFragment: observationText,
+        observationFragment: this.relevantSentenceFragment(observationText, /\b(?:haul\s+route|haul\s+road)\b/i),
         supportingSignals: ['haul route context'],
         confidence: 0.2,
         possibleOverlapWith: [],
@@ -1027,7 +1182,7 @@ export class MultiHazardDecompositionService {
         domainId: 'chemical_release',
         hazardFamily: 'chemical_release',
         mechanism: 'release',
-        observationFragment: observationText,
+        observationFragment: this.relevantSentenceFragment(observationText, /\b(?:solvent|chemical|drum|container|leak(?:ing)?|spill(?:ed)?|release)\b/i),
         supportingSignals: ['positive chemical release evidence'],
         confidence: 0.65,
         possibleOverlapWith: [],
@@ -1050,7 +1205,7 @@ export class MultiHazardDecompositionService {
         domainId: 'hazcom',
         hazardFamily: 'hazard_communication',
         mechanism: 'identity',
-        observationFragment: observationText,
+        observationFragment: this.relevantSentenceFragment(observationText, /\b(?:solvent|chemical|drum|container|leak(?:ing)?|spill(?:ed)?|release|label(?:ed|led)?|sds|identif\w*)\b/i),
         supportingSignals: ['chemical identity/label evidence not established'],
         confidence: 0.2,
         possibleOverlapWith: ['chemical_release'],
@@ -1073,7 +1228,7 @@ export class MultiHazardDecompositionService {
         domainId: 'hazcom',
         hazardFamily: 'hazard_communication',
         mechanism: 'label',
-        observationFragment: observationText,
+        observationFragment: this.relevantSentenceFragment(observationText, /\b(?:unlabeled|unlabelled|unknown|label|sds|container|drum|bottle|tote|chemical|solvent)\b/i),
         supportingSignals: ['unresolved identity or labeling evidence'],
         confidence: 0.55,
         possibleOverlapWith: [],
@@ -1154,6 +1309,49 @@ export class MultiHazardDecompositionService {
         reviewerQuestions: ['Please confirm the fall/opening exposure and edge controls.'],
         ...this.inferConditionState(fragment, originalObservation, 'fall_protection'),
       });
+    }
+
+    // Preserve a stairway/handrail deficiency as its own evidence, distinct
+    // from a guardrail-system deficiency. A handrail (a stair/ramp handhold,
+    // governed by the walking-working-surfaces stairway provisions) and a
+    // guardrail (an edge/platform barrier system) are not the same fixture and
+    // must not be equated: this block requires the word "handrail" itself and
+    // keeps its own mechanism/supportingSignals text distinct from the
+    // guardrail-oriented block above, so a bare handrail deficiency (with no
+    // accompanying "fall hazard"/"edge"/"platform" wording) is not silently
+    // dropped, and so downstream standards matching can tell handrail
+    // evidence apart from guardrail evidence rather than defaulting both to
+    // the same generic fall-protection language.
+    for (const fragment of fragments) {
+      if (!/\bhand\s*rail(?:s)?\b/i.test(fragment)) continue;
+      const handrailDeficiency = /\bhand\s*rail(?:s)?\b[^.]{0,40}\b(?:missing|damaged|loose|broken|absent|not\s+provided|deteriorated|bent|detached|unstable)\b/i.test(fragment) ||
+        /\b(?:missing|damaged|loose|broken|absent|no|not\s+provided|deteriorated|bent|detached|unstable)\b[^.]{0,40}\bhand\s*rail(?:s)?\b/i.test(fragment);
+      if (!handrailDeficiency) continue;
+      // A negated deficiency ("no missing handrail," "no damaged handrail") or
+      // an affirmative safe assertion ("handrail is securely installed and
+      // intact") is not itself evidence of a deficiency -- same negation-scope
+      // principle used throughout this file, applied locally here since this
+      // block's own positive-match regex above would otherwise also match the
+      // deficiency word inside that negated phrasing.
+      if (/\bno\s+(?:missing|damaged|loose|broken|deteriorated|bent|detached|unstable)\b[^.]{0,20}\bhand\s*rail/i.test(fragment)) continue;
+      if (/\bhand\s*rail(?:s)?\b[^.]{0,40}\b(?:is|are|was|were)\s+(?:securely\s+)?(?:installed|intact|in\s+place|present|secure|sound)\b/i.test(fragment) &&
+        !/\b(?:not|isn't|wasn't|weren't|no\s+longer)\b[^.]{0,20}\b(?:securely\s+)?(?:installed|intact|in\s+place|present|secure|sound)\b/i.test(fragment)) continue;
+      if (hazards.some(hazard => hazard.domainId === 'fall_protection' && hazard.observationFragment === fragment)) continue;
+      hazards.push({
+        hazardId: `haz-${hazards.length + 1}`,
+        domainId: 'fall_protection',
+        hazardFamily: 'fall_protection',
+        mechanism: 'stairway/handrail deficiency',
+        observationFragment: fragment,
+        supportingSignals: ['direct stairway/handrail deficiency evidence'],
+        confidence: 0.75,
+        possibleOverlapWith: ['walking_working_surfaces'],
+        requiresHumanReview: true,
+        evidenceGaps: ['Confirm the stairway/handrail condition, location, and worker exposure.'],
+        reviewerQuestions: ['Please confirm the handrail condition and the stairway or ramp it serves.'],
+        ...this.inferConditionState(fragment, originalObservation, 'fall_protection'),
+      });
+      routingNotes.push('Preserved finding-local stairway/handrail deficiency, distinct from a guardrail-system finding.');
     }
 
     // Preserve explicit training, required-procedure, supervision, or
@@ -1274,6 +1472,69 @@ export class MultiHazardDecompositionService {
       if (hazard.domainId === 'excavation_trenching' && /\b(?:no|without|never)\s+(?:trench|excavat(?:ion|ing)|open\s+cut)\b/i.test(fragment)) return false;
       return true;
     });
+    // Contradicted hazardous-energy control -- LAST-RESORT preservation, deliberately evaluated
+    // after every other detector and filter so it can only ADD a hazard that would otherwise be
+    // lost, never displace a properly fragment-scoped one.
+    //
+    // Every LOTO detector above requires the observation to state a control FAILURE in
+    // recognised words. An observation that instead states the control as APPLIED and then
+    // contradicts it ("machine is locked and tagged out -- worker reports the disconnect may
+    // still be energized"; "lockout is complete; electrician measured voltage at the work
+    // point"; "the operator says the machine was locked out, but the disconnect was found in the
+    // ON position and no lock or tag was present") satisfied none of them, and the per-fragment
+    // gates then zeroed the route for lacking a recognised failure phrase. The hazard vanished
+    // entirely -- no domain, no standard, no question -- which is the most dangerous outcome this
+    // engine can produce, because conflicting evidence silently yielded a clean result.
+    //
+    // A contradiction reduces confidence; it must never delete the hazard. The contradiction
+    // itself is carried as the evidence gap and reviewer question so the finding and the report
+    // show WHY the state is unresolved. Verified-complete isolation with no contradicting clause
+    // does not match and stays controlled.
+    if (!filteredHazards.some(h => h.domainId === 'lockout_tagout' || h.domainId === 'hydraulic_pneumatic_energy')) {
+      // The claim must be AFFIRMED, not merely mentioned. "hazardous energy has NOT been
+      // isolated or locked out" contains the words of a control claim while asserting its
+      // absence -- that is an ordinary LOTO deficiency already owned by the detectors above, and
+      // treating it as a contradiction here would attach a second, whole-observation finding on
+      // top of a correctly scoped one. The shared negation-window utility (the same one the
+      // classifier and the evidence extractor use) makes exactly that distinction: it excludes
+      // "locked out" inside "has not been isolated or locked out" while still affirming it in
+      // "the operator says the machine was locked out, but the disconnect was found ON".
+      const energyControlClaimed = hasAnyNonNegatedTerm(observationText, [
+        'locked out', 'locked and tagged out', 'tagged out', 'lockout is complete',
+        'lockout complete', 'lockout was applied', 'lock applied', 'lock is applied',
+        'lock is installed', 'deenergized', 'de-energized', 'isolated',
+        'zero-energy verification completed', 'zero energy verification completed',
+      ]);
+      const CONTRADICTION =
+        /\b(?:could\s+not\s+verify|can(?:no|')t\s+verify|unable\s+to\s+verify|did\s+not\s+verify|not\s+(?:been\s+)?verified|never\s+(?:been\s+)?verified|unverified|not\s+(?:yet\s+)?confirmed|may\s+still\s+be\s+energ\w*|might\s+still\s+be\s+energ\w*|(?:is|are|was|were|remains?)\s+still\s+energ\w*|still\s+live\b|measured\s+voltage|voltage\s+(?:was\s+)?(?:measured|found|present|detected|read)|stored\s+(?:hydraulic|pneumatic|electrical|mechanical|spring)?\s*(?:pressure|energy)\s+(?:remains?|is\s+(?:still\s+)?present|was\s+not\s+relieved)|pressure\s+remains?|disconnect\s+(?:was\s+)?(?:found\s+)?(?:in\s+the\s+)?ON\b|power\s+(?:was\s+)?never\s+verified|no\s+lock\s+or\s+tag\s+(?:was\s+)?(?:present|applied|attached))\b/i;
+      if (energyControlClaimed && CONTRADICTION.test(observationText)) {
+        // Scope the finding to the clauses that actually carry the claim and the contradiction,
+        // so a co-occurring unrelated hazard's text is not absorbed into this finding.
+        const relevant = fragments.filter(f => CONTRADICTION.test(f) ||
+          /\b(?:lock|tag|lockout|LOTO|isolat\w*|de-?energ\w*|zero[- ]energy|disconnect)\b/i.test(f));
+        filteredHazards.push({
+          hazardId: `haz-${filteredHazards.length + 1}`,
+          domainId: 'lockout_tagout',
+          hazardFamily: 'lockout_tagout',
+          mechanism: 'hazardous energy control claimed but contradicted or unverified',
+          observationFragment: (relevant.length ? relevant.join('. ') : observationText).trim(),
+          supportingSignals: ['energy control claimed', 'contradicting or unverified evidence in the same observation'],
+          confidence: 0.5,
+          possibleOverlapWith: [],
+          requiresHumanReview: true,
+          evidenceGaps: [
+            'The observation both claims hazardous-energy control and contradicts it; the isolation state is unresolved.',
+            'Confirm every energy source was isolated and that a zero-energy state was verified at the work point.',
+          ],
+          reviewerQuestions: [
+            'Was a zero-energy state verified at the point of work after the isolating devices were locked and tagged?',
+          ],
+          conditionState: 'ACTIVE',
+        } as HazardDecomposition);
+        routingNotes.push('lockout_tagout preserved on contradicted energy-control evidence (not resolved to controlled)');
+      }
+    }
+
     const annotatedHazards = filteredHazards.map((hazard) => ({
       // Preserve explicit decomposition decisions (for example a historical
       // or planned stored-energy context) over the generic fragment fallback.
@@ -1317,6 +1578,45 @@ export class MultiHazardDecompositionService {
     return genericWorkOnly && !this.isTrueHotWorkFragment(normalized);
   }
 
+  /**
+   * Several cross-clause hazard detectors below (LOTO, hot work, welding fumes,
+   * ventilation, chemical release/transfer, hazcom, haul-route) legitimately need
+   * to look across sentence boundaries to find their evidence (e.g. "clears a jam"
+   * in one clause and "without lockout" in another), so they test against the
+   * whole observationText rather than one pre-split fragment. But persisting the
+   * ENTIRE observation as that finding's observationFragment means every other,
+   * unrelated sentence in the observation (a separate safe condition, a separate
+   * hazard, a separate historical note) is misrepresented as this finding's own
+   * evidence -- shown verbatim in the finding's review panel and PDF report.
+   * This narrows that fragment down to just the sentences that actually contain
+   * the signal the detector matched on, so a multi-topic observation doesn't
+   * bleed unrelated sentences into one finding's evidence. Falls back to the full
+   * text only in the (should not normally happen) case where no single sentence
+   * contains the signal -- e.g. the signal spans a mid-sentence clause boundary
+   * the sentence splitter does not recognize.
+   */
+  /** The period-delimited sentence of `observationText` that contains `fragment` (or the fragment itself). */
+  private sentenceContaining(observationText: string, fragment: string): string {
+    const needle = String(fragment || '').toLowerCase();
+    const sentence = String(observationText || '').split(/(?<=[.!?])\s+/).find(item => item.toLowerCase().includes(needle));
+    return sentence || fragment;
+  }
+
+  private relevantSentenceFragment(observationText: string, keywordPattern: RegExp, mustAlsoMatch?: RegExp): string {
+    const sentences = observationText
+      .split(/(?<=[.!?])\s+/)
+      .map(sentence => sentence.trim())
+      .filter(Boolean);
+    const relevant = sentences.filter(sentence => keywordPattern.test(sentence));
+    // When a secondary qualifier is supplied, prefer the sentences that ALSO satisfy it (e.g. the
+    // LOTO sentence that names the servicing/lock/isolation, not a sibling sentence that merely
+    // says "energized" about a damaged cord); fall back to the keyword-only set only when the
+    // qualifier eliminates everything.
+    const qualified = mustAlsoMatch ? relevant.filter(sentence => mustAlsoMatch.test(sentence)) : relevant;
+    const chosen = qualified.length ? qualified : relevant;
+    return chosen.length ? chosen.join(' ') : observationText;
+  }
+
   private inferConditionState(fragment: string, fullObservation = '', domainId = ''): Pick<HazardDecomposition, 'conditionState' | 'temporalEvidence' | 'currentCondition' | 'correctionStatus'> {
     const text = String(fragment || '').toLowerCase();
     const fullText = String(fullObservation || fragment).toLowerCase();
@@ -1340,10 +1640,41 @@ export class MultiHazardDecompositionService {
     const familyContext = domainId === 'electrical' ? /\b(?:electrical|conductors?|panel|cabinet|wire|cord)\b/i.test(text) :
       domainId === 'machine_guarding' || domainId === 'machine_guarding_loto' || domainId === 'guarding_interlocks' ? /\b(?:guard|guarding|conveyor|belt|shaft|pulley|machine|interlock)\b/i.test(text) :
       domainId === 'chemical_release' || domainId === 'hazcom' ? /\b(?:leak|spill|release|chemical|solvent|drum|container|oil)\b/i.test(text) : true;
+    // Hazard vocabulary is not itself evidence of a hazard: "no missing
+    // guardrails" and "guardrails are fully secured" describe the absence of
+    // a deficiency, not its presence, and must not default to ACTIVE the way
+    // an unrecognized fragment otherwise would. This stays scoped to the
+    // finding-local fragment (the same `text` every other check here uses)
+    // and requires the deficiency-adjective or the positive-state assertion
+    // to be the thing negated/affirmed, not any unrelated "no"/"not" in the
+    // fragment.
+    const negatedPositiveSafeAssertion = /\b(?:not|never|wasn't|weren't|isn't|aren't|failed\s+to\s+be|without\s+being|no\s+longer)\b[^.]{0,20}\b(?:properly|correctly|adequately|securely|fully)?\s*(?:secured|installed|guarded|protected|maintained|anchored|covered|fastened|bolted|attached|in\s+place|intact|present|functional|undamaged)\b/i.test(text);
+    const explicitSafeOrNegatedDeficiency =
+      /\bno\s+(?:missing|damaged|unsecured|defective|broken|loose|deteriorated|corroded|frayed|cracked|unguarded|exposed)\b/i.test(text) ||
+      /\bno\s+[a-z][a-z\s-]{0,25}\b(?:were|was)\s+observed\b/i.test(text) ||
+      /\bno\s+deficienc(?:y|ies)\b[^.]{0,30}\b(?:observed|found|noted|identified)?/i.test(text) ||
+      // Covers both adverb+participle order ("properly secured") and
+      // adjective-noun-participle order ("proper shoring installed").
+      (/\b(?:properly|correctly|adequately|securely|fully)\s+(?:secured|installed|guarded|protected|maintained|anchored|covered|fastened|bolted|attached|in\s+place)\b/i.test(text) && !negatedPositiveSafeAssertion) ||
+      (/\bproper\b[^.]{0,20}\b(?:installed|in\s+place|present)\b/i.test(text) && !negatedPositiveSafeAssertion) ||
+      (/\b(?:guardrails?|covers?|shoring|guard)\b[^.]{0,30}\b(?:is|are|was|were)\s+(?:complete|intact|in\s+place|present|installed)\b/i.test(text) && !negatedPositiveSafeAssertion) ||
+      /\bfully\s+prevented\s+access\b/i.test(text) ||
+      /\binspected\s+by\s+a\s+competent\s+person\b/i.test(text);
     const verifiedCorrection = /\b(?:was|were|has been|have been)\s+(?:repaired|replaced|restored|backfilled|filled|fixed|secured|closed|removed from service)\b/i.test(text) ||
       /\b(?:repaired|replaced|restored|fixed|secured|closed|removed from service|replacement)\b[^.]{0,100}\b(?:before (?:the )?inspection|current(?:ly)?|verified|tested|confirmed|inspected|tagged|in place)\b/i.test(text) ||
       /\b(?:de[- ]energized|deenergized|locked out|zero[- ]energy|isolated)\b[^.]{0,80}\b(?:verified|tested|confirmed)\b/i.test(text) ||
-      /\b(?:surface|floor)\b[^.]{0,80}\b(?:dry|clear|cleared|no\s+(?:current\s+)?(?:residue|slippery\s+condition))\b/i.test(text);
+      // LOTO verification language ("zero-energy state was verified with a
+      // tester") legitimately appears in a clause separate from the one
+      // naming the lockout/tagout procedure itself (e.g. joined by "and",
+      // which fragment-splitting treats as a boundary). Falling back to the
+      // full observation here is deliberately narrow: it is gated to the
+      // lockout_tagout domain, requires the same strong verified-isolation
+      // phrase as the fragment-scoped check above, and still requires no
+      // contradicting current-exposure language in this finding's own
+      // fragment.
+      (domainId === 'lockout_tagout' && /\b(?:de[- ]energized|deenergized|locked out|zero[- ]energy|isolated)\b[^.]{0,80}\b(?:verified|tested|confirmed)\b/i.test(fullText)) ||
+      /\b(?:surface|floor)\b[^.]{0,80}\b(?:dry|clear|cleared|no\s+(?:current\s+)?(?:residue|slippery\s+condition))\b/i.test(text) ||
+      explicitSafeOrNegatedDeficiency;
     const unresolvedHaulRoute =
       domainId === 'mobile_equipment' &&
       /\b(?:haul route|haul road)\b/i.test(text) &&
@@ -1354,6 +1685,20 @@ export class MultiHazardDecompositionService {
       /\b(?:prior|previously|yesterday|last week|last month|historical|arc[- ]?flash|arc event|reported)\b/i.test(temporalText) &&
       /\b(?:no|not|without)\b[^.]{0,80}\b(?:current|now|today|exposed|energized|live|damaged|visible|inspection|photo)/i.test(temporalText) &&
       !/\b(?:still|remains|currently|now)\b[^.]{0,80}\b(?:exposed|energized|arcing|damaged|open)/i.test(temporalText);
+    // The prior-event clause ("an arc flash was reported last month") and the
+    // no-current-exposure clause ("no current exposure, and the panel has
+    // since been cleared") commonly land in different fragments once split
+    // on commas/"and" -- the fragment that actually routes to the electrical
+    // domain may only carry one half. Fall back to the full observation for
+    // this one electrical/historical pattern, narrowly, the same way the
+    // lockout_tagout verification check above does.
+    const historicalNoCurrentExposureFullText = domainId === 'electrical' &&
+      !historicalNoCurrentExposure &&
+      !/\b(?:unsure|uncertain|unknown|not sure|may|might)\b/i.test(fullText) &&
+      /\b(?:prior|previously|yesterday|last week|last month|historical|arc[- ]?flash|arc event|reported)\b/i.test(fullText) &&
+      /\b(?:no|not|without)\b[^.]{0,80}\b(?:current|now|today|exposed|energized|live|damaged|visible|inspection|photo)/i.test(fullText) &&
+      !/\b(?:still|remains|currently|now)\b[^.]{0,80}\b(?:exposed|energized|arcing|damaged|open)/i.test(fullText) &&
+      !currentExposure;
     const uncertainHistoricalElectrical = domainId === 'electrical' &&
       /\b(?:prior|previously|yesterday|last week|last month|historical|reported)\b/i.test(temporalText) &&
       /\b(?:unsure|uncertain|unknown|not sure|may|might)\b/i.test(temporalText) &&
@@ -1372,7 +1717,7 @@ export class MultiHazardDecompositionService {
     if (intermittent) return { conditionState: 'INTERMITTENT', temporalEvidence, currentCondition: 'Condition is reported during a recurring operation or time window.', correctionStatus: 'not_stated' };
     if (futureActivity && !currentExposure && !futureCorrection) return { conditionState: 'PLANNED_FUTURE', temporalEvidence, currentCondition: 'The hazardous activity is planned but not yet underway.', correctionStatus: 'planned' };
     if (futureCorrection) return { conditionState: 'ACTIVE', temporalEvidence, currentCondition: 'Correction is planned, not yet verified.', correctionStatus: 'planned' };
-    if (historicalNoCurrentExposure) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior electrical event is documented, but current exposure is not established.', correctionStatus: 'reported' };
+    if (historicalNoCurrentExposure || historicalNoCurrentExposureFullText) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior electrical event is documented, but current exposure is not established.', correctionStatus: 'reported' };
     if (uncertainHistoricalElectrical) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior electrical event is uncertain and does not establish a current exposure.', correctionStatus: 'reported' };
     if (historicalReportedNoCurrentInspection) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior condition is reported, but current status was not inspected or verified.', correctionStatus: 'reported' };
     if (historicalReportedEvent) return { conditionState: 'HISTORICAL', temporalEvidence, currentCondition: 'A prior condition is reported without current exposure evidence.', correctionStatus: 'reported' };

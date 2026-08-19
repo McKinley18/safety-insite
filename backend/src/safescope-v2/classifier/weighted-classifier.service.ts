@@ -80,8 +80,11 @@ function confidenceFromScore(score: number, margin: number): {
 }
 
 function getSemanticArbitrationSignals(normalizedText: string) {
+  // Deficiency-phrase cue: "no obstruction was blocking the exit" must not
+  // score the same as "a pallet is blocking the exit". Same negation-window
+  // semantics as scoreSignals()/hasElectricalExposure below.
   const hasBlockedOrAccessIssue =
-    /\b(blocked|obstructed|inaccessible|access blocked|blocked access|clearance|clearances|stored|storage|pallet|material|equipment|covered|buried)\b/i.test(normalizedText);
+    testNonNegated(normalizedText, /\b(blocked|obstructed|inaccessible|access blocked|blocked access|clearance|clearances|stored|storage|pallet|material|equipment|covered|buried)\b/gi);
 
   const electricalObject =
     /\b(electrical|electric|disconnect|breaker|panel|mcc|switchgear|switch|cord|wire|wiring|conduit|junction|receptacle|outlet|energized|voltage|arc flash|transformer|fuse|cabinet)\b/i.test(normalizedText);
@@ -145,29 +148,35 @@ export class WeightedClassifierService {
     const hasSpillEvidence = hasWalkingSurfaceSpillEvidence(normalizedText);
     const hasPedestrianOnlyTrafficCue =
       /\bpedestrian(s)?\b/i.test(normalizedText) && !hasVehicleEvidence;
+    // The cues below name the DEFICIENCY itself (e.g. "missing guardrail",
+    // "no handrail"), so a compound negation like "no missing guardrails" or
+    // "confirmed no floor holes are open" would otherwise substring-match the
+    // deficiency phrase and score it as if the deficiency were present. Route
+    // these through testNonNegated (same negation-window utility already
+    // used above for hasElectricalExposure) instead of a plain .test().
     const hasBareGuardingConcern =
-      /\b(missing guard|guard issue|guarding issue|guard missing)\b/i.test(normalizedText) &&
+      testNonNegated(normalizedText, /\b(missing guard|guard issue|guarding issue|guard missing)\b/gi) &&
       !hasSpecificGuardingContext(normalizedText);
     const hasGrinderTongueGuardCue =
       /\b(grinder|abrasive wheel|cutoff wheel|cut-off wheel|grinding wheel)\b/i.test(normalizedText) &&
-      /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/i.test(normalizedText);
+      testNonNegated(normalizedText, /\b(tongue guard|wheel guard|missing guard|guard removed|no guard|damaged guard)\b/gi);
     const hasAerialLiftFallCue =
       /\b(aerial lift|boom lift|bucket truck|manlift|mobile elevating work platform|mewp)\b/i.test(normalizedText) &&
-      /\b(not tied off|tie[- ]?off missing|tie[- ]?off not used|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/i.test(normalizedText);
+      testNonNegated(normalizedText, /\b(not tied off|tie[- ]?off missing|tie[- ]?off not used|harness missing|lanyard missing|leaning out|over the rail|outside the rail|reach over)\b/gi);
     const hasElevatedForksCue =
       /\b(forklift|pallet truck|powered industrial truck|mobile equipment|vehicle)\b/i.test(normalizedText) &&
-      /\b(elevated forks|raised forks|forks elevated|load elevated)\b/i.test(normalizedText);
+      testNonNegated(normalizedText, /\b(elevated forks|raised forks|forks elevated|load elevated)\b/gi);
     const hasExcavatorStruckByCue =
       /\b(excavator|backhoe)\b/i.test(normalizedText) &&
-      /\b(struck[- ]by|bucket path|swing radius|swing|workers? near|worker nearby)\b/i.test(normalizedText);
+      testNonNegated(normalizedText, /\b(struck[- ]by|bucket path|swing radius|swing|workers? near|worker nearby)\b/gi);
     const hasOpenFloorHoleCue =
-      /\b(floor hole|floor opening|open hole|open floor hole|uncovered opening|skylight|unguarded opening)\b/i.test(normalizedText);
+      testNonNegated(normalizedText, /\b(floor hole|floor opening|open hole|open floor hole|uncovered opening|skylight|unguarded opening)\b/gi);
     const hasMissingHandrailCue =
-      /\b(missing handrail|no handrail|missing guardrail|no guardrail|open edge|open-sided|unprotected edge|stair landing)\b/i.test(normalizedText);
+      testNonNegated(normalizedText, /\b(missing handrail|no handrail|missing guardrail|no guardrail|open edge|open-sided|unprotected edge|stair landing)\b/gi);
     const hasDamagedStairCue =
-      /\b(damaged stair|damaged stairs|stair tread|uneven riser|stair edge|broken stair)\b/i.test(normalizedText);
+      testNonNegated(normalizedText, /\b(damaged stair|damaged stairs|stair tread|uneven riser|stair edge|broken stair)\b/gi);
     const hasConstructionGfciCue =
-      /\b(gfci|ground fault|temporary power|temporary wiring)\b/i.test(normalizedText) &&
+      testNonNegated(normalizedText, /\b(gfci|ground fault|temporary power|temporary wiring)\b/gi) &&
       /\b(construction|jobsite|temporary power)\b/i.test(normalizedText);
     const hasConfinedSpaceCue =
       /\b(confined space|permit required|permit-required|manhole|vault|tank|vessel|atmosphere|oxygen reading|oxygen low|oxygen deficient|entry|attendant|rescue|testing|ventilation)\b/i.test(normalizedText);
@@ -192,7 +201,10 @@ export class WeightedClassifierService {
       if (profile.id === "confined_space") {
         const containsTankOrVessel = normalizedText.includes("tank") || normalizedText.includes("vessel");
         const hasEntryIndicators = /(entry|inside|permit|atmosphere|attendant|opening|entrant|confined|testing|rescue|ventilation|entering)/i.test(normalizedText);
-        if (hasConfinedSpaceCue) {
+        // hasConfinedSpaceCue itself matches on bare "tank"/"vessel", so gate the boost the
+        // same way as the penalty below — otherwise a bare tank/vessel mention nets +45-30=+15
+        // instead of the intended net penalty, defeating this guardrail's own purpose.
+        if (hasConfinedSpaceCue && (!containsTankOrVessel || hasEntryIndicators)) {
           score += 45;
         }
         if (containsTankOrVessel && !hasEntryIndicators) {
@@ -263,7 +275,18 @@ export class WeightedClassifierService {
       }
 
       // 5. A. MACHINE GUARDING OVER-TRIGGERING ON CATWALK/ACCESS/FALL/SCAFFOLD
+      // Mentioning these objects at all (even in a safe/negated statement like
+      // "no missing guardrails") is enough to disambiguate AWAY from machine
+      // guarding, so that penalty stays object-presence-only. Boosting
+      // falls/walking-working-surfaces is different: that treats the mention
+      // as positive hazard evidence, so it must not fire when the object is
+      // negated or affirmatively described as safe ("guardrails are complete
+      // and fully secured").
       const hasAccessFallScaffoldTerms = /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|safety harness|harness|perimeter side|unprotected edge|unprotected perimeter|lanyard|lifeline)/i.test(normalizedText);
+      const hasActiveAccessFallScaffoldEvidence =
+        hasAccessFallScaffoldTerms &&
+        testNonNegated(normalizedText, /(handrail|guardrail|toe board|toeboard|scaffold|mudsill|floor grating|grating|catwalk|travelway|access platform|walking surface|fall hazard|loose catwalk|loose railing|access tower|safety harness|harness|perimeter side|unprotected edge|unprotected perimeter|lanyard|lifeline)/gi) &&
+        !/\b(?:properly|correctly|adequately|securely|fully)\s+(?:secured|installed|guarded|protected|maintained|anchored|covered|fastened|bolted|attached|in\s+place)\b/i.test(normalizedText);
       if (hasAccessFallScaffoldTerms) {
         if (profile.id === "machine_guarding") {
           const hasMachineContactExposure = /(unguarded conveyor|unguarded rotating|unguarded shaft|missing guard|guard removed|exposed rotating|nip point|pinch point|moving machine part|exposed.*rotating|exposed.*moving|pulley|sprocket|belt|gear|rotating component|point of operation)/i.test(normalizedText);
@@ -271,7 +294,7 @@ export class WeightedClassifierService {
             score -= 45; // Penalize machine guarding in catwalk/grating/fall contexts unless explicit moving parts are unguarded
           }
         }
-        if (profile.id === "falls" || profile.id === "walking_working_surfaces") {
+        if ((profile.id === "falls" || profile.id === "walking_working_surfaces") && hasActiveAccessFallScaffoldEvidence) {
           score += 25;
         }
       }

@@ -21,6 +21,22 @@ const ds = new DataSource({
   synchronize: false,
 });
 
+// The curated 19-standard seed (safescope-standards.seed.ts, run before this
+// script) and this larger intelligence catalog do not agree on a citation
+// string format for the same regulation -- one uses "1910.147", the other
+// "29 CFR 1910.147". Matching on the raw citation string treats those as two
+// different standards and inserts a duplicate row for the same regulation.
+// Reuse the same "strip agency/part prefix, compare digits and punctuation"
+// normalization already used by this repo's own standards test harnesses
+// (see canonicalizeCitation() in golden-standards-tests.ts) so a sync run
+// recognizes and updates the existing row instead of duplicating it.
+function normalizeCitationForMatch(citation: string): string {
+  return String(citation || '')
+    .toLowerCase()
+    .replace(/^(msha|osha|29|30|cfr|part|subpart|\s|-|§|\.)+/g, '')
+    .replace(/[^a-z0-9]/g, '');
+}
+
 function normalizeAgency(agency: string): AgencyCode | null {
   const normalized = String(agency || '').toUpperCase();
   if (normalized.includes('MSHA')) return 'MSHA' as AgencyCode;
@@ -122,6 +138,11 @@ function toPayload(record: AnyRecord): Partial<Standard> | null {
     requiresApproval: Boolean(record.requiresApproval || false),
     approvedForAutoIngestion: Boolean(record.approvedForAutoIngestion ?? true),
 
+    // Provenance for records verified against a primary source (additive; older seed records
+    // without these fields keep null, exactly as before).
+    ...(record.sourceUrl ? { sourceUrl: String(record.sourceUrl) } : {}),
+    ...(record.retrievalDate ? { retrievalDate: record.retrievalDate as any } : {}),
+
     hazardCodes,
     requiredControls,
     keywords,
@@ -133,6 +154,20 @@ function toPayload(record: AnyRecord): Partial<Standard> | null {
 async function run() {
   await ds.initialize();
   const repo = ds.getRepository(Standard);
+
+  const allExisting = await repo.find();
+  const existingByNormalizedCitation = new Map<string, Standard>();
+  for (const standard of allExisting) {
+    const normalizedKey = `${standard.agencyCode}::${normalizeCitationForMatch(standard.citation)}`;
+    // If two rows already collide on the normalized key (the exact duplicate
+    // this fix prevents going forward), keep the first and leave the
+    // pre-existing duplicate for a separate, explicit cleanup decision --
+    // this sync only prevents new duplicates, it does not silently delete
+    // existing rows.
+    if (!existingByNormalizedCitation.has(normalizedKey)) {
+      existingByNormalizedCitation.set(normalizedKey, standard);
+    }
+  }
 
   const unique = new Map<string, AnyRecord>();
 
@@ -166,12 +201,9 @@ async function run() {
     const agencyKey = String(payload.agencyCode);
     byAgency.set(agencyKey, (byAgency.get(agencyKey) || 0) + 1);
 
-    const existing = await repo.findOne({
-      where: {
-        agencyCode: payload.agencyCode,
-        citation: payload.citation,
-      } as any,
-    });
+    const existing = existingByNormalizedCitation.get(
+      `${payload.agencyCode}::${normalizeCitationForMatch(payload.citation)}`,
+    );
 
     if (existing) planned.update++;
     else planned.insert++;
@@ -202,19 +234,20 @@ async function run() {
       continue;
     }
 
-    const existing = await repo.findOne({
-      where: {
-        agencyCode: payload.agencyCode,
-        citation: payload.citation,
-      } as any,
-    });
+    const existing = existingByNormalizedCitation.get(
+      `${payload.agencyCode}::${normalizeCitationForMatch(payload.citation)}`,
+    );
 
     if (existing) {
       Object.assign(existing, payload);
       await repo.save(existing);
       updated++;
     } else {
-      await repo.save(repo.create(payload));
+      const created = await repo.save(repo.create(payload));
+      existingByNormalizedCitation.set(
+        `${payload.agencyCode}::${normalizeCitationForMatch(payload.citation)}`,
+        created,
+      );
       inserted++;
     }
   }

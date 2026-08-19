@@ -1,0 +1,195 @@
+[
+ {
+  "text": "Damaged electrical cord.",
+  "conditionState": "UNKNOWN",
+  "classification": "Electrical",
+  "decisions": [],
+  "hazards": [
+   [
+    "electrical",
+    "ACTIVE",
+    []
+   ]
+  ],
+  "questions": [
+   {
+    "id": "electrical-damage-exposure",
+    "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+    "priority": "critical",
+    "blocksFinalization": true,
+    "requiredFor": "standard-applicability",
+    "reason": "Visible conductor exposure changes electrical shock risk and citation applicability."
+   },
+   {
+    "id": "existing-0",
+    "question": "What voltage is present in this equipment?",
+    "priority": "important",
+    "blocksFinalization": false,
+    "requiredFor": "standard-applicability",
+    "reason": "HazLenz identified this missing fact during deterministic evidence review."
+   },
+   {
+    "id": "existing-1",
+    "question": "Is it used in a wet or damp location, or outdoors?",
+    "priority": "important",
+    "blocksFinalization": false,
+    "requiredFor": "standard-applicability",
+    "reason": "HazLenz identified this missing fact during deterministic evidence review."
+   },
+   {
+    "id": "existing-2",
+    "question": "Is GFCI protection in use, or does the cord cross a travel path?",
+    "priority": "important",
+    "blocksFinalization": false,
+    "requiredFor": "standard-applicability",
+    "reason": "HazLenz identified this missing fact during deterministic evidence review."
+   }
+  ],
+  "guidedQuestions": [
+   "electrical-damage-exposure",
+   "existing-0",
+   "existing-1"
+  ],
+  "risk": "High",
+  "assessmentDisposition": "hazard_requires_human_review",
+  "evidenceSufficiency": null
+ },
+ {
+  "text": "Worker is using a damaged electrical cord.",
+  "conditionState": "UNKNOWN",
+  "classification": "Electrical",
+  "decisions": [],
+  "hazards": [
+   [
+    "electrical",
+    "ACTIVE",
+    []
+   ]
+  ],
+  "questions": [
+   {
+    "id": "electrical-damage-exposure",
+    "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+    "priority": "critical",
+    "blocksFinalization": true,
+    "requiredFor": "standard-applicability",
+    "reason": "Visible conductor exposure changes electrical shock risk and citation applicability."
+   }
+  ],
+  "guidedQuestions": [
+   "electrical-damage-exposure"
+  ],
+  "risk": "High",
+  "assessmentDisposition": "hazard_requires_human_review",
+  "evidenceSufficiency": null
+ },
+ {
+  "text": "Extension cord has damaged insulation.",
+  "conditionState": "UNKNOWN",
+  "classification": "Electrical",
+  "decisions": [],
+  "hazards": [
+   [
+    "electrical",
+    "ACTIVE",
+    []
+   ]
+  ],
+  "questions": [
+   {
+    "id": "electrical-damage-exposure",
+    "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+    "priority": "critical",
+    "blocksFinalization": true,
+    "requiredFor": "standard-applicability",
+    "reason": "Visible conductor exposure changes electrical shock risk and citation applicability."
+   }
+  ],
+  "guidedQuestions": [
+   "electrical-damage-exposure"
+  ],
+  "risk": "High",
+  "assessmentDisposition": "hazard_requires_human_review",
+  "evidenceSufficiency": null
+ },
+ {
+  "text": "Electrical cord is frayed near the plug.",
+  "conditionState": "UNKNOWN",
+  "classification": "Electrical",
+  "decisions": [],
+  "hazards": [
+   [
+    "electrical",
+    "ACTIVE",
+    []
+   ]
+  ],
+  "questions": [
+   {
+    "id": "electrical-damage-exposure",
+    "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+    "priority": "critical",
+    "blocksFinalization": true,
+    "requiredFor": "standard-applicability",
+    "reason": "Visible conductor exposure changes electrical shock risk and citation applicability."
+   }
+  ],
+  "guidedQuestions": [
+   "electrical-damage-exposure"
+  ],
+  "risk": "High",
+  "assessmentDisposition": "hazard_requires_human_review",
+  "evidenceSufficiency": null
+ },
+ {
+  "text": "Cord is damaged but has been removed from service.",
+  "conditionState": "SAFE_VERIFIED",
+  "classification": "Controlled Condition",
+  "decisions": [],
+  "hazards": [
+   [
+    "electrical",
+    "SAFE_VERIFIED",
+    []
+   ]
+  ],
+  "questions": [
+   {
+    "id": "electrical-damage-exposure",
+    "question": "Were internal conductors or energized parts exposed, or was the damage limited to the outer jacket?",
+    "priority": "critical",
+    "blocksFinalization": true,
+    "requiredFor": "standard-applicability",
+    "reason": "Visible conductor exposure changes electrical shock risk and citation applicability."
+   },
+   {
+    "id": "existing-0",
+    "question": "What exact equipment, opening, edge, container, or travel path is involved?",
+    "priority": "important",
+    "blocksFinalization": false,
+    "requiredFor": "standard-applicability",
+    "reason": "HazLenz identified this missing fact during deterministic evidence review."
+   },
+   {
+    "id": "existing-1",
+    "question": "Is the condition open, damaged, leaking, energized, obstructed, or otherwise uncontrolled?",
+    "priority": "important",
+    "blocksFinalization": false,
+    "requiredFor": "standard-applicability",
+    "reason": "HazLenz identified this missing fact during deterministic evidence review."
+   },
+   {
+    "id": "existing-2",
+    "question": "Are workers exposed directly, or is the issue only a general concern without a specific hazard path?",
+    "priority": "important",
+    "blocksFinalization": false,
+    "requiredFor": "standard-applicability",
+    "reason": "HazLenz identified this missing fact during deterministic evidence review."
+   }
+  ],
+  "guidedQuestions": [],
+  "risk": "Controlled",
+  "assessmentDisposition": "hazard_requires_human_review",
+  "evidenceSufficiency": null
+ }
+]

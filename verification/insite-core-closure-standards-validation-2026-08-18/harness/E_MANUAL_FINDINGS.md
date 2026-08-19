@@ -1,0 +1,14 @@
+# E — Manual / direct findings → HazLenz → standards (live endpoint)
+
+| Manual finding (as typed) | Context | HazLenz interpretation (finding) | Standard evaluation | Result |
+|---|---|---|---|---|
+| Employee servicing equipment without energy isolation. | osha-general-industry | lockout_tagout (ACTIVE) | whole-obs: 1910.147 SUPPORTED; finding-scoped: 1910.147 (direct) | SUPPORTED, no questions |
+| Employee is servicing the packaging line without isolating hazardous energy; the line is still powered. | osha-general-industry | lockout_tagout (ACTIVE) | whole-obs: 1910.147 SUPPORTED; finding-scoped: 1910.147 (direct) | SUPPORTED, no questions |
+| Unguarded machine point of operation. | osha-general-industry | machine_guarding (ACTIVE) | whole-obs: 1910.212(a)(1) UNKNOWN; finding-scoped: 1910.212(a)(1) (candidate) | candidate + question(s): predicate-29-cfr-1910-212-a-1--moving-or-accessible-energy |
+| The point of operation on the punch press is unguarded and the operator's hands enter the die area while it is running. | osha-general-industry | machine_guarding (ACTIVE) | whole-obs: 1910.212(a)(1) SUPPORTED; finding-scoped: 1910.212(a)(1) (direct) | SUPPORTED, no questions |
+| Scaffold open-side fall exposure. | osha-construction | fall_protection (ACTIVE) | whole-obs: 1926.451(g)(1) UNKNOWN, 1926.501 UNKNOWN; finding-scoped: 1926.451(g)(1) (candidate), 1926.501 (candidate) | candidate + question(s): predicate-29-cfr-1926-451-g-1--platform-more-than-10-feet-above-lower-level, predicate-29-cfr-1926-451-g-1--worker-on-platform, predicate-29-cfr-1926-501-worker-exposure |
+| A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system. | osha-construction | fall_protection (ACTIVE) | whole-obs: 1926.451(g)(1) SUPPORTED, 1926.501 SUPPORTED; finding-scoped: 1926.451(g)(1) (direct), 1926.501 (direct) | SUPPORTED, no questions |
+| Damaged electrical cord. | osha-general-industry | electrical (ACTIVE) | whole-obs: none; finding-scoped: none | insufficient evidence: electrical-damage-exposure, existing-0, existing-1 |
+| An extension cord in use at the workbench has damaged insulation with exposed copper conductors and is still plugged in. | osha-general-industry | electrical (ACTIVE) | whole-obs: 1910.303 SUPPORTED; finding-scoped: 1910.303 (direct) | SUPPORTED, no questions |
+| Excessive occupational noise. | osha-general-industry | noise (ACTIVE) | whole-obs: none; finding-scoped: none | insufficient evidence: evidence-sufficiency-insufficient |
+| Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program. | osha-general-industry | noise_exposure (ACTIVE) | whole-obs: 1910.95 SUPPORTED; finding-scoped: 1910.95 (direct) | SUPPORTED, no questions |

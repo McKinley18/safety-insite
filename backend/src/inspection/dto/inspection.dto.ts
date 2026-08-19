@@ -10,6 +10,7 @@ import {
   Min,
   MinLength,
 } from 'class-validator';
+import { INSPECTION_REGULATORY_CONTEXTS, InspectionRegulatoryContext } from '../inspection.entity';
 
 export class CreateInspectionDto {
   @IsUUID()
@@ -19,6 +20,14 @@ export class CreateInspectionDto {
   @MinLength(2)
   @MaxLength(200)
   title: string;
+
+  /**
+   * Inspection-level regulatory context, chosen once at setup and inherited by every
+   * finding. Omitted/undefined keeps the default 'unknown' ("Let HazLenz determine").
+   */
+  @IsIn(INSPECTION_REGULATORY_CONTEXTS as unknown as string[])
+  @IsOptional()
+  regulatoryContext?: InspectionRegulatoryContext;
 }
 
 export class UpdateInspectionDto {
@@ -27,6 +36,14 @@ export class UpdateInspectionDto {
   @MinLength(2)
   @MaxLength(200)
   title?: string;
+
+  /**
+   * Changing the inspection's regulatory context after analyses exist does not silently
+   * rewrite them; the client is expected to re-run HazLenz so findings re-inherit it.
+   */
+  @IsIn(INSPECTION_REGULATORY_CONTEXTS as unknown as string[])
+  @IsOptional()
+  regulatoryContext?: InspectionRegulatoryContext;
 
   @IsInt()
   @Min(1)

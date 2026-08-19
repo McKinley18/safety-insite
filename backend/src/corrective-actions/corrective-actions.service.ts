@@ -203,6 +203,48 @@ export class CorrectiveActionsService {
       displayId: `ACT-${randomUUID().slice(0, 8).toUpperCase()}`,
     } as any) as unknown as CorrectiveAction;
     return this.dataSource.transaction(async manager => {
+      // ONE canonical corrective action per finding. When HazLenz already wrote the finding's
+      // system-generated record at finalization (source 'hazlenz_finding_scoped',
+      // InspectionService.upsertCorrectiveActionForFinding), the reviewer's confirmed action for
+      // the same finding replaces its text in place instead of creating a duplicate row -- the
+      // human-confirmed text is the more authoritative value and the report/dashboard must not
+      // list two open actions for one finding.
+      if (dto.findingId) {
+        const existing = await manager.getRepository(CorrectiveAction).findOne({
+          where: [
+            { findingId: dto.findingId, source: 'hazlenz_finding_scoped' },
+            { findingId: dto.findingId, source: 'reviewer_confirmed' },
+          ] as any,
+          order: { createdAt: 'ASC' } as any,
+        });
+        if (existing) {
+          const before = { ...existing };
+          existing.title = action.title;
+          existing.description = action.description;
+          existing.priorityCode = action.priorityCode;
+          existing.assignedToUserId = action.assignedToUserId;
+          if (action.dueDate) existing.dueDate = action.dueDate;
+          // The finalize-time system record carries no ownership scope (it is written inside the
+          // inspection transaction); adopt the reviewer's scope so it is visible/queryable exactly
+          // like a user-created action (tasks, dashboard, report).
+          const scopeFields = ['tenantId', 'organizationId', 'ownerUserId', 'displayId', 'siteId', 'inspectionId'] as const;
+          for (const field of scopeFields) {
+            if ((existing as any)[field] == null && (action as any)[field] != null) (existing as any)[field] = (action as any)[field];
+          }
+          (existing as any).source = 'reviewer_confirmed';
+          const updated = await manager.getRepository(CorrectiveAction).save(existing);
+          await manager.getRepository(AuditLog).save(manager.getRepository(AuditLog).create({
+            tenantId: auth.tenantId,
+            actorUserId: String(auth.userId),
+            entityType: 'CORRECTIVE_ACTION',
+            entityId: updated.id,
+            actionCode: 'ACTION_UPDATED',
+            beforeJson: before,
+            afterJson: updated,
+          }));
+          return updated;
+        }
+      }
       const saved = await manager.getRepository(CorrectiveAction).save(action);
       await manager.getRepository(AuditLog).save(manager.getRepository(AuditLog).create({
         tenantId: auth.tenantId,

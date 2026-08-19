@@ -24,7 +24,12 @@ const sections = [
   },
   {
     title: "Advisory corrective action support",
-    body: "Recommends custom, layered action plans following the strict hierarchy of controls (immediate containment, engineering barricades, administrative training, and verification guidelines) tailored to the hazard mechanism.",
+    // "custom ... tailored to the hazard mechanism" was verified against the production path and
+    // is only true for hazard families with a specific mapping; the remainder receive a
+    // layered but generically worded plan. The wording now claims the structure (which always
+    // holds: an immediate, a permanent and a verification step, per finding) without claiming a
+    // degree of tailoring the engine does not always deliver.
+    body: "Proposes a layered action plan for each finding, structured on the hierarchy of controls — an immediate containment step, a permanent correction, and a verification step — with the wording matched to the hazard family where a specific control is established. Every action is advisory and requires qualified review.",
   },
   {
     title: "Explainability & transparency",

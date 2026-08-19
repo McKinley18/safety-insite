@@ -10,12 +10,43 @@ export type PersistedSite = {
   archivedAt: string | null;
 };
 
+/**
+ * Inspection-level regulatory context, established ONCE at inspection setup and inherited by
+ * every observation/finding. Same vocabulary HazLenz's evidence model uses. `unknown` means
+ * "Not sure / Let HazLenz determine" -- HazLenz may infer a regime from strong observation
+ * wording (labelled as inferred, never as user-confirmed) or ask one targeted question whose
+ * answer is then persisted back onto the inspection.
+ */
+export type RegulatoryContext = "osha-general-industry" | "osha-construction" | "msha" | "unknown";
+
+export const REGULATORY_CONTEXT_OPTIONS: Array<{ value: RegulatoryContext; label: string; description: string }> = [
+  { value: "osha-general-industry", label: "OSHA — General Industry", description: "29 CFR 1910" },
+  { value: "osha-construction", label: "OSHA — Construction", description: "29 CFR 1926" },
+  { value: "msha", label: "MSHA", description: "30 CFR mining" },
+  { value: "unknown", label: "Not sure / Let HazLenz determine", description: "HazLenz keeps candidates conditional and asks once if it matters" },
+];
+
+export function regulatoryContextLabel(value: string | null | undefined) {
+  return REGULATORY_CONTEXT_OPTIONS.find((option) => option.value === value)?.label || "Not sure / Let HazLenz determine";
+}
+
+/** Maps the Settings page's stored default (`sentinel_regulatory_scope`) onto the inspection vocabulary. */
+export function regulatoryContextFromSettingsScope(scope: string | null | undefined): RegulatoryContext {
+  switch (scope) {
+    case "msha": return "msha";
+    case "osha_general": return "osha-general-industry";
+    case "osha_construction": return "osha-construction";
+    default: return "unknown";
+  }
+}
+
 export type PersistedInspection = {
   id: string;
   siteId: string;
   title: string;
   status: "draft" | "in_review" | "completed" | "archived";
   version: number;
+  regulatoryContext?: RegulatoryContext;
   updatedAt: string;
   observations?: PersistedObservation[];
   findings?: PersistedFinding[];
@@ -52,6 +83,15 @@ export type PersistedReport = {
   id: string;
   inspectionId: string;
   createdAt: string;
+  /** Human-readable inspection context for the report list (title/site/regulatory context). */
+  inspection?: {
+    id: string;
+    title: string;
+    status: string;
+    regulatoryContext: RegulatoryContext;
+    completedAt: string | null;
+    siteName: string | null;
+  } | null;
   versions: Array<{
     version: number;
     status: "generating" | "generated" | "failed" | "superseded" | "quarantined";
@@ -72,6 +112,14 @@ export type HazLenzEvidenceFact = {
 };
 
 export type HazLenzAnalysisResult = Record<string, unknown> & {
+  /** The regulatory context HazLenz actually evaluated under, with honest provenance. */
+  regulatoryContext?: {
+    value: RegulatoryContext;
+    provenance: "USER_CONFIRMED" | "HAZLENZ_INFERRED" | "UNKNOWN";
+    source?: "inspection" | "request" | "observation_evidence";
+    inspectionId?: string;
+    basis?: string[];
+  };
   guidedFinding?: {
     contractVersion: string;
     observedCondition: string;
@@ -103,6 +151,10 @@ export type HazLenzAnalysisResult = Record<string, unknown> & {
       reason: string;
       options: string[];
       materialTo: string[];
+      priority?: string;
+      /** Advisory presentation flag from HazLenz; no question ever blocks review/finalization. */
+      decisionCritical?: boolean;
+      scope?: "inspection" | "finding" | string;
     }>;
     riskAssessment: {
       severity: string;
@@ -185,10 +237,23 @@ export async function listPersistedInspections() {
 export async function createPersistedInspection(input: {
   siteId: string;
   title: string;
+  regulatoryContext?: RegulatoryContext;
 }) {
   return apiJson<PersistedInspection>("/inspections", {
     method: "POST",
     body: JSON.stringify(input),
+  });
+}
+
+/** Persists a change to the inspection-level regulatory context (optimistic-version guarded). */
+export async function updatePersistedInspectionRegulatoryContext(
+  inspectionId: string,
+  regulatoryContext: RegulatoryContext,
+  version: number,
+) {
+  return apiJson<PersistedInspection>(`/inspections/${encodeURIComponent(inspectionId)}`, {
+    method: "PATCH",
+    body: JSON.stringify({ regulatoryContext, version }),
   });
 }
 
@@ -233,6 +298,12 @@ export async function uploadInspectionEvidence(inspectionId: string, file: File)
 export async function analyzeObservation(
   text: string,
   input: {
+    /**
+     * Persisted inspection this observation belongs to. The backend loads the inspection's own
+     * regulatoryContext and applies it authoritatively to this analysis, so the client never has
+     * to resend a fragile jurisdiction string per finding.
+     */
+    inspectionId?: string;
     evidenceSnapshot?: HazLenzAnalysisResult["evidenceSnapshot"];
     clarificationAnswers?: Array<{ questionId: string; answer: string }>;
     structuredObservation?: {

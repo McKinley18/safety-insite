@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 import { TaxonomyDomain, RoutingResult } from './hazard-taxonomy-coverage.types';
+import { hasNonNegatedSubstring } from '../reasoning-orchestrator/negation-context.util';
 
 @Injectable()
 export class HazardTaxonomyCoverageService {
@@ -55,7 +56,12 @@ export class HazardTaxonomyCoverageService {
         let matches: string[] = [];
         
         for (const signal of signals) {
-            if (lowerText.includes(signal.toLowerCase())) {
+            // A signal term's presence is not itself hazard evidence: "no missing
+            // guardrails" must not route the same as "missing guardrails". Reuse the
+            // same negation-window utility the weighted classifier already relies on
+            // (reasoning-orchestrator/negation-context.util.ts) rather than adding a
+            // second, parallel negation heuristic here.
+            if (hasNonNegatedSubstring(lowerText, signal.toLowerCase())) {
                 score += (signal.split(' ').length > 1 ? 2 : 1); // Weight multi-word signals higher
                 matches.push(signal);
             }

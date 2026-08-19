@@ -1,0 +1,289 @@
+{
+ "scores": {
+  "HAZARD_IDENTIFICATION": {
+   "passed": 54,
+   "total": 54,
+   "rate": 1.0,
+   "note": ""
+  },
+  "MULTI_HAZARD_SEPARATION": {
+   "passed": 4,
+   "total": 5,
+   "rate": 0.8,
+   "note": ""
+  },
+  "CONTROL_STATE": {
+   "passed": 18,
+   "total": 24,
+   "rate": 0.75,
+   "note": ""
+  },
+  "ADVERSARIAL_SEPARATION": {
+   "passed": 5,
+   "total": 5,
+   "rate": 1.0,
+   "note": ""
+  },
+  "JURISDICTION": {
+   "passed": 49,
+   "total": 49,
+   "rate": 1.0,
+   "note": ""
+  },
+  "STANDARD_PRECISION": {
+   "passed": 15,
+   "total": 15,
+   "rate": 1.0,
+   "note": "regime-correctness of every SUPPORTED citation"
+  },
+  "STANDARD_RECALL": {
+   "passed": 24,
+   "total": 37,
+   "rate": 0.649,
+   "note": "any candidate standard surfaced for an unsafe scenario"
+  },
+  "RISK_COHERENCE": {
+   "passed": 17,
+   "total": 19,
+   "rate": 0.895,
+   "note": ""
+  },
+  "CLARIFICATION_QUALITY": {
+   "passed": 20,
+   "total": 21,
+   "rate": 0.952,
+   "note": ""
+  },
+  "UNCERTAINTY": {
+   "passed": 4,
+   "total": 5,
+   "rate": 0.8,
+   "note": ""
+  },
+  "NO_UNSUPPORTED_PROMOTION": {
+   "passed": 49,
+   "total": 54,
+   "rate": 0.907,
+   "note": ""
+  },
+  "CORRECTIVE_ACTION_RELEVANCE": {
+   "passed": 49,
+   "total": 49,
+   "rate": 1.0,
+   "note": "hazard-specific=49 generic-template=0 none=0"
+  },
+  "EXPLANATION_QUALITY": {
+   "passed": 49,
+   "total": 49,
+   "rate": 1.0,
+   "note": ""
+  },
+  "OVERALL_CONTEXTUAL_COHERENCE": {
+   "passed": 14,
+   "total": 19,
+   "rate": 0.737,
+   "note": "case has zero failures across all other dimensions"
+  }
+ },
+ "failures": [
+  {
+   "dimension": "MULTI_HAZARD_SEPARATION",
+   "case": "B5-construction",
+   "failure": "expected >= 3 distinct hazard domains, got 2",
+   "detail": [
+    "electrical",
+    "fall_protection"
+   ]
+  },
+  {
+   "dimension": "CONTROL_STATE",
+   "case": "B3-03-failed-control",
+   "failure": "expected unsafe",
+   "detail": {
+    "states": [
+     "ACTIVE",
+     "UNKNOWN"
+    ],
+    "supported": []
+   }
+  },
+  {
+   "dimension": "CONTROL_STATE",
+   "case": "B3-04-conflicting",
+   "failure": "expected unsafe",
+   "detail": {
+    "states": [
+     "UNKNOWN"
+    ],
+    "supported": []
+   }
+  },
+  {
+   "dimension": "CONTROL_STATE",
+   "case": "B3-09-temporal-change",
+   "failure": "expected controlled",
+   "detail": {
+    "states": [
+     "ACTIVE",
+     "UNKNOWN"
+    ],
+    "supported": [
+     "29 CFR 1926.652(a)(1)"
+    ]
+   }
+  },
+  {
+   "dimension": "CONTROL_STATE",
+   "case": "B4-01-control",
+   "failure": "expected controlled",
+   "detail": {
+    "states": [
+     "ACTIVE",
+     "UNKNOWN"
+    ],
+    "supported": []
+   }
+  },
+  {
+   "dimension": "CONTROL_STATE",
+   "case": "B4-05-hazard",
+   "failure": "expected unsafe",
+   "detail": {
+    "states": [
+     "UNKNOWN"
+    ],
+    "supported": []
+   }
+  },
+  {
+   "dimension": "CONTROL_STATE",
+   "case": "B4-05-control",
+   "failure": "expected controlled",
+   "detail": {
+    "states": [
+     "ACTIVE",
+     "UNKNOWN"
+    ],
+    "supported": []
+   }
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B3-03-failed-control",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B3-04-conflicting",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-04",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-09",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-11",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-12",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-13",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-19",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-20",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-23",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-25",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-26",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "STANDARD_RECALL",
+   "case": "B10-28",
+   "failure": "unsafe scenario produced no candidate standard at all",
+   "detail": null
+  },
+  {
+   "dimension": "RISK_COHERENCE",
+   "case": "B3-08-negated-hazard",
+   "failure": "risk band 'High' incoherent with scenario",
+   "detail": {
+    "controlled": true,
+    "no_supported_violation": true
+   }
+  },
+  {
+   "dimension": "RISK_COHERENCE",
+   "case": "B3-09-temporal-change",
+   "failure": "risk band 'High' incoherent with scenario",
+   "detail": {
+    "controlled": true,
+    "no_supported_violation": true
+   }
+  },
+  {
+   "dimension": "UNCERTAINTY",
+   "case": "B7-02-decision-critical-question",
+   "failure": "expected DECISION_CRITICAL_QUESTION",
+   "detail": {
+    "stage": "final",
+    "mayFinalize": true,
+    "questions": 0,
+    "isVague": false
+   }
+  }
+ ],
+ "oversplit_observations": [
+  {
+   "case": "B3-09-temporal-change",
+   "duplicated_domains": {
+    "excavation_trenching": [
+     "today a properly rated trench box is installed",
+     "the trench had no protective system yesterday"
+    ]
+   }
+  }
+ ]
+}

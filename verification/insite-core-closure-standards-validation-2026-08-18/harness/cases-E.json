@@ -1,0 +1,52 @@
+[
+ {
+  "id": "E1-loto-terse",
+  "context": "osha-general-industry",
+  "text": "Employee servicing equipment without energy isolation."
+ },
+ {
+  "id": "E1b-loto-natural",
+  "context": "osha-general-industry",
+  "text": "Employee is servicing the packaging line without isolating hazardous energy; the line is still powered."
+ },
+ {
+  "id": "E2-guard-terse",
+  "context": "osha-general-industry",
+  "text": "Unguarded machine point of operation."
+ },
+ {
+  "id": "E2b-guard-natural",
+  "context": "osha-general-industry",
+  "text": "The point of operation on the punch press is unguarded and the operator's hands enter the die area while it is running."
+ },
+ {
+  "id": "E3-scaffold-terse",
+  "context": "osha-construction",
+  "text": "Scaffold open-side fall exposure."
+ },
+ {
+  "id": "E3b-scaffold-natural",
+  "context": "osha-construction",
+  "text": "A worker is on a scaffold platform about 12 feet above the ground with an open side that has no guardrail or personal fall arrest system."
+ },
+ {
+  "id": "E4-cord-terse",
+  "context": "osha-general-industry",
+  "text": "Damaged electrical cord."
+ },
+ {
+  "id": "E4b-cord-natural",
+  "context": "osha-general-industry",
+  "text": "An extension cord in use at the workbench has damaged insulation with exposed copper conductors and is still plugged in."
+ },
+ {
+  "id": "E5-noise-terse",
+  "context": "osha-general-industry",
+  "text": "Excessive occupational noise."
+ },
+ {
+  "id": "E5b-noise-natural",
+  "context": "osha-general-industry",
+  "text": "Employees in the grinding area are exposed to a measured 92 dBA 8-hour TWA with no hearing conservation program."
+ }
+]

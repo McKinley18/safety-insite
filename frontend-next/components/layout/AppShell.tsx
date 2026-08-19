@@ -19,7 +19,22 @@ import {
 } from "@/lib/pinSecurity";
 import { downloadSafeScopeBrainBundle } from "@/lib/safescopeBrainBundle";
 import { AI_ENGINE_NAME, APP_NAME, BRAND_HEADER_LOGO } from "@/lib/brand";
-import { hasAuthToken, logout } from "@/lib/auth";
+import { getAuthUser, hasAuthToken, logout } from "@/lib/auth";
+
+function computeProfileInitials(user: { firstName?: string; lastName?: string; name?: string; email?: string }) {
+  const first = (user.firstName || "").trim();
+  const last = (user.lastName || "").trim();
+  if (first || last) {
+    return `${first.charAt(0)}${last.charAt(0)}`.toUpperCase();
+  }
+
+  const nameParts = (user.name || "").trim().split(/\s+/).filter(Boolean);
+  if (nameParts.length >= 2) return `${nameParts[0].charAt(0)}${nameParts[1].charAt(0)}`.toUpperCase();
+  if (nameParts.length === 1) return nameParts[0].slice(0, 2).toUpperCase();
+
+  const email = (user.email || "").trim();
+  return email ? email.charAt(0).toUpperCase() : "";
+}
 
 const authPublicRoutes = [
   "/",
@@ -78,6 +93,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [portalMounted, setPortalMounted] = useState(false);
   const [hasAuthSession, setHasAuthSession] = useState(false);
+  const [profileInitials, setProfileInitials] = useState("");
   const isOnline = useNetworkStatus();
 
   const profileMenuRef = useRef<HTMLDivElement | null>(null);
@@ -105,7 +121,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
     // Local dev auth bypass should prevent protected-route redirects,
     // but it should not make public marketing pages render as signed-in.
-    const frame = window.requestAnimationFrame(() => setHasAuthSession(hasAuthToken()));
+    const frame = window.requestAnimationFrame(() => {
+      setHasAuthSession(hasAuthToken());
+      setProfileInitials(computeProfileInitials(getAuthUser()));
+    });
     return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
@@ -275,7 +294,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                     className="flex h-11 w-11 items-center justify-center rounded-2xl bg-app-brand-soft text-xs font-black text-app-primary ring-2 ring-blue-100 transition hover:bg-white/10 active:scale-95 dark:hover:bg-[#102A43] sm:h-12 sm:w-12 sm:text-sm"
                     aria-label="Open profile menu"
                   >
-                    CM
+                    {profileInitials}
                   </button>
 
                   {profileOpen && portalMounted &&

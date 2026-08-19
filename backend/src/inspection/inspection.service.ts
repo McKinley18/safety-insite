@@ -31,6 +31,8 @@ import { Inspection } from './inspection.entity';
 import { materialRiskChanged, urgencyForRisk } from './risk-policy';
 import { evaluateRisk } from '../safescope-v2/risk/risk-engine';
 import { hazardFamilyToRiskClassification } from './finding-risk.mapping';
+import { getCorrectiveActionIntelligence } from '../safescope-v2/intelligence/corrective-action-intelligence';
+import { CorrectiveAction } from '../corrective-actions/entities/corrective-action.entity';
 
 @Injectable()
 export class InspectionService {
@@ -43,6 +45,7 @@ export class InspectionService {
     @InjectRepository(InspectionFinding) private readonly findings: Repository<InspectionFinding>,
     @InjectRepository(OrganizationMembership) private readonly memberships: Repository<OrganizationMembership>,
     @InjectRepository(SecurityAuditEvent) private readonly audits: Repository<SecurityAuditEvent>,
+    @InjectRepository(CorrectiveAction) private readonly correctiveActions: Repository<CorrectiveAction>,
     private readonly sites: SitesService,
     private readonly dataSource: DataSource,
   ) {}
@@ -79,7 +82,7 @@ export class InspectionService {
   async create(rawUser: unknown, dto: CreateInspectionDto) {
     const user = requireAuthenticatedUser(rawUser);
     const site = await this.sites.findAccessible(user, dto.siteId);
-    return this.inspections.save(this.inspections.create({
+    const saved = await this.inspections.save(this.inspections.create({
       title: dto.title.trim(),
       siteId: site.id,
       organizationId: site.organizationId,
@@ -87,10 +90,20 @@ export class InspectionService {
       createdByUserId: user.userId,
       status: 'draft',
       version: 1,
+      regulatoryContext: dto.regulatoryContext || 'unknown',
       completedAt: null,
       completedByUserId: null,
       archivedAt: null,
     }));
+    if (saved.regulatoryContext !== 'unknown') {
+      await this.audits.save(this.audits.create({
+        actorUserId: user.userId, organizationId: saved.organizationId,
+        action: 'inspection_regulatory_context_set',
+        resourceType: 'inspection', resourceId: saved.id,
+        metadata: { inspectionId: saved.id, regulatoryContext: saved.regulatoryContext, previous: null, provenance: 'USER_CONFIRMED', version: saved.version },
+      }));
+    }
+    return saved;
   }
 
   async list(rawUser: unknown) {
@@ -123,8 +136,23 @@ export class InspectionService {
     const inspection = await this.findAccessible(rawUser, id, true);
     if (inspection.version !== dto.version) throw new ConflictException('Inspection was modified by another request.');
     if (dto.title !== undefined) inspection.title = dto.title.trim();
+    const previousContext = inspection.regulatoryContext;
+    if (dto.regulatoryContext !== undefined) inspection.regulatoryContext = dto.regulatoryContext;
     inspection.version += 1;
-    return this.inspections.save(inspection);
+    const saved = await this.inspections.save(inspection);
+    if (dto.regulatoryContext !== undefined && dto.regulatoryContext !== previousContext) {
+      const user = requireAuthenticatedUser(rawUser);
+      await this.audits.save(this.audits.create({
+        actorUserId: user.userId, organizationId: saved.organizationId,
+        action: 'inspection_regulatory_context_set',
+        resourceType: 'inspection', resourceId: saved.id,
+        metadata: {
+          inspectionId: saved.id, regulatoryContext: saved.regulatoryContext, previous: previousContext,
+          provenance: saved.regulatoryContext === 'unknown' ? 'UNKNOWN' : 'USER_CONFIRMED', version: saved.version,
+        },
+      }));
+    }
+    return saved;
   }
 
   async assign(rawUser: unknown, id: string, dto: AssignInspectionDto) {
@@ -321,6 +349,21 @@ export class InspectionService {
   }
 
   /**
+   * Disambiguates a hazard key that another hazard in the SAME analysis already claimed, so two
+   * distinct hazards of one domain persist as two findings instead of colliding on the finding
+   * table's (observationId, segmentKey, revision) unique index. The first occurrence keeps the
+   * bare domain key, so single-hazard-per-domain observations (the common case) are unaffected
+   * and existing findings keep their keys across re-analysis.
+   */
+  private uniqueHazardKey(hazardKey: string, taken: Set<string>): string {
+    if (!taken.has(hazardKey)) return hazardKey;
+    for (let occurrence = 2; ; occurrence++) {
+      const candidate = `${hazardKey}-${occurrence}`;
+      if (!taken.has(candidate)) return candidate;
+    }
+  }
+
+  /**
    * V5-C01 (finding-scoped risk / PRA-006). Computes risk independently for ONE decomposed
    * hazard, consuming only that hazard's own evidence (observationFragment, mechanism,
    * supportingSignals, hazardFamily, conditionState) -- never sibling-hazard data and never
@@ -359,6 +402,131 @@ export class InspectionService {
     };
   }
 
+  /**
+   * Corrective actions were previously read from a single flat
+   * `generatedActions` array on the whole-observation classify() response by
+   * positional index (actions[0]/[1]/[2] as "immediate"/"permanent"/
+   * "verification"), so a multi-hazard observation's actions for finding A
+   * could be displayed under finding B once index order didn't line up with
+   * which hazard each action actually addressed. This computes a corrective
+   * action independently for ONE decomposed hazard, consuming only that
+   * hazard's own evidence, risk (from computeFindingRisk above, never
+   * another finding's risk), regulatory basis (that finding's own
+   * standardCandidates from the Phase 5 finding-scoped standards fix), and
+   * evidence gaps -- reusing the existing, unmodified
+   * getCorrectiveActionIntelligence() the same way computeFindingRisk reuses
+   * evaluateRisk(). Returns null when there is no risk for this finding
+   * (e.g. HISTORICAL/SAFE_VERIFIED), matching computeFindingRisk's own null
+   * case, since an action with no risk basis would not be a real recommendation.
+   */
+  private computeFindingCorrectiveAction(
+    hazard: Record<string, unknown>,
+    riskSnapshot: Record<string, unknown> | null,
+  ): Record<string, unknown> | null {
+    if (!riskSnapshot) return null;
+    const hazardFamily = String(hazard.hazardFamily || hazard.domainId || 'Safety observation');
+    const displayFamily = hazardFamily.replace(/[_-]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+    const standardCandidates = Array.isArray(hazard.standardCandidates) ? hazard.standardCandidates as any[] : [];
+    const sourceAnalysis = {
+      primaryRegulatoryBasis: standardCandidates.filter(candidate => candidate?.applicability === 'direct'),
+    };
+    const evidenceGap = {
+      criticalQuestions: Array.isArray(hazard.reviewerQuestions) ? hazard.reviewerQuestions : [],
+      closureEvidenceNeeded: Array.isArray(hazard.evidenceGaps) ? hazard.evidenceGaps : [],
+    };
+    return getCorrectiveActionIntelligence(displayFamily, riskSnapshot, sourceAnalysis, evidenceGap) as unknown as Record<string, unknown>;
+  }
+
+  /**
+   * The guided-review UI already lets a reviewer read and edit a proposed
+   * corrective action per finding (persisted into that finding's own
+   * human_reviews.reviewedConclusion.correctiveAction), and the system
+   * independently computes one per finding (riskSnapshot.
+   * correctiveActionIntelligence, from computeFindingCorrectiveAction above).
+   * Neither was ever written into the canonical corrective_actions tracking
+   * table that the Actions UI, dashboard, and PDF report all read from -- so
+   * a finalized finding's action never appeared there at all. This builds the
+   * text for that canonical record, preferring the reviewer's own edited
+   * text when present (it is the more authoritative, human-confirmed value)
+   * and falling back to the system-computed intelligence otherwise. Returns
+   * null when neither source has anything to persist, rather than inventing
+   * a generic placeholder action for every finding regardless of whether one
+   * was ever produced.
+   */
+  private buildCorrectiveActionPayload(
+    reviewedConclusion: Record<string, unknown> | null,
+    riskSnapshot: Record<string, unknown> | null,
+    hazardCategory: string,
+  ): { title: string; description: string; priorityCode: 'low' | 'medium' | 'high' | 'urgent' } | null {
+    const displayCategory = String(hazardCategory || 'Safety observation').replace(/[_-]+/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+    const reviewerAction = reviewedConclusion?.correctiveAction as Record<string, unknown> | undefined;
+    if (reviewerAction && (reviewerAction.immediateAction || reviewerAction.permanentCorrection || reviewerAction.verificationStep)) {
+      const description = [
+        reviewerAction.immediateAction ? `Immediate: ${reviewerAction.immediateAction}` : null,
+        reviewerAction.permanentCorrection ? `Permanent: ${reviewerAction.permanentCorrection}` : null,
+        reviewerAction.verificationStep ? `Verification: ${reviewerAction.verificationStep}` : null,
+      ].filter(Boolean).join('\n');
+      const urgency = String(reviewerAction.urgency || '').toLowerCase();
+      const priorityCode: 'low' | 'medium' | 'high' | 'urgent' =
+        /urgent|critical/.test(urgency) ? 'urgent' : /prompt|high/.test(urgency) ? 'high' : 'medium';
+      return { title: `${displayCategory} corrective action`, description, priorityCode };
+    }
+    const systemAction = riskSnapshot?.correctiveActionIntelligence as Record<string, any> | undefined;
+    const immediate = systemAction?.immediateActions?.[0];
+    if (immediate) {
+      const permanent = systemAction?.preventionActions?.[0];
+      const verification = systemAction?.verificationActions?.[0];
+      const description = [
+        immediate ? `Immediate: ${immediate.rationale}` : null,
+        permanent ? `Permanent: ${permanent.rationale}` : null,
+        verification ? `Verification: ${verification.rationale}` : null,
+      ].filter(Boolean).join('\n');
+      const priorityCode: 'low' | 'medium' | 'high' | 'urgent' =
+        immediate.priority === 'critical' ? 'urgent' : immediate.priority === 'high' ? 'high' : immediate.priority === 'medium' ? 'medium' : 'low';
+      return { title: immediate.title || `${displayCategory} corrective action`, description, priorityCode };
+    }
+    return null;
+  }
+
+  /**
+   * Upserts the ONE canonical corrective_actions row for a finding (keyed by
+   * findingId, never a second parallel row), so editing an existing action
+   * updates it in place instead of duplicating it, and every finalize call is
+   * idempotent with respect to tracking.
+   */
+  private async upsertCorrectiveActionForFinding(
+    manager: import('typeorm').EntityManager,
+    finding: InspectionFinding,
+    inspectionId: string,
+    reviewedConclusion: Record<string, unknown> | null,
+  ) {
+    const payload = this.buildCorrectiveActionPayload(
+      reviewedConclusion,
+      finding.riskSnapshot as Record<string, unknown> | null,
+      finding.hazardCategory || finding.hazardKey,
+    );
+    if (!payload) return;
+    const repository = manager.getRepository(CorrectiveAction);
+    const existing = await repository.findOne({ where: { findingId: finding.id } });
+    if (existing) {
+      existing.title = payload.title;
+      existing.description = payload.description;
+      existing.priorityCode = payload.priorityCode;
+      existing.inspectionId = inspectionId;
+      await repository.save(existing);
+      return;
+    }
+    await repository.save(repository.create({
+      findingId: finding.id,
+      inspectionId,
+      title: payload.title,
+      description: payload.description,
+      priorityCode: payload.priorityCode,
+      statusCode: 'open',
+      source: 'hazlenz_finding_scoped',
+    }));
+  }
+
   private async reconcileDecompositionFindings(
     manager: import('typeorm').EntityManager,
     observation: Observation,
@@ -381,7 +549,16 @@ export class InspectionService {
     });
     const incomingKeys = new Set<string>();
     for (const [index, hazard] of hazards.entries()) {
-      const hazardKey = this.stableHazardKey(hazard, index);
+      // One observation regularly decomposes into several DISTINCT hazards that share a domain
+      // (two separate excavation defects, two separate electrical defects...). stableHazardKey
+      // derives its key from the domain alone, so those hazards collided on the finding table's
+      // (observationId, segmentKey, revision) unique index: the first inserted, the second threw
+      // a QueryFailedError, and the whole addAnalysis transaction rolled back -- the analysis
+      // could not be saved at all, surfacing to the user as "A newer analysis request already
+      // exists." Repeats of a key within ONE analysis are therefore suffixed by their occurrence
+      // so every decomposed hazard keeps its own finding. Numbering follows the decomposition's
+      // own hazard order, so re-analysing the same observation reproduces the same keys.
+      const hazardKey = this.uniqueHazardKey(this.stableHazardKey(hazard, index), incomingKeys);
       incomingKeys.add(hazardKey);
       const existing = current
         .filter(item => item.hazardKey === hazardKey && item.status !== 'superseded')
@@ -389,7 +566,11 @@ export class InspectionService {
       const family = String(hazard.hazardFamily || hazard.domainId || 'Safety observation');
       const mechanism = String(hazard.mechanism || hazard.observationFragment || family);
       const candidate = { ...hazard, hazardKey };
-      const riskSnapshot = this.computeFindingRisk(hazard, hazardKey, riskProfileId);
+      const baseRiskSnapshot = this.computeFindingRisk(hazard, hazardKey, riskProfileId);
+      const correctiveActionIntelligence = this.computeFindingCorrectiveAction(hazard, baseRiskSnapshot);
+      const riskSnapshot = baseRiskSnapshot && correctiveActionIntelligence
+        ? { ...baseRiskSnapshot, correctiveActionIntelligence }
+        : baseRiskSnapshot;
       if (existing) {
         // Captured before mutation below so the V5-C01 risk-change comparison is
         // meaningful (unlike the pre-existing conclusion/sourceCandidate comparison
@@ -546,12 +727,24 @@ export class InspectionService {
         existing.hazardCategory = dto.hazardCategory || existing.hazardCategory;
         existing.segmentKey = segmentKey;
         existing.hazardKey = segmentKey;
-        existing.sourceCandidate = dto.sourceCandidate || existing.sourceCandidate;
+        // Merge, never replace: a review finalization must not be able to drop the finding's
+        // own finding-scoped evidence (observationFragment, standardCandidates, jurisdiction
+        // provenance) that reconcileDecompositionFindings persisted -- the report, Standard
+        // Detail panel and corrective-action basis all read from it.
+        existing.sourceCandidate = dto.sourceCandidate
+          ? { ...((existing.sourceCandidate || {}) as Record<string, unknown>), ...dto.sourceCandidate }
+          : existing.sourceCandidate;
         existing.reviewerDisposition = dto.reviewerDisposition || existing.reviewerDisposition;
         existing.conclusion = dto.conclusion.trim();
         existing.finalizedByUserId = user.userId;
         if (dto.riskAssessment) {
-          existing.riskSnapshot = { ...dto.riskAssessment, source: 'reviewer_confirmed', reviewerConfirmedByUserId: user.userId };
+          // Keep the finding-scoped system fields (correctiveActionIntelligence, hazardKey,
+          // evidenceUsed...) beneath the reviewer's confirmed risk values -- replacing the whole
+          // snapshot silently discarded the finding's own corrective-action basis.
+          existing.riskSnapshot = {
+            ...((existing.riskSnapshot || {}) as Record<string, unknown>),
+            ...dto.riskAssessment, source: 'reviewer_confirmed', reviewerConfirmedByUserId: user.userId,
+          };
         }
         const saved = await repository.save(existing);
         await manager.getRepository(SecurityAuditEvent).save(manager.getRepository(SecurityAuditEvent).create({
@@ -559,6 +752,9 @@ export class InspectionService {
           action: 'finding_review_finalized', resourceType: 'inspection_finding', resourceId: saved.id,
           metadata: { inspectionId: inspection.id, observationId, findingId: saved.id, reviewId: review.id, analysisId: review.analysisId, status },
         }));
+        if (status === 'finalized') {
+          await this.upsertCorrectiveActionForFinding(manager, saved, inspection.id, review.reviewedConclusion);
+        }
         return saved;
       }
       const saved = await repository.save(repository.create({
@@ -585,6 +781,9 @@ export class InspectionService {
         action: 'finding_review_finalized', resourceType: 'inspection_finding', resourceId: saved.id,
         metadata: { inspectionId: inspection.id, observationId, findingId: saved.id, reviewId: review.id, analysisId: review.analysisId, status },
       }));
+      if (status === 'finalized') {
+        await this.upsertCorrectiveActionForFinding(manager, saved, inspection.id, review.reviewedConclusion);
+      }
       return saved;
     });
   }

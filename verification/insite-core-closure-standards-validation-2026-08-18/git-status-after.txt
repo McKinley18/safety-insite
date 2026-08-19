@@ -1,0 +1,116 @@
+ M backend/package.json
+ M backend/src/corrective-actions/corrective-actions.service.ts
+ M backend/src/inspection/dto/inspection.dto.ts
+ M backend/src/inspection/inspection.entity.ts
+ M backend/src/inspection/inspection.module.ts
+ M backend/src/inspection/inspection.service.ts
+ M backend/src/main.ts
+ M backend/src/reports/canonical-report-pdf-renderer.ts
+ M backend/src/reports/canonical-reports.service.ts
+ M backend/src/safescope-v2/classifier/weighted-classifier.service.ts
+ M backend/src/safescope-v2/display/guided-finding-response.ts
+ M backend/src/safescope-v2/dto/classify.dto.ts
+ M backend/src/safescope-v2/evidence/evidence-foundation.ts
+ M backend/src/safescope-v2/evidence/shared-evidence-facts.ts
+ M backend/src/safescope-v2/hazard-taxonomy-coverage/hazard-taxonomy-coverage.service.ts
+ M backend/src/safescope-v2/multi-hazard-decomposition/multi-hazard-decomposition.service.ts
+ M backend/src/safescope-v2/safescope-v2.controller.ts
+ M backend/src/safescope-v2/safescope-v2.module.ts
+ M backend/src/safescope-v2/safescope-v2.service.ts
+ M backend/src/safescope-v2/standards-intelligence/standards-intelligence.seed.ts
+ M backend/src/safescope-v2/standards/safescope-standards.seed.ts
+ M backend/src/safescope-v2/tests/hazlenz-clarification-gauntlet.ts
+ M backend/src/safescope-v2/tests/hazlenz-core-regression.ts
+ M backend/src/standards/seed/sync-standards-intelligence-to-master.ts
+ M frontend-next/app/inspection-workspace/page.tsx
+ M frontend-next/app/inspections/page.tsx
+ M frontend-next/app/reports/page.tsx
+ M frontend-next/components/layout/AppShell.tsx
+ M frontend-next/lib/canonicalWorkflowApi.ts
+ M safescope-data/hazard-taxonomy/hazard-taxonomy-coverage-map.v1.json
+?? backend/src/database/migrations/1800000009000-InspectionRegulatoryContext.ts
+?? backend/src/safescope-v2/tests/hazlenz-condition-state-invariants-regression.ts
+?? backend/src/safescope-v2/tests/hazlenz-energy-isolation-negation-regression.ts
+?? backend/src/safescope-v2/tests/hazlenz-finding-scoped-standards-regression.ts
+?? backend/src/safescope-v2/tests/hazlenz-handrail-guardrail-regression.ts
+?? backend/src/safescope-v2/tests/hazlenz-inspection-context-autonomy-regression.ts
+?? backend/src/safescope-v2/tests/hazlenz-jurisdiction-unknown-standards-regression.ts
+?? backend/src/safescope-v2/tests/hazlenz-loto-fragment-scoping-regression.ts
+?? backend/src/standards/tests/standards-corpus-integrity-regression.ts
+?? backend/tmp/
+?? verification/full-production-audit-2026-07-26/
+?? verification/hazlenz-authentic-validation-2026-07-22/
+?? verification/hazlenz-canonical-ui-transition-2026-08-09/
+?? verification/hazlenz-domain-association-2026-08-09/
+?? verification/hazlenz-domain-association-blocker-closure-2026-08-09/
+?? verification/hazlenz-domain-association-closure-2026-08-09/
+?? verification/hazlenz-domain-association-execution-2026-08-09/
+?? verification/hazlenz-domain-association-final-closure-2026-08-09/
+?? verification/hazlenz-domain-association-protected-closure-2026-08-09/
+?? verification/hazlenz-domain-association-verification-2026-08-09/
+?? verification/hazlenz-evidence-intake-foundation-2026-07-29/
+?? verification/hazlenz-finding-lifecycle-2026-08-09/
+?? verification/hazlenz-guided-inspection-phase-2026-07-30/
+?? verification/hazlenz-historical-reconciliation-2026-08-09/
+?? verification/hazlenz-observation-reanalysis-2026-08-09/
+?? verification/hazlenz-production-completion-2026-08-03-authenticated-lifecycle/
+?? verification/hazlenz-production-completion-2026-08-03-authenticated-workflow/
+?? verification/hazlenz-production-completion-2026-08-03-browser-offline/
+?? verification/hazlenz-production-completion-2026-08-03-completion-gates/
+?? verification/hazlenz-production-completion-2026-08-03-continuation/
+?? verification/hazlenz-production-completion-2026-08-03-corpus-phase/
+?? verification/hazlenz-production-completion-2026-08-03-durable-run/
+?? verification/hazlenz-production-completion-2026-08-03-final-gates/
+?? verification/hazlenz-production-completion-2026-08-03-login-fix/
+?? verification/hazlenz-production-completion-2026-08-03-multihazard-reports-concurrency/
+?? verification/hazlenz-production-completion-2026-08-03-versioning-multihazard/
+?? verification/hazlenz-production-completion-2026-08-03/
+?? verification/hazlenz-production-completion/
+?? verification/hazlenz-production-hardening-phase-2026-07-30/
+?? verification/hazlenz-reanalysis-version-sync-2026-08-09/
+?? verification/hazlenz-regulatory-release-phase/
+?? verification/hazlenz-response-intelligence-audit-2026-08-08/
+?? verification/hazlenz-response-quality-2026-08-09/
+?? verification/hazlenz-semantic-adjudication-2026-08-08/
+?? verification/hazlenz-standards-temporal-protected-matrix-2026-08-09/
+?? verification/hazlenz-standards-temporal-quality-2026-08-09/
+?? verification/hazlenz-step-transition-root-cause-2026-08-09/
+?? verification/hazlenz-temporal-foundation-2026-08-09/
+?? verification/hazlenz-ui-qualified-review-2026-08-08/
+?? verification/hazlenz-v5-c01-finding-risk-2026-08-15/
+?? verification/hazlenz-v5-c02-shared-evidence-facts-2026-08-16/
+?? verification/hazlenz-v5-c03-evidence-finalization-2026-08-16/
+?? verification/hazlenz-v5-c04-cleanup-2026-08-15/
+?? verification/hazlenz-v5-c05-flow-unification-2026-08-16/
+?? verification/hazlenz-v5-capability-audit-2026-08-15/
+?? verification/hazlenz-v5-midpoint-audit-2026-08-16/
+?? verification/hazlenz-v5-p1-02-corrective-action-repair-2026-08-16/
+?? verification/insite-auth-p1-remediation-2026-08-16/
+?? verification/insite-capability-remediation-2026-08-16/
+?? verification/insite-capability-remediation-closure-2026-08-16/
+?? verification/insite-core-closure-standards-validation-2026-08-18/
+?? verification/insite-core-correctness-2026-08-18/
+?? verification/insite-full-qa-2026-08-18/
+?? verification/insite-hazlenz-capability-commercial-readiness-2026-08-16/
+?? verification/insite-p0-remediation-2026-08-16/
+?? verification/insite-p1-remediation-2026-08-16/
+?? verification/insite-production-polish-efficiency-audit-2026-08-16/
+?? verification/insite-production-polish-p1-inspection-standards-2026-08-16/
+?? verification/insite-production-polish-p2-professional-report-2026-08-16/
+?? verification/insite-standards-integrity-provisioning-2026-08-16/
+?? verification/pra-002-remediation-2026-08-15/
+?? verification/product-engineering-decision-phase-2026-07-26/
+?? verification/production-readiness-audit-2026-08-15/
+?? verification/production-readiness-closure-2026-07-29/
+?? verification/production-remediation-phase-1-2026-07-26/
+?? verification/production-remediation-phase-2-2026-07-26/
+?? verification/production-remediation-phase-3-2026-07-26/
+?? verification/production-remediation-phase-4-2026-07-26/
+?? verification/production-remediation-phase-5-2026-07-27/
+?? verification/production-remediation-phase-6-2026-07-28/
+?? verification/safety-insite-blocker-elimination-2026-08-05/
+?? verification/safety-insite-critical-lifecycle-completion-2026-08-03/
+?? verification/safety-insite-finding-review-browser-2026-08-06/
+?? verification/safety-insite-independent-ai-readiness-2026-08-04/
+?? verification/safety-insite-persisted-multihazard-lifecycle-2026-08-03/
+?? verification/safety-insite-production-readiness-completion-2026-08-03/

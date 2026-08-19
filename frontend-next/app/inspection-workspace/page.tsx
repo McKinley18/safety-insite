@@ -13,11 +13,15 @@ import {
   saveAnalysisSnapshot,
   saveHumanReview,
   transitionPersistedInspection,
+  updatePersistedInspectionRegulatoryContext,
   updatePersistedObservation,
   uploadInspectionEvidence,
+  REGULATORY_CONTEXT_OPTIONS,
+  regulatoryContextLabel,
   type PersistedInspection,
   type HazLenzAnalysisResult,
   type HazLenzEvidenceFact,
+  type RegulatoryContext,
 } from "@/lib/canonicalWorkflowApi";
 import { StandardCitationHeading } from "@/components/inspection/SafeScopeStandardsSection";
 import { AppLinkButton } from "@/components/ui/AppLinkButton";
@@ -95,7 +99,31 @@ type FindingStandardView = {
   confidenceLabel: string;
   confidenceLimitReason?: string | null;
   evidenceMissing: string[];
+  jurisdictionProvenance?: "USER_CONFIRMED" | "HAZLENZ_INFERRED" | "UNKNOWN";
+  source: "finding-scoped" | "observation-primary";
 } | null;
+
+type PersistedStandardCandidate = {
+  citation: string;
+  family: string;
+  status: string;
+  confidence: number;
+  applicability: "direct" | "candidate" | "excluded";
+  explanation: string;
+  missingPredicates: string[];
+  jurisdictionProvenance?: "USER_CONFIRMED" | "HAZLENZ_INFERRED" | "UNKNOWN";
+  /** Corpus-backed fields (present when standards_master has a row for the citation). */
+  title?: string;
+  plainLanguageSummary?: string;
+  corpusBacked?: boolean;
+};
+
+function candidateConfidenceLabel(confidence: number, applicability: string) {
+  if (applicability !== "direct") return "Low";
+  if (confidence >= 0.9) return "High";
+  if (confidence >= 0.6) return "Moderate";
+  return "Low";
+}
 
 // PRA-006 identity fix: `analysis` is one HazLenz result shared by every hazard
 // decomposed from the same observation, but `primaryStandard` only ever describes
@@ -110,14 +138,48 @@ type FindingStandardView = {
 // sibling's content.
 function resolveSelectedFindingStandard(
   analysis: HazLenzAnalysisResult | null,
-  findings: { id: string; hazardKey: string; status: string }[],
+  findings: { id: string; hazardKey: string; status: string; sourceCandidate?: Record<string, unknown> | null }[],
   selectedFindingId: string,
 ): FindingStandardView {
-  const primary = analysis?.guidedFinding?.primaryStandard || null;
+  const primaryRaw = analysis?.guidedFinding?.primaryStandard || null;
+  const primary: FindingStandardView = primaryRaw ? { ...primaryRaw, source: "observation-primary" } : null;
   const observationFindings = findings.filter((finding) => finding.status !== "superseded");
-  if (observationFindings.length <= 1 || !selectedFindingId) return primary;
-
   const selectedFinding = observationFindings.find((finding) => finding.id === selectedFindingId);
+
+  // Standards are finding-scoped: each persisted finding carries its OWN candidates, computed
+  // from that finding's own evidence fragment under the inspection's regulatory context
+  // (inspection_findings.sourceCandidate.standardCandidates). Those are authoritative for the
+  // Standard Detail panel whenever the selected finding has them -- never a sibling finding's
+  // standard, and never the whole-observation primary when the finding's own evaluation ran.
+  const ownCandidates = Array.isArray(selectedFinding?.sourceCandidate?.standardCandidates)
+    ? (selectedFinding!.sourceCandidate!.standardCandidates as PersistedStandardCandidate[])
+    : null;
+  if (ownCandidates) {
+    const best = ownCandidates.find((candidate) => candidate.applicability === "direct")
+      || ownCandidates.find((candidate) => candidate.applicability === "candidate");
+    if (best) {
+      const sameAsPrimary = primaryRaw && primaryRaw.citation === best.citation;
+      return {
+        citation: best.citation,
+        // Corpus-backed title/summary when standards_master has the row; otherwise the rule family
+        // (and, for the observation's primary, whatever the guided response resolved).
+        title: best.title || (sameAsPrimary ? primaryRaw!.title : best.family),
+        applicability: best.applicability === "direct" ? "direct" : "candidate",
+        whyOffered: best.explanation,
+        simplifiedRequirement: best.plainLanguageSummary || (sameAsPrimary ? primaryRaw!.simplifiedRequirement : ""),
+        confidenceLabel: candidateConfidenceLabel(best.confidence, best.applicability),
+        confidenceLimitReason: sameAsPrimary ? primaryRaw!.confidenceLimitReason : null,
+        evidenceMissing: best.missingPredicates || [],
+        jurisdictionProvenance: best.jurisdictionProvenance,
+        source: "finding-scoped",
+      };
+    }
+    // The finding's own evaluation ran and found nothing. For a multi-finding observation that
+    // is the honest answer (the primary belongs to whichever hazard was primary). For a
+    // single-finding observation the whole-observation primary is that finding's standard.
+    if (observationFindings.length > 1) return null;
+  }
+  if (observationFindings.length <= 1 || !selectedFindingId) return primary;
   if (!selectedFinding) return primary;
 
   const decomposition = analysis?.multiHazardDecomposition as { primaryHazard?: { domainId?: string; hazardFamily?: string } } | undefined;
@@ -145,6 +207,7 @@ function resolveSelectedFindingStandard(
     confidenceLabel: "Not established",
     confidenceLimitReason: null,
     evidenceMissing: matchedAdditional.evidenceMissing,
+    source: "observation-primary",
   };
 }
 
@@ -192,9 +255,28 @@ function decompositionHazards(analysis: HazLenzAnalysisResult | null): string[] 
 
 type ActionDraft = { immediateAction: string; permanentCorrection: string; verificationStep: string };
 
-function safeActionDraftForFinding(finding: { hazardCategory: string | null; hazardKey: string; conclusion: string }, fallback: ActionDraft) {
+// The finding's OWN HazLenz corrective-action intelligence (persisted on riskSnapshot by
+// InspectionService.computeFindingCorrectiveAction from that finding's own evidence, risk and
+// standards). Used for families without a hand-written mapping below so a hazcom or egress finding
+// never inherits a sibling's electrical/LOTO action text.
+function findingScopedActionDraft(finding: { riskSnapshot?: Record<string, unknown> | null }): ActionDraft | null {
+  const intelligence = (finding.riskSnapshot as { correctiveActionIntelligence?: Record<string, unknown> } | null | undefined)?.correctiveActionIntelligence;
+  if (!intelligence || typeof intelligence !== "object") return null;
+  const first = (key: string) => {
+    const list = (intelligence as Record<string, unknown>)[key];
+    const item = Array.isArray(list) ? (list[0] as { rationale?: string; title?: string; description?: string } | undefined) : undefined;
+    return String(item?.rationale || item?.description || item?.title || "").trim();
+  };
+  const immediateAction = first("immediateActions");
+  const permanentCorrection = first("preventionActions") || first("permanentActions");
+  const verificationStep = first("verificationActions");
+  if (!immediateAction && !permanentCorrection && !verificationStep) return null;
+  return { immediateAction, permanentCorrection, verificationStep };
+}
+
+function safeActionDraftForFinding(finding: { hazardCategory: string | null; hazardKey: string; conclusion: string; riskSnapshot?: Record<string, unknown> | null }, fallback: ActionDraft) {
   const family = `${finding.hazardCategory || ""} ${finding.hazardKey}`.toLowerCase();
-  if (family.includes("electrical")) return {
+  if (family.includes("electrical") || family.includes("electric")) return {
     immediateAction: "Place the affected electrical equipment in a safe state and restrict access pending qualified electrical verification.",
     permanentCorrection: "Repair or replace the electrical component with appropriately rated equipment and verify the installation.",
     verificationStep: "Have a qualified person document the electrical inspection before returning the equipment to service.",
@@ -204,7 +286,7 @@ function safeActionDraftForFinding(finding: { hazardCategory: string | null; haz
     permanentCorrection: "Provide and maintain a compliant guardrail, personal fall-arrest system, or other approved fall control for the work area.",
     verificationStep: "Verify the fall-control system and access route before resuming work.",
   };
-  if (family.includes("loto") || family.includes("energy")) return {
+  if (family.includes("loto") || family.includes("lockout") || family.includes("tagout") || family.includes("energy")) return {
     immediateAction: "Stop servicing and control hazardous energy before anyone enters the danger zone.",
     permanentCorrection: "Implement the applicable energy-control procedure with isolation, lockout, release of stored energy, and verification.",
     verificationStep: "Document zero-energy verification before returning the equipment to service.",
@@ -224,7 +306,9 @@ function safeActionDraftForFinding(finding: { hazardCategory: string | null; haz
     permanentCorrection: "Provide compliant cylinder securing, separation, valve protection, and storage/handling controls for the observed equipment.",
     verificationStep: "Have a competent person verify cylinder condition and controls before use.",
   };
-  return fallback;
+  // No hand-written mapping for this family: prefer the finding's own finding-scoped HazLenz
+  // action over the shared (sibling-derived) draft.
+  return findingScopedActionDraft(finding) || fallback;
 }
 
 export default function InspectionWorkspacePage() {
@@ -233,11 +317,20 @@ export default function InspectionWorkspacePage() {
   const [observation, setObservation] = useState("");
   const [workArea, setWorkArea] = useState("");
   const [workActivity, setWorkActivity] = useState("");
-  const [jurisdiction, setJurisdiction] = useState<"msha" | "osha-general-industry" | "osha-construction" | "unknown">("unknown");
   const [evidenceFile, setEvidenceFile] = useState<File | null>(null);
   const [evidenceObjectId, setEvidenceObjectId] = useState("");
   const [analysis, setAnalysis] = useState<HazLenzAnalysisResult | null>(null);
   const [reviewFacts, setReviewFacts] = useState<HazLenzEvidenceFact[]>([]);
+  // reanalyze() only sends ONE round's clarification answer at a time (the button just clicked),
+  // never the full answer history. The backend's per-finding standards evaluation is re-derived from
+  // scratch on every round from the current request alone, so an earlier round's answer (e.g.
+  // confirming jurisdiction) would otherwise be forgotten the moment the next question is answered --
+  // the "Essential clarification" panel would keep re-asking a question the user already answered.
+  // Accumulating and resending every answered question every round keeps each round's re-evaluation
+  // complete rather than a snapshot of only the single latest click.
+  const [clarificationAnswerHistory, setClarificationAnswerHistory] = useState<
+    Array<{ questionId: string; answer: string }>
+  >([]);
   const [observationId, setObservationId] = useState("");
   const [analysisId, setAnalysisId] = useState("");
   const analysisRequestVersion = useRef(0);
@@ -281,6 +374,44 @@ export default function InspectionWorkspacePage() {
   useEffect(() => {
     getVerifiedPlanCode().then(setPlanCode).catch(() => {});
   }, []);
+
+  // The inspection-level regulatory context is the ONE authoritative jurisdiction for every
+  // observation and finding here. It is persisted on the inspection (set at inspection start,
+  // changeable below) and re-read from the server, never a page-local default -- the backend
+  // applies it authoritatively to every analysis via `inspectionId`, so nothing here has to
+  // resend a fragile jurisdiction string per finding.
+  const jurisdiction: RegulatoryContext = inspection?.regulatoryContext || "unknown";
+
+  async function persistRegulatoryContext(next: RegulatoryContext) {
+    if (!inspection || next === jurisdiction) return inspection;
+    setBusy(true);
+    setStatus("Saving the inspection's regulatory context…");
+    try {
+      const saved = await updatePersistedInspectionRegulatoryContext(inspection.id, next, inspection.version);
+      const refreshed = await getPersistedInspection(inspection.id);
+      setInspection(refreshed);
+      setStatus(analysis
+        ? `Regulatory context saved as ${regulatoryContextLabel(saved.regulatoryContext)}. Run HazLenz again so findings inherit it.`
+        : `Regulatory context saved as ${regulatoryContextLabel(saved.regulatoryContext)}.`);
+      return refreshed;
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "The regulatory context was not saved.");
+      return inspection;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  // The ONE consolidated jurisdiction question HazLenz asks (id "jurisdiction") is answered at
+  // inspection level: persist the answer onto the inspection so it is never asked again for any
+  // finding in this inspection, then re-run the analysis, which now inherits it as USER_CONFIRMED.
+  function regulatoryContextFromAnswer(answer: string): RegulatoryContext | null {
+    const value = answer.toLowerCase();
+    if (/msha|mine/.test(value)) return "msha";
+    if (/construction/.test(value)) return "osha-construction";
+    if (/general/.test(value)) return "osha-general-industry";
+    return null;
+  }
 
   useEffect(() => {
     const id = selectedInspectionId();
@@ -349,6 +480,7 @@ export default function InspectionWorkspacePage() {
         setEvidenceObjectId(storedEvidence.id);
       }
       const result = await analyzeObservation(observation, {
+        inspectionId: inspection.id,
         structuredObservation: {
           narrative: observation,
           jurisdiction,
@@ -371,6 +503,12 @@ export default function InspectionWorkspacePage() {
       setObservationId(savedObservation.id);
       setAnalysisId(savedAnalysis.id);
       setAnalysis(result);
+      // Select the first current finding immediately so the Standard Detail panel shows THAT
+      // finding's own finding-scoped standard (not the whole-observation primary, which for a
+      // multi-finding observation is only one sibling's citation).
+      const currentFindings = (nextInspection.findings || []).filter((finding) => finding.status !== "superseded");
+      setFindingIds(currentFindings.map((finding) => finding.id));
+      setSelectedFindingId(currentFindings[0]?.id || "");
       setReviewFacts(result.evidenceSnapshot?.facts || []);
       if (result.guidedFinding) {
         const proposal = {
@@ -402,7 +540,7 @@ export default function InspectionWorkspacePage() {
       }
       setInspection(nextInspection);
       setStep("review");
-      setStatus("HazLenz advisory snapshot saved — qualified human review required.");
+      setStatus("HazLenz assessment saved — review before finalizing.");
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Analysis was not saved.");
     } finally {
@@ -416,6 +554,14 @@ export default function InspectionWorkspacePage() {
     if (!analysis) return;
     const persistedInspectionId = inspection?.id;
     if (!persistedInspectionId) return;
+    let currentJurisdiction = jurisdiction;
+    if (clarificationAnswer?.questionId === "jurisdiction") {
+      const answered = regulatoryContextFromAnswer(clarificationAnswer.answer);
+      if (answered && answered !== jurisdiction) {
+        const refreshed = await persistRegulatoryContext(answered);
+        currentJurisdiction = refreshed?.regulatoryContext || answered;
+      }
+    }
     setBusy(true);
     setStatus("Re-evaluating the evidence and applicability predicates…");
     try {
@@ -426,14 +572,21 @@ export default function InspectionWorkspacePage() {
         reviewerStatus: "user_confirmed",
         confidence: 1,
       }));
+      const nextAnswerHistory = clarificationAnswer
+        ? [
+            ...clarificationAnswerHistory.filter((item) => item.questionId !== clarificationAnswer.questionId),
+            clarificationAnswer,
+          ]
+        : clarificationAnswerHistory;
       const result = await analyzeObservation(observation, {
+        inspectionId: persistedInspectionId,
         evidenceSnapshot: analysis.evidenceSnapshot
           ? { ...analysis.evidenceSnapshot, facts: correctedFacts }
           : undefined,
-        clarificationAnswers: clarificationAnswer ? [clarificationAnswer] : undefined,
+        clarificationAnswers: nextAnswerHistory.length ? nextAnswerHistory : undefined,
         structuredObservation: {
           narrative: observation,
-          jurisdiction,
+          jurisdiction: currentJurisdiction,
           workArea: workArea || undefined,
           taskBeingPerformed: workActivity || undefined,
           evidenceSource: evidenceFile ? ["worker-report", "photo"] : ["worker-report"],
@@ -455,6 +608,7 @@ export default function InspectionWorkspacePage() {
       const nextInspection = await getPersistedInspection(persistedInspectionId);
       setAnalysisId(saved.id);
       setAnalysis(result);
+      setClarificationAnswerHistory(nextAnswerHistory);
       setInspection(nextInspection);
       setFindingIds((nextInspection.findings || [])
         .filter((finding) => finding.status !== "superseded")
@@ -489,7 +643,7 @@ export default function InspectionWorkspacePage() {
           verificationStep: result.guidedFinding.correctiveAction.verificationStep,
         });
       }
-      setStatus("Updated HazLenz advisory snapshot saved — human confirmation is still required.");
+      setStatus("Updated HazLenz assessment saved — review before finalizing.");
     } catch (error) {
       const message = error instanceof Error ? error.message : "The corrected evidence was not saved.";
       if (/newer analysis|stale|conflict/i.test(message)) {
@@ -508,6 +662,7 @@ export default function InspectionWorkspacePage() {
     setBusy(true);
     setStaleAnalysis(false);
     setStatus("Reanalyzing the persisted observation with HazLenz AI…");
+    setClarificationAnswerHistory([]);
     try {
       const stateBeforeAnalysis = await getPersistedInspection(inspection.id);
       const persistedObservation = stateBeforeAnalysis.observations?.find(item => item.id === observationId);
@@ -523,6 +678,7 @@ export default function InspectionWorkspacePage() {
         analysisRequestVersion.current,
       );
       const result = await analyzeObservation(observation, {
+        inspectionId: inspection.id,
         structuredObservation: {
           narrative: observation,
           jurisdiction,
@@ -624,9 +780,16 @@ export default function InspectionWorkspacePage() {
       const durableFindings = (inspection.findings || [])
         .filter((finding) => finding.observationId === observationId && finding.status !== "superseded");
       const selectedFinding = durableFindings.find((finding) => finding.id === selectedFindingId) || durableFindings[0];
+      // The persisted sourceCandidate written at finalization must be the finding's OWN
+      // finding-scoped candidate (observationFragment, standardCandidates, provenance...) with the
+      // review bookkeeping keys added -- not the finding row wrapped around it. Spreading the
+      // whole finding here buried observationFragment/standardCandidates one level deeper, so the
+      // report read "What was observed: cord" and "Applicable standard: Not established" for a
+      // finding whose own evaluation had a direct standard.
       const candidatesToPersist = selectedFinding
         ? [{
-          ...selectedFinding,
+          ...((selectedFinding.sourceCandidate || {}) as Record<string, unknown>),
+          hazardKey: selectedFinding.hazardKey,
           citation: String(selectedFinding.sourceCandidate?.citation || ""),
           family: selectedFinding.hazardCategory || selectedFinding.hazardKey,
           conclusion: selectedFinding.conclusion,
@@ -659,7 +822,12 @@ export default function InspectionWorkspacePage() {
           reviewedConclusion: {
             guidedFinding: analysis.guidedFinding,
             reviewerRisk: { ...reviewerRisk, reviewerConfirmed: true },
-            correctiveAction: actionDraft,
+            // Corrective actions are reviewed on the Action step, AFTER every finding is
+            // finalized; the shared draft here is the whole-observation proposal and has not been
+            // reviewed for THIS finding. Attaching it made every finding's finalize-time action
+            // record carry the same (e.g. electrical) text -- the fall-protection finding's report
+            // action read "Isolate the affected extension cord". Leaving it out lets the backend
+            // use each finding's own finding-scoped corrective-action intelligence.
             segmentationDecision: {
               selectedSegmentKeys,
               rejectedSegmentKeys: (analysis.guidedFinding?.findingCandidates || [])
@@ -736,7 +904,11 @@ export default function InspectionWorkspacePage() {
       const dueDate = new Date(Date.now() + dueDays * 86400000).toISOString();
       for (const [index, findingId] of findingIds.entries()) {
         const finding = (inspection.findings || []).find(item => item.id === findingId);
-        const findingAction = finding
+        // With a single finding the Action step's draft IS that finding's reviewed action (the
+        // user just edited it). With several findings the one shared draft cannot be assumed to
+        // describe each of them, so each finding gets the action matched to its own family (the
+        // shared draft only as a fallback for a family with no mapping).
+        const findingAction = finding && findingIds.length > 1
           ? safeActionDraftForFinding(finding, actionDraft)
           : actionDraft;
         const action = await createPersistedCorrectiveAction({
@@ -815,6 +987,12 @@ export default function InspectionWorkspacePage() {
           <p className="text-xs font-bold uppercase tracking-wider">Inspection</p>
           <h2 className="mt-1 text-xl font-bold">{inspection.title}</h2>
           <p className="mt-1 text-sm">Status: {humanizeInspectionStatus(inspection.status)} · revision {inspection.version}</p>
+          <p className="mt-1 text-sm" data-testid="inspection-regulatory-context">
+            Regulatory context: <strong>{regulatoryContextLabel(jurisdiction)}</strong>
+            {jurisdiction === "unknown"
+              ? " — HazLenz keeps standards conditional and will ask once if the agency matters."
+              : " — set for this inspection; every finding inherits it."}
+          </p>
         </section>
       )}
 
@@ -852,16 +1030,17 @@ export default function InspectionWorkspacePage() {
             </label>
           </div>
           <label className="block font-bold">
-            Site context
+            Regulatory context <span className="font-normal text-slate-500">(saved on this inspection)</span>
             <select
+              aria-label="Regulatory context"
               value={jurisdiction}
-              onChange={(event) => setJurisdiction(event.target.value as typeof jurisdiction)}
+              disabled={busy}
+              onChange={(event) => void persistRegulatoryContext(event.target.value as RegulatoryContext)}
               className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 text-slate-950"
             >
-              <option value="unknown">Not sure</option>
-              <option value="msha">MSHA mine site</option>
-              <option value="osha-general-industry">OSHA general industry</option>
-              <option value="osha-construction">OSHA construction</option>
+              {REGULATORY_CONTEXT_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>{option.label}</option>
+              ))}
             </select>
           </label>
           <label htmlFor="observation" className="block font-bold">What did you observe?</label>
@@ -890,7 +1069,11 @@ export default function InspectionWorkspacePage() {
               </button>
             </div>
           )}
-          <h2 className="text-xl font-black">Human review required</h2>
+          <h2 className="text-xl font-black">HazLenz assessment — review before finalizing</h2>
+          <p className="guided-muted text-sm">
+            HazLenz has produced its best supported assessment from the evidence. Review, edit, or override it below;
+            a qualified human review is recorded when you finalize each finding.
+          </p>
           <div className="guided-subcard space-y-3" aria-label="Observation revision">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
@@ -1000,16 +1183,24 @@ export default function InspectionWorkspacePage() {
           </div>
           {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).length > 0 && (
             <div className="guided-subcard">
-              <h3 className="font-black">Essential clarification</h3>
+              <h3 className="font-black">Clarification</h3>
               <p className="guided-muted mt-1 text-sm">
                 {(() => {
-                  const count = (analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).length;
-                  return `${count} evidence gap${count === 1 ? "" : "s"} — answer to raise confidence in the standard shown below.`;
+                  const list = (analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []) as Array<{ decisionCritical?: boolean }>;
+                  const critical = list.filter((item) => item.decisionCritical).length;
+                  return critical > 0
+                    ? `${critical} of ${list.length} could change the finding, standard, or risk; the rest only raise confidence. None blocks your review.`
+                    : `${list.length} optional question${list.length === 1 ? "" : "s"} — answering raises confidence in the standard shown below; none blocks your review.`;
                 })()}
               </p>
               {(analysis.guidedFinding?.clarificationQuestions || analysis.clarificationQuestions || []).map((question) => (
                 <fieldset key={question.id} className="mt-3">
-                  <legend className="font-semibold">{question.question}</legend>
+                  <legend className="font-semibold">
+                    {question.question}{" "}
+                    <span className={`ml-1 rounded px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide ${(question as { decisionCritical?: boolean }).decisionCritical ? "bg-amber-100 text-amber-900" : "bg-slate-100 text-slate-600"}`}>
+                      {(question as { decisionCritical?: boolean }).decisionCritical ? "Decision-critical" : "Optional"}
+                    </span>
+                  </legend>
                   {materialQuestionReason(question) && (
                     <p className="guided-muted mt-1 text-sm">{materialQuestionReason(question)}</p>
                   )}
@@ -1029,11 +1220,37 @@ export default function InspectionWorkspacePage() {
               ))}
             </div>
           )}
+          {analysis.regulatoryContext && (
+            <p className="text-sm" data-testid="hazlenz-regulatory-context">
+              {analysis.regulatoryContext.provenance === "USER_CONFIRMED" && (
+                <>Standards evaluated under <strong>{regulatoryContextLabel(analysis.regulatoryContext.value)}</strong> (set for this inspection).</>
+              )}
+              {analysis.regulatoryContext.provenance === "HAZLENZ_INFERRED" && (
+                <>
+                  Standards evaluated under <strong>{regulatoryContextLabel(analysis.regulatoryContext.value)}</strong> — inferred by HazLenz from the observation
+                  {analysis.regulatoryContext.basis?.length ? ` (“${analysis.regulatoryContext.basis.join("”, “")}”)` : ""}, not yet confirmed for this inspection.{" "}
+                  <button
+                    type="button"
+                    disabled={busy}
+                    onClick={() => void persistRegulatoryContext(analysis.regulatoryContext!.value)}
+                    className="min-h-9 rounded-lg border border-slate-700 px-3 text-sm font-bold"
+                  >
+                    Confirm for this inspection
+                  </button>
+                </>
+              )}
+              {analysis.regulatoryContext.provenance === "UNKNOWN" && (
+                <>Regulatory context is <strong>not established</strong>; standards below are shown as conditional candidates until the governing agency is known.</>
+              )}
+            </p>
+          )}
           <div className="guided-standard-card">
             <p className="guided-eyebrow">
               {selectedFindingStandard?.applicability === "candidate"
                 ? "Candidate standard — more evidence required"
-                : "Primary standard"}
+                : selectedFindingStandard?.jurisdictionProvenance === "HAZLENZ_INFERRED"
+                  ? "Primary standard — jurisdiction inferred by HazLenz, confirm for this inspection"
+                  : "Primary standard"}
             </p>
             {selectedFindingStandard ? (
               <StandardCitationHeading citation={selectedFindingStandard.citation} title={selectedFindingStandard.title} />
